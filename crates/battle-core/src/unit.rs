@@ -1,5 +1,6 @@
 //! Source control flow for ed.Unit.update. Mechanics are explicit required hooks.
 //! The hot state is typed and contiguous; vector/effect/buff identities stay stable.
+use crate::js_math::max;
 use crate::entity::{Vec2Arena,Vec2Id};
 use std::sync::Arc;
 
@@ -58,7 +59,6 @@ pub trait Hooks{
 }
 #[inline]fn truthy(x:f64)->bool{x!=0.0&&!x.is_nan()}
 #[inline]fn or_zero(x:f64)->f64{if truthy(x){x}else{0.0}}
-#[inline]fn max(a:f64,b:f64)->f64{if a.is_nan()||b.is_nan(){f64::NAN}else if a==0.0&&b==0.0{if a.is_sign_negative()&&b.is_sign_negative(){-0.0}else{0.0}}else if a>b{a}else{b}}
 #[inline]fn distance(a:[f64;2],b:[f64;2])->f64{let x=a[0]-b[0];let y=a[1]-b[1];x*x+y*y}
 #[inline]fn crossed(position:[f64;2],previous:[f64;2],destination:[f64;2])->bool{(position[0]-destination[0])*(previous[0]-destination[0])<0.0||(position[1]-destination[1])*(previous[1]-destination[1])<0.0||distance(position,destination)<=9.0}
 impl World{

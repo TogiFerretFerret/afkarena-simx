@@ -1,5 +1,6 @@
 //! Source ed.Buff.update and updateHPRDamage. Identity, live rereads and call order
 //! are retained. Effects/removal/healing/damage remain required mechanics hooks.
+use crate::js_math::{max,min};
 use crate::skill::Number;
 pub type UnitId=usize;pub type BuffId=usize;pub type Result<T=()>=std::result::Result<T,String>;
 #[derive(Clone,Copy,Debug)]pub struct Unit{pub camp:f64,pub has_config:bool,pub field_npc:bool,pub is_unit:bool,pub hp:f64,pub max_hp:f64,pub heal:f64,pub dot_ratio:f64}
@@ -22,8 +23,6 @@ pub trait Hooks{
 #[inline]fn number(v:Number)->f64{match v{Number::Undefined=>f64::NAN,Number::Null=>0.0,Number::Value(x)=>x}}
 #[inline]fn truthy(x:f64)->bool{x!=0.0&&!x.is_nan()}
 #[inline]fn or_zero(v:Number)->f64{let x=number(v);if truthy(x){x}else{0.0}}
-#[inline]fn max(a:f64,b:f64)->f64{if a.is_nan()||b.is_nan(){f64::NAN}else if a==0.0&&b==0.0{if a.is_sign_negative()&&b.is_sign_negative(){-0.0}else{0.0}}else if a>b{a}else{b}}
-#[inline]fn min(a:f64,b:f64)->f64{if a.is_nan()||b.is_nan(){f64::NAN}else if a==0.0&&b==0.0{if a.is_sign_negative()||b.is_sign_negative(){-0.0}else{0.0}}else if a<b{a}else{b}}
 impl World{
  fn caster(&self,buff:BuffId)->Result<UnitId>{self.buffs[buff].caster.ok_or_else(||"source caster is null/undefined".into())}
  pub fn update<H:Hooks>(&mut self,buff:BuffId,dt:f64,h:&mut H)->Result{

@@ -9,3 +9,6 @@ pub mod unit;
 pub mod ai;
 pub mod skill;
 pub mod buff;
+pub mod js_math;
+pub mod config;
+pub mod damage;
