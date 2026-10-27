@@ -47,6 +47,12 @@
   ],
   "validation": {
     "rustUnitTests": 5,
-    "differential": "pending"
+    "differential": {
+      "cases": 20000,
+      "eventCount": 114577,
+      "rawBitsExact": true,
+      "reference": "original ed.Skill.update plus original queued callback bodies",
+      "scope": "timeline/control and fixture host mutations; not full battle equivalence"
+    }
   }
 }
