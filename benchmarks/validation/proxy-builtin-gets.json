@@ -1,0 +1,2660 @@
+{
+  "version": 1,
+  "cases": 413,
+  "differences": [
+    {
+      "label": "0:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2"
+        ]
+      },
+      "native": {
+        "label": "0:slice",
+        "gets": [
+          "slice",
+          "length"
+        ],
+        "descriptors": [],
+        "has": [],
+        "error": null
+      },
+      "node": {
+        "label": "0:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor"
+        ],
+        "descriptors": [],
+        "has": [],
+        "error": null
+      }
+    },
+    {
+      "label": "0:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      "native": {
+        "label": "0:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length"
+        ],
+        "descriptors": [],
+        "has": [],
+        "error": null
+      },
+      "node": {
+        "label": "0:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length"
+        ],
+        "descriptors": [],
+        "has": [],
+        "error": null
+      }
+    },
+    {
+      "label": "0:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2"
+        ]
+      },
+      "native": {
+        "label": "0:map",
+        "gets": [
+          "map",
+          "length"
+        ],
+        "descriptors": [],
+        "has": [],
+        "error": null
+      },
+      "node": {
+        "label": "0:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor"
+        ],
+        "descriptors": [],
+        "has": [],
+        "error": null
+      }
+    },
+    {
+      "label": "0:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2"
+        ]
+      },
+      "native": {
+        "label": "0:filter",
+        "gets": [
+          "filter",
+          "length"
+        ],
+        "descriptors": [],
+        "has": [],
+        "error": null
+      },
+      "node": {
+        "label": "0:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor"
+        ],
+        "descriptors": [],
+        "has": [],
+        "error": null
+      }
+    },
+    {
+      "label": "1:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      "native": {
+        "label": "1:slice",
+        "gets": [
+          "slice",
+          "length",
+          "0"
+        ],
+        "descriptors": [],
+        "has": [
+          "0"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "1:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor",
+          "0"
+        ],
+        "descriptors": [],
+        "has": [
+          "0"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "1:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "native": {
+        "label": "1:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length",
+          "0"
+        ],
+        "descriptors": [],
+        "has": [
+          "0"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "1:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length",
+          "0"
+        ],
+        "descriptors": [],
+        "has": [
+          "0"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "1:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      "native": {
+        "label": "1:map",
+        "gets": [
+          "map",
+          "length",
+          "0"
+        ],
+        "descriptors": [],
+        "has": [
+          "0"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "1:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor",
+          "0"
+        ],
+        "descriptors": [],
+        "has": [
+          "0"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "1:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      "native": {
+        "label": "1:filter",
+        "gets": [
+          "filter",
+          "length",
+          "0"
+        ],
+        "descriptors": [],
+        "has": [
+          "0"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "1:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor",
+          "0"
+        ],
+        "descriptors": [],
+        "has": [
+          "0"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "2:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "native": {
+        "label": "2:slice",
+        "gets": [
+          "slice",
+          "length",
+          "0",
+          "1"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "2:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor",
+          "0",
+          "1"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "2:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      "native": {
+        "label": "2:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "2:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "2:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "native": {
+        "label": "2:map",
+        "gets": [
+          "map",
+          "length",
+          "0",
+          "1"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "2:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor",
+          "0",
+          "1"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "2:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "native": {
+        "label": "2:filter",
+        "gets": [
+          "filter",
+          "length",
+          "0",
+          "1"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "2:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor",
+          "0",
+          "1"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "3:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      "native": {
+        "label": "3:slice",
+        "gets": [
+          "slice",
+          "length",
+          "0",
+          "1",
+          "2"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "3:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "3:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      "native": {
+        "label": "3:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "3:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "3:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      "native": {
+        "label": "3:map",
+        "gets": [
+          "map",
+          "length",
+          "0",
+          "1",
+          "2"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "3:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "3:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      "native": {
+        "label": "3:filter",
+        "gets": [
+          "filter",
+          "length",
+          "0",
+          "1",
+          "2"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "3:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "4:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      "native": {
+        "label": "4:slice",
+        "gets": [
+          "slice",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "4:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "4:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ]
+      },
+      "native": {
+        "label": "4:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "4:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "4:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      "native": {
+        "label": "4:map",
+        "gets": [
+          "map",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "4:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "4:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      "native": {
+        "label": "4:filter",
+        "gets": [
+          "filter",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "4:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "5:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ]
+      },
+      "native": {
+        "label": "5:slice",
+        "gets": [
+          "slice",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "5:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "5:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ]
+      },
+      "native": {
+        "label": "5:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "5:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "5:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ]
+      },
+      "native": {
+        "label": "5:map",
+        "gets": [
+          "map",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "5:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "5:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ]
+      },
+      "native": {
+        "label": "5:filter",
+        "gets": [
+          "filter",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "5:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "6:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ]
+      },
+      "native": {
+        "label": "6:slice",
+        "gets": [
+          "slice",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "6:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "6:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "6:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "6:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "6:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ]
+      },
+      "native": {
+        "label": "6:map",
+        "gets": [
+          "map",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "6:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "6:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ]
+      },
+      "native": {
+        "label": "6:filter",
+        "gets": [
+          "filter",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "6:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "7:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "7:slice",
+        "gets": [
+          "slice",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "7:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "7:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "10",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "7:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "7:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "7:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "7:map",
+        "gets": [
+          "map",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "7:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "7:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "7:filter",
+        "gets": [
+          "filter",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "7:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "8:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "10",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "8:slice",
+        "gets": [
+          "slice",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "8:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "8:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "10",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "10",
+          "11",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "8:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "8:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "8:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "10",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "8:map",
+        "gets": [
+          "map",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "8:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "8:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "10",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "8:filter",
+        "gets": [
+          "filter",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "8:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "9:slice",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "10",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "10",
+          "11",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "9:slice",
+        "gets": [
+          "slice",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "9:slice",
+        "gets": [
+          "slice",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "9:concat",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "10",
+          "11",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "10",
+          "11",
+          "12",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "9:concat",
+        "gets": [
+          "concat",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "9:concat",
+        "gets": [
+          "concat",
+          "constructor",
+          "@@isConcatSpreadable",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "9:map",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "10",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "10",
+          "11",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "9:map",
+        "gets": [
+          "map",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "9:map",
+        "gets": [
+          "map",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "error": null
+      }
+    },
+    {
+      "label": "9:filter",
+      "difference": {
+        "path": "$.gets.$keys",
+        "actual": [
+          "0",
+          "1",
+          "10",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "expected": [
+          "0",
+          "1",
+          "10",
+          "11",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      "native": {
+        "label": "9:filter",
+        "gets": [
+          "filter",
+          "length",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "error": null
+      },
+      "node": {
+        "label": "9:filter",
+        "gets": [
+          "filter",
+          "length",
+          "constructor",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "descriptors": [],
+        "has": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "error": null
+      }
+    }
+  ],
+  "sourceSha256": "10d73705b4064b500764b3f18a3bc23b9479e524d4079bd8a1159319d6458897",
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "vmSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "scope": "Read-only builtins over proxies with exact get/descriptor/has trap histories. Engine differences are preserved, not normalized."
+}
