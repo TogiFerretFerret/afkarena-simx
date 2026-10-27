@@ -34,7 +34,14 @@ const executable=elf(binaryBytes),byAddress=new Map();
 for(const symbol of executable.symbols.filter(s=>s.type===2)){const key=symbol.value+':'+symbol.name;if(!byAddress.has(key))byAddress.set(key,[]);byAddress.get(key).push(symbol);}
 const metadataManifestBytes=await read(report.sourceManifest.file);assert.equal(sha(metadataManifestBytes),report.sourceManifest.sha256);
 const manifest=JSON.parse(metadataManifestBytes),metadataPath=manifest.input.file+'.metadata.json',metadataBytes=await read(metadataPath);assert.equal(sha(metadataBytes),report.metadataSha256);
-const metadata=JSON.parse(metadataBytes),units=[],functions=[],sourceTexts=new Map(),unresolved=[];
+const metadata=JSON.parse(metadataBytes),units=[],functions=[],sourceTexts=new Map(),unresolved=[],additionalSourceInputs={};
+if(manifest.candidate){
+ assert.equal(manifest.passed,true,'Experimental host helper requires its passed manifest');
+ assert.equal(manifest.units.length,report.units.length);
+ manifest.units.forEach((unit,index)=>assert.equal(unit.sha256,report.units[index].sha256,'Candidate source unit binding'));
+ assert.equal(typeof manifest.candidate.file,'string');assert.match(manifest.candidate.sha256,/^[a-f0-9]{64}$/);
+ additionalSourceInputs[manifest.candidate.file]=manifest.candidate.sha256;
+}
 for(const unit of report.units){
  const bytes=await read(unit.object);assert.equal(sha(bytes),unit.objectSha256);
  const source=await read(unit.file);assert.equal(sha(source),unit.sha256);
@@ -65,7 +72,7 @@ const prefixLength=64,longPrefixes=new Set(),shortByLength=new Map(),ranges=new 
 for(const [hash,text] of sourceTexts){ranges.set(hash,[]);if(!text.startsWith('function'))continue;if(text.length>=prefixLength)longPrefixes.add(text.slice(0,prefixLength));else{if(!shortByLength.has(text.length))shortByLength.set(text.length,new Map());shortByLength.get(text.length).set(text,hash);}}
 const longByPrefix=new Map();for(const [hash,text] of sourceTexts)if(text.startsWith('function')&&text.length>=prefixLength){const key=text.slice(0,prefixLength);if(!longByPrefix.has(key))longByPrefix.set(key,[]);longByPrefix.get(key).push([hash,text]);}
 const sourceFiles=[];
-for(const [file,expected] of Object.entries({...metadata.sourceInputs,...metadata.adapterInputs})){
+for(const [file,expected] of Object.entries({...metadata.sourceInputs,...metadata.adapterInputs,...additionalSourceInputs})){
  const bytes=await read(file);assert.equal(sha(bytes),expected,'Original source changed: '+file);const text=bytes.toString('utf8');sourceFiles.push({file,sha256:sha(bytes),bytes:bytes.length,domain:file.startsWith('src/')?'original-game':'adapter'});
  for(let at=text.indexOf('function');at!==-1;at=text.indexOf('function',at+8)){
   const prefix=text.slice(at,at+prefixLength);
