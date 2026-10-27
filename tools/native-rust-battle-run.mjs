@@ -14,6 +14,8 @@ const compiler=resolve(root,option('--compiler','work/downloads/hermes-build/bin
 const ccOpt=option('--cc-opt','O1'),plumbing=args.includes('--plumbing');
 assert.ok(['O0','O1','O2','O3'].includes(ccOpt));
 const sha=value=>createHash('sha256').update(value).digest('hex');
+const vmLibrary=resolve(root,'work/downloads/hermes-build/lib/libhermesvm.so');
+const vmSha256AtStart=sha(await readFile(vmLibrary));
 const metadata=JSON.parse(await readFile(input+'.metadata.json','utf8'));
 assert.ok(!metadata.factoryChunks?.length,'This bridge runner accepts one source unit; broad chunked binaries remain a separate gate');
 assert.equal(sha(await readFile(input)),metadata.outputSha256);
@@ -78,6 +80,8 @@ const compileMs=performance.now()-compileStart,executionStart=performance.now();
 const execution=await run(output,['-Xhermes-internal-test-methods'],'execute');
 const executionWallMs=performance.now()-executionStart;
 const actual=JSON.parse((await readFile(execution.stdout,'utf8')).trim().split('\n').at(-1));
+const vmSha256AtFinish=sha(await readFile(vmLibrary));
+assert.equal(vmSha256AtFinish,vmSha256AtStart,'Native VM changed during compilation/execution; rerun against one frozen VM');
 const hits=Number(/bridge_hits:(\d+)/.exec(await readFile(execution.stderr,'utf8'))?.[1]??0);
 const vectorHits=(/vector_hits:([\d,]+)/.exec(await readFile(execution.stderr,'utf8'))?.[1]??'0,0,0,0').split(',').map(Number);
 const flatCopyHits=Number(/copy_hits:(\d+)/.exec(await readFile(execution.stderr,'utf8'))?.[1]??0);
