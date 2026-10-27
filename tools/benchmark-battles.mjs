@@ -65,6 +65,7 @@ for(let i=0;i<options.battles;i++){
 const wallMs=performance.now()-timedStart;
 const report={version:1,engine:'js-source-provisional-headless',validatedAgainstOriginalRuntime:false,
   machine:{runtime:process.version,platform:process.platform,arch:process.arch,cpu:cpus()[0]?.model,availableParallelism:availableParallelism()},
+  runtimeProvenance:runtime.provenance,loadedSourceSymbols:runtime.loaded.length,
   fixture:options.team==='mirror'?'mirrored stage enemy prototypes; nonempty teams':'source-table initial player hero versus stage enemies',options,coldSetupMs,
   completedBattles:options.battles,totalTicks,wallMs,setupMs,simulationMs,
   battlesPerSecond:options.battles*1000/wallMs,simulationOnlyBattlesPerSecond:options.battles*1000/simulationMs,
@@ -72,4 +73,9 @@ const report={version:1,engine:'js-source-provisional-headless',validatedAgainst
   limitations:runtime.limitations};
 await mkdir(resolve(root,'work'),{recursive:true});
 await writeFile(resolve(root,'work/battle-benchmark.json'),JSON.stringify(report,null,2)+'\n');
+// Keep measured results in the repository as well as the session's latest result.
+const resultDirectory=resolve(root,'benchmarks/results');
+await mkdir(resultDirectory,{recursive:true});
+const stamp=new Date().toISOString().replaceAll(':','-');
+await writeFile(resolve(resultDirectory,`${stamp}-js-stage${options.stage}-${options.team}-${options.battles}.json`),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));
