@@ -8,7 +8,8 @@
     "47 ordered formula callbacks before final callback",
     "no output writes before final callback",
     "ordered nonassociative f64 sums",
-    "null callback and invalid empty buffer rejection before side effects"
+    "null callback and invalid empty buffer rejection before side effects",
+    "uncapped formula observation precedes capped final static values"
   ],
   "scope": "Immutable numeric attribute groups only; required callbacks must not mutate input buffers; not a complete native battle",
   "fullBattleEquivalence": false,
@@ -19,6 +20,6 @@
     "crates/battle-core/include/battle_core.h": "f58a962aaa3b3fe8dd9e6cc5183c42ecb35f6c5faa0323cdea9a502ded3d2cd7",
     "crates/battle-core/BUCK": "b1f20d9c0db6d91b85a0f32c78080493b381f72b7eda1d1e92e954b01b70e078",
     "tools/BUCK": "9017657fe548c4ee4b7c311530d8b229e7445a2da72a9a9f9517b62f5685d118",
-    "tools/check-native-attribute-abi.c": "e6f577c718444d9e9097bd3b7b952dfd3b577eb0c71aa2036fbbfa7c00ce5c1c"
+    "tools/check-native-attribute-abi.c": "10601850519aa75f5b34d2fec37d496636022cca44bd86532f18e99960d38e86"
   }
 }
