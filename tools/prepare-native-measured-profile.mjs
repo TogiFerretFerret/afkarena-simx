@@ -1,0 +1,28 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const root=resolve(import.meta.dirname,'..'),sourceFile=process.argv[2]??'benchmarks/results/2026-10-27T21-26-15.501Z-native-warm23-worker-map.json',sha=b=>createHash('sha256').update(b).digest('hex'),hash=async p=>sha(await readFile(resolve(root,p)));
+const source=JSON.parse(await readFile(resolve(root,sourceFile)));assert.equal(source.semanticReportMatched,true);assert.equal(source.units.length,7);assert.equal(await hash(source.output),source.outputSha256);
+for(const u of source.units){assert.equal(await hash(u.object),u.objectSha256);assert.equal(await hash(u.file),u.sha256);}
+const proofFile='benchmarks/validation/native-measured-clock-build.json',proof=JSON.parse(await readFile(resolve(root,proofFile)));assert.equal(proof.passed,true);assert.equal(proof.privateVM.originalSha256,source.originalVMSha256);assert.equal(await hash(proof.privateVM.output),proof.privateVM.privateSha256);
+for(const [file,expected]of Object.entries(proof.sources))assert.equal(await hash(file),expected);
+for(const row of Object.values(proof.libraries))assert.equal(await hash(row.path),row.sha256);
+const unitTexts=await Promise.all(source.units.map(u=>readFile(u.file,'utf8')));assert.equal(unitTexts.join('\n').match(/\b__nativeWallNow\b/g)?.length,3);assert.match(unitTexts[0],/var __nativeWallNow;/);assert.match(unitTexts[0],/void \(__nativeWallNow=\(Date\.now\)\);/);assert.match(unitTexts[6],/__nativeRun\(__nativeRuntime,__nativeWire,20,3,__nativeWallNow,"final"\)/);
+const oldWrapper=await readFile(source.output+'.main.c','utf8');assert.equal(sha(oldWrapper),source.wrapperSha256);
+const output=resolve(root,'work/native-warm23-worker-map-measured'),names=source.units.map(u=>'sh_export_'+u.name),oldCall=`bool success=_sh_initialize_units(shr,7,${names.join(',')})&&run_event_loop(shr,console);`;
+assert.equal(oldWrapper.split(oldCall).length,2);
+let wrapper=oldWrapper.replace('int main(int argc,char **argv){','extern bool simx_install_measured_clock(SHRuntime*);\nextern uint64_t simx_measured_clock_calls(void);\nint main(int argc,char **argv){');assert.notEqual(wrapper,oldWrapper);
+wrapper=wrapper.replace(oldCall,`bool success=_sh_initialize_units(shr,6,${names.slice(0,6).join(',')});
+ if(success)success=simx_install_measured_clock(shr);
+ if(success)success=_sh_initialize_units(shr,1,${names[6]})&&run_event_loop(shr,console);
+ if(simx_measured_clock_calls()!=2){fprintf(stderr,"measured_clock_calls:%llu\\n",(unsigned long long)simx_measured_clock_calls());success=false;}`);
+await writeFile(output+'.main.c',wrapper);
+const args=[...source.linkArgs];args[0]=output+'.main.c';args[args.length-1]=output;
+const privateDirectory=resolve(proof.privateVM.output,'..'),oldDirectory=resolve(JSON.parse(await readFile(resolve(root,source.hostProof.file))).privateVM.output,'..');
+for(let i=0;i<args.length;i++)if(args[i]==='-L'+oldDirectory)args[i]='-L'+privateDirectory;else if(args[i]==='-Wl,-rpath,'+oldDirectory)args[i]='-Wl,-rpath,'+privateDirectory;
+const link=spawnSync('cc',args,{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});await writeFile(output+'.link.stderr',link.stderr??'');assert.equal(link.status,0,link.stderr);
+const staticUnitSource='work/downloads/'+JSON.parse(await readFile(resolve(root,'config/native-compiler-static-hermes.json'))).source.directory+'/lib/VM/StaticHUnit.cpp';
+const prepared={...source,kind:'profiling-prepared-wrapper',profilingOnly:true,semanticReportMatched:null,strictBaseline:{file:sourceFile,sha256:await hash(sourceFile)},output,outputSha256:await hash(output),wrapperSha256:sha(wrapper),linkArgs:args,allSevenObjectsReused:true,unitInitializationGroups:[source.units.slice(0,6).map(u=>u.name),[source.units[6].name]],initializerSource:{file:staticUnitSource,sha256:await hash(staticUnitSource)},benchmarkTimerBinding:'__nativeWallNow',timerBindingReferences:3,markerClock:'CLOCK_MONOTONIC',perfClockId:'mono',hostProof:{file:proofFile,sha256:await hash(proofFile)},privateVMSha256:proof.privateVM.privateSha256,variant:'worker-map-measured',elapsedMs:null,battlesPerSecond:null,executionWallMs:null,artifacts:[],producer:{file:'tools/prepare-native-measured-profile.mjs',sha256:await hash('tools/prepare-native-measured-profile.mjs')},qualification:'BUILD ONLY: profiling wrapper splits the same seven SHUnit initializers6+1 and replaces only the private benchmark Date.now alias with a monotonic marker clock between them. No game Date, source function or object file changes. Semantic fidelity is pending the profiled full raw report gate; no throughput result.',qualifiesFor10000Target:false};
+const file='benchmarks/validation/native-measured-profile-prepared.json';await writeFile(resolve(root,file),JSON.stringify(prepared,null,2)+'\n');console.log(JSON.stringify({prepared:file,output,sha256:prepared.outputSha256,allSevenObjectsReused:true}));
