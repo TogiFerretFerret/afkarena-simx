@@ -324,3 +324,27 @@ pub fn cast_skill_when_controlled<H:ControlHooks>(state:&mut AiControl,hooks:&mu
     }
     if let Some(skill)=selected{hooks.cast_skill(state,skill,target);}
 }
+
+#[cfg(test)]
+mod control_tests{
+    use super::*;
+    fn control()->AiControl{AiControl{owner:0,state:UnitAiState::Idle,fear:false,fear_target:None,force_destination:None,destination:None,skills:SkillSelection{lists:vec![vec![0,1]],list:0,manual:false,manual_skill:None,current_skill:None,turnbased:false,target:None,can_cast_manual:ManualCast::False,will_cast_manual:false},ignore_controllable:vec![true,true]}}
+    #[derive(Default)]struct Hooks{calls:Vec<String>,found:Option<usize>,mutate_target:bool,triggered:bool}
+    impl ControlHooks for Hooks{
+        fn walk_away_from(&mut self,_:&mut AiControl,id:usize){self.calls.push(format!("away:{id}"));}
+        fn walk_to(&mut self,_:&mut AiControl,arg:WalkArgument){self.calls.push(format!("walk:{arg:?}"));}
+        fn search_target(&mut self,_:&mut AiControl,tb:bool)->Option<usize>{self.calls.push(format!("search:{tb}"));Some(2)}
+        fn find_skill_to_cast(&mut self,s:&mut AiControl)->Option<usize>{self.calls.push(format!("find:{:?}",s.skills.target));if self.mutate_target{s.skills.target=Some(3);}self.found}
+        fn cast_skill(&mut self,_:&mut AiControl,id:usize,target:Option<usize>){self.calls.push(format!("cast:{id}:{target:?}"));}
+        fn is_out_of_stage(&mut self,_:&mut AiControl)->bool{self.calls.push("outside".into());false}
+        fn idle(&mut self,_:&mut AiControl){self.calls.push("idle".into());}
+        fn check_trigger(&mut self,s:&mut AiControl)->Option<bool>{self.calls.push("check".into());s.skills.current_skill=Some(1);self.triggered.then_some(true)}
+        fn trigger(&mut self,_:&mut AiControl,id:usize){self.calls.push(format!("trigger:{id}"));}
+        fn can_cast_with_target(&mut self,s:&mut AiControl,id:usize,target:Option<usize>)->bool{self.calls.push(format!("can:{id}:{target:?}"));s.skills.target=Some(3);true}
+        fn will_cast(&mut self,_:&mut AiControl,id:usize)->bool{self.calls.push(format!("will:{id}"));true}
+    }
+    #[test]fn fear_precedes_forced_destination(){let mut s=control();s.fear=true;s.fear_target=Some(1);s.force_destination=Some(7);let mut h=Hooks::default();update(&mut s,&mut h);assert_eq!(h.calls,["away:1"]);}
+    #[test]fn cast_uses_search_result_even_when_selection_changes_ai_target(){let mut s=control();let mut h=Hooks{found:Some(0),mutate_target:true,..Hooks::default()};update(&mut s,&mut h);assert_eq!(h.calls,["search:false","find:Some(2)","cast:0:Some(2)"]);assert_eq!(s.skills.target,Some(3));}
+    #[test]fn trigger_rereads_current_skill_after_check_callback(){let mut s=control();s.state=UnitAiState::Other;s.skills.current_skill=Some(0);let mut h=Hooks{triggered:true,..Hooks::default()};update(&mut s,&mut h);assert_eq!(h.calls,["check","trigger:1"]);}
+    #[test]fn controlled_cast_retains_original_search_target(){let mut s=control();let mut h=Hooks::default();cast_skill_when_controlled(&mut s,&mut h);assert_eq!(h.calls,["search:false","can:0:Some(2)","will:0","cast:0:Some(2)"]);assert_eq!(s.skills.target,Some(3));}
+}
