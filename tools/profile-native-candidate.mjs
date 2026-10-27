@@ -11,7 +11,7 @@ const root=resolve(import.meta.dirname,'..'),reportFile=process.argv[2];
 assert.ok(reportFile,'Usage: node tools/profile-native-candidate.mjs <strict native result.json>');
 const sha=b=>createHash('sha256').update(b).digest('hex'),hash=async p=>sha(await readFile(resolve(root,p)));
 const baseline=JSON.parse(await readFile(resolve(root,reportFile)));assert.equal(baseline.semanticReportMatched,true);assert.equal(baseline.qualifiesFor10000Target,false);
-const binary=resolve(baseline.output??'work/native-warm23-'+baseline.variant);assert.equal(await hash(binary),baseline.outputSha256);
+const binary=resolve(baseline.output??'work/native-warm23-'+(baseline.variant??(baseline.entityFastPathEnabled?'entity':'baseline')));assert.equal(await hash(binary),baseline.outputSha256);
 const host=JSON.parse(await readFile(resolve(root,baseline.hostProof.file)));assert.equal(await hash(baseline.hostProof.file),baseline.hostProof.sha256);
 assert.equal(await hash(host.privateVM.output),baseline.privateVMSha256);
 for(const u of baseline.units)assert.equal(await hash(u.object),u.objectSha256);
@@ -31,7 +31,7 @@ const start=performance.now(),execution=await run(args,'record'),wallMs=performa
 let actual=null,difference=null;try{actual=JSON.parse((await readFile(prefix+'.record.stdout','utf8')).trim().split('\n').at(-1));difference=compareNativeReports(actual,reference)??compareHostInputConsumption(actual.hostInputConsumption,baseline.hostInputs);}catch(e){difference={path:'$execution',message:e.message};}
 const reports=[];
 if(execution.code===0){
- for(const [label,options]of [['leaf',['report','--stdio','--no-children','--sort','dso,symbol','--percent-limit','0.1','--call-graph','none']],['inclusive',['report','--stdio','--children','--sort','dso,symbol','--percent-limit','0.5','--call-graph','graph,0.5,caller']],['stacks',['script','-F','comm,pid,tid,time,event,ip,sym,dso']],['buildids',['buildid-list']]])reports.push({label,args:[...options,'-i',data],...(await run([...options,'-i',data],label))});
+ for(const [label,options]of [['leaf',['report','--stdio','--no-children','--sort','dso,symbol','--percent-limit','0.1','--call-graph','none']],['inclusive',['report','--stdio','--children','--sort','dso,symbol','--percent-limit','0.5','--call-graph','graph,0.5,caller']],['stacks',['script','--show-mmap-events','-F','comm,pid,tid,time,event,ip,sym,symoff,dso,dsoff']],['buildids',['buildid-list']]])reports.push({label,args:[...options,'-i',data],...(await run([...options,'-i',data],label))});
 }
 assert.equal(await hash(binary),baseline.outputSha256);assert.equal(await hash(host.privateVM.output),baseline.privateVMSha256);
 const archivePrefix='benchmarks/results/'+stamp+'-native-perf-'+baseline.variant,artifacts=[];
