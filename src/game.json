@@ -1,0 +1,193 @@
+{
+    "project_type": "javascript", 
+    "debugMode": 1, 
+    "showFPS": false, 
+    "frameRate": 30, 
+    "noCache": false, 
+    "id": "gameCanvas", 
+    "renderMode": 2, 
+    "engineDir": "frameworks/cocos2d-html5", 
+    "src_publish": true, 
+    "res_publish": true, 
+    "activityMode": false, 
+    "sysLang": "en", 
+    "version": "v2", 
+    "region": "global", 
+    "cdnSubPath": "", 
+    "bt_svr_ver": "2.303.01", 
+    "cdn": "https://hgame-cdn.lilithgame.com/hdgame", 
+    "first_host": "ws://hdgame-dglobal-gate.lilithgame.com:10000", 
+    "second_host": "wss://hdgame-dglobal-gate.lilithcdn.com:443", 
+    "third_host": "ws://34.160.168.53:10000", 
+    "cdn_list": [
+        {
+            "https://hgame-cdn.lilithcdn.com/hdgame": {
+                "triedTimes": 0, 
+                "critical": true
+            }
+        }, 
+        {
+            "http://47.90.255.190:8080/hdgame": {
+                "triedTimes": 0, 
+                "critical": false
+            }
+        }
+    ], 
+    "enablePatch": true, 
+    "timeout": 500, 
+    "jenkinsBuildNo": "3222", 
+    "cdn_check_threshold": 15, 
+    "latestVersion": "afkarena_v2.303.03.367744", 
+    "enbaleDeviceImage": true, 
+    "retryTimes": 3, 
+    "modules": [
+        "cocos2d", 
+        "cocostudio", 
+        "ccui", 
+        "editbox", 
+        "shaders", 
+        "render-texture", 
+        "audio", 
+        "actions", 
+        "ccpool", 
+        "dsbridge", 
+        "spine"
+    ], 
+    "jsList": {
+        "stage_battle_table": {}, 
+        "game_ui": {}, 
+        "ui_contra": {}, 
+        "game_battle": {}, 
+        "ui_gve": {}, 
+        "game_base": {}, 
+        "ui_minigame": {}, 
+        "ui_war": {}, 
+        "game_util": {}, 
+        "csvtable": {}
+    }, 
+    "jsModuleList": [
+        "game_util", 
+        "game_base", 
+        "game_battle", 
+        "game_ui", 
+        "ui_minigame", 
+        "ui_gve", 
+        "ui_war", 
+        "ui_contra"
+    ], 
+    "jsModuleSplitList": [
+        "game_util", 
+        "game_base", 
+        "game_battle", 
+        "game_ui_1", 
+        "game_ui_2", 
+        "game_ui_3", 
+        "game_ui_4", 
+        "game_ui_5", 
+        "ui_minigame", 
+        "ui_gve", 
+        "ui_war", 
+        "ui_contra"
+    ], 
+    "channelInfo": {
+        "0": {
+            "channelname": "googleplay_gp", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "com.lilithgame.hgame.gp", 
+            "market": "com.android.vending"
+        }, 
+        "3": {
+            "channelname": "googleplay_tw", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "com.lilithgame.hgame.gp.tw", 
+            "market": "com.android.vending"
+        }, 
+        "4": {
+            "channelname": "mycard", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "com.lilithgame.hgame.android.tw", 
+            "market": "com.android.vending"
+        }, 
+        "5": {
+            "channelname": "googleplay_kr", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "com.lilithgame.hgame.gp.kr", 
+            "market": "com.android.vending"
+        }, 
+        "6": {
+            "channelname": "googleplay_jp", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "com.lilithgame.hgame.gp.jp", 
+            "market": "com.android.vending"
+        }, 
+        "7": {
+            "channelname": "googleplay_vietnam", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "com.hgame.gp.vn", 
+            "market": "com.android.vending"
+        }, 
+        "13": {
+            "channelname": "oppo_abroad", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "com.lilithgame.hgame.gp", 
+            "market": "com.android.vending"
+        }, 
+        "100": {
+            "channelname": "appstore", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "itms-apps://itunes.apple.com/app/id1375425432?mt=8"
+        }, 
+        "101": {
+            "channelname": "appstore_tw", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "itms-apps://itunes.apple.com/app/id1459091694?mt=8"
+        }, 
+        "105": {
+            "channelname": "appstore_kr", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "itms-apps://itunes.apple.com/app/id1475474300?mt=8"
+        }, 
+        "106": {
+            "channelname": "appstore_jp", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "itms-apps://itunes.apple.com/app/id1478872810?mt=8"
+        }, 
+        "107": {
+            "channelname": "appstore_vn", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "itms-apps://itunes.apple.com/app/id1632864098?mt=8"
+        }, 
+        "14": {
+            "channelname": "miracle", 
+            "binarylimit": "afkarena_v1.66.01.173842", 
+            "reviewversion": "1.10.01", 
+            "review": "ws://hdgame-drev.lilithgame.com:10000", 
+            "url": "com.miraclegames.ct.gp", 
+            "market": "com.android.vending"
+        }
+    }
+}

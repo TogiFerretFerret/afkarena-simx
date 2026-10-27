@@ -1,0 +1,887 @@
+import "common.proto";
+import "up.proto";
+import "down.proto";
+
+//------------------ up ------------------
+message req_gm {
+  optional req_msg                        req_all_hero                                 = 1; // 获得所有英雄
+  optional uint32                         req_diamond                                  = 2;
+  optional uint32                         req_gold                                     = 3;
+  optional req_msg                        req_all_items                                = 4;
+  optional req_msg                        req_all_equips                               = 5;
+  optional req_msg                        req_test_mail                                = 6;
+  optional uint64                         req_add_exp                                  = 7;
+  optional uint32                         req_set_level                                = 8;
+  repeated asset                          req_set_currencies                           = 9;
+  optional uint32                         req_unlock_stages                            = 10;
+  optional uint64                         req_add_idle_stage_time                      = 11; // 增加挂机的时间，以分钟为单位
+  optional uint32                         req_add_guild_active_point                   = 12;
+  optional uint64                         req_add_bounty_quests_time                   = 13;
+  optional req_msg                        req_refresh_maze                             = 14; // 刷新迷宫
+  optional req_gm_charge                  req_charge                                   = 15; // gm 充值, 传 lineID
+  optional uint32                         req_item_id                                  = 16; // 道具ID
+  optional uint32                         req_all_hero_set_level                       = 17; // 全英雄设置到指定等级
+  optional req_gm_set_tower               req_set_tower                                = 18; // 设置爬塔层数
+  optional uint32                         req_all_hero_set_quality                     = 19; // 全英雄设置品质
+  optional req_msg                        req_clean_item                               = 20;
+  optional req_msg                        req_clear_cd                                 = 21; // 重置cd和每日结算
+  optional uint32                         req_set_bounty_level                         = 22; // 调整bounty的level
+  optional req_msg                        req_all_equips_max_level                     = 23; // 全部装备调整满级
+  optional req_msg                        req_delete_user                              = 24; // 删除当前账号下的当前角色
+  optional req_msg                        req_bc_start                                 = 25; // 重新加载文件，重头开始
+  optional req_msg                        req_bc_continue                              = 26; // 继续跑没有测试过的
+  optional req_end_battle                 req_bc_end_battle                            = 27; // 上传战斗结果
+  optional uint32                         req_open_raid                                = 28; // 开启剧情迷宫 raid_id
+  optional uint32                         req_add_heirloom                             = 29; // 添加指定遗物
+  optional uint32                         req_impulse_gift                             = 30; // 加上指定冲动礼包
+  optional req_msg                        req_lgd_next                                 = 31;
+  optional uint32                         req_auto_join_guild                          = 32;
+  optional req_msg                        req_clean_hero                               = 33;
+  optional uint32                         req_pg_lv                                    = 34; // 共鸣等级
+  optional uint32                         req_lgd_create_users                         = 35;
+  optional uint32                         req_lgd_enter                                = 36;
+  optional req_gm_item_number             req_item_number                              = 37; // 指定道具数量
+  optional req_msg                        req_add_friends                              = 38; // 添加好友
+  optional req_msg                        req_open_new_svr                             = 39;
+  optional uint32                         req_sig_lv                                   = 40; // 专属装备升级
+  optional uint32                         req_open_battle_pass                         = 41; // 开启battle_pass
+  optional uint64                         req_add_all_battle_pass_exp                  = 42; // 获取所有的battle_pass_exp
+  optional uint32                         req_add_daily_point                          = 43;
+  optional req_msg                        req_add_lgd_id                               = 44;
+  optional assets                         req_add_assets                               = 45;
+  optional uint32                         req_guild_bounty_add_hero                    = 46; // 所有任务添加几个英雄,全部是虚假英雄
+  optional uint32                         req_champion_set_cup                         = 47; // 传说最后一名，大师杯数+1， 依次类推
+  optional uint32                         req_champion_add_users                       = 48; // 一键添加500玩家, 参数:Cup, 0表示随机
+  optional uint32                         req_charge_order                             = 49; // charge_order方式充值
+  optional assets                         req_add_assets_by_mail                       = 50; // 通过邮件发放道具
+  optional uint64                         req_add_challenge_progress                   = 51; // 挑战增加进度值
+  optional uint32                         req_add_or_reset_achv_progress               = 52; // 调试期间增加achv的进度
+  optional req_msg                        req_delete_ttd_heroes                        = 53; // 删除试玩英雄
+  optional uint64                         req_add_slg_coin                             = 54; // 增加slg币
+  optional req_gm_slg_join_map            req_slg_join_map                             = 55; // 加入地图 map_id
+  optional req_mmap_uint64                req_mmap_occupy_block                        = 56; // slg or gve 占领格子 block_id
+  optional uint32                         req_set_slg_nobility                         = 57; // 设置slg爵位
+  optional uint64                         req_slg_add_robots                           = 58; // map_id, 添加机器人自动占图 废弃
+  optional uint32                         req_set_slg_relic_pic_lv                     = 59; // 设置slg圣物pic等级
+  optional uint32                         req_slg_guild_members_apply                  = 60; // 若干个工会成员自动报名
+  optional req_mmap_uint64                req_mmap_add_idle_time                       = 61;
+  optional req_mmap_uint64                req_mmap_add_hero_act                        = 62; // 体力
+  optional req_msg                        req_slg_reborn_boss                          = 63; // boss小怪没打死的时候才能用
+  optional req_msg                        req_all_slg_relic                            = 64; // 获取全部圣物
+  optional req_gm_battle_check            req_gm_battle_check                          = 65; // 战斗检验相关gm
+  optional assets                         req_cut_assets                               = 66; // 减少资源
+  optional uint32                         req_cut_rmb_charge                           = 67; // 减少钻石
+  optional req_msg                        req_all_furnitures                           = 68; // 获取全部家具
+  optional req_msg                        req_clear_furnitures                         = 69; // 清除背包里的家具
+  optional req_msg                        req_refresh_homeland_gift                    = 70; // 刷新家园礼物
+  optional req_msg                        req_clear_homeland_log                       = 71; // 清除家园log
+  optional req_msg                        req_clear_homeland_furnitures                = 72; // 清除家园里的家具
+  optional req_msg                        req_clear_homeland_data                      = 73; // 清除家园所有数据
+  optional uint32                         req_new_rooms                                = 74; // 新建满房间
+  optional uint32                         req_charge_order_refund                      = 75; // charge_order方式充值 并且退款
+  optional uint32                         req_reset_mystic_tower_floor                 = 76; // 重置神秘塔路障
+  optional uint32                         req_guild_auto_join_slg                      = 77; // n个工会成员报名slg,与使用gm的人相同
+  optional uint32                         req_unlock_mystic_tower                      = 78; // 神秘塔解锁指定关卡
+  optional req_msg                        req_set_slg_warband_leaders                  = 79; // slg在玩家当前的地图中生成军团长和指挥官
+  optional uint32                         req_add_guild_glory_statue                   = 80; // 获得公会荣誉雕像
+  optional req_gm_save_battle_record      req_gm_save_battle_record                    = 81; // 测试上报战斗录像
+  optional uint32                         req_set_equip_lv                             = 82; // 设置已穿戴装备的等级
+  optional req_msg                        req_set_homeland_heroes                      = 83; // 塞满家园英雄
+  optional uint32                         req_slg_auction_insert                       = 84; // 团队交易行添加货物
+  optional req_msg                        req_slg_auction_clear                        = 85; // 团队交易行删除全部货物
+  optional req_msg                        req_slg_warband_leader                       = 86; // 自己升级为军团长
+  optional uint32                         req_slg_auction_add_deal_id                  = 87; // 团队交易行添加指定货物1个
+  optional uint32                         req_slg_warband_honor_add_progress           = 88; // slg军团任务加进度
+  optional uint32                         req_slg_little_monster_kill                  = 89; // slg地块击杀小怪
+  optional req_slg_kill_boss              req_slg_kill_boss                            = 90; // slg地块秒杀指定slot上的boss
+  optional uint32                         req_set_maze_passed_times                    = 91; // 设置异界迷宫通关次数
+  optional req_msg                        req_reset_maze                               = 92; // 重置异界迷宫
+  optional req_set_rank                   req_set_dilemma_rank                         = 93; // 设置挑战本排行榜
+  optional uint32                         req_match_sweets_set_level                   = 94; // 设置三消已经通关的关卡
+  optional uint32                         req_set_maze_floor                           = 95; // 设置异界迷宫层数
+  optional req_msg                        req_delete_equips_on_user                    = 96; // 删除玩家背包里的装备
+  optional uint32                         req_set_homeland_gift                        = 97; // 产生指定giftid的礼物
+  optional uint32                         req_get_one_emblem                           = 98; // 获得某个徽章
+  optional req_msg                        req_get_all_emblems                          = 99; // 获得全部徽章
+  optional req_emblem_set_touch           req_emblem_set_touch                         = 100; // 设置徽章被摸次数
+  optional uint32                         req_anniv_heirloom_coin                      = 101; // 给anniv类型的迷宫增加货币
+  optional req_add_guild_treasure         req_add_guild_treasure                       = 102; // 发公会红包
+  optional uint32                         req_set_stage_lv_offset                      = 103; // 设置关卡等级调整值
+  optional req_msg                        req_news_global_add                          = 104;
+  optional req_msg                        req_news_self_add                            = 105;
+  optional req_process_box_set_process    req_process_box_set_process                  = 106; // 进度条宝箱活动设置进度
+  optional uint64                         req_maze_assist_add_can_help_cnt             = 107; // 增加互助次数
+  optional req_msg                        req_maze_set_special_winner                  = 108; // 设置成为深渊主宰
+  optional uint32                         req_add_rec_friends                          = 109; // 增加几个推荐的好友人
+  optional uint32                         req_rt_pvp_set_score                         = 110; // rt_pvp
+  optional uint32                         req_rt_pvp_set_rt_region                     = 111; // 强行设置rt_region
+  optional uint32                         req_im_bubble_id                             = 112; // 增加气泡
+  optional uint32                         req_im_emoticon_pack_id                      = 113; // 增加付费表情包
+  optional uint32                         req_reset_battle_pass_rewards                = 114; // 重置BP奖励
+  optional uint64                         req_change_time                              = 115; // 改变服务器时间
+  optional uint32                         req_ufans                                    = 116; // 造粉丝、关注数据
+  optional req_set_nameplate              req_set_nameplate                            = 117; // 设置铭牌
+  optional uint32                         req_add_curseland_road_score                 = 118; // 添加暗黑之颠分数
+  optional req_add_curseland_robot        req_add_curseland_road_robots                = 119; // 添加暗黑之颠机器人
+  optional req_msg                        req_reset_slg_star                           = 120; // 重置slg团队之星
+  optional req_add_curseland_robot        req_add_curseland_rank_robots                = 121; // 添加诅咒梦境排行榜机器人
+  optional uint32                         add_hero_10                                  = 126; // 加十个指定tid
+  optional uint32                         add_chest_1                                  = 127; // 指定抽一次chest池
+  optional req_gm_add_rank_board          add_rank_board                               = 128; // 给指定排行塞数据
+  optional uint32                         req_active_starland                          = 129; // 激活星幕
+  repeated uint32                         req_set_rounds_all_questions_right           = 130; // 答题活动设置一轮正确答案
+  optional string                         req_set_avatar                               = 131; // 设置头像
+  optional req_gm_add_challenge_progress  req_gm_add_challenge_progress                = 132; // 增加challenge_task进度
+  optional req_gm_add_raid_field          req_gm_add_raid_field                        = 133; // 修改周年庆功能字段
+  repeated uint64                         req_set_effect_group                         = 134; // GM触发发给客户端的effectids
+  optional req_msg                        req_reset_tavern                             = 135; // 重置tavern
+  optional req_msg                        req_clear_raid_items                         = 136; // 重置raid道具和遗物
+  optional req_msg                        req_clear_maze_items                         = 137; // 重置maze道具和遗物
+  optional req_set_activity_task          req_set_activity_task                        = 138; // 设置任务型进度
+  optional uint64                         req_set_chaos_opts                           = 139; // 设置双子房间生成的选项
+  optional req_set_infinite_boss_dmg      req_set_infinite_boss_dmg                    = 140; // 手动设置伤害
+  repeated uint64                         req_infinite_batch_set_room_ids              = 141; // 批量设置后续房间id
+  repeated uint64                         req_copy_curseland_rank_board                = 142; // A,B 拷贝A期的诅咒梦境数据，粘贴到B期的诅咒梦境上
+  optional uint64                         req_set_shoot_game_lv                        = 143; // 设置暗影入侵小游戏关���
+  optional req_msg                        req_become_slg_star                          = 144; // 成为团队之星
+  optional req_msg                        req_all_pets                                 = 145; // 获取所有宠物
+  optional req_msg                        req_refresh_charge_roll_goods_ids_no_check   = 146; // 不检查是否解锁模块 刷新goodsIds
+  optional req_gm_set_charge_roll         req_set_charge_roll                          = 147; // 设置总抽奖次数和已抽奖次数
+  optional req_msg                        req_clear_join_guild_cd                      = 148; // 清理加公会cd
+  optional req_msg                        req_super_r                                  = 149; // 一键土豪
+  optional req_gm_batch_items_number      req_batch_items_number                       = 150; // 一键批量道具数量n
+  optional req_msg                        req_gm_module_version_upgrade                = 151; // ModuleVersion全触达
+  optional t_dyn_challenge                req_add_dyn_challenge_progress               = 153; // 自适应任务
+  optional req_gm_guild_info              req_gm_guild_info                            = 154; // 工会信息
+  optional req_gm_user_info               req_gm_user_info                             = 155;
+  optional req_msg                        req_active_charge_customize_hero_gift        = 156; // 激活283活动
+  optional req_gm_guild_camp              req_guild_camp                               = 157; // 公会猎宝
+  optional uint64                         req_add_slg_ladder                           = 158; // slg加梯子
+  optional uint64                         req_gm_pvp_arena_add_item                    = 159; // pvp_arena加分享道具
+  optional req_gm_single_dream            req_gm_single_dream                          = 160;
+  optional req_gm_hero_return             req_gm_hero_return                           = 161;
+  optional uint32                         req_unlock_stages_with_reward                = 162; // 【异步】开启指定关卡(能获得奖励、触发任务等),执行完通过reply_extra下发user
+  optional int64                          set_open_day                                 = 163; // 把自己所在服开服时间设置到N天前
+  optional req_msg                        set_name_uid_uin                             = 164; // 【服务器用】修改玩家名字"uid:uin"
+  optional uint64                         req_finish_guild_mile_stone                  = 165; // 公会里程碑
+  optional req_gm_finish_user_line_task   req_gm_finish_user_line_task                 = 166; // 完成宠物百科任务
+  optional uint64                         req_gm_pvp_arena_set_rank                    = 167; // pvp_arena 设置换位
+  optional uint64                         req_trigger_stage_pop                        = 168; // 触发离线弹窗（传入DiffHours）
+  optional req_gm_guild_honor             req_guild_honor                              = 169; // 解锁公会荣誉奖杯
+  optional uint64                         set_single_dream_reward_cnt                  = 170; // 设置单人梦境历史发奖次数
+  optional uint64                         req_unlock_deep_stages                       = 171; // 设置困难本进度
+  optional uint64                         req_stage_hampers_change_init_ts             = 172; // 改变关卡礼盒的初始化时间戳
+  optional uint64                         req_recv_gm_player_total_reward_day          = 173; // 领取配置表GmPlayerTotalReward里的奖励，主键为Day
+  optional string                         req_guild_task                               = 174; // 增加公会任务进度
+  optional req_gm_tutorial                req_gm_tutorial                              = 175; // 引导相关gm
+  optional req_gm_random_champion_ship    req_random_champion_ship                     = 176; // 随机组队锦标赛玩法
+  optional uint64                         req_add_champion_ship_teammate               = 177; // 组队（传入UID）
+  optional uint64                         req_champion_ship_match                      = 178; // 开始组队锦标赛玩法匹配,传数量，会创建N个玩家进行单人报名
+  optional uint64                         req_act_guild_box                            = 179; // 轻度社交，添加公会箱子开箱人数
+  optional uint64                         req_add_sign_in_warm_total_progress          = 180; // 增加周年庆签到预热活动全服进度
+  optional req_gm_guild_ice_break         req_gm_guild_ice_break                       = 181; // 公会破冰（迷城争锋）相关GM
+  optional req_gm_act_pumpkin             req_pumpkin                                  = 182; // 万圣节活动
+  optional uint64                         req_add_unit_hero_key                        = 183; // 加指定的UnitHero主键对应的英雄
+  optional req_gm_act_fission             req_act_fission                              = 184; // H5裂变活动
+  optional req_msg                        req_stress_test                              = 185; // 压测
+  optional req_msg                        req_gm_amend_stage_drop_hamper               = 186; // gm掉落
+  optional req_msg                        req_gm_amend_expand_handsel_super            = 187; // 给满足 expand_handsel_super_amend 条件的玩家，激活活动
+  optional req_msg                        req_finish_story_raid                        = 188; // 全部的story类型副本全通关
+  optional uint64                         req_set_create_days                          = 189; // 设置创号天数
+  optional req_msg                        req_gm_act_mira_unlock                       = 190; // 一键解锁材料和工具
+  optional req_msg                        req_gm_act_mira_all_build                    = 191; // 一键设置家具，全部为最好成绩，score一万
+  optional uint64                         req_gm_set_cs_gs_group                       = 192; // 设置锦标赛战力分组
+  optional uint64                         set_team_arena_reward_cnt                    = 193; // 设置组队竞技场历史发奖次数
+  optional uint64                         req_gm_team_arena_set_rank                   = 194; // team_arena 设置换位
+  optional req_gm_war                     req_gm_war                                   = 195; // war(slg2.0)相关gm
+  optional req_msg                        req_gm_act_raid_monster_unlock               = 196; // 解锁周年庆BOSS/金币1W
+  optional req_msg                        req_gm_act_raid_monster_equip_unlock         = 197; // 周年庆解锁全部装备
+  optional req_msg                        req_gm_act_raid_monster_bosses_unlock        = 198; // 周年庆解锁全部boss及阶段
+  optional uint64                         req_gm_act_raid_monster_boss_unlock_by_id    = 199; // 周年庆通过bossid解锁boss
+  optional req_msg                        req_gm_act_raid_monster_full_endless_rank    = 200; // 周年庆填充所有无尽排行榜
+  optional req_msg                        req_gm_act_raid_monster_clear_endless_rank   = 201; // 周年庆清理所有无尽排行榜
+  optional uint32                         req_gm_act_raid_monster_unlock_item_by_id    = 202; // 2025周年庆根据id解锁小道具
+  optional req_msg                        req_gm_act_raid_monster_unlock_all_monster   = 203; // 2025周年庆解锁所有魔物
+  optional uint32                         req_gm_act_raid_monster_unlock_map           = 204; // 2025周年庆根据id解锁地图
+  optional req_msg                        req_gm_tutorials                             = 205; // 完成所有引导
+  optional req_msg                        req_gm_act_backflow                          = 206; // 初始化回流活动
+  optional req_gm_tar_tutorials           req_gm_tar_tutorials                         = 207; // 引导相关gm
+  optional req_msg                        req_gm_act_combin_unlock                     = 208; // 二合活动一键解锁 2025年夏活
+  optional uint32                         req_gm_act_combin_add_limited_order          = 209; // 二合活动增加限时订单, 传入StageID
+  optional req_gm_add_assigned_order      req_gm_act_combin_add_assigned_order         = 210; // 二合活动增加指定订单,传入StageID和OrderID
+  optional uint64                         req_gm_add_war_active_days                   = 211; //增加war的活跃天数(single_dream)
+  optional uint32                         req_infinite_set_next_room_id                = 212; // 乱时之境-设置下个房间的类型id
+  repeated uint32                         req_infinite_inst_up_lv                      = 213; // 乱时之境-pve命运清单升级。[id * 100 + lv, ...]
+  optional req_msg                        req_clear_infinite_inst                      = 214; // 乱时之境-清除命运清单
+  optional uint32                         req_infinite_pve_set_floor                   = 215; // 乱时之境-pve设置层数
+  optional uint64                         req_gm_set_infinite_pve_stamina              = 216; // 乱时之境设置耐力值
+  optional req_gm_amulet_set_level        req_gm_infinite_amulet_set_level             = 217; // 乱时之境设置指定信物等级
+  optional uint64                         req_gm_cof_trigger_monster                   = 218; // 神魔对抗 触发指定魔物
+  map<uint64, uint64>                     req_gm_cof_fix_tower                         = 219; // 神魔对抗 增加指定能量点的激活进度
+  optional uint64                         req_gm_cof_add_explore_phase_score           = 220; // 神魔对抗 一阶段 获取指定数量的积分
+  optional uint64                         req_gm_cof_add_battle_phase_score            = 221; // 神魔对抗 二阶段 获得指定数量的积分
+  optional cof_book                       req_gm_cof_add_book_shard                    = 222; // 神魔对抗 定向获得某个信息碎片
+  optional req_gm_cof_trigger_explore_event req_gm_cof_trigger_explore_event           = 223; // 定向触发某个探索任务
+  optional req_msg                        req_clear_cof_data                           = 224; // 清理神魔对抗全部数据
+  optional uint64kv                       req_add_cof_score                            = 225; // 增加神魔对抗积分，传 key=1,value=score标识1阶段增加score分数
+  optional req_msg                        req_get_cof_tier                             = 226; // 计算该用户在神魔大战中的tier
+  optional req_gm_contra                  req_gm_contra                                = 227; // 魂斗罗相关gm
+  optional req_gm_raid                    req_gm_raid                                  = 228; // 奇境gm
+  optional req_gm_tools                   req_gm_tools                                 = 229; // 工具类gm
+  optional uint32                         add_hero_without_disband                     = 230; // 加1个指定tid(如果是蓝色品阶则不转化为四族之灵)
+  optional req_msg                        req_get_all_guild_ids                        = 233; // 获取本服所有公会id
+  optional req_gm_act_guild_arm           req_gm_act_guild_arm                         = 239; // 军备竞赛
+  optional req_gm_slg9                    req_gm_slg9                                  = 294; // slg 第9期 gm
+  optional req_gm_act_fish                req_gm_act_fish                              = 295; // 钓鱼活动 gm
+  map<uint64, uint64>                     req_add_fish_items                           = 296; // 钓鱼活动增加鱼饵或鱼
+  optional req_msg                        req_clean_fish_items                         = 297; // 钓鱼活动清空背包（图鉴不清）
+  optional req_msg                        req_clean_refresh_ts                         = 298; // 钓鱼活动时间重置（今日收鱼次数，今日已送人列表和今日收鱼数量全部重置）
+  optional req_gm_raid_care_pet           req_gm_raid_care_pet                         = 299; // 2026周年庆gm
+  optional string                         req_gm_unlock_manor_building                 = 300; // GM解锁公会领地建筑区域，输入建筑名如 "guild_dock"
+  optional req_msg                        req_gm_guild_vehicle_match                   = 301; // 公会战车强制触发匹配（不限阶段）
+  optional req_msg                        req_gm_guild_vehicle_task                    = 302; // GM完成自己的所有公会战车任务
+  optional req_gm_act_guild_contra        req_gm_act_guild_contra                      = 303; // 公会魂斗罗gm
+  optional uint32                         req_gm_set_total_draw_times                  = 304; // 设置账户总抽卡次数
+  optional req_gm_act_bond_send_gifts     req_gm_act_bond_send_gifts                   = 305; // actbond设置好感度
+  optional req_gm_act_farm                req_gm_act_farm                              = 306; // 2026夏活 农场gm
+  optional req_gm_act_farm_lottery        req_gm_act_farm_lottery                      = 307; // 2026夏活 赛车gm
+  optional req_gm_guild_skin              req_gm_guild_skin                            = 308; // 公会装扮：给所在公会添加套装
+  optional req_msg                        req_gm_unlock_all_manor_buildings            = 309; // GM解锁公会领地全部建筑区域，并清空大礼盒等待时间
+  optional req_gm_guild_boat              req_gm_guild_boat                            = 310; // 公会跑船GM
+  optional req_gm_guild_turntable         req_gm_guild_turntable                       = 311; // 公会转盘GM
+  optional req_gm_big_rich_man            req_gm_big_rich_man                          = 312; // 大富翁GM
+  optional req_gm_act_cross_story         req_gm_act_cross_story                       = 313; // 联动英雄活动 GM 面板
+  optional req_gm_guild_tech              req_gm_guild_tech                            = 314; // 公会科技树
+}
+
+message req_gm_guild_tech {
+  optional uint64 set_tech_exp = 1; // 设置公会科技树经验 (arg: exp, 会同步刷新战斗力)
+
+}
+
+message req_gm_guild_skin {
+  optional uint64 suit_tid = 1; // 指定套装添加；与 quality 二选一（时效读套装表 duration）
+  optional uint64 quality  = 2; // 按品质批量添加该品质全部套装
+}
+
+message req_gm_act_guild_contra {
+  optional req_gm_act_guild_contra_add_score add_score = 1; // 增加分数
+}
+
+message req_gm_slg9 {
+  optional req_gm_slg9_extinguish_fire  extinguish_fire = 1; // 灭火
+  optional uint64                       add_alert       = 2; // 增加警戒值
+}
+
+message req_gm_slg9_extinguish_fire {
+  optional uint64 fire_man_cnt = 1; // 救火人数
+  repeated uint64 block_ids    = 2; // block_ids
+}
+
+message req_gm_act_guild_contra_add_score {
+  optional uint64 target_stage_id = 1;
+  optional uint64 score           = 2;
+}
+
+message req_gm_raid_care_pet {
+  optional uint64   unlock_boss         = 1; // 解锁boss
+  optional req_msg  unlock_all_heirloom = 2; // 解锁所有heirloom
+}
+
+message req_gm_act_fish {
+  optional uint64 set_weather = 1; // 设置天气: 天气id
+}
+
+message req_gm_act_guild_arm{
+    optional uint64     add_daily_point = 1; // 增加指定数量的当日积分
+    optional uint64kv   add_task_target = 2; // 完成指定任务
+}
+
+
+// 工具类gm
+message req_gm_tools {
+  optional uint64 copy_user = 1; // 复制输入账号到本账号
+}
+
+message req_gm_raid {
+  optional req_gm_raid_trans_block trans_block   = 1; // 传送到指定地块
+  optional req_gm_raid_apply_effect apply_effect = 2; // 触发指定effect
+}
+
+message req_gm_raid_trans_block {
+  required string  raid_key   = 1;
+  repeated uint64  path       = 2;
+}
+
+message req_gm_raid_apply_effect {
+  required string  raid_key   = 1;
+  repeated uint64  effect_ids = 2;
+}
+
+message req_gm_contra {
+  optional req_unlock_contra unlock_contra          = 1; // 解锁至魂斗罗关卡
+  optional req_msg           unlock_branch_line     = 2; // 解锁魂斗罗新支线
+  optional req_msg           pass_branch_line       = 3; // 将魂斗罗支线置为最后一次提交前
+  optional uint64            unlock_side_story      = 4; // 解锁雷恩支线 + 跳转到雷恩指定关卡
+  optional uint64            add_contra_rank_bounty = 5; // 增加军衔点数
+}
+
+message req_unlock_contra {
+  required t_contra_battle contra_type = 1; // 魂斗罗战斗类型
+  required uint64          contra_id   = 2; // ContraID
+}
+
+message req_gm_amulet_set_level {
+  optional t_infinite_pve type      = 1;
+  optional uint64         amulet_id = 2;
+  optional uint64         level     = 3;
+}
+
+message req_gm_tar_tutorials {
+  repeated uint64 tar_tutorials = 1; // 塞入需要完成的引导ID
+}
+
+
+// gm指令
+message req_gm_act_pumpkin {
+  optional uint64 unlock_area   = 1;  // 解锁地图、区域 传区域id
+  optional uint64 finish_stage  = 2;  // 定向完成当前区域的关卡(包含特殊事件关卡) 传关卡id
+}
+
+message req_gm_act_fission {
+  optional req_msg     set_reward  = 1; // 设置第一个袋子的奖励
+  optional req_msg     invite      = 2; // 添加邀请进度
+}
+
+message req_gm_random_champion_ship {
+  optional uint64    group_id     = 1;
+  optional uint64    sub_group_id = 2;
+
+}
+
+message req_gm_guild_ice_break {
+  optional uint64                   add_explore_cnt           = 1; //增加探索次数，传次数
+  optional uint64                   gm_match                  = 2; //匹配
+  repeated asset                    add_guild_box_assets      = 3; //增加池子奖励
+}
+
+message req_gm_guild_honor {
+  required uint64  tid   = 1;
+  required uint64  lv    = 2;
+}
+
+message req_gm_finish_user_line_task {
+  required uint64  line_id    = 1;
+  required uint64  progress   = 2;
+}
+
+message req_gm_charge {
+  required uint32  season_id   = 1; // 没有season_id的填0
+  required uint32  goods_id    = 2;
+}
+
+message req_gm_set_tower {
+  required uint32   floor   = 1;
+  optional t_tower  type    = 2;
+}
+
+message req_gm_batch_items_number {
+  repeated req_gm_item_number  items   = 1;
+}
+
+message req_gm_item_number {
+  required uint32  item_id   = 1;
+  required uint64  cnt       = 2;
+}
+
+message req_gm_slg_join_map {
+  required uint32  map_id     = 1;
+  required uint32  group_id   = 2;
+}
+
+message req_mmap_uint64 {
+  required t_m_map  t_m_map   = 1;
+  required uint64   data      = 2;
+}
+
+message req_gm_battle_check {
+  optional bool     toggle         = 1; // 战斗校验开关, true：开启战斗校验; false: 关闭战斗校验
+  optional req_msg  query_bt_url   = 2; // 查询当前战斗校验地址
+  optional string   set_bt_url     = 3; // 设置当前战斗校验地址
+}
+
+message req_gm_save_battle_record {
+  required battle_record  battle_record   = 1;
+}
+
+message req_slg_kill_boss {
+  required uint32  block_id   = 1; // 地块ID
+  required uint32  slot       = 2; // boss的slotID
+}
+
+message req_set_rank {
+  optional uint32  dilemma_id   = 1;
+  optional uint32  score        = 2;
+  optional uint32  num          = 3;
+}
+
+message req_emblem_set_touch {
+  optional uint32  tid           = 1; // 徽章id
+  optional uint32  touch_times   = 2; // 被摸次数
+}
+
+message req_add_guild_treasure {
+  required t_guild_treasure_source  type   = 1; // 类型
+  required uint32                   rank   = 2; // 排名
+}
+
+message req_process_box_set_process {
+  required uint32  act_id    = 1; // 活动id
+  required uint32  process   = 2; // 进度
+}
+
+message req_set_nameplate {
+  repeated nameplate  nameplates   = 1;
+}
+
+message req_add_curseland_robot {
+  required uint32  score    = 1;
+  required uint64  amount   = 2;
+}
+
+message req_gm_add_rank_board {
+  required string  rank_board   = 1; // 排行榜的key
+  optional uint32  rank_num     = 2; // 排行数量
+}
+
+message req_gm_add_challenge_progress {
+  optional uint64  progress_id     = 1;
+  optional uint64  add_value       = 2;
+  optional string  progress_type   = 3;
+}
+
+message req_gm_add_raid_field {
+  required string  raid_key        = 1;
+  repeated uint64  boss_ids        = 2; // 解锁小boss
+  repeated uint64  heirloom_ids    = 3; // 解锁遗物
+  repeated uint64  component_ids   = 4; // 解锁船体零件
+}
+
+message req_set_activity_task {
+  required uint64  act_id     = 1; // 活动id
+  optional uint64  task_id    = 2; // 任务id，不指定的话即所有任务
+  optional uint64  progress   = 3; // 设置任务进度
+}
+
+message req_set_infinite_boss_dmg {
+  required uint64  boss_id   = 1;
+  required uint64  season    = 2;
+  required uint64  damage    = 3;
+}
+
+message req_gm_set_charge_roll {
+  required uint64  total_cnt    = 1; // 活动期间一共获得的抽奖次数
+  required uint64  drawed_cnt   = 2; // 活动期间一共消耗的抽奖次数
+}
+
+message req_gm_guild_info {
+  repeated uint32  avatars      = 1; // 加头像
+  repeated uint32  frames       = 2; // 加头像框
+  repeated uint32  nameplates   = 3; // 加铭牌
+}
+
+message req_gm_user_info {
+  repeated uint32  avatars   = 1; // 加头像
+  repeated uint32  frames    = 2; // 加头像框
+  repeated uint32  bubbles   = 3; // 聊天气泡
+  repeated uint32  medals    = 4; // 信物 & 贴纸
+  repeated uint32  skins     = 5; // 皮肤
+}
+
+//------------------ down ------------------
+message reply_gm {
+  optional reply_user                   user              = 1;
+  optional battle                       battle            = 2; // 自动战斗校验相关协议会下发battle
+  optional reply_raid_open_raid         open_raid         = 3; // gm开启迷宫
+  optional reply_gm_save_battle_record  reply_save        = 4; // gm上传战斗录像
+  optional reply_gm_add_rank            rank              = 5; // gm排行榜塞数据,返回排行榜内容
+  optional string                       query_login_str   = 6; // 查看一个人的登录信息
+  optional reply_gm_battle_check        battle_check      = 7; // 战斗校验信息
+  optional reply_guild_camp_gm          guild_camp        = 8;
+  optional reply_raid_change            reply_gm_add_raid_field = 9; // 2024隆冬节活动 解锁boss、解锁遗物
+  optional reply_gm_war                 reply_gm_war      = 10;
+  optional reply_gm_cof_tier            cof_tier          = 11;
+  optional reply_gm_contra              reply_gm_contra   = 12;
+  optional reply_gm_raid                reply_gm_raid     = 13; // 奇境gm
+  repeated uint64                       guild_ids         = 14; // 本服所有公会id
+}
+
+message reply_gm_raid {
+  optional reply_raid_change  trans_block  = 1;
+  optional reply_raid_change  apply_effect = 2;
+}
+
+message reply_gm_cof_tier {
+    required uint64     tier        = 1; // 该用户在神魔大战中的tier
+    required uint64     sum_gs      = 2; // top5英雄战力之和
+    required uint64     hero_gs     = 3;
+    required uint64     pet_gs      = 4;
+    map<uint64, uint64> top5hero_gs = 5; // <hero_id, gs>
+}
+
+message reply_gm_save_battle_record {
+  required uint64  battle_id   = 1;
+}
+
+message reply_gm_add_rank {
+  repeated gm_normal_rank      normal_ranks       = 1; // 普通排行榜都可以通用的结构
+  repeated gm_race_dream_rank  race_dream_ranks   = 2; // 竞速梦境排行榜
+}
+
+message reply_gm_battle_check {
+  optional bool    toggle   = 1; // 当前战斗校验开启状态， true:已开启; false:已关闭
+  optional string  bt_url   = 2; // 当前战斗校验地址
+}
+
+message gm_normal_rank {
+  optional uint32  rank_id   = 1;
+  optional uint64  uid       = 2;
+  optional uint64  score     = 3;
+}
+
+message gm_race_dream_rank {
+  required uint64        rank_id          = 1;
+  required uint64        uid              = 2;
+  required t_race_score  score_type       = 3;
+  optional uint64        damage           = 4; // 一个都没杀死，总伤害
+  optional uint64        kill_num         = 5; // 击杀数量
+  optional uint64        kill_ts          = 6; // 击杀耗时
+  optional uint64        alive_hero_num   = 7; // 存活英雄数量
+  optional uint64        alive_hero_hp    = 8; // 存活英雄血量万分比
+}
+
+message req_gm_single_dream {
+  optional uint64  floor    = 1; // 设置层数
+  optional uint64  damage   = 2; // 设置伤害
+  optional uint64  ticket   = 3; // 设置挑战次数
+}
+
+message req_gm_hero_return {
+  optional req_msg                 init            = 1; // 添加正式服数据: 随机初始化
+  optional req_gm_hero_return_set  set             = 2; // 设置正式服数据
+  optional req_msg                 set_inherit     = 3; // 设置已被继承
+  optional req_msg                 clear_inherit   = 4; // 清理已被继承标记
+  optional req_msg                 init_hot        = 5; // 初始化hot标记
+}
+
+message req_gm_hero_return_set {
+  optional            string  uin      = 1;
+  map<uint64, uint64>         heroes   = 2; // 设置正式服数据: 指定的英雄&品阶([{HeroTID, Quality},...])
+}
+
+
+//============================================================
+// 工会猎宝 gm
+//============================================================
+enum req_gm_guild_camp_type {
+  init_guilds       = 1; // 初始化工会猎宝，在当前服创建N个公会，并开始匹配
+  rooms             = 2; // 查看所有赛区、房间、公会
+  add_robot         = 3; // 给玩家当前所在房间指定阵营加机器人,需要参数camp_id \ robot_cnt
+  random_act_signup = 4; // 随机给玩家设置阵容并报名
+  add_task          = 5; // 加任务进度. score 为具体加的进度
+  set_general_score = 6; // 设置大元帅最高分数
+  set_group_mode    = 7; // 【备战期】当前服开跨服赛
+  lock_generals     = 8; // 【备战期】锁大将军
+  guild_match       = 9; // 【备战期】公会匹配：用于跨赛季后，不用造公会的情况下匹配
+}
+message req_gm_guild_camp {
+  required req_gm_guild_camp_type  type        = 1;
+  optional t_camp_title            title       = 2; // 机器人类型
+  optional uint64                  camp_id     = 3; // 阵营
+  optional uint64                  robot_cnt   = 4; // 机器人数量
+  optional uint64                  score       = 5; // init_guilds:公会数量 设置阵营buff分数、自己buff分数; 大元帅设置分数
+}
+message reply_guild_camp_gm {
+  repeated reply_guild_camp_gm_camp  camps   = 1;
+}
+
+message reply_guild_camp_gm_member {
+  optional uint64                 uid        = 1;
+  optional string                 uin        = 2;
+  optional uint64                 svr_id     = 3;
+  optional t_guild_camp_act_type  act_type   = 4;
+}
+
+message reply_guild_camp_gm_camp {
+  required string                      region_id   = 1; // 分区
+  required uint64                      room_id     = 2; // 房间，2-4个公会一个房间
+  required uint64                      camp_id     = 3; // 阵营id
+  required uint64                      gid         = 4; // 公会id
+  repeated reply_guild_camp_gm_member  generals    = 5;
+  repeated reply_guild_camp_gm_member  soldiers    = 6;
+}
+
+message req_gm_tutorial {
+  repeated uint64  reset   = 1; // 将已完成的引导重新打开
+}
+
+//============================================================
+// 工会猎宝 gm
+//============================================================
+message req_gm_war {
+  optional uint64                 add_robot           = 1; // 添加n*盟个数个机器人,并报名
+  optional req_msg                war_map_match       = 2; // 手动掉用下匹配
+  optional req_msg                init_troops         = 3; // 初始化自己的阵容,需要匹配后执行
+  optional req_msg                view_robots         = 4; // 查看所有机器人账号信息
+  repeated uint64                 create_besiege      = 5; // 创建围攻
+  optional req_msg                stop_besiege        = 6; // 关闭围攻进程
+  optional uint64                 near_by_city        = 7; // 将出生城相连的城设置为自己的
+  optional uint64                 own_city            = 8; // 抢占指定的城（如果城归属别的盟会失败）
+  optional uint64                 own_farmland        = 9; // 抢占地块
+  optional req_msg                init_all_troops     = 10; // 初始化所有人的队伍
+  optional req_msg                deposit_all         = 11; // 给所有人托管队伍
+  optional uint64                 deposit_ally        = 12; // 给玩家所在盟的所有玩家托管队伍
+  optional req_war_gm_update_task update_user_task    = 13; // 加玩家任务进度
+  optional req_war_gm_update_task update_ally_task    = 14; // 加联盟任务进度
+  optional req_msg                start_all_besiege   = 15; //启动全部城市的围攻
+  optional req_msg                stop_all_besiege    = 16; //关闭全部城市的围攻
+  optional req_msg                init_settle         = 17; // 初始化结算界面
+  optional uint64                 report_besiege_log  = 18; //导出围攻的统计日志
+  optional uint64                 get_utech           = 19; // 获得某项个人科技
+  optional uint64                 weather_test        = 20; // 跑指定天数的天气切换
+  optional uint64                 set_weather         = 21; // 将当前天气设置为指定天气
+  optional req_msg                be_chairman         = 22; // 自己成为盟主
+  optional req_msg                kick_chairman       = 23; // 将当前所在盟的盟主踢出联盟
+  optional req_msg                create_tutorial_besiege = 24; // 创建新手围攻
+  optional req_msg                create_map_by_csv       = 25; // 按照csv创建地图
+  optional req_msg                copy_utechs             = 26; // 复制个人科技给同盟所有人
+  optional req_msg                notify_slice_envents_one_hour = 27; // 通知调兵事件,持续通知1小时，每1-5秒通知100条
+  optional req_war_gm_move_troops move_troops                   = 28; // 移动部队
+  optional req_msg                build_arms                    = 29; //所有人都生产军备
+  optional req_msg                clear_self_build_arms         = 30; //清除自己的建造信息
+  optional uint64                 set_voke                      = 31; // 设置自己的职业
+  optional uint64                 set_ally_voke                 = 32; // 给同盟玩家设置职业,指定的职业不存在的话随机设置，存在的话都设置成指定的职业
+  optional req_msg                settle_arms                   = 33; // 结算所有的军备
+  optional req_msg                view_phase                    = 34; // 查看各个阶段时间
+  optional req_war_gm_start_besiege start_one_besiege           = 35; // 起单场围攻
+  optional uint64                 set_privilege_pet_tid         = 36; //设置自己的特权宠物tid
+  optional req_msg                fix_war_map                   = 37; // 一键修改大地图状态： phase \ day_phase
+  optional uint64kv               add_contribution              = 38; // 增加个人贡献 key:uid value:贡献值 uid不传的话则增加自己贡献
+  optional uint64                 set_skin_progress             = 39; // 设置皮肤进度
+  optional uint64                 set_dungeon_floor             = 40; // 设置地下城层数
+  optional uint64                 set_dungeon_act_point         = 41; // 设置地下城所有队伍体力
+  optional req_msg                unlock_cur_season_war_skin    = 42; // 当前玩家解锁本赛季霸业(不验证条件)
+  repeated uint64                 add_robot_ally_member         = 43; // 给指定联盟增加机器人(单次最大20, [e1: AllyID, e2: Cnt, e3: Contribution])
+  optional uint64                 war_group_id                  = 44; // 传war战区ID，把同战区的svr都开出来
+  optional req_war_gm_set_durability set_durability             = 45; // 设置地块耐久度
+  optional t_war_weather_effect   occupy_weather_city           = 46; // 12个盟随机占城，根据天气系统的池来占领
+  optional req_msg                set_guild_member_ally         = 47; // 把玩家所在公会的所有成员都设置为同盟成员
+  optional uint64                 duel_apply_member             = 48; // 自动申请车尾排队,传排队人数
+  optional req_war_gm_assemble    assemble                      = 49; // 集结:将指定城池的所有守军集结到指定城的攻城车上
+  optional req_war_gm_assemble    defend                        = 50; // 驻守
+  optional req_gm_item_number     consume_item                  = 51; // 增加消耗物资， 主要是兵力
+  optional uint64                 gm_add_army                   = 52; // 同盟玩家加兵力
+  optional bool                   set_auto_army                 = 53; // 同盟所有队伍设置、取消自动补兵
+  optional int64                  add_ally_arms                 = 54; // 给同盟加\减军备，负数是减军备
+  optional uint64                 gm_cut_army                   = 55; // 扣玩家兵力
+  optional req_msg                sync_open_s1_newest_svr_open_ts = 56; // 开启warS1第二步:同步战区最新服开服时间
+  optional req_war_gm_add_guild_arm_point add_guild_arm_point     = 57; // 根据公会id增加军备竞赛活动积分
+  optional req_msg                signup_all_guilds               = 58; // 一键本服所有公会报名war
+  optional req_msg                create_12_guilds_with_robots    = 59; // 创建12个公会，每个公会10个机器人（新服无公会时用）
+  optional uint64                 send_guild_reward               = 60; // 模拟war结算公会发奖，传task_id：2001黄金耀都/2002黄金巨树（发皮肤+雕像+荣誉并打弹窗红点）
+
+}
+
+// 根据公会id增加军备竞赛活动积分
+message req_war_gm_add_guild_arm_point {
+  required uint64 guild_id = 1; // 公会id
+  required uint64 point    = 2; // 增加的积分
+}
+
+message req_war_gm_assemble {
+  required uint64 guard_city_tid    = 1; // 守军所在城池tid
+  optional uint64 proclaim_city_tid = 2; // 宣战城tid assemble才需要传
+  optional uint64 troop_cnt         = 3; // 队伍数量，不传则全部
+}
+
+message req_war_gm_set_durability {
+  optional uint64 tid         = 1; // 地块id，不传则设置所有地块
+  required uint64 durability  = 2; // 耐久度
+}
+
+// 起单场围攻：self_city_tid\target_city_tid必须同时指定，否则将随机生成; troop_cnt: 不指定的话，将出动本盟所有部队
+message req_war_gm_start_besiege {
+  optional uint64 self_city_tid   = 1; // 宣战城
+  optional uint64 target_city_tid = 2; // 被宣战城
+  optional uint64 troop_cnt       = 3; // 出动的队伍数量
+}
+
+message req_war_gm_update_task {
+  required uint64              tid            = 1;
+  optional uint64              progress_id    = 2;
+  required uint64              progress       = 3;
+  required t_war_fun_type      fun_type       = 4;
+}
+
+message req_war_gm_update_ally_task {
+  required uint64              tid            = 1;
+  optional uint64              progress_id    = 2;
+  required uint64              progress       = 3;
+  required t_war_fun_type      fun_type       = 4;
+}
+
+message reply_war_gm_member {
+  optional uint64           uid       = 1;
+  optional string           uin       = 2;
+  optional uint64           map_id    = 3;
+  optional uint64           ally_id   = 4;
+  optional t_war_ally_title title     = 5;
+  optional uint64           voke_tid  = 6;
+  optional uint64           score     = 7; //匹配分
+}
+message reply_gm_war {
+  repeated reply_war_map        war_maps            = 1;
+  repeated reply_war_gm_member  members             = 2; // 查看机器人会返回这个
+  optional uint64               create_besiege      = 3; // 返回创建围攻的ID（收到后发进入协议）
+  optional reply_gm_besiege_log report_besiege_log  = 4; // 导出围攻的统计日志
+  optional reply_gm_war_phase   phase_msg           = 5; // 各个阶段时间
+}
+
+message reply_gm_war_phase {
+  optional string phases      = 1; // 大阶段
+  optional string day_phases  = 2; // 小阶段
+}
+
+message reply_gm_besiege_log {
+  optional string           csv_battle_log        = 1;
+  optional string           csv_troop_log         = 2;
+  optional string           csv_user_log          = 3;
+}
+
+message req_war_gm_move_troops {
+  required uint64  from_city_id  = 1; // 迁出城
+  required uint64  to_city_id    = 2; // 迁入城
+  optional uint64  troop_cnt     = 3; // 迁出数量，不填的话全部迁走
+}
+
+message req_gm_add_assigned_order{
+  required uint32  stage_id   = 1; // 二合活动的关卡id
+  required uint32  order_id   = 2; // 二合活动的订单id
+}
+
+message req_gm_cof_trigger_explore_event {
+  required t_cof_event event_type     = 1;
+  optional uint64      event_group_id = 2;
+}
+
+message reply_gm_contra {
+  optional  reply_contra_end_battle unlock_contra = 1; // 解锁至魂斗罗关卡
+}
+
+message req_gm_act_bond_send_gifts {
+  required uint64 hero_tid = 1; // 英雄 TID
+  required uint64 count    = 2; // 设置该英雄好感度目标值（绝对值，非增量）
+}
+message req_gm_act_farm {
+  optional uint64                            add_seed          = 1; // 添加幼苗
+  optional uint64                            add_water         = 2; // 添加水滴
+  optional req_gm_act_farm_set_buy_times     set_buy_times     = 3; // 设置道具已购次数
+  optional uint64                            plot_mature       = 4; // 地块成熟，0:一键成熟
+  optional uint64                            unlock_album_item = 5; // 解锁图鉴道具
+  optional req_gm_act_farm_set_album_reward  set_album_reward  = 6; // 设置图鉴奖励领取状态
+  optional req_gm_act_farm_trigger_buff      trigger_buff      = 7; // 触发buff（英雄来访/地块事件）
+  optional uint64                            clear_items       = 8; // 清空指定道具
+}
+message req_gm_act_farm_set_buy_times {
+  required uint64 item_id = 1; // 道具ID
+  required uint64 times   = 2; // 已购次数
+}
+message req_gm_act_farm_set_album_reward {
+  required t_farm_album_reward      reward_type = 1; // 奖励类型
+  required uint64                   reward_id   = 2; // 奖励ID，final传0
+  required bool                     recv        = 3; // true=标为已领，false=清空
+}
+message req_gm_act_farm_trigger_buff {
+  required uint64 buff_id = 1; // buff_id
+  optional uint64 plot_id = 2; //  地块的buff传 地块id
+}
+
+message req_gm_act_farm_lottery {
+  optional uint64 recvd_reward = 1; // 指定奖项id进行领奖
+  optional uint64 set_distance = 2; // 设置总前进距离
+}
+
+message req_gm_guild_boat {
+  optional req_msg add_boat   = 1; // 添加所有船道具x10
+  optional uint64  arrive     = 2; // 指定槽位航线立即到达，传slot_pos
+  optional uint64  add_assist = 3; // 指定槽位航线添加一个协助，传slot_pos
+}
+
+message req_gm_guild_turntable {
+  repeated uint64 end_poses = 1; // 预设落点队列（棋盘位置 1~map最大值）：不当场抽奖；之后每次正常抽奖（每个 draw 请求一次，单抽/多抽同）按顺序取一个作为落点，其余（扣罗盘/发奖/日志/事件）走正常流程，用完恢复随机；再次设置整体覆盖，传空数组清空
+}
+
+//------------------ 大富翁 GM ------------------
+// 大富翁GM
+message req_gm_big_rich_man {
+  optional uint32                           target_step          = 1; // 下一次掷出指定点数(1-6)
+  optional req_big_rich_man_set_building_lv set_building_lv      = 2; // 设置指定地块上建筑等级
+  optional req_big_rich_man_add_reward_time add_reward_time      = 3; // 增加指定地块上建筑挂机时间
+  optional uint64                           add_rob_cnt          = 4; // 增加入侵次数
+  optional req_msg                          reset_dice_cnt       = 5; // 重置骰子次数
+  optional uint64                           set_exp              = 6; // 设置领地经验
+  optional uint32                           set_all_buildings_lv = 7; // 设置所有建筑等级
+  optional req_big_rich_man_edit_map        edit_map             = 8; // 初始化地图
+  optional req_msg                          reset_robbed_cd      = 9; // 重置被入侵次数并重新加入匹配池
+}
+
+message req_big_rich_man_edit_map {
+  repeated big_rich_man_block blocks = 1; // 想设置的地块内容
+}
+
+message req_big_rich_man_add_reward_time {
+  required uint32 block_id = 1; // 地块id
+  required uint64 time     = 2; // 需要增加的时间秒数
+}
+
+message req_big_rich_man_set_building_lv {
+  required uint32 block_id = 1; // 地块id
+  required uint32 lv       = 2; // 要设置的等级
+}
+
+//================================================ 联动英雄活动 GM begin ==================================================
+// 联动英雄活动（首期怪兽8号联动）GM 面板；参照 req_gm_act_guild_arm 接入模式
+// 一次调用只填一个子字段，act_cross_story_gm:gm/2 按 pattern 分派
+// 支持同类型活动多开，act_id 必带以定位到具体活动实例
+message req_gm_act_cross_story {
+  required uint64                                    act_id                 = 1; // 活动ID（同类型多开定位，必带）
+  optional req_gm_act_cross_story_set_choice_hero    set_choice_hero        = 2; // 设置选角状态（0=清除；仅记录不发英雄）
+  optional uint64                                    pass_stage             = 3; // 置关卡通关（arg: stage_id；Boss 战果即刻计入公会讨伐实时统计）
+  optional uint64                                    unpass_stage           = 4; // 撤销关卡通关（arg: stage_id）
+  optional uint64                                    send_first_pass_reward = 5; // 强制补发首通奖励（arg: stage_id；仅测试环境，不校验已发）
+  optional uint64                                    add_task_progress      = 6; // 补触发通关任务进度 +1（arg: stage_id）
+  optional req_gm_act_cross_story_set_guild_recvd    set_guild_reward_recvd = 7; // 设置/清除公会讨伐档位奖励领取记录
+  optional bool                                      reset                  = 8; // 重置本 act_id 玩家活动数据（true 触发；仅清指定活动，不影响其他并行活动）
+  optional bool                                      query                  = 9; // 查询本 act_id 玩家活动数据全量快照（true 触发；结果打日志）
+  optional bool                                      query_guild_progress   = 10; // 实时查询本 act_id 公会讨伐进度（true 触发；结果打日志）
+  optional bool                                      query_red_dot          = 11; // 查询本 act_id 玩家相关红点（true 触发；结果打日志）
+  optional bool                                      act_status             = 12; // 查询本 act_id 活动开关/开启天数（true 触发；结果打日志）
+  optional req_gm_act_cross_story_set_guild_prog     set_guild_progress     = 13; // 设置公会讨伐进度（对前 cnt 名公会成员写入该关卡战果，其余清除；受公会实际人数上限约束）
+}
+
+// 设置公会讨伐进度（仅测试环境）
+// 零公会存储下进度是实时统计的派生值、无可写字段，故由 GM 造出对应的成员战果数据
+message req_gm_act_cross_story_set_guild_prog {
+  required uint64 stage_id = 1; // 讨伐 Boss 关卡ID
+  required uint64 cnt      = 2; // 目标已击败人数（0 = 清空全公会该关卡战果；上限为公会实际人数）
+}
+
+message req_gm_act_cross_story_set_choice_hero {
+  required uint64 hero_tid = 1; // 联动英雄TID（0=清除到未选状态）
+}
+
+message req_gm_act_cross_story_set_guild_recvd {
+  required uint64 stage_id = 1; // 讨伐 Boss 关卡ID
+  required bool   is_recvd = 2; // true=写入已领，false=清除已领标记
+}
+//================================================ 联动英雄活动 GM end ====================================================
