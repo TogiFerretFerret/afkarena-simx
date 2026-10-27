@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "domain": [
+    "Original equipData/signatureData property definitions, methods, factories and descriptor setters are executed unchanged",
+    "Constructors are the original ctor functions with the original property object as prototype",
+    "Cocos-generated instance IDs, class IDs, superclass facilities and constructor wrapper metadata are outside this adapter",
+    "Default prototype fields for these two source classes are null/boolean; constructors do not invoke _super",
+    "Resonance and additional data dependencies must be supplied if their source paths are reached"
+  ],
+  "records": [
+    {
+      "name": "ed.copyObj",
+      "kind": "function",
+      "file": "src/srcmodule/game_util.js",
+      "start": 285586,
+      "end": 285750,
+      "sha256": "5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072"
+    },
+    {
+      "name": "ed.equipData",
+      "kind": "class_properties",
+      "file": "src/srcmodule/game_util.js",
+      "start": 773360,
+      "end": 776605,
+      "sha256": "a23eec8b1b6402eda957e9c1eb52e375c19dca6d82fb9cf39cd508782bcc2089"
+    },
+    {
+      "name": "ed.equipData.setAndGet",
+      "kind": "function",
+      "file": "src/srcmodule/game_util.js",
+      "start": 776630,
+      "end": 778599,
+      "sha256": "5c47325c01cbbff9afa35b873d9c4062204cad9eeef6242c4e199947118036d5"
+    },
+    {
+      "name": "ed.equipData.create",
+      "kind": "function",
+      "file": "src/srcmodule/game_util.js",
+      "start": 778620,
+      "end": 778693,
+      "sha256": "25bdc36463a60bb815f0c828ccd914346317603ea4f0c4daaa6196ff25e172b2"
+    },
+    {
+      "name": "ed.equipData.cloneFormObj",
+      "kind": "function",
+      "file": "src/srcmodule/game_util.js",
+      "start": 778720,
+      "end": 778749,
+      "sha256": "066d4a02c2f9927b0f1f6bd09b0ad361dd72475b7b02bc332d705936631c671c"
+    },
+    {
+      "name": "ed.equipData.isRandomTag",
+      "kind": "function",
+      "file": "src/srcmodule/game_util.js",
+      "start": 778775,
+      "end": 778917,
+      "sha256": "3f14eb3cf1eff3b203d58a135c98a581903576b885a7fe1624ce669f07bc0f71"
+    },
+    {
+      "name": "ed.signatureData",
+      "kind": "class_properties",
+      "file": "src/srcmodule/game_util.js",
+      "start": 779498,
+      "end": 779808,
+      "sha256": "eb2ba4f29692ae96cde6b3714c7586e3c361bba667174f4f658456cceaa22229"
+    },
+    {
+      "name": "ed.signatureData.setAndGet",
+      "kind": "function",
+      "file": "src/srcmodule/game_util.js",
+      "start": 779837,
+      "end": 780227,
+      "sha256": "36b19b4a159e05cbe1cfe258c7d5bb9ad57355d9b33d86564ada5fac54b54289"
+    },
+    {
+      "name": "ed.signatureData.create",
+      "kind": "function",
+      "file": "src/srcmodule/game_util.js",
+      "start": 780252,
+      "end": 780333,
+      "sha256": "bf290d48593681fb0f8552d116b102a8a36bcd29840eebb21a3b79a4e9e0c52b"
+    },
+    {
+      "name": "ed.signatureData.cloneFormObj",
+      "kind": "function",
+      "file": "src/srcmodule/game_util.js",
+      "start": 780364,
+      "end": 780393,
+      "sha256": "066d4a02c2f9927b0f1f6bd09b0ad361dd72475b7b02bc332d705936631c671c"
+    }
+  ]
+}

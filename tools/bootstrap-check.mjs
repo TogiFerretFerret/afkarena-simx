@@ -2,17 +2,12 @@ import assert from 'node:assert/strict';
 import { createContext } from 'node:vm';
 import { loadBootstrapFunctions } from './bootstrap-source.mjs';
 import { createStageFixture } from './bootstrap-stage.mjs';
+import { installBootstrapDataClasses } from './bootstrap-data.mjs';
 
 // Real data + real source helpers: no copied team-selection implementation.
 let preparedStages=0;
 for(let stage=1;stage<=12;stage++){
-  let fixture;
-  try{fixture=await createStageFixture(stage);}
-  catch(error){
-    assert.equal(stage,7,'Unexpected unsupported stage');
-    assert.match(error.message,/original runtime adapter: ed\.equipData\.create/);
-    continue;
-  }
+  const fixture=await createStageFixture(stage);
   preparedStages++;
   assert.equal(fixture.mode,'stage');
   assert.ok(fixture.rounds.length>0);
@@ -26,6 +21,22 @@ const fixture=await createStageFixture(1);
 assert.equal(fixture.rounds[0].battleId,16001);
 assert.equal(fixture.rounds[0].enemies[0].tid,1008);
 assert.equal(fixture.rounds[0].enemies[0].config.hp_mod,.55);
+const equipped=await createStageFixture(7);
+const equip=equipped.rounds.flatMap(r=>r.enemies).flatMap(h=>h.equips).map(e=>e.equip)[0];
+assert.ok(equip);
+assert.equal(equip.tid,equip._data.tid);
+const originalEnhancement=equip.enhance_lv;
+equip.enhance_lv=originalEnhancement+1;
+assert.equal(equip._data.enhance_lv,originalEnhancement+1);
+assert.equal(equip._originalData.enhance_lv,originalEnhancement);
+const dataContext=createContext({ed:{}});
+await installBootstrapDataClasses(dataContext);
+const signatureInput={lv:12,isNpc:true};
+const signature=dataContext.ed.signatureData.create(signatureInput);
+assert.equal(signature.lv,12);
+assert.equal(signature.isValid,true);
+signature.lv=13;
+assert.equal(signatureInput.lv,13,'Source signature constructor retains input alias');
 
 // Exercise original initHeroInfo orchestration at explicit UnitCreate boundary.
 for(const [shuffle,roll,expectedOrder,expectedDraws] of [
@@ -42,5 +53,5 @@ for(const [shuffle,roll,expectedOrder,expectedDraws] of [
   assert.equal(draws,expectedDraws);
   assert.deepEqual(created.map(x=>x.id),expectedOrder);
 }
-assert.equal(preparedStages,11);
-console.log('Bootstrap checks passed: 11 real stage fixtures; stage 7 explicitly requires original equipData adapter; stage 1 -> battle 16001 -> enemy 1008; setup RNG consumption and shuffle-dependent unit order. This is not a full battle test.');
+assert.equal(preparedStages,12);
+console.log('Bootstrap checks passed: 12 real stage fixtures, original equip/signature getters and mutation semantics, setup RNG consumption and shuffle-dependent unit order. This is not a full battle test; data adapter excludes Cocos metadata.');

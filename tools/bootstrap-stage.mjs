@@ -3,10 +3,11 @@ import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { installBootstrapHelpers, loadBootstrapTable } from './bootstrap-source.mjs';
+import { installBootstrapDataClasses } from './bootstrap-data.mjs';
 
 /** Execute original table-selection and enemy-proto construction functions.
  * This is battle input preparation, not a Cocos runtime or a battle simulation.
- * Equipped/signature-bearing enemies fail explicitly until their real adapters load.
+ * Data-object methods use the narrow source-derived bootstrap data adapter.
  */
 export async function createStageFixture(stageId,{companion=true,contra=false}={}) {
   const tables=new Map();
@@ -25,6 +26,7 @@ export async function createStageFixture(stageId,{companion=true,contra=false}={
     },
   });
   await installBootstrapHelpers(context);
+  await installBootstrapDataClasses(context);
   const battleIds=context.ed.getBattleIdByStage(stageId,false);
   if(!battleIds)throw new Error(`Unknown stage: ${stageId}`);
   const rounds=[];
@@ -34,8 +36,8 @@ export async function createStageFixture(stageId,{companion=true,contra=false}={
     const enemies=context.ed.getStageHeroes(stageId,round,0,false);
     rounds.push({battleId,battleInfo,enemies});
   }
-  return JSON.parse(JSON.stringify({version:1,stageId,companion,contra,mode:'stage',rounds,
-    scope:'Source-executed table selection and enemy-proto construction only; player roster and engine runtime remain caller inputs'}));
+  return {version:1,stageId,companion,contra,mode:'stage',rounds,
+    scope:'Source-executed table selection and enemy-proto construction; source-derived data adapter excludes Cocos metadata; player roster and engine runtime remain caller inputs'};
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){
