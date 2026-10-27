@@ -12,7 +12,8 @@ typedef void (*BattleFinishStatic)(void *context, const double values[47]);
 /* Input rows are immutable and must remain valid through both callbacks.
  * Output has 47 doubles, does not alias input, and is written after finish.
  * Both callbacks are required; their array pointers expire on return.
- * Return 0=success,1=missing pointer/callback,2=invalid alignment/count.
+ * Return 0=success,1=missing pointer/callback,2=invalid alignment/count,
+ * 3=non-reference floating-point controls (rounding, denormals or exceptions).
  * This kernel alone does not establish integrated battle equivalence. */
 int battle_calculate_attributes(const BattleAttributeRows groups[10], double output[47], void *context,
     BattleRecordFormula record, BattleFinishStatic finish);

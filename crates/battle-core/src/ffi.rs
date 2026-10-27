@@ -19,7 +19,8 @@ impl AttributeObserver for Observer{
 }
 
 /// Returns 0 on success, 1 for missing pointers/callbacks, 2 for invalid row
-/// alignment/count. Validation precedes all observers and output writes.
+/// alignment/count, 3 for a non-reference floating-point environment.
+/// Validation precedes all observers and output writes.
 ///
 /// # Safety
 /// `groups` points to ten readable descriptors; each nonempty descriptor points
@@ -36,6 +37,7 @@ pub unsafe extern "C" fn battle_calculate_attributes(
  let (Some(record),Some(finish))=(record,finish)else{return 1};
  if groups.is_null()||output.is_null(){return 1}
  if !groups.is_aligned()||!output.is_aligned(){return 2}
+ if !crate::js_math::reference_fp_environment(){return 3}
  let descriptors=unsafe{slice::from_raw_parts(groups,GROUP_COUNT)};
  // Validate all groups before building any Rust slice or invoking user code.
  for group in descriptors{

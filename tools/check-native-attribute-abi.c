@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <stdint.h>
 #include <string.h>
+#include <fenv.h>
 typedef struct {size_t records,finishes;double *output;} State;
 static uint64_t bits(double value){uint64_t result;memcpy(&result,&value,sizeof result);return result;}
 static void record(void *context,size_t attribute,const double *formula,double value){
@@ -30,5 +31,10 @@ int main(void){
  groups[9]=(BattleAttributeRows){0,1};
  assert(battle_calculate_attributes(groups,output,&state,record,finish)==2);
  assert(state.records==0&&state.finishes==0);
+ groups[9]=(BattleAttributeRows){0,0};
+ int previous_round=fegetround();assert(fesetround(FE_DOWNWARD)==0);
+ assert(battle_calculate_attributes(groups,output,&state,record,finish)==3);
+ assert(state.records==0&&state.finishes==0);
+ assert(fesetround(previous_round)==0);
  return 0;
 }

@@ -9,17 +9,19 @@
     "no output writes before final callback",
     "ordered nonassociative f64 sums",
     "null callback and invalid empty buffer rejection before side effects",
-    "uncapped formula observation precedes capped final static values"
+    "uncapped formula observation precedes capped final static values",
+    "non-reference floating controls rejected before callbacks"
   ],
   "scope": "Immutable numeric attribute groups only; required callbacks must not mutate input buffers; not a complete native battle",
   "fullBattleEquivalence": false,
   "qualifiesForBattleThroughputTarget": false,
   "sha256": {
     "crates/battle-core/src/config.rs": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36",
-    "crates/battle-core/src/ffi.rs": "8709bd149fa999ec1d01921a603e2833f6b96dca7e3443a441e1c28282a844b3",
-    "crates/battle-core/include/battle_core.h": "f58a962aaa3b3fe8dd9e6cc5183c42ecb35f6c5faa0323cdea9a502ded3d2cd7",
+    "crates/battle-core/src/ffi.rs": "62e5d0c44521e8bb824c180ebdab811897397ebe968d27a0df98587ae1e06eb6",
+    "crates/battle-core/include/battle_core.h": "d44bc4202e63f18fc977d3943309310096d84b9e956b5ce38d653f63bdf9dcb4",
     "crates/battle-core/BUCK": "b1f20d9c0db6d91b85a0f32c78080493b381f72b7eda1d1e92e954b01b70e078",
     "tools/BUCK": "9017657fe548c4ee4b7c311530d8b229e7445a2da72a9a9f9517b62f5685d118",
-    "tools/check-native-attribute-abi.c": "10601850519aa75f5b34d2fec37d496636022cca44bd86532f18e99960d38e86"
+    "tools/check-native-attribute-abi.c": "e83e53f220f5762e04f5a269659cdbf45ee39ee6e7567c2b52153fe7ac825aaf",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d"
   }
 }
