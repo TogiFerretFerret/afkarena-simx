@@ -120,6 +120,10 @@ export async function createBootstrapRuntime({hostRandom}={}){
   ed.getDataTable=name=>{if(!tables.has(name))tables.set(name,loadBootstrapTableSync(name));return tables.get(name);};
   ed.logbugly=message=>{throw new Error(message);};
   for(const initializer of postInitializers)runInContext(initializer.source,context,{filename:`${initializer.file}:${initializer.start}`});
+  // The source audio singleton is normally constructed by application startup.
+  // Run its actual constructor; only physical output is supplied by the host.
+  new ed.soundManager();
+  ed.audio_effect_switch=context.bootstrapHost.audioEnabled;
   const callbacks=await installBootstrapCallbacks(context);
   return {context,ed,loaded,tables,provenance,callbacks,host:context.bootstrapHost,
     hostProvenance:{file:'tools/bootstrap-host.js',sha256:createHash('sha256').update(hostSource).digest('hex')},

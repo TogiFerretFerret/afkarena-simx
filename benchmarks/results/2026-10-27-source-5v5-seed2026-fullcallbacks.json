@@ -1,0 +1,115 @@
+{
+  "status": "completed",
+  "scenarioSeed": 2026,
+  "inputSha256": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a",
+  "result": "victory",
+  "ticks": 301,
+  "frames": 301,
+  "callbacksExecuted": 15544,
+  "units": [
+    {
+      "tid": 124,
+      "camp": 1,
+      "hp": 12946247.714186894,
+      "mp": 200
+    },
+    {
+      "tid": 148,
+      "camp": 1,
+      "hp": 15072227.589156797,
+      "mp": 793.1337343
+    },
+    {
+      "tid": 62,
+      "camp": 1,
+      "hp": 22635130.607607815,
+      "mp": 380
+    },
+    {
+      "tid": 69,
+      "camp": 1,
+      "hp": 15007424.608009424,
+      "mp": 150
+    },
+    {
+      "tid": 247,
+      "camp": 1,
+      "hp": 11935522.62024372,
+      "mp": 490
+    },
+    {
+      "tid": 120,
+      "camp": -1,
+      "hp": 0,
+      "mp": 37.5
+    },
+    {
+      "tid": 64,
+      "camp": -1,
+      "hp": 0,
+      "mp": 110.5679601
+    },
+    {
+      "tid": 117,
+      "camp": -1,
+      "hp": 0,
+      "mp": 37.5
+    },
+    {
+      "tid": 38,
+      "camp": -1,
+      "hp": 0,
+      "mp": 37.5
+    },
+    {
+      "tid": 9,
+      "camp": -1,
+      "hp": 0,
+      "mp": 37.5
+    },
+    {
+      "tid": 4008,
+      "camp": 1,
+      "hp": 22635130.607607815,
+      "mp": 380
+    },
+    {
+      "tid": 4043,
+      "camp": 1,
+      "hp": 5028014.219,
+      "mp": 1000
+    },
+    {
+      "tid": 4109,
+      "camp": 1,
+      "hp": 3315519.976139182,
+      "mp": 536.9626078999999
+    }
+  ],
+  "pets": [
+    {
+      "tid": 6108,
+      "camp": 1
+    },
+    {
+      "tid": 6112,
+      "camp": -1
+    }
+  ],
+  "limitations": [
+    "Lazy symbol evaluation does not establish all original module side-effect order",
+    "Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter",
+    "Headless Linux device output is recorded; physical audio/render output is not produced",
+    "Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly"
+  ],
+  "hostInputs": {
+    "platform": "headless Linux",
+    "audioEnabled": true,
+    "actorObjects": "source Unit.actor remains null; source callback bodies still execute"
+  },
+  "provenance": {
+    "runtimeSha256": "e8453f5c4aa1875d2f20f83e50eb8c71b1ae21a7af9feffa8d02773600fe9ec1",
+    "hostSha256": "7be416748dc364eee178b432b39dfa5520d00daf0e740ced8235e79020339a01",
+    "callbacksSha256": "2b211e65b304a4afc68e68375684f162f2ced96cd795782a667b18d9e62c64d4"
+  }
+}

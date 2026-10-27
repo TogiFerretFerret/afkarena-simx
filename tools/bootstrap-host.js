@@ -12,6 +12,8 @@
     var effectVolume = 1;
     var musicVolume = 1;
     var storage = Object.create(null);
+    var listeners = [];
+    var nextListenerId = 1;
     function event(kind, args) {
         events.push({ kind: kind, args: Array.prototype.slice.call(args) });
     }
@@ -49,9 +51,29 @@
         setMusicVolume: function (value) { event("audio_music_volume", arguments); musicVolume = value; },
         getMusicVolume: function () { return musicVolume; }
     };
+    cc.eventManager = {
+        addCustomListener: function (name, callback, target) {
+            var listener = { id: nextListenerId++, name: name, callback: callback, target: target };
+            listeners.push(listener);
+            event("event_listener_add", [listener.id, name]);
+            return listener;
+        },
+        removeListener: function (listener) {
+            event("event_listener_remove", [listener && listener.id]);
+            var index = listeners.indexOf(listener);
+            if (index !== -1) listeners.splice(index, 1);
+        },
+        dispatchCustomEvent: function (name, data) {
+            event("event_dispatch", [name]);
+            var current = listeners.slice();
+            var message = { getUserData: function () { return data; }, getEventName: function () { return name; } };
+            for (var i = 0; i < current.length; i++) if (current[i].name === name) current[i].callback.call(current[i].target, message);
+        }
+    };
     if (!cc.log) cc.log = function () { event("log", arguments); };
     host.bootstrapHost = {
         version: 1,
+        audioEnabled: true,
         platform: "headless-linux-device-output",
         events: events,
         audioState: function () { return { nextAudioId: nextAudioId, effects: effects, music: music, effectVolume: effectVolume, musicVolume: musicVolume }; }
