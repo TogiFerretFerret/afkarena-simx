@@ -1,0 +1,32 @@
+--- a/lib/BCGen/SerializedLiteralGenerator.cpp
++++ b/lib/BCGen/SerializedLiteralGenerator.cpp
+@@ -51,22 +51,13 @@
+   // Since the buffer is a char buffer, we pass in an alignment of 1
+   // to endian::write.
+   buff.resize(buff.size() + sizeof(double));
+-  // NaN may have a different bit pattern on different platforms.
+-  // We need to make sure that the bit pattern is consistent.
+-  if (LLVM_UNLIKELY(std::isnan(value))) {
+-    static_assert(
+-        sizeof(double) == sizeof(uint64_t), "double better be 64 bits");
+-    static constexpr uint64_t qnan = 0xfff8000000000000;
+-    llvh::support::endian::write<uint64_t, 1>(
+-        buff.data() + buff.size() - sizeof(uint64_t),
+-        qnan,
+-        llvh::support::endianness::little);
+-  } else {
+-    llvh::support::endian::write<double, 1>(
+-        buff.data() + buff.size() - sizeof(double),
+-        value,
+-        llvh::support::endianness::little);
+-  }
++  // Preserve the IR literal's bits, including NaN sign/payload. The ordinary
++  // native constant emitter preserves these bits too; object/array buffers
++  // must not change a Number merely because it is serialized.
++  llvh::support::endian::write<double, 1>(
++      buff.data() + buff.size() - sizeof(double),
++      value,
++      llvh::support::endianness::little);
+ }
+ } // namespace
+ 

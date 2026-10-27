@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "baseCommit": "4f1db42d71d0839254c7154fc8c282bcea466206",
+  "patch": "tools/native-compiler-patches/literal-number-bits.patch",
+  "sha256": "bdbc5075b5344923d2737afa829247b89764a8e381ded64259172f97c415ed4a",
+  "purpose": "Preserve IR Number literal bits in serialized object/array buffers, matching ordinary native constants instead of forcing all NaNs negative",
+  "scope": "Compiler literal serialization only; does not fix runtime DataView NaN payload canonicalization",
+  "files": [
+    {
+      "path": "lib/BCGen/SerializedLiteralGenerator.cpp",
+      "originalSha256": "ac6e36162ac7e943b060fe881c55e7fc50c9d197e595ae5eb08aa8298a9e136d",
+      "patchedSha256": "b634915fe96cf6a094a7c2e6ffe1b3381d8a4fc36394e294053235bc8a64a142"
+    }
+  ]
+}

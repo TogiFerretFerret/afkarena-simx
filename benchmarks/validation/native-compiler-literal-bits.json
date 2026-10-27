@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "binaryPoolsMatchedTextPools": true,
+  "literalNumbers": {
+    "expected": [
+      "7ff8000000000000",
+      "fff8000000000000",
+      "0000000000000000",
+      "8000000000000000",
+      "7ff8000000000000",
+      "fff8000000000000",
+      "0000000000000000",
+      "8000000000000000"
+    ],
+    "actual": [
+      "7ff8000000000000",
+      "fff8000000000000",
+      "0000000000000000",
+      "8000000000000000",
+      "7ff8000000000000",
+      "fff8000000000000",
+      "0000000000000000",
+      "8000000000000000"
+    ]
+  },
+  "unicodeMatched": true,
+  "stringPools": [
+    {
+      "name": "s_ascii_pool.bin",
+      "bytes": 20281,
+      "sha256": "1113723bb90a70297cc2628d0e2dbc55f7a24bb03167201f9d439b0860cdc2b3"
+    },
+    {
+      "name": "s_u16_pool.bin",
+      "bytes": 10,
+      "sha256": "dbd992fdd5c5c52999f8c77763acaa196fa00578f5059088d480c5b2704d9af6"
+    },
+    {
+      "name": "s_strings.bin",
+      "bytes": 1908,
+      "sha256": "bf78cb635d176318fd9745966c706cd064628ff788981d518d3e6cdc899adb33"
+    }
+  ],
+  "compiler": "/workspace/afkarena-simx/work/downloads/hermes-build/bin/shermes",
+  "compilerVersion": "LLVM (http://llvm.org/):\n  LLVH version 8.0.0svn\n  Optimized build\n\nStatic Hermes JS Compiler v0.0",
+  "sourceSha256": "9371aa6519a4e7d68c447ceb82f865798625fc90d635218924573144f6c94e30",
+  "referenceRuntime": "v24.19.0",
+  "matched": true,
+  "differences": [],
+  "inheritance": {
+    "expected": {
+      "value": 5,
+      "number": 12,
+      "ownSuper": true
+    },
+    "actual": {
+      "value": 5,
+      "number": 12,
+      "ownSuper": true
+    }
+  },
+  "functionSource": {
+    "expected": "function explicitSource(x){return this._super(x)+1;}",
+    "actual": "function explicitSource(x){return this._super(x)+1;}"
+  },
+  "rngMatched": true,
+  "mathBitDifferences": 0,
+  "mathDifferencesByFunction": {
+    "pow": 0,
+    "sqrt": 0,
+    "sin": 0,
+    "cos": 0
+  },
+  "unaryMathDifferences": {
+    "acos": 0,
+    "acosh": 0,
+    "asin": 0,
+    "asinh": 0,
+    "atan": 0,
+    "atanh": 0,
+    "cbrt": 0,
+    "cos": 0,
+    "cosh": 0,
+    "exp": 0,
+    "expm1": 0,
+    "log": 0,
+    "log10": 0,
+    "log1p": 0,
+    "log2": 0,
+    "sin": 0,
+    "sinh": 0,
+    "tan": 0,
+    "tanh": 0
+  },
+  "edgeMathBitDifferences": 0,
+  "queueOrder": [
+    "a",
+    "b",
+    "c"
+  ],
+  "scope": "AOT compiler semantic compatibility probe, not battle fidelity or throughput"
+}

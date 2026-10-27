@@ -10,6 +10,9 @@ const runtime=await readFile(resolve(root,'tools/bootstrap-vendor-CCClass.js'),'
 const source=`var cc={game:{config:null,CONFIG_KEY:{}}};\n${runtime}\n`+String.raw`
 function toBits(value){var a=new ArrayBuffer(8),v=new DataView(a);v.setFloat64(0,value,false);function hex(n){var s=n.toString(16);while(s.length<8)s='0'+s;return s;}return hex(v.getUint32(0,false))+hex(v.getUint32(4,false));}
 var report={};
+var literalNumbers={positive:NaN,negative:-NaN,zero:0,negativeZero:-0};
+var literalArray=[NaN,-NaN,0,-0];
+report.literalNumbers=[toBits(literalNumbers.positive),toBits(literalNumbers.negative),toBits(literalNumbers.zero),toBits(literalNumbers.negativeZero),toBits(literalArray[0]),toBits(literalArray[1]),toBits(literalArray[2]),toBits(literalArray[3])];
 report.unicode=['汉字🙂','embedded\u0000zero',String.fromCharCode(0xD800,0xDC00,0xD800,65,0xDC00)];
 var sourceProbe=function explicitSource(x){return this._super(x)+1;};
 report.functionSource=Function.prototype.toString.call(sourceProbe);
@@ -43,6 +46,6 @@ const mathNames=['pow','sqrt','sin','cos'];
 const mathDifferencesByFunction=Object.fromEntries(mathNames.map((name,j)=>[name,node.math.reduce((n,row,i)=>n+Number(row[j]!==native.math[i][j]),0)]));
 const unaryMathDifferences=Object.fromEntries(Object.keys(node.unaryMath).map(name=>[name,node.unaryMath[name].filter((x,i)=>x!==native.unaryMath[name][i]).length]));
 const edgeMathBitDifferences=node.edgeMath.reduce((n,row,i)=>n+row.filter((x,j)=>x!==native.edgeMath[i][j]).length,0);
-const report={version:1,binaryPoolsMatchedTextPools:true,unicodeMatched:JSON.stringify(native.unicode)===JSON.stringify(node.unicode),stringPools,compiler,compilerVersion:run(compiler,['--version']).trim(),sourceSha256:createHash('sha256').update(source).digest('hex'),referenceRuntime:process.version,matched:differences.length===0,differences,inheritance:{expected:node.inheritance,actual:native.inheritance},functionSource:{expected:node.functionSource,actual:native.functionSource},rngMatched:JSON.stringify(node.rng)===JSON.stringify(native.rng),mathBitDifferences:node.math.reduce((n,row,i)=>n+row.filter((x,j)=>x!==native.math[i][j]).length,0),mathDifferencesByFunction,unaryMathDifferences,edgeMathBitDifferences,queueOrder:native.order,scope:'AOT compiler semantic compatibility probe, not battle fidelity or throughput'};
+const report={version:1,binaryPoolsMatchedTextPools:true,literalNumbers:{expected:node.literalNumbers,actual:native.literalNumbers},unicodeMatched:JSON.stringify(native.unicode)===JSON.stringify(node.unicode),stringPools,compiler,compilerVersion:run(compiler,['--version']).trim(),sourceSha256:createHash('sha256').update(source).digest('hex'),referenceRuntime:process.version,matched:differences.length===0,differences,inheritance:{expected:node.inheritance,actual:native.inheritance},functionSource:{expected:node.functionSource,actual:native.functionSource},rngMatched:JSON.stringify(node.rng)===JSON.stringify(native.rng),mathBitDifferences:node.math.reduce((n,row,i)=>n+row.filter((x,j)=>x!==native.math[i][j]).length,0),mathDifferencesByFunction,unaryMathDifferences,edgeMathBitDifferences,queueOrder:native.order,scope:'AOT compiler semantic compatibility probe, not battle fidelity or throughput'};
 await writeFile(resolve(root,'work/downloads/native-compiler-probe-result.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));
 if(differences.length)process.exitCode=1;
