@@ -1,0 +1,868 @@
+{
+  "version": 1,
+  "engine": "js-source-provisional-headless",
+  "validatedAgainstOriginalRuntime": false,
+  "options": {
+    "stage": 1,
+    "battles": 1000,
+    "warmup": 20,
+    "seed": 2026,
+    "maxTicks": 20000,
+    "team": "initial"
+  },
+  "setupAndWarmupMs": 15354.198932000001,
+  "wallMs": 4660.209987,
+  "profiledBattlesPerSecond": 214.58260524516575,
+  "totalTicks": 112000,
+  "samples": 7522,
+  "sampledMicros": 4809277,
+  "signature": "47859e48b61ca8bbcb4c8a9a560a16be88bbbe0468d1edf4338195bad65c7a1f",
+  "reference": {
+    "result": "victory",
+    "ticks": 112,
+    "engineTicks": "405c000000000000",
+    "rng": "421901fbceac0000",
+    "units": [
+      {
+        "tid": 1,
+        "camp": 1,
+        "hp": "408d513804cc2a96",
+        "mp": "4080180000000000",
+        "position": [
+          "40691fd7d314d926",
+          "4031b66452d31741"
+        ]
+      },
+      {
+        "tid": 1008,
+        "camp": -1,
+        "hp": "0000000000000000",
+        "mp": "404442da5e1a678a",
+        "position": [
+          "4071bc0260ca9a0c",
+          "4031c07d6315691b"
+        ]
+      }
+    ]
+  },
+  "topSourceSelf": [
+    {
+      "function": "update",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 23163,
+      "selfMicros": 779311,
+      "inclusiveMicros": 2199496,
+      "selfPercent": 16.204327594355657,
+      "inclusivePercent": 45.73444199616699
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_util.js:640811",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 298771,
+      "inclusiveMicros": 485981,
+      "selfPercent": 6.212389097155352,
+      "inclusivePercent": 10.105074005926463
+    },
+    {
+      "function": "isAlive",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 23020,
+      "selfMicros": 244805,
+      "inclusiveMicros": 244805,
+      "selfPercent": 5.090266166827155,
+      "inclusivePercent": 5.090266166827155
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_util.js:285586",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 244749,
+      "inclusiveMicros": 244749,
+      "selfPercent": 5.0891017506373615,
+      "inclusivePercent": 5.0891017506373615
+    },
+    {
+      "function": "isLogBattle",
+      "url": "src/srcmodule/game_battle.js:298412",
+      "line": 1,
+      "column": 1994,
+      "selfMicros": 236481,
+      "inclusiveMicros": 236481,
+      "selfPercent": 4.917184017472897,
+      "inclusivePercent": 4.917184017472897
+    },
+    {
+      "function": "tick",
+      "url": "src/srcmodule/game_battle.js:219572",
+      "line": 1,
+      "column": 15961,
+      "selfMicros": 213408,
+      "inclusiveMicros": 2817029,
+      "selfPercent": 4.437423754131858,
+      "inclusivePercent": 58.574895977087614
+    },
+    {
+      "function": "String.replaceAll",
+      "url": "src/srcmodule/game_util.js:290725",
+      "line": 1,
+      "column": 37,
+      "selfMicros": 207106,
+      "inclusiveMicros": 207106,
+      "selfPercent": 4.306385346487632,
+      "inclusivePercent": 4.306385346487632
+    },
+    {
+      "function": "getBaseAttribsByHero",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 8837,
+      "selfMicros": 146723,
+      "inclusiveMicros": 455323,
+      "selfPercent": 3.050832796696884,
+      "inclusivePercent": 9.467597728307187
+    },
+    {
+      "function": "getAttribsByUnit",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 4009,
+      "selfMicros": 144874,
+      "inclusiveMicros": 883051,
+      "selfPercent": 3.0123862692874623,
+      "inclusivePercent": 18.361408585947533
+    },
+    {
+      "function": "_finalCalculateAttribs",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 7700,
+      "selfMicros": 139844,
+      "inclusiveMicros": 218688,
+      "selfPercent": 2.907796743668539,
+      "inclusivePercent": 4.547211566312359
+    },
+    {
+      "function": "String.format",
+      "url": "src/srcmodule/game_util.js:290810",
+      "line": 1,
+      "column": 33,
+      "selfMicros": 100897,
+      "inclusiveMicros": 308003,
+      "selfPercent": 2.097966076813625,
+      "inclusivePercent": 6.404351423301257
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_battle.js:367145",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 92901,
+      "inclusiveMicros": 1369333,
+      "selfPercent": 1.9317040794281553,
+      "inclusivePercent": 28.472741328894134
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_ui_1.js:4500415",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 87215,
+      "inclusiveMicros": 87215,
+      "selfPercent": 1.8134742498716543,
+      "inclusivePercent": 1.8134742498716543
+    },
+    {
+      "function": "isMode_TB",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 23789,
+      "selfMicros": 87073,
+      "inclusiveMicros": 87073,
+      "selfPercent": 1.8105216231046788,
+      "inclusivePercent": 1.8105216231046788
+    },
+    {
+      "function": "takeDamage",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 45385,
+      "selfMicros": 73696,
+      "inclusiveMicros": 184078,
+      "selfPercent": 1.5323717057678317,
+      "inclusivePercent": 3.827560774727677
+    },
+    {
+      "function": "r",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 7753,
+      "selfMicros": 70638,
+      "inclusiveMicros": 70638,
+      "selfPercent": 1.4687862645466252,
+      "inclusivePercent": 1.4687862645466252
+    },
+    {
+      "function": "pushVelocityApply",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 32239,
+      "selfMicros": 68184,
+      "inclusiveMicros": 79163,
+      "selfPercent": 1.4177598836581882,
+      "inclusivePercent": 1.6460478362963913
+    },
+    {
+      "function": "update",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 7031,
+      "selfMicros": 60349,
+      "inclusiveMicros": 556940,
+      "selfPercent": 1.2548455828183738,
+      "inclusivePercent": 11.580534870418152
+    },
+    {
+      "function": "walkTo",
+      "url": "src/srcmodule/game_battle.js:3593",
+      "line": 1,
+      "column": 3238,
+      "selfMicros": 56259,
+      "inclusiveMicros": 140114,
+      "selfPercent": 1.1698016146709787,
+      "inclusivePercent": 2.9134108931550418
+    },
+    {
+      "function": "update",
+      "url": "src/srcmodule/game_battle.js:3593",
+      "line": 1,
+      "column": 82,
+      "selfMicros": 52117,
+      "inclusiveMicros": 343578,
+      "selfPercent": 1.0836764029187755,
+      "inclusivePercent": 7.144067601013624
+    },
+    {
+      "function": "checkPush",
+      "url": "src/srcmodule/game_battle.js:219572",
+      "line": 1,
+      "column": 15727,
+      "selfMicros": 50902,
+      "inclusiveMicros": 162788,
+      "selfPercent": 1.0584127302295128,
+      "inclusivePercent": 3.384874691143804
+    },
+    {
+      "function": "targetInRange",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 11237,
+      "selfMicros": 46921,
+      "inclusiveMicros": 52395,
+      "selfPercent": 0.975635215022965,
+      "inclusivePercent": 1.0894568975752488
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_util.js:639459",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 42305,
+      "inclusiveMicros": 50863,
+      "selfPercent": 0.8796540519500124,
+      "inclusivePercent": 1.0576017975259067
+    },
+    {
+      "function": "setMp",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 22779,
+      "selfMicros": 36229,
+      "inclusiveMicros": 107823,
+      "selfPercent": 0.7533148953574519,
+      "inclusivePercent": 2.2419794077155464
+    },
+    {
+      "function": "isMode_TB",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 61715,
+      "selfMicros": 34997,
+      "inclusiveMicros": 34997,
+      "selfPercent": 0.7276977391820018,
+      "inclusivePercent": 0.7276977391820018
+    }
+  ],
+  "topSourceInclusive": [
+    {
+      "function": "tick",
+      "url": "src/srcmodule/game_battle.js:219572",
+      "line": 1,
+      "column": 15961,
+      "selfMicros": 213408,
+      "inclusiveMicros": 2817029,
+      "selfPercent": 4.437423754131858,
+      "inclusivePercent": 58.574895977087614
+    },
+    {
+      "function": "update",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 23163,
+      "selfMicros": 779311,
+      "inclusiveMicros": 2199496,
+      "selfPercent": 16.204327594355657,
+      "inclusivePercent": 45.73444199616699
+    },
+    {
+      "function": "enterBattle",
+      "url": "src/srcmodule/game_battle.js:219572",
+      "line": 1,
+      "column": 3775,
+      "selfMicros": 6657,
+      "inclusiveMicros": 1751675,
+      "selfPercent": 0.13841997456166488,
+      "inclusivePercent": 36.4228344509996
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_util.js:288388",
+      "line": 1,
+      "column": 31,
+      "selfMicros": 13148,
+      "inclusiveMicros": 1570800,
+      "selfPercent": 0.27338828684644284,
+      "inclusivePercent": 32.661874123698844
+    },
+    {
+      "function": "initHeroInfo",
+      "url": "src/srcmodule/game_battle.js:219572",
+      "line": 1,
+      "column": 6856,
+      "selfMicros": 32838,
+      "inclusiveMicros": 1398887,
+      "selfPercent": 0.6828053364362252,
+      "inclusivePercent": 29.08726197305749
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_battle.js:367145",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 92901,
+      "inclusiveMicros": 1369333,
+      "selfPercent": 1.9317040794281553,
+      "inclusivePercent": 28.472741328894134
+    },
+    {
+      "function": "ctor",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 51,
+      "selfMicros": 34075,
+      "inclusiveMicros": 1330784,
+      "selfPercent": 0.7085264583429068,
+      "inclusivePercent": 27.671186334245252
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_battle.js:191068",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 23031,
+      "inclusiveMicros": 990872,
+      "selfPercent": 0.4788869511986937,
+      "inclusivePercent": 20.603346407370587
+    },
+    {
+      "function": "getAttribsByUnit",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 4009,
+      "selfMicros": 144874,
+      "inclusiveMicros": 883051,
+      "selfPercent": 3.0123862692874623,
+      "inclusivePercent": 18.361408585947533
+    },
+    {
+      "function": "update",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 7031,
+      "selfMicros": 60349,
+      "inclusiveMicros": 556940,
+      "selfPercent": 1.2548455828183738,
+      "inclusivePercent": 11.580534870418152
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_util.js:640811",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 298771,
+      "inclusiveMicros": 485981,
+      "selfPercent": 6.212389097155352,
+      "inclusivePercent": 10.105074005926463
+    },
+    {
+      "function": "initSkill",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 6694,
+      "selfMicros": 24927,
+      "inclusiveMicros": 466510,
+      "selfPercent": 0.5183107564816916,
+      "inclusivePercent": 9.700210655364621
+    },
+    {
+      "function": "getBaseAttribsByHero",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 8837,
+      "selfMicros": 146723,
+      "inclusiveMicros": 455323,
+      "selfPercent": 3.050832796696884,
+      "inclusivePercent": 9.467597728307187
+    },
+    {
+      "function": "onAttackFrame",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 13948,
+      "selfMicros": 6059,
+      "inclusiveMicros": 404982,
+      "selfPercent": 0.12598567310637337,
+      "inclusivePercent": 8.420849953121852
+    },
+    {
+      "function": "takeEffectAt",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 15659,
+      "selfMicros": 5929,
+      "inclusiveMicros": 383989,
+      "selfPercent": 0.12328256409435348,
+      "inclusivePercent": 7.9843394339731315
+    },
+    {
+      "function": "takeEffectOn",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 17598,
+      "selfMicros": 18820,
+      "inclusiveMicros": 364570,
+      "selfPercent": 0.39132701235549544,
+      "inclusivePercent": 7.580557327016098
+    },
+    {
+      "function": "update",
+      "url": "src/srcmodule/game_battle.js:3593",
+      "line": 1,
+      "column": 82,
+      "selfMicros": 52117,
+      "inclusiveMicros": 343578,
+      "selfPercent": 1.0836764029187755,
+      "inclusivePercent": 7.144067601013624
+    },
+    {
+      "function": "setConstGS",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 12112,
+      "selfMicros": 5121,
+      "inclusiveMicros": 342930,
+      "selfPercent": 0.10648170192733752,
+      "inclusivePercent": 7.130593642246017
+    },
+    {
+      "function": "String.format",
+      "url": "src/srcmodule/game_util.js:290810",
+      "line": 1,
+      "column": 33,
+      "selfMicros": 100897,
+      "inclusiveMicros": 308003,
+      "selfPercent": 2.097966076813625,
+      "inclusivePercent": 6.404351423301257
+    },
+    {
+      "function": "reset",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 12973,
+      "selfMicros": 4732,
+      "inclusiveMicros": 307053,
+      "selfPercent": 0.09839316803752414,
+      "inclusivePercent": 6.384597934367266
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_battle.js:146466",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 0,
+      "inclusiveMicros": 251882,
+      "selfPercent": 0,
+      "inclusivePercent": 5.237419262812269
+    },
+    {
+      "function": "isAlive",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 23020,
+      "selfMicros": 244805,
+      "inclusiveMicros": 244805,
+      "selfPercent": 5.090266166827155,
+      "inclusivePercent": 5.090266166827155
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_util.js:285586",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 244749,
+      "inclusiveMicros": 244749,
+      "selfPercent": 5.0891017506373615,
+      "inclusivePercent": 5.0891017506373615
+    },
+    {
+      "function": "isLogBattle",
+      "url": "src/srcmodule/game_battle.js:298412",
+      "line": 1,
+      "column": 1994,
+      "selfMicros": 236481,
+      "inclusiveMicros": 236481,
+      "selfPercent": 4.917184017472897,
+      "inclusivePercent": 4.917184017472897
+    },
+    {
+      "function": "_finalCalculateAttribs",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 7700,
+      "selfMicros": 139844,
+      "inclusiveMicros": 218688,
+      "selfPercent": 2.907796743668539,
+      "inclusivePercent": 4.547211566312359
+    }
+  ],
+  "topAllSelf": [
+    {
+      "function": "update",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 23163,
+      "selfMicros": 779311,
+      "inclusiveMicros": 2199496,
+      "selfPercent": 16.204327594355657,
+      "inclusivePercent": 45.73444199616699
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_util.js:640811",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 298771,
+      "inclusiveMicros": 485981,
+      "selfPercent": 6.212389097155352,
+      "inclusivePercent": 10.105074005926463
+    },
+    {
+      "function": "isAlive",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 23020,
+      "selfMicros": 244805,
+      "inclusiveMicros": 244805,
+      "selfPercent": 5.090266166827155,
+      "inclusivePercent": 5.090266166827155
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_util.js:285586",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 244749,
+      "inclusiveMicros": 244749,
+      "selfPercent": 5.0891017506373615,
+      "inclusivePercent": 5.0891017506373615
+    },
+    {
+      "function": "isLogBattle",
+      "url": "src/srcmodule/game_battle.js:298412",
+      "line": 1,
+      "column": 1994,
+      "selfMicros": 236481,
+      "inclusiveMicros": 236481,
+      "selfPercent": 4.917184017472897,
+      "inclusivePercent": 4.917184017472897
+    },
+    {
+      "function": "tick",
+      "url": "src/srcmodule/game_battle.js:219572",
+      "line": 1,
+      "column": 15961,
+      "selfMicros": 213408,
+      "inclusiveMicros": 2817029,
+      "selfPercent": 4.437423754131858,
+      "inclusivePercent": 58.574895977087614
+    },
+    {
+      "function": "String.replaceAll",
+      "url": "src/srcmodule/game_util.js:290725",
+      "line": 1,
+      "column": 37,
+      "selfMicros": 207106,
+      "inclusiveMicros": 207106,
+      "selfPercent": 4.306385346487632,
+      "inclusivePercent": 4.306385346487632
+    },
+    {
+      "function": "post",
+      "url": "node:inspector",
+      "line": 115,
+      "column": 7,
+      "selfMicros": 149215,
+      "inclusiveMicros": 149215,
+      "selfPercent": 3.1026493171426806,
+      "inclusivePercent": 3.1026493171426806
+    },
+    {
+      "function": "getBaseAttribsByHero",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 8837,
+      "selfMicros": 146723,
+      "inclusiveMicros": 455323,
+      "selfPercent": 3.050832796696884,
+      "inclusivePercent": 9.467597728307187
+    },
+    {
+      "function": "getAttribsByUnit",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 4009,
+      "selfMicros": 144874,
+      "inclusiveMicros": 883051,
+      "selfPercent": 3.0123862692874623,
+      "inclusivePercent": 18.361408585947533
+    },
+    {
+      "function": "_finalCalculateAttribs",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 7700,
+      "selfMicros": 139844,
+      "inclusiveMicros": 218688,
+      "selfPercent": 2.907796743668539,
+      "inclusivePercent": 4.547211566312359
+    },
+    {
+      "function": "String.format",
+      "url": "src/srcmodule/game_util.js:290810",
+      "line": 1,
+      "column": 33,
+      "selfMicros": 100897,
+      "inclusiveMicros": 308003,
+      "selfPercent": 2.097966076813625,
+      "inclusivePercent": 6.404351423301257
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_battle.js:367145",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 92901,
+      "inclusiveMicros": 1369333,
+      "selfPercent": 1.9317040794281553,
+      "inclusivePercent": 28.472741328894134
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_ui_1.js:4500415",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 87215,
+      "inclusiveMicros": 87215,
+      "selfPercent": 1.8134742498716543,
+      "inclusivePercent": 1.8134742498716543
+    },
+    {
+      "function": "isMode_TB",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 23789,
+      "selfMicros": 87073,
+      "inclusiveMicros": 87073,
+      "selfPercent": 1.8105216231046788,
+      "inclusivePercent": 1.8105216231046788
+    },
+    {
+      "function": "takeDamage",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 45385,
+      "selfMicros": 73696,
+      "inclusiveMicros": 184078,
+      "selfPercent": 1.5323717057678317,
+      "inclusivePercent": 3.827560774727677
+    },
+    {
+      "function": "r",
+      "url": "src/srcmodule/game_battle.js:146960",
+      "line": 1,
+      "column": 7753,
+      "selfMicros": 70638,
+      "inclusiveMicros": 70638,
+      "selfPercent": 1.4687862645466252,
+      "inclusivePercent": 1.4687862645466252
+    },
+    {
+      "function": "pushVelocityApply",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 32239,
+      "selfMicros": 68184,
+      "inclusiveMicros": 79163,
+      "selfPercent": 1.4177598836581882,
+      "inclusivePercent": 1.6460478362963913
+    },
+    {
+      "function": "update",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 7031,
+      "selfMicros": 60349,
+      "inclusiveMicros": 556940,
+      "selfPercent": 1.2548455828183738,
+      "inclusivePercent": 11.580534870418152
+    },
+    {
+      "function": "walkTo",
+      "url": "src/srcmodule/game_battle.js:3593",
+      "line": 1,
+      "column": 3238,
+      "selfMicros": 56259,
+      "inclusiveMicros": 140114,
+      "selfPercent": 1.1698016146709787,
+      "inclusivePercent": 2.9134108931550418
+    },
+    {
+      "function": "update",
+      "url": "src/srcmodule/game_battle.js:3593",
+      "line": 1,
+      "column": 82,
+      "selfMicros": 52117,
+      "inclusiveMicros": 343578,
+      "selfPercent": 1.0836764029187755,
+      "inclusivePercent": 7.144067601013624
+    },
+    {
+      "function": "checkPush",
+      "url": "src/srcmodule/game_battle.js:219572",
+      "line": 1,
+      "column": 15727,
+      "selfMicros": 50902,
+      "inclusiveMicros": 162788,
+      "selfPercent": 1.0584127302295128,
+      "inclusivePercent": 3.384874691143804
+    },
+    {
+      "function": "targetInRange",
+      "url": "src/srcmodule/game_battle.js:11767",
+      "line": 1,
+      "column": 11237,
+      "selfMicros": 46921,
+      "inclusiveMicros": 52395,
+      "selfPercent": 0.975635215022965,
+      "inclusivePercent": 1.0894568975752488
+    },
+    {
+      "function": "(anonymous)",
+      "url": "src/srcmodule/game_util.js:639459",
+      "line": 1,
+      "column": 10,
+      "selfMicros": 42305,
+      "inclusiveMicros": 50863,
+      "selfPercent": 0.8796540519500124,
+      "inclusivePercent": 1.0576017975259067
+    },
+    {
+      "function": "setMp",
+      "url": "src/srcmodule/game_battle.js:74047",
+      "line": 1,
+      "column": 22779,
+      "selfMicros": 36229,
+      "inclusiveMicros": 107823,
+      "selfPercent": 0.7533148953574519,
+      "inclusivePercent": 2.2419794077155464
+    }
+  ],
+  "notes": [
+    "Profiling starts after runtime source loading and battle warmup",
+    "Includes battle initialization, execution and final signature checks",
+    "Sampling introduces overhead; profiled throughput is not the benchmark throughput",
+    "Source URLs include original expression source offsets; line and column are relative to evaluated RHS expression",
+    "Lazy symbol evaluation is diagnostic and does not establish original module side-effect order",
+    "clientCall is an explicitly suppressed rendering boundary; callbacks are not executed",
+    "Cocos runtime revision is provisional; missing closures/globals fail explicitly"
+  ],
+  "capture": {
+    "profilerScriptCommit": "ed54891",
+    "runtimeCommit": "815cf45",
+    "platform": "linux",
+    "arch": "x64",
+    "node": "v24.19.0",
+    "cpuModels": [
+      "AMD EPYC 9V74 80-Core Processor"
+    ],
+    "logicalCpuCount": 5,
+    "availableParallelism": 4,
+    "profileSha256": "0b2b327f7f47c990cf9b55bfdd1a4389b8e44ad253ed9a1edff1491a0522ec43"
+  },
+  "sourceSymbolMappings": [
+    {
+      "url": "src/srcmodule/game_battle.js:74047",
+      "function": "update",
+      "sourceSymbol": "ed.Unit.prototype.update"
+    },
+    {
+      "url": "src/srcmodule/game_battle.js:74047",
+      "function": "isAlive",
+      "sourceSymbol": "ed.Unit.prototype.isAlive"
+    },
+    {
+      "url": "src/srcmodule/game_util.js:640811",
+      "function": "(anonymous)",
+      "sourceSymbol": "ed.createDataObj"
+    },
+    {
+      "url": "src/srcmodule/game_util.js:285586",
+      "function": "(anonymous)",
+      "sourceSymbol": "ed.copyObj"
+    },
+    {
+      "url": "src/srcmodule/game_battle.js:298412",
+      "function": "isLogBattle",
+      "sourceSymbol": "ed.btLog.isLogBattle"
+    },
+    {
+      "url": "src/srcmodule/game_battle.js:219572",
+      "function": "tick",
+      "sourceSymbol": "ed.BattleEngine.prototype.tick"
+    },
+    {
+      "url": "src/srcmodule/game_battle.js:146960",
+      "function": "getAttribsByUnit",
+      "sourceSymbol": "ed.unitAttribsManagerObj.prototype.getAttribsByUnit"
+    },
+    {
+      "url": "src/srcmodule/game_battle.js:367145",
+      "function": "(anonymous)",
+      "sourceSymbol": "General.update"
+    }
+  ]
+}
