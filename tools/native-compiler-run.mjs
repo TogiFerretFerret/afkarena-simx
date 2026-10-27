@@ -6,6 +6,7 @@ import { performance } from 'node:perf_hooks';
 import { resolve,basename } from 'node:path';
 import assert from 'node:assert/strict';
 import { compileNativeUnits } from './native-compiler-multi.mjs';
+import { compareNativeReports,compareHostInputConsumption,semanticNativeReport } from './native-report-compare.mjs';
 const root=resolve(import.meta.dirname,'..');
 const args=process.argv.slice(2);
 function option(key,fallback){const i=args.indexOf(key);return i<0?fallback:args[i+1];}
@@ -36,22 +37,14 @@ const reference=JSON.parse(await readFile(metadata.reference.file,'utf8'));
 // Do not spend a native compile on an emitter that has not passed its copied-source Node gate.
 const nodeOutput=await readFile(input+'.node.stdout','utf8');
 const nodeResult=JSON.parse(nodeOutput.trim().split('\n').at(-1));
-assert.deepEqual(nodeResult.results,reference.results,'Copied-source versus emitted-Node gate is not satisfied');
+assert.equal(compareNativeReports(nodeResult,reference),null,'Copied-source versus emitted-Node complete semantic report gate is not satisfied');
+assert.equal(compareHostInputConsumption(nodeResult.hostInputConsumption,metadata.hostInputs),null,'Emitted-Node host input replay is incomplete');
 assert.ok((await stat(input+'.node.stdout')).mtimeMs>=(await stat(input)).mtimeMs,'Node gate predates emitted source');
 await mkdir(resolve(root,'work'),{recursive:true});
 async function run(command,parameters,stdoutPath,stderrPath,env=process.env){
  const stdout=openSync(stdoutPath,'w'),stderr=openSync(stderrPath,'w');
  try{return await new Promise((resolve,reject)=>{const child=spawn(command,parameters,{cwd:root,env,stdio:['ignore',stdout,stderr]});child.on('error',reject);child.on('exit',(code,signal)=>resolve({code,signal}));});}
  finally{closeSync(stdout);closeSync(stderr);}
-}
-function firstDifference(actual,expected,path='$'){
- if(Object.is(actual,expected))return null;
- if(typeof actual!==typeof expected||actual===null||expected===null||typeof actual!=='object')return{path,expected,actual};
- if(Array.isArray(actual)!==Array.isArray(expected))return{path,reason:'array_type'};
- const ak=Object.keys(actual).sort(),ek=Object.keys(expected).sort();
- if(JSON.stringify(ak)!==JSON.stringify(ek))return{path,reason:'keys',expectedKeys:ek,actualKeys:ak};
- for(const key of ek){const result=firstDifference(actual[key],expected[key],`${path}.${key}`);if(result)return result;}
- return null;
 }
 const compileArgs=['-O',`-Wc,-${ccOpt},-g0,-ffp-contract=off`,'-keep-temp',input,'-o',output];
 const poolDirectory=output+'.string-pools';
@@ -71,7 +64,7 @@ const executionWallMs=performance.now()-executeStart;
 if(executed.code!==0){console.error(await readFile(output+'.stderr','utf8'));throw new Error(`Native execution failed (${executed.code??executed.signal})`);}
 const text=await readFile(output+'.stdout','utf8');
 const actual=JSON.parse(text.trim().split('\n').at(-1));
-const difference=firstDifference(actual.results,reference.results);
+const difference=compareNativeReports(actual,reference)??compareHostInputConsumption(actual.hostInputConsumption,metadata.hostInputs);
 const dependenciesAtFinish=await dependencyStatus();
 const stringPools=[];
 if(binaryPools)for(const directory of compiled.units?compiled.units.map(unit=>unit.poolDirectory):[poolDirectory])for(const name of ['s_ascii_pool.bin','s_u16_pool.bin','s_strings.bin']){
@@ -83,7 +76,7 @@ const report={version:1,engine:'Static Hermes AOT original-source factories',inp
  scenario:metadata.scenario,completed:actual.completed,elapsedMs:actual.elapsedMs,battlesPerSecond:actual.battlesPerSecond,
  finalStateMatched:difference===null,firstDifference:difference,
  hostInputConsumption:actual.hostInputConsumption,expectedHostInputs:metadata.hostInputs,
- fullStateCapture:true,qualifiesFor10000Target:false,
+ fullStateCapture:metadata.captureMode!=='checksum',comparedFields:Object.keys(semanticNativeReport(reference)),qualifiesFor10000Target:false,
  qualification:'Single emitted fixture paired terminal state and source-host events; full ordered battle trace and broad corpus qualification are still required',
  reference:metadata.reference,limitations:metadata.limitations};
 const stamp=new Date().toISOString().replaceAll(':','-');

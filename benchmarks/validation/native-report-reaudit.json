@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "reason": "Original driver compared results summaries only; this independent reaudit compares separate full finalCapture and every other semantic report field.",
+  "reports": [
+    {
+      "name": "native-oracle-observed",
+      "difference": null,
+      "hostDifference": null,
+      "comparedFields": [
+        "completed",
+        "results"
+      ]
+    },
+    {
+      "name": "native-oracle-warm20",
+      "difference": null,
+      "hostDifference": null,
+      "comparedFields": [
+        "completed",
+        "capture",
+        "checksum",
+        "totalCallbacks",
+        "results",
+        "finalCapture"
+      ]
+    }
+  ]
+}
