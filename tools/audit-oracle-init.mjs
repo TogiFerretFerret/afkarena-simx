@@ -1,4 +1,4 @@
-import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {parse} from '@babel/parser';
@@ -45,6 +45,35 @@ for(const patch of patches){
  patch.owner=owner;patch.property=property;
 }
 const report={version:1,source:file,sourceSha256:hash(source),loader:'tools/bootstrap-runtime.mjs',coreClasses:[...classes.values()],prototypeWrites:patches,skippedExistingPrototypeCandidates:patches.filter(p=>p.coreOwnOrInherited),topLevelEffects,computedWrites,live:null};
+const modules=(await readdir(resolve(root,'src/srcmodule'))).filter(name=>name.endsWith('.js')).sort();
+const allModuleEffects=topLevelEffects.slice(),allComputedWrites=computedWrites.slice(),functionDeclarations=[],otherPrototypeWrites=[],moduleDigests=[];
+for(const module of modules){
+ const moduleFile=`src/srcmodule/${module}`,text=moduleFile===file?source:await readFile(resolve(root,moduleFile),'utf8');
+ moduleDigests.push({file:moduleFile,sha256:hash(text),bytes:Buffer.byteLength(text)});
+ const rec=(node,kind,extra={})=>({kind,file:moduleFile,start:node.start,end:node.end,sha256:hash(text.slice(node.start,node.end)),...extra});
+ traverse(parse(text),{
+  Function(path){if(path.isFunctionDeclaration()&&path.parentPath.isProgram())functionDeclarations.push(rec(path.node,'global_function_declaration',{name:path.node.id?.name}));path.skip()},
+  AssignmentExpression(path){
+   if(moduleFile===file)return;
+   const name=staticName(path.node.left);
+   if(/^ed\.(?:Entity|Unit|Skill|Buff|Ai)\.prototype\./.test(name??''))otherPrototypeWrites.push(rec(path.node,'prototype_write',{name}));
+   if(path.node.left.type==='MemberExpression'&&path.node.left.computed&&name===null)allComputedWrites.push(rec(path.node,'computed_write',{owner:staticName(path.node.left.object),expression:text.slice(path.node.left.start,path.node.left.end)}));
+  },
+  'CallExpression|NewExpression'(path){
+   if(moduleFile===file&&path.isCallExpression())return;
+   const enclosing=path.findParent(p=>p.isAssignmentExpression()||p.isVariableDeclarator());
+   if(!enclosing){
+    const target=staticName(path.node.callee);
+    const descriptor=target==='Object.defineProperty'?{target:staticName(path.node.arguments[0]),property:path.node.arguments[1]?.type==='StringLiteral'?path.node.arguments[1].value:null}:{};
+    allModuleEffects.push(rec(path.node,path.isNewExpression()?'standalone_constructor':'top_level_call',{callee:target,...descriptor,expression:text.slice(path.node.start,Math.min(path.node.end,path.node.start+360))}));
+   }
+  },
+  'ForStatement|ForInStatement|ForOfStatement'(path){
+   if(moduleFile!==file&&path.parentPath.isProgram())allModuleEffects.push(rec(path.node,'top_level_loop',{expression:text.slice(path.node.start,Math.min(path.node.end,path.node.start+360))}));
+  },
+ });
+}
+report.allModules={moduleDigests,topLevelEffects:allModuleEffects,computedWrites:allComputedWrites,globalFunctionDeclarations:functionDeclarations,otherCorePrototypeWrites:otherPrototypeWrites};
 if(process.argv.includes('--live')){
  const runtime=await createBootstrapRuntime();const{context,ed}=runtime;
  const resolveValue=name=>name.split('.').reduce((o,k)=>o?.[k],context);

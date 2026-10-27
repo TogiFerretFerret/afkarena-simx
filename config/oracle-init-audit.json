@@ -687,10 +687,89 @@
       "expression": "CandleDog.BASIC_IMPACT_SOUND[CandleDog.BASIC_ACTION_BURN]"
     }
   ],
-  "live": {
-    "prototypeDifferences": [],
-    "battleEngineDescriptor": {
-      "source": {
+  "live": null,
+  "allModules": {
+    "moduleDigests": [
+      {
+        "file": "src/srcmodule/game_base.js",
+        "sha256": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+        "bytes": 1213452
+      },
+      {
+        "file": "src/srcmodule/game_battle.js",
+        "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+        "bytes": 7851592
+      },
+      {
+        "file": "src/srcmodule/game_ui_1.js",
+        "sha256": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+        "bytes": 5754881
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "sha256": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+        "bytes": 4653478
+      },
+      {
+        "file": "src/srcmodule/game_ui_3.js",
+        "sha256": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+        "bytes": 4468059
+      },
+      {
+        "file": "src/srcmodule/game_ui_4.js",
+        "sha256": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+        "bytes": 4221165
+      },
+      {
+        "file": "src/srcmodule/game_ui_5.js",
+        "sha256": "b3169c14a946ce37b01e0b207b343d1d18afcbe3c6237e9639f79b9fd61cb13c",
+        "bytes": 1376461
+      },
+      {
+        "file": "src/srcmodule/game_util.js",
+        "sha256": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+        "bytes": 1037080
+      },
+      {
+        "file": "src/srcmodule/ui_contra.js",
+        "sha256": "11fd88a93d7d022ae3d0b1eb1d3e1addcf69f297a824ae510adee392f124ff95",
+        "bytes": 1030149
+      },
+      {
+        "file": "src/srcmodule/ui_gve.js",
+        "sha256": "941012b6ca87524c122d577b5889c4da8e4b13904413129142b5e16c34e340e3",
+        "bytes": 965808
+      },
+      {
+        "file": "src/srcmodule/ui_minigame.js",
+        "sha256": "5885132fb5661551c9a14ebc8eedee42db42e65a24e023dc78f57b4b8c53cecb",
+        "bytes": 495972
+      },
+      {
+        "file": "src/srcmodule/ui_war.js",
+        "sha256": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3",
+        "bytes": 2655442
+      }
+    ],
+    "topLevelEffects": [
+      {
+        "kind": "top_level_loop",
+        "file": "src/srcmodule/game_battle.js",
+        "start": 190513,
+        "end": 190651,
+        "sha256": "71bf43e960156ecbcd1d1206d30d11877315a1e057c75a5ca2ded83596d28e54",
+        "expression": "for(var i=0;i<ed.attrib_names.length;i++){var name=ed.attrib_names[i];ed.attrib_names_x[name]=name+\".x\",ed.attrib_names_a[name]=name+\".a\"}"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_battle.js",
+        "start": 195996,
+        "end": 196018,
+        "sha256": "0f4dcf0858a7c9479670023ef9da429d241969f7e9ce908361a8c50c155862ec",
+        "callee": "ed.switchUnitRebuild",
+        "expression": "ed.switchUnitRebuild()"
+      },
+      {
         "kind": "top_level_call",
         "file": "src/srcmodule/game_battle.js",
         "start": 267507,
@@ -699,31 +778,2690 @@
         "callee": "Object.defineProperty",
         "expression": "Object.defineProperty(ed,\"battleEngine\",{get:function(){return this._battleEngineInstance||(this._battleEngineInstance=new ed.BattleEngine),this._battleEngineInstance},set:function(e){this._battleEngineInstance=e},configurable:!0})"
       },
-      "before": {
-        "getter": true,
-        "setter": true,
-        "ownDataProperty": false
-      },
-      "after": {
-        "getter": true,
-        "setter": true,
-        "privateInstanceMatches": true,
-        "readReturnsAssigned": true
-      }
-    },
-    "attributeMaps": [
       {
-        "name": "attrib_names_x",
-        "expectedCount": 47,
-        "beforeCount": 47,
-        "missing": []
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_base.js",
+        "start": 723634,
+        "end": 727779,
+        "sha256": "d7d8a583b7b3cc42088d89042465f964a76be42fe46c513120ebe9bb57256427",
+        "callee": null,
+        "expression": "function(){var e=4096,t=4194304,i=new Array(e),n=new Array(e),a=0,s=0,o=0,r=0,c=!1,l=console.log,d=console.warn,h=console.error,u=null,p=null,_=null;function f(e){return e<10?\"0\"+e:\"\"+e}function g(e){for(var t=0,i=0;i<e.length;i++){var n=e.charCodeAt(i);n<128?t++:n<2048?t+=2:n>=55296&&n<=56319&&i+1<e.length&&e.charCodeAt(i+1)>=56320&&e.charCodeAt(i+1)<=57343"
       },
       {
-        "name": "attrib_names_a",
-        "expectedCount": 47,
-        "beforeCount": 47,
-        "missing": []
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_base.js",
+        "start": 727851,
+        "end": 734043,
+        "sha256": "6c5417631c3a96021faa962c8986656cea8fac60209ffc8f68128704f03bb670",
+        "callee": null,
+        "expression": "function(){function e(e){try{return e()}catch(e){return}}function t(e,t,i){try{if(e&&e[t])return e[t]()}catch(e){}return i}function i(t){return e((function(){if(!t)return\"\";if(\"undefined\"!=typeof ccui){if(ccui.Button&&t instanceof ccui.Button)return\"Button\";if(ccui.ImageView&&t instanceof ccui.ImageView)return\"ImageView\";if(ccui.Text&&t instanceof ccui.Text)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_base.js",
+        "start": 734122,
+        "end": 739619,
+        "sha256": "14b7cfe94196007518cf08089d8d796cf5c67a791cb8a09d021e02e5cf9098ed",
+        "callee": null,
+        "expression": "function(){var e=!1;function t(){return\"bugreport/screenshot_\"+Date.now()+\".png\"}function i(e){try{return!!(e&&jsb.fileUtils&&jsb.fileUtils.isFileExist(e))}catch(e){}return!1}function n(){return\"undefined\"!=typeof gl&&gl.DEPTH24_STENCIL8_OES?gl.DEPTH24_STENCIL8_OES:0}function a(e,t){var i={},n=cc.director.getScheduler(),a=function(){n.unscheduleCallbackForTa"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_base.js",
+        "start": 740040,
+        "end": 746985,
+        "sha256": "c1f3af60bbe3847e1e3b0eaabc137b5901786586a8e5e363ccb3f494cc869c28",
+        "callee": null,
+        "expression": "function(){var e=!1,t=0,i=\"http://afk-preview.lilith.com/api/bugreport\";function n(){return\"undefined\"!=typeof cc&&!cc.sys.jsb}function a(){try{return ed.getGameVersion?ed.getGameVersion():window.latestVersion||\"\"}catch(e){return\"\"}}function s(e){return e&&\"/\"===e.slice(-1)?e.slice(0,-1):e}function o(e,t){var a=s(e),o=function(){try{if(ed.bugReportConfig&&ed"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_base.js",
+        "start": 1090150,
+        "end": 1091699,
+        "sha256": "2e1a4a90f9af44457405e7cf7e6fd0e3fb484b04c6242b1424266c1e8efeaa0a",
+        "callee": null,
+        "expression": "function(){if(!cc.sys.jsb&&!0!==cc.game.res_publish&&\"undefined\"!=typeof ccs&&\"function\"==typeof ccs.load&&ccs.csb_loader&&ccs.csb_loader.collectUsedResourcesByFileBytes){var e,t=\".csb\",i=60,n=ccs.load;for(e in ccs.load=function(e,i){var s,o=!1;if(function(e){return\"string\"==typeof e&&e.lastIndexOf(t)===e.length-4}(e)){s=cc.loader.cache[e];try{o=a(e)}catch(t"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_1.js",
+        "start": 3011391,
+        "end": 3011436,
+        "sha256": "a4cf62171bf2089864e4afa0ef05def2451f8fad49e827bb3ff5fa8392774a8b",
+        "callee": "cc.defineGetterSetter",
+        "expression": "cc.defineGetterSetter(_p,\"x\",_p.getX,_p.setX)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_1.js",
+        "start": 3011437,
+        "end": 3011482,
+        "sha256": "c394346e6a45503d0fb0b2e183d9cfbd4b6085ae5a4245977ccc260f510f4ae2",
+        "callee": "cc.defineGetterSetter",
+        "expression": "cc.defineGetterSetter(_p,\"width\",_p.getWidth)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_1.js",
+        "start": 3011483,
+        "end": 3011536,
+        "sha256": "32164e99380a57c49636d014dc6ef8cebb5085e3c87cf9da14514e58059e9fbb",
+        "callee": "cc.defineGetterSetter",
+        "expression": "cc.defineGetterSetter(_p,\"dataIndex\",_p.getDataIndex)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_1.js",
+        "start": 3011537,
+        "end": 3011582,
+        "sha256": "d249a3ed4804ca0a4a84a9d1d96a1d6cb1d6e7f4c306c06a8110d57a2ecd56fd",
+        "callee": "cc.defineGetterSetter",
+        "expression": "cc.defineGetterSetter(_p,\"scale\",_p.getScale)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 391606,
+        "end": 391703,
+        "sha256": "97886f8646497c4b93ffa5d9fcf539c101816c2ced148e9dd7c1c312fe18de1c",
+        "callee": "ed.imChatClassControl.registerMsgClass",
+        "expression": "ed.imChatClassControl.registerMsgClass(ed.imChatContentType.CCO_IM_NOTICE,ed.imChatMsgNoticeNode)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 391704,
+        "end": 391803,
+        "sha256": "980893aabb46957916a8363c00dbe9c7f890546af1f43f67f66a99c98586fa4d",
+        "callee": "ed.imChatClassControl.registerMsgClass",
+        "expression": "ed.imChatClassControl.registerMsgClass(ed.imChatContentType.CCO_GAME_NOTICE,ed.imChatMsgNoticeNode)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 400460,
+        "end": 400550,
+        "sha256": "5270a82fbd034cda2f4e27558d4ba5aee0ff5174190d128932d7eaa50a05602e",
+        "callee": "ed.imChatClassControl.registerMsgClass",
+        "expression": "ed.imChatClassControl.registerMsgClass(ed.imChatContentType.CCO_TEXT,ed.imChatMsgTextNode)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 401399,
+        "end": 401496,
+        "sha256": "71871ea242e41a2f595adf812d74cc79a3c35108ee8a1bc8b2c6b78ef85920d7",
+        "callee": "ed.imChatClassControl.registerMsgClass",
+        "expression": "ed.imChatClassControl.registerMsgClass(ed.imChatContentType.CCO_BOT_CHAT,ed.imChatMsgTextBotNode)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 402597,
+        "end": 402694,
+        "sha256": "d9cf64ed906d15081a081d1b98943f112fe93b56e360c1b67f7b13fbf05f863b",
+        "callee": "ed.imChatClassControl.registerMsgClass",
+        "expression": "ed.imChatClassControl.registerMsgClass(ed.imChatContentType.CCO_EMOTION,ed.imChatMsgEmojiImgNode)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 404400,
+        "end": 404492,
+        "sha256": "0450d373aa13615ea7c7be7a1224bf852b5e0afb18fd9c95add6051fab090137",
+        "callee": "ed.imChatClassControl.registerMsgClass",
+        "expression": "ed.imChatClassControl.registerMsgClass(ed.imChatContentType.CCO_IMAGE,ed.imChatMsgImageNode)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 407107,
+        "end": 407199,
+        "sha256": "e48caf8aad616bb848a0b3954ef1052821dbcf59535e28f59127cf619bbd2be0",
+        "callee": "ed.imChatClassControl.registerMsgClass",
+        "expression": "ed.imChatClassControl.registerMsgClass(ed.imChatContentType.CCO_AUDIO,ed.imChatMsgVoiceNode)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 410063,
+        "end": 410167,
+        "sha256": "c293ac9e8acc28b1cc7bdd26d45e2f9bc26f7eb70462a850e0f450de7fe9d9c2",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.ASSIST_TEAM_STAGE,ed.imChatMsgShareAssistTeam)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 410168,
+        "end": 410272,
+        "sha256": "519490b8eec35d9e41b31ae0259940a15c63fd1d39a597e01d0dfb06cdeb49aa",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.ASSIST_TEAM_DREAM,ed.imChatMsgShareAssistTeam)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 410273,
+        "end": 410377,
+        "sha256": "c83c24609ea9b60da9e13bdb3fc66de1d13198b308c5427d9440c764d8691bc8",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.ASSIST_TEAM_ABYSS,ed.imChatMsgShareAssistTeam)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 411736,
+        "end": 411830,
+        "sha256": "f3f44d1de1818f4a1f038f38d9e42961b6a8bc87d51fdbb57b6bab163cf77509",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.TEAM_INFO,ed.imChatMsgShareTeamInfo)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 412327,
+        "end": 412412,
+        "sha256": "9946be519ca02ec4644e4495114738b9c64f4e159420f37cc385a14bfb3182af",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.HERO,ed.imChatMsgShareHero)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 412784,
+        "end": 412869,
+        "sha256": "04461680060f5c541272f8a9071c8a127145ca4ddf94a2ead9a123e14d122685",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.SKIN,ed.imChatMsgShareSkin)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 412927,
+        "end": 413016,
+        "sha256": "fc40f9c48f63a1413748982c0a9db017df11cedc16856472ac85a8ca1e34d7b1",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.TROPHY,ed.imChatMsgShareTrophy)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 413454,
+        "end": 413555,
+        "sha256": "2ba72fecf972594a372957eed39eb1ba8811810d2b685b1f5f50a97dd9d21a47",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.ICE_BREAK_DEFEAT,ed.imChatMsgShareIceBreak)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 413556,
+        "end": 413655,
+        "sha256": "ed60db5b9fadcef70f522af85f149c3fb414f84bab82a64bc8bdcd0b13c43f5a",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.ICE_BREAK_HELP,ed.imChatMsgShareIceBreak)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 414258,
+        "end": 414358,
+        "sha256": "7b8d8d104d8a6d695210d7faa7261652feddaeea6d707d1d882a173ae97967d4",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_INVITE,ed.imChatMsgShareGuildInvite)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 415369,
+        "end": 415465,
+        "sha256": "5e55d8e5f9843bc5b363d24bad127c5c0015e9a5841e93d412fe904af06ca9ab",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_BOSS,ed.imChatMsgShareGuildBoss)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 415678,
+        "end": 415778,
+        "sha256": "37028a6f47ebb2c1193fc6b13b64eab875578aeeb8ef83d7015eb194c451c771",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_ASSIST,ed.imChatMsgShareGuildAssist)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 417093,
+        "end": 417204,
+        "sha256": "45015be0ad0f43ddbfdc999d33644b1663310885ea65bb807e0cc032c6390806",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_BOAT_ASSIST_REQUEST,ed.imChatMsgShareGuildBoat)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 419166,
+        "end": 419266,
+        "sha256": "898ddba7248bb534d48877a36d93757d5298b74e9112d9fc0f89845f6a1556b1",
+        "callee": "ed.imChatClassControl.registerShareTypeClass",
+        "expression": "ed.imChatClassControl.registerShareTypeClass(\"act_cross_story_stage\",ed.imChatMsgShareActCrossStory)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 419578,
+        "end": 419678,
+        "sha256": "083dc4ce4746ab10150f59824ea967445e700a1e61199b972b6ab06e00fd9289",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_REWARD,ed.imChatMsgShareGuildReward)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 419882,
+        "end": 419986,
+        "sha256": "9cb47105a047c09fd6ee3d564e5063c264d91b354b3689a6b61b093cf35344b2",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_TREASURE,ed.imChatMsgShareGuildTreasure)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 420241,
+        "end": 420354,
+        "sha256": "834eebbbf1f5cf7ac11bf2f5c32f35cf118e1cc60b90c9d5f4c7a7aac7218988",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_TREASURE_SHOW,ed.imChatMsgShareGuildTreasureShow)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 420669,
+        "end": 420769,
+        "sha256": "c149892ea329912c50ba840ac14bea939f9a83e7b5024453f6b51049edd2aec7",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_HAGGLE,ed.imChatMsgShareGuildHaggle)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 420770,
+        "end": 420875,
+        "sha256": "ee2a4de416ce41d12ce3bb110a8a0c4a0a6c340efd52a8da9d7d5088bb0072d1",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_HAGGLE_STAR,ed.imChatMsgShareGuildHaggle)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 421208,
+        "end": 421302,
+        "sha256": "e3a6d70765e4b9ee14f13780f714b54f2b137f8ebb1225866dc6d6b268a06cbe",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.MGUI_HELP,ed.imChatMsgShareMguiHelp)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 421653,
+        "end": 421751,
+        "sha256": "512f5363cd69cad2516d6cd5a923626ab021e15eb9fb559c4ee6352ea22d8087",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.MATCH_SWEET,ed.imChatMsgShareMatchSweet)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 422133,
+        "end": 422227,
+        "sha256": "ed42fd177f867ad589ca25ae678d05ad54d19c788083667ce86b54fb213efb77",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.SLG_BLOCK,ed.imChatMsgShareSlgBlock)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 423112,
+        "end": 423212,
+        "sha256": "5358d5d9158b4e1f3b0a519511f4e2e4a96cf2605b3c6dcda52f58f9c51fa181",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_MEDAL,ed.imChatMsgShareWarMedalReport)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 423213,
+        "end": 423319,
+        "sha256": "1fbdbd9a2774241f7887c211f6c85b3184384ab074a07f261bc2c5ad30767599",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_MEDAL_SUPER,ed.imChatMsgShareWarMedalReport)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 423968,
+        "end": 424064,
+        "sha256": "020cfa1b6c59be143085748f4c04595c5c351db86e30246c4fd4dfab768d48ba",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_REPORT,ed.imChatMsgShareWarReport)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 424065,
+        "end": 424167,
+        "sha256": "c697f4c3d909d3ea385b55157184855ae73e36ab344a0666edf5b2b3b0305985",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_REPORT_MULTI,ed.imChatMsgShareWarReport)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 424816,
+        "end": 424916,
+        "sha256": "13be2c38811a3398ceb41d6dfe4a1ec160f5f07b26b342d289c11b041da8cf3f",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_VANGUARD,ed.imChatMsgShareWarVanguard)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 425732,
+        "end": 425835,
+        "sha256": "8170ad84e7f1f61a073be2d7f9ccbdd72226462a863f96f62975357bd140f180",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_ARMS_SNEAK,ed.imChatMsgShareWarArmsSneak)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 425836,
+        "end": 425944,
+        "sha256": "35db5ff3caba9718e9ab823e451e1a036ce032a2c4a631b7cd604c4ce34566be",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_ARMS_SNEAK_ARMY,ed.imChatMsgShareWarArmsSneak)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 429609,
+        "end": 429716,
+        "sha256": "8aecd2e6da5122f5a7abebf912c1b9088e01402f6a342cdcf344ab089c8acf7d",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_TRADE_POCKET,ed.imChatMsgShareWarTradePocket)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 429717,
+        "end": 429823,
+        "sha256": "c21ff4eb2cd85c7bbd9be2beb6ecd12fde86485f7edda6452a69c96dbd71a370",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_UPGRADE_PET,ed.imChatMsgShareWarTradePocket)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 430184,
+        "end": 430289,
+        "sha256": "64f2bbfa3a43924e1f1dcb250a11bee11f5bc14b5b16c37dcd6a16f690dd9aab",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_DUEL_INVITE,ed.imChatMsgShareWarDuelInvite)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 430615,
+        "end": 430714,
+        "sha256": "bf3b703c6c993cdbf95bed08b1897412ca6dc1198c9eb90bde813140d5355da3",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_DUEL_WIN,ed.imChatMsgShareWarDuelWin)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 430833,
+        "end": 430934,
+        "sha256": "90cccecc5ca50541574fadb583be9e553bee0a6ddc79cda0fd2a8f725d6c1a63",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_DUEL_KICK,ed.imChatMsgShareWarDuelKick)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 432434,
+        "end": 432528,
+        "sha256": "0964cd1b3ed3dddf7aae5d0928d1142bf9d3568f3ae09d07731398057c689533",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.WAR_BLOCK,ed.imChatMsgShareWarBlock)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 434015,
+        "end": 434118,
+        "sha256": "647f2a7c397ccc1065b0901c36e2d999600d0b4b29691748acf321e948c4b6ea",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_ARM_TASK,ed.imChatMsgShareGuildArmTask)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 434498,
+        "end": 434600,
+        "sha256": "27c6e3ff617dd97d6f8b3e8385c051e89516e5277b6a96180e8b53db984698ff",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_HELP_BOX,ed.imChatMsgShareGuildBigBox)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 434601,
+        "end": 434711,
+        "sha256": "b740cba7674b6357240993f83a381d2ead0aabd781bee6f578bf39113cd60dfe",
+        "callee": "ed.imChatClassControl.registerShareClass",
+        "expression": "ed.imChatClassControl.registerShareClass(ed.imChatShareID.GUILD_HELP_BOX_RECEIVE,ed.imChatMsgShareGuildBigBox)"
+      },
+      {
+        "kind": "top_level_loop",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 2426781,
+        "end": 2426888,
+        "sha256": "bc8d2ca7df311a4b2b321847babfc33187d7860cffc73815a2d54f7979b9f133",
+        "expression": "for(var i=1;i<=20;i++){var key=\"e\"+i,res=\"res/ui/panel/chat/{0}.png\".format(i);ed.css_sprite_list[key]=res}"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 2430776,
+        "end": 2430801,
+        "sha256": "b2c522f7729210994f5de1dae45dcf0eda4b36218524a28703da5c08f9f0b839",
+        "callee": "ed.cssConfigMgr.initMap",
+        "expression": "ed.cssConfigMgr.initMap()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3158581,
+        "end": 3158618,
+        "sha256": "006aed83423a5c7770a96f9e8223688b17c20803d9e869246dab6867c0a62c45",
+        "callee": "ed.activityDownloadMgr.initPetVideo",
+        "expression": "ed.activityDownloadMgr.initPetVideo()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3209488,
+        "end": 3209524,
+        "sha256": "583ee50186a9fd807eeac796a871f191ec667a900f1b9e8026f51db9f1386f91",
+        "callee": "ed.ActivityBossFeatureMgr.register",
+        "expression": "ed.ActivityBossFeatureMgr.register()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3223049,
+        "end": 3223089,
+        "sha256": "a44044cb776468cee2bf64eca900c1f0bd0e34fe4ce9f5454054b049fdc23118",
+        "callee": "ed.ActivityHeirloomFeatureMgr.register",
+        "expression": "ed.ActivityHeirloomFeatureMgr.register()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3280409,
+        "end": 3280443,
+        "sha256": "acf294c6e0566109a8eee40f570b75cfef8ac966f6d0de6c1221f18417d70ffc",
+        "callee": "ed.ActivityBpFeatureMgr.register",
+        "expression": "ed.ActivityBpFeatureMgr.register()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3325142,
+        "end": 3325178,
+        "sha256": "428f8bbd0fbad6b98dd92998398aad9d4ae97205ced9eac77e36a4617598d351",
+        "callee": "ed.ActivityFarmFeatureMgr.register",
+        "expression": "ed.ActivityFarmFeatureMgr.register()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3504945,
+        "end": 3504988,
+        "sha256": "e601fbba1a817d79704c9d0caf14dff3b231dfa69f2262b9af3b5d1e45aba483",
+        "callee": "ed.ActivityRaceLotteryFeatureMgr.register",
+        "expression": "ed.ActivityRaceLotteryFeatureMgr.register()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3550181,
+        "end": 3550220,
+        "sha256": "5c01adcb4e30492f391c1b2dd6ad63368eb9d8fd91dae98beda9e068939032f2",
+        "callee": "ed.Summer2026ActivityHostMgr.register",
+        "expression": "ed.Summer2026ActivityHostMgr.register()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3600843,
+        "end": 3604790,
+        "sha256": "b31ef41c6bff3bab221a0d8d2ba68b77c9e22d453b2d429341318300f2d30024",
+        "callee": null,
+        "expression": "function(){function e(e){e=e||[];for(var t=[],i={},n=0;n<e.length;n++){var a=e[n];a&&!i[a]&&(i[a]=!0,t.push(a))}return t.sort((function(e,t){return e-t})),t}function t(e){return(e||[]).slice()}function i(){this.choice_hero=0,this.passed_stage_ids=[],this.recvd_guild_stage_ids=[]}function n(){this.runtimeMap={}}function a(){this.progress={}}function o(e){this"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3804623,
+        "end": 3804919,
+        "sha256": "610e742d40115571b7438c64432efcd9391108c78f748e2ce7187d5934d94d66",
+        "callee": null,
+        "expression": "function(){if(ed.actGuildContraBattlepassTest.isTest){var e=!1;cc.eventManager.addCustomListener(\"game_login_success\",(function(){e||ed.player&&ed.player.getUid&&ed.player.getUid()&&ed.battlepassMgr&&(e=!0,ed.setTimeout((function(){ed.actGuildContraBattlepassTest.applyMockBaseData()}),0))}))}}()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3840163,
+        "end": 3840482,
+        "sha256": "0bd8ccc9f5ed66dfe9176242c75d5bb067e683b346cfcfcfe41e66798f878a27",
+        "callee": null,
+        "expression": "function(){if(ed.actGuildContraTaskTest.isTest){var e=!1;cc.eventManager.addCustomListener(\"game_login_success\",(function(){e||ed.player&&ed.player.getUid&&ed.player.getUid()&&ed.challengeTaskMgr&&ed.actGuildContraBattlepassMgr&&(e=!0,ed.setTimeout((function(){ed.actGuildContraTaskTest.applyMockBaseData()}),0))}))}}()"
+      },
+      {
+        "kind": "top_level_loop",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 4202512,
+        "end": 4404786,
+        "sha256": "81d9b75c84c3cd6722ebddbeee7d9fe027b9b53cf9f12885e5cc7995b3d1e994",
+        "expression": "for(var i in ed.stargazerWarningView=ed.dialogComponent.extend({ctor:function(){this._super(\"res/uieditor/stargazer/stargazer_warning_layer.csb\"),this.stargazerMgr=ed.stargazerMgr.getInstance(),this.setCustomClickPanel(!0),this.initView()},initView:function(){this.cellSize=cc.size(115,110),this.btnSave=this.ui_editor.getComponent(\"btn_save\"),this.ui_editor.i"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_3.js",
+        "start": 647208,
+        "end": 647231,
+        "sha256": "0904fe199866cbbff7825229c26110bd93a3b0ff82354660bd3f102c4f7a88e0",
+        "callee": "ed.slgSysRed.register",
+        "expression": "ed.slgSysRed.register()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_4.js",
+        "start": 373009,
+        "end": 373121,
+        "sha256": "df2b751fdd5d48daf731c5d12fcc94434c8c6d6552235c503015bfb4c7850d32",
+        "callee": "ed.ActivityFeaturedMgr.registerPanelClass",
+        "expression": "ed.ActivityFeaturedMgr.registerPanelClass(ed.ActivityFeaturedType.CHALLENGE,ed.ActivityFeaturedHunterTrialPanel)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_4.js",
+        "start": 381073,
+        "end": 381186,
+        "sha256": "c5ec4fba9d37e96f6c9e59a447fd1ac1fe2083fad290f3f5634c86a0df635de5",
+        "callee": "ed.ActivityFeaturedMgr.registerPanelClass",
+        "expression": "ed.ActivityFeaturedMgr.registerPanelClass(ed.ActivityFeaturedType.BATTLE_PASS,ed.ActivityFeaturedBattlePassPanel)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_4.js",
+        "start": 392204,
+        "end": 392312,
+        "sha256": "f785f14d83fa15963d929e3c81417fd07385fee31dba8f90a053a97862c7cbd4",
+        "callee": "ed.ActivityFeaturedMgr.registerPanelClass",
+        "expression": "ed.ActivityFeaturedMgr.registerPanelClass(ed.ActivityFeaturedType.NEWCOMER,ed.ActivityFeaturedNewComerPanel)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_ui_4.js",
+        "start": 3417260,
+        "end": 3417290,
+        "sha256": "62847b8e69ef8a678321f00cc1544c60e73020f1c167dc4e8593378b139b61bb",
+        "callee": "ed.trialActivityMgr.initData",
+        "expression": "ed.trialActivityMgr.initData()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 23714,
+        "end": 34479,
+        "sha256": "a0bddb40cfa243b48524b696fb9784f273deacddd1e839f3a83a3de8cb2bbfac",
+        "callee": null,
+        "expression": "function(){function e(){return(new Date).getTime()}function t(e){return e?e.stack||e.message||String(e):\"\"}ed.debugAutomationBridge={_socket:null,_token:\"\",_url:\"\",_trace:[],_maxTrace:100,_patches:{},_handlers:{},_brokerListenerReady:!1,init:function(){this._handlers={\"bridge.ping\":this._cmdPing,\"bridge.snapshot\":this._cmdSnapshot,\"patch.install\":this._cmdPa"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 61628,
+        "end": 61678,
+        "sha256": "03a3c6ef8a78fbe95d73d52b7ed8bc7ada76aba76c008ad1ee74bb9e5921e952",
+        "callee": "ed.permissionUtil.registerPermissionRequestEvent",
+        "expression": "ed.permissionUtil.registerPermissionRequestEvent()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 67002,
+        "end": 110454,
+        "sha256": "9cc40294d0d6b7428dd15ae96db85053a6fcc414503b07ca1994a06dbee5d0cd",
+        "callee": null,
+        "expression": "function(e,t){\"function\"==typeof define&&define.amd?define([\"long\"],t):\"function\"==typeof require&&\"object\"==typeof module&&module&&module.exports?module.exports=function(){var e;try{e=require(\"long\")}catch(e){}return t(e)}():(e.dcodeIO=e.dcodeIO||{}).ByteBuffer=t(e.dcodeIO.Long),e.wx&&((e.dcodeIO=e.dcodeIO||{}).ByteBuffer=t(e.dcodeIO.Long))}(window,(functio"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 264807,
+        "end": 282128,
+        "sha256": "2fafa84f95f245932beec292e02e006600f54a2fe8a752589695a0a3381b614e",
+        "callee": null,
+        "expression": "function(){function e(e){throw e}var t=void 0,r=!0,i=this;function a(e,r){var a,n=e.split(\".\"),o=i;!(n[0]in o)&&o.execScript&&o.execScript(\"var \"+n[0]);for(;n.length&&(a=n.shift());)n.length||r===t?o=o[a]?o[a]:o[a]={}:o[a]=r}var n=\"undefined\"!=typeof Uint8Array&&\"undefined\"!=typeof Uint16Array&&\"undefined\"!=typeof Uint32Array&&\"undefined\"!=typeof DataView;fu"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 528827,
+        "end": 528847,
+        "sha256": "3235143d2c68b1b3dafa92cbc2e42d4f5891ecb56712522fc5274633ed78f4b7",
+        "callee": "ed.fpsTracker.init",
+        "expression": "ed.fpsTracker.init()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 531522,
+        "end": 533871,
+        "sha256": "21aa5a9f8c6e650c9a28a0dfcc4fd5e3a94f862c90dfbf3677ddf4f38d00df18",
+        "callee": null,
+        "expression": "function(){var e=function(e,t){return{key:e,str:t}};try{ed.langDefine.define({guild:{JOIN_GUILD_COOLDOWN:e(\"translationPlaceholder_1_3_0\",\"{0}后可加入公会\"),EXIT_GUILD_CONFIRM:e(\"langDefine_0_7_0\",\"是否退出{0}公会，{1}之内不能加入新公会？退出公会将无法将秘航罗盘带到其它公会，仅能在本公会使用，科技也仅能在本公会生效\"),DISBAND_GUILD_CONFIRM:e(\"langDefine_1_886_0\",\"是否解散[{0}]公会,解散后将{1}内不能加入公会？\"),RICH_EXIT_GUILD_CONFIRM:e(\""
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 555668,
+        "end": 555687,
+        "sha256": "53f8d3f91d2fd6f9a8541ef6e2c78fc18596656a99b74dd9ed758bb4f652ae36",
+        "callee": "cc.supportEncrypt",
+        "expression": "cc.supportEncrypt()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 640101,
+        "end": 640267,
+        "sha256": "9d40efdee7ac54c71daf36ffff7937b076ccacfd676602e132975789817aaaf8",
+        "callee": "watchFuncs.forEach",
+        "expression": "watchFuncs.forEach((function(e){\"function\"==typeof arrayProto[e]?readonlyArrayProto[e]=function(){throw new Error(\"不允许修改这个数组\")}:readonlyArrayProto[e]=arrayProto[e]}))"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 703923,
+        "end": 751394,
+        "sha256": "56f6c5a1aadc4c7993b647457fe063b011b04b090240f66303f8f41d956761b2",
+        "callee": null,
+        "expression": "function(e,t){\"object\"==typeof exports?module.exports=exports=t():\"function\"==typeof define&&define.amd?define([],t):e.CryptoJS=t()}(this,(function(){var e,t,r,i,a,n=n||function(e,t){var r=Object.create||function(){function e(){}return function(t){var r;return e.prototype=t,r=new e,e.prototype=null,r}}(),i={},a=i.lib={},n=a.Base={extend:function(e){var t=r(t"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 751395,
+        "end": 760376,
+        "sha256": "07efcf29a67debe0fcc12124d8611112a75c00fc44e7ed1dfa7a836932cca05d",
+        "callee": null,
+        "expression": "function(){function t(e){if(e)d[0]=d[16]=d[1]=d[2]=d[3]=d[4]=d[5]=d[6]=d[7]=d[8]=d[9]=d[10]=d[11]=d[12]=d[13]=d[14]=d[15]=0,this.blocks=d,this.buffer8=l;else if(a){var t=new ArrayBuffer(68);this.buffer8=new Uint8Array(t),this.blocks=new Uint32Array(t)}else this.blocks=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];this.h0=this.h1=this.h2=this.h3=this.start=this.bytes=t"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 871944,
+        "end": 945474,
+        "sha256": "f532355590dd8b49bf397bef809ea20251dd3ce3f912de600ab312c7f8904059",
+        "callee": null,
+        "expression": "function(global,undefined){!function(e,t,r){var i=global.protobuf=function r(i){var a=t[i];return a||e[i][0].call(a=t[i]={exports:{}},r,a,a.exports),a.exports}(r[0]);\"function\"==typeof define&&define.amd&&define([\"long\"],(function(e){return e&&e.isLong&&(i.util.Long=e,i.configure()),i})),\"object\"==typeof module&&module&&module.exports&&(module.exports=i)}({1"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 945953,
+        "end": 945972,
+        "sha256": "53f8d3f91d2fd6f9a8541ef6e2c78fc18596656a99b74dd9ed758bb4f652ae36",
+        "callee": "cc.supportEncrypt",
+        "expression": "cc.supportEncrypt()"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 58952,
+        "end": 59035,
+        "sha256": "cc222455aac750dc9e3f7d5522c84638c872557dde4e71a61671c265d2f1f3b6",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.HERO,ed.ContraItemChest)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 59036,
+        "end": 59118,
+        "sha256": "75ee0c8088386e6cd03b0e9954269123ec0a577f664019843f94e91a71edd4c4",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.GUN,ed.ContraItemChest)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 59119,
+        "end": 59200,
+        "sha256": "074a44d9249d76605a385a769d5b4e91518b52f89ff0c99670a29204e6cb19db",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.HP,ed.ContraItemChest)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 60970,
+        "end": 61053,
+        "sha256": "d43d3fc00ca68935c031e14868f7db2112b4007367c5796c7643d99291597e08",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.SCORE,ed.ContraItemCoin)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 61347,
+        "end": 61431,
+        "sha256": "66f3ec5b97107573edc7f00efa54e463d798f1b7d26b55861feab53d12c56228",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.EQUIP,ed.ContraItemEquip)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 61893,
+        "end": 61982,
+        "sha256": "ffa8fcc3e9545d536ea4d8c256c9111e1bd53111fc60adfa39d7908d433cfda4",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.FLY_BORD,ed.ContraItemFlyBord)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 62953,
+        "end": 63042,
+        "sha256": "decb7300734b7cda4a4d14e27e287e1cd6f5acb7f210eeb147a50a0846ab1d14",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.END_GAME,ed.ContraItemEndGame)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 63575,
+        "end": 63667,
+        "sha256": "37077b8ba5c37699e112dd81912d32c657a6dc75d1a077f57663c75e4214a797",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.COMPANION,ed.ContraItemCompanion)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 64561,
+        "end": 64664,
+        "sha256": "c8a8dd5afd0015f81a9e2214a01e2b3c756de578b1c08979c034777a8201d967",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.FULLSCREEN_BOOM,ed.ContraItemFullScreenBoom)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 64754,
+        "end": 64863,
+        "sha256": "091f8d13e1ccab827e544471ec29402e9a573166e0f085ab725c029e2d5389bb",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.FULLSCREEN_COLLECT,ed.ContraItemFullScreenCollect)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 64864,
+        "end": 64972,
+        "sha256": "ae35fe577504b256c88cdd105e151b1f13c33ec3c4b3c674c201f6f150536614",
+        "callee": "ed.ContraClassMgr.registerItemClass",
+        "expression": "ed.ContraClassMgr.registerItemClass(ed.ContraCoreEventType.ADD_COLLECT_RANGE,ed.ContraItemFullScreenCollect)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 107427,
+        "end": 107515,
+        "sha256": "8d622aa696b255661f537385a9c4c408c1e67e16aad42cdf24ad4cdc33d608aa",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.PAWN,ed.ContraActorEnemyPawn)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 109147,
+        "end": 109237,
+        "sha256": "8806d9fd5ed7ab74374c9e740a78d545e3242d1bd2df821d356d911a5cf0e751",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.BLOCK,ed.ContraActorEnemyBlock)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 109758,
+        "end": 109844,
+        "sha256": "06cee316ac2572d730940d68270bfefd6c9e17baafc9ad84d7262a2979c6b712",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.BOX,ed.ContraActorEnemyBox)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 111816,
+        "end": 111909,
+        "sha256": "c3bb960b1b5ddae3eae61daf7d51e7ec58129a8c098fb8dfb22a6aa53d128d24",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.FLY_BOX,ed.ContraActorEnemyFlyBox)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 113486,
+        "end": 113578,
+        "sha256": "8d7db2f4e4915ddf8011b5e48efc6a89629eecdb94d47dc5a6d340f3730fe0b4",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.TURRET,ed.ContraActorEnemyTurret)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 114837,
+        "end": 114925,
+        "sha256": "48722b0c97ff5a27f0b506836f0a50b7058ae99a52e9607a8b90db07f354a4ae",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.BOSS,ed.ContraActorEnemyBoss)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 116273,
+        "end": 116365,
+        "sha256": "789c719ab7cbd247dd13aea0721cc3b79664c067144e36f82e016584547bdfec",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.SUPPLY,ed.ContraActorEnemySupply)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 117488,
+        "end": 117586,
+        "sha256": "6f5c71dc855a099075dd4170859401f75dfd3c0ef4476f554439586afdff3cc5",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.COMPANION,ed.ContraActorEnemyCompanion)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 118754,
+        "end": 118849,
+        "sha256": "7760f1a4dd0ab0611a67c3b9c1faef5f238e76eb47a1bcad00b026e02dcef857",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.GUN_BUFF,ed.ContraActorEnemyGunBuff)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 119880,
+        "end": 119982,
+        "sha256": "6437fe78f6440b3d39ded7f22d2925ebd54c844d1ee6b05a6a16314a50600a0b",
+        "callee": "ed.ContraClassMgr.registerEnemyClass",
+        "expression": "ed.ContraClassMgr.registerEnemyClass(ed.ContraCoreUnitType.GUN_BUFF_BOX,ed.ContraActorEnemyGunBuffBox)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 131071,
+        "end": 131162,
+        "sha256": "b07b3a066f949a1dabbe54ec535b6353d39adc355655a21becbd8d554ad2feb7",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.NORMAL,ed.ContraBulletNormal)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 131928,
+        "end": 132035,
+        "sha256": "e4d12828f635903a8df720c645274217c987193a2ce90d9e8860c610ab747db8",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.FULLSCREENBOOM,ed.ContraBulletFullScreenBoom)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 132308,
+        "end": 132393,
+        "sha256": "5da249537093ff9e3830287722e06c78379b098b5dbab1ac4a8f3561519ffb6a",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.BOX,ed.ContraBulletBox)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 132639,
+        "end": 132728,
+        "sha256": "fc2d39b6a954cbd26544889be7c65c7470a96504ea4fb5337b28551e09eb0993",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.LASER,ed.ContraBulletLaser)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 132966,
+        "end": 133053,
+        "sha256": "c447b701e2d946c058a51218e916c2cb380369dcb183915a5aaaa51014062dfe",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.BEAM,ed.ContraBulletBeam)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 134209,
+        "end": 134304,
+        "sha256": "ceb8c01c87751443491a52aa4810ae354d3a24a44e571beeb47349ef5bcc0ff3",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.FIREBALL,ed.ContraBulletFireball)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 135458,
+        "end": 135549,
+        "sha256": "d763a2d5210a38b87e08901c3adddd66fb59cdb483a26095a47edd5c0ed8757e",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.SUMMON,ed.ContraBulletSummon)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 136600,
+        "end": 136689,
+        "sha256": "9b77ac7a11e4a1efec9ea8707230b6dd1eacc606e78c9830d8c239ea420af38d",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.SCALE,ed.ContraBulletScale)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 137418,
+        "end": 137513,
+        "sha256": "09742167e16fc043affedd5ea335ed945cebaa45694587dc5e6bd4f56dd375f4",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.PARABOLA,ed.ContraBulletParabola)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 139009,
+        "end": 139100,
+        "sha256": "ff2331f390734bbe96ccabcb04070f32434d416c04feec78fecd14aeda05157d",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.HOMING,ed.ContraBulletHoming)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 140522,
+        "end": 140611,
+        "sha256": "8708ce55d1f083a8c9d6a0475a725f0587e996c21c8e861f3f0c4efa9c278535",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.TRAIL,ed.ContraBulletTrail)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 142948,
+        "end": 143041,
+        "sha256": "1318063672307759966fcaedf5642df0a744e844c47b1cb6b85c5d89f0d06f1e",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.AUTOAIM,ed.ContraBulletAutoaim)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 143980,
+        "end": 144071,
+        "sha256": "9723908d25835d2ef494f2d662999f77d8cf3e4e0f5e442fccc8377f6381117f",
+        "callee": "ed.ContraClassMgr.registerBulletClass",
+        "expression": "ed.ContraClassMgr.registerBulletClass(ed.ContraCoreBulletType.ZIGZAG,ed.ContraBulletZigzag)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 146140,
+        "end": 146222,
+        "sha256": "4702484d142de4e1469644c829193776bd735a5d948403a9c34f01e2dce491aa",
+        "callee": "ed.ContraClassMgr.registerGunClass",
+        "expression": "ed.ContraClassMgr.registerGunClass(ed.ContraCoreGunType.NORMAL,ed.ContraGunNormal)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 146396,
+        "end": 146478,
+        "sha256": "a91753c90291bdc12d52d741be3aeab5158d8274d07e6ed96f61b70577343400",
+        "callee": "ed.ContraClassMgr.registerGunClass",
+        "expression": "ed.ContraClassMgr.registerGunClass(ed.ContraCoreGunType.SPREAD,ed.ContraGunSpread)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 146771,
+        "end": 146857,
+        "sha256": "47ecd7596686d3e283aa7aaba079196b105e5cf8c9d4274b5e40c7cd11890234",
+        "callee": "ed.ContraClassMgr.registerGunClass",
+        "expression": "ed.ContraClassMgr.registerGunClass(ed.ContraCoreGunType.FIREBALL,ed.ContraGunFireball)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 147032,
+        "end": 147114,
+        "sha256": "b594089044aa6508d9bd19e52648409d6e8608afb0bd9bc3e69119b701e9e197",
+        "callee": "ed.ContraClassMgr.registerGunClass",
+        "expression": "ed.ContraClassMgr.registerGunClass(ed.ContraCoreGunType.AROUND,ed.ContraGunAround)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 147917,
+        "end": 148013,
+        "sha256": "77f672dd412debe5243f7caf5228f0329dee97c601db926bb3eeec68d228cd94",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.FOLLOW_SHOOT_SPEED,ed.ContraBuffState)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 148749,
+        "end": 148839,
+        "sha256": "5b4e4b2ede36a8033cc6a2aea9631e179b9fc69575e6bc8be2d2503cf6530d4e",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.SAFE_TIME,ed.ContraBuffSafeTime)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 149598,
+        "end": 149688,
+        "sha256": "4daa57ae1939321076eb96f9fa4d4161d3f93c5684a2ae3528a60c77d686cf81",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.HURT_TIME,ed.ContraBuffHurtTime)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 149959,
+        "end": 150057,
+        "sha256": "090af7403ee821c3f00f0ed272f488c369e8a76783c2d6c0cfb8ef97ad0a6e5e",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.BLESSING_TIME,ed.ContraBuffBlessingTime)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 150653,
+        "end": 150738,
+        "sha256": "ad50ef3f97cc51d28de9138643a32e82c0816ae8bdb7bf7fbf584fc010bbe1f3",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.FROZEN,ed.ContraBuffFrozen)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 151408,
+        "end": 151489,
+        "sha256": "3166a06977db1aa27792a581f65c25393d309860a48f931d18c4dd395b28c234",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.SLOW,ed.ContraBuffSlow)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 151768,
+        "end": 151855,
+        "sha256": "2095eb573573eefef8e1d9b9bfeb8deaf299000923b3b4e4181d630625a8098a",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.SUCTION,ed.ContraBuffSuction)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 151944,
+        "end": 152037,
+        "sha256": "20f0f790ec6e6bc1b08d2110cd836c4161b4b80750229d1a1ad094b9956137e0",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.LIFE_NUM_UP,ed.ContraBuffLifeNumUp)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 153004,
+        "end": 153091,
+        "sha256": "69cd2baaf2d8d092358164168d8172649148af0d090e5179c36592c08ae63fe3",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.INERTIA,ed.ContraBuffInertia)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 153832,
+        "end": 153922,
+        "sha256": "0b0ce7d93d89f4ddfadc5f2bfac932e7de6c70761be0fb70181f2fb128d4d755",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.SAND_TRAP,ed.ContraBuffSandTrap)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 154500,
+        "end": 154605,
+        "sha256": "1d679e0eedab2ae369fb276999394a0bad0e295fd900c213b39acf9d5aaa220d",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.ITEM_DETECT_RANGE,ed.ContraBuffItemDetectRange)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 154854,
+        "end": 154961,
+        "sha256": "f873eda446dcdec1ef6dc441fa9d5676b2c483a9cfb7f1a2867f73f9004d1f99",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.PASSIVE_MOVE_SPEED,ed.ContraBuffPassiveMoveSpeed)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 155166,
+        "end": 155275,
+        "sha256": "3b5012620c76a6b5dee7eaec11353c52e33f077c636400e96199f8b9bb47f46d",
+        "callee": "ed.ContraClassMgr.registerBuffClass",
+        "expression": "ed.ContraClassMgr.registerBuffClass(ed.ContraCoreBuffType.PASSIVE_SHOOT_SPEED,ed.ContraBuffPassiveShootSpeed)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 177486,
+        "end": 177568,
+        "sha256": "d5c015082678285870b343e7eb2ab4152305eb3a9547a6d332067fae3594d948",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(ed.ContraCoreAIType.STAND,ed.ContraEnemyAIStand)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 178501,
+        "end": 178585,
+        "sha256": "6a6924a94c176478f2390be42649ec5fa73333aa7cd2b683956ce961c39c8b1f",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(ed.ContraCoreAIType.PATROL,ed.ContraEnemyAIPatrol)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 180131,
+        "end": 180215,
+        "sha256": "0c73b41c1dd1d76dbb1c5a051296a1b1f953bac93b7119e930b1277deef88f75",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(ed.ContraCoreAIType.TURRET,ed.ContraEnemyAITurret)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 183229,
+        "end": 183317,
+        "sha256": "9be8b16aa8c5d0f9ec54f9c264a9a75324c31e8dc92a98c56133d7ef09113903",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(ed.ContraCoreAIType.ENEMY_MELEE,ed.ContraEnemyAIMelee)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 183799,
+        "end": 183879,
+        "sha256": "fbea68cc193164203db3064e02ef328eb5c47a112edd7383dbdf4890d156ac37",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(ed.ContraCoreAIType.DIVE,ed.ContraEnemyAIDive)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 190462,
+        "end": 190545,
+        "sha256": "68ae141c20cf40abcd5f732ceede1cad12a2046fa6b6bc56cb6144335646e563",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(ed.ContraCoreAIType.FOLLOW,ed.ContraHeroAIFollow)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 191956,
+        "end": 192033,
+        "sha256": "9e5cba847b7bba700b8dd9fc463da3afe6a7a1338c70e7cb0d2ecc6a8b100eef",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(ed.ContraCoreAIType.ELF,ed.ContraHeroAIElf)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 194474,
+        "end": 194555,
+        "sha256": "9d84e0f524e7745aea51e9fbfd084f46fa7a927cee374cc3187b49117500b117",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(ed.ContraCoreAIType.MELEE,ed.ContraHeroAIMelee)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 195572,
+        "end": 195655,
+        "sha256": "5f9ec99598dd04afd1f57a5f96188c1c7ae863f1e1dd39a452b4f29bab575a24",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(ed.ContraCoreAIType.RANGED,ed.ContraHeroAIRanged)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 200054,
+        "end": 200121,
+        "sha256": "1d7ecb36824db26243d681d6d55ba3edf4a91d0d659ab2fe9556cbce8566f85d",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossSBane\",ed.ContraBossAISBane)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 205057,
+        "end": 205128,
+        "sha256": "f6c11f53336ed6828f9abaa991c713cfac3e4510d1dd13822d651b70a3daef38",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossChimera\",ed.ContraBossAIChimera)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 208018,
+        "end": 208085,
+        "sha256": "8a6e67b7ba84ebd90f63e4add6827ae6ad068a9ce4a92c42ef5a6a5f47802dce",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossStone\",ed.ContraBossAIStone)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 210792,
+        "end": 210857,
+        "sha256": "c17a5576f0df571ea8ace17d10720de22f18fb4f4a798dbc937aeeb32cb4e30f",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossLUST\",ed.ContraBossAILUST)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 213818,
+        "end": 213885,
+        "sha256": "df7332805b24fb17d98d12f877b312336efbdcf5a26392aa615834b20db1fa69",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossSiren\",ed.ContraBossAISiren)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 216060,
+        "end": 216123,
+        "sha256": "d559f4822a6ae69357b9dd0ad2f3f856df8c3fbb998417809f5521ebc872f60c",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossNOD\",ed.ContraBossAINOD)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 218914,
+        "end": 218989,
+        "sha256": "b09ef0d1671919621e90e544f8c8cafcb18111c5176b224b5e00e83307ef59df",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossIronSmith\",ed.ContraBossAIIronSmith)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 222411,
+        "end": 222476,
+        "sha256": "1d8bbcb430c8c2d32afdaa9b441aac4dd36728ab4653973fc3a5b4e7c16c0421",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossIceD\",ed.ContraBossAIIceD)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 227265,
+        "end": 227334,
+        "sha256": "34dc37232eedf217133683e283472b4c9b907fba0b75d18417e22770d25a6f76",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossZero\",ed.ContraBossAIFortress)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 234251,
+        "end": 234324,
+        "sha256": "434aae18dbd91cc6a870c65e188bb509087422f1128cd937c4a0851d3bf2d14e",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossTentacle\",ed.ContraBossAITentacle)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 237018,
+        "end": 237089,
+        "sha256": "be03d22f9286c89220df1e1923d827e89b75ceda0e298d9b1b7e2e478d28af02",
+        "callee": "ed.ContraClassMgr.registerAIClass",
+        "expression": "ed.ContraClassMgr.registerAIClass(\"BossBirdGod\",ed.ContraBossAIBirdGod)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 240071,
+        "end": 240154,
+        "sha256": "1832304f10d1f72547c2f3ef764c252685f94d13324780ee1e2e462d9b1deff2",
+        "callee": "ed.ContraClassMgr.registerHeroClass",
+        "expression": "ed.ContraClassMgr.registerHeroClass(ed.ContraCoreHeroId.Gunner,ed.ContraHeroGunner)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 240501,
+        "end": 240588,
+        "sha256": "5d46ec481a3ec1b5f8f6dfb139d42473163d955f7994c3b1c7d135005e49b351",
+        "callee": "ed.ContraClassMgr.registerHeroClass",
+        "expression": "ed.ContraClassMgr.registerHeroClass(ed.ContraCoreHeroId.ShangJin,ed.ContraHeroShangJin)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 244215,
+        "end": 244298,
+        "sha256": "d53faac560551a2969919b46dbff0d456463e44c5e403d43b8b8e5acd406bd8d",
+        "callee": "ed.ContraClassMgr.registerHeroClass",
+        "expression": "ed.ContraClassMgr.registerHeroClass(ed.ContraCoreHeroId.HeiMei,ed.ContraHeroHeiMei)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 244299,
+        "end": 244383,
+        "sha256": "c85278567a2a0776b8806953c109f62627dbb245ae90a2fe0b0e9b3fce99bac4",
+        "callee": "ed.ContraClassMgr.registerHeroClass",
+        "expression": "ed.ContraClassMgr.registerHeroClass(ed.ContraCoreHeroId.HeiMei2,ed.ContraHeroHeiMei)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 247530,
+        "end": 247615,
+        "sha256": "b34df1a09da4066a844c6f0570bae5b7ae3d05882d5b706e8245125b711bb92f",
+        "callee": "ed.ContraClassMgr.registerHeroClass",
+        "expression": "ed.ContraClassMgr.registerHeroClass(ed.ContraCoreHeroId.Phoenix,ed.ContraHeroPhoenix)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 250145,
+        "end": 250238,
+        "sha256": "9d83c6994ab56e02259839f57d91392c30239d7e83995a53339628a9727e0fe8",
+        "callee": "ed.ContraClassMgr.registerHeroClass",
+        "expression": "ed.ContraClassMgr.registerHeroClass(ed.ContraCoreHeroId.LadyDracula,ed.ContraHeroLadyDracula)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 252456,
+        "end": 252551,
+        "sha256": "9955b738063b01d2feb96ad7357cbad01888367b4366883f04c560a253ec6e75",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.BOSS_ENTER,ed.ContraStoryBossEnter)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 253588,
+        "end": 253678,
+        "sha256": "08ec2420636a3d226a8e9c9aba2e5cce485e5e70d425e29fbc4f078e0ce6a2fb",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.VICTORY,ed.ContraStoryVictory)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 254519,
+        "end": 254607,
+        "sha256": "12595a9a5aa69e9ac2b6f83ab1b5965e6fcf8170614ab576084e77779f72eda7",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.DIALOG,ed.ContraStoryDialog)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 256394,
+        "end": 256483,
+        "sha256": "8bc21c9d4093153f3583d3fe31865848bab0844e85b222d0349ee66389ec6d8b",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.HEI_MEI,ed.ContraStoryHeiMei)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 259111,
+        "end": 259214,
+        "sha256": "9b0b67c7600f6e6f44d4322af47592e8783b1eb347c1f8b43eb4277b79d7a4ff",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.LEI_EN_CAPTURE,ed.ContraStoryLeiEnCaptured)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 262113,
+        "end": 262209,
+        "sha256": "23fef8ac53a59085584d369e516866c671cb7e6c0275dfae6aa54527d01ec30c",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.LEI_EN_SAVE,ed.ContraStoryLeiEnSave)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 269627,
+        "end": 269724,
+        "sha256": "fe220a2fb0086ca7b6aceaa86982397c1ab4ed52285381d037bec5e4a08dfc19",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.CARD_BATTLE,ed.ContraStoryCardBattle)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 272607,
+        "end": 272700,
+        "sha256": "de0b3fcde3756946a4b43ac510933be557e9cb975e5a1ce67e4a52663111e8ec",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.MIRA_SAVE,ed.ContraStoryMiraSave)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 273314,
+        "end": 273411,
+        "sha256": "0db2fe1becf1d030d795de541bb36a6867276f67c6784aee2715ba9c070c3f61",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.MIRA_FOLLOW,ed.ContraStoryMiraFollow)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 277815,
+        "end": 277916,
+        "sha256": "3eb290c610cb0eb07d0205e0a7ea117b74527df4f8797406ddbda4268ce4c5ec",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.VILLAGER_SAVE,ed.ContraStoryVillagerSave)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 279886,
+        "end": 279994,
+        "sha256": "dca21ef596310df3fd77b3bb887e7d6f34d26f9ecda5dc4272b5ecc7e1d00f28",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.FIGHT_WITH_DEMONS,ed.ContraStoryFightWithDemons)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 283049,
+        "end": 283151,
+        "sha256": "2b5647b31019a95f3f0d62cdafaff58c07f5f5001312fb6782173e7bd90353e5",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.TEAM_MATE_SAVE,ed.ContraStoryTeamMateSave)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 284457,
+        "end": 284553,
+        "sha256": "dda4eee0a85d9232e31b16780935b1aa5450de3b04d9e527f5f4650d4b256cb9",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.HEI_MEI_GUN,ed.ContraStoryHeiMeiGun)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 285852,
+        "end": 285942,
+        "sha256": "985e54e76d6660ca8032d62d6bd0e2edf992659c5ad014479fab253d3ff529a4",
+        "callee": "ed.ContraClassMgr.registerStoryClass",
+        "expression": "ed.ContraClassMgr.registerStoryClass(ed.ContraCoreStoryType.PHOENIX,ed.ContraStoryPhoenix)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 287689,
+        "end": 287784,
+        "sha256": "69e66a5163d1fc6ecc501f9b4e54dc41b1c814623691ec8a838a5f018566808b",
+        "callee": "ed.ContraClassMgr.registerPlatformClass",
+        "expression": "ed.ContraClassMgr.registerPlatformClass(ed.ContraCorePlatformType.BREAK,ed.ContraPlatformBreak)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 289863,
+        "end": 289958,
+        "sha256": "2f4351af022f307bf000b3f2135dae2d7c0b0b76b5cd310d8fa54d9bb4f8a807",
+        "callee": "ed.ContraClassMgr.registerPlatformClass",
+        "expression": "ed.ContraClassMgr.registerPlatformClass(ed.ContraCorePlatformType.FLOAT,ed.ContraPlatformFloat)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 290992,
+        "end": 291093,
+        "sha256": "0aeb9c75d24febf3d982e9e18bf68bcb74ba473c32d8e36a7a31b9a23e21a8a8",
+        "callee": "ed.ContraClassMgr.registerPlatformClass",
+        "expression": "ed.ContraClassMgr.registerPlatformClass(ed.ContraCorePlatformType.OBSTACLE,ed.ContraPlatformObstacle)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 291476,
+        "end": 291573,
+        "sha256": "3b2169ef365d4e9d9273aeb3c89cf639035a4217bb28384a64d6835f774b41d0",
+        "callee": "ed.ContraClassMgr.registerPlatformClass",
+        "expression": "ed.ContraClassMgr.registerPlatformClass(ed.ContraCorePlatformType.CUSTOM,ed.ContraPlatformCustom)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 292229,
+        "end": 292334,
+        "sha256": "d9afb56d701b27de93ff3c28ac23ff40638df3335a23e9c37dc91b967ca553cb",
+        "callee": "ed.ContraClassMgr.registerPlatformClass",
+        "expression": "ed.ContraClassMgr.registerPlatformClass(ed.ContraCorePlatformType.TRAMPOLINE,ed.ContraPlatformTrampoline)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 294602,
+        "end": 294691,
+        "sha256": "c2b5bfc01bae4ddb65f08525d447162aef227593f1288b8e900546ba65cb28d1",
+        "callee": "ed.ContraClassMgr.registerSkillClass",
+        "expression": "ed.ContraClassMgr.registerSkillClass(ed.ContraCoreSkillType.INIT_GUN,ed.ContraSkillValue)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 294692,
+        "end": 294782,
+        "sha256": "0a497cc38fa23cd11ebbf8eafc403188d6d121bf0143dea54ccdf43990210150",
+        "callee": "ed.ContraClassMgr.registerSkillClass",
+        "expression": "ed.ContraClassMgr.registerSkillClass(ed.ContraCoreSkillType.SAFE_TIME,ed.ContraSkillValue)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 294936,
+        "end": 295031,
+        "sha256": "abc929be227681af27167ce9c56a1711371dba333d7654d9df796a6e56d32b3d",
+        "callee": "ed.ContraClassMgr.registerSkillClass",
+        "expression": "ed.ContraClassMgr.registerSkillClass(ed.ContraCoreSkillType.HERO_COUNT,ed.ContraSkillStackable)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 295032,
+        "end": 295121,
+        "sha256": "e776bec149f3d9ce4e7e4ec94dbddabb1e64ad0f56ef7e9e038cc5b9f73d4aef",
+        "callee": "ed.ContraClassMgr.registerSkillClass",
+        "expression": "ed.ContraClassMgr.registerSkillClass(ed.ContraCoreSkillType.BUFF,ed.ContraSkillStackable)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 295122,
+        "end": 295219,
+        "sha256": "58bba5a29f52bd720d4f3d6e244c8611c4c3f274ff859139616b96e405c40798",
+        "callee": "ed.ContraClassMgr.registerSkillClass",
+        "expression": "ed.ContraClassMgr.registerSkillClass(ed.ContraCoreSkillType.UNLOCK_SKILL,ed.ContraSkillStackable)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 295220,
+        "end": 295314,
+        "sha256": "256d374c305209d5df3466aa32840a59775f1a941057e865b69dc77c4d1dcada",
+        "callee": "ed.ContraClassMgr.registerSkillClass",
+        "expression": "ed.ContraClassMgr.registerSkillClass(ed.ContraCoreSkillType.ULT_START,ed.ContraSkillStackable)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 295502,
+        "end": 295588,
+        "sha256": "4a06d0bc44ff2fc389a5581079659536238ad453608ca08c4d762fa749c3611b",
+        "callee": "ed.ContraClassMgr.registerSkillClass",
+        "expression": "ed.ContraClassMgr.registerSkillClass(ed.ContraCoreSkillType.GUN,ed.ContraSkillReplace)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 295589,
+        "end": 295676,
+        "sha256": "ea0b555bb179d6a3902d9ed6e9fefa8277559917f749c1efe61e1e6741f27091",
+        "callee": "ed.ContraClassMgr.registerSkillClass",
+        "expression": "ed.ContraClassMgr.registerSkillClass(ed.ContraCoreSkillType.POOL,ed.ContraSkillReplace)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 350071,
+        "end": 350145,
+        "sha256": "c255da56f767d6a5898cf4ed38aaa261dc113bfaba8dddca5e896aaa1942f780",
+        "callee": "ed.ContraClassMgr.registerHeroSkillClass",
+        "expression": "ed.ContraClassMgr.registerHeroSkillClass(1003,ed.ContraHeroSkillHeiMeiCmp)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 350146,
+        "end": 350222,
+        "sha256": "ed099468031fbe0068cfe8a1481367fea27059e8384ac3f577f9f7b4c4df7d8a",
+        "callee": "ed.ContraClassMgr.registerHeroSkillClass",
+        "expression": "ed.ContraClassMgr.registerHeroSkillClass(100301,ed.ContraHeroSkillHeiMeiCmp)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 350466,
+        "end": 350541,
+        "sha256": "f831911f01ffa3311650c1fa9e84b204534d97b80515f1389ecbcfc1ff9deebc",
+        "callee": "ed.ContraClassMgr.registerHeroSkillClass",
+        "expression": "ed.ContraClassMgr.registerHeroSkillClass(1004,ed.ContraHeroSkillPhoenixCmp)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 350792,
+        "end": 350871,
+        "sha256": "b47788a045f4c85a2a664a4e6324e0f1012124db53cbe7d6866236d14430f878",
+        "callee": "ed.ContraClassMgr.registerHeroSkillClass",
+        "expression": "ed.ContraClassMgr.registerHeroSkillClass(1009,ed.ContraHeroSkillLadyDraculaCmp)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 991556,
+        "end": 991673,
+        "sha256": "53e962868b99b973095dd2a71203658adad41662791ecaf9b220e90a57e6daec",
+        "callee": "ed.ContraMapStageClassMgr.registerStoryClass",
+        "expression": "ed.ContraMapStageClassMgr.registerStoryClass(ed.ContraMapStageStoryType.STAGE_ENTER,ed.ContraMapStageStoryStageEnter)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 992689,
+        "end": 992804,
+        "sha256": "1aac03b9988817e0e20530b44c36e0bcda72b56a32f7ad57a4b9a0a9ac866270",
+        "callee": "ed.ContraMapStageClassMgr.registerStoryClass",
+        "expression": "ed.ContraMapStageClassMgr.registerStoryClass(ed.ContraMapStageStoryType.STAGE_EXIT,ed.ContraMapStageStoryStageExit)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 999248,
+        "end": 999366,
+        "sha256": "b258964ac351265558e7761579bcf57ad36176c02161e668eaf086b10458f426",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.SET_ACTIVE,ed.ContraMapStageActionSetActive)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 999646,
+        "end": 999766,
+        "sha256": "e7add46b9fd59a2b8b27a7e5fca535787b1dedded400fbd77ce9bbd7549371bc",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.SET_VISIBLE,ed.ContraMapStageActionSetVisible)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1000074,
+        "end": 1000196,
+        "sha256": "386697cc0f362b37f50007729b3479cd35cacae3c2f6c5b2ed434336272d23cc",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.SET_POSITION,ed.ContraMapStageActionSetPosition)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1000616,
+        "end": 1000740,
+        "sha256": "69ae9b2d991def7a86cbe7168675e97e97ba4c55ad31dde89fdcb7beb5a76970",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.MOVE_POSITION,ed.ContraMapStageActionMovePosition)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1001093,
+        "end": 1001213,
+        "sha256": "dd3816a593f09076be86551e3f62621694780eb1c608d865cdb7b6a7ff87e5b5",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.PLAY_ACTION,ed.ContraMapStageActionPlayAction)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1001543,
+        "end": 1001663,
+        "sha256": "e71ded8e927958afa702c61e5e42d6a54dc2375ef651feb8b01c9a6ae0889bf2",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.SHOW_BUBBLE,ed.ContraMapStageActionShowBubble)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1001889,
+        "end": 1002009,
+        "sha256": "e988806010ccf7dc1814a21f49231cc2aa0df5997362b83d3e494e00b0a14915",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.SHOW_DIALOG,ed.ContraMapStageActionShowDialog)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1002527,
+        "end": 1002649,
+        "sha256": "a839be43d701a327354d3e391f455040282c56a2ced5236ed2e2db0f34f9b254",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.SHOW_CARTOON,ed.ContraMapStageActionShowCartoon)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1003179,
+        "end": 1003299,
+        "sha256": "c812d287eee781d93354a2f990cabdaeb1a18c230350f02d059f66b1ae3cde2c",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.SHOW_EFFECT,ed.ContraMapStageActionShowEffect)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1003791,
+        "end": 1003913,
+        "sha256": "e641d9680f88dae7561445f9b4f272673c469fc9a025d32a893ac1dd2121fc3a",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.IMPULSE_GIFT,ed.ContraMapStageActionImpulseGift)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1004136,
+        "end": 1004258,
+        "sha256": "b9ed9ea92e08976fdcd3129829130f244c954ae4403073ea4addf3587921449f",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.SHAKE_SCREEN,ed.ContraMapStageActionShakeScreen)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 1004532,
+        "end": 1004652,
+        "sha256": "d3fb50aecac776e6390864a0429aaf3090ab78106069624335408670140acc0d",
+        "callee": "ed.ContraMapStageClassMgr.registerActionClass",
+        "expression": "ed.ContraMapStageClassMgr.registerActionClass(ed.ContraMapStageActionType.MOVE_CAMERA,ed.ContraMapStageActionMoveCamera)"
+      },
+      {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/ui_gve.js",
+        "start": 520963,
+        "end": 520986,
+        "sha256": "7a5d4c513cbe3ca5fccd0b4984c45458668bf592aff4f325f97b7df2739fef8c",
+        "callee": "ed.gveSysRed.register",
+        "expression": "ed.gveSysRed.register()"
       }
-    ]
+    ],
+    "computedWrites": [
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_battle.js",
+        "start": 190583,
+        "end": 190616,
+        "sha256": "94245fed12befc89b550bb697d78ac1b917fb583868e0c2fdf160ec733f3e280",
+        "owner": "ed.attrib_names_x",
+        "expression": "ed.attrib_names_x[name]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_battle.js",
+        "start": 190617,
+        "end": 190650,
+        "sha256": "e5b05df93084ad81d0619e5baf59286de2850236fc01e822f968a03daf59701a",
+        "owner": "ed.attrib_names_a",
+        "expression": "ed.attrib_names_a[name]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_battle.js",
+        "start": 6700629,
+        "end": 6700726,
+        "sha256": "476f7a9da3849b5f1e7dc3fb804f0df7e7efbe6f4423c0943f9dd43ab0c56f6e",
+        "owner": "CandleDog.BASIC_IMPACT_EFF",
+        "expression": "CandleDog.BASIC_IMPACT_EFF[CandleDog.BASIC_ACTION_WAX]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_battle.js",
+        "start": 6700727,
+        "end": 6700825,
+        "sha256": "fbb916b2157a56f296093f9f2d426b244a018ca1f4af45c3bfb04ca27d2c503c",
+        "owner": "CandleDog.BASIC_IMPACT_EFF",
+        "expression": "CandleDog.BASIC_IMPACT_EFF[CandleDog.BASIC_ACTION_BURN]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_battle.js",
+        "start": 6700826,
+        "end": 6700924,
+        "sha256": "c46fe520abebd8c7745e45254ff075d965ad04d97a03673641c01faed26a78a7",
+        "owner": "CandleDog.BASIC_IMPACT_EFF",
+        "expression": "CandleDog.BASIC_IMPACT_EFF[CandleDog.BASIC_ACTION_DUAL]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_battle.js",
+        "start": 6700957,
+        "end": 6701038,
+        "sha256": "046f68968609d81484da55075f575ed5aff5bd92df6a697d77cb547236b0ce66",
+        "owner": "CandleDog.BASIC_IMPACT_SOUND",
+        "expression": "CandleDog.BASIC_IMPACT_SOUND[CandleDog.BASIC_ACTION_BURN]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 228689,
+        "end": 228748,
+        "sha256": "2bbc186b85fb69e4993482499dc8164f40c2333be6fb91ce7f6bf4cb284df5fb",
+        "owner": "ed.imChatChannelShort",
+        "expression": "ed.imChatChannelShort[ed.imChatChannelType.CCH_GAME_ROOM]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 228749,
+        "end": 228809,
+        "sha256": "3b20800cecb795d24203b8ee5deb95419ba32a6f7fad096b43f8f77a240d2982",
+        "owner": "ed.imChatChannelShort",
+        "expression": "ed.imChatChannelShort[ed.imChatChannelType.CCH_GAME_GROUP]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 228810,
+        "end": 228863,
+        "sha256": "968c0bed177bf8a6661e7bebdb32893166b6c15bb50e75221d31d2ae809eb0c6",
+        "owner": "ed.imChatChannelShort",
+        "expression": "ed.imChatChannelShort[ed.imChatChannelType.CCH_BOT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 228864,
+        "end": 228922,
+        "sha256": "22c0e07fc0d622fe3f8c6c56f89ff85c432250165a8706fef3a48a84bbb370a2",
+        "owner": "ed.imChatChannelShort",
+        "expression": "ed.imChatChannelShort[ed.imChatChannelType.CCH_OFFICIAL]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 228923,
+        "end": 228985,
+        "sha256": "b9c3ec24834a6989fa264f148a015a316eb5af2ad496f44a5ba13b75386ef499",
+        "owner": "ed.imChatChannelShort",
+        "expression": "ed.imChatChannelShort[ed.imChatChannelType.CCH_CUSTOM_GROUP]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 228986,
+        "end": 229049,
+        "sha256": "a22c40c941778b810de60f329449b6d355eab5f76dc8594974533dfc381df1b5",
+        "owner": "ed.imChatChannelShort",
+        "expression": "ed.imChatChannelShort[ed.imChatChannelType.CCH_PRIVATE_CHAT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 229409,
+        "end": 229608,
+        "sha256": "8e188af977d52d8db986d7a60d1a72384692a022ff08a0e75e9b9617a33f25c2",
+        "owner": "ed.imChatMsgTypeListMap",
+        "expression": "ed.imChatMsgTypeListMap[ed.imChatMsgQueueType.ALL]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 229609,
+        "end": 229809,
+        "sha256": "269619e9c2dabe5e39bc0892b9022c94210b8bf7da55bbd90a748c230ff92d65",
+        "owner": "ed.imChatMsgTypeListMap",
+        "expression": "ed.imChatMsgTypeListMap[ed.imChatMsgQueueType.MAIN]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 229810,
+        "end": 229904,
+        "sha256": "1ca2c22aed72c429c472a62d5bc8ff3249ce9065c931df7921b75bdd24a525c0",
+        "owner": "ed.imChatMsgTypeListMap",
+        "expression": "ed.imChatMsgTypeListMap[ed.imChatMsgQueueType.GUILD_SLG]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 229905,
+        "end": 230000,
+        "sha256": "1cc13496c4c56bff2483ab6f3b55978f6d9ca91a79c70a286e691f86c0ed460a",
+        "owner": "ed.imChatMsgTypeListMap",
+        "expression": "ed.imChatMsgTypeListMap[ed.imChatMsgQueueType.GUILD_CAMP]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 230001,
+        "end": 230097,
+        "sha256": "dd40af204165c00798aade62630fdaf34de958a807dbc9919be58d7224748ebb",
+        "owner": "ed.imChatMsgTypeListMap",
+        "expression": "ed.imChatMsgTypeListMap[ed.imChatMsgQueueType.WAR_BESIEGE]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 230098,
+        "end": 230190,
+        "sha256": "bcc1882b657c79afc29c879cf7e23226324c2b88bb74beee7599eeeaf9f6f6c0",
+        "owner": "ed.imChatMsgTypeListMap",
+        "expression": "ed.imChatMsgTypeListMap[ed.imChatMsgQueueType.WAR_MAP]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 231226,
+        "end": 231294,
+        "sha256": "5cc039577106c31a8820d1213a8524dc17c2f6109925a356968373f8ac3a4da6",
+        "owner": "imChatReportSceneMap",
+        "expression": "imChatReportSceneMap[ed.imChatChannelType.CCH_GAME_ROOM]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 231295,
+        "end": 231363,
+        "sha256": "be2cc0904f93ccb4b426269541151c9613af42d59f574c05bbad7a811767bc16",
+        "owner": "imChatReportSceneMap",
+        "expression": "imChatReportSceneMap[ed.imChatChannelType.CCH_GAME_GROUP]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 231364,
+        "end": 231441,
+        "sha256": "4b7ada405573def78fb412d1b90ee07b61cd5250af07f3c8615537eff908969b",
+        "owner": "imChatReportSceneMap",
+        "expression": "imChatReportSceneMap[ed.imChatChannelType.CCH_CUSTOM_GROUP]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 231442,
+        "end": 231514,
+        "sha256": "fdb0944ab04d3bf008fea6a1e1e1a0294b80f6e0dd2b91826590eed6943a1929",
+        "owner": "imChatReportSceneMap",
+        "expression": "imChatReportSceneMap[ed.imChatChannelType.CCH_PRIVATE_CHAT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 1975204,
+        "end": 1975268,
+        "sha256": "eb4c5cf1013fff92ce6b1874b860291cc0c08594348f9256d1d9ed4a40b4cdde",
+        "owner": "ed.giftReddotTypeMap",
+        "expression": "ed.giftReddotTypeMap[ed.giftLimitName]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 2426860,
+        "end": 2426887,
+        "sha256": "617b8db1a52c04459c1319b31a60a99db98feb12fe24b1722f96d69a674d76b6",
+        "owner": "ed.css_sprite_list",
+        "expression": "ed.css_sprite_list[key]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 4404746,
+        "end": 4404785,
+        "sha256": "b75ead526ab79ce66e785100e8a8aebddad54d56bcfedcf3a2d591f261cb28ef",
+        "owner": "ed.css_font_config",
+        "expression": "ed.css_font_config[\"TopArena\"+i]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_util.js",
+        "start": 284297,
+        "end": 284343,
+        "sha256": "26f0d3b336829628063bdaa08649aa05f1657256a84595f06cf21d8f7928934b",
+        "owner": "ed.state_to_string",
+        "expression": "ed.state_to_string[ed.emUnitState_Idle]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_util.js",
+        "start": 284344,
+        "end": 284390,
+        "sha256": "c9492321215f772e4ef7cf986b2eee0950f4ffd44b341ef96964f877abf66a58",
+        "owner": "ed.state_to_string",
+        "expression": "ed.state_to_string[ed.emUnitState_Walk]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_util.js",
+        "start": 284391,
+        "end": 284441,
+        "sha256": "c20e10a3332ae2b4effbc9f0d078c659d4f5227314870f52435819b927c8ecd7",
+        "owner": "ed.state_to_string",
+        "expression": "ed.state_to_string[ed.emUnitState_Attack]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_util.js",
+        "start": 284442,
+        "end": 284488,
+        "sha256": "e58e2f2aa3f755e673d8d165fd4ed8bd0c893887ccaec6a114ee991adcb4bc4e",
+        "owner": "ed.state_to_string",
+        "expression": "ed.state_to_string[ed.emUnitState_Hurt]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_util.js",
+        "start": 284489,
+        "end": 284535,
+        "sha256": "bee896205291b8826c3415c0932c8e50e7dd468e3993a9642e122712486fc88f",
+        "owner": "ed.state_to_string",
+        "expression": "ed.state_to_string[ed.emUnitState_Dead]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_util.js",
+        "start": 284536,
+        "end": 284584,
+        "sha256": "d422f4076a283cef5fc63f826430d3cbf284a04df8d8d8d4d13139924fdc8486",
+        "owner": "ed.state_to_string",
+        "expression": "ed.state_to_string[ed.emUnitState_Birth]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_util.js",
+        "start": 284585,
+        "end": 284633,
+        "sha256": "e9a7df712b26930bfba19623d87ce9a644d4f402de149303235586d59a25e127",
+        "owner": "ed.state_to_string",
+        "expression": "ed.state_to_string[ed.emUnitState_Dying]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/game_util.js",
+        "start": 284634,
+        "end": 284680,
+        "sha256": "56d57d33191fdbb1ecdc912d9f31360a7e2a27fe55f07a36d0ad8519aaf6ddf3",
+        "owner": "ed.state_to_string",
+        "expression": "ed.state_to_string[ed.emUnitState_Fall]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 16868,
+        "end": 16946,
+        "sha256": "b5c48ce23ebf749186f5572951eb1dfad0244da367e79cf95c5ddc9788eafd4d",
+        "owner": "ed.ContraCoreRotation",
+        "expression": "ed.ContraCoreRotation[ed.ContraCoreDirection.NONE]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 16947,
+        "end": 17026,
+        "sha256": "4e1d6cf4eecb45cb02bd3d029eaec93d8d0e40276cc7b07b15a0aa339a8823d8",
+        "owner": "ed.ContraCoreRotation",
+        "expression": "ed.ContraCoreRotation[ed.ContraCoreDirection.RIGHT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17027,
+        "end": 17116,
+        "sha256": "22ae0801ed89ac17889f88ba2e278ba50469b7639987dd0eff45555fb048bc66",
+        "owner": "ed.ContraCoreRotation",
+        "expression": "ed.ContraCoreRotation[ed.ContraCoreDirection.DOWN_RIGHT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17117,
+        "end": 17194,
+        "sha256": "db4889601d11c3bd84a02975b191a204d1fe7e55cca2d5b2cb05fa9857b3433d",
+        "owner": "ed.ContraCoreRotation",
+        "expression": "ed.ContraCoreRotation[ed.ContraCoreDirection.DOWN]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17195,
+        "end": 17282,
+        "sha256": "1de4b6d9b1f21f0715f22ab4790e25eb1b1da222c4122284ed477dd9a108eae6",
+        "owner": "ed.ContraCoreRotation",
+        "expression": "ed.ContraCoreRotation[ed.ContraCoreDirection.DOWN_LEFT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17283,
+        "end": 17360,
+        "sha256": "82e2e319e2ac14d8422fcef5257aedb4da77fe42e9bdfa908bc2ca90cc3b01dd",
+        "owner": "ed.ContraCoreRotation",
+        "expression": "ed.ContraCoreRotation[ed.ContraCoreDirection.LEFT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17361,
+        "end": 17444,
+        "sha256": "b0c3f73b51f77aac89781994e2f55afd144fd1502483cd9d16fbe126f9467a48",
+        "owner": "ed.ContraCoreRotation",
+        "expression": "ed.ContraCoreRotation[ed.ContraCoreDirection.UP_LEFT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17445,
+        "end": 17518,
+        "sha256": "e8f01f7d00d5e16bcf5ee0bc6a619fd5a3440db8b0dca5c74a631139da4c4daa",
+        "owner": "ed.ContraCoreRotation",
+        "expression": "ed.ContraCoreRotation[ed.ContraCoreDirection.UP]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17519,
+        "end": 17604,
+        "sha256": "c159158dc41cf90bdecf96b6964a3425a25d57f645d132b708e3522b7ce9db8b",
+        "owner": "ed.ContraCoreRotation",
+        "expression": "ed.ContraCoreRotation[ed.ContraCoreDirection.UP_RIGHT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17631,
+        "end": 17717,
+        "sha256": "1a31dc7abba65a17670b613e3c5daff286f10fcc4f76d60ab03587a9e3c925dc",
+        "owner": "ed.ContraCoreAimAniMap",
+        "expression": "ed.ContraCoreAimAniMap[ed.ContraCoreDirAngle.RIGHT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17718,
+        "end": 17810,
+        "sha256": "0f1458003d064f0f006d81fdad8737df6bc6b9b1994d1e38bbf6861e699739a8",
+        "owner": "ed.ContraCoreAimAniMap",
+        "expression": "ed.ContraCoreAimAniMap[ed.ContraCoreDirAngle.DOWN_RIGHT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17811,
+        "end": 17896,
+        "sha256": "046b3e5da26970c0c31a69aecd5f852b0cd7cb1a86228c58bb705ee034dab44d",
+        "owner": "ed.ContraCoreAimAniMap",
+        "expression": "ed.ContraCoreAimAniMap[ed.ContraCoreDirAngle.DOWN]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17897,
+        "end": 17988,
+        "sha256": "a942421536f6c9a8374a73496bef99525ba4f693d4712b4cb362df49441da16c",
+        "owner": "ed.ContraCoreAimAniMap",
+        "expression": "ed.ContraCoreAimAniMap[ed.ContraCoreDirAngle.DOWN_LEFT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 17989,
+        "end": 18074,
+        "sha256": "80fa7c4d3a29561f7a5246a6e4feaa8ec4a5b6c19b8c52a599ac985a9cb540d2",
+        "owner": "ed.ContraCoreAimAniMap",
+        "expression": "ed.ContraCoreAimAniMap[ed.ContraCoreDirAngle.LEFT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18075,
+        "end": 18164,
+        "sha256": "3b5dbc3eb25ae8cba52f67deb0b97a4b1e858f18f16df696425b455ad14c8248",
+        "owner": "ed.ContraCoreAimAniMap",
+        "expression": "ed.ContraCoreAimAniMap[ed.ContraCoreDirAngle.UP_LEFT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18165,
+        "end": 18248,
+        "sha256": "ed55118d2d0892832c00a89d33336133cc1f25c78d59d6da9db449a7932e537b",
+        "owner": "ed.ContraCoreAimAniMap",
+        "expression": "ed.ContraCoreAimAniMap[ed.ContraCoreDirAngle.UP]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18249,
+        "end": 18339,
+        "sha256": "44c7940d99f40565113e1123416a61a0e97ef89ebceebffa7b5a1f4372c2ea89",
+        "owner": "ed.ContraCoreAimAniMap",
+        "expression": "ed.ContraCoreAimAniMap[ed.ContraCoreDirAngle.UP_RIGHT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18367,
+        "end": 18440,
+        "sha256": "76972fec9211c130705090c82388c087ea224bead51f19f266210bb7e1b4671c",
+        "owner": "ed.ContraCoreFirePosMap",
+        "expression": "ed.ContraCoreFirePosMap[ed.ContraCorePlayerAnimation.AIM_R]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18441,
+        "end": 18513,
+        "sha256": "10f01fed8b44718c9a6e348e52e1891b4d8a9871f5fbba42371e3e4cc6f26581",
+        "owner": "ed.ContraCoreFirePosMap",
+        "expression": "ed.ContraCoreFirePosMap[ed.ContraCorePlayerAnimation.AIM_U]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18514,
+        "end": 18586,
+        "sha256": "8f1ce381ae419bb337c720ae04838bc11d695f02a4beaec3a617b3cba8c8a105",
+        "owner": "ed.ContraCoreFirePosMap",
+        "expression": "ed.ContraCoreFirePosMap[ed.ContraCorePlayerAnimation.AIM_D]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18587,
+        "end": 18661,
+        "sha256": "1c9601ae7b3114171e5f821c75c3729150db45cc9d4b26de7cf70d4f2263cf9c",
+        "owner": "ed.ContraCoreFirePosMap",
+        "expression": "ed.ContraCoreFirePosMap[ed.ContraCorePlayerAnimation.AIM_UR]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18662,
+        "end": 18735,
+        "sha256": "16e84f9391f03ea171400d1f3382957a1c82c05c4148459b586922405fc3e0b6",
+        "owner": "ed.ContraCoreFirePosMap",
+        "expression": "ed.ContraCoreFirePosMap[ed.ContraCorePlayerAnimation.AIM_DR]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18767,
+        "end": 18844,
+        "sha256": "02b5c53c268a24a764739a0bc9efabaee6cf2f857efdbf55ed4204bc9ef48620",
+        "owner": "ed.ContraCoreFireJumpPosMap",
+        "expression": "ed.ContraCoreFireJumpPosMap[ed.ContraCorePlayerAnimation.AIM_R]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18845,
+        "end": 18920,
+        "sha256": "d3d8ef9b2edcb104360084a97b203aca303f20c37c6a965b154bb1d9aa2a7ed4",
+        "owner": "ed.ContraCoreFireJumpPosMap",
+        "expression": "ed.ContraCoreFireJumpPosMap[ed.ContraCorePlayerAnimation.AIM_U]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18921,
+        "end": 18994,
+        "sha256": "7e3d3886aa9099d81b26186380e09c70edcb2edd861d80ccc66dd431862a7851",
+        "owner": "ed.ContraCoreFireJumpPosMap",
+        "expression": "ed.ContraCoreFireJumpPosMap[ed.ContraCorePlayerAnimation.AIM_D]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 18995,
+        "end": 19073,
+        "sha256": "7bc7e15cdb695197c544679a78ac1bd13af3ad2d2f908ad601693a9c5e58e60f",
+        "owner": "ed.ContraCoreFireJumpPosMap",
+        "expression": "ed.ContraCoreFireJumpPosMap[ed.ContraCorePlayerAnimation.AIM_UR]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 19074,
+        "end": 19152,
+        "sha256": "3b3a40d6f406f8b152b7022d02da884287565e436d3b7cf2d7424f2002523380",
+        "owner": "ed.ContraCoreFireJumpPosMap",
+        "expression": "ed.ContraCoreFireJumpPosMap[ed.ContraCorePlayerAnimation.AIM_DR]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 20391,
+        "end": 20453,
+        "sha256": "01c0a6c107038a6ee562cb2d8f1ba996aedd962d53859385fba67b756e72538f",
+        "owner": "ed.ContraCoreCollisionSort",
+        "expression": "ed.ContraCoreCollisionSort[ed.ContraCoreCollisionType.SOLID]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 20454,
+        "end": 20519,
+        "sha256": "4aa1b9b516f7b9b91b31842d9a58e137e3bc19e524f6e17aa50d5b9289057e9b",
+        "owner": "ed.ContraCoreCollisionSort",
+        "expression": "ed.ContraCoreCollisionSort[ed.ContraCoreCollisionType.PLATFORM]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 20520,
+        "end": 20582,
+        "sha256": "e1b73525cd8043263ad7efd33f3e426f4188c179b69319b8d871a60c80822400",
+        "owner": "ed.ContraCoreCollisionSort",
+        "expression": "ed.ContraCoreCollisionSort[ed.ContraCoreCollisionType.WATER]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 20583,
+        "end": 20644,
+        "sha256": "602a9f29e5a1e3f827082d17f4903c7b75e511cfa425878ea711ee8ecb51d975",
+        "owner": "ed.ContraCoreCollisionSort",
+        "expression": "ed.ContraCoreCollisionSort[ed.ContraCoreCollisionType.HURT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 993843,
+        "end": 993957,
+        "sha256": "b86102c2d99768f98788297aca747e9b89f2ea8ab478f04949346dcc54578377",
+        "owner": "ed.actGuildContraMapMgr._storyClassMap",
+        "expression": "ed.actGuildContraMapMgr._storyClassMap[ed.ContraMapStageStoryType.STAGE_ENTER]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_contra.js",
+        "start": 995627,
+        "end": 995739,
+        "sha256": "a6ef33de5d5565e020039eba5d379f5860d2eb20ff3a46d87600a11724cd40e2",
+        "owner": "ed.actGuildContraMapMgr._storyClassMap",
+        "expression": "ed.actGuildContraMapMgr._storyClassMap[ed.ContraMapStageStoryType.STAGE_EXIT]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_war.js",
+        "start": 568102,
+        "end": 568159,
+        "sha256": "79c31e2afc7357cbebb47782e460e15a4f854d5672b378851fb9266837885b54",
+        "owner": "ed.WarAllyMailManager._mailsCache",
+        "expression": "ed.WarAllyMailManager._mailsCache[ed.MailType.WarAlly]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_war.js",
+        "start": 568160,
+        "end": 568223,
+        "sha256": "7f563769deed34cbdafaa16b937c8f494e461299c4d6a39f06d7d67fbf39943f",
+        "owner": "ed.WarAllyMailManager._mailsCache",
+        "expression": "ed.WarAllyMailManager._mailsCache[ed.MailType.WarAllyPlayer]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_war.js",
+        "start": 568267,
+        "end": 568330,
+        "sha256": "81f0905af71ad45d35b3e3240ffadee7b14e9f30ea1a562e62af7334fa9da2f8",
+        "owner": "ed.WarAllyMailManager._mailIndicesCache",
+        "expression": "ed.WarAllyMailManager._mailIndicesCache[ed.MailType.WarAlly]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_war.js",
+        "start": 568331,
+        "end": 568400,
+        "sha256": "d10ad86319e4a26c8c5cae9c1fd863b229361163aa786646a53cf70944776d25",
+        "owner": "ed.WarAllyMailManager._mailIndicesCache",
+        "expression": "ed.WarAllyMailManager._mailIndicesCache[ed.MailType.WarAllyPlayer]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_war.js",
+        "start": 911234,
+        "end": 911406,
+        "sha256": "cecdb7256265e70cddb9cd40d520fa15d307e067b5a1d4fc6726d58093519bba",
+        "owner": "ed.warMapMarchAniMap",
+        "expression": "ed.warMapMarchAniMap[ed.warMapMarchLevel.SMALL]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_war.js",
+        "start": 911407,
+        "end": 911580,
+        "sha256": "590f678ec1cee849b5ca0211ab09ed747d51d86b05846e758027b3141602e509",
+        "owner": "ed.warMapMarchAniMap",
+        "expression": "ed.warMapMarchAniMap[ed.warMapMarchLevel.NORMAL]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_war.js",
+        "start": 911581,
+        "end": 911751,
+        "sha256": "f45809355b7618daec81b687427ccb70d49e0a7f90e69f01137d6d87a1dcbd25",
+        "owner": "ed.warMapMarchAniMap",
+        "expression": "ed.warMapMarchAniMap[ed.warMapMarchLevel.BIG]"
+      },
+      {
+        "kind": "computed_write",
+        "file": "src/srcmodule/ui_war.js",
+        "start": 911752,
+        "end": 911923,
+        "sha256": "08d8a14b6cca8f87d513c8c9e05468263366a74d8242238a5b688777daf6c4bc",
+        "owner": "ed.warMapMarchAniMap",
+        "expression": "ed.warMapMarchAniMap[ed.warMapMarchLevel.DUEL]"
+      }
+    ],
+    "globalFunctionDeclarations": [
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_base.js",
+        "start": 739672,
+        "end": 739788,
+        "sha256": "7485a5eec20926917df1b50005e93aa8a19eb974fabc85a26d078362cd106ba0",
+        "name": "_isBugReportGmEnabled"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_base.js",
+        "start": 739788,
+        "end": 740014,
+        "sha256": "54427ff0906dbeb02892ab44d29cc150e921c4cc701247fbee50b805ba37df5f",
+        "name": "_installBugReportLogHookIfGmEnabled"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_base.js",
+        "start": 878145,
+        "end": 878303,
+        "sha256": "9fe869890029404222516e7b0d0aaaab92ef0b71c81f18f8cf09174f2b1498df",
+        "name": "_finishLoadJsbDevTools"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_base.js",
+        "start": 878303,
+        "end": 878643,
+        "sha256": "6c8a2c9baca00c3a35e999def879d7618b62682f5a087ad5fe45027a572bf6ee",
+        "name": "_loadJsbDevToolsFile"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_base.js",
+        "start": 878643,
+        "end": 879092,
+        "sha256": "f8b16492951a64c27e27bea7144263a4399e2ecdca5e32e88b13e83fd19950ef",
+        "name": "_withJsbDevTools"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_base.js",
+        "start": 879092,
+        "end": 879294,
+        "sha256": "80548474384fa4bd00b9807e3ad6c55d55136f858548499f96fa7e26d00efb5e",
+        "name": "_resetTutorialClientCacheByName"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_base.js",
+        "start": 879294,
+        "end": 879809,
+        "sha256": "6b8829c6feec86a6a8944ce3dc8f899e796cded345e618448cf701c6de36f905",
+        "name": "_quickPlay"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 803,
+        "end": 860,
+        "sha256": "6ce4ae8e41b11308c15f89e4e439baa963624901bb6cb15c2c927ec87727322c",
+        "name": "rotl32"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 860,
+        "end": 940,
+        "sha256": "7e2012554b4c2607da12afe1ac22958d4c5d0ebb49c5e2004eeb5b9fdf7e3f5f",
+        "name": "rotmul32"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 940,
+        "end": 991,
+        "sha256": "62421e0e649719803a49e8fb83e9785f676c96fcbe5614f47094d174f0eceaec",
+        "name": "shiftxor32"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 991,
+        "end": 1058,
+        "sha256": "63aa7b201cb392fe72bbba148de5ae49b7b9a125756df665a4274afefcb09b9e",
+        "name": "xxhapply"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 1058,
+        "end": 1131,
+        "sha256": "6f2ea539b4bcf0f544d25eef160ff248397574fd32300894c83129acfb67f6e1",
+        "name": "xxh1"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 1131,
+        "end": 1206,
+        "sha256": "cd825303bc6cebdc7b069d73591a2d03524e6ae3d53240b56250d4b70e7e2e11",
+        "name": "xxh4"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 1206,
+        "end": 1445,
+        "sha256": "b8f989ac27275df4ef8b5c4fc5c691e281ece092275f8fd81c229f7c524cb2f2",
+        "name": "xxh16"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 1445,
+        "end": 1821,
+        "sha256": "f4f8ea25b3d8c8fd79738df671663bce7c27fa804d64730fd82208db7f5db4d0",
+        "name": "xxh32"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 2265,
+        "end": 2402,
+        "sha256": "186a4b4508cf54227628e30163afd85082a6a874bfab74963609468b928a072c",
+        "name": "makeHashTable"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 2402,
+        "end": 2471,
+        "sha256": "06ada5cede67df69d1ea8f876886da8a3c43fefe6938a63cdddf7b76bbb7f109",
+        "name": "clearHashTable"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 2471,
+        "end": 2584,
+        "sha256": "a76450d1c4773f6e60253ae320a26826e19c01f0d824e8a7eace0a582410fd6c",
+        "name": "makeBuffer"
+      },
+      {
+        "kind": "global_function_declaration",
+        "file": "src/srcmodule/game_util.js",
+        "start": 2584,
+        "end": 2887,
+        "sha256": "877d6399ae089d29190d1b1a007d4164c348c709f1db4a54d2a4c5082c83bf7a",
+        "name": "sliceArray"
+      }
+    ],
+    "otherCorePrototypeWrites": []
   }
 }

@@ -43,6 +43,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
       },
       CallExpression(path){
         if(staticName(path.node.callee)==='ed.switchUnitRebuild')postInitializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
+        if(file==='src/srcmodule/game_util.js'&&staticName(path.node.callee)==='watchFuncs.forEach')postInitializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
         if(file==='src/srcmodule/game_battle.js'&&staticName(path.node.callee)==='Object.defineProperty'&&staticName(path.node.arguments[0])==='ed'&&path.node.arguments[1]?.type==='StringLiteral'&&path.node.arguments[1].value==='battleEngine')postInitializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
       },
       ForStatement(path){
@@ -54,6 +55,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
       },
       AssignmentExpression(path){
         const name=staticName(path.node.left);
+        if(file==='src/srcmodule/game_util.js'&&path.node.left.type==='MemberExpression'&&path.node.left.computed&&staticName(path.node.left.object)==='ed.state_to_string')postInitializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
         if(file==='src/srcmodule/game_battle.js'&&path.node.left.type==='MemberExpression'&&path.node.left.computed&&['CandleDog.BASIC_IMPACT_EFF','CandleDog.BASIC_IMPACT_SOUND'].includes(staticName(path.node.left.object)))postInitializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
         if(name==='window.random_seed'&&path.node.operator==='=')initializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
         if(/^(String|Array|Number)\.prototype\./.test(name??'')&&path.node.operator==='=')initializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
