@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "command": "node tools/verify.mjs",
+  "commandPassed": true,
+  "nodeTests": 149,
+  "rustTests": 38,
+  "nativeAttributeAbiCheckPassed": true,
+  "rawNumericGatePassed": false,
+  "numericNaNStorageBitDifferences": 2,
+  "fullBattleEquivalence": false,
+  "qualifiesForBattleThroughputTarget": false,
+  "referenceProfile": "config/source-oracle-runtime.json",
+  "log": "benchmarks/validation/verification-2026-10-27T19-25.log.gz",
+  "uncompressedLogSha256": "b9232fe33b1a741b0fd7b87b73fe782ee9fc8aee1ca8a09374ccfd7fd7608758",
+  "scope": "Combined component verification; per-component source hashes appear in printed results. Numeric-array NaN diagnostics remain visible failures of raw-bit equivalence. Not a whole-battle fidelity gate."
+}
