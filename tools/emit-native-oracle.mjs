@@ -13,6 +13,14 @@ import { comparePortableBattleTraces } from './battle-trace-portable.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 const args=process.argv.slice(2);
+const oracleProfile=JSON.parse(await readFile(resolve(root,'config/source-oracle-runtime.json'),'utf8'));
+assert.equal(process.version,oracleProfile.node,'Pinned source oracle Node version');
+assert.equal(process.versions.v8,oracleProfile.v8,'Pinned source oracle V8 version');
+assert.equal(process.platform,oracleProfile.platform);assert.equal(process.arch,oracleProfile.architecture);
+if(!oracleProfile.rawBitReferenceFlags.every(flag=>process.execArgv.includes(flag))||(process.env.NODE_OPTIONS||'')!==oracleProfile.rawBitReferenceNodeOptions){
+  const child=spawnSync(process.execPath,[...oracleProfile.rawBitReferenceFlags,process.argv[1],...args],{cwd:process.cwd(),env:{...process.env,NODE_OPTIONS:oracleProfile.rawBitReferenceNodeOptions},stdio:'inherit'});
+  if(child.error)throw child.error;process.exit(child.status??1);
+}
 function option(name,fallback){const i=args.indexOf(name);if(i>=0){if(!args[i+1]||args[i+1].startsWith('--'))throw new Error(`Missing ${name} value`);return args[i+1];}return fallback;}
 const scenarioPath=resolve(root,option('--scenario','config/scenario-example-2026.json'));
 const output=resolve(root,option('--output','work/native-oracle.js'));
@@ -28,7 +36,7 @@ if(!['all','final','checksum'].includes(captureMode))throw new Error('Capture mu
 if(!['all','battle','battle-core','observed'].includes(scope))throw new Error('Scope must be all, battle, battle-core, or observed');
 if(!Number.isSafeInteger(battles)||battles<1||!Number.isSafeInteger(warmup)||warmup<0)throw new Error('Invalid battle count');
 const sha=value=>createHash('sha256').update(value).digest('hex');
-const adapterFiles=['tools/emit-native-oracle.mjs','tools/native-oracle-trace.mjs',...traceSourceFiles,'tools/native-source-closure.mjs','tools/bootstrap-runtime.mjs','tools/bootstrap-source.mjs','tools/bootstrap-packed.mjs','tools/bootstrap-realm.mjs','tools/bootstrap-callbacks.mjs','tools/bootstrap-declarations.mjs','tools/bootstrap-render-scene.mjs','tools/scenario-factory.mjs','tools/bootstrap-host.js','tools/oracle-clock.js','config/bootstrap-packed-config.json'];
+const adapterFiles=['tools/emit-native-oracle.mjs','tools/native-oracle-trace.mjs',...traceSourceFiles,'tools/native-source-closure.mjs','tools/bootstrap-runtime.mjs','tools/bootstrap-source.mjs','tools/bootstrap-packed.mjs','tools/bootstrap-realm.mjs','tools/bootstrap-callbacks.mjs','tools/bootstrap-declarations.mjs','tools/bootstrap-render-scene.mjs','tools/scenario-factory.mjs','tools/bootstrap-host.js','tools/oracle-clock.js','config/bootstrap-packed-config.json','config/source-oracle-runtime.json'];
 const adapterInputs=Object.fromEntries(await Promise.all(adapterFiles.map(async file=>[file,sha(await readFile(resolve(root,file)))])));
 const wireText=await readFile(scenarioPath,'utf8'),wire=JSON.parse(wireText);
 const entropy=[],clockObserver={current:null},traceObserver={current:null};
@@ -245,7 +253,7 @@ try{
 }finally{closeSync(fd);}
 const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[])].map(record=>record.file).filter(Boolean));
 const sourceInputs=Object.fromEntries(await Promise.all([...sourceFiles].sort().map(async file=>[file,sha(await readFile(resolve(root,file)))])));
-const metadata={version:1,scope,captureMode,traceEnabled,executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
+const metadata={version:1,scope,captureMode,traceEnabled,oracleProfile,oracleRuntime:{node:process.version,v8:process.versions.v8,execArgv:process.execArgv,nodeOptions:process.env.NODE_OPTIONS||''},executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
   adapterInputs,sourceInputs,factoryChunks,
   sourceRuntime:{file:'tools/bootstrap-runtime.mjs',sha256:adapterInputs['tools/bootstrap-runtime.mjs'],executedFunctionSha256:sha(createBootstrapRuntime.toString())},
   definitionCount:records.definitions.size,globalCount:records.globals.size,factoryCount:allFactoryRecords.length,
@@ -263,7 +271,7 @@ await writeFile(output+'.metadata.json',JSON.stringify(metadata,null,2)+'\n');
 console.log(JSON.stringify({status:'emitted',output,bytes:(await readFile(output)).length,factoryCount:allFactoryRecords.length,reference:referencePath,metadata:output+'.metadata.json'}));
 if(!args.includes('--no-node-check')){
   const loader='const fs=require("node:fs"),vm=require("node:vm");globalThis.hermescli={loadFile:p=>new Uint8Array(fs.readFileSync(p))};for(const file of JSON.parse(process.argv[2]))vm.runInThisContext(fs.readFileSync(file,"utf8"),{filename:file});vm.runInThisContext(fs.readFileSync(process.argv[1],"utf8"),{filename:process.argv[1]});';
-  const checked=spawnSync(process.execPath,['-e',loader,output,JSON.stringify(factoryChunks.map(chunk=>chunk.file))],{cwd:root,encoding:'utf8',maxBuffer:128*1024*1024});
+  const checked=spawnSync(process.execPath,[...oracleProfile.rawBitReferenceFlags,'-e',loader,output,JSON.stringify(factoryChunks.map(chunk=>chunk.file))],{cwd:root,env:{...process.env,NODE_OPTIONS:oracleProfile.rawBitReferenceNodeOptions},encoding:'utf8',maxBuffer:128*1024*1024});
   await writeFile(output+'.node.stdout',checked.stdout??'');await writeFile(output+'.node.stderr',checked.stderr??'');
   if(checked.error)throw checked.error;
   assert.equal(checked.status,0,'Emitted Node failed; see '+output+'.node.stderr');
