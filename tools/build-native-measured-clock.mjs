@@ -1,0 +1,16 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+import {buildPrivateVMHelper} from './native-private-vm.mjs';
+const root=resolve(import.meta.dirname,'..'),directory=resolve(root,'work/native-measured-clock'),sha=b=>createHash('sha256').update(b).digest('hex');await mkdir(directory,{recursive:true});
+const baseFile='benchmarks/validation/native-entity-sort-copy-host.json',base=JSON.parse(await readFile(resolve(root,baseFile)));assert.equal(base.passed,true);
+for(const [file,expected]of Object.entries(base.sources))assert.equal(sha(await readFile(resolve(root,file))),expected);
+for(const library of Object.values(base.libraries))assert.equal(sha(await readFile(library.path)),library.sha256);
+const privateVM=await buildPrivateVMHelper({root,directory,helperFile:'tools/native-compiler-patches/measured-clock-host.inc'});
+const symbols=spawnSync('nm',['-D','--defined-only',privateVM.output],{encoding:'utf8'});assert.equal(symbols.status,0);
+const requiredExports=[...base.requiredExports,'simx_install_measured_clock','simx_measured_clock_calls'];for(const name of requiredExports)assert.ok(symbols.stdout.split('\n').some(line=>line.endsWith(' '+name)));
+const sources={...base.sources};for(const file of ['tools/build-native-measured-clock.mjs','tools/native-compiler-patches/measured-clock-host.inc'])sources[file]=sha(await readFile(resolve(root,file)));
+const result={...base,scope:'Profiling-only private benchmark timer installer build. Requires an existing own writable __nativeWallNow value equal to original native Date.now; changes only that benchmark timer binding after first six units. Exactly two monotonic-clock calls emit phase markers. Actual split-unit battle parity and directed guard tests remain separate gates; no throughput result.',privateVM,sources,requiredExports,prerequisites:{...base.prerequisites,[baseFile]:{sha256:sha(await readFile(resolve(root,baseFile))),scope:base.scope}},markerClock:'CLOCK_MONOTONIC',markerFormat:['simx_measure_start_ns:<uint64>','simx_measure_end_ns:<uint64>'],qualifiesFor10000Target:false};
+await writeFile(resolve(root,'benchmarks/validation/native-measured-clock-build.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({built:true,privateVM}));
