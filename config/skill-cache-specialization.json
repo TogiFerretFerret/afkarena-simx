@@ -31,5 +31,31 @@
     "start": 4500415,
     "end": 4501076,
     "sha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c"
+  },
+  "helperReferences": [
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "offset": 83889,
+      "context": "ed.getNeedReadSkillCacheTb(this)&&ed.getDataTable(\"SkillCache\")",
+      "fileSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "offset": 90865,
+      "context": "ed.getNeedReadSkillCacheTb(r)){var n;n=e instanceof ed.Buff?e.i",
+      "fileSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
+    },
+    {
+      "file": "src/srcmodule/game_ui_1.js",
+      "offset": 4499790,
+      "context": "ed.getNeedReadSkillCacheTb=function(e){if(!e)return!1;var t,i=!",
+      "fileSha256": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b"
+    }
+  ],
+  "functionIdentity": {
+    "changed": true,
+    "audit": "Only three literal references in supplied game source: definition and two direct calls from Unit skill creation/buff insertion. The helper is not passed into Cocos inheritance machinery. Generic reflective traversal is not a resolved whole-program call-graph proof.",
+    "scope": "Source battle consumers invoke helper; arbitrary external function introspection is excluded. Native emission must retain original helper Function.toString metadata if introspection becomes reachable.",
+    "qualification": false
   }
 }
