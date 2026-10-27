@@ -66,10 +66,12 @@ impl World{
  #[inline]fn vector(&self,id:Vec2Id)->[f64;2]{*self.vectors.get(id)}
  #[inline]fn component(&mut self,id:Vec2Id,index:usize,value:f64){self.vectors.set_component(id,index,value)}
  pub fn update_unit<H:Hooks>(&mut self,id:UnitId,dt:f64,h:&mut H)->Result{
+  let mut terminate=false;
   if !self.units[id].is_alive()&&self.units[id].is_summoned&&self.units[id].delay_terminate_timer.is_some(){
    let timer=self.units[id].delay_terminate_timer.unwrap()-dt;self.units[id].delay_terminate_timer=Some(timer);
-   if timer<=0.0{h.terminate(self,id)?;}return Ok(());
+   terminate=timer<=0.0;
   }
+  if terminate{h.terminate(self,id)?;return Ok(());}
   if self.local_bot&&self.units[id].is_alive(){h.debug_checks(self,id)?;}
   let mut speed=self.units[id].attribs.mspd;
   if self.units[id].is_boss&&speed< -75.0{speed= -75.0;}
