@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Source-pinned capture constancy and structured control-flow equivalence for two next_sound callback literals; not installed, not native execution and not battle qualification.",
+  "source": {
+    "file": "src/srcmodule/game_battle.js",
+    "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "offsetUnit": "UTF-16 code units"
+  },
+  "captureProofs": [
+    {
+      "callback": {
+        "start": 19940,
+        "end": 20127,
+        "sha256": "6c9eb96919e61442e51b85270b8c94eaae556ac727c19b2be18a20ac21e05cdd"
+      },
+      "enclosing": {
+        "start": 18788,
+        "end": 20141,
+        "sha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838"
+      },
+      "capture": {
+        "name": "i",
+        "kind": "var",
+        "initializer": "i=this.current_phase_elapsed+e",
+        "initializerStart": 19173,
+        "initializerEnd": 19203,
+        "references": [
+          19231,
+          19262,
+          19976
+        ],
+        "constantViolations": 0,
+        "directEvalOrWith": false
+      },
+      "creation": {
+        "start": 19929,
+        "end": 20139,
+        "expression": "clientCall(function(){var e=this.next_sound;e&&i>e.Delay&&this.playSound&&(ed.playBattleEffect(e.SoundName),this.next_sound_idx++,this.next_sound=this.current_phase.sound_list[this.next_sound_idx])}.bind(this))"
+      }
+    },
+    {
+      "callback": {
+        "start": 37200,
+        "end": 37387,
+        "sha256": "6c9eb96919e61442e51b85270b8c94eaae556ac727c19b2be18a20ac21e05cdd"
+      },
+      "enclosing": {
+        "start": 36043,
+        "end": 37401,
+        "sha256": "164e189cd345b8d46beb1badbd7e501ef9de29cf38dee0b0cd4ac4c273e80f2b"
+      },
+      "capture": {
+        "name": "i",
+        "kind": "var",
+        "initializer": "i=this.current_phase_elapsed+e",
+        "initializerStart": 36390,
+        "initializerEnd": 36420,
+        "references": [
+          36448,
+          36479,
+          37236
+        ],
+        "constantViolations": 0,
+        "directEvalOrWith": false
+      },
+      "creation": {
+        "start": 37189,
+        "end": 37399,
+        "expression": "clientCall(function(){var e=this.next_sound;e&&i>e.Delay&&this.playSound&&(ed.playBattleEffect(e.SoundName),this.next_sound_idx++,this.next_sound=this.current_phase.sound_list[this.next_sound_idx])}.bind(this))"
+      }
+    }
+  ],
+  "structuredForm": "function(){var e=this.next_sound;if(!e)return;if(!(i>e.Delay))return;if(!this.playSound)return;ed.playBattleEffect(e.SoundName);this.next_sound_idx++;this.next_sound=this.current_phase.sound_list[this.next_sound_idx]}",
+  "directedCases": 39,
+  "checks": [
+    "Current next_sound captured once before guard",
+    "Captured i read before Delay getter; relational coercion retained",
+    "playSound read only after both earlier guards",
+    "Current ed.playBattleEffect resolved before SoundName getter and called with ed receiver",
+    "Call completes before index read, numeric coercion and write",
+    "Current phase and sound_list read after increment; list resolved before CURRENT index read",
+    "Exceptions preserve exact completed prefix and sentinel identity",
+    "Negative zero, NaN, Infinity, strings, BigInt and object numeric coercion retained"
+  ],
+  "executionGraph": [
+    {
+      "id": "read-sound",
+      "operation": "Get(this,next_sound)",
+      "next": "sound-truthy"
+    },
+    {
+      "id": "sound-truthy",
+      "operation": "ToBoolean(e)",
+      "true": "read-i-delay",
+      "false": "return-undefined"
+    },
+    {
+      "id": "read-i-delay",
+      "operation": "Read lexical i, Get(e,Delay), relational i>Delay including ToPrimitive order",
+      "true": "playSound",
+      "false": "return-undefined"
+    },
+    {
+      "id": "playSound",
+      "operation": "Get(this,playSound), ToBoolean",
+      "true": "sound-call",
+      "false": "return-undefined"
+    },
+    {
+      "id": "sound-call",
+      "operation": "Read current ed; Get(ed,playBattleEffect); Get(e,SoundName); Call with this=ed",
+      "next": "index-update"
+    },
+    {
+      "id": "index-update",
+      "operation": "Get(this,next_sound_idx); ToNumeric; add matching Number/BigInt one; Set(this,next_sound_idx)",
+      "next": "next-assignment"
+    },
+    {
+      "id": "next-assignment",
+      "operation": "Resolve this.next_sound reference; Get(this,current_phase); Get(phase,sound_list); Get(this,next_sound_idx); ToPropertyKey; Get(list,key); Set(this,next_sound)",
+      "next": "return-undefined"
+    }
+  ],
+  "admissionContract": {
+    "captureI": "Binding constancy proven at both creation sites in the pinned source. Initializer + yields a primitive; a future f64-only ABI must still guard typeof i===number and preserve exact bits.",
+    "receiver": "Must retain exact bound receiver strongly, not reconstruct from target identity.",
+    "environment": "ed is read at dispatch; property getters, proxies and mutation remain observable. Never cache effect method, index, phase or sound_list across earlier observable operations.",
+    "creation": "Current source invokes callback.bind(this) through dynamic property lookup before clientCall. Rewriting creation must preserve builtin bind identity/fallback and logical callback identity/own descriptors/prototypes/source.",
+    "queue": "Retain original FIFO captured-array drain and every logical before/after event."
+  },
+  "blockers": [
+    "Existing public target resolver deliberately exposes only GetBoundFunction target, not bound receiver/arguments or lexical environment. It cannot populate a sound callback enum faithfully.",
+    "No source-creation-site environment/callback representation with original function identity and source/descriptor fallback is integrated. A target hash alone cannot replace this closure.",
+    "Even with primitive constant i, receiver and ed remain live object identities and original accessor/coercion/exception order must remain; the structured form is a proof artifact, not a fast path."
+  ],
+  "qualifiesFor10000Target": false,
+  "performanceClaim": false,
+  "producer": {
+    "file": "tools/check-sound-callback-lowering.mjs",
+    "sha256": "ea88ca0db8744234932a928bfea213b15d5a0accc7b9dbcb6aa9b6f6b0e7b969"
+  }
+}
