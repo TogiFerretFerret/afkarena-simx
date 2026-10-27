@@ -6,10 +6,13 @@ import{runInNewContext}from'node:vm';
 import assert from'node:assert/strict';
 import{sourceCopyFunction}from'./flat-numeric-copy.mjs';
 import{patchFlatNumericCopyC}from'./native-rust-bridge.mjs';
+import{patchCombinedCopyC}from'./native-copy-bridge.mjs';
+import{gzipSync}from'node:zlib';
 import{firstDifference}from'./native-report-compare.mjs';
 import{buildPrivateVMHelper}from'./native-private-vm.mjs';
-const empty=process.argv.includes('--empty-array');
-const root=resolve(import.meta.dirname,'..'),directory=resolve(root,empty?'work/native-empty-array-copy':'work/native-flat-copy');
+const combined=process.argv.includes('--combined'),empty=process.argv.includes('--empty-array');
+assert.ok(!(combined&&empty),'Choose one clone mode');
+const root=resolve(import.meta.dirname,'..'),directory=resolve(root,combined?'work/native-combined-copy':empty?'work/native-empty-array-copy':'work/native-flat-copy');
 await mkdir(directory,{recursive:true});
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const profile=JSON.parse(await readFile(resolve(root,'config/source-oracle-runtime.json')));
@@ -22,7 +25,7 @@ function bits(x){var a=new ArrayBuffer(8),v=new DataView(a);v.setFloat64(0,x,fal
 function snapshot(o){var keys=Object.keys(o),r=[];for(var i=0;i<keys.length;i++){var k=keys[i],d=Object.getOwnPropertyDescriptor(o,k);r.push([k,typeof d.value==='number'?bits(d.value):d.value,d.enumerable,d.writable,d.configurable]);}return r;}
 var outputs=[],fresh=true,events=[];
 for(var i=0;i<20000;i++){var o={};for(var j=0;j<(i%50);j++)o['k'+j]=(i+j)%11===0?-0:(i-j)*1.125;if(typeof gc==='function'&&i%97===0)gc();var c=ed.copyObj(o);fresh=fresh&&c!==o&&Object.getPrototypeOf(c)===Object.prototype;outputs.push(snapshot(c));}
-${empty?"for(var i=0;i<20000;i++){var a=[],b=ed.copyObj(a);fresh=fresh&&a!==b&&Array.isArray(b)&&b.length===0&&Object.getPrototypeOf(b)===Array.prototype;}":''}
+${empty||combined?"for(var i=0;i<20000;i++){var a=[],b=ed.copyObj(a);fresh=fresh&&a!==b&&Array.isArray(b)&&b.length===0&&Object.getPrototypeOf(b)===Array.prototype;}":''}
 var fallback=[];
 function check(name,make){events=[];var o=make(),c=ed.copyObj(o);fallback.push([name,snapshot(c),events.slice(),c!==o]);}
 check('getter',function(){var o={};Object.defineProperty(o,'x',{enumerable:true,get:function(){events.push('get');return 7;}});return o;});
@@ -52,18 +55,22 @@ const jsfile=resolve(directory,'probe.js');await writeFile(jsfile,script);
 function run(cmd,args,env=process.env){const r=spawnSync(cmd,args,{cwd:root,env,encoding:'utf8',maxBuffer:64*1024*1024});if(r.error)throw r.error;assert.equal(r.status,0,r.stderr);return r;}
 const compiler=resolve(root,'work/downloads/hermes-build/bin/shermes'),pools=resolve(directory,'pools'),original=resolve(directory,'original.c');await mkdir(pools,{recursive:true});
 run(compiler,['-O','-emit-c',jsfile,'-o',original],{...process.env,SHERMES_BINARY_STRING_DIR:pools});
-let{source}=await patchFlatNumericCopyC(await readFile(original,'utf8'),pools,sourceCopyFunction);
+let{source}=await (combined?patchCombinedCopyC:patchFlatNumericCopyC)(await readFile(original,'utf8'),pools,sourceCopyFunction);
 let privateVM=null;
+if(combined){privateVM=await buildPrivateVMHelper({root,directory,helperFile:'tools/native-compiler-patches/entity-sort-copy-host.inc'});const exports=run('nm',['-D','--defined-only',privateVM.output]).stdout;for(const name of ['simx_flat_numeric_copy','simx_empty_array_copy','simx_entity_update','simx_install_v8_sort','simx_install_diagnostic_digest'])assert.ok(exports.split('\n').some(line=>line.endsWith(' '+name)),'Missing combined helper export: '+name);}
 if(empty){source=source.replaceAll('simx_flat_numeric_copy','simx_empty_array_copy');privateVM=await buildPrivateVMHelper({root,directory,helperFile:'tools/native-compiler-patches/empty-array-copy.inc'});}
 source=source.replace(/int main\(int argc,\s*char \*\*argv\) \{/,'int simx_original_main(int argc,char **argv) {');
 source+='\n#include <stdio.h>\nint main(int argc,char **argv){int result=simx_original_main(argc,argv);fprintf(stderr,"copy_hits:%zu\\n",simx_copy_hits);return result;}\n';
+if(combined)source=source.replace('return result;}\n','fprintf(stderr,"empty_copy_hits:%zu\\nnumeric_copy_hits:%zu\\n",simx_empty_copy_hits,simx_numeric_copy_hits);return result;}\n');
 const patched=resolve(directory,'patched.c');await writeFile(patched,source);
 const config=JSON.parse(await readFile(resolve(root,'config/native-compiler-static-hermes.json'))),build=resolve(root,'work/downloads/hermes-build'),binary=resolve(directory,'probe');
 const args=[patched,'-O2','-g0','-DNDEBUG','-fno-strict-aliasing','-fno-strict-overflow','-ffp-contract=off','-I'+resolve(build,'lib/config'),'-I'+resolve(root,'work/downloads',config.source.directory,'include')];
-if(empty)args.push('-L'+directory,'-Wl,-rpath,'+directory);
+if(empty||combined)args.push('-L'+directory,'-Wl,-rpath,'+directory);
 for(const lib of['lib','jsi','tools/shermes']){const path=resolve(build,lib);args.push('-L'+path,'-Wl,-rpath,'+path);}args.push('-lshermes_console','-lhermesvm','-ldl','-lpthread','-lm','-o',binary);run('cc',args);
-const execution=run(binary,['-Xhermes-internal-test-methods'],empty?{...process.env,LD_LIBRARY_PATH:directory}:process.env),actual=JSON.parse(execution.stdout);let expected;runInNewContext(script,{gc:()=>{},print:t=>{expected=JSON.parse(t);}});
-const difference=firstDifference(actual,expected),hits=Number(/copy_hits:(\d+)/.exec(execution.stderr)[1]);
+const execution=run(binary,['-Xhermes-internal-test-methods'],empty||combined?{...process.env,LD_LIBRARY_PATH:directory}:process.env),actual=JSON.parse(execution.stdout);let expected;runInNewContext(script,{gc:()=>{},print:t=>{expected=JSON.parse(t);}});
+let untouched=null;if(combined){const baseline=resolve(directory,'untouched');const originalArgs=args.slice();originalArgs[0]=original;originalArgs[originalArgs.length-1]=baseline;run('cc',originalArgs);untouched=JSON.parse(run(baseline,['-Xhermes-internal-test-methods'],{...process.env,LD_LIBRARY_PATH:directory}).stdout);assert.equal(firstDifference(untouched,expected),null,'Untouched native source differs from pinned Node');}
+const difference=firstDifference(actual,expected)|| (untouched&&firstDifference(actual,untouched)),hits=Number(/copy_hits:(\d+)/.exec(execution.stderr)[1]);
 const report={version:1,matched:difference===null,difference,sourceCases:20000,fallbackCases:actual.fallback.length,cloneHits:hits,originalSourceSha256:sha(sourceCopyFunction),compilerSha256:sha(await readFile(compiler)),vmSha256:sha(await readFile(resolve(build,'lib/libhermesvm.so'))),oracleProfile:profile,qualifiesFor10000Target:false,scope:'Guarded native VM flat finite Number clone with original source fallback, fresh identity, descriptor/key order and exact Number bits. Isolated probe, not whole-battle qualification.'};
 if(empty){report.sourceCases=40000;report.specializedEmptyArrayCases=20000;report.privateVM=privateVM;report.scope='Guarded original intrinsic empty Array clone in isolated private VM; unsupported shapes execute unchanged original copyObj. Not installed in live compiler; not whole-battle qualification.';}
-await writeFile(resolve(root,'benchmarks/validation',empty?'native-empty-array-copy.json':'native-flat-copy.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));assert.equal(difference,null);assert.ok(hits>=20000);
+if(combined){report.sourceCases=40000;report.specializedEmptyArrayCases=20000;report.privateVM=privateVM;report.emptyHits=Number(/empty_copy_hits:(\d+)/.exec(execution.stderr)[1]);report.numericHits=Number(/numeric_copy_hits:(\d+)/.exec(execution.stderr)[1]);report.scope='Isolated combined guarded empty-array and flat numeric clone trampoline on private Entity+TimSort+SHA helper composition; complete original fallback. Not an integrated battle or throughput result.';report.sourceHashes={};for(const file of ['tools/native-flat-copy-probe.mjs','tools/native-copy-bridge.mjs','tools/native-rust-bridge.mjs','tools/native-private-vm.mjs','tools/native-compiler-patches/entity-sort-copy-host.inc','tools/native-compiler-patches/empty-array-copy.inc','tools/native-compiler-patches/entity-sort-host.inc','tools/native-compiler-patches/entity-update.inc','tools/native-compiler-patches/tim-sort-host.inc','tools/native-compiler-patches/tim-sort.inc','tools/native-compiler-patches/small-sort.inc','tools/native-compiler-patches/diagnostic-sha256-host.inc','tools/native-compiler-patches/diagnostic-sha256.inc'])report.sourceHashes[file]=sha(await readFile(resolve(root,file)));const raw=JSON.stringify({actual,expected,untouched,stderr:execution.stderr});await writeFile(resolve(root,'benchmarks/validation/native-combined-copy.outputs.json.gz'),gzipSync(raw));report.outputsSha256=sha(raw);report.untouchedNativeMatched=true;report.generatedSourceSha256=sha(script);report.generatedCSha256=sha(await readFile(original));report.patchedCSha256=sha(source);report.liveVMPreserved=sha(await readFile(resolve(build,'lib/libhermesvm.so')))===privateVM.originalSha256;assert.equal(report.liveVMPreserved,true);assert.ok(report.emptyHits>=20000&&report.numericHits>=20000);}
+await writeFile(resolve(root,'benchmarks/validation',combined?'native-combined-copy.json':empty?'native-empty-array-copy.json':'native-flat-copy.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));assert.equal(difference,null);assert.ok(hits>=20000);
