@@ -13,6 +13,14 @@ const read=path=>readFile(resolve(root,path));
 const reportBytes=await read(reportPath),report=JSON.parse(reportBytes);
 const binaryPath=option('--binary',report.linkArgs[report.linkArgs.lastIndexOf('-o')+1]);
 const binaryBytes=await read(binaryPath);assert.equal(sha(binaryBytes),report.outputSha256,'Native report binary hash');
+if(report.kind==='profiling-prepared-wrapper'){
+ assert.equal(report.semanticReportMatched,null,'Prepared wrapper must not claim execution parity');
+ assert.equal(report.allSevenObjectsReused,true);
+ const baselineBytes=await read(report.strictBaseline.file);assert.equal(sha(baselineBytes),report.strictBaseline.sha256);
+ const strict=JSON.parse(baselineBytes);assert.equal(strict.semanticReportMatched,true);
+ assert.equal(strict.units.length,report.units.length);
+ strict.units.forEach((unit,index)=>assert.equal(unit.objectSha256,report.units[index].objectSha256,'Prepared wrapper object identity'));
+}
 function elf(bytes){
  assert.equal(bytes.subarray(0,4).toString('hex'),'7f454c46');assert.equal(bytes[4],2,'ELF64 only');assert.equal(bytes[5],1,'Little endian ELF only');assert.equal(bytes.readUInt16LE(18),62,'x86_64 only');
  const number=(offset)=>{const value=bytes.readBigUInt64LE(offset);assert.ok(value<=BigInt(Number.MAX_SAFE_INTEGER));return Number(value);};
