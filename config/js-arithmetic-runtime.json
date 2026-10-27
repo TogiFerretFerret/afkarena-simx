@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "referenceProfile": "config/source-oracle-runtime.json",
+  "implementation": "crates/battle-core/src/js_math.rs",
+  "supportedPlatform": "linux",
+  "supportedArchitecture": "x86_64",
+  "unsupportedTargets": "Compile-time error; no unverified fallback",
+  "mxcsrControlBits": "1f80",
+  "mxcsrStatusBits": "Ignored by reference_fp_environment; sticky exception flags are not JS-observable",
+  "operations": {
+    "add": "SSE addsd with right operand as destination",
+    "multiply": "SSE mulsd with right operand as destination",
+    "subtract": "SSE subsd with left operand as destination",
+    "divide": "SSE divsd with left operand as destination",
+    "min": "Source-matched signed-zero selection and observed canonical negative NaN",
+    "max": "Source-matched signed-zero selection and observed canonical negative NaN"
+  },
+  "nanPolicy": "Arithmetic retains the selected operand's sign and payload, quieting signaling NaNs through the hardware instruction. No blanket NaN canonicalization is applied to arithmetic.",
+  "upstreamSource": {
+    "url": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/deps/v8/src/ic/binary-op-assembler.cc",
+    "sha256": "504ff335bace59f6b7ea6ffb03e5929d778ac9462f5b4a7242edc927e364010f",
+    "bindings": ["Generate_AddWithFeedback uses Float64Add", "Subtract uses Float64Sub", "Multiply uses Float64Mul", "Divide uses Float64Div"],
+    "machineOperandOrderEvidence": "benchmarks/validation/f64-operation-probe-summary.json"
+  },
+  "formalProof": false,
+  "scope": "Pinned machine/runtime behavior backed by raw binary64 probes; not a portable ECMAScript NaN-payload guarantee or a full battle qualification"
+}

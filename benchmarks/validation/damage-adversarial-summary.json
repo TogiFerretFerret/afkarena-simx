@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "inputDomain": "adversarial binary64 extremes",
+  "cases": 20000,
+  "outputValues": 120000,
+  "rngDraws": 14942,
+  "nanPolicy": "bits",
+  "nanBitDifferences": 0,
+  "rawBitsExact": true,
+  "scope": "Source damage math, dodge RNG consumption and live-buff power transforms; not full takeDamage or battles"
+}

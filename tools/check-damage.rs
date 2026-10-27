@@ -1,4 +1,5 @@
 #[path="../crates/battle-core/src/damage.rs"]mod damage;
+#[path="../crates/battle-core/src/js_math.rs"]mod js_math;
 #[path="../crates/battle-core/src/rng.rs"]mod rng;
 use damage::*;use std::io::{self,BufRead,Write};
 struct Host{fix:ProbabilityFix,stage:f64,rng:rng::BattleRng,events:Vec<&'static str>,draws:usize}

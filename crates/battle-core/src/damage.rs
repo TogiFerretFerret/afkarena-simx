@@ -1,6 +1,7 @@
 //! Source-derived damage arithmetic. JS Math.min/max are implemented explicitly:
 //! Rust f64::min/max suppress NaNs and have different signed-zero behavior.
 //! The NaN encoding matches the pinned x64 V8 oracle; see damage-translation.json.
+use crate::js_math::{add,sub,mul,div};
 #[inline] pub fn truthy(x:f64)->bool{x!=0.0&&!x.is_nan()}
 #[inline] pub fn or_zero(x:f64)->f64{if truthy(x){x}else{0.0}}
 #[inline] pub fn js_max(a:f64,b:f64)->f64{
@@ -14,19 +15,19 @@
     if a<b{a}else{b}
 }
 #[inline]pub fn critical_coefficient(attacker_critp:f64,defender_critd:f64,attacker_critplu:f64)->f64{
-    let mut result=2.0;result+=1.0*(attacker_critp-defender_critd)/100.0;
-    let mut maximum=2.9;maximum+=or_zero(attacker_critplu/100.0);
+    let result=add(2.0,div(mul(1.0,sub(attacker_critp,defender_critd)),100.0));
+    let mut maximum=add(2.9,or_zero(div(attacker_critplu,100.0)));
     maximum=js_max(maximum,1.1);js_min(maximum,js_max(1.1,result))
 }
-#[inline]pub fn lost_after_immunity(damage:f64,immunity:f64)->f64{js_max(1.0,damage*(100.0-immunity)/100.0)}
+#[inline]pub fn lost_after_immunity(damage:f64,immunity:f64)->f64{js_max(1.0,div(mul(damage,sub(100.0,immunity)),100.0))}
 #[derive(Clone,Copy,Debug,Default)]pub struct ProbabilityFix{
     pub cap_up:f64,pub ratio_up:f64,pub ratio_down:f64,pub cap_down:f64,
 }
 #[inline]pub fn fix_probability(mut p:f64,stage_fix:f64,camp:f64,player_camp:f64,row:ProbabilityFix)->f64{
     let stage_fix=or_zero(stage_fix);if !truthy(stage_fix){return p}
     let sign=if camp==player_camp{1.0}else{-1.0};
-    if sign*stage_fix>0.0{p+=js_min((1.0-p)*row.ratio_up,row.cap_up*row.ratio_up*p)}
-    else if sign*stage_fix<0.0{p-=js_min((1.0-p)*row.ratio_down,row.cap_down*p)}p
+    if mul(sign,stage_fix)>0.0{p=add(p,js_min(mul(sub(1.0,p),row.ratio_up),mul(mul(row.cap_up,row.ratio_up),p)))}
+    else if mul(sign,stage_fix)<0.0{p=sub(p,js_min(mul(sub(1.0,p),row.ratio_down),mul(row.cap_down,p)))}p
 }
 #[derive(Clone,Copy,Debug,Eq,PartialEq)]pub enum MpSource{Caster,Victim,Other}
 #[derive(Clone,Copy,Debug,Default)]pub struct MpFix{
@@ -34,14 +35,14 @@
 }
 #[inline]pub fn fix_gain_mp(mut amount:f64,stage_fix:f64,ticks:f64,camp:f64,player_camp:f64,source:MpSource,row:MpFix)->f64{
     if !truthy(or_zero(stage_fix)){return amount}
-    if ticks<8.0*row.start_seconds{return amount}
+    if ticks<mul(8.0,row.start_seconds){return amount}
     let mut ratio=0.0;
     if camp==player_camp{if source==MpSource::Caster{ratio=row.player_caster}else if source==MpSource::Victim{ratio=row.player_victim}}
     else if source==MpSource::Caster{ratio=row.enemy_caster}else if source==MpSource::Victim{ratio=row.enemy_victim}
-    amount*=1.0+ratio;amount
+    amount=mul(amount,add(1.0,ratio));amount
 }
 #[inline]pub fn dodge_probability(defender_dodge:f64,attacker_hit:f64)->f64{
-    let advantage=js_max(0.0,defender_dodge-attacker_hit);advantage/(100.0+advantage)
+    let advantage=js_max(0.0,sub(defender_dodge,attacker_hit));div(advantage,add(100.0,advantage))
 }
 /// Call ordering is part of the source contract: bypasses consume no RNG; physical
 /// dodge draws BEFORE fixing probability (the draw is the comparison's left
@@ -75,10 +76,10 @@ pub fn power<H:PowerHooks>(input:PowerInput,source:usize,target:usize,h:&mut H)-
     let base=or_zero(input.base);let per_level=or_zero(input.per_level);let mut ratio=or_zero(input.plus_ratio);
     if input.finally_damage_ratio{ratio=1.0}
     let attr=if input.has_plus_attr{input.plus_attr}else{0.0};
-    let mut power=or_zero(base+per_level*or_zero(input.level)+ratio*attr);
-    let multiplier=1.0+or_zero(input.extra_damage_ratio);
+    let mut power=or_zero(add(add(base,mul(per_level,or_zero(input.level))),mul(ratio,attr)));
+    let multiplier=add(1.0,or_zero(input.extra_damage_ratio));
     let mut index=0;while index<h.buff_count(){let buff=h.buff_at(index);power=h.on_calculate_power(buff,power,source,target);index+=1;}
-    power*multiplier
+    mul(power,multiplier)
 }
 
 #[cfg(test)]mod tests{

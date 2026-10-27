@@ -94,21 +94,15 @@
       "cases": 20000,
       "outputValues": 120000,
       "rngDraws": 14942,
-      "nanPolicy": "semantic",
-      "nanBitDifferences": 348,
-      "firstNaNDifference": {
-        "case": 79,
-        "output": 2,
-        "expected": "fff8000000000000",
-        "actual": "7ff8000000000000"
-      },
-      "rawBitsExact": false,
+      "nanPolicy": "bits",
+      "nanBitDifferences": 0,
+      "rawBitsExact": true,
       "scope": "Source damage math, dodge RNG consumption and live-buff power transforms; not full takeDamage or battles"
     }
   },
   "limitations": [
-    "Adversarial NaN sign/payload differences are reported explicitly; they are not a full-fidelity pass",
-    "Full source takeDamage control is present with every unresolved mechanic required through TakeDamageHooks; this is not a complete battle implementation"
+    "The adversarial primitive corpus now passes raw bits with ordered SSE arithmetic under the pinned jitless Linux-x64 reference; this does not establish full battle equivalence",
+    "Full source takeDamage control is present with every unresolved mechanic required through TakeDamageHooks; its fixture domain remains narrower than all possible binary64 controller inputs"
   ],
   "controllerValidation": {
     "version": 1,
@@ -123,5 +117,6 @@
     "Critical RNG remains before early amount/fieldNPC/immunity returns; AP magic dodge consumes source RNG at its later call boundary",
     "HP and MP affect fields, thump/multi/resistance, source accounting, queued immune/suppression/number callback bodies are compared",
     "Host callbacks implement fixture mechanics for component validation; real game mechanics remain required in TakeDamageHooks"
-  ]
+  ],
+  "arithmeticPolicy": "config/js-arithmetic-runtime.json"
 }

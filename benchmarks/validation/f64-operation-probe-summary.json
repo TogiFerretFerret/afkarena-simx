@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "referenceProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "cases": 17225,
+  "distinctDirectedValues": 85,
+  "randomPairs": 10000,
+  "helperOutputValues": 103350,
+  "operations": [
+    "add",
+    "sub",
+    "mul",
+    "div",
+    "min",
+    "max"
+  ],
+  "nativeOperations": [
+    "rust-add",
+    "rust-sub",
+    "rust-mul",
+    "rust-div",
+    "sse-left-add",
+    "sse-left-sub",
+    "sse-left-mul",
+    "sse-left-div",
+    "sse-right-add",
+    "sse-right-mul",
+    "helper-add",
+    "helper-sub",
+    "helper-mul",
+    "helper-div",
+    "helper-min",
+    "helper-max"
+  ],
+  "source": [
+    "function(a,b){return a+b}",
+    "function(a,b){return a-b}",
+    "function(a,b){return a*b}",
+    "function(a,b){return a/b}",
+    "function(a,b){return Math.min(a,b)}",
+    "function(a,b){return Math.max(a,b)}"
+  ],
+  "counts": {
+    "rust-add": {
+      "differences": 5394,
+      "first": [
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "fff8000000000000"
+          },
+          "expected": "fff8000000000000",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "7ff8000000000001"
+          },
+          "expected": "7ff8000000000001",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "fff8000000000002"
+          },
+          "expected": "fff8000000000002",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "7ff8123456789abc"
+          },
+          "expected": "7ff8123456789abc",
+          "actual": "7ff8000000000000"
+        }
+      ]
+    },
+    "rust-sub": {
+      "differences": 0,
+      "first": []
+    },
+    "rust-mul": {
+      "differences": 5394,
+      "first": [
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "fff8000000000000"
+          },
+          "expected": "fff8000000000000",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "7ff8000000000001"
+          },
+          "expected": "7ff8000000000001",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "fff8000000000002"
+          },
+          "expected": "fff8000000000002",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "7ff8123456789abc"
+          },
+          "expected": "7ff8123456789abc",
+          "actual": "7ff8000000000000"
+        }
+      ]
+    },
+    "rust-div": {
+      "differences": 0,
+      "first": []
+    },
+    "sse-left-add": {
+      "differences": 5394,
+      "first": [
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "fff8000000000000"
+          },
+          "expected": "fff8000000000000",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "7ff8000000000001"
+          },
+          "expected": "7ff8000000000001",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "fff8000000000002"
+          },
+          "expected": "fff8000000000002",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "7ff8123456789abc"
+          },
+          "expected": "7ff8123456789abc",
+          "actual": "7ff8000000000000"
+        }
+      ]
+    },
+    "sse-left-sub": {
+      "differences": 0,
+      "first": []
+    },
+    "sse-left-mul": {
+      "differences": 5394,
+      "first": [
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "fff8000000000000"
+          },
+          "expected": "fff8000000000000",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "7ff8000000000001"
+          },
+          "expected": "7ff8000000000001",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "fff8000000000002"
+          },
+          "expected": "fff8000000000002",
+          "actual": "7ff8000000000000"
+        },
+        {
+          "input": {
+            "a": "7ff8000000000000",
+            "b": "7ff8123456789abc"
+          },
+          "expected": "7ff8123456789abc",
+          "actual": "7ff8000000000000"
+        }
+      ]
+    },
+    "sse-left-div": {
+      "differences": 0,
+      "first": []
+    },
+    "sse-right-add": {
+      "differences": 0,
+      "first": []
+    },
+    "sse-right-mul": {
+      "differences": 0,
+      "first": []
+    },
+    "helper-add": {
+      "differences": 0,
+      "first": []
+    },
+    "helper-sub": {
+      "differences": 0,
+      "first": []
+    },
+    "helper-mul": {
+      "differences": 0,
+      "first": []
+    },
+    "helper-div": {
+      "differences": 0,
+      "first": []
+    },
+    "helper-min": {
+      "differences": 0,
+      "first": []
+    },
+    "helper-max": {
+      "differences": 0,
+      "first": []
+    }
+  },
+  "binarySha256": "cff74a7e652b41b480567eae384bcd9a79bab926de974d66f2627a161333db6c",
+  "noNormalization": true,
+  "rawRowsSha256": "339d185e235502c0433ca7361ba15e794264c68a4c2839fd48fdd142dab36fd5",
+  "sha256": {
+    "tools/probe-f64-ops.mjs": "7156566029638f491fe77bfc643a28e183951d07d47b2cfdecf10282bf6a569c",
+    "tools/probe-f64-ops.rs": "48cbe3600b83bff4b449a0c6ab3ca31eec96e08a0cf56cdb2afcb99d764cef5f",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d"
+  }
+}

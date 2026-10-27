@@ -1,4 +1,5 @@
 #[path="../crates/battle-core/src/damage.rs"]mod damage;
+#[path="../crates/battle-core/src/js_math.rs"]mod js_math;
 #[path="../crates/battle-core/src/rng.rs"]mod rng;
 use damage::*;use std::io::{self,BufRead,Write};
 struct Fixture{attrs:[DamageAttributes;2],hp:[f64;2],mp:[f64;2],alive:[bool;2],buffs:[Vec<usize>;2],flags:u64,rng:rng::BattleRng,events:Vec<String>,queue:Vec<DamageCallback>}
