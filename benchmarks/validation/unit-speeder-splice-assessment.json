@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "kind": "assessment-only-unit-speeder-interior-splice",
+  "integrated": false,
+  "qualifiesFor10000Target": false,
+  "sourceBlock": {
+    "file": "src/srcmodule/game_battle.js",
+    "start": 97801,
+    "end": 98202,
+    "sha256": "a6f6d65083f52a608a25ee50152ac82d6e1822b6948b83cb8f6a56780e7ac7cc"
+  },
+  "generatedCandidate": {
+    "file": "work/native-warm23-entity.units/partition_0.original.c",
+    "sha256": "183b39215a6f7692022a5fbf17ebdc20eeb31d6de12e79fec666579a8d03d382",
+    "functionSymbol": "_564_update_11_",
+    "entryLabel": "L22",
+    "start": 3198184,
+    "end": 3202906,
+    "sha256OfBlock": "df34e8aad95f2487f94dc73b2ee93c8bb3b54987751cb5d567a74d4c5230f144",
+    "source": "L22:\n  ;\n  locals.t3 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[20195] /*attribs*/, get_read_prop_cache(shUnit) + 7468);\n  locals.t5 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t3,get_symbols(shUnit)[573] /*MSPD*/, get_read_prop_cache(shUnit) + 7469);\n  locals.t3 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[4] /*config*/, get_read_prop_cache(shUnit) + 7470);\n  locals.t3 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t3,get_symbols(shUnit)[23292] /*is_boss*/, get_read_prop_cache(shUnit) + 7471);\n  if(_sh_ljs_to_boolean(locals.t3)) goto L23;\n  goto L24;\n\nL23:\n  ;\n  np1 = _sh_ljs_double(-75);\n  locals.t3 = _sh_ljs_bool(_sh_ljs_less_rjs_inline(shr, &locals.t5, &np1));\n  goto L24;\nL24:\n  ;\n  // PhiInst\n  if(_sh_ljs_to_boolean(locals.t3)) goto L25;\n  goto L26;\n\nL25:\n  ;\n  locals.t5 = _sh_ljs_double(-75);\n  goto L26;\nL26:\n  ;\n  // PhiInst\n  locals.t4 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[22953] /*current_skill*/, get_read_prop_cache(shUnit) + 7472);\n  np2 = _sh_ljs_double(0);\n  locals.t3 = _sh_ljs_double(0);\n  if(_sh_ljs_to_boolean(locals.t4)) goto L27;\n  goto L34;\n\nL27:\n  ;\n  locals.t4 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[22953] /*current_skill*/, get_read_prop_cache(shUnit) + 7473);\n  locals.t4 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t4,get_symbols(shUnit)[20155] /*info*/, get_read_prop_cache(shUnit) + 7474);\n  locals.t4 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t4,get_symbols(shUnit)[23467] /*SetSpeeder*/, get_read_prop_cache(shUnit) + 7475);\n  locals.t6 = _sh_ljs_double(0);\n  if(_sh_ljs_to_boolean(locals.t4)) goto L28;\n  goto L30;\n\nL28:\n  ;\n  np1 = _sh_ljs_bool(_sh_ljs_greater_rjs_inline(shr, &locals.t4, &np2));\n  locals.t6 = locals.t5;\n  if(_sh_ljs_get_bool(np1)) goto L29;\n  goto L30;\n\nL29:\n  ;\n  locals.t6 = locals.t4;\n  goto L30;\nL30:\n  ;\n  // PhiInst\n  locals.t5 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[22953] /*current_skill*/, get_read_prop_cache(shUnit) + 7476);\n  locals.t4 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[22957] /*basic_skill*/, get_read_prop_cache(shUnit) + 7477);\n  np1 = _sh_ljs_bool(_sh_ljs_strict_equal_inline(locals.t5, locals.t4));\n  locals.t5 = locals.t6;\n  if(_sh_ljs_get_bool(np1)) goto L31;\n  goto L32;\n\nL31:\n  ;\n  locals.t4 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[20195] /*attribs*/, get_read_prop_cache(shUnit) + 7478);\n  locals.t4 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t4,get_symbols(shUnit)[586] /*ATKHAST*/, get_read_prop_cache(shUnit) + 7479);\n  locals.t5 = _sh_ljs_add_rjs_inline(shr, &locals.t6, &locals.t4);\n  goto L32;\nL32:\n  ;\n  // PhiInst\n  locals.t4 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[22953] /*current_skill*/, get_read_prop_cache(shUnit) + 7480);\n  locals.t4 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t4,get_symbols(shUnit)[23022] /*lockActionSpeeder*/, get_read_prop_cache(shUnit) + 7481);\n  locals.t3 = locals.t5;\n  if(_sh_ljs_to_boolean(locals.t4)) goto L33;\n  goto L34;\n\nL33:\n  ;\n  locals.t3 = _sh_ljs_double(0);\n  goto L34;\nL34:\n  ;\n  // PhiInst\n  np1 = _sh_ljs_bool(_sh_ljs_greater_equal_rjs_inline(shr, &locals.t3, &np2));\n  np3 = _sh_ljs_double(100);\n  if(_sh_ljs_get_bool(np1)) goto L36;\n  goto L35;\n\nL35:\n  ;\n  np1 = _sh_ljs_sub_rjs_inline(shr, &np3, &locals.t3);\n  np4 = _sh_ljs_double(_sh_ljs_get_double(np3) / _sh_ljs_get_double(np1));\n  goto L37;\nL36:\n  ;\n  locals.t3 = _sh_ljs_add_rjs_inline(shr, &locals.t3, &np3);\n  np4 = _sh_ljs_div_rjs_inline(shr, &locals.t3, &np3);\n  goto L37;\nL37:\n  ;\n  // PhiInst\n  locals.t3 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[22881] /*buff_effects*/, get_read_prop_cache(shUnit) + 7482);\n  locals.t3 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t3,get_symbols(shUnit)[247] /*frozen*/, get_read_prop_cache(shUnit) + 7483);\n  np1 = _sh_ljs_double(0);\n  if(_sh_ljs_to_boolean(locals.t3)) goto L40;\n  goto L38;\n\nL38:\n  ;\n  locals.t3 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t1,get_symbols(shUnit)[22881] /*buff_effects*/, get_read_prop_cache(shUnit) + 7484);\n  locals.t3 = _sh_ljs_get_by_id_rjs_inline(shr,&locals.t3,get_symbols(shUnit)[248] /*motionless*/, get_read_prop_cache(shUnit) + 7485);\n  np1 = _sh_ljs_double(0);\n  if(_sh_ljs_to_boolean(locals.t3)) goto L40;\n  goto L39;\n\nL39:\n  ;\n  np1 = np4;\n  goto L40;\nL40:\n  ;\n  // PhiInst\n  _sh_ljs_put_by_id_loose_rjs(shr, shUnit, &locals.t1, get_symbols(shUnit)[23349] /*speeder*/, &np1, get_write_prop_cache(shUnit) + 2406);\n  np9 = _sh_ljs_mul_rjs_inline(shr, &locals.t2, &np1);\n  _sh_ljs_put_by_id_loose_rjs(shr, shUnit, &locals.t1, get_symbols(shUnit)[23468] /*dt_action*/, &np9, get_write_prop_cache(shUnit) + 2407);",
+    "observedContinuationValues": {
+      "receiver": "locals.t1",
+      "rawDt": "locals.t2",
+      "actionDt": "np9",
+      "speeder": "np1",
+      "positiveZero": "np2"
+    },
+    "assignedRegisters": [
+      "locals.t3",
+      "locals.t5",
+      "np1",
+      "locals.t4",
+      "np2",
+      "locals.t6",
+      "np3",
+      "np4",
+      "np9"
+    ],
+    "continuation": "Immediately after the original dt_action store, before the action_name read. A new label and exact live-out restoration are required; there is currently no splice."
+  },
+  "arithmeticProof": {
+    "file": "benchmarks/validation/unit-speeder.json",
+    "sha256": "1ced3caea9d22112a5c39aae7526b528b0afaeff3430608e1638858104c11e3c",
+    "cases": 20000,
+    "rawBitOutputs": 60000,
+    "admitted": 17485,
+    "rejected": 2515
+  },
+  "requirements": [
+    "Bind the generated function to its exact retained original source through SHNativeFuncInfo and string pools; a matching property comment or label alone cannot authorize patching.",
+    "Pin compiler, emitted source, generated C and exact block bytes. Labels and registers depend on compiler output; reject a changed CFG.",
+    "Compute CFG use/def and all live-outs over every successor before replacing the region. Listed continuation values are observed uses, not a complete liveness proof. Preserve every incoming register not proved dead.",
+    "Place getter-free guards at L22 after preceding debug/liveness calls; use canonical own ordinary data descriptors for receiver, attribs, config, effects, skill and info. Reject Proxies, getters, coercions and inherited output setters before either write.",
+    "Read only branch-required values where missing properties are possible. In particular ATKHAST is needed only for the basic-skill branch, SetSpeeder only for current_skill, motionless only when frozen is false.",
+    "Retain canonical current_skill/basic_skill object identity, exact truthiness and source arithmetic order. Check MXCSR and reject unsupported or computed-NaN results before mutation.",
+    "Write speeder then dt_action with GC-aware VM helpers. Set action-delta and other proven live-out registers before jumping to the original continuation. Never restart Unit.update after preceding side effects.",
+    "Differential-test the actual VM splice against the untouched function with setters/getters/proxies, aliasing, exceptions, callback mutations before entry, raw f64 bits and function-source metadata.",
+    "Measure actual battle hit counts and inclusive/exclusive cost before claiming this arithmetic block is a significant hotspot."
+  ],
+  "measuredBattleHotspot": false,
+  "battleHitCount": null,
+  "performanceClaim": null,
+  "decision": "Defer native splice until profiling and CFG liveness proof. Existing Rust arithmetic is reusable, but the whole-function Entity trampoline cannot safely replace this interior block."
+}
