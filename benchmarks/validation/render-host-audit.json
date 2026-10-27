@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "scope": "Source render host audit; no whole-battle fidelity qualification",
+  "source": {
+    "gameConfig": {
+      "file": "src/game.json",
+      "sha256": "3b4c451fa12632b24aeb5089d2ae6b2615474ff480b26eddd2a159b5bd4032f8"
+    },
+    "nativeBoot": {
+      "file": "src/script/jsb_boot.js",
+      "sha256": "bdbe166804249422a87ac6ccc47816a4c7063d1fda562e96354cdc3cfdd8afff"
+    },
+    "assetManifest": {
+      "file": "src/checkversion.md5",
+      "sha256": "a049f45e283f03ccf9495df4cfefe7190db866fcc5401da6de54f0f9f1fff56b"
+    }
+  },
+  "snapshotVersion": "afkarena_v2.303.03.367744",
+  "requiredExample": {
+    "trigger": "Mag.atk2b_onAttackFrame",
+    "effect": "eff_point_Mag_atk2b.cha",
+    "bundle": "res/fcaz/effect/effect_Mag.fcasz",
+    "expectedMd5": "42787b27ba1b5faf3bf135441cad0c93",
+    "failureFrame": 78,
+    "mode": "original callback phase with partial render scene"
+  },
+  "cdn": {
+    "sourceDeclaredBase": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/rel/",
+    "sourceNativeParameters": {
+      "resVersion": "367744",
+      "patchModeParam": "patches_new/"
+    },
+    "publicProject": {
+      "url": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/rel/project.json",
+      "status": 200,
+      "sha256": "e596bc4a2f115c7e4b859a97a38c461e929ba308ed4194bc1dae3ac247a41cb9",
+      "version": "afkarena_v2.305.03.371849"
+    },
+    "retrievalStatus": "Source native hg.ResourceManager URL generation is absent; tested direct path, suffix/hash/version and patch-prefix variants returned404. This does not establish that the asset is unavailable."
+  },
+  "sourceLifecycle": {
+    "entry": "runtime.callbacks.updateSceneFrame",
+    "executes": [
+      "fpsTracker",
+      "battleVFXFilter",
+      "speed multipliers",
+      "pause guard",
+      "engine update",
+      "captured FIFO callback drain",
+      "original updateActor/syncActors",
+      "original updateEffect",
+      "viewUpdate if present",
+      "original checkDialog"
+    ],
+    "requires": "Original scene constructor state and complete host assets; missing device data fails explicitly."
+  },
+  "qualifiesForThroughputTarget": false
+}
