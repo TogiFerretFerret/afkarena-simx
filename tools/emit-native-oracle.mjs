@@ -8,6 +8,8 @@ import { createBootstrapRuntime } from './bootstrap-runtime.mjs';
 import { instantiateScenario } from './scenario-factory.mjs';
 import { installBootstrapRenderScene } from './bootstrap-render-scene.mjs';
 import { closeSourceSelection } from './native-source-closure.mjs';
+import { loadNativeTraceSources,installNativeReferenceTrace,traceSourceFiles } from './native-oracle-trace.mjs';
+import { comparePortableBattleTraces } from './battle-trace-portable.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 const args=process.argv.slice(2);
@@ -18,20 +20,24 @@ const tablesPath=resolve(root,option('--tables-file','work/native-tables.json'))
 const battles=Number(option('--battles','1')),warmup=Number(option('--warmup','0'));
 const scope=option('--scope',args.includes('--all-definitions')?'all':'battle-core');
 const captureMode=option('--capture','all');
+const traceEnabled=args.includes('--trace');
+if(traceEnabled&&(battles!==1||warmup!==0))throw new Error('Diagnostic trace requires one battle and no warmup');
 const factoryChunkSize=Number(option('--factory-chunk-size','0'));
 if(!Number.isSafeInteger(factoryChunkSize)||factoryChunkSize<0)throw new Error('Invalid factory chunk size');
 if(!['all','final','checksum'].includes(captureMode))throw new Error('Capture must be all, final, or checksum');
 if(!['all','battle','battle-core','observed'].includes(scope))throw new Error('Scope must be all, battle, battle-core, or observed');
 if(!Number.isSafeInteger(battles)||battles<1||!Number.isSafeInteger(warmup)||warmup<0)throw new Error('Invalid battle count');
 const sha=value=>createHash('sha256').update(value).digest('hex');
-const adapterFiles=['tools/emit-native-oracle.mjs','tools/native-source-closure.mjs','tools/bootstrap-runtime.mjs','tools/bootstrap-source.mjs','tools/bootstrap-packed.mjs','tools/bootstrap-realm.mjs','tools/bootstrap-callbacks.mjs','tools/bootstrap-declarations.mjs','tools/bootstrap-render-scene.mjs','tools/scenario-factory.mjs','tools/bootstrap-host.js','tools/oracle-clock.js','config/bootstrap-packed-config.json'];
+const adapterFiles=['tools/emit-native-oracle.mjs','tools/native-oracle-trace.mjs',...traceSourceFiles,'tools/native-source-closure.mjs','tools/bootstrap-runtime.mjs','tools/bootstrap-source.mjs','tools/bootstrap-packed.mjs','tools/bootstrap-realm.mjs','tools/bootstrap-callbacks.mjs','tools/bootstrap-declarations.mjs','tools/bootstrap-render-scene.mjs','tools/scenario-factory.mjs','tools/bootstrap-host.js','tools/oracle-clock.js','config/bootstrap-packed-config.json'];
 const adapterInputs=Object.fromEntries(await Promise.all(adapterFiles.map(async file=>[file,sha(await readFile(resolve(root,file)))])));
 const wireText=await readFile(scenarioPath,'utf8'),wire=JSON.parse(wireText);
-const entropy=[];
-const runtime=await createBootstrapRuntime({hostRandom:()=>{const value=Math.random();entropy.push(value);return value;},hostClock:{mode:'record',tape:[]}});
+const entropy=[],clockObserver={current:null},traceObserver={current:null};
+const traceSources=traceEnabled?await loadNativeTraceSources(root):[];
+const runtime=await createBootstrapRuntime({hostRandom:()=>{const value=Math.random();entropy.push(value);if(traceObserver.current)traceObserver.current('host:random',{ordinal:entropy.length-1,value});return value;},hostClock:{mode:'record',tape:[],observe(entry,ordinal){if(clockObserver.current)clockObserver.current(entry,ordinal);}}});
 if(!runtime.clock)throw new Error('Copied source runtime must expose recorded hostClock before native emission');
 if(!runtime.sourceRecords)throw new Error('Copied source runtime must expose its exact sourceRecords');
 if(args.includes('--render-scene'))await installBootstrapRenderScene(runtime);
+if(traceEnabled){runtime.nativeTrace=installNativeReferenceTrace(runtime,traceSources,{clockObserver});traceObserver.current=runtime.nativeTrace.record;}
 
 function __nativeBits(value){
   var data=new DataView(new ArrayBuffer(8));data.setFloat64(0,value,false);var result='';
@@ -67,9 +73,12 @@ function __nativeRun(runtime,wire,battles,warmup,wallNow,captureMode){
     var materialized=instantiateScenario(runtime,wire),engine=new ed.BattleEngine();ed.battleEngine=engine;
     ed.srand(materialized.battleSeed);
     engine.enterBattle(materialized.players,materialized.enemies,materialized.config);
+    if(runtime.nativeTrace)runtime.nativeTrace.record('battle:entered',{});
     var frames=0,callbackCount=0,queued=0,eventStart=runtime.host.events.length;
     while(engine.running){
+      if(runtime.nativeTrace)runtime.nativeTrace.beginFrame();
       var phase=runtime.callbacks.updateFrame(0.125);
+      if(runtime.nativeTrace)runtime.nativeTrace.endFrame();
       frames++;callbackCount+=phase.executed;queued+=phase.queued;
     }
     if(battleIndex>=0){
@@ -82,6 +91,7 @@ function __nativeRun(runtime,wire,battles,warmup,wallNow,captureMode){
   var elapsedMs=wallNow()-start;
   var report={completed:results.length,elapsedMs:elapsedMs,battlesPerSecond:elapsedMs>0?results.length*1000/elapsedMs:null,capture:captureMode,checksum:checksum,totalCallbacks:totalCallbacks,results:results};
   if(captureMode==='final')report.finalCapture=fullCapture(lastEngine,lastEventStart);
+  if(runtime.nativeTrace)report.trace=runtime.nativeTrace.stop({status:'completed',running:lastEngine.running,ticks:lastEngine.ticks,result:lastEngine.result});
   return report;
 }
 const reference=__nativeRun(runtime,wire,battles,warmup,Date.now,captureMode);
@@ -150,9 +160,9 @@ try{
   put('if(typeof print!=="function")globalThis.print=function(x){console.log(x);};');
   put('if(typeof console==="undefined")globalThis.console={log:function(){print(Array.prototype.join.call(arguments," "));}};');
   put('var ed=globalThis.ed={};var cc=globalThis.cc={game:{config:null,CONFIG_KEY:{}},Node:function Node(){},error:function(){throw new Error(Array.prototype.join.call(arguments," "));}};var window=globalThis;globalThis.window=globalThis;globalThis.HTMLElement=function HTMLElement(){};');
-  put('var __nativeHostInputs=JSON.parse('+JSON.stringify(JSON.stringify(hostInputs))+');var __nativeEntropyIndex=0;Math.random=function(){if(__nativeEntropyIndex>=__nativeHostInputs.random.length)throw new Error("Host random input tape exhausted");return __nativeHostInputs.random[__nativeEntropyIndex++];};');
+  put('var __nativeHostInputs=JSON.parse('+JSON.stringify(JSON.stringify(hostInputs))+');var __nativeEntropyIndex=0;Math.random=function(){if(__nativeEntropyIndex>=__nativeHostInputs.random.length)throw new Error("Host random input tape exhausted");var ordinal=__nativeEntropyIndex,value=__nativeHostInputs.random[__nativeEntropyIndex++];if(__nativeRuntime&&__nativeRuntime.nativeTrace)__nativeRuntime.nativeTrace.record("host:random",{ordinal:ordinal,value:value});return value;};');
   put(clockSource);
-  put('var __nativeClock=installOracleClock({mode:"replay",tape:__nativeHostInputs.clock});');
+  put('var __nativeClockObserver=null;var __nativeClock=installOracleClock({mode:"replay",tape:__nativeHostInputs.clock,observe:function(entry,ordinal){if(__nativeClockObserver)__nativeClockObserver(entry,ordinal);}});');
   put(hostSource);
   // Preserve original declaration hoisting/global self-reassignment; do not
   // turn named declarations into expression factories.
@@ -221,17 +231,21 @@ try{
   put('function __nativeDrain(){'+drainBody+'}');
   put('var __nativeCallbacks={updateFrame:function(elapsed){resetClientCall();ed.battleEngine.update(elapsed);__nativeSnapshots=0;__nativeDrain.call(__nativeScene);return{queued:ed.clientCallCount,executed:__nativeSnapshots/2,pending:ed.clientCall_list.length};}};');
   if(runtime.renderScene)put('('+runtime.renderScene.source+')(__nativeScene);');
+  put('__nativeCallbacks.sceneHost=__nativeScene;');
+  for(const record of traceSources)put(record.source);
+  put('var __nativeRuntime={ed:ed,context:globalThis,callbacks:__nativeCallbacks,host:bootstrapHost};');
+  if(traceEnabled)put(' __nativeRuntime.nativeTrace=installBattleTraceInstrumentation(__nativeRuntime,{compact:true,definitionNames:__nativeDefinitionNames,subscribeClock:function(observer){__nativeClockObserver=observer;return function(){__nativeClockObserver=null;};}});');
   put('var __nativeRealmCopy='+realmCopy+';function importBootstrapValue(_context,value){return __nativeRealmCopy(value);}');
   put(instantiateScenario.toString());
   put(__nativeBits.toString());put(__nativePrimitiveState.toString());put(__nativeUnitState.toString());put(__nativeRun.toString());
   put('var __nativeWire=JSON.parse('+JSON.stringify(wireText)+');');
-  put(`var __nativeResult=__nativeRun({ed:ed,context:globalThis,callbacks:__nativeCallbacks,host:bootstrapHost},__nativeWire,${battles},${warmup},__nativeWallNow,${JSON.stringify(captureMode)});`);
+  put(`var __nativeResult=__nativeRun(__nativeRuntime,__nativeWire,${battles},${warmup},__nativeWallNow,${JSON.stringify(captureMode)});`);
   put('__nativeClock.finish();if(__nativeEntropyIndex!==__nativeHostInputs.random.length)throw new Error("Unconsumed host random inputs: "+(__nativeHostInputs.random.length-__nativeEntropyIndex));');
   put('__nativeResult.hostInputConsumption={random:__nativeEntropyIndex,clock:__nativeClock.stats()};print(JSON.stringify(__nativeResult));');
 }finally{closeSync(fd);}
 const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[])].map(record=>record.file).filter(Boolean));
 const sourceInputs=Object.fromEntries(await Promise.all([...sourceFiles].sort().map(async file=>[file,sha(await readFile(resolve(root,file)))])));
-const metadata={version:1,scope,captureMode,executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
+const metadata={version:1,scope,captureMode,traceEnabled,executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
   adapterInputs,sourceInputs,factoryChunks,
   sourceRuntime:{file:'tools/bootstrap-runtime.mjs',sha256:adapterInputs['tools/bootstrap-runtime.mjs'],executedFunctionSha256:sha(createBootstrapRuntime.toString())},
   definitionCount:records.definitions.size,globalCount:records.globals.size,factoryCount:allFactoryRecords.length,
@@ -259,5 +273,6 @@ if(!args.includes('--no-node-check')){
   assert.deepEqual(result.results,JSON.parse(JSON.stringify(reference.results)),'Emitted Node original-source results differ from copied oracle');
   assert.equal(result.checksum,reference.checksum,'Emitted Node terminal checksum differs from copied oracle');
   if(captureMode==='final')assert.deepEqual(result.finalCapture,JSON.parse(JSON.stringify(reference.finalCapture)),'Emitted Node final state/device capture differs from copied oracle');
+  if(traceEnabled){const gate=comparePortableBattleTraces(reference.trace,result.trace);await writeFile(output+'.trace-gate.json',JSON.stringify(gate,null,2)+'\n');assert.equal(gate.passed,true,'Emitted Node ordered graph trace differs: '+JSON.stringify(gate.difference));}
   console.log(JSON.stringify({status:'node_match',completed:result.completed,results:result.results.map(x=>({result:x.result,ticks:x.ticks,callbacks:x.callbacks,rngBits:x.rngBits}))}));
 }
