@@ -25,6 +25,8 @@ const reuseManifest=resumePath?JSON.parse(await readFile(resolve(root,resumePath
 assert.ok(!reuseManifest||plumbing,'Explicit object resume is compiler plumbing until a fresh complete qualification');
 assert.equal(sha(await readFile(input)),metadata.outputSha256,'Emitted source changed after reference creation');
 const compilerSha256=sha(await readFile(compiler));
+const vmLibrary=resolve(root,'work/downloads/hermes-build/lib/libhermesvm.so');
+const vmSha256AtStart=sha(await readFile(vmLibrary));
 async function dependencyStatus(){
  const adapters=metadata.adapterInputs?Object.entries(metadata.adapterInputs):[metadata.sourceRuntime,metadata.host,metadata.clock].filter(Boolean).map(item=>[item.file,item.sha256]);
  const entries=[...adapters,...Object.entries(metadata.sourceInputs??{}),...(metadata.factoryChunks??[]).map(item=>[item.file,item.sha256])];
@@ -68,6 +70,8 @@ const executionWallMs=performance.now()-executeStart;
 if(executed.code!==0){console.error(await readFile(output+'.stderr','utf8'));throw new Error(`Native execution failed (${executed.code??executed.signal})`);}
 const text=await readFile(output+'.stdout','utf8');
 const actual=JSON.parse(text.trim().split('\n').at(-1));
+const vmSha256AtFinish=sha(await readFile(vmLibrary));
+assert.equal(vmSha256AtFinish,vmSha256AtStart,'Native VM changed during compilation/execution');
 const difference=compareNativeReports(actual,reference)??compareHostInputConsumption(actual.hostInputConsumption,metadata.hostInputs);
 const dependenciesAtFinish=await dependencyStatus();
 const stringPools=[];
@@ -75,7 +79,7 @@ if(binaryPools)for(const directory of compiled.units?compiled.units.map(unit=>un
  const file=resolve(directory,name),contents=await readFile(file);stringPools.push({file,bytes:contents.length,sha256:sha(contents)});
 }
 const report={version:1,engine:'Static Hermes AOT original-source factories',input,output,
- inputSha256:metadata.outputSha256,compilerSha256,compileArgs,compileMs,executionWallMs,
+ inputSha256:metadata.outputSha256,compilerSha256,vmSha256:vmSha256AtStart,programPartition:metadata.programPartition??null,compileArgs,compileMs,executionWallMs,
  binaryPools,stringPools,compileUnits:compiled.units,linkArgs:compiled.linkArgs,wrapperSha256:compiled.wrapperSha256,dependenciesAtStart,dependenciesAtFinish,plumbing,
  scenario:metadata.scenario,completed:actual.completed,elapsedMs:actual.elapsedMs,battlesPerSecond:actual.battlesPerSecond,
  finalStateMatched:difference===null,firstDifference:difference,
