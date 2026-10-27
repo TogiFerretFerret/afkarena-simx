@@ -98,11 +98,13 @@ thread-local integer SymbolID and opaque runtime identity. Matching names still
 execute the full global-object guard and load the current value. It measures
 20 battles in 6.879 seconds (**2.907399/second**) with every source report field
 matching, 13,206,487 cache hits, and runtime identity cleared at teardown. This
-single observation is 6.56% above the earlier instrumentation-off measurement;
-an adjacent baseline/candidate check is pending before attributing that gap to
-the change. See
+single observation is 6.56% above the earlier instrumentation-off measurement.
+An adjacent baseline/candidate pair also passes every raw field: baseline
+7.374 seconds (2.712232/second), candidate 7.021 seconds (2.848597/second), an
+observed 5.03% throughput difference. This is one pair, not a confidence interval
+or an established speedup across workloads. See
 `results/2026-10-27T22-49-25.607Z-native-warm23-global-ed-prefilter.json` and
-`validation/native-global-ed-prefilter.json`. The full-game qualification limits
+`validation/native-global-ed-prefilter-adjacent-pair.json`. The full-game qualification limits
 above continue to apply.
 
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
