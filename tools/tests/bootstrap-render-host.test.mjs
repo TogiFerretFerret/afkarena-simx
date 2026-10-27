@@ -19,6 +19,7 @@ test('stateful device nodes retain identities, hierarchy and independent numeric
 });
 test('source animation metadata is required and unknown geometry/timeline cannot invent values',async()=>{
   const context=await setup();
+  assert.throws(()=>context.cc.spriteFrameCache.addSpriteFrames('missing.plist'),/Missing source render sprite atlas frame data: missing.plist/);
   assert.throws(()=>context.sp.SkeletonAnimation.createWithBinaryFile('missing.skel','missing.atlas',1),/Missing source render asset metadata/);
   context.bootstrapHost.render.registerAsset('source.skel',{animations:{atk:{duration:.5}}});
   context.bootstrapHost.render.registerAsset('source.atlas',{});
