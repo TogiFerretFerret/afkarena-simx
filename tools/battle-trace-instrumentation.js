@@ -51,6 +51,16 @@
    }
   }
   var heroScripts={};
+  function ownValue(object,key){var d=Object.getOwnPropertyDescriptor(object,key);return d&&'value'in d?d.value:undefined;}
+  function currentEngine(){
+   var d=Object.getOwnPropertyDescriptor(ed,'battleEngine');
+   if(!d)return undefined;
+   if('value'in d)return d.value;
+   var expected='function(){return this._battleEngineInstance||(this._battleEngineInstance=new ed.BattleEngine),this._battleEngineInstance}';
+   if(typeof d.get!=='function'||Function.prototype.toString.call(d.get)!==expected)
+    throw new Error('Cannot observe an unsupported battleEngine getter without invoking source code');
+   return ownValue(ed,'_battleEngineInstance');
+  }
   function scriptRoots(engine){
    var names=['unit_list','dead_unit_list','pet_list','dead_pet_list','fieldNpc_list','dead_fieldNpc_list','projectile_list'];
    var scripts=Object.getOwnPropertyDescriptor(ed,'battlehero')?.value;
@@ -69,7 +79,7 @@
    return heroScripts;
   }
   function roots(){
-   var engine=ed.battleEngine;
+   var engine=currentEngine();
    var program;
    if(options.programState){
     var globals={};
@@ -79,8 +89,10 @@
     }
     program={ed:ed,cc:host.cc,sourceGlobals:globals};
    }
-   return{engine:engine,battleRng:context.random_seed,initialBattleSeed:ed.init_battle_seed,
-    pendingCallbacks:ed.clientCall_list,clientCallCount:ed.clientCallCount,
+   return{engine:engine,battleRng:ownValue(context,'random_seed'),initialBattleSeed:ownValue(ed,'init_battle_seed'),
+    pendingCallbacks:ownValue(ed,'clientCall_list'),clientCallCount:ownValue(ed,'clientCallCount'),
+    sourceBindings:{battleEngine:Object.getOwnPropertyDescriptor(ed,'battleEngine'),battleRng:Object.getOwnPropertyDescriptor(context,'random_seed'),
+     pendingCallbacks:Object.getOwnPropertyDescriptor(ed,'clientCall_list'),clientCallCount:Object.getOwnPropertyDescriptor(ed,'clientCallCount')},
     battleLog:Object.getOwnPropertyDescriptor(ed,'btLog')?.value,
     heroScripts:scriptRoots(engine),
     hostState:runtime.host?.snapshotState?runtime.host.snapshotState():null,
