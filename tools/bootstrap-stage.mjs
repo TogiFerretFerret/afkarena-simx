@@ -5,6 +5,19 @@ import { pathToFileURL } from 'node:url';
 import { installBootstrapHelpers, loadBootstrapTable } from './bootstrap-source.mjs';
 import { installBootstrapDataClasses } from './bootstrap-data.mjs';
 
+/** Minimal battle-wire player proto, using the source Unit table's initial rank/quality.
+ * A runtime can pass this through original ed.heroData.create, then retain config.
+ * The wire fields match the original getBattleHeroes proto construction schema.
+ */
+export async function createBootstrapPlayerProto(tid=1,slotIndex=1){
+  const units=await loadBootstrapTable('Unit');
+  const info=units[tid];
+  if(!info||info.UnitType!=='Hero')throw new Error(`Not a source hero Unit: ${tid}`);
+  if(!Number.isInteger(slotIndex)||slotIndex<1||slotIndex>5)throw new Error('Player slot must be 1..5');
+  return {id:slotIndex,tid,level:1,rank:info.InitialRank,quality:info.InitialQuality,
+    equips:[],sig:null,config:{slotIndex}};
+}
+
 /** Execute original table-selection and enemy-proto construction functions.
  * This is battle input preparation, not a Cocos runtime or a battle simulation.
  * Data-object methods use the narrow source-derived bootstrap data adapter.

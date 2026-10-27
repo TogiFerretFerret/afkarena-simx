@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createContext } from 'node:vm';
 import { loadBootstrapFunctions, loadBootstrapTable, loadBootstrapTableSync } from './bootstrap-source.mjs';
-import { createStageFixture } from './bootstrap-stage.mjs';
+import { createStageFixture, createBootstrapPlayerProto } from './bootstrap-stage.mjs';
 import { installBootstrapDataClasses } from './bootstrap-data.mjs';
 
 // Real data + real source helpers: no copied team-selection implementation.
@@ -18,6 +18,11 @@ for(let stage=1;stage<=12;stage++){
   }
 }
 const fixture=await createStageFixture(1);
+const player=await createBootstrapPlayerProto();
+assert.equal(player.tid,1);
+assert.equal(player.quality,2);
+assert.equal(player.rank,1);
+assert.equal(player.config.slotIndex,1);
 assert.equal(fixture.rounds[0].battleId,16001);
 assert.equal(fixture.rounds[0].enemies[0].tid,1008);
 assert.equal(fixture.rounds[0].enemies[0].config.hp_mod,.55);
