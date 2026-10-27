@@ -1,0 +1,380 @@
+{
+  "version": 1,
+  "passed": true,
+  "semanticProofPassed": true,
+  "privateVM": {
+    "output": "/workspace/afkarena-simx/work/native-dictionary-lease/libhermesvm.so",
+    "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "privateSha256": "979f0594d7cae1d71656e98245b33ec25f2b80fc78e8cda5e25a3037b7d5d3b1",
+    "helperSha256": "c004d56cffdd816cfcf56f7278321292a7c0b6248cb36810b9054749ee45a050"
+  },
+  "wrapper": {
+    "file": "tools/native-compiler-patches/dictionary-lease-wrap.c",
+    "sourceSha256": "bc4b3c323a02c17054419aa35f814989c78a9087014a7b0da5442b103fd72d10",
+    "output": "/workspace/afkarena-simx/work/native-dictionary-lease/dictionary-lease-wrap.o",
+    "sha256": "517cc1f45e3a8fe30b3aaaa9ad67dcdf29f85ff82b9ec4234f6303701c3782ec",
+    "compileArgs": [
+      "-O2",
+      "-g0",
+      "-DNDEBUG",
+      "-ffp-contract=off",
+      "-I/workspace/afkarena-simx/work/downloads/hermes-build/lib/config",
+      "-I/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+      "-c",
+      "/workspace/afkarena-simx/tools/native-compiler-patches/dictionary-lease-wrap.c",
+      "-o",
+      "/workspace/afkarena-simx/work/native-dictionary-lease/dictionary-lease-wrap.o"
+    ],
+    "linkFlag": "-Wl,--wrap=_sh_ljs_get_by_id_rjs"
+  },
+  "sources": {
+    "tools/build-native-entity-sort-host.mjs": "c049573ed2b65d2bde76a4980e873d2591f9601b2fcb6141fc704140bf810fbe",
+    "tools/native-private-vm.mjs": "47747b1921a23390805e60089f7dbf7cc750c1d1072d64ccd2ceda4344594f4b",
+    "tools/native-compiler-patches/entity-sort-host.inc": "ad40f07b690b7e54dc70dd63b29069eea95c2fd14da4039156c8125fd3dd173a",
+    "tools/native-compiler-patches/tim-sort-host.inc": "8267532890bf07c6f914d7a559a9251d50ef5c82bfe247173f02a469887b0be8",
+    "tools/native-compiler-patches/tim-sort.inc": "77153b5903fa2886b57d68de9b3ac0e92c4edf9aab9f469c24aeef39d58afb49",
+    "tools/native-compiler-patches/small-sort.inc": "dbf3373f28b1a00fb580f8ffe4b02695399a43b9a9fcff34b89e78c13ea46009",
+    "tools/native-compiler-patches/diagnostic-sha256-host.inc": "5f3836152d2c63f8169c75ebec8e1edd2388c15b902a601040802f21855c75f9",
+    "tools/native-compiler-patches/diagnostic-sha256.inc": "6578ad9a09dded407ac9050a567c6f06ae280d8240fd9df8982a3b8ace43fe1b",
+    "tools/native-compiler-patches/entity-update.inc": "a4a358159a5666b94353331dca21013968cc696be6580425a921d2d9e7f4d87b",
+    "tools/native-entity-update.rs": "fb0e9f21bf14813f1e47a3572570a099ba553e31e3b36b174137fa791a28074c",
+    "tools/native-small-sort.rs": "5a866da4f833ea5245e71c6bab4a7066159b4ebe64203273c5d56db186da3edd",
+    "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "tools/native-flat-copy-probe.mjs": "6b7985f2d819df79483badc3ba9486c7b9a12d02e4ce126f8f1d33003d9599ea",
+    "tools/native-copy-bridge.mjs": "25ba85c6dd8ba2ae783ec14afd6dbdb0b8674d2c7a54c7b1c9a2f669e9b0b7db",
+    "tools/native-rust-bridge.mjs": "02d100b9091cbe0b55f661fac0975e9c6f8427267676a8f8d87f3bcdc4f4de6d",
+    "tools/native-compiler-patches/entity-sort-copy-host.inc": "242b9d6d08000b3fe2d97284ee0a331748402c5c4ba9a853086c53681d318b3c",
+    "tools/native-compiler-patches/empty-array-copy.inc": "52607262f5e5552ae3e54e753f88e364660cff41852a7f7eb209538619455ff3",
+    "tools/prepare-native-copy-host.mjs": "bd631ec2d6abf3c4cfa4c501cfa3bdf44d480f5b8d1eb74a6e276c1ef8e01c64",
+    "tools/build-native-dictionary-lease.mjs": "44eb858d3683aa9a76312e3aaad37ae6d3404c36bf8ae300565b9e4812a6171a",
+    "tools/native-compiler-patches/dictionary-lease-host.inc": "c004d56cffdd816cfcf56f7278321292a7c0b6248cb36810b9054749ee45a050",
+    "tools/native-compiler-patches/dictionary-lease-wrap.c": "bc4b3c323a02c17054419aa35f814989c78a9087014a7b0da5442b103fd72d10",
+    "tools/native-dictionary-lease-probe.mjs": "a12f071b4e3a7f07acc98ee05f0d69b28e93ce312b4dbc4b1dc2eb255e818752"
+  },
+  "buildProof": {
+    "file": "benchmarks/validation/native-dictionary-lease-build.json",
+    "sha256": "41cb0a969407e9bde3033c8d6f0a958076d3d5ee0c7397cb2998bc9020578391"
+  },
+  "iterations": 8,
+  "mutationCasesPerIteration": 24000,
+  "interleavedRuntimeProof": {
+    "passed": true,
+    "runtimes": 2,
+    "interleavedChecks": 20000,
+    "adoptionChecks": 20000,
+    "bothSourceReportsMatched": true,
+    "secondRuntimeOriginalFallback": true,
+    "deadOwnerCleared": true,
+    "automaticShutdownRelease": true,
+    "releaseDeadIdempotent": true,
+    "releaseWhileAliveRejected": true,
+    "adoptionRetiredOldLease": true,
+    "boundedLiveContexts": 1,
+    "lifecycle": [
+      {
+        "created": 9,
+        "destroyed": 8,
+        "liveContexts": 1,
+        "otherRuntimeFallbacks": 44520
+      },
+      {
+        "created": 9,
+        "destroyed": 9,
+        "liveContexts": 0,
+        "otherRuntimeFallbacks": 44520
+      },
+      {
+        "created": 10,
+        "destroyed": 9,
+        "liveContexts": 1,
+        "otherRuntimeFallbacks": 44520
+      },
+      {
+        "created": 10,
+        "destroyed": 10,
+        "liveContexts": 0,
+        "otherRuntimeFallbacks": 44520
+      },
+      {
+        "created": 10,
+        "destroyed": 10,
+        "liveContexts": 0,
+        "otherRuntimeFallbacks": 44520
+      }
+    ]
+  },
+  "noPerReadSharedRefcounts": true,
+  "sameMutatorThreadRequired": true,
+  "forcedCollectionsPerIteration": 248,
+  "counters": [
+    {
+      "hits": 613257,
+      "learned": 48349,
+      "misses": 161,
+      "rejected": 161,
+      "special": 160,
+      "noOwn": 161,
+      "empty": 1
+    },
+    {
+      "hits": 613257,
+      "learned": 48349,
+      "misses": 161,
+      "rejected": 161,
+      "special": 160,
+      "noOwn": 161,
+      "empty": 1
+    },
+    {
+      "hits": 613257,
+      "learned": 48349,
+      "misses": 161,
+      "rejected": 161,
+      "special": 160,
+      "noOwn": 161,
+      "empty": 1
+    },
+    {
+      "hits": 613257,
+      "learned": 48349,
+      "misses": 161,
+      "rejected": 161,
+      "special": 160,
+      "noOwn": 161,
+      "empty": 1
+    },
+    {
+      "hits": 613257,
+      "learned": 48349,
+      "misses": 161,
+      "rejected": 161,
+      "special": 160,
+      "noOwn": 161,
+      "empty": 1
+    },
+    {
+      "hits": 613257,
+      "learned": 48349,
+      "misses": 161,
+      "rejected": 161,
+      "special": 160,
+      "noOwn": 161,
+      "empty": 1
+    },
+    {
+      "hits": 613257,
+      "learned": 48349,
+      "misses": 161,
+      "rejected": 161,
+      "special": 160,
+      "noOwn": 161,
+      "empty": 1
+    },
+    {
+      "hits": 613257,
+      "learned": 48349,
+      "misses": 161,
+      "rejected": 161,
+      "special": 160,
+      "noOwn": 161,
+      "empty": 1
+    },
+    {
+      "hits": 633256,
+      "learned": 48350,
+      "misses": 161,
+      "rejected": 161,
+      "special": 160,
+      "noOwn": 161,
+      "empty": 1
+    },
+    {
+      "hits": 19999,
+      "learned": 1,
+      "misses": 0,
+      "rejected": 1,
+      "special": 0,
+      "noOwn": 0,
+      "empty": 1
+    }
+  ],
+  "lifecycle": [
+    {
+      "created": 1,
+      "destroyed": 1,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 0
+    },
+    {
+      "created": 2,
+      "destroyed": 2,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 0
+    },
+    {
+      "created": 3,
+      "destroyed": 3,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 0
+    },
+    {
+      "created": 4,
+      "destroyed": 4,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 0
+    },
+    {
+      "created": 5,
+      "destroyed": 5,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 0
+    },
+    {
+      "created": 6,
+      "destroyed": 6,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 0
+    },
+    {
+      "created": 7,
+      "destroyed": 7,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 0
+    },
+    {
+      "created": 8,
+      "destroyed": 8,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 0
+    },
+    {
+      "created": 9,
+      "destroyed": 8,
+      "liveContexts": 1,
+      "otherRuntimeFallbacks": 44520
+    },
+    {
+      "created": 9,
+      "destroyed": 9,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 44520
+    },
+    {
+      "created": 10,
+      "destroyed": 9,
+      "liveContexts": 1,
+      "otherRuntimeFallbacks": 44520
+    },
+    {
+      "created": 10,
+      "destroyed": 10,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 44520
+    },
+    {
+      "created": 10,
+      "destroyed": 10,
+      "liveContexts": 0,
+      "otherRuntimeFallbacks": 44520
+    }
+  ],
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "generatedSourceSha256": "b8a0702956df7df0d7ef3eebe7a1da07ed11c06a5eccdc412a6020f823d09e74",
+  "generatedCSha256": "ec7f61c1cb7445e075e39cfd3f55f14a82ffcf46005b9dca958aa320faeded1f",
+  "patchedCSha256": "be0b1b1f9913593270d15be90bcf779342a24207c1a2d377adb9d20eefe58de4",
+  "binarySha256": "8877db2a56df7d062ebb122a9dcf79a97770aec020e1ae495a84c44e91c6ac27",
+  "compileArgs": [
+    "/workspace/afkarena-simx/work/native-dictionary-lease-probe/patched.c",
+    "-O2",
+    "-g0",
+    "-DNDEBUG",
+    "-fno-strict-aliasing",
+    "-fno-strict-overflow",
+    "-ffp-contract=off",
+    "-I/workspace/afkarena-simx/work/downloads/hermes-build/lib/config",
+    "-I/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+    "/workspace/afkarena-simx/work/native-dictionary-lease/dictionary-lease-wrap.o",
+    "-Wl,--wrap=_sh_ljs_get_by_id_rjs",
+    "-L/workspace/afkarena-simx/work/native-dictionary-lease",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/native-dictionary-lease",
+    "-L/workspace/afkarena-simx/work/downloads/hermes-build/lib",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/lib",
+    "-L/workspace/afkarena-simx/work/downloads/hermes-build/jsi",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/jsi",
+    "-L/workspace/afkarena-simx/work/downloads/hermes-build/tools/shermes",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/tools/shermes",
+    "-lshermes_console",
+    "-lhermesvm",
+    "-ldl",
+    "-lpthread",
+    "-lm",
+    "-o",
+    "/workspace/afkarena-simx/work/native-dictionary-lease-probe/probe"
+  ],
+  "baselineArgs": [
+    "/workspace/afkarena-simx/work/native-dictionary-lease-probe/original.c",
+    "-O2",
+    "-g0",
+    "-DNDEBUG",
+    "-fno-strict-aliasing",
+    "-fno-strict-overflow",
+    "-ffp-contract=off",
+    "-I/workspace/afkarena-simx/work/downloads/hermes-build/lib/config",
+    "-I/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+    "-L/workspace/afkarena-simx/work/downloads/hermes-build/lib",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/lib",
+    "-L/workspace/afkarena-simx/work/downloads/hermes-build/jsi",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/jsi",
+    "-L/workspace/afkarena-simx/work/downloads/hermes-build/tools/shermes",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/tools/shermes",
+    "-lshermes_console",
+    "-lhermesvm",
+    "-ldl",
+    "-lpthread",
+    "-lm",
+    "-o",
+    "/workspace/afkarena-simx/work/native-dictionary-lease-probe/original"
+  ],
+  "archive": {
+    "file": "benchmarks/validation/native-dictionary-lease.outputs.json.gz",
+    "uncompressedSha256": "56832865d96f102bd6ba3fe5b30857e3e8141e2ded82f0b368b1262e3b890ab4"
+  },
+  "untouchedNativeMatched": true,
+  "nodeMatched": true,
+  "emptyGuardTested": true,
+  "originalClassDefinitionsUnchanged": true,
+  "qualifiesFor10000Target": false,
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "setupFailure": {
+    "passed": false,
+    "signal": "SIGSEGV",
+    "reached": "Empty probe entry before global/object/map access",
+    "cause": "The first probe-only C export used GCScopeMarkerRAII after run_event_loop returned to C main, where there is no active GCScope. The marker constructor dereferenced the absent top scope. This was a test entry-scope bug, not an Empty decoder or dictionary hint result.",
+    "fix": "Probe-only export now creates its own real GCScope before any handles/markers. Wrapped SH helper is called only during JS under its existing active scope; the C Empty probe establishes this precondition before calling it. All eight corrected runs exercise Empty rejection and restore the original slot before returning."
+  },
+  "scopeContext": {
+    "file": "/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HandleRootOwner.h",
+    "sourceSha256": "2e7c5b3ec3b7baf75d856b8288400ee312679cb0a45d45606662292946c38cb5",
+    "text": "class GCScopeMarkerRAII {\n  GCScope *const gcScope_;\n  GCScope::Marker const marker_;\n\n  GCScopeMarkerRAII(const GCScopeMarkerRAII &) = delete;\n  void operator=(const GCScopeMarkerRAII &) = delete;\n\n public:\n  /// Record a marker for the currently active scope.\n  explicit GCScopeMarkerRAII(HandleRootOwner &runtime)\n      : gcScope_(runtime.getTopGCScope()), marker_(gcScope_->createMarker()) {}\n  /// Record a new a marker for the specified scope.\n  explicit GCScopeMarkerRAII(GCScope &gcScope)\n      : gcScope_(&gcScope), marker_(gcScope_->createMarker()) {}\n  /// Record an existing marker for the specified scope.\n  explicit GCScopeMarkerRAII(GCScope &gcScope, const GCScope::Marker &marker)\n      : gcScope_(&gcScope), marker_(marker) {}\n\n  /// Manually flush to the specified marker.\n  void flush() {\n    gcScope_->flushToMarker(marker_);\n  }\n\n  ~GCScopeMarkerRAII() {\n    flush();\n  }\n};\n\n} // namespace vm\n} // namespace hermes\n\n#endif\n"
+  },
+  "noAllocationContract": "NoAllocScope is a debug assertion contract and a release no-op, not a collector lock. Correctness relies on the actual fast path performing no JS execution or VM allocation/GC safepoint while current raw map/descriptor/storage pointers are used. C++ ownership/refcount bookkeeping does not trigger VM GC.",
+  "scope": "Isolated actual native dictionary hint differential versus Node and untouched native VM. Current maps, descriptor count/key/flags/slot/storage under same-site cross-map alternation, descriptor deletion/reinsertion, growth/compaction, explicit forced collection, signedzero/NaN/current aliases, accessor and inherited getter order, missing properties, exact thrown sentinel, readonly current flags, indexed/typed/Proxy/symbol fallbacks and eight runtime teardown cycles. Integer-only hints; no retained heap pointers or modified class definitions. No full-battle fidelity or throughput claim."
+}

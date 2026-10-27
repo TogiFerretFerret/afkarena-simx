@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Build-only checked CURRENT dictionary ordinal hints with a single TLS owning lease and no per-read shared refcount operations; second live Runtime on the mutator thread falls back. No retained heap pointers or descriptor/slot/value cache; actual native proof and full raw battle gate required.",
+  "qualifiesFor10000Target": false,
+  "privateVM": {
+    "output": "/workspace/afkarena-simx/work/native-dictionary-lease/libhermesvm.so",
+    "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "privateSha256": "979f0594d7cae1d71656e98245b33ec25f2b80fc78e8cda5e25a3037b7d5d3b1",
+    "helperSha256": "c004d56cffdd816cfcf56f7278321292a7c0b6248cb36810b9054749ee45a050"
+  },
+  "libraries": {
+    "libentity.a": {
+      "path": "/workspace/afkarena-simx/work/native-entity-sort-host/libentity.a",
+      "sha256": "f47cfad7084955d1c6ca2dda4e69c58dfcac0a656824fdac4aa8680949c02ec8"
+    },
+    "libsmall_sort.a": {
+      "path": "/workspace/afkarena-simx/work/native-entity-sort-host/libsmall_sort.a",
+      "sha256": "0d60cf98560b7440c6318bd0cd1501c3ab96dba45fccb134808dafc0cb4faa93"
+    }
+  },
+  "requiredExports": [
+    "simx_entity_update",
+    "simx_install_v8_sort",
+    "simx_install_diagnostic_digest",
+    "simx_sort_hits",
+    "simx_sort_fallbacks",
+    "simx_empty_array_copy",
+    "simx_flat_numeric_copy"
+  ],
+  "sources": {
+    "tools/build-native-entity-sort-host.mjs": "c049573ed2b65d2bde76a4980e873d2591f9601b2fcb6141fc704140bf810fbe",
+    "tools/native-private-vm.mjs": "47747b1921a23390805e60089f7dbf7cc750c1d1072d64ccd2ceda4344594f4b",
+    "tools/native-compiler-patches/entity-sort-host.inc": "ad40f07b690b7e54dc70dd63b29069eea95c2fd14da4039156c8125fd3dd173a",
+    "tools/native-compiler-patches/tim-sort-host.inc": "8267532890bf07c6f914d7a559a9251d50ef5c82bfe247173f02a469887b0be8",
+    "tools/native-compiler-patches/tim-sort.inc": "77153b5903fa2886b57d68de9b3ac0e92c4edf9aab9f469c24aeef39d58afb49",
+    "tools/native-compiler-patches/small-sort.inc": "dbf3373f28b1a00fb580f8ffe4b02695399a43b9a9fcff34b89e78c13ea46009",
+    "tools/native-compiler-patches/diagnostic-sha256-host.inc": "5f3836152d2c63f8169c75ebec8e1edd2388c15b902a601040802f21855c75f9",
+    "tools/native-compiler-patches/diagnostic-sha256.inc": "6578ad9a09dded407ac9050a567c6f06ae280d8240fd9df8982a3b8ace43fe1b",
+    "tools/native-compiler-patches/entity-update.inc": "a4a358159a5666b94353331dca21013968cc696be6580425a921d2d9e7f4d87b",
+    "tools/native-entity-update.rs": "fb0e9f21bf14813f1e47a3572570a099ba553e31e3b36b174137fa791a28074c",
+    "tools/native-small-sort.rs": "5a866da4f833ea5245e71c6bab4a7066159b4ebe64203273c5d56db186da3edd",
+    "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "tools/native-flat-copy-probe.mjs": "6b7985f2d819df79483badc3ba9486c7b9a12d02e4ce126f8f1d33003d9599ea",
+    "tools/native-copy-bridge.mjs": "25ba85c6dd8ba2ae783ec14afd6dbdb0b8674d2c7a54c7b1c9a2f669e9b0b7db",
+    "tools/native-rust-bridge.mjs": "02d100b9091cbe0b55f661fac0975e9c6f8427267676a8f8d87f3bcdc4f4de6d",
+    "tools/native-compiler-patches/entity-sort-copy-host.inc": "242b9d6d08000b3fe2d97284ee0a331748402c5c4ba9a853086c53681d318b3c",
+    "tools/native-compiler-patches/empty-array-copy.inc": "52607262f5e5552ae3e54e753f88e364660cff41852a7f7eb209538619455ff3",
+    "tools/prepare-native-copy-host.mjs": "bd631ec2d6abf3c4cfa4c501cfa3bdf44d480f5b8d1eb74a6e276c1ef8e01c64",
+    "tools/build-native-dictionary-lease.mjs": "44eb858d3683aa9a76312e3aaad37ae6d3404c36bf8ae300565b9e4812a6171a",
+    "tools/native-compiler-patches/dictionary-lease-host.inc": "c004d56cffdd816cfcf56f7278321292a7c0b6248cb36810b9054749ee45a050",
+    "tools/native-compiler-patches/dictionary-lease-wrap.c": "bc4b3c323a02c17054419aa35f814989c78a9087014a7b0da5442b103fd72d10"
+  },
+  "prerequisites": {
+    "benchmarks/validation/native-sort-host.json": {
+      "sha256": "5bbdba04f3775c1af88fe1054a51bf9efb2df13292deabbe39678c21f080f21a",
+      "scope": "Private NativeCallable Array.prototype.sort installed before original script, preserving method lookup, aliases, descriptors/name/arity, rooted callback pipeline and exact Rust TimSort within dense4096 contract."
+    },
+    "benchmarks/validation/native-entity-update.json": {
+      "sha256": "917731f6ecf613946bafb2c723fb2209df8f4556689cd753cb75b33257577757",
+      "scope": "Opt-in isolated original Entity.update VM function-body block; guard failures execute original source, with no extra getters or Proxy traps. Not integrated whole-battle qualification or a throughput result."
+    },
+    "benchmarks/validation/native-diagnostic-sha256-host.json": {
+      "sha256": "aded7b3d6bddcea2f4fa575a7397780bda61755c552d94ff59278036b8418ee4",
+      "scope": "Private NativeCallable host hook installed before source initialization; primitive String SHA256 UTF8 and ordinary global property flags match Node host hook; unsupported inputs fail TypeError without JS reads."
+    },
+    "benchmarks/validation/native-combined-copy.json": {
+      "sha256": "520ed0096f562ad303b2c471bd93946de9c03057b4fa2e381dfbaa02eadbb8cf",
+      "scope": "Isolated combined guarded empty-array and flat numeric clone trampoline on private Entity+TimSort+SHA helper composition; complete original fallback. Not an integrated battle or throughput result."
+    },
+    "benchmarks/validation/native-entity-sort-copy-host.json": {
+      "sha256": "9e0de6a9b04283c5f7190780fc0227c28528e933e4aaa29c9580a7f6b3adb0a5",
+      "scope": "Private Entity+TimSort+SHA+emptycopy DSO composition with independently proved copy guard. Build/helper availability only; actual combined battle report parity requires a separate run."
+    }
+  },
+  "verifiedPrerequisiteInputs": {
+    "tools/native-small-sort-probe.mjs": "2f3166823d32f5112db1d798a362c5ba44b6bbd1b71f3a2d46c41d4a4522be34",
+    "tools/native-small-sort.rs": "5a866da4f833ea5245e71c6bab4a7066159b4ebe64203273c5d56db186da3edd",
+    "tools/native-compiler-patches/small-sort.inc": "dbf3373f28b1a00fb580f8ffe4b02695399a43b9a9fcff34b89e78c13ea46009",
+    "crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
+    "tools/native-private-vm.mjs": "47747b1921a23390805e60089f7dbf7cc750c1d1072d64ccd2ceda4344594f4b",
+    "tools/native-rust-bridge.mjs": "02d100b9091cbe0b55f661fac0975e9c6f8427267676a8f8d87f3bcdc4f4de6d",
+    "tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+    "config/native-compiler-static-hermes.json": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e",
+    "tools/native-compiler-patches/tim-sort.inc": "77153b5903fa2886b57d68de9b3ac0e92c4edf9aab9f469c24aeef39d58afb49",
+    "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+    "tools/native-compiler-patches/tim-sort-host.inc": "8267532890bf07c6f914d7a559a9251d50ef5c82bfe247173f02a469887b0be8",
+    "tools/native-compiler-patches/diagnostic-sha256-host.inc": "5f3836152d2c63f8169c75ebec8e1edd2388c15b902a601040802f21855c75f9",
+    "tools/native-compiler-patches/diagnostic-sha256.inc": "6578ad9a09dded407ac9050a567c6f06ae280d8240fd9df8982a3b8ace43fe1b",
+    "work/downloads/hermes-build/bin/shermes": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+    "work/downloads/hermes-build/lib/libhermesvm.so": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "tools/native-compiler-patches/entity-update.inc": "a4a358159a5666b94353331dca21013968cc696be6580425a921d2d9e7f4d87b",
+    "tools/native-entity-update.rs": "fb0e9f21bf14813f1e47a3572570a099ba553e31e3b36b174137fa791a28074c",
+    "tools/native-entity-update.mjs": "0aefe718985a087acfcd53961d67573768cc23bdbc4b1b8e683e1b12bd634de5",
+    "tools/native-entity-update-probe.mjs": "94db8464be271d5ae99a7b97841bbae86828af0f086b3f134316144f7c2e3dc7",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "benchmarks/validation/native-entity-update.outputs.json.gz": "9752919fba5080eec35658e1a648f480603473e9f54a434da3eb4efcf48fd970",
+    "benchmarks/validation/native-diagnostic-sha256-host/native.stdout.gz": "a0b5e77d04114c3214e0acd8f2c00e7b10fb8cd12615419d28605e0c3f1737b1",
+    "work/native-diagnostic-sha256-host/probe.js": "8af599490f88e8c08210e708168e337f2f19c9e6e16c4f7fe6e1cb6e6c87ef5f"
+  },
+  "prerequisiteLimitations": [
+    "The SHA host prerequisite binds the exact retained generated probe script and case-generator string, but has no producer-module hash. That producer module is not claimed independently validated by this composition."
+  ],
+  "rustcSha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853",
+  "liveVMPreserved": true,
+  "headers": {
+    "DictPropertyMap": {
+      "original": "/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h",
+      "originalSha256": "4a02dbbc79ecdd8599b97c6208bbb6bc66a3fbe30f8f89ab6e55d733a1f93239"
+    },
+    "HiddenClass": {
+      "original": "/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h",
+      "originalSha256": "7497ff4864c478d573350ee0f958e09626662ea8999f024180bbbeb74d332866"
+    }
+  },
+  "wrapper": {
+    "file": "tools/native-compiler-patches/dictionary-lease-wrap.c",
+    "sourceSha256": "bc4b3c323a02c17054419aa35f814989c78a9087014a7b0da5442b103fd72d10",
+    "output": "/workspace/afkarena-simx/work/native-dictionary-lease/dictionary-lease-wrap.o",
+    "sha256": "517cc1f45e3a8fe30b3aaaa9ad67dcdf29f85ff82b9ec4234f6303701c3782ec",
+    "compileArgs": [
+      "-O2",
+      "-g0",
+      "-DNDEBUG",
+      "-ffp-contract=off",
+      "-I/workspace/afkarena-simx/work/downloads/hermes-build/lib/config",
+      "-I/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+      "-c",
+      "/workspace/afkarena-simx/tools/native-compiler-patches/dictionary-lease-wrap.c",
+      "-o",
+      "/workspace/afkarena-simx/work/native-dictionary-lease/dictionary-lease-wrap.o"
+    ],
+    "linkFlag": "-Wl,--wrap=_sh_ljs_get_by_id_rjs"
+  },
+  "apis": {
+    "init": "bool simx_dictionary_lease_init(SHRuntime*)",
+    "dump": "void simx_dictionary_lease_dump(SHRuntime*) BEFORE _sh_done",
+    "lifecycleDump": "void simx_dictionary_lease_lifecycle_dump() AFTER _sh_done",
+    "releaseDead": "bool simx_dictionary_lease_release_dead() AFTER _sh_done BEFORE lifecycle dump (only resets dead TLS ownership)"
+  },
+  "implemented": true,
+  "semanticProofPassed": false
+}
