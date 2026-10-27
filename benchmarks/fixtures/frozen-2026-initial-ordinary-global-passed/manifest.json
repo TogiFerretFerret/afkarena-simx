@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "nodeGate": {
+    "passed": true,
+    "difference": null
+  },
+  "description": "Recorded source inputs and exact captured output for reproducible differential diagnostics; this archive does not upgrade qualification.",
+  "scope": "observed",
+  "captureMode": "final",
+  "executionContract": {
+    "engineFrames": true,
+    "queuedCallbacks": true,
+    "sourceCallbackSnapshots": true,
+    "actorEffectViewLifecycle": false,
+    "renderSceneMethods": false,
+    "qualifiesFor10000Target": false
+  },
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "oracleRuntime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "execArgv": [
+      "--jitless"
+    ],
+    "nodeOptions": ""
+  },
+  "qualification": "Diagnostic evidence only; actor/effect/view lifecycle excluded. Unpinned historical fixtures remain unqualified.",
+  "scenario": {
+    "file": "config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc"
+  },
+  "adapterInputs": {
+    "tools/emit-native-oracle.mjs": "0e0c0889c5a9eee00c17424f27feaf3e3f3023cfa1e405274fb7d1249af66427",
+    "tools/native-oracle-trace.mjs": "28cf29a835e30e0c67ac4a4e6b3c4465eaae3c4cb207bf102d5c50d6f9cdf9d6",
+    "tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+    "tools/battle-trace-portable.js": "ccfccf833047a1fd43ce6ab32ef4a7f89eb02f019ac772b0f46fb95313222391",
+    "tools/battle-trace-instrumentation.js": "bdf195d4bfa68bd111cd94546a541a882e164b0d24699263b4528acdd962b46f",
+    "tools/qualification-table-membrane.js": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+    "tools/qualification-table-policy.js": "fdd728d21ec80662e3bd0e653f981cb4022298a2d07531c443a81c6314dc59b5",
+    "tools/native-source-closure.mjs": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+    "tools/bootstrap-runtime.mjs": "17adf694eca24652042b99a279f117cc586090a9aa8a49eab5069d1cc919e7e3",
+    "tools/bootstrap-records.mjs": "c690ce5a3678039d781e142abb8262a8ffa632f2ff46fb21742768b23011b568",
+    "tools/bootstrap-records-extractor.mjs": "57aa817af90dda082b0bac89d03bfcde7f04d2b55f339c8ff9a2792cd21f231d",
+    "tools/bootstrap-source.mjs": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+    "tools/bootstrap-packed.mjs": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+    "tools/bootstrap-realm.mjs": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+    "tools/bootstrap-callbacks.mjs": "5ffd831f43c1ebb7eec5377e8462570dc66e94173139d3508fb3f73cf98e69ff",
+    "tools/bootstrap-declarations.mjs": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+    "tools/bootstrap-render-scene.mjs": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+    "tools/scenario-factory.mjs": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+    "tools/bootstrap-host.js": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+    "tools/oracle-clock.js": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+    "config/bootstrap-packed-config.json": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "tools/bootstrap-realm-init.js": "1b7ae0bfe4cca713e51abfa81fed12b3f9b70e33e6af4301a722cfc32832d82c",
+    "tools/bootstrap-vendor-CCClass.js": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+    "tools/bootstrap-render-host.js": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+    "tools/bootstrap-vendor-CCGeometry.js": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+    "tools/bootstrap-vendor-CCPointExtension.js": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+    "tools/bootstrap-vendor-CCAffineTransform.js": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696",
+    "tools/bootstrap-vendor-CCTypesPredicates.js": "54736c655de08ad96cec9f709f0984e8c3256a5abff980d0786472418d956458"
+  },
+  "sourceInputs": {
+    "src/srcmodule/game_base.js": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_ui_2.js": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866"
+  },
+  "generatedProgramSha256": "600c5b1d7849a76a5b4111a9207a3c342a0f5d372d832c68b6f1a1c7381b332d",
+  "factoryCount": 50,
+  "factoryChunks": [],
+  "tableBundle": {
+    "sha256": "846bb0edabac6bac253ad527a7205d163a36aaa9f11028349841f7d7aeb12c2b",
+    "bytes": 101448713
+  },
+  "rebuild": {
+    "tables": "node tools/prepare-native-tables.mjs",
+    "emitter": "node tools/emit-native-oracle.mjs --scenario config/scenario-example-2026.json --scope observed --capture final --battles 1 --warmup 0 --host-inputs benchmarks/fixtures/frozen-2026-initial-ordinary-global-passed/host-inputs.json.gz --output work/native-oracle-replay.js --trace-initial --mutable-tables AnimAtkFrame,UnitPeriod --eager-battle",
+    "native": "node tools/native-compiler-run.mjs --input work/native-oracle-replay.js --output work/native-oracle-replay --cc-opt O1 --compile-jobs 2 --plumbing",
+    "replay": "The emitter command consumes the archived exact random/clock tapes and rejects missing/extra host inputs. Rebuilding with changed source/oracle/compiler versions requires a new qualification."
+  },
+  "artifacts": [
+    {
+      "file": "metadata.json.gz",
+      "compression": "gzip",
+      "sha256": "95029e8a2572ee2aada9062a35a2d43f3c75c0b74c57a7d3f515b7bcccde85b5",
+      "uncompressedSha256": "9250d3cb240c0af1ef1c5fcad47e8b5983abe5eeae44a9f60daa1a6ec17f274c",
+      "uncompressedBytes": 30361,
+      "bytes": 7846
+    },
+    {
+      "file": "host-inputs.json.gz",
+      "compression": "gzip",
+      "sha256": "f97ee91c6c64a79d2d92c86eb87e9cab23a17d0c16b5f1be4cde3769b12f48df",
+      "uncompressedSha256": "92b06b90ecbb94ea74d90f02e13c00e903770f9f4cdcaa68df3629f297f0a7e8",
+      "uncompressedBytes": 74,
+      "bytes": 94
+    },
+    {
+      "file": "reference.json.gz",
+      "compression": "gzip",
+      "sha256": "c056d491913223bd64a3e288cc894ef03aaa0a39969ac19ec4e86748f741a631",
+      "uncompressedSha256": "5f0beef254b0752e36cf354f5889820efbcfadfff7be956d4c4c34598105c525",
+      "uncompressedBytes": 19331476,
+      "bytes": 1982757
+    },
+    {
+      "file": "node.stdout.gz",
+      "compression": "gzip",
+      "sha256": "a27d4cc5b30e7a02a44522038106d3d46aaa955f52c7227212023a8eb44e2b84",
+      "uncompressedSha256": "1cc020c7933909a7abe7a92a37b7c1a2459e04e066447a8c7aca2f2e8e0c7524",
+      "uncompressedBytes": 19331705,
+      "bytes": 1982883
+    },
+    {
+      "file": "node.stderr.gz",
+      "compression": "gzip",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0,
+      "bytes": 20
+    },
+    {
+      "file": "emitter-source.mjs.gz",
+      "compression": "gzip",
+      "sha256": "610be30335a537aef047effd931a3e7fdddedbeab70bce45f8aff82decb9062d",
+      "uncompressedSha256": "0e0c0889c5a9eee00c17424f27feaf3e3f3023cfa1e405274fb7d1249af66427",
+      "uncompressedBytes": 32216,
+      "bytes": 9323
+    }
+  ]
+}
