@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "file": "tools/oracle-clock.js",
+  "globalAPI": "installOracleClock({mode,tape}) -> {tape,stats(),finish(),restore()}",
+  "bootstrapAPI": "createBootstrapRuntime({hostClock:{mode,tape}}) -> runtime.clock; installed before source initializers and Cocos",
+  "tape": {
+    "record": "Caller-provided empty array or a fresh output array; entries append from actual original native observations",
+    "replay": "Immutable validated snapshot of supplied JSON events; source clock calls consume one matching event each",
+    "events": [
+      {
+        "kind": "Date.now",
+        "bits": "16 lower-case hex binary64 bits"
+      },
+      {
+        "kind": "Date.construct",
+        "bits": "16 lower-case hex timestamp observed from original new Date() internal slot"
+      },
+      {
+        "kind": "Date.call",
+        "value": "exact string returned by the original Date() function"
+      }
+    ]
+  },
+  "semantics": [
+    "Date.now records original Date.now result; replay returns its bits unchanged",
+    "new Date() records original native no-argument construction timestamp; replay constructs a native Date using that input, retaining native TimeClip semantics",
+    "Date() called as a function records and replays its exact returned host string; its arguments remain ignored by the native function",
+    "Constructors with arguments delegate to the original constructor via Reflect.construct and consume no clock tape",
+    "Native prototype/internal slots, normal subclasses/new.target, Date.parse and Date.UTC behavior are retained",
+    "Wrong event kind, exhausted input and observations after finish fail closed; finish and restore reject missing consumption; failures remain sticky",
+    "No constant clock, timestamp normalization or synthetic wall time is substituted"
+  ],
+  "instrumentationBoundary": [
+    "Install once per realm before source code captures Date references; references captured before installation can bypass instrumentation",
+    "Date function identity and Function.prototype.toString representation change; full universal ECMAScript observational equivalence is not claimed",
+    "Date.prototype.constructor temporarily points to the wrapper and is restored on cleanup; this change is intentional to keep constructor-based calls inside the recorded boundary",
+    "Native intrinsic global Date/prototype bindings are expected; hostile mutations of these bindings/descriptors and throwing exotic new.target prototype accessors are outside the adapter contract",
+    "Timezone and engine-specific Date instance formatting remain native. Date() function results replay exact strings; cross-engine formatting of date objects must still be validated when used",
+    "This is a host-input record/replay contract, not permission to remove original callbacks, RNG calls or battle mechanics"
+  ],
+  "sourceReason": {
+    "file": "src/srcmodule/game_util.js",
+    "name": "ed.soundManager._polyphonyCanPlay",
+    "start": 132790,
+    "end": 133013,
+    "sha256": "769c84094e80685311755fd923af61f7ce6e5ae26907da16c45bcb6245dd1797",
+    "observation": "Original audio gate uses (new Date).getTime()-r.LastPlayTime > 450; wall-clock inputs can change callback/device event behavior"
+  },
+  "validation": {
+    "tests": 9,
+    "command": "node --test tools/tests/oracle-clock.test.mjs"
+  }
+}
