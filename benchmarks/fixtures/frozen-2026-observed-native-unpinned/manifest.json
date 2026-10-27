@@ -20,7 +20,7 @@
   },
   "rebuild": {
     "tables": "node tools/prepare-native-tables.mjs",
-    "emitter": "node tools/emit-native-oracle.mjs --scenario config/scenario-example-2026.json --scope observed --capture undefined --battles 1 --warmup 0 --host-inputs benchmarks/fixtures/frozen-2026-observed-native-unpinned/host-inputs.json.gz --output work/native-oracle-replay.js",
+    "emitter": "node tools/emit-native-oracle.mjs --scenario config/scenario-example-2026.json --scope observed --capture all --battles 1 --warmup 0 --host-inputs benchmarks/fixtures/frozen-2026-observed-native-unpinned/host-inputs.json.gz --output work/native-oracle-replay.js",
     "native": "node tools/native-compiler-run.mjs --input work/native-oracle-replay.js --output work/native-oracle-replay --cc-opt O1 --compile-jobs 2 --plumbing",
     "replay": "The emitter command consumes the archived exact random/clock tapes and rejects missing/extra host inputs. Rebuilding with changed source/oracle/compiler versions requires a new qualification."
   },

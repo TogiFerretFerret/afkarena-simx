@@ -3,6 +3,7 @@ import { resolve,relative } from 'node:path';
 import { gzipSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
 import { compareNativeReports,compareHostInputConsumption } from './native-report-compare.mjs';
+import { validateNativeReplayContract } from './native-replay-contract.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 const [input,label,emitterSnapshot]=process.argv.slice(2);
@@ -34,7 +35,8 @@ const manifest={version:1,nodeGate:{passed:difference===null,difference},descrip
   generatedProgramSha256:metadata.outputSha256,factoryCount:metadata.factoryCount,
   factoryChunks:(metadata.factoryChunks??[]).map(({sha256,firstFactory,count})=>({sha256,firstFactory,count})),
   tableBundle:{sha256:metadata.tableBundle.sha256,bytes:metadata.tableBundle.bytes},
-  rebuild:{tables:'node tools/prepare-native-tables.mjs',emitter:'node tools/emit-native-oracle.mjs --scenario '+relative(root,metadata.scenario.file)+' --scope '+metadata.scope+' --capture '+metadata.captureMode+' --battles '+metadata.battles+' --warmup '+metadata.warmup+' --host-inputs '+relative(root,directory)+'/host-inputs.json.gz --output work/native-oracle-replay.js'+((metadata.factoryChunks?.length)?' --factory-chunk-size '+metadata.factoryChunks[0].count:'')+(metadata.factoryChunkPolicy?.maxSourceBytes?' --factory-chunk-bytes '+metadata.factoryChunkPolicy.maxSourceBytes:'')+(metadata.initialTrace?' --trace-initial':metadata.traceEnabled?' --trace':metadata.tableMembraneEnabled?' --table-membrane':'')+(metadata.mutableTables?.length?' --mutable-tables '+metadata.mutableTables.join(','):'')+(metadata.trackMutable?' --tracked-mutable-tables':'')+(metadata.eagerBattle?' --eager-battle':''),
+  rebuild:{tables:'node tools/prepare-native-tables.mjs',emitter:'node tools/emit-native-oracle.mjs --scenario '+relative(root,metadata.scenario.file)+' --scope '+metadata.scope+' --capture '+(metadata.captureMode??reference.capture??'all')+' --battles '+metadata.battles+' --warmup '+metadata.warmup+' --host-inputs '+relative(root,directory)+'/host-inputs.json.gz --output work/native-oracle-replay.js'+((metadata.factoryChunks?.length)?' --factory-chunk-size '+metadata.factoryChunks[0].count:'')+(metadata.factoryChunkPolicy?.maxSourceBytes?' --factory-chunk-bytes '+metadata.factoryChunkPolicy.maxSourceBytes:'')+(metadata.initialTrace?' --trace-initial':metadata.traceEnabled?' --trace':metadata.tableMembraneEnabled?' --table-membrane':'')+(metadata.mutableTables?.length?' --mutable-tables '+metadata.mutableTables.join(','):'')+(metadata.trackMutable?' --tracked-mutable-tables':'')+(metadata.eagerBattle?' --eager-battle':''),
     native:'node tools/native-compiler-run.mjs --input work/native-oracle-replay.js --output work/native-oracle-replay --cc-opt O1 --compile-jobs 2 --plumbing',replay:'The emitter command consumes the archived exact random/clock tapes and rejects missing/extra host inputs. Rebuilding with changed source/oracle/compiler versions requires a new qualification.'},artifacts};
+validateNativeReplayContract(manifest,metadata,{root,fixtureDirectory:directory,reference});
 await writeFile(resolve(directory,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(JSON.stringify({directory:relative(root,directory),artifacts:artifacts.length,bytes:artifacts.reduce((sum,item)=>sum+item.bytes,0)}));
