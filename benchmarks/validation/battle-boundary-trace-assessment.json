@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Feasibility and explicit diagnostic coverage assessment, not a completed differential proof or benchmark.",
+  "qualifiesFor10000Target": false,
+  "sources": [
+    {
+      "file": "tools/native-oracle-trace.mjs",
+      "sha256": "856484545c543dd68e36e2b465843e21a08ba3301e54b0312ad47cb827218ce9"
+    },
+    {
+      "file": "tools/battle-trace-instrumentation.js",
+      "sha256": "2c0d632a7d527b48247718f9f65ff486bbb1824fbf237c62a172a09579c0b989"
+    },
+    {
+      "file": "tools/battle-trace-portable.js",
+      "sha256": "9813a661d5969a20559a1784a6d0317c426b3553fcea8aabca7ad16a979f2f34"
+    },
+    {
+      "file": "tools/battle-trace-portable.mjs",
+      "sha256": "945b1cab314a10c4195ccf7e100d9839689f7bf8e8f82594ca6e58c683a0837d"
+    },
+    {
+      "file": "tools/check-archived-native-trace.mjs",
+      "sha256": "00d581f689358139e9d7bdf36ecf424b82833bfeda99f67c4d82b3ede6f034b3"
+    },
+    {
+      "file": "tools/battle-boundary-state-trace.js",
+      "sha256": "80bd32a0f2b86775dd48aad8f322af10d9c8eb36fc744bf075d9ca621fc6c60d"
+    },
+    {
+      "file": "tools/battle-boundary-trace.mjs",
+      "sha256": "93f71a34da9dc97e0bf9bde2108e7e739baa7c8f887b0078924f13a4419a5a4b"
+    }
+  ],
+  "fullProgramContract": {
+    "rootContract": "ed-cc-source-globals",
+    "requiredGate": "tools/check-archived-native-trace.mjs",
+    "roots": [
+      "ed",
+      "cc",
+      "original source globals",
+      "engine and ordered callbacks",
+      "hero scripts",
+      "host state",
+      "mutable tables",
+      "ClassManager counters"
+    ],
+    "costEvidence": {
+      "historicalPartialCapture": {
+        "mode": "mutable_graph_with_code_identities",
+        "milliseconds": 40262.060267,
+        "status": "failed",
+        "error": "Original source battle did not terminate in 1 frames",
+        "events": 512,
+        "callbacks": 98,
+        "rng": 20,
+        "nodes": 3708,
+        "coverage": [
+          "Native lexical closure bindings cannot be reflected; callback execution effects and event/RNG order are checked",
+          "Standard function metadata is treated as immutable code; source function identity/hash and custom data properties remain captured",
+          "This instrumented source oracle is not a completed native simulator",
+          "Actor/effect/view lifecycle outside the source callback phase is not provided by this adapter"
+        ],
+        "qualifiesForThroughputTarget": false
+      },
+      "lastPriorEagerProgress": {
+        "status": "trace_progress",
+        "events": 3400,
+        "kind": "callback:before",
+        "frame": 29,
+        "nodes": 23166,
+        "codeEntries": 33396
+      },
+      "warning": "Historical partial costs use different revisions and are not a runtime bound or prediction for the current tracer. They show why a whole-program snapshot at every event is a separate long-running validation task."
+    },
+    "remaining": true
+  },
+  "incrementalContract": {
+    "rootContract": "primitive-vector-battle-boundaries-v1",
+    "completeBattleRequired": true,
+    "orderedBoundaries": [
+      "source RNG before/after/throw",
+      "source callback enqueue/before/after",
+      "source Unit setHp/setMp/castSkill/onDied/terminate before/after/throw",
+      "engine frame before/after",
+      "host random and clock observations",
+      "device output",
+      "battle entered/completed"
+    ],
+    "state": [
+      "own enumerable string-keyed primitive fields and numeric vectors on the engine",
+      "ordered alive/dead unit, pet, field-NPC and projectile lists",
+      "selected units own fields, attributes and buff effects",
+      "ordered skills and buffs with own primitive fields",
+      "source RNG, queue identities and ClassManager counter bits"
+    ],
+    "snapshotProtocol": "SHA256-addressed typed snapshot nodes and event root references preserve reconstructable raw snapshot fields. Every node and root hash is verified; ordered events and payloads compare exactly.",
+    "excluded": [
+      "arbitrary nested object state",
+      "prototype/nonenumerable/symbol-keyed state",
+      "function code and lexical bindings",
+      "weak collections",
+      "aliases outside selected roots",
+      "actor/effect/view lifecycle"
+    ],
+    "proxyBoundary": "Descriptor reflection avoids invoking ordinary getters; unknown Proxy traps are outside this known source fixture domain.",
+    "doesNotSatisfyFullProgramGate": true,
+    "optimizedNativePlan": "Recompile only the host-tape prefix unit and runner; reapply original source-pinned Entity and clone C patches; reuse other five frozen objects and original guarded C-prefilter+V8-sort+digest private DSO. Require native nonzero fast-path counters and complete raw report/source trace parity."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "passed": false,
+  "status": "interrupted-pre-fix",
+  "completedBattles": 0,
+  "lastObservedProgress": {
+    "status": "boundary_trace_progress",
+    "events": 50000,
+    "frame": 228,
+    "kind": "mechanic:setHp:before"
+  },
+  "qualifiesFor10000Target": false,
+  "helperSha256": "43eeb94dd2b90ccb779aff166b4f5dc256008a3e9840e1c8a3d809412f3f03af",
+  "sourceProducerSha256": "83213d0bbbd3a389a84229b8afbf5bdf58efd8858c4bdcb42c04d58b2eb81721",
+  "scope": "A source-only trace attempt was deliberately stopped when review found diagnostic encoding defects. The event stream was not completed or emitted and cannot pass any trace gate. A plain-AOT preparatory build exists but was not executed as a trace qualification.",
+  "defects": [
+    "Own enumerable __proto__ primitive fields could be silently lost through ordinary object assignment",
+    "Source field names could collide with bare snapshot reference markers",
+    "Nested raw device/clock payload numbers lacked explicit f64 bit encoding"
+  ],
+  "resolution": "Corrected helper uses typed field-entry arrays and descriptor-encoded payload graphs with all numeric values encoded as bits. A fresh complete source/native run is required.",
+  "archive": {
+    "file": "benchmarks/validation/battle-boundary-trace-pre-fix.outputs.json.gz",
+    "sha256": "1cdf7cd8691d9b71fbb5dc510fb4504fa8d697b8e3b7ff3cd8c2a85b2e10401f"
+  },
+  "oldCommit": "bdc1c26"
+}

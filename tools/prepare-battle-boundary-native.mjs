@@ -6,16 +6,19 @@ import {openSync,closeSync} from 'node:fs';
 import {parse} from '@babel/parser';
 import assert from 'node:assert/strict';
 const root=resolve(import.meta.dirname,'..'),directory=resolve(root,'work/battle-boundary-trace'),sha=b=>createHash('sha256').update(b).digest('hex'),hash=async file=>sha(await readFile(resolve(root,file)));
+const dependencies=new Map();async function bind(file,expected){const actual=await hash(file);if(expected!==undefined)assert.equal(actual,expected,'Changed build input '+file);dependencies.set(file,actual);}
 await mkdir(directory,{recursive:true});
 const baselineFile='benchmarks/results/2026-10-27T21-55-08.845Z-native-warm23-no-proxy.json',baseline=JSON.parse(await readFile(resolve(root,baselineFile)));
 assert.equal(baseline.semanticReportMatched,true);assert.equal(baseline.units.length,7);
 for(const unit of baseline.units){assert.equal(await hash(unit.file),unit.sourceSha256??unit.sha256);assert.equal(await hash(unit.object),unit.objectSha256);}
+await bind(baselineFile);for(const unit of baseline.units){await bind(unit.file,unit.sourceSha256??unit.sha256);await bind(unit.object,unit.objectSha256);}
 const config=JSON.parse(await readFile(resolve(root,'config/native-compiler-static-hermes.json'))),build=resolve(root,'work/downloads/hermes-build'),compiler=resolve(build,'bin/shermes');
 assert.equal(await hash(compiler),baseline.compilerSha256);
 const hostFile='benchmarks/validation/native-entity-sort-copy-host.json',host=JSON.parse(await readFile(resolve(root,hostFile)));assert.equal(host.passed,true);
 assert.equal(await hash(host.privateVM.output),host.privateVM.privateSha256);
 for(const row of Object.values(host.libraries))assert.equal(await hash(row.path),row.sha256);
 const tapeFile=resolve(directory,'host-inputs.json'),tape=JSON.parse(await readFile(tapeFile));assert.equal(tape.clock.length,260);assert.equal(tape.random.length,2);
+for(const file of [tapeFile,'tools/prepare-battle-boundary-native.mjs','tools/battle-boundary-state-trace.js','config/native-compiler-static-hermes.json',hostFile,host.privateVM.output,...Object.values(host.libraries).map(r=>r.path),compiler])await bind(file);
 const oldFirst=await readFile(baseline.units[0].file,'utf8'),tree=parse(oldFirst,{sourceType:'script'});let tapeLiteral=null;
 function walk(node){if(!node||typeof node!=='object')return;if(node.type==='AssignmentExpression'&&node.left?.type==='Identifier'&&node.left.name==='__nativeHostInputs'){assert.equal(tapeLiteral,null);assert.equal(node.right.type,'CallExpression');assert.equal(node.right.arguments[0].type,'StringLiteral');tapeLiteral=node.right.arguments[0];}for(const [key,value]of Object.entries(node)){if(['loc','extra'].includes(key))continue;if(Array.isArray(value))for(const child of value)walk(child);else if(value&&typeof value==='object')walk(value);}}
 walk(tree);assert.ok(tapeLiteral);
@@ -55,4 +58,5 @@ const linkArgs=[mainFile,...units.map(u=>u.object),...Object.values(host.librari
 for(const lib of ['lib','jsi','tools/shermes']){const path=resolve(build,lib);linkArgs.push('-L'+path,'-Wl,-rpath,'+path);}linkArgs.push('-lshermes_console','-lm','-lhermesvm','-ldl','-lpthread','-o',output);
 assert.equal((await run('cc',linkArgs,'link')).code,0,await readFile(resolve(directory,'link.stderr'),'utf8'));
 const proof={version:1,passed:true,scope:'BUILD ONLY narrower boundary-state trace; five frozen native objects reused and two privately recompiled. All original game function bytes are preserved. Initial host tape becomes the exact first-battle prefix; runner changes20after3 to1after0 and installs identical diagnostic helper. No source/native trace comparison claim.',semanticReportMatched:null,qualifiesFor10000Target:false,baseline:{file:baselineFile,sha256:await hash(baselineFile)},helper:{file:helperFile,sha256:sha(helper)},hostInputs:{file:tapeFile,sha256:await hash(tapeFile)},compiler:{file:compiler,sha256:await hash(compiler)},privateVM:host.privateVM,units,compilations,output,outputSha256:await hash(output),linkArgs,sourceChanges:{first:{oldSha256:sha(oldFirst),newSha256:sha(first),kind:'Only JSON literal of host tape'},runner:{oldSha256:sha(oldRunner),newSha256:sha(runner),kind:'Diagnostic helper installation and run1after0'}},producer:{file:'tools/prepare-battle-boundary-native.mjs',sha256:await hash('tools/prepare-battle-boundary-native.mjs')}};
+proof.dependenciesAtFinish=[];for(const [file,expected]of dependencies){const actual=await hash(file);proof.dependenciesAtFinish.push({file,sha256:expected,matched:actual===expected});assert.equal(actual,expected,'Build input changed during compile '+file);}
 await writeFile(resolve(directory,'native-build.json'),JSON.stringify(proof,null,2)+'\n');console.log(JSON.stringify({passed:true,output,outputSha256:proof.outputSha256}));
