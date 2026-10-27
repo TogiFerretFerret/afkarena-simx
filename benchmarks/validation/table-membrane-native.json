@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesForThroughputTarget": false,
+  "reference": {
+    "node": "v24.19.0",
+    "flags": [
+      "--jitless"
+    ],
+    "sha256": "33778cf7ff0e0a0a2f7bda1cc25ee27a7a38a6f971bd40841bd61c536a90a4f3"
+  },
+  "candidate": {
+    "compiler": "work/downloads/hermes-build/bin/shermes",
+    "compilerSha256": "19034c163046bb1d9973dcc85a1176bd77385dae8655be3084477b3883282dc1",
+    "flags": [
+      "-O",
+      "-Wc,-O1,-g0,-ffp-contract=off"
+    ],
+    "sha256": "33778cf7ff0e0a0a2f7bda1cc25ee27a7a38a6f971bd40841bd61c536a90a4f3"
+  },
+  "sourceSha256": "3426358d393fa4a584637c42aa45e3196e1284902ffcb1d25aa73fec307e84c9",
+  "membraneSha256": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+  "checks": [
+    "source JSON clone independence",
+    "standard array/prototype/constructor/descriptor reads",
+    "canonical immutable table metadata and exporter leaf alias identity",
+    "all five mutation traps plus nested array mutation throw before change and remain sticky"
+  ],
+  "limitations": [
+    "Isolated actual compiled membrane/exporter probe; no battle source table purity or complete battle fidelity qualification",
+    "NaN inputs omitted because the compiler has separate known strict NaN sign/payload failures"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "purpose": "Qualification-only enforced table immutability for exact diagnostic hash reuse; never a default battle optimization",
+  "implementation": "tools/qualification-table-membrane.js",
+  "installer": "installQualificationTableMembrane({digest,isProxy?})",
+  "api": {
+    "parse": "parse(primitiveJsonText,{name}) creates and wraps private raw JSON without exposing it",
+    "wrap": "wrap(rawRoot,{name}) transfers exclusive source-facing ownership from trusted host loader",
+    "immutableMetadata": "Only private registered proxies yield frozen {table,path,sha256,kind}; other values yield null",
+    "assertClean": "Throws permanently after any rejected mutation or validation violation, including source-caught errors",
+    "stats": "Counts named roots, validated nodes, lazy proxies, gets, descriptors, writes and failures"
+  },
+  "hash": {
+    "protocol": "qualification-json-table-v1",
+    "algorithm": "injected lowercase SHA-256 over canonical JSON encoding of complete cold descriptor graph",
+    "coverage": ["all own keys in source order", "every own data descriptor flag", "prototype kind", "extensibility", "array lengths and holes", "all scalar values", "raw binary64 sign and payload bits", "aliases via deterministic graph references"],
+    "canonicalPath": "First depth-first source own-key path; independent of lazy proxy access order"
+  },
+  "accepted": ["extensible ordinary Object.prototype objects", "extensible ordinary Array.prototype arrays including holes", "ordinary writable/enumerable/configurable own JSON fields", "standard array length descriptor", "null, string, boolean and binary64 numbers", "shared children within one named root"],
+  "rejected": ["all set, defineProperty, deleteProperty, setPrototypeOf and preventExtensions attempts", "accessors", "unsupported descriptor flags", "nonstandard prototypes and native exotic objects", "functions, undefined, bigint and symbols", "cyclic input graphs", "named-root collisions and cross-root aliases", "initial proxies when host detection is supplied"],
+  "integrationRequirements": [
+    "Use parse or a trusted loader closure that has never exposed raw roots/children to game code and never mutates them afterward",
+    "Pure JavaScript cannot detect every initial Proxy or revoke a preexisting raw host alias; direct wrap requires this ownership precondition. parse is the stronger boundary",
+    "Keep membrane manager, raw decoded table container, validation records and digest capability outside game globals/window and never return raw targets",
+    "Wrap children in both get and getOwnPropertyDescriptor paths; clone operations receive proxies and produce independent mutable copies",
+    "Invoke assertClean at every trace event and final completion so source-caught write errors cannot qualify",
+    "Any table write or unsupported shape invalidates qualification; fall back to complete dense capture/original table execution rather than ignore a mutation",
+    "Registry-based immutable graph leaves may only accept metadata returned by this private membrane, never caller-claimed arbitrary objects",
+    "No runtime default integration is enabled by this contract"
+  ],
+  "validation": {
+    "tests": "tools/tests/qualification-table-membrane.test.mjs",
+    "actualCompiledProbe": "tools/probe-table-membrane-native.mjs",
+    "report": "benchmarks/validation/table-membrane-native.json"
+  },
+  "qualifiesForThroughputTarget": false
+}
