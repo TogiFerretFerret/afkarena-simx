@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "profileSucceeded": true,
+  "sampleCount": 2247,
+  "dataBytes": 37430360,
+  "kind": "Native user CPU-clock sampling diagnostic",
+  "semanticReportMatched": true,
+  "firstDifference": null,
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "wallMs": 46538.990199,
+  "profileScope": "Entire original process: cold VM/script/table initialization, three warmup battles, twenty measured battles, final capture and report. Sampling affects timing; no throughput or speedup claim.",
+  "sampleFrequencyHz": 49,
+  "callGraph": "DWARF,16384byte stack samples",
+  "sourceReport": {
+    "file": "benchmarks/results/2026-10-27T21-26-15.501Z-native-warm23-worker-map.json",
+    "sha256": "b0a5104fe87d81e418be28d75ea703a7eddacff3e9f47afaa079a31d561aa9e9"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/native-warm23-worker-map",
+    "sha256": "5bc3ad36e0e68cd9c926b1ffc69b1cd77d6493441d0b6c2749b34c1a935c70a6"
+  },
+  "privateVM": {
+    "file": "/workspace/afkarena-simx/work/native-combined-copy/libhermesvm.so",
+    "sha256": "70cc55a159f3d434218754ce94165134231f584a1f7e89379b6d366e632767dd"
+  },
+  "bootstrap": {
+    "file": "benchmarks/validation/native-profiler-bootstrap.json",
+    "sha256": "5290830713a3cd0f1faf41e45505b8e09f344fc4edd237abc680ae33fd4a2542"
+  },
+  "perf": {
+    "file": "/workspace/afkarena-simx/work/downloads/perf/perf",
+    "wrapperSha256": "5261dcc63baf8f9d19e25161e9b5d6c074ed4fd9627e32a0483990f870ff5492",
+    "executableSha256": "0c4438084990cfc31a599a0b88a9ec024149a601bf5dcae9e265f9efdc31fb1f"
+  },
+  "environmentPolicy": "Only explicit environment below is passed to PERF and inherited by its native child; no parent process.env, credentials, proxy settings or tokens are passed.",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/native-perf/empty-home",
+    "LANG": "C",
+    "LD_LIBRARY_PATH": "/workspace/afkarena-simx/work/native-combined-copy"
+  },
+  "args": [
+    "record",
+    "-e",
+    "cpu-clock:u",
+    "-F",
+    "49",
+    "--call-graph",
+    "dwarf,16384",
+    "-o",
+    "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-26-46.948Z.data",
+    "--",
+    "/workspace/afkarena-simx/work/native-warm23-worker-map",
+    "-Xhermes-internal-test-methods"
+  ],
+  "reports": [
+    {
+      "label": "leaf",
+      "args": [
+        "report",
+        "--stdio",
+        "--no-children",
+        "--sort",
+        "dso,symbol",
+        "--percent-limit",
+        "0.1",
+        "--call-graph",
+        "none",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-26-46.948Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "inclusive",
+      "args": [
+        "report",
+        "--stdio",
+        "--children",
+        "--sort",
+        "dso,symbol",
+        "--percent-limit",
+        "0.5",
+        "--call-graph",
+        "graph,0.5,caller",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-26-46.948Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "stacks",
+      "args": [
+        "script",
+        "--show-mmap-events",
+        "-F",
+        "comm,pid,tid,time,event,ip,sym,symoff,dso,dsoff",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-26-46.948Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "buildids",
+      "args": [
+        "buildid-list",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-26-46.948Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "machine": {
+    "version": 1,
+    "capturedAt": "2026-10-27T21:26:46.949Z",
+    "runtime": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "kernel": "6.18.55",
+    "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+    "logicalCpus": 5,
+    "availableParallelism": 4,
+    "cgroupV2": {
+      "cpuMax": "400000 100000",
+      "memoryMax": "17179869184",
+      "cpuQuotaCores": 4
+    },
+    "effectiveCpuCapacity": 4,
+    "scope": "Host resource snapshot. CPU affinity and cgroup quota are distinct; this file is not a throughput result."
+  },
+  "completed": 20,
+  "totalCallbacks": 309060,
+  "artifacts": [
+    {
+      "label": "record-stdout",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.record-stdout.gz",
+          "sha256": "371441cb8df18c52f32d3afe4f57a705f2e3d033b2cd34b2ee82c9e980cb5563",
+          "bytes": 35498
+        }
+      ],
+      "compressedSha256": "371441cb8df18c52f32d3afe4f57a705f2e3d033b2cd34b2ee82c9e980cb5563",
+      "uncompressedSha256": "b8b5f7616c1ea3a3a2e8d365177f4f2e717f6d3413af8ddb892761a3b1a23774",
+      "uncompressedBytes": 687629
+    },
+    {
+      "label": "record-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.record-stderr.gz",
+          "sha256": "441e5aeb22482f370ae782bd9a8439f45403fe2e3c732080ac0e2c03e09702ef",
+          "bytes": 239
+        }
+      ],
+      "compressedSha256": "441e5aeb22482f370ae782bd9a8439f45403fe2e3c732080ac0e2c03e09702ef",
+      "uncompressedSha256": "71c61969914970ee3d18fc10a066dd7b8a0757834f92e257943d84016ac4d0ab",
+      "uncompressedBytes": 316
+    },
+    {
+      "label": "leaf",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.leaf.gz",
+          "sha256": "250b5dbc277f8bd8ecf8125b639ef7b36a9c07432c245bc60bfd233a7aa3bc54",
+          "bytes": 3886
+        }
+      ],
+      "compressedSha256": "250b5dbc277f8bd8ecf8125b639ef7b36a9c07432c245bc60bfd233a7aa3bc54",
+      "uncompressedSha256": "4f7d76725e262d7a9c664df566f43199ca4d6a45cd433e9f4f980f99b38ffdd3",
+      "uncompressedBytes": 89593
+    },
+    {
+      "label": "leaf-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.leaf-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "inclusive",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.inclusive.gz",
+          "sha256": "9cf6d2ce881635feaf41e55f8615e8e85140c76774231b3c3cb0a358de04e195",
+          "bytes": 107595
+        }
+      ],
+      "compressedSha256": "9cf6d2ce881635feaf41e55f8615e8e85140c76774231b3c3cb0a358de04e195",
+      "uncompressedSha256": "ff2e67e5f1eda485f0a47f3d6cf82d2315a26ecea126f18be6b243f1641fa57f",
+      "uncompressedBytes": 2378003
+    },
+    {
+      "label": "inclusive-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.inclusive-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "stacks",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.stacks.gz",
+          "sha256": "733d7f71bb89d86d83cfc0be3acf769cd7765678a5ad121ab23cd62603ab885d",
+          "bytes": 366316
+        }
+      ],
+      "compressedSha256": "733d7f71bb89d86d83cfc0be3acf769cd7765678a5ad121ab23cd62603ab885d",
+      "uncompressedSha256": "56dd0b7bad725e430bef20dba3294a8299de26fb54a73654618a8158c150732b",
+      "uncompressedBytes": 10690705
+    },
+    {
+      "label": "stacks-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.stacks-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "buildids",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.buildids.gz",
+          "sha256": "fb3ccb62d1fe77c1413fe31789a4aaae4cade26d5cbdf46c5c2e252fe2c60531",
+          "bytes": 273
+        }
+      ],
+      "compressedSha256": "fb3ccb62d1fe77c1413fe31789a4aaae4cade26d5cbdf46c5c2e252fe2c60531",
+      "uncompressedSha256": "4f8030c47ef1f69e86086471c11dd3337c9cbfce659acd9e631564a9b019eb0f",
+      "uncompressedBytes": 415
+    },
+    {
+      "label": "buildids-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.buildids-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "data",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-26-46.948Z-native-perf-worker-map.data.gz",
+          "sha256": "b7c9af314bf25fb82756f9b5e5d9c23e1017dc89a07710764d3566a71d16e04d",
+          "bytes": 1760282
+        }
+      ],
+      "compressedSha256": "b7c9af314bf25fb82756f9b5e5d9c23e1017dc89a07710764d3566a71d16e04d",
+      "uncompressedSha256": "af6d072e2adf01c8b213c9297efd8d6bb5892872eafbf98755f0b8b649f284b9",
+      "uncompressedBytes": 37430360
+    }
+  ],
+  "producer": {
+    "file": "tools/profile-native-candidate.mjs",
+    "sha256": "527d3b2e08b0ff1857af8fabe3543f42f7d916cd7dcbb804df3e2c7621070bd2"
+  },
+  "qualifiesFor10000Target": false
+}
