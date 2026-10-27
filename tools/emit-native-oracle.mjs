@@ -18,6 +18,8 @@ const tablesPath=resolve(root,option('--tables-file','work/native-tables.json'))
 const battles=Number(option('--battles','1')),warmup=Number(option('--warmup','0'));
 const scope=option('--scope',args.includes('--all-definitions')?'all':'battle-core');
 const captureMode=option('--capture','all');
+const factoryChunkSize=Number(option('--factory-chunk-size','0'));
+if(!Number.isSafeInteger(factoryChunkSize)||factoryChunkSize<0)throw new Error('Invalid factory chunk size');
 if(!['all','final','checksum'].includes(captureMode))throw new Error('Capture must be all, final, or checksum');
 if(!['all','battle','battle-core','observed'].includes(scope))throw new Error('Scope must be all, battle, battle-core, or observed');
 if(!Number.isSafeInteger(battles)||battles<1||!Number.isSafeInteger(warmup)||warmup<0)throw new Error('Invalid battle count');
@@ -132,6 +134,14 @@ const resetMatch=/resetClientCall=(function\(\)\{ed\.clientCall_list=\[\]\})/.ex
 const drainStart=onUpdate.indexOf('ed.clientCallCount='),drainEnd=onUpdate.indexOf('this.updateActor',drainStart);
 assert.ok(drainStart>=0&&drainEnd>drainStart);const drainBody=onUpdate.slice(drainStart,drainEnd);
 const tableBytes=await readFile(tablesPath);
+const factoryChunks=[];
+if(factoryChunkSize){
+  for(let start=0;start<allFactoryRecords.length;start+=factoryChunkSize){
+    const index=factoryChunks.length,file=output+'.factory-'+String(index).padStart(4,'0')+'.js';
+    const text=allFactoryRecords.slice(start,start+factoryChunkSize).map((record,offset)=>`function __nativeFactory${start+offset}(){return (${record.source});}`).join('\n')+'\n';
+    await writeFile(file,text);factoryChunks.push({file,sha256:sha(text),firstFactory:start,count:Math.min(factoryChunkSize,allFactoryRecords.length-start)});
+  }
+}
 const fd=openSync(output,'w');
 const put=text=>writeSync(fd,text+'\n');
 try{
@@ -150,7 +160,7 @@ try{
   for(const record of records.initializers)put(record.source+';');
   put(cocosSource);
   for(const record of capturedHosts.filter(r=>r.phase==='after-cocos'))put(record.source);
-  for(let i=0;i<allFactoryRecords.length;i++)put(`function __nativeFactory${i}(){return (${allFactoryRecords[i].source});}`);
+  if(!factoryChunkSize)for(let i=0;i<allFactoryRecords.length;i++)put(`function __nativeFactory${i}(){return (${allFactoryRecords[i].source});}`);
   put('var __nativeDefinitions=Object.create(null),__nativeGlobals=Object.create(null);');
   for(const[name,list]of records.definitions)put(`__nativeDefinitions[${JSON.stringify(name)}]=[${list.map(r=>'__nativeFactory'+r.factoryId).join(',')}];`);
   for(const[name,list]of records.globals)put(`__nativeGlobals[${JSON.stringify(name)}]=[${list.map(r=>'__nativeFactory'+r.factoryId).join(',')}];`);
@@ -222,7 +232,7 @@ try{
 const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[])].map(record=>record.file).filter(Boolean));
 const sourceInputs=Object.fromEntries(await Promise.all([...sourceFiles].sort().map(async file=>[file,sha(await readFile(resolve(root,file)))])));
 const metadata={version:1,scope,captureMode,executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
-  adapterInputs,sourceInputs,
+  adapterInputs,sourceInputs,factoryChunks,
   sourceRuntime:{file:'tools/bootstrap-runtime.mjs',sha256:adapterInputs['tools/bootstrap-runtime.mjs'],executedFunctionSha256:sha(createBootstrapRuntime.toString())},
   definitionCount:records.definitions.size,globalCount:records.globals.size,factoryCount:allFactoryRecords.length,
   usedTableNames,
@@ -238,8 +248,8 @@ const metadata={version:1,scope,captureMode,executionContract:{engineFrames:true
 await writeFile(output+'.metadata.json',JSON.stringify(metadata,null,2)+'\n');
 console.log(JSON.stringify({status:'emitted',output,bytes:(await readFile(output)).length,factoryCount:allFactoryRecords.length,reference:referencePath,metadata:output+'.metadata.json'}));
 if(!args.includes('--no-node-check')){
-  const loader='const fs=require("node:fs");globalThis.hermescli={loadFile:p=>new Uint8Array(fs.readFileSync(p))};require(process.argv[1]);';
-  const checked=spawnSync(process.execPath,['-e',loader,output],{cwd:root,encoding:'utf8',maxBuffer:128*1024*1024});
+  const loader='const fs=require("node:fs"),vm=require("node:vm");globalThis.hermescli={loadFile:p=>new Uint8Array(fs.readFileSync(p))};for(const file of JSON.parse(process.argv[2]))vm.runInThisContext(fs.readFileSync(file,"utf8"),{filename:file});vm.runInThisContext(fs.readFileSync(process.argv[1],"utf8"),{filename:process.argv[1]});';
+  const checked=spawnSync(process.execPath,['-e',loader,output,JSON.stringify(factoryChunks.map(chunk=>chunk.file))],{cwd:root,encoding:'utf8',maxBuffer:128*1024*1024});
   await writeFile(output+'.node.stdout',checked.stdout??'');await writeFile(output+'.node.stderr',checked.stderr??'');
   if(checked.error)throw checked.error;
   assert.equal(checked.status,0,'Emitted Node failed; see '+output+'.node.stderr');
