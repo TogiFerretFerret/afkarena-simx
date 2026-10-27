@@ -5,7 +5,7 @@ import {createContext,runInContext} from 'node:vm';
 import {gunzipSync} from 'node:zlib';
 
 const baseline=await readFile(new URL('../battle-trace-portable.js',import.meta.url),'utf8');
-const candidate=gunzipSync(await readFile(new URL('../../benchmarks/fixtures/trace-brand-memo/lazy-trail.js.gz',import.meta.url))).toString('utf8');
+const candidate=gunzipSync(await readFile(new URL('../../benchmarks/validation/trace-brand-memo/lazy-trail.js.gz',import.meta.url))).toString('utf8');
 
 test('snapshot-local native-brand reuse preserves every byte and observes later prototype mutations without invoking getters',()=>{
  const contexts=[baseline,candidate].map(text=>{

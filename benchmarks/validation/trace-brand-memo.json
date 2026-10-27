@@ -15,7 +15,7 @@
   "runs": [
     {
       "result": "benchmarks/results/2026-10-27T19-27-05.690Z-trace-export-cache.json",
-      "candidateArtifact": "benchmarks/fixtures/trace-brand-memo/eager-trail.js.gz",
+      "candidateArtifact": "benchmarks/validation/trace-brand-memo/eager-trail.js.gz",
       "candidateSourceSha256": "ed30bd9e38e75102ef399bb67a9547af747b314c79c33ad92ad9da6218d270c2",
       "baselineSha256": "de47be9fc5be69deb9576dbeb6780e2af1f8f874a3646acf4737938ab16f780d",
       "baselineConstruction": "candidate with brand(value, brandMemo) replaced by brand(value, null)",
@@ -23,7 +23,7 @@
     },
     {
       "result": "benchmarks/results/2026-10-27T19-27-48.973Z-trace-export-cache.json",
-      "candidateArtifact": "benchmarks/fixtures/trace-brand-memo/lazy-trail.js.gz",
+      "candidateArtifact": "benchmarks/validation/trace-brand-memo/lazy-trail.js.gz",
       "candidateSourceSha256": "d5677f20804cf9c4370615639286446bbadf7aac0a375f3061219aa7ce7faacf",
       "baselineSha256": "c93c8e0b263e55d57380a6afe6c725abe55fa824a9db518acfb8beefe9effd22",
       "baselineConstruction": "candidate with brand(value, brandMemo) replaced by brand(value, null)",
@@ -31,7 +31,7 @@
     },
     {
       "result": "benchmarks/results/2026-10-27T19-28-26.830Z-trace-export-cache.json",
-      "candidateArtifact": "benchmarks/fixtures/trace-brand-memo/lazy-trail.js.gz",
+      "candidateArtifact": "benchmarks/validation/trace-brand-memo/lazy-trail.js.gz",
       "candidateSourceSha256": "d5677f20804cf9c4370615639286446bbadf7aac0a375f3061219aa7ce7faacf",
       "baselineSha256": "9813a661d5969a20559a1784a6d0317c426b3553fcea8aabca7ad16a979f2f34",
       "baselineConstruction": "tools/battle-trace-portable.js at ff35b7f",

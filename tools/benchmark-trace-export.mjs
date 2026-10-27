@@ -14,7 +14,7 @@ const descriptorExperiment=process.argv[3]==='descriptors',brandExperiment=proce
 let baseline=source;
 if(brandExperiment){
  const {gunzipSync}=await import('node:zlib');
- source=gunzipSync(await readFile(resolve(root,'benchmarks/fixtures/trace-brand-memo/lazy-trail.js.gz'))).toString('utf8');
+ source=gunzipSync(await readFile(resolve(root,'benchmarks/validation/trace-brand-memo/lazy-trail.js.gz'))).toString('utf8');
 }else if(descriptorExperiment){
  source=source.replace('var descriptor = Object.getOwnPropertyDescriptor;','var descriptor = Object.getOwnPropertyDescriptor;\n    var descriptorsOf = Object.getOwnPropertyDescriptors;').replace('var keys = ownKeys(value);\n                for (var ki = 0; ki < keys.length; ki++) {\n                    var key = keys[ki], propertyDescriptor = descriptor(value, key);','var descriptorMap = descriptorsOf(value), keys = ownKeys(descriptorMap);\n                for (var ki = 0; ki < keys.length; ki++) {\n                    var key = keys[ki], propertyDescriptor = descriptorMap[key];');
 }else{
