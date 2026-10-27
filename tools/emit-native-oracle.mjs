@@ -242,7 +242,7 @@ try{
   put('__nativeCallbacks.sceneHost=__nativeScene;');
   for(const record of traceSources)put(record.source);
   put('var __nativeRuntime={ed:ed,context:globalThis,callbacks:__nativeCallbacks,host:bootstrapHost,loaded:__nativeLoaded};');
-  if(traceEnabled)put(' __nativeRuntime.nativeTrace=installBattleTraceInstrumentation(__nativeRuntime,{compact:true,definitionNames:__nativeDefinitionNames,subscribeClock:function(observer){__nativeClockObserver=observer;return function(){__nativeClockObserver=null;};}});');
+  if(traceEnabled)put(' __nativeRuntime.nativeTrace=installBattleTraceInstrumentation(__nativeRuntime,{compact:true,digest:globalThis.__nativeDiagnosticDigest,definitionNames:__nativeDefinitionNames,subscribeClock:function(observer){__nativeClockObserver=observer;return function(){__nativeClockObserver=null;};}});');
   put('var __nativeRealmCopy='+realmCopy+';function importBootstrapValue(_context,value){return __nativeRealmCopy(value);}');
   put(instantiateScenario.toString());
   put(__nativeBits.toString());put(__nativePrimitiveState.toString());put(__nativeUnitState.toString());put(__nativeRun.toString());
@@ -270,7 +270,7 @@ const metadata={version:1,scope,captureMode,traceEnabled,oracleProfile,oracleRun
 await writeFile(output+'.metadata.json',JSON.stringify(metadata,null,2)+'\n');
 console.log(JSON.stringify({status:'emitted',output,bytes:(await readFile(output)).length,factoryCount:allFactoryRecords.length,reference:referencePath,metadata:output+'.metadata.json'}));
 if(!args.includes('--no-node-check')){
-  const loader='const fs=require("node:fs"),vm=require("node:vm");globalThis.hermescli={loadFile:p=>new Uint8Array(fs.readFileSync(p))};for(const file of JSON.parse(process.argv[2]))vm.runInThisContext(fs.readFileSync(file,"utf8"),{filename:file});vm.runInThisContext(fs.readFileSync(process.argv[1],"utf8"),{filename:process.argv[1]});';
+  const loader='const fs=require("node:fs"),vm=require("node:vm");globalThis.hermescli={loadFile:p=>new Uint8Array(fs.readFileSync(p))};globalThis.__nativeDiagnosticDigest=text=>require("node:crypto").createHash("sha256").update(text).digest("hex");for(const file of JSON.parse(process.argv[2]))vm.runInThisContext(fs.readFileSync(file,"utf8"),{filename:file});vm.runInThisContext(fs.readFileSync(process.argv[1],"utf8"),{filename:process.argv[1]});';
   const checked=spawnSync(process.execPath,[...oracleProfile.rawBitReferenceFlags,'-e',loader,output,JSON.stringify(factoryChunks.map(chunk=>chunk.file))],{cwd:root,env:{...process.env,NODE_OPTIONS:oracleProfile.rawBitReferenceNodeOptions},encoding:'utf8',maxBuffer:128*1024*1024});
   await writeFile(output+'.node.stdout',checked.stdout??'');await writeFile(output+'.node.stderr',checked.stderr??'');
   if(checked.error)throw checked.error;
