@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "passed": true,
+  "kind": "Independent supplemental typed trace schema validation against actual completed outputs",
+  "scope": "Validates actual JSON-decoded trace schemas, hashes, references, typed own enumerable string-keyed data fields and event/payload boundaries. Source original traced/untraced raw terminal parity is a prerequisite from its own proof. This review does not compare source/native ordered traces and does not qualify whole-program state, actor/effect/view lifecycle, broad battle mechanics or throughput.",
+  "sourceAndNativeArchivesValidated": false,
+  "nativePending": true,
+  "sourceHelperSha256": "80bd32a0f2b86775dd48aad8f322af10d9c8eb36fc744bf075d9ca621fc6c60d",
+  "results": [
+    {
+      "side": "source",
+      "input": {
+        "file": "/workspace/afkarena-simx/work/battle-boundary-trace/source-traced.json",
+        "sha256": "b2345870b58c727b6db5d4b187781fece2877d2dfaa300f13c17ce23f165ffb6"
+      },
+      "proof": {
+        "file": "/workspace/afkarena-simx/work/battle-boundary-trace/source-proof.json",
+        "sha256": "6ba81580568800c0391519c32d85021965b63e55e3fd85ee0ac70456363ebdd5"
+      },
+      "validation": {
+        "passed": true,
+        "events": 64419,
+        "snapshotNodes": 55078,
+        "frames": 296,
+        "scope": "Supplemental JSON schema and integrity for typed-entry boundary traces; own enumerable string-keyed data fields only. No whole-program or battle semantic qualification.",
+        "qualifiesFor10000Target": false
+      }
+    }
+  ],
+  "dependenciesAtFinish": [
+    {
+      "file": "tools/review-battle-boundary-schema-archives.mjs",
+      "sha256": "16bc2d16e4309d8a180504b428ac299412b5fde27bb9b71b1890274e38cfdc7b",
+      "matched": true
+    },
+    {
+      "file": "tools/validate-battle-boundary-schema.mjs",
+      "sha256": "ab7ea12c6bf793c006884d59eda1d114746cf47a1011beeea6f7c6ede2207a80",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/battle-boundary-schema.json",
+      "sha256": "ece2378a587ce74eba94b5e9105064a8e8ae1fde7583695a6f8b07fdb1d0bf1c",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/source-proof.json",
+      "sha256": "6ba81580568800c0391519c32d85021965b63e55e3fd85ee0ac70456363ebdd5",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/source-traced.json",
+      "sha256": "b2345870b58c727b6db5d4b187781fece2877d2dfaa300f13c17ce23f165ffb6",
+      "matched": true
+    }
+  ],
+  "qualifiesFor10000Target": false
+}
