@@ -6,7 +6,10 @@
  "use strict";
  host.installBattleTraceInstrumentation=function(runtime,options){
   options=options||{};
-  var ed=runtime.ed,context=runtime.context,callbacks=runtime.callbacks;
+  // Node's contextified sandbox wrapper can omit uninitialized global bindings
+  // and supplies a different accessor receiver. Reflect the actual VM global.
+  var ed=runtime.ed,context=host,callbacks=runtime.callbacks;
+  if(ed!==host.ed)throw new Error('Trace instrumentation must execute in the battle runtime realm');
   if(!callbacks||!callbacks.sceneHost)throw new Error('Trace needs the actual source callback sceneHost');
   var trace=host.installPortableBattleTrace(options),restores=[],callbackIds=new WeakMap(),nextCallback=1,frame=-1,stopped=false;
   var knownNames=new Set(options.definitionNames||[]),knownPaths=new Set(),registered=new WeakSet(),loaderRevision=-1;

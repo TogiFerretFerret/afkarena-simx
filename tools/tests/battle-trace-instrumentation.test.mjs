@@ -7,7 +7,7 @@ import {comparePortableBattleTraces} from '../battle-trace-portable.mjs';
 
 async function fixture({compact=true,skip=false,extraRng=false,scriptMutation=false,programState=false,globalMutation=false,lazyPrototype=false}={}){
  const context=createContext({});
- runInContext(`var random_seed=1,ed={},shared_global_counter=0;ed.rand=function(){random_seed=random_seed*25%34359738337;return random_seed/34359738337};ed.srand=function(n){random_seed=n;ed.init_battle_seed=n};
+ runInContext(`var neverAssigned;var random_seed=1,ed={},shared_global_counter=0;ed.rand=function(){random_seed=random_seed*25%34359738337;return random_seed/34359738337};ed.srand=function(n){random_seed=n;ed.init_battle_seed=n};
   ed.battlehero={Hero:{counter:0}};
   ed.Unit=class Unit{constructor(){this.hp=5;this.tid=1;this.info={Script:'Hero'}}setHp(n){this.hp=n}setMp(){}castSkill(){}onDied(){}terminate(){}};
   ed.BattleEngine=class BattleEngine{constructor(){this.running=false;this.unit_list=[]}enterBattle(){this.running=true;this.unit_list=[new ed.Unit()]}update(){this.unit_list[0].setHp(4);this.running=false;this.result='victory';if(!skip)clientCall(()=>{ed.rand();if(extraRng)ed.rand();if(scriptMutation)ed.battlehero.Hero.counter++;if(globalMutation)shared_global_counter++;this.unit_list[0].setHp(3)})}};`,context);
@@ -17,7 +17,7 @@ async function fixture({compact=true,skip=false,extraRng=false,scriptMutation=fa
  for(const name of ['battle-trace-portable.js','battle-trace-instrumentation.js'])runInContext(await readFile(new URL('../'+name,import.meta.url),'utf8'),context);
  context.runtime=runtime;context.compact=compact;context.programState=programState;
  const original=context.ed.rand;
- const instrumentation=runInContext('installBattleTraceInstrumentation(runtime,{compact:compact,programState:programState,definitionNames:["ed.Unit","ed.Unit.prototype.hidden"],globalNames:["shared_global_counter"]})',context);
+ const instrumentation=runInContext('installBattleTraceInstrumentation(runtime,{compact:compact,programState:programState,definitionNames:["ed.Unit","ed.Unit.prototype.hidden"],globalNames:["shared_global_counter","neverAssigned"]})',context);
  runInContext('ed.battleEngine=new ed.BattleEngine();ed.srand(12);ed.battleEngine.enterBattle()',context);
  instrumentation.record('battle:entered',{});
  instrumentation.beginFrame();runtime.callbacks.updateFrame(.125);instrumentation.endFrame();
@@ -55,4 +55,13 @@ test('program-state roots detect global mutation outside the engine and require 
 test('loader identities include synthetic prototype path parents without invoking lazy source getters',async()=>{
  const result=await fixture({compact:false,lazyPrototype:true});
  assert.ok(result.trace.events.some(event=>event.graph.codeTable.some(code=>code.kind==='logical'&&code.identity==='source-loader:get:ed.Unit.prototype.hidden')));
+});
+
+test('program globals use actual VM bindings rather than the parent context wrapper',async()=>{
+ const {context,trace}=await fixture({compact:false,programState:true});
+ assert.equal(Object.getOwnPropertyDescriptor(context,'neverAssigned'),undefined);
+ const actual=runInContext('Object.getOwnPropertyDescriptor(globalThis,"neverAssigned")',context);
+ assert.equal(actual.configurable,false);assert.equal(actual.writable,true);
+ const captured=trace.events.flatMap(event=>event.graph.nodes.flatMap(node=>node.properties)).find(property=>property.key[1]==='neverAssigned');
+ assert.ok(captured);assert.equal(captured.configurable,false);assert.equal(captured.writable,true);assert.deepEqual(Array.from(captured.value),['undefined']);
 });
