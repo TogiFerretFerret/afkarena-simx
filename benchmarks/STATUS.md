@@ -105,6 +105,14 @@ well below the target, and does not qualify whole-game fidelity. See
 measurement above uses a different diagnostic configuration and is not a
 matched baseline for this candidate.
 
+The matched run retaining the original Entity body also passes every report
+field: 20 battles in 91.308 seconds, 0.219039 battles/second. See
+`results/2026-10-27T20-56-14.019Z-native-warm23-baseline.json`. The roughly 0.9%
+difference from this single pair does not establish an Entity speedup. Only 230
+Entity calls were admitted across the warmups and measured battles, making this
+a small opportunity in this fixture. Native CPU profiling and the combined
+empty-array/numeric clone candidate are the next measurements.
+
 Archived ordered traces can be checked with
 `node tools/check-archived-native-trace.mjs reference.stdout.gz candidate.stdout.gz metadata.json gate.json`.
 This gate rejects missing state captures and compares complete ordered captures,
