@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "generator": "tools/emit-native-oracle.mjs",
+  "sourceRecordProvider": "tools/bootstrap-runtime.mjs#createBootstrapRuntime.sourceRecords",
+  "defaultScope": "battle-core",
+  "scopes": {
+    "battle-core": "All original game_battle.js definition/global records, observed source helpers, and conservative static ed/global reference closure",
+    "battle": "All game_battle/game_util/game_base records and conservative static reference closure",
+    "observed": "Compiler plumbing only: source factory keys accessed by the exact reference execution; not broad-domain qualification",
+    "all": "All copied-source definition/global records; may exceed native compiler memory"
+  },
+  "missingScopePolicy": "All original known property/global names remain registered; reading an omitted factory throws unsupported rather than returning undefined",
+  "runtimeCode": "Original RHS expressions are emitted as statically compiled factories; original global FunctionDeclaration statements are emitted unchanged before initializers; no runtime eval or Function constructor is introduced",
+  "boot": "The copied source oracle's exact sourceRecords initializers/postInitializers are emitted in the same phases, including computed writes, descriptors and protection wrappers",
+  "tableIO": "Decoded source JSON via external hermescli.loadFile by default; --embed-tables embeds a JSON string instead of a huge object AST; missing accessed tables throw",
+  "hostInputs": "Record real copied-oracle Math.random and kind-tagged Date observations; replay exact tapes in emitted Node/native; original ed.rand/srand are unchanged",
+  "stopwatch": "Harness captures native Date.now before source clock instrumentation; stopwatch observations never consume game clock inputs",
+  "callbacks": "Original queue/reset functions, captured FIFO drain and original snapshot method; queued callbacks execute after source engine.update with clear-before-update ordering",
+  "comparison": "Persisted JSON results include original battle outcome/ticks, callback counts, raw binary64 state/RNG fields and complete host device output; emitted Node must match copied source before native qualification",
+  "metadata": "Per-record original-source SHA256, all boot/declaration records, Cocos/host/clock/realm/loader/scenario/emitter helper hashes, table/input digests and generated-file digest are emitted beside the ignored generated program",
+  "qualification": "No throughput or full-domain fidelity claim is implied by emission, one matching case, or an observed-only build"
+}

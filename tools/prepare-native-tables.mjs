@@ -14,6 +14,12 @@ const outputArgument=process.argv.find(arg=>arg.startsWith('--output='));
 const output=resolve(root,outputArgument?outputArgument.slice('--output='.length):contract.output);
 const metadataPath=outputArgument?`${output}.meta.json`:resolve(root,contract.cacheMetadata);
 const names=new Set(contract.additionalTables),inputFiles=new Map([[contractPath,sha(contractText)]]),literalSources=[];
+for(const argument of process.argv.filter(arg=>arg.startsWith('--tables='))){
+  for(const name of argument.slice('--tables='.length).split(',')){
+    if(!/^[A-Za-z0-9_]+$/.test(name))throw new Error('Invalid additional native table name');
+    names.add(name);
+  }
+}
 function addLiterals(source){
   for(const match of source.matchAll(/\bed\.(?:getDataTable|lookupDataTable)\(\s*["']([A-Za-z0-9_]+)["']/g))names.add(match[1]);
 }
