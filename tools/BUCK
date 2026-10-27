@@ -1,0 +1,11 @@
+load("@prelude//:rules.bzl", "cxx_binary")
+
+cxx_binary(
+    name = "native_attribute_abi_check",
+    srcs = ["check-native-attribute-abi.c"],
+    headers = {"battle_core.h": "//crates/battle-core:c_header"},
+    header_namespace = "",
+    deps = ["//crates/battle-core:battle_core"],
+    compiler_flags = ["-O2", "-ffp-contract=off"],
+    linker_flags = ["-ldl", "-lpthread", "-lm"],
+)

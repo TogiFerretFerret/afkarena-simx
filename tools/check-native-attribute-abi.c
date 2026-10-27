@@ -1,4 +1,4 @@
-#include "../crates/battle-core/include/battle_core.h"
+#include "battle_core.h"
 #include <assert.h>
 #include <stdint.h>
 #include <string.h>

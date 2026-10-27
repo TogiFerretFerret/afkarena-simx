@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "command": "buck2 run //tools:native_attribute_abi_check",
+  "passed": true,
+  "compiler": "rustc 1.99.1 + host GCC",
+  "checks": [
+    "C/Rust row descriptor and callback ABI",
+    "47 ordered formula callbacks before final callback",
+    "no output writes before final callback",
+    "ordered nonassociative f64 sums",
+    "null callback and invalid empty buffer rejection before side effects"
+  ],
+  "scope": "Immutable numeric attribute groups only; required callbacks must not mutate input buffers; not a complete native battle",
+  "fullBattleEquivalence": false,
+  "qualifiesForBattleThroughputTarget": false,
+  "sha256": {
+    "crates/battle-core/src/config.rs": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36",
+    "crates/battle-core/src/ffi.rs": "8709bd149fa999ec1d01921a603e2833f6b96dca7e3443a441e1c28282a844b3",
+    "crates/battle-core/include/battle_core.h": "f58a962aaa3b3fe8dd9e6cc5183c42ecb35f6c5faa0323cdea9a502ded3d2cd7",
+    "crates/battle-core/BUCK": "b1f20d9c0db6d91b85a0f32c78080493b381f72b7eda1d1e92e954b01b70e078",
+    "tools/BUCK": "9017657fe548c4ee4b7c311530d8b229e7445a2da72a9a9f9517b62f5685d118",
+    "tools/check-native-attribute-abi.c": "e6f577c718444d9e9097bd3b7b952dfd3b577eb0c71aa2036fbbfa7c00ce5c1c"
+  }
+}

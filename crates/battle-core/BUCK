@@ -1,4 +1,10 @@
-load("@prelude//:rules.bzl", "rust_binary", "rust_library")
+load("@prelude//:rules.bzl", "export_file", "rust_binary", "rust_library")
+
+export_file(
+    name = "c_header",
+    src = "include/battle_core.h",
+    visibility = ["PUBLIC"],
+)
 
 rust_library(
     name = "battle_core",
