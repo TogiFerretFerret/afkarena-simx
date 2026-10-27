@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_battle.js",
+  "functions": [
+    {
+      "name": "ed.Buff.update",
+      "start": 40434,
+      "end": 41296,
+      "sha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8"
+    },
+    {
+      "name": "ed.Buff.updateHPRDamage",
+      "start": 41313,
+      "end": 41704,
+      "sha256": "a24eeaf3080157c38734a07cef3b5fc836728ee961e30797b6ae3f74f66520bc"
+    }
+  ],
+  "status": "native_control_flow_and_ordered_callbacks; broad_differential_and_wholebattle_integration_pending",
+  "domain": [
+    "Plain source numeric fields and predicate views",
+    "Null and undefined timers remain distinct",
+    "Stable live buff/unit identities and complete required mechanics hooks",
+    "Dense valid handles and original source methods; no virtual override elision"
+  ],
+  "formalProof": false
+}
