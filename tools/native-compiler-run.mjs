@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
 import { resolve,basename } from 'node:path';
 import assert from 'node:assert/strict';
+import { compileNativeUnits } from './native-compiler-multi.mjs';
 const root=resolve(import.meta.dirname,'..');
 const args=process.argv.slice(2);
 function option(key,fallback){const i=args.indexOf(key);return i<0?fallback:args[i+1];}
@@ -21,7 +22,7 @@ assert.equal(sha(await readFile(input)),metadata.outputSha256,'Emitted source ch
 const compilerSha256=sha(await readFile(compiler));
 async function dependencyStatus(){
  const adapters=metadata.adapterInputs?Object.entries(metadata.adapterInputs):[metadata.sourceRuntime,metadata.host,metadata.clock].filter(Boolean).map(item=>[item.file,item.sha256]);
- const entries=[...adapters,...Object.entries(metadata.sourceInputs??{})];
+ const entries=[...adapters,...Object.entries(metadata.sourceInputs??{}),...(metadata.factoryChunks??[]).map(item=>[item.file,item.sha256])];
  const checks=[];
  for(const [file,expected]of entries){let actual=null;try{actual=sha(await readFile(resolve(root,file)))}catch{}checks.push({file,expected,actual,matched:actual===expected});}
  for(const item of [metadata.tableBundle,metadata.hostInputs,metadata.reference].filter(Boolean)){
@@ -59,7 +60,9 @@ const compileEnv={...process.env};
 if(binaryPools)compileEnv.SHERMES_BINARY_STRING_DIR=poolDirectory;
 else delete compileEnv.SHERMES_BINARY_STRING_DIR;
 const start=performance.now();
-const compiled=await run(compiler,compileArgs,output+'.compile.stdout',output+'.compile.stderr',compileEnv);
+const compiled=metadata.factoryChunks?.length
+ ?await compileNativeUnits({root,metadata,input,output,compiler,ccOpt,binaryPools,run,sha,jobs:Number(option('--compile-jobs','2'))})
+ :await run(compiler,compileArgs,output+'.compile.stdout',output+'.compile.stderr',compileEnv);
 const compileMs=performance.now()-start;
 if(compiled.code!==0){console.error(await readFile(output+'.compile.stderr','utf8'));throw new Error(`Native compile failed (${compiled.code??compiled.signal})`);}
 const executeStart=performance.now();
@@ -71,12 +74,12 @@ const actual=JSON.parse(text.trim().split('\n').at(-1));
 const difference=firstDifference(actual.results,reference.results);
 const dependenciesAtFinish=await dependencyStatus();
 const stringPools=[];
-if(binaryPools)for(const name of ['s_ascii_pool.bin','s_u16_pool.bin','s_strings.bin']){
- const file=resolve(poolDirectory,name),contents=await readFile(file);stringPools.push({file,bytes:contents.length,sha256:sha(contents)});
+if(binaryPools)for(const directory of compiled.units?compiled.units.map(unit=>unit.poolDirectory):[poolDirectory])for(const name of ['s_ascii_pool.bin','s_u16_pool.bin','s_strings.bin']){
+ const file=resolve(directory,name),contents=await readFile(file);stringPools.push({file,bytes:contents.length,sha256:sha(contents)});
 }
 const report={version:1,engine:'Static Hermes AOT original-source factories',input,output,
  inputSha256:metadata.outputSha256,compilerSha256,compileArgs,compileMs,executionWallMs,
- binaryPools,stringPools,dependenciesAtStart,dependenciesAtFinish,plumbing,
+ binaryPools,stringPools,compileUnits:compiled.units,linkArgs:compiled.linkArgs,wrapperSha256:compiled.wrapperSha256,dependenciesAtStart,dependenciesAtFinish,plumbing,
  scenario:metadata.scenario,completed:actual.completed,elapsedMs:actual.elapsedMs,battlesPerSecond:actual.battlesPerSecond,
  finalStateMatched:difference===null,firstDifference:difference,
  hostInputConsumption:actual.hostInputConsumption,expectedHostInputs:metadata.hostInputs,

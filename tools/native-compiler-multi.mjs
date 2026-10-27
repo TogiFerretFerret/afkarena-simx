@@ -1,0 +1,53 @@
+import { readFile,writeFile,mkdir } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import assert from 'node:assert/strict';
+
+// Separate SHUnits share the JavaScript global environment. Factory modules
+// contain declarations only; initialize them in source order before the runner.
+export async function compileNativeUnits({root,metadata,input,output,compiler,ccOpt,binaryPools,run,sha,jobs=2}) {
+  assert.ok(Number.isSafeInteger(jobs)&&jobs>0&&jobs<=4,'Native compile jobs must be 1..4');
+  const config=JSON.parse(await readFile(resolve(root,'config/native-compiler-static-hermes.json'),'utf8'));
+  const build=resolve(root,'work/downloads/hermes-build');
+  const include=resolve(root,'work/downloads',config.source.directory,'include');
+  const units=[...metadata.factoryChunks.map((chunk,index)=>({...chunk,name:'factories_'+index})),{file:input,sha256:metadata.outputSha256,name:'runner'}];
+  const directory=output+'.units';await mkdir(directory,{recursive:true});
+  let next=0;
+  async function worker(){
+    while(next<units.length){
+      const unit=units[next++];
+      assert.equal(sha(await readFile(unit.file)),unit.sha256,'Native unit source changed after emission');
+      unit.object=resolve(directory,unit.name+'.o');
+      const env={...process.env};
+      if(binaryPools){unit.poolDirectory=resolve(directory,unit.name+'.string-pools');await mkdir(unit.poolDirectory,{recursive:true});env.SHERMES_BINARY_STRING_DIR=unit.poolDirectory;}
+      else delete env.SHERMES_BINARY_STRING_DIR;
+      unit.compileArgs=['-O','-c','-exported-unit='+unit.name,`-Wc,-${ccOpt},-g0,-ffp-contract=off`,unit.file,'-o',unit.object];
+      const result=await run(compiler,unit.compileArgs,unit.object+'.stdout',unit.object+'.stderr',env);
+      assert.equal(result.code,0,await readFile(unit.object+'.stderr','utf8'));
+    }
+  }
+  await Promise.all(Array.from({length:Math.min(jobs,units.length)},worker));
+  const wrapper=resolve(directory,'main.c');
+  await writeFile(wrapper,`#include "hermes/VM/static_h.h"
+#include <stdlib.h>
+typedef struct SHConsoleContext SHConsoleContext;
+SHConsoleContext *init_console_bindings(SHRuntime *,int,const char *const *);
+void release_console_bindings(SHConsoleContext *);
+void free_console_context(SHConsoleContext *);
+bool run_event_loop(SHRuntime *,SHConsoleContext *);
+${units.map(unit=>'SHUnit *sh_export_'+unit.name+'(void);').join('\n')}
+int main(int argc,char **argv) {
+  int scriptArgc=0,clArgc=argc;char **scriptArgv=NULL;
+  for(int i=1;i<argc;i++)if(argv[i][0]=='-'&&argv[i][1]=='-'&&argv[i][2]=='\\0'){scriptArgc=argc-i-1;scriptArgv=argv+i+1;clArgc=i;break;}
+  SHRuntime *shr=_sh_init(clArgc,argv);
+  SHConsoleContext *console=init_console_bindings(shr,scriptArgc,(const char *const *)scriptArgv);
+  bool success=_sh_initialize_units(shr,${units.length},${units.map(unit=>'sh_export_'+unit.name).join(',')})&&run_event_loop(shr,console);
+  release_console_bindings(console);_sh_done(shr);free_console_context(console);
+  return success?0:1;
+}
+`);
+  const linkArgs=[wrapper,...units.map(unit=>unit.object),'-O2','-g0','-DNDEBUG','-ffp-contract=off','-I'+resolve(build,'lib/config'),'-I'+include];
+  for(const lib of ['lib','jsi','tools/shermes']){const path=resolve(build,lib);linkArgs.push('-L'+path,'-Wl,-rpath,'+path);}
+  linkArgs.push('-lshermes_console','-lm','-lhermesvm','-o',output);
+  const result=await run(process.env.CC??'cc',linkArgs,output+'.compile.stdout',output+'.compile.stderr');
+  return {...result,units,linkArgs,wrapperSha256:sha(await readFile(wrapper))};
+}

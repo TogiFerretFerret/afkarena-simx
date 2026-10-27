@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "matched": true,
+  "units": 3,
+  "binaryPools": true,
+  "expected": [
+    20,
+    28,
+    "function splitFactory(){var local=3;return {read:function(){return ed.value+local;},write:function(v){local=v;},source:function(){return splitFactory.toString();}};}",
+    [
+      "汉字🙂",
+      "\u0000𐀀\ud800A\udc00"
+    ],
+    true
+  ],
+  "actual": [
+    20,
+    28,
+    "function splitFactory(){var local=3;return {read:function(){return ed.value+local;},write:function(v){local=v;},source:function(){return splitFactory.toString();}};}",
+    [
+      "汉字🙂",
+      "\u0000𐀀\ud800A\udc00"
+    ],
+    true
+  ],
+  "wrapperSha256": "842d265d30e492f42d7f0ffa43551e035b5346e8bb2c3df90bf75d8e7cea862a",
+  "scope": "Cross-unit global bindings, closure identity and mutation, exact function source, Unicode/NUL/lone surrogates; not battle qualification"
+}
