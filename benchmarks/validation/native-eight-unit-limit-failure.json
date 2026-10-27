@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "status": "native-startup-abort",
+  "signal": "SIGABRT",
+  "stderr": "Too many SH units registered\n",
+  "originalNodeGatePassed": true,
+  "completed": 0,
+  "qualifiesFor10000Target": false,
+  "input": {
+    "file": "work/native-oracle-capsule-flatcopy.js",
+    "sha256": "7a8750fa49334d40782ffbf0727b5e48d75efd3b3f3fd6eabbae0aa37aca4559",
+    "metadataSha256": "d1fcb04c80fc28c6f1f50e11e8583f37f1146de4e6a689bbcda4187a6bcc7f79"
+  },
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "vmSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+  "units": [
+    {
+      "name": "factories_0",
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-0.js",
+      "sourceSha256": "a425621aafd9c61d61c6039db4a26bdb6a1910339ab6e7fd9474eb44192b7bb0",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_0.o",
+      "objectSha256": "faa9b89154bdecbff165c395536768e62cec06fa044014c61e397fc7b17a9044",
+      "objectBytes": 2437192,
+      "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_0",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-0.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_0.o"
+      ]
+    },
+    {
+      "name": "factories_1",
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-1.js",
+      "sourceSha256": "5f815570bfe421c6ef869b19bf1b36127fea09345d2e7b055df256bf6baadc01",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_1.o",
+      "objectSha256": "d6af0412967e675ac446530991e85924ce1cd654abe0767cd8508bc450408e35",
+      "objectBytes": 7272976,
+      "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_1",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-1.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_1.o"
+      ]
+    },
+    {
+      "name": "factories_2",
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_2.o",
+      "objectSha256": "341699026cd41aee0b64477fb333f28975d9c6714898fd5ab7180400b2f24ecb",
+      "objectBytes": 12691776,
+      "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_2",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_2.o"
+      ]
+    },
+    {
+      "name": "factories_3",
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_3.o",
+      "objectSha256": "63b3553698c9f2ffb962d6818070dc5e22647bf4dc6687b2cf8951adbf2328ae",
+      "objectBytes": 12112392,
+      "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_3",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_3.o"
+      ]
+    },
+    {
+      "name": "factories_4",
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sourceSha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_4.o",
+      "objectSha256": "b2a10b46e3e2a0b7d581d38386bd590663d3fa01726125cb41fce8e9c0718dfb",
+      "objectBytes": 12290600,
+      "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_4",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_4.o"
+      ]
+    },
+    {
+      "name": "factories_5",
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sourceSha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_5.o",
+      "objectSha256": "6f1d94c0b91776304c8ebef6b2dc885574a429607b9b3468c4a1783f4ef1f92b",
+      "objectBytes": 11758968,
+      "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_5",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_5.o"
+      ]
+    },
+    {
+      "name": "factories_6",
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_6.o",
+      "objectSha256": "f4f04385d99e56df0f8aaef1487b805af43e9b9fb65d3de89091e6998eed3c7e",
+      "objectBytes": 9029672,
+      "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_6",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_6.o"
+      ]
+    },
+    {
+      "name": "runner",
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-7.js",
+      "sourceSha256": "2a34af1a32c9affd8efc63a9764ef71bade0b3b2d17606af8d8f298efa9c21bc",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/runner.o",
+      "objectSha256": "1c100a66279b8b146a616604bc8ca85d339d1c2e2603ae320798bf11c771bda0",
+      "objectBytes": 11321320,
+      "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=runner",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-7.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/runner.o"
+      ]
+    }
+  ],
+  "headers": [
+    {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/static_h.h",
+      "sha256": "4116a79463473da92919274a8d0741789b27748bb3f323a5d0f6d668cca33e08"
+    },
+    {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/sh_legacy_value.h",
+      "sha256": "e34eeba3dab0e86f10efbd69baf5ef5533dc42d81fa73e7b10cc92f7b47944d2"
+    },
+    {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/sh_mirror.h",
+      "sha256": "058f243b62ab3f153f598030ec8ccfc1659f4a63625c334159f2d0856fcc8944"
+    },
+    {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/sh_runtime.h",
+      "sha256": "0a4d286b067f1d7a03e78257988999610a21149ee572af02b131828ddd44742a"
+    },
+    {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/sh_small_hermes_value.h",
+      "sha256": "443bc19b5a3d1e93b23f691e772e5efc111500238e302aa4a6886c37e4827cc3"
+    },
+    {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/sh_stack_frame.h",
+      "sha256": "ace7acbab596673788050a518451fcc32ddb6a1cc7672445fea2e70a07085255"
+    },
+    {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VMLayouts/sh_stack_frame_layout.h",
+      "sha256": "3cc3bb34a4e69bb7b5a8da25f59d70d3b79e2c606a0e84a4bc36f767fd79f179"
+    },
+    {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/Support/sh_tryfast_fp_cvt.h",
+      "sha256": "765d5904d92d2fbfe1c0fbd7a7da1c1e50f3b66a467b21f4721538a444386d15"
+    },
+    {
+      "file": "work/downloads/hermes-build/lib/config/libhermesvm-config.h",
+      "sha256": "12b69de6e7090980d33bfa7cc4cabc5e32a98ef292249b8f4f49ec855041ec59"
+    }
+  ],
+  "finding": "SHRuntime.units has 8 slots, but StaticHUnit.cpp starts nextIndex at 1; index zero is reserved, so only seven compiled units can register.",
+  "resolution": "Merge the pure declaration prelude and first ordered-effects script; retain all unchanged unit source bytes and verified compiler objects for a seven-unit retry."
+}

@@ -59,5 +59,8 @@
   "vendorManifests": [
     "config/native-compiler-v8-math.json"
   ],
-  "maximumSHUnits": 8
+  "maximumSHUnits": 7,
+  "reservedSHUnitIndices": [
+    0
+  ]
 }

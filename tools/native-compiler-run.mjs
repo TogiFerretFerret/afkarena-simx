@@ -22,11 +22,19 @@ const sha=contents=>createHash('sha256').update(contents).digest('hex');
 const metadata=JSON.parse(await readFile(input+'.metadata.json','utf8'));
 const resumePath=option('--resume-manifest',null);
 const reuseManifest=resumePath?JSON.parse(await readFile(resolve(root,resumePath),'utf8')):undefined;
-assert.ok(!reuseManifest||plumbing,'Explicit object resume is compiler plumbing until a fresh complete qualification');
+const exactObjectCache=reuseManifest?.kind==='exact-native-object-cache-v1';
+assert.ok(!reuseManifest||plumbing||exactObjectCache,'Object resume requires a complete compiler/VM/header/flag cache manifest or explicit --plumbing');
 assert.equal(sha(await readFile(input)),metadata.outputSha256,'Emitted source changed after reference creation');
 const compilerSha256=sha(await readFile(compiler));
 const vmLibrary=resolve(root,'work/downloads/hermes-build/lib/libhermesvm.so');
 const vmSha256AtStart=sha(await readFile(vmLibrary));
+if(exactObjectCache){
+ assert.equal(reuseManifest.compilerSha256,compilerSha256,'Cached compiler changed');
+ assert.equal(reuseManifest.vmSha256,vmSha256AtStart,'Cached VM ABI changed');
+ assert.equal(reuseManifest.ccOpt,ccOpt);assert.equal(reuseManifest.runnerOpt,runnerOpt);
+ assert.ok(reuseManifest.headers?.length,'Cached native header provenance is required');
+ for(const item of reuseManifest.headers)assert.equal(sha(await readFile(resolve(root,item.file))),item.sha256,'Cached native header changed: '+item.file);
+}
 async function dependencyStatus(){
  const adapters=metadata.adapterInputs?Object.entries(metadata.adapterInputs):[metadata.sourceRuntime,metadata.host,metadata.clock].filter(Boolean).map(item=>[item.file,item.sha256]);
  const entries=[...adapters,...Object.entries(metadata.sourceInputs??{}),...(metadata.factoryChunks??[]).map(item=>[item.file,item.sha256])];

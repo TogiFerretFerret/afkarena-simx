@@ -2,15 +2,17 @@ import { readFile,writeFile,mkdir,copyFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
 
-// Separate SHUnits share the JavaScript global environment. Factory modules
-// contain declarations only; initialize them in source order before the runner.
+// Separate SHUnits share the JavaScript global environment. Initialize verified
+// declaration/effect partitions in their recorded source order.
 export async function compileNativeUnits({root,metadata,input,output,compiler,ccOpt,runnerOpt=ccOpt,reuseManifest,binaryPools,run,sha,jobs=2}) {
   assert.ok(Number.isSafeInteger(jobs)&&jobs>0&&jobs<=4,'Native compile jobs must be 1..4');
   const config=JSON.parse(await readFile(resolve(root,'config/native-compiler-static-hermes.json'),'utf8'));
   const build=resolve(root,'work/downloads/hermes-build');
   const include=resolve(root,'work/downloads',config.source.directory,'include');
-  const units=[...metadata.factoryChunks.map((chunk,index)=>({...chunk,name:'factories_'+index})),{file:input,sha256:metadata.outputSha256,name:'runner'}];
-  assert.ok(units.length<=8,'Pinned SHRuntime ABI supports at most 8 SHUnits; combine source chunks before compiling');
+  const units=[...metadata.factoryChunks.map((chunk,index)=>({...chunk,name:chunk.nativeName??'factories_'+index})),{file:input,sha256:metadata.outputSha256,name:metadata.nativeRunnerName??'runner'}];
+  assert.ok(units.length<=7,'Pinned SHRuntime ABI supports at most 7 SHUnits; index zero is reserved');
+  assert.equal(new Set(units.map(unit=>unit.name)).size,units.length,'Native export names must be unique');
+  assert.ok(units.every(unit=>/^[A-Za-z_][A-Za-z0-9_]*$/.test(unit.name)),'Native export names must be C identifiers');
   const directory=output+'.units';await mkdir(directory,{recursive:true});
   let next=0;
   async function worker(){
@@ -26,6 +28,11 @@ export async function compileNativeUnits({root,metadata,input,output,compiler,cc
         assert.equal(unit.sha256,reused.sourceSha256,'Reused native unit has different source');
         assert.equal(sha(await readFile(reused.object)),reused.objectSha256,'Reused native object changed');
         assert.equal(reused.object,unit.object,'Resume requires the original dedicated unit directory');
+        if(reuseManifest.kind==='exact-native-object-cache-v1'){
+          const opt=unit.name==='runner'?runnerOpt:ccOpt;
+          assert.equal(reused.compilerSha256,sha(await readFile(compiler)),'Reused compiler changed');
+          assert.deepEqual(reused.compileArgs,['-O','-c','-exported-unit='+unit.name,`-Wc,-${opt},-g0,-ffp-contract=off`,unit.file,'-o',unit.object],'Reused compilation flags or source path changed');
+        }
         unit.reusedObject=reused;continue;
       }
       const opt=unit.name==='runner'?runnerOpt:ccOpt;
