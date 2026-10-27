@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_battle.js",
+  "sourceName": "ed.Entity.update",
+  "start": 248,
+  "end": 378,
+  "sha256": "9edd5c9d243911ad4d96ea84f24834a455446c4d7796efadc4c340268e39ad94",
+  "translation": "ordered_mutable_vec2_arena",
+  "formalProof": false,
+  "domain": [
+    "position and velocity are valid arena IDs referring to plain mutable two-element Number arrays",
+    "position and velocity may alias the same array; all arena identities and writes are preserved",
+    "direction and delta time are JavaScript Number values represented as binary64",
+    "Entity fields and vector elements have no getters, setters, proxies, prototype interception or concurrent mutation",
+    "Trace observers are nonthrowing, nonreentrant and do not mutate the entity or arena",
+    "NaN sign and payload bits are diagnostic; the supported JS semantic domain requires only NaN classification"
+  ],
+  "trace": {
+    "version": 1,
+    "events": [
+      "enter",
+      "position_x_write",
+      "position_y_write",
+      "direction_write",
+      "return"
+    ],
+    "fields": [
+      "kind",
+      "direction",
+      "position",
+      "velocity",
+      "vectors"
+    ],
+    "input": "positionID velocityID directionBits deltaTimeBits then pairs of binary64 hex arena values; arena length inferred",
+    "output": "One JSON object per input with events array; numeric values encoded as sixteen lowercase hexadecimal digits",
+    "numericPolicy": "All non-NaN values require exact bits; --strict-bits also requires exact NaN bits"
+  }
+}
