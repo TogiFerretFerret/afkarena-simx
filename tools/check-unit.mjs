@@ -84,7 +84,7 @@ function testcase(index){
  c.vectors[0]=[0,0];
  if(index<32){c.state=index%7;c.flags|=1;c.optional|=2;c.action=1;c.n[7]=index%2?1:NaN;c.n[10]=2;c.n[11]=1;c.n[19]=.125;}
  if(index===32||index===33){c.state=0;c.actions=0;c.flags=0;c.optional=63;c.n[24]=NaN;c.n[29]=NaN;c.effects=[0,0,0];}
- if(index>=34&&index<=38){
+ if(index>=34&&index<=44){
   Object.assign(c,{actions:0,flags:0,state:0,optional:63,action:0,current:3,skillCount:0,buffCount:0,effects:[0,0,0],aliases:0,skillFlags:0});
   c.n=[100,10,1,1,2,3,1,.1,1,0,.5,.6,.1,.4,0,1,0,.1,.5,.125,0,-100,5,10,.1,20,2,3,5,.1,.2,10,15];
   c.vectors=Array.from({length:10},()=>[0,0]);c.vectors[3]=[10,0];
@@ -93,6 +93,12 @@ function testcase(index){
   if(index===36){c.flags=512;c.actions=1024;c.n[20]=1;c.effects=[0,16,0];}
   if(index===37){c.actions=128;c.buffCount=3;}
   if(index===38){c.actions=8|64;c.buffCount=3;c.flags=1024;c.effects=[0,32,0];}
+  if(index===39){c.flags=8;c.actions=2;c.n[14]=.1;}
+  if(index===40){c.actions=4|8192;}
+  if(index===41){c.flags=256;c.n[2]=-1;c.n[3]=1;}
+  if(index===42){c.state=3;c.n[12]=.1;c.n[13]=.4;}
+  if(index===43){c.actions=2048;c.buffCount=3;c.effects=[128,0,128];}
+  if(index===44){c.actions=64;c.buffCount=3;c.effects=[128,0,128];}
  }
  return c;
 }
