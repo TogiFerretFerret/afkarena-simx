@@ -11,16 +11,30 @@ import { installBootstrapFunctionDeclarations } from './bootstrap-declarations.m
 
 const root=resolve(import.meta.dirname,'..');
 
-/** Diagnostic source loader, not a validated module-loading order.
- * Original RHS expressions are evaluated on demand. Required lexical closures,
- * module side effects and dynamic property names fail rather than being invented.
+/** Source loader with optional whole original battle-module execution.
+ * External helper modules retain the explicit diagnostic lazy adapter. Required
+ * lexical closures and missing host dependencies fail rather than being invented.
  */
-export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundaryFactory}={}){
+export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundaryFactory,eagerBattle=false}={}){
   if(hostRandom!==undefined&&typeof hostRandom!=='function')throw new Error('hostRandom must be an explicit entropy input function');
+  if(typeof eagerBattle!=='boolean')throw new Error('eagerBattle must be boolean');
   const extracted=await loadBootstrapSourceRecords();
-  const {ordered,functionDeclarations,initializers}=extracted;
-  const definitions=new Map(extracted.definitions),globals=new Map(extracted.globals);
-  const postInitializers=extracted.postInitializers.slice();
+  const {ordered}=extracted;
+  const eagerModules=[];
+  if(eagerBattle){
+    const file='src/srcmodule/game_battle.js',source=await readFile(resolve(root,file),'utf8');
+    eagerModules.push({file,source,sha256:createHash('sha256').update(source).digest('hex'),kind:'eager-module'});
+  }
+  const eagerFiles=new Set(eagerModules.map(record=>record.file));
+  const helperRecords=records=>records.filter(record=>!eagerFiles.has(record.file));
+  // Future declarations from an eager module must remain absent until its actual
+  // script hoisting/execution. A lazy accessor here would change original flow.
+  const helperDefinitions=entries=>new Map(entries.map(([name,records])=>[name,helperRecords(records)]).filter(([,records])=>records.length));
+  const functionDeclarations=helperRecords(extracted.functionDeclarations),initializers=helperRecords(extracted.initializers);
+  const definitions=helperDefinitions(extracted.definitions),globals=helperDefinitions(extracted.globals);
+  const sourceGlobalNames=extracted.sourceGlobalNames??[...new Set([...extracted.globals.map(([name])=>name),...extracted.functionDeclarations.map(record=>record.name)])];
+  const sourceDefinitionNames=extracted.definitions.map(([name])=>name);
+  const postInitializers=helperRecords(extracted.postInitializers);
   const tables=new Map();
   const loaded=[],active=new Set();
   const context=createContext({console});
@@ -123,16 +137,25 @@ export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundary
   // These original statements have effects beyond their RHS values. Execute them
   // in original module/source order rather than losing computed writes/descriptors.
   postInitializers.sort((a,b)=>ordered.indexOf(a.file.split('/').at(-1))-ordered.indexOf(b.file.split('/').at(-1))||a.start-b.start);
-  for(const initializer of postInitializers)runInContext(initializer.source,context,{filename:`${initializer.file}:${initializer.start}`});
+  const initializationPlan=[];
+  let nextHelper=0;
+  for(const module of eagerModules){
+    const index=ordered.indexOf(module.file.split('/').at(-1));
+    while(nextHelper<postInitializers.length&&ordered.indexOf(postInitializers[nextHelper].file.split('/').at(-1))<index)
+      initializationPlan.push({...postInitializers[nextHelper++],kind:'helper-statement'});
+    initializationPlan.push(module);
+  }
+  while(nextHelper<postInitializers.length)initializationPlan.push({...postInitializers[nextHelper++],kind:'helper-statement'});
+  for(const initializer of initializationPlan)runInContext(initializer.source,context,{filename:initializer.kind==='eager-module'?initializer.file:`${initializer.file}:${initializer.start}`});
   // The source audio singleton is normally constructed by application startup.
   // Run its actual constructor; only physical output is supplied by the host.
   new ed.soundManager();
   ed.audio_effect_switch=context.bootstrapHost.audioEnabled;
   const callbacks=await installBootstrapCallbacks(context);
   return {context,ed,loaded,tables,tableBoundary,provenance,callbacks,clock,clockProvenance,host:context.bootstrapHost,importValue:value=>importBootstrapValue(context,value),
-    sourceRecords:{definitions,globals,functionDeclarations,initializers,postInitializers,hostSources},
+    sourceRecords:{definitions,globals,functionDeclarations,initializers,postInitializers,eagerModules,initializationPlan,sourceGlobalNames,sourceDefinitionNames,hostSources},
     sourceRecordsCache:extracted.cache,
     hostProvenance:{file:'tools/bootstrap-host.js',sha256:createHash('sha256').update(hostSource).digest('hex')},
     initializers:initializers.map(({source,...record})=>record),
-    limitations:['Lazy symbol evaluation does not establish all original module side-effect order','Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter','Headless Linux device output is recorded; physical audio/render output is not produced','Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly']};
+    limitations:[eagerBattle?'Whole original game_battle.js executes once; external prerequisite modules still use the explicit lazy helper adapter':'Lazy symbol evaluation does not establish all original module side-effect order','Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter','Headless Linux device output is recorded; physical audio/render output is not produced','Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly']};
 }

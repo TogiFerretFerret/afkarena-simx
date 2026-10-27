@@ -14,6 +14,7 @@ function freeze(value){
 }
 function validate(records,sources){
   if(!records||typeof records!=='object')throw new Error('Invalid source-record cache payload');
+  if(records.sourceGlobalNames!==undefined&&(!Array.isArray(records.sourceGlobalNames)||records.sourceGlobalNames.some(name=>typeof name!=='string'||!name)||new Set(records.sourceGlobalNames).size!==records.sourceGlobalNames.length))throw new Error('Invalid source global-name catalog');
   const lists=[];
   for(const key of ['definitions','globals']){
     if(!Array.isArray(records[key]))throw new Error(`Invalid source-record cache ${key}`);

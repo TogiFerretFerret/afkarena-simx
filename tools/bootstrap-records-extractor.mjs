@@ -11,10 +11,12 @@ export function extractBootstrapSourceRecords(sources,ordered){
   const functionDeclarations=[];
   const initializers=[];
   const postInitializers=[];
+  const sourceGlobalNames=new Set();
   for(const module of ordered){
     const file=`src/srcmodule/${module}`;
     const source=sources.get(file);
     traverse(parse(source),{
+      Program(path){for(const name of Object.keys(path.scope.bindings))sourceGlobalNames.add(name);},
       Function(path){
         if(path.isFunctionDeclaration()&&path.parentPath.isProgram())functionDeclarations.push({file,name:path.node.id.name,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end),sha256:createHash('sha256').update(source.slice(path.node.start,path.node.end)).digest('hex')});
         path.skip();
@@ -57,5 +59,5 @@ export function extractBootstrapSourceRecords(sources,ordered){
       },
     });
   }
-  return {definitions:[...definitions],globals:[...globals],functionDeclarations,initializers,postInitializers};
+  return {definitions:[...definitions],globals:[...globals],functionDeclarations,initializers,postInitializers,sourceGlobalNames:[...sourceGlobalNames]};
 }

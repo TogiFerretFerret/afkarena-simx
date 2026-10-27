@@ -53,3 +53,10 @@ test('extraction keeps redeclarations, original function statements and side-eff
  assert.equal(records.initializers[0].source,'var moder=3;');
  assert.equal(records.postInitializers[0].source,'ed.state_to_string[1]="Birth"');
 });
+
+test('source global catalog includes uninitialized variables and for-loop bindings without nested locals',async()=>{
+ const{extractBootstrapSourceRecords}=await import('../bootstrap-records-extractor.mjs');
+ const source='var uninitialized;for(var i=0;i<2;i++){}function foo(){var local=3;}';
+ const records=extractBootstrapSourceRecords(new Map([['src/srcmodule/game_util.js',source]]),['game_util.js']);
+ assert.deepEqual(new Set(records.sourceGlobalNames),new Set(['uninitialized','i','foo']));
+});
