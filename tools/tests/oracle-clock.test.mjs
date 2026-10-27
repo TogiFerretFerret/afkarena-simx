@@ -81,3 +81,9 @@ test('clock calls after finish reject rather than silently appending unmeasured 
  const c=realm();run(c,'var Original=Date;var clock=installOracleClock({mode:"record"});clock.finish();');
  assert.throws(()=>run(c,'Date.now()'),/after finish/);assert.throws(()=>run(c,'clock.restore()'),/after finish/);assert.equal(run(c,'Date===Original'),true);
 });
+
+test('argument coercion can consume clock inputs without inventing a constructor observation',()=>{
+ const c=realm();c.tape=[{kind:'Date.now',bits:bits(42)}];run(c,'var clock=installOracleClock({mode:"replay",tape:tape});');
+ assert.equal(run(c,'new Date({[Symbol.toPrimitive](){return Date.now()}}).getTime()'),42);
+ assert.equal(run(c,'clock.finish().attempts'),1);run(c,'clock.restore()');
+});

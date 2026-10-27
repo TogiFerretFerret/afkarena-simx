@@ -47,7 +47,7 @@
     "observation": "Original audio gate uses (new Date).getTime()-r.LastPlayTime > 450; wall-clock inputs can change callback/device event behavior"
   },
   "validation": {
-    "tests": 9,
+    "tests": 10,
     "command": "node --test tools/tests/oracle-clock.test.mjs"
   }
 }
