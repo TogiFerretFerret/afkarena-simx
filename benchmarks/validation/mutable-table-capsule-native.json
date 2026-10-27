@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesForThroughputTarget": false,
+  "sourceFiles": {
+    "tools/battle-trace-portable.js": "ccfccf833047a1fd43ce6ab32ef4a7f89eb02f019ac772b0f46fb95313222391",
+    "tools/qualification-mutable-table-capsule.js": "3820aaa6fc9cde91b5063ded9e7fd72cd50265a94c70666306682d078c917c21",
+    "tools/qualification-table-merkle-reference.js": "5b6d4b17b339febf390c27690af2b2d832d1b8b2283528e707f5974ee3a61603"
+  },
+  "sourceResetSkillList": {
+    "file": "src/srcmodule/game_battle.js",
+    "start": 87697,
+    "end": 88090,
+    "sha256": "31cd18f543664f6018b44b7ebf29dfc9a3c91a53387022f9ae5f26221abe4f37"
+  },
+  "scriptSha256": "ab53b359021fbd49937318fda7c311ab78ab5d2e4e04fb6064d040e656a65d3e",
+  "reference": {
+    "node": "v24.19.0",
+    "flags": [
+      "--jitless"
+    ],
+    "sha256": "e8c5ffb351ed1b8f9d8fcd1231770b1d328f2ef0f83890f65f59565da8e29a96"
+  },
+  "candidate": {
+    "compiler": "work/downloads/hermes-build/bin/shermes",
+    "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+    "flags": [
+      "-O",
+      "-Wc,-O1,-g0,-ffp-contract=off"
+    ],
+    "sha256": "e8c5ffb351ed1b8f9d8fcd1231770b1d328f2ef0f83890f65f59565da8e29a96"
+  },
+  "checks": [
+    "1000 original Unit.resetSkillList histories raw versus canonical proxy, including empty string to positive canonical NaN actual array storage",
+    "Every history incremental digest versus independent uncached full raw descriptor graph",
+    "AnimAtkFrame absent Type addition order and descriptors",
+    "Diamond alias dirty-ancestor rehash count, detached external leaf alias and descriptor identity",
+    "Infinity, negative Infinity and negative zero stored-bit hashes",
+    "All unsupported mutation classes throw before changing target and remain sticky",
+    "Current dynamic table hash in registered exporter leaves"
+  ],
+  "limitations": [
+    "Isolated compiled capsule probe, no completed battle corpus qualification",
+    "Other NaN sign/payloads are rejected by the source capsule before writes; candidate compiler has separate known payload transport limitations",
+    "Raw decoded table ownership must remain private to the loader; direct wrap cannot revoke existing host aliases"
+  ]
+}

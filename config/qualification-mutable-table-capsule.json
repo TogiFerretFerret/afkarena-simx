@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "purpose": "Qualification-only tracked mutable table leaves; independent ordinary full-graph policy remains the oracle",
+  "implementation": "tools/qualification-mutable-table-capsule.js",
+  "installer": "installQualificationMutableTableCapsule({digest,isProxy?})",
+  "api": ["parse(jsonText,{name})", "wrap(privatelyOwnedRawJson,{name})", "immutableMetadata(registeredProxy)", "assertClean()", "stats()"],
+  "graphInvariant": "Initial plain JSON DAG and every object-valued edge remain fixed; canonical lazy proxies preserve all aliases in reads and own descriptors",
+  "supportedWrites": [
+    "Existing own writable enumerable configurable DATA primitive to supported primitive, via canonical proxy receiver",
+    "Guarded absent Type addition only on AnimAtkFrame ordinary frame object at path depth three with Cha/Action/Time fields matching its path",
+    "Strings, booleans, null, undefined, finite binary64 numbers, negative zero, positive/negative Infinity and exactly positive canonical NaN bits 7ff8000000000000"
+  ],
+  "deniedBeforeStore": ["Object-valued insertion, replacement or deletion", "Other absent properties or inherited keys/setters", "Array new indices and all array length writes", "External defineProperty and descriptor flag/accessor changes", "Noncanonical NaN sign/payloads", "Symbols and bigint", "Wrong Reflect.set receiver", "Prototype changes, deletion and preventExtensions"],
+  "commit": "Reflect.set(rawTarget,key,value,canonicalProxy) with a private one-shot internal defineProperty authorization. Actual stored own descriptor is validated and hashed after successful commit, not the incoming Number operand",
+  "hash": {
+    "protocol": "qualification-mutable-json-node-v1",
+    "algorithm": "SHA-256 of ordered own descriptors, raw scalar bits, fixed node identity, prototype/extensibility and child node identities/current hashes",
+    "update": "Only changed node and DAG ancestors become dirty. Lazy metadata access recomputes dirty node hashes; unchanged reads/events inspect no descriptors and perform no hashing",
+    "version": "Private root version increments only on actual stored primitive bit/type/value change or supported key addition",
+    "metadata": "Same private registry leaf schema {table,path,sha256,kind}; sha256 is CURRENT root Merkle state, not assumed permanently immutable",
+    "independentReference": "tools/qualification-table-merkle-reference.js fully rewalks actual raw descriptors on each call, with no capsule records/cache"
+  },
+  "sourceEvidence": {
+    "UnitPeriod": {"file":"src/srcmodule/game_battle.js","start":87697,"end":88090,"sha256":"31cd18f543664f6018b44b7ebf29dfc9a3c91a53387022f9ae5f26221abe4f37","behavior":"Original Unit.resetSkillList applies parseInt to every SlotList element, including empty string to positive canonical NaN"},
+    "AnimAtkFrame": "Actual table frame rows initially omit Type; adding this primitive preserves node topology and appends an ordinary own data key"
+  },
+  "integrationRequirements": [
+    "Raw decoded table roots/children and capsule manager stay in trusted private loader closures, never game globals or returned aliases",
+    "Pure JavaScript cannot revoke preexisting raw host aliases or reliably identify every initial Proxy; parse is the stronger boundary",
+    "Call assertClean at every trace event and final completion; source-caught failures remain fatal to qualification",
+    "Unsupported mechanics use original ordinary mutable table policy and complete dense capture; never ignore writes or normalize NaNs",
+    "Validate complete real-battle outputs/ordered state against the independent normal full-graph policy before relying on leaves",
+    "No default runtime integration or whole-battle qualification is enabled by this component"
+  ],
+  "validation": {"tests":"tools/tests/qualification-mutable-table-capsule.test.mjs","actualCompiledProbe":"tools/probe-mutable-table-capsule-native.mjs","report":"benchmarks/validation/mutable-table-capsule-native.json","sourceHistories":1000},
+  "qualifiesForThroughputTarget": false
+}
