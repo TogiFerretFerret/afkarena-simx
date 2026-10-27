@@ -3,7 +3,7 @@
   "matched": true,
   "cases": 20000,
   "rustCalls": 20000,
-  "fallbackCases": 2,
+  "fallbackCases": 7,
   "oracleProfile": {
     "version": 1,
     "node": "v24.19.0",
@@ -26,9 +26,19 @@
   "events": [
     "left",
     "right",
-    "unknow operator:unknown"
+    "unknow operator:unknown",
+    "customFloor",
+    "customFloor",
+    "floorGetter",
+    "floorGetter",
+    "replacementMath",
+    "replacementMath",
+    "mathProxy:floor",
+    "mathProxy:floor",
+    "mathGetter",
+    "mathGetter"
   ],
-  "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+  "compilerSha256": "19034c163046bb1d9973dcc85a1176bd77385dae8655be3084477b3883282dc1",
   "rustSourceSha256": "1fe638895bf95a6f05cd0cd16737cff5d26030bb11b8c583392f3528d7460932",
-  "scope": "Isolated source-identified generated-C trampoline proof; scalar Number comparisons use Rust while coercing/unknown operator calls execute original source. Math.floor is the unchanged intrinsic in this fixture; no whole-battle qualification or speed claim."
+  "scope": "Isolated source-identified generated-C trampoline proof; scalar Number comparisons use Rust while coercing/unknown operator calls execute original source. No-allocation guard rejects changed floor functions, proxies and Math/floor accessors without invoking them; no whole-battle qualification or speed claim."
 }

@@ -1,0 +1,46 @@
+--- a/lib/VM/JSLib/Math.cpp
++++ b/lib/VM/JSLib/Math.cpp
+@@ -16,6 +16,7 @@
+ #include "hermes/VM/Operations.h"
+ #include "hermes/VM/SingleObject.h"
+ #include "hermes/VM/StringPrimitive.h"
++#include "hermes/VM/StaticHUtils.h"
+ 
+ #ifndef _USE_MATH_DEFINES
+ #define _USE_MATH_DEFINES
+@@ -109,6 +110,35 @@
+   return HermesValue::encodeTrustedNumberValue(func(arg));
+ }
+ 
++// Guard a scalar native specialization without invoking getters, proxy traps,
++// or JavaScript. Unknown descriptor layouts conservatively use source code.
++extern "C" SHERMES_EXPORT bool simx_intrinsic_math_floor_guard(SHRuntime *shr) {
++  Runtime &runtime = getRuntime(shr);
++  auto ownData = [&](JSObject *object, SymbolID key, PinnedHermesValue &value) {
++    if (object->isProxyObject(runtime) || object->isHostObject(runtime))
++      return false;
++    NamedPropertyDescriptor desc;
++    auto found = JSObject::tryGetOwnNamedDescriptorFast(
++        object, runtime, key, desc);
++    if (!found.hasValue() || !found.getValue() || desc.flags.accessor)
++      return false;
++    value = JSObject::getNamedSlotValueUnsafe(object, runtime, desc)
++                .unboxToHV(runtime);
++    return true;
++  };
++  PinnedHermesValue math, floor;
++  if (!ownData(runtime.getGlobal().get(),
++               Predefined::getSymbolID(Predefined::Math), math) ||
++      !math.isObject() ||
++      !ownData(vmcast<JSObject>(math),
++               Predefined::getSymbolID(Predefined::floor), floor) ||
++      !vmisa<NativeFunction>(floor))
++    return false;
++  auto *function = vmcast<NativeFunction>(floor);
++  return function->getFunctionPtr() == runContextFunc1Arg &&
++      function->getContext() == reinterpret_cast<void *>(MathKind::floor);
++}
++
+ // Implementation of 2-arg Math functions like pow and atan2
+ // Interprets the ctx pointer as an enum and invoke corresponding
+ // function with the first two arguments

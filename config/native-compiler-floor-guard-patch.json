@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "baseCommit": "4f1db42d71d0839254c7154fc8c282bcea466206",
+  "patch": "tools/native-compiler-patches/intrinsic-floor-guard.patch",
+  "sha256": "dbd86dbe2d3067741bec01c014791e8244967e070fd3267c2f3b49589145c01e",
+  "purpose": "Expose no-allocation/no-JavaScript intrinsic Math.floor semantic guard for Rust scalar bridge; reject changed native implementation/context, proxies, host objects and accessors without invoking them",
+  "files": [
+    {
+      "path": "lib/VM/JSLib/Math.cpp",
+      "originalSha256": "fde3b37f40ddee893bfd99745a6d66d1a12fc0fcb7611c6f4f72424ee7c3f4fd",
+      "patchedSha256": "723f8737ec1e69e370c485bfb22daab68131105668bcb2cca50935a5fbf4f33f"
+    }
+  ]
+}
