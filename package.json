@@ -1,0 +1,23 @@
+{
+  "name": "afkarena-simx",
+  "version": "1.0.0",
+  "description": "Source analysis and semantics-preserving companion battle compiler",
+  "scripts": {
+    "test": "node --test tools/tests/*.test.mjs",
+    "index:source": "node tools/source-index.mjs work/source-index.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TogiFerretFerret/afkarena-simx.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TogiFerretFerret/afkarena-simx/issues"
+  },
+  "homepage": "https://github.com/TogiFerretFerret/afkarena-simx#readme",
+  "dependencies": {
+    "@babel/parser": "8.0.8",
+    "@babel/traverse": "8.0.7"
+  },
+  "private": true
+}

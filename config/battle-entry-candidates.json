@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "status": "source_inspected_candidates_not_resolved_entry_points",
+  "source": "src/srcmodule/game_battle.js",
+  "functions": [
+    "ed.BattleEngine.enterBattle",
+    "ed.BattleEngine.initConfig",
+    "ed.BattleEngine.updateLocalBattleEngine",
+    "ed.BattleEngine.tick"
+  ],
+  "observed_semantic_constraints": [
+    {
+      "function": "ed.BattleEngine.tick",
+      "constraint": "Entity update loops reload array length after each update; appended entities may run in the same tick. Snapshot iteration is not equivalent without further invariants."
+    },
+    {
+      "function": "ed.BattleEngine.tick",
+      "constraint": "Terminated entities are filtered after an entity-list update pass, retaining relative order. Termination alone does not skip an update within that pass."
+    },
+    {
+      "function": "ed.BattleEngine.tick",
+      "constraint": "Entity-list processing follows enity_list_name; updates cannot be parallelized without establishing independence."
+    },
+    {
+      "function": "ed.BattleEngine.enterBattle",
+      "constraint": "Team sorting comparator can return positive for both argument orders when slot configuration is absent or zero. Reference JS runtime and sorting behavior must be identified before replacing this sort."
+    }
+  ],
+  "open_questions": [
+    "Which configuration and data version identify companion mode?",
+    "Which JS runtime and version define the reference execution?",
+    "Where are RNG initialization, algorithm and all battle RNG consumers?",
+    "Which boot-time and per-skill overrides mutate the reachable methods?",
+    "What is the reference battle input and output contract?"
+  ]
+}
