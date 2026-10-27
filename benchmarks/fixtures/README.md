@@ -11,6 +11,20 @@ inputs and rejects extra or missing consumption.
 | `frozen-2026-observed-native-unpinned` | Exact inputs and source output supporting the initial native diagnostic | Historical unpinned run |
 | `frozen-2026-warm20-native-unpinned` | Exact inputs and source output supporting the warmed 20-battle native diagnostic | Historical unpinned run |
 
+Newer diagnostic archives also include:
+
+- `frozen-2026-warm20-pinned`: the exact 23-battle host input stream (3 warmups, 20 measured battles) and complete terminal capture used for the Rust bridge diagnostic.
+- `frozen-2026-table-policy-pinned`: a complete battle with two explicitly mutable tables and 36 other tables protected against writes.
+- `frozen-2026-eager-pinned`: the full original battle module executes eagerly, replacing the earlier lazy battle loader.
+- `frozen-2026-initial-global-descriptor-failure`: preserved failed startup graph comparison, exposing contextified global descriptor differences.
+- `frozen-2026-initial-ordinary-global-passed`: passing startup graph comparison after the ordinary-global realm correction; 10,912 nodes and 32,828 code entries, with zero battles completed.
+
+A recorded pinned profile is historical evidence for that archive, not automatic
+qualification against later revisions of `config/source-oracle-runtime.json`.
+Run `node tools/verify-native-fixtures.mjs` to check compressed/plain hashes,
+input consumption, exact emitter snapshots, and the recorded Node comparison.
+Declared failed comparisons remain negative evidence.
+
 Every fixture uses the frozen realistic level-360 A5 5v5 with gear, SI30, and one
 beast per side. These are diagnostic fixtures, **not throughput qualification**:
 actor/effect/view lifecycle remains excluded from their execution adapters, and
