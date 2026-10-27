@@ -102,13 +102,14 @@ const cases=Array.from({length:caseCount},(_,i)=>testcase(i));
 const path=resolve(root,'work/unit-native.trace'),fd=openSync(path,'w');let result;
 try{result=spawnSync(resolve(process.argv[2]),[],{input:cases.map(serialize).join('\n')+'\n',encoding:'utf8',stdio:['pipe',fd,'pipe']});}finally{closeSync(fd)}
 if(result.error)throw result.error;assert.equal(result.status,0,result.stderr);
-let index=0,eventCount=0,snapshotEvents=0;
+let index=0,eventCount=0,snapshotEvents=0;const hookCounts={};
 for await(const line of createInterface({input:createReadStream(path),crlfDelay:Infinity})){
  const expected=oracle(cases[index]),actual=JSON.parse(line);
  try{assert.deepEqual(actual,expected)}catch(error){await writeFile(resolve(root,'work/unit-first-divergence.json'),JSON.stringify({case:index,input:serialize(cases[index]),expected,actual},null,2)+'\n');throw new Error(`Unit.update diverged case${index}; see work/unit-first-divergence.json: ${error.message.slice(0,400)}`)}
  eventCount+=expected.events.length;if(cases[index].trace)snapshotEvents+=expected.events.length;index++;
+ for(const event of expected.events){const key=event.kind.split(':')[0];hookCounts[key]=(hookCounts[key]??0)+1;}
 }
 assert.equal(index,cases.length);
-const report={version:1,sourceName:metadata.sourceName,sourceSha256:metadata.sha256,binarySha256:createHash('sha256').update(await readFile(resolve(process.argv[2]))).digest('hex'),cases:index,eventCount,snapshotEvents,rawBitsExact:true,referenceRuntime:process.version,scope:'Actual Unit.update source control, numeric state and aliasing under scripted mechanics hooks; not complete battles'};
+const report={version:1,sourceName:metadata.sourceName,sourceSha256:metadata.sha256,binarySha256:createHash('sha256').update(await readFile(resolve(process.argv[2]))).digest('hex'),cases:index,eventCount,snapshotEvents,hookCounts,rawBitsExact:true,referenceRuntime:process.version,scope:'Actual Unit.update source control, numeric state and aliasing under scripted mechanics hooks; not complete battles'};
 await rm(resolve(root,'work/unit-first-divergence.json'),{force:true});
 await writeFile(resolve(root,'work/unit-differential-summary.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));

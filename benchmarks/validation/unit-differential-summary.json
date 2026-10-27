@@ -7,5 +7,30 @@
   "snapshotEvents": 129607,
   "rawBitsExact": true,
   "referenceRuntime": "v24.19.0",
-  "scope": "Actual Unit.update source control, numeric state and aliasing under scripted mechanics hooks; not complete battles"
+  "scope": "Actual Unit.update source control, numeric state and aliasing under scripted mechanics hooks; not complete battles",
+  "hookCounts": {
+    "is_turn_based": 14095,
+    "stage_rect": 14095,
+    "update_skill": 20104,
+    "is_pet": 9361,
+    "recheck_manual": 14084,
+    "update_buff": 17850,
+    "action_finished": 641,
+    "buff_has_effect": 10978,
+    "cast_when_controlled": 2365,
+    "transfer_mp": 6975,
+    "set_mp": 6975,
+    "buff_hpr": 3507,
+    "set_hp": 2116,
+    "update_ai": 3451,
+    "transfer_hp": 1754,
+    "phase_finished": 21,
+    "console": 1,
+    "add_restore": 157,
+    "fix_position": 38,
+    "terminate": 685,
+    "add_buff": 353,
+    "fall": 1
+  },
+  "binarySha256": "8e8d63f1efdf9b8f78bdbceb704140bc8354e7f5fb49d85987f8bd55f3e52054"
 }
