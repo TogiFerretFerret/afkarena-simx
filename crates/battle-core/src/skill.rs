@@ -9,6 +9,7 @@ use std::collections::VecDeque;
 #[derive(Clone, Copy, Debug, Eq, PartialEq)] pub struct EventId(pub usize);
 #[derive(Clone, Copy, Debug, Eq, PartialEq)] pub struct SoundId(pub usize);
 #[derive(Clone, Copy, Debug, Eq, PartialEq)] pub struct InfoId(pub usize);
+#[derive(Clone, Copy, Debug, Eq, PartialEq)] pub struct BuffId(pub usize);
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Number { Undefined, Null, Value(f64) }
@@ -35,9 +36,10 @@ fn index(x:f64)->Option<usize>{if x>=0.0&&x.is_finite()&&x.fract()==0.0&&x<(usiz
 impl Default for Info {fn default()->Self{Self{cd:0.0,global_cd:0.0,cost_mp:0.0,launch_effect:None,launch_delay:Number::Undefined,launch_z_order:Number::Undefined,launch_fix_x:Number::Undefined,launch_fix_y:Number::Undefined}}}
 #[derive(Clone,Debug)] pub struct Unit {
     pub manually_casting:bool, pub current_skill:Reference<SkillId>,
-    pub morph:bool, pub actor:Option<usize>, pub global_cd:f64, pub mp:f64, pub pet_mp:f64,
+    pub pet_skill_casting:bool,pub morph:bool, pub actor:Option<usize>, pub global_cd:f64, pub mp:f64, pub pet_mp:f64,
 }
-impl Default for Unit {fn default()->Self{Self{manually_casting:false,current_skill:Reference::Null,morph:false,actor:None,global_cd:0.0,mp:0.0,pet_mp:0.0}}}
+impl Default for Unit {fn default()->Self{Self{manually_casting:false,current_skill:Reference::Null,pet_skill_casting:false,morph:false,actor:None,global_cd:0.0,mp:0.0,pet_mp:0.0}}}
+#[derive(Clone,Debug)] pub struct Buff {pub timer:Number}
 #[derive(Clone,Debug)] pub struct Skill {
     pub info:InfoId,pub caster:UnitId,pub target:Reference<UnitId>,pub lock_target:Reference<UnitId>,
     pub cd_remaining:f64,pub unfreeze_time:Number,pub launch_effect_delay:Number,
@@ -45,23 +47,23 @@ impl Default for Unit {fn default()->Self{Self{manually_casting:false,current_sk
     pub phase_list:Vec<Option<PhaseId>>,pub current_phase_idx:f64,
     pub next_event:Reference<EventId>,pub next_event_idx:f64,
     pub next_sound:Reference<SoundId>,pub next_sound_idx:f64,
-    pub attack_counter:f64,pub is_update:bool,pub play_sound:bool,
+    pub attack_counter:f64,pub is_update:bool,pub play_sound:bool,pub uncontrollable_buff:Reference<BuffId>,
 }
-impl Skill {pub fn new(info:InfoId,caster:UnitId)->Self{Self{info,caster,target:Reference::Null,lock_target:Reference::Null,cd_remaining:0.0,unfreeze_time:Number::Value(999.0),launch_effect_delay:Number::Undefined,casting:false,current_phase_elapsed:0.0,current_phase:Reference::Null,phase_list:vec![],current_phase_idx:0.0,next_event:Reference::Null,next_event_idx:0.0,next_sound:Reference::Null,next_sound_idx:0.0,attack_counter:0.0,is_update:true,play_sound:true}}}
+impl Skill {pub fn new(info:InfoId,caster:UnitId)->Self{Self{info,caster,target:Reference::Null,lock_target:Reference::Null,cd_remaining:0.0,unfreeze_time:Number::Value(999.0),launch_effect_delay:Number::Undefined,casting:false,current_phase_elapsed:0.0,current_phase:Reference::Null,phase_list:vec![],current_phase_idx:0.0,next_event:Reference::Null,next_event_idx:0.0,next_sound:Reference::Null,next_sound_idx:0.0,attack_counter:0.0,is_update:true,play_sound:true,uncontrollable_buff:Reference::Null}}}
 #[derive(Clone,Debug)] pub enum Callback {
     LaunchEffect { skill:SkillId, effect:String, z_order:f64, offset:[f64;2] },
     LaunchSound { skill:SkillId, sound:Option<String> },
     NextSound { skill:SkillId, elapsed:f64 },
 }
-#[derive(Clone,Debug,PartialEq)] pub enum Error { MissingPhase, MissingEvent, MissingSound, MissingSkill, MissingUnit, MissingInfo, Host(String) }
+#[derive(Clone,Debug,PartialEq)] pub enum Error { MissingPhase, MissingEvent, MissingSound, MissingSkill, MissingUnit, MissingInfo, MissingBuff, Host(String) }
 pub type Result<T=()> = std::result::Result<T,Error>;
 
 #[derive(Clone,Debug)] pub struct World {
     pub skills:Vec<Skill>, pub units:Vec<Unit>, pub phases:Vec<Phase>, pub events:Vec<TimelineEvent>,
-    pub sounds:Vec<Sound>,pub infos:Vec<Info>,
+    pub sounds:Vec<Sound>,pub infos:Vec<Info>,pub buffs:Vec<Buff>,
     pub callback_queues:Vec<VecDeque<Callback>>,pub active_queue:usize,pub mode:String,
 }
-impl Default for World {fn default()->Self{Self{skills:vec![],units:vec![],phases:vec![],events:vec![],sounds:vec![],infos:vec![],callback_queues:vec![VecDeque::new()],active_queue:0,mode:"stage".into()}}}
+impl Default for World {fn default()->Self{Self{skills:vec![],units:vec![],phases:vec![],events:vec![],sounds:vec![],infos:vec![],buffs:vec![],callback_queues:vec![VecDeque::new()],active_queue:0,mode:"stage".into()}}}
 
 /// Source methods remain explicit and may mutate any live world record. A hook
 /// error aborts at the same call boundary; it is never converted into a no-op.
@@ -84,6 +86,9 @@ pub trait Hooks {
     fn is_pet(&mut self,w:&mut World,caster:UnitId)->Result<bool>;
     fn set_pet_mp(&mut self,w:&mut World,caster:UnitId,mp:f64)->Result;
     fn set_mp(&mut self,w:&mut World,caster:UnitId,mp:f64,source:UnitId)->Result;
+    fn set_pet_cast_skill(&mut self,w:&mut World,value:bool)->Result;
+    fn idle(&mut self,w:&mut World,caster:UnitId)->Result;
+    fn skill_finish_event(&mut self,w:&mut World,caster:UnitId,id:SkillId)->Result;
 }
 impl World {
     fn skill(&self,id:SkillId)->Result<&Skill>{self.skills.get(id.0).ok_or(Error::MissingSkill)}
@@ -186,6 +191,39 @@ impl World {
         self.skills[id.0].launch_effect_delay=Number::Value(self.infos[info_id.0].launch_delay.or_zero());
         Ok(())
     }
+    /// Base finish implementation. Virtual calls to finish remain dispatched by
+    /// Hooks::finish so source hero/skill overrides are not accidentally bypassed.
+    pub fn finish<H:Hooks>(&mut self,id:SkillId,h:&mut H)->Result{
+        let caster=self.caster(id)?;
+        if self.units.get(caster.0).ok_or(Error::MissingUnit)?.manually_casting{
+            self.units[caster.0].manually_casting=false;h.unfreeze(self)?;
+        }
+        let caster=self.caster(id)?;
+        if self.units.get(caster.0).ok_or(Error::MissingUnit)?.pet_skill_casting{
+            self.units[caster.0].pet_skill_casting=false;h.unfreeze(self)?;
+            h.set_pet_cast_skill(self,false)?;
+        }
+        self.skills[id.0].casting=false;
+        let caster=self.caster(id)?;
+        self.units[caster.0].current_skill=Reference::Null;
+        h.idle(self,caster)?;
+        if let Some(buff)=self.skills[id.0].uncontrollable_buff.value(){
+            let timer=self.buffs.get(buff.0).ok_or(Error::MissingBuff)?.timer;
+            if timer.value().is_some_and(truthy){self.buffs[buff.0].timer=Number::Value(-1.0);}
+        }
+        h.skill_finish_event(self,self.caster(id)?,id)
+    }
+    pub fn interrupt<H:Hooks>(&mut self,id:SkillId,h:&mut H)->Result{
+        if self.skill(id)?.attack_counter==0.0{
+            let info=self.skills[id.0].info;
+            let cd=self.infos.get(info.0).ok_or(Error::MissingInfo)?.cd;
+            let cd=h.fix_enemy_cd(self,id,cd)?;
+            self.skills[id.0].cd_remaining=cd;
+            let caster=self.caster(id)?;
+            self.units.get_mut(caster.0).ok_or(Error::MissingUnit)?.global_cd=0.5*self.infos[info.0].global_cd;
+        }
+        h.finish(self,id)
+    }
     /// Captures the queue identity once, matching `var t=ed.clientCall_list`.
     /// Replacing active_queue during a callback does not change the drained queue.
     pub fn drain_current<H:Hooks>(&mut self,h:&mut H)->Result{
@@ -227,7 +265,7 @@ mod tests{
     impl Hooks for Host{
         fn update_tb(&mut self,_:&mut World,_:SkillId,_:f64,_:f64,_:f64)->Result{self.events.push("tb".into());Ok(())}
         fn check_region(&mut self,_:&mut World,_:SkillId)->Result{self.events.push("region".into());Ok(())}
-        fn unfreeze(&mut self,_:&mut World)->Result{self.events.push("unfreeze".into());Ok(())}
+        fn unfreeze(&mut self,w:&mut World)->Result{self.events.push("unfreeze".into());if self.action==13&&!self.used{self.used=true;w.skills[0].caster=UnitId(1);}Ok(())}
         fn on_attack_frame(&mut self,w:&mut World,id:SkillId)->Result{
             self.events.push("attack".into());
             if !self.used{self.used=true;match self.action{
@@ -250,11 +288,14 @@ mod tests{
         fn set_action(&mut self,_:&mut World,_:SkillId,name:&str)->Result{self.events.push(format!("action:{name}"));Ok(())}
         fn finish(&mut self,_:&mut World,_:SkillId)->Result{self.events.push("finish".into());Ok(())}
         fn select_target(&mut self,w:&mut World,id:SkillId,_:Reference<UnitId>)->Result{self.events.push("select".into());if self.action==5{w.skills[id.0].info=InfoId(1);}Ok(())}
-        fn fix_enemy_cd(&mut self,_:&mut World,_:SkillId,cd:f64)->Result<f64>{self.events.push("cd".into());Ok(cd)}
+        fn fix_enemy_cd(&mut self,w:&mut World,_:SkillId,cd:f64)->Result<f64>{self.events.push("cd".into());if self.action==15{w.infos[0].global_cd=8.0;w.skills[0].info=InfoId(1);}Ok(cd)}
         fn log_skill_start(&mut self,_:&mut World,_:SkillId)->Result{self.events.push("log".into());Ok(())}
         fn skill_start_event(&mut self,_:&mut World,_:UnitId,_:SkillId)->Result{self.events.push("start_event".into());Ok(())}
         fn is_pet(&mut self,_:&mut World,_:UnitId)->Result<bool>{self.events.push("is_pet".into());Ok(false)}
         fn set_pet_mp(&mut self,_:&mut World,_:UnitId,_:f64)->Result{Err(Error::Host("unexpected pet".into()))}
+        fn set_pet_cast_skill(&mut self,_:&mut World,value:bool)->Result{self.events.push(format!("pet:{value}"));Ok(())}
+        fn idle(&mut self,w:&mut World,_:UnitId)->Result{self.events.push("idle".into());if self.action==14{w.skills[0].uncontrollable_buff=Reference::Value(BuffId(1));}Ok(())}
+        fn skill_finish_event(&mut self,_:&mut World,_:UnitId,_:SkillId)->Result{self.events.push("finish_event".into());Ok(())}
         fn set_mp(&mut self,w:&mut World,id:UnitId,mp:f64,_:UnitId)->Result{self.events.push("mp".into());w.units[id.0].mp=mp;Ok(())}
     }
     fn world()->World{
@@ -285,4 +326,18 @@ mod tests{
         let mut w=world();w.infos[0]=Info{cd:3.0,global_cd:2.0,cost_mp:10.0,launch_delay:Number::Value(0.5),..Info::default()};w.infos.push(Info{cd:99.0,global_cd:99.0,cost_mp:99.0,..Info::default()});w.units[0].mp=100.0;
         let mut h=Host{action:5,..Host::default()};w.start(SkillId(0),Reference::Null,&mut h).unwrap();assert_eq!(w.skills[0].cd_remaining,3.0);assert_eq!(w.units[0].mp,90.0);assert_eq!(w.units[0].global_cd,2.0);assert_eq!(w.skills[0].launch_effect_delay,Number::Value(0.5));
     }
+    #[test]fn finish_rereads_caster_after_unfreeze_and_keeps_old_caster_current_skill(){
+        let mut w=world();w.units[0].manually_casting=true;w.units.push(Unit{pet_skill_casting:true,current_skill:Reference::Value(SkillId(0)),..Unit::default()});w.buffs.push(Buff{timer:Number::Value(3.0)});w.skills[0].uncontrollable_buff=Reference::Value(BuffId(0));
+        let mut h=Host{action:13,..Host::default()};w.finish(SkillId(0),&mut h).unwrap();
+        assert_eq!(h.events,["unfreeze","unfreeze","pet:false","idle","finish_event"]);assert!(!w.units[0].manually_casting);assert!(!w.units[1].pet_skill_casting);assert_eq!(w.units[0].current_skill,Reference::Value(SkillId(0)));assert_eq!(w.units[1].current_skill,Reference::Null);assert_eq!(w.buffs[0].timer,Number::Value(-1.0));
+    }
+    #[test]fn finish_rereads_uncontrollable_buff_after_idle(){
+        let mut w=world();w.buffs=vec![Buff{timer:Number::Value(3.0)},Buff{timer:Number::Value(4.0)}];w.skills[0].uncontrollable_buff=Reference::Value(BuffId(0));
+        let mut h=Host{action:14,..Host::default()};w.finish(SkillId(0),&mut h).unwrap();assert_eq!(w.buffs[0].timer,Number::Value(3.0));assert_eq!(w.buffs[1].timer,Number::Value(-1.0));
+    }
+    #[test]fn interrupt_retains_original_info_alias_after_cd_hook(){
+        let mut w=world();w.infos[0].cd=3.0;w.infos.push(Info{global_cd:99.0,..Info::default()});w.skills[0].attack_counter=-0.0;
+        let mut h=Host{action:15,..Host::default()};w.interrupt(SkillId(0),&mut h).unwrap();assert_eq!(w.skills[0].cd_remaining,3.0);assert_eq!(w.units[0].global_cd,4.0);assert_eq!(h.events,["cd","finish"]);
+    }
+
 }

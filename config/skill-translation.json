@@ -34,6 +34,18 @@
       "start": 35546,
       "end": 35657,
       "sha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c"
+    },
+    {
+      "name": "ed.Skill.finish",
+      "start": 24318,
+      "end": 24760,
+      "sha256": "60eb2e3340eb9e577439c68a5b76e0edde812e3a9f55a397d7f76295721bc276"
+    },
+    {
+      "name": "ed.Skill.interrupt",
+      "start": 24771,
+      "end": 24923,
+      "sha256": "cb7654fc2a4c8ea91197bdf4fba24cdf130153aefdd4334c79c05c5d6920e3b4"
     }
   ],
   "domain": [
@@ -46,7 +58,7 @@
     "Update hooks may mutate current phase, indices, casting, caster, info and callback queue; source reads are repeated at original call boundaries"
   ],
   "validation": {
-    "rustUnitTests": 5,
+    "rustUnitTests": 8,
     "differential": {
       "cases": 20000,
       "eventCount": 114577,

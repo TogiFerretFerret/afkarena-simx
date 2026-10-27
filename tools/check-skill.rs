@@ -29,6 +29,9 @@ impl Hooks for Host{
  fn skill_start_event(&mut self,_:&mut World,_:UnitId,_:SkillId)->Result{Err(Error::Host("unexpected skill_start_event".into()))}
  fn is_pet(&mut self,_:&mut World,_:UnitId)->Result<bool>{Err(Error::Host("unexpected is_pet".into()))}
  fn set_pet_mp(&mut self,_:&mut World,_:UnitId,_:f64)->Result{Err(Error::Host("unexpected set_pet_mp".into()))}
+ fn set_pet_cast_skill(&mut self,_:&mut World,_:bool)->Result{Err(Error::Host("unexpected set_pet_cast_skill".into()))}
+ fn idle(&mut self,_:&mut World,_:UnitId)->Result{Err(Error::Host("unexpected idle".into()))}
+ fn skill_finish_event(&mut self,_:&mut World,_:UnitId,_:SkillId)->Result{Err(Error::Host("unexpected skill_finish_event".into()))}
  fn set_mp(&mut self,_:&mut World,_:UnitId,_:f64,_:UnitId)->Result{Err(Error::Host("unexpected set_mp".into()))}
 }
 struct Input<'a>(std::str::SplitWhitespace<'a>);impl Input<'_>{fn int(&mut self)->usize{self.0.next().unwrap().parse().unwrap()}fn float(&mut self)->f64{f64::from_bits(u64::from_str_radix(self.0.next().unwrap(),16).unwrap())}fn number(&mut self)->Number{let kind=self.int();let x=self.float();match kind{0=>Number::Undefined,1=>Number::Null,_=>Number::Value(x)}}}
