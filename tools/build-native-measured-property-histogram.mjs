@@ -1,0 +1,18 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const root=resolve(import.meta.dirname,'..'),directory=resolve(root,'work/native-measured-property-histogram');await mkdir(directory,{recursive:true});
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const config=JSON.parse(await readFile(resolve(root,'config/native-compiler-static-hermes.json')));
+const build=resolve(root,'work/downloads/hermes-build'),checkout=resolve(root,'work/downloads',config.source.directory);
+const input='tools/native-measured-property-histogram.cpp',output=resolve(directory,'wrapper.o');
+const args=['-DHERMESVM_ALLOW_CONCURRENT_GC','-DHERMESVM_ALLOW_INLINE_ASM','-DHERMESVM_INDIRECT_THREADING','-DHERMES_CHECK_NATIVE_STACK','-DHERMES_ENABLE_UNICODE_REGEXP_PROPERTY_ESCAPES','-DHERMES_USE_BOOST_CONTEXT=1','-DSTATIC_HERMES','-fno-exceptions','-fno-rtti','-std=c++17','-O2','-g0','-DNDEBUG','-fPIC','-ffp-contract=off'];
+for(const path of[resolve(build,'lib/config'),resolve(checkout,'include'),resolve(checkout,'external/llvh/include'),resolve(checkout,'external/llvh/gen/include'),resolve(checkout,'external'),resolve(checkout,'public'),resolve(checkout,'API'),resolve(checkout,'API/jsi'),resolve(build,'external/llvh/include'),resolve(build,'include')])args.push('-I'+path);
+args.push('-c',resolve(root,input),'-o',output);
+const compiled=spawnSync('c++',args,{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(compiled.status,0,compiled.stderr);
+const undefinedSymbols=spawnSync('nm',['-u',output],{encoding:'utf8'});assert.equal(undefinedSymbols.status,0);
+const sources={};for(const file of [input,'tools/build-native-measured-property-histogram.mjs','config/native-compiler-static-hermes.json',...['static_h.h','sh_mirror.h','StaticHUtils.h','HiddenClass.h','JSObject.h','CellKind.h','CellKinds.def'].map(name=>'work/downloads/'+config.source.directory+'/include/hermes/VM/'+name)])sources[file]=sha(await readFile(resolve(root,file)));
+const report={version:1,built:true,measuredOnly:true,gate:'simx_measured_clock_calls()==1',scope:'Measured-window getter-free property slow-path wrapper build only; full raw report validation remains separate. Fixed host-memory counters retain code addresses and scalar metadata only. No VM allocation/JS calls while counting; all C++ scopes finish before the original potentially-longjmp function. Dump uses immutable AOT string pools; no VM string materialization.',output,outputSha256:sha(await readFile(output)),compileArgs:args,sources,undefinedSymbols:undefinedSymbols.stdout,linkFlag:'-Wl,--wrap=_sh_ljs_get_by_id_rjs',dumpHook:'void simx_dump_get_by_id(SHRuntime *shr); call before release_console_bindings/_sh_done',cacheFlags:{present:1,classPopulated:2,negativeClassPopulated:4,ownClassMatch:8,negativeReceiverMatch:16,immediatePrototypeMatch:32,classPropertyMapPresent:64},changesBuckets:['0','1','2..4','5..15','16..63','64..254','255'],capacity:524288,overflowPolicy:'Counts remain explicit as overflow; any overflow makes the per-row histogram incomplete.',propertyNames:'AOT static unit string pools only, unknown ID stays numeric, names longer than256UTF16units explicitly marked truncated.',qualifiesFor10000Target:false};
+await writeFile(resolve(root,'benchmarks/validation/native-measured-property-histogram-build.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({built:true,output}));
