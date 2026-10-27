@@ -85,5 +85,71 @@
     }
   ],
   "phaseEventAliases": 2,
+  "unitPeriod": {
+    "table": "UnitPeriod",
+    "path": [
+      "62",
+      "2",
+      "SlotList"
+    ],
+    "before": [
+      {
+        "kind": "string",
+        "value": "0"
+      },
+      {
+        "kind": "string",
+        "value": "1"
+      },
+      {
+        "kind": "string",
+        "value": "2"
+      },
+      {
+        "kind": "string",
+        "value": "3"
+      },
+      {
+        "kind": "string",
+        "value": "4"
+      },
+      {
+        "kind": "string",
+        "value": "200"
+      }
+    ],
+    "after": [
+      {
+        "kind": "number",
+        "value": 0
+      },
+      {
+        "kind": "number",
+        "value": 1
+      },
+      {
+        "kind": "number",
+        "value": 2
+      },
+      {
+        "kind": "number",
+        "value": 3
+      },
+      {
+        "kind": "number",
+        "value": 4
+      },
+      {
+        "kind": "number",
+        "value": 200
+      }
+    ],
+    "identityStable": true,
+    "sourceStatement": "i[t]=parseInt(i[t])",
+    "completedBattle": {
+      "ticks": 296,
+      "result": "victory"
+    }
+  },
   "conclusion": "Original Skill.rebuildPhaseList adds Type=Attack to the shared table row and retains that same object in skill phase event lists. Preserve table mutation and alias identity; neither a read-only table nor a copied event row is faithful."
 }

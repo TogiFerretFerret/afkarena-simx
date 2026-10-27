@@ -24,11 +24,11 @@ export function installNativeReferenceTrace(runtime,sources,{clockObserver}={}){
   runtime.context.__nativeTraceRuntime=runtime;
   const boundary=runtime.tableBoundary;
   runtime.context.__nativeTraceOptions={compact:true,programState:true,maxNodes:300000,
-    globalNames:[...new Set([...runtime.sourceRecords.globals.keys(),...(runtime.sourceRecords.functionDeclarations||[]).map(record=>record.name)])],
+    globalNames:runtime.sourceRecords.sourceGlobalNames||[...new Set([...runtime.sourceRecords.globals.keys(),...(runtime.sourceRecords.functionDeclarations||[]).map(record=>record.name)])],
     adapterCodes:[{fn:runtime.ed.getDataTable,identity:'source-table-loader'},{fn:runtime.ed.logbugly,identity:'source-logbugly'}],
     mutableTableRoots:boundary?()=>boundary.mutableRoots():undefined,
     immutableReference:boundary?value=>boundary.immutableMetadata(value):undefined,
-    assertImmutableClean:boundary?()=>boundary.assertClean():undefined,digest:text=>createHash('sha256').update(text).digest('hex'),onProgress(progress){process.stderr.write(JSON.stringify({status:"trace_progress",...progress})+"\n");},definitionNames:[...runtime.sourceRecords.definitions.keys()],subscribeClock(observer){
+    assertImmutableClean:boundary?()=>boundary.assertClean():undefined,digest:text=>createHash('sha256').update(text).digest('hex'),onProgress(progress){process.stderr.write(JSON.stringify({status:"trace_progress",...progress})+"\n");},definitionNames:runtime.sourceRecords.sourceDefinitionNames||[...runtime.sourceRecords.definitions.keys()],subscribeClock(observer){
     clockObserver.current=observer;
     return()=>{clockObserver.current=null;};
   }};
