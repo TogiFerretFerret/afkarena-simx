@@ -1,0 +1,432 @@
+{
+  "version": 1,
+  "passed": true,
+  "sourceTerminalReportMatched": true,
+  "nativeTerminalReportMatched": true,
+  "orderedEventStateMatched": true,
+  "strictSnapshotSchemaMatched": true,
+  "fastPathsObserved": true,
+  "runtimeLifecycleMatched": true,
+  "sourceTerminalDifference": null,
+  "nativeTerminalDifference": null,
+  "firstStateDifference": null,
+  "sourceSchema": {
+    "passed": true,
+    "events": 64419,
+    "snapshotNodes": 55078,
+    "frames": 296,
+    "scope": "Supplemental JSON schema and integrity for typed-entry boundary traces; own enumerable string-keyed data fields only. No whole-program or battle semantic qualification.",
+    "qualifiesFor10000Target": false
+  },
+  "nativeSchema": {
+    "passed": true,
+    "events": 64419,
+    "snapshotNodes": 55078,
+    "frames": 296,
+    "scope": "Supplemental JSON schema and integrity for typed-entry boundary traces; own enumerable string-keyed data fields only. No whole-program or battle semantic qualification.",
+    "qualifiesFor10000Target": false
+  },
+  "ordered": {
+    "passed": true,
+    "eventsCompared": 64419,
+    "sourceSnapshotNodes": 55078,
+    "nativeSnapshotNodes": 55078,
+    "rootContract": "primitive-vector-battle-boundaries-v1",
+    "qualifiesFor10000Target": false,
+    "limitations": [
+      "Not a whole-program graph: nested objects, prototype state, function code/closures, shared-object aliases outside selected roots and weak contents are omitted",
+      "Selected state includes only own enumerable string-keyed primitive fields, numeric vectors and selected ordered engine/unit/skill/buff lists; field names are encoded as entry data and cannot collide with snapshot reference tags",
+      "Own data-descriptor reads do not invoke ordinary getters; reflective inspection of an unknown Proxy can invoke traps and is outside the supported fixture domain",
+      "Payload object graphs are separately descriptor-encoded with numeric bits, accessor identities and per-payload aliases; source object arguments use stable identity tokens",
+      "Actor/effect/view lifecycle remains outside this callback-only adapter"
+    ]
+  },
+  "sourceCompleted": 1,
+  "nativeCompleted": 1,
+  "callbacks": 15453,
+  "frames": 296,
+  "events": 64419,
+  "nativeEvents": 64419,
+  "sourceSnapshotNodes": 55078,
+  "nativeSnapshotNodes": 55078,
+  "rootContract": "primitive-vector-battle-boundaries-v1",
+  "completeProgramRootContract": false,
+  "qualifiesFor10000Target": false,
+  "scope": "One complete frozen callback-only battle: independent original-source traced/untraced terminal parity, actual optimized native terminal parity and every ordered selected-state snapshot/payload compared. Selected own enumerable string-keyed data fields and numeric vectors are encoded with exact f64 bits; arbitrary nested/prototype/function/weak state and actor/effect/view lifecycle remain outside coverage. This is not the full-program graph gate or a throughput benchmark.",
+  "limitations": [
+    "Not a whole-program graph: nested objects, prototype state, function code/closures, shared-object aliases outside selected roots and weak contents are omitted",
+    "Selected state includes only own enumerable string-keyed primitive fields, numeric vectors and selected ordered engine/unit/skill/buff lists; field names are encoded as entry data and cannot collide with snapshot reference tags",
+    "Own data-descriptor reads do not invoke ordinary getters; reflective inspection of an unknown Proxy can invoke traps and is outside the supported fixture domain",
+    "Payload object graphs are separately descriptor-encoded with numeric bits, accessor identities and per-payload aliases; source object arguments use stable identity tokens",
+    "Actor/effect/view lifecycle remains outside this callback-only adapter"
+  ],
+  "sourceArchive": {
+    "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.json",
+    "sha256": "3cc4ec9de2635b657a33d8ae328e6197f202f2c5844f29fa9ee0d9678a48d230"
+  },
+  "nativeExecution": {
+    "file": "/workspace/afkarena-simx/work/battle-boundary-trace/native-stream-execution.json",
+    "sha256": "3a29cf52da40fd1a54ad9dbc82841bb8fbfd17e8a24ac1c51914cb802ef3fe51"
+  },
+  "privateVM": {
+    "output": "/workspace/afkarena-simx/work/native-global-ed-prefilter/libhermesvm.so",
+    "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "privateSha256": "3d2e010473f6bf427115a3bbfae69cd1321d50b1587efb0e8345b3f9f22b6a8d",
+    "helperSha256": "5e5841c52116fd46ec5aa32e082a841cc97712eaf07f32c0619f268d28594e15"
+  },
+  "compiler": {
+    "file": "/workspace/afkarena-simx/work/downloads/hermes-build/bin/shermes",
+    "sha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d"
+  },
+  "fastPathHits": {
+    "entity": 10,
+    "copy": 18179,
+    "emptyCopy": 15752,
+    "numericCopy": 2427,
+    "sort": 446,
+    "sortUnsupportedFallbacks": 0
+  },
+  "globalSlotCache": {
+    "hits": 590521,
+    "misses": 334,
+    "rejected": 333,
+    "capacityRejected": 0,
+    "notOwn": 0,
+    "configurable": 0,
+    "special": 333,
+    "noMap": 0,
+    "empty": 0,
+    "entries": 1,
+    "globalKind": 24,
+    "edSeen": true,
+    "edPresent": true,
+    "edFlags": 6,
+    "edSlot": 82
+  },
+  "globalSlotLifecycle": {
+    "created": 1,
+    "destroyed": 1
+  },
+  "prefilterActive": {
+    "runtimeKeyMatches": true,
+    "symbol": 19644,
+    "valid": 1
+  },
+  "prefilterCleared": {
+    "runtimeKeyCleared": true,
+    "symbol": 0,
+    "valid": 0
+  },
+  "sourceInputDependenciesUnchanged": true,
+  "nativeInputDependenciesUnchanged": true,
+  "allSourceGameFunctionBytesUnchanged": true,
+  "reusedNativeObjects": 5,
+  "modules": [
+    {
+      "file": "tools/battle-boundary-state-trace.js",
+      "sha256": "80bd32a0f2b86775dd48aad8f322af10d9c8eb36fc744bf075d9ca621fc6c60d"
+    },
+    {
+      "file": "tools/battle-boundary-trace.mjs",
+      "sha256": "93f71a34da9dc97e0bf9bde2108e7e739baa7c8f887b0078924f13a4419a5a4b"
+    },
+    {
+      "file": "tools/validate-battle-boundary-schema.mjs",
+      "sha256": "ab7ea12c6bf793c006884d59eda1d114746cf47a1011beeea6f7c6ede2207a80"
+    },
+    {
+      "file": "tools/check-battle-boundary-native.mjs",
+      "sha256": "d28a739665b684a166d6e1757063fafc87c428f8840296d102f1c6d42cc538f7"
+    },
+    {
+      "file": "tools/run-battle-boundary-source.mjs",
+      "sha256": "f7a3bd4ef0be004c05e33d7b6fde29541207bb0d5bb5eec99335766def8644c9"
+    },
+    {
+      "file": "tools/run-battle-boundary-native.mjs",
+      "sha256": "84830a7eb7f556dc6050452d57d1c2ea9413256c61c1437dfc54db24c73cd329"
+    },
+    {
+      "file": "tools/prepare-battle-boundary-native.mjs",
+      "sha256": "8170894a03ee204199605a616cb74a642fe52b22ed92c91f8ff575c20dadee88"
+    },
+    {
+      "file": "tools/patch-battle-boundary-fastpaths.mjs",
+      "sha256": "c65789cc71796105b6bee320c8ec4d87464b740e4905ed750e7851c1e1feca44"
+    },
+    {
+      "file": "tools/battle-boundary-ndjson.mjs",
+      "sha256": "669765fa46340ad4467a352243135cf838acddc4cca4ef8b95631a10f1a184a7"
+    },
+    {
+      "file": "tools/prepare-battle-boundary-stream.mjs",
+      "sha256": "12eecf8978df2fb4da2d8b117f8364143d8fafb68594ecadbc6971975f682de5"
+    },
+    {
+      "file": "tools/run-battle-boundary-stream.mjs",
+      "sha256": "3af279c801980386b20853e25f597c62676fa93a636cd7ee2f589c3a005a7976"
+    },
+    {
+      "file": "tools/preflight-battle-boundary-stream.mjs",
+      "sha256": "4620fee5eff4a56a89dac4a521420aed952c7619d10e94f67eb960722e1757e2"
+    },
+    {
+      "file": "benchmarks/validation/battle-boundary-schema.json",
+      "sha256": "ece2378a587ce74eba94b5e9105064a8e8ae1fde7583695a6f8b07fdb1d0bf1c"
+    },
+    {
+      "file": "benchmarks/validation/battle-boundary-stream-preflight.json",
+      "sha256": "eaff14f81536abae897f44b0f1f2a6366b8b8f7233dc1bf64829aed18bdb2613"
+    },
+    {
+      "file": "benchmarks/validation/battle-boundary-ndjson-independent-review.json",
+      "sha256": "83a59c9e2bab28fd04d6060a51b8a33dc5572bdfe7130fb30014e748a9cb44a7"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "native-traced",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/native-stream.stdout",
+      "uncompressedSha256": "8915989b23ada4e330f064f35f594c0177385aa48cb51e48b383baff9ff67a56",
+      "uncompressedBytes": 284078452,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-000.gz",
+          "sha256": "8e0d6cef3ba368a3107d194c0f22cfad1f1a4cb6e3a047d0e5495d4b0e87d0a6",
+          "uncompressedSha256": "0acc58b4038cc5226ee5ff5c1464a315e3a533f996f772043d04737a750466b2",
+          "uncompressedBytes": 23068672,
+          "bytes": 1793351
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-001.gz",
+          "sha256": "2397bd11e7d2bbec2bd2dd440b622c93cc02d17c882ba40e020d8230e37718f1",
+          "uncompressedSha256": "0ea3ad34bdb8d7e6ef05f71934c1dbf30b5e302b5a403bfe750ca972b26bdadd",
+          "uncompressedBytes": 23068672,
+          "bytes": 2168528
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-002.gz",
+          "sha256": "943dedee5860ebff86a973848de4324650a6a9a58b5223c8f0909a5a4e025b2e",
+          "uncompressedSha256": "731b9e431b4752e182a466d40ac23451508b20973156dd27ab9a658e5357e30b",
+          "uncompressedBytes": 23068672,
+          "bytes": 2053062
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-003.gz",
+          "sha256": "3a1df8ed7ae73638b0a9b18b5a6b21f786897e81866a307a7827be833122ccb2",
+          "uncompressedSha256": "f59c87880edaf21dc789aed12db997865d3d0db47c4e74829e59b5c4014b25ad",
+          "uncompressedBytes": 23068672,
+          "bytes": 2245272
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-004.gz",
+          "sha256": "63ae78b7d7d99506e321f0417eebca62020d3ff0d5a76f87d2e61cff569da396",
+          "uncompressedSha256": "749d31c2ccc692710fe38dc6ac48068e83fdf427b643b149424eb656d1152958",
+          "uncompressedBytes": 23068672,
+          "bytes": 998295
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-005.gz",
+          "sha256": "3d8f29f935e1a98fc00ffcd7fc1271d735678c43d30191e4a950cebbf1d173fa",
+          "uncompressedSha256": "84a044ae2221dbce1404021d0820a72884e200fb6816170abeee88626d7675cc",
+          "uncompressedBytes": 23068672,
+          "bytes": 509657
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-006.gz",
+          "sha256": "4caa510f10ed5b1c1120c164a3734d5792000380b007d0b359f530c519876a3c",
+          "uncompressedSha256": "dbeb202701782e332d559d1a4b38681c367e4a9d1d8b9fb9f5d1812479a14859",
+          "uncompressedBytes": 23068672,
+          "bytes": 493879
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-007.gz",
+          "sha256": "0fd16e77740cb87ad8c8514c5bb4a399161bab3e76fb6048c5ec34332bfd37c0",
+          "uncompressedSha256": "37b03941238efd5c7cb515b1251e231e8cde065fb21a00a02a6eddabc46613bf",
+          "uncompressedBytes": 23068672,
+          "bytes": 496390
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-008.gz",
+          "sha256": "967b14d9e6a2cdf15a2454f906bb48533dc7a32b3fdcdbf731afded7adf8df54",
+          "uncompressedSha256": "444357437fffef2e35e2c79a5afb03507c204a37a4509aab045076945885bb9e",
+          "uncompressedBytes": 23068672,
+          "bytes": 489559
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-009.gz",
+          "sha256": "91f3c267f897b454e7c8534f846979e97cca5be8c98c25cbc13e946a135f6512",
+          "uncompressedSha256": "e591de0c62bfb4444ffab59f2ba65bc704a2e33e30d8a6b33dae9d45a77e0779",
+          "uncompressedBytes": 23068672,
+          "bytes": 540290
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-010.gz",
+          "sha256": "46b147d3cadc364c776926178479030e46afb4034d17f779ef3143971da761ee",
+          "uncompressedSha256": "9ecbb40cb3ea7ec346388cc3e812adbbb39504f5c5cb9705981c440e5651e09c",
+          "uncompressedBytes": 23068672,
+          "bytes": 544184
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-011.gz",
+          "sha256": "32f213840fe8b113d5f93a600b1386b24b539fefc99ac0694c236c0f4eaf7f94",
+          "uncompressedSha256": "3ceec4c090c27a29e878befbe9d6f409f43f4ca10389346fdf3ba718fa196533",
+          "uncompressedBytes": 23068672,
+          "bytes": 571432
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-012.gz",
+          "sha256": "6f6918668132b0e0b4566292d15794637844938773fbdfd71a1c8027e725f62b",
+          "uncompressedSha256": "d2f396613bc2c5856dc66b11e8fbb4af536393e043034df70e28a4a9d526324a",
+          "uncompressedBytes": 7254388,
+          "bytes": 166754
+        }
+      ]
+    },
+    {
+      "label": "native-stderr",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/native-stream.stderr",
+      "uncompressedSha256": "43da42c81dbf9dc845a096ca5b4c1c78a30f15df9d816330bcdbe98314584032",
+      "uncompressedBytes": 532,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-stderr.gz",
+          "sha256": "21e75b9f8d7b1090f49de2634e5e1116110200ee5f6857638155c3b065ce12c5",
+          "uncompressedSha256": "43da42c81dbf9dc845a096ca5b4c1c78a30f15df9d816330bcdbe98314584032",
+          "uncompressedBytes": 532,
+          "bytes": 321
+        }
+      ]
+    },
+    {
+      "label": "native-execution",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/native-stream-execution.json",
+      "uncompressedSha256": "3a29cf52da40fd1a54ad9dbc82841bb8fbfd17e8a24ac1c51914cb802ef3fe51",
+      "uncompressedBytes": 28170,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-execution.gz",
+          "sha256": "93b2a244b0374f9388c33d886e876a961632328be0478ca853884758d4c3452b",
+          "uncompressedSha256": "3a29cf52da40fd1a54ad9dbc82841bb8fbfd17e8a24ac1c51914cb802ef3fe51",
+          "uncompressedBytes": 28170,
+          "bytes": 6086
+        }
+      ]
+    },
+    {
+      "label": "native-fast-build",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/native-stream-build.json",
+      "uncompressedSha256": "88f116ecae5a8337353b4cbdd02fefe270f06b96bae1f170293d22de46fcb967",
+      "uncompressedBytes": 30689,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-fast-build.gz",
+          "sha256": "80fd4f3de582dbaaa16872dbbd1512d14c51dd93dabdfcedcb6f6563e78538fc",
+          "uncompressedSha256": "88f116ecae5a8337353b4cbdd02fefe270f06b96bae1f170293d22de46fcb967",
+          "uncompressedBytes": 30689,
+          "bytes": 5672
+        }
+      ]
+    },
+    {
+      "label": "native-main",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/fast-main.c",
+      "uncompressedSha256": "e02d5f14faabf8dba1d8aa7fd9433bf4f24a7cc39450919c63b4e924b4f37006",
+      "uncompressedBytes": 2224,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-main.gz",
+          "sha256": "ce35d073f7f4745a3c3e2afafbdabaad91b7f843e995f6f4c7e48bc984e36149",
+          "uncompressedSha256": "e02d5f14faabf8dba1d8aa7fd9433bf4f24a7cc39450919c63b4e924b4f37006",
+          "uncompressedBytes": 2224,
+          "bytes": 725
+        }
+      ]
+    },
+    {
+      "label": "unit0-source",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/partition_0.js",
+      "uncompressedSha256": "cc28a06bc927dda8a46db9b0330c56e29585a33e5ba58cc5ce48ce53aa07d2de",
+      "uncompressedBytes": 1435208,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.unit0-source.gz",
+          "sha256": "37f5aa70221c3163dff2533ef815fa283255699c03025c3bba3cce9d1f3e036d",
+          "uncompressedSha256": "cc28a06bc927dda8a46db9b0330c56e29585a33e5ba58cc5ce48ce53aa07d2de",
+          "uncompressedBytes": 1435208,
+          "bytes": 310229
+        }
+      ]
+    },
+    {
+      "label": "runner-source",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/runner.stream.js",
+      "uncompressedSha256": "efb8af73790e6a168b0f17305b0d26062ea480ba2067435a77f71ffc495774a7",
+      "uncompressedBytes": 1280216,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.runner-source.gz",
+          "sha256": "c68f70f0cbcaddc66aa5b3d1664c06ce909195fcd09c001f9d1f1f34c6cd7267",
+          "uncompressedSha256": "efb8af73790e6a168b0f17305b0d26062ea480ba2067435a77f71ffc495774a7",
+          "uncompressedBytes": 1280216,
+          "bytes": 201322
+        }
+      ]
+    },
+    {
+      "label": "patched-c",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/partition_0.fast.c",
+      "uncompressedSha256": "5e2b7f37d3cfe67e24bddb95ba9f68ef4f9229c1aa397c2b314d291882e2951d",
+      "uncompressedBytes": 14575792,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.patched-c.gz",
+          "sha256": "1095c2a46e6b4d790f9729afa6db848cb7f9dfe7a740111b037de137481997f3",
+          "uncompressedSha256": "5e2b7f37d3cfe67e24bddb95ba9f68ef4f9229c1aa397c2b314d291882e2951d",
+          "uncompressedBytes": 14575792,
+          "bytes": 1078476
+        }
+      ]
+    },
+    {
+      "label": "original-c",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/partition_0.original.c",
+      "uncompressedSha256": "df8d957f7dee3f7bd5e302978baa31d6cffa89899d2a6756f928ae831091ca14",
+      "uncompressedBytes": 14573729,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.original-c.gz",
+          "sha256": "b10e47a812ff1fdae9aa8921a73576baaa4eddf2cbdc5fea6f2ddca549fe8040",
+          "uncompressedSha256": "df8d957f7dee3f7bd5e302978baa31d6cffa89899d2a6756f928ae831091ca14",
+          "uncompressedBytes": 14573729,
+          "bytes": 1078010
+        }
+      ]
+    },
+    {
+      "label": "native-ldd",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/native-stream.ldd",
+      "uncompressedSha256": "7958acca28b6eaa779733d2567bd4d7dcaeabbfec68a50fc4b237263466edf55",
+      "uncompressedBytes": 622,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-ldd.gz",
+          "sha256": "6aa2d460fcc620cea7d27a4d0eda69784b486adbab93dee446fa16202ad21afd",
+          "uncompressedSha256": "7958acca28b6eaa779733d2567bd4d7dcaeabbfec68a50fc4b237263466edf55",
+          "uncompressedBytes": 622,
+          "bytes": 261
+        }
+      ]
+    }
+  ]
+}
