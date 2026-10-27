@@ -56,10 +56,10 @@
     "promotionBudgetCheck": {
       "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
       "sha256": "0b6144c08a3a906fa1aa63859492d30b08a5546503655d3e30bc8a9ce560d4da",
-      "start": 76705,
-      "end": 77505,
-      "startLine": 2048,
-      "text": "(youngGen_.effectiveEnd() - adj);\n  } else {\n    std::lock_guard<Mutex> lk{gcMutex_};\n    oldGen_.creditExternalMemory(sz);\n    uint64_t totalBytes = oldGen_.allocatedBytes() + oldGen_.externalBytes();\n    if (totalBytes > oldGen_.targetSizeBytes())\n      youngGen_.setEffectiveEnd(youngGen_.level());\n  }\n}\n\nvoid HadesGC::debitExternalMemory(GCCell *cell, uint32_t sz) {\n  if (inYoungGen(cell)) {\n    size_t oldYGExtBytes = getYoungGenExternalBytes();\n    assert(\n        oldYGExtBytes >= sz && \"Debiting more native memory than was credited\");\n    setYoungGenExternalBytes(oldYGExtBytes - sz);\n    // Don't modify the effective end here. creditExternalMemory is in charge\n    // of tracking this. We don't expect many debits to not be from finalizers\n    // anyway.\n  } else {\n    std::lock_guard<M"
+      "start": 108439,
+      "end": 109509,
+      "startLine": 2834,
+      "text": "// If the OG is sufficiently full after the collection finishes, begin\n      // an OG collection.\n      // External bytes are part of the numerator and denominator, because they\n      // should not be included as part of determining the heap's occupancy, but\n      // instead just influence when collections begin.\n      const uint64_t totalAllocated =\n          oldGen_.allocatedBytes() + oldGen_.externalBytes();\n      const uint64_t totalBytes = oldGen_.targetSizeBytes();\n      double allocatedRatio = static_cast<double>(totalAllocated) / totalBytes;\n      if (allocatedRatio >= ogThreshold_) {\n        oldGenCollection(kNaturalCauseForAnalytics, /*forceCompaction*/ false);\n      }\n    }\n  }\n#ifdef HERMES_SLOW_DEBUG\n  // Run a well-formed check before exiting.\n  checkWellFormed();\n#endif\n  ygCollectionStats_->setEndTime();\n  ygCollectionStats_->endCPUTimeSection();\n  auto statsEvent = std::move(*ygCollectionStats_).getEvent();\n  recordGCStats(statsEvent, /* onMutator */ true, /* fromNewCollection */ true);\n  recordGCStats(\n      statsEvent,\n      &ygCumulat"
     },
     "weakMapScanning": {
       "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
@@ -109,6 +109,6 @@
   "qualifiesFor10000Target": false,
   "producer": {
     "file": "tools/audit-native-gc-policy.mjs",
-    "sha256": "c325b92e470d1a6514129ab9f8c65c88bc5627f9caf4ad4d6ef24c31337f6e26"
+    "sha256": "f7af3fb7da46ae3ff153631e9bd01a351aa4ffefde27eb421345aa4d23be18c8"
   }
 }
