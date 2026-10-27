@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "passed": true,
+  "implemented": false,
+  "nativeTested": false,
+  "qualifiesFor10000Target": false,
+  "config": {
+    "file": "config/native-compiler-static-hermes.json",
+    "sha256": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e",
+    "commit": "4f1db42d71d0839254c7154fc8c282bcea466206"
+  },
+  "inputs": {
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h": "4a02dbbc79ecdd8599b97c6208bbb6bc66a3fbe30f8f89ab6e55d733a1f93239",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp": "04acdb2dd1d53e1c8340e67a24cdb8e62b65167fda3a086ed0f057318ec9698a",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h": "7497ff4864c478d573350ee0f958e09626662ea8999f024180bbbeb74d332866",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/JSObject.h": "1dada40009441ce464eb288f42a1b8b989ab72b3cd4e99ebacc2818b8bc6744d",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/PropertyDescriptor.h": "c539ff33ce0f9a34882c1042b5503686814f1864af96f0ab74c5c65dbe197088",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/static_h.h": "4116a79463473da92919274a8d0741789b27748bb3f323a5d0f6d668cca33e08"
+  },
+  "contexts": {
+    "mapLayoutAndMutation": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h",
+      "start": 717,
+      "startLine": 26,
+      "sha256": "deb9a5b57c81a02a910787de530851839d3b4275a8851c86e1ae93d1fd15b49b",
+      "text": "/// - an open addressing hash table mapping from SymbolID to an integer index.\n/// - a descriptor array containing pairs of SymbolID and PropertyDescriptor.\n/// The layout in memory is actually the opposite order (because it simplifies\n/// iteration over the symbols).\n///\n/// Fast property lookup is supported by the hash table - it conceptually maps\n/// from a SymbolID to an index in the descriptor array. To save memory, only\n/// part of the SymbolID is stored in the hash table itself, so the SymbolID\n/// in the descriptor array entry is also checked on a match.\n///\n/// New properties are inserted in the hash table and appended sequentially to\n/// the end of the descriptor array, thus encoding the original insertion order.\n///\n/// Deleted properties are removed from the hash table and marked by a \"deleted\"\n/// SymbolID in the descriptor array. Then the desctiptor is added to a list of\n/// deleted property slots - PropertyDescriptor::flags is overloaded to serve as\n/// the \"next deleted\" link. We remove an entry from the \"deleted\" list when we\n/// need to allocate a slot for a new property - then finally the entry is\n/// marked with an \"invalid\" SymbolID.\n///\n/// Iteration simply walks the descriptor array from start to end, skipping\n/// deleted and invalid properties, preserving the original insertion order.\n///\n/// The object has to be reallocated when any of these conditions occur:\n/// - the descriptor array is full (it never shrinks, even after deletions)\n/// - the hash table occupancy is above a certain threshold (note that deletions\n///   don't decrease the hash table occupancy).\n///\n/// Reallocation first scans the descriptor array and inserts valid (and not\n/// deleted) properties in the new hash table and descriptor array. We must also\n/// preserve the list of deleted properties, so then it walks the deleted list\n/// and appends the descriptors to the new desctiptor array.\n///\n/// A property descriptor is always in one of these states:\n///  - \"uninitialized\". It is beyond \\c numDescriptors.\n///  - \"valid\". It contains a valid SymbolID and descriptor.\n///  - \"deleted\". It contains ReservedSymbolId::deleted and is part of the\n///  \"deleted\" list.\n///  - \"invalid\". It contains SymbolID::empty(). It used to be \"deleted\"\n///  but its slot was re-used by a new property.\n///\nnamespace detail {\n\n/// A valid entry in the hash table holds an index into the descriptor array\n/// and part of the SymbolID (for filtering). Entries transition as follows:\n/// empty -> valid -> deleted -> valid -> ...\nclass DPMHashPair {\n public:\n  DPMHashPair() : idpart_(0), desc"
+    },
+    "opaquePositionIsHashBucket": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h",
+      "start": 6252,
+      "startLine": 166,
+      "sha256": "0148cc264833542cefcfeb83998bdf13a41fbc78ef2d8458ddd7e877c7aeed35",
+      "text": "class PropertyPos {\n    friend class DictPropertyMap;\n    size_type hashPairIndex;\n\n    PropertyPos(size_type hashPairIndex) : hashPairIndex(hashPairIndex) {}\n    /// Default constructor so this class can be used in OptValue.\n    PropertyPos() = default;\n    friend class OptValue<PropertyPos>;\n  };\n\n  static const VTable vt;\n\n  static constexpr CellKind getCellKind() {\n    return CellKind::DictPro"
+    },
+    "eraseInvalidatesPositions": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h",
+      "start": 10311,
+      "startLine": 269,
+      "sha256": "fcc1beae9b40e50633fe8f51a78e7a178c468174bb477abf29250a3cee1f33c8",
+      "text": "/// Remove the property at the specified position. This invalidates all\n  /// positions.\n  static void erase(DictPropertyMap *self, Runtime &runtime, PropertyPos pos);\n\n  /// Allocate a new property slot. Either pop the first entry in the deleted\n  /// list, or, if the deleted list is empty, return "
+    },
+    "privateDescriptorBounds": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h",
+      "start": 10876,
+      "startLine": 285,
+      "sha256": "6100b9a8d12f9bcda6cccd354f5adefe5137713e9716472c4029ce51e971fc53",
+      "text": "/// Total size of the descriptor array.\n  const size_type descriptorCapacity_;\n  /// Total size of the hash table. It will always be a power of 2.\n  const size_type hashCapacity_;\n\n  /// How many entries have been added to the descriptor array (including\n  /// deleted).\n  AtomicIfConcurrentGC<size_type> numDescriptors_{0};\n\n  /// Number of valid properties in the map.\n  size_type numProperties_{0};\n\n  /// A constant used to signify end of deleted list.\n  static constexpr size_type END_OF_LIST =\n      std::numeric_limits<size_type>::max();\n\n  // Ensure that we can overload NamedPropertyDescript"
+    },
+    "descriptorLookupRequiresValidPosition": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h",
+      "start": 20556,
+      "startLine": 550,
+      "sha256": "30de444fc887c083ae7379ca4a24c98227061a16d6b7f3908b4f9d79c2e41235",
+      "text": "inline DictPropertyMap::DescriptorPair *DictPropertyMap::getDescriptorPair(\n    DictPropertyMap *self,\n    PropertyPos pos) {\n  assert(\n      pos.hashPairIndex < self->hashCapacity_ && \"property pos out of range\");\n\n  auto *hashPair = self->getHashPairs() + pos.hashPairIndex;\n  auto descIndex = hashPair->getDescIndex();\n  assert(\n      descIndex < self->numDescriptors_.load(std::memory_order_relaxed) &&\n      \"descriptor index out of range\");\n\n  auto *res = self->getDescriptorPairs() + descIndex;\n  assert(hashPair->mayBe(res->first) && \"accessing incorrect descriptor pair\");\n  return res;\n}\n\ninline std::pair<bool, DictPropertyMap::HashPair *>\nDictPropertyMap::lookupEntryFor(DictPropertyMap *"
+    },
+    "hashProbeCost": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h",
+      "start": 21155,
+      "startLine": 567,
+      "sha256": "84ab85940b64a7212ce89f513652bae58058a0ac800150e260d6305b4e627287",
+      "text": "inline std::pair<bool, DictPropertyMap::HashPair *>\nDictPropertyMap::lookupEntryFor(DictPropertyMap *self, SymbolID symbolID) {\n  size_type const mask = self->hashCapacity_ - 1;\n  size_type index = hash(symbolID) & mask;\n\n  // Probing step.\n  size_type step = 1;\n  // Save the address of the start of the table to avoid recalculating it.\n  HashPair *const tableStart = self->getHashPairs();\n  // The first deleted entry we found.\n  HashPair *deleted = nullptr;\n\n  assert(symbolID.isValid() && \"looking for an invalid SymbolID\");\n\n  for (;;) {\n    HashPair *curEntry = tableStart + index;\n\n    if (curEntry->isValid()) {\n      if (self->isMatch(curEntry, symbolID))\n        return {true, curEntry};\n    } else if (curEntry->isEmpty()) {\n      // If we encountered an empty pair, the search is over - we failed.\n      // Return either this entry or a deleted one, if we encountered one.\n\n      return {false, deleted ? deleted : curEntry};\n    } else {\n      assert(curEntry->isDeleted() && \"unexpected HashPair state\");\n      // The first time we encounter a deleted entry, record it so we can\n      // potentially reuse it for insertion.\n      if (!deleted)\n        deleted = curEntry;\n    }\n\n    index = (index + step) & mask;\n    ++step;\n  }\n}\n\ninline OptValue<DictPropertyMap::PropertyPos> DictPropertyMap::find(\n    const DictPropertyMap *self,\n    SymbolID id) {\n  // We want to keep the public interface of find() clean, so it accepts a\n  // const self pointer, but internally we don't want to "
+    },
+    "uniqueInsertion": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp",
+      "start": 4463,
+      "startLine": 143,
+      "sha256": "9e0bfcc82f8d20c9de3b3f19c864b71daedd0fcb2bde998cf72c86400ca9ac96",
+      "text": "DictPropertyMap::findOrAdd(\n    MutableHandle<DictPropertyMap> selfHandleRef,\n    Runtime &runtime,\n    SymbolID id) {\n  auto *self = *selfHandleRef;\n  auto numDescriptors = self->numDescriptors_.load(std::memory_order_relaxed);\n  auto found = lookupEntryFor(self, id);\n  if (found.first) {\n    return std::make_pair(\n        &self->getDescriptorPairs()[found.second->getDescIndex()].second,\n        false);\n  }\n\n  // We want to grow the hash table if the number of occupied hash entries\n  // exceeds 75% of capacity or if the descriptor array is full. Since the\n  // capacity of the table is 4/3 of the capacity of the descriptor array, it is\n  // sufficient to only check for the latter.\n\n  if (numDescriptors == self->descriptorCapacity_) {\n    size_type newCapacity;\n    if (self->numProperties_ == self->descriptorCapacity_) {\n      // Double the new capacity, up to kMaxCapacity. However make sure that\n      // we try to allocate at least one extra property. If we are already\n      // exactly at kMaxCapacity, there is nothing we can do, so grow() will\n      // simply fail.\n      newCapacity = self->numProperties_ * 2;\n      if (newCapacity > getMaxCapacity())\n        newCapacity =\n            std::max(toRValue(getMaxCapacity()), self->numProperties_ + 1);\n    } else {\n      // Calculate the new capacity to be exactly as much as we need to\n      // accommodate the deleted list plus one extra property. It it happens\n      // to exceed kMaxCapacity, there is nothing we can do, so grow() will\n      // raise an exception.\n      newCapacity = self->numProperties_ + 1 + self->deletedListSize_;\n    }\n\n    if (LLVM_UNLIKELY(\n            grow(selfHandleRef, runtime, newCapacity) ==\n            ExecutionStatus::EXCEPTION)) {\n      return ExecutionStatus::EXCEPTION;\n    }\n\n    self = *selfHandleRef;\n    numDescriptors = self->numDescriptors_.load(std::memory_order_relaxed);\n\n    found = lookupEntryFor(self, id);\n  }\n\n  ++self->numProperties_;\n  if (found.second->isDeleted())\n    self->decDeletedHashCount();\n\n  found.second->setDescIndex(numDescriptors, id);\n\n  auto *descPair = self->getDescriptorPairs() + numDescriptors;\n\n  descPair->first.set(id, runtime.getHeap());\n  self->numDescriptors_.fetch_add(1, std::memory_order_acq_rel);\n\n  return std::make_pair(&descPair->second, true);\n}\n\nvoid DictPropertyMap::erase(\n    DictPropertyMap *self,\n    Runtime &runtime,\n    PropertyPos pos) {\n  auto *hashPair = self->getHashPairs() + pos.hashPairIndex;\n  auto descIndex = hashPair->getDescIndex();\n  assert(\n      descIndex < self->numDescriptors_.load(std::memory_order_relaxed) &&\n  "
+    },
+    "growthCompactsAndChecksUnique": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp",
+      "start": 2109,
+      "startLine": 68,
+      "sha256": "9a519b146bcab3e1b781d18fcd6a7344790744f2927786acf2459908599de867",
+      "text": "ExecutionStatus DictPropertyMap::grow(\n    MutableHandle<DictPropertyMap> selfHandleRef,\n    Runtime &runtime,\n    size_type newCapacity) {\n  auto res = create(runtime, newCapacity);\n  if (LLVM_UNLIKELY(res == ExecutionStatus::EXCEPTION)) {\n    return ExecutionStatus::EXCEPTION;\n  }\n  auto *newSelf = res->get();\n  auto *self = *selfHandleRef;\n\n  selfHandleRef.set(newSelf);\n\n  auto *dst = newSelf->getDescriptorPairs();\n  size_type count = 0;\n\n  for (auto *src = self->getDescriptorPairs(),\n            *e = src + self->numDescriptors_.load(std::memory_order_relaxed);\n       src != e;\n       ++src) {\n    if (src->first.isInvalid())\n      continue;\n\n    const SymbolID key = src->first;\n\n    // The new property map doesn't have any valid symbols in it yet, use a\n    // constructor instead of assignment to avoid an invalid write barrier.\n    new (&dst->first) GCSymbolID(key);\n    dst->second = src->second;\n\n    auto result = lookupEntryFor(newSelf, key);\n    assert(!result.first && \"found duplicate entry while growing\");\n    result.second->setDescIndex(count, key);\n\n    ++dst;\n    ++count;\n  }\n\n  assert(\n      count == self->numProperties_ && \"numProperties mismatch when growing\");\n\n  newSelf->numProperties_ = count;\n\n  // Transfer the deleted list to the new instance.\n  auto deletedIndex = self->deletedListHead_;\n  if (deletedIndex != END_OF_LIST) {\n    newSelf->deletedListHead_ = count;\n    newSelf->deletedListSize_ = self->deletedListSize_;\n\n    do {\n      const auto *src = self->getDescriptorPairs() + deletedIndex;\n      assert(\n          src->first == SymbolID::deleted() &&\n          \"pair in the deleted list is not marked as deleted\");\n\n      // The new property map doesn't have any valid symbols in it yet, use a\n      // constructor instead of assignment to avoid an invalid write barrier.\n      new (&dst->first) GCSymbolID(SymbolID::deleted());\n      dst->second.slot "
+    },
+    "eraseChangesKeyBeforeSlotReuse": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp",
+      "start": 6769,
+      "startLine": 206,
+      "sha256": "b05f964a6184fa25fdbadd0d27df9f35fac1e68f1e023bd76a70dd5463c1407e",
+      "text": "void DictPropertyMap::erase(\n    DictPropertyMap *self,\n    Runtime &runtime,\n    PropertyPos pos) {\n  auto *hashPair = self->getHashPairs() + pos.hashPairIndex;\n  auto descIndex = hashPair->getDescIndex();\n  assert(\n      descIndex < self->numDescriptors_.load(std::memory_order_relaxed) &&\n      \"descriptor index out of range\");\n\n  auto *descPair = self->getDescriptorPairs() + descIndex;\n  assert(\n      descPair->first != SymbolID::empty() &&\n      \"accessing deleted descriptor pair\");\n\n  hashPair->setDeleted();\n  descPair->first.set(SymbolID::deleted(), runtime.getHeap());\n  // Add the descriptor to the deleted list.\n  setNextDeletedIndex(descPair, self->deletedListHead_);\n  self->deletedListHead_ = descIndex;\n  ++self->deletedListSize_;\n\n  assert(self->numProperties_ != 0 && \"num properties out of sync\");\n  --self->numProperties_;\n  self->incDeletedHashCount();\n}\n\nSlotIndex DictPropertyMap::allocatePropertySlot(\n    DictPropertyMap *self,\n    Runtime &runtime) {\n  // If there are no deleted properties, the number of properties corresponds\n  // exactly to the number of slots.\n  if (self->deletedListHead_ == END_OF_LIST)\n    return self->numProperties_;\n\n  auto *deletedPair = self->getDescriptorPairs() + self->deletedListHead_;\n  assert(\n      deletedPair->first == SymbolID::del"
+    },
+    "currentOwnMapAccess": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h",
+      "start": 35477,
+      "startLine": 917,
+      "sha256": "1f9e2a9dd6d02ea364d844b0ac111d37f236089cc58ebdcfb01d0915c0fd2541",
+      "text": "inline OptValue<bool> HiddenClass::tryFindPropertyFast(\n    const HiddenClass *self,\n    PointerBase &base,\n    SymbolID name,\n    NamedPropertyDescriptor &desc) {\n  if (LLVM_LIKELY(self->propertyMap_)) {\n    auto found =\n        DictPropertyMap::find(self->propertyMap_.getNonNull(base), name);\n    if (LLVM_LIKELY(found)) {\n      desc = DictPropertyMap::getDescriptorPair(\n                 self->propertyMap_.getNonNull(base), *found)\n                 ->second;\n    }\n    return found.hasValue();\n  } else if (self->numProperties_ == 0) {\n    return false;\n  }\n  return llvh::None;\n}\ninline ClassFlags HiddenClass::computeFlags(\n    ClassFlags flags,\n    PropertyFlags pf,\n    bool addedIndexLike) {\n  flags.hasIndexLikeProperties |= addedIndexLike"
+    },
+    "ownDescriptorDelegation": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/JSObject.h",
+      "start": 83069,
+      "startLine": 2112,
+      "sha256": "ea52287dbe6b2c3eba53f1b7be0d88670fecf254a417c1d1af447e558535642e",
+      "text": "inline OptValue<bool> JSObject::tryGetOwnNamedDescriptorFast(\n    JSObject *self,\n    Runtime &runtime,\n    SymbolID name,\n    NamedPropertyDescriptor &desc) {\n  return HiddenClass::tryFindPropertyFast(\n      self->getClass(runtime), runtime, name, desc);\n}\n\ninline OptValue<SmallHermesValue>\nJSObject::tryGetNamedNoAlloc(JSObject *self, PointerBase &base, SymbolID name) {\n  for (JSObject "
+    },
+    "currentNamedSlotLoad": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/JSObject.h",
+      "start": 75918,
+      "startLine": 1909,
+      "sha256": "cf1f35a66b578e6156b55facf3d975762553345a71996f64f47288554b5526f6",
+      "text": "inline SmallHermesValue JSObject::getNamedSlotValueUnsafe(\n    JSObject *self,\n    PointerBase &runtime,\n    SlotIndex index) {\n  if (LLVM_LIKELY(index < DIRECT_PROPERTY_SLOTS))\n    return getNamedSlotValueDirectUnsafe(self, runtime, index);\n\n  return getNamedSlotValueIndirectUnsafe(\n      self, runtime, index - DIRECT_PROPERTY_SLOTS);\n}\n/// Load a value from the direct storage space by \\p index.\ninline SmallHermesValue JSObject::getNamedSlotValueDirectUnsafe(\n    JSObject *self,\n    PointerBase &runtime,\n    SlotIndex index) {\n  assert(index < DIRECT_PROPERTY_SLOTS);\n  return self->directProps()[index];\n}\n/// Load a value from the indirect storage space by \\p index. The index\n/// is relative to the indirect storage.\ninline SmallHermesValue JSObject::getNamedSlotValueIndirectUnsafe(\n    JSObject *self,\n    PointerBase &runtime,\n    SlotIndex index) {\n  return self->propStorage_.getNonNull(runtime)->at(index);\n}\n\ninline CallResult<PseudoHandle<>> JSObject::getNamedSlotValue(\n    PseudoHandle<JSObject> self,\n    Runtime &runtime,\n    NamedPropertyDescriptor desc) {\n  if (LLVM_UNLIKELY(desc.flags.proxyObject) ||\n      LLVM_UNLIKELY(desc.flags.hostObject)) {\n    SymbolID name = SymbolID::unsafeCreate(desc.slot);\n    assert(name.isValid() && \"invalid SymbolID in descriptor\");\n    retu"
+    },
+    "flags": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/PropertyDescriptor.h",
+      "start": 418,
+      "startLine": 20,
+      "sha256": "59d643ea093af90fc072c5f4290db319d63377e48c32199380a9d8791ec76553",
+      "text": "struct PropertyFlags {\n  union {\n    struct {\n      /// If set, the entire structure is invalid. This must only be used when\n      /// we want to distinguish between having an instance of \\c PropertyFlags\n      /// and not having one. It should never be stored in a \\c\n      /// PropertyDescriptor. This flag should never be set manually - instead\n      /// an \"invalid\" instance should be obtained by calling the  \\c invalid()\n      /// factory method.  This flag is a little more special than the others,\n      /// and should remain first in the struct.\n      uint16_t invalidFlags : 1;\n      /// The property is enumerable.\n      uint16_t enumerable : 1;\n      /// The property can be written to, if it is a data descriptor.\n      uint16_t writable : 1;\n      /// The property can be configured.\n      uint16_t configurable : 1;\n      /// The property is an accessor: it has an optional getter and setter.\n      uint16_t accessor : 1;\n      /// The property is stored in \"indexed\" storage, which is separate from\n      /// normal named property storage.\n      uint16_t indexed : 1;\n      /// A regular data descriptor with an internal setter handler which is\n      /// invoked on writes.\n      uint16_t internalSetter : 1;\n      /// This flag is only used in the hidden class transition table. It\n      /// indicates that the property wasn't added - only its flags were\n      /// updated.\n      uint16_t flagsTransition : 1;\n      /// This property indicates that the object is a HostObject\n      /// property managed by C++.  This flag should only be used as a\n      /// marker for certain temporary descriptors synthesized by\n      /// get*Descriptor methods, and never set in descriptors stored\n      /// persistently.\n      uint16_t hostObject : 1;\n      /// This property is a builtin method or object, and it could be\n      /// accessed by the CallBuiltin instruction. The property is made\n      /// read-only and is not allowed to be overriden.\n      uint16_t staticBuiltin : 1;\n      /// This flag indicates this is a proxy exotic Object.  This flag\n      /// should only be used as a marker for certain temporary\n      /// descriptors synthesized by get*Descriptor methods, and never\n      /// set in descriptors stored persistently.\n      uint16_t proxyObject : 1;\n      /// The property is a private name.\n      uint16_t privateName : 1;\n    };\n\n    uint16_t _flags;\n  };\n  /// Clear all flags on construction.\n  PropertyFlags() {\n    _flags = 0;\n  }\n\n  void clear() {\n    _flags = 0;\n  }\n\n  bool operator==(PropertyFlags f) const {\n    return _flags == f._flags;\n  }\n  bool operator!=(PropertyFlags f) const {\n    return _flags != f._flags;\n  }\n\n  /// \\return true if this is not an invalid instance (i.e. the invalid flag\n  ///   is not set).\n  bool isValid() const {\n    return !invalidFlags;\n  }\n\n  /// Return an instance of PropertyFlags initialized to the values that a\n  /// new named property would have if it was added by \"PutNamed\".\n  static PropertyFlags defaultNewNamedPropertyFlags() {\n    PropertyFlags pf{};\n    pf.enumerable = 1;\n    pf.writable = 1;\n    pf.configurable"
+    },
+    "existingInlineFastpath": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/static_h.h",
+      "start": 28901,
+      "startLine": 769,
+      "sha256": "c59d7d0f325f21dbb910ddad270506c3b0c2d651ec7a99bc4b0bc13cb20f2dca",
+      "text": "static inline SHLegacyValue _sh_ljs_get_by_id_rjs_inline(\n    SHRuntime *shr,\n    const SHLegacyValue *source,\n    SHSymbolID symID,\n    SHReadPropertyCacheEntry *propCacheEntry) {\n  assert(propCacheEntry && \"propCacheEntry must not be null\");\n  if (SH_LIKELY(_sh_ljs_is_object(*source))) {\n    // Fast path: check cache hit\n    SHJSObject *sourceCell = (SHJSObject *)_sh_ljs_get_pointer(*source);\n\n    // Check if the object is a JSObject\n    SHCompressedPointer clazzPtr = {.raw = sourceCell->clazz};\n\n    // Compare cached class with object's current class\n    if (SH_LIKELY(propCacheEntry->clazz == clazzPtr.raw)) {\n      // Cache hit! Extract slot with proper masking (like\n      // ReadPropertyCacheEntry::getSlot())\n      uint16_t slot = propCacheEntry->_slot16 & 0xffff;\n\n      // Load property directly using the cached slot\n      return _sh_prload_inline(shr, *source, slot);\n    }\n  }\n\n  // Cache miss - fall back to out-of-line implementation\n  return _sh_ljs_get_by_id_rjs(shr, source, symID, propCacheEntry);\n}\n\nSHERMES_EXPORT SHLegacyValue _sh_ljs_get_by_id_with_receiver_rjs(\n    SHRuntime *shr,\n    const SHLegacyValue *source,\n    const SHLegacyValue *receiver,\n    SHSymbolID symID,\n    SHReadPropertyCacheEntry *propCacheEntry);\nSHERMES_EXPORT SHLegacyValue _sh_ljs_get_by_val_with_receiver_rjs(\n    SHRuntime *shr,\n    SHLegacyValue *source,\n    SHLegacyValue *key,\n    SHLegacyValue *receiver);\nstatic inline SHLegacyValue _sh_l"
+    }
+  },
+  "algorithm": "Per-runtime bounded cache of only (AOT read-site token, SymbolID, uint32 descriptor ordinal). On every probe admit ordinary nonlazy nonHost nonProxy nonTyped dictionary receiver, read its CURRENT class and CURRENT propertyMap, bounds-check ordinal against CURRENT numDescriptors_, check CURRENT key exactly equals requested valid nonprivate normal SymbolID, copy CURRENT descriptor, reject unsupported flags, load CURRENT receiver CURRENT storage CURRENT slot and decode exactly as original. Empty sentinel falls back. No inherited or missing properties are cached. Miss uses original current-map lookup to learn a new ordinal; fallback invokes original SH helper only after every C++ RAII scope has ended.",
+  "noHeapIdentityNeeded": "The hint need not identify a map or hidden class. Every valid map has unique valid property keys. A matching CURRENT key proves the current descriptor is the requested own property regardless of which map supplied the hint. Deletion invalidates its key; growth/compaction may move it and cause a miss; reinsertion or cross-map same-key placement can safely hit using its CURRENT descriptor and slot. Thus no weak/strong GC root, descriptor pointer, receiver pointer, map pointer, HiddenClass pointer, cached flags, cached slot or cached JS value is retained.",
+  "sourceChangeRequired": "Public PropertyPos is a hash-bucket position, not descriptor ordinal. Its API explicitly says erase invalidates all positions, and getDescriptorPair assumes validity before indexing. Add checked accessor methods INSIDE DictPropertyMap and HiddenClass; do not cast layouts, use private/public macro tricks or call getDescriptorPair with stale PropertyPos. Suggested non-installed patch design is tools/native-compiler-patches/dictionary-ordinal-design.inc.",
+  "lifecycle": "Use bounded per-runtime state, initialized on owning mutator, released after runtime shutdown. Read-site token is opaque address used only for equality; never dereference saved tokens, and never share Runtime SymbolIDs. Integer-only stale hint is semantically safe after GC or ordinal reuse but runtime ownership still avoids cross-runtime identifiers and stale state. Access current raw heap pointers only inside NoAllocScope; no JS, native allocation triggering VM GC, or original helper invocation until scopes end. No hooks in GC visitors are needed.",
+  "cost": "Hit removes dictionary hash probing and most generic own/prototype dispatch. It still loads receiver/class/map/count/key/flags/slot/current value and probes a bounded hint table. On first miss learn via normal hash find then derive ordinal from current descriptor array. A direct-mapped or small call-site-local hint table avoids linear scan; actual admission/hit/miss counts and unprofiled full-report matched battle timing are mandatory. No performance claim follows from this audit.",
+  "requiredNativeEvidence": [
+    "Private source/header/DSO ABI pinning; original live VM unchanged.",
+    "At least 20k actual native reads with same-map value replacement, changed descriptor flags, deletion/reinsertion, map growth/compaction, current-storage growth, prototype getters/Proxy traps and exact exceptions.",
+    "Signed zero, NaN payload policy as original SH decoder, infinities, object aliases, Empty/TDZ fallback and indexed/private rejection.",
+    "Forced moving young and old/concurrent GC, independent Runtime teardown/recreation and mixed maps sharing hint ordinals.",
+    "All raw source-oracle battle fields including host tape/RNG/callback counters before any rate claim."
+  ],
+  "fixtures": {
+    "directed": [
+      "currentValue",
+      "sameOrdinalDifferentMapCurrentSlot",
+      "sameOrdinalDifferentMapDifferentKey",
+      "deletedKeyRejectsOverloadedFlags",
+      "invalidKeyRejects",
+      "compactedOrdinalMiss",
+      "reinsertCurrentSlot",
+      "accessorMutationRejects",
+      "indexedRejects",
+      "privateRejects",
+      "negativeOrdinal",
+      "largeOrdinal"
+    ],
+    "modelCases": 20000,
+    "scope": "Pure JS model of descriptor-hint validity only; not a JS engine differential, native cache test or battle qualification."
+  },
+  "producer": {
+    "file": "tools/audit-native-dictionary-hint.mjs",
+    "sha256": "04d61be94992440a017ee8654daa879bb68153d82e446ac19d493f1c1f960a2c"
+  }
+}
