@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "baseCommit": "4f1db42d71d0839254c7154fc8c282bcea466206",
+  "patch": "tools/native-compiler-patches/binary-string-pools.patch",
+  "sha256": "87da69e9dd2a01e8b410132820226dc04d7180804d787586e7a2c017a0eba722",
+  "purpose": "Emit identical raw ASCII/UTF16/string-index bytes as GNU .incbin rodata instead of millions of C scalar constants",
+  "environmentFlag": "SHERMES_BINARY_STRING_DIR",
+  "domain": "Linux/GNU assembler, compilation host and target share byte order and char16_t/uint32_t ABI",
+  "files": [
+    {
+      "path": "lib/BCGen/SH/SH.cpp",
+      "originalSha256": "50dcaaca3a418ca765c136192d0dfa2e216af5ec6a25a233762890cd032bbda7",
+      "patchedSha256": "3f33c41987a826faa34be8433424acf8ba2eab3eb261ba63a0fbc157adee386e"
+    }
+  ],
+  "constraints": [
+    "One generated module per compilation and a dedicated output directory; binary pool filenames are module-local compiler temporaries",
+    "Compiler host and target must share byte order and char16_t/uint32_t ABI",
+    "Pool paths are generated local build paths; GNU assembler .incbin files must remain available until host compilation finishes"
+  ]
+}

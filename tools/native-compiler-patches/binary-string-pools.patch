@@ -1,0 +1,150 @@
+--- a/lib/BCGen/SH/SH.cpp
++++ b/lib/BCGen/SH/SH.cpp
+@@ -34,6 +34,8 @@
+ 
+ #include "llvh/ADT/BitVector.h"
+ #include "llvh/ADT/SetVector.h"
++#include <cstdlib>
++#include <fstream>
+ 
+ using namespace hermes;
+ 
+@@ -96,83 +98,74 @@
+   /// Turn the table of strings into the SH C data structures that are necessary
+   /// to provide strings for the module.
+   void generate(llvh::raw_ostream &os) const {
+-    struct StringEntry {
+-      uint32_t offset, length, hash;
+-    };
++    struct StringEntry { uint32_t offset, length, hash; };
+     std::vector<StringEntry> stringEntries;
+     stringEntries.reserve(strings_.size());
+-
+-    // Buffers containing the escaped strings, which can be emitted directly
+-    // into the C code.
+-    std::string asciiStr, u16Str;
+-    // The number of characters emitted so far in each of the buffers.
++    const char *poolDirectory = std::getenv("SHERMES_BINARY_STRING_DIR");
++    const bool binaryPools = poolDirectory && *poolDirectory;
++    std::string asciiStr, u16Str, asciiRaw;
++    std::u16string u16Raw;
+     uint32_t asciiOffset = 0, u16Offset = 0;
+-
+     for (const auto &str : strings_) {
+       StringEntry entry;
+       if (isAllASCII(str)) {
+-        asciiStr += "  ";
+-        // The given string is entirely ASCII. Emit the sequence of ASCII
+-        // characters to asciiStr.
+-        for (char c : str) {
+-          asciiStr += '\'';
+-          appendEscaped(asciiStr, c);
+-          asciiStr += "', ";
++        if (binaryPools) {
++          asciiRaw.append(str.data(), str.size());
++          asciiRaw.push_back('\0');
++        } else {
++          asciiStr += "  ";
++          for (char c : str) { asciiStr += '\''; appendEscaped(asciiStr, c); asciiStr += "', "; }
++          asciiStr += "'\\0',\n";
+         }
+-        // Strings are null terminated to make them easier to debug.
+-        asciiStr += "'\\0',\n";
+-        entry = {
+-            asciiOffset,
+-            (uint32_t)str.size(),
+-            hashString(llvh::ArrayRef<char>{str.data(), str.size()})};
++        entry = {asciiOffset, (uint32_t)str.size(), hashString(llvh::ArrayRef<char>{str.data(), str.size()})};
+         asciiOffset += str.size() + 1;
+       } else {
+-        u16Str += "  ";
+-        // If the string is non-ASCII, convert it to UTF-16, and then perform
+-        // the same steps as the ASCII string above.
+-        std::u16string strStorage;
+-        convertUTF8WithSurrogatesToUTF16(
+-            std::back_inserter(strStorage),
+-            str.data(),
+-            str.data() + str.size());
+-        for (char16_t c : strStorage) {
+-          u16Str += "u'";
+-          appendEscaped(u16Str, c);
+-          u16Str += "', ";
++        std::u16string storage;
++        convertUTF8WithSurrogatesToUTF16(std::back_inserter(storage), str.data(), str.data() + str.size());
++        if (binaryPools) { u16Raw.append(storage); u16Raw.push_back(u'\0'); }
++        else {
++          u16Str += "  ";
++          for (char16_t c : storage) { u16Str += "u'"; appendEscaped(u16Str, c); u16Str += "', "; }
++          u16Str += "u'\\0',\n";
+         }
+-        u16Str += "u'\\0',\n";
+-        entry = {
+-            u16Offset | (1 << 31),
+-            (uint32_t)strStorage.size(),
+-            hashString(
+-                llvh::ArrayRef<char16_t>{
+-                    strStorage.data(), strStorage.size()})};
+-        u16Offset += strStorage.size() + 1;
++        entry = {u16Offset | (1 << 31), (uint32_t)storage.size(), hashString(llvh::ArrayRef<char16_t>{storage.data(), storage.size()})};
++        u16Offset += storage.size() + 1;
+       }
+       stringEntries.push_back(entry);
+     }
+-
+-    // Example:
+-    // static const char s_ascii_pool[] = {
+-    //   'H', 'e', 'l', 'l', 'o', '\0',
+-    //   'W', 'o', 'r', 'l', 'd', '\0',
+-    // };
+-    // static const char16_t s_u16_pool[] = {
+-    // };
+-    // static const uint32_t s_strings[] = {
+-    //     0, 5, 0, 6, 5, 0,
+-    // };
+-
+-    os << "static const char s_ascii_pool[] = {\n"
+-       << asciiStr << "};\n"
+-       << "static const char16_t s_u16_pool[] = {\n"
+-       << u16Str << "};\n"
+-       << "static const uint32_t s_strings[] = {";
+-    for (const auto &entry : stringEntries)
+-      os << entry.offset << "," << entry.length << "," << entry.hash << ",";
+-    os << "};\n";
+-  }
+-};
++    if (binaryPools) {
++      static_assert(sizeof(char16_t) == 2 && sizeof(uint32_t) == 4, "String pool ABI requires 16/32-bit units");
++      const std::string directory(poolDirectory);
++      auto emitPool = [&](const char *symbol, const char *type, unsigned alignment, const char *bytes, size_t length) {
++        const std::string filename = directory + "/" + symbol + ".bin";
++        std::ofstream output(filename, std::ios::binary | std::ios::trunc);
++        if (!output) hermes_fatal("Cannot open binary string pool output");
++        if (length) output.write(bytes, static_cast<std::streamsize>(length));
++        output.close();
++        if (!output) hermes_fatal("Cannot write binary string pool output");
++        std::string quoted;
++        for (char c : filename) { if (c == '\\' || c == '"') quoted += '\\'; quoted += c; }
++        std::string assembly = ".pushsection .rodata\n.balign " + std::to_string(alignment) +
++          "\n.local " + symbol + "\n.type " + symbol + ", @object\n" + symbol +
++          ":\n.incbin \"" + quoted + "\"\n.size " + symbol + ", .-" + symbol + "\n.popsection\n";
++        os << "extern const " << type << " " << symbol << "[];\n__asm__(\"";
++        os.write_escaped(assembly);
++        os << "\");\n";
++      };
++      emitPool("s_ascii_pool", "char", 1, asciiRaw.data(), asciiRaw.size());
++      emitPool("s_u16_pool", "char16_t", alignof(char16_t), reinterpret_cast<const char *>(u16Raw.data()), u16Raw.size() * sizeof(char16_t));
++      std::vector<uint32_t> entries;
++      entries.reserve(stringEntries.size() * 3);
++      for (const auto &entry : stringEntries) { entries.push_back(entry.offset); entries.push_back(entry.length); entries.push_back(entry.hash); }
++      emitPool("s_strings", "uint32_t", alignof(uint32_t), reinterpret_cast<const char *>(entries.data()), entries.size() * sizeof(uint32_t));
++    } else {
++      os << "static const char s_ascii_pool[] = {\n" << asciiStr << "};\n"
++         << "static const char16_t s_u16_pool[] = {\n" << u16Str << "};\n"
++         << "static const uint32_t s_strings[] = {";
++      for (const auto &entry : stringEntries) os << entry.offset << "," << entry.length << "," << entry.hash << ",";
++      os << "};\n";
++    }
++  }};
+ 
+ class SHLiteralBuffers {
+  public:

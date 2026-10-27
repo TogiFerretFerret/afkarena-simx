@@ -48,7 +48,8 @@
   ],
   "patches": [
     "config/native-compiler-source-patch.json",
-    "config/native-compiler-math-patch.json"
+    "config/native-compiler-math-patch.json",
+    "config/native-compiler-binary-pools-patch.json"
   ],
   "vendorManifests": [
     "config/native-compiler-v8-math.json"

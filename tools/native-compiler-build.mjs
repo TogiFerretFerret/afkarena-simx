@@ -38,12 +38,15 @@ for(const manifestPath of config.vendorManifests??[]){
     if(!await exists(destination)||!contents.equals(await readFile(destination)))await writeFile(destination,contents);
   }
 }
-for(const manifestPath of config.patches??[]){
-  const manifest=JSON.parse(await readFile(resolve(root,manifestPath),'utf8'));
+const patchManifests=await Promise.all((config.patches??[]).map(async path=>JSON.parse(await readFile(resolve(root,path),'utf8'))));
+for(let patchIndex=0;patchIndex<patchManifests.length;patchIndex++){
+  const manifest=patchManifests[patchIndex];
   assert.equal(manifest.baseCommit,config.commit,'Patch base differs from compiler source');
   assert.equal(createHash('sha256').update(await readFile(resolve(root,manifest.patch))).digest('hex'),manifest.sha256,'Patch checksum mismatch');
   const hashes=await Promise.all(manifest.files.map(async file=>createHash('sha256').update(await readFile(resolve(sourceDirectory,file.path))).digest('hex')));
-  if(hashes.every((hash,index)=>hash===manifest.files[index].patchedSha256))continue;
+  // Later patches may intentionally modify the same source file. Accept only
+  // exact known downstream hashes, never arbitrary local compiler changes.
+  if(hashes.every((hash,index)=>hash===manifest.files[index].patchedSha256||patchManifests.slice(patchIndex+1).some(later=>later.files.some(file=>file.path===manifest.files[index].path&&file.patchedSha256===hash))))continue;
   assert.ok(hashes.every((hash,index)=>hash===manifest.files[index].originalSha256),'Compiler source has unexpected modifications; refusing a partial patch');
   await run('patch',['-p1','--forward','--batch','--input',resolve(root,manifest.patch)],process.env,sourceDirectory);
   for(const file of manifest.files)assert.equal(createHash('sha256').update(await readFile(resolve(sourceDirectory,file.path))).digest('hex'),file.patchedSha256,'Patched source checksum mismatch');
