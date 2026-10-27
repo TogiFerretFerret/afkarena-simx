@@ -11,11 +11,12 @@ const functionSource=fn=>Reflect.apply(Function.prototype.toString,fn,[]);
  * Closure environments, WeakMap/WeakSet entries and Proxy internals cannot be
  * reflected. They are reported rather than silently claimed as covered.
  */
-export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000}={}){
+export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,functionPolicy='graph'}={}){
+  if(!['graph','code'].includes(functionPolicy))throw new Error('Unknown function snapshot policy');
   const ids=new WeakMap(),symbols=new Map(),functionHashes=new WeakMap();let nextId=1,nextSymbol=1;
   function symbol(value){if(!symbols.has(value))symbols.set(value,nextSymbol++);return['symbol',symbols.get(value),Symbol.keyFor(value)??null,value.description??null];}
   return function snapshot(roots){
-    const queue=[],nodes=[],seen=new Set(),opaque=[];
+    const queue=[],nodes=[],seen=new Set(),opaque=[];let opaqueFunctionCount=0;
     function encode(value){
       if(value===null)return['null'];
       switch(typeof value){
@@ -23,21 +24,40 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000}={}
         case 'number':return['f64',binary64(value)];case 'bigint':return['bigint',String(value)];case 'symbol':return symbol(value);
       }
       if(intrinsics.has(value))return['intrinsic',intrinsics.get(value)];
+      // Ordinary functions each carry an otherwise empty prototype object. Its
+      // complete descriptor graph has a lossless compact form: identity is the
+      // constructor's prototype, and all default flags are implied by this tag.
+      // A changed descriptor/property/parent immediately falls back to full data.
+      if(typeof value==='object'&&!types.isProxy(value)){
+        const d=Reflect.getOwnPropertyDescriptor(value,'constructor');
+        if(typeof d?.value==='function'&&Reflect.ownKeys(value).length===1){
+          const fn=d?.value,p=typeof fn==='function'&&Reflect.getOwnPropertyDescriptor(fn,'prototype');
+          const parent=Reflect.getPrototypeOf(value);
+          if(d.writable===true&&d.enumerable===false&&d.configurable===true&&p?.value===value&&
+            (intrinsics.get(parent)==='Object.prototype'||parent===Object.prototype))return['default-function-prototype',encode(fn)];
+        }
+      }
       if(!ids.has(value))ids.set(value,nextId++);
       const id=ids.get(value);
       if(!seen.has(id)){if(seen.size>=maxNodes)throw new Error(`Battle snapshot exceeds ${maxNodes} nodes; no partial snapshot emitted`);seen.add(id);queue.push(value);}
+      if(typeof value==='function'&&functionPolicy==='code'){
+        if(!functionHashes.has(value))functionHashes.set(value,digest(functionSource(value)));
+        return['function',id,functionHashes.get(value)];
+      }
       return['ref',id];
     }
     const encodedRoots=Object.entries(roots).map(([key,value])=>[key,encode(value)]);
     for(let offset=0;offset<queue.length;offset++){
       const value=queue[offset],id=ids.get(value);
       if(types.isProxy(value))throw new Error(`Cannot faithfully inspect Proxy object ${id}`);
-      const node={id,kind:typeof value==='function'?'function':Array.isArray(value)?'array':'object',prototype:encode(Reflect.getPrototypeOf(value)),properties:[]};
+      const codeFunction=typeof value==='function'&&functionPolicy==='code';
+      const node={id,kind:typeof value==='function'?'function':Array.isArray(value)?'array':'object',...(codeFunction?{}:{prototype:encode(Reflect.getPrototypeOf(value))}),properties:[]};
       if(typeof value==='function'){
         if(!functionHashes.has(value))functionHashes.set(value,digest(functionSource(value)));
         node.sourceSha256=functionHashes.get(value);
         // Captured bindings are checked through execution events, not reflection.
-        opaque.push({id,kind:'function_closure_bindings'});
+        opaqueFunctionCount++;
+        if(functionPolicy==='graph')opaque.push({id,kind:'function_closure_bindings'});
       }
       if(types.isMap(value)){node.kind='map';node.entries=Array.from(Reflect.apply(Map.prototype.entries,value,[]),([key,item])=>[encode(key),encode(item)]);}
       else if(types.isSet(value)){node.kind='set';node.entries=Array.from(Reflect.apply(Set.prototype.values,value,[]),encode);}
@@ -55,15 +75,23 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000}={}
       }
       for(const key of Reflect.ownKeys(value)){
         const descriptor=Reflect.getOwnPropertyDescriptor(value,key);
+        if(codeFunction){
+          if(['length','name','arguments','caller'].includes(key))continue;
+          if(key==='prototype'&&descriptor.value){
+            const proto=descriptor.value,constructor=Reflect.getOwnPropertyDescriptor(proto,'constructor');
+            if(Reflect.ownKeys(proto).length===1&&constructor?.value===value&&constructor.writable===true&&constructor.enumerable===false&&constructor.configurable===true)continue;
+          }
+        }
         const property={key:typeof key==='symbol'?symbol(key):['string',key],enumerable:descriptor.enumerable,configurable:descriptor.configurable};
         if('value'in descriptor){property.writable=descriptor.writable;property.value=encode(descriptor.value);}
         else{property.get=encode(descriptor.get);property.set=encode(descriptor.set);}
         node.properties.push(property);
       }
-      nodes.push(node);
+      if(!codeFunction||node.properties.length)nodes.push(node);
     }
+    if(functionPolicy==='code'&&opaqueFunctionCount)opaque.push({kind:'function_closure_bindings',count:opaqueFunctionCount});
     const graph={version:1,roots:encodedRoots,nodes};
-    return{...graph,sha256:digest(JSON.stringify(graph)),coverage:{accessorsInvoked:false,opaque}};
+    return{...graph,sha256:digest(JSON.stringify(graph)),coverage:{accessorsInvoked:false,functionPolicy,opaque}};
   };
 }
 

@@ -8,17 +8,34 @@ const source=fn=>Reflect.apply(Function.prototype.toString,fn,[]);
 /** Instrument original calls while retaining their receiver, arguments, result and
  * exceptions. Callbacks themselves are never replaced or omitted.
  */
-export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keepDeltas=false,onEvent}={}){
+export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keepDeltas=false,onEvent,strictGraph=false}={}){
   if(typeof materialize!=='function')throw new Error('A source-model materializer is required');
   const {ed,context}=runtime;
   const phase=runtime.callbacks??await installBootstrapCallbacks(context);
-  const snapshot=createGraphSnapshotter({intrinsics:realmIntrinsics(context)});
+  const snapshot=createGraphSnapshotter({intrinsics:realmIntrinsics(context),functionPolicy:strictGraph?'graph':'code'});
   const delta=createGraphDeltaRecorder(snapshot);
   const events=[],deltas=[],restores=[],callbackIds=new WeakMap();let nextCallback=1,frame=-1,activeCallback=0,snapshotSide='before';
   let engine,callbackCount=0,rngCount=0,lastGraph,lastError;
   const callableId=fn=>{if(!callbackIds.has(fn))callbackIds.set(fn,nextCallback++);return callbackIds.get(fn)};
+  const heroScripts={};
+  function scriptRoots(){
+    for(const list of ['unit_list','dead_unit_list','pet_list','dead_pet_list','fieldNpc_list','dead_fieldNpc_list','projectile_list']){
+      const units=engine&&Object.getOwnPropertyDescriptor(engine,list)?.value;
+      if(!Array.isArray(units))continue;
+      for(const unit of units){
+        const info=unit&&Object.getOwnPropertyDescriptor(unit,'info')?.value;
+        const name=info&&Object.getOwnPropertyDescriptor(info,'Script')?.value;
+        if(typeof name!=='string')continue;
+        const battlehero=Object.getOwnPropertyDescriptor(ed,'battlehero')?.value;
+        const descriptor=battlehero&&Object.getOwnPropertyDescriptor(battlehero,name);
+        if(descriptor&&'value'in descriptor)heroScripts[name]=descriptor.value;
+      }
+    }
+    return heroScripts;
+  }
   const roots=()=>({engine,battleRng:context.random_seed,initialBattleSeed:ed.init_battle_seed,
-    pendingCallbacks:ed.clientCall_list,clientCallCount:ed.clientCallCount});
+    pendingCallbacks:ed.clientCall_list,clientCallCount:ed.clientCallCount,
+    battleLog:Object.getOwnPropertyDescriptor(ed,'btLog')?.value,heroScripts:scriptRoots()});
   function record(kind,payload={},capture=true){
     let state;
     if(capture){state=delta(roots());lastGraph=state;if(keepDeltas)deltas.push({sequence:events.length,state});}
@@ -88,7 +105,7 @@ export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keep
     try{record('battle:failed',lastError)}catch(snapshotError){lastError.snapshotFailure=snapshotError.message;}
   }finally{for(const restore of restores.reverse())restore();}
   const coverage={snapshot:'All reachable own descriptors and source prototypes from the engine/queue roots; canonical VM intrinsics are boundaries',
-    limitations:['Native lexical closure bindings cannot be reflected; callback execution effects and event/RNG order are checked','This instrumented source oracle is not a completed native simulator','Actor/effect/view lifecycle outside the source callback phase is not provided by this adapter'],
+    limitations:['Native lexical closure bindings cannot be reflected; callback execution effects and event/RNG order are checked',...(strictGraph?[]:['Standard function metadata is treated as immutable code; source function identity/hash and custom data properties remain captured']),'This instrumented source oracle is not a completed native simulator','Actor/effect/view lifecycle outside the source callback phase is not provided by this adapter'],
     opaque:lastGraph?.coverage.opaque??[]};
   return{version:1,status,error:lastError,inputSha256:wire.inputSha256,events,...(keepDeltas?{deltas}:{}),lastGraph,
     callbackCount,rngCount,frames:frame+1,result:engine?.result,sourceCallbackProvenance:phase.provenance,coverage,

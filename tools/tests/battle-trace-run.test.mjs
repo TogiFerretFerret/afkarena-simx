@@ -32,3 +32,14 @@ test('source callback exceptions fail closed instead of counting a completed bat
  assert.equal(result.status,'failed');assert.equal(result.qualifiesForThroughputTarget,false);assert.match(result.error.message,/required host missing/);
  assert.equal(result.events.some(e=>e.kind==='battle:completed'),false);
 });
+
+test('independent source traces match and deliberate callback or RNG omission diverges',async()=>{
+ const run=runtime=>traceBattle(runtime,{inputSha256:'test'},{materialize:()=>({battleSeed:1,players:[],enemies:[],config:{}})});
+ const a=await run(fixture()),b=await run(fixture());
+ const {firstTraceDifference}=await import('../battle-trace.mjs');
+ assert.equal(firstTraceDifference(a.events,b.events),null);
+ const changed=fixture();runInContext(`ed.BattleEngine.prototype.update=function(){this.ticks++;const u=this.unit_list[0];clientCall(()=>{u.setHp(u.hp-1);ed.rand();ed.rand();clientCall(()=>u.setMp(9))});this.running=false;this.result='victory'}`,changed.context);
+ const extra=await run(changed);assert.notEqual(firstTraceDifference(a.events,extra.events),null);assert.equal(extra.rngCount,a.rngCount+1);
+ const omitted=fixture();runInContext(`ed.BattleEngine.prototype.update=function(){this.ticks++;this.running=false;this.result='victory'}`,omitted.context);
+ const skipped=await run(omitted);assert.notEqual(firstTraceDifference(a.events,skipped.events),null);assert.equal(skipped.callbackCount,0);
+});
