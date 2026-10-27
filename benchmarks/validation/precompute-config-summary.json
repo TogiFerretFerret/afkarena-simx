@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "sourceName": "ed.unitAttribsManagerObj._finalCalculateAttribs",
+  "source": "src/srcmodule/game_battle.js",
+  "start": 154650,
+  "end": 155568,
+  "sourceSha256": "eab447a495ec54e60eccfdad4081d7a6038ff2169a9f05fea43d34cd5723c2d5",
+  "referenceRuntime": "v24.19.0",
+  "cases": 20000,
+  "outputs": 940000,
+  "formulaCallbackEvents": 6016,
+  "finishStaticCallbackEvents": 128,
+  "rawBitsExact": true,
+  "scope": "Dense immutable attribute initialization; input rows plain Number properties, finite arithmetic; falsy NaN/-0 contributions and source trace callbacks retained; not full battles"
+}
