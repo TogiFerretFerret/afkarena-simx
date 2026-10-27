@@ -5,7 +5,7 @@ import { partitionNativeProgram } from '../partition-native-program.mjs';
 function run(source,partitioned){
   const context=createContext(constants.DONT_CONTEXTIFY);
   runInContext('var observations=[];function record(value){observations.push(value)}',context);
-  const units=partitioned?partitionNativeProgram(source,{bodyUnits:7}).units:[{source}];
+  const units=partitioned?partitionNativeProgram(source,{bodyUnits:6}).units:[{source}];
   let error=null;try{for(const unit of units)runInContext(unit.source,context);}catch(e){error={name:e.name,message:e.message};}
   return{observations:JSON.parse(JSON.stringify(context.observations)),error};
 }
@@ -40,8 +40,8 @@ test('unsupported global lexical and Annex B scopes fail closed',()=>{
 });
 test('unit count is bounded and every original function body remains byte identical',()=>{
   const source=Array.from({length:30},(_,i)=>`var v${i}=function () { return ${i}; }; record(v${i}.toString());`).join('\n');
-  const result=partitionNativeProgram(source);assert.ok(result.units.length<=8);assert.equal(result.units[0].kind,'declaration-prelude');
-  same(source);assert.throws(()=>partitionNativeProgram(source,{bodyUnits:8}));
+  const result=partitionNativeProgram(source);assert.ok(result.units.length<=7);assert.equal(result.units[0].kind,'declaration-prelude');
+  same(source);assert.throws(()=>partitionNativeProgram(source,{bodyUnits:7}));
 });
 
 test('declaration source-order matrix retains first property insertion and last function wins',()=>{

@@ -8,8 +8,8 @@ const sha=text=>createHash('sha256').update(text).digest('hex');
 // is discarded by the native driver. No function body is rewritten. All global
 // declaration instantiation occurs in the prelude before any original effects;
 // later files contain no global declarations that could re-create deleted names.
-export function partitionNativeProgram(source,{bodyUnits=7}={}){
-  if(!Number.isSafeInteger(bodyUnits)||bodyUnits<1||bodyUnits>7)throw new Error('Expected one to seven body units (eight total native units maximum)');
+export function partitionNativeProgram(source,{bodyUnits=6}={}){
+  if(!Number.isSafeInteger(bodyUnits)||bodyUnits<1||bodyUnits>6)throw new Error('Expected one to six body units (seven initialized native units maximum; runtime slot zero is reserved)');
   const ast=parse(source,{sourceType:'script'}),names=new Set(),functions=[],functionSources=[],declarations=[],edits=[];
   const directives=ast.program.directives.map(node=>source.slice(node.start,node.end)).join('\n');
   traverse(ast,{
@@ -59,5 +59,5 @@ export function partitionNativeProgram(source,{bodyUnits=7}={}){
   for(const unit of units)traverse(parse(unit.source,{sourceType:'script'}),{Function(path){emittedFunctionSources.push(sha(unit.source.slice(path.node.start,path.node.end)));path.skip();}});
   functionSources.sort();emittedFunctionSources.sort();
   if(JSON.stringify(functionSources)!==JSON.stringify(emittedFunctionSources))throw new Error('Partition changed function source text');
-  return{units:units.map((unit,index)=>({...unit,index,bytes:Buffer.byteLength(unit.source),sha256:sha(unit.source)})),proof:{originalSha256:sha(source),globalVariableNames:[...names],functionDeclarations:functions.length,outerFunctionSourceCount:functionSources.length,outerFunctionSourceInventorySha256:sha(JSON.stringify(functionSources)),allFunctionBodiesRetainedVerbatim:true,bodyOrder:'original top-level statement order; comma expressions remain intact',scriptCompletionValue:'discarded by host driver',unsupported:['shared global lexical declarations','Annex B block function declarations','global destructuring declarations','outer class static blocks'],totalUnits:units.length}};
+  return{units:units.map((unit,index)=>({...unit,index,bytes:Buffer.byteLength(unit.source),sha256:sha(unit.source)})),proof:{originalSha256:sha(source),globalVariableNames:[...names],functionDeclarations:functions.length,outerFunctionSourceCount:functionSources.length,outerFunctionSourceInventorySha256:sha(JSON.stringify(functionSources)),allFunctionBodiesRetainedVerbatim:true,bodyOrder:'original top-level statement order; comma expressions remain intact',scriptCompletionValue:'discarded by host driver',nativeRuntimeCapacity:{slots:8,reservedSlots:1,maximumInitializedUnits:7},unsupported:['shared global lexical declarations','Annex B block function declarations','global destructuring declarations','outer class static blocks'],totalUnits:units.length}};
 }
