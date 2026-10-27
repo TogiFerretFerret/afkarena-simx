@@ -9,7 +9,7 @@
     if (!cc || !cc.Class || !device) throw new Error("Render host requires Cocos Class and bootstrapHost");
     var nodes = [];
     var assets = Object.create(null);
-    function output(kind, args) { device.events.push({ kind: kind, args: args }); }
+    function output(kind, args) { device.recordEvent(kind, args); }
     function missing(kind, resource) { throw new Error("Missing source render " + kind + ": " + resource); }
     function pair(value, y) {
         if (typeof value === "number") return { x: value, y: y };

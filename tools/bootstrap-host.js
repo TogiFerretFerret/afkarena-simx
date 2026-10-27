@@ -14,8 +14,11 @@
     var storage = Object.create(null);
     var listeners = [];
     var nextListenerId = 1;
+    var traceObserver = null;
     function event(kind, args) {
-        events.push({ kind: kind, args: Array.prototype.slice.call(args) });
+        var record = { kind: kind, args: Array.prototype.slice.call(args) };
+        events.push(record);
+        if (traceObserver) traceObserver(record, events.length - 1);
     }
     cc.sys = {
         os: "Linux", OS_LINUX: "Linux", OS_IOS: "iOS", OS_ANDROID: "Android", OS_WINDOWS: "Windows",
@@ -67,7 +70,11 @@
             event("event_dispatch", [name]);
             var current = listeners.slice();
             var message = { getUserData: function () { return data; }, getEventName: function () { return name; } };
-            for (var i = 0; i < current.length; i++) if (current[i].name === name) current[i].callback.call(current[i].target, message);
+            for (var i = 0; i < current.length; i++) if (current[i].name === name) {
+                event("event_listener_before", [current[i].id, name]);
+                current[i].callback.call(current[i].target, message);
+                event("event_listener_after", [current[i].id, name]);
+            }
         }
     };
     if (!cc.log) cc.log = function () { event("log", arguments); };
@@ -76,6 +83,11 @@
         audioEnabled: true,
         platform: "headless-linux-device-output",
         events: events,
+        recordEvent: event,
+        setTraceObserver: function (observer) {
+            if (observer !== null && typeof observer !== "function") throw new Error("Invalid device trace observer");
+            traceObserver = observer;
+        },
         audioState: function () { return { nextAudioId: nextAudioId, effects: effects, music: music, effectVolume: effectVolume, musicVolume: musicVolume }; },
         snapshotState: function () {
             return { nextAudioId: nextAudioId, effects: effects, music: music,
