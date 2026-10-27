@@ -20,7 +20,7 @@ test('realm import preserves signed zero, alias identity, undefined, holes and c
 });
 
 test('realm import does not invoke or silently drop live accessors and functions',()=>{
- let calls=0;const input={};Object.defineProperty(input,'danger',{enumerable:true,get(){calls++;return1}});
+ let calls=0;const input={};Object.defineProperty(input,'danger',{enumerable:true,get(){calls++;return 1}});
  const context=createContext({});assert.throws(()=>importBootstrapValue(context,input),/does not accept accessors/);assert.equal(calls,0);
  assert.throws(()=>importBootstrapValue(context,{fn(){}}),/does not accept live functions/);
 });

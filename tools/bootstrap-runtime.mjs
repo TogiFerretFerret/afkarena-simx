@@ -9,6 +9,7 @@ import { staticName } from './source-index.mjs';
 import { loadBootstrapTableSync } from './bootstrap-source.mjs';
 import { installBootstrapCallbacks } from './bootstrap-callbacks.mjs';
 import { importBootstrapValue } from './bootstrap-realm.mjs';
+import { installBootstrapFunctionDeclarations } from './bootstrap-declarations.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 
@@ -20,6 +21,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
   if(hostRandom!==undefined&&typeof hostRandom!=='function')throw new Error('hostRandom must be an explicit entropy input function');
   const definitions=new Map();
   const globals=new Map();
+  const functionDeclarations=[];
   const initializers=[];
   const postInitializers=[];
   const modules=(await readdir(resolve(root,'src/srcmodule'))).filter(file=>file.endsWith('.js')).sort();
@@ -28,7 +30,10 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
     const file=`src/srcmodule/${module}`;
     const source=await readFile(resolve(root,file),'utf8');
     traverse(parse(source),{
-      Function(path){path.skip();},
+      Function(path){
+        if(path.isFunctionDeclaration()&&path.parentPath.isProgram())functionDeclarations.push({file,name:path.node.id.name,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end),sha256:createHash('sha256').update(source.slice(path.node.start,path.node.end)).digest('hex')});
+        path.skip();
+      },
       VariableDeclaration(path){
         if(path.scope.block.type==='Program')for(const declaration of path.node.declarations){
           if(declaration.id.type==='Identifier'&&declaration.init){
@@ -87,7 +92,14 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
   }
   const hostSource=await readFile(resolve(root,'tools/bootstrap-host.js'),'utf8');
   runInContext(hostSource,context,{filename:'tools/bootstrap-host.js'});
-  for(const initializer of initializers)runInContext(initializer.source,context,{filename:`${initializer.file}:${initializer.start}`});
+  // In this supplied revision declaration names have no variable-initializer
+  // collision; reject a future collision instead of silently changing hoisting.
+  for(const record of functionDeclarations)assert.ok(!globals.has(record.name),`Original function/variable initialization ordering requires a dedicated adapter: ${record.name}`);
+  for(const module of ordered){
+    const file=`src/srcmodule/${module}`;
+    installBootstrapFunctionDeclarations(context,functionDeclarations.filter(record=>record.file===file));
+    for(const initializer of initializers.filter(record=>record.file===file))runInContext(initializer.source,context,{filename:`${initializer.file}:${initializer.start}`});
+  }
   const provenance=JSON.parse(await readFile(resolve(root,'config/bootstrap-cocos-runtime.json'),'utf8'));
   const cocos=await readFile(resolve(root,provenance.file),'utf8');
   assert.equal(createHash('sha256').update(cocos).digest('hex'),provenance.sha256);
@@ -152,7 +164,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
   ed.audio_effect_switch=context.bootstrapHost.audioEnabled;
   const callbacks=await installBootstrapCallbacks(context);
   return {context,ed,loaded,tables,provenance,callbacks,clock,clockProvenance,host:context.bootstrapHost,importValue:value=>importBootstrapValue(context,value),
-    sourceRecords:{definitions,globals,initializers,postInitializers},
+    sourceRecords:{definitions,globals,functionDeclarations,initializers,postInitializers},
     hostProvenance:{file:'tools/bootstrap-host.js',sha256:createHash('sha256').update(hostSource).digest('hex')},
     initializers:initializers.map(({source,...record})=>record),
     limitations:['Lazy symbol evaluation does not establish all original module side-effect order','Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter','Headless Linux device output is recorded; physical audio/render output is not produced','Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly']};

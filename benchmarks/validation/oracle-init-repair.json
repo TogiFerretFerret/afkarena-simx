@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "status": "passed",
+  "functionDeclarations": [
+    "rotl32",
+    "rotmul32",
+    "shiftxor32",
+    "xxhapply",
+    "xxh1",
+    "xxh4",
+    "xxh16",
+    "xxh32",
+    "makeHashTable",
+    "clearHashTable",
+    "makeBuffer",
+    "sliceArray",
+    "_isBugReportGmEnabled",
+    "_installBugReportLogHookIfGmEnabled",
+    "_finishLoadJsbDevTools",
+    "_loadJsbDevToolsFile",
+    "_withJsbDevTools",
+    "_resetTutorialClientCacheByName",
+    "_quickPlay"
+  ],
+  "attributeMapKeys": [
+    47,
+    47
+  ],
+  "engineDescriptor": true,
+  "candleDogEffects": 3,
+  "candleDogSounds": 1,
+  "gameplayEvidence": {
+    "summon": {
+      "omittedStateMap": {
+        "state": 5,
+        "action": "__undefined__"
+      },
+      "originalStateMap": {
+        "state": 5,
+        "action": "Birth"
+      }
+    },
+    "percentBuff": {
+      "omittedPercentMaps": 100,
+      "originalPercentMaps": 150
+    }
+  },
+  "readonlyArrayMutation": {
+    "threw": true,
+    "message": "不允许修改这个数组",
+    "length": 1
+  },
+  "postInitializers": [
+    {
+      "file": "src/srcmodule/game_util.js",
+      "start": 284297,
+      "end": 284343
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "start": 284344,
+      "end": 284390
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "start": 284391,
+      "end": 284441
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "start": 284442,
+      "end": 284488
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "start": 284489,
+      "end": 284535
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "start": 284536,
+      "end": 284584
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "start": 284585,
+      "end": 284633
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "start": 284634,
+      "end": 284680
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "start": 640101,
+      "end": 640267
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 190513,
+      "end": 190651
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 195996,
+      "end": 196018
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 267507,
+      "end": 267738
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6700629,
+      "end": 6700726
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6700727,
+      "end": 6700825
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6700826,
+      "end": 6700924
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6700957,
+      "end": 6701038
+    }
+  ],
+  "scope": "Initialization and exact original-method behavior probes; no whole-battle throughput claim"
+}
