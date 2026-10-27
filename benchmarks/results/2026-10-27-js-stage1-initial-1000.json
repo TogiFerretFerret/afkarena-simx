@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "engine": "js-source-provisional-headless",
+  "validatedAgainstOriginalRuntime": false,
+  "machine": {
+    "runtime": "v24.19.0",
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "AMD EPYC 9V74 80-Core Processor",
+    "availableParallelism": 4
+  },
+  "fixture": "source-table initial player hero versus stage enemies",
+  "options": {
+    "stage": 1,
+    "battles": 1000,
+    "warmup": 20,
+    "seed": 2026,
+    "maxTicks": 20000,
+    "team": "initial"
+  },
+  "coldSetupMs": 15342.739797,
+  "completedBattles": 1000,
+  "totalTicks": 112000,
+  "wallMs": 4374.50303,
+  "setupMs": 1675.6896939999715,
+  "simulationMs": 2662.5886180000616,
+  "battlesPerSecond": 228.59739566805146,
+  "simulationOnlyBattlesPerSecond": 375.5743539349783,
+  "ticksPerSecond": 42064.32764071757,
+  "reference": {
+    "result": "victory",
+    "ticks": 112,
+    "engineTicks": "405c000000000000",
+    "rng": "421901fbceac0000",
+    "units": [
+      {
+        "tid": 1,
+        "camp": 1,
+        "hp": "408d513804cc2a96",
+        "mp": "4080180000000000",
+        "position": [
+          "40691fd7d314d926",
+          "4031b66452d31741"
+        ]
+      },
+      {
+        "tid": 1008,
+        "camp": -1,
+        "hp": "0000000000000000",
+        "mp": "404442da5e1a678a",
+        "position": [
+          "4071bc0260ca9a0c",
+          "4031c07d6315691b"
+        ]
+      }
+    ]
+  },
+  "signature": "47859e48b61ca8bbcb4c8a9a560a16be88bbbe0468d1edf4338195bad65c7a1f",
+  "limitations": [
+    "Lazy symbol evaluation is diagnostic and does not establish original module side-effect order",
+    "clientCall is an explicitly suppressed rendering boundary; callbacks are not executed",
+    "Cocos runtime revision is provisional; missing closures/globals fail explicitly"
+  ]
+}
