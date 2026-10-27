@@ -1,0 +1,244 @@
+{
+  "version": 1,
+  "kind": "canonical-unit-controller-integration-contract",
+  "qualifiesFor10000Target": false,
+  "source": {
+    "version": 1,
+    "source": "src/srcmodule/game_battle.js",
+    "sourceName": "ed.Unit.update",
+    "start": 97200,
+    "end": 102984,
+    "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+    "status": "experimental_native_control_flow_requires_mechanics_hooks_and_differential_validation",
+    "formalProof": false,
+    "domain": [
+      "Number-valued numeric fields; missing optional numbers explicitly represented",
+      "Dense valid unit/skill/buff IDs with stable object identity and fixed source prototypes",
+      "Unit.isAlive is the original source implementation; overrides require a separate dispatch path",
+      "Effects use stable identities and predicate views that host buff mechanics must keep synchronized",
+      "Every required hook implements the corresponding source method; no silent defaults",
+      "Vector aliases and replacements are preserved through arena handles",
+      "Non-escaping fresh edpMult result uses an inline vector; global edpZero retains arena identity"
+    ],
+    "pending": [
+      "Full unit differential trace over all branches and callback mutations",
+      "Integration of skill/AI/buff/damage implementations into one world",
+      "Complete realistic 5v5 native battles; this module does not establish battles/second"
+    ]
+  },
+  "rust": {
+    "file": "crates/battle-core/src/unit.rs",
+    "sha256": "64b12b006757b9f58a06ca4eb716c6b243ab8335c1dd871f708e5f04becc51ff",
+    "requiredHooks": 23
+  },
+  "hookMap": [
+    {
+      "name": "terminate",
+      "sourceExpression": "this.terminate()",
+      "start": 97358,
+      "end": 97374,
+      "contract": "Actual source dispatch; early return branch."
+    },
+    {
+      "name": "debug_checks",
+      "sourceExpression": "console.log(this.name+\" hp error\")",
+      "start": 97488,
+      "end": 97522,
+      "contract": "Aggregate original localBot checks, including source property reads, isNaN/Math.abs and console dispatch."
+    },
+    {
+      "name": "action_finished",
+      "sourceExpression": "this.onActionFinished()",
+      "start": 98323,
+      "end": 98346,
+      "contract": "May change action/state/skills before action_elapsed write."
+    },
+    {
+      "name": "add_buff",
+      "sourceExpression": "this.addBuff(20,this)",
+      "start": 98533,
+      "end": 98554,
+      "contract": "Returned buff identity and subsequent timer write stay canonical."
+    },
+    {
+      "name": "is_turn_based",
+      "sourceExpression": "this.isMode_TB()",
+      "start": 99259,
+      "end": 99275,
+      "contract": "May mutate state; must execute before direction choice."
+    },
+    {
+      "name": "fall",
+      "sourceExpression": "this.fall()",
+      "start": 99950,
+      "end": 99961,
+      "contract": "May replace vectors after local velocity m was captured."
+    },
+    {
+      "name": "stage_rect",
+      "sourceExpression": "ed.battleEngine.getStageRect()",
+      "start": 99992,
+      "end": 100022,
+      "contract": "May replace position/velocity; local m retains earlier array identity."
+    },
+    {
+      "name": "skill_is_basic",
+      "sourceExpression": "this.skill_list[E]===this.skill_list[E].caster.basic_skill",
+      "start": 101105,
+      "end": 101163,
+      "contract": "Source identity/read expression, not a source function call. Retain live skill_list and caster/basic_skill reads."
+    },
+    {
+      "name": "update_skill",
+      "sourceExpression": "this.skill_list[E].update(n,P,e)",
+      "start": 101173,
+      "end": 101205,
+      "contract": "Live indexed receiver is reread after the basic-skill comparison."
+    },
+    {
+      "name": "phase_finished",
+      "sourceExpression": "this.current_skill.onPhaseFinished()",
+      "start": 101267,
+      "end": 101303,
+      "contract": "Resolve current_skill after preceding callbacks; retain source errors."
+    },
+    {
+      "name": "cast_when_controlled",
+      "sourceExpression": "this.ai.castSkillWhenControlled()",
+      "start": 101373,
+      "end": 101406,
+      "contract": "Source dispatch, no omitted AI mechanics."
+    },
+    {
+      "name": "update_ai",
+      "sourceExpression": "this.ai.update(e)",
+      "start": 101407,
+      "end": 101424,
+      "contract": "Source dispatch in ordinary and pet/freeze branches."
+    },
+    {
+      "name": "is_pet",
+      "sourceExpression": "this.isPet()",
+      "start": 101425,
+      "end": 101437,
+      "contract": "May mutate this.buff_effects; local R still references the pre-call effects object."
+    },
+    {
+      "name": "recheck_manual",
+      "sourceExpression": "this.recheckManualCast()",
+      "start": 101492,
+      "end": 101516,
+      "contract": "May kill unit or mutate live buffs."
+    },
+    {
+      "name": "buff_has_effect",
+      "sourceExpression": "O.hasEffectOrNot(\"stopBuff\")",
+      "start": 101610,
+      "end": 101638,
+      "contract": "Also G.hasEffectOrNot(\"unheal\"); preserve call order and post-call counter reread."
+    },
+    {
+      "name": "update_buff",
+      "sourceExpression": "O.update(e)",
+      "start": 101668,
+      "end": 101679,
+      "contract": "Original buff receiver is captured; live array length removal-by-one controls index decrement."
+    },
+    {
+      "name": "transfer_mp_target",
+      "sourceExpression": "this.getTransferMpTarget()",
+      "start": 101826,
+      "end": 101852,
+      "contract": "Target and all attributes must be read after callback."
+    },
+    {
+      "name": "set_mp",
+      "sourceExpression": "w.setMp(w.mp+x*e,this)",
+      "start": 101911,
+      "end": 101933,
+      "contract": "Read mp and compute argument before dispatch."
+    },
+    {
+      "name": "buff_hpr_damage",
+      "sourceExpression": "this.buff_list[E].updateHPRDamage(e)",
+      "start": 101996,
+      "end": 102032,
+      "contract": "Live array length/index each iteration."
+    },
+    {
+      "name": "transfer_hp_target",
+      "sourceExpression": "this.getTransferTarget()",
+      "start": 102074,
+      "end": 102098,
+      "contract": "Source permits falsey result; current Rust nonoptional UnitId requires proven non-null target or ABI extension."
+    },
+    {
+      "name": "set_hp",
+      "sourceExpression": "I.setHp(I.hp+F*e)",
+      "start": 102223,
+      "end": 102240,
+      "contract": "May mutate regen target and source unit."
+    },
+    {
+      "name": "add_restore",
+      "sourceExpression": "I.battledata.addRestore(F*e)",
+      "start": 102246,
+      "end": 102274,
+      "contract": "Read battledata after setHp, not before."
+    },
+    {
+      "name": "fix_position",
+      "sourceExpression": "ed.fixPosition(this.position)",
+      "start": 102861,
+      "end": 102890,
+      "contract": "Return identity replaces position, including aliases."
+    }
+  ],
+  "hiddenDispatch": {
+    "isAliveCalls": 8,
+    "contract": "Original Unit.isAlive function identity/Number state-enum semantics must be proved for source unit, buff casters and regen targets; otherwise retain original method dispatch. Hooks do not presently model these calls."
+  },
+  "admission": [
+    "The current owned Rust World/Vec2Arena is a semantic reference, not a canonical VM-state adapter; copying it into/out of JS would create an unsafe second mutable world.",
+    "Preserve original Unit.update code identity/closure/source metadata. Admit only source-proven method bodies and ordinary own data slots; getters, Proxies, inherited setters, overrides and coercing values execute original code.",
+    "Read canonical rooted VM objects using GC-aware slot helpers. No raw slot or borrowed pointer survives a JS hook, allocation, GC or reentrancy boundary; re-resolve after each boundary.",
+    "Preserve local references independently of current properties: m keeps original velocity even if fall/getStageRect replaces this.velocity; R keeps original effects across isPet.",
+    "Every callback can mutate lists, attributes, effects, state and aliases. A one-time entry guard cannot prove later state. After any mutation, dispatch source or resume from the exact continuation; never restart original update after earlier mutations.",
+    "Optional/null target semantics, source exceptions and the original nonzero/falsey predicates must remain exact. No hook may be replaced with a silent default.",
+    "Check the pinned reference MXCSR and preserve ordered f64 arithmetic, explicit NaN propagation rules and VM array-store behavior."
+  ],
+  "firstBlock": {
+    "name": "Unit action speeder and dt_action",
+    "start": 97801,
+    "end": 98202,
+    "sha256": "a6f6d65083f52a608a25ee50152ac82d6e1822b6948b83cb8f6a56780e7ac7cc",
+    "source": "var t=this.attribs.MSPD;if(this.config.is_boss&&t<-75&&(t=-75),this.current_skill){var a=this.current_skill.info.SetSpeeder;a?a>0&&(t=a):t=0,this.current_skill===this.basic_skill&&(t+=this.attribs.ATKHAST),this.current_skill.lockActionSpeeder&&(t=0)}else t=0;var i=t>=0?(t+100)/100:100/(100-t);i=this.buff_effects.frozen||this.buff_effects.motionless?0:i,this.speeder=i;var r=e,n=e*i;this.dt_action=n;",
+    "sourceCalls": [],
+    "outputWrites": [
+      "this.speeder = i",
+      "this.dt_action = e*i"
+    ],
+    "liveLocals": [
+      "r=e is used for movement; retain it in the original continuation",
+      "n=e*i is used for action timing and skill updates; native result must populate the same continuation value"
+    ],
+    "branches": [
+      "Boss MSPD lower bound -75",
+      "Current-skill SetSpeeder truthiness and positive override",
+      "Identity equality to basic_skill enables ATKHAST addition",
+      "lockActionSpeeder forces zero modifier",
+      "Positive versus negative haste formula",
+      "frozen or motionless forces exact positive zero speeder"
+    ],
+    "guard": [
+      "Guard at this block entry, after any debug/liveness callbacks, before either output write.",
+      "Original receiver and config/attribs/effects/current_skill/info/basic_skill reads are side-effect-free ordinary data slots; output slots are own writable ordinary Number properties.",
+      "Admit finite Number dt/MSPD/ATKHAST and SetSpeeder Number or null/undefined. Lock/boss/effect flags may be boolean or finite Number with exact JS truthiness; unsupported values fall back before any write.",
+      "current_skill and basic_skill compare canonical object identity; no mirrored integer handles without a proven bijection.",
+      "Compute all intermediates in exact source order and reject NaN output before mutation. Finite inputs can overflow MSPD+ATKHAST; dt=0 times infinite speeder can produce NaN, so input finiteness alone is insufficient.",
+      "Store speeder first, then dt_action, through GC-aware VM helpers. No callback/allocation is required between these stores for the admitted own-data domain."
+    ],
+    "integrationBoundary": "A whole-function trampoline cannot replace an interior block and then restart original Unit.update. Requires a source/IR continuation splice retaining r/n and original function metadata, or a canonical-state Rust controller that owns subsequent control flow and every required hook. No such splice is implemented by this audit."
+  },
+  "implementationStatus": "Source-pinned executable audit only; no unused callback adapter or mirrored world introduced."
+}
