@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_battle.js",
+  "sourceName": "ed.Ai.searchTarget",
+  "start": 4512,
+  "end": 5369,
+  "sha256": "0b81cb69622de9daafa321321d72eb53fd6817bca12594c22ace56a18d57f185",
+  "domain": [
+    "Plain dense mutable Number-valued positions and boolean targeting flags",
+    "Candidate order is preserved; tied distances retain source selection order",
+    "Force-target instanceof/isAlive/taunt priority is preserved",
+    "Source range, shape and alive-list calls are explicit native hooks; test hooks do not mutate state",
+    "Numeric inputs in this corpus are finite; NaN inputs are not assumed unreachable by the whole game"
+  ],
+  "formalProof": false
+}
