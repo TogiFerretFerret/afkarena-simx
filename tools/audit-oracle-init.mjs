@@ -74,6 +74,13 @@ for(const module of modules){
  });
 }
 report.allModules={moduleDigests,topLevelEffects:allModuleEffects,computedWrites:allComputedWrites,globalFunctionDeclarations:functionDeclarations,otherCorePrototypeWrites:otherPrototypeWrites};
+report.concreteBattleFindings=[
+ {id:'percent_attribute_maps',initializer:{file,start:190513,end:190651},consumers:[{file,offset:39894,method:'ed.Buff.ctor',read:'ed.attrib_names_x[o]'},{file,offset:42088,method:'ed.Buff.applyPercentValue',read:'ed.attrib_names_x[o] and ed.attrib_names_a[o]'}],observedDifference:'Original percent buff ATK100 +50% remains100 with omitted maps; becomes150 after original initializer',proof:'benchmarks/validation/oracle-init-repair.json'},
+ {id:'summon_state_action_map',initializers:allComputedWrites.filter(record=>record.owner==='ed.state_to_string'),consumers:[{file,offset:84766,method:'ed.Unit.summon',read:'ed.state_to_string[ed.emUnitState_Birth]'}],observedDifference:'Original summon receives undefined action with omitted map; receives Birth after original assignments',proof:'benchmarks/validation/oracle-init-repair.json'},
+ {id:'readonly_array_mutators',initializer:allModuleEffects.find(record=>record.callee==='watchFuncs.forEach'),consumers:[{file:'src/srcmodule/game_util.js',offset:640906,method:'ed.createDataObj',read:'Array-valued data fields inherit readonlyArrayProto'}],observedDifference:'Original guarded array push throws 不允许修改这个数组 and keeps length1; omitted initializer allows mutation',proof:'benchmarks/validation/oracle-init-repair.json'},
+ {id:'battle_engine_descriptor',initializer:allModuleEffects.find(record=>record.callee==='Object.defineProperty'&&record.start===267507),observedDifference:'Original setter assigns _battleEngineInstance and getter returns that identity; omitted descriptor creates a plain unrelated property',proof:'benchmarks/validation/oracle-init-repair.json'},
+ {id:'candle_dog_callback_tables',initializers:allComputedWrites.filter(record=>record.owner?.startsWith('CandleDog.BASIC_IMPACT_')),consumers:[{file,offset:6703485,method:'CandleDog basic attack handler',read:'effect/sound table entry determines queued impact callback'}],observedDifference:'Original maps have3 effect entries and1 sound entry; omitted computed writes leave maps empty',proof:'benchmarks/validation/oracle-init-repair.json'},
+];
 if(process.argv.includes('--live')){
  const runtime=await createBootstrapRuntime();const{context,ed}=runtime;
  const resolveValue=name=>name.split('.').reduce((o,k)=>o?.[k],context);

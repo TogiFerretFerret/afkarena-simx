@@ -3463,5 +3463,205 @@
       }
     ],
     "otherCorePrototypeWrites": []
-  }
+  },
+  "concreteBattleFindings": [
+    {
+      "id": "percent_attribute_maps",
+      "initializer": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 190513,
+        "end": 190651
+      },
+      "consumers": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "offset": 39894,
+          "method": "ed.Buff.ctor",
+          "read": "ed.attrib_names_x[o]"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "offset": 42088,
+          "method": "ed.Buff.applyPercentValue",
+          "read": "ed.attrib_names_x[o] and ed.attrib_names_a[o]"
+        }
+      ],
+      "observedDifference": "Original percent buff ATK100 +50% remains100 with omitted maps; becomes150 after original initializer",
+      "proof": "benchmarks/validation/oracle-init-repair.json"
+    },
+    {
+      "id": "summon_state_action_map",
+      "initializers": [
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_util.js",
+          "start": 284297,
+          "end": 284343,
+          "sha256": "26f0d3b336829628063bdaa08649aa05f1657256a84595f06cf21d8f7928934b",
+          "owner": "ed.state_to_string",
+          "expression": "ed.state_to_string[ed.emUnitState_Idle]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_util.js",
+          "start": 284344,
+          "end": 284390,
+          "sha256": "c9492321215f772e4ef7cf986b2eee0950f4ffd44b341ef96964f877abf66a58",
+          "owner": "ed.state_to_string",
+          "expression": "ed.state_to_string[ed.emUnitState_Walk]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_util.js",
+          "start": 284391,
+          "end": 284441,
+          "sha256": "c20e10a3332ae2b4effbc9f0d078c659d4f5227314870f52435819b927c8ecd7",
+          "owner": "ed.state_to_string",
+          "expression": "ed.state_to_string[ed.emUnitState_Attack]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_util.js",
+          "start": 284442,
+          "end": 284488,
+          "sha256": "e58e2f2aa3f755e673d8d165fd4ed8bd0c893887ccaec6a114ee991adcb4bc4e",
+          "owner": "ed.state_to_string",
+          "expression": "ed.state_to_string[ed.emUnitState_Hurt]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_util.js",
+          "start": 284489,
+          "end": 284535,
+          "sha256": "bee896205291b8826c3415c0932c8e50e7dd468e3993a9642e122712486fc88f",
+          "owner": "ed.state_to_string",
+          "expression": "ed.state_to_string[ed.emUnitState_Dead]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_util.js",
+          "start": 284536,
+          "end": 284584,
+          "sha256": "d422f4076a283cef5fc63f826430d3cbf284a04df8d8d8d4d13139924fdc8486",
+          "owner": "ed.state_to_string",
+          "expression": "ed.state_to_string[ed.emUnitState_Birth]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_util.js",
+          "start": 284585,
+          "end": 284633,
+          "sha256": "e9a7df712b26930bfba19623d87ce9a644d4f402de149303235586d59a25e127",
+          "owner": "ed.state_to_string",
+          "expression": "ed.state_to_string[ed.emUnitState_Dying]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_util.js",
+          "start": 284634,
+          "end": 284680,
+          "sha256": "56d57d33191fdbb1ecdc912d9f31360a7e2a27fe55f07a36d0ad8519aaf6ddf3",
+          "owner": "ed.state_to_string",
+          "expression": "ed.state_to_string[ed.emUnitState_Fall]"
+        }
+      ],
+      "consumers": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "offset": 84766,
+          "method": "ed.Unit.summon",
+          "read": "ed.state_to_string[ed.emUnitState_Birth]"
+        }
+      ],
+      "observedDifference": "Original summon receives undefined action with omitted map; receives Birth after original assignments",
+      "proof": "benchmarks/validation/oracle-init-repair.json"
+    },
+    {
+      "id": "readonly_array_mutators",
+      "initializer": {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_util.js",
+        "start": 640101,
+        "end": 640267,
+        "sha256": "9d40efdee7ac54c71daf36ffff7937b076ccacfd676602e132975789817aaaf8",
+        "callee": "watchFuncs.forEach",
+        "expression": "watchFuncs.forEach((function(e){\"function\"==typeof arrayProto[e]?readonlyArrayProto[e]=function(){throw new Error(\"不允许修改这个数组\")}:readonlyArrayProto[e]=arrayProto[e]}))"
+      },
+      "consumers": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "offset": 640906,
+          "method": "ed.createDataObj",
+          "read": "Array-valued data fields inherit readonlyArrayProto"
+        }
+      ],
+      "observedDifference": "Original guarded array push throws 不允许修改这个数组 and keeps length1; omitted initializer allows mutation",
+      "proof": "benchmarks/validation/oracle-init-repair.json"
+    },
+    {
+      "id": "battle_engine_descriptor",
+      "initializer": {
+        "kind": "top_level_call",
+        "file": "src/srcmodule/game_battle.js",
+        "start": 267507,
+        "end": 267738,
+        "sha256": "053bb8c80eecfd03748f6170b2315866b4695d01a51021aae894c36b130a6fbe",
+        "callee": "Object.defineProperty",
+        "expression": "Object.defineProperty(ed,\"battleEngine\",{get:function(){return this._battleEngineInstance||(this._battleEngineInstance=new ed.BattleEngine),this._battleEngineInstance},set:function(e){this._battleEngineInstance=e},configurable:!0})"
+      },
+      "observedDifference": "Original setter assigns _battleEngineInstance and getter returns that identity; omitted descriptor creates a plain unrelated property",
+      "proof": "benchmarks/validation/oracle-init-repair.json"
+    },
+    {
+      "id": "candle_dog_callback_tables",
+      "initializers": [
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_battle.js",
+          "start": 6700629,
+          "end": 6700726,
+          "sha256": "476f7a9da3849b5f1e7dc3fb804f0df7e7efbe6f4423c0943f9dd43ab0c56f6e",
+          "owner": "CandleDog.BASIC_IMPACT_EFF",
+          "expression": "CandleDog.BASIC_IMPACT_EFF[CandleDog.BASIC_ACTION_WAX]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_battle.js",
+          "start": 6700727,
+          "end": 6700825,
+          "sha256": "fbb916b2157a56f296093f9f2d426b244a018ca1f4af45c3bfb04ca27d2c503c",
+          "owner": "CandleDog.BASIC_IMPACT_EFF",
+          "expression": "CandleDog.BASIC_IMPACT_EFF[CandleDog.BASIC_ACTION_BURN]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_battle.js",
+          "start": 6700826,
+          "end": 6700924,
+          "sha256": "c46fe520abebd8c7745e45254ff075d965ad04d97a03673641c01faed26a78a7",
+          "owner": "CandleDog.BASIC_IMPACT_EFF",
+          "expression": "CandleDog.BASIC_IMPACT_EFF[CandleDog.BASIC_ACTION_DUAL]"
+        },
+        {
+          "kind": "computed_write",
+          "file": "src/srcmodule/game_battle.js",
+          "start": 6700957,
+          "end": 6701038,
+          "sha256": "046f68968609d81484da55075f575ed5aff5bd92df6a697d77cb547236b0ce66",
+          "owner": "CandleDog.BASIC_IMPACT_SOUND",
+          "expression": "CandleDog.BASIC_IMPACT_SOUND[CandleDog.BASIC_ACTION_BURN]"
+        }
+      ],
+      "consumers": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "offset": 6703485,
+          "method": "CandleDog basic attack handler",
+          "read": "effect/sound table entry determines queued impact callback"
+        }
+      ],
+      "observedDifference": "Original maps have3 effect entries and1 sound entry; omitted computed writes leave maps empty",
+      "proof": "benchmarks/validation/oracle-init-repair.json"
+    }
+  ]
 }
