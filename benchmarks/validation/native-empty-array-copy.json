@@ -2,7 +2,7 @@
   "version": 1,
   "matched": true,
   "difference": null,
-  "sourceCases": 20000,
+  "sourceCases": 40000,
   "fallbackCases": 20,
   "cloneHits": 20000,
   "originalSourceSha256": "5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072",
@@ -33,5 +33,6 @@
     "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
     "privateSha256": "9611ef38936d581326c1cc22fa62969ecb8c5dd366cb6549db6f7eac23ddf5fa",
     "helperSha256": "52607262f5e5552ae3e54e753f88e364660cff41852a7f7eb209538619455ff3"
-  }
+  },
+  "specializedEmptyArrayCases": 20000
 }
