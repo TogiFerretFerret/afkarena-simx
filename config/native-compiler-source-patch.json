@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "baseCommit": "4f1db42d71d0839254c7154fc8c282bcea466206",
+  "patch": "tools/native-compiler-patches/preserve-function-source.patch",
+  "sha256": "b9903723e4cbc83e67bc0b843bc88e6ad848ffde3592f83c10df419dffce9426",
+  "purpose": "Preserve original source for AOT JavaScript Function.prototype.toString, including Cocos _super detection",
+  "files": [
+    {
+      "path": "include/hermes/VM/static_h.h",
+      "originalSha256": "8fd791a1c26c1841a50809a515c05c7063f1d6f37f793939d91ecb9ea8674e45",
+      "patchedSha256": "4116a79463473da92919274a8d0741789b27748bb3f323a5d0f6d668cca33e08"
+    },
+    {
+      "path": "lib/BCGen/SH/SH.cpp",
+      "originalSha256": "8b3d7725afaf9f2ac466c5fefbcdd2fc638c9a500d3a415d6ef3fb7d4cb96d0c",
+      "patchedSha256": "50dcaaca3a418ca765c136192d0dfa2e216af5ec6a25a233762890cd032bbda7"
+    },
+    {
+      "path": "lib/VM/JSLib/Function.cpp",
+      "originalSha256": "e329222d1f35e2636d29984df969ab94504cf0dab3073ac235afea9bfbf0bf70",
+      "patchedSha256": "ee8fa1ff9df635f1ba117fc7100d2e1cb42309e9251acf91e1006f3c7617d852"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+--- a/include/hermes/VM/static_h.h
++++ b/include/hermes/VM/static_h.h
+@@ -55,6 +55,8 @@
+   uint32_t name_index;
+   /// The number of arguments this function takes.
+   uint32_t arg_count;
++  /// Original source string index plus one; zero means unavailable.
++  uint32_t source_index_plus_one;
+   /// Which kind of function, constructed from enum FuncKind.
+   uint8_t kind : 2;
+   /// Which kinds of calls are prohibited, constructed from enum ProhibitInvoke.
+--- a/lib/BCGen/SH/SH.cpp
++++ b/lib/BCGen/SH/SH.cpp
+@@ -416,11 +416,22 @@
+       uint32_t nameIdx = stringTable_.add(F->getOriginalOrInferredName().str());
+       uint32_t argCount = F->getExpectedParamCountIncludingThis() - 1;
+       auto kindVal = F->getKind();
++      uint32_t sourceIndexPlusOne = 0;
++      if (!F->isGlobalScope() && F->getSourceRange().isValid() &&
++          (F->getSourceVisibility() == SourceVisibility::Default ||
++           F->getSourceVisibility() == SourceVisibility::ShowSource)) {
++        auto range = F->getSourceRange();
++        llvh::StringRef source{
++            range.Start.getPointer(),
++            static_cast<size_t>(range.End.getPointer() - range.Start.getPointer())};
++        sourceIndexPlusOne = stringTable_.add(source) + 1;
++      }
+       OS.indent(2);
+       OS << "{ .name_index = " << nameIdx << ", .arg_count = " << argCount
+          << ", .prohibit_invoke = "
+          << computeProhibitInvoke(F->getProhibitInvoke())
+-         << ", .kind = " << computeFuncKind(kindVal) << " },\n";
++         << ", .kind = " << computeFuncKind(kindVal)
++         << ", .source_index_plus_one = " << sourceIndexPlusOne << " },\n";
+     }
+     OS << "};\n";
+   }
+--- a/lib/VM/JSLib/Function.cpp
++++ b/lib/VM/JSLib/Function.cpp
+@@ -15,6 +15,8 @@
+ #include "hermes/Regex/RegexTraits.h"
+ #include "hermes/VM/ArrayLike.h"
+ #include "hermes/VM/Callable.h"
++#include "hermes/VM/IdentifierTable.h"
++#include "hermes/VM/static_h.h"
+ #include "hermes/VM/Operations.h"
+ #include "hermes/VM/PropertyAccessor.h"
+ #include "hermes/VM/Runtime-inline.h"
+@@ -163,6 +165,20 @@
+     return ExecutionStatus::RETURNED;
+   };
+ 
++  // AOT-compiled JavaScript must retain source too: source introspection can
++  // affect program semantics (for example Cocos inheritance super detection).
++  if (auto nativeJS = dyn_vmcast<NativeJSFunction>(*func)) {
++    const auto sourceIndexPlusOne =
++        nativeJS->getFunctionInfo()->source_index_plus_one;
++    if (sourceIndexPlusOne != 0) {
++      SymbolID sourceID = SymbolID::unsafeCreate(
++          nativeJS->getUnit()->symbols[sourceIndexPlusOne - 1]);
++      StringPrimitive *source =
++          runtime.getIdentifierTable().getStringPrim(runtime, sourceID);
++      return HermesValue::encodeStringValue(source);
++    }
++  }
++
+   // Deal with JSFunctions that has a source String ID. That implies this
+   // function need a non-default toString implementation.
+   if (auto jsFunc = dyn_vmcast<JSFunction>(*func)) {

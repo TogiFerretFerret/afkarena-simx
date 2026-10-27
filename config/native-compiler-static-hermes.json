@@ -31,15 +31,22 @@
     "-DHERMES_ENABLE_INTL=OFF",
     "-DHERMES_BUILD_SHARED_JSI=OFF"
   ],
-  "targets": ["shermes", "hermesvm", "shermes_console"],
+  "targets": [
+    "shermes",
+    "hermesvm",
+    "shermes_console"
+  ],
   "expectedCompiler": "work/downloads/hermes-build/bin/shermes",
   "nativeCli": "shermes -O input.js -o output; -emit-c emits generated C instead",
   "officialPrebuiltShermesFound": false,
-  "status": "source build under evaluation; not an established faithful battle runtime",
+  "status": "compiler built; exact Function.toString and Cocos super dispatch validated; V8 math compatibility still under evaluation",
   "constraints": [
     "Generated native code retains the Hermes dynamic JavaScript runtime; untyped input does not become a typed Rust model",
     "Original source callback queues, mechanics and RNG must remain active",
     "Changing JS engines requires complete ordered trace and binary64 comparisons against the source oracle",
     "No native battle throughput claim is justified by compiler availability alone"
+  ],
+  "patches": [
+    "config/native-compiler-source-patch.json"
   ]
 }

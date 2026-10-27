@@ -10,9 +10,9 @@ const jobs=Number(process.argv[2]??3);
 assert.ok(Number.isInteger(jobs)&&jobs>0,'Usage: node tools/native-compiler-build.mjs [JOBS]');
 await mkdir(directory,{recursive:true});
 const exists=async path=>{try{await access(path);return true}catch{return false}};
-async function run(command,args,env=process.env){
+async function run(command,args,env=process.env,cwd=root){
   await new Promise((resolve,reject)=>{
-    const child=spawn(command,args,{cwd:root,env,stdio:'inherit'});
+    const child=spawn(command,args,{cwd,env,stdio:'inherit'});
     child.on('error',reject);child.on('exit',(code,signal)=>code===0?resolve():reject(new Error(`${command} failed (${code??signal})`)));
   });
 }
@@ -25,6 +25,17 @@ for(const [name,spec] of Object.entries({source:config.source,cmake:config.cmake
     if(name==='ninja')await run('unzip',['-o',archive,'-d',destination]);
     else await run('tar',['-xzf',archive,'-C',directory]);
   }
+}
+const sourceDirectory=resolve(directory,config.source.directory);
+for(const manifestPath of config.patches??[]){
+  const manifest=JSON.parse(await readFile(resolve(root,manifestPath),'utf8'));
+  assert.equal(manifest.baseCommit,config.commit,'Patch base differs from compiler source');
+  assert.equal(createHash('sha256').update(await readFile(resolve(root,manifest.patch))).digest('hex'),manifest.sha256,'Patch checksum mismatch');
+  const hashes=await Promise.all(manifest.files.map(async file=>createHash('sha256').update(await readFile(resolve(sourceDirectory,file.path))).digest('hex')));
+  if(hashes.every((hash,index)=>hash===manifest.files[index].patchedSha256))continue;
+  assert.ok(hashes.every((hash,index)=>hash===manifest.files[index].originalSha256),'Compiler source has unexpected modifications; refusing a partial patch');
+  await run('patch',['-p1','--forward','--batch','--input',resolve(root,manifest.patch)],process.env,sourceDirectory);
+  for(const file of manifest.files)assert.equal(createHash('sha256').update(await readFile(resolve(sourceDirectory,file.path))).digest('hex'),file.patchedSha256,'Patched source checksum mismatch');
 }
 const cmake=resolve(directory,config.cmake.directory,'bin/cmake');
 const build=resolve(directory,'hermes-build');

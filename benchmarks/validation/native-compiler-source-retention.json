@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "compiler": "/workspace/afkarena-simx/work/downloads/hermes-build/bin/shermes",
+  "compilerVersion": "LLVM (http://llvm.org/):\n  LLVH version 8.0.0svn\n  Optimized build\n\nStatic Hermes JS Compiler v0.0",
+  "sourceSha256": "d0a39d8d447055cffaa8ab9c8b9f66bba16e515d588afea8ef6c5aa2d6e71425",
+  "referenceRuntime": "v24.19.0",
+  "matched": false,
+  "differences": [
+    "math"
+  ],
+  "inheritance": {
+    "expected": {
+      "value": 5,
+      "number": 12,
+      "ownSuper": true
+    },
+    "actual": {
+      "value": 5,
+      "number": 12,
+      "ownSuper": true
+    }
+  },
+  "functionSource": {
+    "expected": "function explicitSource(x){return this._super(x)+1;}",
+    "actual": "function explicitSource(x){return this._super(x)+1;}"
+  },
+  "rngMatched": true,
+  "mathBitDifferences": 35,
+  "mathDifferencesByFunction": {
+    "pow": 0,
+    "sqrt": 0,
+    "sin": 18,
+    "cos": 17
+  },
+  "queueOrder": [
+    "a",
+    "b",
+    "c"
+  ],
+  "scope": "AOT compiler semantic compatibility probe, not battle fidelity or throughput"
+}
