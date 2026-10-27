@@ -1,0 +1,1593 @@
+{
+  "version": 1,
+  "kind": "bounded-source-proxy-observability-and-sort-audit",
+  "qualifiesFor10000Target": false,
+  "normalizationApplied": false,
+  "sourceFiles": [
+    {
+      "file": "src/res/backdownload.js",
+      "utf16Length": 1419793,
+      "sha256": "1edc3074867ede6c1b0c666781bf19d7e96d177b9c59bcda89c443f9c3d5032d"
+    },
+    {
+      "file": "src/res/config_load.js",
+      "utf16Length": 17543,
+      "sha256": "46ef8339301ec030900759ec3570d0258c51bbe2a24db7b16e60c2e2acac1b6a"
+    },
+    {
+      "file": "src/res/csv_withtranslate.js",
+      "utf16Length": 23876,
+      "sha256": "f0ed52465652d2732e6952339c8a06119f3bb36bb88e6f4093c3628ecab7ab0b"
+    },
+    {
+      "file": "src/res/loading.js",
+      "utf16Length": 16332,
+      "sha256": "a47e6d7f68c22f1ebeaba172d72eb615adb3d459885cd25224768fe5a26d62bc"
+    },
+    {
+      "file": "src/res/version.js",
+      "utf16Length": 142,
+      "sha256": "5041dffafa915080671e6c5a944db0c2c16eeab25bf4d435ba68059068d2fe65"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "utf16Length": 201140,
+      "sha256": "bdbe166804249422a87ac6ccc47816a4c7063d1fda562e96354cdc3cfdd8afff"
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "utf16Length": 1184148,
+      "sha256": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc"
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "utf16Length": 7849982,
+      "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
+    },
+    {
+      "file": "src/srcmodule/game_ui_1.js",
+      "utf16Length": 5701871,
+      "sha256": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b"
+    },
+    {
+      "file": "src/srcmodule/game_ui_2.js",
+      "utf16Length": 4615390,
+      "sha256": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2"
+    },
+    {
+      "file": "src/srcmodule/game_ui_3.js",
+      "utf16Length": 4432969,
+      "sha256": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928"
+    },
+    {
+      "file": "src/srcmodule/game_ui_4.js",
+      "utf16Length": 4187347,
+      "sha256": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771"
+    },
+    {
+      "file": "src/srcmodule/game_ui_5.js",
+      "utf16Length": 1370199,
+      "sha256": "b3169c14a946ce37b01e0b207b343d1d18afcbe3c6237e9639f79b9fd61cb13c"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "utf16Length": 1030871,
+      "sha256": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866"
+    },
+    {
+      "file": "src/srcmodule/ui_contra.js",
+      "utf16Length": 1027271,
+      "sha256": "11fd88a93d7d022ae3d0b1eb1d3e1addcf69f297a824ae510adee392f124ff95"
+    },
+    {
+      "file": "src/srcmodule/ui_gve.js",
+      "utf16Length": 955704,
+      "sha256": "941012b6ca87524c122d577b5889c4da8e4b13904413129142b5e16c34e340e3"
+    },
+    {
+      "file": "src/srcmodule/ui_minigame.js",
+      "utf16Length": 494680,
+      "sha256": "5885132fb5661551c9a14ebc8eedee42db42e65a24e023dc78f57b4b8c53cecb"
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "utf16Length": 2630426,
+      "sha256": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3"
+    }
+  ],
+  "index": {
+    "file": "work/source-index.json",
+    "sha256": "2ab00c55d93f2baf8647b49a064ff33caaef11cf86746146f93400cc0b47f05c",
+    "status": "Syntactic index, not reachability; every selected current UTF16 source slice reparsed and hashed"
+  },
+  "originalProxy": {
+    "occurrences": [
+      {
+        "file": "src/srcmodule/game_base.js",
+        "start": 169699,
+        "end": 169704,
+        "context": "owType,t):\"onExit\"==i&&ed.fireEvent(EventConfig.mainTopFrameHideType,t),e[i]}};e.root=new Proxy(e.root,i)}}},ed.belowFrameView=ed.baseComponent.extend({ctor:function(){this._super(\"res/uieditor/frameView/frameView.csb\"),this.initData(),this.initAppea"
+      }
+    ],
+    "interpretation": "The sole literal Proxy constructor wraps ed.frameViewMgr.addCustomFrameType UI root; its get trap dispatches mainTopFrameShow/Hide events for onEnter/onExit. Original source is NOT universally Proxy-free. This audit does not prove dynamic construction or reachability absent."
+  },
+  "objectPrototype": {
+    "directReferences": [
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3405026,
+        "end": 3405042,
+        "kind": "hasOwnProperty.call read",
+        "context": "tion(e){var n=e&&e.reply_act_farm||{},a=Object.prototype.hasOwnProperty.call(n,t),o=a&&n[t]||{};i&&i(a,o,e)})),!0},_sendActivityTask:fun"
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3405216,
+        "end": 3405232,
+        "kind": "hasOwnProperty.call read",
+        "context": "tion(e){var n=e&&e.reply_activity||{},a=Object.prototype.hasOwnProperty.call(n,t),o=a&&n[t]||{};i&&i(a,o,e)})),!0},_buildSelectTypeReque"
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3513275,
+        "end": 3513291,
+        "kind": "hasOwnProperty.call read",
+        "context": "var n=e&&e.reply_act_farm_lottery||{},a=Object.prototype.hasOwnProperty.call(n,t),o=a&&n[t]||{};i&&i(a,o,e)})),!0}},ed.ActivityRaceLotte"
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3567049,
+        "end": 3567065,
+        "kind": "hasOwnProperty.call read",
+        "context": "[o]&&a[o][t]||{},r=!1;for(var c in s)if(Object.prototype.hasOwnProperty.call(s,c)){r=!0;break}if(!r)return[];var d=this.getSelectedHeroT"
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3585915,
+        "end": 3585931,
+        "kind": "hasOwnProperty.call read",
+        "context": "tyTodoTask\")||{},s=[];for(var r in a)if(Object.prototype.hasOwnProperty.call(a,r)&&t[r]){var c=t[r],d=a[r],l=o[r];if(l&&!d.claimed){var "
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3591743,
+        "end": 3591759,
+        "kind": "hasOwnProperty.call read",
+        "context": "ta.stages[o];var s=[];for(var r in i)if(Object.prototype.hasOwnProperty.call(i,r)){var c=Number(i[r].StageID||r)||0,d=this.getStageConfi"
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3598305,
+        "end": 3598321,
+        "kind": "hasOwnProperty.call read",
+        "context": ";e=e||{};var a=null,o={};for(var s in e)Object.prototype.hasOwnProperty.call(e,s)&&(o[s]=e[s]);for(var r=[\"heroes\",\"balance_trial_heroes"
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3600366,
+        "end": 3600382,
+        "kind": "hasOwnProperty.call read",
+        "context": "nction(e){var t={};for(var i in e=e||{})Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i]);return t},_isNodeVisible:function(e){retu"
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3660728,
+        "end": 3660744,
+        "kind": "hasOwnProperty.call read",
+        "context": "nction(e){var t={};for(var i in e=e||{})Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i]);return t},_removeForcedHeroFromTeamData:f"
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3661134,
+        "end": 3661150,
+        "kind": "hasOwnProperty.call read",
+        "context": "nction(e){var t={};for(var i in e=e||{})Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i]);t.teams=[];for(var n=e.teams||[],a=0;a<n."
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "start": 3661277,
+        "end": 3661293,
+        "kind": "hasOwnProperty.call read",
+        "context": "a++){var o=n[a]||{},s={};for(var r in o)Object.prototype.hasOwnProperty.call(o,r)&&(s[r]=o[r]);t.teams.push(s)}return t},_removeForcedHe"
+      },
+      {
+        "file": "src/srcmodule/game_ui_3.js",
+        "start": 1672542,
+        "end": 1672558,
+        "kind": "hasOwnProperty.call read",
+        "context": "e(/\\{([^{}]+)\\}/g,(function(e,i){return Object.prototype.hasOwnProperty.call(t,i)?(o[i]=t[i],e):(cc.error(\"GuildTurntable missing suppor"
+      },
+      {
+        "file": "src/srcmodule/game_ui_3.js",
+        "start": 1672819,
+        "end": 1672835,
+        "kind": "hasOwnProperty.call read",
+        "context": "e(/\\{([^{}]+)\\}/g,(function(e,i){return Object.prototype.hasOwnProperty.call(t,i)?t[i]:e}))},_formatNumberArray:function(e,t){for(var i="
+      },
+      {
+        "file": "src/srcmodule/game_util.js",
+        "start": 34122,
+        "end": 34138,
+        "kind": "toString.call read",
+        "context": "e||e.isVisible()};if(\"[object Array]\"===Object.prototype.toString.call(e)){for(r=[],a=0;a<e.length&&a<50;a++)r.push(this._toSerializable"
+      },
+      {
+        "file": "src/srcmodule/game_util.js",
+        "start": 70634,
+        "end": 70650,
+        "kind": "toString.call read",
+        "context": "ray(e):null);else{if(\"[object Array]\"!==Object.prototype.toString.call(e))throw TypeError(\"Illegal buffer\");(o=new t(e.length,a,n)).limi"
+      },
+      {
+        "file": "src/srcmodule/game_util.js",
+        "start": 328705,
+        "end": 328721,
+        "kind": "toString.call read",
+        "context": "&&(null===t?a=\"null\":\"[object Array]\"===Object.prototype.toString.call(t)&&(a=\"array\")),a){case\"number\":console.log(i+r+\"[Number] \"+t);b"
+      },
+      {
+        "file": "src/srcmodule/game_util.js",
+        "start": 641420,
+        "end": 641436,
+        "kind": "toString.call read",
+        "context": "nction(e,t,r){if(e&&\"[object Object]\"===Object.prototype.toString.call(e))if(t&&\"string\"==typeof t){var i=\"_\"+t,a=\"get\"+t.firstUpperCase"
+      },
+      {
+        "file": "src/srcmodule/game_util.js",
+        "start": 752611,
+        "end": 752627,
+        "kind": "toString.call read",
+        "context": "ay=function(e){return\"[object Array]\"===Object.prototype.toString.call(e)}),!a||!i.JS_MD5_NO_ARRAY_BUFFER_IS_VIEW&&ArrayBuffer.isView||("
+      },
+      {
+        "file": "src/srcmodule/ui_war.js",
+        "start": 947114,
+        "end": 947130,
+        "kind": "toString.call read",
+        "context": "getCityPathList(e,t):\"[object Array]\"===Object.prototype.toString.call(r)?r.slice():[]).length<2||Number(r[0])!==e||Number(r[r.length-1]"
+      }
+    ],
+    "hazardTokens": [
+      {
+        "file": "src/srcmodule/game_util.js",
+        "start": 640896,
+        "token": "__proto__",
+        "context": " t=ed.swallowCopyObject(e);for(var r in t)t[r]instanceof Array&&(t[r].__proto__=readonlyArrayProto);return t.wrap_stack=[],t.wrapTable=function(e,t){for(var r=Object.keys(e),i=-1,a={};++i<r."
+      }
+    ],
+    "conclusion": "All direct literal Object.prototype paths found are toString.call or hasOwnProperty.call reads. No literal direct prototype getter/write path was found; aliases, computed/generated names, dynamic evaluation and transitive generic descriptor helpers remain separate obligations."
+  },
+  "privateGetCounters": [
+    {
+      "file": "tools/qualification-table-membrane.js",
+      "sha256": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+      "getsUses": [
+        {
+          "kind": "increment",
+          "owner": "get",
+          "start": 6584,
+          "end": 6597,
+          "source": "counters.gets++"
+        },
+        {
+          "kind": "stats-read",
+          "owner": "stats",
+          "start": 8355,
+          "end": 8368,
+          "source": "gets:counters.gets"
+        }
+      ],
+      "nonEscapingCounterBinding": true,
+      "getsControlsBranchOrGameWrite": false
+    },
+    {
+      "file": "tools/qualification-mutable-table-capsule.js",
+      "sha256": "3820aaa6fc9cde91b5063ded9e7fd72cd50265a94c70666306682d078c917c21",
+      "getsUses": [
+        {
+          "kind": "increment",
+          "owner": "get",
+          "start": 6775,
+          "end": 6788,
+          "source": "counters.gets++"
+        },
+        {
+          "kind": "stats-read",
+          "owner": "stats",
+          "start": 10423,
+          "end": 10436,
+          "source": "gets:counters.gets"
+        }
+      ],
+      "nonEscapingCounterBinding": true,
+      "getsControlsBranchOrGameWrite": false
+    }
+  ],
+  "backendSort": {
+    "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSLib/Sorting.cpp",
+    "sha256": "5d2eeb7886961ac418bea28664fe9fda390e2f3756376984ced63cab7a653296",
+    "start": 941,
+    "end": 997,
+    "source": "return (*res != 0) ? (*res < 0) : (index[i] < index[j]);",
+    "conclusion": "Pinned Hermes quickSort explicitly breaks comparator-zero ties by original array index. Stable ties alone do not require comparator call order/count equality."
+  },
+  "inconsistentComparator": {
+    "file": "src/srcmodule/game_battle.js",
+    "start": 2676380,
+    "end": 2676697,
+    "callSha256": "a63bac967eb7f2b966a0b948dd02e49485a4022a7670700c16d22d21abc549b9",
+    "owner": "Sala.basic_onAttackFrame",
+    "source": "function(e,t){var a=-1!==m.morphingList.indexOf(e)?1e3:0,i=-1!==m.morphingList.indexOf(t)?1e3:0;return e.config.is_summoned&&(a+=100),t.config.is_summoned&&(i+=100),e.buff_effects.uncontrollable&&(a+=10),t.buff_effects.uncontrollable&&(i+=10),(a+=e.battledata.getDamage()-t.battledata.getDamage()<0?1:-1)-i}",
+    "fixture": "Same canonical unit as both operands, empty morphingList, false summon/uncontrollable flags, original damage-read contract returning equal zero.",
+    "compareSelf": -1,
+    "conclusion": "Comparator fails compare(x,x)==0 even without callback mutations. Purity alone cannot establish algorithm-independent sorting/target order."
+  },
+  "sortSummary": {
+    "explicitSortCalls": 1297,
+    "battleSortCalls": 32,
+    "directRngComparatorCalls": 8,
+    "inlineWithCallsOrWrites": 270
+  },
+  "conclusions": [
+    "The private counters.gets variable is nonescaping; its only uses are one increment in the get trap and one stats() result read. Its numeric value does not choose game branches or writes.",
+    "The get trap also executes Reflect.get and child wrapping. Extra reads may invoke inherited getters, custom Proxy traps, object coercions or comparator side effects; private-counter noninterference alone does not prove the entire extra read harmless.",
+    "Private JSON table constructors enforce initial own data descriptors/plain Object or Array prototypes, and write membranes reject prototype/descriptor changes. Native/source intrinsic prototype integrity and the actual read keys must still be established for this workload.",
+    "Backend sort algorithms can legally invoke comparators different numbers of times. Source contains direct RNG sort comparators, so no general sort-count or table-get-count normalization is valid.",
+    "For a specific immutable-table row comparator, varying comparison counts can be diagnostic-only after proving reads are canonical own primitives, comparator is pure/coercion-free, and sorted output ordering/ties match. No such blanket proof is asserted here."
+  ],
+  "limitations": [
+    "Lexical direct-name footprint is bounded evidence, not whole-program alias/eval analysis.",
+    "Sort inventory follows statically named .sort calls in an existing syntactic index; unresolved computed invocations and arbitrary comparator callees remain unproved.",
+    "No evidence in this report identifies the specific974extra native gets; full report mismatch remains visible."
+  ],
+  "directRngSorts": [
+    {
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4516487,
+      "end": 4516540,
+      "sha256": "1cc4541e9fd2bbfcf219e422f1c83d50831594de1e5f36c62c9fc535cfc3a782",
+      "owner": {
+        "name": "ed.customView.getSelfPets",
+        "start": 4516357,
+        "end": 4516769
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return Math.random()>.5?-1:1}",
+      "calls": [
+        {
+          "callee": "Math.random",
+          "source": "Math.random()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "Math.random"
+      ],
+      "directRng": true,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_ui_2.js",
+      "start": 2133726,
+      "end": 2133778,
+      "sha256": "d2ef183777157cd4ad74a737f791067f2dcb2f9a55705131f3e61f9a486786a0",
+      "owner": {
+        "name": null,
+        "start": 2133698,
+        "end": 2134248
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(){return Math.random()-.5}",
+      "calls": [
+        {
+          "callee": "Math.random",
+          "source": "Math.random()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "Math.random"
+      ],
+      "directRng": true,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_ui_4.js",
+      "start": 2456135,
+      "end": 2456179,
+      "sha256": "4879c4f0227def6670f5cef26a1a17f0a1fcadeb0027755f3090d634ebccaeb2",
+      "owner": {
+        "name": "getDoubleRandomIndexList",
+        "start": 2456080,
+        "end": 2456182
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(){return.5-Math.random()}",
+      "calls": [
+        {
+          "callee": "Math.random",
+          "source": "Math.random()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "Math.random"
+      ],
+      "directRng": true,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "start": 217415,
+      "end": 217460,
+      "sha256": "600babd675af433a97049344855ad79ad45b7fcfda345deb2f5832434f13d4a7",
+      "owner": {
+        "name": "ed.WarBesiegePlayView.initOppoReservistPosIdxArr",
+        "start": 217319,
+        "end": 217534
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(){return Math.random()-.5}",
+      "calls": [
+        {
+          "callee": "Math.random",
+          "source": "Math.random()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "Math.random"
+      ],
+      "directRng": true,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "start": 218068,
+      "end": 218143,
+      "sha256": "eddd63a0d05efb482a33aeec7e5046192835af3a3771901e00fbcb179dce1c47",
+      "owner": {
+        "name": "ed.WarBesiegePlayView.addOppoReservistTeamNode",
+        "start": 217560,
+        "end": 218152
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(){return Math.random()-.5}",
+      "calls": [
+        {
+          "callee": "Math.random",
+          "source": "Math.random()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "Math.random"
+      ],
+      "directRng": true,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "start": 480340,
+      "end": 480393,
+      "sha256": "a0c767363d54d54ffde7da8f5910f5cc1d9e4640ce9c170a525fca73534421b1",
+      "owner": {
+        "name": "getRandomAudienceIdxs",
+        "start": 480291,
+        "end": 480436
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return Math.random()>.5?-1:1}",
+      "calls": [
+        {
+          "callee": "Math.random",
+          "source": "Math.random()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "Math.random"
+      ],
+      "directRng": true,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "start": 487411,
+      "end": 487461,
+      "sha256": "930aab920faaee7e0c78ead52e37586353d0f514d82a763c153fe23666f204ed",
+      "owner": {
+        "name": "ed.WarVanguardBubbleNode.getImgRes",
+        "start": 487173,
+        "end": 487499
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(){return Math.random()>.5?-1:1}",
+      "calls": [
+        {
+          "callee": "Math.random",
+          "source": "Math.random()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "Math.random"
+      ],
+      "directRng": true,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "start": 2281698,
+      "end": 2281756,
+      "sha256": "9dae7a1d473de1342e27a1a481b29d33cfbfd1a3f157c37e843cf90deaca9465",
+      "owner": {
+        "name": "ed.warCeremonyCarPanel.initData",
+        "start": 2281616,
+        "end": 2281757
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(){return Math.random()-.5}",
+      "calls": [
+        {
+          "callee": "Math.random",
+          "source": "Math.random()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "Math.random"
+      ],
+      "directRng": true,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    }
+  ],
+  "battleSorts": [
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 16510,
+      "end": 16555,
+      "sha256": "05c40651baf847c8bf1a102a69b9f6af4f6596c1f0434a1c38101db9f84a13e5",
+      "owner": {
+        "name": "ed.Skill.changeAction",
+        "start": 16099,
+        "end": 16805
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.Time-t.Time}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.Time",
+        "t.Time"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 17319,
+      "end": 17364,
+      "sha256": "e79224480c235ed14a6d381a191f325c6e711416b211ffe2735f226532a4d4f1",
+      "owner": {
+        "name": "ed.Skill.rebuildPhaseList",
+        "start": 16823,
+        "end": 17576
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.Time-t.Time}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.Time",
+        "t.Time"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 17443,
+      "end": 17490,
+      "sha256": "dc473428c2e067a49550016aab55fb78ad0cf8753c50e58db351e5ec64e0cd40",
+      "owner": {
+        "name": "ed.Skill.rebuildPhaseList",
+        "start": 16823,
+        "end": 17576
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.Delay-t.Delay}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.Delay",
+        "t.Delay"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 83473,
+      "end": 83550,
+      "sha256": "01b75d0017a8523f59d4af7e24562ff49083d5f8dd13c1ba6e0c9e5d6b79fc7d",
+      "owner": {
+        "name": "ed.Unit.initSkill",
+        "start": 80731,
+        "end": 83551
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return t.info.Priority-e.info.Priority}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "t.info.Priority",
+        "t.info",
+        "e.info.Priority",
+        "e.info"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 136523,
+      "end": 136627,
+      "sha256": "57d57e35e953f0d170fd82b1a35bb2a2cff57273fce79084a881b1a4463a71a4",
+      "owner": {
+        "name": "ed.Unit.addSkillTrigger_TB",
+        "start": 136433,
+        "end": 136628
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){var a=\"skill\"===e.type?1:-1;return(\"skill\"===t.type?1:-1)-a}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.type",
+        "t.type"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 181227,
+      "end": 181262,
+      "sha256": "51b035bfa3ecabd708a2b724472d7b48db599a7b2242525cb1efa7303e41eeae",
+      "owner": {
+        "name": "ed.unitAttribsManagerObj.getGveAttribs",
+        "start": 180822,
+        "end": 182318
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e-t}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 270859,
+      "end": 270970,
+      "sha256": "18d48e2de4746636566adc3d59a653be3dd539c0729b21be805f695343724d4a",
+      "owner": {
+        "name": "ed.BattleEngineTurnBased.sortQueue",
+        "start": 270847,
+        "end": 271019
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.specialOrder!==t.specialOrder?e.specialOrder?-1:1:t.config.camp-e.config.camp}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.specialOrder",
+        "t.specialOrder",
+        "t.config.camp",
+        "t.config",
+        "e.config.camp",
+        "e.config"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 282786,
+      "end": 282833,
+      "sha256": "010e1079c224cad859af51a3f64924799145d7b80b87ca155ebd98491f9baf14",
+      "owner": {
+        "name": "FirstKillCount",
+        "start": 282492,
+        "end": 283005
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.ticks-t.ticks}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.ticks",
+        "t.ticks"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 302377,
+      "end": 302416,
+      "sha256": "4317abd96a7e9d6100fc334435b3228d2fb18314ce9f8046de22ee0f0ea755e4",
+      "owner": {
+        "name": "reportBattle",
+        "start": 302203,
+        "end": 303123
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.i-t.i}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.i",
+        "t.i"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 302565,
+      "end": 302604,
+      "sha256": "4317abd96a7e9d6100fc334435b3228d2fb18314ce9f8046de22ee0f0ea755e4",
+      "owner": {
+        "name": "reportBattle",
+        "start": 302203,
+        "end": 303123
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.i-t.i}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.i",
+        "t.i"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2137114,
+      "end": 2137179,
+      "sha256": "7025c1323939e76fe7c98cca68fb9b5c18c8219c3879278b50883dba83205fad",
+      "owner": {
+        "name": "SPhoenix.hyper_update",
+        "start": 2136227,
+        "end": 2137376
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.getHpPercent()-t.getHpPercent()}",
+      "calls": [
+        {
+          "callee": "e.getHpPercent",
+          "source": "e.getHpPercent()"
+        },
+        {
+          "callee": "t.getHpPercent",
+          "source": "t.getHpPercent()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "e.getHpPercent",
+        "t.getHpPercent"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2569784,
+      "end": 2569851,
+      "sha256": "449cffb06f91fff7d064192dc85c8b3271f777d9aa6f3c15931745fe573a685c",
+      "owner": {
+        "name": "ShieldL.shieldLogicBuff_onRemoved",
+        "start": 2569367,
+        "end": 2570722
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return(e.position[0]-t.position[0])*a.camp}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.position.0",
+        "e.position",
+        "t.position.0",
+        "t.position",
+        "a.camp"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2676380,
+      "end": 2676697,
+      "sha256": "a63bac967eb7f2b966a0b948dd02e49485a4022a7670700c16d22d21abc549b9",
+      "owner": {
+        "name": "Sala.basic_onAttackFrame",
+        "start": 2674879,
+        "end": 2677968
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){var a=-1!==m.morphingList.indexOf(e)?1e3:0,i=-1!==m.morphingList.indexOf(t)?1e3:0;return e.config.is_summoned&&(a+=100),t.config.is_summoned&&(i+=100),e.buff_effects.uncontrollable&&(a+=10),t.buff_effects.uncontrollable&&(i+=10),(a+=e.battledata.getDamage()-t.battledata.getDamage()<0?1:-1)-i}",
+      "calls": [
+        {
+          "callee": "m.morphingList.indexOf",
+          "source": "m.morphingList.indexOf(e)"
+        },
+        {
+          "callee": "m.morphingList.indexOf",
+          "source": "m.morphingList.indexOf(t)"
+        },
+        {
+          "callee": "e.battledata.getDamage",
+          "source": "e.battledata.getDamage()"
+        },
+        {
+          "callee": "t.battledata.getDamage",
+          "source": "t.battledata.getDamage()"
+        }
+      ],
+      "writes": [
+        {
+          "type": "AssignmentExpression",
+          "source": "a+=100"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=100"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "a+=10"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=10"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "a+=e.battledata.getDamage()-t.battledata.getDamage()<0?1:-1"
+        }
+      ],
+      "memberReads": [
+        "m.morphingList.indexOf",
+        "m.morphingList",
+        "e.config.is_summoned",
+        "e.config",
+        "t.config.is_summoned",
+        "t.config",
+        "e.buff_effects.uncontrollable",
+        "e.buff_effects",
+        "t.buff_effects.uncontrollable",
+        "t.buff_effects",
+        "e.battledata.getDamage",
+        "e.battledata",
+        "t.battledata.getDamage",
+        "t.battledata"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3497321,
+      "end": 3497515,
+      "sha256": "e7c28996426c8b0b40d1f903c63df13c4c654f0beca023236c0588c76b705eeb",
+      "owner": {
+        "name": "AstroPOM.atk4_start",
+        "start": 3496671,
+        "end": 3498373
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return i.camp===ed.battle_camp.player?Math.abs(e[0]-t[0])>1?e[0]-t[0]:Math.abs(e[1]-u)-Math.abs(t[1]-u):Math.abs(e[0]-t[0])>1?t[0]-e[0]:Math.abs(e[1]-u)-Math.abs(t[1]-u)}",
+      "calls": [
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(e[0]-t[0])"
+        },
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(e[1]-u)"
+        },
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(t[1]-u)"
+        },
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(e[0]-t[0])"
+        },
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(e[1]-u)"
+        },
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(t[1]-u)"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "i.camp",
+        "ed.battle_camp.player",
+        "ed.battle_camp",
+        "Math.abs",
+        "e.0",
+        "t.0",
+        "e.1",
+        "t.1"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4005609,
+      "end": 4005674,
+      "sha256": "29fb4529fad94caf4a520b63298c6d7bf533cedf81198fe467cf79b1592e2b28",
+      "owner": {
+        "name": "GoblinFeast.init_hero",
+        "start": 4005236,
+        "end": 4006620
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e-t}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4138379,
+      "end": 4138442,
+      "sha256": "1be0d46222de165da672de96fc7dd755f396378958089830f05be99aed8a6e94",
+      "owner": {
+        "name": "WinterGoblin.init_hero",
+        "start": 4137946,
+        "end": 4139517
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e-t}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4509560,
+      "end": 4509678,
+      "sha256": "8328819d557070b5366c63d7b7437f871b0bdea72065ed66619477841e443919",
+      "owner": {
+        "name": "BossBride.func_selectGroom",
+        "start": 4509227,
+        "end": 4510238
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.getHeroSlotIndex(-1)===a?-1:t.getHeroSlotIndex(-1)===a?1:t.attribs.ATK-e.attribs.ATK}",
+      "calls": [
+        {
+          "callee": "e.getHeroSlotIndex",
+          "source": "e.getHeroSlotIndex(-1)"
+        },
+        {
+          "callee": "t.getHeroSlotIndex",
+          "source": "t.getHeroSlotIndex(-1)"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "e.getHeroSlotIndex",
+        "t.getHeroSlotIndex",
+        "t.attribs.ATK",
+        "t.attribs",
+        "e.attribs.ATK",
+        "e.attribs"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4529529,
+      "end": 4529810,
+      "sha256": "8fbb519300f6798b18abf8e6e2c667703033f5d68253d3f073b56e729f6d8b7d",
+      "owner": {
+        "name": "BossNightmare.atk_onAttackFrame",
+        "start": 4529231,
+        "end": 4530919
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){var i=0,r=0;return e.config.is_summoned&&(i+=1e3),t.config.is_summoned&&(r+=1e3),(e.position[0]-a.position[0])*a.direction<0&&(i+=100),(t.position[0]-a.position[0])*a.direction<0&&(r+=100),Math.abs(e.position[0]-o)>Math.abs(t.position[0]-o)?i+=10:r+=10,i-r}",
+      "calls": [
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(e.position[0]-o)"
+        },
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(t.position[0]-o)"
+        }
+      ],
+      "writes": [
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=1e3"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "r+=1e3"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=100"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "r+=100"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=10"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "r+=10"
+        }
+      ],
+      "memberReads": [
+        "e.config.is_summoned",
+        "e.config",
+        "t.config.is_summoned",
+        "t.config",
+        "e.position.0",
+        "e.position",
+        "a.position.0",
+        "a.position",
+        "a.direction",
+        "t.position.0",
+        "t.position",
+        "Math.abs"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4529934,
+      "end": 4530154,
+      "sha256": "5d748fafe408c983c0baefdf633199b43bce92ad85f0e33189c44554ba9acc9b",
+      "owner": {
+        "name": "BossNightmare.atk_onAttackFrame",
+        "start": 4529231,
+        "end": 4530919
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){var i=function(e){var t=ed.edpAngle(s,[e.position[0],e.position[1]]);return t>=0?(e.position[0]-s[0])*a.direction>0&&(t=180-t):t=(e.position[0]-s[0])*a.direction>0?180-t:360+t,t};return i(e)-i(t)}",
+      "calls": [
+        {
+          "callee": "ed.edpAngle",
+          "source": "ed.edpAngle(s,[e.position[0],e.position[1]])"
+        },
+        {
+          "callee": "i",
+          "source": "i(e)"
+        },
+        {
+          "callee": "i",
+          "source": "i(t)"
+        }
+      ],
+      "writes": [
+        {
+          "type": "AssignmentExpression",
+          "source": "t=180-t"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "t=(e.position[0]-s[0])*a.direction>0?180-t:360+t"
+        }
+      ],
+      "memberReads": [
+        "ed.edpAngle",
+        "e.position.0",
+        "e.position",
+        "e.position.1",
+        "s.0",
+        "a.direction"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5035522,
+      "end": 5035803,
+      "sha256": "8fbb519300f6798b18abf8e6e2c667703033f5d68253d3f073b56e729f6d8b7d",
+      "owner": {
+        "name": "ActClashBossNightmare.atk_onAttackFrame",
+        "start": 5035224,
+        "end": 5036976
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){var i=0,r=0;return e.config.is_summoned&&(i+=1e3),t.config.is_summoned&&(r+=1e3),(e.position[0]-a.position[0])*a.direction<0&&(i+=100),(t.position[0]-a.position[0])*a.direction<0&&(r+=100),Math.abs(e.position[0]-o)>Math.abs(t.position[0]-o)?i+=10:r+=10,i-r}",
+      "calls": [
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(e.position[0]-o)"
+        },
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(t.position[0]-o)"
+        }
+      ],
+      "writes": [
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=1e3"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "r+=1e3"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=100"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "r+=100"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=10"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "r+=10"
+        }
+      ],
+      "memberReads": [
+        "e.config.is_summoned",
+        "e.config",
+        "t.config.is_summoned",
+        "t.config",
+        "e.position.0",
+        "e.position",
+        "a.position.0",
+        "a.position",
+        "a.direction",
+        "t.position.0",
+        "t.position",
+        "Math.abs"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5035935,
+      "end": 5036155,
+      "sha256": "5d748fafe408c983c0baefdf633199b43bce92ad85f0e33189c44554ba9acc9b",
+      "owner": {
+        "name": "ActClashBossNightmare.atk_onAttackFrame",
+        "start": 5035224,
+        "end": 5036976
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){var i=function(e){var t=ed.edpAngle(s,[e.position[0],e.position[1]]);return t>=0?(e.position[0]-s[0])*a.direction>0&&(t=180-t):t=(e.position[0]-s[0])*a.direction>0?180-t:360+t,t};return i(e)-i(t)}",
+      "calls": [
+        {
+          "callee": "ed.edpAngle",
+          "source": "ed.edpAngle(s,[e.position[0],e.position[1]])"
+        },
+        {
+          "callee": "i",
+          "source": "i(e)"
+        },
+        {
+          "callee": "i",
+          "source": "i(t)"
+        }
+      ],
+      "writes": [
+        {
+          "type": "AssignmentExpression",
+          "source": "t=180-t"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "t=(e.position[0]-s[0])*a.direction>0?180-t:360+t"
+        }
+      ],
+      "memberReads": [
+        "ed.edpAngle",
+        "e.position.0",
+        "e.position",
+        "e.position.1",
+        "s.0",
+        "a.direction"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5500159,
+      "end": 5500224,
+      "sha256": "17cf1fc35b74ac297f77fa17fb13c6d77822031db23c7325313028d812bb1429",
+      "owner": {
+        "name": "Selene.ult_onAttackFrame",
+        "start": 5499288,
+        "end": 5503002
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.getHpPercent()-t.getHpPercent()}",
+      "calls": [
+        {
+          "callee": "e.getHpPercent",
+          "source": "e.getHpPercent()"
+        },
+        {
+          "callee": "t.getHpPercent",
+          "source": "t.getHpPercent()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "e.getHpPercent",
+        "t.getHpPercent"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5703766,
+      "end": 5703877,
+      "sha256": "6c57590216d2651634bdedfc50b4ce5d3d9991ffff97ed79ed8d05009a97c88e",
+      "owner": {
+        "name": "Puppeteer.func_enterForcedStage",
+        "start": 5703410,
+        "end": 5704837
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(t,a){return ed.edpDistanceSQ(t.position,e.position)-ed.edpDistanceSQ(a.position,e.position)}",
+      "calls": [
+        {
+          "callee": "ed.edpDistanceSQ",
+          "source": "ed.edpDistanceSQ(t.position,e.position)"
+        },
+        {
+          "callee": "ed.edpDistanceSQ",
+          "source": "ed.edpDistanceSQ(a.position,e.position)"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "ed.edpDistanceSQ",
+        "t.position",
+        "e.position",
+        "a.position"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5713134,
+      "end": 5713202,
+      "sha256": "287ebbe7bf132253f77a74fafd8497ccb0e2ff29cbd6ab8b796ab8288ce81c36",
+      "owner": {
+        "name": "Puppeteer.func_applyAudienceBuff",
+        "start": 5712649,
+        "end": 5713700
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return(t.attribs.ATK||0)-(e.attribs.ATK||0)}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "t.attribs.ATK",
+        "t.attribs",
+        "e.attribs.ATK",
+        "e.attribs"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5763215,
+      "end": 5763296,
+      "sha256": "2cecce7033fa720859252109e4a674d946d290568d622851bc1f5721fee184d4",
+      "owner": {
+        "name": "Medusa.func_atk2CollectExtraTargets",
+        "start": 5762915,
+        "end": 5763351
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return t.battledata.getDamage()-e.battledata.getDamage()}",
+      "calls": [
+        {
+          "callee": "t.battledata.getDamage",
+          "source": "t.battledata.getDamage()"
+        },
+        {
+          "callee": "e.battledata.getDamage",
+          "source": "e.battledata.getDamage()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "t.battledata.getDamage",
+        "t.battledata",
+        "e.battledata.getDamage",
+        "e.battledata"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5770538,
+      "end": 5770597,
+      "sha256": "906c30347cbdcab8957147931abbe120ed957e25b7f1975acbc838f711ca0a6e",
+      "owner": {
+        "name": "Medusa.func_applyHideDebuffs",
+        "start": 5770108,
+        "end": 5770780
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return t.attribs.ATK-e.attribs.ATK}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "t.attribs.ATK",
+        "t.attribs",
+        "e.attribs.ATK",
+        "e.attribs"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5777981,
+      "end": 5778040,
+      "sha256": "906c30347cbdcab8957147931abbe120ed957e25b7f1975acbc838f711ca0a6e",
+      "owner": {
+        "name": "Medusa.func_spBattleStart",
+        "start": 5777592,
+        "end": 5778116
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return t.attribs.ATK-e.attribs.ATK}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "t.attribs.ATK",
+        "t.attribs",
+        "e.attribs.ATK",
+        "e.attribs"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5813092,
+      "end": 5813373,
+      "sha256": "8fbb519300f6798b18abf8e6e2c667703033f5d68253d3f073b56e729f6d8b7d",
+      "owner": {
+        "name": "ActCrossStoryNightmare.atk_onAttackFrame",
+        "start": 5812794,
+        "end": 5814554
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){var i=0,r=0;return e.config.is_summoned&&(i+=1e3),t.config.is_summoned&&(r+=1e3),(e.position[0]-a.position[0])*a.direction<0&&(i+=100),(t.position[0]-a.position[0])*a.direction<0&&(r+=100),Math.abs(e.position[0]-o)>Math.abs(t.position[0]-o)?i+=10:r+=10,i-r}",
+      "calls": [
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(e.position[0]-o)"
+        },
+        {
+          "callee": "Math.abs",
+          "source": "Math.abs(t.position[0]-o)"
+        }
+      ],
+      "writes": [
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=1e3"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "r+=1e3"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=100"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "r+=100"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "i+=10"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "r+=10"
+        }
+      ],
+      "memberReads": [
+        "e.config.is_summoned",
+        "e.config",
+        "t.config.is_summoned",
+        "t.config",
+        "e.position.0",
+        "e.position",
+        "a.position.0",
+        "a.position",
+        "a.direction",
+        "t.position.0",
+        "t.position",
+        "Math.abs"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5813506,
+      "end": 5813726,
+      "sha256": "5d748fafe408c983c0baefdf633199b43bce92ad85f0e33189c44554ba9acc9b",
+      "owner": {
+        "name": "ActCrossStoryNightmare.atk_onAttackFrame",
+        "start": 5812794,
+        "end": 5814554
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){var i=function(e){var t=ed.edpAngle(s,[e.position[0],e.position[1]]);return t>=0?(e.position[0]-s[0])*a.direction>0&&(t=180-t):t=(e.position[0]-s[0])*a.direction>0?180-t:360+t,t};return i(e)-i(t)}",
+      "calls": [
+        {
+          "callee": "ed.edpAngle",
+          "source": "ed.edpAngle(s,[e.position[0],e.position[1]])"
+        },
+        {
+          "callee": "i",
+          "source": "i(e)"
+        },
+        {
+          "callee": "i",
+          "source": "i(t)"
+        }
+      ],
+      "writes": [
+        {
+          "type": "AssignmentExpression",
+          "source": "t=180-t"
+        },
+        {
+          "type": "AssignmentExpression",
+          "source": "t=(e.position[0]-s[0])*a.direction>0?180-t:360+t"
+        }
+      ],
+      "memberReads": [
+        "ed.edpAngle",
+        "e.position.0",
+        "e.position",
+        "e.position.1",
+        "s.0",
+        "a.direction"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6532523,
+      "end": 6532588,
+      "sha256": "95e47b9384ab6a756a6b5eef931be15f76d948d7353ed0401f8926713f7823ca",
+      "owner": {
+        "name": "HyperRaidSPhoenix.skill_update",
+        "start": 6531615,
+        "end": 6532881
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.getHpPercent()-t.getHpPercent()}",
+      "calls": [
+        {
+          "callee": "e.getHpPercent",
+          "source": "e.getHpPercent()"
+        },
+        {
+          "callee": "t.getHpPercent",
+          "source": "t.getHpPercent()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "e.getHpPercent",
+        "t.getHpPercent"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6572102,
+      "end": 6572167,
+      "sha256": "6327fe9f33cf2d94916151e121907a0a08fed998a10056ba830f1e48724de644",
+      "owner": {
+        "name": "SummerCounterShield.field_otherSkillStart",
+        "start": 6571787,
+        "end": 6572602
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.getHpPercent()-t.getHpPercent()}",
+      "calls": [
+        {
+          "callee": "e.getHpPercent",
+          "source": "e.getHpPercent()"
+        },
+        {
+          "callee": "t.getHpPercent",
+          "source": "t.getHpPercent()"
+        }
+      ],
+      "writes": [],
+      "memberReads": [
+        "e.getHpPercent",
+        "t.getHpPercent"
+      ],
+      "directRng": false,
+      "obligation": "Calls/writes require interprocedural or fresh-state/identity proof."
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6755660,
+      "end": 6755707,
+      "sha256": "522cd0a0b5981eccaccb9c6ec933d23cb4c8c9674aa8820a50a2461cee4c59d4",
+      "owner": {
+        "name": "Kikoru.hl_rebuildPhaseList",
+        "start": 6755296,
+        "end": 6755784
+      },
+      "comparatorKind": "inline",
+      "comparator": "function(e,t){return e.Delay-t.Delay}",
+      "calls": [],
+      "writes": [],
+      "memberReads": [
+        "e.Delay",
+        "t.Delay"
+      ],
+      "directRng": false,
+      "obligation": "No syntactic call/write in inline comparator; purity still requires exact own primitive input reads and absence of coercion/getters/Proxies."
+    }
+  ],
+  "sortInventory": {
+    "file": "benchmarks/validation/table-sort-inventory.json.gz",
+    "sha256": "3b706cca3baf0f75a62d560d08bc5f87ae2c11f5203dc95f1f6ff2dd2ec099d0",
+    "decodedSha256": "71a6f4a51c8c1f75c55834fe1ada70f2550e42d1c206f112f9bef74995973bdf",
+    "entries": 1297
+  }
+}
