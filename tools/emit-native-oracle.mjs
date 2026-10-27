@@ -183,7 +183,9 @@ try{
   put('var __nativeGlobal=globalThis;var __nativeWallNow=Date.now;');
   put('if(typeof print!=="function")globalThis.print=function(x){console.log(x);};');
   put('if(typeof console==="undefined")globalThis.console={log:function(){print(Array.prototype.join.call(arguments," "));}};');
-  put('var ed=globalThis.ed={};var cc=globalThis.cc={game:{config:null,CONFIG_KEY:{}},Node:function Node(){},error:function(){throw new Error(Array.prototype.join.call(arguments," "));}};var window=globalThis;globalThis.window=globalThis;globalThis.HTMLElement=function HTMLElement(){};');
+  const realmScaffold=capturedHosts.find(record=>record.phase==='realm-scaffold');
+  assert.ok(realmScaffold,'Copied source must capture the exact source-realm scaffold');
+  put(realmScaffold.source);
   put('var __nativeHostInputs=JSON.parse('+JSON.stringify(JSON.stringify(hostInputs))+');var __nativeEntropyIndex=0;Math.random=function(){if(__nativeEntropyIndex>=__nativeHostInputs.random.length)throw new Error("Host random input tape exhausted");var ordinal=__nativeEntropyIndex,value=__nativeHostInputs.random[__nativeEntropyIndex++];if(__nativeRuntime&&__nativeRuntime.nativeTrace)__nativeRuntime.nativeTrace.record("host:random",{ordinal:ordinal,value:value});return value;};');
   put(clockSource);
   put('var __nativeClockObserver=null;var __nativeClock=installOracleClock({mode:"replay",tape:__nativeHostInputs.clock,observe:function(entry,ordinal){if(__nativeClockObserver)__nativeClockObserver(entry,ordinal);}});');
