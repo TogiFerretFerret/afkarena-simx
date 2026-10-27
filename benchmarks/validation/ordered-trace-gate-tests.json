@@ -5,7 +5,7 @@
   "command": "node --test tools/tests/battle-trace-gate-validation.test.mjs tools/tests/battle-trace-portable.test.mjs",
   "node": "v24.19.0",
   "v8": "13.6.233.17-node.51",
-  "tests": null,
+  "tests": 13,
   "sourceHashes": {
     "tools/battle-trace-portable.mjs": "945b1cab314a10c4195ccf7e100d9839689f7bf8e8f82594ca6e58c683a0837d",
     "tools/check-archived-native-trace.mjs": "00d581f689358139e9d7bdf36ecf424b82833bfeda99f67c4d82b3ede6f034b3",
