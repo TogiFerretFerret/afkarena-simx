@@ -10,7 +10,10 @@
   if(!callbacks||!callbacks.sceneHost)throw new Error('Trace needs the actual source callback sceneHost');
   var trace=host.installPortableBattleTrace(options),restores=[],callbackIds=new WeakMap(),nextCallback=1,frame=-1,stopped=false;
   var knownNames=new Set(options.definitionNames||[]),registered=new WeakSet(),loaderRevision=-1;
+  var globalNames=options.globalNames||[];
+  if(options.programState&&!Array.isArray(options.globalNames))throw new Error('Program-state trace requires the complete source global-name catalog');
   function logical(fn,name){if(typeof fn==='function'&&!registered.has(fn)){trace.capture.registerFunctionCode(fn,name);registered.add(fn);}}
+  (options.adapterCodes||[]).forEach(function(entry){logical(entry.fn,entry.identity);});
   function loaderAccessors(){
    var revision=runtime.loaded&&(runtime.loaded.length??runtime.loaded.size);
    if(revision!==undefined&&revision===loaderRevision)return;
@@ -34,6 +37,14 @@
      }else if('value'in d&&knownNames.has(name))queue.push([d.value,name]);
     }
    }
+   for(var gi=0;gi<globalNames.length;gi++){
+    var globalName=globalNames[gi],gd=Object.getOwnPropertyDescriptor(context,globalName);
+    if(!gd||'value'in gd||typeof gd.get!=='function')continue;
+    var text=Function.prototype.toString.call(gd.get);
+    if(text.includes('Source global dependency cycle at ')&&(text.includes('active.has(name)')||text.includes('__nativeActive[name]'))){
+     logical(gd.get,'source-loader:global-get:'+globalName);logical(gd.set,'source-loader:global-set:'+globalName);
+    }
+   }
   }
   var heroScripts={};
   function scriptRoots(engine){
@@ -55,12 +66,22 @@
   }
   function roots(){
    var engine=ed.battleEngine;
+   var program;
+   if(options.programState){
+    var globals={};
+    for(var i=0;i<globalNames.length;i++){
+     var name=globalNames[i],d=Object.getOwnPropertyDescriptor(context,name);
+     if(d)Object.defineProperty(globals,name,d);
+    }
+    program={ed:ed,cc:host.cc,sourceGlobals:globals};
+   }
    return{engine:engine,battleRng:context.random_seed,initialBattleSeed:ed.init_battle_seed,
     pendingCallbacks:ed.clientCall_list,clientCallCount:ed.clientCallCount,
     battleLog:Object.getOwnPropertyDescriptor(ed,'btLog')?.value,
     heroScripts:scriptRoots(engine),
     hostState:runtime.host?.snapshotState?runtime.host.snapshotState():null,
-    soundManager:Object.getOwnPropertyDescriptor(ed,'sound_manager')?.value};
+    soundManager:Object.getOwnPropertyDescriptor(ed,'sound_manager')?.value,
+    program:program};
   }
   function record(kind,payload){loaderAccessors();trace.record(kind,{frame:frame,data:payload},roots());}
   function callbackId(fn){if(!callbackIds.has(fn))callbackIds.set(fn,nextCallback++);return callbackIds.get(fn);}
@@ -106,7 +127,14 @@
    endFrame:function(){record('frame:after',{});},
    stop:function(summary){
     if(stopped)throw new Error('Trace already stopped');
-    try{return trace.finish(summary);}finally{stopped=true;for(var i=restores.length-1;i>=0;i--)restores[i]();}
+    try{
+     var result=trace.finish(summary);
+     result.rootContract=options.programState?'ed-cc-source-globals':'engine-queue-hero-scripts-device';
+     result.boundaries=['Native lexical closure environments and weak collections are opaque',
+      'Private source table-loader cache requires an independent write-set proof or explicit table-state coverage'];
+     if(!options.programState)result.boundaries.push('Loaded program globals outside selected battle/hero/device roots are not covered');
+     return result;
+    }finally{stopped=true;for(var i=restores.length-1;i>=0;i--)restores[i]();}
    },
    restore:function(){if(!stopped){stopped=true;for(var i=restores.length-1;i>=0;i--)restores[i]();}}
   };

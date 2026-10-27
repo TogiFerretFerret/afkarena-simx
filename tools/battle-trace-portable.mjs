@@ -49,6 +49,7 @@ export function firstPortableGraphDifference(expected,actual){
  * prove opaque native closure state or a complete renderer implementation.
  */
 export function comparePortableBattleTraces(expected,actual){
+ if(expected?.rootContract!==actual?.rootContract)return{passed:false,difference:{reason:'different_state_root_contract',expected:expected?.rootContract,actual:actual?.rootContract},qualifiesForThroughputTarget:false};
  for(const [side,trace] of [['reference',expected],['candidate',actual]]){
   if(trace?.version!==1||trace.status!=='completed'||!Array.isArray(trace.events)||trace.events.at(-1)?.kind!=='battle:completed')
    return{passed:false,difference:{side,reason:'unfinished_or_invalid_trace'},qualifiesForThroughputTarget:false};
