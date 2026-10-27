@@ -60,6 +60,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
       },
       AssignmentExpression(path){
         const name=staticName(path.node.left);
+        if(name==='window.EventConfig'&&path.node.operator==='=')initializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
         if(file==='src/srcmodule/game_util.js'&&path.node.left.type==='MemberExpression'&&path.node.left.computed&&staticName(path.node.left.object)==='ed.state_to_string')postInitializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
         if(file==='src/srcmodule/game_battle.js'&&path.node.left.type==='MemberExpression'&&path.node.left.computed&&['CandleDog.BASIC_IMPACT_EFF','CandleDog.BASIC_IMPACT_SOUND'].includes(staticName(path.node.left.object)))postInitializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
         if(name==='window.random_seed'&&path.node.operator==='=')initializers.push({file,start:path.node.start,end:path.node.end,source:source.slice(path.node.start,path.node.end)});
