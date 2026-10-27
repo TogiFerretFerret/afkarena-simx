@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "passed": true,
+  "difference": null,
+  "cases": 69770,
+  "exhaustiveSingleUtf16CodeUnits": 65536,
+  "rejections": [
+    [
+      "undefined",
+      "TypeError",
+      []
+    ],
+    [
+      "null",
+      "TypeError",
+      []
+    ],
+    [
+      "number",
+      "TypeError",
+      []
+    ],
+    [
+      "boolean",
+      "TypeError",
+      []
+    ],
+    [
+      "boxed",
+      "TypeError",
+      []
+    ],
+    [
+      "symbol",
+      "TypeError",
+      []
+    ],
+    [
+      "proxy",
+      "TypeError",
+      []
+    ],
+    [
+      "getters",
+      "TypeError",
+      []
+    ]
+  ],
+  "property": {
+    "enumerable": true,
+    "writable": true,
+    "configurable": true,
+    "type": "function",
+    "arity": 1
+  },
+  "isolation": {
+    "hash": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "events": []
+  },
+  "hashSequenceSha256": "c0dee29344eb0a4409e5147d35d14df7ac246d07048579d86311c39b424353e8",
+  "nodeCryptoHashSequenceSha256": "c0dee29344eb0a4409e5147d35d14df7ac246d07048579d86311c39b424353e8",
+  "nativeOutput": {
+    "file": "benchmarks/validation/native-diagnostic-sha256-host/native.stdout.gz",
+    "sha256": "a0b5e77d04114c3214e0acd8f2c00e7b10fb8cd12615419d28605e0c3f1737b1",
+    "bytes": 2443172,
+    "uncompressedSha256": "4c0000b1f7d76e6a13be6ac2b4c5250c845e98ce7e3243de18f69434f7219064"
+  },
+  "privateVM": {
+    "output": "/workspace/afkarena-simx/work/native-diagnostic-sha256-host/libhermesvm.so",
+    "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "privateSha256": "2fed1ab4eb69388eb52ae1230d76329bb5296343715eb4dfeb50b439758a692b",
+    "helperSha256": "5f3836152d2c63f8169c75ebec8e1edd2388c15b902a601040802f21855c75f9"
+  },
+  "coreHelperSha256": "6578ad9a09dded407ac9050a567c6f06ae280d8240fd9df8982a3b8ace43fe1b",
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "timing": {
+    "calls": 20000,
+    "utf16Length": 160,
+    "elapsedMs": 32,
+    "last": "6e423988a9bd0343f7cc9d2782a9aa2b761eb462843213ef18fe7f4b287538ed"
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "Private NativeCallable host hook installed before source initialization; primitive String SHA256 UTF8 and ordinary global property flags match Node host hook; unsupported inputs fail TypeError without JS reads.",
+  "limitations": [
+    "Not full Node crypto.update API: Buffer, TypedArray and other nonstring inputs are outside the admitted diagnostic contract.",
+    "Diagnostic hashes only, not battle-mechanics optimization or qualified throughput.",
+    "Private DSO and small C wrapper; live VM/emitter and existing compiled units remain unchanged."
+  ]
+}
