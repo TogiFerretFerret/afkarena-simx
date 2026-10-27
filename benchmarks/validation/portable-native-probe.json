@@ -9,13 +9,13 @@
   },
   "compiler": {
     "file": "work/downloads/hermes-build/bin/shermes",
+    "sha256": "19034c163046bb1d9973dcc85a1176bd77385dae8655be3084477b3883282dc1",
     "flags": [
       "-O",
       "-Wc,-O1,-g0,-ffp-contract=off"
-    ],
-    "sha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a"
+    ]
   },
-  "exporterSha256": "5d12f9e0d4903a00ee07acc3927dfe48fcfbaf83d74b2609a662b4b543984316",
+  "exporterSha256": "ccfccf833047a1fd43ce6ab32ef4a7f89eb02f019ac772b0f46fb95313222391",
   "cases": [
     {
       "name": "finite_infinity_signed_zero",
@@ -32,7 +32,7 @@
         {
           "compact": true,
           "source": "work/portable-native-probe/finite_infinity_signed_zero.js",
-          "sourceSha256": "46ebaa806525918b279cc2c9e5491bcc1ecee5e3994193abc5759ac977627fce",
+          "sourceSha256": "0302be0e5c96b494dad484ca381cd8bc852011ddd0159fb041eaac9b916036ef",
           "referenceSha256": "8ed65c03c2bbdd4766b469e90c5eb8aba8f817110879aeb2a32ef72220627fe2",
           "candidateSha256": "8ed65c03c2bbdd4766b469e90c5eb8aba8f817110879aeb2a32ef72220627fe2"
         }
@@ -41,37 +41,21 @@
     {
       "name": "positive_nan_literal",
       "gate": {
-        "passed": false,
-        "difference": {
-          "sequence": 0,
-          "kind": "callback:before",
-          "reason": "state_hash",
-          "expected": "9a127d310432fa1c9ee897589935bff1eeb3a63f2d43a0069c7565d4af2d6e14",
-          "actual": "dd3aca3a9c479b1663c6de73502bf56f7009afec6b215cc64b4b178062dd8c32"
-        },
-        "qualifiesForThroughputTarget": false
-      },
-      "fullDifference": {
-        "sequence": 0,
-        "kind": "callback:before",
-        "path": "$.nodes.2.properties.1.value.1",
-        "expected": "7ff8000000000000",
-        "actual": "fff8000000000000"
+        "passed": true,
+        "eventsCompared": 4,
+        "qualifiesForThroughputTarget": false,
+        "limitations": [
+          "Function lexical bindings and weak-collection contents remain opaque",
+          "A matching diagnostic trace does not measure battle throughput or establish missing host lifecycle coverage"
+        ]
       },
       "artifacts": [
         {
           "compact": true,
           "source": "work/portable-native-probe/positive_nan_literal.js",
-          "sourceSha256": "dd0dd3d986d37c32903e5495175de6b20e38a22e869b8aaeee8a5aa46668cb10",
+          "sourceSha256": "17344886d474a90c41814f1cd99161142d925430dac21d807ef49336ef5e0134",
           "referenceSha256": "a2f5d25864baae06496ebac762dced372d5cd2d5744ec9038ffdb0b6a621c105",
-          "candidateSha256": "43ea791fc529766edad6ad06cf8a7c14630f74440a4b7b332e87bf791f3cc3ae"
-        },
-        {
-          "compact": false,
-          "source": "work/portable-native-probe/positive_nan_literal-full.js",
-          "sourceSha256": "7982f6e3dcdca6fcb6652be58b5bcf3952af1993b46d3c0832e1cbd103561863",
-          "referenceSha256": "36037716313db0136dd32d392cb55793b5218a8d2575d4e2a131a093693b6c95",
-          "candidateSha256": "9d0a9eaaafea9b6c8bcb6b057be246d4503d4c6fbad0946982a2ab41e07960f3"
+          "candidateSha256": "a2f5d25864baae06496ebac762dced372d5cd2d5744ec9038ffdb0b6a621c105"
         }
       ]
     },
@@ -99,14 +83,14 @@
         {
           "compact": true,
           "source": "work/portable-native-probe/nan_payload_from_buffer.js",
-          "sourceSha256": "74e948c48da91c48d0fcba3124f2e013f5b583090663c3c68102a346395671a9",
+          "sourceSha256": "264babfcb8ea574cb7755d93c8a0655bdf5553515ea0c8432beeddffc3372659",
           "referenceSha256": "0dadf202fae66b6e8b9f0967086cffbd17ef3a4d54be6194c7cdfda6fa3362ce",
           "candidateSha256": "a2f5d25864baae06496ebac762dced372d5cd2d5744ec9038ffdb0b6a621c105"
         },
         {
           "compact": false,
           "source": "work/portable-native-probe/nan_payload_from_buffer-full.js",
-          "sourceSha256": "de65b47cce00bbaa4aecf3268a9aa674ee3c79554e8506159638dd524080b84c",
+          "sourceSha256": "b4334eddb1f7c56c00c87f161d190d99b6ca8e7c4e089cd7011610ad66454997",
           "referenceSha256": "5df807f475a8bc6dccbfe6c7db0416b1526a4c7fe3933905d825ec3fe978549c",
           "candidateSha256": "36037716313db0136dd32d392cb55793b5218a8d2575d4e2a131a093693b6c95"
         }
