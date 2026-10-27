@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "cases": 20000,
+  "eventCount": 21453,
+  "hookCounts": {
+    "search": 2881,
+    "can": 1840,
+    "searchTB": 1207,
+    "find": 2425,
+    "cast": 2148,
+    "walkVector": 1334,
+    "away": 2933,
+    "check": 3349,
+    "trigger": 1669,
+    "walkUnit": 618,
+    "will": 924,
+    "outside": 81,
+    "idle": 44
+  },
+  "rawBitsExact": true,
+  "functions": [
+    {
+      "name": "ed.Ai.update",
+      "start": 3665,
+      "end": 4257,
+      "sha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c"
+    },
+    {
+      "name": "ed.Ai.castSkillWhenControlled",
+      "start": 6169,
+      "end": 6609,
+      "sha256": "5a0e9c0272d8962440d57672eaad94ce666057d946b34a45a96c7ef60b80073e"
+    }
+  ],
+  "scope": "Ai.update and castSkillWhenControlled source control with mutating fixture callbacks and full controller snapshots; stable owner, dense fixed-length skill lists; not full battles"
+}

@@ -90,11 +90,12 @@
     },
     "adversarial": {
       "version": 1,
+      "inputDomain": "adversarial binary64 extremes",
       "cases": 20000,
       "outputValues": 120000,
       "rngDraws": 14942,
       "nanPolicy": "semantic",
-      "nanBitDifferences": 165,
+      "nanBitDifferences": 162,
       "firstNaNDifference": {
         "case": 79,
         "output": 2,

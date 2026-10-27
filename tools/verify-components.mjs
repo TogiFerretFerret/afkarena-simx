@@ -27,6 +27,7 @@ assert.ok(rustVersion.startsWith(`rustc ${toolchain.rust} `), 'Rust version diff
 const suites = [
   ['unit', 'check-unit.rs', 'check-unit.mjs', [], 'unit-differential-summary.json'],
   ['skill', 'check-skill.rs', 'check-skill.mjs', [], 'skill-summary.json'],
+  ['buff', 'check-buff.rs', 'check-buff.mjs', [], 'buff-differential-summary.json'],
   ['damage-primitives', 'check-damage.rs', 'check-damage.mjs', ['--finite'], 'damage-finite-summary.json'],
   ['damage-controller', 'check-damage-controller.rs', 'check-damage-controller.mjs', [], 'damage-controller-summary.json'],
   ['ai-targeting', 'check-ai-runner.rs', 'check-ai.mjs', [], 'ai-targeting-summary.json'],
@@ -56,16 +57,17 @@ if (diagnostics) {
 }
 const files = [
   'tools/verify-components.mjs', 'config/toolchains.json',
+  'tools/rng-trace.mjs', 'src/srcmodule/game_battle.js', 'src/srcmodule/game_util.js', 'src/srcmodule/game_ui_1.js',
   ...suites.flatMap(([, runner, checker]) => [`tools/${runner}`, `tools/${checker}`]),
   ...(await readdir(resolve(root, 'crates/battle-core/src'))).filter(name => name.endsWith('.rs')).map(name => `crates/battle-core/src/${name}`),
 ];
 const sha256 = {};
 for (const file of [...new Set(files)].sort()) sha256[file] = createHash('sha256').update(await readFile(resolve(root, file))).digest('hex');
 const report = {
-  version: 1, createdAt: new Date().toISOString(), referenceRuntime: process.version, rustVersion,
+  version: 1, createdAt: new Date().toISOString(), referenceRuntime: process.version, platform: process.platform, architecture: process.arch, rustVersion,
   strictComponentGatePassed: true, strictCases: strict.reduce((sum, suite) => sum + suite.result.cases, 0),
   fullBattleEquivalence: false, qualifiesForBattleThroughputTarget: false,
-  scope: 'Component source control and scripted mechanics hooks only. Does not validate a composed Rust battle, all Buff mechanics, or the realistic 5v5 corpus.',
+  scope: 'Component source control and scripted mechanics hooks only. Does not validate a composed Rust battle or the realistic 5v5 corpus.',
   strict, diagnostics: diagnosticResults, sha256,
 };
 await writeFile(resolve(root, 'work/component-verification-summary.json'), JSON.stringify(report, null, 2) + '\n');
