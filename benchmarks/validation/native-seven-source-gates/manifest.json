@@ -8,14 +8,14 @@
     "$.tableBoundary.mutableCapsule.gets"
   ],
   "sourceReference": {
-    "file": "benchmarks/fixtures/native-seven-source-gates/source-reference.json.gz",
+    "file": "benchmarks/validation/native-seven-source-gates/source-reference.json.gz",
     "sha256": "c3606c4e94c637016df687862634fd02db2c73c55314bfede6699a617888f9ee",
     "uncompressedSha256": "44cef991f295d33c9575d56f92b313498f32154b502f6df33887a50293c14373"
   },
   "artifacts": [
     {
       "label": "o0-rust-flat-copy",
-      "file": "benchmarks/fixtures/native-seven-source-gates/o0-rust-flat-copy.stdout.gz",
+      "file": "benchmarks/validation/native-seven-source-gates/o0-rust-flat-copy.stdout.gz",
       "sha256": "bc289cc00231fc9e8239558c49257a8d9fb7d28d4db241924657245d5f06fb8f",
       "uncompressedSha256": "61f8b5308cca78647d1ae45f939f897dabbcf8e356a51f79de5108e57a74c2c2",
       "uncompressedBytes": 225261,
@@ -24,7 +24,7 @@
     },
     {
       "label": "o1-seven-source",
-      "file": "benchmarks/fixtures/native-seven-source-gates/o1-seven-source.stdout.gz",
+      "file": "benchmarks/validation/native-seven-source-gates/o1-seven-source.stdout.gz",
       "sha256": "d0e6c89d89d89b15858fadb02e315f63981cf11e5a6d0b2b0c4e13de46a09084",
       "uncompressedSha256": "f2b52e54e186697c43fe130a44acac1fc139375cc7344b5a6f95a8955e7296af",
       "uncompressedBytes": 225260,
@@ -33,7 +33,7 @@
     },
     {
       "label": "o1-seven-native-digest",
-      "file": "benchmarks/fixtures/native-seven-source-gates/o1-seven-native-digest.stdout.gz",
+      "file": "benchmarks/validation/native-seven-source-gates/o1-seven-native-digest.stdout.gz",
       "sha256": "83b33dc64816ba7de5d8d88a4e674047f54dd926373ce2eab16f1b9d5b1c4e44",
       "uncompressedSha256": "fa28409631c4add59287398fbdabf5f6d4884e8fd6990b91e35ad7c277693160",
       "uncompressedBytes": 225259,
