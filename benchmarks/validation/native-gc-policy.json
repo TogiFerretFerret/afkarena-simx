@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "scope": "Pinned collector/runtime source and build-configuration audit; no performance or blanket semantic-equivalence claim.",
+  "facts": {
+    "allocYoungDefault": true,
+    "revertToYoungAtTTIDefault": false,
+    "allocYoungFalse": "Initially promote entire nursery segments into old generation; first old-generation collection resets promotion mode.",
+    "initialHeap": "Sets old-generation target-size budget minus one fixed nursery segment, affecting the first collection threshold.",
+    "maximumHeap": "Segment-allocation ceiling, distinct from initial old-generation budget.",
+    "compiledCompressedPointers": false,
+    "youngGenerationSize": "Fixed-size segment with adaptive effective end; no supported nursery-size CLI flag was found in the pinned RuntimeFlags.",
+    "weakMapScanning": "Young-generation evacuation explicitly traverses WeakMap entries as roots.",
+    "finiteWindow": "Larger initial budgets can postpone the first old-generation collection beyond a finite batch; that does not establish sustained throughput across collection cycles."
+  },
+  "contexts": {
+    "flags": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/RuntimeFlags.h",
+      "sha256": "f6f8d5400c9511e21df3805ef819dc7e27655d69f52cbafe14f88afac63b7b75",
+      "start": 6809,
+      "end": 7441,
+      "startLine": 189,
+      "text": "llvh::cl::opt<bool> GCAllocYoung{\n      \"gc-alloc-young\",\n      llvh::cl::desc(\n          \"Determines whether to (initially) allocate in the young generation\"),\n      llvh::cl::cat(GCCategory),\n      llvh::cl::init(true)};\n\n  llvh::cl::opt<bool> GCRevertToYGAtTTI{\n      \"gc-revert-to-yg-at-tti\",\n      llvh::cl::desc(\n          \"Determines whether to revert to young generation, if necessary, at \"\n          \"TTI notification\"),\n      llvh::cl::cat(GCCategory),\n      llvh::cl::init(false)};\n\n  enum class JITMode {\n    // JIT is ON with default thresholds.\n    On,\n    // Every function is JIT compiled immediately, ignoring thres"
+    },
+    "heapFlags": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/RuntimeFlags.h",
+      "sha256": "f6f8d5400c9511e21df3805ef819dc7e27655d69f52cbafe14f88afac63b7b75",
+      "start": 2448,
+      "end": 3262,
+      "startLine": 70,
+      "text": "h::cl::Hidden\n#endif\n  };\n\n  llvh::cl::opt<MemorySize, false, MemorySizeParser> InitHeapSize{\n      \"gc-init-heap\",\n      llvh::cl::desc(\"Initial heap size.  Format: <unsigned>{{K,M,G}{iB}\"),\n      llvh::cl::cat(GCCategory),\n      llvh::cl::init(MemorySize{vm::GCConfig::getDefaultInitHeapSize()})};\n\n  llvh::cl::opt<double> OccupancyTarget{\n      \"occupancy-target\",\n      llvh::cl::desc(\n          \"Sizing heuristic: fraction of heap to be occupied by live data.\"),\n      llvh::cl::cat(GCCategory),\n      llvh::cl::init(vm::GCConfig::getDefaultOccupancyTarget())};\n\n  llvh::cl::opt<bool> GCPrintStats{\n      \"gc-print-stats\",\n      llvh::cl::desc(\"Output summary garbage collection statistics at exit\"),\n      llvh::cl::cat(GCCategory),\n      llvh::cl::init(false)};\n\n  llvh::cl::opt<ExecuteOptions::SampleProfil"
+    },
+    "runtimeConfig": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/RuntimeFlags.cpp",
+      "sha256": "1b823dfb7ab7d651f1670447d858db07369d1838b15c1aae9938a064d5ee2199",
+      "start": 755,
+      "end": 1372,
+      "startLine": 23,
+      "text": "lder()\n                      .withSanitizeRate(flags.GCSanitizeRate)\n                      .withRandomSeed(flags.GCSanitizeRandomSeed)\n                      .build())\n              .withShouldRecordStats(flags.GCPrintStats)\n              .withShouldReleaseUnused(vm::kReleaseUnusedOld)\n              .withAllocInYoung(flags.GCAllocYoung)\n              .withRevertToYGAtTTI(flags.GCRevertToYGAtTTI)\n              .build())\n      .withMaxNumRegisters(flags.MaxNumRegisters)\n      .withEnableEval(flags.EnableEval)\n      .withVerifyEvalIR(flags.VerifyIR)\n      .withOptimizedEval(flags.OptimizedEval)\n      .withAsyncBre"
+    },
+    "initialModeAndBudget": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
+      "sha256": "0b6144c08a3a906fa1aa63859492d30b08a5546503655d3e30bc8a9ce560d4da",
+      "start": 45087,
+      "end": 46530,
+      "startLine": 1277,
+      "text": "axHeapSize(gcConfig.getMaxHeapSize())},\n      provider_(std::move(provider)),\n      oldGen_{*this},\n      backgroundExecutor_{\n          kConcurrentGC ? std::make_unique<Executor>() : nullptr},\n      promoteYGToOG_{!gcConfig.getAllocInYoung()},\n      revertToYGAtTTI_{gcConfig.getRevertToYGAtTTI()},\n      overwriteDeadYGObjects_{gcConfig.getOverwriteDeadYGObjects()},\n      occupancyTarget_(gcConfig.getOccupancyTarget()),\n      ygAverageSurvivalBytes_{/*weight*/ 0.5,\n                              /*init*/ kYGInitialSizeFactor *\n                                  FixedSizeHeapSegment::maxSize() *\n                                  kYGInitialSurvivalRatio} {\n  (void)vmExperimentFlags;\n  std::lock_guard<Mutex> lk(gcMutex_);\n  crashMgr_->setCustomData(\"HermesGC\", getKindAsStr().c_str());\n  // createSegment relies on member variables and should not be called until\n  // they are initialised.\n  llvh::ErrorOr<FixedSizeHeapSegment> newYoungGen = createSegment();\n  if (!newYoungGen)\n    hermes_fatal(\"Failed to initialize the young gen\", newYoungGen.getError());\n  setYoungGen(std::move(newYoungGen.get()));\n  const size_t initHeapSize = std::max<uint64_t>(\n      gcConfig.getInitHeapSize(), FixedSizeHeapSegment::maxSize());\n  oldGen_.setTargetSizeBytes(initHeapSize - FixedSizeHeapSegment::maxSize());\n}\n\nHadesGC::~HadesGC() {\n  crashMgr_->removeCustomData(\"HermesGC\");\n  // finalizeAll calls waitForCollectionToFinish, so there should be n"
+    },
+    "firstOldCollectionResetsMode": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
+      "sha256": "0b6144c08a3a906fa1aa63859492d30b08a5546503655d3e30bc8a9ce560d4da",
+      "start": 56624,
+      "end": 57017,
+      "startLine": 1576,
+      "text": "// If we've reached the first OG collection, switch back to YG mode.\n  promoteYGToOG_ = false;\n\n  // First, clear any mark bits that were set by a previous collection or\n  // direct-to-OG allocation, they aren't needed anymore.\n  oldGen_.forAllSegments(\n      [](auto &&seg) { seg.markBitArray().reset(); },\n      [](auto &&seg) { seg.markBitArray().reset(); });\n\n  // Mark phase: discover all"
+    },
+    "promotionBudgetCheck": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
+      "sha256": "0b6144c08a3a906fa1aa63859492d30b08a5546503655d3e30bc8a9ce560d4da",
+      "start": 76705,
+      "end": 77505,
+      "startLine": 2048,
+      "text": "(youngGen_.effectiveEnd() - adj);\n  } else {\n    std::lock_guard<Mutex> lk{gcMutex_};\n    oldGen_.creditExternalMemory(sz);\n    uint64_t totalBytes = oldGen_.allocatedBytes() + oldGen_.externalBytes();\n    if (totalBytes > oldGen_.targetSizeBytes())\n      youngGen_.setEffectiveEnd(youngGen_.level());\n  }\n}\n\nvoid HadesGC::debitExternalMemory(GCCell *cell, uint32_t sz) {\n  if (inYoungGen(cell)) {\n    size_t oldYGExtBytes = getYoungGenExternalBytes();\n    assert(\n        oldYGExtBytes >= sz && \"Debiting more native memory than was credited\");\n    setYoungGenExternalBytes(oldYGExtBytes - sz);\n    // Don't modify the effective end here. creditExternalMemory is in charge\n    // of tracking this. We don't expect many debits to not be from finalizers\n    // anyway.\n  } else {\n    std::lock_guard<M"
+    },
+    "weakMapScanning": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
+      "sha256": "0b6144c08a3a906fa1aa63859492d30b08a5546503655d3e30bc8a9ce560d4da",
+      "start": 99018,
+      "end": 100455,
+      "startLine": 2625,
+      "text": "// Mark the values in WeakMap entries as roots for the purposes of young gen\n  // collection. This is slightly suboptimal since some of the keys or maps\n  // may be dead, but we still end up evacuating their corresponding value.\n  // This is done for simplicity, since it lets us avoid needing to iterate to\n  // a fixed point as is done during a full collection.\n  weakMapEntrySlots_.forEach([&acceptor](WeakMapEntrySlot &slot) {\n    acceptor.accept(slot.mappedValue);\n  });\n\n  // Find old-to-young pointers, as they are considered roots for YG\n  // collection.\n  scanDirtyCards(acceptor, doCompaction);\n  // Iterate through the copy list to find new pointers.\n  auto &pb = getPointerBase();\n  while (acceptor.copyListHead) {\n    // Pop copyCell from the copy list.\n    auto *copyCell = (CopyListCell *)acceptor.copyListHead.getNonNull(pb);\n    assert(\n        AlignedHeapSegment::getCellMarkBit(copyCell) &&\n        \"Discovered unmarked object\");\n    acceptor.copyListHead = copyCell->next_;\n\n    assert(\n        copyCell->hasMarkedForwardingPointer() && \"Discovered unmarked object\");\n    assert(\n        (inYoungGen(copyCell) ||\n         (doCompaction && compactee_.contains(copyCell))) &&\n        \"Unexpected object in YG collection\");\n    // Update the pointers inside the forwarded object, since the old\n    // object is only there for the forwarding pointer.\n    GCCell *const cell = copyCell->getMarkedForwardingPointer().getNon"
+    },
+    "wholeSegmentPromotion": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
+      "sha256": "0b6144c08a3a906fa1aa63859492d30b08a5546503655d3e30bc8a9ce560d4da",
+      "start": 109618,
+      "end": 111857,
+      "startLine": 2864,
+      "text": "bool HadesGC::promoteYoungGenToOldGen() {\n  if (!promoteYGToOG_) {\n    return false;\n  }\n\n  // Attempt to create a new segment, if that fails, turn off the flag to\n  // disable GC and return false so we proceed with a GC.\n  // TODO: Add more stringent criteria for turning off this flag, for instance,\n  // once the heap reaches a certain size. That would avoid growing the heap to\n  // the maximum possible size before stopping promotions.\n  llvh::ErrorOr<FixedSizeHeapSegment> newYoungGen = createSegment();\n  if (!newYoungGen) {\n    promoteYGToOG_ = false;\n    return false;\n  }\n\n  // Move the external memory costs to the OG. Needs to happen here so that the\n  // YG segment moved to OG is not left with an effective end.\n  transferExternalMemoryToOldGen();\n  // The flag is on to prevent GC until TTI. Promote the whole YG segment\n  // directly into OG.\n  // Before promoting it, set the cell heads correctly for the segment\n  // going into OG. This could be done at allocation time, but at a cost\n  // to YG alloc times for a case that might not come up.\n  forAllObjsInSegment(youngGen_, [](GCCell *cell) {\n    FixedSizeHeapSegment::setCellHead(cell, cell->getAllocatedSize());\n  });\n  // It is important that this operation is just a move of pointers to\n  // segments. The addresses have to stay the same or else it would\n  // require a marking pass through all objects.\n  // This will also rename the segment in the crash data.\n  oldGen_.addSegment(setYoungGen(std::move(newYoungGen.get())));\n\n  return true;\n}\n\nFixedSizeHeapSegment HadesGC::setYoungGen(FixedSizeHeapSegment seg) {\n  addSegmentExtentToCrashManager(\n      seg, FixedSizeHeapSegment::storageSize(), kYGNameForCrashMgr);\n  youngGenFinalizables_.clear();\n  std::swap(youngGen_, seg);\n  youngGenCP_ = CompressedPointer::encodeNonNull(\n      reinterpret_cast<GCCell *>(youngGen_.lowLim()), getPointerBase());\n  return seg;\n}\n\nvoid HadesGC::checkTripwireAndSubmitStats() {\n  assert(\n      gcMutex_ &&\n      \"gcMutex must be held before calling checkTripwireAndSubmitStats\");\n  assert(\n      concurrentPhase_ == Phase::None &&\n      \"Cannot check stats while OG collection is ongoing.\");\n  if (!ogCollectionStats_) {\n    return;\n  }\n  const auto usedBytes = ogCollectionSt"
+    },
+    "maxHeapClamp": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HadesGC.h",
+      "sha256": "62b4bdb181c45f4cf391e2a14e395ffb28ea304a1b397c21be7bb29e9473da1a",
+      "start": 2519,
+      "end": 3568,
+      "startLine": 78,
+      "text": " }\n\n  /// When HERMESVM_COMPRESSED_POINTERS is ON, clamp \\p maxHeapSize to\n  /// [2 * kSegmentUnitSize, 4GB - kSegmentUnitSize], since we can't go beyond\n  /// 4GB with compressed pointers. Otherwise, clamp it to\n  /// [2 * kSegmentUnitSize, maxHeapSize].\n  gcheapsize_t clampMaxHeapSize(gcheapsize_t maxHeapSize) const {\n#ifdef HERMESVM_COMPRESSED_POINTERS\n    return std::max<uint64_t>(\n        std::min<uint64_t>(\n            // Subtract the size of a single FixedSizeHeapSegment as a safe\n            // buffer.\n            (1ULL << 32) - FixedSizeHeapSegment::storageSize(),\n            maxHeapSize),\n        // At least one YG segment and one OG segment.\n        2 * FixedSizeHeapSegment::storageSize());\n#else\n    return std::max<uint64_t>(\n        maxHeapSize,\n        // At least one YG segment and one OG segment.\n        2 * FixedSizeHeapSegment::storageSize());\n#endif\n  }\n\n  /// The maximum size of a normal allocation. All GCCell types that do not\n  /// support large allocation must be smaller than or equal to this.\n  static constexp"
+    },
+    "segmentGeometry": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/AlignedHeapSegment.h",
+      "sha256": "c5e86664643dc94d6b6ad8bb21f2f9fc470db9d21fcb2a470d76d8af98b5ba0e",
+      "start": 2800,
+      "end": 3332,
+      "startLine": 82,
+      "text": "static constexpr size_t kLogSize = HERMESVM_LOG_HEAP_SEGMENT_SIZE;\n  /// The unit segment size, in bytes. Any valid heap segment's size must be a\n  /// multiple of this.\n  static constexpr size_t kSegmentUnitSize = (1 << kLogSize);\n\n  /// Contents of the memory region managed by this segment.\n  class Contents {\n   public:\n    /// The number of bits representing the total number of heap-aligned\n    /// addresses in the segment storage.\n    static constexpr size_t kMarkBitArraySize =\n        kSegmentUnitSize >> LogHeapAlign;\n   "
+    },
+    "compiledPointerMode": {
+      "file": "work/downloads/hermes-build/lib/config/libhermesvm-config.h",
+      "sha256": "12b69de6e7090980d33bfa7cc4cabc5e32a98ef292249b8f4f49ec855041ec59",
+      "start": 258,
+      "end": 394,
+      "startLine": 12,
+      "text": "#ifndef HERMESVM_COMPRESSED_POINTERS\n/* #undef HERMESVM_COMPRESSED_POINTERS */\n#endif\n#ifndef HERMESVM_BOXED_DOUBLES\n/* #undef HERMESVM_"
+    }
+  },
+  "sourceObservabilityAudit": {
+    "file": "benchmarks/validation/gc-observability.json",
+    "sha256": "820907e74811c48eafda8cb6a378c3e4548857ba1c1037334136cf85cbe458f8"
+  },
+  "qualifiesFor10000Target": false,
+  "producer": {
+    "file": "tools/audit-native-gc-policy.mjs",
+    "sha256": "c325b92e470d1a6514129ab9f8c65c88bc5627f9caf4ad4d6ef24c31337f6e26"
+  }
+}
