@@ -31,7 +31,8 @@ export async function installBootstrapCallbacks(context){
   const drain=runInContext(`(function(){${drainBody}})`,context,{filename:`${file}:original-clientCall-drain`});
   const sourceSnapshot=runInContext(`(${body('snapshot')})`,context,{filename:`${file}:${spans.snapshot[0]}`});
   let snapshots=0;
-  const sceneHost={snapshot(...args){snapshots++;return sourceSnapshot.apply(this,args)}};
+  const sceneHost=runInContext('({})',context);
+  sceneHost.snapshot=function(...args){snapshots++;return sourceSnapshot.apply(this,args)};
   const provenance={file,functions:Object.fromEntries(Object.entries(spans).filter(([name])=>name!=='resetClientCall').map(([name,[start,end]])=>[name,{start,end,sha256:createHash('sha256').update(source.slice(start,end)).digest('hex')}])),
     resetSha256:createHash('sha256').update(reset).digest('hex'),drainSha256:createHash('sha256').update(drainBody).digest('hex'),
     scope:'Original local-scene queued callback phase; actor/effect/view updates remain outside this adapter'};

@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "status": "Opt-in single-action physical body attachment projection; not a whole battle fidelity qualification",
+  "sourceFiles": {
+    "src/srcmodule/game_base.js": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_ui_2.js": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+    "src/srcmodule/game_ui_3.js": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+    "src/srcmodule/game_ui_4.js": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+    "src/srcmodule/game_ui_5.js": "b3169c14a946ce37b01e0b207b343d1d18afcbe3c6237e9639f79b9fd61cb13c",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "src/srcmodule/ui_contra.js": "11fd88a93d7d022ae3d0b1eb1d3e1addcf69f297a824ae510adee392f124ff95",
+    "src/srcmodule/ui_gve.js": "941012b6ca87524c122d577b5889c4da8e4b13904413129142b5e16c34e340e3",
+    "src/srcmodule/ui_minigame.js": "5885132fb5661551c9a14ebc8eedee42db42e65a24e023dc78f57b4b8c53cecb",
+    "src/srcmodule/ui_war.js": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3",
+    "tools/bootstrap-render-host.js": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+    "tools/bootstrap-vendor-CCClass.js": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d"
+  },
+  "classes": {
+    "ed.SpineActor": [
+      {
+        "file": "src/srcmodule/game_base.js",
+        "start": 32050,
+        "end": 44720,
+        "sha256": "7fe14f0a74f6081ed7c84834f7bf409fc010898c2d0a397b0d63f4cd07c5f560"
+      }
+    ],
+    "ed.SpineEffect": [
+      {
+        "file": "src/srcmodule/game_base.js",
+        "start": 45813,
+        "end": 47904,
+        "sha256": "afe9cd1f1f376e3645377200827fc4c6e2cffb89b3b41f7fe5ef4d07213e94c3"
+      }
+    ],
+    "ed.SpineEffectComponent": [
+      {
+        "file": "src/srcmodule/game_base.js",
+        "start": 48464,
+        "end": 54443,
+        "sha256": "56e4cc3859f948ded4c4ea703ca3763ef745a481eab1759a6a1f62f14f00f781"
+      }
+    ],
+    "ed.CreateSpineEffect": [
+      {
+        "file": "src/srcmodule/game_base.js",
+        "start": 48068,
+        "end": 48206,
+        "sha256": "38d6f1492ce719b173726cf4defa2d81c5839e7b76ce975e4e7e69d8c1c759c1"
+      }
+    ],
+    "ed.CreateSpineEffectOld": [
+      {
+        "file": "src/srcmodule/game_base.js",
+        "start": 48231,
+        "end": 48439,
+        "sha256": "4e1894b874481594265ddff373ff5110a4c4a79e284c967d3589ec81378d3756"
+      }
+    ],
+    "ed.SpineEffectComponent.create": [
+      {
+        "file": "src/srcmodule/game_base.js",
+        "start": 54475,
+        "end": 54581,
+        "sha256": "2a8129c60b731294836ba7551a736e6328602fa8dbe9cbfe172d976c5bbf7490"
+      }
+    ],
+    "ed.setNamedShader": [
+      {
+        "file": "src/srcmodule/game_util.js",
+        "start": 382484,
+        "end": 382674,
+        "sha256": "5ad424c99d7d8234e16c55a95f1a897fa1aa04d9af83fe5421689b4806e279ca"
+      }
+    ],
+    "ed.setBattleShader": [
+      {
+        "file": "src/srcmodule/game_util.js",
+        "start": 382694,
+        "end": 382905,
+        "sha256": "c206a1b359ca46243ab4458a8076b91d25253278287c63469e32e032543ecc0b"
+      }
+    ],
+    "ed.setDefaultShader": [
+      {
+        "file": "src/srcmodule/game_util.js",
+        "start": 368772,
+        "end": 368820,
+        "sha256": "2f20ef2d685267b817c316d94d924304cd301ba87311393e4fc5dfa6c7747a4a"
+      }
+    ]
+  },
+  "ensureSource": "function(){this._skeletonAnimation&&!this._spineEffectComponent&&(this._spineEffectComponent=ed.SpineEffectComponent.create(this._name),this._spineEffectComponent&&(this._spineEffectComponent.setSkin(this._skinName||\"default\"),this._spineEffectComponent.setTimeScale(this._actionSpeed||1)))}",
+  "getFrameEffectDataSource": "function(e,t){for(var i=null,n=this._cacheEffectList.length-1;n>=0;n--){var a=this._cacheEffectList[n];if(a.name===e){this._cacheEffectList.splice(n,1),(i=a).effect.reset();break}}return i||((i={}).name=e,i.effect=ed.CreateSpineEffect(e,1),i.effect.setStartAction(t),i.effect.setActionSpeeder(this._timeScale)),i}",
+  "attachmentNames": [
+    "spine_eff_body_VegelfMini_pet_atk_1",
+    "spine_eff_body_VegelfMini_pet_atk_1_bg"
+  ],
+  "mechanicalObservables": [
+    "Original source main SpineActor completion callback and Vegelf model.babyNodeList cleanup",
+    "All source model/skill/buff fields, object references, RNG and game callbacks",
+    "Original attachment constructors, source retain/events and ClassManager instance allocations"
+  ],
+  "excludedPhysicalState": [
+    "Private body attachment SpineEffect/Skeleton animation state and private component play/cache lists",
+    "Physical GPU tree/pixels and body clip completions without logical callbacks"
+  ],
+  "allocationProof": "Only standalone VegelfMini nonlooping atk, positive first update, exactly two unique frame-zero root attachments, no life_delay, particles, nested components, repeated factory requests, pools or logical callbacks. Each attachment name is constructed exactly once by the original factory before projection; private early termination cannot cause further factory requests before the main actor is removed.",
+  "remainingLimits": [
+    "AnimDuration logical f64 clock does not establish native Spine float timing equality",
+    "Other heroes/actions, external access to private component render state, changed source hashes, animation callbacks, particles and geometry remain unsupported"
+  ],
+  "qualifiesForWholeBattleFidelity": false,
+  "shaderProjection": {
+    "knownPrograms": [
+      "TimeStopShader",
+      "NormalShader"
+    ],
+    "callbackSource": "function(t){t.use(),e.setShaderProgram(t),r.release&&r.release()}",
+    "boundary": "GPU compilation/draw state excluded; execute the original use/bind/release callback synchronously. Names and exact callback are pinned; no source RNG/model callback is suppressed.",
+    "qualifiesForWholeBattleFidelity": false
+  }
+}

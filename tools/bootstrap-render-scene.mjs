@@ -16,11 +16,24 @@ const functions={
  * source, including original scene method bodies and original JSON resource
  * text. No guessed effect geometry or animation durations are inserted.
  */
-export async function installBootstrapRenderScene(runtime,{logicalHeroTimeline=false}={}){
+export async function installBootstrapRenderScene(runtime,{logicalHeroTimeline=false,projectVegelfBodyAttachments=false,recordShaderPrograms=false,initializeLogicalScene=false}={}){
+  if(projectVegelfBodyAttachments&&!logicalHeroTimeline)throw new Error('Physical body projection requires the explicit logical main-animation clock');
   const sourceFile='src/srcmodule/game_ui_1.js';
   const original=await readFile(resolve(root,sourceFile),'utf8');
   const methods=[],records=[];
-  for(const[name,[start,end]]of Object.entries(functions)){
+  const selectedFunctions={...functions};
+  if(initializeLogicalScene){
+    const record=runtime.sourceRecords.definitions.get('ed.battleBaseScene')?.at(-1);
+    if(record?.file!==sourceFile)throw new Error('Original base scene definition changed');
+    const initStart=record.source.indexOf('initData:function(){this.start_dialog_check')+'initData:'.length;
+    const initEnd=record.source.indexOf('},initLayers:',initStart)+1;
+    const loadStart=record.source.indexOf('loadRes:function(){this.pauseFlag=!1}')+'loadRes:'.length;
+    const loadEnd=loadStart+'function(){this.pauseFlag=!1}'.length;
+    if(initStart<'initData:'.length||initEnd<=initStart||loadStart<'loadRes:'.length)throw new Error('Original logical scene initialization proof changed');
+    selectedFunctions.initData=[record.start+initStart,record.start+initEnd];
+    selectedFunctions.loadRes=[record.start+loadStart,record.start+loadEnd];
+  }
+  for(const[name,[start,end]]of Object.entries(selectedFunctions)){
     const body=original.slice(start,end);
     if(!body.startsWith('function'))throw new Error(`Invalid original render method location: ${name}`);
     methods.push(`${JSON.stringify(name)}:${body}`);
@@ -46,9 +59,34 @@ var __originalSpineUpdate=ed.SpineActor.prototype.update;
 ed.SpineActor.prototype.update=function(elapsed){if(this._skeletonAnimation)this._skeletonAnimation.bindLogicalTimelineOwner(this,__logicalTimelineProof);return __originalSpineUpdate.call(this,elapsed);};
 function __clipMetadata(duration,key,action){return{duration:duration,logicalTimeline:{kind:'source-table-f64-v1',eventPolicy:'no-observable-events',source:{table:'AnimDuration',key:key,action:action,sha256:__durationTableSha256}}};}`;
   }else timelineSetup='function __clipMetadata(duration){return{duration:duration};}';
+  let bodyProjectionSetup='',bodyProjectionProof,shaderSetup='';
+  if(projectVegelfBodyAttachments||recordShaderPrograms){
+    const proofText=await readFile(resolve(root,'config/stage-body-attachment-projection.json'),'utf8');
+    bodyProjectionProof=JSON.parse(proofText);
+    for(const[file,expected]of Object.entries(bodyProjectionProof.sourceFiles)){
+      if(createHash('sha256').update(await readFile(resolve(root,file))).digest('hex')!==expected)throw new Error(`Body projection source proof changed: ${file}`);
+    }
+    for(const[name,expected]of Object.entries(bodyProjectionProof.classes)){
+      const actual=runtime.sourceRecords.definitions.get(name)??[];
+      if(actual.length!==expected.length||actual.some((record,index)=>record.file!==expected[index].file||record.start!==expected[index].start||record.end!==expected[index].end||createHash('sha256').update(record.source).digest('hex')!==expected[index].sha256))throw new Error(`Body projection class proof changed: ${name}`);
+    }
+    if(projectVegelfBodyAttachments){
+      const leafSource=await readFile(resolve(root,'tools/bootstrap-body-projection.js'),'utf8');
+      resources.bodyProjection={file:'tools/bootstrap-body-projection.js',sha256:createHash('sha256').update(leafSource).digest('hex'),proofFile:'config/stage-body-attachment-projection.json',proofSha256:createHash('sha256').update(proofText).digest('hex')};
+      bodyProjectionSetup=`(${leafSource})(${JSON.stringify(bodyProjectionProof)});`;
+    }
+    if(recordShaderPrograms){
+      const callbackSource='function(t){t.use(),e.setShaderProgram(t),r.release&&r.release()}';
+      const original=runtime.sourceRecords.definitions.get('ed.setNamedShader')?.at(-1)?.source;
+      if(!original?.includes(callbackSource))throw new Error('Original shader GPU-only callback proof changed');
+      shaderSetup=`bootstrapHost.render.enableRecordedShaders(${JSON.stringify({callbackSource,names:['TimeStopShader','NormalShader']})});`;
+    }
+  }
   const source=`(function __installOracleRenderScene(__scene){
 ${cacheInit}
 ${timelineSetup}
+${bodyProjectionSetup}
+${shaderSetup}
 var __methods={${methods.join(',\n')}};
 for(var __name in __methods)__scene[__name]=__methods[__name];
 __scene.effect_list=[];__scene.actor_list=[];__scene.scale3ChainEntityList=[];__scene.needFlipScene=false;
@@ -70,11 +108,12 @@ for(var __hero in ed.hero_json)if(Array.isArray(ed.hero_json[__hero])){
  var __files=ed.hero_json[__hero];for(var __k=0;__k<__files.length;__k++)bootstrapHost.render.registerAsset('res/fca/hero/'+__files[__k],{source:'src/res/hero.json',key:__hero,animations:__heroAnimations});
 }
 ed.battleVFXFilter.init();
+${initializeLogicalScene?'__scene.initData();__scene.loadRes();ed.fpsTracker.init();':''}
 return __scene;
 })`;
   const install=runInContext(source,runtime.context,{filename:'source-backed-render-scene-initializer.js'});
   const scene=install(runtime.callbacks.sceneHost);
-  runtime.renderScene={scene,functions:records,resources,source,sha256:createHash('sha256').update(source).digest('hex'),logicalHeroTimeline,
+  runtime.renderScene={scene,functions:records,resources,source,sha256:createHash('sha256').update(source).digest('hex'),logicalHeroTimeline,projectVegelfBodyAttachments,recordShaderPrograms,initializeLogicalScene,bodyProjectionProof,
     timelineContract:logicalHeroTimeline?'Opt-in f64 logical clock from exact source AnimDuration values; native Spine float timing/asset-event equivalence is not established. Unknown clips, event handlers and geometry fail closed.':null};
   return runtime.renderScene;
 }

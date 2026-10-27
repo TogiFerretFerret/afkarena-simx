@@ -91,6 +91,11 @@
         runAction: function (action) { return missing("action timeline", action && action.name); },
         stopAllActions: function () { this._runningActions = []; output("node_stop_actions", [this.deviceNodeId]); }
     });
+    cc.Node.prototype.setShaderProgram = function (program) {
+        if (!program || program.deviceShaderId === undefined) missing("recorded shader program", this.deviceNodeId);
+        this._shaderProgram = program; output("shader_bind", [this.deviceNodeId, program.deviceShaderId]);
+    };
+    cc.Node.prototype.getShaderProgram = function () { return this._shaderProgram || null; };
     cc.Node.create = function () { return new cc.Node(); };
     cc.Sprite = cc.Node.extend({
         ctor: function () { this._super(); this._texture = null; this._textureRect = null; },
@@ -178,6 +183,23 @@
         registerAsset: function (path, sourceMetadata) {
             if (!sourceMetadata || typeof sourceMetadata !== "object") throw new Error("Asset requires source metadata");
             assets[path] = sourceMetadata;
+        },
+        enableRecordedShaders: function (proof) {
+            if (!proof || typeof proof.callbackSource !== "string" || !Array.isArray(proof.names)) throw new Error("Recorded shader callback proof required");
+            var programs = Object.create(null), nextId = 0;
+            cc.shaderCache = { loadProgram: function (name, callback) {
+                if (proof.names.indexOf(name) === -1 || typeof callback !== "function" || Function.prototype.toString.call(callback) !== proof.callbackSource) missing("shader callback/name proof", name);
+                var program = programs[name];
+                if (!program) {
+                    program = { deviceShaderId: nextId++, name: name, uses: 0, use: function () { this.uses++; output("shader_use", [this.deviceShaderId]); } };
+                    programs[name] = program;
+                }
+                output("shader_load", [name, program.deviceShaderId]);
+                // This pinned callback only uses/binds the opaque GPU program
+                // and balances the node's device retain. Execute its real body.
+                callback(program);
+            } };
+            device.render.recordedShaderPrograms = programs;
         },
         snapshotState: function () { return { nodes: nodes, assets: assets }; }
     };

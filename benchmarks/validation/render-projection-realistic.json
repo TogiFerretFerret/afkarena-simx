@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "kind": "realistic-independent-team-render-projection-diagnostic",
+  "frameInput": 0.125,
+  "sourceInputs": {
+    "tools/bootstrap-runtime.mjs": "17adf694eca24652042b99a279f117cc586090a9aa8a49eab5069d1cc919e7e3",
+    "tools/bootstrap-render-host.js": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+    "tools/bootstrap-render-scene.mjs": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+    "tools/bootstrap-body-projection.js": "1d283c5a59b4fff17682d4fb8e90b61d494790444d467441d6a3ceb2a18bfe8a",
+    "config/stage-body-attachment-projection.json": "a9d07d726788ea0ce647af3123097bae6cefe06d33ecf6f35b732103bb55c1b3"
+  },
+  "cases": [
+    {
+      "scenarioSeed": 2026,
+      "frameContract": "callback-phase-only",
+      "enteredPhaseCounts": {
+        "updateActor": 0,
+        "updateEffect": 0,
+        "checkDialog": 0
+      },
+      "optionalViewUpdatePresent": false,
+      "inputSha256": "02c81b81473c46f7f199aad409945a66caa7dfac2779f2cea79f0871d2bb9f5f",
+      "status": "unsupported-source-host-dependency",
+      "completedFrames": 100,
+      "engineTicks": 101,
+      "completedFrameCallbacks": 4328,
+      "result": "",
+      "error": {
+        "message": "cc.MoveTo is not a constructor",
+        "stack": [
+          "TypeError: cc.MoveTo is not a constructor",
+          "    at Object.loopShake (src/srcmodule/game_util.js:307722:1:2159)",
+          "    at src/srcmodule/game_battle.js:1068158:1:159",
+          "    at Object.<anonymous> (src/srcmodule/game_ui_1.js:original-clientCall-drain:1:132)",
+          "    at drainCallbacks (file:///workspace/afkarena-simx/tools/bootstrap-callbacks.mjs:42:11)",
+          "    at Object.updateFrame (file:///workspace/afkarena-simx/tools/bootstrap-callbacks.mjs:48:12)",
+          "    at file:///workspace/afkarena-simx/tools/check-render-projection.mjs:18:117"
+        ]
+      },
+      "renderSourceSha256": "cccf80364d11fdeceb9ebc18d62b9b1f6d4ee6ed9d162c59f85f91a50aeb5025"
+    },
+    {
+      "scenarioSeed": 2027,
+      "frameContract": "callback-phase-only",
+      "enteredPhaseCounts": {
+        "updateActor": 0,
+        "updateEffect": 0,
+        "checkDialog": 0
+      },
+      "optionalViewUpdatePresent": false,
+      "inputSha256": "8ddac644a882192bd1e3871e8fde53476073110eac889989c54f3a18265fff12",
+      "status": "completed",
+      "completedFrames": 489,
+      "engineTicks": 489,
+      "completedFrameCallbacks": 7806,
+      "result": "defeat",
+      "error": null,
+      "renderSourceSha256": "cccf80364d11fdeceb9ebc18d62b9b1f6d4ee6ed9d162c59f85f91a50aeb5025"
+    },
+    {
+      "scenarioSeed": 2026,
+      "frameContract": "whole-original-base-scene-onUpdate",
+      "enteredPhaseCounts": {
+        "updateActor": 1,
+        "updateEffect": 0,
+        "checkDialog": 0
+      },
+      "optionalViewUpdatePresent": false,
+      "inputSha256": "02c81b81473c46f7f199aad409945a66caa7dfac2779f2cea79f0871d2bb9f5f",
+      "status": "unsupported-source-host-dependency",
+      "completedFrames": 0,
+      "engineTicks": 1,
+      "completedFrameCallbacks": 0,
+      "result": "",
+      "error": {
+        "message": "Missing source render animation duration: res/fca/effect/spine_eff_body_TwinsR_enter.skel:Start",
+        "stack": [
+          "Error: Missing source render animation duration: res/fca/effect/spine_eff_body_TwinsR_enter.skel:Start",
+          "    at missing (tools/bootstrap-render-host.js:13:46)",
+          "    at Class.setAnimation (tools/bootstrap-render-host.js:144:69)",
+          "    at Class._playAnimation (src/srcmodule/game_base.js:32050:1:7335)",
+          "    at Class.update (src/srcmodule/game_base.js:32050:1:6175)",
+          "    at ed.SpineActor.update [as _super] (source-backed-render-scene-initializer.js:5:184)",
+          "    at Class.update (src/srcmodule/game_base.js:45813:1:1249)",
+          "    at Class.<anonymous> (tools/bootstrap-vendor-CCClass.js:258:42)"
+        ]
+      },
+      "renderSourceSha256": "503baee96f76fee3aee6577baf260f7e09a3025460f263600a3024061915841c"
+    },
+    {
+      "scenarioSeed": 2027,
+      "frameContract": "whole-original-base-scene-onUpdate",
+      "enteredPhaseCounts": {
+        "updateActor": 1,
+        "updateEffect": 0,
+        "checkDialog": 0
+      },
+      "optionalViewUpdatePresent": false,
+      "inputSha256": "8ddac644a882192bd1e3871e8fde53476073110eac889989c54f3a18265fff12",
+      "status": "unsupported-source-host-dependency",
+      "completedFrames": 0,
+      "engineTicks": 1,
+      "completedFrameCallbacks": 0,
+      "result": "",
+      "error": {
+        "message": "Missing source render sprite atlas frame geometry: res/ui/panel/battle/n_bar_blood1_bg.png",
+        "stack": [
+          "Error: Missing source render sprite atlas frame geometry: res/ui/panel/battle/n_bar_blood1_bg.png",
+          "    at missing (tools/bootstrap-render-host.js:13:46)",
+          "    at Object.getSpriteFrame (tools/bootstrap-render-host.js:126:50)",
+          "    at Class._initCheckFileName (src/srcmodule/game_base.js:1095100:1:440)",
+          "    at Class.ctor (src/srcmodule/game_base.js:1095100:1:163)",
+          "    at new Class (tools/bootstrap-vendor-CCClass.js:218:34)",
+          "    at Class.create (src/srcmodule/game_base.js:1097569:1:27)",
+          "    at Object.createSprite (src/srcmodule/game_util.js:859889:1:36)"
+        ]
+      },
+      "renderSourceSha256": "503baee96f76fee3aee6577baf260f7e09a3025460f263600a3024061915841c"
+    }
+  ],
+  "allRequestedCasesCompleted": false,
+  "qualifiesForWholeBattleFidelity": false,
+  "qualifiesForBattleThroughputTarget": false,
+  "scope": "Original engine and queued callbacks, source render methods, opt-in logical hero clock and narrowly proven VegelfMini body projection. Remaining unknown assets/geometry/timelines fail closed. This is not a native/source differential gate or native Spine timing equivalence proof."
+}

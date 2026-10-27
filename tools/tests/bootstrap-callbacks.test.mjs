@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createContext} from 'node:vm';
+import {createContext,runInContext} from 'node:vm';
 import {installBootstrapCallbacks} from '../bootstrap-callbacks.mjs';
 async function setup(){const context=createContext({ed:{clientCall_list:[]}});context.window=context;return{context,callbacks:await installBootstrapCallbacks(context)};}
 
@@ -55,4 +55,9 @@ test('whole scene update rejects incomplete scene initialization and propagates 
   context.ed.fpsTracker={onUpdate(){}};context.ed.battleVFXFilter={onUpdate(){}};
   context.ed.battleEngine={update(){}};
   assert.throws(()=>callbacks.updateSceneFrame(.1),/Missing source render bone geometry/);
+});
+
+test('logical callback scene holder uses the source VM object realm',async()=>{
+ const{context,callbacks}=await setup();context.scene=callbacks.sceneHost;
+ assert.equal(runInContext('scene instanceof Object && Object.getPrototypeOf(scene)===Object.prototype',context),true);
 });
