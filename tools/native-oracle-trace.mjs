@@ -9,7 +9,7 @@ export async function loadNativeTraceSources(root){
 export function installNativeReferenceTrace(runtime,sources,{clockObserver}={}){
   for(const {file,source} of sources)runInContext(source,runtime.context,{filename:file});
   runtime.context.__nativeTraceRuntime=runtime;
-  runtime.context.__nativeTraceOptions={compact:true,definitionNames:[...runtime.sourceRecords.definitions.keys()],subscribeClock(observer){
+  runtime.context.__nativeTraceOptions={compact:true,onProgress(progress){process.stderr.write(JSON.stringify({status:"trace_progress",...progress})+"\n");},definitionNames:[...runtime.sourceRecords.definitions.keys()],subscribeClock(observer){
     clockObserver.current=observer;
     return()=>{clockObserver.current=null;};
   }};
