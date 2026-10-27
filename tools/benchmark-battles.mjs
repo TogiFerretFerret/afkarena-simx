@@ -19,6 +19,7 @@ for(let i=2;i<process.argv.length;i+=2){
   options[key]=Number(process.argv[i+1]);
 }
 if(options.battles<1||options.warmup<0||options.maxTicks<1)throw new Error('Positive battle/tick counts required');
+console.error('Stage diagnostic only: direct tick execution omits the source frame callback drain and scene phases. Results cannot qualify for faithful battle throughput.');
 const start=performance.now();
 const fixture=await createStageFixture(options.stage);
 if(fixture.rounds.length!==1)throw new Error('Benchmark currently requires a single-round stage');
@@ -64,6 +65,12 @@ for(let i=0;i<options.battles;i++){
 }
 const wallMs=performance.now()-timedStart;
 const report={version:1,engine:'js-source-provisional-headless',validatedAgainstOriginalRuntime:false,
+  qualifiesFor10000Target:false,
+  qualificationFailures:[
+    'Direct BattleEngine.tick execution bypasses original frame callback drain and scene lifecycle phases',
+    'Stage prototype workload does not implement the requested random A5 level360 SI30 geared 5v5 with beasts',
+    'No ordered event and complete raw-bit state differential gate'
+  ],
   machine:{runtime:process.version,platform:process.platform,arch:process.arch,cpu:cpus()[0]?.model,availableParallelism:availableParallelism()},
   runtimeProvenance:runtime.provenance,loadedSourceSymbols:runtime.loaded.length,
   fixture:options.team==='mirror'?'mirrored stage enemy prototypes; nonempty teams':'source-table initial player hero versus stage enemies',options,coldSetupMs,
