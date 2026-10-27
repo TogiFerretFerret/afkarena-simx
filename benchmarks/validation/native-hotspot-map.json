@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "kind": "source-bound-native-optimization-attribution",
+  "qualifiesFor10000Target": false,
+  "scope": "Existing single-scenario callback-only measurements; source Node sample percentages are not native costs or call counts. No new profiling, speedup claim, broad corpus qualification or changed simulator behavior.",
+  "inputs": {
+    "benchmarks/results/2026-10-27T17-53-26.167Z-realistic-5v5-profile.json": "fcbec6ef5ff537a05e0e9c220dd97527422db4d676f605f4c9756f3ec420a3cc",
+    "benchmarks/results/2026-10-27T18-39-46.555Z-rust-native-oracle-rust-vectors-warm20.json": "088acf19c77bcf7a2ddbc1b3f1b937ddb42d5c2906465bf589107b991641c169",
+    "config/skill-cache-specialization.json": "ce0bc0a5e221780b01d82919945bb1579be6a3d931f071187f790d50950b0629",
+    "tools/emit-native-oracle.mjs": "5308cd3bebe6b11459a9e67070b0049138f62aa3c6c528d1ebf56427e5f80c03",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
+  },
+  "timer": {
+    "source": {
+      "file": "tools/emit-native-oracle.mjs",
+      "start": 8250,
+      "end": 10971,
+      "sha256": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d"
+    },
+    "start": "Immediately before instantiateScenario for measured battle index0, after all requested warmups.",
+    "included": [
+      "Scenario materialization, BattleEngine allocation and enterBattle",
+      "Original frame loop and all executed queued callbacks",
+      "Per-battle result bits, JSON checksum mixing and result allocation",
+      "All-capture serialization when captureMode=all",
+      "Any lazy table validation/hash work first reached inside these phases; without warmups this is first-battle cold overhead"
+    ],
+    "excluded": [
+      "Source/VM startup and module/table file loading before __nativeRun",
+      "Requested warmup battles",
+      "Final capture when captureMode=final (after elapsedMs is computed)",
+      "Final class-manager assertion, table assertClean/stats, trace.stop and host-tape finish checks after timer",
+      "Process shutdown and report JSON serialization"
+    ],
+    "caveat": "Warming3 runs moves reached lazy validation outside the measured20; it does not remove hot Proxy gets, mutation hashing, observers or diagnostic checks executed during those20."
+  },
+  "diagnosticOverhead": [
+    {
+      "name": "Table membranes and mutable-table Merkle tracking",
+      "evidence": "benchmarks/validation/table-proxy-get-profile-native.json",
+      "contract": "Retain private get counters and mutation hashes in fidelity reports; source observed behavior is not permission to delete validation from benchmark candidates."
+    },
+    {
+      "name": "Full-state exporter",
+      "evidence": "benchmarks/profiles/2026-10-27-trace-exporter.md",
+      "contract": "Recorder serialization/snapshot/encoding/GC dominate the separate traced profile. Current warm23 capture=final does not execute a full snapshot at every event. Do not use trace-profile percentages as warm23 mechanics attribution."
+    },
+    {
+      "name": "Diagnostic SHA256",
+      "evidence": "benchmarks/validation/native-diagnostic-sha256.json",
+      "contract": "Already has a guarded private native host path. Its isolated string hash speed is not a battle speedup."
+    }
+  ],
+  "alreadyObservedNativeKernels": {
+    "evidence": "benchmarks/results/2026-10-27T18-39-46.555Z-rust-native-oracle-rust-vectors-warm20.json",
+    "measuredBattles": 20,
+    "countedScope": "Counters span process warmups and measured runs; do not divide by measured battle count without subtracting warmup counts.",
+    "exactHitCounts": {
+      "compareFloat": 2829,
+      "distance_squared": 311466,
+      "length_squared": 92,
+      "dot": 0,
+      "cross": 0
+    },
+    "sourceBindings": {
+      "compareFloat": {
+        "file": "src/srcmodule/game_ui_1.js",
+        "start": 4490466,
+        "end": 4490673,
+        "name": "ed.compareFloat",
+        "sha256": "335399b229bffc4d41cf895a5483a3bc8eafbcd245668c2fe1e823eda597313a"
+      },
+      "vectors": [
+        {
+          "name": "ed.edpLengthSQ",
+          "index": 1530,
+          "symbol": "_1530__133_",
+          "rust": "battle_vec_length_sq"
+        },
+        {
+          "name": "ed.edpDistanceSQ",
+          "index": 1531,
+          "symbol": "_1531__134_",
+          "rust": "battle_vec_distance_sq"
+        }
+      ]
+    },
+    "status": "Historical guarded native integration. These counts support prioritization but do not establish current warm23 speed or full-scene qualification."
+  },
+  "coordinatedElsewhere": [
+    "Entity.update mutable canonical VM integration",
+    "ed.copyObj guarded numeric-object and empty-array copies",
+    "V8-compatible Rust TimSort"
+  ],
+  "candidates": [
+    {
+      "name": "ed.parseUseSkillCacheStageBattle",
+      "observed": {
+        "file": "benchmarks/results/2026-10-27T17-53-26.167Z-realistic-5v5-profile.json",
+        "type": "sample-attribution-not-call-count",
+        "functionName": "",
+        "scriptId": "337",
+        "url": "src/srcmodule/game_ui_1.js:4500415",
+        "lineNumber": 0,
+        "columnNumber": 9,
+        "selfMicros": 578144,
+        "inclusiveMicros": 578144,
+        "selfPercent": 9.287121119998432,
+        "inclusivePercent": 9.287121119998432
+      },
+      "opportunity": "Reuse the proved closure-private parsed Param map for validated immutable tokens; a Rust parser is secondary to eliminating repeated parsing.",
+      "obligations": [
+        "Retain original table and battle-ID reads, parser/intrinsic guards, warning behavior and source function metadata.",
+        "Do not expose cached map or alias it with caller state. Unknown grammar, inherited mode collisions and changed parser/intrinsics fall back before effects.",
+        "Existing opt-in specialization changes helper identity/text and has not passed a complete ordered battle trace; native lowering must preserve original reflective metadata."
+      ],
+      "status": "20k source queries already checked in config/skill-cache-specialization.json; not enabled by the current frozen native battle gate.",
+      "source": {
+        "file": "src/srcmodule/game_ui_1.js",
+        "start": 4500415,
+        "end": 4501076,
+        "sha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+        "bytes": 661
+      },
+      "observedCallCount": null
+    },
+    {
+      "name": "ed.createDataObj",
+      "observed": {
+        "file": "benchmarks/results/2026-10-27T17-53-26.167Z-realistic-5v5-profile.json",
+        "type": "sample-attribution-not-call-count",
+        "functionName": "",
+        "scriptId": "326",
+        "url": "src/srcmodule/game_util.js:640811",
+        "lineNumber": 0,
+        "columnNumber": 9,
+        "selfMicros": 482433,
+        "inclusiveMicros": 822144,
+        "selfPercent": 7.749650092856111,
+        "inclusivePercent": 13.206659424088102
+      },
+      "opportunity": "Reduce wrapper, wrap-stack and readonly-array allocations while retaining canonical VM objects; avoid introducing a second mutable Rust world.",
+      "obligations": [
+        "ed.swallowCopyObject is dynamic dispatch. Retain copied graph identity, fresh child arrays, original key order and inherited for-in behavior.",
+        "Only the outer copied array receives readonlyArrayProto; nested arrays remain mutable. Immutable sharing is not proved.",
+        "wrapTable stores the exact caller override in o, old values in p, and a lock flag. recover(0) selects the latest entry; locked entries stop recovery; undefined restoration creates or retains a property.",
+        "Functions, descriptors, prototypes, aliasing, allocation counters and mutation errors remain observable. A Rust representation needs a canonical VM adapter and source identity guards."
+      ],
+      "status": "Source overlay regression probes exist; no native replacement or call count established.",
+      "source": {
+        "file": "src/srcmodule/game_util.js",
+        "start": 640811,
+        "end": 641356,
+        "sha256": "6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9",
+        "bytes": 545
+      },
+      "observedCallCount": null
+    },
+    {
+      "name": "ed.Buff.applyPercentValue",
+      "observed": {
+        "file": "benchmarks/results/2026-10-27T17-53-26.167Z-realistic-5v5-profile.json",
+        "type": "sample-attribution-not-call-count",
+        "functionName": "applyPercentValue",
+        "scriptId": "1097",
+        "url": "src/srcmodule/game_battle.js:37791",
+        "lineNumber": 0,
+        "columnNumber": 3941,
+        "selfMicros": 157940,
+        "inclusiveMicros": 157940,
+        "selfPercent": 2.5370978678193534,
+        "inclusivePercent": 2.5370978678193534
+      },
+      "opportunity": "A guarded callback-free numeric inner loop can use dense ordered attribute slots, retaining VM state as canonical storage.",
+      "obligations": [
+        "Owner attr-lock exemption calls and optional debug hooks are observable. Guard inactive branches or retain exact dispatch and reread mutable state after them.",
+        "Snapshot source attrib length once, but read each live attrib element in order. Preserve owner-versus-caster basis choice, ||0 truthiness, named-attribute maps and HPR/MPR exceptions.",
+        "Preserve multiply/add order, signed zero, NaN, f64 rounding, sequential writes and alias effects when an earlier attribute write changes a later basis read.",
+        "Table Proxy read counters are part of current raw report equivalence: direct slot reads cannot silently replace guarded get operations. Preserve original ordered reads or prove an admitted unproxied domain.",
+        "Fallback must happen before effects, or resume at an exact continuation; never restart a partially executed loop."
+      ],
+      "status": "Pure Rust attribute references exist; no actual native loop integration or observed call count established.",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 41723,
+        "end": 42574,
+        "sha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+        "bytes": 851
+      },
+      "observedCallCount": null
+    },
+    {
+      "name": "ed.Unit.buffAttribs",
+      "observed": {
+        "file": "benchmarks/results/2026-10-27T17-53-26.167Z-realistic-5v5-profile.json",
+        "type": "sample-attribution-not-call-count",
+        "functionName": "",
+        "scriptId": "353",
+        "url": "src/srcmodule/game_battle.js:192868",
+        "lineNumber": 0,
+        "columnNumber": 9,
+        "selfMicros": 185579,
+        "inclusiveMicros": 406346,
+        "selfPercent": 2.9810819628469534,
+        "inclusivePercent": 6.527412752924675
+      },
+      "opportunity": "Coordinate percent and fixed attribute reductions through canonical slots; optimize the callees before attempting to lower orchestration.",
+      "obligations": [
+        "Capture buff_list.length once for both passes. Reread live indexed buffs; list edits during callbacks may cause errors that must remain observable.",
+        "Execute every percent application before any fixed application. Preserve beginBuff, applyPercentValue/applyFixedValue, finishBuff ordering and receiver identities.",
+        "Overridden buff methods, debug manager changes and callback mutation require dynamic dispatch or exact continuation guards; batching all buffs into an unordered matrix is not proved."
+      ],
+      "status": "Hot inclusive subtree, not a callback-free kernel. No call count or safe whole-method replacement established.",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 192868,
+        "end": 193318,
+        "sha256": "8881f6a19ba8e7a9c13c25ef6eb831bd1c8dba3b479456a9e03ecb8b74e3bf35",
+        "bytes": 450
+      },
+      "observedCallCount": null
+    },
+    {
+      "name": "ed.Unit.rebuildIdleAttrbs",
+      "observed": {
+        "file": "benchmarks/results/2026-10-27T17-53-26.167Z-realistic-5v5-profile.json",
+        "type": "sample-attribution-not-call-count",
+        "functionName": "",
+        "scriptId": "264",
+        "url": "src/srcmodule/game_battle.js:191068",
+        "lineNumber": 0,
+        "columnNumber": 9,
+        "selfMicros": 129612,
+        "inclusiveMicros": 1007341,
+        "selfPercent": 2.082045896187173,
+        "inclusivePercent": 16.181605060573734
+      },
+      "opportunity": "Reuse only a proved immutable static prefix; apply dynamic passive, aura, buff, configuration and guild-skill changes in original order.",
+      "obligations": [
+        "The rebuild branch first replaces fixed_attribs with {}, then calls getAttribsByUnit; preserve reentrant visibility and errors.",
+        "ed.swallowCopyObject and all five attribute phases are source dispatches; preserve beginDynamic/finishDynamic and live object replacement.",
+        "Any cached static contributions need complete source/version/config keys and per-worker mutable overlays. Existing 47x10 Rust precompute reference alone does not prove the remaining dynamic phases.",
+        "Retain f64 addition order; reassociation, SIMD or matrix reduction requires a separate execution-equivalence proof."
+      ],
+      "status": "Source-proven immutable attribute contribution work exists; no whole-method native replacement or call count established.",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 191068,
+        "end": 191430,
+        "sha256": "7b6c81af8706c58598faf1c0c3c101dbd9d354ad5ae4c739a141ec04fcfb7540",
+        "bytes": 362
+      },
+      "observedCallCount": null
+    }
+  ]
+}
