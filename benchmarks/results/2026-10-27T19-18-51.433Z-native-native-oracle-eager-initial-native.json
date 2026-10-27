@@ -1,0 +1,547 @@
+{
+  "version": 1,
+  "engine": "Static Hermes AOT original-source factories",
+  "input": "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js",
+  "output": "/workspace/afkarena-simx/work/native-oracle-eager-initial-native",
+  "inputSha256": "600c5b1d7849a76a5b4111a9207a3c342a0f5d372d832c68b6f1a1c7381b332d",
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "compileArgs": [
+    "-O",
+    "-Wc,-O0,-g0,-ffp-contract=off",
+    "-keep-temp",
+    "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js",
+    "-o",
+    "/workspace/afkarena-simx/work/native-oracle-eager-initial-native"
+  ],
+  "compileMs": 375501.381442,
+  "executionWallMs": 23056.822167000035,
+  "binaryPools": true,
+  "stringPools": [
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-native.string-pools/s_ascii_pool.bin",
+      "bytes": 7684544,
+      "sha256": "5d6d74adaaf4b949879cd2ebf9e09f57d224da0acaa4d88fc64eb607f41ea793"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-native.string-pools/s_u16_pool.bin",
+      "bytes": 64686,
+      "sha256": "fee276c63f36736936d70ea3b982eae64179e1c8a2281483592111073fc3ac64"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-native.string-pools/s_strings.bin",
+      "bytes": 763932,
+      "sha256": "967d8c734d0f72a5890bd10ea8c5336ad57f315a13432ec0acb5e17c1e2dc5fd"
+    }
+  ],
+  "dependenciesAtStart": {
+    "completeAdapterManifest": true,
+    "completeSourceManifest": true,
+    "current": false,
+    "checks": [
+      {
+        "file": "tools/emit-native-oracle.mjs",
+        "expected": "0e0c0889c5a9eee00c17424f27feaf3e3f3023cfa1e405274fb7d1249af66427",
+        "actual": "df1139053819198507419d8f0a4e2534f0176bcb5c82d65f02bc6479d4af6a45",
+        "matched": false
+      },
+      {
+        "file": "tools/native-oracle-trace.mjs",
+        "expected": "28cf29a835e30e0c67ac4a4e6b3c4465eaae3c4cb207bf102d5c50d6f9cdf9d6",
+        "actual": "856484545c543dd68e36e2b465843e21a08ba3301e54b0312ad47cb827218ce9",
+        "matched": false
+      },
+      {
+        "file": "tools/native-report-compare.mjs",
+        "expected": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+        "actual": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+        "matched": true
+      },
+      {
+        "file": "tools/battle-trace-portable.js",
+        "expected": "ccfccf833047a1fd43ce6ab32ef4a7f89eb02f019ac772b0f46fb95313222391",
+        "actual": "ccfccf833047a1fd43ce6ab32ef4a7f89eb02f019ac772b0f46fb95313222391",
+        "matched": true
+      },
+      {
+        "file": "tools/battle-trace-instrumentation.js",
+        "expected": "bdf195d4bfa68bd111cd94546a541a882e164b0d24699263b4528acdd962b46f",
+        "actual": "1700a76db5de53562fcd908b4168acb130e336fff4220906b5dd9bed11bfebbe",
+        "matched": false
+      },
+      {
+        "file": "tools/qualification-table-membrane.js",
+        "expected": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+        "actual": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+        "matched": true
+      },
+      {
+        "file": "tools/qualification-table-policy.js",
+        "expected": "fdd728d21ec80662e3bd0e653f981cb4022298a2d07531c443a81c6314dc59b5",
+        "actual": "8a0af32d97ff8ca453f95507e0153fa24cb48ff162dc43f3876662ae258475f1",
+        "matched": false
+      },
+      {
+        "file": "tools/native-source-closure.mjs",
+        "expected": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+        "actual": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-runtime.mjs",
+        "expected": "17adf694eca24652042b99a279f117cc586090a9aa8a49eab5069d1cc919e7e3",
+        "actual": "17adf694eca24652042b99a279f117cc586090a9aa8a49eab5069d1cc919e7e3",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-records.mjs",
+        "expected": "c690ce5a3678039d781e142abb8262a8ffa632f2ff46fb21742768b23011b568",
+        "actual": "c690ce5a3678039d781e142abb8262a8ffa632f2ff46fb21742768b23011b568",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-records-extractor.mjs",
+        "expected": "57aa817af90dda082b0bac89d03bfcde7f04d2b55f339c8ff9a2792cd21f231d",
+        "actual": "57aa817af90dda082b0bac89d03bfcde7f04d2b55f339c8ff9a2792cd21f231d",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-source.mjs",
+        "expected": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+        "actual": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-packed.mjs",
+        "expected": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+        "actual": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-realm.mjs",
+        "expected": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+        "actual": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-callbacks.mjs",
+        "expected": "5ffd831f43c1ebb7eec5377e8462570dc66e94173139d3508fb3f73cf98e69ff",
+        "actual": "5ffd831f43c1ebb7eec5377e8462570dc66e94173139d3508fb3f73cf98e69ff",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-declarations.mjs",
+        "expected": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+        "actual": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-render-scene.mjs",
+        "expected": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+        "actual": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+        "matched": true
+      },
+      {
+        "file": "tools/scenario-factory.mjs",
+        "expected": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+        "actual": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-host.js",
+        "expected": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+        "actual": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+        "matched": true
+      },
+      {
+        "file": "tools/oracle-clock.js",
+        "expected": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+        "actual": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+        "matched": true
+      },
+      {
+        "file": "config/bootstrap-packed-config.json",
+        "expected": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+        "actual": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+        "matched": true
+      },
+      {
+        "file": "config/source-oracle-runtime.json",
+        "expected": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+        "actual": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-realm-init.js",
+        "expected": "1b7ae0bfe4cca713e51abfa81fed12b3f9b70e33e6af4301a722cfc32832d82c",
+        "actual": "1b7ae0bfe4cca713e51abfa81fed12b3f9b70e33e6af4301a722cfc32832d82c",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCClass.js",
+        "expected": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+        "actual": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-render-host.js",
+        "expected": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+        "actual": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCGeometry.js",
+        "expected": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+        "actual": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCPointExtension.js",
+        "expected": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+        "actual": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCAffineTransform.js",
+        "expected": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696",
+        "actual": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCTypesPredicates.js",
+        "expected": "54736c655de08ad96cec9f709f0984e8c3256a5abff980d0786472418d956458",
+        "actual": "54736c655de08ad96cec9f709f0984e8c3256a5abff980d0786472418d956458",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_base.js",
+        "expected": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+        "actual": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_battle.js",
+        "expected": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+        "actual": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_ui_1.js",
+        "expected": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+        "actual": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "expected": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+        "actual": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_util.js",
+        "expected": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+        "actual": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js.tables.json",
+        "expected": "846bb0edabac6bac253ad527a7205d163a36aaa9f11028349841f7d7aeb12c2b",
+        "actual": "846bb0edabac6bac253ad527a7205d163a36aaa9f11028349841f7d7aeb12c2b",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js.host-inputs.json",
+        "expected": "92b06b90ecbb94ea74d90f02e13c00e903770f9f4cdcaa68df3629f297f0a7e8",
+        "actual": "92b06b90ecbb94ea74d90f02e13c00e903770f9f4cdcaa68df3629f297f0a7e8",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js.reference.json",
+        "expected": "5f0beef254b0752e36cf354f5889820efbcfadfff7be956d4c4c34598105c525",
+        "actual": "5f0beef254b0752e36cf354f5889820efbcfadfff7be956d4c4c34598105c525",
+        "matched": true
+      }
+    ]
+  },
+  "dependenciesAtFinish": {
+    "completeAdapterManifest": true,
+    "completeSourceManifest": true,
+    "current": false,
+    "checks": [
+      {
+        "file": "tools/emit-native-oracle.mjs",
+        "expected": "0e0c0889c5a9eee00c17424f27feaf3e3f3023cfa1e405274fb7d1249af66427",
+        "actual": "50c2eeab6176a2b88f291c4d5bf71b93c411b678da013a431d811f1d9e05646c",
+        "matched": false
+      },
+      {
+        "file": "tools/native-oracle-trace.mjs",
+        "expected": "28cf29a835e30e0c67ac4a4e6b3c4465eaae3c4cb207bf102d5c50d6f9cdf9d6",
+        "actual": "856484545c543dd68e36e2b465843e21a08ba3301e54b0312ad47cb827218ce9",
+        "matched": false
+      },
+      {
+        "file": "tools/native-report-compare.mjs",
+        "expected": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+        "actual": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+        "matched": true
+      },
+      {
+        "file": "tools/battle-trace-portable.js",
+        "expected": "ccfccf833047a1fd43ce6ab32ef4a7f89eb02f019ac772b0f46fb95313222391",
+        "actual": "ccfccf833047a1fd43ce6ab32ef4a7f89eb02f019ac772b0f46fb95313222391",
+        "matched": true
+      },
+      {
+        "file": "tools/battle-trace-instrumentation.js",
+        "expected": "bdf195d4bfa68bd111cd94546a541a882e164b0d24699263b4528acdd962b46f",
+        "actual": "9e2bf78246c739705f911c0d9a12eee548b10c4430ceb9e707d2b6255808eaa5",
+        "matched": false
+      },
+      {
+        "file": "tools/qualification-table-membrane.js",
+        "expected": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+        "actual": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+        "matched": true
+      },
+      {
+        "file": "tools/qualification-table-policy.js",
+        "expected": "fdd728d21ec80662e3bd0e653f981cb4022298a2d07531c443a81c6314dc59b5",
+        "actual": "6ea1ff8375c7098025423a0f080364e8efea5c139fab707799aaaee3e4cc3009",
+        "matched": false
+      },
+      {
+        "file": "tools/native-source-closure.mjs",
+        "expected": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+        "actual": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-runtime.mjs",
+        "expected": "17adf694eca24652042b99a279f117cc586090a9aa8a49eab5069d1cc919e7e3",
+        "actual": "59834498aa4ef9c9159f169ece8a63c2a5956213026b99205f9be526ef67fc14",
+        "matched": false
+      },
+      {
+        "file": "tools/bootstrap-records.mjs",
+        "expected": "c690ce5a3678039d781e142abb8262a8ffa632f2ff46fb21742768b23011b568",
+        "actual": "c690ce5a3678039d781e142abb8262a8ffa632f2ff46fb21742768b23011b568",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-records-extractor.mjs",
+        "expected": "57aa817af90dda082b0bac89d03bfcde7f04d2b55f339c8ff9a2792cd21f231d",
+        "actual": "57aa817af90dda082b0bac89d03bfcde7f04d2b55f339c8ff9a2792cd21f231d",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-source.mjs",
+        "expected": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+        "actual": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-packed.mjs",
+        "expected": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+        "actual": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-realm.mjs",
+        "expected": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+        "actual": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-callbacks.mjs",
+        "expected": "5ffd831f43c1ebb7eec5377e8462570dc66e94173139d3508fb3f73cf98e69ff",
+        "actual": "5ffd831f43c1ebb7eec5377e8462570dc66e94173139d3508fb3f73cf98e69ff",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-declarations.mjs",
+        "expected": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+        "actual": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-render-scene.mjs",
+        "expected": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+        "actual": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+        "matched": true
+      },
+      {
+        "file": "tools/scenario-factory.mjs",
+        "expected": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+        "actual": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-host.js",
+        "expected": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+        "actual": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+        "matched": true
+      },
+      {
+        "file": "tools/oracle-clock.js",
+        "expected": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+        "actual": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+        "matched": true
+      },
+      {
+        "file": "config/bootstrap-packed-config.json",
+        "expected": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+        "actual": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+        "matched": true
+      },
+      {
+        "file": "config/source-oracle-runtime.json",
+        "expected": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+        "actual": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-realm-init.js",
+        "expected": "1b7ae0bfe4cca713e51abfa81fed12b3f9b70e33e6af4301a722cfc32832d82c",
+        "actual": "1b7ae0bfe4cca713e51abfa81fed12b3f9b70e33e6af4301a722cfc32832d82c",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCClass.js",
+        "expected": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+        "actual": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-render-host.js",
+        "expected": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+        "actual": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCGeometry.js",
+        "expected": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+        "actual": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCPointExtension.js",
+        "expected": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+        "actual": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCAffineTransform.js",
+        "expected": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696",
+        "actual": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696",
+        "matched": true
+      },
+      {
+        "file": "tools/bootstrap-vendor-CCTypesPredicates.js",
+        "expected": "54736c655de08ad96cec9f709f0984e8c3256a5abff980d0786472418d956458",
+        "actual": "54736c655de08ad96cec9f709f0984e8c3256a5abff980d0786472418d956458",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_base.js",
+        "expected": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+        "actual": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_battle.js",
+        "expected": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+        "actual": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_ui_1.js",
+        "expected": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+        "actual": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_ui_2.js",
+        "expected": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+        "actual": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+        "matched": true
+      },
+      {
+        "file": "src/srcmodule/game_util.js",
+        "expected": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+        "actual": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js.tables.json",
+        "expected": "846bb0edabac6bac253ad527a7205d163a36aaa9f11028349841f7d7aeb12c2b",
+        "actual": "846bb0edabac6bac253ad527a7205d163a36aaa9f11028349841f7d7aeb12c2b",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js.host-inputs.json",
+        "expected": "92b06b90ecbb94ea74d90f02e13c00e903770f9f4cdcaa68df3629f297f0a7e8",
+        "actual": "92b06b90ecbb94ea74d90f02e13c00e903770f9f4cdcaa68df3629f297f0a7e8",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js.reference.json",
+        "expected": "5f0beef254b0752e36cf354f5889820efbcfadfff7be956d4c4c34598105c525",
+        "actual": "5f0beef254b0752e36cf354f5889820efbcfadfff7be956d4c4c34598105c525",
+        "matched": true
+      }
+    ]
+  },
+  "plumbing": true,
+  "scenario": {
+    "file": "/workspace/afkarena-simx/config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc",
+    "inputSha256": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a"
+  },
+  "completed": 0,
+  "finalStateMatched": true,
+  "firstDifference": null,
+  "hostInputConsumption": {
+    "random": 2,
+    "clock": {
+      "version": 1,
+      "mode": "replay",
+      "attempts": 0,
+      "consumed": 0,
+      "total": 0,
+      "remaining": 0,
+      "counts": {
+        "Date.now": 0,
+        "Date.construct": 0,
+        "Date.call": 0
+      },
+      "finished": true,
+      "restored": false,
+      "failure": null
+    }
+  },
+  "expectedHostInputs": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js.host-inputs.json",
+    "sha256": "92b06b90ecbb94ea74d90f02e13c00e903770f9f4cdcaa68df3629f297f0a7e8",
+    "randomCount": 2,
+    "clockCount": 0
+  },
+  "fullStateCapture": true,
+  "comparedFields": [
+    "status",
+    "completed",
+    "qualifiesForThroughputTarget",
+    "initialGraph"
+  ],
+  "qualifiesFor10000Target": false,
+  "qualification": "Initial object graph matched the archived emitted fixture; zero battles completed. Adapter dependencies changed before and during compilation, so this is historical plumbing evidence only, not current qualification or battle throughput.",
+  "reference": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-eager-initial-v2.js.reference.json",
+    "sha256": "5f0beef254b0752e36cf354f5889820efbcfadfff7be956d4c4c34598105c525"
+  },
+  "limitations": [
+    "Whole original game_battle.js executes once; external prerequisite modules still use the explicit lazy helper adapter",
+    "Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter",
+    "Headless Linux device output is recorded; physical audio/render output is not produced",
+    "Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly"
+  ]
+}

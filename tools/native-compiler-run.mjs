@@ -81,7 +81,9 @@ const report={version:1,engine:'Static Hermes AOT original-source factories',inp
  finalStateMatched:difference===null,firstDifference:difference,
  hostInputConsumption:actual.hostInputConsumption,expectedHostInputs:metadata.hostInputs,
  fullStateCapture:metadata.captureMode!=='checksum',comparedFields:Object.keys(semanticNativeReport(reference)),qualifiesFor10000Target:false,
- qualification:'Single emitted fixture paired terminal state and source-host events; full ordered battle trace and broad corpus qualification are still required',
+ qualification:metadata.initialTrace
+  ?'Initial object graph only; zero battles completed. This checks startup state, not battle fidelity or throughput.'
+  :'Single emitted fixture paired terminal state and source-host events; full ordered battle trace and broad corpus qualification are still required',
  reference:metadata.reference,limitations:metadata.limitations};
 const stamp=new Date().toISOString().replaceAll(':','-');
 const directory=resolve(root,'benchmarks/results');await mkdir(directory,{recursive:true});
