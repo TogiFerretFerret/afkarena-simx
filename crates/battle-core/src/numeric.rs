@@ -64,3 +64,49 @@ pub fn midpoint(arg0: [f64; 2], arg1: [f64; 2]) -> [f64; 2] {
     let v10: [f64; 2] = [v4, v9];
     v10
 }
+
+#[inline]
+pub fn add(arg0: [f64; 2], arg1: [f64; 2]) -> [f64; 2] {
+    let v0: f64 = arg0[0];
+    let v1: f64 = arg1[0];
+    let v2: f64 = v0 + v1;
+    let v3: f64 = arg0[1];
+    let v4: f64 = arg1[1];
+    let v5: f64 = v3 + v4;
+    let v6: [f64; 2] = [v2, v5];
+    v6
+}
+
+#[inline]
+pub fn subtract(arg0: [f64; 2], arg1: [f64; 2]) -> [f64; 2] {
+    let v0: f64 = arg0[0];
+    let v1: f64 = arg1[0];
+    let v2: f64 = v0 - v1;
+    let v3: f64 = arg0[1];
+    let v4: f64 = arg1[1];
+    let v5: f64 = v3 - v4;
+    let v6: [f64; 2] = [v2, v5];
+    v6
+}
+
+#[inline]
+pub fn multiply_scalar(arg0: [f64; 2], arg1: f64) -> [f64; 2] {
+    let v0: f64 = arg0[0];
+    let v1: f64 = v0 * arg1;
+    let v2: f64 = arg0[1];
+    let v3: f64 = v2 * arg1;
+    let v4: [f64; 2] = [v1, v3];
+    v4
+}
+
+#[inline]
+pub fn multiply_components(arg0: [f64; 2], arg1: [f64; 2]) -> [f64; 2] {
+    let v0: f64 = arg0[0];
+    let v1: f64 = arg1[0];
+    let v2: f64 = v0 * v1;
+    let v3: f64 = arg0[1];
+    let v4: f64 = arg1[1];
+    let v5: f64 = v3 * v4;
+    let v6: [f64; 2] = [v2, v5];
+    v6
+}

@@ -28,3 +28,11 @@ test('array outputs preserve element evaluation order', () => {
   assert.equal(ir.result.type,'vec2');
   assert.deepEqual(ir.operations.filter(o=>o.op==='load').map(o=>[o.object,o.index]), [['arg0',0],['arg1',0],['arg0',1],['arg1',1]]);
 });
+
+test('vector/scalar products retain scalar typing without coercion or promotion', () => {
+  const ir = lower('function(a,b){return[a[0]*b,a[1]*b]}', ['vec2', 'f64']);
+  assert.deepEqual(ir.params.map(p => p.type), ['vec2', 'f64']);
+  assert.equal(ir.result.type, 'vec2');
+  assert.deepEqual(ir.operations.filter(o => o.op === 'binary').map(o => o.right), ['arg1', 'arg1']);
+  assert.throws(() => lower('function(a,b){return b[0]}', ['vec2', 'f64']));
+});

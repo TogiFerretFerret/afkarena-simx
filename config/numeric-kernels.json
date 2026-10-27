@@ -7,6 +7,10 @@
     { "sourceName": "ed.edpLengthSQ", "rustName": "length_squared", "params": ["vec2"] },
     { "sourceName": "ed.edpDot", "rustName": "dot", "params": ["vec2", "vec2"] },
     { "sourceName": "ed.edpCross", "rustName": "cross", "params": ["vec2", "vec2"] },
-    { "sourceName": "ed.edpMid", "rustName": "midpoint", "params": ["vec2", "vec2"] }
+    { "sourceName": "ed.edpMid", "rustName": "midpoint", "params": ["vec2", "vec2"] },
+    { "sourceName": "ed.edpAdd", "rustName": "add", "params": ["vec2", "vec2"] },
+    { "sourceName": "ed.edpSub", "rustName": "subtract", "params": ["vec2", "vec2"] },
+    { "sourceName": "ed.edpMult", "rustName": "multiply_scalar", "params": ["vec2", "f64"] },
+    { "sourceName": "ed.edpCompMult", "rustName": "multiply_components", "params": ["vec2", "vec2"] }
   ]
 }

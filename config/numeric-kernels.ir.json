@@ -13,6 +13,13 @@
       "start": 638314,
       "end": 638371,
       "sourceSha256": "2c6a18411d11be16eae9d8659081594c850c37f3612c4635df5d41f86b82c1f4",
+      "definitions": [
+        {
+          "start": 638314,
+          "end": 638371,
+          "sha256": "2c6a18411d11be16eae9d8659081594c850c37f3612c4635df5d41f86b82c1f4"
+        }
+      ],
       "ir": {
         "params": [
           {
@@ -109,6 +116,13 @@
       "start": 638251,
       "end": 638296,
       "sourceSha256": "4c8c23921a80224a072e1ef760d3ce432b6884fd68056f781fcf98f0878b3e06",
+      "definitions": [
+        {
+          "start": 638251,
+          "end": 638296,
+          "sha256": "4c8c23921a80224a072e1ef760d3ce432b6884fd68056f781fcf98f0878b3e06"
+        }
+      ],
       "ir": {
         "params": [
           {
@@ -172,6 +186,13 @@
       "start": 638718,
       "end": 638759,
       "sourceSha256": "82ca74e6d48bc9630e26604bd0494ad7fc6c19cbbf68e39f8c48238162f42c8b",
+      "definitions": [
+        {
+          "start": 638718,
+          "end": 638759,
+          "sha256": "82ca74e6d48bc9630e26604bd0494ad7fc6c19cbbf68e39f8c48238162f42c8b"
+        }
+      ],
       "ir": {
         "params": [
           {
@@ -253,6 +274,13 @@
       "start": 638550,
       "end": 638591,
       "sourceSha256": "9fd095e6d677c6ba84fa31b6f7c8081f12aa428a06a584c3d2c983d4d354805b",
+      "definitions": [
+        {
+          "start": 638550,
+          "end": 638591,
+          "sha256": "9fd095e6d677c6ba84fa31b6f7c8081f12aa428a06a584c3d2c983d4d354805b"
+        }
+      ],
       "ir": {
         "params": [
           {
@@ -334,6 +362,13 @@
       "start": 638602,
       "end": 638654,
       "sourceSha256": "f4120fd4c439c0817dd42678f40e12a38cdf1f9749221febfb8b294db84cbc4e",
+      "definitions": [
+        {
+          "start": 638602,
+          "end": 638654,
+          "sha256": "f4120fd4c439c0817dd42678f40e12a38cdf1f9749221febfb8b294db84cbc4e"
+        }
+      ],
       "ir": {
         "params": [
           {
@@ -430,6 +465,353 @@
         ],
         "result": {
           "id": "v10",
+          "type": "vec2"
+        }
+      }
+    },
+    {
+      "sourceName": "ed.edpAdd",
+      "rustName": "add",
+      "params": [
+        "vec2",
+        "vec2"
+      ],
+      "start": 638092,
+      "end": 638134,
+      "sourceSha256": "3e5bf201a2c0328caea2f68bfeb68d032509a2395f30cb1880c467e5f0cfa5bf",
+      "definitions": [
+        {
+          "start": 638092,
+          "end": 638134,
+          "sha256": "3e5bf201a2c0328caea2f68bfeb68d032509a2395f30cb1880c467e5f0cfa5bf"
+        }
+      ],
+      "ir": {
+        "params": [
+          {
+            "id": "arg0",
+            "type": "vec2"
+          },
+          {
+            "id": "arg1",
+            "type": "vec2"
+          }
+        ],
+        "operations": [
+          {
+            "id": "v0",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 0
+          },
+          {
+            "id": "v1",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 0
+          },
+          {
+            "id": "v2",
+            "type": "f64",
+            "op": "binary",
+            "operator": "+",
+            "left": "v0",
+            "right": "v1"
+          },
+          {
+            "id": "v3",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 1
+          },
+          {
+            "id": "v4",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 1
+          },
+          {
+            "id": "v5",
+            "type": "f64",
+            "op": "binary",
+            "operator": "+",
+            "left": "v3",
+            "right": "v4"
+          },
+          {
+            "id": "v6",
+            "type": "vec2",
+            "op": "vec2",
+            "elements": [
+              "v2",
+              "v5"
+            ]
+          }
+        ],
+        "result": {
+          "id": "v6",
+          "type": "vec2"
+        }
+      }
+    },
+    {
+      "sourceName": "ed.edpSub",
+      "rustName": "subtract",
+      "params": [
+        "vec2",
+        "vec2"
+      ],
+      "start": 638665,
+      "end": 638707,
+      "sourceSha256": "81200e82e77ece4a7c919c18427814519ea31d547222e2eff061380302e46f80",
+      "definitions": [
+        {
+          "start": 638145,
+          "end": 638187,
+          "sha256": "81200e82e77ece4a7c919c18427814519ea31d547222e2eff061380302e46f80"
+        },
+        {
+          "start": 638665,
+          "end": 638707,
+          "sha256": "81200e82e77ece4a7c919c18427814519ea31d547222e2eff061380302e46f80"
+        }
+      ],
+      "ir": {
+        "params": [
+          {
+            "id": "arg0",
+            "type": "vec2"
+          },
+          {
+            "id": "arg1",
+            "type": "vec2"
+          }
+        ],
+        "operations": [
+          {
+            "id": "v0",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 0
+          },
+          {
+            "id": "v1",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 0
+          },
+          {
+            "id": "v2",
+            "type": "f64",
+            "op": "binary",
+            "operator": "-",
+            "left": "v0",
+            "right": "v1"
+          },
+          {
+            "id": "v3",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 1
+          },
+          {
+            "id": "v4",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 1
+          },
+          {
+            "id": "v5",
+            "type": "f64",
+            "op": "binary",
+            "operator": "-",
+            "left": "v3",
+            "right": "v4"
+          },
+          {
+            "id": "v6",
+            "type": "vec2",
+            "op": "vec2",
+            "elements": [
+              "v2",
+              "v5"
+            ]
+          }
+        ],
+        "result": {
+          "id": "v6",
+          "type": "vec2"
+        }
+      }
+    },
+    {
+      "sourceName": "ed.edpMult",
+      "rustName": "multiply_scalar",
+      "params": [
+        "vec2",
+        "f64"
+      ],
+      "start": 638199,
+      "end": 638235,
+      "sourceSha256": "db312ebbb374bc1417e3fb1582d25c98b921a94b5b373564159fd76e87d7d740",
+      "definitions": [
+        {
+          "start": 638199,
+          "end": 638235,
+          "sha256": "db312ebbb374bc1417e3fb1582d25c98b921a94b5b373564159fd76e87d7d740"
+        }
+      ],
+      "ir": {
+        "params": [
+          {
+            "id": "arg0",
+            "type": "vec2"
+          },
+          {
+            "id": "arg1",
+            "type": "f64"
+          }
+        ],
+        "operations": [
+          {
+            "id": "v0",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 0
+          },
+          {
+            "id": "v1",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v0",
+            "right": "arg1"
+          },
+          {
+            "id": "v2",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 1
+          },
+          {
+            "id": "v3",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v2",
+            "right": "arg1"
+          },
+          {
+            "id": "v4",
+            "type": "vec2",
+            "op": "vec2",
+            "elements": [
+              "v1",
+              "v3"
+            ]
+          }
+        ],
+        "result": {
+          "id": "v4",
+          "type": "vec2"
+        }
+      }
+    },
+    {
+      "sourceName": "ed.edpCompMult",
+      "rustName": "multiply_components",
+      "params": [
+        "vec2",
+        "vec2"
+      ],
+      "start": 638495,
+      "end": 638537,
+      "sourceSha256": "7a5d07695b18d357d81e44940fb4b7a343f8461487059b4b578d840f10c0b149",
+      "definitions": [
+        {
+          "start": 638495,
+          "end": 638537,
+          "sha256": "7a5d07695b18d357d81e44940fb4b7a343f8461487059b4b578d840f10c0b149"
+        }
+      ],
+      "ir": {
+        "params": [
+          {
+            "id": "arg0",
+            "type": "vec2"
+          },
+          {
+            "id": "arg1",
+            "type": "vec2"
+          }
+        ],
+        "operations": [
+          {
+            "id": "v0",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 0
+          },
+          {
+            "id": "v1",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 0
+          },
+          {
+            "id": "v2",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v0",
+            "right": "v1"
+          },
+          {
+            "id": "v3",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 1
+          },
+          {
+            "id": "v4",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 1
+          },
+          {
+            "id": "v5",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v3",
+            "right": "v4"
+          },
+          {
+            "id": "v6",
+            "type": "vec2",
+            "op": "vec2",
+            "elements": [
+              "v2",
+              "v5"
+            ]
+          }
+        ],
+        "result": {
+          "id": "v6",
           "type": "vec2"
         }
       }
