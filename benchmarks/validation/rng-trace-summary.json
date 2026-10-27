@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "referenceRuntime": "v24.19.0",
+  "binarySha256": "76d74a6adf1e7cddd30c5ec82448043024737eed91ed34e69049326a51a8648f",
+  "sourceFunctions": [
+    {
+      "name": "ed.rand",
+      "sha256": "a2bfcfd578f8e22c5315df011a002ca0439bd02f3b67740d0c6d01b3e8f65973"
+    },
+    {
+      "name": "ed.randDontChangeSeed",
+      "sha256": "56b36bfe72896c6565c14611fcb4e1059b8cba43d0b16cbe180b07ee023ba19b"
+    },
+    {
+      "name": "ed.srand",
+      "sha256": "ede60c6120d82417c9d6a544dce9c82d018c0ba9ca4e87d6a45d036de693e3dc"
+    }
+  ],
+  "seedCases": 4114,
+  "draws": 131648,
+  "eventCount": 1077876,
+  "nanPolicy": "bits",
+  "nanBitDifferences": 0,
+  "rawBitsExact": true,
+  "traceFields": [
+    "kind",
+    "value",
+    "state",
+    "initial"
+  ],
+  "scope": "RNG only; no complete battle trace or exact log-string rendering yet"
+}

@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "engine": "js-source-provisional-headless",
+  "validatedAgainstOriginalRuntime": false,
+  "machine": {
+    "runtime": "v24.19.0",
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "AMD EPYC 9V74 80-Core Processor",
+    "availableParallelism": 4
+  },
+  "fixture": "mirrored stage enemy prototypes; nonempty teams",
+  "options": {
+    "stage": 1,
+    "battles": 1000,
+    "warmup": 20,
+    "seed": 2026,
+    "maxTicks": 20000,
+    "team": "mirror"
+  },
+  "coldSetupMs": 15359.44323,
+  "completedBattles": 1000,
+  "totalTicks": 102000,
+  "wallMs": 4519.581821000002,
+  "setupMs": 1954.082214000051,
+  "simulationMs": 2527.500725000018,
+  "battlesPerSecond": 221.25940841552023,
+  "simulationOnlyBattlesPerSecond": 395.64775990321147,
+  "ticksPerSecond": 40356.071510127564,
+  "reference": {
+    "result": "victory",
+    "ticks": 102,
+    "engineTicks": "4059800000000000",
+    "rng": "41f4c650a8800000",
+    "units": [
+      {
+        "tid": 1008,
+        "camp": 1,
+        "hp": "406b6a9890ee9226",
+        "mp": "408f400000000000",
+        "position": [
+          "40691ff9f387b2cb",
+          "4031487600fba341"
+        ]
+      },
+      {
+        "tid": 1008,
+        "camp": -1,
+        "hp": "0000000000000000",
+        "mp": "403d005ddba85cd6",
+        "position": [
+          "40718003343c98ac",
+          "4031b555bfd5f084"
+        ]
+      }
+    ]
+  },
+  "signature": "3c2e3d48f97d1f7746da590f7fa9a11bdfab0ac36a51e1e036a880d0b171026f",
+  "limitations": [
+    "Lazy symbol evaluation is diagnostic and does not establish original module side-effect order",
+    "clientCall is an explicitly suppressed rendering boundary; callbacks are not executed",
+    "Cocos runtime revision is provisional; missing closures/globals fail explicitly"
+  ]
+}
