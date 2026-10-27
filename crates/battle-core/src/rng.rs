@@ -13,9 +13,20 @@ pub struct Snapshot {
 
 #[derive(Clone, Copy, Debug)]
 pub enum Event {
+    InitialSeedWritten(f64),
     InvalidSeed,
+    FallbackSeed(f64),
+    SeedComputed(f64),
+    SeedLogValue(f64),
     Seeded(f64),
+    StateWritten(f64),
+    NextStateComputed(f64),
+    RandomComputed(f64),
+    RandomLogValue(f64),
     Random(f64),
+    Peek(f64),
+    Returned(f64),
+    ReturnedUndefined,
 }
 
 /// Nonthrowing, nonreentrant observer; JS string rendering is outside this adapter.
@@ -52,20 +63,34 @@ impl BattleRng {
     pub fn seed_with<O: Observer>(&mut self, input: f64, observer: &mut O) {
         // ed.init_battle_seed is set before the guard and both callbacks.
         self.initial_seed = Some(input);
+        observer.observe(Event::InitialSeedWritten(input), self.snapshot());
         let mut seed = input;
         // Number truthiness: NaN, +0 and -0 are false; infinities are true.
         if seed == 0.0 || seed.is_nan() {
             observer.observe(Event::InvalidSeed, self.snapshot());
             seed = 1.0;
+            observer.observe(Event::FallbackSeed(seed), self.snapshot());
         }
         let seed = ((MODULUS - seed) / seed).floor();
+        observer.observe(Event::SeedComputed(seed), self.snapshot());
         // The original invokes its log BEFORE assigning random_seed.
+        observer.observe(Event::SeedLogValue(seed), self.snapshot());
         observer.observe(Event::Seeded(seed), self.snapshot());
         self.state = seed;
+        observer.observe(Event::StateWritten(seed), self.snapshot());
+        observer.observe(Event::ReturnedUndefined, self.snapshot());
     }
 
     #[inline]
-    pub fn peek(&self) -> f64 { (self.state * MULTIPLIER % MODULUS) / MODULUS }
+    pub fn peek(&self) -> f64 { self.peek_with(&mut NoopObserver) }
+
+    #[inline]
+    pub fn peek_with<O: Observer>(&self, observer: &mut O) -> f64 {
+        let result = (self.state * MULTIPLIER % MODULUS) / MODULUS;
+        observer.observe(Event::Peek(result), self.snapshot());
+        observer.observe(Event::Returned(result), self.snapshot());
+        result
+    }
 
     #[inline]
     pub fn next_f64(&mut self) -> f64 { self.next_with(&mut NoopObserver) }
@@ -73,10 +98,15 @@ impl BattleRng {
     #[inline]
     pub fn next_with<O: Observer>(&mut self, observer: &mut O) -> f64 {
         let state = self.state * MULTIPLIER % MODULUS;
+        observer.observe(Event::NextStateComputed(state), self.snapshot());
         let result = state / MODULUS;
+        observer.observe(Event::RandomComputed(result), self.snapshot());
         // ed.rand assigns random_seed BEFORE logging.
         self.state = state;
+        observer.observe(Event::StateWritten(state), self.snapshot());
+        observer.observe(Event::RandomLogValue(result), self.snapshot());
         observer.observe(Event::Random(result), self.snapshot());
+        observer.observe(Event::Returned(result), self.snapshot());
         result
     }
 }
