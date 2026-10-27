@@ -7,7 +7,7 @@ import { createRealisticScenario,instantiateScenario } from './scenario-factory.
 import { traceBattle } from './battle-trace-run.mjs';
 
 const root=resolve(import.meta.dirname,'..');
-const options={cases:3,seed:2026,maxFrames:20000,output:'benchmarks/validation/battle-source-corpus.json'};
+const options={cases:3,seed:2026,maxFrames:20000,strictGraph:0,output:'benchmarks/validation/battle-source-corpus.json'};
 for(let i=2;i<process.argv.length;i+=2){const key=process.argv[i].replace(/^--/,'');if(!(key in options))throw new Error(`Unknown option: ${key}`);options[key]=key==='output'?process.argv[i+1]:Number(process.argv[i+1]);}
 for(const key of ['cases','seed','maxFrames'])if(!Number.isSafeInteger(options[key])||options[key]<0)throw new Error(`Invalid ${key}`);
 if(options.cases<1||options.maxFrames<1)throw new Error('Cases and maxFrames must be positive');
@@ -17,7 +17,7 @@ const runtime=await createBootstrapRuntime();
 const cases=[];
 for(let i=0;i<options.cases;i++){
  const wire=await createRealisticScenario((options.seed+i)>>>0);
- const trace=await traceBattle(runtime,wire,{materialize:instantiateScenario,maxFrames:options.maxFrames,keepDeltas:true});
+ const trace=await traceBattle(runtime,wire,{materialize:instantiateScenario,maxFrames:options.maxFrames,keepDeltas:true,strictGraph:Boolean(options.strictGraph)});
  const path=resolve(root,`benchmarks/validation/battle-traces/source-seed-${wire.scenarioSeed}.json.gz`);
  await mkdir(resolve(path,'..'),{recursive:true});
  const bytes=gzipSync(JSON.stringify(trace));await writeFile(path,bytes);

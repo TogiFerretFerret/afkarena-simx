@@ -38,3 +38,15 @@ test('graph deltas reconstruct complete snapshots including removals and alias c
  shared.hp=-0;roots.list.push({hp:NaN});restored=applyGraphDelta(restored,capture(roots));assert.deepEqual(restored,snapshot(roots));
  roots={only:roots.list[1]};restored=applyGraphDelta(restored,capture(roots));assert.deepEqual(restored,snapshot(roots));
 });
+
+test('practical code identity policy retains custom function data and prototype mutations',()=>{
+ function sourceMethod(){}sourceMethod.counter=-0;
+ const snapshot=createGraphSnapshotter({functionPolicy:'code'});
+ const a=snapshot({fn:sourceMethod,alias:sourceMethod});
+ assert.deepEqual(a.roots[0][1],a.roots[1][1]);assert.equal(a.roots[0][1][0],'function');
+ assert.equal(a.nodes.find(n=>n.kind==='function').properties.find(p=>p.key[1]==='counter').value[1],binary64(-0));
+ sourceMethod.counter=0;assert.notEqual(snapshot({fn:sourceMethod,alias:sourceMethod}).sha256,a.sha256);
+ const before=snapshot({fn:sourceMethod});sourceMethod.prototype.changed=1;
+ const after=snapshot({fn:sourceMethod});assert.notEqual(after.sha256,before.sha256);
+ assert.ok(after.nodes.flatMap(n=>n.properties).some(p=>p.key[1]==='changed'));
+});
