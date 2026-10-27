@@ -32,7 +32,9 @@ const scope=option('--scope',args.includes('--all-definitions')?'all':'battle-co
 const captureMode=option('--capture','all');
 const traceEnabled=args.includes('--trace');
 if(traceEnabled&&(battles!==1||warmup!==0))throw new Error('Diagnostic trace requires one battle and no warmup');
-const factoryChunkSize=Number(option('--factory-chunk-size','0'));
+const factoryChunkSize=Number(option('--factory-chunk-size',args.includes('--factory-chunk-bytes')?'2000':'0'));
+const factoryChunkBytes=Number(option('--factory-chunk-bytes','0'));
+if(!Number.isSafeInteger(factoryChunkBytes)||factoryChunkBytes<0)throw new Error('Invalid factory chunk byte limit');
 if(!Number.isSafeInteger(factoryChunkSize)||factoryChunkSize<0)throw new Error('Invalid factory chunk size');
 if(!['all','final','checksum'].includes(captureMode))throw new Error('Capture must be all, final, or checksum');
 if(!['all','battle','battle-core','observed'].includes(scope))throw new Error('Scope must be all, battle, battle-core, or observed');
@@ -162,10 +164,16 @@ assert.ok(drainStart>=0&&drainEnd>drainStart);const drainBody=onUpdate.slice(dra
 const tableBytes=await readFile(tablesPath);
 const factoryChunks=[];
 if(factoryChunkSize){
-  for(let start=0;start<allFactoryRecords.length;start+=factoryChunkSize){
+  for(let start=0;start<allFactoryRecords.length;){
+    let end=start,bytes=0;
+    while(end<allFactoryRecords.length&&end-start<factoryChunkSize){
+      const nextBytes=Buffer.byteLength(allFactoryRecords[end].source,'utf8');
+      if(end>start&&factoryChunkBytes&&bytes+nextBytes>factoryChunkBytes)break;
+      bytes+=nextBytes;end++;
+    }
     const index=factoryChunks.length,file=output+'.factory-'+String(index).padStart(4,'0')+'.js';
-    const text=allFactoryRecords.slice(start,start+factoryChunkSize).map((record,offset)=>`function __nativeFactory${start+offset}(){return (${record.source});}`).join('\n')+'\n';
-    await writeFile(file,text);factoryChunks.push({file,sha256:sha(text),firstFactory:start,count:Math.min(factoryChunkSize,allFactoryRecords.length-start)});
+    const text=allFactoryRecords.slice(start,end).map((record,offset)=>`function __nativeFactory${start+offset}(){return (${record.source});}`).join('\n')+'\n';
+    await writeFile(file,text);factoryChunks.push({file,sha256:sha(text),firstFactory:start,count:end-start,sourceBytes:bytes});start=end;
   }
 }
 const fd=openSync(output,'w');
@@ -262,7 +270,7 @@ try{
 const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[])].map(record=>record.file).filter(Boolean));
 const sourceInputs=Object.fromEntries(await Promise.all([...sourceFiles].sort().map(async file=>[file,sha(await readFile(resolve(root,file)))])));
 const metadata={version:1,scope,captureMode,traceEnabled,oracleProfile,oracleRuntime:{node:process.version,v8:process.versions.v8,execArgv:process.execArgv,nodeOptions:process.env.NODE_OPTIONS||''},executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
-  adapterInputs,sourceInputs,factoryChunks,
+  adapterInputs,sourceInputs,factoryChunks,factoryChunkPolicy:{maxFactories:factoryChunkSize,maxSourceBytes:factoryChunkBytes},
   sourceRuntime:{file:'tools/bootstrap-runtime.mjs',sha256:adapterInputs['tools/bootstrap-runtime.mjs'],executedFunctionSha256:sha(createBootstrapRuntime.toString())},
   definitionCount:records.definitions.size,globalCount:records.globals.size,factoryCount:allFactoryRecords.length,
   usedTableNames,
