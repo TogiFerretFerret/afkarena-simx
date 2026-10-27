@@ -127,6 +127,7 @@
   if(options.subscribeClock){var restore=options.subscribeClock(function(entry,ordinal){record('host:clock',{ordinal:ordinal,entry:entry});});if(restore)restores.push(restore);}
   return{
    record:record,
+   captureState:function(){if(options.assertImmutableClean)options.assertImmutableClean();loaderAccessors();return trace.capture.snapshot({state:roots(),payload:{frame:frame,data:{}}});},
    beginFrame:function(){frame++;record('frame:before',{});},
    endFrame:function(){record('frame:after',{});},
    stop:function(summary){

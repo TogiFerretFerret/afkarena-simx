@@ -26,11 +26,12 @@ if(JSON.stringify(process.execArgv)!==JSON.stringify(oracleProfile.rawBitReferen
 function option(name,fallback){const i=args.indexOf(name);if(i>=0){if(!args[i+1]||args[i+1].startsWith('--'))throw new Error(`Missing ${name} value`);return args[i+1];}return fallback;}
 const scenarioPath=resolve(root,option('--scenario','config/scenario-example-2026.json'));
 const output=resolve(root,option('--output','work/native-oracle.js'));
-const tablesPath=resolve(root,option('--tables-file','work/native-tables.json'));
+const tablesPath=resolve(root,option('--tables-file',output+'.tables.json'));
 const battles=Number(option('--battles','1')),warmup=Number(option('--warmup','0'));
 const scope=option('--scope',args.includes('--all-definitions')?'all':'battle-core');
 const captureMode=option('--capture','all');
-const traceEnabled=args.includes('--trace');
+const initialTrace=args.includes('--trace-initial');
+const traceEnabled=args.includes('--trace')||initialTrace;
 const tableMembraneEnabled=traceEnabled||args.includes('--table-membrane');
 const eagerBattle=args.includes('--eager-battle');
 const mutableTables=(option('--mutable-tables','')).split(',').filter(Boolean);
@@ -115,7 +116,8 @@ function __nativeRun(runtime,wire,battles,warmup,wallNow,captureMode){
   if(runtime.nativeTrace)report.trace=runtime.nativeTrace.stop({status:'completed',running:lastEngine.running,ticks:lastEngine.ticks,result:lastEngine.result});
   return report;
 }
-const reference=__nativeRun(runtime,wire,battles,warmup,Date.now,captureMode);
+const reference=initialTrace?{status:'initial-state-only',completed:0,qualifiesForThroughputTarget:false,initialGraph:runtime.nativeTrace.captureState()}:__nativeRun(runtime,wire,battles,warmup,Date.now,captureMode);
+if(initialTrace)runtime.nativeTrace.restore();
 runtime.clock.finish();
 if(replayInputs)assert.equal(replayRandomIndex,replayInputs.random.length,'Unconsumed replayed source random inputs');
 const usedTableNames=[...runtime.tables.keys()].sort();
@@ -272,13 +274,14 @@ try{
   put(instantiateScenario.toString());
   put(__nativeBits.toString());put(__nativePrimitiveState.toString());put(__nativeUnitState.toString());put(__nativeRun.toString());
   put('var __nativeWire=JSON.parse('+JSON.stringify(wireText)+');');
-  put(`var __nativeResult=__nativeRun(__nativeRuntime,__nativeWire,${battles},${warmup},__nativeWallNow,${JSON.stringify(captureMode)});`);
+  if(initialTrace)put("var __nativeResult={status:'initial-state-only',completed:0,qualifiesForThroughputTarget:false,initialGraph:__nativeRuntime.nativeTrace.captureState()};__nativeRuntime.nativeTrace.restore();");
+  else put(`var __nativeResult=__nativeRun(__nativeRuntime,__nativeWire,${battles},${warmup},__nativeWallNow,${JSON.stringify(captureMode)});`);
   put('__nativeClock.finish();if(__nativeEntropyIndex!==__nativeHostInputs.random.length)throw new Error("Unconsumed host random inputs: "+(__nativeHostInputs.random.length-__nativeEntropyIndex));');
   put('__nativeResult.hostInputConsumption={random:__nativeEntropyIndex,clock:__nativeClock.stats()};print(JSON.stringify(__nativeResult));');
 }finally{closeSync(fd);}
 const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[]),...(records.eagerModules||[]),...(records.initializationPlan||[])].map(record=>record.file).filter(Boolean));
 const sourceInputs=Object.fromEntries(await Promise.all([...sourceFiles].sort().map(async file=>[file,sha(await readFile(resolve(root,file)))])));
-const metadata={version:1,scope,captureMode,traceEnabled,tableMembraneEnabled,mutableTables,eagerBattle,oracleProfile,oracleRuntime:{node:process.version,v8:process.versions.v8,execArgv:process.execArgv,nodeOptions:process.env.NODE_OPTIONS||''},executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
+const metadata={version:1,scope,captureMode,traceEnabled,initialTrace,tableMembraneEnabled,mutableTables,eagerBattle,oracleProfile,oracleRuntime:{node:process.version,v8:process.versions.v8,execArgv:process.execArgv,nodeOptions:process.env.NODE_OPTIONS||''},executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
   adapterInputs,sourceInputs,factoryChunks,factoryChunkPolicy:{maxFactories:factoryChunkSize,maxSourceBytes:factoryChunkBytes},
   sourceRuntime:{file:'tools/bootstrap-runtime.mjs',sha256:adapterInputs['tools/bootstrap-runtime.mjs'],executedFunctionSha256:sha(createBootstrapRuntime.toString())},
   definitionCount:records.definitions.size,globalCount:records.globals.size,factoryCount:allFactoryRecords.length,
@@ -308,6 +311,6 @@ if(!args.includes('--no-node-check')){
   assert.equal(difference,null,'Emitted Node semantic report differs: '+JSON.stringify(difference));
   const hostDifference=compareHostInputConsumption(result.hostInputConsumption,metadata.hostInputs);
   assert.equal(hostDifference,null,'Emitted Node host inputs differ: '+JSON.stringify(hostDifference));
-  if(traceEnabled){const gate=comparePortableBattleTraces(reference.trace,result.trace);await writeFile(output+'.trace-gate.json',JSON.stringify(gate,null,2)+'\n');assert.equal(gate.passed,true,'Emitted Node ordered graph trace differs: '+JSON.stringify(gate.difference));}
-  console.log(JSON.stringify({status:'node_match',completed:result.completed,results:result.results.map(x=>({result:x.result,ticks:x.ticks,callbacks:x.callbacks,rngBits:x.rngBits}))}));
+  if(traceEnabled&&!initialTrace){const gate=comparePortableBattleTraces(reference.trace,result.trace);await writeFile(output+'.trace-gate.json',JSON.stringify(gate,null,2)+'\n');assert.equal(gate.passed,true,'Emitted Node ordered graph trace differs: '+JSON.stringify(gate.difference));}
+  console.log(JSON.stringify({status:'node_match',completed:result.completed,results:(result.results||[]).map(x=>({result:x.result,ticks:x.ticks,callbacks:x.callbacks,rngBits:x.rngBits}))}));
 }
