@@ -1,0 +1,45 @@
+{
+  "seed": 2027,
+  "status": "source_or_host_boundary",
+  "phase": "update",
+  "frames": 15,
+  "ticks": 16,
+  "callbacks": 227,
+  "error": "Cannot read properties of undefined (reading 'setAction')",
+  "stack": [
+    "TypeError: Cannot read properties of undefined (reading 'setAction')",
+    "    at src/srcmodule/game_battle.js:1087084:1:543",
+    "    at Object.<anonymous> (src/srcmodule/game_ui_1.js:original-clientCall-drain:1:132)",
+    "    at drainCallbacks (file:///workspace/afkarena-simx/tools/bootstrap-callbacks.mjs:40:11)",
+    "    at Object.updateFrame (file:///workspace/afkarena-simx/tools/bootstrap-callbacks.mjs:46:12)",
+    "    at file:///workspace/afkarena-simx/[eval1]:3:402"
+  ],
+  "inputSha256": "cb7ac91ada4c7fdfc663f2dc71b005d267911bb87ae24ed746dfb08cd6682ab7",
+  "players": [
+    20,
+    169,
+    174,
+    116,
+    66
+  ],
+  "enemies": [
+    58,
+    62,
+    157,
+    70,
+    90
+  ],
+  "qualification": {
+    "teamSize": 5,
+    "heroLevel": 360,
+    "qualityLabel": "Ascended 5-star",
+    "quality": 15,
+    "rank": 20,
+    "signatureLevel": 30,
+    "gearSlots": 4,
+    "beastsPerTeam": 1,
+    "timeout": "Original engine rules; no benchmark timeout substitution"
+  },
+  "runtimeCommit": "7f599b0",
+  "detail": "Original NunAssassin callback requires playEffectOnScene return value and setAction. No scene renderer exists in current headless host; callback was executed and exception propagated. This case is a qualification failure, not a completed battle."
+}
