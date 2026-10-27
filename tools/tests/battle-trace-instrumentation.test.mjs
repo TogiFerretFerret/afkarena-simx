@@ -5,12 +5,13 @@ import {createContext,runInContext} from 'node:vm';
 import {installBootstrapCallbacks} from '../bootstrap-callbacks.mjs';
 import {comparePortableBattleTraces} from '../battle-trace-portable.mjs';
 
-async function fixture({compact=true,skip=false,extraRng=false}={}){
+async function fixture({compact=true,skip=false,extraRng=false,scriptMutation=false}={}){
  const context=createContext({});
  runInContext(`var random_seed=1,ed={};ed.rand=function(){random_seed=random_seed*25%34359738337;return random_seed/34359738337};ed.srand=function(n){random_seed=n;ed.init_battle_seed=n};
-  ed.Unit=class Unit{constructor(){this.hp=5;this.tid=1}setHp(n){this.hp=n}setMp(){}castSkill(){}onDied(){}terminate(){}};
-  ed.BattleEngine=class BattleEngine{constructor(){this.running=false;this.unit_list=[]}enterBattle(){this.running=true;this.unit_list=[new ed.Unit()]}update(){this.unit_list[0].setHp(4);this.running=false;this.result='victory';if(!skip)clientCall(()=>{ed.rand();if(extraRng)ed.rand();this.unit_list[0].setHp(3)})}};`,context);
- context.skip=skip;context.extraRng=extraRng;
+  ed.battlehero={Hero:{counter:0}};
+  ed.Unit=class Unit{constructor(){this.hp=5;this.tid=1;this.info={Script:'Hero'}}setHp(n){this.hp=n}setMp(){}castSkill(){}onDied(){}terminate(){}};
+  ed.BattleEngine=class BattleEngine{constructor(){this.running=false;this.unit_list=[]}enterBattle(){this.running=true;this.unit_list=[new ed.Unit()]}update(){this.unit_list[0].setHp(4);this.running=false;this.result='victory';if(!skip)clientCall(()=>{ed.rand();if(extraRng)ed.rand();if(scriptMutation)ed.battlehero.Hero.counter++;this.unit_list[0].setHp(3)})}};`,context);
+ context.skip=skip;context.extraRng=extraRng;context.scriptMutation=scriptMutation;
  const runtime={ed:context.ed,context,callbacks:await installBootstrapCallbacks(context)};
  for(const name of ['battle-trace-portable.js','battle-trace-instrumentation.js'])runInContext(await readFile(new URL('../'+name,import.meta.url),'utf8'),context);
  context.runtime=runtime;context.compact=compact;
@@ -30,7 +31,7 @@ test('shared instrumentation preserves callbacks and detects source mutation and
  assert.equal(a.context.ed.battleEngine.unit_list[0].hp,3);
  assert.equal(a.trace.events.filter(event=>event.kind==='callback:after').length,1);
  assert.equal(a.trace.events.filter(event=>event.kind==='rng:draw:after').length,1);
- for(const options of [{skip:true},{extraRng:true}])assert.equal(comparePortableBattleTraces(a.trace,(await fixture(options)).trace).passed,false);
+ for(const options of [{skip:true},{extraRng:true},{scriptMutation:true}])assert.equal(comparePortableBattleTraces(a.trace,(await fixture(options)).trace).passed,false);
 });
 
 test('compact shared instrumentation matches full graph event checksums',async()=>{

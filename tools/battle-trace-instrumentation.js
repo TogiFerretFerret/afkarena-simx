@@ -35,10 +35,30 @@
     }
    }
   }
+  var heroScripts={};
+  function scriptRoots(engine){
+   var names=['unit_list','dead_unit_list','pet_list','dead_pet_list','fieldNpc_list','dead_fieldNpc_list','projectile_list'];
+   var scripts=Object.getOwnPropertyDescriptor(ed,'battlehero')?.value;
+   if(!scripts)return heroScripts;
+   for(var listIndex=0;listIndex<names.length;listIndex++){
+    var units=engine&&Object.getOwnPropertyDescriptor(engine,names[listIndex])?.value;
+    if(!Array.isArray(units))continue;
+    for(var unitIndex=0;unitIndex<units.length;unitIndex++){
+     var info=units[unitIndex]&&Object.getOwnPropertyDescriptor(units[unitIndex],'info')?.value;
+     var name=info&&Object.getOwnPropertyDescriptor(info,'Script')?.value;
+     if(typeof name!=='string')continue;
+     var d=Object.getOwnPropertyDescriptor(scripts,name);
+     if(d&&'value'in d)heroScripts[name]=d.value;
+    }
+   }
+   return heroScripts;
+  }
   function roots(){
-   return{engine:ed.battleEngine,battleRng:context.random_seed,initialBattleSeed:ed.init_battle_seed,
+   var engine=ed.battleEngine;
+   return{engine:engine,battleRng:context.random_seed,initialBattleSeed:ed.init_battle_seed,
     pendingCallbacks:ed.clientCall_list,clientCallCount:ed.clientCallCount,
     battleLog:Object.getOwnPropertyDescriptor(ed,'btLog')?.value,
+    heroScripts:scriptRoots(engine),
     hostState:runtime.host?.snapshotState?runtime.host.snapshotState():null,
     soundManager:Object.getOwnPropertyDescriptor(ed,'sound_manager')?.value};
   }
