@@ -52,7 +52,7 @@ to 360,624, with 55,821 numeric clones; qualification Proxies previously blocked
 those ordinary-array guards. Only the private boundary initializer changes;
 all original function bytes and six other units remain unchanged. See
 `results/2026-10-27T21-55-08.845Z-native-warm23-no-proxy.json` and
-`validation/warm23-no-proxy.json`. This is still a single callback-only fixture,
+`validation/warm23-no-proxy-source-node.json`. This is still a single callback-only fixture,
 not a qualified full-scene, ordered-trace or random-roster result.
 
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
