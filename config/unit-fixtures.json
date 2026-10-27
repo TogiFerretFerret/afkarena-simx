@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "source": "config/unit-translation.json",
+  "oracle": "Actual original ed.Unit.update, ed.edpMult and ed.edpDistanceSQ function bodies with source hashes checked",
+  "runner": "tools/check-unit.rs",
+  "checker": "tools/check-unit.mjs",
+  "commands": [
+    "rustc --edition=2024 -O -A dead_code tools/check-unit.rs -o work/check-unit",
+    "node tools/check-unit.mjs work/check-unit --cases 20000"
+  ],
+  "wire": {
+    "header": ["full_snapshot", "hook_action_mask", "unit_flags", "state", "optional_number_mask", "action_name_kind", "current_skill_id_or_3_for_null", "skill_count", "buff_count", "effect0", "effect1", "effect2", "vector_alias_mask", "skill_flags"],
+    "numeric": ["hp", "mp", "camp", "direction", "height", "z_speed", "gravity_coef", "delay_timer", "speeder", "dt_action", "action_elapsed", "action_duration", "fall_delay", "fall_time", "knock_time", "global_cd", "thump_level", "thump_reduce", "enter_delay", "dt", "freeze", "gravity", "mspd", "atkhast", "msfix", "hast", "mpr", "hpr", "heal", "dot", "allmp", "prmp", "set_speeder"],
+    "vectors": "Ten x/y pairs, raw binary64 hex fields. Stable identities include shared edpZero and cached replaced velocity arrays.",
+    "optional_number_mask": "Bits0..5 enable zSpeed, delayTerminateTimer, fall_fronzenDelay, thumpResistanceReduce, enterDelayTimer and skill SetSpeeder; absence is source null in these fixtures."
+  },
+  "hookActions": {
+    "1": "action_finished kills unit",
+    "2": "fall replaces velocity with new array",
+    "4": "stage_rect replaces velocity with new array while old m remains cached",
+    "8": "AI replaces effects object reference",
+    "16": "skill0 update removes itself from live list",
+    "32": "skill0 update appends skill2 if absent",
+    "64": "buff0 update removes itself; source index decrement is required",
+    "128": "buff0 HPR update removes itself; source HPR loop does not decrement",
+    "256": "manual recheck kills unit before remaining buff iteration",
+    "512": "set_mp kills recipient",
+    "1024": "is_pet replaces effects reference while source R remains captured",
+    "2048": "unheal predicate mutates current counter after source U was captured",
+    "8192": "stage_rect replaces position",
+    "16384": "action_finished changes action_name",
+    "32768": "skill0 update changes action_name",
+    "65536": "phase_finished clears current_skill"
+  },
+  "snapshots": "Every emitted source mechanic callback has complete modeled Unit fields for three units, all vectors and stable identities, all effect views, skill views, buff views, world gravity/freeze/localBot; final state and errors are compared too.",
+  "directedRegressions": [
+    "Dead summoned unit with positive or NaN termination timer still updates action state",
+    "Source NaN Math.max bit policy",
+    "Zero HP correction and -0",
+    "Position beyond stage rectangle with dt0 still invokes source fixPosition",
+    "Captured effects reference survives isPet callback replacement",
+    "HPR live-list removal skips shifted successor",
+    "Removed buff object still receives caster-death timer write",
+    "Attack phase completion with null current_skill preserves pinned source exception message"
+  ],
+  "scope": "Component control-flow and numeric-state validation under explicit fixture mechanics. It is not complete hero combat, does not qualify full battles/second, and does not establish all possible dynamic prototype behaviors."
+}
