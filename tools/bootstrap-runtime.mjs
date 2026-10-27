@@ -23,10 +23,10 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
   const postInitializers=extracted.postInitializers.slice();
   const tables=new Map();
   const loaded=[],active=new Set();
-  const cc={game:{config:null,CONFIG_KEY:{}},Node:function Node(){},error:(...args)=>{throw new Error(args.join(' '));}};
-  const ed={};
-  const context=createContext({ed,cc,window:{},HTMLElement:function HTMLElement(){},console});
-  context.window=context;
+  const context=createContext({console});
+  const realmInitSource=await readFile(resolve(root,'tools/bootstrap-realm-init.js'),'utf8');
+  runInContext(realmInitSource,context,{filename:'tools/bootstrap-realm-init.js'});
+  const ed=context.ed;
   let clock,clockProvenance;
   if(hostClock!==undefined){
     const clockSource=await readFile(resolve(root,'tools/oracle-clock.js'),'utf8');
@@ -41,7 +41,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
     runInContext('Math.random=__hostRandom;delete __hostRandom;',context);
   }
   const hostSource=await readFile(resolve(root,'tools/bootstrap-host.js'),'utf8');
-  const hostSources=[{file:'tools/bootstrap-host.js',source:hostSource,phase:'before-original-initializers'}];
+  const hostSources=[{file:'tools/bootstrap-realm-init.js',source:realmInitSource,phase:'realm-scaffold'},{file:'tools/bootstrap-host.js',source:hostSource,phase:'before-original-initializers'}];
   runInContext(hostSource,context,{filename:'tools/bootstrap-host.js'});
   // In this supplied revision declaration names have no variable-initializer
   // collision; reject a future collision instead of silently changing hoisting.

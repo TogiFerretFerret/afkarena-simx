@@ -31,3 +31,16 @@ test('literal __proto__ key remains an own data property rather than mutating pr
  assert.equal(runInContext('Object.prototype.hasOwnProperty.call(data,"__proto__")',context),true);
  assert.equal(runInContext('data.sentinel===undefined',context),true);
 });
+test('shared source scaffold creates globals, sentinels and errors in the executing realm',async()=>{
+ const{readFile}=await import('node:fs/promises');
+ const source=await readFile(new URL('../bootstrap-realm-init.js',import.meta.url),'utf8');
+ const context=createContext({});runInContext(source,context);
+ assert.equal(runInContext('window===globalThis',context),true);
+ assert.equal(runInContext('ed instanceof Object && cc instanceof Object && cc.game instanceof Object && cc.game.CONFIG_KEY instanceof Object',context),true);
+ assert.equal(runInContext('Object.getPrototypeOf(ed)===Object.prototype && Object.getPrototypeOf(cc)===Object.prototype',context),true);
+ assert.equal(runInContext('cc.Node instanceof Function && HTMLElement instanceof Function && new cc.Node() instanceof Object && new HTMLElement() instanceof Object',context),true);
+ assert.equal(runInContext('Object.getPrototypeOf(cc.Node)===Function.prototype && Object.getPrototypeOf(HTMLElement)===Function.prototype',context),true);
+ assert.equal(runInContext('try {cc.error("source", "failure")} catch(e) {e instanceof Error && e.message==="source failure"}',context),true);
+ const second=createContext({});runInContext(source,second);
+ assert.notEqual(context.ed,second.ed);assert.notEqual(context.cc.Node,second.cc.Node);assert.notEqual(context.HTMLElement,second.HTMLElement);
+});
