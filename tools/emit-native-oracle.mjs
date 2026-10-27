@@ -233,7 +233,7 @@ try{
   if(runtime.renderScene)put('('+runtime.renderScene.source+')(__nativeScene);');
   put('__nativeCallbacks.sceneHost=__nativeScene;');
   for(const record of traceSources)put(record.source);
-  put('var __nativeRuntime={ed:ed,context:globalThis,callbacks:__nativeCallbacks,host:bootstrapHost};');
+  put('var __nativeRuntime={ed:ed,context:globalThis,callbacks:__nativeCallbacks,host:bootstrapHost,loaded:__nativeLoaded};');
   if(traceEnabled)put(' __nativeRuntime.nativeTrace=installBattleTraceInstrumentation(__nativeRuntime,{compact:true,definitionNames:__nativeDefinitionNames,subscribeClock:function(observer){__nativeClockObserver=observer;return function(){__nativeClockObserver=null;};}});');
   put('var __nativeRealmCopy='+realmCopy+';function importBootstrapValue(_context,value){return __nativeRealmCopy(value);}');
   put(instantiateScenario.toString());
