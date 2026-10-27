@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "functions": [
+    {
+      "name": "ed.Ai.findSkillToCast",
+      "start": 5706,
+      "end": 6144,
+      "sha256": "1369e82a60fa02e4cc51dc2a204549619e82144de7e27a816fe0503b87268075"
+    },
+    {
+      "name": "ed.Ai.checkTrigger",
+      "start": 5383,
+      "end": 5689,
+      "sha256": "4c3b6c7f76f84fc149f91cb0f8981f4969565a1c87a05f489c98d8184c37ece4"
+    }
+  ],
+  "domain": [
+    "Plain owner fields; skill lists dense and of fixed captured length",
+    "Callbacks can mutate manual flags, target, current/manual skill and list references/content",
+    "Source repeated canTrigger/willCast calls remain observable and are not memoized"
+  ],
+  "formalProof": false
+}

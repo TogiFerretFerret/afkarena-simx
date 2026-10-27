@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "functions": [
+    {
+      "name": "ed.Ai.walkTo",
+      "start": 6821,
+      "end": 7607,
+      "sha256": "dd97b8fc214dcdb6c206c7a8d8a621d88de540a4d9c841564fff467a093dcab7"
+    },
+    {
+      "name": "ed.Ai.walkAwayFrom",
+      "start": 6623,
+      "end": 6813,
+      "sha256": "41683880915b6a88805a648e681088aebbeb7296c2bfb60de62f1a3c30467a29"
+    }
+  ],
+  "domain": [
+    "Plain Number-valued vectors and boolean state flags",
+    "Input vector references are clamped in place; object positions are copied before rectangle adjustment",
+    "walkTowards hook reads values as the original Unit.walkTowards does and cannot retain the temporary unit-point identity",
+    "Explicit source Math.min/max signed-zero handling; no hypot or distance regrouping"
+  ],
+  "formalProof": false
+}
