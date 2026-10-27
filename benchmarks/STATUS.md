@@ -66,6 +66,24 @@ reference comparison passes. See
 `validation/native-no-proxy-measured-perf-source.json`. Profiling timings are
 diagnostic and do not replace the unprofiled throughput measurement above.
 
+A separate, measured-window histogram passes the same complete source report
+comparison and records 82,936,670 named-property slow-path calls. Reads of the
+global `ed` binding account for 13.83%; `info`, `_battleEngineInstance`, `caster`
+and `AttrDebugMgr` account for another 14.93% combined. Initialization and
+warmups are excluded. See
+`validation/native-measured-property-histogram-analysis.json`; histogram
+instrumentation timings are not throughput results.
+
+The first permanent-global slot-cache trial also matches the reference, but
+does not improve throughput: the immutable-proof rerun measures 20 battles in
+8.365 seconds (2.390915/second). Cold-start names fill its 64 entries, leaving
+17,093,212 capacity rejections and only 297,014 hits across the full process.
+This candidate is not promoted. Its isolated native proof covers 160,000
+mutation cases, forced GC and eight complete VM lifecycles, checking current
+values rather than caching values or heap pointers. See
+`results/2026-10-27T22-44-29.280Z-native-warm23-global-slot.json` and
+`validation/native-global-slot.json`.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
