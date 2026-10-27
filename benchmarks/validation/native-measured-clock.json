@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "passed": true,
+  "cases": 12,
+  "successCases": 4,
+  "rejectedInstallCases": 8,
+  "privateVM": {
+    "output": "/workspace/afkarena-simx/work/native-measured-clock-probe/libhermesvm.so",
+    "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "privateSha256": "69bfdc2b53685003556c35c430a98b505c735333074e2e77a645aa2af36a056b",
+    "helperSha256": "76a95b1bc59cc95ea457714834bf4a13d5345091b8857c61d82242776ea45b45"
+  },
+  "productionClockBuild": {
+    "file": "benchmarks/validation/native-measured-clock-build.json",
+    "sha256": "37a3fe4ad69637e90fa98ecf858ace7e5a85e25c080a96b0ee19f1fe84c4650d"
+  },
+  "sources": {
+    "tools/build-native-entity-sort-host.mjs": "c049573ed2b65d2bde76a4980e873d2591f9601b2fcb6141fc704140bf810fbe",
+    "tools/native-private-vm.mjs": "47747b1921a23390805e60089f7dbf7cc750c1d1072d64ccd2ceda4344594f4b",
+    "tools/native-compiler-patches/entity-sort-host.inc": "ad40f07b690b7e54dc70dd63b29069eea95c2fd14da4039156c8125fd3dd173a",
+    "tools/native-compiler-patches/tim-sort-host.inc": "8267532890bf07c6f914d7a559a9251d50ef5c82bfe247173f02a469887b0be8",
+    "tools/native-compiler-patches/tim-sort.inc": "77153b5903fa2886b57d68de9b3ac0e92c4edf9aab9f469c24aeef39d58afb49",
+    "tools/native-compiler-patches/small-sort.inc": "dbf3373f28b1a00fb580f8ffe4b02695399a43b9a9fcff34b89e78c13ea46009",
+    "tools/native-compiler-patches/diagnostic-sha256-host.inc": "5f3836152d2c63f8169c75ebec8e1edd2388c15b902a601040802f21855c75f9",
+    "tools/native-compiler-patches/diagnostic-sha256.inc": "6578ad9a09dded407ac9050a567c6f06ae280d8240fd9df8982a3b8ace43fe1b",
+    "tools/native-compiler-patches/entity-update.inc": "a4a358159a5666b94353331dca21013968cc696be6580425a921d2d9e7f4d87b",
+    "tools/native-entity-update.rs": "fb0e9f21bf14813f1e47a3572570a099ba553e31e3b36b174137fa791a28074c",
+    "tools/native-small-sort.rs": "5a866da4f833ea5245e71c6bab4a7066159b4ebe64203273c5d56db186da3edd",
+    "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "tools/native-flat-copy-probe.mjs": "6b7985f2d819df79483badc3ba9486c7b9a12d02e4ce126f8f1d33003d9599ea",
+    "tools/native-copy-bridge.mjs": "25ba85c6dd8ba2ae783ec14afd6dbdb0b8674d2c7a54c7b1c9a2f669e9b0b7db",
+    "tools/native-rust-bridge.mjs": "02d100b9091cbe0b55f661fac0975e9c6f8427267676a8f8d87f3bcdc4f4de6d",
+    "tools/native-compiler-patches/entity-sort-copy-host.inc": "242b9d6d08000b3fe2d97284ee0a331748402c5c4ba9a853086c53681d318b3c",
+    "tools/native-compiler-patches/empty-array-copy.inc": "52607262f5e5552ae3e54e753f88e364660cff41852a7f7eb209538619455ff3",
+    "tools/prepare-native-copy-host.mjs": "bd631ec2d6abf3c4cfa4c501cfa3bdf44d480f5b8d1eb74a6e276c1ef8e01c64",
+    "tools/build-native-measured-clock.mjs": "6c8dab75726e492183df86d496ade298e9937297fd4b5085f7d2d157e66a1bbc",
+    "tools/native-compiler-patches/measured-clock-host.inc": "ad931d333ace09f5ed6ecde591bd606b43873df84198caeeb91b3af6f396ccbc",
+    "tools/native-measured-clock-probe.mjs": "b4539f1ff77380e1cbd82e144fce09831522446132a0e43067ee730488c4b595",
+    "tools/native-compiler-patches/measured-clock-probe.inc": "76a95b1bc59cc95ea457714834bf4a13d5345091b8857c61d82242776ea45b45"
+  },
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "binarySha256": "334e9f5f4c48b70da49739a1535ab28bb56844ef34f882a652ee26bd2e155377",
+  "scriptSha256": "9d98d3eed6ae63e5cdd409728ed24f0fd5e62f630dafcbe656cb659a8e248f1e",
+  "archive": {
+    "file": "benchmarks/validation/native-measured-clock.outputs.json.gz",
+    "uncompressedSha256": "8ebcfcf8498af85f8b43ccabefb0049931aaa1c2b26e2ef2a34d9929b5930077"
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "Actual tiny Static Hermes VM probe of production measured-clock helper, included unchanged with probe-only access functions. Validates guard rejection without JS getters/proxy effects, four preserved descriptor flag combinations, original Date identities, exactly two ordered monotonic ns markers and matching returned millisecond delta; invalid arguments/third call/reinstallation add no markers. Diagnostic timer contract only, no battle fidelity or throughput claim."
+}
