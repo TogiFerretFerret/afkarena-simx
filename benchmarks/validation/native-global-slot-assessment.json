@@ -1,0 +1,310 @@
+{
+  "version": 1,
+  "passed": true,
+  "implemented": false,
+  "qualifiesFor10000Target": false,
+  "kind": "Pinned permanent-global named-slot stability assessment",
+  "config": {
+    "file": "config/native-compiler-static-hermes.json",
+    "sha256": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e",
+    "commit": "4f1db42d71d0839254c7154fc8c282bcea466206"
+  },
+  "inputs": {
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/Runtime.cpp": "c5bbcf1362f7433f634f42778be0b79c13225fa75baed02a42a4684a09a721ad",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/StaticH.cpp": "7694ecf4c8086605e7acd673968b3e4331dadabe973cfbb385e16c0c366d9df2",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSObject.cpp": "2b5f40c1bb12e1e07b27ccc8af97614ecc80ba91551dddf6be081dca1b44d906",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSArrayBuffer.cpp": "2c089279db883c52d2053cb53d250dba227e64260a91ecbf7399e6191d69ddc4",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp": "04acdb2dd1d53e1c8340e67a24cdb8e62b65167fda3a086ed0f057318ec9698a",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp": "c504c9dee333972f40f26baa855e0139b7fcbd61578e04d75c70001803b8cb19",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/ArrayStorage.h": "6babb391186f13d7d4ee9c7b58483329cd490fc64fe6626d82d62b5f2072c137",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/ArrayStorage.cpp": "76b9a8640cd8e61d06b2ac5879304e9852ba93b56654ce8cdb59429462bab2a7",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp": "0b6144c08a3a906fa1aa63859492d30b08a5546503655d3e30bc8a9ce560d4da",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/JSObject.h": "1dada40009441ce464eb288f42a1b8b989ab72b3cd4e99ebacc2818b8bc6744d",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/StaticHUnit.cpp": "5567089bc95e45338bb525df89a3f3855f305c325531aae04da72c7039018377",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/PropertyDescriptor.h": "c539ff33ce0f9a34882c1042b5503686814f1864af96f0ab74c5c65dbe197088",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/PropertyCache.h": "64dbacd2696f20704f482c0e012d960a89432867f82e2965d652f98594d64fd0"
+  },
+  "contexts": {
+    "physicalGlobalCreatedOnce": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/Runtime.cpp",
+      "start": 17482,
+      "end": 17662,
+      "startLine": 452,
+      "sha256": "99be430b49d2f5c48eb660d0f2740750ab6458b0d3e823b085cf64bf3fe70d12",
+      "text": "  global_ =\n      JSObject::create(*this, objectPrototype, classJSObject).getHermesValue();\n\n  JSLibFlags jsLibFlags{};\n  jsLibFlags.enableHermesInternal = runtimeConfig.getEnableH"
+    },
+    "scriptGlobalDeclaration": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/StaticH.cpp",
+      "start": 23022,
+      "end": 24222,
+      "startLine": 715,
+      "sha256": "29bed0c12f3c4e64baf45a1c8da4359ebb0019561dab3f0fab47942fc70adc9a",
+      "text": "extern \"C\" void _sh_ljs_declare_global_var(SHRuntime *shr, SHSymbolID name) {\n  Runtime &runtime = getRuntime(shr);\n  {\n    GCScopeMarkerRAII mark{runtime};\n\n    DefinePropertyFlags dpf = DefinePropertyFlags::getDefaultNewPropertyFlags();\n    dpf.configurable = 0;\n    // Do not overwrite existing globals with undefined.\n    dpf.setValue = 0;\n\n    auto res = JSObject::defineOwnProperty(\n        runtime.getGlobal(),\n        runtime,\n        SymbolID::unsafeCreate(name),\n        dpf,\n        Runtime::getUndefinedValue(),\n        PropOpFlags().plusThrowOnError());\n    if (res != ExecutionStatus::EXCEPTION)\n      return;\n    assert(\n        !runtime.getGlobal()->isProxyObject(runtime) &&\n        \"global can't be a proxy object\");\n    // If the property already exists, this should be a noop.\n    // Instead of incurring the cost to check every time, do it\n    // only if an exception is thrown, and swallow the exception\n    // if it exists, since we didn't want to make the call,\n    // anyway.  This most likely means the property is\n    // non-configurable.\n    NamedPropertyDescriptor desc;\n    auto res1 = JSObject::getOwnNamedDescriptor(\n        runtime.getGlobal(), runtime, SymbolID::uns"
+    },
+    "globalPrototypeImmutable": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSObject.cpp",
+      "start": 8685,
+      "end": 9665,
+      "startLine": 270,
+      "sha256": "251eb91ffa0bc7834ee8901e8b8eac3781ee121ae6bbccedc19741583aa4bde4",
+      "text": "// ES2022 10.4.7 Immutable Prototype Exotic Objects\n  // The [[SetPrototypeOf]] for %Object.prototype% is supposed to be\n  // SetImmutablePrototype, which returns false and subsequently throws\n  // when the argument isn't the same as the existing prototype,\n  // which we've already checked above.\n  // %Object.prototype% is the only object in the spec which is an immutable\n  // prototype exotic object.\n  // The global object's parent is host-defined,\n  // so we also make the global object be an immutable prototype object\n  // because modifying the parent of a global object can lead to bizarre\n  // states like Proxies in the parent chain of the global object.\n  if (LLVM_UNLIKELY(self == runtime.objectPrototypeRawPtr) ||\n      LLVM_UNLIKELY(self == runtime.getGlobal().get())) {\n    return runtime.raiseTypeError(\n        \"Cannot set prototype of immutable prototype object\");\n  }\n  // 5.\n  if (!self->isExtensible(runtime)) {\n    if (opFlags.getThrowOnError()) {\n      ret"
+    },
+    "nonconfigurableDeletionRejected": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSObject.cpp",
+      "start": 72969,
+      "end": 74019,
+      "startLine": 2022,
+      "sha256": "ac198bb3c7658a9e18b3b2e1f9f25398873b35f913693fbc034875e5de4184a0",
+      "text": "  // If the property isn't configurable, fail.\n  if (LLVM_UNLIKELY(!desc.flags.configurable)) {\n    if (opFlags.getThrowOnError()) {\n      return runtime.raiseTypeError(\n          TwineChar16(\"Property '\") +\n          runtime.getIdentifierTable().getStringViewForDev(runtime, name) +\n          \"' is not configurable\");\n    }\n    return false;\n  }\n\n  // Clear the deleted property value to prevent memory leaks.\n  setNamedSlotValueUnsafe(\n      *selfHandle, runtime, desc, SmallHermesValue::encodeEmptyValue());\n\n  // Perform the actual deletion.\n  auto newClazz = HiddenClass::deleteProperty(\n      runtime.makeHandle(selfHandle->getClassGCPtr()), runtime, *pos);\n  selfHandle->updateClass(runtime, *newClazz);\n\n  return true;\n}\n\nCallResult<bool> JSObject::deleteComputed(\n    Handle<JSObject> selfHandle,\n    Runtime &runtime,\n    Handle<> nameValHandle,\n    PropOpFlags opFlags) {\n  assert(\n      !opFlags.getMustExist() && \"mustExist cannot be specified when deleting\");\n\n  // If nameValHandle is an object, we should convert it to string now,\n  "
+    },
+    "nonconfigurableTypeConversionRejected": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSObject.cpp",
+      "start": 117581,
+      "end": 120181,
+      "startLine": 3350,
+      "sha256": "46000416f210baacf89f73ef9f1dcee1f564ba713a43b3c57c9f71b63df67703",
+      "text": "  // 8.12.9 [7]\n  // If the property is not configurable, some aspects are not changeable.\n  if (!currentFlags.configurable) {\n    // Trying to change non-configurable to configurable?\n    if (dpFlags.configurable) {\n      if (opFlags.getThrowOnError()) {\n        return runtime.raiseTypeError(\n            \"property is not configurable\"); // TODO: better message.\n      }\n      return std::make_pair(PropertyUpdateStatus::failed, PropertyFlags{});\n    }\n\n    // Trying to change the enumerability of non-configurable property?\n    if (dpFlags.setEnumerable &&\n        dpFlags.enumerable != currentFlags.enumerable) {\n      if (opFlags.getThrowOnError()) {\n        return runtime.raiseTypeError(\n            \"property is not configurable\"); // TODO: better message.\n      }\n      return std::make_pair(PropertyUpdateStatus::failed, PropertyFlags{});\n    }\n  }\n\n  PropertyFlags newFlags = currentFlags;\n\n  // 8.12.9 [8] If IsGenericDescriptor(Desc) is true, then no further validation\n  // is required.\n  if (!(dpFlags.setValue || dpFlags.setWritable || dpFlags.setGetter ||\n        dpFlags.setSetter)) {\n    // Do nothing\n  }\n  // 8.12.9 [9]\n  // Changing between accessor and data descriptor?\n  else if (currentFlags.accessor != dpFlags.isAccessor()) {\n    if (!currentFlags.configurable) {\n      if (opFlags.getThrowOnError()) {\n        return runtime.raiseTypeError(\n            \"property is not configurable\"); // TODO: better message.\n      }\n      return std::make_pair(PropertyUpdateStatus::failed, PropertyFlags{});\n    }\n\n    // If we change from accessor to data descriptor, Preserve the existing\n    // values of the converted property’s [[Configurable]] and [[Enumerable]]\n    // attributes and set the rest of the property’s attributes to their default\n    // values.\n    // If it's the other way around, since the accessor doesn't have the\n    // [[Writable]] attribute, do nothing.\n    newFlags.writable = 0;\n\n    // If we are changing from accessor to non-accessor, we must set a new\n    // value.\n    if (!dpFlags.isAccessor())\n      dpFlags.setValue = 1;\n  }\n  // 8.12.9 [10] if both are data descriptors.\n  else if (!currentFlags.accessor) {\n    if (!currentFlags.configurable) {\n      if (!currentFlags.writable) {\n        // If the current property is not writable, but the new one is.\n        if (dpFlags.writable) {\n          if (opFlags.getThrowOnError()) {\n            return runtime.raiseTypeError(\n                \"property is not configurable\"); // TODO: better message.\n          }\n          return std::make_pair(PropertyUpdateStatus::failed, PropertyFlags{});\n        }"
+    },
+    "privilegedOverrideEscape": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSObject.cpp",
+      "start": 115710,
+      "end": 116160,
+      "startLine": 3306,
+      "sha256": "d7f212e5b90428016b7171e4672fb7a0d5561604bacf582eeb46fbe09073122f",
+      "text": "  // The InternalForce() flag indicate the property update should go through, no\n  // matter what. This is used by internal properties, which are often\n  // implementation details and not real JS properties.\n  if (opFlags.getInternalForce()) {\n    return std::make_pair(PropertyUpdateStatus::needSet, currentFlags);\n  }\n\n  assert(\n      (!dpFlags.isAccessor() || (!dpFlags.setWritable && !dpFlags.writable)) &&\n      \"can't set both accessor and writ"
+    },
+    "actualPrivilegedOverrideCaller": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSArrayBuffer.cpp",
+      "start": 8134,
+      "end": 9034,
+      "startLine": 271,
+      "sha256": "58fabb6455271af6b5c84df00970e079ba6b5f10c928d88f80ec7b34af4f4ffb",
+      "text": "void JSArrayBuffer::setExternalFinalizer(\n    Runtime &runtime,\n    Handle<JSArrayBuffer> self,\n    Handle<> value) {\n  // We are setting an internal property with InternalForce() flag. The write\n  // should always go through, and we can skip the result check.\n  [[maybe_unused]] auto res = JSObject::defineOwnProperty(\n      self,\n      runtime,\n      Predefined::getSymbolID(\n          Predefined::InternalPropertyArrayBufferExternalFinalizer),\n      DefinePropertyFlags::getDefaultNewPropertyFlags(),\n      value,\n      PropOpFlags().plusInternalForce());\n  assert(\n      res == ExecutionStatus::RETURNED &&\n      \"Writes to the external block internal property should never throw\");\n  assert(\n      *res &&\n      \"Writes to the external block internal property should never fail\");\n}\n\nvoid JSArrayBuffer::setExternalDataBlock(\n    Runtime &runtime,\n    Handle<JSArrayBuffer> self,\n    uint8_t *da"
+    },
+    "dictionaryGrowPreservesLiveSlot": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp",
+      "start": 2991,
+      "end": 3511,
+      "startLine": 96,
+      "sha256": "7aecbbbdf33a9baee8b1d839618a2bba80373589a7eb1b4a6de7fc34573299a7",
+      "text": "    dst->second = src->second;\n\n    auto result = lookupEntryFor(newSelf, key);\n    assert(!result.first && \"found duplicate entry while growing\");\n    result.second->setDescIndex(count, key);\n\n    ++dst;\n    ++count;\n  }\n\n  assert(\n      count == self->numProperties_ && \"numProperties mismatch when growing\");\n\n  newSelf->numProperties_ = count;\n\n  // Transfer the deleted list to the new instance.\n  auto deletedIndex = self->deletedListHead_;\n  if (deletedIndex != END_OF_LIST) {\n    newSelf->deletedListHead_ = coun"
+    },
+    "dictionaryGrowPreservesDeletedSlot": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp",
+      "start": 3986,
+      "end": 4486,
+      "startLine": 126,
+      "sha256": "9b25d0dd9a530e39a1ebf7230f80c4775b4479fa070c8199e36e13ab51131f13",
+      "text": "      dst->second.slot = src->second.slot;\n\n      deletedIndex = getNextDeletedIndex(src);\n      setNextDeletedIndex(\n          dst, deletedIndex != END_OF_LIST ? count + 1 : END_OF_LIST);\n\n      ++dst;\n      ++count;\n    } while (deletedIndex != END_OF_LIST);\n  }\n\n  newSelf->numDescriptors_.store(count, std::memory_order_release);\n  assert(count <= newSelf->descriptorCapacity_);\n  return ExecutionStatus::RETURNED;\n}\n\nCallResult<std::pair<NamedPropertyDescriptor *, bool>>\nDictPropertyMap::findOr"
+    },
+    "deleteOnlyFreelistsDeletedSlot": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp",
+      "start": 6769,
+      "end": 7869,
+      "startLine": 206,
+      "sha256": "e45d0ada07b08bfd000115258b52a3b078f146426c8b8f855a56c67c7c5756d1",
+      "text": "void DictPropertyMap::erase(\n    DictPropertyMap *self,\n    Runtime &runtime,\n    PropertyPos pos) {\n  auto *hashPair = self->getHashPairs() + pos.hashPairIndex;\n  auto descIndex = hashPair->getDescIndex();\n  assert(\n      descIndex < self->numDescriptors_.load(std::memory_order_relaxed) &&\n      \"descriptor index out of range\");\n\n  auto *descPair = self->getDescriptorPairs() + descIndex;\n  assert(\n      descPair->first != SymbolID::empty() &&\n      \"accessing deleted descriptor pair\");\n\n  hashPair->setDeleted();\n  descPair->first.set(SymbolID::deleted(), runtime.getHeap());\n  // Add the descriptor to the deleted list.\n  setNextDeletedIndex(descPair, self->deletedListHead_);\n  self->deletedListHead_ = descIndex;\n  ++self->deletedListSize_;\n\n  assert(self->numProperties_ != 0 && \"num properties out of sync\");\n  --self->numProperties_;\n  self->incDeletedHashCount();\n}\n\nSlotIndex DictPropertyMap::allocatePropertySlot(\n    DictPropertyMap *self,\n    Runtime &runtime) {\n  // If there are no deleted properties, the number of properties corresponds\n  // exactly to the number of slots.\n  if "
+    },
+    "allocateOnlyReusesDeletedSlot": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp",
+      "start": 7649,
+      "end": 8749,
+      "startLine": 233,
+      "sha256": "46564c520db5f5561f213c83e3b201bad73e582408079a0073493da1a3273fd2",
+      "text": "SlotIndex DictPropertyMap::allocatePropertySlot(\n    DictPropertyMap *self,\n    Runtime &runtime) {\n  // If there are no deleted properties, the number of properties corresponds\n  // exactly to the number of slots.\n  if (self->deletedListHead_ == END_OF_LIST)\n    return self->numProperties_;\n\n  auto *deletedPair = self->getDescriptorPairs() + self->deletedListHead_;\n  assert(\n      deletedPair->first == SymbolID::deleted() &&\n      \"Head of deleted list is not deleted\");\n\n  // Remove the first element from the deleted list.\n  self->deletedListHead_ = getNextDeletedIndex(deletedPair);\n  --self->deletedListSize_;\n\n  // Mark the pair as \"invalid\" instead of \"deleted\".\n  // No need for symbol write barrier because the previous value was deleted.\n  new (&deletedPair->first) GCSymbolID(SymbolID::empty());\n\n  return deletedPair->second.slot;\n}\n\nvoid DictPropertyMap::dump() {\n  auto &OS = llvh::errs();\n\n  OS << \"DictPropertyMap:\" << getDebugAllocationId() << \"\\n\";\n  OS << \"  HashPairs[\" << hashCapacity_ << \"]:\\n\";\n  for (unsigned i = 0; i < hashCapacity_; ++i) {\n    auto *pair = getHashPairs"
+    },
+    "dictionaryConversionMovesMap": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 7301,
+      "end": 9101,
+      "startLine": 258,
+      "sha256": "bd409591708df29118e3ba4baa7e5d2d2dda1123e4ab7b47b5f10e83370cef0d",
+      "text": "Handle<HiddenClass> HiddenClass::copyToNewDictionary(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime,\n    bool noCache) {\n  assert(\n      !selfHandle->isDictionaryNoCache() && \"class already in no-cache mode\");\n\n  struct : public Locals {\n    PinnedValue<JSObject> objectParent;\n  } lv;\n  LocalsRAII lraii{runtime, &lv};\n\n  auto newFlags = selfHandle->flags_;\n  newFlags.dictionaryMode = true;\n  // If the requested, transition to no-cache mode.\n  if (noCache) {\n    newFlags.dictionaryNoCacheMode = true;\n  }\n\n  /// Allocate a new class without a parent.\n  lv.objectParent = selfHandle->objectParent_.get(runtime);\n  auto newClassHandle = runtime.makeHandle<HiddenClass>(HiddenClass::create(\n      runtime,\n      newFlags,\n      Runtime::makeNullHandle<HiddenClass>(),\n      lv.objectParent,\n      SymbolID{},\n      PropertyFlags{},\n      selfHandle->numProperties_));\n\n  // Optionally allocate the property map and move it to the new class.\n  if (LLVM_UNLIKELY(!selfHandle->propertyMap_))\n    initializeMissingPropertyMap(selfHandle, runtime);\n\n  newClassHandle->propertyMap_.set(\n      runtime, selfHandle->propertyMap_, runtime.getHeap());\n  selfHandle->propertyMap_.setNull(runtime.getHeap());\n\n  LLVM_DEBUG(\n      dbgs() << \"Converted Class:\" << selfHandle->getDebugAllocationId()\n             << \" to dictionary Class:\"\n             << newClassHandle->getDebugAllocationId() << \"\\n\");\n\n  return newClassHandle;\n}\n\nvoid HiddenClass::forEachPropertyNoAlloc(\n    HiddenClass *self,\n    PointerBase &base,\n    std::function<void(SymbolID, NamedPropertyDescriptor)> callback) {\n  std::vector<std::pair<SymbolID, NamedPropertyDescriptor>> properties;\n  HiddenClass *curr = self;\n  while (curr && !curr->propertyMap_) {\n    // Skip invalid symbols stored in the hidden class chain, as well "
+    },
+    "deletionChangesOnlyDeletedProperty": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 12578,
+      "end": 13678,
+      "startLine": 409,
+      "sha256": "0c7c465a1683ab09a63fda6c13197971ab684fd8cee1f924dcab3216df39630d",
+      "text": "Handle<HiddenClass> HiddenClass::deleteProperty(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime,\n    PropertyPos pos) {\n  // We convert to dictionary if we're not yet a dictionary\n  // (transition to a cacheable dictionary), or if we are, but not yet\n  // in no-cache mode (transition to no-cache mode).\n  auto newHandle = LLVM_UNLIKELY(!selfHandle->isDictionaryNoCache())\n      ? copyToNewDictionary(selfHandle, runtime, selfHandle->isDictionary())\n      : selfHandle;\n\n  --newHandle->numProperties_;\n\n  DictPropertyMap::erase(newHandle->propertyMap_.get(runtime), runtime, pos);\n\n  LLVM_DEBUG(\n      dbgs() << \"Deleting from Class:\" << selfHandle->getDebugAllocationId()\n             << \" produces Class:\" << newHandle->getDebugAllocationId()\n             << \"\\n\");\n\n  return newHandle;\n}\n\nCallResult<std::pair<Handle<HiddenClass>, SlotIndex>> HiddenClass::addProperty(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime,\n    SymbolID name,\n    PropertyFlags propertyFlags) {\n  assert(propertyFlags.isValid() && \"propertyFlags must be valid\");\n\n  if (LLVM_UNLIKELY(selfHandle->isDic"
+    },
+    "dictionaryAddUsesFreelist": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 13380,
+      "end": 14980,
+      "startLine": 432,
+      "sha256": "20fc831bb26b17429d5f835a26372b88eda708bc02452df420cd5e508e835718",
+      "text": "CallResult<std::pair<Handle<HiddenClass>, SlotIndex>> HiddenClass::addProperty(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime,\n    SymbolID name,\n    PropertyFlags propertyFlags) {\n  assert(propertyFlags.isValid() && \"propertyFlags must be valid\");\n\n  if (LLVM_UNLIKELY(selfHandle->isDictionary())) {\n    auto isIndexLike =\n        toArrayIndex(runtime.getIdentifierTable().getStringView(runtime, name))\n            .hasValue();\n    selfHandle->flags_ =\n        computeFlags(selfHandle->flags_, propertyFlags, isIndexLike);\n\n    // Allocate a new slot.\n    // TODO: this changes the property map, so if we want to support OOM\n    // handling in the future, and the following operation fails, we would have\n    // to somehow be able to undo it, or use an approach where we peek the slot\n    // but not consume until we are sure (which is less efficient, but more\n    // robust). T31555339.\n    SlotIndex newSlot = DictPropertyMap::allocatePropertySlot(\n        selfHandle->propertyMap_.getNonNull(runtime), runtime);\n\n    if (LLVM_UNLIKELY(\n            addToPropertyMap(\n                selfHandle,\n                runtime,\n                name,\n                NamedPropertyDescriptor(propertyFlags, newSlot)) ==\n            ExecutionStatus::EXCEPTION)) {\n      return ExecutionStatus::EXCEPTION;\n    }\n\n    ++selfHandle->numProperties_;\n    return std::make_pair(selfHandle, newSlot);\n  }\n\n  // Do we already have a transition for that property+flags pair?\n  auto existingChild =\n      selfHandle->transitionMap_.lookup(runtime, {name, propertyFlags});\n  if (LLVM_LIKELY(existingChild)) {"
+    },
+    "mapReconstructionInsertionSlots": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 38110,
+      "end": 39210,
+      "startLine": 1158,
+      "sha256": "c314444563d97eafeeab1dab0f7a3332607805dbb74c3bab2ce49c2c542c1386",
+      "text": "  // Add the collected entries in reverse order. Note that there could be\n  // duplicates.\n  SlotIndex slotIndex = 0;\n  for (auto it = entries.rbegin(), e = entries.rend(); it != e; ++it) {\n    auto inserted = DictPropertyMap::findOrAdd(mapHandle, runtime, it->first);\n    assert(\n        inserted != ExecutionStatus::EXCEPTION &&\n        \"Space was already reserved, this couldn't have grown\");\n\n    inserted->first->flags = it->second;\n    // If it is a new property, allocate the next slot.\n    if (LLVM_LIKELY(inserted->second))\n      inserted->first->slot = slotIndex++;\n  }\n\n  selfHandle->propertyMap_.setNonNull(runtime, *mapHandle, runtime.getHeap());\n}\n\nvoid HiddenClass::stealPropertyMapFromParent(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime) {\n  ++NumHCMapSteal;\n  // Most of this method uses raw pointers.\n  NoAllocScope noAlloc(runtime);\n  auto *self = *selfHandle;\n  assert(\n      self->parent_ && self->parent_.getNonNull(runtime)->propertyMap_ &&\n      !self->propertyMap_ &&\n      \"stealPropertyMapFromParent() must be called with a valid parent with a property map\");\n"
+    },
+    "namedStorageGrowth": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSObject.cpp",
+      "start": 11007,
+      "end": 14107,
+      "startLine": 337,
+      "sha256": "a154346f0bc0572a363cde12d6598152bb2c60edcf9d36ab838c2ca00f774f7b",
+      "text": "ExecutionStatus JSObject::allocateNewSlotStorage(\n    Handle<JSObject> selfHandle,\n    Runtime &runtime,\n    SlotIndex newSlotIndex,\n    Handle<> valueHandle) {\n  // If it is a direct property, just store the value and we are done.\n  if (LLVM_LIKELY(newSlotIndex < DIRECT_PROPERTY_SLOTS)) {\n    auto shv = SmallHermesValue::encodeHermesValue(*valueHandle, runtime);\n    selfHandle->directProps()[newSlotIndex].set(shv, runtime.getHeap());\n    return ExecutionStatus::RETURNED;\n  }\n\n  // Make the slot index relative to the indirect storage.\n  newSlotIndex -= DIRECT_PROPERTY_SLOTS;\n\n  // Allocate a new property storage if not already allocated.\n  if (LLVM_UNLIKELY(!selfHandle->propStorage_)) {\n    // Allocate new storage.\n    assert(newSlotIndex == 0 && \"allocated slot must be at end\");\n    auto arrRes = runtime.ignoreAllocationFailure(\n        PropStorage::create(runtime, DEFAULT_PROPERTY_CAPACITY));\n    selfHandle->propStorage_.setNonNull(\n        runtime, vmcast<PropStorage>(arrRes), runtime.getHeap());\n  } else if (auto propStoragePtr = selfHandle->propStorage_.getNonNull(runtime);\n             LLVM_UNLIKELY(newSlotIndex >= propStoragePtr->capacity())) {\n    // Reallocate the existing one.\n    assert(\n        newSlotIndex == selfHandle->propStorage_.getNonNull(runtime)->size() &&\n        \"allocated slot must be at end\");\n\n    UsePinnedValueRAII<PropStorage> propStorageUse{runtime.hvStorageTmp};\n    propStorageUse = propStoragePtr;\n    if (LLVM_UNLIKELY(\n            PropStorage::resize(propStorageUse, runtime, newSlotIndex + 1) ==\n            ExecutionStatus::EXCEPTION)) {\n      return ExecutionStatus::EXCEPTION;\n    };\n    selfHandle->propStorage_.setNonNull(\n        runtime, propStorageUse.get(), runtime.getHeap());\n  }\n\n  {\n    NoAllocScope scope{runtime};\n    auto *const propStorage = selfHandle->propStorage_.getNonNull(runtime);\n    if (newSlotIndex >= propStorage->size()) {\n      assert(\n          newSlotIndex == propStorage->size() &&\n          \"allocated slot must be at end\");\n      PropStorage::resizeWithinCapacity(propStorage, runtime, newSlotIndex + 1);\n    }\n  }\n  // This must be done after the call to resizeWithinCapacity, since\n  // encodeHermesValue may allocate and cause the ArrayStorage to be trimmed.\n  auto shv = SmallHermesValue::encodeHermesValue(*valueHandle, runtime);\n  // If we don't need to resize, just store it directly.\n  selfHandle->propStorage_.getNonNull(runtime)->set(\n      newSlotIndex, shv, runtime.getHeap());\n  return ExecutionStatus::RETURNED;\n}\n\nCallResult<PseudoHandle<>> JSObject::getNamedPropertyValue_RJS(\n    Handle<JSObject> selfHandle,\n    Runtime &runtime,\n    Handle<JSObject> propObj,\n    NamedPropertyDescriptor desc) {\n  if (LLVM_LIKELY(!desc.flags.accessor))\n    return getNamedSlotValue(propObj, runtime, desc);\n\n  // It's now valid to use the Internal variant because we know it's an\n  // accessor.\n  auto *accessor = vmcast<PropertyAccessor>(\n      getNamedSlotValueUnsafe(propObj.get(), runtime, desc).getObject(runtime));\n  if (!accessor->getter)\n    return createPseudoHandle(HermesValue::encodeUndefinedVa"
+    },
+    "storageResizeDoesNotShift": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/ArrayStorage.h",
+      "start": 13550,
+      "end": 14600,
+      "startLine": 335,
+      "sha256": "645aab1622479db2e5f0881c2c5420f3af8644e55944fcb8f9fc5dfce59e7d6e",
+      "text": "  static ExecutionStatus resize(\n      MutableHandle<ArrayStorageBase<HVType>> selfHandle,\n      Runtime &runtime,\n      size_type newSize) {\n    if (selfHandle->size() == newSize)\n      return ExecutionStatus::RETURNED;\n    // Check if we could expand within capacity.\n    if (newSize <= selfHandle->capacity()) {\n      ArrayStorageBase::resizeWithinCapacity(\n          *selfHandle, runtime.getHeap(), newSize);\n      return ExecutionStatus::RETURNED;\n    }\n\n    // Reallocate to a capacity of at least newSize.\n    return reallocateToLarger(selfHandle, runtime, newSize, 0, 0, newSize);\n  }\n\n  /// Change the size of the storage to \\p newSize. If the size is decreasing,\n  /// shift the data the left, marking the extra elements at the end as\n  /// unreachable. If the size is increasing, reallocate if necessary, shift the\n  /// data to the right and initialize the new elements at the start as \"empty\".\n  ///\n  /// \\param[in,out] selfHandle The ArrayStorageBase to be modified. Note the\n  /// MutableHandle will be updated to point to a new alloc"
+    },
+    "genericStorageCanShiftExcluded": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/ArrayStorage.cpp",
+      "start": 5461,
+      "end": 6381,
+      "startLine": 173,
+      "sha256": "58da15e1f1de2ff21ad4517395a4abb4dc6122dfe0d85343e7bc1e55244a97e9",
+      "text": "ExecutionStatus ArrayStorageBase<HVType>::resizeLeft(\n    MutableHandle<ArrayStorageBase<HVType>> selfHandle,\n    Runtime &runtime,\n    size_type newSize) {\n  if (selfHandle->size() == newSize)\n    return ExecutionStatus::RETURNED;\n\n  if (newSize < selfHandle->size()) {\n    // Shrink left, copy from [size-newSize, size) to [0, newSize). Mark the\n    // range [newSize, size) as unreachable.\n    auto *self = selfHandle.get();\n    size_type size = self->size();\n    GCHVType::copy(\n        self->data() + size - newSize,\n        self->data() + size,\n        self->data(),\n        self,\n        runtime.getHeap());\n    // Execute write barriers on elements about to be conceptually changed to\n    // null. This also means if an array is refilled, it can treat the memory\n    // here as uninitialized safely.\n    GCHVType::rangeUnreachableWriteBarrier(\n        self->data() + newSize, self->data() + size, runtime.getHeap"
+    },
+    "storageGrowthCopiesMatchingIndices": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/ArrayStorage.cpp",
+      "start": 2286,
+      "end": 4136,
+      "startLine": 77,
+      "sha256": "c0021db819770aba698a810ec14fef5d33c242ab51909988ceeec7d972cb5286",
+      "text": "ExecutionStatus ArrayStorageBase<HVType>::reallocateToLarger(\n    MutableHandle<ArrayStorageBase<HVType>> selfHandle,\n    Runtime &runtime,\n    size_type minCapacity,\n    size_type fromFirst,\n    size_type toFirst,\n    size_type toLast) {\n  assert(minCapacity >= toLast && \"Last element outside capacity.\");\n  assert(\n      minCapacity > selfHandle->capacity() &&\n      \"minCapacity must be larger than current capacity.\");\n\n  size_type newCapacity = std::max(\n      std::min(selfHandle->capacity(), maxCapacityNoOverflow() / 2) * 2,\n      minCapacity);\n\n  auto arrRes = create(runtime, newCapacity);\n  if (LLVM_UNLIKELY(arrRes == ExecutionStatus::EXCEPTION)) {\n    return ExecutionStatus::EXCEPTION;\n  }\n\n  NoAllocScope noAllocs{runtime};\n  auto *newSelf = vmcast<ArrayStorageBase>(*arrRes);\n\n  // Copy the existing data.\n  auto *self = selfHandle.get();\n  size_type copySize = std::min(self->size() - fromFirst, toLast - toFirst);\n\n  {\n    GCHVType *from = self->data() + fromFirst;\n    GCHVType *to = newSelf->data() + toFirst;\n    GCHVType::uninitialized_copy(\n        from, from + copySize, to, newSelf, runtime.getHeap());\n  }\n\n  // Initialize the elements before the first copied element.\n  GCHVType::uninitialized_fill(\n      newSelf->data(),\n      newSelf->data() + toFirst,\n      HVType::encodeEmptyValue(),\n      newSelf,\n      runtime.getHeap());\n\n  // Initialize the elements after the last copied element and toLast.\n  if (toFirst + copySize < toLast) {\n    GCHVType::uninitialized_fill(\n        newSelf->data() + toFirst + copySize,\n        newSelf->data() + toLast,\n        HVType::encodeEmptyValue(),\n        newSelf,\n        runtime.getHeap());\n  }\n\n  newSelf->size_.store(toLast, std::memory_order_release);\n\n  // Update the handle.\n  selfHandle.set(newSelf);\n\n  return ExecutionStatus::RETURNED;\n}\n\ntemplate <typename HVType>\nvoid"
+    },
+    "storageGcTrimDisabled": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/ArrayStorage.cpp",
+      "start": 597,
+      "end": 967,
+      "startLine": 25,
+      "sha256": "7649489726ce27140d5020706aca28b58025d0ba1374a5e33cd36a83918632a8",
+      "text": "    // ArrayStorage trimming is disabled for now. In the future, we may consider\n    // re-enabling it only for specific ArrayStorages (e.g. property storage).\n    /* trimSizeCallback */ nullptr\n#ifdef HERMES_MEMORY_INSTRUMENTATION\n    ,\n    VTable::HeapSnapshotMetadata{\n        HeapSnapshot::NodeType::Array,\n        nullptr,\n        nullptr,\n        nullptr,\n        "
+    },
+    "gcPreservesCellLayout": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
+      "start": 17355,
+      "end": 17835,
+      "startLine": 513,
+      "sha256": "1bceb76702cc10a1fef586d06af0c5f80311620ba67f22124e3cad74b5fc79ae",
+      "text": "    // Copy the contents of the existing cell over before modifying it.\n    std::memcpy((void *)newCell, cell, cellSize);\n    assert(newCell->isValid() && \"Cell was copied incorrectly\");\n    evacuatedBytes_ += cellSize;\n    CopyListCell *const copyCell = static_cast<CopyListCell *>(cell);\n    // Set the forwarding pointer in the old spot\n    copyCell->setMarkedForwardingPointer(\n        CompressedPointer::encodeNonNull(newCell, pointerBase_));\n    if (isTrackingIDs_) {\n      "
+    },
+    "currentNamedSlotRead": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/JSObject.h",
+      "start": 75918,
+      "end": 77018,
+      "startLine": 1909,
+      "sha256": "bf919c7224640d98c512046c5f1f9c466fc7a93bba1bd013d5f0d65145124a3b",
+      "text": "inline SmallHermesValue JSObject::getNamedSlotValueUnsafe(\n    JSObject *self,\n    PointerBase &runtime,\n    SlotIndex index) {\n  if (LLVM_LIKELY(index < DIRECT_PROPERTY_SLOTS))\n    return getNamedSlotValueDirectUnsafe(self, runtime, index);\n\n  return getNamedSlotValueIndirectUnsafe(\n      self, runtime, index - DIRECT_PROPERTY_SLOTS);\n}\n/// Load a value from the direct storage space by \\p index.\ninline SmallHermesValue JSObject::getNamedSlotValueDirectUnsafe(\n    JSObject *self,\n    PointerBase &runtime,\n    SlotIndex index) {\n  assert(index < DIRECT_PROPERTY_SLOTS);\n  return self->directProps()[index];\n}\n/// Load a value from the indirect storage space by \\p index. The index\n/// is relative to the indirect storage.\ninline SmallHermesValue JSObject::getNamedSlotValueIndirectUnsafe(\n    JSObject *self,\n    PointerBase &runtime,\n    SlotIndex index) {\n  return self->propStorage_.getNonNull(runtime)->at(index);\n}\n\ninline CallResult<PseudoHandle<>> JSObject::getNamedSlotValue(\n    PseudoHandle<JSObject> self,\n    Runtime &runtime,\n    NamedPropertyDescriptor desc) {\n  if (LLVM_UNLIKELY("
+    },
+    "ordinaryReadUsesSameDecoder": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/StaticH.cpp",
+      "start": 40153,
+      "end": 40373,
+      "startLine": 1212,
+      "sha256": "69ca8fdc43bc5a47aaba5360a3211ad20d3909dd946d6d7a425d5f2a9dc5c9cf",
+      "text": "      return JSObject::getNamedSlotValueUnsafe(obj, runtime, desc)\n          .unboxToHV(runtime);\n    }\n\n#ifdef HERMES_SLOW_DEBUG\n    // Call to getNamedDescriptorUnsafe is safe because `id` is kept alive\n    // by the I"
+    },
+    "staticUnitRootsSymbols": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/StaticHUnit.cpp",
+      "start": 7030,
+      "end": 7700,
+      "startLine": 212,
+      "sha256": "f6e34d8a7942ecafe68751ad71c284cd0800a90cd9b370117058c3722b3f24be",
+      "text": "void hermes::vm::sh_unit_mark_roots(\n    SHUnit *unit,\n    RootAcceptorWithNames &acceptor,\n    bool markLongLived) {\n  for (auto &it : unit->runtime_ext->templateMap) {\n    acceptor.acceptPtr(it.second);\n  }\n\n  if (markLongLived) {\n    for (const SHSymbolID *p = unit->symbols, *e = p + unit->num_symbols;\n         p != e;\n         ++p) {\n      const RootSymbolID sym(SymbolID::unsafeCreate(*p));\n      if (sym.isValid())\n        acceptor.accept(sym);\n    }\n  }\n}\n\nvoid hermes::vm::sh_unit_mark_weak_roots(\n    SHUnit *unit,\n    WeakRootAcceptor &acceptor,\n    bool markLongLived) {\n  if (markLongLived) {\n    for (auto &prop : llvh::makeMutableArrayRef(\n             r"
+    },
+    "descriptorFlagKinds": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/PropertyDescriptor.h",
+      "start": 418,
+      "end": 2918,
+      "startLine": 20,
+      "sha256": "3138e1e588096cef649cb523f52a75b59927d5ce886cd077deb9834734184992",
+      "text": "struct PropertyFlags {\n  union {\n    struct {\n      /// If set, the entire structure is invalid. This must only be used when\n      /// we want to distinguish between having an instance of \\c PropertyFlags\n      /// and not having one. It should never be stored in a \\c\n      /// PropertyDescriptor. This flag should never be set manually - instead\n      /// an \"invalid\" instance should be obtained by calling the  \\c invalid()\n      /// factory method.  This flag is a little more special than the others,\n      /// and should remain first in the struct.\n      uint16_t invalidFlags : 1;\n      /// The property is enumerable.\n      uint16_t enumerable : 1;\n      /// The property can be written to, if it is a data descriptor.\n      uint16_t writable : 1;\n      /// The property can be configured.\n      uint16_t configurable : 1;\n      /// The property is an accessor: it has an optional getter and setter.\n      uint16_t accessor : 1;\n      /// The property is stored in \"indexed\" storage, which is separate from\n      /// normal named property storage.\n      uint16_t indexed : 1;\n      /// A regular data descriptor with an internal setter handler which is\n      /// invoked on writes.\n      uint16_t internalSetter : 1;\n      /// This flag is only used in the hidden class transition table. It\n      /// indicates that the property wasn't added - only its flags were\n      /// updated.\n      uint16_t flagsTransition : 1;\n      /// This property indicates that the object is a HostObject\n      /// property managed by C++.  This flag should only be used as a\n      /// marker for certain temporary descriptors synthesized by\n      /// get*Descriptor methods, and never set in descriptors stored\n      /// persistently.\n      uint16_t hostObject : 1;\n      /// This property is a builtin method or object, and it could be\n      /// accessed by the CallBuiltin instruction. The property is made\n      /// read-only and is not allowed to be overriden.\n      uint16_t staticBuiltin : 1;\n      /// This flag indicates this is a proxy exotic Object.  This flag\n      /// should only be used as a marker for certain temporary\n      /// descriptors synthesized by get*Descriptor methods, and never\n      /// set in descriptors stored persistently.\n      uint16_t proxyObject : 1;\n      /// The property is a private name.\n      uint16_t privateName : 1;\n    };\n\n    uint16_t _flags;\n  };\n  /// Clear all flags on construction.\n  PropertyFlags() {\n    _flags = 0;\n  }\n\n  void clear() {\n    _flags = 0;\n "
+    },
+    "ordinaryReadCacheShapeDependency": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/PropertyCache.h",
+      "start": 2708,
+      "end": 3908,
+      "startLine": 84,
+      "sha256": "ade43076540660eff49b344fafb50a42bdf718511bcc134b51bbd5686b03c82c",
+      "text": "struct ReadPropertyCacheEntry {\n  /// Cached class: either for the object being read from,\n  /// or it's prototype.\n  WeakRoot<HiddenClass> clazz{nullptr};\n\n  /// If \\p clazz is a HiddenClass for the prototype, this is\n  /// non-null and is the HiddenClass for the child object.  We call this\n  /// a \"negative match\": the property was not found on an object\n  /// with this HiddenClass, so if the object used in a subsequent\n  /// read has the same HiddenClass, it also won't have the property.\n  WeakRoot<HiddenClass> negMatchClazz{nullptr};\n\n  /// Can store 16-bit slot.\n  static constexpr SlotIndex kMaxSlot = 0xffff;\n\n  /// Cached property index: in the object if \\p clazz is the object's\n  /// HiddenClass, or in the object's prototype if \\p clazz is the\n  /// prototype's HiddenClass.\n  /// Do not use this directly, use getSlot()/setSlot() instead.\n  uint16_t _slot16{0};\n\n  /// How many times the successfully cached property info has changed. Note\n  /// that this doesn't count the times when the cache didn't hit or something\n  /// couldn't be cached.\n  uint8_t numGoodChanges{0};\n\n  /// \\return the cached property index.\n  uint16_t getSlot() const {\n    return _slot16 & kMaxSlot;\n  }\n\n "
+    }
+  },
+  "directed": [
+    {
+      "name": "permanent_data_survives_unrelated_growth_and_deletes",
+      "passed": true,
+      "result": {
+        "value": 2,
+        "configurable": false,
+        "deleted": false
+      }
+    },
+    {
+      "name": "nonconfigurable_data_cannot_become_getter",
+      "passed": true,
+      "result": {
+        "rejected": true,
+        "value": 1
+      }
+    },
+    {
+      "name": "current_value_and_identity_must_be_read",
+      "passed": true,
+      "result": {
+        "same": false,
+        "current": true
+      }
+    },
+    {
+      "name": "writable_can_become_false_without_changing_reads",
+      "passed": true,
+      "result": {
+        "negativeZero": true,
+        "writable": false
+      }
+    },
+    {
+      "name": "configurable_property_is_not_permanent",
+      "passed": true,
+      "result": {
+        "old": 1,
+        "present": false,
+        "other": 2
+      }
+    }
+  ],
+  "conclusion": "The audited ordinary named-property paths preserve a surviving nonconfigurable own data property's integer slot. No named-storage compaction/reindex operation was found in these pinned paths. This supports a narrowly guarded native experiment, not immediate activation or general object-layout caching.",
+  "proofChain": [
+    "Runtime creates its physical global once. Cache ownership must be per Runtime; each call compares the actual receiver with the current runtime.getGlobal() root. A globalThis property reassignment does not replace this physical object.",
+    "An initially real OWN nonconfigurable named DATA descriptor cannot be deleted or converted to an accessor by normal JS operations. Writable may become false and current values may change; both remain correct when every read fetches the current slot value.",
+    "Only successful deletion puts a property slot on the dictionary freelist. Since the target cannot be deleted, later property additions cannot reuse its slot.",
+    "DictPropertyMap growth compacts descriptor positions but copies each live descriptor.slot unchanged. Descriptor index and property slot are different; cache only the latter.",
+    "Non-dictionary property-map rebuilding recovers first insertion-order slots; flag transitions update existing entries without allocating new slots. Dictionary conversion transfers the property map rather than renumbering values.",
+    "Ordinary named storage grows using resize/reallocate with fromFirst=toFirst=0, preserving existing indices. Generic ArrayStorage resizeLeft DOES shift entries, but is not used by the audited named-property storage paths.",
+    "Moving GC copies object/storage contents and updates pointers. It does not renumber named slots; ArrayStorage GC trimming is disabled in this pinned build. A reader must reload the physical global and current indirect storage, never a cached object/storage address.",
+    "The ordinary source read already uses getNamedSlotValueUnsafe(...).unboxToHV(runtime). A fast read must use that exact representation/decoder, preserving signed zero, NaN bits, undefined and object identity without arithmetic or cached values."
+  ],
+  "admission": [
+    "The first miss must establish a REAL own named descriptor on the actual runtime global, with configurable=false and accessor=false. Do not infer permanence merely from a var declaration or property name.",
+    "Restrict to ordinary JSObject global receiver; reject lazy, Proxy, HostObject, typed/exotic and indexed/synthetic descriptors. Start with normal compiled string SymbolIDs; reject private names and unsupported special flags.",
+    "Use a bounded per-Runtime table of SymbolID plus SlotIndex integers only. Compiled Unit symbol IDs remain rooted by registered units; do not reuse IDs across runtimes or cache any GC pointer.",
+    "Load the CURRENT value every hit using the current runtime global and its current storage. Never freeze the binding or memoize an ed/cc/value pointer. Fail back for internal Empty/uninitialized sentinels and unsupported representation.",
+    "Default generic behavior must run exactly once on non-global, configurable, accessor, inherited, missing or otherwise unsupported inputs. Admission itself must be getter-free.",
+    "Keep integer-cache ownership alive for the Runtime and clear/remove per-Runtime registration at teardown to avoid address-reuse collisions. No custom GC root callback is needed if the cache truly contains no heap references."
+  ],
+  "exclusions": [
+    "Privileged InternalForce bypasses ordinary descriptor validation. Its pinned VM caller found here is ArrayBuffer external-finalizer setup, not a global mutation. Untrusted/future native embedders, debugger machinery or custom internal global storage rewrites are outside this proof unless explicitly invalidated.",
+    "This does not justify slot-only caching of configurable properties, arbitrary object instances, arrays/typed storage, inherited reads or properties that can be deleted.",
+    "This is a source audit plus five standard semantic fixtures, not an actual native slot-cache stress result. Runtime/header ABI, native dictionary churn, storage growth, GC movement, read-only transitions, malformed admission and full battle/report equality must be tested before any promotion.",
+    "Native profile/histogram evidence must establish actual permanent-global eligibility and meaningful cost. Existing configurable/global setup can make a candidate property ineligible; no ed/cc admission rate is assumed."
+  ],
+  "producer": {
+    "file": "tools/audit-native-global-slot.mjs",
+    "sha256": "b4a27a7fff391025acd748bce9ac0e23fa714b7f3b2755abef592f5a7a62cd29"
+  }
+}
