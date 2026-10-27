@@ -23,6 +23,9 @@ const evidence=[
  ['sceneLookup',fragment('game_ui_1.js','ed.getBtScene=function',0,630)],
  ['optionalSceneDispatch',fragment('game_util.js','ed.callViewMessage=function',0,950)],
  ['actorCreationOccursInScene',fragment('game_ui_1.js','syncActors:function',0,385)],
+ ['turnBasedActorWritesLogicState',fragment('game_battle.js','this.model.isEnterStateFinish=!0',130,160)],
+ ['turnBasedLogicConsumesActorCompletion',fragment('game_battle.js','updateEnter_TB:function',0,680)],
+ ['bossActorWritesModelSnapshotField',fragment('game_battle.js','DarkYeanling.actor_update=function',0,220)],
  ['nullSceneCounterexample',fragment('game_battle.js','t.playPointEffect.setAction("Start3")',210,100)],
  ['callbackMutatesModelTimer',fragment('game_battle.js','t.caster.atk2ImpactTimer=1',470,80)],
  ['timerConsumedByBattleUpdate',fragment('game_battle.js','BC.update=function',0,250)],
@@ -34,6 +37,8 @@ const report={version:1,status:'Source evidence audit, not a proof that renderin
  evidence,conclusions:[
  'Companions account/stage selection is visible; the inspected source does not establish a separate headless companion event loop.',
  'localBot changes diagnostics, manual control, tag handling and scoring. It does not select a callback-free or actor-free event loop.',
+ 'Turn-based combat explicitly feeds actor animation completion into model.isEnterStateFinish and skill progression. A stage-only contract must exclude this mode before considering renderer erasure.',
+ 'DarkYeanling actor update writes model.lastHpChangeTick. This may serve UI only, but full mutable-state equivalence includes the field; projecting it away requires a dependency argument.',
  'The original optional scene dispatcher can return undefined, but some original queued callbacks dereference its result unconditionally. A null-scene host does not complete every legal hero workload.',
  'Callbacks write fields on source battle models and buffs. Some fields look graphical, but erasing these writes would change complete source state and requires an explicit observable-state projection and dependency proof.',
  'No direct battle RNG calls were found in callback expressions. This syntactic result does not establish transitive purity: callbacks invoke source methods, host Math.random and nested callbacks.',

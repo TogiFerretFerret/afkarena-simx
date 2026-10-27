@@ -56,6 +56,30 @@
       "text": "syncActors:function(){if(this.lastSync!=ed.battleEngine.ticks){this.lastSync=ed.battleEngine.ticks;for(var e=ed.battleEngine.alive_units[ed.battle_camp.both],t=e.length;t--;){var i=e[t];i.actor||(i.actor=ed.UnitActorCreate(i),this.addActor(i.actor))}for(var a=ed.battleEngine.getPetList(),n=a.length;n--;){var s=a[n];s.actor||(s.actor=ed.UnitActorCreate(s),this.addActor(s.actor))}}},a"
     },
     {
+      "name": "turnBasedActorWritesLogicState",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 213111,
+      "end": 213401,
+      "sha256": "61c69add3a902d583eb96bec261b61b2ca9bf42e835e7f2755a00b3566793259",
+      "text": "e.setActionSpeeder(1),e.setAction(t),this.refreshHeroSpineNodeEffectUI_TB(t),e.setLoop(!1),e.setActionFinishedCallback(function(){this.model.isEnterStateFinish=!0,e.setActionFinishedCallback(null)}.bind(this))},refreshHeroSpineNodeEffectUI_TB:function(e){var t=this;if(this.isMode_TB()){thi"
+    },
+    {
+      "name": "turnBasedLogicConsumesActorCompletion",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 136905,
+      "end": 137585,
+      "sha256": "c85303968cf64ab2529be885c7b62cfdfa182da62473f22f88cc61cc2eb1b9c8",
+      "text": "updateEnter_TB:function(e){this.actor&&(this.isEnterStateFinish||this.isEnterOnce||(console.log(\"enter once\"),this.actor.enter_TB(),this.isEnterOnce=!0))},updateDelay_TB:function(e){this.tb_delay-=e,this.tb_delay<=0&&(this.setTurnDelayEnd_TB(!0),this.tb_delay=1)},update_TB:function(e,t){this.canTurnBasedAct_TB()&&(this.isAtkDone_TB()?this.onAtkActionFinished_TB(e):this.isSkillUpdateState_TB()?this.playSkillEffect_TB(t)?(this.actor.setEffectDone_TB(!1),this.actor.addEffect_TB(this.getSkillTrigger_TB()),this.actor.isEffectDone_TB()&&this.onSkillActionFinished_TB(e)):this.onSkillActionFinished_TB(e):(this.setBuffUpdate_TB(),this.setTurnBasedAct_TB(!1),this.setAtkDone_TB(!1))"
+    },
+    {
+      "name": "bossActorWritesModelSnapshotField",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 721800,
+      "end": 722020,
+      "sha256": "53725e91d341e968b2926df4bf8bf4ee1da419d3d0fc6482dea2c0e71030a12f",
+      "text": "DarkYeanling.actor_update=function(e,t,a){t.allBarVisible||(t.model.lastHpChangeTick=ed.battleEngine.ticks,t.setMpBarVisible(!0)),e.call(t,a)},DarkYeanling.update=function(e,t,a){t.bossBuff_dtCount<4&&(t.bossBuff_dtCount"
+    },
+    {
       "name": "nullSceneCounterexample",
       "file": "src/srcmodule/game_battle.js",
       "start": 1087397,
@@ -99,6 +123,8 @@
   "conclusions": [
     "Companions account/stage selection is visible; the inspected source does not establish a separate headless companion event loop.",
     "localBot changes diagnostics, manual control, tag handling and scoring. It does not select a callback-free or actor-free event loop.",
+    "Turn-based combat explicitly feeds actor animation completion into model.isEnterStateFinish and skill progression. A stage-only contract must exclude this mode before considering renderer erasure.",
+    "DarkYeanling actor update writes model.lastHpChangeTick. This may serve UI only, but full mutable-state equivalence includes the field; projecting it away requires a dependency argument.",
     "The original optional scene dispatcher can return undefined, but some original queued callbacks dereference its result unconditionally. A null-scene host does not complete every legal hero workload.",
     "Callbacks write fields on source battle models and buffs. Some fields look graphical, but erasing these writes would change complete source state and requires an explicit observable-state projection and dependency proof.",
     "No direct battle RNG calls were found in callback expressions. This syntactic result does not establish transitive purity: callbacks invoke source methods, host Math.random and nested callbacks.",
