@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "description": "Recorded source inputs and exact captured output for reproducible differential diagnostics; this archive does not upgrade qualification.",
+  "scope": "observed",
+  "captureMode": "final",
+  "executionContract": {
+    "engineFrames": true,
+    "queuedCallbacks": true,
+    "sourceCallbackSnapshots": true,
+    "actorEffectViewLifecycle": false,
+    "renderSceneMethods": false,
+    "qualifiesFor10000Target": false
+  },
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "oracleRuntime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "execArgv": [
+      "--jitless"
+    ],
+    "nodeOptions": ""
+  },
+  "qualification": "Diagnostic evidence only; actor/effect/view lifecycle excluded. Unpinned historical fixtures remain unqualified.",
+  "scenario": {
+    "file": "config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc"
+  },
+  "adapterInputs": {
+    "tools/emit-native-oracle.mjs": "a4cc011a5c65ee5c3d7c266a7ad1106e6bf40dd189dfddb9b6001135b3ba6d6b",
+    "tools/native-oracle-trace.mjs": "9b1495e2cdf6406b4fe4685e03e28a6ea630ae80048ee4b7a12b475d9ea9b521",
+    "tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+    "tools/battle-trace-portable.js": "ccfccf833047a1fd43ce6ab32ef4a7f89eb02f019ac772b0f46fb95313222391",
+    "tools/battle-trace-instrumentation.js": "dd5b25d168d61260c771e19b368bbac253b5717856d69d3fbc21de98d13ec379",
+    "tools/native-source-closure.mjs": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+    "tools/bootstrap-runtime.mjs": "b47d17bd21f48d2628a3a91a86aa882b6ffbc334f5f1ce1bb7fd6aa2b07c9745",
+    "tools/bootstrap-records.mjs": "31b9407c531aedcead643729b1d0dd9e9d6e7bdbcc478ba317fa55d26345bb61",
+    "tools/bootstrap-records-extractor.mjs": "7156c32904f95a38336870f1e60a0e4bb191f7b143e4bcb8a6285592fb4b0010",
+    "tools/bootstrap-source.mjs": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+    "tools/bootstrap-packed.mjs": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+    "tools/bootstrap-realm.mjs": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+    "tools/bootstrap-callbacks.mjs": "af25f0c363f7157f4ce998a322915ea1896b4e38cfc5efe17e62b798b3986ea4",
+    "tools/bootstrap-declarations.mjs": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+    "tools/bootstrap-render-scene.mjs": "e61584a1d815e92e9ff73cb8aaea6e8b2882fe413a30d8d4c3e87da9621704fd",
+    "tools/scenario-factory.mjs": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+    "tools/bootstrap-host.js": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+    "tools/oracle-clock.js": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+    "config/bootstrap-packed-config.json": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+    "config/source-oracle-runtime.json": "52a9d087d11ec9af7bdaef01fc609cab34113f2bec6d296321c52553decf97fa",
+    "tools/bootstrap-realm-init.js": "1b7ae0bfe4cca713e51abfa81fed12b3f9b70e33e6af4301a722cfc32832d82c",
+    "tools/bootstrap-vendor-CCClass.js": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+    "tools/bootstrap-render-host.js": "96adce5d999d985f92056d9da9830dd3d6bbc8bbbca1186d253f8adece5c4a04",
+    "tools/bootstrap-vendor-CCGeometry.js": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+    "tools/bootstrap-vendor-CCPointExtension.js": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+    "tools/bootstrap-vendor-CCAffineTransform.js": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696"
+  },
+  "sourceInputs": {
+    "src/srcmodule/game_base.js": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_ui_2.js": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+    "src/srcmodule/game_ui_3.js": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+    "src/srcmodule/game_ui_4.js": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "src/srcmodule/ui_war.js": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3"
+  },
+  "generatedProgramSha256": "5e8443403ece0ef4c10eb5617d75e222dcd7fb6ab723cb86dde6634a2acff98a",
+  "factoryCount": 1313,
+  "factoryChunks": [],
+  "tableBundle": {
+    "sha256": "91dba76e4f840237264b782855193a71fd2ce1b45f6bb328e5f37fb474f9c1c1",
+    "bytes": 101695086
+  },
+  "rebuild": {
+    "tables": "node tools/prepare-native-tables.mjs",
+    "emitter": "node tools/emit-native-oracle.mjs --scenario config/scenario-example-2026.json --scope observed --capture final --battles 20 --warmup 3 --host-inputs benchmarks/fixtures/frozen-2026-warm20-pinned/host-inputs.json.gz --output work/native-oracle-replay.js",
+    "native": "node tools/native-compiler-run.mjs --input work/native-oracle-replay.js --output work/native-oracle-replay --cc-opt O1 --compile-jobs 2 --plumbing",
+    "replay": "The emitter command consumes the archived exact random/clock tapes and rejects missing/extra host inputs. Rebuilding with changed source/oracle/compiler versions requires a new qualification."
+  },
+  "artifacts": [
+    {
+      "file": "metadata.json.gz",
+      "compression": "gzip",
+      "sha256": "1b3a7e126e77d2b89661f19a27e7ae435a23ce8c3a211a76b7e82c1909090667",
+      "uncompressedSha256": "932a43b2c8851b5c87930402cbf58e326d11a8818834495cf07a0be085bfe8cc",
+      "uncompressedBytes": 311741,
+      "bytes": 49481
+    },
+    {
+      "file": "host-inputs.json.gz",
+      "compression": "gzip",
+      "sha256": "dd8ee9a58460adfbb8e40a32db070cc6c7aa08d48fb30c792a234d0908a4e2e0",
+      "uncompressedSha256": "4d76c8d637fe8557dbc7d113254fd20008c9806e9ef724a9166699f9f22aca91",
+      "uncompressedBytes": 311033,
+      "bytes": 8165
+    },
+    {
+      "file": "reference.json.gz",
+      "compression": "gzip",
+      "sha256": "1da4d618d60d03754be3894c597d581aaf4359e36a15a8fd489f37a030409405",
+      "uncompressedSha256": "9d29cea62e67a57051cf41215f0dbc10e49295e44dee3cf548ca05f4b863ef31",
+      "uncompressedBytes": 686721,
+      "bytes": 34840
+    },
+    {
+      "file": "node.stdout.gz",
+      "compression": "gzip",
+      "sha256": "c6a5d8c94a77b0567ba870f75ea36ea2e0468989171fc21032d02931822ef783",
+      "uncompressedSha256": "c26f60efbe9f6c80d43c31f5aa01a240f69f0c60a40ea43301eb2a5a1e13ec44",
+      "uncompressedBytes": 686960,
+      "bytes": 35070
+    },
+    {
+      "file": "node.stderr.gz",
+      "compression": "gzip",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0,
+      "bytes": 20
+    },
+    {
+      "file": "emitter-source.mjs.gz",
+      "compression": "gzip",
+      "sha256": "b178e7eda6e3ba4e6e019c0d99f22a7f7fe9c0b64b5fb7a13642fa68da793231",
+      "uncompressedSha256": "a4cc011a5c65ee5c3d7c266a7ad1106e6bf40dd189dfddb9b6001135b3ba6d6b",
+      "uncompressedBytes": 29402,
+      "bytes": 8678
+    }
+  ]
+}
