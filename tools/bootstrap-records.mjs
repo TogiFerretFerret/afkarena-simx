@@ -76,7 +76,11 @@ export async function loadBootstrapSourceRecords(){
     const file=`src/srcmodule/${module}`,bytes=await readFile(resolve(root,file));
     originalByteHashes.push([file,sha256(bytes)]);sources.set(file,bytes.toString('utf8'));
   }
-  const dependencies=['tools/bootstrap-runtime.mjs','tools/bootstrap-records.mjs','tools/bootstrap-records-extractor.mjs','tools/source-index.mjs'];
+  // Only the pure extraction producer determines these immutable records.
+  // Runtime filtering, realm construction, host devices and execution happen
+  // after this cache boundary on every call. Their complete hashes still belong
+  // in oracle/native artifact provenance, but cannot change extraction output.
+  const dependencies=['tools/bootstrap-records.mjs','tools/bootstrap-records-extractor.mjs','tools/source-index.mjs'];
   const keyMaterial={dependencies:[],packages:[],originalByteHashes};
   for(const file of dependencies)keyMaterial.dependencies.push([file,sha256(await readFile(resolve(root,file)))]);
   for(const name of ['@babel/parser','@babel/traverse']){
