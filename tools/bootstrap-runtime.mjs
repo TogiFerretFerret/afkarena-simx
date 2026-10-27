@@ -15,9 +15,10 @@ const root=resolve(import.meta.dirname,'..');
  * External helper modules retain the explicit diagnostic lazy adapter. Required
  * lexical closures and missing host dependencies fail rather than being invented.
  */
-export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundaryFactory,eagerBattle=false}={}){
+export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundaryFactory,eagerBattle=false,observeClassManager=false}={}){
   if(hostRandom!==undefined&&typeof hostRandom!=='function')throw new Error('hostRandom must be an explicit entropy input function');
   if(typeof eagerBattle!=='boolean')throw new Error('eagerBattle must be boolean');
+  if(typeof observeClassManager!=='boolean')throw new Error('observeClassManager must be boolean');
   const extracted=await loadBootstrapSourceRecords();
   const {ordered}=extracted;
   const eagerModules=[];
@@ -75,6 +76,20 @@ export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundary
   assert.equal(createHash('sha256').update(cocos).digest('hex'),provenance.sha256);
   hostSources.push({file:provenance.file,source:cocos,phase:'cocos-class'});
   runInContext(cocos,context,{filename:provenance.file});
+  let classManagerObserver,classManagerObserverProvenance;
+  if(observeClassManager){
+    const file='tools/oracle-class-manager.js',proofFile='config/oracle-class-manager.json';
+    const source=await readFile(resolve(root,file),'utf8'),proofText=await readFile(resolve(root,proofFile),'utf8'),proof=JSON.parse(proofText);
+    assert.equal(proof.vendor.file,provenance.file);assert.equal(proof.vendor.sha256,provenance.sha256);
+    assert.equal(createHash('sha256').update(proof.constructorSource).digest('hex'),proof.constructorSha256);
+    for(const record of Object.values(proof.methods))assert.equal(createHash('sha256').update(record.source).digest('hex'),record.sha256);
+    runInContext(source,context,{filename:file});
+    context.__classManagerObserverProof=importBootstrapValue(context,proof);
+    try{classManagerObserver=runInContext('installClassManagerObserver(__classManagerObserverProof)',context);}
+    finally{delete context.__classManagerObserverProof;}
+    hostSources.push({file,source,phase:'after-cocos-before-render'});
+    classManagerObserverProvenance={file,sha256:createHash('sha256').update(source).digest('hex'),proofFile,proofSha256:createHash('sha256').update(proofText).digest('hex'),proof};
+  }
   const renderHostSource=await readFile(resolve(root,'tools/bootstrap-render-host.js'),'utf8');
   hostSources.push({file:'tools/bootstrap-render-host.js',source:renderHostSource,phase:'after-cocos'});
   runInContext(renderHostSource,context,{filename:'tools/bootstrap-render-host.js'});
@@ -157,7 +172,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundary
   new ed.soundManager();
   ed.audio_effect_switch=context.bootstrapHost.audioEnabled;
   const callbacks=await installBootstrapCallbacks(context);
-  return {context,oracleContextMode,ed,loaded,tables,tableBoundary,provenance,callbacks,clock,clockProvenance,host:context.bootstrapHost,importValue:value=>importBootstrapValue(context,value),
+  return {context,oracleContextMode,ed,loaded,tables,tableBoundary,provenance,callbacks,clock,clockProvenance,classManagerObserver,classManagerObserverProvenance,host:context.bootstrapHost,importValue:value=>importBootstrapValue(context,value),
     sourceRecords:{oracleContextMode,definitions,globals,functionDeclarations,initializers,postInitializers,eagerModules,initializationPlan,sourceGlobalNames,sourceDefinitionNames,hostSources},
     sourceRecordsCache:extracted.cache,
     hostProvenance:{file:'tools/bootstrap-host.js',sha256:createHash('sha256').update(hostSource).digest('hex')},

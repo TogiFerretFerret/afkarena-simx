@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "vendor": {
+    "file": "tools/bootstrap-vendor-CCClass.js",
+    "sha256": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d"
+  },
+  "constructorSource": "function () {\n    var id = (0|(Math.random()*998));\n    var instanceId = (0|(Math.random()*998));\n\n    this.getNewID = function () {\n        return id++;\n    };\n\n    this.getNewInstanceId = function () {\n        return instanceId++;\n    };\n}",
+  "constructorSha256": "5f89100157b52346e0901926d1743197b7f46b9e7849fdfc6bc752f9cc09a29e",
+  "methods": {
+    "getNewID": {
+      "source": "function () {\n        return id++;\n    }",
+      "sha256": "bb2957a62250ba88e15536fdb63a1772c58fd5f8692886e3868532411de3261c",
+      "counterBinding": "id",
+      "prefix": false,
+      "direction": 1
+    },
+    "getNewInstanceId": {
+      "source": "function () {\n        return instanceId++;\n    }",
+      "sha256": "9422c2034adec70760ce6cc8b13866355dcb8d91d4e1ab144fa65ba38fdb06dd",
+      "counterBinding": "instanceId",
+      "prefix": false,
+      "direction": 1
+    }
+  },
+  "aliases": {
+    "globalConstructor": "ClassManager",
+    "globalManager": "classManager",
+    "vendorManagerUses": [
+      {
+        "start": 8613,
+        "end": 8642,
+        "source": "classManager.getNewInstanceId",
+        "context": "CallExpression"
+      },
+      {
+        "start": 9245,
+        "end": 9266,
+        "source": "classManager.getNewID",
+        "context": "CallExpression"
+      }
+    ],
+    "preinstallationAllocatorAliases": "None: vendor methods are invoked via classManager property calls; install before any game/render classes."
+  },
+  "reflectionScope": {
+    "status": "Instrumented allocator functions change identity/body/prototype reflection; no claim of unrestricted reflection equivalence.",
+    "originalGameReferences": "Source game modules contain no ClassManager/classManager/getNewID/getNewInstanceId references; getInstanceId references in game_util belong to the unrelated shakeNode helper.",
+    "guard": "Manager/constructor bindings, manager prototype and allocator own descriptors/identities are checked on every observed allocator call, trace event and finish. Source function reflection/writes outside this pinned scope must fail qualification."
+  }
+}
