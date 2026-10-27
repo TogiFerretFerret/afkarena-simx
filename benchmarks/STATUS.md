@@ -93,6 +93,18 @@ overhead is the cause of the slowdown. See
 `results/2026-10-27T22-46-08.935Z-native-warm23-global-ed-slot.json` and
 `validation/native-global-ed-slot.json`.
 
+A third variant bypasses the C++ bridge for unrelated property names using a
+thread-local integer SymbolID and opaque runtime identity. Matching names still
+execute the full global-object guard and load the current value. It measures
+20 battles in 6.879 seconds (**2.907399/second**) with every source report field
+matching, 13,206,487 cache hits, and runtime identity cleared at teardown. This
+single observation is 6.56% above the earlier instrumentation-off measurement;
+an adjacent baseline/candidate check is pending before attributing that gap to
+the change. See
+`results/2026-10-27T22-49-25.607Z-native-warm23-global-ed-prefilter.json` and
+`validation/native-global-ed-prefilter.json`. The full-game qualification limits
+above continue to apply.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
