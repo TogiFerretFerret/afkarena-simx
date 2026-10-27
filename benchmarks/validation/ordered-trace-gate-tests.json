@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "capturedAt": "2026-10-27T20:51:22.452Z",
+  "passed": true,
+  "command": "node --test tools/tests/battle-trace-gate-validation.test.mjs tools/tests/battle-trace-portable.test.mjs",
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "tests": null,
+  "sourceHashes": {
+    "tools/battle-trace-portable.mjs": "945b1cab314a10c4195ccf7e100d9839689f7bf8e8f82594ca6e58c683a0837d",
+    "tools/check-archived-native-trace.mjs": "00d581f689358139e9d7bdf36ecf424b82833bfeda99f67c4d82b3ede6f034b3",
+    "tools/tests/battle-trace-gate-validation.test.mjs": "d80961275a21ede3171191df803c6df66409c165486fea6330773975cbf6fc8a",
+    "tools/tests/battle-trace-portable.test.mjs": "ade6627fc7f10fd07d086724739af31c805576e8c70ab62a170de0b507cee8c1"
+  },
+  "log": {
+    "file": "benchmarks/validation/ordered-trace-gate-tests.log.gz",
+    "sha256": "ad27485ecf06a81b1edbed0f3b8a1cb0329d9b114ed717289586c1afd535863e",
+    "uncompressedSha256": "5aa20e3e0165de910ea141aab87c4de0451af470d9cc6e9a071544c71546b9dd"
+  },
+  "scope": "Focused comparator and archive validation tests. This is not a completed native battle trace or throughput qualification."
+}
