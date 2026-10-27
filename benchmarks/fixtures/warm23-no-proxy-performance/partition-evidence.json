@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "passed": true,
+  "performanceOnly": true,
+  "instrumentationOff": true,
+  "qualifiesFor10000Target": false,
+  "scope": "INSTRUMENTATION-OFF performance fixture: one frozen callback-only scenario, three warmups then twenty measured battles. Original callbacks, mechanics, f64 captures, source RNG, host tape and ClassMgr counters remain exact. Diagnostic table Proxies and tableBoundary report field are absent by contract. Actor/effect/view lifecycle, broad random-team and full ordered trace qualification remain outstanding.",
+  "transformation": {
+    "file": "tools/prepare-uninstrumented-native-partition.mjs",
+    "sha256": "4201b524a44265ce40f919d59a37aee4cd250ec9a7eebbbbc6d4935caaacfceb"
+  },
+  "replacementProof": {
+    "start": 1229086,
+    "end": 1229246,
+    "previous": "installQualificationTablePolicy({trackMutable:true,mutableTables:[\"AnimAtkFrame\",\"UnitPeriod\"],digest:globalThis.__nativeDiagnosticDigest||portableTraceSha256})",
+    "previousSha256": "81967b4ffd4427f117ae83a5157dc50a449aace2922395b989abb3e99ff63aff",
+    "replacement": "void 0",
+    "unchangedPrefixSha256": "0f72516855558f03f4d96f41f0dbc0054201c0c54da7f4d3f225063bf05fedc1",
+    "unchangedSuffixSha256": "3504200e7920bf71f4b3934fde40e8557d6bf80f62b873a0e981febfa9cab3c4",
+    "allOtherBytesUnchanged": true,
+    "allOriginalAndHarnessFunctionBytesUnchanged": true
+  },
+  "sourceGameRecordInventory": {
+    "count": 126,
+    "sha256": "90175a6e29e2e7b530bba6e5a7053d176b8360e54bb22951e57852d1f35afc7e",
+    "allOriginalRecordsEqualGuardedSource": true
+  },
+  "functionInventory": {
+    "count": 17482,
+    "sha256": "94b81ada83d20070f141b309cd32aa3ea5eec09fe8c17a033861b7355b89db99",
+    "unchangedFromGuardedWorkerMap": true
+  },
+  "crossContractMechanicsCheck": {
+    "passed": true,
+    "guardedReference": {
+      "file": "/workspace/afkarena-simx/work/native-oracle-warm23-current.js.reference.json",
+      "sha256": "467139f71442d274c248eb2d5e91d801a6b44a1c4c5b28abb2f8ee625869feb5"
+    },
+    "rawSemanticDifference": {
+      "path": "$.$keys",
+      "actual": [
+        "capture",
+        "checksum",
+        "classManagerCounters",
+        "completed",
+        "finalCapture",
+        "results",
+        "totalCallbacks"
+      ],
+      "expected": [
+        "capture",
+        "checksum",
+        "classManagerCounters",
+        "completed",
+        "finalCapture",
+        "results",
+        "tableBoundary",
+        "totalCallbacks"
+      ]
+    },
+    "absentDiagnosticFields": [
+      "tableBoundary"
+    ],
+    "addedFields": [],
+    "mechanicsFieldsCheckedExactly": [
+      "completed",
+      "capture",
+      "checksum",
+      "totalCallbacks",
+      "results",
+      "finalCapture",
+      "classManagerCounters"
+    ],
+    "explanation": "These raw reports intentionally have different diagnostic contracts. The candidate gate above compares ALL fields against its independent uninstrumented source reference. This additional check projects explicitly named mechanics fields only; it does not suppress a field inside the candidate gate."
+  },
+  "artifacts": [
+    {
+      "file": "partition-manifest.json.gz",
+      "originalPath": "work/native-warm23-no-proxy-partition/manifest.json",
+      "compression": "gzip",
+      "sha256": "59d1b2bbbb073334332f0617c69571ff52800fcaa334f0a7c497cd29ffc0c367",
+      "uncompressedSha256": "ba4cb9bb93466b87828a1bce7e1346b4a3e681e013bbda9aad1db4325b5e2e9e",
+      "uncompressedBytes": 7481,
+      "bytes": 2747
+    },
+    {
+      "file": "partition-node.stdout.gz",
+      "originalPath": "work/native-warm23-no-proxy-partition/node.stdout",
+      "compression": "gzip",
+      "sha256": "8da2a34ebc906eae2a4075c8a8e6e54bcfce49b75964a3d5912a5abd021b757e",
+      "uncompressedSha256": "d54029068127e6764d304482b0750e2ebe00574883ca7b9b8dfb30b94883b3d7",
+      "uncompressedBytes": 687197,
+      "bytes": 35215
+    },
+    {
+      "file": "partition-node.stderr.gz",
+      "originalPath": "work/native-warm23-no-proxy-partition/node.stderr",
+      "compression": "gzip",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0,
+      "bytes": 20
+    },
+    {
+      "file": "generated-program.js.gz",
+      "originalPath": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js",
+      "compression": "gzip",
+      "sha256": "bf87a292630bbb636b8735102028180a1e26a9d273d0a17db5bc84edea7c41f8",
+      "uncompressedSha256": "778276702ca46309423e28d2b594de6cf2d61a8a64f127bfd75f10ffff89d0fb",
+      "uncompressedBytes": 9049290,
+      "bytes": 1680144
+    },
+    {
+      "file": "guarded-reference.json.gz",
+      "originalPath": "/workspace/afkarena-simx/work/native-oracle-warm23-current.js.reference.json",
+      "compression": "gzip",
+      "sha256": "480b8fd4f513a3c6b91eb564782c3f066864dd6c28d84ffbf8c0a36e027d6d82",
+      "uncompressedSha256": "467139f71442d274c248eb2d5e91d801a6b44a1c4c5b28abb2f8ee625869feb5",
+      "uncompressedBytes": 687389,
+      "bytes": 35323
+    },
+    {
+      "file": "unit-0.js.gz",
+      "originalPath": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "compression": "gzip",
+      "sha256": "0853419c52ba92fe19df9b91be4279bd6b28f84799cd421738e26eca10f6ca46",
+      "uncompressedSha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
+      "uncompressedBytes": 1778408,
+      "bytes": 320054
+    },
+    {
+      "file": "unit-1.js.gz",
+      "originalPath": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "compression": "gzip",
+      "sha256": "485eaa90c7aa90122b8121995d4b3f0fd1fd5f41eb2e66b99f1814adb83ab4b0",
+      "uncompressedSha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "uncompressedBytes": 1214707,
+      "bytes": 259543
+    },
+    {
+      "file": "unit-2.js.gz",
+      "originalPath": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "compression": "gzip",
+      "sha256": "fb450082fddc852912f70cb5aac1b867ec9181a04cbea6cd559759f58bdcb6cf",
+      "uncompressedSha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "uncompressedBytes": 1202106,
+      "bytes": 256433
+    },
+    {
+      "file": "unit-3.js.gz",
+      "originalPath": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "compression": "gzip",
+      "sha256": "b73fc7f792e528f12283962271a1f79952e8922037e35d6d381b331a1a880db6",
+      "uncompressedSha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "uncompressedBytes": 1219549,
+      "bytes": 257410
+    },
+    {
+      "file": "unit-4.js.gz",
+      "originalPath": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "compression": "gzip",
+      "sha256": "828f025fb0497536beb3c8c863ab9fc6e4c18c160f58081bcebc681a1f35ef91",
+      "uncompressedSha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "uncompressedBytes": 1213047,
+      "bytes": 241286
+    },
+    {
+      "file": "unit-5.js.gz",
+      "originalPath": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "compression": "gzip",
+      "sha256": "24c25d5edbdc036c0b2044f5a9fd90175bed17b30d1cc8da4317c963ab9934d9",
+      "uncompressedSha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "uncompressedBytes": 1223796,
+      "bytes": 172822
+    },
+    {
+      "file": "unit-6.js.gz",
+      "originalPath": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "compression": "gzip",
+      "sha256": "e90827fa863cdad21987383550b02b77a9a5af440b7843cceb742035294fc432",
+      "uncompressedSha256": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
+      "uncompressedBytes": 1269675,
+      "bytes": 197822
+    }
+  ]
+}
