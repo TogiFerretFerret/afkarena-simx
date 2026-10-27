@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "capturedAt": "2026-10-27T19:43:27.479Z",
+  "runtime": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "platform": "linux",
+  "architecture": "x64",
+  "kernel": "6.18.55",
+  "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+  "logicalCpus": 5,
+  "availableParallelism": 4,
+  "cgroupV2": {
+    "cpuMax": "400000 100000",
+    "memoryMax": "17179869184",
+    "cpuQuotaCores": 4
+  },
+  "effectiveCpuCapacity": 4,
+  "scope": "Host resource snapshot. CPU affinity and cgroup quota are distinct; this file is not a throughput result."
+}
