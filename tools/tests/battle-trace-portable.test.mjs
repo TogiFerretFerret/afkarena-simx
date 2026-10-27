@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createContext,runInContext } from 'node:vm';
+import { createHash } from 'node:crypto';
 import { installPortableGraph,canonicalPortableGraph,portableGraphHash,firstPortableGraphDifference,comparePortableBattleTraces } from '../battle-trace-portable.mjs';
 
 async function setup(program){const context=createContext({});runInContext(program,context);return{context,capture:await installPortableGraph(context)}}
@@ -84,4 +85,22 @@ test('portable trace refuses unfinished battles, bound overflows and writes afte
  assert.throws(()=>trace.record('extra',{},context.state),/completion/);
  const bounded=runInContext('installPortableBattleTrace({maxEvents:0})',context);
  assert.throws(()=>bounded.record('frame',{},context.state),/event bound/);
+});
+
+test('portable SHA256 matches host crypto over padding boundaries and UTF-8 surrogate edge cases',async()=>{
+ const {context}=await setup('');
+ const vectors=['','abc','😀🦊é汉字','\ud800','\udfff','a'.repeat(100000)];
+ for(let length=0;length<140;length++)vectors.push('x'.repeat(length));
+ for(const input of vectors)assert.equal(context.portableTraceSha256(input),createHash('sha256').update(input).digest('hex'));
+});
+
+test('compact event checksums cover exactly the full canonical graph and all payload bits',async()=>{
+ const {context}=await setup('var roots={hp:-0,a:[undefined,NaN]};');
+ const full=runInContext('var t=installPortableBattleTrace();t.record("event",{f:Infinity},roots);t.finish({status:"completed",running:false})',context);
+ const compact=runInContext('var t=installPortableBattleTrace({compact:true});t.record("event",{f:Infinity},roots);t.finish({status:"completed",running:false})',context);
+ assert.equal(compact.events.length,full.events.length);
+ for(let i=0;i<full.events.length;i++)assert.equal(compact.events[i].stateHash,portableGraphHash(full.events[i].graph));
+ assert.equal(comparePortableBattleTraces(compact,compact).passed,true);
+ const changed={...compact,events:compact.events.map((event,i)=>i?event:{...event,stateHash:'0'.repeat(64)})};
+ assert.equal(comparePortableBattleTraces(compact,changed).passed,false);
 });

@@ -54,6 +54,11 @@ export function comparePortableBattleTraces(expected,actual){
   const left=expected.events[i],right=actual.events[i];
   if(!left||!right||left.sequence!==i||right.sequence!==i||left.kind!==right.kind)
    return{passed:false,difference:{sequence:i,reason:'event_order_or_count',expected:left?.kind,actual:right?.kind},qualifiesForThroughputTarget:false};
+  if(left.stateHash!==undefined||right.stateHash!==undefined){
+   if(!/^[0-9a-f]{64}$/.test(left.stateHash??'')||left.stateHash!==right.stateHash)
+    return{passed:false,difference:{sequence:i,kind:left.kind,reason:'state_hash',expected:left.stateHash,actual:right.stateHash},qualifiesForThroughputTarget:false};
+   continue;
+  }
   const difference=firstPortableGraphDifference(left.graph,right.graph);
   if(difference)return{passed:false,difference:{sequence:i,kind:left.kind,...difference},qualifiesForThroughputTarget:false};
  }
