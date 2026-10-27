@@ -7,6 +7,14 @@ const root = resolve(import.meta.dirname, '..');
 const toolchains = JSON.parse(await readFile(resolve(root,'config/toolchains.json'),'utf8'));
 async function exists(path) { try { await access(path); return true; } catch { return false; } }
 const env = { ...process.env };
+env.NODE_OPTIONS = '';
+const referenceProfile=JSON.parse(await readFile(resolve(root,'config/source-oracle-runtime.json'),'utf8'));
+assert.equal(process.version,referenceProfile.node);
+assert.equal(process.versions.v8,referenceProfile.v8);
+assert.equal(process.platform,referenceProfile.platform);
+assert.equal(process.arch,referenceProfile.architecture);
+assert.equal(referenceProfile.rawBitReferenceNodeOptions,'');
+function reference(script,args=[]){return run(process.execPath,[...referenceProfile.rawBitReferenceFlags,script,...args]);}
 // Local session tools stay in ignored work/. No implicit installation or network access.
 const localRust = resolve(root,'work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin');
 if (await exists(resolve(localRust,'rustc'))) env.PATH = `${localRust}${delimiter}${env.PATH}`;
@@ -27,15 +35,17 @@ run(process.execPath,['tools/generate-rng.mjs','--check']);
 await mkdir(resolve(root,'work'),{recursive:true});
 run('rustc',['--edition=2024','--test','crates/battle-core/src/lib.rs','-o','work/core-tests']);
 run(resolve(root,'work/core-tests'),[]);
-run(process.execPath,['tools/bootstrap-check.mjs']);
+reference('tools/bootstrap-check.mjs');
 const targets=['root//crates/battle-core:numeric_check','root//crates/battle-core:rng_check',
   'root//crates/battle-core:entity_check','root//crates/battle-core:scheduler_check',
-  'root//crates/battle-core:clock_check','root//crates/battle-core:engine_check'];
+  'root//crates/battle-core:clock_check','root//crates/battle-core:engine_check',
+  'root//tools:native_attribute_abi_check'];
 const artifacts=JSON.parse(run(buck,['build',...targets,'--show-json-output'],true));
-run(process.execPath,['tools/check-numeric.mjs',artifacts[targets[0]]]);
-run(process.execPath,['tools/check-rng.mjs',artifacts[targets[1]]]);
-run(process.execPath,['tools/check-entity.mjs',artifacts[targets[2]],'--strict-bits']);
-run(process.execPath,['tools/check-scheduler.mjs',artifacts[targets[3]]]);
-run(process.execPath,['tools/check-clock.mjs',artifacts[targets[4]],'--strict-bits']);
-run(process.execPath,['tools/check-engine.mjs',artifacts[targets[5]]]);
-console.log('Verification passed. Full battle execution and battle equivalence are not implemented yet.');
+reference('tools/check-numeric.mjs',[artifacts[targets[0]]]);
+reference('tools/check-rng.mjs',[artifacts[targets[1]]]);
+reference('tools/check-entity.mjs',[artifacts[targets[2]],'--strict-bits']);
+reference('tools/check-scheduler.mjs',[artifacts[targets[3]]]);
+reference('tools/check-clock.mjs',[artifacts[targets[4]],'--strict-bits']);
+reference('tools/check-engine.mjs',[artifacts[targets[5]]]);
+run(artifacts[targets[6]],[]);
+console.log('Verification passed within stated component domains. Full battle equivalence and throughput remain unqualified.');

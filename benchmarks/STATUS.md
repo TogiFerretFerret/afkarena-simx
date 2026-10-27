@@ -26,8 +26,19 @@ claim or a speedup comparison with the realistic workload.
 
 Component differential results in `validation/` establish their stated domains
 under explicit mechanics hooks. They do not establish an integrated Rust battle
-simulator. Adversarial NaN sign/payload discrepancies must remain visible rather
-than being accepted as bit-exact matches.
+simulator. The pinned ten-suite gate passes 200,000 cases. Damage arithmetic also
+passes its adversarial raw-bit corpus after matching operand order explicitly.
+See `validation/component-verification-summary.json` for the exact source hashes
+and `validation/ORACLE-RUNTIME.md` for the pinned `--jitless` reference policy.
+Remaining numeric array NaN differences depend on V8 allocation-site history;
+the strict numeric check reports them as failures. The compiled VM also has
+separate NaN literal/storage discrepancies under investigation. These are not
+accepted as bit-exact matches.
+
+The C/Rust attribute bridge builds and runs through
+`buck2 run //tools:native_attribute_abi_check`. It requires immutable numeric
+inputs, preserves ordered observers, and rejects incompatible floating-point
+controls. It is bridge infrastructure, not an integrated simulator benchmark.
 
 A qualifying result needs completed realistic battles, source-backed mechanics,
 matching ordered events and state bits, exact RNG and external-input consumption,
