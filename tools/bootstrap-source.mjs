@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { runInContext } from 'node:vm';
 import { resolve } from 'node:path';
@@ -42,6 +43,22 @@ export async function loadBootstrapTable(name) {
     try{text=await readFile(resolve(root,directory,`${name}.json`),'utf8');}
     catch(error){if(error.code==='ENOENT')continue;throw error;}
     const value=JSON.parse(text);
+    const table=value.ed?.[`${name}Table`];
+    if(!table)throw new Error(`Unexpected source table envelope: ${directory}/${name}.json`);
+    return table;
+  }
+  throw new Error(`Missing supplied table: ${name}`);
+}
+
+export function loadBootstrapTableSync(name) {
+  if(!/^[A-Za-z0-9_]+$/.test(name))throw new Error('Invalid table name');
+  for(const directory of ['src/srcmodule','src/csvjson/en']){
+    let text;
+    try{text=readFileSync(resolve(root,directory,`${name}.json`),'utf8');}
+    catch(error){if(error.code==='ENOENT')continue;throw error;}
+    let value;
+    try{value=JSON.parse(text);}
+    catch{throw new Error(`Source table requires packed-config decoder: ${directory}/${name}.json`);}
     const table=value.ed?.[`${name}Table`];
     if(!table)throw new Error(`Unexpected source table envelope: ${directory}/${name}.json`);
     return table;
