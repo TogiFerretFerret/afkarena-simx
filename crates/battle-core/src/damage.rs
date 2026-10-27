@@ -207,8 +207,8 @@ pub fn take_damage<H:TakeDamageHooks>(h:&mut H,defender:DamageUnitId,mut damage:
  if let Some(attacker)=attacker{while index<h.buff_count(attacker){let buff=h.buff_at(attacker,index);damage=h.prior_make_damage(buff,damage,defender,skill,kind)?;index+=1;}}
  let(mut attack,mut defence,mut crit,mut dcrit,mut immunity)=(f64::NAN,f64::NAN,f64::NAN,f64::NAN,f64::NAN);
  match kind{
-  "AD"=>{attack=js_max(0.0,h.attrs(require_attacker()?).atk);defence=js_max(0.0,h.attrs(defender).arm);crit=h.attrs(require_attacker()?).crit;dcrit=h.attrs(defender).dcrit;let reduction=or_zero(h.attrs(defender).dpimu);immunity=or_zero(h.attrs(defender).pimu-reduction);},
-  "AP"=>{attack=js_max(0.0,h.attrs(require_attacker()?).atk);defence=js_max(0.0,h.attrs(defender).arm);crit=h.attrs(require_attacker()?).crit;dcrit=h.attrs(defender).dcrit;let reduction=or_zero(h.attrs(defender).dmimu);immunity=or_zero(h.attrs(defender).mimu-reduction);},
+  "AD"=>{attack=js_max(0.0,h.attrs(require_attacker()?).atk);defence=js_max(0.0,h.attrs(defender).arm);crit=h.attrs(require_attacker()?).crit;dcrit=h.attrs(defender).dcrit;let reduction=or_zero(h.attrs(require_attacker()?).dpimu);immunity=or_zero(h.attrs(defender).pimu-reduction);},
+  "AP"=>{attack=js_max(0.0,h.attrs(require_attacker()?).atk);defence=js_max(0.0,h.attrs(defender).arm);crit=h.attrs(require_attacker()?).crit;dcrit=h.attrs(defender).dcrit;let reduction=or_zero(h.attrs(require_attacker()?).dmimu);immunity=or_zero(h.attrs(defender).mimu-reduction);},
   "Holy"=>{defence=0.0;crit=0.0;dcrit=h.attrs(defender).dcrit;immunity=or_zero(h.attrs(defender).himu);},
   "HolyCanCrit"=>{defence=0.0;crit=h.attrs(require_attacker()?).crit;dcrit=h.attrs(defender).dcrit;immunity=or_zero(h.attrs(defender).himu);},
   "Special"=>{attack=js_max(0.0,h.attrs(require_attacker()?).atk);defence=0.0;crit=0.0;dcrit=0.0;immunity=0.0;if h.can_critical_special(require_attacker()?){crit=h.attrs(require_attacker()?).crit;dcrit=h.attrs(defender).dcrit;}},

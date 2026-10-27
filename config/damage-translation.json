@@ -109,5 +109,18 @@
     "Adversarial NaN sign/payload differences are reported explicitly; they are not a full-fidelity pass",
     "Full source takeDamage control is present with every unresolved mechanic required through TakeDamageHooks; this is not a complete battle implementation"
   ],
-  "controllerValidation": "compiled; differential pending"
+  "controllerValidation": {
+    "version": 1,
+    "cases": 20000,
+    "eventCount": 195644,
+    "rawBitsExact": true,
+    "scope": "Full original takeDamage control and queued callback bodies under fixture mechanics, not full battles"
+  },
+  "controllerDomain": [
+    "All seven source damage kinds exercised: AD/AP/Holy/HolyCanCrit/Special/PET/NoMIMUAP",
+    "Live attacker/defender buff arrays, removal during damaged/shield callbacks, rage paths, pet/dead/fieldNPC/zero/immunity early returns",
+    "Critical RNG remains before early amount/fieldNPC/immunity returns; AP magic dodge consumes source RNG at its later call boundary",
+    "HP and MP affect fields, thump/multi/resistance, source accounting, queued immune/suppression/number callback bodies are compared",
+    "Host callbacks implement fixture mechanics for component validation; real game mechanics remain required in TakeDamageHooks"
+  ]
 }
