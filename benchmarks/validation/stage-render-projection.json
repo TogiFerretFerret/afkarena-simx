@@ -1,0 +1,3679 @@
+{
+  "version": 1,
+  "status": "Conservative named actor-update alias/write inventory; not a complete renderer-erasure proof",
+  "sourceSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+  "scope": {
+    "battleMode": "stage",
+    "excludedMode": "turn-based (actor completion explicitly controls battle progression)",
+    "namedActorUpdateOverrides": 105,
+    "coverage": "Every non-ed definition name matching /actor.*update/i in original game_battle.js. Name matching does not capture unnamed/computed overrides or transitive helper effects."
+  },
+  "summary": {
+    "modelWritingOverrides": [
+      "DarkYeanling.actor_update",
+      "TechMouse.actor_update"
+    ],
+    "modelCallingOverrides": [
+      "Pudge.actor_update",
+      "Turtle.actor_update",
+      "Ezio.actor_update",
+      "JK.actor_update",
+      "Siren.atk4actor_update",
+      "WindSM.actor_update",
+      "Liberta.atk2_tile_actor_update",
+      "Liberta.atk3_tile_actor_update",
+      "Lucilla.ulttile_actor_update",
+      "Turtle_Texas.actor_update",
+      "Pudge_Texas.actor_update",
+      "SummerPudge.actor_update",
+      "SummerSiren.atk4actor_update",
+      "RBossMD.floatArm_actor_update",
+      "AvengerSBane.actor_update",
+      "Vegelf.actor_update",
+      "Puppeteer.Puppet_actor_update",
+      "ActRaidCarePetSiren.atk4actor_update",
+      "CandleDog.actor_update",
+      "B_UnhealFog.actor_update",
+      "GVEfieldBuff_NecUnhealFog.actor_update"
+    ],
+    "fixedPointsReached": true
+  },
+  "evidence": {
+    "logicActionDuration": {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 96337,
+      "end": 96587,
+      "sha256": "1dfa8f402e647960db94a117aa792138731e30f605dc8b9672085651c3fd4572",
+      "source": "getActionDuration:function(e){var t=this.puppet_stack[this.puppet_stack.length-1];return t=ed.lookupDataTable(\"UnitPuppet\",\"Resource\",t)+\".cha\",ed.lookupDataTable(\"AnimDuration\",\"Duration\",t,e)},setHp:function(e){e>this.attribs.HP&&(e=this.attribs.HP"
+    },
+    "scale3ChainIndependentModel": {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 67331,
+      "end": 67931,
+      "sha256": "fa730e2074594dd9a8bd4af80eba7abbc02c2f70ad8dc5ed3e49e4bde44d36fa",
+      "source": "ed.Scale3Chain=cc.Class.extend({ctor:function(e,t,a,i){if(this.model={terminated:!1},this.isGroup=!0,this.caster=null,this.target=null,this.scaleY=1,this.lockStart_viewPos=null,this.lockStart_zOrder=null,this.lockEnd_viewPos=null,this.lockEnd_zOrder=null,this.startHeightFix=225,this.endHeightFix=225,this.isStartCoverChain=!1,this.isEndCoverChain=!1,this.startPosFix_x=0,this.endPosFix_x=0,this.activeEffectCnt=0,this.terminated=!1,this.midWidth=i,this.noFreezeTint=!1,e){var r=ed.FcaEffect.create(e);this.left=r,this.activeEffectCnt++}if(t){var n=ed.FcaEffect.create(t);this.middle=n,this.activeEff"
+    },
+    "turnBasedCompletionCallback": {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 213131,
+      "end": 213381,
+      "sha256": "b3a16103cf943d717bd70b21d6df39ca1f41257405d6587aaadea1fd382d5aa0",
+      "source": "),e.setAction(t),this.refreshHeroSpineNodeEffectUI_TB(t),e.setLoop(!1),e.setActionFinishedCallback(function(){this.model.isEnterStateFinish=!0,e.setActionFinishedCallback(null)}.bind(this))},refreshHeroSpineNodeEffectUI_TB:function(e){var t=this;if(t"
+    },
+    "logicConsumesTurnBasedCompletion": {
+      "file": "src/srcmodule/game_battle.js",
+      "start": 136905,
+      "end": 137585,
+      "sha256": "c85303968cf64ab2529be885c7b62cfdfa182da62473f22f88cc61cc2eb1b9c8",
+      "source": "updateEnter_TB:function(e){this.actor&&(this.isEnterStateFinish||this.isEnterOnce||(console.log(\"enter once\"),this.actor.enter_TB(),this.isEnterOnce=!0))},updateDelay_TB:function(e){this.tb_delay-=e,this.tb_delay<=0&&(this.setTurnDelayEnd_TB(!0),this.tb_delay=1)},update_TB:function(e,t){this.canTurnBasedAct_TB()&&(this.isAtkDone_TB()?this.onAtkActionFinished_TB(e):this.isSkillUpdateState_TB()?this.playSkillEffect_TB(t)?(this.actor.setEffectDone_TB(!1),this.actor.addEffect_TB(this.getSkillTrigger_TB()),this.actor.isEffectDone_TB()&&this.onSkillActionFinished_TB(e)):this.onSkillActionFinished_TB(e):(this.setBuffUpdate_TB(),this.setTurnBasedAct_TB(!1),this.setAtkDone_TB(!1))"
+    }
+  },
+  "fieldReferences": {
+    "realKnockSelfFlag": [
+      {
+        "start": 1777609,
+        "end": 1777889,
+        "source": "=function(e,t){e.call(t),t.atk4_casting=!1,t.caster.walk_v=[0,0],t.caster.direction=t.caster.camp,t.realKnockSelfFlag=!1,t.setLockDirection(!1),t.dmgReduceBuff&&(t.dmgReduceBuff.timer=-1)},TechMouse.reset=function(e,t){if(e.call(t),t&&t.isAlive()){var a=ed.Unit.artResMgr(t,\"perio"
+      },
+      {
+        "start": 1779281,
+        "end": 1779561,
+        "source": "rent_skill===n&&2===n.current_phase_idx&&n.knockSelfFlag&&(0!==i.walk_v[0]&&i.direction*i.camp<0||n.realKnockSelfFlag)&&(n.realKnockSelfFlag=!0,r.getScaleX()*i.direction>0&&(i.walk_v[0]*i.direction>0||n.realKnockSelfFlag)&&r.setScaleX(-1*r.getScaleX()))},TechMouse.die=function(e,"
+      },
+      {
+        "start": 1779304,
+        "end": 1779584,
+        "source": "urrent_phase_idx&&n.knockSelfFlag&&(0!==i.walk_v[0]&&i.direction*i.camp<0||n.realKnockSelfFlag)&&(n.realKnockSelfFlag=!0,r.getScaleX()*i.direction>0&&(i.walk_v[0]*i.direction>0||n.realKnockSelfFlag)&&r.setScaleX(-1*r.getScaleX()))},TechMouse.die=function(e,t,a){e.call(t,a);var i="
+      },
+      {
+        "start": 1779384,
+        "end": 1779664,
+        "source": "lKnockSelfFlag)&&(n.realKnockSelfFlag=!0,r.getScaleX()*i.direction>0&&(i.walk_v[0]*i.direction>0||n.realKnockSelfFlag)&&r.setScaleX(-1*r.getScaleX()))},TechMouse.die=function(e,t,a){e.call(t,a);var i=t.skills[TechMouse.name+\"_atk3\"];if(i&&i.traps_still_exist_A){var r=i.CurrentTra"
+      }
+    ],
+    "lastHpChangeTick": [
+      {
+        "start": 40243,
+        "end": 40523,
+        "source": "shield,this.shield_max_upgrade=this.shield_max,this.owner.shield_value+=this.shield,this.shield&&(t.lastHpChangeTick=ed.battleEngine.ticks),this.ignoreHideSet=!1,this.isUpdated_TB=!1},update:function(e){if(this.isMode_TB())this.update_TB(e);else if(null!==this.timer&&this.timer<="
+      },
+      {
+        "start": 52243,
+        "end": 52523,
+        "source": "-e,this.shield>0){var c=-e||0;ed.battleEngine.shieldChangeEventToAll(this.owner,c,\"onDamaged\")}if(o.lastHpChangeTick=ed.battleEngine.ticks,this.shield<=0){c=-(this.shield+e)||0;ed.battleEngine.shieldChangeEventToAll(this.owner,c,\"onDamaged\");var d=-this.shield;return this.owner.r"
+      },
+      {
+        "start": 53802,
+        "end": 54082,
+        "source": "eld+e<=1&&(e=1-this.shield),this.shield+=e,this.shield_max+=e,this.owner.shield_value+=e,this.owner.lastHpChangeTick=ed.battleEngine.ticks,this.createShieldPopup(e,this),ed.battleEngine.shieldChangeEventToAll(this.owner,e,\"changeShieldValue\"))},onShieldValueChangeCall:function(e,"
+      },
+      {
+        "start": 76540,
+        "end": 76820,
+        "source": ",this.fall_fronzenTime=0,this.fall_fronzenDelay=null,this.knock_state=!1,this.knock_notFall=!1,this.lastHpChangeTick=null,this.multiDamaged_state=!1,this.thumpResistanceLevel=0,this.thumpResistanceReduce=null,this.attribs={},this.hp=0,this.mp=0,this.petmp=0,this.addMpCoef=1,this."
+      },
+      {
+        "start": 96537,
+        "end": 96817,
+        "source": ":function(e){e>this.attribs.HP&&(e=this.attribs.HP),e<0&&(e=0);var t=this.hp;this.hp=e,t!==e&&(this.lastHpChangeTick=ed.battleEngine.ticks),ed.btLog.setHp(this)},getHpPercent:function(){var e=this.hp,t=this.attribs.HP,a=1;return this.isAlive()&&0!=t&&(a=e/t),a>1&&(a=1),a},setMp:f"
+      },
+      {
+        "start": 205872,
+        "end": 206152,
+        "source": "())return this.updateHpMpBar_TB(e),void this.refreshHeroSpineNodeEffectUI_TB();var t=this.model,a=t.lastHpChangeTick,i=t.isAlive()?2:1;if(this.allBarVisible=a&&ed.battleEngine.ticks-a<=6*i,Object.keys(this.buffIcons).length>0&&(this.allBarVisible=!0),ed.configureMgr.retainAllBar&"
+      },
+      {
+        "start": 721768,
+        "end": 722048,
+        "source": "ling.summon_atk_recalculateCd}},DarkYeanling.actor_update=function(e,t,a){t.allBarVisible||(t.model.lastHpChangeTick=ed.battleEngine.ticks,t.setMpBarVisible(!0)),e.call(t,a)},DarkYeanling.update=function(e,t,a){t.bossBuff_dtCount<4&&(t.bossBuff_dtCount+=1,2===t.bossBuff_dtCount&&"
+      },
+      {
+        "start": 1404566,
+        "end": 1404846,
+        "source": "(clientCall((function(){r&&r.actor&&!r.mpVisible&&(r.actor.setMpBarVisible(!1),r.mpVisible=!0)})),r.lastHpChangeTick=ed.battleEngine.ticks,(i=r.relatedSkill)&&r&&r.isAlive()){if(r.relatedCaster&&r.relatedCaster.dieFlag){var s=ed.battleEngine.foreachAliveUnit(i.affectedCamp());for"
+      },
+      {
+        "start": 1556874,
+        "end": 1557154,
+        "source": ",a,i){var r=e.call(t,a,i),n=t.caster;if(a&&a.isAlive()&&!a.config.isBossUnit){a.unfreezeActor(!0),a.lastHpChangeTick=ed.battleEngine.ticks;var l=a.addBuff(Ezio.ult_redMarkBuffID,n);l&&(l.timer=2.33);var o=a.addBuff(Ezio.ult_slashBuffID,n);o&&(o.relatedSkill=t,o.sp_slashUpActive=n"
+      },
+      {
+        "start": 2033218,
+        "end": 2033498,
+        "source": "&g.shield&&g.shield>0){var v=g.shield/2;g.shield-=v,g.shield_max-=v,g.owner.shield_value-=v,g.owner.lastHpChangeTick=ed.battleEngine.ticks,a.resetBuffApply(g),p+=v}}u.timer=t.info[Stone.atk3_targetShieldTime]||5,u.changeShieldValue(p),t.lockTarget.resetBuffApply(u),_&&(_.timer=99"
+      },
+      {
+        "start": 2156528,
+        "end": 2156808,
+        "source": "nfo[FP.hl_triggerBoostNum]||10;e.firePointStack>r;)e.firePointStack-=r}e.firePointGainThisTick+=t,e.lastHpChangeTick=ed.battleEngine.ticks}}},FP.spbuff_onDamaged=function(e,t,a,i,r,n){var l=e.call(t,a,i,r,n),o=t.relatedSkill;if(o&&l>0){var f=Object.keys(o.hitTargetList);if(f.leng"
+      },
+      {
+        "start": 2321344,
+        "end": 2321624,
+        "source": "\")){t>e.special_mp_max&&(t=e.special_mp_max),t<0&&(t=0);var a=e.special_mp;e.special_mp=t,a!==t&&(e.lastHpChangeTick=ed.battleEngine.ticks)}},DruidMaster.func_gainLiq=function(e,t,a){if(t<0)return 0;var i=t,r=e.skills[DruidMaster.name+\"_hl\"];r&&(i*=1+r.info[DruidMaster.hl_liqGain"
+      },
+      {
+        "start": 4725505,
+        "end": 4725785,
+        "source": "otal+=t,e.special_mp>e.special_mp_max&&(e.special_mp=e.special_mp_max),e.firePointGainThisTick+=t,e.lastHpChangeTick=ed.battleEngine.ticks))},SLGFP.reset=function(e,t){e.call(t),t.FPUltDestination=null,t.FPUltThrowDest=null,t.atk2SelfDmgUpBuff=null,t.atk3InitUnconBuff=null,t.atk4"
+      },
+      {
+        "start": 4926349,
+        "end": 4926629,
+        "source": "t||(t.spBarSet=!0,t.special_mp_max=BossMoonkin.atk3_transformValue,t.special_mp=t.special_mp_max),t.lastHpChangeTick=ed.battleEngine.ticks,t.atk2CheckList=t.atk2CheckList||[]},BossMoonkin.actor_addEffect=function(e,t,a,i,r){return(r=r||{}).y=r.y||0,r.y+=50,e.call(t,a,i,r)},BossMo"
+      },
+      {
+        "start": 5461349,
+        "end": 5461629,
+        "source": "a,t.shield_max-t.shield);t.shield=Math.min(t.shield+a,t.shield_max),t.owner.shield_value+=i,t.owner.lastHpChangeTick=ed.battleEngine.ticks,t.createShieldPopup(i,t),ed.battleEngine.shieldChangeEventToAll(t.owner,i,\"changeShieldValue\")}},Athena.func_applyHolyShieldPool=function(e,t"
+      },
+      {
+        "start": 5464463,
+        "end": 5464743,
+        "source": "f||f.isRemoved)return a;var s=Math.min(a,Math.max(0,f.shield||0));if(s<=0)return a;if(f.shield-=s,o.lastHpChangeTick=ed.battleEngine.ticks,f.createShieldPopup(-s,f),ed.battleEngine.shieldChangeEventToAll(o,-s,\"onDamaged\"),f.shield>0){var c=t.owner;clientCall((function(){if(c&&c.a"
+      },
+      {
+        "start": 6868843,
+        "end": 6869123,
+        "source": ",clientCall((function(){i&&i.actor&&!i.mpVisible&&(i.actor.setMpBarVisible(!1),i.mpVisible=!0)})),i.lastHpChangeTick=ed.battleEngine.ticks;var r=i.getSummonHero();if(r){var n=r.skills.UDD_atk4;if(n&&i&&i.isAlive()){if(i.cloudTarget&&i.cloudTarget.isAlive()){var l=i.cloudTarget,o="
+      }
+    ],
+    "relatedChain": [
+      {
+        "start": 1313211,
+        "end": 1313491,
+        "source": "TargetList=[],t.addBuffList=[]},WBossOakSage.ult_createChain=function(e,t){var a=e.call(t);return t.relatedChain=a,a},WBossOakSage.ult_onAttackFrame=function(e,t){0===t.attack_counter&&e.call(t)},WBossOakSage.ult_update=function(e,t,a,i,r){if(e.call(t,a,i,r),\"number\"==typeof t.th"
+      },
+      {
+        "start": 1314129,
+        "end": 1314409,
+        "source": "mpact3\"}ed.playBattleEffect(i)}})),e.call(t,a,i)},WBossOakSage.ult_finish=function(e,t){e.call(t),t.relatedChain instanceof ed.Chain&&t.relatedChain.terminate()},WBossOakSage.atk_takeEffectOn=function(e,t,a,i){var r=e.call(t,a,i);if(r&&r[0]){clientCall((function(){a.actor&&a.acto"
+      },
+      {
+        "start": 1314165,
+        "end": 1314445,
+        "source": ".call(t,a,i)},WBossOakSage.ult_finish=function(e,t){e.call(t),t.relatedChain instanceof ed.Chain&&t.relatedChain.terminate()},WBossOakSage.atk_takeEffectOn=function(e,t,a,i){var r=e.call(t,a,i);if(r&&r[0]){clientCall((function(){a.actor&&a.actor.addEffect(\"spine_eff_impact_WBossO"
+      },
+      {
+        "start": 3269143,
+        "end": 3269423,
+        "source": "{var l=a.buff_list[n];if(l&&l instanceof ed.Buff&&l.info.ID===Liberta.ult_chainTeamateBuff){var o=l.relatedChain;o&&(o.middle.setVisible(!1),o.right.setVisible(!1),o.left.setVisible(!1))}}},Liberta.ult_otherSkillFinish=function(e,t,a,i){if(e.call(t,a,i),i===a.manualSkill)for(var "
+      },
+      {
+        "start": 3269456,
+        "end": 3269736,
+        "source": "{var l=a.buff_list[n];if(l&&l instanceof ed.Buff&&l.info.ID===Liberta.ult_chainTeamateBuff){var o=l.relatedChain;o&&(o.middle.setVisible(!0),o.right.setVisible(!0),o.left.setVisible(!0))}}},Liberta.atk_createProjectile=function(e,t){var a=t.caster,i=e.call(t);if(i&&a&&a.isAlive()"
+      },
+      {
+        "start": 3276635,
+        "end": 3276915,
+        "source": "anceof ed.Buff&&U&&U instanceof ed.Buff&&(N.relatedBuff=U,U.relatedBuff=N),clientCall((function(){N.relatedChain=t.chainEff,t.chainEff.teamate=C}))}}e.call(t)},Liberta.ult_targetBuff_onDamaged=function(e,t,a,i,r){var n=e.call(t,a,i,r),l=t.caster,o=l.skills[Liberta.name+\"_ult\"],f="
+      },
+      {
+        "start": 3278570,
+        "end": 3278850,
+        "source": "){e.call(t);var a=t.relatedBuff;a&&a instanceof ed.Buff&&(a.timer=-1,clientCall((function(){var e=t.relatedChain;e&&e.setTerminated(!0)})))},Liberta.ult_teamateBuff_onRemoved=function(e,t){e.call(t);var a=t.relatedBuff;a&&a instanceof ed.Buff&&(a.timer=-1,clientCall((function(){v"
+      },
+      {
+        "start": 3278757,
+        "end": 3279037,
+        "source": "){e.call(t);var a=t.relatedBuff;a&&a instanceof ed.Buff&&(a.timer=-1,clientCall((function(){var e=t.relatedChain;e&&e.setTerminated(!0)})))},Liberta.ult_finish=function(e,t,a){e.call(t,a);var i=t.caster,r=i.skills[Liberta.name+\"_atk4\"],n=i.skills[Liberta.name+\"_hl\"];i&&i.isAlive("
+      },
+      {
+        "start": 4831658,
+        "end": 4831938,
+        "source": "4.375,MBossOakSage.atk2_fixX=90,MBossOakSage.ult_createChain=function(e,t){var a=e.call(t);return t.relatedChain=a,a},MBossOakSage.ult_onAttackFrame=function(e,t){0===t.attack_counter&&e.call(t)},MBossOakSage.ult_update=function(e,t,a,i,r){if(e.call(t,a,i,r),\"number\"==typeof t.th"
+      },
+      {
+        "start": 4832568,
+        "end": 4832848,
+        "source": "mpact3\"}ed.playBattleEffect(i)}})),e.call(t,a,i)},MBossOakSage.ult_finish=function(e,t){e.call(t),t.relatedChain instanceof ed.Chain&&t.relatedChain.terminate()},MBossOakSage.atk_takeEffectOn=function(e,t,a,i){var r=e.call(t,a,i);if(r&&r[0]){clientCall((function(){a.actor&&a.acto"
+      },
+      {
+        "start": 4832604,
+        "end": 4832884,
+        "source": ".call(t,a,i)},MBossOakSage.ult_finish=function(e,t){e.call(t),t.relatedChain instanceof ed.Chain&&t.relatedChain.terminate()},MBossOakSage.atk_takeEffectOn=function(e,t,a,i){var r=e.call(t,a,i);if(r&&r[0]){clientCall((function(){a.actor&&a.actor.addEffect(\"spine_eff_impact_WBossO"
+      }
+    ],
+    "atk2ImpactTimer": [
+      {
+        "start": 3462660,
+        "end": 3462940,
+        "source": "ff_chain_BC_atk2\",null,200);if(e&&(e.setStartHeight(250),e.setEndHeight(350)),s.chainEff=e,t.caster.atk2ImpactTimer<=0){var a=t.caster.position,i=[1.5*t.caster.direction,1.5];ed.callViewMessage(\"playEffectOnScene\",\"spine_eff_impact_BC_atk2.skel\",a,i,null,1),clientCall((function()"
+      },
+      {
+        "start": 3462925,
+        "end": 3463205,
+        "source": "all((function(){ed.playBattleEffect(\"BC_ATK2_SOUL\"),ed.playBattleEffect(\"BC_ATK2_TAKE\")})),t.caster.atk2ImpactTimer=1}}))}}}return a},BC.atk2_friendBuff_onRemoved=function(e,t){e.call(t),t.owner.atk2Buff instanceof ed.Buff&&(t.owner.atk2Buff.timer=-1,t.owner.atk2Buff=null)},BC.at"
+      },
+      {
+        "start": 3472312,
+        "end": 3472592,
+        "source": "&l.ultTarget!==l.caster)return null}return e.call(t,a,i,r)},BC.update=function(e,t,a){e.call(t,a),t.atk2ImpactTimer=t.atk2ImpactTimer||0,ed.battleEngine.freeze_level<=0&&(t.atk2ImpactTimer-=a),t.shieldPointTimer=t.shieldPointTimer||0,ed.battleEngine.freeze_level<=0&&(t.shieldPoin"
+      },
+      {
+        "start": 3472330,
+        "end": 3472610,
+        "source": "aster)return null}return e.call(t,a,i,r)},BC.update=function(e,t,a){e.call(t,a),t.atk2ImpactTimer=t.atk2ImpactTimer||0,ed.battleEngine.freeze_level<=0&&(t.atk2ImpactTimer-=a),t.shieldPointTimer=t.shieldPointTimer||0,ed.battleEngine.freeze_level<=0&&(t.shieldPointTimer-=a),t.actor"
+      },
+      {
+        "start": 3472385,
+        "end": 3472665,
+        "source": "ction(e,t,a){e.call(t,a),t.atk2ImpactTimer=t.atk2ImpactTimer||0,ed.battleEngine.freeze_level<=0&&(t.atk2ImpactTimer-=a),t.shieldPointTimer=t.shieldPointTimer||0,ed.battleEngine.freeze_level<=0&&(t.shieldPointTimer-=a),t.actorNodeInitial||clientCall((function(){if(t.actor&&t.actor"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "name": "Troll.tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 600711,
+      "end": 600798,
+      "sha256": "8f4bf21ce0579d5a836d0aaab1c8a42ba440faf752c58a8761699c82a7d379c9",
+      "source": "function(e,t,a){e.call(t,a),t&&t.node&&(t.node.setRotation(0),t.node.setScaleX(t.dir))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "t.node.setScaleX"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "DarkYeanling.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 721826,
+      "end": 721942,
+      "sha256": "2b9f8e65273e1733143391d22394b996c06801fbce95694460f90764a2fd1a6a",
+      "source": "function(e,t,a){t.allBarVisible||(t.model.lastHpChangeTick=ed.battleEngine.ticks,t.setMpBarVisible(!0)),e.call(t,a)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [
+        {
+          "start": 721860,
+          "left": "t.model.lastHpChangeTick",
+          "mutatesObject": true,
+          "roots": [
+            "actor.model.lastHpChangeTick"
+          ],
+          "source": "t.model.lastHpChangeTick=ed.battleEngine.ticks"
+        }
+      ],
+      "allWrites": [
+        {
+          "start": 721860,
+          "left": "t.model.lastHpChangeTick",
+          "mutatesObject": true,
+          "roots": [
+            "actor.model.lastHpChangeTick"
+          ],
+          "source": "t.model.lastHpChangeTick=ed.battleEngine.ticks"
+        }
+      ],
+      "callees": [
+        "t.setMpBarVisible",
+        "e.call"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Pudge.atk3_chainActor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 834267,
+      "end": 834388,
+      "sha256": "eebfeed105c9c7cc11f780f77778f27456ef55fa270213909e033a7047ca906b",
+      "source": "function(e,t,a){e.call(t,a),t.startPosMoveSpd&&(t.startPos.x+=t.startPosMoveSpd.x*a,t.startPos.y+=t.startPosMoveSpd.y*a)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 834315,
+          "left": "t.startPos.x",
+          "mutatesObject": true,
+          "roots": [
+            "actor.startPos.x"
+          ],
+          "source": "t.startPos.x+=t.startPosMoveSpd.x*a"
+        },
+        {
+          "start": 834351,
+          "left": "t.startPos.y",
+          "mutatesObject": true,
+          "roots": [
+            "actor.startPos.y"
+          ],
+          "source": "t.startPos.y+=t.startPosMoveSpd.y*a"
+        }
+      ],
+      "callees": [
+        "e.call"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Pudge.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 838188,
+      "end": 838467,
+      "sha256": "e0f6d5ec1005a28ec9f8803eaa1f3be8331406eb6f427fca3188c2f97c13ee4b",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model,r=i instanceof ed.Unit&&i.skills[Pudge.name+\"_ult\"];if(r&&r.markBuff&&r.markBuff instanceof ed.Buff){var n=r.markBuff.owner;if(n&&n.actor){var l=n.actor.hpbar;l&&l.node&&l.Pudge_ult_markBuffEffect&&l.Pudge_ult_markBuffEffect.update(a)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "l.Pudge_ult_markBuffEffect.update"
+      ],
+      "modelCallees": [
+        {
+          "callee": "l.Pudge_ult_markBuffEffect.update",
+          "roots": [
+            "actor.model.skills.*.markBuff.owner.actor.hpbar.Pudge_ult_markBuffEffect.update"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Revenger.ult_tileactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 888641,
+      "end": 888749,
+      "sha256": "a395d6b24b87ac00764c65809d7152299757962d054c16dc6b54f7278fe0557f",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;t.node.setRotation(0),i.getScaleY()<0&&i.setScaleY(-i.getScaleY())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "i.getScaleY",
+        "i.setScaleY"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Turtle.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 915021,
+      "end": 915167,
+      "sha256": "e08d1e23014484996365c96506fc7086904c864260a8299ec11f664258254ecc",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model;if(i&&i.ult_sceneEffect){var r=ed.toViewPosition(t.position,t.height);i.ult_sceneEffect.setPosition(r)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "ed.toViewPosition",
+        "i.ult_sceneEffect.setPosition"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.ult_sceneEffect.setPosition",
+          "roots": [
+            "actor.model.ult_sceneEffect.setPosition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LUST.atk4_tileactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 926599,
+      "end": 926738,
+      "sha256": "49d0396a6493c643975b62d8070a184056d68d58f1a64a0d7944398ce9442b18",
+      "source": "function(e,t,a){e.call(t,a);var i=1;t.model.hl_powerupTile&&(i=1.65);var r=t.node;r&&(t.node.setRotation(0),r.setScaleY(i),r.setScaleX(i))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 926660,
+          "left": "i",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "i=1.65"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "r.setScaleY",
+        "r.setScaleX"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Valkyrie.projectile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 938896,
+      "end": 939050,
+      "sha256": "1b7226b9d6cfad9b825e7d7f95609bb883e75db4731195811dda2789fe6d7468",
+      "source": "function(e,t,a){e.call(t,a),t&&t.height<=0&&!t.setVisibleOver&&(t.setVisibleOver=!0,t.node.setVisible(!1)),t.model.overLaunchPoint&&t.node.setVisible(!1)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 938960,
+          "left": "t.setVisibleOver",
+          "mutatesObject": true,
+          "roots": [
+            "actor.setVisibleOver"
+          ],
+          "source": "t.setVisibleOver=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.setVisible"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "DT.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1057587,
+      "end": 1057693,
+      "sha256": "b62353ddda0a0db851cb51f247b061761e564db38c3f2378169283d7c17690b1",
+      "source": "function(e,t,a){e.call(t,a),t.node&&t.DT_atk4_changeActorZ&&t.node.setLocalZOrder(t.DT_atk4_changeActorZ)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.node.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "TimeG.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1072173,
+      "end": 1072201,
+      "sha256": "9765b612e05c3ddce8f36e2f90c3fdfa64dc85ca69e413ee533e4b4da67c1c29",
+      "source": "function(e,t,a){e.call(t,a)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "NunAssassin.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1086009,
+      "end": 1086037,
+      "sha256": "9765b612e05c3ddce8f36e2f90c3fdfa64dc85ca69e413ee533e4b4da67c1c29",
+      "source": "function(e,t,a){e.call(t,a)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "NT.summmonNTR_atk_tileactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1121663,
+      "end": 1121876,
+      "sha256": "54838ea4dd61cf07f04d60ba89efe025207a89931ad4e1c903bd5041dc010d58",
+      "source": "function(e,t,a){var i=t.model;if(i.truegravity){var r=i.zSpeed*(i.zSpeed>=0?-2:2)+i.truegravity;t.zSpeed=i.zSpeed+.125*r}e.call(t,a);var n=t.node;t.node.setRotation(0),n.getScaleY()<0&&n.setScaleY(-n.getScaleY())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 1121759,
+          "left": "t.zSpeed",
+          "mutatesObject": true,
+          "roots": [
+            "actor.zSpeed"
+          ],
+          "source": "t.zSpeed=i.zSpeed+.125*r"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "n.getScaleY",
+        "n.setScaleY"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "UKYO.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1241833,
+      "end": 1242048,
+      "sha256": "0a6c342c8d6b2bd92018d82d94385e36bf66181c6697c3f31971652c17e27be9",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model,r=t.puppet,n=i.skills[UKYO.name+\"_atk4\"];r&&n&&n.lockedActorDirection&&n.casting&&i.current_skill===n&&r.getScaleX()*n.lockedActorDirection<0&&r.setScaleX(-1*r.getScaleX())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "r.getScaleX",
+        "r.setScaleX"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossCthulhu.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1365618,
+      "end": 1365801,
+      "sha256": "1b7148cfafeb2ccc4547b573c574c8268ad005af897c34a7de31905a4f1559ec",
+      "source": "function(e,t,a){e.call(t,a),t.position=[BossCthulhu.actorPos[0],BossCthulhu.actorPos[1]];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(440))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 1365646,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[BossCthulhu.actorPos[0],BossCthulhu.actorPos[1]]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "HouseKeeper.atk2_tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1384640,
+      "end": 1384756,
+      "sha256": "2226baeaaebb79410efe735185a6b49c20d744267d3c0b6dd5dc11fd5ad2ded9",
+      "source": "function(e,t,a){e.call(t,a),t.initialFinish||t&&t.node&&(t.initialFinish=!0,t.nodeIniPosition=t.node.getPosition())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 1384697,
+          "left": "t.initialFinish",
+          "mutatesObject": true,
+          "roots": [
+            "actor.initialFinish"
+          ],
+          "source": "t.initialFinish=!0"
+        },
+        {
+          "start": 1384716,
+          "left": "t.nodeIniPosition",
+          "mutatesObject": true,
+          "roots": [
+            "actor.nodeIniPosition"
+          ],
+          "source": "t.nodeIniPosition=t.node.getPosition()"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.getPosition"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Nakoruru.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1447848,
+      "end": 1448066,
+      "sha256": "250b2ead523aa8b1cbbacbfd998c5fabbc8ff01c7d789cc8a650f4b0e5838f45",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model,r=t.puppet,n=i.skills[Nakoruru.name+\"_ult\"];r&&n&&n.lockedActorDirection&&n.casting&&i.current_skill===n&&r.getScaleX()*n.lockedActorDirection<0&&r.setScaleX(-1*r.getScaleX())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "r.getScaleX",
+        "r.setScaleX"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Ezio.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1554959,
+      "end": 1555136,
+      "sha256": "f0bcafa32b7cfd28894255c8b799fdf52109063bfbe61dcf4fa750b6142de920",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model;if(i&&i.ult_barEffects instanceof Array)for(var r=0;r<i.ult_barEffects.length;r++){var n=i.ult_barEffects[r];n&&n.update&&n.update(a)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 1555079,
+          "left": "r",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "r++"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "n.update"
+      ],
+      "modelCallees": [
+        {
+          "callee": "n.update",
+          "roots": [
+            "actor.model.ult_barEffects.*.update"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POP.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1627900,
+      "end": 1628257,
+      "sha256": "19eb366d1f1f99fb9539b98b2ef3f731ac4d79649f0ac6c2fe7ec8f65a8d1d96",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model,r=t.puppet,n=i.skills[POP.name+\"_atk3\"];r&&n&&n.lockedDirection&&n.casting&&i.current_skill===n&&r.getScaleX()*n.lockedDirection<0&&r.setScaleX(-1*r.getScaleX());var l=i.skills[POP.name+\"_sp\"];r&&l&&l.lockedDirection&&l.casting&&i.current_skill===l&&r.getScaleX()*l.lockedDirection<0&&r.setScaleX(-1*r.getScaleX())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "r.getScaleX",
+        "r.setScaleX"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "POP.summon_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1636929,
+      "end": 1637069,
+      "sha256": "9b320d0b3f16e2e601547a212cf7915b3a454dabdf8049ea0ec5c5e59e5d0728",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model,r=t.puppet;r&&i.recallDirection&&r.getScaleX()*i.recallDirection<0&&r.setScaleX(-1*r.getScaleX())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "r.getScaleX",
+        "r.setScaleX"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Thor.atk2_tileactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1650204,
+      "end": 1650312,
+      "sha256": "a395d6b24b87ac00764c65809d7152299757962d054c16dc6b54f7278fe0557f",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;t.node.setRotation(0),i.getScaleY()<0&&i.setScaleY(-i.getScaleY())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "i.getScaleY",
+        "i.setScaleY"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "JK.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1723209,
+      "end": 1723474,
+      "sha256": "1fb5eb5c42ef1349f9907f8cb6e7a75f85dee2bcd406f722e02942730dd0661e",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model;if(i&&i.atk4_actor_node)for(var r=Object.keys(i.atk4_actor_node),n=-1;++n<r.length;){var l=r[n],o=i.atk4_actor_node[l];o&&(o.puppet&&o.puppet.update&&o.puppet.update(a),o.eff_node&&o.eff_node.update&&o.eff_node.update(a))}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 1723321,
+          "left": "n",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "++n"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "Object.keys",
+        "o.puppet.update",
+        "o.eff_node.update"
+      ],
+      "modelCallees": [
+        {
+          "callee": "o.puppet.update",
+          "roots": [
+            "actor.model.atk4_actor_node.*.puppet.update"
+          ]
+        },
+        {
+          "callee": "o.eff_node.update",
+          "roots": [
+            "actor.model.atk4_actor_node.*.eff_node.update"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TechMouse.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1779147,
+      "end": 1779535,
+      "sha256": "f6ba69fc1ea376cde03cf63670b7777ceae043b1486ed0bbfeaacd03327177a5",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model,r=t.puppet,n=i.skills[TechMouse.name+\"_atk4\"];r&&n&&n.lockedActorDirection&&n.casting&&i.current_skill===n&&2===n.current_phase_idx&&n.knockSelfFlag&&(0!==i.walk_v[0]&&i.direction*i.camp<0||n.realKnockSelfFlag)&&(n.realKnockSelfFlag=!0,r.getScaleX()*i.direction>0&&(i.walk_v[0]*i.direction>0||n.realKnockSelfFlag)&&r.setScaleX(-1*r.getScaleX()))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [
+        {
+          "start": 1779402,
+          "left": "n.realKnockSelfFlag",
+          "mutatesObject": true,
+          "roots": [
+            "actor.model.skills.*.realKnockSelfFlag"
+          ],
+          "source": "n.realKnockSelfFlag=!0"
+        }
+      ],
+      "allWrites": [
+        {
+          "start": 1779402,
+          "left": "n.realKnockSelfFlag",
+          "mutatesObject": true,
+          "roots": [
+            "actor.model.skills.*.realKnockSelfFlag"
+          ],
+          "source": "n.realKnockSelfFlag=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "r.getScaleX",
+        "r.setScaleX"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Siren.atk4actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1891734,
+      "end": 1892013,
+      "sha256": "919cf58ecb677d533fcedd55811628944a2bfea883ba07e918954998106123cc",
+      "source": "function(e,t,a){if(e.call(t,a),t.model.fogEff){var i=t.model.fogEff;ed.battleEngine.running||i.setVisible(!1);var r=t.height;if(cc.sys.isObjectValid(i)){var n=ed.toViewPosition(t.position,r);i.setPosition(n),i.setLocalZOrder(-t.position[1]),i.setRotation(t.node.getRotation())}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "i.setVisible",
+        "cc.sys.isObjectValid",
+        "ed.toViewPosition",
+        "i.setPosition",
+        "i.setLocalZOrder",
+        "i.setRotation",
+        "t.node.getRotation"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.setVisible",
+          "roots": [
+            "actor.model.fogEff.setVisible"
+          ]
+        },
+        {
+          "callee": "i.setPosition",
+          "roots": [
+            "actor.model.fogEff.setPosition"
+          ]
+        },
+        {
+          "callee": "i.setLocalZOrder",
+          "roots": [
+            "actor.model.fogEff.setLocalZOrder"
+          ]
+        },
+        {
+          "callee": "i.setRotation",
+          "roots": [
+            "actor.model.fogEff.setRotation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stone.atk3tileActor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2034272,
+      "end": 2034462,
+      "sha256": "b950a35713f6e47a20421094032fae5d3b16a6c13bd6995966f19967c0510ada",
+      "source": "function(e,t,a){if(e.call(t,a),t.aliveTime-=a,t.aliveTime<=0&&t.node.setVisible(!1),t.relatedTile){var i=t.relatedTile,r=t.relatedTile.target;i&&r&&i.collideCheck(r)&&t.node.setVisible(!1)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2034303,
+          "left": "t.aliveTime",
+          "mutatesObject": true,
+          "roots": [
+            "actor.aliveTime"
+          ],
+          "source": "t.aliveTime-=a"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.setVisible",
+        "i.collideCheck"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "WindSM.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2340050,
+      "end": 2340282,
+      "sha256": "bc0ebdf3648eaf3633d2009bca7e6414c0545737011988124bfb98307ef0a480",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model;if(i&&i.atk2_barEffects instanceof Array)for(var r=0;r<i.atk2_barEffects.length;r++){var n=i.atk2_barEffects[r];n&&n.update&&(n.update(a),n.targetX&&n.x>n.targetX&&n.setPosition(n.x-.2,0))}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2340172,
+          "left": "r",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "r++"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "n.update",
+        "n.setPosition"
+      ],
+      "modelCallees": [
+        {
+          "callee": "n.update",
+          "roots": [
+            "actor.model.atk2_barEffects.*.update"
+          ]
+        },
+        {
+          "callee": "n.setPosition",
+          "roots": [
+            "actor.model.atk2_barEffects.*.setPosition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PDeer.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2621089,
+      "end": 2621578,
+      "sha256": "b7b49bc4da08f7878746e47a9d1444dc7ecd6cfe586be62e2db978b48480c87e",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy||\"timeout\"===i?(r&&\"Idle2\"!==r.action_name&&n.setNextAction(\"Idle2\"),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[0,0]):(r&&\"Move3\"!==r.action_name&&n.setNextAction(\"Move3\"),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[r.direction*PDeer.basic_speedOut,0])}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2621420,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        },
+        {
+          "start": 2621528,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[r.direction*PDeer.basic_speedOut,0]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "TimeOwl.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2639310,
+      "end": 2639880,
+      "sha256": "33e9f12354063b3a07969b80c36453e6e02a2d3bef73f7edba227c2b7c4904f6",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.direction,0],t.node&&t.node.setScale(-r.direction,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2639792,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.direction,0]"
+        },
+        {
+          "start": 2639864,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BFY.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2670901,
+      "end": 2671455,
+      "sha256": "fd239c9c3ed7f263b942e812b2f5814205cb261561ca2b289b316d531bc61f6b",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet,l=r.skills[BFY.name+\"_basic\"];if(i&&!l.hostOn)\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy||\"timeout\"===i?(r&&\"Idle2\"!==r.action_name&&n.setNextAction(\"Idle2\"),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[0,0]):(r&&\"Move\"!==r.action_name&&(n.setNextAction(\"Move\"),n.setLoop(!0),n.setActionSpeeder(1)),r&&\"Move\"===r.action_name&&(t.velocity=[-r.camp*BFY.basic_moveSpeed,0]))}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2671273,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        },
+        {
+          "start": 2671409,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[-r.camp*BFY.basic_moveSpeed,0]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ScarletFox.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2707947,
+      "end": 2708503,
+      "sha256": "50d0c4cc1ec65eeae866882df83b9d5bbcb5e26300097f11032eab8500b02ba0",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;if(i&&((l=t.model)&&l.isBasicJumping)){var r=i.getLocalZOrder();i.setLocalZOrder(r+60)}if(t&&!ed.battleEngine.running&&t.model){var n=ed.battleEngine.getBattleResult(),l=t.model,o=t.puppet;if(n)\"victory\"===n&&l.camp===ed.battle_camp.player||\"defeat\"===n&&l.camp===ed.battle_camp.enemy||\"timeout\"===n?(l&&\"Idle2\"!==l.action_name&&o.setNextAction(\"Idle2\"),o.setLoop(!0),o.setActionSpeeder(1),t.velocity=[0,0]):(l&&\"Idle\"!==l.action_name&&o.setNextAction(\"Idle\"),o.setLoop(!0),o.setActionSpeeder(1),t.velocity=[0,0])}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2707996,
+          "left": "l",
+          "mutatesObject": false,
+          "roots": [
+            "actor.model"
+          ],
+          "source": "l=t.model"
+        },
+        {
+          "start": 2708378,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        },
+        {
+          "start": 2708484,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.getLocalZOrder",
+        "i.setLocalZOrder",
+        "ed.battleEngine.getBattleResult",
+        "o.setNextAction",
+        "o.setLoop",
+        "o.setActionSpeeder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "AccelerateBossCthulhu.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2756693,
+      "end": 2756896,
+      "sha256": "4616df6a3fb7839f9a90baa21b121bfc42fc46047bf06e1f773cec81d38548c0",
+      "source": "function(e,t,a){e.call(t,a),t.position=[AccelerateBossCthulhu.actorPos[0],AccelerateBossCthulhu.actorPos[1]];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(440))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2756721,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[AccelerateBossCthulhu.actorPos[0],AccelerateBossCthulhu.actorPos[1]]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "MBossWorm.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2806533,
+      "end": 2806677,
+      "sha256": "454a62121949710f7ccd1a7d4c33e1dfe05f78dd76b33939dbd650bcd6179025",
+      "source": "function(e,t,a){e.call(t,a),t.position=[400,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2806561,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[400,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "MBossDragonB.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2819435,
+      "end": 2819636,
+      "sha256": "ca16d1c1107214af217f68c6fd5460958e8dd62123c22a003fa89d52cd6252f9",
+      "source": "function(e,t,a){e.call(t,a),t.position=[420,-115];var i=t.node;if(i){i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114);var r=t.model;r&&r.isUsingAtk3&&i.setLocalZOrder(9999)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2819463,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[420,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "MBossCrab.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2832403,
+      "end": 2832547,
+      "sha256": "833400eee0107b82227695007f1586fc1f824a6679b864aaf69ea61898bf1dbe",
+      "source": "function(e,t,a){e.call(t,a),t.position=[390,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(100))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 2832431,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[390,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "EMT.atk_tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3163293,
+      "end": 3163497,
+      "sha256": "46428f080616701bec4531e17ea8955fdced98c0e0d20297f7f7af1284adce5b",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;if(i){var r=t.model;if(r&&r.atk_launchDelay&&r.atk_launchDelay>=-.3&&r.skill&&r.skill.caster){var n=r.skill.caster.actor.node._localZOrder;i.setLocalZOrder(n+1)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "EMT.summonPuck_atk_tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3168524,
+      "end": 3168728,
+      "sha256": "46428f080616701bec4531e17ea8955fdced98c0e0d20297f7f7af1284adce5b",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;if(i){var r=t.model;if(r&&r.atk_launchDelay&&r.atk_launchDelay>=-.3&&r.skill&&r.skill.caster){var n=r.skill.caster.actor.node._localZOrder;i.setLocalZOrder(n+1)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Liberta.atk2_tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3281922,
+      "end": 3282155,
+      "sha256": "dc40d54e4e27e5d7e5f3789bcf0ad8cbad046d88750092d1d24ee8ddb8ffba0d",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;if(i){var r=t.model;if(r){var n=r.target,l=r.caster;if(l&&l.isAlive()&&n&&n.isAlive()){var o=n.actor.node.getLocalZOrder(),f=l.actor.node.getLocalZOrder();i.setLocalZOrder(Math.max(o,f)+1)}}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "l.isAlive",
+        "n.isAlive",
+        "n.actor.node.getLocalZOrder",
+        "l.actor.node.getLocalZOrder",
+        "i.setLocalZOrder",
+        "Math.max"
+      ],
+      "modelCallees": [
+        {
+          "callee": "l.isAlive",
+          "roots": [
+            "actor.model.caster.isAlive"
+          ]
+        },
+        {
+          "callee": "n.isAlive",
+          "roots": [
+            "actor.model.target.isAlive"
+          ]
+        },
+        {
+          "callee": "n.actor.node.getLocalZOrder",
+          "roots": [
+            "actor.model.target.actor.node.getLocalZOrder"
+          ]
+        },
+        {
+          "callee": "l.actor.node.getLocalZOrder",
+          "roots": [
+            "actor.model.caster.actor.node.getLocalZOrder"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Liberta.atk3_tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3290243,
+      "end": 3290476,
+      "sha256": "dc40d54e4e27e5d7e5f3789bcf0ad8cbad046d88750092d1d24ee8ddb8ffba0d",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;if(i){var r=t.model;if(r){var n=r.target,l=r.caster;if(l&&l.isAlive()&&n&&n.isAlive()){var o=n.actor.node.getLocalZOrder(),f=l.actor.node.getLocalZOrder();i.setLocalZOrder(Math.max(o,f)+1)}}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "l.isAlive",
+        "n.isAlive",
+        "n.actor.node.getLocalZOrder",
+        "l.actor.node.getLocalZOrder",
+        "i.setLocalZOrder",
+        "Math.max"
+      ],
+      "modelCallees": [
+        {
+          "callee": "l.isAlive",
+          "roots": [
+            "actor.model.caster.isAlive"
+          ]
+        },
+        {
+          "callee": "n.isAlive",
+          "roots": [
+            "actor.model.target.isAlive"
+          ]
+        },
+        {
+          "callee": "n.actor.node.getLocalZOrder",
+          "roots": [
+            "actor.model.target.actor.node.getLocalZOrder"
+          ]
+        },
+        {
+          "callee": "l.actor.node.getLocalZOrder",
+          "roots": [
+            "actor.model.caster.actor.node.getLocalZOrder"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lucilla.ulttile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3318217,
+      "end": 3318451,
+      "sha256": "d72a4571930d1c1ba39bb6b68fae896a7e2c8ac490b4964450789b64f6a5d27e",
+      "source": "function(e,t,a){if(e.call(t,a),t.model){var i=t.model.caster.FireRingEff,r=t.model.caster.FireRingBgEff,n=t.height,l=ed.toViewPosition(t.position,n);cc.sys.isObjectValid(i)&&i.setPosition(l),cc.sys.isObjectValid(r)&&r.setPosition(l)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "ed.toViewPosition",
+        "cc.sys.isObjectValid",
+        "i.setPosition",
+        "r.setPosition"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.setPosition",
+          "roots": [
+            "actor.model.caster.FireRingEff.setPosition"
+          ]
+        },
+        {
+          "callee": "r.setPosition",
+          "roots": [
+            "actor.model.caster.FireRingBgEff.setPosition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lucilla.atk2tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3323170,
+      "end": 3324368,
+      "sha256": "a125e072591e65a2facc8fbc2af29b3dd2752889d4951bc403b99f5f4070aa2c",
+      "source": "function(e,t,a){e.call(t,a);var i=t&&t.node;if(i){var r=i.getScaleY();r=Math.abs(r),i.setScaleY(r);var n=i.getScaleX();n=Math.abs(n);var l=t.model.velocity;if(l&&(n*=l[0]>0?1:-1),i.setScaleX(n),!i.LucillaAtk2TileShadows){i.LucillaAtk2TileShadows=[];var o=ed.edpNormalize(l),f=-25*o[1]*1,s=-50*o[1]*1,c=cc.affineTransformMakeIdentity();c=cc.affineTransformTranslate(c,-50,f),c=cc.affineTransformRotate(c,0*Math.PI),c=cc.affineTransformScale(c,1,1);var d=t.initNodeEffect||\"spine_eff_tile_Lucilla_atk2_2\",u=i.addEffect(d,0,c),_=cc.affineTransformMakeIdentity();_=cc.affineTransformTranslate(_,-100,s),_=cc.affineTransformRotate(_,0*Math.PI),_=cc.affineTransformScale(_,1,1);var m,p=i.addEffect(d,0,_),k=i.getEffectById(u),g=i.getEffectById(p);if(k&&cc.sys.isObjectValid(k))(m=cc.sys.jsb?k.getMRoot():k.pRoot)&&m.setOpacity&&m.setOpacity(180),k.setLocalZOrder(-1),k.setPosition(cc.p(-50,f)),k.setScale(1,1),k.setRotation(0),k.setAction(\"Start2\"),k.setLoopAction(\"Loop2\");if(g&&cc.sys.isObjectValid(g))(m=cc.sys.jsb?g.getMRoot():g.pRoot)&&m.setOpacity&&m.setOpacity(120),g.setLocalZOrder(-2),g.setPosition(cc.p(-100,s)),g.setScale(1,1),g.setRotation(0),g.setAction(\"Start2\"),g.setLoopAction(\"Loop2\")}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 3323240,
+          "left": "r",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "r=Math.abs(r)"
+        },
+        {
+          "start": 3323289,
+          "left": "n",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "n=Math.abs(n)"
+        },
+        {
+          "start": 3323333,
+          "left": "n",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "n*=l[0]>0?1:-1"
+        },
+        {
+          "start": 3323391,
+          "left": "i.LucillaAtk2TileShadows",
+          "mutatesObject": true,
+          "roots": [
+            "actor.LucillaAtk2TileShadows",
+            "actor.node.LucillaAtk2TileShadows"
+          ],
+          "source": "i.LucillaAtk2TileShadows=[]"
+        },
+        {
+          "start": 3323505,
+          "left": "c",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "c=cc.affineTransformTranslate(c,-50,f)"
+        },
+        {
+          "start": 3323544,
+          "left": "c",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "c=cc.affineTransformRotate(c,0*Math.PI)"
+        },
+        {
+          "start": 3323584,
+          "left": "c",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "c=cc.affineTransformScale(c,1,1)"
+        },
+        {
+          "start": 3323729,
+          "left": "_",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "_=cc.affineTransformTranslate(_,-100,s)"
+        },
+        {
+          "start": 3323769,
+          "left": "_",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "_=cc.affineTransformRotate(_,0*Math.PI)"
+        },
+        {
+          "start": 3323809,
+          "left": "_",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "_=cc.affineTransformScale(_,1,1)"
+        },
+        {
+          "start": 3323942,
+          "left": "m",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "m=cc.sys.jsb?k.getMRoot():k.pRoot"
+        },
+        {
+          "start": 3324169,
+          "left": "m",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "m=cc.sys.jsb?g.getMRoot():g.pRoot"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.getScaleY",
+        "Math.abs",
+        "i.setScaleY",
+        "i.getScaleX",
+        "i.setScaleX",
+        "ed.edpNormalize",
+        "cc.affineTransformMakeIdentity",
+        "cc.affineTransformTranslate",
+        "cc.affineTransformRotate",
+        "cc.affineTransformScale",
+        "i.addEffect",
+        "i.getEffectById",
+        "cc.sys.isObjectValid",
+        "k.getMRoot",
+        "m.setOpacity",
+        "k.setLocalZOrder",
+        "k.setPosition",
+        "cc.p",
+        "k.setScale",
+        "k.setRotation",
+        "k.setAction",
+        "k.setLoopAction",
+        "g.getMRoot",
+        "g.setLocalZOrder",
+        "g.setPosition",
+        "g.setScale",
+        "g.setRotation",
+        "g.setAction",
+        "g.setLoopAction"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "AstroPOM.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3486738,
+      "end": 3487063,
+      "sha256": "958c5d17113c52e2e13c5dc318e3b95998365d541ffd03aaf80ca0b4fead6e3b",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model,r=i&&i.skills&&i.skills[AstroPOM.name+\"_atk3\"];if(r&&r.castingTag){var n=ed.battleEngine.getStageRect(),l=n.maxX,o=n.minX;t.position=[(l+o)/2-150*i.direction,-115],t.height=400;var f=t.node;f&&(f.setPosition(ed.toViewPosition(t.position,t.height)),f.setLocalZOrder(-t.position[1]))}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 3486902,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[(l+o)/2-150*i.direction,-115]"
+        },
+        {
+          "start": 3486944,
+          "left": "t.height",
+          "mutatesObject": true,
+          "roots": [
+            "actor.height"
+          ],
+          "source": "t.height=400"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getStageRect",
+        "f.setPosition",
+        "ed.toViewPosition",
+        "f.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Calypso.atk2_ghostProj_actorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3549412,
+      "end": 3549721,
+      "sha256": "156f636227960766daf99d6cca46b2c07861b9b318393b5e4885f11978c1e2ef",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node,r=t.model;if(cc.sys.isObjectValid(i)&&r){var n,l=ed.toViewPosition(r.recordVelocity,r.recordZSpeed),o=ed.toViewPosition([0,0],0),f=l.x-o.x,s=l.y-o.y;if(0===f)n=s>0?-90:90;else{var c=Math.abs(f),d=f>0?1:-1;n=180*-Math.atan(s/c)/Math.PI,d<0&&(n=180-n)}i.setRotation(n)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 3549611,
+          "left": "n",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "n=s>0?-90:90"
+        },
+        {
+          "start": 3549658,
+          "left": "n",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "n=180*-Math.atan(s/c)/Math.PI"
+        },
+        {
+          "start": 3549694,
+          "left": "n",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "n=180-n"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "cc.sys.isObjectValid",
+        "ed.toViewPosition",
+        "Math.abs",
+        "Math.atan",
+        "i.setRotation"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Turtle_Texas.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3616268,
+      "end": 3616414,
+      "sha256": "e08d1e23014484996365c96506fc7086904c864260a8299ec11f664258254ecc",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model;if(i&&i.ult_sceneEffect){var r=ed.toViewPosition(t.position,t.height);i.ult_sceneEffect.setPosition(r)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "ed.toViewPosition",
+        "i.ult_sceneEffect.setPosition"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.ult_sceneEffect.setPosition",
+          "roots": [
+            "actor.model.ult_sceneEffect.setPosition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pudge_Texas.atk3_chainActor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3679169,
+      "end": 3679290,
+      "sha256": "eebfeed105c9c7cc11f780f77778f27456ef55fa270213909e033a7047ca906b",
+      "source": "function(e,t,a){e.call(t,a),t.startPosMoveSpd&&(t.startPos.x+=t.startPosMoveSpd.x*a,t.startPos.y+=t.startPosMoveSpd.y*a)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 3679217,
+          "left": "t.startPos.x",
+          "mutatesObject": true,
+          "roots": [
+            "actor.startPos.x"
+          ],
+          "source": "t.startPos.x+=t.startPosMoveSpd.x*a"
+        },
+        {
+          "start": 3679253,
+          "left": "t.startPos.y",
+          "mutatesObject": true,
+          "roots": [
+            "actor.startPos.y"
+          ],
+          "source": "t.startPos.y+=t.startPosMoveSpd.y*a"
+        }
+      ],
+      "callees": [
+        "e.call"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Pudge_Texas.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3681734,
+      "end": 3682019,
+      "sha256": "1c7cb330f4b60a19964299010b9ef00ab2ec3be08161f114095af280ef45802e",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model,r=i instanceof ed.Unit&&i.skills[Pudge_Texas.name+\"_ult\"];if(r&&r.markBuff&&r.markBuff instanceof ed.Buff){var n=r.markBuff.owner;if(n&&n.actor){var l=n.actor.hpbar;l&&l.node&&l.Pudge_ult_markBuffEffect&&l.Pudge_ult_markBuffEffect.update(a)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "l.Pudge_ult_markBuffEffect.update"
+      ],
+      "modelCallees": [
+        {
+          "callee": "l.Pudge_ult_markBuffEffect.update",
+          "roots": [
+            "actor.model.skills.*.markBuff.owner.actor.hpbar.Pudge_ult_markBuffEffect.update"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NunAssassin_Texas.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3764763,
+      "end": 3764791,
+      "sha256": "9765b612e05c3ddce8f36e2f90c3fdfa64dc85ca69e413ee533e4b4da67c1c29",
+      "source": "function(e,t,a){e.call(t,a)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Troll_Texas.tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3821633,
+      "end": 3821720,
+      "sha256": "8f4bf21ce0579d5a836d0aaab1c8a42ba440faf752c58a8761699c82a7d379c9",
+      "source": "function(e,t,a){e.call(t,a),t&&t.node&&(t.node.setRotation(0),t.node.setScaleX(t.dir))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "t.node.setScaleX"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "NT_Texas.summmonNTR_atk_tileactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3891854,
+      "end": 3892067,
+      "sha256": "54838ea4dd61cf07f04d60ba89efe025207a89931ad4e1c903bd5041dc010d58",
+      "source": "function(e,t,a){var i=t.model;if(i.truegravity){var r=i.zSpeed*(i.zSpeed>=0?-2:2)+i.truegravity;t.zSpeed=i.zSpeed+.125*r}e.call(t,a);var n=t.node;t.node.setRotation(0),n.getScaleY()<0&&n.setScaleY(-n.getScaleY())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 3891950,
+          "left": "t.zSpeed",
+          "mutatesObject": true,
+          "roots": [
+            "actor.zSpeed"
+          ],
+          "source": "t.zSpeed=i.zSpeed+.125*r"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "n.getScaleY",
+        "n.setScaleY"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Revenger_Texas.ult_tileactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3910011,
+      "end": 3910119,
+      "sha256": "a395d6b24b87ac00764c65809d7152299757962d054c16dc6b54f7278fe0557f",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;t.node.setRotation(0),i.getScaleY()<0&&i.setScaleY(-i.getScaleY())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "i.getScaleY",
+        "i.setScaleY"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossBA.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3949013,
+      "end": 3949186,
+      "sha256": "fd198c8a7a917f092de5923062c8ed01318c678f70d0c41c870ce6351f51ff8a",
+      "source": "function(e,t,a){e.call(t,a),t.position=[BossBA.actorPos[0],BossBA.actorPos[1]];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 3949041,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[BossBA.actorPos[0],BossBA.actorPos[1]]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossROG.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3962767,
+      "end": 3962942,
+      "sha256": "07281f1f56998e2bbbc30e94b4172b456ca3061bc313a82c164977e1b998da5c",
+      "source": "function(e,t,a){e.call(t,a),t.position=[BossROG.actorPos[0],BossROG.actorPos[1]];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 3962795,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[BossROG.actorPos[0],BossROG.actorPos[1]]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossPreyB.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3973348,
+      "end": 3973491,
+      "sha256": "4438ece1026545804415891584d8e59914b4426234102a33bb62f5eb916d7750",
+      "source": "function(e,t,a){e.call(t,a),t.position=[370,-50];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(100))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 3973376,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[370,-50]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossWorm.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3986550,
+      "end": 3986694,
+      "sha256": "454a62121949710f7ccd1a7d4c33e1dfe05f78dd76b33939dbd650bcd6179025",
+      "source": "function(e,t,a){e.call(t,a),t.position=[400,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 3986578,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[400,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BloodS.ult_chainActor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4030521,
+      "end": 4030586,
+      "sha256": "438bbae6064557715bc33604755db67a52ded7e6e893fec5728c9c05e4f9dca1",
+      "source": "function(e,t,a){e.call(t,a),t.middle&&t.middle.setLocalZOrder(0)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.middle.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Gtornado.atk_tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4054906,
+      "end": 4055067,
+      "sha256": "ec9b83b89de0827399bf6820ef24efbe5c54c9fbdb8f60265a9b298a9f81177b",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;if(i){var r=t.model;if(r&&r.skill&&r.skill.caster){var n=r.skill.caster.actor.node._localZOrder;i.setLocalZOrder(n+1)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossDragonS.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4176022,
+      "end": 4176166,
+      "sha256": "ab2224efacf13ed7433a4ef1287701d14c1bace7ea7ff60108110699f84d520b",
+      "source": "function(e,t,a){e.call(t,a),t.position=[370,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4176050,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[370,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossDragonS.atk_tile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4178113,
+      "end": 4178229,
+      "sha256": "2226baeaaebb79410efe735185a6b49c20d744267d3c0b6dd5dc11fd5ad2ded9",
+      "source": "function(e,t,a){e.call(t,a),t.initialFinish||t&&t.node&&(t.initialFinish=!0,t.nodeIniPosition=t.node.getPosition())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4178170,
+          "left": "t.initialFinish",
+          "mutatesObject": true,
+          "roots": [
+            "actor.initialFinish"
+          ],
+          "source": "t.initialFinish=!0"
+        },
+        {
+          "start": 4178189,
+          "left": "t.nodeIniPosition",
+          "mutatesObject": true,
+          "roots": [
+            "actor.nodeIniPosition"
+          ],
+          "source": "t.nodeIniPosition=t.node.getPosition()"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.getPosition"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossDragonB.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4194964,
+      "end": 4195165,
+      "sha256": "ca16d1c1107214af217f68c6fd5460958e8dd62123c22a003fa89d52cd6252f9",
+      "source": "function(e,t,a){e.call(t,a),t.position=[420,-115];var i=t.node;if(i){i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114);var r=t.model;r&&r.isUsingAtk3&&i.setLocalZOrder(9999)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4194992,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[420,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossLionAct.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4211090,
+      "end": 4211234,
+      "sha256": "d7602eca862168327f2c08b25b89dab00d406d2d9cbbfe145886b7735f543e8d",
+      "source": "function(e,t,a){e.call(t,a),t.position=[390,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4211118,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[390,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "WBossLionAct.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4224446,
+      "end": 4224590,
+      "sha256": "d7602eca862168327f2c08b25b89dab00d406d2d9cbbfe145886b7735f543e8d",
+      "source": "function(e,t,a){e.call(t,a),t.position=[390,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4224474,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[390,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossSBDAct.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4249882,
+      "end": 4250026,
+      "sha256": "d7602eca862168327f2c08b25b89dab00d406d2d9cbbfe145886b7735f543e8d",
+      "source": "function(e,t,a){e.call(t,a),t.position=[390,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4249910,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[390,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "SummerPudge.atk3_chainActor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4298108,
+      "end": 4298229,
+      "sha256": "eebfeed105c9c7cc11f780f77778f27456ef55fa270213909e033a7047ca906b",
+      "source": "function(e,t,a){e.call(t,a),t.startPosMoveSpd&&(t.startPos.x+=t.startPosMoveSpd.x*a,t.startPos.y+=t.startPosMoveSpd.y*a)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4298156,
+          "left": "t.startPos.x",
+          "mutatesObject": true,
+          "roots": [
+            "actor.startPos.x"
+          ],
+          "source": "t.startPos.x+=t.startPosMoveSpd.x*a"
+        },
+        {
+          "start": 4298192,
+          "left": "t.startPos.y",
+          "mutatesObject": true,
+          "roots": [
+            "actor.startPos.y"
+          ],
+          "source": "t.startPos.y+=t.startPosMoveSpd.y*a"
+        }
+      ],
+      "callees": [
+        "e.call"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "SummerPudge.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4300751,
+      "end": 4301036,
+      "sha256": "88590b14bb9bbfb5b8fa7058dc747e003846d9ac77d712f3dc3488da8fdf7544",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model,r=i instanceof ed.Unit&&i.skills[SummerPudge.name+\"_ult\"];if(r&&r.markBuff&&r.markBuff instanceof ed.Buff){var n=r.markBuff.owner;if(n&&n.actor){var l=n.actor.hpbar;l&&l.node&&l.Pudge_ult_markBuffEffect&&l.Pudge_ult_markBuffEffect.update(a)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "l.Pudge_ult_markBuffEffect.update"
+      ],
+      "modelCallees": [
+        {
+          "callee": "l.Pudge_ult_markBuffEffect.update",
+          "roots": [
+            "actor.model.skills.*.markBuff.owner.actor.hpbar.Pudge_ult_markBuffEffect.update"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SummerSiren.atk4actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4307740,
+      "end": 4308019,
+      "sha256": "919cf58ecb677d533fcedd55811628944a2bfea883ba07e918954998106123cc",
+      "source": "function(e,t,a){if(e.call(t,a),t.model.fogEff){var i=t.model.fogEff;ed.battleEngine.running||i.setVisible(!1);var r=t.height;if(cc.sys.isObjectValid(i)){var n=ed.toViewPosition(t.position,r);i.setPosition(n),i.setLocalZOrder(-t.position[1]),i.setRotation(t.node.getRotation())}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "i.setVisible",
+        "cc.sys.isObjectValid",
+        "ed.toViewPosition",
+        "i.setPosition",
+        "i.setLocalZOrder",
+        "i.setRotation",
+        "t.node.getRotation"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.setVisible",
+          "roots": [
+            "actor.model.fogEff.setVisible"
+          ]
+        },
+        {
+          "callee": "i.setPosition",
+          "roots": [
+            "actor.model.fogEff.setPosition"
+          ]
+        },
+        {
+          "callee": "i.setLocalZOrder",
+          "roots": [
+            "actor.model.fogEff.setLocalZOrder"
+          ]
+        },
+        {
+          "callee": "i.setRotation",
+          "roots": [
+            "actor.model.fogEff.setRotation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BossCrab.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4389516,
+      "end": 4389660,
+      "sha256": "833400eee0107b82227695007f1586fc1f824a6679b864aaf69ea61898bf1dbe",
+      "source": "function(e,t,a){e.call(t,a),t.position=[390,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(100))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4389544,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[390,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "RBossLionAct.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4449807,
+      "end": 4449951,
+      "sha256": "d7602eca862168327f2c08b25b89dab00d406d2d9cbbfe145886b7735f543e8d",
+      "source": "function(e,t,a){e.call(t,a),t.position=[390,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4449835,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[390,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "RBossMD.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4484634,
+      "end": 4484778,
+      "sha256": "ab2224efacf13ed7433a4ef1287701d14c1bace7ea7ff60108110699f84d520b",
+      "source": "function(e,t,a){e.call(t,a),t.position=[370,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4484662,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[370,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "RBossMD.floatArm_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4484809,
+      "end": 4485348,
+      "sha256": "d37a73ac9a648771fff07693181b7eca5b531d1364e1edb0a701aa193eaacf76",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model&&!t.isDead){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i&&!t.rBossMDCheerModify)if(t.rBossMDCheerModify=!0,\"defeat\"===i&&r.camp===ed.battle_camp.enemy||\"timeout\"===i){var l=r&&r.getSummonHero();if(l&&l.actor){var o=l.actor.position;Math.abs(o[1]-t.position[1]+o[0]-t.position[0])>2.1&&(t.position=[o[0],o[1]+2],n.setAction(\"Cheer\"),t.node&&t.node.setScale(-1*r.direction,1),t.offline=!0,n.setActionElapsed(3.8+l.action_elapsed-l.action_duration))}}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4484981,
+          "left": "t.rBossMDCheerModify",
+          "mutatesObject": true,
+          "roots": [
+            "actor.rBossMDCheerModify"
+          ],
+          "source": "t.rBossMDCheerModify=!0"
+        },
+        {
+          "start": 4485184,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[o[0],o[1]+2]"
+        },
+        {
+          "start": 4485272,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "r.getSummonHero",
+        "Math.abs",
+        "n.setAction",
+        "t.node.setScale",
+        "n.setActionElapsed"
+      ],
+      "modelCallees": [
+        {
+          "callee": "r.getSummonHero",
+          "roots": [
+            "actor.model.getSummonHero"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BossNightmare.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4528997,
+      "end": 4529198,
+      "sha256": "02a5dcaf787d5f55ade63110c58989b5b5c6e479e901b6bfebb792c57c10de1b",
+      "source": "function(e,t,a){e.call(t,a),t.position=[365,-115];var i=t.node;if(i){i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114);var r=t.model;r&&r.atk4_casting&&i.setLocalZOrder(999)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4529025,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[365,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "BossDevilDog.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4559093,
+      "end": 4559213,
+      "sha256": "e95e79acb0dc451e0201a5d40ace8f974798d522e5c206904b44fc6bd9904583",
+      "source": "function(e,t,a){e.call(t,a),t.position=[390,-115];var i=t.node;i&&i.setPosition(ed.toViewPosition(t.position,t.height))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4559121,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[390,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "RBossDoll.atk_tile_actorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4565607,
+      "end": 4565787,
+      "sha256": "f012c4d5c9ae5081513beb9befbfb72c10dba9e971d6101e29e6564d4faa13db",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;if(cc.sys.isObjectValid(i)){var r=ed.toViewPosition(t.position,t.height-20);i.setPosition(r),i.getScaleY()<0&&i.setScaleY(-i.getScaleY())}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "cc.sys.isObjectValid",
+        "ed.toViewPosition",
+        "i.setPosition",
+        "i.getScaleY",
+        "i.setScaleY"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "AvengerSBane.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4656650,
+      "end": 4656900,
+      "sha256": "7fd861613d4c38943aaea90c959aa3cf0dc7a1599c905018b3218d8ac6d13e96",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model;if(i&&i.WindSMAtk2_barEffects instanceof Array)for(var r=0;r<i.WindSMAtk2_barEffects.length;r++){var n=i.WindSMAtk2_barEffects[r];n&&n.update&&(n.update(a),n.targetX&&n.x>n.targetX&&n.setPosition(n.x-.2,0))}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4656784,
+          "left": "r",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "r++"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "n.update",
+        "n.setPosition"
+      ],
+      "modelCallees": [
+        {
+          "callee": "n.update",
+          "roots": [
+            "actor.model.WindSMAtk2_barEffects.*.update"
+          ]
+        },
+        {
+          "callee": "n.setPosition",
+          "roots": [
+            "actor.model.WindSMAtk2_barEffects.*.setPosition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SLGThor.atk2_tileactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4843212,
+      "end": 4843320,
+      "sha256": "a395d6b24b87ac00764c65809d7152299757962d054c16dc6b54f7278fe0557f",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;t.node.setRotation(0),i.getScaleY()<0&&i.setScaleY(-i.getScaleY())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "i.getScaleY",
+        "i.setScaleY"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "SLGBossDevilDog.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4956239,
+      "end": 4956359,
+      "sha256": "e95e79acb0dc451e0201a5d40ace8f974798d522e5c206904b44fc6bd9904583",
+      "source": "function(e,t,a){e.call(t,a),t.position=[390,-115];var i=t.node;i&&i.setPosition(ed.toViewPosition(t.position,t.height))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 4956267,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[390,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ActClashBossNightmare.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5034982,
+      "end": 5035183,
+      "sha256": "02a5dcaf787d5f55ade63110c58989b5b5c6e479e901b6bfebb792c57c10de1b",
+      "source": "function(e,t,a){e.call(t,a),t.position=[365,-115];var i=t.node;if(i){i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114);var r=t.model;r&&r.atk4_casting&&i.setLocalZOrder(999)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5035010,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[365,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Vegelf.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5060745,
+      "end": 5061018,
+      "sha256": "b120252f579c6f6525761faf1394318a4611bb073a6f9681c9ba535f7c7fac80",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model;if(i&&i.babyNodeList&&i.babyNodeList.length>0)for(var r=0;r<i.babyNodeList.length;r++){var n=i.babyNodeList[r];if(n&&n.puppet){var l=n.puppet;l.update(a),l._actionFinished&&(i.babyNodeList.splice(r,1),r--,n.removeFromParent(!0))}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5060869,
+          "left": "r",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "r++"
+        },
+        {
+          "start": 5060988,
+          "left": "r",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "r--"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "l.update",
+        "i.babyNodeList.splice",
+        "n.removeFromParent"
+      ],
+      "modelCallees": [
+        {
+          "callee": "l.update",
+          "roots": [
+            "actor.model.babyNodeList.*.puppet.update"
+          ]
+        },
+        {
+          "callee": "i.babyNodeList.splice",
+          "roots": [
+            "actor.model.babyNodeList.splice"
+          ]
+        },
+        {
+          "callee": "n.removeFromParent",
+          "roots": [
+            "actor.model.babyNodeList.*.removeFromParent"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "HumanOwl.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5095639,
+      "end": 5096223,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5096121,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5096207,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "HumanBall.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5100774,
+      "end": 5101358,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5101256,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5101342,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ElfBall.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5105042,
+      "end": 5105626,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5105524,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5105610,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "OrcBall.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5109251,
+      "end": 5109835,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5109733,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5109819,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "UndeadBall.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5113766,
+      "end": 5114350,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5114248,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5114334,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "UndeadPLion.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5122925,
+      "end": 5123509,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5123407,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5123493,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ElfDeer.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5134994,
+      "end": 5135578,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5135476,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5135562,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "GDJellyfish.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5144086,
+      "end": 5144670,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5144568,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5144654,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "OrcSwordL.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5153039,
+      "end": 5153612,
+      "sha256": "f01a08c85860ea049779e54f32cb5f00f9a5223f5f0c4e07de183d3758186bb2",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"atk\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!1),n.setActionSpeeder(1),t.velocity=[0,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5153520,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        },
+        {
+          "start": 5153596,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "OrcEfreet.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5162117,
+      "end": 5162701,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5162599,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5162685,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "UndeadSpider.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5175716,
+      "end": 5176079,
+      "sha256": "2e501bc57794834c5985e2fcbf4656e3b7e352e51c3a0684979d3f40bc755d78",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ElfIbis.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5183400,
+      "end": 5183763,
+      "sha256": "2e501bc57794834c5985e2fcbf4656e3b7e352e51c3a0684979d3f40bc755d78",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "HyperCutyDragon.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5194820,
+      "end": 5195404,
+      "sha256": "c97284f4f4b4e1128d9bb2618be59e5ea1e168bbdebc18e909e292e3b10fc7aa",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)if(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy);else if(\"timeout\"===i){var l=t.getActionName(\"Cheer\");r&&r.action_name!==l&&n.setNextAction(l),n.setLoop(!0),n.setActionSpeeder(1)}else{var o=t.getActionName(\"Move\");r&&!t.offline&&r.action_name!==o&&(n.setAction(o),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[200*-r.camp,0],t.velocity[0]*r.direction<0&&t.node&&t.node.setScale(-1,1),t.offline=!0)}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5195302,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[200*-r.camp,0]"
+        },
+        {
+          "start": 5195388,
+          "left": "t.offline",
+          "mutatesObject": true,
+          "roots": [
+            "actor.offline"
+          ],
+          "source": "t.offline=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "t.getActionName",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder",
+        "n.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Grimhoof.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5213541,
+      "end": 5213997,
+      "sha256": "51a2586781f5cdaff51e0b09982da1a6f46f63cfcb05010ac76f1b0a3092cf6e",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy||\"timeout\"===i?(r&&\"Cheer\"!==r.action_name&&n.setNextAction(\"Cheer\"),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[0,0]):(r&&\"Idle\"!==r.action_name&&n.setNextAction(\"Idle\"),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[0,0])}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5213872,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        },
+        {
+          "start": 5213978,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "CarrotRabbit.skill_atk_summonCarrot_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5227906,
+      "end": 5228383,
+      "sha256": "916c43abbe598e35636e3547c10e71a2ca843fc68fd8beff32bf9404838e38e0",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)(\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy||\"timeout\"===i)&&(r.isCarrotStage?(r&&\"Idle\"!==r.action_name&&n.setNextAction(\"Idle\"),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[0,0]):(r&&\"Idle2\"!==r.action_name&&n.setNextAction(\"Idle2\"),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[0,0]))}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5228255,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        },
+        {
+          "start": 5228363,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "CarrotRabbit.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5237102,
+      "end": 5237558,
+      "sha256": "51a2586781f5cdaff51e0b09982da1a6f46f63cfcb05010ac76f1b0a3092cf6e",
+      "source": "function(e,t,a){if(e.call(t,a),t&&!ed.battleEngine.running&&t.model){var i=ed.battleEngine.getBattleResult(),r=t.model,n=t.puppet;if(i)\"victory\"===i&&r.camp===ed.battle_camp.player||\"defeat\"===i&&r.camp===ed.battle_camp.enemy||\"timeout\"===i?(r&&\"Cheer\"!==r.action_name&&n.setNextAction(\"Cheer\"),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[0,0]):(r&&\"Idle\"!==r.action_name&&n.setNextAction(\"Idle\"),n.setLoop(!0),n.setActionSpeeder(1),t.velocity=[0,0])}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5237433,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        },
+        {
+          "start": 5237539,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "ed.battleEngine.getBattleResult",
+        "n.setNextAction",
+        "n.setLoop",
+        "n.setActionSpeeder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "MagicMouse.atk2_tile_actor_Update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5282993,
+      "end": 5283045,
+      "sha256": "d9fec335d86a69b5d5f3b401971176777f0bbe63a32d52e454778a3b908bc3aa",
+      "source": "function(e,t,a){e.call(t,a),t.node.setRotation(180)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.node.setRotation"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ActMira2024NunAssassin.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5388885,
+      "end": 5388913,
+      "sha256": "9765b612e05c3ddce8f36e2f90c3fdfa64dc85ca69e413ee533e4b4da67c1c29",
+      "source": "function(e,t,a){e.call(t,a)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ActSummer2025Valkyrie.projectile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5593863,
+      "end": 5594017,
+      "sha256": "1b7226b9d6cfad9b825e7d7f95609bb883e75db4731195811dda2789fe6d7468",
+      "source": "function(e,t,a){e.call(t,a),t&&t.height<=0&&!t.setVisibleOver&&(t.setVisibleOver=!0,t.node.setVisible(!1)),t.model.overLaunchPoint&&t.node.setVisible(!1)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5593927,
+          "left": "t.setVisibleOver",
+          "mutatesObject": true,
+          "roots": [
+            "actor.setVisibleOver"
+          ],
+          "source": "t.setVisibleOver=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.setVisible"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ActSummer2026LUST.atk4_tileactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5612259,
+      "end": 5612398,
+      "sha256": "49d0396a6493c643975b62d8070a184056d68d58f1a64a0d7944398ce9442b18",
+      "source": "function(e,t,a){e.call(t,a);var i=1;t.model.hl_powerupTile&&(i=1.65);var r=t.node;r&&(t.node.setRotation(0),r.setScaleY(i),r.setScaleX(i))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5612320,
+          "left": "i",
+          "mutatesObject": false,
+          "roots": [],
+          "source": "i=1.65"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "r.setScaleY",
+        "r.setScaleX"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ActSummer2026Valkyrie.projectile_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5659861,
+      "end": 5660015,
+      "sha256": "1b7226b9d6cfad9b825e7d7f95609bb883e75db4731195811dda2789fe6d7468",
+      "source": "function(e,t,a){e.call(t,a),t&&t.height<=0&&!t.setVisibleOver&&(t.setVisibleOver=!0,t.node.setVisible(!1)),t.model.overLaunchPoint&&t.node.setVisible(!1)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5659925,
+          "left": "t.setVisibleOver",
+          "mutatesObject": true,
+          "roots": [
+            "actor.setVisibleOver"
+          ],
+          "source": "t.setVisibleOver=!0"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "t.node.setVisible"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "Puppeteer.Puppet_actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5712012,
+      "end": 5712183,
+      "sha256": "b2cebf52399ead4f5544d0ffec1d045284a7557391ccfec6331aeda242cc8bc1",
+      "source": "function(e,t,a){e.call(t,a);var i=t.model;if(i&&i.darkStageEff){var r=ed.toViewPosition(t.position,0);cc.sys.isObjectValid(i.darkStageEff)&&i.darkStageEff.setPosition(r)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "ed.toViewPosition",
+        "cc.sys.isObjectValid",
+        "i.darkStageEff.setPosition"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.darkStageEff.setPosition",
+          "roots": [
+            "actor.model.darkStageEff.setPosition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ActCrossStoryNightmare.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 5812551,
+      "end": 5812752,
+      "sha256": "02a5dcaf787d5f55ade63110c58989b5b5c6e479e901b6bfebb792c57c10de1b",
+      "source": "function(e,t,a){e.call(t,a),t.position=[365,-115];var i=t.node;if(i){i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114);var r=t.model;r&&r.atk4_casting&&i.setLocalZOrder(999)}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 5812579,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[365,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "ActRaidCarePetSiren.atk4actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6655562,
+      "end": 6655841,
+      "sha256": "919cf58ecb677d533fcedd55811628944a2bfea883ba07e918954998106123cc",
+      "source": "function(e,t,a){if(e.call(t,a),t.model.fogEff){var i=t.model.fogEff;ed.battleEngine.running||i.setVisible(!1);var r=t.height;if(cc.sys.isObjectValid(i)){var n=ed.toViewPosition(t.position,r);i.setPosition(n),i.setLocalZOrder(-t.position[1]),i.setRotation(t.node.getRotation())}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "i.setVisible",
+        "cc.sys.isObjectValid",
+        "ed.toViewPosition",
+        "i.setPosition",
+        "i.setLocalZOrder",
+        "i.setRotation",
+        "t.node.getRotation"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.setVisible",
+          "roots": [
+            "actor.model.fogEff.setVisible"
+          ]
+        },
+        {
+          "callee": "i.setPosition",
+          "roots": [
+            "actor.model.fogEff.setPosition"
+          ]
+        },
+        {
+          "callee": "i.setLocalZOrder",
+          "roots": [
+            "actor.model.fogEff.setLocalZOrder"
+          ]
+        },
+        {
+          "callee": "i.setRotation",
+          "roots": [
+            "actor.model.fogEff.setRotation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ActRaidCarePetThor.atk2_tileactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6669688,
+      "end": 6669796,
+      "sha256": "a395d6b24b87ac00764c65809d7152299757962d054c16dc6b54f7278fe0557f",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;t.node.setRotation(0),i.getScaleY()<0&&i.setScaleY(-i.getScaleY())}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "t.node.setRotation",
+        "i.getScaleY",
+        "i.setScaleY"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "CandleDog.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6699620,
+      "end": 6700309,
+      "sha256": "8ad0c0b604d7d2584aad6481833f35c4fc02b82467bbdd318110eebbe573f6fe",
+      "source": "function(e,t,a){if(e.call(t,a),t)if(ed.battleEngine.running)t.CandleDogEndActionSet=0;else{var i=t.model,r=t.puppet;if(i&&r&&i.isAlive()){var n=ed.battleEngine.getBattleResult();if(n){if(\"victory\"===n&&i.camp===ed.battle_camp.player||\"defeat\"===n&&i.camp===ed.battle_camp.enemy||\"timeout\"===n)return 1!==t.CandleDogEndActionSet&&(t.CandleDogEndActionSet=1,r.setNextAction(t.getActionName(\"Cheer\")),r.setLoop(!0),r.setActionSpeeder(1)),void(t.velocity=[0,0]);2!==t.CandleDogEndActionSet&&(t.CandleDogEndActionSet=2,r.setAction(t.getActionName(\"Move\")),r.setLoop(!0),r.setActionSpeeder(1),t.node&&t.node.setScale(-i.direction,1)),t.velocity=[-i.direction*CandleDog.DEFEAT_ESCAPE_SPEED,0]}}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 6699680,
+          "left": "t.CandleDogEndActionSet",
+          "mutatesObject": true,
+          "roots": [
+            "actor.CandleDogEndActionSet"
+          ],
+          "source": "t.CandleDogEndActionSet=0"
+        },
+        {
+          "start": 6699950,
+          "left": "t.CandleDogEndActionSet",
+          "mutatesObject": true,
+          "roots": [
+            "actor.CandleDogEndActionSet"
+          ],
+          "source": "t.CandleDogEndActionSet=1"
+        },
+        {
+          "start": 6700060,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[0,0]"
+        },
+        {
+          "start": 6700108,
+          "left": "t.CandleDogEndActionSet",
+          "mutatesObject": true,
+          "roots": [
+            "actor.CandleDogEndActionSet"
+          ],
+          "source": "t.CandleDogEndActionSet=2"
+        },
+        {
+          "start": 6700248,
+          "left": "t.velocity",
+          "mutatesObject": true,
+          "roots": [
+            "actor.velocity"
+          ],
+          "source": "t.velocity=[-i.direction*CandleDog.DEFEAT_ESCAPE_SPEED,0]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.isAlive",
+        "ed.battleEngine.getBattleResult",
+        "r.setNextAction",
+        "t.getActionName",
+        "r.setLoop",
+        "r.setActionSpeeder",
+        "r.setAction",
+        "t.node.setScale"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.isAlive",
+          "roots": [
+            "actor.model.isAlive"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ActDnfBossWorm.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 6921597,
+      "end": 6921741,
+      "sha256": "454a62121949710f7ccd1a7d4c33e1dfe05f78dd76b33939dbd650bcd6179025",
+      "source": "function(e,t,a){e.call(t,a),t.position=[400,-115];var i=t.node;i&&(i.setPosition(ed.toViewPosition(t.position,t.height)),i.setLocalZOrder(114))}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [
+        {
+          "start": 6921625,
+          "left": "t.position",
+          "mutatesObject": true,
+          "roots": [
+            "actor.position"
+          ],
+          "source": "t.position=[400,-115]"
+        }
+      ],
+      "callees": [
+        "e.call",
+        "i.setPosition",
+        "ed.toViewPosition",
+        "i.setLocalZOrder"
+      ],
+      "modelCallees": []
+    },
+    {
+      "name": "B_UnhealFog.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 7039852,
+      "end": 7040131,
+      "sha256": "919cf58ecb677d533fcedd55811628944a2bfea883ba07e918954998106123cc",
+      "source": "function(e,t,a){if(e.call(t,a),t.model.fogEff){var i=t.model.fogEff;ed.battleEngine.running||i.setVisible(!1);var r=t.height;if(cc.sys.isObjectValid(i)){var n=ed.toViewPosition(t.position,r);i.setPosition(n),i.setLocalZOrder(-t.position[1]),i.setRotation(t.node.getRotation())}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "i.setVisible",
+        "cc.sys.isObjectValid",
+        "ed.toViewPosition",
+        "i.setPosition",
+        "i.setLocalZOrder",
+        "i.setRotation",
+        "t.node.getRotation"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.setVisible",
+          "roots": [
+            "actor.model.fogEff.setVisible"
+          ]
+        },
+        {
+          "callee": "i.setPosition",
+          "roots": [
+            "actor.model.fogEff.setPosition"
+          ]
+        },
+        {
+          "callee": "i.setLocalZOrder",
+          "roots": [
+            "actor.model.fogEff.setLocalZOrder"
+          ]
+        },
+        {
+          "callee": "i.setRotation",
+          "roots": [
+            "actor.model.fogEff.setRotation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GVEfieldBuff_NecUnhealFog.actor_update",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 7429476,
+      "end": 7429755,
+      "sha256": "919cf58ecb677d533fcedd55811628944a2bfea883ba07e918954998106123cc",
+      "source": "function(e,t,a){if(e.call(t,a),t.model.fogEff){var i=t.model.fogEff;ed.battleEngine.running||i.setVisible(!1);var r=t.height;if(cc.sys.isObjectValid(i)){var n=ed.toViewPosition(t.position,r);i.setPosition(n),i.setLocalZOrder(-t.position[1]),i.setRotation(t.node.getRotation())}}}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "i.setVisible",
+        "cc.sys.isObjectValid",
+        "ed.toViewPosition",
+        "i.setPosition",
+        "i.setLocalZOrder",
+        "i.setRotation",
+        "t.node.getRotation"
+      ],
+      "modelCallees": [
+        {
+          "callee": "i.setVisible",
+          "roots": [
+            "actor.model.fogEff.setVisible"
+          ]
+        },
+        {
+          "callee": "i.setPosition",
+          "roots": [
+            "actor.model.fogEff.setPosition"
+          ]
+        },
+        {
+          "callee": "i.setLocalZOrder",
+          "roots": [
+            "actor.model.fogEff.setLocalZOrder"
+          ]
+        },
+        {
+          "callee": "i.setRotation",
+          "roots": [
+            "actor.model.fogEff.setRotation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ROG_TeamAmulet_Thunder_Keystone.cloudactorUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 7725409,
+      "end": 7725470,
+      "sha256": "6a4ef42c34de95fc004b9e3aaf441f69beb601dc64425588d6ce6e9313d11a5f",
+      "source": "function(e,t,a){e.call(t,a);var i=t.node;i&&i.setRotation(0)}",
+      "receiverParameter": "t",
+      "aliasFixedPointReached": true,
+      "modelWrites": [],
+      "allWrites": [],
+      "callees": [
+        "e.call",
+        "i.setRotation"
+      ],
+      "modelCallees": []
+    }
+  ],
+  "conclusions": [
+    "Original logic animation durations come from UnitPuppet/AnimDuration tables, independently of missing render art binaries.",
+    "Scale3Chain graphical model is a separate plain object; its animation termination is not by itself an engine entity termination.",
+    "Every original callback must still execute; timers, fields, aliases and source actor-method writes must be preserved.",
+    "TechMouse.realKnockSelfFlag is written by an actor update but its source reads are confined to that actor update; the skill reset clears it. Preserving the original method needs device scale state, not texture pixels.",
+    "No conclusion about every actor getter, callback, animation event, action completion or transitive helper is implied by this inventory. Unknown paths must remain fail closed."
+  ],
+  "qualifiesForRendererErasure": false
+}
