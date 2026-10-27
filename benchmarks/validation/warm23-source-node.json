@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "passed": true,
+  "difference": null,
+  "input": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm23-current.js",
+    "sha256": "de689b347811c47a050cb16d4d5e4acdd8cf16db9f9a427875c25eccdf938033",
+    "metadataSha256": "3c3855472d4b8a5d9e6c0fcdedac499f5534dcf12a0a9a3c85c0f4749a90ba2d"
+  },
+  "transformation": {
+    "file": "tools/prepare-warm-native-partition.mjs",
+    "sha256": "d305b5e5af171879fca8e75cf939b6d00a76d82911259664c45d274c808ec5ed"
+  },
+  "units": [
+    {
+      "file": "/workspace/afkarena-simx/work/native-warm23-partition/combined.js",
+      "sha256": "45d7bf85f628651fb5bd680b29754dd20efc0e8f6eba0b89abc4b1bbc66b7fa4",
+      "bytes": 1776780,
+      "nativeName": "combined",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "bytes": 1214707,
+      "nativeName": "factories_2",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "bytes": 1202106,
+      "nativeName": "factories_3",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "bytes": 1219549,
+      "nativeName": "factories_4",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "bytes": 1213047,
+      "nativeName": "factories_5",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "bytes": 1223796,
+      "nativeName": "factories_6",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sha256": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
+      "bytes": 1269675,
+      "nativeName": "runner",
+      "unchangedFromBaseline": false
+    }
+  ],
+  "proof": {
+    "sourceFunctionInventory": {
+      "count": 17482,
+      "sha256": "47d6dbce5ca51c6239179c888aa1963f2ca86e2e5ea6c8a2c0228972a688d8af"
+    },
+    "normalizedOriginalProgramSha256": "a8eab7d5c27d8f2341525c16823f2d5165d6c1d78745ac61495f0db645fd2e92",
+    "permittedChanges": [
+      "Host random/clock replay tape initializer",
+      "Private table bundle file path initializer",
+      "Top-level measured count20 and warmup3 call arguments"
+    ],
+    "baselineOriginal": {
+      "file": "/workspace/afkarena-simx/work/native-oracle-capsule-flatcopy.js",
+      "sha256": "7a8750fa49334d40782ffbf0727b5e48d75efd3b3f3fd6eabbae0aa37aca4559"
+    },
+    "unchangedMiddleUnits": 5,
+    "totalUnits": 7
+  },
+  "observed": {
+    "completed": 20,
+    "totalCallbacks": 309060,
+    "classManagerCounters": {
+      "nextClassId": 172,
+      "nextInstanceId": 56542,
+      "classCounterValue": 172,
+      "instanceCounterValue": 56542,
+      "lastClassId": 171,
+      "lastInstanceId": 56541,
+      "classCalls": 46,
+      "instanceCalls": 55848,
+      "classKnown": true,
+      "instanceKnown": true
+    },
+    "results": [
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      },
+      {
+        "result": "victory",
+        "ticks": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      }
+    ]
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "One fixed scenario: three original warmup battles, then twenty measured original battles; source/emitted Node/patched seven-unit Node reports and exact tapes agree. Actor/effect/view lifecycle and broad random-team qualification remain excluded."
+}
