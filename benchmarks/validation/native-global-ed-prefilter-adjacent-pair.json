@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "passed": true,
+  "baseline": {
+    "file": "benchmarks/results/2026-10-27T22-50-36.010Z-native-warm23-no-proxy.json",
+    "sha256": "92355d3a1aa5648069fcdac1eaacfeb07e915926cade639a18b69cbb10353c12",
+    "elapsedMs": 7374,
+    "battlesPerSecond": 2.7122321670735015,
+    "executionWallMs": 16972.688423,
+    "privateVMSha256": "70cc55a159f3d434218754ce94165134231f584a1f7e89379b6d366e632767dd"
+  },
+  "candidate": {
+    "file": "benchmarks/results/2026-10-27T22-50-55.607Z-native-warm23-global-ed-prefilter.json",
+    "sha256": "2a6c6c08a309b55ee4fe957f6eb43feb7cb73599ef86d877518cc6fd7eded60b",
+    "elapsedMs": 7021,
+    "battlesPerSecond": 2.848597065945022,
+    "executionWallMs": 16903.564779,
+    "privateVMSha256": "3d2e010473f6bf427115a3bbfae69cd1321d50b1587efb0e8345b3f9f22b6a8d"
+  },
+  "sourceManifest": {
+    "file": "work/native-warm23-no-proxy-partition/manifest.json",
+    "sha256": "ba4cb9bb93466b87828a1bce7e1346b4a3e681e013bbda9aad1db4325b5e2e9e"
+  },
+  "reference": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js.reference.json",
+    "sha256": "b321057928e5c84b4cc6c6f3c535ec93f493d3b3dec57401a16e075539c48093"
+  },
+  "hostInputs": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js.host-inputs.json",
+    "sha256": "a408711a043b547179013ae58a046b7ba04365749df6c83120a20a41401c77b8",
+    "randomCount": 2,
+    "clockCount": 5980
+  },
+  "totalCallbacks": 309060,
+  "allRawSemanticFieldsEqual": true,
+  "allSevenObjectHashesEqual": true,
+  "allOriginalFastPathCountsEqual": true,
+  "observedThroughputRatio": 1.0502777382139297,
+  "observedElapsedMsReduction": 353,
+  "sequence": "Baseline first, candidate second; separate processes with three warmups and20 measured battles each.",
+  "scope": "One adjacent diagnostic pair. Individual runs pass all raw source-reference fields except timings. This does not establish a repeatable speedup, full-scene/random-roster fidelity or the10k/s target.",
+  "qualifiesFor10000Target": false,
+  "producer": {
+    "file": "tools/compare-native-benchmark-pair.mjs",
+    "sha256": "9ae5eff55422b6efc5ee3f06538cb6f8718bcbe5ea8841148a061c0aa0dcd7c4"
+  }
+}
