@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "scope": "Bounded public source-declared render resource retrieval; no battle qualification",
+  "sourceSnapshot": "afkarena_v2.303.03.367744",
+  "sourceHashes": {
+    "src/game.json": "3b4c451fa12632b24aeb5089d2ae6b2615474ff480b26eddd2a159b5bd4032f8",
+    "src/script/jsb_boot.js": "bdbe166804249422a87ac6ccc47816a4c7063d1fda562e96354cdc3cfdd8afff",
+    "src/checkversion.md5": "a049f45e283f03ccf9495df4cfefe7190db866fcc5401da6de54f0f9f1fff56b"
+  },
+  "target": {
+    "path": "res/fcaz/effect/effect_Mag.fcasz",
+    "expectedMd5": "42787b27ba1b5faf3bf135441cad0c93"
+  },
+  "publicProject": {
+    "url": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/rel/project.json",
+    "status": 200,
+    "version": "afkarena_v2.305.03.371849",
+    "bytes": 2440,
+    "sha256": "e596bc4a2f115c7e4b859a97a38c461e929ba308ed4194bc1dae3ac247a41cb9"
+  },
+  "publicRepositories": [
+    {
+      "url": "https://github.com/vural2123/afk-arena-assets-decrypt-tool/blob/main/Readme.md",
+      "blob": "94a15dd8d6f37a9bf4947c4e68cac7b283d63649",
+      "finding": "Documents local Blowfish ECB word swapping and LZ4 container decoding; no downloader or final CDN URL scheme",
+      "implementation": {
+        "url": "https://github.com/vural2123/afk-arena-assets-decrypt-tool/blob/main/afk_arena.py",
+        "blob": "54f81478aa8700acb58bad76248fbe17d47c065b",
+        "downloadSha256": "5b2687516f6de1e146c4b2b3e73d94b4b9ff1680a1f8cf7d50f8b7edea76fe1b"
+      }
+    },
+    {
+      "url": "https://github.com/Arbust908/AFK-sprite_scraper/blob/master/AFK-Wiki.js",
+      "blob": "2964b0010e37f7de779bc40ac148278e852f1c42",
+      "finding": "Puppeteer scraper targets afk-arena.fandom.com, not original game resource routing"
+    },
+    {
+      "url": "https://github.com/floofpire/cdn/blob/main/README.md",
+      "blob": "e7445b86ae8bd1c8be6142f872b17ca72af4f4b1",
+      "finding": "Repository documents upscaled/converted webp unit icons; not original animation timeline bundles; no downloader script in scripts directory"
+    }
+  ],
+  "sourceRoutingFinding": {
+    "file": "src/script/jsb_boot.js",
+    "line": 6778,
+    "expression": "setPreDownloadSuffix(this.localNextVersion.substring(tempPos))",
+    "finding": "Adds source-backed numeric-version suffix candidate; all five bounded asset candidate requests still404",
+    "probeReport": "benchmarks/validation/public-render-asset-routing.json"
+  },
+  "publicTransitionMetadata": {
+    "url": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/patches_new/afkarena_v2.303.03.367744-afkarena_v2.305.03.371849.patch",
+    "status": 200,
+    "bytes": 23924,
+    "sha256": "1642d9a1094e65c9948c0fdfe961f7c6e96d7afe177829f2f43763b1cfaf7cd4",
+    "decode": "Offline word-swapped Blowfish ECB format documented by cited public tool; decompressed with original supplied ed.Lz4 source",
+    "decodedBytes": 58518,
+    "decodedSha256": "4839901ad074c4ede216e8484b9d8ff51b6e6a3efe7f7cfd8e1caa701b22f179",
+    "embeddedMd5": "7b79f09021ecbbf85bb45a4aa9526ea8",
+    "actualDecodedMd5": "7b79f09021ecbbf85bb45a4aa9526ea8",
+    "embeddedMd5Verified": true,
+    "entries": 459,
+    "entryFields": [
+      "md5",
+      "size"
+    ],
+    "targetInTransition": false,
+    "finalResourceURLsPresent": false
+  },
+  "result": {
+    "acceptedAssets": 0,
+    "status": "blocked_native_resource_url_generator_absent",
+    "nextRequiredEvidence": "Source/native hg.ResourceManager final public resource URL construction or an exact checksum-matching bundle; no invented animation metadata accepted",
+    "networkExplorationStopped": true
+  },
+  "limits": {
+    "maxAdditionalRequests": 6,
+    "maxBytesPerRequest": 2097152,
+    "noInstallerOrApkDownloads": true,
+    "noAuthenticationOrPrivateCredentials": true,
+    "noUnmatchedAssetsAccepted": true
+  },
+  "qualifiesForThroughputTarget": false
+}

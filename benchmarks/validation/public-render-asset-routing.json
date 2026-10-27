@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "scope": "Bounded public read-only original asset route investigation",
+  "sourceAsset": {
+    "path": "res/fcaz/effect/effect_Mag.fcasz",
+    "expectedMd5": "42787b27ba1b5faf3bf135441cad0c93"
+  },
+  "sourceRoutingEvidence": [
+    {
+      "file": "src/script/jsb_boot.js",
+      "line": 6778,
+      "expression": "setPreDownloadSuffix(this.localNextVersion.substring(tempPos))",
+      "meaning": "Native pre-download suffix is the numeric version including leading dot"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "line": 4374,
+      "expression": "cc.getGameCdn() + preffix + \"/\" + patch_file",
+      "meaning": "Version-transition patch uses patches_new outside rel/"
+    }
+  ],
+  "probes": [
+    {
+      "url": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/rel/patches_new/res/fcaz/effect/effect_Mag.fcasz.367744",
+      "status": 404,
+      "bytes": 442,
+      "curlExit": 0,
+      "diagnostic": "",
+      "sha256": "4f9dbb1e9d97f5d76ccb481c454ce6ca572d613c97a712d59659270eeda19a19",
+      "expectedMd5": "42787b27ba1b5faf3bf135441cad0c93",
+      "actualMd5": "79a60321182c8fe1e51c751bf55cabaa",
+      "accepted": false
+    },
+    {
+      "url": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/patches_new/res/fcaz/effect/effect_Mag.fcasz.367744",
+      "status": 404,
+      "bytes": 438,
+      "curlExit": 0,
+      "diagnostic": "",
+      "sha256": "a27ad3d557ac5f9284b0e1213e788fc2f4b56f2a9f9936c3454b3314d3a89e04",
+      "expectedMd5": "42787b27ba1b5faf3bf135441cad0c93",
+      "actualMd5": "b77cf0be249cf5e6d424fdac176a2d89",
+      "accepted": false
+    },
+    {
+      "url": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/rel/res/fcaz/effect/effect_Mag.fcasz.367744",
+      "status": 404,
+      "bytes": 430,
+      "curlExit": 0,
+      "diagnostic": "",
+      "sha256": "f94d114075d38687776321dba30b4520bea0fffc01583c5b2c9a6586ae969fb6",
+      "expectedMd5": "42787b27ba1b5faf3bf135441cad0c93",
+      "actualMd5": "34a02defaea4c110427123937efbeff8",
+      "accepted": false
+    },
+    {
+      "url": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/rel/patches_new/res/fcaz/effect/effect_Mag.fcasz.42787b27ba1b5faf3bf135441cad0c93",
+      "status": 404,
+      "bytes": 468,
+      "curlExit": 0,
+      "diagnostic": "",
+      "sha256": "a9683e7625ab76b30b1412a174d83b8fbfcbeebd5dd87037a7a9e47e85723bf4",
+      "expectedMd5": "42787b27ba1b5faf3bf135441cad0c93",
+      "actualMd5": "a7f04a0d270a96f7de8d6a0d32bf72ed",
+      "accepted": false
+    },
+    {
+      "url": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/patches_new/res/fcaz/effect/effect_Mag.fcasz.42787b27ba1b5faf3bf135441cad0c93",
+      "status": 404,
+      "bytes": 464,
+      "curlExit": 0,
+      "diagnostic": "",
+      "sha256": "34b5a8cc944f8e92600cb4c963786702d99b839680e86cfe3678407c2d37471a",
+      "expectedMd5": "42787b27ba1b5faf3bf135441cad0c93",
+      "actualMd5": "de2bab2f304471832ed60b7981e947c7",
+      "accepted": false
+    },
+    {
+      "url": "https://hgame-cdn.lilithgame.com/hdgame/global/v2/patches_new/afkarena_v2.303.03.367744-afkarena_v2.305.03.371849.patch",
+      "status": 200,
+      "bytes": 23924,
+      "curlExit": 0,
+      "diagnostic": "",
+      "sha256": "1642d9a1094e65c9948c0fdfe961f7c6e96d7afe177829f2f43763b1cfaf7cd4",
+      "kind": "source-declared-version-transition-patch"
+    }
+  ],
+  "acceptedAssets": 0,
+  "qualifiesForThroughputTarget": false,
+  "limitations": [
+    "Native hg.ResourceManager final resource URL construction remains absent",
+    "HTTP404 for these routes does not establish absence on all CDN routes",
+    "No unmatched/current-version asset is accepted for the pinned source snapshot"
+  ]
+}
