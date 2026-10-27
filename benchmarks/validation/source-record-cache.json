@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "kind": "immutable-source-extraction-cache",
+  "firstMs": 18972.109972000002,
+  "secondMs": 806.5950310000007,
+  "firstHit": false,
+  "secondHit": true,
+  "key": "64b76e87e2234c3b27e149df47ac00cbcba871497ba1039f22ba789800eb322f",
+  "recordsSha256": "9cd6bdcdcdeb45fb8deddf9d432cc68746dd04574c7f39323a93ef544f9bc79f",
+  "counts": {
+    "modules": 12,
+    "definitions": 50227,
+    "globals": 1600,
+    "functionDeclarations": 19,
+    "initializers": 7,
+    "postInitializers": 16
+  },
+  "maxRssKiB": 3267096,
+  "scope": "Cold-start source analysis only; each runtime still evaluates source expressions and initialization in a fresh VM realm.",
+  "qualifiesForBattleThroughputTarget": false,
+  "freshRealmChecks": {
+    "passed": true,
+    "runtimes": 2,
+    "distinctOriginalFunctions": true,
+    "independentGlobals": true,
+    "rngDrawsCompared": 16,
+    "firstRuntimeMs": 1144.0599539999998,
+    "secondRuntimeMs": 974.916997
+  },
+  "warmProcessMaxRssKiB": 678432
+}
