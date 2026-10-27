@@ -4,20 +4,23 @@
  "use strict";
  host.installQualificationTablePolicy=function(options){
   options=options||{};
-  var boundary=host.installQualificationTableMembrane(options),mutable=Object.create(null),names=new Set(options.mutableTables||[]);
+  var boundary=host.installQualificationTableMembrane(options),capsule=options.trackMutable?host.installQualificationMutableTableCapsule(options):null,mutable=Object.create(null),mutableRaw=Object.create(null),names=new Set(options.mutableTables||[]);
   names.forEach(function(name){if(typeof name!=='string'||!name)throw new Error('Mutable table policy requires named tables');});
   return{
    wrap:function(root,info){
     if(names.has(info.name)){
-     if(Object.prototype.hasOwnProperty.call(mutable,info.name)&&mutable[info.name]!==root)throw new Error('Mutable table root replaced: '+info.name);
-     mutable[info.name]=root;return root;
+     if(Object.prototype.hasOwnProperty.call(mutable,info.name)){
+      if(mutableRaw[info.name]!==root&&mutable[info.name]!==root)throw new Error('Mutable table root replaced: '+info.name);
+      return mutable[info.name];
+     }
+     mutableRaw[info.name]=root;var exposed=capsule?capsule.wrap(root,info):root;mutable[info.name]=exposed;return exposed;
     }
     return boundary.wrap(root,info);
    },
-   immutableMetadata:boundary.immutableMetadata,
-   assertClean:boundary.assertClean,
+   immutableMetadata:function(value){return boundary.immutableMetadata(value)||(capsule?capsule.immutableMetadata(value):null);},
+   assertClean:function(){boundary.assertClean();if(capsule)capsule.assertClean();return true;},
    mutableRoots:function(){return mutable;},
-   stats:function(){var stats=boundary.stats();stats.mutableTables=Object.keys(mutable);return stats;}
+   stats:function(){var stats=boundary.stats();stats.mutableTables=Object.keys(mutable);if(capsule)stats.mutableCapsule=capsule.stats();return stats;}
   };
  };
 })(globalThis);

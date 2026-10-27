@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "trackedMutableTables": true,
+  "passed": true,
+  "qualifiesForThroughputTarget": false,
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "source": {
+    "file": "src/srcmodule/game_battle.js",
+    "start": 16823,
+    "end": 17576,
+    "sha256": "acca318aa5e1164a6caa69557787390c0ecb69e8b0a227b12944a01536532843"
+  },
+  "table": "AnimAtkFrame",
+  "path": [
+    "SPhoenix.cha",
+    "atk",
+    "0.5"
+  ],
+  "before": [
+    {
+      "key": "Cha",
+      "value": "SPhoenix.cha"
+    },
+    {
+      "key": "Action",
+      "value": "atk"
+    },
+    {
+      "key": "Time",
+      "kind": "f64",
+      "bits": "3fe0000000000000"
+    },
+    {
+      "key": "X",
+      "kind": "f64",
+      "bits": "407015604189374c"
+    },
+    {
+      "key": "Y",
+      "kind": "f64",
+      "bits": "407af81cac083127"
+    }
+  ],
+  "after": [
+    {
+      "key": "Cha",
+      "value": "SPhoenix.cha"
+    },
+    {
+      "key": "Action",
+      "value": "atk"
+    },
+    {
+      "key": "Time",
+      "kind": "f64",
+      "bits": "3fe0000000000000"
+    },
+    {
+      "key": "X",
+      "kind": "f64",
+      "bits": "407015604189374c"
+    },
+    {
+      "key": "Y",
+      "kind": "f64",
+      "bits": "407af81cac083127"
+    },
+    {
+      "key": "Type",
+      "value": "Attack"
+    }
+  ],
+  "phaseEventAliases": 2,
+  "unitPeriod": {
+    "table": "UnitPeriod",
+    "path": [
+      "62",
+      "2",
+      "SlotList"
+    ],
+    "before": [
+      {
+        "kind": "string",
+        "value": "0"
+      },
+      {
+        "kind": "string",
+        "value": "1"
+      },
+      {
+        "kind": "string",
+        "value": "2"
+      },
+      {
+        "kind": "string",
+        "value": "3"
+      },
+      {
+        "kind": "string",
+        "value": "4"
+      },
+      {
+        "kind": "string",
+        "value": "200"
+      }
+    ],
+    "after": [
+      {
+        "kind": "number",
+        "value": 0
+      },
+      {
+        "kind": "number",
+        "value": 1
+      },
+      {
+        "kind": "number",
+        "value": 2
+      },
+      {
+        "kind": "number",
+        "value": 3
+      },
+      {
+        "kind": "number",
+        "value": 4
+      },
+      {
+        "kind": "number",
+        "value": 200
+      }
+    ],
+    "identityStable": true,
+    "sourceStatement": "i[t]=parseInt(i[t])",
+    "completedBattle": {
+      "ticks": 296,
+      "result": "victory"
+    }
+  },
+  "conclusion": "Original Skill.rebuildPhaseList adds Type=Attack to the shared table row and retains that same object in skill phase event lists. Preserve table mutation and alias identity; neither a read-only table nor a copied event row is faithful."
+}

@@ -2,19 +2,21 @@ import { readFile } from 'node:fs/promises';
 import { runInContext } from 'node:vm';
 import { createHash } from 'node:crypto';
 
-export const traceSourceFiles=['tools/battle-trace-portable.js','tools/battle-trace-instrumentation.js','tools/qualification-table-membrane.js','tools/qualification-table-policy.js'];
+export const traceSourceFiles=['tools/battle-trace-portable.js','tools/battle-trace-instrumentation.js','tools/qualification-table-membrane.js','tools/qualification-mutable-table-capsule.js','tools/qualification-table-policy.js'];
 export async function loadNativeTraceSources(root){
   const { resolve }=await import('node:path');
   return Promise.all(traceSourceFiles.map(async file=>({file,source:await readFile(resolve(root,file),'utf8')})));
 }
-export function createNativeTableBoundaryFactory(sources,{mutableTables=[]}={}){
+export function createNativeTableBoundaryFactory(sources,{mutableTables=[],trackMutable=false}={}){
   const source=sources.find(record=>record.file==='tools/qualification-table-membrane.js');
   if(!source)throw new Error('Missing qualification table boundary source');
   return context=>{
     runInContext(source.source,context,{filename:source.file});
+    const capsule=sources.find(record=>record.file==='tools/qualification-mutable-table-capsule.js');
+    runInContext(capsule.source,context,{filename:capsule.file});
     const policy=sources.find(record=>record.file==='tools/qualification-table-policy.js');
     runInContext(policy.source,context,{filename:policy.file});
-    context.__nativeTableOptions={mutableTables,digest:text=>createHash('sha256').update(text).digest('hex')};
+    context.__nativeTableOptions={mutableTables,trackMutable,digest:text=>createHash('sha256').update(text).digest('hex')};
     try{return runInContext('installQualificationTablePolicy(__nativeTableOptions)',context);}
     finally{delete context.__nativeTableOptions;}
   };
