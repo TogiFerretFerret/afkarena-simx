@@ -3,7 +3,7 @@ import { gzipSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
 import { resolve,relative } from 'node:path';
 import { createBootstrapRuntime } from './bootstrap-runtime.mjs';
-import { createRealisticScenario,instantiateScenario } from './scenario-factory.mjs';
+import { createQualificationScenario,instantiateScenario } from './scenario-factory.mjs';
 import { traceBattle } from './battle-trace-run.mjs';
 import { createHostRandomTape } from './battle-trace.mjs';
 
@@ -20,7 +20,7 @@ const runtime=await createBootstrapRuntime({hostRandom:hostEntropy.random,hostCl
 if(!runtime.clock)throw new Error('Source corpus requires host-clock record/replay support');
 const cases=[];
 for(let i=0;i<options.cases;i++){
- const wire=await createRealisticScenario((options.seed+i)>>>0);
+ const wire=await createQualificationScenario((options.seed+i)>>>0);
  const trace=await traceBattle(runtime,wire,{materialize:instantiateScenario,maxFrames:options.maxFrames,keepDeltas:true,strictGraph:Boolean(options.strictGraph),subscribeClock(observer){clockObserver=observer;return()=>{clockObserver=null}}});
  const path=resolve(root,`benchmarks/validation/battle-traces/source-seed-${wire.scenarioSeed}.json.gz`);
  await mkdir(resolve(path,'..'),{recursive:true});

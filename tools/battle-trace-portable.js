@@ -1,0 +1,198 @@
+/* Shared source/AOT logical-state exporter. Ordinary JavaScript only.
+ * Observational capture does not invoke source getters or callbacks. Native
+ * closure environments and weak-collection contents remain explicit boundaries.
+ * Function code is emitted once in codeTable; state retains identity + code ID.
+ */
+(function (host) {
+    "use strict";
+    var ownKeys = Reflect.ownKeys;
+    var descriptor = Object.getOwnPropertyDescriptor;
+    var prototypeOf = Object.getPrototypeOf;
+    var functionText = Function.prototype.toString;
+    function apply(fn, receiver, args) { return Reflect.apply(fn, receiver, args); }
+    function bits(value) {
+        var data = new DataView(new ArrayBuffer(8));
+        data.setFloat64(0, value, false);
+        return data.getUint32(0, false).toString(16).padStart(8, "0") + data.getUint32(4, false).toString(16).padStart(8, "0");
+    }
+    host.installGraphCapture = function installGraphCapture(options) {
+        options = options || {};
+        var strict = !!options.strictGraph;
+        var maxNodes = options.maxNodes === undefined ? 100000 : options.maxNodes;
+        var ids = new WeakMap(), nextId = 1, symbols = new Map(), nextSymbol = 1;
+        var codeOverrides = new WeakMap(), functionCodes = new WeakMap(), codeIds = new Map(), codeTable = [];
+        var intrinsics = new WeakMap(), brands = new WeakMap();
+        var standardFunctions = ["length", "name", "arguments", "caller"];
+        var names = ["Object", "Function", "Array", "String", "Number", "Boolean", "BigInt", "Symbol", "Date", "RegExp", "Map", "Set", "WeakMap", "WeakSet", "Promise", "ArrayBuffer", "SharedArrayBuffer", "DataView", "Uint8Array", "Int8Array", "Uint16Array", "Int16Array", "Uint32Array", "Int32Array", "Float32Array", "Float64Array", "BigInt64Array", "BigUint64Array", "Error", "TypeError", "RangeError"];
+        for (var ni = 0; ni < names.length; ni++) {
+            var constructor = host[names[ni]];
+            if (typeof constructor !== "function") continue;
+            intrinsics.set(constructor, names[ni]);
+            if (constructor.prototype) { intrinsics.set(constructor.prototype, names[ni] + ".prototype"); brands.set(constructor.prototype, names[ni]); }
+        }
+        intrinsics.set(Math, "Math"); intrinsics.set(JSON, "JSON"); intrinsics.set(Reflect, "Reflect");
+        var typedPrototype = typeof Uint8Array === "function" ? prototypeOf(Uint8Array.prototype) : null;
+        if (typedPrototype) intrinsics.set(typedPrototype, "%TypedArray%.prototype");
+        function symbol(value) {
+            if (!symbols.has(value)) symbols.set(value, nextSymbol++);
+            var description = value.description;
+            return ["symbol", symbols.get(value), Symbol.keyFor(value) === undefined ? null : Symbol.keyFor(value), description === undefined ? null : description];
+        }
+        function identify(value) { if (!ids.has(value)) ids.set(value, nextId++); return ids.get(value); }
+        function code(fn) {
+            if (functionCodes.has(fn)) return functionCodes.get(fn);
+            var entry, override = codeOverrides.get(fn);
+            if (override !== undefined) entry = { kind: "logical", identity: override };
+            else {
+                var text = apply(functionText, fn, []);
+                if (/\{\s*\[native code\]\s*\}/.test(text)) {
+                    var name = descriptor(fn, "name"), length = descriptor(fn, "length");
+                    entry = { kind: "native", name: name && "value" in name ? name.value : "", length: length && "value" in length ? length.value : 0 };
+                } else entry = { kind: "source", source: text };
+            }
+            var key = JSON.stringify(entry), id = codeIds.get(key);
+            if (id === undefined) { id = codeTable.length; codeIds.set(key, id); codeTable.push(entry); }
+            functionCodes.set(fn, id); return id;
+        }
+        function defaultPrototype(value, fn) {
+            if (!value || typeof value !== "object") return false;
+            var keys = ownKeys(value), d = descriptor(value, "constructor"), parent = prototypeOf(value);
+            return keys.length === 1 && keys[0] === "constructor" && d && d.value === fn && d.writable === true && d.enumerable === false && d.configurable === true && intrinsics.get(parent) === "Object.prototype";
+        }
+        function codeOnly(fn) {
+            var keys = ownKeys(fn);
+            for (var i = 0; i < keys.length; i++) {
+                if (standardFunctions.indexOf(keys[i]) !== -1) continue;
+                if (keys[i] !== "prototype") return false;
+                var d = descriptor(fn, keys[i]);
+                if (!d || !("value" in d) || !d.writable || d.enumerable || d.configurable || !defaultPrototype(d.value, fn)) return false;
+            }
+            return true;
+        }
+        function brand(value) {
+            var p = prototypeOf(value);
+            while (p !== null) {
+                if (brands.has(p)) return brands.get(p);
+                p = prototypeOf(p);
+            }
+            return "Object";
+        }
+        function snapshot(roots) {
+            var queue = [], seen = new Set(), nodes = [], opaque = [], functionCount = 0;
+            function fail(message) { var error = new Error(message); error.graphCaptureFailure = true; throw error; }
+            function encode(value) {
+                if (value === null) return ["null"];
+                var type = typeof value;
+                if (type === "undefined") return ["undefined"];
+                if (type === "boolean" || type === "string") return [type, value];
+                if (type === "number") return ["f64", bits(value)];
+                if (type === "bigint") return ["bigint", String(value)];
+                if (type === "symbol") return symbol(value);
+                if (options.isProxy && options.isProxy(value)) fail("Cannot faithfully inspect a Proxy");
+                if (intrinsics.has(value)) return ["intrinsic", intrinsics.get(value)];
+                if (type === "object") {
+                    var d = descriptor(value, "constructor"), fn = d && d.value;
+                    if (typeof fn === "function" && descriptor(fn, "prototype") && descriptor(fn, "prototype").value === value && defaultPrototype(value, fn)) return ["default-function-prototype", encode(fn)];
+                }
+                var id = identify(value);
+                if (!seen.has(id)) {
+                    if (seen.size >= maxNodes) fail("Graph exceeds node bound; no partial snapshot emitted");
+                    seen.add(id);
+                    if (type === "function" && !strict && codeOnly(value)) functionCount++;
+                    else queue.push(value);
+                }
+                return type === "function" && !strict ? ["function", id, code(value)] : ["ref", id];
+            }
+            var encodedRoots = [], rootNames = Object.keys(roots);
+            for (var ri = 0; ri < rootNames.length; ri++) encodedRoots.push([rootNames[ri], encode(roots[rootNames[ri]])]);
+            for (var offset = 0; offset < queue.length; offset++) {
+                var value = queue[offset], id = ids.get(value), isFunction = typeof value === "function", codeFunction = isFunction && !strict;
+                var node = { id: id, kind: isFunction ? "function" : Array.isArray(value) ? "array" : "object", properties: [], extensible: Object.isExtensible(value) };
+                if (!codeFunction) node.prototype = encode(prototypeOf(value));
+                if (isFunction) { node.code = code(value); functionCount++; }
+                var type = brand(value);
+                try {
+                    if (type === "Number" || type === "Boolean" || type === "String" || type === "BigInt" || type === "Symbol") {
+                        node.value = encode(apply(host[type].prototype.valueOf, value, [])); node.kind = "boxed_" + type.toLowerCase();
+                    } else if (type === "Date") { node.time = encode(apply(Date.prototype.getTime, value, [])); node.kind = "date"; }
+                    else if (type === "Map") {
+                        var entries = apply(Map.prototype.entries, value, []), entry; node.entries = []; node.kind = "map";
+                        while (!(entry = entries.next()).done) node.entries.push([encode(entry.value[0]), encode(entry.value[1])]);
+                    } else if (type === "Set") {
+                        var values = apply(Set.prototype.values, value, []), item; node.entries = []; node.kind = "set";
+                        while (!(item = values.next()).done) node.entries.push(encode(item.value));
+                    } else if (type === "WeakMap" || type === "WeakSet" || type === "Promise") opaque.push({ id: id, kind: type + "_internal_state" });
+                    else if (type === "RegExp") {
+                        node.pattern = apply(descriptor(RegExp.prototype, "source").get, value, []); node.flags = [];
+                        var flags = ["hasIndices", "global", "ignoreCase", "multiline", "dotAll", "unicode", "unicodeSets", "sticky"];
+                        for (var fi = 0; fi < flags.length; fi++) { var getter = descriptor(RegExp.prototype, flags[fi]); if (getter && apply(getter.get, value, [])) node.flags.push(flags[fi]); }
+                        node.kind = "regexp";
+                    } else if (type === "ArrayBuffer" || type === "SharedArrayBuffer") {
+                        apply(descriptor(host[type].prototype, "byteLength").get, value, []);
+                        var bytes = new Uint8Array(value), hex = ""; for (var bi = 0; bi < bytes.length; bi++) hex += (bytes[bi] + 256).toString(16).slice(1); node.bytes = hex; node.kind = "arraybuffer";
+                    } else if (type === "DataView" || /^(Uint|Int|Float|BigInt|BigUint).*Array$/.test(type)) {
+                        var p = type === "DataView" ? DataView.prototype : typedPrototype;
+                        node.buffer = encode(apply(descriptor(p, "buffer").get, value, []));
+                        node.byteOffset = apply(descriptor(p, "byteOffset").get, value, []); node.byteLength = apply(descriptor(p, "byteLength").get, value, []); node.kind = type === "DataView" ? "dataview" : "typedarray";
+                    }
+                } catch (error) {
+                    if (error.graphCaptureFailure) throw error;
+                    // A plain object can deliberately inherit a native prototype
+                    // without carrying its internal slots. Retain that fact.
+                    node.kind = "object"; node.nativeBrandRejected = type;
+                    delete node.value; delete node.time; delete node.entries; delete node.pattern; delete node.flags; delete node.bytes; delete node.buffer; delete node.byteOffset; delete node.byteLength;
+                }
+                var keys = ownKeys(value);
+                for (var ki = 0; ki < keys.length; ki++) {
+                    var key = keys[ki], propertyDescriptor = descriptor(value, key);
+                    if (codeFunction && standardFunctions.indexOf(key) !== -1) continue;
+                    if (codeFunction && key === "prototype" && "value" in propertyDescriptor && propertyDescriptor.writable && !propertyDescriptor.enumerable && !propertyDescriptor.configurable && defaultPrototype(propertyDescriptor.value, value)) continue;
+                    var property = { key: typeof key === "symbol" ? symbol(key) : ["string", key], enumerable: propertyDescriptor.enumerable, configurable: propertyDescriptor.configurable };
+                    if ("value" in propertyDescriptor) { property.writable = propertyDescriptor.writable; property.value = encode(propertyDescriptor.value); }
+                    else { property.get = encode(propertyDescriptor.get); property.set = encode(propertyDescriptor.set); }
+                    node.properties.push(property);
+                }
+                if (!codeFunction || node.properties.length) nodes.push(node);
+            }
+            if (functionCount) opaque.push({ kind: "function_closure_bindings", count: functionCount });
+            var graph = { version: 3, roots: encodedRoots, nodes: nodes, codeTable: codeTable.slice(), coverage: { accessorsInvoked: false, functionPolicy: strict ? "graph" : "code", opaque: opaque, proxyDetection: typeof options.isProxy === "function" ? "provided" : "source-domain-no-proxies" } };
+            if (options.hash) graph.sha256 = options.hash(JSON.stringify({ version: graph.version, roots: graph.roots, nodes: graph.nodes, codeTable: graph.codeTable }));
+            return graph;
+        }
+        return {
+            snapshot: snapshot,
+            codeTable: codeTable,
+            registerFunctionCode: function (fn, identity) {
+                if (typeof fn !== "function" || typeof identity !== "string") throw new Error("Logical function identity requires function + string");
+                if (functionCodes.has(fn)) throw new Error("Function code already captured");
+                codeOverrides.set(fn, identity);
+            }
+        };
+    };
+    // The same recorder is injected verbatim in both execution engines. Every
+    // payload number is covered by the graph's binary64 encoding, rather than
+    // JSON's lossy NaN/-0 conversion. This is a diagnostic path, never a timer.
+    host.installPortableBattleTrace = function installPortableBattleTrace(options) {
+        options = options || {};
+        var capture = host.installGraphCapture(options), events = [], finished = false;
+        var maxEvents = options.maxEvents === undefined ? 1000000 : options.maxEvents;
+        return {
+            capture: capture,
+            record: function (kind, payload, roots) {
+                if (finished) throw new Error("Cannot append after trace completion");
+                if (typeof kind !== "string") throw new Error("Trace event kind must be a string");
+                if (events.length >= maxEvents) throw new Error("Trace exceeds event bound; no completed trace emitted");
+                var graph = capture.snapshot({ state: roots, payload: payload });
+                events.push({ sequence: events.length, kind: kind, graph: graph });
+            },
+            finish: function (summary) {
+                if (finished) throw new Error("Trace already completed");
+                if (!summary || summary.status !== "completed" || summary.running !== false)
+                    throw new Error("Only a terminated source battle can complete a trace");
+                this.record("battle:completed", summary, {});
+                finished = true;
+                return { version: 1, status: "completed", events: events, qualifiesForThroughputTarget: false };
+            }
+        };
+    };
+})(globalThis);
