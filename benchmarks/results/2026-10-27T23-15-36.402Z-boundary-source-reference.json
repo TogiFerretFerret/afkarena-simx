@@ -1,0 +1,291 @@
+{
+  "version": 1,
+  "passed": true,
+  "sourceOnly": true,
+  "sourceTerminalReportMatched": true,
+  "sourceTerminalDifference": null,
+  "sourceIntegrity": {
+    "passed": true,
+    "events": 64419,
+    "snapshotNodes": 55078
+  },
+  "sourceStrictSchema": {
+    "passed": true,
+    "events": 64419,
+    "snapshotNodes": 55078,
+    "frames": 296,
+    "scope": "Supplemental JSON schema and integrity for typed-entry boundary traces; own enumerable string-keyed data fields only. No whole-program or battle semantic qualification.",
+    "qualifiesFor10000Target": false
+  },
+  "sourceInputDependenciesUnchanged": true,
+  "exactFrozenHostTapePrefix": true,
+  "completed": 1,
+  "callbacks": 15453,
+  "eventCounts": {
+    "rng:seed:before": 1,
+    "rng:seed:after": 1,
+    "rng:draw:before": 375,
+    "rng:draw:after": 375,
+    "callback:enqueue": 15541,
+    "mechanic:setHp:before": 3944,
+    "mechanic:setHp:after": 3944,
+    "mechanic:castSkill:before": 97,
+    "mechanic:setMp:before": 4003,
+    "mechanic:setMp:after": 4003,
+    "mechanic:castSkill:after": 97,
+    "battle:entered": 1,
+    "frame:before": 296,
+    "callback:before": 15453,
+    "callback:after": 15453,
+    "frame:after": 296,
+    "device:output": 262,
+    "host:clock": 260,
+    "mechanic:terminate:before": 8,
+    "mechanic:terminate:after": 8,
+    "battle:completed": 1
+  },
+  "events": 64419,
+  "snapshotNodes": 55078,
+  "rootContract": "primitive-vector-battle-boundaries-v1",
+  "scope": "Complete original-source narrow boundary trace. Every terminal report field except timing matches a fresh untraced original-source battle. All source inputs remain frozen. Actual reconstructable snapshots include selected own enumerable string-keyed data fields and numeric vectors, not a whole-program graph. This source-only result does not establish native parity.",
+  "qualifiesFor10000Target": false,
+  "completeProgramRootContract": false,
+  "nativeTraceMatched": null,
+  "limitations": [
+    "Not a whole-program graph: nested objects, prototype state, function code/closures, shared-object aliases outside selected roots and weak contents are omitted",
+    "Selected state includes only own enumerable string-keyed primitive fields, numeric vectors and selected ordered engine/unit/skill/buff lists; field names are encoded as entry data and cannot collide with snapshot reference tags",
+    "Own data-descriptor reads do not invoke ordinary getters; reflective inspection of an unknown Proxy can invoke traps and is outside the supported fixture domain",
+    "Payload object graphs are separately descriptor-encoded with numeric bits, accessor identities and per-payload aliases; source object arguments use stable identity tokens",
+    "Actor/effect/view lifecycle remains outside this callback-only adapter"
+  ],
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "sourceProof": {
+    "file": "/workspace/afkarena-simx/work/battle-boundary-trace/source-proof.json",
+    "sha256": "6ba81580568800c0391519c32d85021965b63e55e3fd85ee0ac70456363ebdd5"
+  },
+  "modules": [
+    {
+      "file": "tools/run-battle-boundary-source.mjs",
+      "sha256": "f7a3bd4ef0be004c05e33d7b6fde29541207bb0d5bb5eec99335766def8644c9"
+    },
+    {
+      "file": "tools/battle-boundary-state-trace.js",
+      "sha256": "80bd32a0f2b86775dd48aad8f322af10d9c8eb36fc744bf075d9ca621fc6c60d"
+    },
+    {
+      "file": "tools/battle-boundary-trace.mjs",
+      "sha256": "93f71a34da9dc97e0bf9bde2108e7e739baa7c8f887b0078924f13a4419a5a4b"
+    },
+    {
+      "file": "tools/validate-battle-boundary-schema.mjs",
+      "sha256": "ab7ea12c6bf793c006884d59eda1d114746cf47a1011beeea6f7c6ede2207a80"
+    },
+    {
+      "file": "tools/archive-battle-boundary-source.mjs",
+      "sha256": "db4db4f8e2542565458324ea0213a15fba43bc613df6adff3789aa8b2a39a999"
+    },
+    {
+      "file": "benchmarks/validation/battle-boundary-schema.json",
+      "sha256": "ece2378a587ce74eba94b5e9105064a8e8ae1fde7583695a6f8b07fdb1d0bf1c"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "source-traced",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/source-traced.json",
+      "uncompressedSha256": "b2345870b58c727b6db5d4b187781fece2877d2dfaa300f13c17ce23f165ffb6",
+      "uncompressedBytes": 278864959,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-000.gz",
+          "sha256": "54cac4ed36fb4cebe0a4e74965cf41c48664dd271ea33d2a6d8abeed67376e16",
+          "uncompressedSha256": "dc26500cc0b45eab4c4026a659546ae571496504d74205c5db8faa7f366d97e9",
+          "uncompressedBytes": 23068672,
+          "bytes": 530837
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-001.gz",
+          "sha256": "430a916b54ba7906cce8010b8c96b4b9da7cc308fffac2daab84a29876655da6",
+          "uncompressedSha256": "3d03d0c7422b197e9f62f1afce102d8fb68908b7a62feb721d3611deaeb02287",
+          "uncompressedBytes": 23068672,
+          "bytes": 480325
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-002.gz",
+          "sha256": "9eee916cb7a096674bed14d28f54651128ba8ca06f3d56ac35c61bda674876da",
+          "uncompressedSha256": "3b53122bf5da80ba0d0f20bdb6983b224ab3d278ccad2f620ddfe1c053698b26",
+          "uncompressedBytes": 23068672,
+          "bytes": 474821
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-003.gz",
+          "sha256": "924c545ba47a03c0b7bdee54de193b04bd83f44a9e11568773275a49aa44fc6e",
+          "uncompressedSha256": "2f24b1ce6ceb5c80eaf61ff2569c7feb3df87f63c26b5e62da633d364c77eeb6",
+          "uncompressedBytes": 23068672,
+          "bytes": 472100
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-004.gz",
+          "sha256": "57cc13989c092aa3d2bb31d85c77925a6f77d12a85a8ade37faf9c07296e57ea",
+          "uncompressedSha256": "34f239a6a6c2426ac914a3ba6c06cb5a47282ea5753c0b393c8d0b4398229661",
+          "uncompressedBytes": 23068672,
+          "bytes": 484530
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-005.gz",
+          "sha256": "513df8b6371ba277f70305a7a5a473b8adc5b3ad288d65404cbdbfad83cf7013",
+          "uncompressedSha256": "9939515e84040333e39f2d297f35e057d0a3b379e7ae806a4a1cd41626d23dd6",
+          "uncompressedBytes": 23068672,
+          "bytes": 511485
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-006.gz",
+          "sha256": "7a4081e0ade68f116a2b67802b4708277d47c8d82e6abde7967a5774fa4472b3",
+          "uncompressedSha256": "c63f5026e430ad6e094f7746a4fee38d827787217e941c3c0bfc2965c972cf89",
+          "uncompressedBytes": 23068672,
+          "bytes": 534778
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-007.gz",
+          "sha256": "9a2a548c5423898ef4423bbc3f131abcd22800ee8003418839a865ad388960c0",
+          "uncompressedSha256": "d5c6f8028261c8f01472d6a1809bd22f8530bb8d232e771b4d73274e63693202",
+          "uncompressedBytes": 23068672,
+          "bytes": 595702
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-008.gz",
+          "sha256": "21f0b3cf1d3b1ac8ccff4d98f6161a4c3f8d87b95da9f97142b48f43b6272b50",
+          "uncompressedSha256": "f74cf6367626cdaa367a010789e256891a4893b4b5b193d248462b8f85fc3d91",
+          "uncompressedBytes": 23068672,
+          "bytes": 1833114
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-009.gz",
+          "sha256": "e49912b5fbe1ac38148cce3749e8b94c379c8c03765c39de7facaecc53327af7",
+          "uncompressedSha256": "87b3a4d2f50f3e4bca3c82eedcd9a8ae466e0f78b93b590bd9f823ec9ea3107c",
+          "uncompressedBytes": 23068672,
+          "bytes": 2180582
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-010.gz",
+          "sha256": "62d3db372619eff913ece1687aa85ad57dd9500e1325ea8de64fb23d69a502e7",
+          "uncompressedSha256": "ec9d7fb8f9508a1e4d0364f705da843ba6d6eb39a34dd8e177998cbd0e1363b1",
+          "uncompressedBytes": 23068672,
+          "bytes": 2050375
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-011.gz",
+          "sha256": "013d71190df93728754f9374f95b239ba633b5f98dacc1abb2eddbd94c0c60bb",
+          "uncompressedSha256": "fd21cdb08b1812441577404bbd8343a8b3eb88aaecb91593a70942bf5efcd558",
+          "uncompressedBytes": 23068672,
+          "bytes": 2236011
+        },
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-traced.part-012.gz",
+          "sha256": "836c2c775d1d897f6697999b5d474d06912287745ad2cf245bfd0b54bb78c267",
+          "uncompressedSha256": "533db5803e2ead34b89904209e921df346255834a89aee383f7ded01b032d091",
+          "uncompressedBytes": 2040895,
+          "bytes": 191508
+        }
+      ]
+    },
+    {
+      "label": "source-untraced",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/source-untraced.json",
+      "uncompressedSha256": "267c8533390286852fb9d13bf7ca21bf33e4780ace96d0ffa95ea8a76b7aaeec",
+      "uncompressedBytes": 224833,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-untraced.gz",
+          "sha256": "1fc0fc1470f5e210eef8ed257bee9611797497cfbd0c747ea6e1df3fe95c3b39",
+          "uncompressedSha256": "267c8533390286852fb9d13bf7ca21bf33e4780ace96d0ffa95ea8a76b7aaeec",
+          "uncompressedBytes": 224833,
+          "bytes": 14476
+        }
+      ]
+    },
+    {
+      "label": "host-inputs",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/host-inputs.json",
+      "uncompressedSha256": "bc58dcbbc984de4a4311bcc781f755329cd277b8b26f09d6dabc151973fc064c",
+      "uncompressedBytes": 13593,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.host-inputs.gz",
+          "sha256": "0994220adbc1bcd3665dcfed41088783de7da253ec0ecb5bc47b5806733b9dd2",
+          "uncompressedSha256": "bc58dcbbc984de4a4311bcc781f755329cd277b8b26f09d6dabc151973fc064c",
+          "uncompressedBytes": 13593,
+          "bytes": 512
+        }
+      ]
+    },
+    {
+      "label": "source-proof",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-trace/source-proof.json",
+      "uncompressedSha256": "6ba81580568800c0391519c32d85021965b63e55e3fd85ee0ac70456363ebdd5",
+      "uncompressedBytes": 12421,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-proof.gz",
+          "sha256": "67157edfc9a8577dcbc71bc8f348634745c3c12a438d45769d2d9ef8da2a7c55",
+          "uncompressedSha256": "6ba81580568800c0391519c32d85021965b63e55e3fd85ee0ac70456363ebdd5",
+          "uncompressedBytes": 12421,
+          "bytes": 4156
+        }
+      ]
+    },
+    {
+      "label": "source-progress",
+      "original": "/workspace/afkarena-simx/work/battle-boundary-source.stderr",
+      "uncompressedSha256": "a88c39618c057c0f548fa354f6e162cbf52f436d4504c52fee7ce83edb9af851",
+      "uncompressedBytes": 5752,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.source-progress.gz",
+          "sha256": "16e196712a6dc950599d3e279b178b7417845482c23d20e78d495fd5c3cead48",
+          "uncompressedSha256": "a88c39618c057c0f548fa354f6e162cbf52f436d4504c52fee7ce83edb9af851",
+          "uncompressedBytes": 5752,
+          "bytes": 518
+        }
+      ]
+    },
+    {
+      "label": "helper",
+      "original": "/workspace/afkarena-simx/tools/battle-boundary-state-trace.js",
+      "uncompressedSha256": "80bd32a0f2b86775dd48aad8f322af10d9c8eb36fc744bf075d9ca621fc6c60d",
+      "uncompressedBytes": 9234,
+      "compression": "gzip-each-raw-chunk-then-concatenate-uncompressed",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.helper.gz",
+          "sha256": "a0b738e6403e0efbaaf5b8cde7b51d5f741756d4316d06b07f28b10acbb83432",
+          "uncompressedSha256": "80bd32a0f2b86775dd48aad8f322af10d9c8eb36fc744bf075d9ca621fc6c60d",
+          "uncompressedBytes": 9234,
+          "bytes": 3280
+        }
+      ]
+    }
+  ]
+}
