@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "rust": "1.99.1",
+  "buck2Commit": "825bfea0ac43fd0423db37f60480d9fb1db59708",
+  "buck2LinuxX86_64Sha256": "d273e8d487366527a1be124c7bd08e0dd712b051e4ba40b5ab730f96643814f4",
+  "prelude": "bundled with the pinned Buck2 executable",
+  "hostTools": ["gcc", "g++", "python3"],
+  "hermetic": false,
+  "note": "Host GCC and Buck2's internal Python action wrapper must be available. Pin host tools before enabling remote build caching."
+}

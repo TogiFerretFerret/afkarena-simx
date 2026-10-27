@@ -29,3 +29,10 @@ test('computed identifier class keys cannot be treated as static method names', 
 test('fails closed on malformed source', () => {
   assert.throws(() => indexSource('function broken(', 'bad.js'));
 });
+
+test('names assigned object methods without confusing nested objects with classes', () => {
+  const result=indexSource(`ed.btLog={append:function(){}, nested:{read:function(){}}, [key]:function(){}};
+    const local={run:function(){}};`, 'fixture.js');
+  assert.deepEqual(result.functions.map(f=>f.name),['ed.btLog.append','ed.btLog.nested.read',null,'local.run']);
+  assert.equal(result.classCandidates.length,0);
+});

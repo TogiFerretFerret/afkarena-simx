@@ -20,6 +20,28 @@ export function staticName(node) {
   return null;
 }
 
+function propertyKey(node) {
+  return node.computed
+    ? (['StringLiteral', 'NumericLiteral'].includes(node.key.type) ? staticName(node.key) : null)
+    : staticName(node.key);
+}
+
+function objectOwner(path) {
+  const parent = path.parentPath;
+  if (parent.isAssignmentExpression() && parent.node.right === path.node) return staticName(parent.node.left);
+  if (parent.isVariableDeclarator()) return staticName(parent.node.id);
+  if (parent.isObjectProperty()) {
+    const owner = objectOwner(parent.parentPath);
+    const key = propertyKey(parent.node);
+    return owner !== null && key !== null ? `${owner}.${key}` : null;
+  }
+  if (parent.isCallExpression() && parent.node.arguments[0] === path.node && staticName(parent.node.callee)?.endsWith('.extend')) {
+    const assignment = parent.parentPath;
+    if (assignment.isAssignmentExpression()) return staticName(assignment.node.left);
+  }
+  return null;
+}
+
 function functionName(path) {
   const parent = path.parentPath;
   if (parent.isAssignmentExpression()) return staticName(parent.node.left);
@@ -27,19 +49,9 @@ function functionName(path) {
   if (path.isFunctionDeclaration()) return path.node.id?.name ?? null;
   if (parent.isObjectProperty() || path.isObjectMethod()) {
     const property = path.isObjectMethod() ? path : parent;
-    const key = property.node.computed
-      ? (['StringLiteral', 'NumericLiteral'].includes(property.node.key.type) ? staticName(property.node.key) : null)
-      : staticName(property.node.key);
-    const object = property.parentPath;
-    const call = object.parentPath;
-    if (call?.isCallExpression() && staticName(call.node.callee)?.endsWith('.extend')) {
-      const assignment = call.parentPath;
-      if (assignment.isAssignmentExpression()) {
-        const owner = staticName(assignment.node.left);
-        if (owner !== null && key !== null) return `${owner}.${key}`;
-      }
-    }
-    return key;
+    const key = propertyKey(property.node);
+    const owner = objectOwner(property.parentPath);
+    return owner !== null && key !== null ? `${owner}.${key}` : key;
   }
   return null;
 }
