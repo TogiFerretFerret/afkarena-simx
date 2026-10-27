@@ -87,3 +87,21 @@ test('argument coercion can consume clock inputs without inventing a constructor
  assert.equal(run(c,'new Date({[Symbol.toPrimitive](){return Date.now()}}).getTime()'),42);
  assert.equal(run(c,'clock.finish().attempts'),1);run(c,'clock.restore()');
 });
+
+test('observers interleave exact clock events with source operations in both modes',()=>{
+ const c=realm();const seen=[];c.observe=(entry,index)=>seen.push([entry.kind,index,entry.bits??entry.value]);
+ const recorded=run(c,'var clock=installOracleClock({mode:"record",observe:observe});var a=Date.now();var b=new Date().getTime();var s=Date();clock.finish();clock.tape;');
+ assert.deepEqual(seen.map(e=>e[0]),['Date.now','Date.construct','Date.call']);assert.deepEqual(seen.map(e=>e[1]),[0,1,2]);
+ assert.equal(seen[0][2],recorded[0].bits);assert.equal(seen[2][2],recorded[2].value);run(c,'clock.restore()');
+ const d=realm();const interleaved=[];d.tape=recorded;d.observe=(entry,index)=>interleaved.push(`clock:${entry.kind}:${index}`);d.source=kind=>interleaved.push(kind);
+ run(d,'var clock=installOracleClock({mode:"replay",tape:tape,observe:observe});source("before");Date.now();source("between");new Date();Date();source("after");clock.finish();clock.restore();');
+ assert.deepEqual(interleaved,['before','clock:Date.now:0','between','clock:Date.construct:1','clock:Date.call:2','after']);
+});
+
+test('observer errors or reentrant source-clock reads invalidate the run',()=>{
+ const c=realm();c.fail=()=>{throw new Error('trace failed')};run(c,'var clock=installOracleClock({mode:"record",observe:fail});');
+ assert.throws(()=>run(c,'Date.now()'),/trace failed/);assert.throws(()=>run(c,'clock.finish()'),/observer threw/);assert.throws(()=>run(c,'clock.restore()'),/observer threw/);
+ const d=realm();run(d,'var clock=installOracleClock({mode:"record",observe:function(){Date.now()}});');
+ assert.throws(()=>run(d,'Date.now()'),/must not consume/);assert.throws(()=>run(d,'clock.finish()'),/must not consume/);
+ const e=realm();assert.throws(()=>run(e,'installOracleClock({mode:"record",observe:1})'),/must be a function/);
+});

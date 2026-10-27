@@ -1,7 +1,7 @@
 {
   "version": 1,
   "file": "tools/oracle-clock.js",
-  "globalAPI": "installOracleClock({mode,tape}) -> {tape,stats(),finish(),restore()}",
+  "globalAPI": "installOracleClock({mode,tape,observe?}) -> {tape,stats(),finish(),restore()}",
   "bootstrapAPI": "createBootstrapRuntime({hostClock:{mode,tape}}) -> runtime.clock; installed before source initializers and Cocos",
   "tape": {
     "record": "Caller-provided empty array or a fresh output array; entries append from actual original native observations",
@@ -47,7 +47,13 @@
     "observation": "Original audio gate uses (new Date).getTime()-r.LastPlayTime > 450; wall-clock inputs can change callback/device event behavior"
   },
   "validation": {
-    "tests": 10,
+    "tests": 12,
     "command": "node --test tools/tests/oracle-clock.test.mjs"
+  },
+  "observer": {
+    "signature": "observe(frozenEntry, ordinalZeroBased)",
+    "phase": "After the actual original observation or successful replay consumption, before returning to source code",
+    "contract": "Trace-only: no program/clock lifecycle mutation or clock consumption. Throws and instrumented reentrant clock reads invalidate the session.",
+    "purpose": "Interleave clock host inputs with RNG, callback and gameplay events in a single trace"
   }
 }

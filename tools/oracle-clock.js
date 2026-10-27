@@ -24,6 +24,8 @@
         options = options || {};
         var mode = options.mode;
         if (mode !== "record" && mode !== "replay") throw new Error("oracle clock mode must be record or replay");
+        var observer = options.observe;
+        if (observer !== undefined && typeof observer !== "function") throw new Error("oracle clock observe must be a function");
         var input = options.tape === undefined ? [] : options.tape;
         if (!Array.isArray(input)) throw new Error("oracle clock tape must be an array");
         if (mode === "record" && input.length !== 0) throw new Error("record clock requires an empty output tape");
@@ -45,7 +47,7 @@
         var originalNowDescriptor = Object.getOwnPropertyDescriptor(OriginalDate, "now");
         var originalNow = OriginalDate.now;
         var originalGetTime = OriginalDate.prototype.getTime;
-        var cursor = 0, attempts = 0, finished = false, restored = false, failure = null;
+        var cursor = 0, attempts = 0, finished = false, restored = false, failure = null, observing = false;
         var counts = { "Date.now": 0, "Date.construct": 0, "Date.call": 0 };
         function fail(message) {
             if (failure === null) failure = message;
@@ -54,12 +56,21 @@
         function before(kind) {
             attempts++;
             if (failure !== null) fail(failure);
+            if (observing) fail("clock observer must not consume host-clock inputs");
             if (finished || restored) fail("clock observation after finish/restore: " + kind);
+        }
+        function notify(entry) {
+            if (observer === undefined) return;
+            observing = true;
+            try { observer(entry, cursor - 1); }
+            catch (error) { if (failure === null) failure = "clock observer threw"; throw error; }
+            finally { observing = false; }
         }
         function record(kind, value) {
             if (kind === "Date.call" ? typeof value !== "string" : typeof value !== "number") fail("unexpected native host clock result type for " + kind);
             var entry = kind === "Date.call" ? { kind: kind, value: value } : { kind: kind, bits: numberBits(value) };
             tape.push(Object.freeze(entry)); cursor++; counts[kind]++;
+            notify(entry);
             return value;
         }
         function replay(kind) {
@@ -67,6 +78,7 @@
             var entry = tape[cursor];
             if (entry.kind !== kind) fail("clock event kind mismatch at " + cursor + ": expected " + entry.kind + ", got " + kind);
             cursor++; counts[kind]++;
+            notify(entry);
             return kind === "Date.call" ? entry.value : bitsNumber(entry.bits);
         }
         function Date(year, month, day, hour, minute, second, millisecond) {
