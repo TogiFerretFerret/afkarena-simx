@@ -84,6 +84,15 @@ values rather than caching values or heap pointers. See
 `results/2026-10-27T22-44-29.280Z-native-warm23-global-slot.json` and
 `validation/native-global-slot.json`.
 
+Selective admission fixes that capacity failure: the `ed`-only candidate records
+13,206,487 hits with one entry and no capacity rejection. Its full source report
+also matches, but 20 battles take 8.164 seconds (2.449780/second), so it is not
+promoted either. Both cache candidates add a wrapper to every named-property
+slow read, including unrelated reads; the results do not establish that wrapper
+overhead is the cause of the slowdown. See
+`results/2026-10-27T22-46-08.935Z-native-warm23-global-ed-slot.json` and
+`validation/native-global-ed-slot.json`.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
