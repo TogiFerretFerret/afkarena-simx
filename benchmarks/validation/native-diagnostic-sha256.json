@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "passed": true,
+  "difference": null,
+  "cases": 69770,
+  "exhaustiveSingleUtf16CodeUnits": 65536,
+  "randomStrings": 4096,
+  "fallbackCases": 9,
+  "primitiveStringIntrinsicIsolation": {
+    "hash": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "events": []
+  },
+  "shaHits": 71773,
+  "shaFallbacks": 9,
+  "hashSequenceSha256": "c0dee29344eb0a4409e5147d35d14df7ac246d07048579d86311c39b424353e8",
+  "originalHookSourceSha256": "48d990ebba06ec1d1fd66304671a2e248c60b06ece6b8c5651a77b62afeefb9c",
+  "portableSourceSha256": "9813a661d5969a20559a1784a6d0317c426b3553fcea8aabca7ad16a979f2f34",
+  "caseGeneratorSha256": "81aee1517b6145d3dcfe5df6017f185186e7f906b1332a60c144a91328ad8a80",
+  "privateVM": {
+    "output": "/workspace/afkarena-simx/work/native-diagnostic-sha256/libhermesvm.so",
+    "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "privateSha256": "7f28b342c1528ee61c51c92ad6c9ad54b5c01721825c972426c9e7bd6c70696d",
+    "helperSha256": "4f23c4a525301d55946739c0bd701c50d29d7428a952508087729f86bbb0f9b7"
+  },
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "timing": [
+    {
+      "name": "short-ascii",
+      "count": 2000,
+      "utf16Length": 160,
+      "nativeMs": 4,
+      "portableMs": 145,
+      "last": "e97caaf8c193c7612e96f4a4278b13d8eb21455feca5322fc70463457c4a221d"
+    },
+    {
+      "name": "large-mixed",
+      "count": 2,
+      "utf16Length": 65536,
+      "nativeMs": 1,
+      "portableMs": 62,
+      "last": "482ff690b54e028f912d43246b23f347c9572835d1dfc85345a27fb082510481"
+    }
+  ],
+  "qualifiesFor10000Target": false,
+  "scope": "Isolated diagnostic primitive-string SHA256 host hook; every hash matches Node crypto and pinned portable JS, unsupported inputs execute unchanged original JS fallback.",
+  "limitations": [
+    "Not installed in live VM or emitter.",
+    "Timing measures diagnostic hashes, not battle simulation; single samples use millisecond resolution under concurrent compiler load.",
+    "Primitive-string contract is host SHA256(UTF8), independent of mutable JavaScript prototype methods."
+  ],
+  "nodePortableHashSequenceSha256": "c0dee29344eb0a4409e5147d35d14df7ac246d07048579d86311c39b424353e8",
+  "nodeCryptoHashSequenceSha256": "c0dee29344eb0a4409e5147d35d14df7ac246d07048579d86311c39b424353e8",
+  "nativeOutput": {
+    "file": "benchmarks/validation/native-diagnostic-sha256/native.stdout.gz",
+    "sha256": "7b6bba4a220e68289730a607980475fcee8828b6ed22187184e203b3c44cc0f3",
+    "uncompressedSha256": "0b837c7a9c3430e8093d8b24191697917e004e3d194b4dbbbb633a07ee93fdcb",
+    "bytes": 2443449
+  }
+}
