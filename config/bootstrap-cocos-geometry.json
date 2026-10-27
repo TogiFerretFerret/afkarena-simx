@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "status": "Pinned upstream Cocos numeric geometry helpers from same provisional revision as CCClass; source engine revision is not supplied",
+  "license": "MIT retained in original files",
+  "files": [
+    {
+      "file": "tools/bootstrap-vendor-CCGeometry.js",
+      "source": "https://github.com/cocos2d/cocos2d-html5/blob/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/cocos2d/core/cocoa/CCGeometry.js",
+      "sha256": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d"
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCPointExtension.js",
+      "source": "https://github.com/cocos2d/cocos2d-html5/blob/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/cocos2d/core/support/CCPointExtension.js",
+      "sha256": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5"
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCAffineTransform.js",
+      "source": "https://github.com/cocos2d/cocos2d-html5/blob/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/cocos2d/core/cocoa/CCAffineTransform.js",
+      "sha256": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696"
+    }
+  ]
+}

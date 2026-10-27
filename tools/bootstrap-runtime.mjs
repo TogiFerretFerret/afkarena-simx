@@ -92,6 +92,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
     runInContext('Math.random=__hostRandom;delete __hostRandom;',context);
   }
   const hostSource=await readFile(resolve(root,'tools/bootstrap-host.js'),'utf8');
+  const hostSources=[{file:'tools/bootstrap-host.js',source:hostSource,phase:'before-original-initializers'}];
   runInContext(hostSource,context,{filename:'tools/bootstrap-host.js'});
   // In this supplied revision declaration names have no variable-initializer
   // collision; reject a future collision instead of silently changing hoisting.
@@ -104,9 +105,18 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
   const provenance=JSON.parse(await readFile(resolve(root,'config/bootstrap-cocos-runtime.json'),'utf8'));
   const cocos=await readFile(resolve(root,provenance.file),'utf8');
   assert.equal(createHash('sha256').update(cocos).digest('hex'),provenance.sha256);
+  hostSources.push({file:provenance.file,source:cocos,phase:'cocos-class'});
   runInContext(cocos,context,{filename:provenance.file});
   const renderHostSource=await readFile(resolve(root,'tools/bootstrap-render-host.js'),'utf8');
+  hostSources.push({file:'tools/bootstrap-render-host.js',source:renderHostSource,phase:'after-cocos'});
   runInContext(renderHostSource,context,{filename:'tools/bootstrap-render-host.js'});
+  const geometryProvenance=JSON.parse(await readFile(resolve(root,'config/bootstrap-cocos-geometry.json'),'utf8'));
+  for(const record of geometryProvenance.files){
+    const source=await readFile(resolve(root,record.file),'utf8');
+    assert.equal(createHash('sha256').update(source).digest('hex'),record.sha256);
+    hostSources.push({file:record.file,source,phase:'after-cocos'});
+    runInContext(source,context,{filename:record.file});
+  }
   function expose(owner,prefix){
     const keys=new Set([...definitions.keys()].filter(name=>name.startsWith(prefix+'.')).map(name=>name.slice(prefix.length+1).split('.')[0]));
     for(const key of keys){
@@ -165,7 +175,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
   ed.audio_effect_switch=context.bootstrapHost.audioEnabled;
   const callbacks=await installBootstrapCallbacks(context);
   return {context,ed,loaded,tables,provenance,callbacks,clock,clockProvenance,host:context.bootstrapHost,importValue:value=>importBootstrapValue(context,value),
-    sourceRecords:{definitions,globals,functionDeclarations,initializers,postInitializers},
+    sourceRecords:{definitions,globals,functionDeclarations,initializers,postInitializers,hostSources},
     hostProvenance:{file:'tools/bootstrap-host.js',sha256:createHash('sha256').update(hostSource).digest('hex')},
     initializers:initializers.map(({source,...record})=>record),
     limitations:['Lazy symbol evaluation does not establish all original module side-effect order','Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter','Headless Linux device output is recorded; physical audio/render output is not produced','Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly']};
