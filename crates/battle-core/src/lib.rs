@@ -15,3 +15,4 @@ pub mod config;
 pub mod damage;
 pub mod ffi;
 pub mod v8_small_sort;
+pub mod v8_tim_sort;
