@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "engine": "Authentic entire original game_battle source Static Hermes O0",
+  "scope": "Raised-stack diagnostic; source terminal parity only, not a default-stack executable qualification",
+  "input": "/workspace/afkarena-simx/work/native-oracle-eager.js",
+  "inputSha256": "57eba726b2dffcb8b6751ef3b3da93c1cb965f823d78ec217cdac87f8f25573e",
+  "eagerModules": [
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+      "kind": "eager-module"
+    }
+  ],
+  "helperFactories": 126,
+  "unitCount": 1,
+  "output": "work/native-oracle-eager-O0",
+  "outputSha256": "d37d7d3285a1da4c8ba6e5b9be37d2336c4a29b91e737aee19a16762255a3877",
+  "outputBytes": 78072560,
+  "ccOpt": "O0",
+  "flags": [
+    "-g0",
+    "-ffp-contract=off"
+  ],
+  "defaultStackRun": {
+    "stackKiB": 8192,
+    "status": "SIGSEGV",
+    "phase": "sh_export_this_unit before calloc",
+    "nativeConstructorStackBytes": 11119896,
+    "reason": "O0 materializes whole UnitData compound literal on native stack"
+  },
+  "diagnosticStackKiB": 65536,
+  "diagnosticRun": {
+    "completed": 1,
+    "elapsedMs": 1112,
+    "battlesPerSecond": 0.8992805755395683,
+    "semanticReportMatched": true,
+    "firstDifference": null,
+    "hostInputDifference": null,
+    "hostInputConsumption": {
+      "random": 2,
+      "clock": {
+        "version": 1,
+        "mode": "replay",
+        "attempts": 260,
+        "consumed": 260,
+        "total": 260,
+        "remaining": 0,
+        "counts": {
+          "Date.now": 0,
+          "Date.construct": 260,
+          "Date.call": 0
+        },
+        "finished": true,
+        "restored": false,
+        "failure": null
+      }
+    },
+    "comparedFields": [
+      "completed",
+      "capture",
+      "checksum",
+      "totalCallbacks",
+      "results",
+      "finalCapture"
+    ],
+    "results": [
+      {
+        "result": "victory",
+        "ticks": 296,
+        "frames": 296,
+        "callbacks": 15453,
+        "rngBits": "4216fd6c5e6c0000"
+      }
+    ]
+  },
+  "executionContract": {
+    "engineFrames": true,
+    "queuedCallbacks": true,
+    "sourceCallbackSnapshots": true,
+    "actorEffectViewLifecycle": false,
+    "renderSceneMethods": false,
+    "qualifiesFor10000Target": false
+  },
+  "oracleRuntime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "execArgv": [
+      "--jitless"
+    ],
+    "nodeOptions": ""
+  },
+  "qualifiesFor10000Target": false,
+  "nextStep": "Replace redundant whole-UnitData initialization with header-only assignment after calloc, then verify identical zero tail and real full battle at default8MiBstack."
+}
