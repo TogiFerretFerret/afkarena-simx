@@ -14,10 +14,11 @@ import {benchmarkMachine} from './benchmark-machine.mjs';
 // Build/run the existing independently gated warm23 input. Only its first and
 // last SHUnits differ; middle objects require exact source/compiler/flag hashes.
 const baseline=process.argv.includes('--baseline');
-const copy=process.argv.includes('--copy');assert.ok(!(baseline&&copy));
-const variant=baseline?'baseline':copy?'entity-copy':'entity';
-const root=resolve(import.meta.dirname,'..'),directory=resolve(root,'work/native-warm23-entity.units');
-const output=resolve(root,'work/native-warm23-'+variant),manifestFile='work/native-warm23-partition/manifest.json';
+const workerMap=process.argv.includes('--worker-map');
+const copy=workerMap||process.argv.includes('--copy');assert.ok(!(baseline&&copy));
+const variant=workerMap?'worker-map':baseline?'baseline':copy?'entity-copy':'entity';
+const root=resolve(import.meta.dirname,'..'),directory=resolve(root,workerMap?'work/native-warm23-worker-map.units':'work/native-warm23-entity.units');
+const output=resolve(root,'work/native-warm23-'+variant),manifestFile=workerMap?'work/native-worker-strong-map/manifest.json':'work/native-warm23-partition/manifest.json';
 const sha=b=>createHash('sha256').update(b).digest('hex'),hash=async p=>sha(await readFile(resolve(root,p)));
 const manifest=JSON.parse(await readFile(resolve(root,manifestFile))),metadata=JSON.parse(await readFile(manifest.input.file+'.metadata.json'));
 assert.equal(manifest.passed,true);assert.equal(manifest.difference,null);assert.equal(metadata.battles,20);assert.equal(metadata.warmup,3);
@@ -27,12 +28,20 @@ const compiler=resolve(build,'bin/shermes'),liveVM=resolve(build,'lib/libhermesv
 assert.equal(await hash(compiler),cache.compilerSha256);assert.equal(await hash(liveVM),cache.vmSha256);
 for(const row of cache.headers)assert.equal(await hash(row.file),row.sha256);
 const dependencies=[];
-for(const [file,expected]of Object.entries({...metadata.adapterInputs,...metadata.sourceInputs,[manifest.input.file]:manifest.input.sha256,[manifest.input.file+'.metadata.json']:manifest.input.metadataSha256,[manifest.transformation.file]:manifest.transformation.sha256})){
+const transformInputs=workerMap?Object.fromEntries([manifest.baselineManifest,manifest.candidate,manifest.gcAudit,manifest.producer].map(row=>[row.file,row.sha256])):{[manifest.transformation.file]:manifest.transformation.sha256};
+for(const [file,expected]of Object.entries({...metadata.adapterInputs,...metadata.sourceInputs,[manifestFile]:await hash(manifestFile),[manifest.input.file]:manifest.input.sha256,[manifest.input.file+'.metadata.json']:manifest.input.metadataSha256,...transformInputs})){
  const actual=await hash(file);assert.equal(actual,expected,'Changed source/adapter '+file);dependencies.push({file,sha256:actual});
 }
 for(const row of [metadata.reference,metadata.hostInputs,metadata.tableBundle])assert.equal(await hash(row.file),row.sha256);
 const reference=JSON.parse(await readFile(metadata.reference.file));
-const node=JSON.parse((await readFile(resolve(root,'work/native-warm23-partition/node.stdout'),'utf8')).trim().split('\n').at(-1));
+if(workerMap){
+ const base=JSON.parse(await readFile(resolve(root,manifest.baselineManifest.file))),old=await readFile(base.units[0].file,'utf8'),fresh=await readFile(manifest.units[0].file,'utf8'),p=manifest.replacementProof;
+ assert.equal(sha(old),base.units[0].sha256);assert.equal(sha(old.slice(p.start,p.end)),p.oldHelperSha256);
+ const prefix=old.slice(0,p.start),suffix=old.slice(p.end);assert.ok(fresh.startsWith(prefix)&&fresh.endsWith(suffix));
+ assert.equal(sha(prefix),p.unchangedPrefixSha256);assert.equal(sha(suffix),p.unchangedSuffixSha256);assert.equal(sha(fresh.slice(prefix.length,fresh.length-suffix.length)),p.newHelperSha256);
+ for(let i=1;i<7;i++){assert.equal(manifest.units[i].file,base.units[i].file);assert.equal(manifest.units[i].sha256,base.units[i].sha256);}
+}
+const node=JSON.parse((await readFile(resolve(root,workerMap?'work/native-worker-strong-map/node.stdout':'work/native-warm23-partition/node.stdout'),'utf8')).trim().split('\n').at(-1));
 assert.equal(compareNativeReports(node,reference),null);assert.equal(compareHostInputConsumption(node.hostInputConsumption,metadata.hostInputs),null);
 await mkdir(directory,{recursive:true});
 async function run(command,args,label,env=process.env){
@@ -47,7 +56,7 @@ async function patchUnit(text,pools){
  let source=(await patchEntityUpdateC(text,pools,original)).source;
  if(copy)source=(await patchCombinedCopyC(source,pools,sourceCopyFunction)).source;
  source+='\nsize_t simx_entity_update_hits(void){return simx_entity_hits;}\n';
- if(copy)source+='\nsize_t simx_battle_copy_hits(void){return simx_copy_hits;}\nsize_t simx_battle_empty_copy_hits(void){return simx_empty_copy_hits;}\nsize_t simx_battle_numeric_copy_hits(void){return simx_numeric_copy_hits;}\n';
+ if(copy)source+=(workerMap?'':'\n')+'size_t simx_battle_copy_hits(void){return simx_copy_hits;}\nsize_t simx_battle_empty_copy_hits(void){return simx_empty_copy_hits;}\nsize_t simx_battle_numeric_copy_hits(void){return simx_numeric_copy_hits;}\n';
  return source;
 }
 const units=[];
@@ -59,9 +68,10 @@ for(let index=0;index<manifest.units.length;index++){
   assert.deepEqual(cached.compileArgs,['-O','-c','-exported-unit='+name,'-Wc,-O1,-g0,-ffp-contract=off',row.file,'-o',cached.object]);
   units.push({...row,name,object:cached.object,objectSha256:cached.objectSha256,reusedObject:true,compileArgs:cached.compileArgs});continue;
  }
- const object=resolve(directory,name+(index===0&&variant!=='entity'?'.'+variant:'')+'.o'),pools=resolve(directory,name+'.string-pools'),proofFile=object+'.build.json';await mkdir(pools,{recursive:true});
- const sourceArgs=['-O',index===0?'-emit-c':'-c','-exported-unit='+name,'-Wc,-O1,-g0,-ffp-contract=off',relative(root,row.file),'-o',index===0?resolve(directory,name+'.original.c'):object];
- const ccArgs=['-O1','-g0','-DNDEBUG','-fno-strict-aliasing','-fno-strict-overflow','-ffp-contract=off',...includes.map(p=>'-I'+relative(root,p.slice(2))),'-c',relative(root,resolve(directory,name+'.'+variant+'.c')),'-o',relative(root,object)];
+ const unitDirectory=workerMap&&index===6?resolve(root,'work/native-warm23-entity.units'):directory;
+ const object=resolve(unitDirectory,name+(index===0&&variant!=='entity'?'.'+variant:'')+'.o'),pools=resolve(unitDirectory,name+'.string-pools'),proofFile=object+'.build.json';await mkdir(pools,{recursive:true});
+ const sourceArgs=['-O',index===0?'-emit-c':'-c','-exported-unit='+name,'-Wc,-O1,-g0,-ffp-contract=off',relative(root,row.file),'-o',index===0?resolve(unitDirectory,name+'.original.c'):object];
+ const ccArgs=['-O1','-g0','-DNDEBUG','-fno-strict-aliasing','-fno-strict-overflow','-ffp-contract=off',...includes.map(p=>'-I'+relative(root,p.slice(2))),'-c',relative(root,resolve(unitDirectory,name+'.'+variant+'.c')),'-o',relative(root,object)];
  let proof=null;try{proof=JSON.parse(await readFile(proofFile));}catch{}
  if(!proof||process.argv.includes('--rebuild')){
   assert.equal((await run(compiler,sourceArgs,name+'-source',{...process.env,SHERMES_BINARY_STRING_DIR:pools})).code,0);
@@ -108,7 +118,7 @@ const stderr=await readFile(output+'.execute.stderr','utf8'),counter=name=>Numbe
 const dependenciesAtFinish=[];for(const row of dependencies)dependenciesAtFinish.push({...row,matched:await hash(row.file)===row.sha256});
 assert.equal(await hash(liveVM),cache.vmSha256);assert.equal(await hash(host.privateVM.output),host.privateVM.privateSha256);
 const matched=execution.code===0&&difference===null&&dependenciesAtFinish.every(r=>r.matched)&&(baseline?counter('entity_hits')===0:counter('entity_hits')>0)&&(!copy||counter('copy_hits')>0)&&counter('sort_fallbacks')===0;
-const report={version:1,copyFastPathEnabled:copy,copySourceSha256:copy?sha(sourceCopyFunction):null,engine:baseline?'Original seven-unit Static Hermes O1 with pinned V8 TimSort, Entity unchanged':'Original seven-unit Static Hermes O1 with guarded Rust Entity update and pinned V8 TimSort',variant,entityFastPathEnabled:!baseline,semanticReportMatched:matched,firstDifference:difference,execution,completed:actual?.completed??0,measuredBattles:20,warmupBattles:3,elapsedMs:actual?.elapsedMs??null,battlesPerSecond:actual?.battlesPerSecond??null,executionWallMs,timingScope:'elapsedMs measures20original battles after3warmups, including scenario materialization and engine setup. Final capture/report hashing occurs after measured timer. Wall time includes VM/script/table cold initialization,3warmups,20battles and report. Their difference is combined overhead, not an isolated cold-init or warmup measurement.',unmeasuredCombinedOverheadMs:actual?executionWallMs-actual.elapsedMs:null,machine,sourceManifest:{file:manifestFile,sha256:await hash(manifestFile)},metadataSha256:await hash(manifest.input.file+'.metadata.json'),reference:metadata.reference,hostInputs:metadata.hostInputs,hostProof:{file:hostFile,sha256:await hash(hostFile)},compilerSha256:cache.compilerSha256,originalVMSha256:cache.vmSha256,privateVMSha256:host.privateVM.privateSha256,outputSha256:await hash(output),wrapperSha256:sha(wrapper),units,linkArgs,comparedFields:Object.keys(semanticNativeReport(reference)),totalCallbacks:actual?.totalCallbacks??null,classManagerCounters:actual?.classManagerCounters??null,hostInputConsumption:actual?.hostInputConsumption??null,fastPathHits:{copy:counter('copy_hits'),emptyCopy:counter('empty_copy_hits'),numericCopy:counter('numeric_copy_hits'),entity:counter('entity_hits'),sort:counter('sort_hits'),sortDefaultStrings:counter('sort_default_strings'),sortUnsupportedFallbacks:counter('sort_fallbacks')},dependenciesAtStart:dependencies,dependenciesAtFinish,executionContract:metadata.executionContract,qualifiesFor10000Target:false,qualification:'One fixed callback-only scenario repeated20times after3warmups. Full raw semantic report checked, no ignored counter fields or NaN normalization. Complete actor/effect/view lifecycle and random5v5corpus are still required; no speedup claim without a matched baseline.'};
+const report={version:1,output,workerMapStorageEnabled:workerMap,workerMapOwnership:workerMap?manifest.ownershipArgument:null,copyFastPathEnabled:copy,copySourceSha256:copy?sha(sourceCopyFunction):null,engine:baseline?'Original seven-unit Static Hermes O1 with pinned V8 TimSort, Entity unchanged':'Original seven-unit Static Hermes O1 with guarded Rust Entity update and pinned V8 TimSort',variant,entityFastPathEnabled:!baseline,semanticReportMatched:matched,firstDifference:difference,execution,completed:actual?.completed??0,measuredBattles:20,warmupBattles:3,elapsedMs:actual?.elapsedMs??null,battlesPerSecond:actual?.battlesPerSecond??null,executionWallMs,timingScope:'elapsedMs measures20original battles after3warmups, including scenario materialization and engine setup. Final capture/report hashing occurs after measured timer. Wall time includes VM/script/table cold initialization,3warmups,20battles and report. Their difference is combined overhead, not an isolated cold-init or warmup measurement.',unmeasuredCombinedOverheadMs:actual?executionWallMs-actual.elapsedMs:null,machine,sourceManifest:{file:manifestFile,sha256:await hash(manifestFile)},metadataSha256:await hash(manifest.input.file+'.metadata.json'),reference:metadata.reference,hostInputs:metadata.hostInputs,hostProof:{file:hostFile,sha256:await hash(hostFile)},compilerSha256:cache.compilerSha256,originalVMSha256:cache.vmSha256,privateVMSha256:host.privateVM.privateSha256,outputSha256:await hash(output),wrapperSha256:sha(wrapper),units,linkArgs,comparedFields:Object.keys(semanticNativeReport(reference)),totalCallbacks:actual?.totalCallbacks??null,classManagerCounters:actual?.classManagerCounters??null,hostInputConsumption:actual?.hostInputConsumption??null,fastPathHits:{copy:counter('copy_hits'),emptyCopy:counter('empty_copy_hits'),numericCopy:counter('numeric_copy_hits'),entity:counter('entity_hits'),sort:counter('sort_hits'),sortDefaultStrings:counter('sort_default_strings'),sortUnsupportedFallbacks:counter('sort_fallbacks')},dependenciesAtStart:dependencies,dependenciesAtFinish,executionContract:metadata.executionContract,qualifiesFor10000Target:false,qualification:'One fixed callback-only scenario repeated20times after3warmups. Full raw semantic report checked, no ignored counter fields or NaN normalization. Complete actor/effect/view lifecycle and random5v5corpus are still required; no speedup claim without a matched baseline.'};
 const stamp=new Date().toISOString().replaceAll(':','-'),prefix='benchmarks/results/'+stamp+'-native-warm23-'+variant;
 report.artifacts=[];for(const [label,file]of [['actual',output+'.execute.stdout'],['stderr',output+'.execute.stderr'],['reference',metadata.reference.file],['wrapper',output+'.main.c']]){const bytes=await readFile(file),archive=prefix+'.'+label+'.gz';await writeFile(resolve(root,archive),gzipSync(bytes,{level:9}));report.artifacts.push({file:archive,sha256:await hash(archive),uncompressedSha256:sha(bytes),uncompressedBytes:bytes.length});}
 report.producer={file:'tools/native-warm-entity-run.mjs',sha256:await hash('tools/native-warm-entity-run.mjs')};
