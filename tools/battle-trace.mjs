@@ -7,6 +7,16 @@ export function binary64(value){numberBuffer.setFloat64(0,value,false);return nu
 const digest=text=>createHash('sha256').update(text).digest('hex');
 const functionSource=fn=>Reflect.apply(Function.prototype.toString,fn,[]);
 const sameEncoding=(a,b)=>a===b||Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&a.every((value,index)=>sameEncoding(value,b[index]));
+function graphHash(graph,cache){
+  if(graph.version===1)return digest(JSON.stringify(graph));
+  const nodeHashes=graph.nodes.map(node=>{
+    if(cache?.has(node))return cache.get(node);
+    const hash=digest(JSON.stringify(node));cache?.set(node,hash);return hash;
+  });
+  // Each complete node is SHA256-covered; the root/order hash covers every
+  // identity, edge, descriptor and raw numeric bit, with no XOR cancellation.
+  return digest(JSON.stringify([graph.version,graph.roots,nodeHashes]));
+}
 export function sourceCodeIdentity(fn){
   const text=functionSource(fn);
   // Native/bound function formatting is implementation-defined. Public name and
@@ -22,7 +32,7 @@ export function sourceCodeIdentity(fn){
  */
 export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,functionPolicy='graph'}={}){
   if(!['graph','code'].includes(functionPolicy))throw new Error('Unknown function snapshot policy');
-  const ids=new WeakMap(),symbols=new Map(),functionHashes=new WeakMap(),propertyCaches=new WeakMap(),nodeCaches=new WeakMap();let nextId=1,nextSymbol=1;
+  const ids=new WeakMap(),symbols=new Map(),functionHashes=new WeakMap(),propertyCaches=new WeakMap(),nodeCaches=new WeakMap(),nodeHashes=new WeakMap();let nextId=1,nextSymbol=1;
   function codeOnlyFunction(value){
     for(const key of Reflect.ownKeys(value)){
       if(['length','name','arguments','caller'].includes(key))continue;
@@ -85,7 +95,11 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,fun
         opaqueFunctionCount++;
         if(functionPolicy==='graph')opaque.push({id,kind:'function_closure_bindings'});
       }
-      if(types.isMap(value)){node.kind='map';node.entries=Array.from(Reflect.apply(Map.prototype.entries,value,[]),([key,item])=>[encode(key),encode(item)]);}
+      if(types.isBoxedPrimitive(value)){
+        const type=types.isNumberObject(value)?'number':types.isBooleanObject(value)?'boolean':types.isStringObject(value)?'string':types.isBigIntObject(value)?'bigint':'symbol';
+        const prototype={number:Number.prototype,boolean:Boolean.prototype,string:String.prototype,bigint:BigInt.prototype,symbol:Symbol.prototype}[type];
+        node.kind=`boxed_${type}`;node.value=encode(Reflect.apply(prototype.valueOf,value,[]));
+      }else if(types.isMap(value)){node.kind='map';node.entries=Array.from(Reflect.apply(Map.prototype.entries,value,[]),([key,item])=>[encode(key),encode(item)]);}
       else if(types.isSet(value)){node.kind='set';node.entries=Array.from(Reflect.apply(Set.prototype.values,value,[]),encode);}
       else if(types.isWeakMap(value)||types.isWeakSet(value)){opaque.push({id,kind:types.isWeakMap(value)?'weakmap_entries':'weakset_entries'});}
       else if(types.isDate(value)){node.kind='date';node.time=encode(Reflect.apply(Date.prototype.getTime,value,[]));}
@@ -143,8 +157,8 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,fun
       if(!codeFunction||node.properties.length)nodes.push(node);
     }
     if(functionPolicy==='code'&&opaqueFunctionCount)opaque.push({kind:'function_closure_bindings',count:opaqueFunctionCount});
-    const graph={version:1,roots:encodedRoots,nodes};
-    return{...graph,sha256:digest(JSON.stringify(graph)),coverage:{accessorsInvoked:false,functionPolicy,opaque}};
+    const graph={version:2,roots:encodedRoots,nodes};
+    return{...graph,sha256:graphHash(graph,nodeHashes),coverage:{accessorsInvoked:false,functionPolicy,opaque}};
   };
 }
 
@@ -193,7 +207,7 @@ export function applyGraphDelta(previous,delta){
   for(const id of delta.removed)nodes.delete(id);
   for(const node of delta.changed)nodes.set(node.id,node);
   const graph={version:delta.version,roots:delta.roots,nodes:delta.order.map(id=>{if(!nodes.has(id))throw new Error(`Missing graph delta node ${id}`);return nodes.get(id);})};
-  if(digest(JSON.stringify(graph))!==delta.sha256)throw new Error('Graph delta checksum mismatch');
+  if(graphHash(graph)!==delta.sha256)throw new Error('Graph delta checksum mismatch');
   return{...graph,sha256:delta.sha256,coverage:delta.coverage};
 }
 

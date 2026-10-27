@@ -65,3 +65,11 @@ test('cached descriptors retain exact fresh encoding when a default function pro
  assert.equal(a.nodes[0].properties[0].value[0],b.nodes[0].properties[0].value[0]);
  assert.ok(a.nodes.flatMap(n=>n.properties).some(p=>p.key[1]==='extra'&&p.value[1]===binary64(-0)));
 });
+
+test('boxed primitive internal slots retain values rather than appearing as empty objects',()=>{
+ const state=createGraphSnapshotter()({number:new Number(-0),boolean:new Boolean(false),string:new String('x'),bigint:Object(2n),symbol:Object(Symbol.for('token'))});
+ assert.deepEqual(state.nodes.find(n=>n.kind==='boxed_number').value,['f64',binary64(-0)]);
+ assert.deepEqual(state.nodes.find(n=>n.kind==='boxed_boolean').value,['boolean',false]);
+ assert.deepEqual(state.nodes.find(n=>n.kind==='boxed_bigint').value,['bigint','2']);
+ assert.equal(state.nodes.find(n=>n.kind==='boxed_symbol').value[2],'token');
+});
