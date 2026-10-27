@@ -9,7 +9,8 @@
   var ed=runtime.ed,context=runtime.context,callbacks=runtime.callbacks;
   if(!callbacks||!callbacks.sceneHost)throw new Error('Trace needs the actual source callback sceneHost');
   var trace=host.installPortableBattleTrace(options),restores=[],callbackIds=new WeakMap(),nextCallback=1,frame=-1,stopped=false;
-  var knownNames=new Set(options.definitionNames||[]),registered=new WeakSet(),loaderRevision=-1;
+  var knownNames=new Set(options.definitionNames||[]),knownPaths=new Set(),registered=new WeakSet(),loaderRevision=-1;
+  knownNames.forEach(function(name){knownPaths.add(name);for(var p=name.lastIndexOf('.');p>0;p=name.lastIndexOf('.',p-1))knownPaths.add(name.slice(0,p));});
   var globalNames=options.globalNames||[];
   if(options.programState&&!Array.isArray(options.globalNames))throw new Error('Program-state trace requires the complete source global-name catalog');
   function logical(fn,name){if(typeof fn==='function'&&!registered.has(fn)){trace.capture.registerFunctionCode(fn,name);registered.add(fn);}}
@@ -32,9 +33,9 @@
      var getterCode=typeof d.get==='function'?Function.prototype.toString.call(d.get):'';
      var isLoader=getterCode.includes('Missing original parent definition:')&&getterCode.includes('active.has(name)')||
       getterCode.includes('Unsupported scoped source definition:')&&getterCode.includes('__nativeActive[name]');
-     if(!('value'in d)&&knownNames.has(name)&&isLoader&&d.enumerable&&d.configurable){
+     if(!('value'in d)&&knownPaths.has(name)&&isLoader&&d.enumerable&&d.configurable){
       logical(d.get,'source-loader:get:'+name);logical(d.set,'source-loader:set:'+name);
-     }else if('value'in d&&knownNames.has(name))queue.push([d.value,name]);
+     }else if('value'in d&&knownPaths.has(name))queue.push([d.value,name]);
     }
    }
    for(var gi=0;gi<globalNames.length;gi++){
@@ -83,7 +84,7 @@
     soundManager:Object.getOwnPropertyDescriptor(ed,'sound_manager')?.value,
     program:program};
   }
-  function record(kind,payload){loaderAccessors();trace.record(kind,{frame:frame,data:payload},roots());}
+  function record(kind,payload){if(options.assertImmutableClean)options.assertImmutableClean();loaderAccessors();trace.record(kind,{frame:frame,data:payload},roots());}
   function callbackId(fn){if(!callbackIds.has(fn))callbackIds.set(fn,nextCallback++);return callbackIds.get(fn);}
   function replace(owner,key,make){
    var d=Object.getOwnPropertyDescriptor(owner,key);
@@ -128,6 +129,7 @@
    stop:function(summary){
     if(stopped)throw new Error('Trace already stopped');
     try{
+     if(options.assertImmutableClean)options.assertImmutableClean();
      var result=trace.finish(summary);
      result.rootContract=options.programState?'ed-cc-source-globals':'engine-queue-hero-scripts-device';
      result.boundaries=['Native lexical closure environments and weak collections are opaque',

@@ -140,6 +140,22 @@
                 if (type === "number") return ["f64", bits(value)];
                 if (type === "bigint") return ["bigint", String(value)];
                 if (type === "symbol") return symbol(value);
+                if (options.immutableReference) {
+                    var immutable=options.immutableReference(value);
+                    if(immutable!==undefined&&immutable!==null){
+                        if(type!=='object'||!immutable||typeof immutable.table!=='string'||!Array.isArray(immutable.path)||
+                            immutable.path.some(function(part){return typeof part!=='string';})||
+                            !/^[0-9a-f]{64}$/.test(immutable.sha256)||
+                            immutable.kind!==(Array.isArray(value)?'array':'object'))
+                            fail('Invalid enforced immutable table reference');
+                        var immutableId=identify(value);
+                        if(!seen.has(immutableId)){
+                            if(seen.size>=maxNodes)fail('Graph exceeds node bound; no partial snapshot emitted');
+                            seen.add(immutableId);
+                        }
+                        return ['immutable-table',immutableId,immutable.table,immutable.path.slice(),immutable.sha256,immutable.kind];
+                    }
+                }
                 if (options.isProxy && options.isProxy(value)) fail("Cannot faithfully inspect a Proxy");
                 if (intrinsics.has(value)) return ["intrinsic", intrinsics.get(value)];
                 if (type === "object") {

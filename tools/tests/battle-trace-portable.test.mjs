@@ -107,3 +107,19 @@ test('compact event checksums cover exactly the full canonical graph and all pay
  const accelerated=runInContext('var t=installPortableBattleTrace({compact:true,digest:__digest});t.record("event",{f:Infinity},roots);t.finish({status:"completed",running:false})',context);
  assert.equal(comparePortableBattleTraces(compact,accelerated).passed,true);
 });
+
+test('only registered enforced immutable references bypass Proxy reflection and retain alias identities',async()=>{
+ const context=createContext({});
+ const raw=runInContext('({a:1})',context);
+ const proxy=new Proxy(raw,{ownKeys(){throw new Error('must not reflect enforced leaf')}});
+ const registry=new WeakMap([[proxy,Object.freeze({table:'Unit',path:Object.freeze(['1']),sha256:'a'.repeat(64),kind:'object'})]]);
+ const capture=await installPortableGraph(context,{immutableReference:value=>registry.get(value)});
+ const graph=capture.snapshot({a:proxy,b:proxy});
+ assert.equal(graph.nodes.length,0);
+ assert.deepEqual(Array.from(graph.roots[0][1]),Array.from(graph.roots[1][1]));
+ assert.equal(graph.roots[0][1][0],'immutable-table');
+ assert.equal(graph.roots[0][1][2],'Unit');
+ assert.throws(()=>capture.snapshot({unregistered:new Proxy({},{})}),/Proxy/);
+ const invalid=await installPortableGraph(context,{immutableReference:value=>value===proxy?{...registry.get(proxy),sha256:'invalid'}:undefined});
+ assert.throws(()=>invalid.snapshot({proxy}),/Invalid enforced immutable/);
+});
