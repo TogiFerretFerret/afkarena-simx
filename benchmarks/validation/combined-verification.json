@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "command": "npm run verify",
+  "passed": true,
+  "nativeWholeBattleEquivalence": false,
+  "summaries": [
+    {
+      "kernelCount": 9,
+      "inputCases": 20324,
+      "outputValues": 284536,
+      "nanPolicy": "semantic",
+      "nanBitDifferences": 2,
+      "rawBitsExact": false,
+      "scope": "Numeric kernel checks, not battles"
+    },
+    {
+      "version": 1,
+      "referenceRuntime": "v24.19.0",
+      "binarySha256": "76d74a6adf1e7cddd30c5ec82448043024737eed91ed34e69049326a51a8648f",
+      "sourceFunctions": [
+        {
+          "name": "ed.rand",
+          "sha256": "a2bfcfd578f8e22c5315df011a002ca0439bd02f3b67740d0c6d01b3e8f65973"
+        },
+        {
+          "name": "ed.randDontChangeSeed",
+          "sha256": "56b36bfe72896c6565c14611fcb4e1059b8cba43d0b16cbe180b07ee023ba19b"
+        },
+        {
+          "name": "ed.srand",
+          "sha256": "ede60c6120d82417c9d6a544dce9c82d018c0ba9ca4e87d6a45d036de693e3dc"
+        }
+      ],
+      "seedCases": 4114,
+      "draws": 131648,
+      "eventCount": 1077876,
+      "nanPolicy": "bits",
+      "nanBitDifferences": 0,
+      "rawBitsExact": true,
+      "traceFields": [
+        "kind",
+        "value",
+        "state",
+        "initial"
+      ],
+      "scope": "RNG only; no complete battle trace or exact log-string rendering yet"
+    },
+    {
+      "version": 1,
+      "sourceName": "ed.Entity.update",
+      "sourceSha256": "9edd5c9d243911ad4d96ea84f24834a455446c4d7796efadc4c340268e39ad94",
+      "referenceRuntime": "v24.19.0",
+      "cases": 20768,
+      "eventCount": 92955,
+      "nanPolicy": "bits",
+      "nanBitDifferences": 0,
+      "rawBitsExact": true,
+      "scope": "Entity.update ordered state mutation, not full battles"
+    },
+    {
+      "version": 1,
+      "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+      "referenceRuntime": "v24.19.0",
+      "cases": 20012,
+      "updateCount": 138049,
+      "frameCount": 335969,
+      "scope": "Actual BattleEngine.tick list-loop behavior under fixture callbacks; timing and battle-result logic stubbed"
+    },
+    {
+      "version": 1,
+      "sourceSha256": "2742c2b3f22131136a9b70f248c805b54bf8ece70eabc8192b2a7913de68020d",
+      "referenceRuntime": "v24.19.0",
+      "cases": 20136,
+      "eventCount": 363414,
+      "callbackCount": 13715,
+      "nanPolicy": "bits",
+      "nanBitDifferences": 0,
+      "rawBitsExact": true,
+      "scope": "Local clock scheduling and callback mutation; no full battle execution"
+    },
+    {
+      "cases": 20000,
+      "eventCount": 181709,
+      "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+      "rawBitsExact": true,
+      "scope": "Full source tick orchestration under explicit fixture mechanics; not complete hero battles"
+    }
+  ]
+}
