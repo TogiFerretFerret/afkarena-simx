@@ -7,7 +7,8 @@
     "excludedMode": "turn-based (actor completion explicitly controls battle progression)",
     "namedActorUpdateOverrides": 105,
     "renderBaseMethods": 268,
-    "coverage": "Every non-ed definition name matching /actor.*update/i in original game_battle.js, plus literal methods of nine original actor/puppet/effect classes. Name matching does not capture unnamed/computed overrides or transitive helper effects."
+    "actionCallbacks": 18,
+    "coverage": "Every non-ed definition name matching /actor.*update/i in original game_battle.js, plus literal methods of nine original actor/puppet/effect classes and every literal cc.callFunc callback in extracted battle definitions. Name matching does not capture unnamed/computed overrides or transitive helper effects."
   },
   "summary": {
     "modelWritingOverrides": [
@@ -51,7 +52,13 @@
       "ed.Scale3Chain.setTerminated",
       "ed.Scale3Chain.isTerminated"
     ],
-    "fixedPointsReached": true
+    "fixedPointsReached": true,
+    "callbackRegistrationCounts": {
+      "setActionFinishedCallback": 2,
+      "setSpineEvent(": 0,
+      "setCompleteListener": 0,
+      "setEventListener": 0
+    }
   },
   "evidence": {
     "logicActionDuration": {
@@ -14126,6 +14133,152 @@
         "this._actionFinishedCallback"
       ],
       "modelCallees": []
+    }
+  ],
+  "actionCallbacks": [
+    {
+      "owner": "ed.UnitActor",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 201988,
+      "end": 202039,
+      "sha256": "88c86ea50fac9e7f513ec044c4261d497e9d5fd5f7dd24d3104b7e3ac06df710",
+      "source": "function(){this.isDead=!0,this.node.setVisible(!1)}"
+    },
+    {
+      "owner": "FieldIdle.reviveMonster",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 429979,
+      "end": 430012,
+      "sha256": "04250d6375bc583a5984de71696707ec1da3a816f277e409ed40bb8b9d137b17",
+      "source": "function(){t.node.setVisible(!0)}"
+    },
+    {
+      "owner": "FieldTrial.reviveMonster",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 439998,
+      "end": 440031,
+      "sha256": "04250d6375bc583a5984de71696707ec1da3a816f277e409ed40bb8b9d137b17",
+      "source": "function(){t.node.setVisible(!0)}"
+    },
+    {
+      "owner": "Mouse.die",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 681380,
+      "end": 681423,
+      "sha256": "b6de31123d84652029b899d3de7ed2f153888baa09547f67e8dbc3563f4910bb",
+      "source": "function(){ed.isValid(t)&&t.setVisible(!1)}"
+    },
+    {
+      "owner": "Ezio.ultKill_takeEffectOn",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1562165,
+      "end": 1562216,
+      "sha256": "88c86ea50fac9e7f513ec044c4261d497e9d5fd5f7dd24d3104b7e3ac06df710",
+      "source": "function(){this.isDead=!0,this.node.setVisible(!1)}"
+    },
+    {
+      "owner": "TechMouse.die",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1779840,
+      "end": 1779883,
+      "sha256": "b6de31123d84652029b899d3de7ed2f153888baa09547f67e8dbc3563f4910bb",
+      "source": "function(){ed.isValid(t)&&t.setVisible(!1)}"
+    },
+    {
+      "owner": "TechMouse.die",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1780218,
+      "end": 1780261,
+      "sha256": "b6de31123d84652029b899d3de7ed2f153888baa09547f67e8dbc3563f4910bb",
+      "source": "function(){ed.isValid(t)&&t.setVisible(!1)}"
+    },
+    {
+      "owner": "FP.func_throwUnit",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2145868,
+      "end": 2145912,
+      "sha256": "86d9a4f5af2d73eb01a9559f09b7fb5b29876f917d25b42107237b018855c11a",
+      "source": "function(){this.actor.puppet.setVisible(!1)}"
+    },
+    {
+      "owner": "FP.transBuff_onRemoved",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 2147471,
+      "end": 2147515,
+      "sha256": "34d9b63be0737497a5024362b5334a4b4d62d16dc3a3978735572734206379d5",
+      "source": "function(){this.actor.puppet.setVisible(!0)}"
+    },
+    {
+      "owner": "SQ.otherUnitDie",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3410648,
+      "end": 3410699,
+      "sha256": "88c86ea50fac9e7f513ec044c4261d497e9d5fd5f7dd24d3104b7e3ac06df710",
+      "source": "function(){this.isDead=!0,this.node.setVisible(!1)}"
+    },
+    {
+      "owner": "SWQ.smallSummon_die",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3429838,
+      "end": 3429889,
+      "sha256": "88c86ea50fac9e7f513ec044c4261d497e9d5fd5f7dd24d3104b7e3ac06df710",
+      "source": "function(){this.isDead=!0,this.node.setVisible(!1)}"
+    },
+    {
+      "owner": "Calypso.soulActor_onUnitDeath",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3541595,
+      "end": 3541648,
+      "sha256": "1816716e0b42b0f8f64d32c65a49413510f750bc7b085fe37258be7d0df7d876",
+      "source": "function(){t.isDead=!0,t.node&&t.node.setVisible(!1)}"
+    },
+    {
+      "owner": "BossDevilDog.func_throwUnit",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4552394,
+      "end": 4552438,
+      "sha256": "86d9a4f5af2d73eb01a9559f09b7fb5b29876f917d25b42107237b018855c11a",
+      "source": "function(){this.actor.puppet.setVisible(!1)}"
+    },
+    {
+      "owner": "BossDevilDog.transBuff_onRemoved",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4554082,
+      "end": 4554126,
+      "sha256": "34d9b63be0737497a5024362b5334a4b4d62d16dc3a3978735572734206379d5",
+      "source": "function(){this.actor.puppet.setVisible(!0)}"
+    },
+    {
+      "owner": "SLGFP.func_throwUnit",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4716755,
+      "end": 4716799,
+      "sha256": "86d9a4f5af2d73eb01a9559f09b7fb5b29876f917d25b42107237b018855c11a",
+      "source": "function(){this.actor.puppet.setVisible(!1)}"
+    },
+    {
+      "owner": "SLGFP.transBuff_onRemoved",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4718394,
+      "end": 4718438,
+      "sha256": "34d9b63be0737497a5024362b5334a4b4d62d16dc3a3978735572734206379d5",
+      "source": "function(){this.actor.puppet.setVisible(!0)}"
+    },
+    {
+      "owner": "SLGBossDevilDog.func_throwUnit",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4949438,
+      "end": 4949482,
+      "sha256": "86d9a4f5af2d73eb01a9559f09b7fb5b29876f917d25b42107237b018855c11a",
+      "source": "function(){this.actor.puppet.setVisible(!1)}"
+    },
+    {
+      "owner": "SLGBossDevilDog.transBuff_onRemoved",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 4951159,
+      "end": 4951203,
+      "sha256": "34d9b63be0737497a5024362b5334a4b4d62d16dc3a3978735572734206379d5",
+      "source": "function(){this.actor.puppet.setVisible(!0)}"
     }
   ],
   "conclusions": [

@@ -35,6 +35,18 @@ function analyze(name,record,{receiverArgument=1}={}){
 const records=await loadBootstrapSourceRecords(),overrides=[];
 for(const[name,list]of records.definitions)if(/actor.*update/i.test(name)&&!name.startsWith('ed.'))for(const record of list)if(record.file==='src/srcmodule/game_battle.js')overrides.push(analyze(name,record));
 const baseMethods=[];
+const actionCallbacks=[];
+for(const[name,list]of records.definitions)for(const record of list){
+ if(record.file!=='src/srcmodule/game_battle.js'||!record.source.includes('cc.callFunc'))continue;
+ traverse(parse(`(${record.source})`),{CallExpression(path){
+  const callee=path.node.callee;
+  if(callee.type!=='MemberExpression'||callee.computed||callee.object.type!=='Identifier'||callee.object.name!=='cc'||callee.property.name!=='callFunc')return;
+  const argument=path.node.arguments[0];
+  if(argument?.type!=='FunctionExpression')throw new Error(`Unresolved original action callback: ${name}`);
+  const start=record.start+argument.start-1,end=record.start+argument.end-1,source=record.source.slice(argument.start-1,argument.end-1);
+  actionCallbacks.push({owner:name,file:record.file,start,end,sha256:sha(source),source});
+ }});
+}
 for(const className of ['ed.UnitActor','ed.ProjectileActor','ed.ChainActor','ed.Scale3Chain','ed.Puppet','ed.SpineActor','ed.FcaActor','ed.SpineEffect','ed.FcaEffect']){
  for(const record of new Map(records.definitions).get(className)??[]){
   const ast=parse(`(${record.source})`),object=ast.program.body[0].expression.arguments?.[0];
@@ -49,10 +61,11 @@ for(const className of ['ed.UnitActor','ed.ProjectileActor','ed.ChainActor','ed.
 const source=await readFile(resolve(root,'src/srcmodule/game_battle.js'),'utf8');
 function fragment(needle,before=0,length=500){const index=source.indexOf(needle);if(index<0)throw new Error(needle);const start=Math.max(0,index-before),end=Math.min(source.length,index+length),text=source.slice(start,end);return{file:'src/srcmodule/game_battle.js',start,end,sha256:sha(text),source:text};}
 const evidence={logicActionDuration:fragment('getActionDuration:function',0,250),scale3ChainIndependentModel:fragment('ed.Scale3Chain=',0,600),turnBasedCompletionCallback:fragment('this.model.isEnterStateFinish=!0',110,140),logicConsumesTurnBasedCompletion:fragment('updateEnter_TB:function',0,680)};
+const callbackRegistrationCounts=Object.fromEntries(['setActionFinishedCallback','setSpineEvent(','setCompleteListener','setEventListener'].map(token=>[token,source.split(token).length-1]));
 const fieldReferences={};
 for(const field of ['realKnockSelfFlag','lastHpChangeTick','relatedChain','atk2ImpactTimer']){
  const rows=[];for(const match of source.matchAll(new RegExp(`\\b${field}\\b`,'g'))){const start=Math.max(0,match.index-100),end=Math.min(source.length,match.index+180);rows.push({start,end,source:source.slice(start,end)})}fieldReferences[field]=rows;
 }
-const report={version:1,status:'Conservative named actor-update alias/write inventory; not a complete renderer-erasure proof',sourceSha256:sha(source),scope:{battleMode:'stage',excludedMode:'turn-based (actor completion explicitly controls battle progression)',namedActorUpdateOverrides:overrides.length,renderBaseMethods:baseMethods.length,coverage:'Every non-ed definition name matching /actor.*update/i in original game_battle.js, plus literal methods of nine original actor/puppet/effect classes. Name matching does not capture unnamed/computed overrides or transitive helper effects.'},summary:{modelWritingOverrides:overrides.filter(r=>r.modelWrites.length).map(r=>r.name),modelCallingOverrides:overrides.filter(r=>r.modelCallees.length).map(r=>r.name),modelWritingBaseMethods:baseMethods.filter(r=>r.modelWrites.length).map(r=>r.name),fixedPointsReached:[...overrides,...baseMethods].every(r=>r.aliasFixedPointReached)},evidence,fieldReferences,overrides,baseMethods,
+const report={version:1,status:'Conservative named actor-update alias/write inventory; not a complete renderer-erasure proof',sourceSha256:sha(source),scope:{battleMode:'stage',excludedMode:'turn-based (actor completion explicitly controls battle progression)',namedActorUpdateOverrides:overrides.length,renderBaseMethods:baseMethods.length,actionCallbacks:actionCallbacks.length,coverage:'Every non-ed definition name matching /actor.*update/i in original game_battle.js, plus literal methods of nine original actor/puppet/effect classes and every literal cc.callFunc callback in extracted battle definitions. Name matching does not capture unnamed/computed overrides or transitive helper effects.'},summary:{modelWritingOverrides:overrides.filter(r=>r.modelWrites.length).map(r=>r.name),modelCallingOverrides:overrides.filter(r=>r.modelCallees.length).map(r=>r.name),modelWritingBaseMethods:baseMethods.filter(r=>r.modelWrites.length).map(r=>r.name),fixedPointsReached:[...overrides,...baseMethods].every(r=>r.aliasFixedPointReached),callbackRegistrationCounts},evidence,fieldReferences,overrides,baseMethods,actionCallbacks,
  conclusions:['Original logic animation durations come from UnitPuppet/AnimDuration tables, independently of missing render art binaries.','Scale3Chain graphical model is a separate plain object; its animation termination is not by itself an engine entity termination.','Every original callback must still execute; timers, fields, aliases and source actor-method writes must be preserved.','TechMouse.realKnockSelfFlag is written by an actor update but its source reads are confined to that actor update; the skill reset clears it. Preserving the original method needs device scale state, not texture pixels.','No conclusion about every actor getter, callback, animation event, action completion or transitive helper is implied by this inventory. Unknown paths must remain fail closed.'],qualifiesForRendererErasure:false};
 await mkdir(resolve(root,'benchmarks/validation'),{recursive:true});await writeFile(resolve(root,'benchmarks/validation/stage-render-projection.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({output:'benchmarks/validation/stage-render-projection.json',...report.scope,...report.summary}));
