@@ -115,7 +115,11 @@
         }
         return sprite;
     };
-    cc.spriteFrameCache = { getSpriteFrame: function (name) { return missing("sprite atlas frame geometry", name); } };
+    cc.spriteFrameCache = {
+        _frameConfigCache: Object.create(null),
+        addSpriteFrames: function (resource) { return missing("sprite atlas frame data", resource); },
+        getSpriteFrame: function (name) { return missing("sprite atlas frame geometry", name); }
+    };
     cc.loader = {
         getRes: function (path) { return assets[path]; },
         release: function (path) { delete assets[path]; output("asset_release", [path]); }
