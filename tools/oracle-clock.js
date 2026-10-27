@@ -57,6 +57,7 @@
             if (finished || restored) fail("clock observation after finish/restore: " + kind);
         }
         function record(kind, value) {
+            if (kind === "Date.call" ? typeof value !== "string" : typeof value !== "number") fail("unexpected native host clock result type for " + kind);
             var entry = kind === "Date.call" ? { kind: kind, value: value } : { kind: kind, bits: numberBits(value) };
             tape.push(Object.freeze(entry)); cursor++; counts[kind]++;
             return value;
@@ -113,6 +114,7 @@
             if (mode === "record" && tape.length !== cursor) fail("record clock tape was externally mutated");
             if (mode === "replay" && cursor !== tape.length) fail("clock tape has " + (tape.length - cursor) + " unconsumed event(s)");
             finished = true;
+            if (mode === "record") Object.freeze(tape);
             return stats();
         }
         function restore() {

@@ -34,7 +34,7 @@
     "Install once per realm before source code captures Date references; references captured before installation can bypass instrumentation",
     "Date function identity and Function.prototype.toString representation change; full universal ECMAScript observational equivalence is not claimed",
     "Date.prototype.constructor temporarily points to the wrapper and is restored on cleanup; this change is intentional to keep constructor-based calls inside the recorded boundary",
-    "Native intrinsic global Date/prototype bindings are expected; hostile mutations of these bindings/descriptors and throwing exotic new.target prototype accessors are outside the adapter contract",
+    "Native intrinsic global Date/prototype bindings are expected. Mutations of those bindings/descriptors, pre-captured Date aliases, and exotic new.target prototype getters/proxies that observe host clocks or throw are outside the contract; ordinary subclasses and nonobserving prototype lookup are retained",
     "Timezone and engine-specific Date instance formatting remain native. Date() function results replay exact strings; cross-engine formatting of date objects must still be validated when used",
     "This is a host-input record/replay contract, not permission to remove original callbacks, RNG calls or battle mechanics"
   ],
