@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "node": "24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "flags": {
+    "use_std_math_pow": true,
+    "V8_USE_LIBM_TRIG_FUNCTIONS": false
+  },
+  "license": "tools/native-compiler-vendor/v8-math/LICENSE",
+  "notes": [
+    "Upstream ieee754 algorithm translation units and headers are copied byte-for-byte",
+    "Build adapters provide only export macros, exact bit_cast/overflow helpers, and pinned Node V8 flags",
+    "No algorithm, constant, polynomial or operation ordering is changed",
+    "Support/compiler and VM exponentiation both invoke the same V8 Number pow implementation"
+  ],
+  "files": [
+    {
+      "source": "tools/native-compiler-vendor/v8-math/HermesV8Math.h",
+      "destination": "include/hermes/Support/V8Math.h",
+      "sha256": "710d08adf7fbf2529550f59fc5c970008c8572ade20e44c2431d16fbb0de6315",
+      "unmodifiedUpstream": false,
+      "upstreamUrl": null
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/LICENSE",
+      "destination": "external/v8-math/LICENSE",
+      "sha256": "6ab33af8774a0f396ee3aeeb761e3229057682d6f9fa7f572e390c2cb3a6e509",
+      "unmodifiedUpstream": true,
+      "upstreamUrl": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/deps/v8/LICENSE"
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/src/base/base-export.h",
+      "destination": "external/v8-math/src/base/base-export.h",
+      "sha256": "748aff3873c7501249f9e7e8feb731365c5951f02a80403dd1ba84c19900777e",
+      "unmodifiedUpstream": false,
+      "upstreamUrl": null
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/src/base/build_config.h",
+      "destination": "external/v8-math/src/base/build_config.h",
+      "sha256": "c65e6514abf96e473573c57879e9f3d8c0e0957ac998c42c8ad72ba33c20dc07",
+      "unmodifiedUpstream": false,
+      "upstreamUrl": null
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/src/base/ieee754.cc",
+      "destination": "external/v8-math/src/base/ieee754.cc",
+      "sha256": "1bf999809d4c4c1d31ad5ff3578d32614796f159e08b9e7782560d017721a0c2",
+      "unmodifiedUpstream": true,
+      "upstreamUrl": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/deps/v8/src/base/ieee754.cc"
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/src/base/ieee754.h",
+      "destination": "external/v8-math/src/base/ieee754.h",
+      "sha256": "d04cd7f71eae974bbb2fb64fd27241c7753678f042acd5ee89c2fa30ef37c4c3",
+      "unmodifiedUpstream": true,
+      "upstreamUrl": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/deps/v8/src/base/ieee754.h"
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/src/base/macros.h",
+      "destination": "external/v8-math/src/base/macros.h",
+      "sha256": "1e1385dab01ce93fe98946c46a3d52267ef5d47b9ff4f7d4c8e182d8e4a58dab",
+      "unmodifiedUpstream": false,
+      "upstreamUrl": null
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/src/base/overflowing-math.h",
+      "destination": "external/v8-math/src/base/overflowing-math.h",
+      "sha256": "71df4b1bd4dc85a1644eace5fd04e76b4203a2e0a4842edbe06d2a862058b858",
+      "unmodifiedUpstream": true,
+      "upstreamUrl": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/deps/v8/src/base/overflowing-math.h"
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/src/flags/flags.h",
+      "destination": "external/v8-math/src/flags/flags.h",
+      "sha256": "60088a78f5369fc810c7caecb5679b8af300484fc61daf674a3b91e30444e80e",
+      "unmodifiedUpstream": false,
+      "upstreamUrl": null
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/src/numbers/ieee754.cc",
+      "destination": "external/v8-math/src/numbers/ieee754.cc",
+      "sha256": "0582ca75d4d3e8c58b784734ef7ddf891e5154bf8e35c4d550ea2263265859fc",
+      "unmodifiedUpstream": true,
+      "upstreamUrl": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/deps/v8/src/numbers/ieee754.cc"
+    },
+    {
+      "source": "tools/native-compiler-vendor/v8-math/src/numbers/ieee754.h",
+      "destination": "external/v8-math/src/numbers/ieee754.h",
+      "sha256": "fae7174a8e976262fbaac0bbd752dd901bbea254b027a6fb4e944495149cd908",
+      "unmodifiedUpstream": true,
+      "upstreamUrl": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/deps/v8/src/numbers/ieee754.h"
+    }
+  ]
+}

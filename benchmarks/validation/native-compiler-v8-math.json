@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "compiler": "/workspace/afkarena-simx/work/downloads/hermes-build/bin/shermes",
+  "compilerVersion": "LLVM (http://llvm.org/):\n  LLVH version 8.0.0svn\n  Optimized build\n\nStatic Hermes JS Compiler v0.0",
+  "sourceSha256": "788fdc5557d080c7a2cb61df9a77891757ff3c7b2b9c5b1ebe85a30a8b3ec695",
+  "referenceRuntime": "v24.19.0",
+  "matched": true,
+  "differences": [],
+  "inheritance": {
+    "expected": {
+      "value": 5,
+      "number": 12,
+      "ownSuper": true
+    },
+    "actual": {
+      "value": 5,
+      "number": 12,
+      "ownSuper": true
+    }
+  },
+  "functionSource": {
+    "expected": "function explicitSource(x){return this._super(x)+1;}",
+    "actual": "function explicitSource(x){return this._super(x)+1;}"
+  },
+  "rngMatched": true,
+  "mathBitDifferences": 0,
+  "mathDifferencesByFunction": {
+    "pow": 0,
+    "sqrt": 0,
+    "sin": 0,
+    "cos": 0
+  },
+  "unaryMathDifferences": {
+    "acos": 0,
+    "acosh": 0,
+    "asin": 0,
+    "asinh": 0,
+    "atan": 0,
+    "atanh": 0,
+    "cbrt": 0,
+    "cos": 0,
+    "cosh": 0,
+    "exp": 0,
+    "expm1": 0,
+    "log": 0,
+    "log10": 0,
+    "log1p": 0,
+    "log2": 0,
+    "sin": 0,
+    "sinh": 0,
+    "tan": 0,
+    "tanh": 0
+  },
+  "edgeMathBitDifferences": 0,
+  "queueOrder": [
+    "a",
+    "b",
+    "c"
+  ],
+  "scope": "AOT compiler semantic compatibility probe, not battle fidelity or throughput"
+}

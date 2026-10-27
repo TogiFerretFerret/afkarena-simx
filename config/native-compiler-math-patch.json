@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "baseCommit": "4f1db42d71d0839254c7154fc8c282bcea466206",
+  "patch": "tools/native-compiler-patches/v8-math-compatibility.patch",
+  "sha256": "34b2763b50aac8c35fcca7b2b3dc8991ac3b3c2d07091428845a833c7a03769b",
+  "purpose": "Use exact pinned Node/V8 math sources for runtime Math functions and compiler/runtime Number exponentiation; match target NaN sign for Math.min/max",
+  "files": [
+    {
+      "path": "lib/Support/CMakeLists.txt",
+      "originalSha256": "52c5f68bb0b392eb0a127962096c1e9b3556301972d1201b606f175f2a776304",
+      "patchedSha256": "fb636a3952c7699fc7b8c2e8c9768c49e0bb336487cb963b3964d5eb9506c1f5"
+    },
+    {
+      "path": "include/hermes/Support/Math.h",
+      "originalSha256": "a5825ee2969dda8c6089e5dbc4a8e455a5ac89678d5e337f85dbb688fd6f614c",
+      "patchedSha256": "e53ce473842c526e957654915c91703521722e4bc124de25c2034074ba0375b7"
+    },
+    {
+      "path": "include/hermes/VM/Operations.h",
+      "originalSha256": "1c434705137bf239585e76f4b862cfc0bd677a914d972eacf413b92051a04b8d",
+      "patchedSha256": "0367e97fdd944569db5e4f3eb222965ac013d03ffcc963c3d2a19c35fd8e3876"
+    },
+    {
+      "path": "lib/VM/JSLib/Math.cpp",
+      "originalSha256": "ec3d3c9920482684b2f219b914f1f759c9e2ee75d4993a936dc271e68e1673b7",
+      "patchedSha256": "fde3b37f40ddee893bfd99745a6d66d1a12fc0fcb7611c6f4f72424ee7c3f4fd"
+    },
+    {
+      "path": "lib/VM/JSLib/MathStdFunctions.def",
+      "originalSha256": "372c03a15f4a5571455fed7000677e92bede82ff2ac7bb2264aed141dd2ce186",
+      "patchedSha256": "9e45224e98975911d1a719411d712ae181496fb2da46237e026b11bf3c355660"
+    }
+  ]
+}

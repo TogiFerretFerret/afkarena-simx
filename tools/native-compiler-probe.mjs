@@ -17,6 +17,8 @@ try{var A=cc.Class.extend({ctor:function(){this.value=2;},number:function(){retu
 var seed=1,mod=Math.pow(2,35)-31;report.rng=[];for(var i=0;i<128;i++){seed=seed*25%mod;report.rng.push([toBits(seed),toBits(seed/mod)]);}
 var random=0x528143;function next(n){random^=random<<13;random^=random>>>17;random^=random<<5;return(random>>>0)%n;}
 report.math=[];for(var i=0;i<512;i++){var a=(1+next(100000))/1000,b=(next(201)-100)/16;report.math.push([toBits(Math.pow(a,b)),toBits(Math.sqrt(a)),toBits(Math.sin(a)),toBits(Math.cos(a))]);}
+report.edgeMath=[];var edges=[NaN,Infinity,-Infinity,0,-0,1,-1,0.5,-0.5,2,-2,Number.MIN_VALUE,Number.MAX_VALUE];for(var i=0;i<edges.length;i++){var x=edges[i];report.edgeMath.push([toBits(Math.min(x,1)),toBits(Math.max(x,1)),toBits(Math.pow(x,0)),toBits(Math.pow(x,0.5)),toBits(Math.pow(x,2)),toBits(Math.pow(x,Infinity))]);}
+report.unaryMath={};var names=['acos','acosh','asin','asinh','atan','atanh','cbrt','cos','cosh','exp','expm1','log','log10','log1p','log2','sin','sinh','tan','tanh'];for(var j=0;j<names.length;j++){var name=names[j],rows=[];for(var i=0;i<128;i++){var x=(next(40001)-20000)/1000;rows.push(toBits(Math[name](x)));}report.unaryMath[name]=rows;}
 report.order=[];var q=[];function enqueue(f){q.push(f);}enqueue(function(){report.order.push('a');enqueue(function(){report.order.push('c')});});enqueue(function(){report.order.push('b')});while(q.length)q.shift()();
 print(JSON.stringify(report));
 `;
@@ -30,6 +32,8 @@ runInNewContext(source,{print:text=>{node=JSON.parse(text)}});
 const differences=[];for(const key of Object.keys(node)){try{assert.deepEqual(native[key],node[key])}catch{differences.push(key);}}
 const mathNames=['pow','sqrt','sin','cos'];
 const mathDifferencesByFunction=Object.fromEntries(mathNames.map((name,j)=>[name,node.math.reduce((n,row,i)=>n+Number(row[j]!==native.math[i][j]),0)]));
-const report={version:1,compiler,compilerVersion:run(compiler,['--version']).trim(),sourceSha256:createHash('sha256').update(source).digest('hex'),referenceRuntime:process.version,matched:differences.length===0,differences,inheritance:{expected:node.inheritance,actual:native.inheritance},functionSource:{expected:node.functionSource,actual:native.functionSource},rngMatched:JSON.stringify(node.rng)===JSON.stringify(native.rng),mathBitDifferences:node.math.reduce((n,row,i)=>n+row.filter((x,j)=>x!==native.math[i][j]).length,0),mathDifferencesByFunction,queueOrder:native.order,scope:'AOT compiler semantic compatibility probe, not battle fidelity or throughput'};
+const unaryMathDifferences=Object.fromEntries(Object.keys(node.unaryMath).map(name=>[name,node.unaryMath[name].filter((x,i)=>x!==native.unaryMath[name][i]).length]));
+const edgeMathBitDifferences=node.edgeMath.reduce((n,row,i)=>n+row.filter((x,j)=>x!==native.edgeMath[i][j]).length,0);
+const report={version:1,compiler,compilerVersion:run(compiler,['--version']).trim(),sourceSha256:createHash('sha256').update(source).digest('hex'),referenceRuntime:process.version,matched:differences.length===0,differences,inheritance:{expected:node.inheritance,actual:native.inheritance},functionSource:{expected:node.functionSource,actual:native.functionSource},rngMatched:JSON.stringify(node.rng)===JSON.stringify(native.rng),mathBitDifferences:node.math.reduce((n,row,i)=>n+row.filter((x,j)=>x!==native.math[i][j]).length,0),mathDifferencesByFunction,unaryMathDifferences,edgeMathBitDifferences,queueOrder:native.order,scope:'AOT compiler semantic compatibility probe, not battle fidelity or throughput'};
 await writeFile(resolve(root,'work/downloads/native-compiler-probe-result.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));
 if(differences.length)process.exitCode=1;

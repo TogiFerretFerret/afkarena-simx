@@ -1,4 +1,5 @@
-import { readFile,mkdir,access } from 'node:fs/promises';
+import { readFile,mkdir,access,writeFile } from 'node:fs/promises';
+import { dirname } from 'node:path';
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { resolve,delimiter } from 'node:path';
@@ -27,6 +28,16 @@ for(const [name,spec] of Object.entries({source:config.source,cmake:config.cmake
   }
 }
 const sourceDirectory=resolve(directory,config.source.directory);
+for(const manifestPath of config.vendorManifests??[]){
+  const manifest=JSON.parse(await readFile(resolve(root,manifestPath),'utf8'));
+  for(const file of manifest.files){
+    const contents=await readFile(resolve(root,file.source));
+    assert.equal(createHash('sha256').update(contents).digest('hex'),file.sha256,'Vendored source checksum mismatch');
+    const destination=resolve(sourceDirectory,file.destination);
+    await mkdir(dirname(destination),{recursive:true});
+    if(!await exists(destination)||!contents.equals(await readFile(destination)))await writeFile(destination,contents);
+  }
+}
 for(const manifestPath of config.patches??[]){
   const manifest=JSON.parse(await readFile(resolve(root,manifestPath),'utf8'));
   assert.equal(manifest.baseCommit,config.commit,'Patch base differs from compiler source');
