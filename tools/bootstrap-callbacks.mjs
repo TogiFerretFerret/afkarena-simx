@@ -22,6 +22,7 @@ export async function installBootstrapCallbacks(context){
   const reset=resetMatch[1];
   runInContext(`clientCall=(${body('clientCall')});resetClientCall=(${reset});`,context,{filename:`${file}:original-clientCall`});
   const onUpdate=body('onUpdate');
+  const sourceOnUpdate=runInContext(`(${onUpdate})`,context,{filename:`${file}:original-scene-onUpdate`});
   const from=onUpdate.indexOf('ed.clientCallCount=');
   const to=onUpdate.indexOf('this.updateActor',from);
   assert.ok(from>=0&&to>from,'Missing source callback drain boundary');
@@ -45,5 +46,17 @@ export async function installBootstrapCallbacks(context){
     context.ed.battleEngine.update(elapsed);
     return drainCallbacks();
   }
-  return{beginFrame,drainCallbacks,updateFrame,provenance,sceneHost};
+  // This entry point executes the WHOLE original scene update. Unlike the
+  // callback-only diagnostic adapter, it never silently drops actor/effect/view
+  // phases. A real scene must supply its original constructor state first.
+  function updateSceneFrame(elapsed){
+    for(const method of ['updateActor','updateEffect','checkDialog'])
+      if(typeof sceneHost[method]!=='function')throw new Error(`Source scene lifecycle not installed: ${method}`);
+    if(typeof sceneHost.speedRate!=='number'||typeof context.ed.bt_speed!=='number'||typeof sceneHost.pauseFlag!=='boolean')
+      throw new Error('Source scene constructor state required: speedRate, bt_speed, pauseFlag');
+    snapshots=0;
+    sourceOnUpdate.call(sceneHost,elapsed);
+    return{queued:context.ed.clientCallCount,executed:snapshots/2,pending:context.ed.clientCall_list.length};
+  }
+  return{beginFrame,drainCallbacks,updateFrame,updateSceneFrame,provenance,sceneHost};
 }

@@ -32,3 +32,27 @@ test('frame reset precedes source engine update; callback exceptions propagate',
   assert.throws(()=>callbacks.drainCallbacks(),/original callback failure/);
   assert.equal(context.ed.clientCall_list.length,1);
 });
+test('whole source scene update preserves speed, pause and ordered lifecycle phases',async()=>{
+  const{context,callbacks}=await setup(),events=[];
+  context.ed.bt_speed=3;
+  context.ed.fpsTracker={onUpdate(dt){events.push(['fps',dt])}};
+  context.ed.battleVFXFilter={onUpdate(dt){events.push(['vfx',dt])}};
+  context.ed.battleEngine={update(dt){events.push(['engine',dt]);context.clientCall(()=>events.push(['callback']))}};
+  Object.assign(callbacks.sceneHost,{speedRate:2,pauseFlag:false,
+    updateActor(dt){events.push(['actors',dt])},updateEffect(dt){events.push(['effects',dt])},
+    viewUpdate(dt){events.push(['view',dt])},checkDialog(dt){events.push(['dialog',dt])}});
+  callbacks.updateSceneFrame(.125);
+  assert.deepEqual(events,[['fps',.125],['vfx',.125],['engine',.75],['callback'],['actors',.75],['effects',.75],['view',.75],['dialog',.75]]);
+  events.length=0;callbacks.sceneHost.pauseFlag=true;callbacks.updateSceneFrame(.5);
+  assert.deepEqual(events,[['fps',.5],['vfx',.5]]);
+});
+test('whole scene update rejects incomplete scene initialization and propagates unsupported device phase',async()=>{
+  const{context,callbacks}=await setup();
+  assert.throws(()=>callbacks.updateSceneFrame(.1),/lifecycle not installed/);
+  Object.assign(callbacks.sceneHost,{updateActor(){throw new Error('Missing source render bone geometry')},updateEffect(){},checkDialog(){}});
+  assert.throws(()=>callbacks.updateSceneFrame(.1),/constructor state required/);
+  Object.assign(callbacks.sceneHost,{speedRate:1,pauseFlag:false});context.ed.bt_speed=1;
+  context.ed.fpsTracker={onUpdate(){}};context.ed.battleVFXFilter={onUpdate(){}};
+  context.ed.battleEngine={update(){}};
+  assert.throws(()=>callbacks.updateSceneFrame(.1),/Missing source render bone geometry/);
+});

@@ -5,6 +5,8 @@ import {resolve} from 'node:path';
 
 const root=resolve(import.meta.dirname,'..');
 const functions={
+  updateActor:[4344025,4344422],syncActors:[4344434,4344806],addActor:[4344816,4344954],
+  updateEffect:[4345664,4345840],checkDialog:[4343649,4344012],
   addEffect:[4345851,4346117],playEffectOnScene:[4346287,4346679],
   addNode:[4348645,4348932],removeEffectNode:[4345391,4345650],removeEffect:[4346131,4346268],
   addActorGroup:[4344969,4345373],playExtensibleChain:[4350366,4350474],
