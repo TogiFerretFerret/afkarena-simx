@@ -63,12 +63,19 @@
       "start": 287668,
       "end": 287820,
       "sha256": "ede60c6120d82417c9d6a544dce9c82d018c0ba9ca4e87d6a45d036de693e3dc"
+    },
+    {
+      "name": "ed.Unit.takeDamage",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 119422,
+      "end": 125022,
+      "sha256": "191f70d183a3198c24cd20a123abf43ed98a8788f57fbd0906ea9d3a3f11cec5"
     }
   ],
   "sourceMathNaNEncoding": "fff8000000000000",
   "target": "x64 V8 source oracle matching session Node",
   "nativeWholeBattle": false,
-  "fullTakeDamage": false,
+  "fullTakeDamage": true,
   "validation": {
     "finite": {
       "version": 1,
@@ -100,6 +107,7 @@
   },
   "limitations": [
     "Adversarial NaN sign/payload differences are reported explicitly; they are not a full-fidelity pass",
-    "Current module ports damage math, probability/MP correction, live buff power transforms and dodge RNG ordering; full takeDamage control is not yet implemented"
-  ]
+    "Full source takeDamage control is present with every unresolved mechanic required through TakeDamageHooks; this is not a complete battle implementation"
+  ],
+  "controllerValidation": "compiled; differential pending"
 }
