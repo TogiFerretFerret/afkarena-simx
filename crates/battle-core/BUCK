@@ -32,3 +32,11 @@ rust_binary(
     edition = "2024",
     deps = [":battle_core"],
 )
+
+rust_binary(
+    name = "scheduler_check",
+    srcs = ["examples/scheduler_check.rs"],
+    crate_root = "examples/scheduler_check.rs",
+    edition = "2024",
+    deps = [":battle_core"],
+)
