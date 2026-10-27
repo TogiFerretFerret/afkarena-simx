@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "src/srcmodule/game_util.js",
-  "domain": "Plain two-element arrays containing JavaScript Number values; no proxies, getters, prototype-index access, concurrent mutation, or non-numeric elements. Equivalence concerns numeric outputs; NaN payload bits are not specified by JavaScript.",
+  "domain": "Plain two-element arrays containing JavaScript Number values; no proxies, getters, prototype-index access, concurrent mutation, or non-numeric elements. Equivalence concerns numeric outputs; NaN payload bits are not specified by JavaScript. Arithmetic bit behavior targets config/js-arithmetic-runtime.json. Stateless Rust vector outputs do not model V8 array-literal allocation/storage feedback; adversarial array-element NaN bits remain unqualified (benchmarks/validation/array-nan-storage-probe.json).",
   "kernels": [
     {
       "sourceName": "ed.edpDistanceSQ",

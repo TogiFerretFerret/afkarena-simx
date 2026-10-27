@@ -39,6 +39,7 @@ assert.equal(result.status, 0, result.stderr);
 const lines = result.stdout.trim().split('\n');
 assert.equal(lines.length, cases.length);
 let outputValues = 0, nanBitDifferences = 0;
+const firstNaNDifferences = [];
 for (let i = 0; i < cases.length; i++) {
   const a = cases[i].slice(0, 2), b = cases[i].slice(2);
   const expected = functions.flatMap((fn, index) => {
@@ -58,6 +59,8 @@ for (let i = 0; i < cases.length; i++) {
     if (actual[j] === expected[j]) continue;
     if (nanPolicy === 'semantic' && Number.isNaN(value(expected[j])) && Number.isNaN(value(actual[j]))) {
       nanBitDifferences++;
+      if (firstNaNDifferences.length < 8) firstNaNDifferences.push({ caseIndex: i, outputIndex: j,
+        inputBits: cases[i].map(bits), expectedBits: expected[j], actualBits: actual[j] });
       continue;
     }
     await mkdir(resolve(root, 'work'), { recursive: true });
@@ -70,5 +73,5 @@ for (let i = 0; i < cases.length; i++) {
   outputValues += expected.length;
 }
 console.log(JSON.stringify({ kernelCount: functions.length, inputCases: cases.length, outputValues,
-  nanPolicy, nanBitDifferences, rawBitsExact: nanBitDifferences === 0,
+  nanPolicy, nanBitDifferences, firstNaNDifferences, rawBitsExact: nanBitDifferences === 0,
   scope: 'Numeric kernel checks, not battles' }));

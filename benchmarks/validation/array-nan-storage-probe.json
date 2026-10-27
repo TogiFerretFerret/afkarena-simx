@@ -1,0 +1,288 @@
+{
+  "version": 1,
+  "referenceProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "literalSource": "function(a,b){return[a,b]}",
+  "scalarSource": "function(a,b){return a*b}",
+  "source": {
+    "file": "src/srcmodule/game_util.js",
+    "start": 638199,
+    "end": 638235,
+    "sha256": "db312ebbb374bc1417e3fb1582d25c98b921a94b5b373564159fd76e87d7d740",
+    "text": "function(e,t){return[e[0]*t,e[1]*t]}"
+  },
+  "literalRows": [
+    {
+      "input": [
+        "0000000000000000",
+        "0000000000000000"
+      ],
+      "output": [
+        "0000000000000000",
+        "0000000000000000"
+      ]
+    },
+    {
+      "input": [
+        "8000000000000000",
+        "0000000000000000"
+      ],
+      "output": [
+        "8000000000000000",
+        "0000000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "3ff0000000000000"
+      ],
+      "output": [
+        "0000000000000000",
+        "3ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "8000000000000000",
+        "3ff0000000000000"
+      ],
+      "output": [
+        "8000000000000000",
+        "3ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "3fd0000000000000"
+      ],
+      "output": [
+        "0000000000000000",
+        "3fd0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "0000000000000000"
+      ],
+      "output": [
+        "0000000000000000",
+        "0000000000000000"
+      ]
+    },
+    {
+      "input": [
+        "8000000000000000",
+        "0000000000000000"
+      ],
+      "output": [
+        "8000000000000000",
+        "0000000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "7ff0000000000000"
+      ],
+      "output": [
+        "0000000000000000",
+        "7ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "8000000000000000",
+        "7ff0000000000000"
+      ],
+      "output": [
+        "8000000000000000",
+        "7ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "fff8000000000000",
+        "7ff0000000000000"
+      ],
+      "output": [
+        "7ff8000000000000",
+        "7ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "fff8000000000000",
+        "7ff0000000000000"
+      ],
+      "output": [
+        "fff8000000000000",
+        "7ff0000000000000"
+      ]
+    }
+  ],
+  "multiplyRows": [
+    {
+      "input": [
+        "0000000000000000",
+        "0000000000000000",
+        "0000000000000000"
+      ],
+      "scalar": "0000000000000000",
+      "output": [
+        "0000000000000000",
+        "0000000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "8000000000000000",
+        "8000000000000000"
+      ],
+      "scalar": "8000000000000000",
+      "output": [
+        "8000000000000000",
+        "0000000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "3ff0000000000000",
+        "3ff0000000000000"
+      ],
+      "scalar": "0000000000000000",
+      "output": [
+        "0000000000000000",
+        "3ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "bff0000000000000",
+        "bff0000000000000"
+      ],
+      "scalar": "8000000000000000",
+      "output": [
+        "8000000000000000",
+        "3ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "3fe0000000000000",
+        "3fe0000000000000"
+      ],
+      "scalar": "0000000000000000",
+      "output": [
+        "0000000000000000",
+        "3fd0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "0000000000000001",
+        "0000000000000001"
+      ],
+      "scalar": "0000000000000000",
+      "output": [
+        "0000000000000000",
+        "0000000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "8000000000000001",
+        "8000000000000001"
+      ],
+      "scalar": "8000000000000000",
+      "output": [
+        "8000000000000000",
+        "0000000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "7fefffffffffffff",
+        "7fefffffffffffff"
+      ],
+      "scalar": "0000000000000000",
+      "output": [
+        "0000000000000000",
+        "7ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "ffefffffffffffff",
+        "ffefffffffffffff"
+      ],
+      "scalar": "8000000000000000",
+      "output": [
+        "8000000000000000",
+        "7ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "7ff0000000000000",
+        "7ff0000000000000"
+      ],
+      "scalar": "fff8000000000000",
+      "output": [
+        "7ff8000000000000",
+        "7ff0000000000000"
+      ]
+    },
+    {
+      "input": [
+        "0000000000000000",
+        "fff0000000000000",
+        "fff0000000000000"
+      ],
+      "scalar": "fff8000000000000",
+      "output": [
+        "fff8000000000000",
+        "7ff0000000000000"
+      ]
+    }
+  ],
+  "noNormalization": true,
+  "statelessVectorReturnRawBitEquivalence": false,
+  "conclusion": "Identical Number input bits produce different array-element output bits at the same literal site depending on earlier calls. Arithmetic alone cannot reproduce this V8 storage/feedback behavior in a stateless Rust [f64;2] kernel.",
+  "upstream": [
+    {
+      "url": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/deps/v8/src/objects/fixed-array-inl.h",
+      "function": "FixedDoubleArray::set",
+      "behavior": "C++ slow setter replaces NaN with std::numeric_limits<double>::quiet_NaN()"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/deps/v8/src/ic/keyed-store-generic.cc",
+      "behavior": "Fast store uses Float64SilenceNaN before storing the double"
+    }
+  ]
+}

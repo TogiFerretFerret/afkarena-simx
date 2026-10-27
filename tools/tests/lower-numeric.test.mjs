@@ -8,6 +8,10 @@ test('retains subtraction, multiplication and addition order as separate operati
   const ir = lower('function(a,b){var x=a[0]-b[0], y=a[1]-b[1]; return x*x+y*y}');
   assert.deepEqual(ir.operations.filter(o=>o.op==='binary').map(o=>o.operator), ['-', '-', '*', '*', '+']);
   assert.match(emitRust('distance',ir), /-> f64/);
+  const rust = emitRust('distance',ir);
+  assert.match(rust, /crate::js_math::sub\(v0, v1\)/);
+  assert.match(rust, /crate::js_math::mul\(v2, v2\)/);
+  assert.match(rust, /crate::js_math::add\(v6, v7\)/);
 });
 
 test('rejects effects, implicit coercion, unknown inputs and dynamic indexing', () => {
