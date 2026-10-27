@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "kind": "source-bound-render-api-gap-audit",
+  "revision": "c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07",
+  "upstream": {
+    "CCNode": {
+      "url": "https://raw.githubusercontent.com/cocos2d/cocos2d-html5/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/cocos2d/core/base-nodes/CCNode.js",
+      "sha256": "35595642ea237cf69b3d1bbc0d39b2133b910136b8d01254b4c82c97c4bdd1ef"
+    },
+    "CCSkeleton": {
+      "url": "https://raw.githubusercontent.com/cocos2d/cocos2d-html5/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/extensions/spine/CCSkeleton.js",
+      "sha256": "ba4da31cc6d33fca3550e114422ce1da0f13840594ffccee8e2dd6ac9fb7d4e7"
+    },
+    "Spine": {
+      "url": "https://raw.githubusercontent.com/cocos2d/cocos2d-html5/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/extensions/spine/Spine.js",
+      "sha256": "7548ab30126cbf5d449b584654c7bcae4506c102050954cb1feaca62471e32e4"
+    }
+  },
+  "excerpts": {
+    "setAdditionalTransform": {
+      "url": "https://raw.githubusercontent.com/cocos2d/cocos2d-html5/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/cocos2d/core/base-nodes/CCNode.js",
+      "start": 72830,
+      "end": 73180,
+      "sha256": "887b945dba05d41b5aca289781a112f3ef50eb4ad266fc46303f43488fa11e8e",
+      "source": "    setAdditionalTransform: function (additionalTransform) {\n        if(additionalTransform === undefined)\n            return this._additionalTransformDirty = false;\n        this._additionalTransform = additionalTransform;\n        this._renderCmd.setDirtyFlag(cc.Node._dirtyFlags.transformDirty);\n        this._additionalTransformDirty = true;\n    },"
+    },
+    "setSkin": {
+      "url": "https://raw.githubusercontent.com/cocos2d/cocos2d-html5/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/extensions/spine/CCSkeleton.js",
+      "start": 9624,
+      "end": 9720,
+      "sha256": "3677c990ddd259086c9bb83c617ed6e032bc1643625b814a3147f02ea481c978",
+      "source": "    setSkin: function (skinName) {\n        return this._skeleton.setSkinByName(skinName);\n    },"
+    },
+    "setSkinByName": {
+      "url": "https://raw.githubusercontent.com/cocos2d/cocos2d-html5/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/extensions/spine/Spine.js",
+      "start": 124031,
+      "end": 124234,
+      "sha256": "09b52199e7b28694d3b19efbfc4f4e8a106238af8cbd57d16c08ebf3035e1eba",
+      "source": "\t\tSkeleton.prototype.setSkinByName = function (skinName) {\n\t\t\tvar skin = this.data.findSkin(skinName);\n\t\t\tif (skin == null)\n\t\t\t\tthrow new Error(\"Skin not found: \" + skinName);\n\t\t\tthis.setSkin(skin);\n\t\t};"
+    },
+    "skeletonSetSkin": {
+      "url": "https://raw.githubusercontent.com/cocos2d/cocos2d-html5/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/extensions/spine/Spine.js",
+      "start": 124235,
+      "end": 124757,
+      "sha256": "d6682b9fed87f69aaf0374c55b2bb9e12ce234a662318fe31906d3709a75dd28",
+      "source": "\t\tSkeleton.prototype.setSkin = function (newSkin) {\n\t\t\tif (newSkin != null) {\n\t\t\t\tif (this.skin != null)\n\t\t\t\t\tnewSkin.attachAll(this, this.skin);\n\t\t\t\telse {\n\t\t\t\t\tvar slots = this.slots;\n\t\t\t\t\tfor (var i = 0, n = slots.length; i < n; i++) {\n\t\t\t\t\t\tvar slot = slots[i];\n\t\t\t\t\t\tvar name_1 = slot.data.attachmentName;\n\t\t\t\t\t\tif (name_1 != null) {\n\t\t\t\t\t\t\tvar attachment = newSkin.getAttachment(i, name_1);\n\t\t\t\t\t\t\tif (attachment != null)\n\t\t\t\t\t\t\t\tslot.setAttachment(attachment);\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t\tthis.skin = newSkin;\n\t\t};"
+    },
+    "attachAll": {
+      "url": "https://raw.githubusercontent.com/cocos2d/cocos2d-html5/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/extensions/spine/Spine.js",
+      "start": 180633,
+      "end": 181288,
+      "sha256": "c463e7b47f7904f343d74a9c3a7ace82ffc080f6257e98c0288af86491e23c76",
+      "source": "\t\tSkin.prototype.attachAll = function (skeleton, oldSkin) {\n\t\t\tvar slotIndex = 0;\n\t\t\tfor (var i = 0; i < skeleton.slots.length; i++) {\n\t\t\t\tvar slot = skeleton.slots[i];\n\t\t\t\tvar slotAttachment = slot.getAttachment();\n\t\t\t\tif (slotAttachment && slotIndex < oldSkin.attachments.length) {\n\t\t\t\t\tvar dictionary = oldSkin.attachments[slotIndex];\n\t\t\t\t\tfor (var key in dictionary) {\n\t\t\t\t\t\tvar skinAttachment = dictionary[key];\n\t\t\t\t\t\tif (slotAttachment == skinAttachment) {\n\t\t\t\t\t\t\tvar attachment = this.getAttachment(slotIndex, key);\n\t\t\t\t\t\t\tif (attachment != null)\n\t\t\t\t\t\t\t\tslot.setAttachment(attachment);\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tslotIndex++;\n\t\t\t}\n\t\t};"
+    }
+  },
+  "sourceInputs": {
+    "src/res/backdownload.js": "1edc3074867ede6c1b0c666781bf19d7e96d177b9c59bcda89c443f9c3d5032d",
+    "src/res/config_load.js": "46ef8339301ec030900759ec3570d0258c51bbe2a24db7b16e60c2e2acac1b6a",
+    "src/res/csv_withtranslate.js": "f0ed52465652d2732e6952339c8a06119f3bb36bb88e6f4093c3628ecab7ab0b",
+    "src/res/loading.js": "a47e6d7f68c22f1ebeaba172d72eb615adb3d459885cd25224768fe5a26d62bc",
+    "src/res/version.js": "5041dffafa915080671e6c5a944db0c2c16eeab25bf4d435ba68059068d2fe65",
+    "src/script/jsb_boot.js": "bdbe166804249422a87ac6ccc47816a4c7063d1fda562e96354cdc3cfdd8afff",
+    "src/srcmodule/game_base.js": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_ui_2.js": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+    "src/srcmodule/game_ui_3.js": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+    "src/srcmodule/game_ui_4.js": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+    "src/srcmodule/game_ui_5.js": "b3169c14a946ce37b01e0b207b343d1d18afcbe3c6237e9639f79b9fd61cb13c",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "src/srcmodule/ui_contra.js": "11fd88a93d7d022ae3d0b1eb1d3e1addcf69f297a824ae510adee392f124ff95",
+    "src/srcmodule/ui_gve.js": "941012b6ca87524c122d577b5889c4da8e4b13904413129142b5e16c34e340e3",
+    "src/srcmodule/ui_minigame.js": "5885132fb5661551c9a14ebc8eedee42db42e65a24e023dc78f57b4b8c53cecb",
+    "src/srcmodule/ui_war.js": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3",
+    "tools/audit-render-api-gaps.mjs": "88a446d2ea5763e8b21e6946a4ca32d34ba5629021c38ed48edc586e4a387fae"
+  },
+  "sourceJavaScriptFiles": 18,
+  "transformReferences": [
+    {
+      "file": "src/srcmodule/game_base.js",
+      "offset": 10980,
+      "context": "ke(h,-u,-p,_,.5*p*d.height-.5*h*d.width+f,-.5*_*d.height+.5*u*d.width-g);w.setTransform(m)}}this.nFrameIndex=t}while(0);for(n=this.pEffects.length-1;n>=0;n--){var v=this.pEffects[n],b=v.getAssociatedCompIndex();if(b>=0)if(w=t"
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "offset": 11440,
+      "context": ",C.b=0,C.c=0,C.d=1),C=cc.affineTransformConcat(C,v.getCustomTransform()),v.setTransform(C)}else cc.error(\"FcaActor update: Component \"+b+\" not exsits in charater \"+this.pInfo.name);v.update(e),v.isTerminated()&&(this.pEffects"
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "offset": 12541,
+      "context": "sformMakeIdentity(),!e)return!1;var n=ed.FcaEffect.create(e);return!!n&&(n.setTransform(i),this.addChild(n,t),this.pEffects.push(n),n.setTag(this.nNextTag),n.update(0),this.nNextTag++)},getEffects:function(){return this.pEffe"
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "offset": 12779,
+      "context": "function(e,t,i){if(e)return t=t||1,i=i||cc.affineTransformMakeIdentity(),e.setTransform(i),e.setTag(this.nNextTag),this.addChild(e,t),this.pExtraNodes.push(e),this.nNextTag++},addEffectToComponent:function(e,t,i,n,a,s){if(e&&"
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "offset": 22092,
+      "context": "ect.create(e);return!!n&&(t=Number(t),isNaN(t)&&(t=0),this.addChild(n,t),n.setTransform(i),this.pEffects=this.pEffects||[],this.nNextTag=this.nNextTag||1,this.pEffects.push(n),n.setTag(this.nNextTag),this.nNextTag++)},EDFcaAc"
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "offset": 22821,
+      "context": ",r.b=0,r.c=0,r.d=1),r=cc.affineTransformConcat(r,i.getCustomTransform()),i.setTransform(r)}else cc.error(\"FcaActor update: Component \"+n+\" not exsits in charater \"+this.pInfo.name)}i.update(e),i.isTerminated()&&(this.pEffects"
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "offset": 39137,
+      "context": "pScene?-1:1),c.ty=n.effTransform.ty+s.y,c=cc.affineTransformScale(c,o,r),n.setTransform(c)}}}}},getMRoot:function(){return this.pRoot},_playAnimation:function(e,t,i){if(this.nFrameIndex=-1,this._curAction=t,this._ensureSpineE"
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "offset": 41459,
+      "context": ".create(e);return!!n&&(t==ed.betweenBottomAndMainOrder?(n.effTransform=i,n.setTransform(i),this.addEffectToBattleLayer(n)):(n.setTransform(i),this.addChild(n,t)),this._effects.push(n),n.setTag(this._nextTag),this._nextTag++)}"
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "offset": 41510,
+      "context": "der?(n.effTransform=i,n.setTransform(i),this.addEffectToBattleLayer(n)):(n.setTransform(i),this.addChild(n,t)),this._effects.push(n),n.setTag(this._nextTag),this._nextTag++)},addEffectToBattleLayer:function(e){e.detachEffect="
+    }
+  ],
+  "resourceMaps": {
+    "src/res/spine.json": {
+      "sha256": "eee9ac58824c0e7f9a0f38dc80ae6db3e364ad5d8e78582017f79942774d526c",
+      "firstEntry": [
+        [
+          "Fort_1_Contra",
+          {
+            "atlas": "Fort_1_Contra.atlas",
+            "skel": "Fort_1_Contra.skel",
+            "img": [
+              "Fort_1_Contra0.png"
+            ]
+          }
+        ]
+      ]
+    },
+    "src/res/hero.json": {
+      "sha256": "648c6e26639d5702b31d0630c54d6c289a42cf44a5bec400cea2cc7628867cc0",
+      "firstEntry": [
+        [
+          "Admiral",
+          [
+            "Admiral.atlas",
+            "Admiral.skel",
+            "Admiral0.png"
+          ]
+        ]
+      ]
+    }
+  },
+  "suppliedSkeletonAtlasChaPlistFiles": [],
+  "probes": {
+    "kind": "Directed fixtures executing complete pinned upstream Spine.js, not synthetic gameplay assets",
+    "missingError": "Skin not found: absent",
+    "missingPreserved": true,
+    "matchingAttachmentReplacedByIdentity": true,
+    "unrelatedAttachmentPreserved": true,
+    "nullSkinPreservesAttachment": true
+  },
+  "decisions": {
+    "setTransform": {
+      "implemented": false,
+      "reason": "No setTransform method exists in pinned upstream CCNode, and supplied JS contains only literal calls. setAdditionalTransform retains the supplied matrix reference and marks render state dirty; substituting it does not prove setTransform replacement/composition, aliasing, return, decomposition or dirty-flag semantics. Original native/custom extension is needed."
+    },
+    "setSkin": {
+      "implemented": false,
+      "reason": "Pinned original implementation searches actual skeleton skins, throws on missing names, and updates slot attachments by object identity. Filename resource maps and AnimDuration do not supply skin/slot/attachment data; storing only a skin name would omit observable semantics."
+    }
+  },
+  "limitations": [
+    "Pinned provisional Cocos revision is not proven to be the original game engine revision.",
+    "Literal-name absence cannot exclude computed/native definitions.",
+    "Directed Spine fixtures prove why a name-only stub is unsafe, not full original native Spine equivalence."
+  ],
+  "qualifiesForWholeBattleFidelity": false,
+  "qualifiesForBattleThroughputTarget": false
+}
