@@ -92,8 +92,18 @@ The refreshed warmed workload passes source JS, emitted Node, and seven-unit
 Node replay with every compared semantic field intact: three warmups followed
 by 20 measured battles and 309,060 measured callbacks. All replay inputs and
 outputs are committed under `fixtures/warm23-counter-capsule/`; the source gate
-is `validation/warm23-source-node.json`. This establishes the reference for the
-next native measurement, not a new native throughput result.
+is `validation/warm23-source-node.json`.
+
+The native Entity+TimSort candidate now passes that complete warmed report:
+20 measured battles in 90.508 seconds, **0.220975 battles/second**, with 309,060
+measured callbacks and zero unsupported sort fallbacks. It executes 230 Rust
+Entity updates and 10,236 Rust sorts across all 23 battles. Total wall time is
+178.320 seconds; the difference includes cold initialization, three warmups and
+final diagnostic reporting. This is an instrumented callback-only result,
+well below the target, and does not qualify whole-game fidelity. See
+`results/2026-10-27T20-51-34.120Z-native-warm23-entity.json`. The historical 2.123
+measurement above uses a different diagnostic configuration and is not a
+matched baseline for this candidate.
 
 Archived ordered traces can be checked with
 `node tools/check-archived-native-trace.mjs reference.stdout.gz candidate.stdout.gz metadata.json gate.json`.
