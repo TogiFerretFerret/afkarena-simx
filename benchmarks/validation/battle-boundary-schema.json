@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "passed": true,
+  "tests": 8,
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "args": [
+    "--jitless",
+    "--test",
+    "--test-reporter=tap",
+    "tools/tests/battle-boundary-schema.test.mjs"
+  ],
+  "inputs": {
+    "tools/validate-battle-boundary-schema.mjs": "ab7ea12c6bf793c006884d59eda1d114746cf47a1011beeea6f7c6ede2207a80",
+    "tools/tests/battle-boundary-schema.test.mjs": "3013ba0dc25111821d556c92d3f19ed7ac431769df257248a781b99947428997",
+    "tools/prove-battle-boundary-schema.mjs": "ebaa94595cf43b21f98e686a94ff085e16b6ef6ee934dd902871f5210be034ae",
+    "tools/battle-boundary-state-trace.js": "80bd32a0f2b86775dd48aad8f322af10d9c8eb36fc744bf075d9ca621fc6c60d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
+  },
+  "outputs": {
+    "file": "benchmarks/validation/battle-boundary-schema.tests.txt",
+    "sha256": "e58d9e13293e03f252c9238f4ac4ab558da0ac8c05a6309d7edee9a3f9814079"
+  },
+  "scope": "Supplemental strict JSON-decoded typed-entry boundary trace schema and integrity tests. Requires selected roots, complete event discriminants/payloads, ordered frame and wrapper boundaries, full node references and hashes, unique typed fields, exact sixteen-digit f64 tags, sparse-vector markers and payload graph identities. Captured game fields are own enumerable string-keyed data fields; nested/prototype/nonenumerable/symbol-keyed game state and actor/effect/view lifecycle remain outside the trace contract. This does not qualify battle semantics or throughput; actual source/native archive validation remains a separate required gate.",
+  "actualBattleArchivesValidated": false,
+  "qualifiesFor10000Target": false
+}

@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: typed roots, literal reserved names, sparse f64 vectors, cyclic payloads and source exactly-once exceptions pass
+ok 1 - typed roots, literal reserved names, sparse f64 vectors, cyclic payloads and source exactly-once exceptions pass
+  ---
+  duration_ms: 6.680902
+  type: 'test'
+  ...
+# Subtest: state:true and missing selected roots fail even with matching state hashes
+ok 2 - state:true and missing selected roots fail even with matching state hashes
+  ---
+  duration_ms: 3.407905
+  type: 'test'
+  ...
+# Subtest: rehashing malformed f64 tags and duplicate field keys does not make them valid
+ok 3 - rehashing malformed f64 tags and duplicate field keys does not make them valid
+  ---
+  duration_ms: 2.444936
+  type: 'test'
+  ...
+# Subtest: event discriminants, sequence, frame boundaries and complete payload shape are strict
+ok 4 - event discriminants, sequence, frame boundaries and complete payload shape are strict
+  ---
+  duration_ms: 3.957166
+  type: 'test'
+  ...
+# Subtest: missing nodes, wrong node types, malformed reference vocabulary and cyclic raw objects fail
+ok 5 - missing nodes, wrong node types, malformed reference vocabulary and cyclic raw objects fail
+  ---
+  duration_ms: 2.210951
+  type: 'test'
+  ...
+# Subtest: payload graph cannot contain forward references, duplicate identities or duplicate literal keys
+ok 6 - payload graph cannot contain forward references, duplicate identities or duplicate literal keys
+  ---
+  duration_ms: 2.44118
+  type: 'test'
+  ...
+# Subtest: return/throw pairs and wrapper argument payloads cannot be silently dropped or forged
+ok 7 - return/throw pairs and wrapper argument payloads cannot be silently dropped or forged
+  ---
+  duration_ms: 2.663298
+  type: 'test'
+  ...
+# Subtest: old untyped dictionaries and orphan malformed nodes fail supplemental typed schema
+ok 8 - old untyped dictionaries and orphan malformed nodes fail supplemental typed schema
+  ---
+  duration_ms: 2.311288
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 110.005932

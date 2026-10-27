@@ -1,0 +1,16 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const root=resolve(import.meta.dirname,'..'),sha=value=>createHash('sha256').update(value).digest('hex');
+const profile=JSON.parse(await readFile(resolve(root,'config/source-oracle-runtime.json')));assert.equal(process.version,profile.node);assert.equal(process.versions.v8,profile.v8);
+const files=['tools/validate-battle-boundary-schema.mjs','tools/tests/battle-boundary-schema.test.mjs','tools/prove-battle-boundary-schema.mjs','tools/battle-boundary-state-trace.js','config/source-oracle-runtime.json'];
+const inputs={};for(const file of files)inputs[file]=sha(await readFile(resolve(root,file)));
+const args=[...profile.rawBitReferenceFlags,'--test','--test-reporter=tap','tools/tests/battle-boundary-schema.test.mjs'];
+const result=spawnSync(process.execPath,args,{cwd:root,encoding:'utf8',env:{...process.env,NODE_OPTIONS:''},maxBuffer:4*1024*1024});if(result.error)throw result.error;
+const raw=result.stdout+result.stderr;await writeFile(resolve(root,'benchmarks/validation/battle-boundary-schema.tests.txt'),raw);
+assert.equal(result.status,0,raw);assert.match(raw,/# tests 8\b/);assert.match(raw,/# pass 8\b/);assert.match(raw,/# fail 0\b/);
+for(const[file,expected]of Object.entries(inputs))assert.equal(sha(await readFile(resolve(root,file))),expected,'Changed test input '+file);
+const report={version:1,passed:true,tests:8,oracleProfile:profile,args,inputs,outputs:{file:'benchmarks/validation/battle-boundary-schema.tests.txt',sha256:sha(raw)},scope:'Supplemental strict JSON-decoded typed-entry boundary trace schema and integrity tests. Requires selected roots, complete event discriminants/payloads, ordered frame and wrapper boundaries, full node references and hashes, unique typed fields, exact sixteen-digit f64 tags, sparse-vector markers and payload graph identities. Captured game fields are own enumerable string-keyed data fields; nested/prototype/nonenumerable/symbol-keyed game state and actor/effect/view lifecycle remain outside the trace contract. This does not qualify battle semantics or throughput; actual source/native archive validation remains a separate required gate.',actualBattleArchivesValidated:false,qualifiesFor10000Target:false};
+await writeFile(resolve(root,'benchmarks/validation/battle-boundary-schema.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:true,tests:8,actualBattleArchivesValidated:false}));
