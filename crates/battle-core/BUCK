@@ -24,3 +24,11 @@ rust_binary(
     edition = "2024",
     deps = [":battle_core"],
 )
+
+rust_binary(
+    name = "entity_check",
+    srcs = ["examples/entity_check.rs"],
+    crate_root = "examples/entity_check.rs",
+    edition = "2024",
+    deps = [":battle_core"],
+)
