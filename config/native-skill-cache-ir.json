@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "source": {
+    "file": "src/srcmodule/game_ui_1.js",
+    "start": 4500415,
+    "end": 4501076,
+    "sha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c"
+  },
+  "registeredInCompilerConfiguration": false,
+  "enabledInNativeBattle": false,
+  "rust": {
+    "file": "tools/native-skill-cache-ir.rs",
+    "sha256": "6093dda44f055b81452865aa64371b8992f7513310f67f4203ad9bdc32a51c32",
+    "cacheCapacity": 64
+  },
+  "admission": [
+    "Original parser function source hash and generated-C source metadata identify exactly one body; preserve original function object, closure, name, length, toString and property descriptors.",
+    "Input is non-Proxy ordinary JSArray with own primitive-String indexed data slots and exact own length,1..512tokens. Check all preconditions without JS callbacks, getters or coercions before source effects.",
+    "Global Array, parseInt, isNaN and isFinite are original intrinsic ordinary own data properties; original Array.isArray and intrinsic literal-array prototype push are unchanged own data functions. Guard using VM descriptors and intrinsic identities.",
+    "Every mode is nonempty ASCII lowercase/underscore; every mode has at least one pair; every numeric token has1..9ASCIIdecimaldigits. Other grammar falls back to original, preserving warnings and exceptions.",
+    "Intrinsic object-literal prototype has null prototype and no own mode key, including accessors. Never invoke inherited getters during admission.",
+    "IR key is the complete exact token vector. Cache holds only immutable mode-token indices and u32 numeric range values, not any source VM object or materialized result."
+  ],
+  "sourceProof": [
+    "For the admitted grammar parseInt returns an exactly representable nonnegative integer, isNaN is false and isFinite is true; no primitive coercion callback or warning executes.",
+    "A nonnumeric mode token is carried as a primitive string; mode absence on intrinsic Object prototype proves t[mode] initially undefined and removes inherited getters/setters or truthy collision behavior.",
+    "Each first encountered mode allocates one fresh ordinary range-list array; each range allocates a fresh pair array; source insertion order and repeated-mode list aliasing are retained.",
+    "Retain caller split and its fresh input array allocation, all source table reads, getBattleId calls and raw membrane get counters; lowering only the public parser body must not lift the outer helper call or perform setup table reads.",
+    "Public parser output escapes and is mutable. Never memoize or return a cached JS object; materialize fresh result, mode-list and pair arrays on every successful call using GC-aware original VM allocation/writes.",
+    "All numeric outputs fit u32 and are <=999999999; conversion to f64 is exact including positive zero. No integer narrowing is applied to general game arithmetic."
+  ],
+  "validation": {
+    "command": "node tools/check-skill-cache-ir.mjs",
+    "report": "benchmarks/validation/skill-cache-ir.json",
+    "cases": 22032,
+    "comparison": "Exact source output descriptor/alias graph and f64 bits, warnings/getters/coercions/Proxy traps, exceptions and input mutations; output mutation between cache reuses."
+  },
+  "nextIntegration": "Implement only as an opt-in original-source-identified generated-C body trampoline plus VM-kind/intrinsic guards and fresh GC-aware materializer. Re-run actual native isolated probe, then complete raw battle/trace gate; no current compiler registration.",
+  "qualifiesFor10000Target": false
+}
