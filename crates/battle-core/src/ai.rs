@@ -170,6 +170,11 @@ pub fn check_trigger<H:SkillHooks>(state:&mut SkillSelection,hooks:&mut H)->Opti
 pub struct StageRect{pub min_x:f64,pub max_x:f64,pub min_y:f64,pub max_y:f64}
 #[derive(Clone, Copy, Debug)]
 pub enum WalkArgument{Unit(usize),Vector(usize)}
+#[derive(Clone, Copy, Debug)]
+pub enum WalkDestination{Vector(usize),Point([f64;2])}
+impl WalkDestination{
+    pub fn values(self,world:&MovementWorld)->[f64;2]{match self{Self::Vector(id)=>world.ai.vectors[id],Self::Point(values)=>values}}
+}
 #[derive(Clone, Debug)]
 pub struct MovementWorld{
     pub ai:AiWorld,
@@ -187,9 +192,9 @@ pub trait MovementHooks{
     fn is_mode_turnbased(&mut self,world:&mut MovementWorld)->bool;
     fn target_in_basic_range(&mut self,world:&mut MovementWorld,target:usize)->bool;
     fn is_out_of_stage(&mut self,world:&mut MovementWorld)->bool;
-    /// The original Unit.walkTowards reads its argument's elements and does not
-    /// retain or mutate the argument array; this value interface relies on that.
-    fn walk_towards(&mut self,world:&mut MovementWorld,destination:[f64;2]);
+    /// Input-vector identities remain stable through nested callbacks. Point is
+    /// a fresh source array; an override that retains it must materialize identity.
+    fn walk_towards(&mut self,world:&mut MovementWorld,destination:WalkDestination);
 }
 #[inline]
 fn js_max(a:f64,b:f64)->f64{
@@ -210,7 +215,7 @@ pub fn walk_away_from<H:MovementHooks>(world:&mut MovementWorld,target:usize,hoo
     let position=world.ai.vectors[world.ai.units[owner].position];
     let other=world.ai.vectors[world.ai.units[target].position];
     let x=if position[0]>=other[0]{1.0}else{-1.0};
-    hooks.walk_towards(world,[position[0]+x,position[1]+0.0]);
+    hooks.walk_towards(world,WalkDestination::Point([position[0]+x,position[1]+0.0]));
 }
 
 pub fn walk_to<H:MovementHooks>(world:&mut MovementWorld,argument:WalkArgument,hooks:&mut H){
@@ -229,7 +234,7 @@ pub fn walk_to<H:MovementHooks>(world:&mut MovementWorld,argument:WalkArgument,h
         },
         WalkArgument::Vector(id)=>(None,Some(id),world.ai.vectors[id]),
     };
-    if world.force_destination.is_some()||world.destination.is_some(){hooks.walk_towards(world,destination);return;}
+    if world.force_destination.is_some()||world.destination.is_some(){hooks.walk_towards(world,borrowed.map(WalkDestination::Vector).unwrap_or(WalkDestination::Point(destination)));return;}
     let rect=hooks.stage_rect(world,world.turnbased);
     if let Some(id)=borrowed{destination=world.ai.vectors[id];}
     // Argument vectors are clamped in place in the source. Unit positions are
@@ -245,8 +250,7 @@ pub fn walk_to<H:MovementHooks>(world:&mut MovementWorld,argument:WalkArgument,h
         unit.is_some_and(|target|hooks.target_in_basic_range(world,target))
     }else{distance<=world.attack_range*world.attack_range};
     if in_range&&!hooks.is_out_of_stage(world){hooks.idle(world);return;}
-    if let Some(id)=borrowed{destination=world.ai.vectors[id];}
-    hooks.walk_towards(world,destination);
+    hooks.walk_towards(world,borrowed.map(WalkDestination::Vector).unwrap_or(WalkDestination::Point(destination)));
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]

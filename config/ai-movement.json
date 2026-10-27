@@ -17,7 +17,7 @@
   "domain": [
     "Plain Number-valued vectors and boolean state flags",
     "Input vector references are clamped in place; object positions are copied before rectangle adjustment",
-    "walkTowards hook reads values as the original Unit.walkTowards does and cannot retain the temporary unit-point identity",
+    "walkTowards receives a stable vector handle or fresh owned point, preserving alias identity through nested callbacks",
     "Explicit source Math.min/max signed-zero handling; no hypot or distance regrouping"
   ],
   "formalProof": false
