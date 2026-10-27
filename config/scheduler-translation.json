@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_battle.js",
+  "sourceName": "ed.BattleEngine.tick",
+  "start": 235523,
+  "end": 237381,
+  "sha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+  "translation": "live_entity_list_loop_projection",
+  "formalProof": false,
+  "domain": [
+    "All initial entity IDs, list IDs and group references are valid",
+    "Lists are dense mutable arrays and may alias through multiple group references",
+    "Each entity executes at most one configured action, on its first nonfrozen update",
+    "Actions append, splice, replace a group list reference, terminate, freeze, unfreeze, pop or clear",
+    "Splice indices are nonnegative; out-of-range splice is a no-op",
+    "Source full tick executes with unrelated timing, weather, rage, push and battle-end dependencies stubbed",
+    "Fixtures isolate entity-list dispatch, cached list references, live length reloads, stable filtering and list identity; they do not validate full battle execution"
+  ],
+  "protocol": "N L G; N frozen terminated pairs; N kind a b action triples; L length+entityIDs lists; G group listIDs",
+  "actions": {
+    "0": "none",
+    "1": "append list a entity b",
+    "2": "splice list a at nonnegative index b",
+    "3": "replace group a with existing list b",
+    "4": "terminate entity a",
+    "5": "freeze entity a",
+    "6": "unfreeze entity a",
+    "7": "pop list a",
+    "8": "clear list a"
+  },
+  "outputFields": [
+    "updates",
+    "groups",
+    "lists",
+    "entities",
+    "frames"
+  ],
+  "frames": {
+    "kind": [
+      "before_update",
+      "after_update",
+      "filter"
+    ],
+    "id": "entityID for update frames; groupIndex for filter",
+    "state": [
+      "groups",
+      "lists",
+      "entities"
+    ],
+    "filter": "Only fresh array assignments register filtered list identities; group replacement using an existing array does not emit filter"
+  }
+}
