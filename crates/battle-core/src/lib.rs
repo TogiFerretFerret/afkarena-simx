@@ -12,3 +12,4 @@ pub mod buff;
 pub mod js_math;
 pub mod config;
 pub mod damage;
+pub mod ffi;
