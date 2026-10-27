@@ -53,6 +53,15 @@ export function comparePortableBattleTraces(expected,actual){
  for(const [side,trace] of [['reference',expected],['candidate',actual]]){
   if(trace?.version!==1||trace.status!=='completed'||!Array.isArray(trace.events)||trace.events.at(-1)?.kind!=='battle:completed')
    return{passed:false,difference:{side,reason:'unfinished_or_invalid_trace'},qualifiesForThroughputTarget:false};
+  if(trace.graphHash!==null&&trace.graphHash!==undefined&&trace.graphHash!=='sha256-merkle-v1')
+   return{passed:false,difference:{side,reason:'unsupported_hash_protocol'},qualifiesForThroughputTarget:false};
+  for(let sequence=0;sequence<trace.events.length;sequence++){
+   const event=trace.events[sequence];
+   const compact=trace.graphHash==='sha256-merkle-v1';
+   const valid=compact?/^[0-9a-f]{64}$/.test(event?.stateHash??''):
+    event?.graph?.version===3&&Array.isArray(event.graph.roots)&&Array.isArray(event.graph.nodes)&&Array.isArray(event.graph.codeTable)&&event.graph.coverage&&Array.isArray(event.graph.coverage.opaque);
+   if(!valid)return{passed:false,difference:{side,sequence,reason:'missing_or_invalid_state_capture'},qualifiesForThroughputTarget:false};
+  }
  }
  const count=Math.max(expected.events.length,actual.events.length);
  for(let i=0;i<count;i++){
