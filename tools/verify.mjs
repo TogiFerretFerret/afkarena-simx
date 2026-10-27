@@ -29,10 +29,13 @@ run('rustc',['--edition=2024','--test','crates/battle-core/src/lib.rs','-o','wor
 run(resolve(root,'work/core-tests'),[]);
 run(process.execPath,['tools/bootstrap-check.mjs']);
 const targets=['root//crates/battle-core:numeric_check','root//crates/battle-core:rng_check',
-  'root//crates/battle-core:entity_check','root//crates/battle-core:scheduler_check'];
+  'root//crates/battle-core:entity_check','root//crates/battle-core:scheduler_check',
+  'root//crates/battle-core:clock_check','root//crates/battle-core:engine_check'];
 const artifacts=JSON.parse(run(buck,['build',...targets,'--show-json-output'],true));
 run(process.execPath,['tools/check-numeric.mjs',artifacts[targets[0]]]);
 run(process.execPath,['tools/check-rng.mjs',artifacts[targets[1]]]);
 run(process.execPath,['tools/check-entity.mjs',artifacts[targets[2]],'--strict-bits']);
 run(process.execPath,['tools/check-scheduler.mjs',artifacts[targets[3]]]);
+run(process.execPath,['tools/check-clock.mjs',artifacts[targets[4]],'--strict-bits']);
+run(process.execPath,['tools/check-engine.mjs',artifacts[targets[5]]]);
 console.log('Verification passed. Full battle execution and battle equivalence are not implemented yet.');
