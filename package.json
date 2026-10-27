@@ -9,6 +9,7 @@
     "check:generated": "node tools/lower-numeric.mjs --check && node tools/generate-rng.mjs --check",
     "generate:rng": "node tools/generate-rng.mjs",
     "verify": "node tools/verify.mjs",
+    "verify:components": "node tools/verify-components.mjs",
     "benchmark:battles": "node tools/benchmark-battles.mjs"
   },
   "repository": {
