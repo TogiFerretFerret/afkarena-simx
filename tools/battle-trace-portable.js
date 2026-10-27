@@ -10,8 +10,8 @@
     var prototypeOf = Object.getPrototypeOf;
     var functionText = Function.prototype.toString;
     function apply(fn, receiver, args) { return Reflect.apply(fn, receiver, args); }
+    var data = new DataView(new ArrayBuffer(8));
     function bits(value) {
-        var data = new DataView(new ArrayBuffer(8));
         data.setFloat64(0, value, false);
         return data.getUint32(0, false).toString(16).padStart(8, "0") + data.getUint32(4, false).toString(16).padStart(8, "0");
     }
@@ -209,7 +209,7 @@
     // JSON's lossy NaN/-0 conversion. This is a diagnostic path, never a timer.
     host.installPortableBattleTrace = function installPortableBattleTrace(options) {
         options = options || {};
-        var capture = host.installGraphCapture(options), events = [], finished = false, canonicalCode=[];
+        var capture = host.installGraphCapture(options), events = [], finished = false, canonicalCode=[], codeHashes=[], nodeHashes=new Map();
         var maxEvents = options.maxEvents === undefined ? 1000000 : options.maxEvents;
         return {
             capture: capture,
@@ -223,11 +223,23 @@
                     while(canonicalCode.length<graph.codeTable.length){
                         var entry=graph.codeTable[canonicalCode.length];
                         canonicalCode.push(entry.kind==='source'?{kind:'source',sha256:host.portableTraceSha256(entry.source)}:entry);
+                        codeHashes.push(host.portableTraceSha256(JSON.stringify(canonicalCode[canonicalCode.length-1])));
                     }
-                    event.stateHash=host.portableTraceSha256(JSON.stringify({version:graph.version,roots:graph.roots,nodes:graph.nodes,codeTable:canonicalCode,
-                        coverage:{accessorsInvoked:graph.coverage.accessorsInvoked,functionPolicy:graph.coverage.functionPolicy,opaque:graph.coverage.opaque}}));
+                    var orderedHashes=[];
+                    for(var ni=0;ni<graph.nodes.length;ni++){
+                        var node=graph.nodes[ni],text=JSON.stringify(node),cached=nodeHashes.get(node.id);
+                        if(!cached||cached.text!==text){cached={text:text,hash:host.portableTraceSha256(text)};nodeHashes.set(node.id,cached);}
+                        orderedHashes.push([node.id,cached.hash]);
+                    }
+                    // Exact Merkle coverage: every node byte and its traversal
+                    // order are covered. Reuse needs equality of the complete
+                    // serialization; no mutable field is assumed invariant.
+                    event.stateHash=host.portableTraceSha256(JSON.stringify(['portable-graph-merkle-v1',graph.version,graph.roots,orderedHashes,codeHashes,
+                        {accessorsInvoked:graph.coverage.accessorsInvoked,functionPolicy:graph.coverage.functionPolicy,opaque:graph.coverage.opaque}]));
                 }else event.graph=graph;
                 events.push(event);
+                if(options.onProgress&&events.length%(options.progressInterval||100)===0)
+                    options.onProgress({events:events.length,kind:kind,frame:payload&&payload.frame,nodes:graph.nodes.length,codeEntries:graph.codeTable.length});
                 return event;
             },
             finish: function (summary) {
@@ -236,7 +248,7 @@
                     throw new Error("Only a terminated source battle can complete a trace");
                 this.record("battle:completed", summary, {});
                 finished = true;
-                return { version: 1, status: "completed", events: events, qualifiesForThroughputTarget: false };
+                return { version: 1, status: "completed", graphHash:options.compact?'sha256-merkle-v1':null,events: events, qualifiesForThroughputTarget: false };
             }
         };
     };

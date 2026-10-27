@@ -24,7 +24,11 @@ export function canonicalPortableGraph(graph){
  });
  return{version:graph.version,roots:graph.roots,nodes:graph.nodes,codeTable,coverage:{accessorsInvoked:graph.coverage.accessorsInvoked,functionPolicy:graph.coverage.functionPolicy,opaque:graph.coverage.opaque}};
 }
-export function portableGraphHash(graph){return hash(JSON.stringify(canonicalPortableGraph(graph)));}
+export function portableGraphHash(graph){
+ const canonical=canonicalPortableGraph(graph);
+ return hash(JSON.stringify(['portable-graph-merkle-v1',canonical.version,canonical.roots,
+  canonical.nodes.map(node=>[node.id,hash(JSON.stringify(node))]),canonical.codeTable.map(entry=>hash(JSON.stringify(entry))),canonical.coverage]));
+}
 export function firstPortableGraphDifference(expected,actual){
  const a=canonicalPortableGraph(expected),b=canonicalPortableGraph(actual);
  function visit(left,right,path){
@@ -55,6 +59,8 @@ export function comparePortableBattleTraces(expected,actual){
   if(!left||!right||left.sequence!==i||right.sequence!==i||left.kind!==right.kind)
    return{passed:false,difference:{sequence:i,reason:'event_order_or_count',expected:left?.kind,actual:right?.kind},qualifiesForThroughputTarget:false};
   if(left.stateHash!==undefined||right.stateHash!==undefined){
+   if(expected.graphHash!=='sha256-merkle-v1'||actual.graphHash!=='sha256-merkle-v1')
+    return{passed:false,difference:{sequence:i,reason:'unsupported_hash_protocol'},qualifiesForThroughputTarget:false};
    if(!/^[0-9a-f]{64}$/.test(left.stateHash??'')||left.stateHash!==right.stateHash)
     return{passed:false,difference:{sequence:i,kind:left.kind,reason:'state_hash',expected:left.stateHash,actual:right.stateHash},qualifiesForThroughputTarget:false};
    continue;
