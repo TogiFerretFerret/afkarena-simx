@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Existing independently qualified Entity and installed sort native probes rerun against combined Entity+sort+SHA DSO; exact original canonical report hashes. Not full battle qualification or throughput.",
+  "qualifiesFor10000Target": false,
+  "privateVMSha256": "e712ce3cfe91ac557fe8486bd51c24a0add591214ea01048307b1ad47a5242b6",
+  "replayToolSha256": "2d241b81e78e76ec93746e9487d0511d430cb6019b034a0ebab5cd076f0c8456",
+  "results": [
+    {
+      "name": "entity",
+      "binarySha256": "f559884d2f7e3f52b74fab02f5c481c2ba69f0009e75d1539235e06c052b3f6b",
+      "proof": "benchmarks/validation/native-entity-update.json",
+      "proofSha256": "917731f6ecf613946bafb2c723fb2209df8f4556689cd753cb75b33257577757",
+      "canonicalOutputSha256": "42835a0ecdafb770fa804803418447955d510dc78de73b52302c812694b99ac4",
+      "expectedOutputSha256": "42835a0ecdafb770fa804803418447955d510dc78de73b52302c812694b99ac4",
+      "archive": "benchmarks/validation/native-entity-sort-host-entity.stdout.json.gz",
+      "archiveSha256": "093a9fdff4df59b96bebcccf52fe63fd155cf5c878987775ef184104ae4f1065",
+      "stderr": "entity_hits:39919\n",
+      "loadedCombinedPrivateVM": true
+    },
+    {
+      "name": "sort",
+      "binarySha256": "f79a1c634fe6e94069eea4772edb8d5efa2894f7a96e1e7fc83b2017481f69ca",
+      "proof": "benchmarks/validation/native-sort-host.json",
+      "proofSha256": "5bbdba04f3775c1af88fe1054a51bf9efb2df13292deabbe39678c21f080f21a",
+      "canonicalOutputSha256": "ba6b279c063934c8361d3f1a08683e19500cc76010eecfb40f16c46b24db2a8e",
+      "expectedOutputSha256": "ba6b279c063934c8361d3f1a08683e19500cc76010eecfb40f16c46b24db2a8e",
+      "archive": "benchmarks/validation/native-entity-sort-host-sort.stdout.json.gz",
+      "archiveSha256": "7f6fe66ecee9890a27ac4980371b846a87f10f77f94ffa81d5e1057701b01ac1",
+      "stderr": "gc_cycles:668\nsort_hits:5542\nsort_calls:10553\nsort_fallbacks:11\nsort_default_strings:5000\n",
+      "loadedCombinedPrivateVM": true
+    }
+  ]
+}
