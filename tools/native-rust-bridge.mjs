@@ -48,10 +48,10 @@ static SHLegacyValue ${saved}(SHRuntime *shr) {`;
   return {source:source.slice(0,match.index)+wrapper+source.slice(match.index+match[0].length),index,symbol,operatorIds,guard};
 }
 
-export function addBridgeCounterMain(source){
+export function addBridgeCounterMain(source,{copy=false}={}){
   assert.ok(source.includes('int main(int argc, char **argv) {')||source.includes('int main(int argc,char **argv) {'),'Missing known native main signature');
   source=source.replace(/int main\(int argc,\s*char \*\*argv\) \{/,'int simx_original_main(int argc,char **argv) {');
-  return source+'\n#include <stdio.h>\nextern size_t battle_compare_float_hits(void);\nextern size_t battle_vector_hits(unsigned);\nint main(int argc,char **argv){int result=simx_original_main(argc,argv);fprintf(stderr,"bridge_hits:%zu\\nvector_hits:%zu,%zu,%zu,%zu\\n",battle_compare_float_hits(),battle_vector_hits(0),battle_vector_hits(1),battle_vector_hits(2),battle_vector_hits(3));return result;}\n';
+  return source+'\n#include <stdio.h>\nextern size_t battle_compare_float_hits(void);\nextern size_t battle_vector_hits(unsigned);\nint main(int argc,char **argv){int result=simx_original_main(argc,argv);fprintf(stderr,"bridge_hits:%zu\\nvector_hits:%zu,%zu,%zu,%zu\\n",battle_compare_float_hits(),battle_vector_hits(0),battle_vector_hits(1),battle_vector_hits(2),battle_vector_hits(3));'+(copy?'fprintf(stderr,"copy_hits:%zu\\n",simx_copy_hits);':'')+'return result;}\n';
 }
 
 export async function patchScalarVectorsC(source,poolDirectory,kernels){
@@ -80,9 +80,33 @@ static SHLegacyValue ${symbol}(SHRuntime *shr) {
   }
   return ${saved}(shr);
 }
+
 static SHLegacyValue ${saved}(SHRuntime *shr) {`;
     source=source.slice(0,match.index)+wrapper+source.slice(match.index+match[0].length);
     patched.push({name:kernel.name,index,symbol,rust});
   }
   return{source,patched};
+}
+
+export async function patchFlatNumericCopyC(source,poolDirectory,original){
+  const ascii=await readFile(resolve(poolDirectory,'s_ascii_pool.bin'));
+  const entries=await readFile(resolve(poolDirectory,'s_strings.bin'));
+  const string=index=>{const offset=entries.readUInt32LE(index*12),length=entries.readUInt32LE(index*12+4);return offset&0x80000000?null:ascii.subarray(offset,offset+length).toString('utf8');};
+  const table=/static SHNativeFuncInfo s_function_info_table\[\] = \{([\s\S]*?)\n\};/.exec(source);assert.ok(table);
+  const candidates=[];
+  table[1].trim().split('\n').forEach((row,index)=>{const id=Number(/source_index_plus_one = (\d+)/.exec(row)[1]);if(id&&string(id-1)===original)candidates.push(index);});
+  assert.equal(candidates.length,1,'Flat numeric clone requires exactly one original source function');
+  const index=candidates[0],signature=new RegExp('static SHLegacyValue (_'+index+'_[A-Za-z0-9_]*)\\(SHRuntime \\*shr\\) \\{'),match=signature.exec(source);assert.ok(match);
+  const symbol=match[1],saved='simx_original_'+index;
+  const wrapper=`extern SHLegacyValue simx_flat_numeric_copy(SHRuntime *,SHLegacyValue);
+static size_t simx_copy_hits=0;
+static SHLegacyValue ${saved}(SHRuntime *shr);
+static SHLegacyValue ${symbol}(SHRuntime *shr) {
+  _SH_MODEL();_sh_check_native_stack_overflow(shr);
+  SHLegacyValue value=simx_flat_numeric_copy(shr,_sh_ljs_param(shr->stackPointer,1));
+  if(!_sh_ljs_is_undefined(value)){simx_copy_hits++;return value;}
+  return ${saved}(shr);
+}
+static SHLegacyValue ${saved}(SHRuntime *shr) {`;
+  return{source:source.slice(0,match.index)+wrapper+source.slice(match.index+match[0].length),index,symbol};
 }

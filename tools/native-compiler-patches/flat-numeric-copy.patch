@@ -1,0 +1,87 @@
+--- a/lib/VM/JSLib/Object.cpp
++++ b/lib/VM/JSLib/Object.cpp
+@@ -18,6 +18,8 @@
+ #include "hermes/VM/PrimitiveBox.h"
+ #include "hermes/VM/PropertyAccessor.h"
+ #include "hermes/VM/StringBuilder.h"
++#include "hermes/VM/StaticHUtils.h"
++#include <cmath>
+ 
+ namespace hermes {
+ namespace vm {
+@@ -25,6 +27,75 @@
+ //===----------------------------------------------------------------------===//
+ /// Object.
+ 
++// This entry point performs no observable JS operation until all guards pass.
++// undefined means "execute original source", never an approximate clone.
++extern "C" SHERMES_EXPORT SHLegacyValue simx_flat_numeric_copy(
++    SHRuntime *shr, SHLegacyValue input) {
++  Runtime &runtime = getRuntime(shr);
++  auto value = HermesValue::fromRaw(input.raw);
++  auto fallback = HermesValue::encodeUndefinedValue();
++  auto result = [&](HermesValue v) { return SHLegacyValue{v.getRaw()}; };
++  if (!value.isObject() || vmcast<JSObject>(value)->getKind() != CellKind::JSObjectKind)
++    return result(fallback);
++  auto *object = vmcast<JSObject>(value);
++  auto *clazz = object->getClass(runtime);
++  if (clazz->isDictionary() || clazz->hasIndexedStorage() ||
++      !object->isExtensible(runtime) ||
++      object->getParent(runtime) != runtime.objectPrototype.get() ||
++      runtime.objectPrototype->getParent(runtime) != nullptr)
++    return result(fallback);
++  auto ownData = [&](JSObject *o, SymbolID key, PinnedHermesValue &v) {
++    if (o->isProxyObject(runtime) || o->isHostObject(runtime)) return false;
++    NamedPropertyDescriptor d;
++    auto found = JSObject::tryGetOwnNamedDescriptorFast(o, runtime, key, d);
++    if (!found.hasValue() || !found.getValue() || d.flags.accessor) return false;
++    v = JSObject::getNamedSlotValueUnsafe(o, runtime, d).unboxToHV(runtime);
++    return true;
++  };
++  PinnedHermesValue constructor, keys, inheritedConstructor;
++  if (!ownData(runtime.getGlobal().get(),
++               Predefined::getSymbolID(Predefined::Object), constructor) ||
++      constructor.getRaw() != runtime.objectConstructor.getHermesValue().getRaw() ||
++      !vmisa<NativeFunction>(constructor) ||
++      vmcast<NativeFunction>(constructor)->getFunctionPtr() != objectConstructor ||
++      !ownData(vmcast<JSObject>(constructor),
++               Predefined::getSymbolID(Predefined::keys), keys) ||
++      !vmisa<NativeFunction>(keys) ||
++      vmcast<NativeFunction>(keys)->getFunctionPtr() != objectKeys ||
++      !ownData(runtime.objectPrototype.get(),
++               Predefined::getSymbolID(Predefined::constructor), inheritedConstructor) ||
++      inheritedConstructor.getRaw() != constructor.getRaw())
++    return result(fallback);
++  bool eligible = true;
++  HiddenClass::forEachPropertyNoAlloc(clazz, runtime,
++      [&](SymbolID key, NamedPropertyDescriptor d) {
++    if (!eligible) return;
++    NamedPropertyDescriptor inherited;
++    auto found = JSObject::tryGetOwnNamedDescriptorFast(
++        runtime.objectPrototype.get(), runtime, key, inherited);
++    if (!key.isUniqued() || !found.hasValue() || found.getValue() ||
++        d.flags.accessor || !d.flags.writable || !d.flags.enumerable ||
++        !d.flags.configurable) { eligible = false; return; }
++    auto number = JSObject::getNamedSlotValueUnsafe(object, runtime, d).unboxToHV(runtime);
++    eligible = number.isNumber() && std::isfinite(number.getNumber());
++  });
++  if (!eligible) return result(fallback);
++  // Source Object.keys order is the same for ordinary non-indexed hidden classes.
++  // Root both source and class BEFORE allocation; GC can move either.
++  struct : public Locals { PinnedValue<JSObject> source, target; PinnedValue<HiddenClass> shape; } lv;
++  LocalsRAII lraii(runtime, &lv);
++  lv.source = object;
++  lv.shape = clazz;
++  lv.target = JSObject::create(runtime, runtime.objectPrototype,
++                             Handle<HiddenClass>::vmcast(&lv.shape));
++  HiddenClass::forEachPropertyNoAlloc(lv.shape.get(), runtime,
++      [&](SymbolID, NamedPropertyDescriptor d) {
++    JSObject::setNamedSlotValueUnsafe(lv.target.get(), runtime, d,
++        JSObject::getNamedSlotValueUnsafe(lv.source.get(), runtime, d));
++  });
++  return result(lv.target.getHermesValue());
++}
++
+ HermesValue createObjectConstructor(Runtime &runtime) {
+   assert(runtime.objectPrototype.get() != nullptr);
+   auto objectPrototype = Handle<JSObject>::vmcast(&runtime.objectPrototype);

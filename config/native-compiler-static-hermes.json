@@ -53,7 +53,8 @@
     "config/native-compiler-literal-bits-patch.json",
     "config/native-compiler-floor-guard-patch.json",
     "config/native-compiler-vector-guard-patch.json",
-    "config/native-compiler-unit-init-patch.json"
+    "config/native-compiler-unit-init-patch.json",
+    "config/native-compiler-flat-copy-patch.json"
   ],
   "vendorManifests": [
     "config/native-compiler-v8-math.json"

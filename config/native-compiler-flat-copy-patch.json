@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "baseCommit": "4f1db42d71d0839254c7154fc8c282bcea466206",
+  "patch": "tools/native-compiler-patches/flat-numeric-copy.patch",
+  "sha256": "69093ecba01431062abf2256f535cde7dcf193d0dd682cdcb813abc8cd963968",
+  "purpose": "Guarded canonical VM flat finite numeric clone preserving fresh identity, key order and default descriptors; original source fallback before observable JS for all unsupported shapes. Opt-in trampoline, no duplicated mutable world.",
+  "files": [
+    {
+      "path": "lib/VM/JSLib/Object.cpp",
+      "originalSha256": "68821b3ac4c2bceb280ebfe37c11a9af759f85f6d2160fb1baccc009021b8cd2",
+      "patchedSha256": "c5e2efe77c221977b7229255158dcced21729800111dec13b1aa45f53b0d4c22"
+    }
+  ]
+}
