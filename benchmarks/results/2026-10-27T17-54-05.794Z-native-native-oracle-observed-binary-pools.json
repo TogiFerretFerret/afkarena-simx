@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "engine": "Static Hermes AOT original-source factories",
+  "input": "/workspace/afkarena-simx/work/native-oracle-observed.js",
+  "output": "/workspace/afkarena-simx/work/native-oracle-observed-binary-pools",
+  "inputSha256": "35a41bd22fecb88923353ecad3a59498845855d427587c9e3f7ffc73f840a4d1",
+  "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+  "compileArgs": [
+    "-O",
+    "-Wc,-O1,-g0,-ffp-contract=off",
+    "-keep-temp",
+    "/workspace/afkarena-simx/work/native-oracle-observed.js",
+    "-o",
+    "/workspace/afkarena-simx/work/native-oracle-observed-binary-pools"
+  ],
+  "compileMs": 70928.937803,
+  "executionWallMs": 12998.894142000005,
+  "binaryPools": true,
+  "stringPools": [
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-observed-binary-pools.string-pools/s_ascii_pool.bin",
+      "bytes": 2412945,
+      "sha256": "52517701814afd0f42ab1304a2cc5b18257f6f90131afb1d8fa13b26ac32539e"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-observed-binary-pools.string-pools/s_u16_pool.bin",
+      "bytes": 692524,
+      "sha256": "b4729f91e102d35190d5d6cc134abc65888969a48777d94733024c14fd884e57"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-observed-binary-pools.string-pools/s_strings.bin",
+      "bytes": 740916,
+      "sha256": "7cbcd723cd82dad1d92f270f55f87714d3d5e27a017305dd7c6a877fe445beee"
+    }
+  ],
+  "dependenciesAtStart": {
+    "completeAdapterManifest": false,
+    "current": false,
+    "checks": [
+      {
+        "file": "tools/bootstrap-runtime.mjs",
+        "expected": "97aafbb6c5496e65f31da10767659d03155f88265c77eb2207a4518ffea83c53",
+        "actual": "64a36f1b66d38deac11823190728181aea9178cecaec39dd2e1bca30d8c4f313",
+        "matched": false
+      },
+      {
+        "file": "tools/bootstrap-host.js",
+        "expected": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+        "actual": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+        "matched": true
+      },
+      {
+        "file": "tools/oracle-clock.js",
+        "expected": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+        "actual": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-tables.json",
+        "expected": "d9e47d92780a31d2e1e618c6af4052d40431f9fd3a07f6068480c963a01b7ab4",
+        "actual": "91dba76e4f840237264b782855193a71fd2ce1b45f6bb328e5f37fb474f9c1c1",
+        "matched": false
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-observed.js.host-inputs.json",
+        "expected": "dd43259a39f6010266cbf8d85a7e44ac5e8acef5c5d9ed4bc13f72e82eef8c5d",
+        "actual": "dd43259a39f6010266cbf8d85a7e44ac5e8acef5c5d9ed4bc13f72e82eef8c5d",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-observed.js.reference.json",
+        "expected": "3ee3c49843432214470cd8b82a77e79069bb6d38a40025616b5c282b9a2cf954",
+        "actual": "3ee3c49843432214470cd8b82a77e79069bb6d38a40025616b5c282b9a2cf954",
+        "matched": true
+      }
+    ]
+  },
+  "dependenciesAtFinish": {
+    "completeAdapterManifest": false,
+    "current": false,
+    "checks": [
+      {
+        "file": "tools/bootstrap-runtime.mjs",
+        "expected": "97aafbb6c5496e65f31da10767659d03155f88265c77eb2207a4518ffea83c53",
+        "actual": "64a36f1b66d38deac11823190728181aea9178cecaec39dd2e1bca30d8c4f313",
+        "matched": false
+      },
+      {
+        "file": "tools/bootstrap-host.js",
+        "expected": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+        "actual": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+        "matched": true
+      },
+      {
+        "file": "tools/oracle-clock.js",
+        "expected": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+        "actual": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-tables.json",
+        "expected": "d9e47d92780a31d2e1e618c6af4052d40431f9fd3a07f6068480c963a01b7ab4",
+        "actual": "91dba76e4f840237264b782855193a71fd2ce1b45f6bb328e5f37fb474f9c1c1",
+        "matched": false
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-observed.js.host-inputs.json",
+        "expected": "dd43259a39f6010266cbf8d85a7e44ac5e8acef5c5d9ed4bc13f72e82eef8c5d",
+        "actual": "dd43259a39f6010266cbf8d85a7e44ac5e8acef5c5d9ed4bc13f72e82eef8c5d",
+        "matched": true
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-oracle-observed.js.reference.json",
+        "expected": "3ee3c49843432214470cd8b82a77e79069bb6d38a40025616b5c282b9a2cf954",
+        "actual": "3ee3c49843432214470cd8b82a77e79069bb6d38a40025616b5c282b9a2cf954",
+        "matched": true
+      }
+    ]
+  },
+  "plumbing": true,
+  "scenario": {
+    "file": "/workspace/afkarena-simx/config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc",
+    "inputSha256": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a"
+  },
+  "completed": 1,
+  "elapsedMs": 3704,
+  "battlesPerSecond": 0.26997840172786175,
+  "finalStateMatched": true,
+  "firstDifference": null,
+  "hostInputConsumption": {
+    "random": 2,
+    "clock": {
+      "version": 1,
+      "mode": "replay",
+      "attempts": 260,
+      "consumed": 260,
+      "total": 260,
+      "remaining": 0,
+      "counts": {
+        "Date.now": 0,
+        "Date.construct": 260,
+        "Date.call": 0
+      },
+      "finished": true,
+      "restored": false,
+      "failure": null
+    }
+  },
+  "expectedHostInputs": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-observed.js.host-inputs.json",
+    "sha256": "dd43259a39f6010266cbf8d85a7e44ac5e8acef5c5d9ed4bc13f72e82eef8c5d",
+    "randomCount": 2,
+    "clockCount": 260
+  },
+  "fullStateCapture": true,
+  "qualifiesFor10000Target": false,
+  "qualification": "Single emitted fixture paired terminal state and source-host events; full ordered battle trace and broad corpus qualification are still required",
+  "reference": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-observed.js.reference.json",
+    "sha256": "3ee3c49843432214470cd8b82a77e79069bb6d38a40025616b5c282b9a2cf954"
+  },
+  "limitations": [
+    "Lazy symbol evaluation does not establish all original module side-effect order",
+    "Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter",
+    "Headless Linux device output is recorded; physical audio/render output is not produced",
+    "Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly"
+  ]
+}
