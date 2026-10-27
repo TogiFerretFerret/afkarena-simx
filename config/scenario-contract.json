@@ -3,7 +3,13 @@
   "factory": "tools/scenario-factory.mjs",
   "qualificationWorkload": {
     "heroesPerTeam": 5,
-    "positions": [1, 2, 3, 4, 5],
+    "positions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
     "selection": "Seeded random enabled source heroes, no duplicates in the ten-hero fixture; selection PRNG is independent of battle RNG",
     "level": 360,
     "quality": 15,
@@ -32,5 +38,18 @@
   },
   "defaultMode": "stage",
   "defaultBattleId": 16001,
-  "modeNote": "Mode and battleId are explicit inputs. stage uses original source stage rules; idle_pvp can add its original FieldNPC mechanics rather than suppressing them."
+  "modeNote": "Mode and battleId are explicit inputs. stage uses original source stage rules; idle_pvp can add its original FieldNPC mechanics rather than suppressing them.",
+  "qualificationV2": {
+    "factory": "createQualificationScenario",
+    "factoryVersion": 2,
+    "defaultHeroSelection": "independent-teams",
+    "withinTeamUnique": true,
+    "acrossTeamOverlapAllowed": true,
+    "beastSelection": "Independent seeded draws per team",
+    "targetedHeroSelections": [
+      "mirrored",
+      "reversed-mirror"
+    ],
+    "legacyCompatibility": "createRealisticScenario retains cross-distinct default and exact frozen seed2026 wire hash"
+  }
 }

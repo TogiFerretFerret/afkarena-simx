@@ -53,7 +53,17 @@ export async function createRealisticScenario(seed=2026,options={}){
   if(settings.petQuality!==10)throw new Error('This factory currently implements source mythic beasts (quality10)');
   const rank=Object.values(tables.UnitRankLevel).filter(row=>row.TargetLevel<=settings.heroLevel).sort((a,b)=>b.TargetLevel-a.TargetLevel)[0]?.Rank;
   if(rank!==20)throw new Error('Source level360 rank mapping changed');
-  const next=selector(seed),chosen=shuffled(heroes,next).slice(0,10);
+  const next=selector(seed),selection=settings.heroSelection??'cross-distinct';
+  let playerRows,enemyRows;
+  if(selection==='cross-distinct'){
+    // Preserve the original v1 selection and entropy consumption exactly.
+    const chosen=shuffled(heroes,next).slice(0,10);playerRows=chosen.slice(0,5);enemyRows=chosen.slice(5);
+  }else if(selection==='independent-teams'){
+    playerRows=shuffled(heroes,next).slice(0,5);enemyRows=shuffled(heroes,next).slice(0,5);
+  }else if(selection==='mirrored'||selection==='reversed-mirror'){
+    playerRows=shuffled(heroes,next).slice(0,5);enemyRows=playerRows.slice();
+    if(selection==='reversed-mirror')enemyRows.reverse();
+  }else throw new Error(`Unknown source hero selection: ${selection}`);
   function hero(row,index){
     const equips=[];
     for(let position=1;position<=4;position++){
@@ -73,12 +83,26 @@ export async function createRealisticScenario(seed=2026,options={}){
     });
     return{id,tid:row.ID,level:settings.petLevel,pentagram_lv:settings.petLevel,quality:settings.petQuality,talents};
   }
-  const players=chosen.slice(0,5).map((row,i)=>hero(row,i));
-  const enemies=chosen.slice(5).map((row,i)=>hero(row,i+5));
+  const players=playerRows.map((row,i)=>hero(row,i));
+  const enemies=enemyRows.map((row,i)=>hero(row,i+5));
   const config={mode:settings.mode,battle_id:settings.battleId,localBot:true,pets:{self_pets:[beast(1001)],oppo_pets:[beast(1002)]}};
   const input={version:1,scenarioSeed:seed,battleSeed:1+(seed%2147483646),settings,players,enemies,config,
     qualification:{teamSize:5,heroLevel:360,qualityLabel:'Ascended 5-star',quality:15,rank:20,signatureLevel:30,gearSlots:4,beastsPerTeam:1,timeout:'Original engine rules; no benchmark timeout substitution'},
     source:{heroPoolSize:heroes.length,petPoolSize:pets.length,tableDigests:{...tableDigests}}};
+  input.inputSha256=createHash('sha256').update(JSON.stringify(input)).digest('hex');
+  return input;
+}
+
+/** Qualification v2: independent legal teams permit the same hero on both sides.
+ * The legacy factory's default stays byte-for-byte stable for frozen v1 inputs.
+ * Targeted mirror variants retain independent source beast draws per team.
+ */
+export async function createQualificationScenario(seed=2026,options={}){
+  const heroSelection=options.heroSelection??'independent-teams';
+  const input=await createRealisticScenario(seed,{...options,heroSelection});
+  input.source.factoryVersion=2;
+  input.source.selectionPolicy={heroSelection,withinTeamUnique:true,acrossTeamOverlapAllowed:true,beasts:'independent-seeded-draw-per-team',selectionEntropy:'Factory xorshift32 only; original battle RNG consumption unchanged'};
+  delete input.inputSha256;
   input.inputSha256=createHash('sha256').update(JSON.stringify(input)).digest('hex');
   return input;
 }
