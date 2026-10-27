@@ -16,6 +16,13 @@ await mkdir(directory,{recursive:true});
 const baselineFile='benchmarks/results/2026-10-27T21-55-08.845Z-native-warm23-no-proxy.json',baseline=JSON.parse(await readFile(resolve(root,baselineFile)));
 assert.equal(baseline.semanticReportMatched,true);
 const manifest=JSON.parse(await readFile(resolve(root,baseline.sourceManifest.file))),metadata=JSON.parse(await readFile(manifest.input.file+'.metadata.json'));
+const dependencies=new Map();
+async function bind(file,expected){const actual=sha(await readFile(resolve(root,file)));if(expected!==undefined)assert.equal(actual,expected,'Changed frozen input '+file);dependencies.set(file,actual);}
+for(const [file,expected]of Object.entries({...metadata.adapterInputs,...metadata.sourceInputs}))await bind(file,expected);
+await bind(baselineFile);await bind(baseline.sourceManifest.file,baseline.sourceManifest.sha256);await bind(manifest.input.file,manifest.input.sha256);await bind(manifest.input.file+'.metadata.json',manifest.input.metadataSha256);
+for(const row of [metadata.hostInputs,metadata.tableBundle,metadata.reference])await bind(row.file,row.sha256);
+await bind(metadata.scenario.file,metadata.scenario.sha256);
+for(const file of ['tools/run-battle-boundary-source.mjs','tools/battle-boundary-state-trace.js','tools/battle-boundary-trace.mjs','config/source-oracle-runtime.json'])await bind(file);
 const allInputs=JSON.parse(await readFile(metadata.hostInputs.file));assert.equal(allInputs.clock.length,23*260);
 const tape={...allInputs,clock:allInputs.clock.slice(0,260)};
 await writeFile(resolve(directory,'host-inputs.json'),JSON.stringify(tape)+'\n');
@@ -44,6 +51,7 @@ await writeFile(resolve(directory,'source-untraced.json'),JSON.stringify(untrace
 const traced=await reference(true),withoutTrace={...traced};delete withoutTrace.trace;
 const difference=compareNativeReports(withoutTrace,untraced);
 await writeFile(resolve(directory,'source-traced.json'),JSON.stringify(traced)+'\n');
-const proof={version:1,passed:difference===null,scope:'Independent original-source runtime executes one entire frozen callback-only battle with and without new boundary tracing. Every terminal report field except timing is compared; trace is separately retained. This is not a full-program trace or a native differential result.',qualifiesFor10000Target:false,difference,completed:traced.completed,events:traced.trace.events.length,snapshots:traced.trace.snapshots.length,rootContract:traced.trace.rootContract,sourceHelper:{file:helperFile,sha256:sha(helper)},baseline:{file:baselineFile,sha256:sha(await readFile(resolve(root,baselineFile)))},oracleProfile:profile,hostInputs:{file:resolve(directory,'host-inputs.json'),sha256:sha(await readFile(resolve(directory,'host-inputs.json'))),clockCount:tape.clock.length,randomCount:tape.random.length},helpers:names.map((name,i)=>({name,sha256:sha(helpers[i])})),scenario:metadata.scenario,reports:{untraced:resolve(directory,'source-untraced.json'),traced:resolve(directory,'source-traced.json')}};
+const dependenciesAtFinish=[];for(const [file,expected]of dependencies){const actual=sha(await readFile(resolve(root,file)));dependenciesAtFinish.push({file,sha256:expected,matched:actual===expected});assert.equal(actual,expected,'Changed source trace input '+file);}
+const proof={version:1,passed:difference===null,scope:'Independent original-source runtime executes one entire frozen callback-only battle with and without new boundary tracing. Every terminal report field except timing is compared; trace is separately retained. This is not a full-program trace or a native differential result.',qualifiesFor10000Target:false,difference,completed:traced.completed,events:traced.trace.events.length,snapshots:traced.trace.snapshots.length,rootContract:traced.trace.rootContract,sourceHelper:{file:helperFile,sha256:sha(helper)},baseline:{file:baselineFile,sha256:sha(await readFile(resolve(root,baselineFile)))},oracleProfile:profile,dependenciesAtFinish,hostInputs:{file:resolve(directory,'host-inputs.json'),sha256:sha(await readFile(resolve(directory,'host-inputs.json'))),clockCount:tape.clock.length,randomCount:tape.random.length},helpers:names.map((name,i)=>({name,sha256:sha(helpers[i])})),scenario:metadata.scenario,reports:{untraced:resolve(directory,'source-untraced.json'),traced:resolve(directory,'source-traced.json')}};
 await writeFile(resolve(directory,'source-proof.json'),JSON.stringify(proof,null,2)+'\n');
 console.log(JSON.stringify(proof));assert.equal(difference,null,'Tracing changed a terminal source report field');

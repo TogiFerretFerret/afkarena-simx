@@ -30,14 +30,14 @@
    return out;
   }
   function primitiveState(object){
-   var out={};if(object===null||object===undefined)return intern(out);
+   var out={kind:'primitive-fields',entries:[]};if(object===null||object===undefined)return intern(out);
    var keys=Object.keys(object).sort();
    for(var i=0;i<keys.length;i++){
     var key=keys[i],d=Object.getOwnPropertyDescriptor(object,key);
     if(!d||!('value'in d))continue;
     var value=d.value;
-    if(value===null||typeof value!=='object'&&typeof value!=='function')out[key]=atom(value);
-    else{var vector=numericArray(value);if(vector!==null)out[key]=vector;}
+    if(value===null||typeof value!=='object'&&typeof value!=='function')out.entries.push([key,atom(value)]);
+    else{var vector=numericArray(value);if(vector!==null)out.entries.push([key,{kind:'numeric-vector',values:vector}]);}
    }
    return intern(out);
   }
@@ -63,12 +63,28 @@
    return{engine:primitiveState(engine),lists:lists,battleRng:atom(own(host,'random_seed')),
     initialBattleSeed:atom(own(ed,'init_battle_seed')),pendingCallbacks:ordered(own(ed,'clientCall_list'),identity),
     clientCallCount:atom(own(ed,'clientCallCount')),
-    classManagerCounters:runtime.classManagerObserver?runtime.classManagerObserver.snapshot():null};
+    classManagerCounters:runtime.classManagerObserver?primitiveState(runtime.classManagerObserver.snapshot()):null};
   }
   function payload(value){return atom(value);}
+  function payloadGraph(value){
+   var seen=new Map(),next=1;
+   function encode(item){
+    if(item===null||typeof item!=='object'&&typeof item!=='function')return atom(item);
+    if(typeof item==='function')return{kind:'function',identity:identity(item)};
+    if(seen.has(item))return{kind:'payload-ref',identity:seen.get(item)};
+    var id=next++;seen.set(item,id);var entries=[],keys=Reflect.ownKeys(item);
+    for(var i=0;i<keys.length;i++){
+     var key=keys[i],d=Object.getOwnPropertyDescriptor(item,key);
+     if(!d)throw new Error('Payload descriptor disappeared');
+     entries.push([typeof key==='symbol'?atom(key):key,'value'in d?encode(d.value):{kind:'accessor',get:identity(d.get),set:identity(d.set)}]);
+    }
+    return{kind:Array.isArray(item)?'payload-array':'payload-object',identity:id,entries:entries};
+   }
+   return encode(value);
+  }
   function record(kind,data){
    if(finished)throw new Error('Boundary trace already finished');
-   var state=capture(),event={sequence:events.length,kind:kind,frame:frame,payload:data||null,state:state,stateHash:digest(JSON.stringify(state))};
+   var state=capture(),event={sequence:events.length,kind:kind,frame:frame,payload:payloadGraph(data===undefined?null:data),state:state,stateHash:digest(JSON.stringify(state))};
    events.push(event);
    if(options.onProgress&&events.length%1000===0)options.onProgress({events:events.length,frame:frame,kind:kind});
   }
@@ -102,7 +118,7 @@
   if(options.subscribeClock){var restore=options.subscribeClock(function(entry,ordinal){record('host:clock',{ordinal:ordinal,entry:entry});});if(restore)restores.push(restore);}
   return{record:record,captureState:capture,beginFrame:function(){frame++;record('frame:before',null);},endFrame:function(){record('frame:after',null);},
    stop:function(summary){record('battle:completed',summary);finished=true;for(var i=restores.length-1;i>=0;i--)restores[i]();return{version:1,status:'completed',rootContract:'primitive-vector-battle-boundaries-v1',graphHash:'sha256-interned-state-json-v1',events:events,snapshots:snapshots,qualifiesFor10000Target:false,
-    limitations:['Not a whole-program graph: nested objects, prototype state, function code/closures, shared-object aliases outside selected roots and weak contents are omitted','Only own primitive fields, numeric vectors and selected ordered engine/unit/skill/buff lists are captured','Own data-descriptor reads do not invoke ordinary getters; reflective inspection of an unknown Proxy can invoke traps and is outside the supported fixture domain','Actor/effect/view lifecycle remains outside this callback-only adapter']};}
+    limitations:['Not a whole-program graph: nested objects, prototype state, function code/closures, shared-object aliases outside selected roots and weak contents are omitted','Selected state includes only own enumerable string-keyed primitive fields, numeric vectors and selected ordered engine/unit/skill/buff lists; field names are encoded as entry data and cannot collide with snapshot reference tags','Own data-descriptor reads do not invoke ordinary getters; reflective inspection of an unknown Proxy can invoke traps and is outside the supported fixture domain','Payload object graphs are separately descriptor-encoded with numeric bits, accessor identities and per-payload aliases; source object arguments use stable identity tokens','Actor/effect/view lifecycle remains outside this callback-only adapter']};}
   };
  };
 })(globalThis);
