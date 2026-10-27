@@ -76,6 +76,11 @@
         audioEnabled: true,
         platform: "headless-linux-device-output",
         events: events,
-        audioState: function () { return { nextAudioId: nextAudioId, effects: effects, music: music, effectVolume: effectVolume, musicVolume: musicVolume }; }
+        audioState: function () { return { nextAudioId: nextAudioId, effects: effects, music: music, effectVolume: effectVolume, musicVolume: musicVolume }; },
+        snapshotState: function () {
+            return { nextAudioId: nextAudioId, effects: effects, music: music,
+                effectVolume: effectVolume, musicVolume: musicVolume, storage: storage,
+                listeners: listeners, nextListenerId: nextListenerId };
+        }
     };
 })(globalThis);
