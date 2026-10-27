@@ -1,0 +1,7 @@
+[workspace]
+members = ["crates/battle-core"]
+resolver = "2"
+
+[profile.release]
+codegen-units = 1
+lto = "thin"

@@ -1,0 +1,438 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_util.js",
+  "domain": "Plain two-element arrays containing JavaScript Number values; no proxies, getters, prototype-index access, concurrent mutation, or non-numeric elements. Equivalence concerns numeric outputs; NaN payload bits are not specified by JavaScript.",
+  "kernels": [
+    {
+      "sourceName": "ed.edpDistanceSQ",
+      "rustName": "distance_squared",
+      "params": [
+        "vec2",
+        "vec2"
+      ],
+      "start": 638314,
+      "end": 638371,
+      "sourceSha256": "2c6a18411d11be16eae9d8659081594c850c37f3612c4635df5d41f86b82c1f4",
+      "ir": {
+        "params": [
+          {
+            "id": "arg0",
+            "type": "vec2"
+          },
+          {
+            "id": "arg1",
+            "type": "vec2"
+          }
+        ],
+        "operations": [
+          {
+            "id": "v0",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 0
+          },
+          {
+            "id": "v1",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 0
+          },
+          {
+            "id": "v2",
+            "type": "f64",
+            "op": "binary",
+            "operator": "-",
+            "left": "v0",
+            "right": "v1"
+          },
+          {
+            "id": "v3",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 1
+          },
+          {
+            "id": "v4",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 1
+          },
+          {
+            "id": "v5",
+            "type": "f64",
+            "op": "binary",
+            "operator": "-",
+            "left": "v3",
+            "right": "v4"
+          },
+          {
+            "id": "v6",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v2",
+            "right": "v2"
+          },
+          {
+            "id": "v7",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v5",
+            "right": "v5"
+          },
+          {
+            "id": "v8",
+            "type": "f64",
+            "op": "binary",
+            "operator": "+",
+            "left": "v6",
+            "right": "v7"
+          }
+        ],
+        "result": {
+          "id": "v8",
+          "type": "f64"
+        }
+      }
+    },
+    {
+      "sourceName": "ed.edpLengthSQ",
+      "rustName": "length_squared",
+      "params": [
+        "vec2"
+      ],
+      "start": 638251,
+      "end": 638296,
+      "sourceSha256": "4c8c23921a80224a072e1ef760d3ce432b6884fd68056f781fcf98f0878b3e06",
+      "ir": {
+        "params": [
+          {
+            "id": "arg0",
+            "type": "vec2"
+          }
+        ],
+        "operations": [
+          {
+            "id": "v0",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 0
+          },
+          {
+            "id": "v1",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 1
+          },
+          {
+            "id": "v2",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v0",
+            "right": "v0"
+          },
+          {
+            "id": "v3",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v1",
+            "right": "v1"
+          },
+          {
+            "id": "v4",
+            "type": "f64",
+            "op": "binary",
+            "operator": "+",
+            "left": "v2",
+            "right": "v3"
+          }
+        ],
+        "result": {
+          "id": "v4",
+          "type": "f64"
+        }
+      }
+    },
+    {
+      "sourceName": "ed.edpDot",
+      "rustName": "dot",
+      "params": [
+        "vec2",
+        "vec2"
+      ],
+      "start": 638718,
+      "end": 638759,
+      "sourceSha256": "82ca74e6d48bc9630e26604bd0494ad7fc6c19cbbf68e39f8c48238162f42c8b",
+      "ir": {
+        "params": [
+          {
+            "id": "arg0",
+            "type": "vec2"
+          },
+          {
+            "id": "arg1",
+            "type": "vec2"
+          }
+        ],
+        "operations": [
+          {
+            "id": "v0",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 0
+          },
+          {
+            "id": "v1",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 0
+          },
+          {
+            "id": "v2",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v0",
+            "right": "v1"
+          },
+          {
+            "id": "v3",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 1
+          },
+          {
+            "id": "v4",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 1
+          },
+          {
+            "id": "v5",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v3",
+            "right": "v4"
+          },
+          {
+            "id": "v6",
+            "type": "f64",
+            "op": "binary",
+            "operator": "+",
+            "left": "v2",
+            "right": "v5"
+          }
+        ],
+        "result": {
+          "id": "v6",
+          "type": "f64"
+        }
+      }
+    },
+    {
+      "sourceName": "ed.edpCross",
+      "rustName": "cross",
+      "params": [
+        "vec2",
+        "vec2"
+      ],
+      "start": 638550,
+      "end": 638591,
+      "sourceSha256": "9fd095e6d677c6ba84fa31b6f7c8081f12aa428a06a584c3d2c983d4d354805b",
+      "ir": {
+        "params": [
+          {
+            "id": "arg0",
+            "type": "vec2"
+          },
+          {
+            "id": "arg1",
+            "type": "vec2"
+          }
+        ],
+        "operations": [
+          {
+            "id": "v0",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 0
+          },
+          {
+            "id": "v1",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 1
+          },
+          {
+            "id": "v2",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v0",
+            "right": "v1"
+          },
+          {
+            "id": "v3",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 1
+          },
+          {
+            "id": "v4",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 0
+          },
+          {
+            "id": "v5",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v3",
+            "right": "v4"
+          },
+          {
+            "id": "v6",
+            "type": "f64",
+            "op": "binary",
+            "operator": "-",
+            "left": "v2",
+            "right": "v5"
+          }
+        ],
+        "result": {
+          "id": "v6",
+          "type": "f64"
+        }
+      }
+    },
+    {
+      "sourceName": "ed.edpMid",
+      "rustName": "midpoint",
+      "params": [
+        "vec2",
+        "vec2"
+      ],
+      "start": 638602,
+      "end": 638654,
+      "sourceSha256": "f4120fd4c439c0817dd42678f40e12a38cdf1f9749221febfb8b294db84cbc4e",
+      "ir": {
+        "params": [
+          {
+            "id": "arg0",
+            "type": "vec2"
+          },
+          {
+            "id": "arg1",
+            "type": "vec2"
+          }
+        ],
+        "operations": [
+          {
+            "id": "v0",
+            "type": "f64",
+            "op": "constant",
+            "value": 0.5
+          },
+          {
+            "id": "v1",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 0
+          },
+          {
+            "id": "v2",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 0
+          },
+          {
+            "id": "v3",
+            "type": "f64",
+            "op": "binary",
+            "operator": "+",
+            "left": "v1",
+            "right": "v2"
+          },
+          {
+            "id": "v4",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v0",
+            "right": "v3"
+          },
+          {
+            "id": "v5",
+            "type": "f64",
+            "op": "constant",
+            "value": 0.5
+          },
+          {
+            "id": "v6",
+            "type": "f64",
+            "op": "load",
+            "object": "arg0",
+            "index": 1
+          },
+          {
+            "id": "v7",
+            "type": "f64",
+            "op": "load",
+            "object": "arg1",
+            "index": 1
+          },
+          {
+            "id": "v8",
+            "type": "f64",
+            "op": "binary",
+            "operator": "+",
+            "left": "v6",
+            "right": "v7"
+          },
+          {
+            "id": "v9",
+            "type": "f64",
+            "op": "binary",
+            "operator": "*",
+            "left": "v5",
+            "right": "v8"
+          },
+          {
+            "id": "v10",
+            "type": "vec2",
+            "op": "vec2",
+            "elements": [
+              "v4",
+              "v9"
+            ]
+          }
+        ],
+        "result": {
+          "id": "v10",
+          "type": "vec2"
+        }
+      }
+    }
+  ]
+}

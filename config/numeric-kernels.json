@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_util.js",
+  "domain": "Plain two-element arrays containing JavaScript Number values; no proxies, getters, prototype-index access, concurrent mutation, or non-numeric elements. Equivalence concerns numeric outputs; NaN payload bits are not specified by JavaScript.",
+  "kernels": [
+    { "sourceName": "ed.edpDistanceSQ", "rustName": "distance_squared", "params": ["vec2", "vec2"] },
+    { "sourceName": "ed.edpLengthSQ", "rustName": "length_squared", "params": ["vec2"] },
+    { "sourceName": "ed.edpDot", "rustName": "dot", "params": ["vec2", "vec2"] },
+    { "sourceName": "ed.edpCross", "rustName": "cross", "params": ["vec2", "vec2"] },
+    { "sourceName": "ed.edpMid", "rustName": "midpoint", "params": ["vec2", "vec2"] }
+  ]
+}
