@@ -37,6 +37,22 @@ for(var mutation=0;mutation<11;mutation++){
  try{returned=candidateSort(arr,cmp)===arr}catch(e){error=e===known?'known':e.name;}
  directed.push({mutation:mutation,array:snap(arr),events:events,error:error,returned:returned});
 }
+var coercions=[];
+for(var kind=0;kind<8;kind++){
+ var array=[{id:3,value:3},{id:1,value:1},{id:2,value:2}],effects=[],known={},error=null,returned=false;
+ var coercing=function(a,b){'use strict';effects.push(['compare',a.id,b.id]);var delta=a.value-b.value;
+  if(kind===0){var object={};object[Symbol.toPrimitive]=function(hint){effects.push(['primitive',hint]);return delta;};return object;}
+  if(kind===1)return new Proxy({valueOf:function(){effects.push('valueOf');return delta;}},{get:function(t,k,r){effects.push(['get',String(k)]);return Reflect.get(t,k,r);}});
+  if(kind===2)return{valueOf:function(){effects.push('valueOf-object');return{};},toString:function(){effects.push('toString');return String(delta);}};
+  if(kind===3)return{valueOf:function(){effects.push('coercion-throw');throw known;}};
+  if(kind===4){var nested=[{id:8,value:8},{id:7,value:7}];candidateSort(nested,function(x,y){effects.push(['nested-compare',x.id,y.id]);return x.value-y.value;});effects.push(['nested-result',nested[0].id,nested[1].id]);return delta;}
+  if(kind===5)return Symbol('cannot-convert');
+  if(kind===6)return BigInt(1);
+  return{valueOf:function(){array.length=0;effects.push('shrink-in-coercion');return delta;}};
+ };
+ try{returned=candidateSort(array,coercing)===array;}catch(e){error=e===known?'known':e.name;}
+ coercions.push({kind:kind,array:snap(array),effects:effects,error:error,returned:returned});
+}
 var unsupported=[];
 if(typeof hermescli!=='undefined'){
  function reject(label,make,compare){var before=0,traps=0;var value=make(function(){traps++}),cmp=arguments.length>=3?compare:function(){before++;return 0;},error=null;try{candidateSort(value,cmp)}catch(e){error=e.message}unsupported.push([label,error,before,traps]);}
@@ -50,7 +66,7 @@ if(typeof hermescli!=='undefined'){
  reject('bound-comparator',function(){return[1,2]},function(a,b){return a-b}.bind(null));
  reject('default-comparator',function(){return[1,2]},null);
 }
-print(JSON.stringify({outputs:outputs,directed:directed,orderedCalls:orderedCalls,strictThis:strictThis,randomState:randomState,source:candidateSort.toString(),name:candidateSort.name,length:candidateSort.length,unsupported:unsupported}));`;
+print(JSON.stringify({outputs:outputs,directed:directed,coercions:coercions,orderedCalls:orderedCalls,strictThis:strictThis,randomState:randomState,source:candidateSort.toString(),name:candidateSort.name,length:candidateSort.length,unsupported:unsupported}));`;
 function run(command,args,options={}){const r=spawnSync(command,args,{cwd:root,encoding:'utf8',maxBuffer:128*1024*1024,...options});if(r.error)throw r.error;assert.equal(r.status,0,r.stderr);return r;}
 const compiler=resolve(root,'work/downloads/hermes-build/bin/shermes'),pools=resolve(directory,'pools'),original=resolve(directory,'original.c'),jsfile=resolve(directory,'probe.js');await mkdir(pools,{recursive:true});await writeFile(jsfile,script);
 const rustc=resolve(root,'work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc'),rustlib=resolve(directory,'libsmall_sort.a');run(rustc,['--edition=2024','--crate-type=staticlib','-O',resolve(root,'tools/native-small-sort.rs'),'-o',rustlib]);
@@ -70,5 +86,5 @@ const difference=firstDifference(actual,expected),hits=Number(/sort_hits:(\d+)/.
 assert.deepEqual(await hashInputs(),inputHashes,'Native sort inputs changed during proof');
 assert.equal(sha(await readFile(resolve(build,'lib/libhermesvm.so'))),privateVM.originalSha256,'Live VM changed during private proof');
 const forcedCollections=Number(/gc_cycles:(\d+)/.exec(execution.stderr)[1]);assert.ok(forcedCollections>0);
-const report={version:1,qualifiesFor10000Target:false,matched:difference===null,difference,cases:actual.outputs.length,directedCases:actual.directed.length,orderedComparatorCalls:actual.orderedCalls,forcedCollections,strictThis:actual.strictThis,hits,unsupported,privateVM,oracleProfile:profile,inputHashes,compilerSha256:sha(await readFile(compiler)),binarySha256:sha(await readFile(binary)),referenceCanonicalSha256:sha(JSON.stringify(expected)),candidateCanonicalSha256:sha(JSON.stringify(actual)),scope:'Isolated C++ VM snapshot/coercion/writeback plus Rust V8 smallsort token schedule; dense admitted arrays<=63 only, ordinary compiled JS comparator. No live Array.prototype.sort replacement.',limitations:['Unsupported shapes fail closed before comparator/user getters; no Hermes sorting fallback.','Comparator callback mutations, throws, coercions, GC and generic writeback checked; native VM TypeError messages are not matched, only failure boundary and error type.','No original full battle/scene or broad roster qualification follows from this component.']};
-await writeFile(resolve(root,'benchmarks/validation/native-small-sort.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));assert.equal(difference,null);assert.equal(hits,expected.outputs.filter(x=>x.returned).length+expected.directed.filter(x=>x.returned).length);for(const row of unsupported){assert.equal(row[1],'Unsupported native small sort admission',row[0]);assert.equal(row[2],0,row[0]);assert.equal(row[3],0,row[0]);}
+const report={version:1,qualifiesFor10000Target:false,matched:difference===null,difference,cases:actual.outputs.length,directedCases:actual.directed.length,coercionCases:actual.coercions.length,orderedComparatorCalls:actual.orderedCalls,forcedCollections,strictThis:actual.strictThis,hits,unsupported,privateVM,oracleProfile:profile,inputHashes,compilerSha256:sha(await readFile(compiler)),binarySha256:sha(await readFile(binary)),referenceCanonicalSha256:sha(JSON.stringify(expected)),candidateCanonicalSha256:sha(JSON.stringify(actual)),scope:'Isolated C++ VM snapshot/coercion/writeback plus Rust V8 smallsort token schedule; dense admitted arrays<=63 only, ordinary compiled JS comparator. No live Array.prototype.sort replacement.',limitations:['Unsupported shapes fail closed before comparator/user getters; no Hermes sorting fallback.','Comparator callback mutations, throws, coercions, GC and generic writeback checked; native VM TypeError messages are not matched, only failure boundary and error type.','No original full battle/scene or broad roster qualification follows from this component.']};
+await writeFile(resolve(root,'benchmarks/validation/native-small-sort.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));assert.equal(difference,null);assert.equal(hits,expected.outputs.filter(x=>x.returned).length+expected.directed.filter(x=>x.returned).length+expected.coercions.filter(x=>x.returned).length+expected.coercions.find(x=>x.kind===4).effects.filter(x=>Array.isArray(x)&&x[0]==='nested-result').length);for(const row of unsupported){assert.equal(row[1],'Unsupported native small sort admission',row[0]);assert.equal(row[2],0,row[0]);assert.equal(row[3],0,row[0]);}

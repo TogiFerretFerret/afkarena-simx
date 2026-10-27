@@ -5,10 +5,11 @@
   "difference": null,
   "cases": 5000,
   "directedCases": 11,
+  "coercionCases": 8,
   "orderedComparatorCalls": 347506,
   "forcedCollections": 168,
   "strictThis": true,
-  "hits": 4056,
+  "hits": 4065,
   "unsupported": [
     [
       "large",
@@ -90,7 +91,7 @@
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
   "inputHashes": {
-    "tools/native-small-sort-probe.mjs": "c365994d39a4f5bb98dff04fe3085a1175bd76c45b7424232857bb7db779b285",
+    "tools/native-small-sort-probe.mjs": "ccc3618c47b17d1f69057be4c2eefb729b46273c6b5d06320fc41f0632fc395a",
     "tools/native-small-sort.rs": "4053d18732fcd948d0e593c7869733c279ff57d7c33424788ebcaf4750c916b3",
     "tools/native-compiler-patches/small-sort.inc": "fe46a8d1d4bff5d0fb6c5fdb271dfac666c433df42cc36af90c5af61a73076f2",
     "crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
@@ -100,9 +101,9 @@
     "config/native-compiler-static-hermes.json": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e"
   },
   "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
-  "binarySha256": "2b6ae29c037310b7c7213d844959a81a02a8f0955e1fe51336e375550f7b0ee4",
-  "referenceCanonicalSha256": "fcadc4a735fe129571bc6b11613f2c2d636b952370e83a6251bdd8baa20d256a",
-  "candidateCanonicalSha256": "fcadc4a735fe129571bc6b11613f2c2d636b952370e83a6251bdd8baa20d256a",
+  "binarySha256": "d666f7e6c0a42dfc00d031b103004deb87fdd4b90b6daa0605d32d1fa23ce8e6",
+  "referenceCanonicalSha256": "58eb9fbeaaedb1bbf4db246e0d6bee202334f734e19fbfb19f28acea4cc448a8",
+  "candidateCanonicalSha256": "58eb9fbeaaedb1bbf4db246e0d6bee202334f734e19fbfb19f28acea4cc448a8",
   "scope": "Isolated C++ VM snapshot/coercion/writeback plus Rust V8 smallsort token schedule; dense admitted arrays<=63 only, ordinary compiled JS comparator. No live Array.prototype.sort replacement.",
   "limitations": [
     "Unsupported shapes fail closed before comparator/user getters; no Hermes sorting fallback.",
