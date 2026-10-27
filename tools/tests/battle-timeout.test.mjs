@@ -64,3 +64,49 @@ test('source configured tick ceiling is defeat and takes precedence over victory
   assert.deepEqual(f.results,['defeat']);
   assert.equal(f.battle.time_limit,89.75);
 });
+
+test('source timeout checks use remaining-time sign after the final entity callbacks',()=>{
+  const f=fixture({limit:1/16});
+  const updates=[];
+  f.battle.enity_list_name=['entities'];
+  f.battle.entities=[{update(dt){updates.push(dt);},terminated:false,frozen_model:false}];
+  f.battle.getMode=()=> 'stage';
+  f.tick();
+  assert.deepEqual(updates,[1/8]);
+  assert.equal(f.battle.time_limit,-1/16);
+  assert.equal(f.battle.ticks,1);
+  assert.deepEqual(f.results,['timeout']);
+});
+
+test('source ignore freezes the clock while continuing unfrozen entity updates',()=>{
+  const f=fixture({limit:1/8});
+  let updates=0;
+  f.battle.ignore_level=1;
+  f.battle.enity_list_name=['entities'];
+  f.battle.entities=[{update(){updates++;},terminated:false,frozen_model:false}];
+  f.battle.getMode=()=> 'stage';
+  for(let i=0;i<8;i++)f.tick();
+  assert.equal(f.battle.time_limit,1/8);
+  assert.equal(updates,8);
+  assert.equal(f.battle.ticks,8);
+  assert.deepEqual(f.results,[]);
+  f.battle.ignore_level=0;
+  f.tick();
+  assert.equal(updates,9);
+  assert.deepEqual(f.results,['timeout']);
+});
+
+test('source simultaneous team elimination chooses victory before defeat and timeout',()=>{
+  const f=fixture({limit:1/8});
+  f.battle.alive_enemy_count=0;
+  f.battle.alive_player_count=0;
+  f.tick();
+  assert.deepEqual(f.results,['victory']);
+});
+
+test('source player elimination chooses defeat before timeout',()=>{
+  const f=fixture({limit:1/8});
+  f.battle.alive_player_count=0;
+  f.tick();
+  assert.deepEqual(f.results,['defeat']);
+});

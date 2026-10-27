@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "reference": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ],
+    "hostRandomValue": 0.125
+  },
+  "actualEagerBoot": {
+    "entropyDraws": 2,
+    "observer": {
+      "nextClassId": 166,
+      "nextInstanceId": 128,
+      "classCounterValue": 166,
+      "instanceCounterValue": 128,
+      "lastClassId": 165,
+      "lastInstanceId": 127,
+      "classCalls": 42,
+      "instanceCalls": 4,
+      "classKnown": true,
+      "instanceKnown": true
+    },
+    "eagerModules": [
+      {
+        "file": "src/srcmodule/game_battle.js",
+        "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
+      }
+    ]
+  },
+  "validation": {
+    "tests": 15,
+    "command": "node --jitless --test tools/tests/battle-timeout.test.mjs tools/tests/bootstrap-class-manager.test.mjs tools/tests/oracle-class-manager.test.mjs",
+    "checks": [
+      "Independent observed/unobserved eager realms preserve class and instance IDs and original constructors",
+      "Observer snapshots consume neither IDs nor entropy",
+      "Source stage timeout at720ticks with90seconds and1/8second tick",
+      "Ignore pauses clock while source entity updates continue",
+      "Terminal precedence and final-tick callbacks retain source order"
+    ]
+  },
+  "sha256": {
+    "tools/bootstrap-runtime.mjs": "8e72cf52358c7cee53beb9063cdcc74f54bfe82496491f5e4b8ce2afb8eaf59f",
+    "tools/oracle-class-manager.js": "54022d5d5857e4f73b3518be0acfb642256948f6dffe7a7f3838c5a2900f5e3d",
+    "config/oracle-class-manager.json": "94f4f9515c167489d014ea02c62a9da5f1c4062c630879cde4856b5a6c68a738",
+    "tools/tests/bootstrap-class-manager.test.mjs": "c0ad914fa41af39ef2326a0e0be6b8246d5e0ec34a56ba3ae242a4b90a640f90",
+    "tools/tests/battle-timeout.test.mjs": "9c432183ae0b8d7edc48380a7c9c5d0d02edeb67cc0f77b996e708eac42268d7"
+  },
+  "scope": "Source runtime observer and original timeout semantics only; no full-battle fidelity or throughput qualification",
+  "qualifiesFor10000Target": false
+}
