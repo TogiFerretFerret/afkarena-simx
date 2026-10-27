@@ -46,14 +46,25 @@ The separate **instrumentation-off performance fixture** measures 20 battles in
 matches an independently generated, instrumentation-off source JS reference.
 All 309,060 measured callbacks, RNG, clock inputs, allocation counters and final
 captures also match the guarded workload; the diagnostic `tableBoundary` field
-is absent by this performance contract. No game callback or mechanic was
-disabled. Across all 23 battles, ordinary empty-array clone admissions increase
+is absent by this performance contract. Game callback and engine execution
+match the guarded fixture. Across all 23 battles, ordinary empty-array clone admissions increase
 to 360,624, with 55,821 numeric clones; qualification Proxies previously blocked
 those ordinary-array guards. Only the private boundary initializer changes;
 all original function bytes and six other units remain unchanged. See
 `results/2026-10-27T21-55-08.845Z-native-warm23-no-proxy.json` and
 `validation/warm23-no-proxy-source-node.json`. This is still a single callback-only fixture,
 not a qualified full-scene, ordered-trace or random-roster result.
+
+CPU sampling restricted to the measured battle window identifies property
+access as the next bottleneck: named-property slow-path reads account for
+17.18% of leaf samples, while garbage collection accounts for 5.56%. Inclusive
+game stacks include Unit.update (50.85%), addBuff (39.84%) and resetBuffApply
+(19.21%); these overlapping percentages must not be added. The profile contains
+3,451 samples inside the two native monotonic-clock markers and excludes
+initialization, all three warmups and final reporting. Its complete source
+reference comparison passes. See
+`validation/native-no-proxy-measured-perf-source.json`. Profiling timings are
+diagnostic and do not replace the unprofiled throughput measurement above.
 
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
