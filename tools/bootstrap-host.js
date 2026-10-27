@@ -31,6 +31,8 @@
             clear: function () { event("storage_clear", arguments); storage = Object.create(null); }
         }
     };
+    host.localStorage = cc.sys.localStorage;
+    cc.winSize = { width: 1280, height: 720 };
     cc.audioEngine = {
         playEffect: function (file, loop) {
             var id = nextAudioId++;

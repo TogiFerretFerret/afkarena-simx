@@ -22,6 +22,12 @@
     cc.color = function (r, g, b, a) { return { r: r, g: g, b: b, a: a === undefined ? 255 : a }; };
     cc.affineTransformMakeIdentity = function () { return { a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0 }; };
     cc.supportSpineSelectLoad = function () { return false; };
+    cc.sys.isObjectValid = function (object) {
+        if (object === null || object === undefined) return false;
+        if (typeof object !== "object" && typeof object !== "function") return false;
+        if (typeof object.deviceNodeId !== "number") missing("native object liveness", Object.prototype.toString.call(object));
+        return !object._destroyed;
+    };
     cc.Node = cc.Class.extend({
         ctor: function () {
             this.deviceNodeId = nodes.length;
@@ -30,7 +36,7 @@
             this._scaleX = 1; this._scaleY = 1; this._visible = true;
             this._anchorX = 0; this._anchorY = 0; this._rotation = 0; this._opacity = 255;
             this._localZOrder = 0; this._parent = null; this._children = [];
-            this._removed = false; this._runningActions = [];
+            this._removed = false; this._destroyed = false; this._runningActions = [];
             output("node_create", [this.deviceNodeId]);
         },
         setPosition: function (value, y) { var p = pair(value, y); this.x = p.x; this.y = p.y; output("node_position", [this.deviceNodeId, this.x, this.y]); },
@@ -64,9 +70,18 @@
         },
         removeFromParent: function () { if (this._parent) { var children = this._parent._children; var index = children.indexOf(this); if (index !== -1) children.splice(index, 1); } this._parent = null; this._removed = true; output("node_remove", [this.deviceNodeId]); },
         removeFromParentAndCleanup: function () { this.removeFromParent(); },
+        destroy: function () { this.removeAllChildren(); this.removeFromParent(); this._destroyed = true; output("node_destroy", [this.deviceNodeId]); },
         getParent: function () { return this._parent; }, getChildren: function () { return this._children.slice(); },
         getChildrenCount: function () { return this._children.length; },
+        setTag: function (value) { this._tag = value; }, getTag: function () { return this._tag; },
+        setName: function (value) { this._nodeName = value; }, getName: function () { return this._nodeName; },
+        setUserData: function (value) { this._userData = value; }, getUserData: function () { return this._userData; },
+        getChildByTag: function (tag) { for (var i = 0; i < this._children.length; i++) if (this._children[i]._tag === tag) return this._children[i]; return null; },
+        removeChildByTag: function (tag) { var child = this.getChildByTag(tag); if (child) child.removeFromParent(); },
+        removeChild: function (child) { if (child && child._parent === this) child.removeFromParent(); },
         removeAllChildren: function () { while (this._children.length) this._children[this._children.length - 1].removeFromParent(); },
+        setCascadeOpacityEnabled: function (value) { this._cascadeOpacityEnabled = !!value; },
+        setCascadeColorEnabled: function (value) { this._cascadeColorEnabled = !!value; },
         setAutoReleaseEnabled: function (value) { this._autoReleaseEnabled = !!value; },
         retain: function () { this._retains = (this._retains || 0) + 1; },
         release: function () { if (!this._retains) throw new Error("Unbalanced device node release"); this._retains--; },
@@ -77,6 +92,30 @@
         stopAllActions: function () { this._runningActions = []; output("node_stop_actions", [this.deviceNodeId]); }
     });
     cc.Node.create = function () { return new cc.Node(); };
+    cc.Sprite = cc.Node.extend({
+        ctor: function () { this._super(); this._texture = null; this._textureRect = null; },
+        init: function () { this._initialized = true; return true; },
+        initWithTexture: function (texture, rect) {
+            if (!texture) missing("sprite texture", this.deviceNodeId);
+            this._texture = texture;
+            if (!rect || typeof rect.width !== "number" || typeof rect.height !== "number") missing("sprite texture rectangle", this.deviceNodeId);
+            this._textureRect = { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+            this.setContentSize(rect.width, rect.height);
+            return true;
+        },
+        getTexture: function () { return this._texture; },
+        setBlendFunc: function (source, destination) { this._blendFunc = { source: source, destination: destination }; }
+    });
+    cc.Sprite.create = function (frame) {
+        var sprite = new cc.Sprite();
+        sprite.init();
+        if (frame !== undefined) {
+            if (!frame || typeof frame.getTexture !== "function" || typeof frame.getRect !== "function") missing("sprite frame geometry", frame);
+            sprite.initWithTexture(frame.getTexture(), frame.getRect());
+        }
+        return sprite;
+    };
+    cc.spriteFrameCache = { getSpriteFrame: function (name) { return missing("sprite atlas frame geometry", name); } };
     cc.loader = {
         getRes: function (path) { return assets[path]; },
         release: function (path) { delete assets[path]; output("asset_release", [path]); }
