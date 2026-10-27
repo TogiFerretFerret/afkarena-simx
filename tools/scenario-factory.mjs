@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { importBootstrapValue } from './bootstrap-realm.mjs';
 
 // Scenario selection has its own PRNG. It never consumes the battle's ed.rand stream.
 function selector(seed) {
@@ -87,7 +88,7 @@ export async function createRealisticScenario(seed=2026,options={}){
  */
 export function instantiateScenario(runtime,input){
   const {ed}=runtime;
-  const clone=value=>JSON.parse(JSON.stringify(value));
+  const clone=value=>importBootstrapValue(runtime.context,value);
   const materialize=wire=>{
     const proto=clone(wire);
     proto.equips=proto.equips.map(slot=>({index:slot.index,equip:ed.equipData.create(slot.equip)}));
