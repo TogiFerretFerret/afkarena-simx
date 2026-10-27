@@ -32,6 +32,7 @@ const suites = [
   ['ai-targeting', 'check-ai-runner.rs', 'check-ai.mjs', [], 'ai-targeting-summary.json'],
   ['ai-movement', 'check-ai-movement-runner.rs', 'check-ai-movement.mjs', [], 'ai-movement-summary.json'],
   ['ai-selection', 'check-ai-control-runner.rs', 'check-ai-control.mjs', [], 'ai-control-summary.json'],
+  ['ai-update', 'check-ai-update.rs', 'check-ai-update.mjs', [], 'ai-update-summary.json'],
   ['attribute-initialization', 'precompute-config-runner.rs', 'precompute-config-differential.mjs', [], 'precompute-config-summary.json'],
 ];
 const strict = [];
@@ -64,7 +65,7 @@ const report = {
   version: 1, createdAt: new Date().toISOString(), referenceRuntime: process.version, rustVersion,
   strictComponentGatePassed: true, strictCases: strict.reduce((sum, suite) => sum + suite.result.cases, 0),
   fullBattleEquivalence: false, qualifiesForBattleThroughputTarget: false,
-  scope: 'Component source control and scripted mechanics hooks only. Does not validate a composed Rust battle, full Ai.update, all Buff mechanics, or the realistic 5v5 corpus.',
+  scope: 'Component source control and scripted mechanics hooks only. Does not validate a composed Rust battle, all Buff mechanics, or the realistic 5v5 corpus.',
   strict, diagnostics: diagnosticResults, sha256,
 };
 await writeFile(resolve(root, 'work/component-verification-summary.json'), JSON.stringify(report, null, 2) + '\n');
