@@ -1,0 +1,317 @@
+{
+  "version": 1,
+  "markerGuardProof": {
+    "file": "benchmarks/validation/native-measured-clock.json",
+    "sha256": "9909630b6e8fd670df73519e5688dba86555d189370051a5e6de1bb489d7f48c"
+  },
+  "markerClock": "CLOCK_MONOTONIC",
+  "perfClockId": "mono",
+  "measuredWindow": {
+    "startNs": "22507625637701",
+    "endNs": "22521558753101",
+    "calls": 2,
+    "valid": true
+  },
+  "profileSucceeded": true,
+  "sampleCount": 2138,
+  "dataBytes": 35617672,
+  "kind": "Native user CPU-clock sampling diagnostic",
+  "semanticReportMatched": true,
+  "firstDifference": null,
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "wallMs": 43929.247251,
+  "profileScope": "Exact measured-window marker boundaries are included; raw profile covers the whole process. Entire original process: cold VM/script/table initialization, three warmup battles, twenty measured battles, final capture and report. Sampling affects timing; no throughput or speedup claim.",
+  "sampleFrequencyHz": 49,
+  "callGraph": "DWARF,16384byte stack samples",
+  "sourceReport": {
+    "file": "benchmarks/validation/native-measured-profile-prepared.json",
+    "sha256": "ef51a84fa5ff701e5a9729337901533319ce01a63d6adbc3e41f15dd1799dba4"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/native-warm23-worker-map-measured",
+    "sha256": "89b525cf02862decd2476f1ffef025673299d727ebb71b1c9518fa420abefbbd"
+  },
+  "privateVM": {
+    "file": "/workspace/afkarena-simx/work/native-measured-clock/libhermesvm.so",
+    "sha256": "8355dc0b533335f2e0d3629b3876756d3d681d4cda30107bbefaf90745aec5b6"
+  },
+  "bootstrap": {
+    "file": "benchmarks/validation/native-profiler-bootstrap.json",
+    "sha256": "5290830713a3cd0f1faf41e45505b8e09f344fc4edd237abc680ae33fd4a2542"
+  },
+  "perf": {
+    "file": "/workspace/afkarena-simx/work/downloads/perf/perf",
+    "wrapperSha256": "5261dcc63baf8f9d19e25161e9b5d6c074ed4fd9627e32a0483990f870ff5492",
+    "executableSha256": "0c4438084990cfc31a599a0b88a9ec024149a601bf5dcae9e265f9efdc31fb1f"
+  },
+  "environmentPolicy": "Only explicit environment below is passed to PERF and inherited by its native child; no parent process.env, credentials, proxy settings or tokens are passed.",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/native-perf/empty-home",
+    "LANG": "C",
+    "LD_LIBRARY_PATH": "/workspace/afkarena-simx/work/native-measured-clock"
+  },
+  "args": [
+    "record",
+    "--clockid",
+    "mono",
+    "-e",
+    "cpu-clock:u",
+    "-F",
+    "49",
+    "--call-graph",
+    "dwarf,16384",
+    "-o",
+    "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-46-15.645Z.data",
+    "--",
+    "/workspace/afkarena-simx/work/native-warm23-worker-map-measured",
+    "-Xhermes-internal-test-methods"
+  ],
+  "reports": [
+    {
+      "label": "leaf",
+      "args": [
+        "report",
+        "--stdio",
+        "--no-children",
+        "--sort",
+        "dso,symbol",
+        "--percent-limit",
+        "0.1",
+        "--call-graph",
+        "none",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-46-15.645Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "inclusive",
+      "args": [
+        "report",
+        "--stdio",
+        "--children",
+        "--sort",
+        "dso,symbol",
+        "--percent-limit",
+        "0.5",
+        "--call-graph",
+        "graph,0.5,caller",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-46-15.645Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "stacks",
+      "args": [
+        "script",
+        "--ns",
+        "--show-mmap-events",
+        "-F",
+        "comm,pid,tid,time,event,ip,sym,symoff,dso,dsoff",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-46-15.645Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "buildids",
+      "args": [
+        "buildid-list",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-27T21-46-15.645Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "machine": {
+    "version": 1,
+    "capturedAt": "2026-10-27T21:46:15.647Z",
+    "runtime": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "kernel": "6.18.55",
+    "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+    "logicalCpus": 5,
+    "availableParallelism": 4,
+    "cgroupV2": {
+      "cpuMax": "400000 100000",
+      "memoryMax": "17179869184",
+      "cpuQuotaCores": 4
+    },
+    "effectiveCpuCapacity": 4,
+    "scope": "Host resource snapshot. CPU affinity and cgroup quota are distinct; this file is not a throughput result."
+  },
+  "completed": 20,
+  "totalCallbacks": 309060,
+  "artifacts": [
+    {
+      "label": "record-stdout",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.record-stdout.gz",
+          "sha256": "d5c989a5af0912e72c8eb538fe05ccdc0fbfc0f1848415c06497df2c3d71cad2",
+          "bytes": 35506
+        }
+      ],
+      "compressedSha256": "d5c989a5af0912e72c8eb538fe05ccdc0fbfc0f1848415c06497df2c3d71cad2",
+      "uncompressedSha256": "f20e05a17e15a8b8eb762e64e111015764c642f1d46e2d7ba7aedf02b516ff0e",
+      "uncompressedBytes": 687642
+    },
+    {
+      "label": "record-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.record-stderr.gz",
+          "sha256": "83953c4337c522cc55a421f68f89586ad0db7510c0ebf7468082d2ec4aa12421",
+          "bytes": 278
+        }
+      ],
+      "compressedSha256": "83953c4337c522cc55a421f68f89586ad0db7510c0ebf7468082d2ec4aa12421",
+      "uncompressedSha256": "46a59a024f8020551788baebb9721cc21403194f2c70c309b2dc2f1d95e7e3b8",
+      "uncompressedBytes": 388
+    },
+    {
+      "label": "leaf",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.leaf.gz",
+          "sha256": "e232365cfba107f71956ec97e9bcf79a320f932a72ac4d001d38d1f769f934ae",
+          "bytes": 3591
+        }
+      ],
+      "compressedSha256": "e232365cfba107f71956ec97e9bcf79a320f932a72ac4d001d38d1f769f934ae",
+      "uncompressedSha256": "fbf9711748a0f57abffdb2e5612b8cc9c926a2ce15ce7b4b07f318156fab09c1",
+      "uncompressedBytes": 55449
+    },
+    {
+      "label": "leaf-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.leaf-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "inclusive",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.inclusive.gz",
+          "sha256": "e50f0b49b4d7a8406496b25829932b97a44150f0cd636cd2b9fce42e2cd7a1ec",
+          "bytes": 114015
+        }
+      ],
+      "compressedSha256": "e50f0b49b4d7a8406496b25829932b97a44150f0cd636cd2b9fce42e2cd7a1ec",
+      "uncompressedSha256": "922d6a1d97450c983dd1de4abd08410f6557763456dbe93a95a13cf858b1153d",
+      "uncompressedBytes": 2502419
+    },
+    {
+      "label": "inclusive-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.inclusive-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "stacks",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.stacks.gz",
+          "sha256": "5100e798c3e7daf7369ab7def1538fc74ad531e42c191777bd90c507b22eb67c",
+          "bytes": 358953
+        }
+      ],
+      "compressedSha256": "5100e798c3e7daf7369ab7def1538fc74ad531e42c191777bd90c507b22eb67c",
+      "uncompressedSha256": "1b672b664b300f3839462eace360e7e4fc8ecd127acf23b9ed3466e48baf87bb",
+      "uncompressedBytes": 10503080
+    },
+    {
+      "label": "stacks-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.stacks-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "buildids",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.buildids.gz",
+          "sha256": "c1b08e6884ba4f97c1d083a229c5a6275eef6e84a28aa8c14dad664fa5f4495e",
+          "bytes": 275
+        }
+      ],
+      "compressedSha256": "c1b08e6884ba4f97c1d083a229c5a6275eef6e84a28aa8c14dad664fa5f4495e",
+      "uncompressedSha256": "8051d045221f292ecaa90273af80a738c66bd4d576fff7277824dae269509ed7",
+      "uncompressedBytes": 425
+    },
+    {
+      "label": "buildids-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.buildids-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "data",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-27T21-46-15.645Z-native-perf-worker-map-measured.data.gz",
+          "sha256": "bff83f31529091a4965205c96b928a6de9ff5bf56a5c1a8cdc1de793ffef4365",
+          "bytes": 1585431
+        }
+      ],
+      "compressedSha256": "bff83f31529091a4965205c96b928a6de9ff5bf56a5c1a8cdc1de793ffef4365",
+      "uncompressedSha256": "b7333bc3d69d4adef7c844f08b00c0fa61787484027e85ba44ced1c0ee65d37e",
+      "uncompressedBytes": 35617672
+    }
+  ],
+  "producer": {
+    "file": "tools/profile-native-candidate.mjs",
+    "sha256": "10019e98769ea43f04ec7b8048ebaaa13ee6afc0c2711cada978af4a38444ff7"
+  },
+  "qualifiesFor10000Target": false
+}
