@@ -130,16 +130,42 @@
             if (!assets[resource] || !assets[atlas]) missing("asset metadata", resource + ", " + atlas);
             this._resource = resource; this._atlas = atlas; this._tracks = Object.create(null);
             this._completeListener = null; this._eventListener = null;
+            this._timeScale = 1; this._logicalTimelineOwner = null; this._logicalTimelineProof = null;
         },
         setCompleteListener: function (callback) { this._completeListener = callback; },
         setEventListener: function (callback) { this._eventListener = callback; },
         setAnimation: function (track, name, loop) {
             var metadata = assets[this._resource].animations && assets[this._resource].animations[name];
             if (!metadata || typeof metadata.duration !== "number") missing("animation duration", this._resource + ":" + name);
-            var entry = { trackIndex: track, animation: { name: name, duration: metadata.duration }, loop: !!loop, trackTime: 0 };
+            var entry = { trackIndex: track, animation: { name: name, duration: metadata.duration }, loop: !!loop, trackTime: 0, completed: false, completedLoops: 0 };
             this._tracks[track] = entry; output("skeleton_action", [this.deviceNodeId, track, name, !!loop]); return entry;
         },
-        update: function (elapsed) { if (elapsed !== 0) missing("animation event timeline", this._resource); },
+        bindLogicalTimelineOwner: function (owner, proof) {
+            if (!owner || !proof || typeof proof.eventDelegateSource !== "string" || typeof proof.animationEventSource !== "string") missing("logical animation event proof", this._resource);
+            this._logicalTimelineOwner = owner; this._logicalTimelineProof = proof;
+        },
+        update: function (elapsed) {
+            if (elapsed === 0) return;
+            if (typeof elapsed !== "number" || !isFinite(elapsed) || elapsed < 0 || typeof this._timeScale !== "number" || !isFinite(this._timeScale) || this._timeScale < 0) missing("logical animation clock domain", this._resource);
+            var owner = this._logicalTimelineOwner, proof = this._logicalTimelineProof;
+            if (this._eventListener && (!owner || !proof || owner._onEvent !== null || typeof owner.__onAnimationEvent !== "function" || Function.prototype.toString.call(owner.__onAnimationEvent) !== proof.animationEventSource || Function.prototype.toString.call(this._eventListener) !== proof.eventDelegateSource)) missing("animation event timeline", this._resource);
+            var keys = Object.keys(this._tracks);
+            for (var i = 0; i < keys.length; i++) {
+                var track = keys[i], entry = this._tracks[track];
+                var metadata = assets[this._resource].animations[entry.animation.name], timeline = metadata && metadata.logicalTimeline;
+                if (!timeline || timeline.kind !== "source-table-f64-v1" || timeline.eventPolicy !== "no-observable-events" || !timeline.source || timeline.source.table !== "AnimDuration" || typeof timeline.source.key !== "string" || timeline.source.action !== entry.animation.name || typeof timeline.source.sha256 !== "string" || !/^[a-f0-9]{64}$/.test(timeline.source.sha256) || typeof metadata.duration !== "number" || !isFinite(metadata.duration) || !(metadata.duration > 0) || entry.animation.duration !== metadata.duration) missing("animation event timeline", this._resource);
+                var duration = metadata.duration, previous = entry.trackTime;
+                entry.trackTime += elapsed * this._timeScale;
+                if (!isFinite(entry.trackTime)) missing("logical animation clock domain", this._resource);
+                var crossings = entry.loop ? Math.floor(entry.trackTime / duration) - Math.floor(previous / duration) : !entry.completed && previous < duration && entry.trackTime >= duration ? 1 : 0;
+                for (var crossing = 0; crossing < crossings && this._tracks[track] === entry; crossing++) {
+                    entry.completed = true; entry.completedLoops++;
+                    output("skeleton_logical_complete", [this.deviceNodeId, entry.trackIndex, entry.animation.name, entry.completedLoops]);
+                    if (this._completeListener) this._completeListener(entry);
+                }
+            }
+        },
+        clearTracks: function () { this._tracks = Object.create(null); output("skeleton_clear_tracks", [this.deviceNodeId]); },
         findBone: function (name) { return missing("bone geometry", this._resource + ":" + name); },
         findSlot: function (name) { return missing("slot geometry", this._resource + ":" + name); },
         setTimeScale: function (value) { this._timeScale = value; },

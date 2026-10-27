@@ -16,7 +16,7 @@ const functions={
  * source, including original scene method bodies and original JSON resource
  * text. No guessed effect geometry or animation durations are inserted.
  */
-export async function installBootstrapRenderScene(runtime){
+export async function installBootstrapRenderScene(runtime,{logicalHeroTimeline=false}={}){
   const sourceFile='src/srcmodule/game_ui_1.js';
   const original=await readFile(resolve(root,sourceFile),'utf8');
   const methods=[],records=[];
@@ -33,8 +33,22 @@ export async function installBootstrapRenderScene(runtime){
     resourceStatements.push(`ed[${JSON.stringify(name)}]=JSON.parse(${JSON.stringify(text)});bootstrapHost.render.registerAsset(${JSON.stringify(`res/${file}`)},ed[${JSON.stringify(name)}]);`);
   }
   const cacheInit=(runtime.sourceRecords.definitions.get('cc.pFcaInfos')??[]).map(record=>`cc.pFcaInfos=(${record.source});`).join('\n');
+  let timelineSetup='';
+  if(logicalHeroTimeline){
+    const record=runtime.sourceRecords.definitions.get('ed.SpineActor')?.at(-1);
+    const eventDelegateSource='function(e,t){n.__onAnimationEvent(e,t)}';
+    const animationEventSource='function(e,t){var i=t.data;i.name,i.intValue,i.intValue,i.stringValue;this._onEvent&&this._onEvent(e,t)}';
+    if(!record?.source.includes(`setEventListener((${eventDelegateSource}))`)||!record.source.includes(`__onAnimationEvent:${animationEventSource}`)||!record.source.includes('n=this;this._skeletonAnimation.setCompleteListener'))throw new Error('Original Spine event-owner/pure-dispatch proof changed');
+    const proof={eventDelegateSource,animationEventSource,classSourceSha256:createHash('sha256').update(record.source).digest('hex')};
+    const tableSha256=createHash('sha256').update(JSON.stringify(runtime.ed.getDataTable('AnimDuration'))).digest('hex');
+    timelineSetup=`var __logicalTimelineProof=${JSON.stringify(proof)},__durationTableSha256=${JSON.stringify(tableSha256)};
+var __originalSpineUpdate=ed.SpineActor.prototype.update;
+ed.SpineActor.prototype.update=function(elapsed){if(this._skeletonAnimation)this._skeletonAnimation.bindLogicalTimelineOwner(this,__logicalTimelineProof);return __originalSpineUpdate.call(this,elapsed);};
+function __clipMetadata(duration,key,action){return{duration:duration,logicalTimeline:{kind:'source-table-f64-v1',eventPolicy:'no-observable-events',source:{table:'AnimDuration',key:key,action:action,sha256:__durationTableSha256}}};}`;
+  }else timelineSetup='function __clipMetadata(duration){return{duration:duration};}';
   const source=`(function __installOracleRenderScene(__scene){
 ${cacheInit}
+${timelineSetup}
 var __methods={${methods.join(',\n')}};
 for(var __name in __methods)__scene[__name]=__methods[__name];
 __scene.effect_list=[];__scene.actor_list=[];__scene.scale3ChainEntityList=[];__scene.needFlipScene=false;
@@ -45,14 +59,14 @@ ${resourceStatements.join('\n')}
 var __durations=ed.getDataTable('AnimDuration');
 for(var __key in ed.spine_json){
  var __row=ed.spine_json[__key],__clips=__durations[__key+'.cha'],__animations;
- if(__clips){__animations={};for(var __action in __clips)__animations[__action]={duration:__clips[__action].Duration};}else __animations=undefined;
+ if(__clips){__animations={};for(var __action in __clips)__animations[__action]=__clipMetadata(__clips[__action].Duration,__key+'.cha',__action);}else __animations=undefined;
  bootstrapHost.render.registerAsset('res/fca/effect/'+__row.skel,{source:'src/res/spine.json',key:__key,kind:'skeleton',animations:__animations});
  bootstrapHost.render.registerAsset('res/fca/effect/'+__row.atlas,{source:'src/res/spine.json',key:__key,kind:'atlas',animations:__animations});
  var __images=__row.img||[];for(var __j=0;__j<__images.length;__j++)bootstrapHost.render.registerAsset('res/fca/effect/'+__images[__j],{source:'src/res/spine.json',key:__key,kind:'texture'});
 }
 for(var __hero in ed.hero_json)if(Array.isArray(ed.hero_json[__hero])){
  var __heroClips=__durations[__hero+'.cha'],__heroAnimations;
- if(__heroClips){__heroAnimations={};for(var __heroAction in __heroClips)__heroAnimations[__heroAction]={duration:__heroClips[__heroAction].Duration};}else __heroAnimations=undefined;
+ if(__heroClips){__heroAnimations={};for(var __heroAction in __heroClips)__heroAnimations[__heroAction]=__clipMetadata(__heroClips[__heroAction].Duration,__hero+'.cha',__heroAction);}else __heroAnimations=undefined;
  var __files=ed.hero_json[__hero];for(var __k=0;__k<__files.length;__k++)bootstrapHost.render.registerAsset('res/fca/hero/'+__files[__k],{source:'src/res/hero.json',key:__hero,animations:__heroAnimations});
 }
 ed.battleVFXFilter.init();
@@ -60,6 +74,7 @@ return __scene;
 })`;
   const install=runInContext(source,runtime.context,{filename:'source-backed-render-scene-initializer.js'});
   const scene=install(runtime.callbacks.sceneHost);
-  runtime.renderScene={scene,functions:records,resources,source,sha256:createHash('sha256').update(source).digest('hex')};
+  runtime.renderScene={scene,functions:records,resources,source,sha256:createHash('sha256').update(source).digest('hex'),logicalHeroTimeline,
+    timelineContract:logicalHeroTimeline?'Opt-in f64 logical clock from exact source AnimDuration values; native Spine float timing/asset-event equivalence is not established. Unknown clips, event handlers and geometry fail closed.':null};
   return runtime.renderScene;
 }

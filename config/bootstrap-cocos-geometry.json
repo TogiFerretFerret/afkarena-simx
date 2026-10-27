@@ -17,6 +17,12 @@
       "file": "tools/bootstrap-vendor-CCAffineTransform.js",
       "source": "https://github.com/cocos2d/cocos2d-html5/blob/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/cocos2d/core/cocoa/CCAffineTransform.js",
       "sha256": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696"
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCTypesPredicates.js",
+      "source": "https://github.com/cocos2d/cocos2d-html5/blob/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/CCBoot.js",
+      "scope": "Exact cc.isFunction/isNumber/isString/isArray/isUndefined/isObject assignments; MIT license retained",
+      "sha256": "54736c655de08ad96cec9f709f0984e8c3256a5abff980d0786472418d956458"
     }
   ]
 }
