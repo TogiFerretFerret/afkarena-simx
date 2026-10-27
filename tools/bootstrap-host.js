@@ -80,7 +80,8 @@
         snapshotState: function () {
             return { nextAudioId: nextAudioId, effects: effects, music: music,
                 effectVolume: effectVolume, musicVolume: musicVolume, storage: storage,
-                listeners: listeners, nextListenerId: nextListenerId };
+                listeners: listeners, nextListenerId: nextListenerId,
+                render: host.bootstrapHost.render ? host.bootstrapHost.render.snapshotState() : null };
         }
     };
 })(globalThis);
