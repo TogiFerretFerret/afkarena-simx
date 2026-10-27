@@ -135,7 +135,7 @@ reference: one fresh battle, 296 frames, 15,453 callbacks, 64,419 events and
 55,078 content-addressed snapshot nodes. Traced and fresh untraced JS terminal
 reports match in every raw field except timings. Both integrity and strict
 schema gates pass; approximately 266 MiB of reconstructable snapshots are
-preserved in 13 gzip chunks. Native comparison is still pending. See
+preserved in 13 gzip chunks. The optimized native comparison now passes. See
 `results/2026-10-27T23-15-36.402Z-boundary-source-reference.json`.
 
 This diagnostic captures selected engine/unit/skill/buff lists, own enumerable
@@ -154,10 +154,29 @@ The replacement changes only post-battle output to bounded NDJSON records.
 Its full-source preflight round-trips all 119,499 records, all snapshots/events
 and the raw terminal report; the largest row is 225,901 UTF-16 code units.
 Actual Hermes transport tests and an independent build review pass. The six
-other optimized objects and private VM remain byte-identical. The new native
-battle/trace comparison is pending. See
+other optimized objects and private VM remain byte-identical. See
 `validation/battle-boundary-stream-preflight.json` and
 `validation/battle-boundary-stream-build-independent-review.json`.
+
+The bounded native run completes and matches **all 64,419 ordered events and
+55,078 selected-state snapshot nodes**, with exact floating-point bits and no
+normalization or dropped records. Source/untraced and native terminal reports,
+strict snapshot schemas, fast-path execution and runtime cleanup all pass.
+Entity, numeric/empty clone, Rust V8 sort and the global-slot C prefilter are
+actually exercised. See
+`results/2026-10-27T23-49-07.298Z-boundary-optimized-native.json`.
+
+The complete committed gzip archives were independently replayed successfully;
+no ignored workspace captures are needed. See
+`validation/battle-boundary-archive-replay.json`. To reproduce that comparison:
+
+```sh
+node --max-old-space-size=12288 tools/check-battle-boundary-archive.mjs benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.json benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.json
+```
+
+This is one frozen callback-only battle, not a throughput measurement, random
+battle corpus qualification or the outstanding full-program/full-scene gate.
+The 10,000 faithful battles/second target remains unmet.
 
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
