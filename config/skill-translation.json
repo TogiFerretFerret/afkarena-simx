@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_battle.js",
+  "translation": "native_typed_skill_control_with_required_mechanics_hooks",
+  "nativeWholeBattle": false,
+  "formalProof": false,
+  "functions": [
+    {
+      "name": "ed.Skill.update",
+      "start": 18788,
+      "end": 20141,
+      "sha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838"
+    },
+    {
+      "name": "ed.Skill.start",
+      "start": 22537,
+      "end": 22979,
+      "sha256": "2d63bff9e1bb74eb1dcbe510a93b11513fbed80de84f3f6767dd95af0422c7c4"
+    },
+    {
+      "name": "ed.Skill.startPhase",
+      "start": 24935,
+      "end": 25310,
+      "sha256": "91012e80c4eb7f07c0ec8bebf0e5914de4c77d2ef8adabc6dbe5f64d0fb6edfe"
+    },
+    {
+      "name": "ed.Skill.onPhaseFinished",
+      "start": 27300,
+      "end": 27402,
+      "sha256": "fca77b88d01aae27aad12ea45d8a2db2962889df72bbb3d00bcb9a63635d6475"
+    },
+    {
+      "name": "ed.Skill.isMode_TB",
+      "start": 35546,
+      "end": 35657,
+      "sha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c"
+    }
+  ],
+  "domain": [
+    "Plain source objects and table numeric/string fields mapped to typed records",
+    "Valid stable arena handles; timers and source indices remain binary64",
+    "Null and undefined remain distinct for optional numeric and object-reference state",
+    "All nontranslated game mechanics are required hooks, with errors propagated",
+    "Callbacks queue and execute later; drain captures original queue identity; actor absence and playSound conditions follow original source branches",
+    "World.mode corresponds to ed.battleEngine.getMode(), which returns engine.mode in supplied source",
+    "Update hooks may mutate current phase, indices, casting, caster, info and callback queue; source reads are repeated at original call boundaries"
+  ],
+  "validation": {
+    "rustUnitTests": 5,
+    "differential": "pending"
+  }
+}
