@@ -43,7 +43,7 @@ function primitive(object){var out=[];Object.keys(object).sort().forEach(functio
 function run(index,mutate,label){events=[];var f=make(index);if(mutate)mutate(f);var error=null;try{update.call(f.u,f.dt)}catch(e){error={sameSentinel:e===sourceSentinel,name:e.name,message:e.message}};
  var before=events.slice(),state={unit:primitive(f.u),attrs:primitive(f.attrs),effects:primitive(f.fx),config:primitive(f.config),skill:primitive(f.skill),info:primitive(f.skill.info),sameCurrent:f.u.current_skill===f.skill,sameBasic:f.u.basic_skill===f.skill};
  return{label:label===undefined?index:label,error:error,events:before,state:state};}
-var rows=[];for(var i=0;i<20000;i++){rows.push(run(i));if(i%97===0&&typeof gc==='function')gc();}
+var rows=[],forcedCollections=0;for(var i=0;i<20000;i++){rows.push(run(i));if(i%97===0&&typeof gc==='function'){gc();forcedCollections++;}}
 var checks=[
  ['prefix-mutates-attribs',function(f){f.u.state=0;f.u.config.is_summoned=false;f.u.isAlive=function(){events.push(['prefix-alive']);f.attrs.MSPD=150;return true};}],
  ['prefix-throws',function(f){f.u.isAlive=function(){events.push(['prefix-throw']);throw sourceSentinel}}],
@@ -65,5 +65,5 @@ var checks=[
  ['coercive-dt',function(f){f.dt={valueOf:function(){events.push(['coerce-dt']);return 0.125}}}],
  ['nan-mspd',function(f){f.attrs.MSPD=NaN}],['infinite-dt',function(f){f.dt=Infinity;f.u.state=4}]
 ];for(var j=0;j<checks.length;j++)rows.push(run(123,checks[j][1],checks[j][0]));
-print(JSON.stringify({rows:rows,functionSource:update.toString()}));
+print(JSON.stringify({rows:rows,functionSource:update.toString(),forcedCollections:forcedCollections}));
 `;}

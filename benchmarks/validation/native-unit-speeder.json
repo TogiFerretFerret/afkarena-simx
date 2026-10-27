@@ -4,7 +4,26 @@
   "semanticProofPassed": true,
   "integratedInBattle": false,
   "qualifiesFor10000Target": false,
-  "scope": "Actual original whole Unit.update native interior splice compared to pinned jitless source and untouched native across20000 cases plus directed descriptor/getter/Proxy/alias/prefix cases. Numeric source, every recorded continuation callback and f64 output compared. No full-battle or throughput claim.",
+  "scope": "Guarded numeric interior of original Unit.update compared through its full unchanged continuation against pinned jitless source and untouched native across 20,000 generated valid-state cases and 20 directed descriptor/getter/Proxy/alias/prefix cases. Every recorded continuation callback and selected numeric output matches raw f64 bits. This fixture gate does not establish universal Unit.update, full-battle, or throughput equivalence.",
+  "excludedNegative": {
+    "file": "benchmarks/validation/native-unit-speeder-invalid-phase-failure.json",
+    "sha256": "a7ed295a90d150d726ef85a6f99e5f42bbf803a88536c4d1b8ad87c3e0091147",
+    "reason": "An invalid Attack state with null current_skill throws engine-specific TypeError messages in untouched Hermes versus V8. The exact mismatch is retained without normalization; generated null-skill cases use idle continuation. General cross-engine error-message equivalence is not claimed."
+  },
+  "errorCases": [
+    {
+      "label": "prefix-throws",
+      "error": {
+        "sameSentinel": true
+      }
+    },
+    {
+      "label": "mspd-throws",
+      "error": {
+        "sameSentinel": true
+      }
+    }
+  ],
   "source": {
     "version": 1,
     "source": "src/srcmodule/game_battle.js",
@@ -32,7 +51,13 @@
   "sourceCases": 20000,
   "directedCases": 20,
   "hits": 19796,
-  "forcedCollections": 207,
+  "forcedCollections": {
+    "scheduled": 207,
+    "sourceOracleCalls": 207,
+    "untouchedNativeCalls": 207,
+    "candidateNativeCalls": 207,
+    "mechanism": "Actual pinned StaticHermes console provides global gc; observed native call counts are recorded. Source realm mirrors calls with a no-op gc stub, so source count is not a V8 collection count. Legacy global gc_ is absent. Scheduled opportunities alone are not collection evidence."
+  },
   "oracleProfile": {
     "version": 1,
     "node": "v24.19.0",
@@ -52,8 +77,8 @@
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
   "liveness": {
-    "functionSha256": "a0f2f106bc1f963aada5f0c652c761d6fd98f64f99dd3bf46578695dbaf69872",
-    "regionSha256": "0a4848f154fc4dbf41c7554cd46ad73468154a3e1cf2e470add4b54e6ae4b7e5",
+    "functionSha256": "2d686c1f9026c0a968fa548812f32204b9d5431a2b0af370659bfee10812bdcf",
+    "regionSha256": "46dc18a03ce3d565a13d51600c38572d6ba5be7107bdabd95a980108909a4e3b",
     "continuationLive": [
       "frame[-1]",
       "locals.t0",
@@ -101,19 +126,19 @@
     "tools/native-unit-speeder-patch.mjs": "9ac1548ad28e5f5fdf61028899f9c407ee32422c8bc98a743e7ff5790af2b9af",
     "tools/native-compiler-patches/unit-speeder-host.inc": "a4ee36ad82277b602302fe3dad5e8e397b7417c0960e6b55b4124dd5ef0e476a",
     "crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
-    "tools/native-unit-speeder-probe.mjs": "54ec32ccce55d5d039890add70aeaf5be2251aab657ad35e6328e963c39990b6",
-    "tools/native-unit-speeder-cases.mjs": "cfebbe16eb88bfbe573b356e9d99bdd1555cd414891f7a7c71bdbd2d23c31f9e",
+    "tools/native-unit-speeder-probe.mjs": "b3740e749bfdd5af80d6adabc913504dfde67f2429f627028dc107422b3e8f52",
+    "tools/native-unit-speeder-cases.mjs": "e15a39d0908c1f673dc172a28855209343ab9d8128cd59703e3655d1a122ea0c",
     "tools/audit-unit-speeder-liveness.mjs": "10f275a029298f7991e6ebfa23460b91280b03b46958b011a60869299f86396e"
   },
   "buildProof": {
     "file": "benchmarks/validation/native-unit-speeder-build.json",
     "sha256": "0a7d9dfeba4a5529c600a4395f4683aa0f360df98be50d7e8e2f75719affec16"
   },
-  "scriptSha256": "e11c094c7f7ec460b1d60ed9f7f1a6a3a58274c9b597964b7391efd1fd0cd011",
-  "originalCSha256": "42f4a2548897c3f1f96ba6d3ac724d2d1752399f910e0d3e644677e73d08e4e7",
-  "patchedCSha256": "ccd3215ebf12385e0c024763d945d899407e0ce9d3dbb4a5e8a5d2c54d8023ea",
+  "scriptSha256": "9b611b8b139f42f811edb6f4845792fd7f0eccdd058680577d464f47cfe05ba5",
+  "originalCSha256": "74825e569ab1a848aec662e53f46aea5ea951de0c4982a50184a3fdc758a40a4",
+  "patchedCSha256": "1d0e5ec18465b7d9e35631d712a4b08a9d080249f16481413acd93e36aef8a32",
   "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
-  "binarySha256": "fa15111505f1455e01969a50e219cc5e9005104afe5fcf48f9ba2c069a2538f4",
+  "binarySha256": "f43aa7c6c74494a76bcd5a5c38d01e8e8c1ba0fe31ec934587678e596059c0fd",
   "compileArgs": [
     "/workspace/afkarena-simx/work/native-unit-speeder-probe/patched.c",
     "/workspace/afkarena-simx/work/native-unit-speeder/libunit_speeder.a",
@@ -169,8 +194,8 @@
   ],
   "archive": {
     "file": "benchmarks/validation/native-unit-speeder.outputs.json.gz",
-    "sha256": "64d763228848faec3c21a974e76c296e116b3b7a6e0f9e4b64973576cbd4015c",
-    "uncompressedSha256": "b10a3ca85e7ec77e81b6541cc382a1ecdb0bdccf998df8e80d2aa1c837e252ef"
+    "sha256": "a2ff2b82e99f9cc448cbeffb9d658a0be1d4726111254a28f0c0c7bd5b73995b",
+    "uncompressedSha256": "8af5e8496c112c87c9bff86c22de686f5925551336796385a3838cdd3a09ab40"
   },
   "numericPolicy": "No NaN or counter normalization; exact raw Number bits. Guards reject before writes; source fallback continues from original block entry."
 }

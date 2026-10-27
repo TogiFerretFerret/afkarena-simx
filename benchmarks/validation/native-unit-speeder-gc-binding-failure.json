@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "passed": false,
+  "stage": "Probe-only attempt to require global gc_ before source/native comparison",
+  "command": "node tools/native-unit-speeder-probe.mjs",
+  "nativeArguments": [
+    "-Xhermes-internal-test-methods"
+  ],
+  "nativeExitCode": 1,
+  "nativeStderr": "Uncaught Error: Pinned console gc_ is required\n    at global (native)\n",
+  "cause": "The actual StaticHermes console does not expose legacy ConsoleHost gc_. No source/native or candidate semantic result is inferred from this failed setup.",
+  "resolution": "Count actual calls to optional global gc in every report and distinguish scheduled opportunities from observed collections. No forced-GC claim when zero calls are observed."
+}
