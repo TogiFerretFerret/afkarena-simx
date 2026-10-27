@@ -32,7 +32,24 @@ const warmAt=process.argv.indexOf('--warmup-corpus'),warmups=warmAt<0?0:Number(p
 assert.ok(Number.isSafeInteger(warmups)&&warmups>=0,'--warmup-corpus requires a nonnegative integer');
 for(let repeat=0;repeat<warmups;repeat++)for(const testcase of cases)oracle(testcase);
 await mkdir(resolve(root,'work'),{recursive:true});
-for(let i=0;i<cases.length;i++){const expected=oracle(cases[i]),actual=JSON.parse(lines[i]);if(capturePath)rawCapture.push({input:serialize(cases[i]),expected,actual:structuredClone(actual)});try{if(nanPolicy==='semantic')for(let j=0;j<expected.values.length;j++){if(actual.values[j]!==expected.values[j]&&Number.isNaN(fromBits(actual.values[j]))&&Number.isNaN(fromBits(expected.values[j]))){nanBitDifferences++;firstNaNDifference??={case:i,output:j,expected:expected.values[j],actual:actual.values[j]};actual.values[j]=expected.values[j]}}assert.deepEqual(actual,expected)}catch(e){await writeFile(resolve(root,'work/damage-first-divergence.json'),JSON.stringify({case:i,input:serialize(cases[i]),expected,actual},null,2)+'\n');throw new Error(`Damage primitive trace diverged at case${i}: ${e.message.slice(0,500)}`)}totalDraws+=expected.draws}
+for(let i=0;i<cases.length;i++){
+ const expected=oracle(cases[i]),actual=JSON.parse(lines[i]);
+ if(capturePath)rawCapture.push({input:serialize(cases[i]),expected,actual:structuredClone(actual)});
+ try{
+  if(nanPolicy==='semantic'){
+   // Diagnostic comparison counts raw mismatches without replacing either value.
+   assert.equal(actual.values.length,expected.values.length);
+   for(let j=0;j<expected.values.length;j++){
+    if(actual.values[j]!==expected.values[j]&&Number.isNaN(fromBits(actual.values[j]))&&Number.isNaN(fromBits(expected.values[j]))){
+     nanBitDifferences++;firstNaNDifference??={case:i,output:j,expected:expected.values[j],actual:actual.values[j]};
+    }else assert.equal(actual.values[j],expected.values[j]);
+   }
+   const {values:_a,...otherActual}=actual,{values:_e,...otherExpected}=expected;
+   assert.deepEqual(otherActual,otherExpected);
+  }else assert.deepEqual(actual,expected);
+ }catch(e){await writeFile(resolve(root,'work/damage-first-divergence.json'),JSON.stringify({case:i,input:serialize(cases[i]),expected,actual},null,2)+'\n');throw new Error(`Damage primitive trace diverged at case${i}: ${e.message.slice(0,500)}`)}
+ totalDraws+=expected.draws;
+}
 if(capturePath)await writeFile(resolve(root,capturePath),JSON.stringify({referenceRuntime:process.version,flags:process.execArgv,warmups,provenance,rawCapture})+'\n');
 const summary={version:1,inputDomain:finite?'bounded finite game-scale values':'adversarial binary64 extremes',cases:cases.length,outputValues:cases.length*6,rngDraws:totalDraws,nanPolicy,nanBitDifferences,firstNaNDifference,rawBitsExact:nanBitDifferences===0,scope:'Source damage math, dodge RNG consumption and live-buff power transforms; not full takeDamage or battles'};await writeFile(resolve(root,finite?'work/damage-finite-summary.json':'work/damage-summary.json'),JSON.stringify(summary,null,2)+'\n');
 // Primitive verification must not erase the separately audited takeDamage controller.

@@ -1,0 +1,329 @@
+{
+  "version": 2,
+  "createdAt": "2026-10-27T18:02:52.419Z",
+  "referenceRuntime": "v24.19.0",
+  "platform": "linux",
+  "architecture": "x64",
+  "rustVersion": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "referenceProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "strictComponentGatePassed": true,
+  "strictCases": 200000,
+  "fullBattleEquivalence": false,
+  "qualifiesForBattleThroughputTarget": false,
+  "scope": "Component source control and scripted mechanics hooks only. Does not validate a composed Rust battle or the realistic 5v5 corpus.",
+  "strict": [
+    {
+      "name": "unit",
+      "checker": "tools/check-unit.mjs",
+      "arguments": [],
+      "result": {
+        "version": 1,
+        "sourceName": "ed.Unit.update",
+        "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+        "binarySha256": "8e8d63f1efdf9b8f78bdbceb704140bc8354e7f5fb49d85987f8bd55f3e52054",
+        "cases": 20000,
+        "eventCount": 129641,
+        "snapshotEvents": 129641,
+        "hookCounts": {
+          "is_turn_based": 14097,
+          "stage_rect": 14097,
+          "update_skill": 20101,
+          "is_pet": 9358,
+          "recheck_manual": 14086,
+          "update_buff": 17850,
+          "action_finished": 641,
+          "buff_has_effect": 10974,
+          "cast_when_controlled": 2365,
+          "transfer_mp": 6981,
+          "set_mp": 6981,
+          "buff_hpr": 3512,
+          "set_hp": 2120,
+          "update_ai": 3456,
+          "transfer_hp": 1760,
+          "phase_finished": 21,
+          "console": 1,
+          "add_restore": 161,
+          "fix_position": 38,
+          "fall": 2,
+          "add_buff": 354,
+          "terminate": 685
+        },
+        "rawBitsExact": true,
+        "referenceRuntime": "v24.19.0",
+        "scope": "Actual Unit.update source control, numeric state and aliasing under scripted mechanics hooks; not complete battles"
+      }
+    },
+    {
+      "name": "skill",
+      "checker": "tools/check-skill.mjs",
+      "arguments": [],
+      "result": {
+        "version": 1,
+        "cases": 20000,
+        "eventCount": 114577,
+        "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
+        "rawBitsExact": true,
+        "scope": "Skill.update and deferred original callback bodies under explicit fixture mechanics; not full battle equivalence"
+      }
+    },
+    {
+      "name": "buff",
+      "checker": "tools/check-buff.mjs",
+      "arguments": [],
+      "result": {
+        "cases": 20000,
+        "events": 28486,
+        "rawBitsExact": true,
+        "source": [
+          {
+            "name": "ed.Buff.update",
+            "start": 40434,
+            "end": 41296,
+            "sha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8"
+          },
+          {
+            "name": "ed.Buff.updateHPRDamage",
+            "start": 41313,
+            "end": 41704,
+            "sha256": "a24eeaf3080157c38734a07cef3b5fc836728ee961e30797b6ae3f74f66520bc"
+          }
+        ],
+        "scope": "Buff update/HPR control with live identities and mutating required fixture hooks; finite numeric inputs plus null/undefined timers; not integrated full battles"
+      }
+    },
+    {
+      "name": "damage-primitives",
+      "checker": "tools/check-damage.mjs",
+      "arguments": [
+        "--finite"
+      ],
+      "result": {
+        "version": 1,
+        "inputDomain": "bounded finite game-scale values",
+        "cases": 20000,
+        "outputValues": 120000,
+        "rngDraws": 14942,
+        "nanPolicy": "bits",
+        "nanBitDifferences": 0,
+        "rawBitsExact": true,
+        "scope": "Source damage math, dodge RNG consumption and live-buff power transforms; not full takeDamage or battles"
+      }
+    },
+    {
+      "name": "damage-controller",
+      "checker": "tools/check-damage-controller.mjs",
+      "arguments": [],
+      "result": {
+        "version": 1,
+        "cases": 20000,
+        "eventCount": 195644,
+        "rawBitsExact": true,
+        "scope": "Full original takeDamage control and queued callback bodies under fixture mechanics, not full battles"
+      }
+    },
+    {
+      "name": "ai-targeting",
+      "checker": "tools/check-ai.mjs",
+      "arguments": [],
+      "result": {
+        "cases": 20000,
+        "callbackCount": 124434,
+        "rawBitsExact": true,
+        "sourceSha256": "0b81cb69622de9daafa321321d72eb53fd6817bca12594c22ace56a18d57f185",
+        "scope": "Native ordered searchTarget with source callbacks; not full battles"
+      }
+    },
+    {
+      "name": "ai-movement",
+      "checker": "tools/check-ai-movement.mjs",
+      "arguments": [],
+      "result": {
+        "cases": 20000,
+        "callbackCount": 49285,
+        "rawBitsExact": true,
+        "scope": "Source AI walkTo/walkAwayFrom including vector alias mutation and ordered callbacks; not full battles",
+        "functions": [
+          {
+            "name": "ed.Ai.walkTo",
+            "start": 6821,
+            "end": 7607,
+            "sha256": "dd97b8fc214dcdb6c206c7a8d8a621d88de540a4d9c841564fff467a093dcab7"
+          },
+          {
+            "name": "ed.Ai.walkAwayFrom",
+            "start": 6623,
+            "end": 6813,
+            "sha256": "41683880915b6a88805a648e681088aebbeb7296c2bfb60de62f1a3c30467a29"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ai-selection",
+      "checker": "tools/check-ai-control.mjs",
+      "arguments": [],
+      "result": {
+        "cases": 20000,
+        "callbackCount": 57666,
+        "scope": "Source skill-selection and trigger control with callback mutations; not full battles",
+        "functions": [
+          {
+            "name": "ed.Ai.findSkillToCast",
+            "start": 5706,
+            "end": 6144,
+            "sha256": "1369e82a60fa02e4cc51dc2a204549619e82144de7e27a816fe0503b87268075"
+          },
+          {
+            "name": "ed.Ai.checkTrigger",
+            "start": 5383,
+            "end": 5689,
+            "sha256": "4c3b6c7f76f84fc149f91cb0f8981f4969565a1c87a05f489c98d8184c37ece4"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ai-update",
+      "checker": "tools/check-ai-update.mjs",
+      "arguments": [],
+      "result": {
+        "version": 1,
+        "cases": 20000,
+        "eventCount": 21453,
+        "hookCounts": {
+          "search": 2881,
+          "can": 1840,
+          "searchTB": 1207,
+          "find": 2425,
+          "cast": 2148,
+          "walkVector": 1334,
+          "away": 2933,
+          "check": 3349,
+          "trigger": 1669,
+          "walkUnit": 618,
+          "will": 924,
+          "outside": 81,
+          "idle": 44
+        },
+        "rawBitsExact": true,
+        "functions": [
+          {
+            "name": "ed.Ai.update",
+            "start": 3665,
+            "end": 4257,
+            "sha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c"
+          },
+          {
+            "name": "ed.Ai.castSkillWhenControlled",
+            "start": 6169,
+            "end": 6609,
+            "sha256": "5a0e9c0272d8962440d57672eaad94ce666057d946b34a45a96c7ef60b80073e"
+          }
+        ],
+        "scope": "Ai.update and castSkillWhenControlled source control with mutating fixture callbacks and full controller snapshots; stable owner, dense fixed-length skill lists; not full battles"
+      }
+    },
+    {
+      "name": "attribute-initialization",
+      "checker": "tools/precompute-config-differential.mjs",
+      "arguments": [],
+      "result": {
+        "version": 1,
+        "sourceName": "ed.unitAttribsManagerObj._finalCalculateAttribs",
+        "source": "src/srcmodule/game_battle.js",
+        "start": 154650,
+        "end": 155568,
+        "sourceSha256": "eab447a495ec54e60eccfdad4081d7a6038ff2169a9f05fea43d34cd5723c2d5",
+        "referenceRuntime": "v24.19.0",
+        "cases": 20000,
+        "outputs": 940000,
+        "formulaCallbackEvents": 6016,
+        "finishStaticCallbackEvents": 128,
+        "rawBitsExact": true,
+        "scope": "Dense immutable attribute initialization; input rows plain Number properties, finite arithmetic; falsy NaN/-0 contributions and source trace callbacks retained; not full battles"
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "name": "damage-adversarial-NaNs",
+      "qualifiesForRawBitGate": false,
+      "result": {
+        "version": 1,
+        "inputDomain": "adversarial binary64 extremes",
+        "cases": 20000,
+        "outputValues": 120000,
+        "rngDraws": 14942,
+        "nanPolicy": "semantic",
+        "nanBitDifferences": 348,
+        "firstNaNDifference": {
+          "case": 79,
+          "output": 2,
+          "expected": "fff8000000000000",
+          "actual": "7ff8000000000000"
+        },
+        "rawBitsExact": false,
+        "scope": "Source damage math, dodge RNG consumption and live-buff power transforms; not full takeDamage or battles"
+      }
+    }
+  ],
+  "sha256": {
+    "config/source-oracle-runtime.json": "52a9d087d11ec9af7bdaef01fc609cab34113f2bec6d296321c52553decf97fa",
+    "config/toolchains.json": "89ddb65890ad9a53801483acf7f444e39b347efd44bdb1f5b815a671e0990ad3",
+    "crates/battle-core/src/ai.rs": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
+    "crates/battle-core/src/buff.rs": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145",
+    "crates/battle-core/src/clock.rs": "95a00c6a78a6a1c6d82e42f8c81da7e0e4c3d6512468925697045fe975798cba",
+    "crates/battle-core/src/config.rs": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36",
+    "crates/battle-core/src/damage.rs": "87d4013c63e4b2af3c7fcc0fa124bf98fa3cdf5992d8273d7a0c6b89d5817532",
+    "crates/battle-core/src/engine.rs": "1a7cd93944a3cc86b25cc39d19edc7bf9b73f213174487744e606aabcd889110",
+    "crates/battle-core/src/entity.rs": "6e5b05c246f3f0736e68e5f2b0abd11e831cff8d9d443b87fece5df17c65c8ac",
+    "crates/battle-core/src/ffi.rs": "8709bd149fa999ec1d01921a603e2833f6b96dca7e3443a441e1c28282a844b3",
+    "crates/battle-core/src/js_math.rs": "0b8ca8072d665ea2482aaec3e95bac5aab5c52b1f6e6b7f56006b7967c38dca7",
+    "crates/battle-core/src/lib.rs": "abe3290008f1d3a07ff917217e6d75bbb3769406d357926460b84d812e8b2e92",
+    "crates/battle-core/src/numeric.rs": "ac9176d02414f311cdb9702b9ff5485962ec62bdf4f79080fc10729c8827c23c",
+    "crates/battle-core/src/rng.rs": "d343b560ebc3808ac57e8df064b63d5e4f75f6e9ed7bbefd0f2a20cae675d035",
+    "crates/battle-core/src/scheduler.rs": "944041e9fcbb66e2dfb7f67121798e45e8a4db336f724bd7b047fe23829fe152",
+    "crates/battle-core/src/skill.rs": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742",
+    "crates/battle-core/src/unit.rs": "64b12b006757b9f58a06ca4eb716c6b243ab8335c1dd871f708e5f04becc51ff",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "tools/check-ai-control-runner.rs": "936754a326fe65aee8a70055f6ecf826386fb930241dcb92f79587b341627410",
+    "tools/check-ai-control.mjs": "a1353378573e0f8bedcf397b66bc678ff650600d0c4862d9dad05c4e35b84111",
+    "tools/check-ai-movement-runner.rs": "6ba21a9e2d13725a70a29e12c6dafcda786a3f594051f05f2458bbdb05e9b1f4",
+    "tools/check-ai-movement.mjs": "a72acde29b9dbb41dffa14a1d0cf5d68f34ac15346c08edb8fbbc5d981429649",
+    "tools/check-ai-runner.rs": "bb399cc6c030823365bb96dcf40bd7b4175ce35f2c942f8657aa9cfe0c57e203",
+    "tools/check-ai-update.mjs": "09ac7bdee8cc6d44e36445978acf87e81e03b45e9e2807634880e0124e2cb404",
+    "tools/check-ai-update.rs": "45fb83987b2ab7ccf4aafc78de0a7d0ecc6d06bcfd8078c7f6a8fb8fc04a72c1",
+    "tools/check-ai.mjs": "c5ff443e2998086f015e47d6ea3a6467300107c8b06e79c7a0e0b0ec07fdcb2b",
+    "tools/check-buff.mjs": "5f9e0ac831cecbbb4ff2711bdf8961157fd5eff7e8a7a6b987e0236fa19569ac",
+    "tools/check-buff.rs": "c468d9a86c02c9febb6a0640cad736c6eff9e13aa249f4fc393dfbc5122fe033",
+    "tools/check-damage-controller.mjs": "ad0854ff86b24d9e5dfc17aa897e844867bffa8782bac2846a814a4441dd2f73",
+    "tools/check-damage-controller.rs": "94c7e140b8ae1fb30e0d82c90dcaf707cd692f011f454b4f039b2eaa9a209bbf",
+    "tools/check-damage.mjs": "96a3a4d06edc742550e531077ec72e3deb37d62171e06e002aec2cf3fb159e14",
+    "tools/check-damage.rs": "9feae7664a97dabfe6d7a9f6bdf15819dbb1cd1f3b2f902636e58069d00f59c6",
+    "tools/check-skill.mjs": "9e75c2fbd2fe388fc40922d371815e7e71fd583314fc3c3362de28a9b7b66007",
+    "tools/check-skill.rs": "bc39eddecc7f856e910949510b4ec34c0fdcdae97013375234ae532ca2c3c0a8",
+    "tools/check-unit.mjs": "74b13dd5ad304560657cbd97250338ff363ce9ef3495837c1d61fc881df75d60",
+    "tools/check-unit.rs": "a2946368bb71692fa3777123ee849a065e2ed97f90ff9f14eec3d10ab1fc6110",
+    "tools/precompute-config-differential.mjs": "d98face4a6b291d1b9c8993d1c8258bbdac274e6900c11de307210c8c0f4a86d",
+    "tools/precompute-config-runner.rs": "bb7ddb1480bf4a4574af9aeef0f5ce1163c2e30ce79494fbeaeae932046d2e90",
+    "tools/rng-trace.mjs": "4a9230dcac34c3ecb22c0630588d1b94e5cbbd5dec9ad9def7256a331aef3ff2",
+    "tools/verify-components.mjs": "9b10740041934a9a05d93751b4d3c8491f480def67b03f14552f2c0546718398"
+  }
+}
