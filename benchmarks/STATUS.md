@@ -41,6 +41,20 @@ scene/random-corpus/ordered-trace qualification is still outstanding. See
 `results/2026-10-27T21-26-15.501Z-native-warm23-worker-map.json` and
 `validation/worker-strong-map.json`. Active generic adapters remain unchanged.
 
+The separate **instrumentation-off performance fixture** measures 20 battles in
+7.330 seconds, **2.728513 battles/second**, after three warmups. Every field
+matches an independently generated, instrumentation-off source JS reference.
+All 309,060 measured callbacks, RNG, clock inputs, allocation counters and final
+captures also match the guarded workload; the diagnostic `tableBoundary` field
+is absent by this performance contract. No game callback or mechanic was
+disabled. Across all 23 battles, ordinary empty-array clone admissions increase
+to 360,624, with 55,821 numeric clones; qualification Proxies previously blocked
+those ordinary-array guards. Only the private boundary initializer changes;
+all original function bytes and six other units remain unchanged. See
+`results/2026-10-27T21-55-08.845Z-native-warm23-no-proxy.json` and
+`validation/warm23-no-proxy.json`. This is still a single callback-only fixture,
+not a qualified full-scene, ordered-trace or random-roster result.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
