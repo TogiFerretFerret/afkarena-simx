@@ -11,6 +11,22 @@ The frozen seed2026 input predates that selection policy and remains a regressio
 fixture. Battles must finish through original engine termination rules, including
 timeouts. A harness frame limit is a failure, never a battle result.
 
+Current single-process native diagnostics, all using the frozen callback-only
+workload with three warmups and 20 measured battles:
+
+| Configuration | Measured battles/sec | Full raw report |
+| --- | ---: | --- |
+| Original Entity body, Rust V8 sort | 0.219039 | Pass |
+| Guarded Rust Entity update | 0.220975 | Pass |
+| Entity plus guarded numeric/empty clone | 0.196885 | Pass |
+| Same clone candidate, initial old-generation allocation | 0.223861 | Pass |
+| Same, 4 GiB initial / 8 GiB maximum heap | 0.192482 | Pass |
+| Same, 8 GiB initial / 8 GiB maximum heap | 0.158546 | Pass |
+
+These are individual diagnostic windows, not established speedups. The larger
+heap experiments consumed more memory without solving the throughput problem;
+their raw outputs and resource samples remain in `results/`.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
