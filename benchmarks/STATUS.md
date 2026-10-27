@@ -120,6 +120,16 @@ VM files change. See
 runtime per thread; alternating live runtimes requires a separate bounded
 context-lifetime check before broader embedding claims.
 
+The separate dictionary TLS-lease variant removes per-read weak/shared ownership
+operations and proves bounded fallback/adoption with two live runtimes. Its raw
+battle report and every cache admission counter match the earlier dictionary
+candidate. Twenty battles take 7.350 seconds (2.721088/second), effectively the
+adjacent plain baseline's 7.374 seconds; this does not justify promotion or more
+timing trials. Teardown leaves zero live contexts. See
+`results/2026-10-27T23-00-22.571Z-native-warm23-dictionary-lease.json`,
+`validation/native-dictionary-lease.json` and its independent review. Runtime
+initialization, use and shutdown remain on the same worker thread.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
