@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "date": "2026-10-27T19:25:58.810Z",
+  "fullBattle": {
+    "nodeGatePassed": true,
+    "baselineSemanticDifference": null,
+    "comparisonExcludes": [
+      "elapsedMs",
+      "battlesPerSecond",
+      "tableBoundaryDiagnosticCounters"
+    ],
+    "inputs": [
+      {
+        "file": "benchmarks/fixtures/frozen-2026-eager-pinned/reference.json.gz",
+        "sha256": "a8b88c2c6f7954ffb088a3ca9a3d5caf313594dfed82d796b1cf6bc365df58fa"
+      },
+      {
+        "file": "benchmarks/fixtures/frozen-2026-capsule-pinned/reference.json.gz",
+        "sha256": "35404a2243b74a2a153472f7c7a4e90d9aefb8fdae586a3ad1a4d3d29940cd1b"
+      }
+    ],
+    "completed": 1,
+    "ticks": 296,
+    "callbacks": 15453,
+    "rngBits": "4216fd6c5e6c0000"
+  },
+  "initialGraph": {
+    "nodeGatePassed": true,
+    "completed": 0,
+    "nodes": 10914,
+    "codeEntries": 32834,
+    "coverage": {
+      "accessorsInvoked": false,
+      "functionPolicy": "code",
+      "opaque": [
+        {
+          "kind": "function_closure_bindings",
+          "count": 36624
+        }
+      ],
+      "proxyDetection": "source-domain-no-proxies"
+    }
+  },
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "One fixed scenario; this is not the requested randomized full-scene workload.",
+    "Actor/effect/view lifecycle remains excluded.",
+    "Initial graph comparison completes zero battles.",
+    "Node/source equality is not native equivalence."
+  ]
+}
