@@ -6,6 +6,14 @@ const numberBuffer=new DataView(new ArrayBuffer(8));
 export function binary64(value){numberBuffer.setFloat64(0,value,false);return numberBuffer.getBigUint64(0,false).toString(16).padStart(16,'0');}
 const digest=text=>createHash('sha256').update(text).digest('hex');
 const functionSource=fn=>Reflect.apply(Function.prototype.toString,fn,[]);
+export function sourceCodeIdentity(fn){
+  const text=functionSource(fn);
+  // Native/bound function formatting is implementation-defined. Public name and
+  // arity plus logical object identity are stable; actual invocation effects are
+  // checked by the ordered event/state trace.
+  if(/\{\s*\[native code\]\s*\}/.test(text))return digest(JSON.stringify({kind:'native_function',name:Reflect.getOwnPropertyDescriptor(fn,'name')?.value??'',length:Reflect.getOwnPropertyDescriptor(fn,'length')?.value??0}));
+  return digest(text);
+}
 
 /** Snapshot observable graph state without invoking getters or source functions.
  * Closure environments, WeakMap/WeakSet entries and Proxy internals cannot be
@@ -57,7 +65,7 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,fun
         else queue.push(value);
       }
       if(typeof value==='function'&&functionPolicy==='code'){
-        if(!functionHashes.has(value))functionHashes.set(value,digest(functionSource(value)));
+        if(!functionHashes.has(value))functionHashes.set(value,sourceCodeIdentity(value));
         return['function',id,functionHashes.get(value)];
       }
       return['ref',id];
@@ -69,7 +77,7 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,fun
       const codeFunction=typeof value==='function'&&functionPolicy==='code';
       const node={id,kind:typeof value==='function'?'function':Array.isArray(value)?'array':'object',...(codeFunction?{}:{prototype:encode(Reflect.getPrototypeOf(value))}),properties:[]};
       if(typeof value==='function'){
-        if(!functionHashes.has(value))functionHashes.set(value,digest(functionSource(value)));
+        if(!functionHashes.has(value))functionHashes.set(value,sourceCodeIdentity(value));
         node.sourceSha256=functionHashes.get(value);
         // Captured bindings are checked through execution events, not reflection.
         opaqueFunctionCount++;

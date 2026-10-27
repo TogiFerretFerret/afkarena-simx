@@ -1,10 +1,6 @@
-import { createHash } from 'node:crypto';
 import { runInContext } from 'node:vm';
-import { binary64,createGraphSnapshotter,createGraphDeltaRecorder,realmIntrinsics } from './battle-trace.mjs';
+import { binary64,createGraphSnapshotter,createGraphDeltaRecorder,realmIntrinsics,sourceCodeIdentity } from './battle-trace.mjs';
 import { installBootstrapCallbacks } from './bootstrap-callbacks.mjs';
-
-const hash=text=>createHash('sha256').update(text).digest('hex');
-const source=fn=>Reflect.apply(Function.prototype.toString,fn,[]);
 
 /** Instrument original calls while retaining their receiver, arguments, result and
  * exceptions. Callbacks themselves are never replaced or omitted.
@@ -68,13 +64,13 @@ export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keep
   });
   replace(context,'clientCall',original=>function(callback){
     const result=Reflect.apply(original,this,[callback]);
-    record('callback:enqueue',{id:callableId(callback),sourceSha256:hash(source(callback)),queueLength:ed.clientCall_list.length},false);return result;
+    record('callback:enqueue',{id:callableId(callback),sourceSha256:sourceCodeIdentity(callback),queueLength:ed.clientCall_list.length},false);return result;
   });
   const originalSnapshot=phase.sceneHost.snapshot;
   phase.sceneHost.snapshot=function(callback){
     if(arguments.length===0){snapshotSide='after';activeCallback++;record('callback:before',{ordinal:activeCallback});}
     const result=Reflect.apply(originalSnapshot,this,arguments);
-    if(arguments.length!==0){callbackCount++;record('callback:after',{ordinal:activeCallback,id:callableId(callback),sourceSha256:hash(source(callback))});snapshotSide='before';}
+    if(arguments.length!==0){callbackCount++;record('callback:after',{ordinal:activeCallback,id:callableId(callback),sourceSha256:sourceCodeIdentity(callback)});snapshotSide='before';}
     return result;
   };
   restores.push(()=>{phase.sceneHost.snapshot=originalSnapshot});
