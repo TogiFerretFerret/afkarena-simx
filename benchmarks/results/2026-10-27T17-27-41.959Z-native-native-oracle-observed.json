@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "engine": "Static Hermes AOT original-source factories",
+  "input": "/workspace/afkarena-simx/work/native-oracle-observed.js",
+  "output": "/workspace/afkarena-simx/work/native-oracle-observed",
+  "inputSha256": "35a41bd22fecb88923353ecad3a59498845855d427587c9e3f7ffc73f840a4d1",
+  "compilerSha256": "cd8fb7e875166cc3ee4e21d1f616883611e0fc5183d5b6d0759aff6aaf9790aa",
+  "compileArgs": [
+    "-O",
+    "-Wc,-O1,-ffp-contract=off",
+    "-keep-temp",
+    "/workspace/afkarena-simx/work/native-oracle-observed.js",
+    "-o",
+    "/workspace/afkarena-simx/work/native-oracle-observed"
+  ],
+  "compileMs": 62931.864962,
+  "executionWallMs": 13939.250637000005,
+  "scenario": {
+    "file": "/workspace/afkarena-simx/config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc",
+    "inputSha256": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a"
+  },
+  "completed": 1,
+  "elapsedMs": 3411,
+  "battlesPerSecond": 0.2931691586045148,
+  "finalStateMatched": true,
+  "firstDifference": null,
+  "hostInputConsumption": {
+    "random": 2,
+    "clock": {
+      "version": 1,
+      "mode": "replay",
+      "attempts": 260,
+      "consumed": 260,
+      "total": 260,
+      "remaining": 0,
+      "counts": {
+        "Date.now": 0,
+        "Date.construct": 260,
+        "Date.call": 0
+      },
+      "finished": true,
+      "restored": false,
+      "failure": null
+    }
+  },
+  "expectedHostInputs": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-observed.js.host-inputs.json",
+    "sha256": "dd43259a39f6010266cbf8d85a7e44ac5e8acef5c5d9ed4bc13f72e82eef8c5d",
+    "randomCount": 2,
+    "clockCount": 260
+  },
+  "fullStateCapture": true,
+  "qualifiesFor10000Target": false,
+  "qualification": "Single emitted fixture paired terminal state and source-host events; full ordered battle trace and broad corpus qualification are still required",
+  "reference": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-observed.js.reference.json",
+    "sha256": "3ee3c49843432214470cd8b82a77e79069bb6d38a40025616b5c282b9a2cf954"
+  },
+  "limitations": [
+    "Lazy symbol evaluation does not establish all original module side-effect order",
+    "Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter",
+    "Headless Linux device output is recorded; physical audio/render output is not produced",
+    "Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly"
+  ]
+}

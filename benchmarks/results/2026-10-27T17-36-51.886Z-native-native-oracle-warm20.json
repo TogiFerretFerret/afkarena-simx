@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "engine": "Static Hermes AOT original-source factories",
+  "input": "/workspace/afkarena-simx/work/native-oracle-warm20.js",
+  "output": "/workspace/afkarena-simx/work/native-oracle-warm20",
+  "inputSha256": "148a5aba1a189b427ddc99bf450d3c8beb48d59948b2d91e75ef9b8604e671ed",
+  "compilerSha256": "cd8fb7e875166cc3ee4e21d1f616883611e0fc5183d5b6d0759aff6aaf9790aa",
+  "compileArgs": [
+    "-O",
+    "-Wc,-O3,-g0,-ffp-contract=off",
+    "-keep-temp",
+    "/workspace/afkarena-simx/work/native-oracle-warm20.js",
+    "-o",
+    "/workspace/afkarena-simx/work/native-oracle-warm20"
+  ],
+  "compileMs": 97530.529909,
+  "executionWallMs": 22829.730289,
+  "scenario": {
+    "file": "/workspace/afkarena-simx/config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc",
+    "inputSha256": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a"
+  },
+  "completed": 20,
+  "elapsedMs": 9420,
+  "battlesPerSecond": 2.1231422505307855,
+  "finalStateMatched": true,
+  "firstDifference": null,
+  "hostInputConsumption": {
+    "random": 2,
+    "clock": {
+      "version": 1,
+      "mode": "replay",
+      "attempts": 5980,
+      "consumed": 5980,
+      "total": 5980,
+      "remaining": 0,
+      "counts": {
+        "Date.now": 0,
+        "Date.construct": 5980,
+        "Date.call": 0
+      },
+      "finished": true,
+      "restored": false,
+      "failure": null
+    }
+  },
+  "expectedHostInputs": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm20.js.host-inputs.json",
+    "sha256": "4d76c8d637fe8557dbc7d113254fd20008c9806e9ef724a9166699f9f22aca91",
+    "randomCount": 2,
+    "clockCount": 5980
+  },
+  "fullStateCapture": true,
+  "qualifiesFor10000Target": false,
+  "qualification": "Single emitted fixture paired terminal state and source-host events; full ordered battle trace and broad corpus qualification are still required",
+  "reference": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm20.js.reference.json",
+    "sha256": "f606c7941d833f28b6a7643d59caf4b281d0d8da90f4a532cbc783a041f69339"
+  },
+  "limitations": [
+    "Lazy symbol evaluation does not establish all original module side-effect order",
+    "Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter",
+    "Headless Linux device output is recorded; physical audio/render output is not produced",
+    "Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly"
+  ]
+}
