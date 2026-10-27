@@ -7,18 +7,20 @@ import { cpus } from 'node:os';
 import { createBootstrapRuntime } from './bootstrap-runtime.mjs';
 import { instantiateScenario } from './scenario-factory.mjs';
 import { bits } from './rng-trace.mjs';
+import { installSkillCacheSpecialization } from './specialize-skill-cache.mjs';
 
 const root=resolve(import.meta.dirname,'..');
-const options={battles:10,warmup:3,scenario:'config/scenario-example-2026.json',maxFrames:20000};
+const options={battles:10,warmup:3,scenario:'config/scenario-example-2026.json',maxFrames:20000,specialize:0};
 for(let i=2;i<process.argv.length;i+=2){
   const key=process.argv[i].replace(/^--/,'');
-  if(!(key in options)||process.argv[i+1]===undefined)throw Error('Expected --battles N --warmup N --scenario PATH --maxFrames N');
+  if(!(key in options)||process.argv[i+1]===undefined)throw Error('Expected --battles N --warmup N --scenario PATH --maxFrames N --specialize 0|1');
   options[key]=key==='scenario'?process.argv[i+1]:Number(process.argv[i+1]);
 }
 for(const key of ['battles','warmup','maxFrames'])if(!Number.isSafeInteger(options[key])||options[key]<(key==='warmup'?0:1))throw Error(`Invalid ${key}`);
 const sha=value=>createHash('sha256').update(value).digest('hex');
 const wire=JSON.parse(await readFile(resolve(root,options.scenario),'utf8'));
 const runtime=await createBootstrapRuntime();
+const specialization=options.specialize?await installSkillCacheSpecialization(runtime):null;
 const {ed,context}=runtime;
 function battle(){
   const materialized=instantiateScenario(runtime,wire),engine=new ed.BattleEngine();ed.battleEngine=engine;
@@ -46,8 +48,8 @@ for(let i=0;i<(profile.samples??[]).length;i++){
   let id=sample.id;const seen=new Set();while(id!==undefined){const n=nodes.get(id),key=identity(n);if(!seen.has(key)){add(n,'inclusiveMicros',time);seen.add(key);}id=parents.get(id);}
 }
 const ranked=(field,sourceOnly)=>[...totals.values()].filter(n=>!sourceOnly||n.url.startsWith('src/')).sort((a,b)=>b[field]-a[field]).slice(0,40).map(n=>({...n,selfPercent:100*n.selfMicros/sampledMicros,inclusivePercent:100*n.inclusiveMicros/sampledMicros}));
-const inputs=['tools/profile-realistic-battles.mjs','tools/bootstrap-runtime.mjs','tools/bootstrap-host.js','tools/bootstrap-render-host.js','tools/bootstrap-render-scene.mjs','tools/bootstrap-callbacks.mjs','tools/scenario-factory.mjs',options.scenario];
-const report={version:1,engine:'copied-js-source-realistic-5v5',qualifiesFor10000Target:false,options,machine:{node:process.version,cpu:cpus()[0]?.model},inputHashes:Object.fromEntries(await Promise.all(inputs.map(async p=>[p,sha(await readFile(resolve(root,p)))]))),runtimeProvenance:runtime.provenance,wallMs,profiledBattlesPerSecond:options.battles*1000/wallMs,sampledMicros,results,topSourceSelf:ranked('selfMicros',true),topSourceInclusive:ranked('inclusiveMicros',true),topAllSelf:ranked('selfMicros',false),limitations:[...runtime.limitations,'Repeated single scenario; not broad differential qualification','Inspector sampling adds overhead','Timed work includes fresh source scenario materialization, battle initialization, all queued source callbacks and outcome counters; full diagnostic graph snapshots are excluded','Headless callback device baseline; source scene actor/effect frame lifecycle remains outside this adapter']};
+const inputs=['tools/profile-realistic-battles.mjs','tools/specialize-skill-cache.mjs','config/skill-cache-specialization.json','tools/bootstrap-runtime.mjs','tools/bootstrap-host.js','tools/bootstrap-render-host.js','tools/bootstrap-render-scene.mjs','tools/bootstrap-callbacks.mjs','tools/scenario-factory.mjs',options.scenario];
+const report={specialization:specialization?{provenance:specialization.provenance,stats:specialization.stats()}:null,version:1,engine:'copied-js-source-realistic-5v5',qualifiesFor10000Target:false,options,machine:{node:process.version,cpu:cpus()[0]?.model},inputHashes:Object.fromEntries(await Promise.all(inputs.map(async p=>[p,sha(await readFile(resolve(root,p)))]))),runtimeProvenance:runtime.provenance,wallMs,profiledBattlesPerSecond:options.battles*1000/wallMs,sampledMicros,results,topSourceSelf:ranked('selfMicros',true),topSourceInclusive:ranked('inclusiveMicros',true),topAllSelf:ranked('selfMicros',false),limitations:[...runtime.limitations,'Repeated single scenario; not broad differential qualification','Inspector sampling adds overhead','Timed work includes fresh source scenario materialization, battle initialization, all queued source callbacks and outcome counters; full diagnostic graph snapshots are excluded','Headless callback device baseline; source scene actor/effect frame lifecycle remains outside this adapter']};
 const stamp=new Date().toISOString().replaceAll(':','-'),stem=`${stamp}-realistic-5v5`;
 await mkdir(resolve(root,'benchmarks/profiles'),{recursive:true});await mkdir(resolve(root,'benchmarks/results'),{recursive:true});
 await writeFile(resolve(root,`benchmarks/profiles/${stem}.cpuprofile`),JSON.stringify(profile));

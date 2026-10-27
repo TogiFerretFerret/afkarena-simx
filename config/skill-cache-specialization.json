@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "source": {
+    "file": "src/srcmodule/game_ui_1.js",
+    "start": 4499814,
+    "end": 4500381,
+    "sha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec"
+  },
+  "input": {
+    "table": "Param",
+    "path": "Stage.UseSkillCacheStageBattle.StrValue",
+    "value": "stage;1;9000;deep_stage;100001;109000;tower;20001;29000;tower_orc;700001;709000;tower_elf;800001;809000;tower_human;900001;909000;tower_undead;1000001;1009000;raid;1;9999999;war_map_farmland;70200001;70201000;war_dungeon;70300001;70309000;heroes_lore;7000100;7040030"
+  },
+  "proof": [
+    "Parsed r is local, read-only, and does not escape source getNeedReadSkillCacheTb",
+    "Original parser is pure for validated mode/integer-pair grammar: no warning path, callbacks or RNG",
+    "Original split and ed.getDataTable/getBattleId call order retained",
+    "Cached parser output is closure-private and never returned to external consumers",
+    "Parser identity, consumed tokens, parser intrinsics and inherited mode-name collisions are checked before reuse",
+    "Other token shapes, parser changes or guarded intrinsic/prototype changes call original public parser",
+    "Source runtime uses ordinary data properties for globals and ed parser; hostile accessor replacement of intrinsics is outside this optimization contract"
+  ],
+  "validation": {
+    "queries": 20000,
+    "comparison": "full source getNeedReadSkillCacheTb result and external table/battleId/warning call order",
+    "tests": "tools/tests/specialize-skill-cache.test.mjs"
+  },
+  "qualification": false,
+  "parser": {
+    "file": "src/srcmodule/game_ui_1.js",
+    "start": 4500415,
+    "end": 4501076,
+    "sha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c"
+  }
+}
