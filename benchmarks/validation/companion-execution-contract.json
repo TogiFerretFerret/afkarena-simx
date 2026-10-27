@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "status": "Source evidence audit, not a proof that rendering can be erased",
+  "sourceFiles": {
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b"
+  },
+  "findings": {
+    "companionMentionsInBattleCore": 0,
+    "localBotMentionsInBattleCore": 24,
+    "clientCallSites": 3868,
+    "callbackSitesWithAssignments": 1146,
+    "directBattleRngCallsInsideCallbacks": 0,
+    "hostMathRandomCallbackSites": 56
+  },
+  "evidence": [
+    {
+      "name": "companionStageSelection",
+      "file": "src/srcmodule/game_util.js",
+      "start": 841081,
+      "end": 841411,
+      "sha256": "5249faaf1f5ddd4ffd1f790204867a5080046a1a76ab5c131a891cb30ff8492d",
+      "text": "tStageConfig:function(e,t){var r;if(t)r=ed.getDataTable(\"DeepStage\")[e];else if(ed.loginMgr.isCompanions()&&e<=12)r=ed.getDataTable(\"StageCompanionsTest\")[e];else if(ed.MGStage.isMGStagePlayer()&&e<=ed.MGStage.maxStage){var i=ed.MGStage.getMGStageType();r=ed.getDataTable(\"StageMGStage\")[e][i]}else r=ed.getDataTable(\"Stage\")[e];i"
+    },
+    {
+      "name": "localBotManualGuard",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 252727,
+      "end": 252917,
+      "sha256": "74b097b985e2f835a8491f143988a73c7a5976298b6d640c5034eaea6986cfc3",
+      "text": "canmanual:function(e){return(!this.config||!this.config.localBot)&&(!!this.tapUlt&&e===ed.battle_camp.player)},collectEffectOn:function(e){for(var t=this.unit_list.length,a=0;a<t;a++){this.u"
+    },
+    {
+      "name": "sceneLookup",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4475718,
+      "end": 4476348,
+      "sha256": "f3a1edc12a2bc903aed3e3a4b3c3bf1242c2bdbed0e4ba815501ff8c6a7fb939",
+      "text": "ed.getBtScene=function(){var e=null;return ed.fullBtScene?e=ed.fullBtScene:ed.turnbasedBtScene?e=ed.turnbasedBtScene:ed.guildBtScene?e=ed.guildBtScene:ed.multiTeamBtScene?e=ed.multiTeamBtScene:ed.bossBtScene?e=ed.bossBtScene:ed.realtimeBattleScene?e=ed.realtimeBattleScene:ed.battleInfiniteScene?e=ed.battleInfiniteScene:ed.guildFeastBtScene?e=ed.guildFeastBtScene:ed.guildZooBtScene?e=ed.guildZooBtScene:ed.idlePvpScene?e=ed.idlePvpScene:ed.pipNodeBattle?e=ed.pipNodeBattle:ed.backgroundBattleView?e=ed.backgroundBattleView:ed.pipBtScene&&(e=ed.pipBtScene),e},ed.getBtSceneNeedFlip=function(){var e=ed.getBtScene();return e&&e.ne"
+    },
+    {
+      "name": "optionalSceneDispatch",
+      "file": "src/srcmodule/game_util.js",
+      "start": 288710,
+      "end": 289660,
+      "sha256": "5ffd9d702b3ab9bfa994305d59fef0afb57f0d4a49890b57f3dc5d32e4ae0320",
+      "text": "ed.callViewMessage=function(e){var t=ed.getBtScene();if(t&&\"string\"==typeof e&&\"function\"==typeof t[e])switch(arguments.length){case 1:return t[e]();case 2:return t[e](arguments[1]);case 3:return t[e](arguments[1],arguments[2]);case 4:return t[e](arguments[1],arguments[2],arguments[3]);case 5:return t[e](arguments[1],arguments[2],arguments[3],arguments[4]);case 6:return t[e](arguments[1],arguments[2],arguments[3],arguments[4],arguments[5]);case 7:return t[e](arguments[1],arguments[2],arguments[3],arguments[4],arguments[5],arguments[6]);case 8:return t[e](arguments[1],arguments[2],arguments[3],arguments[4],arguments[5],arguments[6],arguments[7]);case 9:return t[e](arguments[1],arguments[2],arguments[3],arguments[4],arguments[5],arguments[6],arguments[7],arguments[8]);default:var r=ed.arg2arry(arguments);return r.shift(),t[e].apply(t,r)}},ed.testPointInShape=function(e,t,r,i,a){switch(t){case\"rectangle\":return e[0]>=0&&e[0]<=r&&e[1]>=.5*-"
+    },
+    {
+      "name": "actorCreationOccursInScene",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4344423,
+      "end": 4344808,
+      "sha256": "5a0ac529a475dbd8e0803aa3d2239806faeb33e78a9facc1dadae2814cf65504",
+      "text": "syncActors:function(){if(this.lastSync!=ed.battleEngine.ticks){this.lastSync=ed.battleEngine.ticks;for(var e=ed.battleEngine.alive_units[ed.battle_camp.both],t=e.length;t--;){var i=e[t];i.actor||(i.actor=ed.UnitActorCreate(i),this.addActor(i.actor))}for(var a=ed.battleEngine.getPetList(),n=a.length;n--;){var s=a[n];s.actor||(s.actor=ed.UnitActorCreate(s),this.addActor(s.actor))}}},a"
+    },
+    {
+      "name": "nullSceneCounterexample",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 1087397,
+      "end": 1087707,
+      "sha256": "42e462a89014ef5f9e53a38b90db60e46bd373a5675f99f46890f4f5b062e58f",
+      "text": "-1:1;var l=[i.position[0],i.position[1]];NunAssassin.func_tt_atk4CallField(i),clientCall((function(){t.playPointEffect=ed.callViewMessage(\"playEffectOnScene\",\"spine_eff_point_NunAssassin_ult.skel\",l,[1,1],0,1),t.playPointEffect.setAction(\"Start3\")}))}},NunAssassin.atk3_takeEffectOn=function(e,t,a,i){var r=e.c"
+    },
+    {
+      "name": "callbackMutatesModelTimer",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3462546,
+      "end": 3463096,
+      "sha256": "a89cdccf97668f03ad69e07e26f88596f9b978e0add26987af09d117137e17a9",
+      "text": "ainEff=a})),f;clientCall((function(){var e=ed.callViewMessage(\"playExtensibleChain\",t.owner,t.caster,null,\"spine_eff_chain_BC_atk2\",null,200);if(e&&(e.setStartHeight(250),e.setEndHeight(350)),s.chainEff=e,t.caster.atk2ImpactTimer<=0){var a=t.caster.position,i=[1.5*t.caster.direction,1.5];ed.callViewMessage(\"playEffectOnScene\",\"spine_eff_impact_BC_atk2.skel\",a,i,null,1),clientCall((function(){ed.playBattleEffect(\"BC_ATK2_SOUL\"),ed.playBattleEffect(\"BC_ATK2_TAKE\")})),t.caster.atk2ImpactTimer=1}}))}}}return a},BC.atk2_friendBuff_onRemoved=function"
+    },
+    {
+      "name": "timerConsumedByBattleUpdate",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3472372,
+      "end": 3472622,
+      "sha256": "34fe5af42c22596e1d11d990f45039aa85f2092e06c539a2d7beb02449f48466",
+      "text": "BC.update=function(e,t,a){e.call(t,a),t.atk2ImpactTimer=t.atk2ImpactTimer||0,ed.battleEngine.freeze_level<=0&&(t.atk2ImpactTimer-=a),t.shieldPointTimer=t.shieldPointTimer||0,ed.battleEngine.freeze_level<=0&&(t.shieldPointTimer-=a),t.actorNodeInitial|"
+    },
+    {
+      "name": "callbackMutatesBuffGraph",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 3276653,
+      "end": 3276883,
+      "sha256": "c5412a68e9e931078f60bb2396c432921250695ba2df074ebe3c1696828a304c",
+      "text": "&U instanceof ed.Buff&&(N.relatedBuff=U,U.relatedBuff=N),clientCall((function(){N.relatedChain=t.chainEff,t.chainEff.teamate=C}))}}e.call(t)},Liberta.ult_targetBuff_onDamaged=function(e,t,a,i,r){var n=e.call(t,a,i,r),l=t.caster,o="
+    },
+    {
+      "name": "debugSnapshotChecksSubset",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4342597,
+      "end": 4343217,
+      "sha256": "d90c22cdfdaa3e6321081ec8ec68a1f1a027203d749552ca58fe052e0a25bd38",
+      "text": "snapshot:function(e){if(!ed.openDebug)return!1;if(\"idle\"===ed.battleEngine.mode)return!1;var t=ed.battleEngine.toString(),i=ed.MD5(t)+window.random_seed;if(this.snap_shot){var a=this.snap_shot!==i;if(this.snap_shot=null,a){this.pauseFlag=!0,cc.log(e),cc.sys.platform===cc.sys.WIN32&&cc.sys.jsb&&jsb.fileUtils.writeStringToFile(\"{0}\\n{1}\".format(t,this.strRecord),\"snapshot.txt\");var n=ed.confirmDialog.create({okText:T(\"charge_mgr_8_1945829674_0\",\"确认\"),cancelText:T(\"charge_mgr_10_333975736_0\",\"取消\")});n.setCanClickPanel(!1),n.setString(\"clientcall的调用改变了战斗逻辑，请看输出日志。。。。\"),n.show()}}else this.snap_shot=i,this.strRecord=t"
+    }
+  ],
+  "conclusions": [
+    "Companions account/stage selection is visible; the inspected source does not establish a separate headless companion event loop.",
+    "localBot changes diagnostics, manual control, tag handling and scoring. It does not select a callback-free or actor-free event loop.",
+    "The original optional scene dispatcher can return undefined, but some original queued callbacks dereference its result unconditionally. A null-scene host does not complete every legal hero workload.",
+    "Callbacks write fields on source battle models and buffs. Some fields look graphical, but erasing these writes would change complete source state and requires an explicit observable-state projection and dependency proof.",
+    "No direct battle RNG calls were found in callback expressions. This syntactic result does not establish transitive purity: callbacks invoke source methods, host Math.random and nested callbacks.",
+    "Original actor/effect scene phases may be omitted only after proving their effects irrelevant to the chosen contract. Debug serialized-state snapshots are a useful check, not a proof over every mutable field or callback closure."
+  ],
+  "recommendedNextStep": "Keep original callbacks and fail closed for unsupported host dependencies. Treat exact core mechanics state/RNG/queued commands as a candidate projection, then audit all renderer-origin reads and transitive callback effects before qualifying a device-free implementation.",
+  "qualifiesForWholeBattleFidelity": false
+}
