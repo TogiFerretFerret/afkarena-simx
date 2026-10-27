@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "passed": true,
+  "candidateAccepted": false,
+  "activeAdapterChanged": false,
+  "qualifiesFor10000Target": false,
+  "scope": "Negative privacy and observable-call proof for a proposed parse-only own-property read cache. The candidate exists only as an in-memory transformation and is never enabled in a battle runner.",
+  "sourceSha256": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+  "candidateSha256": "215ac91c0bf242f08db8ed60effba1156760eacd819e8ab138d22af1915f0678",
+  "auditToolSha256": "328dea98073aa5afa043802706a1b7615513367b91f581beea87bdf0763c2f6f",
+  "results": [
+    {
+      "name": "JSON.parse replaced before installation leaks the fresh raw root",
+      "baseline": [
+        1,
+        9
+      ],
+      "cached": [
+        1,
+        1
+      ],
+      "equal": false,
+      "expectedEqual": false
+    },
+    {
+      "name": "isProxy callback receives the fresh raw root",
+      "baseline": [
+        1,
+        9
+      ],
+      "cached": [
+        1,
+        1
+      ],
+      "equal": false,
+      "expectedEqual": false
+    },
+    {
+      "name": "WeakMap.prototype.set replaced after installation receives raw keys",
+      "baseline": [
+        1,
+        9
+      ],
+      "cached": [
+        1,
+        1
+      ],
+      "equal": false,
+      "expectedEqual": false
+    },
+    {
+      "name": "Reflect.get replaced after the first read must still run for own properties",
+      "baseline": [
+        1,
+        1,
+        [
+          "x"
+        ]
+      ],
+      "cached": [
+        1,
+        1,
+        []
+      ],
+      "equal": false,
+      "expectedEqual": false
+    },
+    {
+      "name": "wrap(raw) remains uncached and observes host aliases",
+      "baseline": [
+        1,
+        9
+      ],
+      "cached": [
+        1,
+        9
+      ],
+      "equal": true,
+      "expectedEqual": true
+    },
+    {
+      "name": "inherited getters and missing values remain dynamic",
+      "baseline": [
+        [
+          true,
+          1
+        ],
+        [
+          true,
+          2
+        ],
+        4,
+        true,
+        true,
+        true
+      ],
+      "cached": [
+        [
+          true,
+          1
+        ],
+        [
+          true,
+          2
+        ],
+        4,
+        true,
+        true,
+        true
+      ],
+      "equal": true,
+      "expectedEqual": true
+    },
+    {
+      "name": "canonical children descriptors symbols and write-failure stickiness remain equal on this fixture",
+      "baseline": [
+        true,
+        true,
+        true,
+        7,
+        true,
+        true
+      ],
+      "cached": [
+        true,
+        true,
+        true,
+        7,
+        true,
+        true
+      ],
+      "equal": true,
+      "expectedEqual": true
+    }
+  ],
+  "conclusions": [
+    "Capturing JSON.parse during installation does not prove it is the pristine native parser or that raw roots never escape.",
+    "Even a pristine parser can leak raw roots through options.isProxy or replaceable raw-receiving WeakMap methods.",
+    "Caching skips post-install Reflect.get replacements and their observable effects; capturing an intrinsic changes that existing boundary behavior unless excluded by a proven domain.",
+    "Active source and emitted battle loaders call wrap(raw), not membrane.parse, so a parse-only cache does not accelerate the current workload.",
+    "No performance benchmark is reported for a candidate rejected by these correctness checks. A future optimization requires a source-backed private-loader boundary and explicit pristine-intrinsic capabilities; host attestation is not inferred."
+  ]
+}
