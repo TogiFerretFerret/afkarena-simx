@@ -103,4 +103,7 @@ test('compact event checksums cover exactly the full canonical graph and all pay
  assert.equal(comparePortableBattleTraces(compact,compact).passed,true);
  const changed={...compact,events:compact.events.map((event,i)=>i?event:{...event,stateHash:'0'.repeat(64)})};
  assert.equal(comparePortableBattleTraces(compact,changed).passed,false);
+ context.__digest=text=>createHash('sha256').update(text).digest('hex');
+ const accelerated=runInContext('var t=installPortableBattleTrace({compact:true,digest:__digest});t.record("event",{f:Infinity},roots);t.finish({status:"completed",running:false})',context);
+ assert.equal(comparePortableBattleTraces(compact,accelerated).passed,true);
 });
