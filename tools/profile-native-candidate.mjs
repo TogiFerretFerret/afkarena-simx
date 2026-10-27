@@ -23,7 +23,12 @@ const binary=resolve(baseline.output??'work/native-warm23-'+(baseline.variant??(
 const host=JSON.parse(await readFile(resolve(root,baseline.hostProof.file)));assert.equal(await hash(baseline.hostProof.file),baseline.hostProof.sha256);
 assert.equal(await hash(host.privateVM.output),baseline.privateVMSha256);
 let markerGuardProof=null;
-if(measured){const file='benchmarks/validation/native-measured-clock.json',proof=JSON.parse(await readFile(resolve(root,file)));assert.equal(proof.passed??proof.matched,true);markerGuardProof={file,sha256:await hash(file)};}
+if(measured){
+ const file='benchmarks/validation/native-measured-clock.json',proof=JSON.parse(await readFile(resolve(root,file)));assert.equal(proof.passed??proof.matched,true);
+ assert.equal(proof.productionClockBuild.file,baseline.hostProof.file);assert.equal(proof.productionClockBuild.sha256,baseline.hostProof.sha256);
+ for(const [source,expected]of Object.entries(proof.sources))assert.equal(await hash(source),expected,'Stale directed clock proof: '+source);
+ markerGuardProof={file,sha256:await hash(file),productionBuildMatched:true};
+}
 for(const u of baseline.units)assert.equal(await hash(u.object),u.objectSha256);
 for(const row of baseline.dependenciesAtFinish){assert.equal(row.matched,true);assert.equal(await hash(row.file),row.sha256);}
 assert.equal(await hash(baseline.reference.file),baseline.reference.sha256);assert.equal(await hash(baseline.hostInputs.file),baseline.hostInputs.sha256);
