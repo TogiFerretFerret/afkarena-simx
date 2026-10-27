@@ -1,0 +1,27 @@
+load("@prelude//toolchains:cxx.bzl", "system_cxx_toolchain")
+load("@prelude//toolchains:python.bzl", "system_python_bootstrap_toolchain")
+load("@prelude//toolchains:rust.bzl", "system_rust_toolchain")
+
+# Host tools for the initial Linux build; pin hermetic toolchains before caching remotely.
+system_cxx_toolchain(
+    name = "cxx",
+    compiler = "gcc",
+    cxx_compiler = "g++",
+    compiler_type = "gcc",
+    linker = "g++",
+    visibility = ["PUBLIC"],
+)
+
+system_rust_toolchain(
+    name = "rust",
+    default_edition = "2024",
+    nightly_features = False,
+    rustc_flags = ["-Copt-level=3", "-Ccodegen-units=1"],
+    visibility = ["PUBLIC"],
+)
+
+# Required internally by Buck2's Rust action wrapper, not simulator code.
+system_python_bootstrap_toolchain(
+    name = "python_bootstrap",
+    visibility = ["PUBLIC"],
+)

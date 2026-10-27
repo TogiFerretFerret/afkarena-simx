@@ -1,0 +1,18 @@
+load("@prelude//:rules.bzl", "rust_binary", "rust_library")
+
+rust_library(
+    name = "battle_core",
+    srcs = glob(["src/**/*.rs"]),
+    crate = "battle_core",
+    crate_root = "src/lib.rs",
+    edition = "2024",
+    visibility = ["PUBLIC"],
+)
+
+rust_binary(
+    name = "numeric_check",
+    srcs = ["examples/numeric_check.rs"],
+    crate_root = "examples/numeric_check.rs",
+    edition = "2024",
+    deps = [":battle_core"],
+)

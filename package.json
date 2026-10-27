@@ -4,7 +4,9 @@
   "description": "Source analysis and semantics-preserving companion battle compiler",
   "scripts": {
     "test": "node --test tools/tests/*.test.mjs",
-    "index:source": "node tools/source-index.mjs work/source-index.json"
+    "index:source": "node tools/source-index.mjs work/source-index.json",
+    "generate:numeric": "node tools/lower-numeric.mjs",
+    "check:generated": "node tools/lower-numeric.mjs --check"
   },
   "repository": {
     "type": "git",
