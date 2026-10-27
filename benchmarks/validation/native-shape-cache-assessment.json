@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "passed": true,
+  "implemented": false,
+  "qualifiesFor10000Target": false,
+  "kind": "Pinned native metadata-cache API and lifetime assessment",
+  "config": {
+    "file": "config/native-compiler-static-hermes.json",
+    "sha256": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e",
+    "commit": "4f1db42d71d0839254c7154fc8c282bcea466206"
+  },
+  "inputs": {
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/Runtime.h": "41ab1f1dd5d5e1eef8b970c7ea8589f28a1e5c68f4df5569caa16590fc31c89f",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/RootAcceptor.h": "5c0cc06c42792f53b1ff235243cc0c363ef3d1a51567b2d3050aa5b393e5dfdb",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/Runtime.cpp": "c5bbcf1362f7433f634f42778be0b79c13225fa75baed02a42a4684a09a721ad",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp": "0b6144c08a3a906fa1aa63859492d30b08a5546503655d3e30bc8a9ce560d4da",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp": "c504c9dee333972f40f26baa855e0139b7fcbd61578e04d75c70001803b8cb19",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h": "7497ff4864c478d573350ee0f958e09626662ea8999f024180bbbeb74d332866",
+    "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSObject.cpp": "2b5f40c1bb12e1e07b27ccc8af97614ecc80ba91551dddf6be081dca1b44d906"
+  },
+  "contexts": {
+    "strongRootAPI": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/Runtime.h",
+      "start": 7282,
+      "end": 7722,
+      "startLine": 244,
+      "sha256": "4bc357e06749b028895baf4fb27ab9a45f8e392515fdc054b1b555f4e0a48c02",
+      "text": "/// Add a custom function that will be executed at the start of every garbage\n  /// collection to mark additional GC roots that may not be known to the\n  /// Runtime.\n  void addCustomRootsFunction(\n      std::function<void(GC *, RootAcceptor &)> markRootsFn);\n\n  /// Register a callback invoked once at the start of drainJobs(),\n  /// before any jobs are executed. Used by embedders (e.g., NAPI) to\n  /// perform housekeeping such as draini"
+    },
+    "postShutdownAPI": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/Runtime.h",
+      "start": 8331,
+      "end": 8951,
+      "startLine": 264,
+      "sha256": "a7a188747e15d05111accaa45c0edcb1ec0cfacce7f919eeea6dea930dda5cdc",
+      "text": "/// Register a deleter invoked from ~Runtime() AFTER\n  /// getHeap().finalizeAll() returns. At this point the heap is\n  /// quiesced — do NOT allocate, call into JS, or trigger GC. Used\n  /// to free embedder objects that needed to outlive finalizeAll\n  /// (e.g., a napi_env whose NativeState finalizers were called by\n  /// finalizeAll). Deleters run in registration order.\n  void addPostShutdownDeleter(std::function<void()> deleter);\n\n  /// Add a custom function that will be executed sometime during garbage\n  /// collection to mark additional weak GC roots that may not be known to the\n  /// Runtime.\n  void addCus"
+    },
+    "registrationStorage": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/Runtime.h",
+      "start": 82241,
+      "end": 83291,
+      "startLine": 2212,
+      "sha256": "847c88bcc254271e471f43eb0de0fb46d1f19ca3c7197cc4e69810ae28294488",
+      "text": "inline void Runtime::addCustomRootsFunction(\n    std::function<void(GC *, RootAcceptor &)> markRootsFn) {\n  customMarkRootFuncs_.emplace_back(std::move(markRootsFn));\n}\n\ninline void Runtime::addCustomWeakRootsFunction(\n    std::function<void(GC *, WeakRootAcceptor &)> markRootsFn) {\n  customMarkWeakRootFuncs_.emplace_back(std::move(markRootsFn));\n}\n\ninline void Runtime::addDrainJobsCallback(std::function<void()> callback) {\n  drainJobsCallbacks_.emplace_back(std::move(callback));\n}\n\ninline void Runtime::addShutdownCallback(std::function<void()> callback) {\n  shutdownCallbacks_.emplace_back(std::move(callback));\n}\n\ninline void Runtime::addPostShutdownDeleter(std::function<void()> deleter) {\n  postShutdownDeleters_.emplace_back(std::move(deleter));\n}\n\ninline void Runtime::addCustomSnapshotFunction(\n    std::function<void(HeapSnapshot &)> nodes,\n    std::function<void(HeapSnapshot &)> edges) {\n  customSnapshotNodeFuncs_.emplace_back(std::move(nodes));\n  customSnapshotEdgeFuncs_.emplace_back(std::move(edges));\n}\n\ntemplate <\n    typename T"
+    },
+    "rootPointerUpdateAPI": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/RootAcceptor.h",
+      "start": 2013,
+      "end": 2543,
+      "startLine": 67,
+      "sha256": "621f309fa8ef2cdb7a0d1041800d0cf2ef0859e51b2565fb1f824adfc3fb8afb",
+      "text": "/// When we want to call an acceptor on \"raw\" root pointers of\n  /// some JSObject subtype T, this method does the necessary\n  /// reinterpret_cast to allow us to call the \"GCCell *&\" accept\n  /// method above.\n  template <typename T>\n  void acceptPtr(T *&ptr) {\n    accept(reinterpret_cast<GCCell *&>(ptr));\n  }\n};\n\nstruct RootAcceptorWithNames : public RootAcceptor {\n  void accept(GCCell *&ptr) final {\n    accept(ptr, nullptr);\n  }\n  virtual void accept(GCCell *&ptr, const char *name) = 0;\n\n  void accept(PinnedHermesValue &h"
+    },
+    "weakRootUpdateAPI": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/RootAcceptor.h",
+      "start": 3540,
+      "end": 3960,
+      "startLine": 115,
+      "sha256": "4ca3d50727cde6b0cc44bc27b2459ef2d02f4cce8be811d79aafcbecb8ead92a",
+      "text": "/// NOTE: This is called acceptWeak in order to avoid clashing with accept\n  /// from SlotAcceptor, for classes that inherit from both.\n  virtual void acceptWeak(WeakRootBase &ptr) = 0;\n\n  virtual void acceptWeakSym(WeakRootSymbolID &sym) = 0;\n\n  virtual void acceptWeak(WeakSmallHermesValue &wshv) = 0;\n};\n\ntemplate <typename Acceptor>\nstruct DroppingAcceptor final : public RootAcceptorWithNames {\n  static_assert(\n   "
+    },
+    "runtimeCustomRootInvocation": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/Runtime.cpp",
+      "start": 28039,
+      "end": 28659,
+      "startLine": 753,
+      "sha256": "afae55e70c383f3b03249fa2d6f8576e337020b5b6f7fa14c1661f7660faea24",
+      "text": "MarkRootsPhaseTimer timer(*this, RootAcceptor::Section::Custom);\n    // Define nodes before the root section starts.\n    for (auto &fn : customSnapshotNodeFuncs_) {\n      acceptor.provideSnapshot(fn);\n    }\n    acceptor.beginRootSection(RootAcceptor::Section::Custom);\n    for (auto &fn : customMarkRootFuncs_)\n      fn(&getHeap(), acceptor);\n    // Define edges while inside the root section.\n    for (auto &fn : customSnapshotEdgeFuncs_) {\n      acceptor.provideSnapshot(fn);\n    }\n    acceptor.endRootSection();\n  }\n}\n\nvoid Runtime::markWeakRoots(WeakRootAcceptor &acceptor, bool markLongLived) {\n  MarkRootsPhaseTime"
+    },
+    "runtimeWeakCachesAndCustomRoots": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/Runtime.cpp",
+      "start": 28561,
+      "end": 30661,
+      "startLine": 769,
+      "sha256": "fb07665b239ebe3c1b9df8c5373c20976bbbf274b325403409f953cafb66d0ba",
+      "text": "void Runtime::markWeakRoots(WeakRootAcceptor &acceptor, bool markLongLived) {\n  MarkRootsPhaseTimer timer(*this, RootAcceptor::Section::WeakRefs);\n  acceptor.beginRootSection(RootAcceptor::Section::WeakRefs);\n  // Call this first so that it can remove RuntimeModules whose owning Domain is\n  // dead from runtimeModuleList_, before marking long-lived WeakRoots in them.\n  markDomainRefInRuntimeModules(acceptor);\n  if (markLongLived) {\n    for (auto &entry : fixedWritePropCache_) {\n      acceptor.acceptWeak(entry.clazz);\n    }\n    for (auto &entry : fixedReadPropCache_) {\n      assert(\n          !entry.negMatchClazz &&\n          \"negMatchClazz is always zero for non-JS code property cache\");\n      acceptor.acceptWeak(entry.clazz);\n    }\n  }\n  for (auto &registry : finalizationRegistries_) {\n    acceptor.acceptWeak(registry);\n  }\n  for (auto &rm : runtimeModuleList_)\n    rm.markWeakRoots(acceptor, markLongLived);\n  for (SHUnit *unit : units)\n    if (unit)\n      sh_unit_mark_weak_roots(unit, acceptor, markLongLived);\n  for (auto &fn : customMarkWeakRootFuncs_)\n    fn(&getHeap(), acceptor);\n  acceptor.endRootSection();\n}\n\nvoid Runtime::markDomainRefInRuntimeModules(WeakRootAcceptor &acceptor) {\n  std::vector<RuntimeModule *> modulesToDelete;\n  for (auto &rm : runtimeModuleList_) {\n    rm.markDomainRef(acceptor);\n    // If the owning domain is dead, store the RuntimeModule pointer for\n    // destruction later.\n    if (LLVM_UNLIKELY(rm.isOwningDomainDead())) {\n      // Prepare these RuntimeModules for destruction so that we don't rely on\n      // their relative order in runtimeModuleList_.\n      rm.prepareForDestruction();\n      modulesToDelete.push_back(&rm);\n    }\n  }\n\n  // We need to destroy these RuntimeModules after we call\n  // prepareForDestruction() on all of them, otherwise, it may cause\n  // use-after-free when checking the ownership of a CodeBlock in the destructor\n  // of a RuntimeModule (which may refer a CodeBlock that is owned and deleted\n  // by another RuntimeModule).\n  for (auto *rm : modulesToDelete) {\n    // Calling delete will automatically remove it f"
+    },
+    "runtimeShutdownOrdering": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/Runtime.cpp",
+      "start": 18847,
+      "end": 19997,
+      "startLine": 489,
+      "sha256": "9e0be6beccb8dab12024c7a03797018d103aeb1fdb572c45d3bc4bb00f964500",
+      "text": "Runtime::~Runtime() {\n#if HERMESVM_SAMPLING_PROFILER_AVAILABLE\n  samplingProfiler.reset();\n#endif // HERMESVM_SAMPLING_PROFILER_AVAILABLE\n\n  // Run embedder shutdown callbacks while the heap is still functional.\n  // Callbacks may allocate, call into JS, and trigger GC.\n  for (auto &cb : shutdownCallbacks_)\n    cb();\n  shutdownCallbacks_.clear();\n\n  getHeap().finalizeAll();\n\n  // Heap is now quiesced; run deleters for embedder objects that had to\n  // outlive finalizeAll (e.g., napi_env whose NativeState finalizers\n  // were invoked above and called env->queuePendingFinalizer).\n  for (auto &d : postShutdownDeleters_)\n    d();\n  postShutdownDeleters_.clear();\n  // Remove inter-module dependencies so we can delete them in any order.\n  for (auto &module : runtimeModuleList_) {\n    module.prepareForDestruction();\n  }\n  // All RuntimeModules must be destroyed before the next assertion, to untrack\n  // all native IDs related to it (e.g., CodeBlock).\n  while (!runtimeModuleList_.empty()) {\n    // Calling delete will automatically remove it from the list.\n    delete &runtimeModuleList_.back();\n  }\n  // Now that all objects are finalized, th"
+    },
+    "completeMarkingRuntimeSubset": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/Runtime.cpp",
+      "start": 30697,
+      "end": 31297,
+      "startLine": 824,
+      "sha256": "0617b48116ce4a406cc12227d0ed21bc055403d6f8563b9c80b8567a9321816c",
+      "text": "void Runtime::markRootsForCompleteMarking(RootAcceptorWithNames &acceptor) {\n#if HERMESVM_SAMPLING_PROFILER_AVAILABLE\n  MarkRootsPhaseTimer timer(*this, RootAcceptor::Section::SamplingProfiler);\n  acceptor.beginRootSection(RootAcceptor::Section::SamplingProfiler);\n  if (samplingProfiler) {\n    samplingProfiler->markRootsForCompleteMarking(acceptor);\n  }\n#endif // HERMESVM_SAMPLING_PROFILER_AVAILABLE\n  acceptor.endRootSection();\n}\n\nvoid Runtime::visitIdentifiers(\n    const std::function<void(SymbolID, const StringPrimitive *)> &acceptor) {\n  identifierTable_.visitIdentifiers(acceptor);\n}\n\nstd::"
+    },
+    "atomicOldGenerationRoots": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
+      "start": 57171,
+      "end": 57791,
+      "startLine": 1590,
+      "sha256": "8d28f9d220ada078a48ae4c69f7228227113b248531e6e71fcbf409f579cc1b3",
+      "text": "// Roots are marked before a marking thread is spun up, so that the root\n    // marking is atomic.\n    DroppingAcceptor<MarkAcceptor> nameAcceptor{acceptor};\n    markRoots(nameAcceptor, /*markLongLived*/ true);\n    // Do not call markWeakRoots here, as weak roots can only be cleared\n    // after liveness is known.\n  }\n\n  concurrentPhase_ = Phase::Mark;\n  // Before the thread starts up, make sure that any write barriers are aware\n  // that concurrent marking is happening.\n  ogMarkingBarriers_ = true;\n  // prepareCompactee must be called before the new thread is spawned, in order\n  // to ensure that write barriers "
+    },
+    "youngGenerationRoots": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
+      "start": 98639,
+      "end": 99179,
+      "startLine": 2616,
+      "sha256": "b600cedda28f389f3fa3448248c326def791836a92e8be26fbf345cbad92563c",
+      "text": "uint64_t HadesGC::youngGenEvacuateImpl(bool doCompaction) {\n  assert((!doCompaction || CompactionEnabled) && \"Compaction is disabled\");\n  EvacAcceptor<CompactionEnabled> acceptor{*this, doCompaction};\n  // Marking each object puts it onto an embedded free list.\n  {\n    DroppingAcceptor nameAcceptor{acceptor};\n    markRoots(nameAcceptor, /*markLongLived*/ doCompaction);\n  }\n\n  // Mark the values in WeakMap entries as roots for the purposes of young gen\n  // collection. This is slightly suboptimal since some of the keys or maps\n  // may"
+    },
+    "stopTheWorldCompletion": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/gcs/HadesGC.cpp",
+      "start": 70882,
+      "end": 72682,
+      "startLine": 1905,
+      "sha256": "d297f8d1e36463939dfc93502307e33073104a0d53245078e36207f71c8746bc",
+      "text": "void HadesGC::completeMarking() {\n  assert(inGC() && \"inGC_ must be set during the STW pause\");\n  // Update the collection threshold before marking anything more, so that only\n  // the concurrently marked bytes are part of the calculation.\n  updateOldGenThreshold();\n  ogMarkingBarriers_ = false;\n  // No locks are needed here because the world is stopped and there is only 1\n  // active thread.\n  flushPendingBarrierPushChunk();\n  {\n    MarkAcceptor acceptor{*this};\n    // Remark any roots that may have changed without executing barriers.\n    DroppingAcceptor<MarkAcceptor> nameAcceptor{acceptor};\n    gcCallbacks_.markRootsForCompleteMarking(nameAcceptor);\n  }\n  // Drain the marking queue.\n  incrementalMark(std::numeric_limits<size_t>::max());\n  assert(isBarrierWorklistEmpty() && \"Marking worklist wasn't drained\");\n  markWeakMapEntrySlots();\n  assert(isBarrierWorklistEmpty() && \"Marking worklist wasn't drained\");\n  // Reset weak roots to null after full reachability has been\n  // determined.\n  markState_->markedSymbols |= markState_->writeBarrierMarkedSymbols;\n\n  // Now free symbols. Note that:\n  // 1. We must do this before marking weak symbols, because the mark bits\n  //    will be updated by this call to reflect symbols that were not actually\n  //    freed.\n  // 2. We call this after marking WeakMaps. This is safe even if WeakMaps\n  //    have symbol keys, because the symbol keys for WeakMap are always\n  //    non-lazy, so its mark bits won't be updated in below call (which\n  //    calls IdentifierTable::freeUnmarkedSymbols()).\n  gcCallbacks_.freeSymbols(markState_->markedSymbols);\n\n  MarkWeakRootsAcceptor acceptor{*this, markState_->markedSymbols};\n  markWeakRoots(acceptor, /*markLongLived*/ true);\n\n  // Nothing needs markState_ from this point onward.\n  markState_.rese"
+    },
+    "hiddenClassTracedEdges": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 3524,
+      "end": 4084,
+      "startLine": 126,
+      "sha256": "8a593d6e8f7a0301d88c540ce178e80db84f45186c1195b3f291c62d8f04bbe1",
+      "text": "void HiddenClassBuildMeta(const GCCell *cell, Metadata::Builder &mb) {\n  const auto *self = static_cast<const HiddenClass *>(cell);\n  mb.setVTable(&HiddenClass::vt);\n  mb.addField(\"objectParent\", &self->objectParent_);\n  mb.addField(\"symbol\", &self->symbolID_);\n  mb.addField(\"parent\", &self->parent_);\n  mb.addField(\"propertyMap\", &self->propertyMap_);\n  mb.addField(\"forInCache\", &self->forInCache_);\n}\n\nvoid HiddenClass::_finalizeImpl(GCCell *cell, GC &gc) {\n  auto *self = vmcast<HiddenClass>(cell);\n#ifdef HERMES_MEMORY_INSTRUMENTATION\n  self->transitionM"
+    },
+    "propertyMapMayMove": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h",
+      "start": 7811,
+      "end": 8861,
+      "startLine": 183,
+      "sha256": "ed9e38c43f9da31b3ad2c84934c914ca6f3459db42537e159121c994f289e112",
+      "text": "/// Property Maps\n/// =============\n/// Conceptually every hidden class has a property map - a table mapping from\n/// a property name (SymbolID) to a property descriptor (slot + flags).\n///\n/// In order to conserve memory, we create the property map associated with a\n/// class the first time it is needed. To delay creation further, if we are\n/// looking for a property for a \"put-by-name\" operation, we can avoid needing\n/// the map by looking for the property in the transition table first. Lastly,\n/// when we transition from a parent class to a child class, we \"steal\" the\n/// parent's property map and assign it to the child.\n///\n/// The desired effect is that only \"leaf\" classes have property maps and normal\n/// property assignment doesn't create a map at all in the intermediate states\n/// (except the first time).\n///\n/// Typed Private Properties\n/// ========================\n///\n/// Typed objects are always created as orphans, not in dictionary mode,\n/// and are never transitioned to from any other HiddenClass.\n/// Properties are added"
+    },
+    "dictionaryAndTypedSemantics": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h",
+      "start": 7415,
+      "end": 8965,
+      "startLine": 175,
+      "sha256": "50bf19a098c71fa908b54f80c979fd7fd8baba71b0cf8dd0cf1febf59495ca7b",
+      "text": "/// Dictionary Mode\n/// ===============\n/// When more than a predefined number of properties are added (\\c\n/// kDictionaryThreshold) or if a property is deleted, a new class is created\n/// without a parent and placed in \"dictionary mode\". In that mode the class\n/// is not shared - it belongs to exactly one object - and updates are done \"in\n/// place\" instead of creating new child classes.\n///\n/// Property Maps\n/// =============\n/// Conceptually every hidden class has a property map - a table mapping from\n/// a property name (SymbolID) to a property descriptor (slot + flags).\n///\n/// In order to conserve memory, we create the property map associated with a\n/// class the first time it is needed. To delay creation further, if we are\n/// looking for a property for a \"put-by-name\" operation, we can avoid needing\n/// the map by looking for the property in the transition table first. Lastly,\n/// when we transition from a parent class to a child class, we \"steal\" the\n/// parent's property map and assign it to the child.\n///\n/// The desired effect is that only \"leaf\" classes have property maps and normal\n/// property assignment doesn't create a map at all in the intermediate states\n/// (except the first time).\n///\n/// Typed Private Properties\n/// ========================\n///\n/// Typed objects are always created as orphans, not in dictionary mode,\n/// and are never transitioned to from any other HiddenClass.\n/// Properties are added during allocation and then never again.\n///\n/// Typed objects may have private properties.\n/// These pr"
+    },
+    "singlePropertyFlagMutation": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 18467,
+      "end": 20367,
+      "startLine": 575,
+      "sha256": "10aa6d643c6f40939bf51ee520fe6aa51e15acc113a9bbee0ebbfcc81d367cb0",
+      "text": "Handle<HiddenClass> HiddenClass::updateProperty(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime,\n    PropertyPos pos,\n    PropertyFlags newFlags) {\n  assert(newFlags.isValid() && \"newFlags must be valid\");\n\n  // In dictionary mode we simply update our map (which must exist).\n  if (LLVM_UNLIKELY(selfHandle->isDictionary())) {\n    assert(\n        selfHandle->propertyMap_ &&\n        \"propertyMap must exist in dictionary mode\");\n    selfHandle->flags_ = computeFlags(selfHandle->flags_, newFlags, false);\n    DictPropertyMap::getDescriptorPair(\n        selfHandle->propertyMap_.getNonNull(runtime), pos)\n        ->second.flags = newFlags;\n    // If it's still cacheable, make it non-cacheable.\n    if (!selfHandle->isDictionaryNoCache()) {\n      selfHandle = copyToNewDictionary(selfHandle, runtime, /*noCache*/ true);\n    }\n    return selfHandle;\n  }\n\n  assert(\n      selfHandle->propertyMap_ && \"propertyMap must exist in updateProperty()\");\n\n  auto *descPair = DictPropertyMap::getDescriptorPair(\n      selfHandle->propertyMap_.getNonNull(runtime), pos);\n  // If the property flags didn't change, do nothing.\n  if (descPair->second.flags == newFlags)\n    return selfHandle;\n\n  auto name = descPair->first;\n\n  // The transition flags must indicate that it is a \"flags transition\".\n  PropertyFlags transitionFlags = newFlags;\n  transitionFlags.flagsTransition = 1;\n\n  // Do we already have a transition for that property+flags pair?\n  auto existingChild =\n      selfHandle->transitionMap_.lookup(runtime, {name, transitionFlags});\n  if (LLVM_LIKELY(existingChild)) {\n    // If the child doesn't have a property map, but we do, update our map and\n    // move it to the child.\n    if (!existingChild->propertyMap_) {\n      LLVM_DEBUG(\n          dbgs() << \"Updating property \" << runtime.formatSymbolID(name)\n                 << \" in Class:\" << selfHandle->getDebugAllocationId()\n            "
+    },
+    "bulkPropertyFlagMutation": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 32990,
+      "end": 34640,
+      "startLine": 1004,
+      "sha256": "eac5afbfde9a7ea9cf8e19ee165ecf53b00696d0839e2a011e1d1f162508a059",
+      "text": "Handle<HiddenClass> HiddenClass::updatePropertyFlagsWithoutTransitions(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime,\n    PropertyFlags flagsToClear,\n    PropertyFlags flagsToSet,\n    OptValue<llvh::ArrayRef<SymbolID>> props) {\n  // Result must be in dictionary mode, since it's a non-empty orphan.\n  MutableHandle<HiddenClass> classHandle{runtime};\n  if (selfHandle->isDictionary()) {\n    classHandle = *selfHandle;\n  } else {\n    classHandle = *copyToNewDictionary(selfHandle, runtime);\n  }\n\n  auto mapHandle =\n      runtime.makeHandle<DictPropertyMap>(classHandle->propertyMap_);\n\n  auto changeFlags = [&flagsToClear,\n                      &flagsToSet](NamedPropertyDescriptor &desc) {\n    desc.flags.changeFlags(flagsToClear, flagsToSet);\n  };\n\n  // If we have the subset of properties to update, only update them; otherwise,\n  // update all properties.\n  if (props) {\n    // Iterate over the properties that exist on the property map.\n    for (auto id : *props) {\n      auto pos = DictPropertyMap::find(*mapHandle, id);\n      if (!pos) {\n        continue;\n      }\n      auto descPair = DictPropertyMap::getDescriptorPair(*mapHandle, *pos);\n      changeFlags(descPair->second);\n    }\n  } else {\n    DictPropertyMap::forEachMutablePropertyDescriptor(\n        mapHandle, runtime, changeFlags);\n  }\n  classHandle->flags_ = computeFlags(classHandle->flags_, flagsToSet, false);\n\n  return std::move(classHandle);\n}\n\nCallResult<std::pair<Handle<HiddenClass>, SlotIndex>> HiddenClass::reserveSlot(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime) {\n  assert(\n      !selfHandle->isDictionary() &&\n      \"Reserved slots can only be ad"
+    },
+    "typedShapeMutatesInPlace": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 22430,
+      "end": 23830,
+      "startLine": 685,
+      "sha256": "a4ec2441c5bedd460001f9ccfbad1aba02976e2f796d044637255d0fadbf0600",
+      "text": "SlotIndex HiddenClass::addNewTypedPublicProperty(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime,\n    SymbolID name,\n    bool propertiesEnumerable) {\n  assert(!selfHandle->parent_ && \"must be root hidden class\");\n  assert(selfHandle->flags_.typed && \"must be typed\");\n  assert(selfHandle->propertyMap_ && \"must have property map allocated\");\n\n  struct : public Locals {\n    PinnedValue<DictPropertyMap> propertyMap;\n  } lv;\n  LocalsRAII lraii{runtime, &lv};\n\n  // Typed properties are not configurable or writable from untyped code.\n  PropertyFlags propFlags = PropertyFlags::defaultNewNamedPropertyFlags();\n  propFlags.writable = false;\n  propFlags.configurable = false;\n  if (!propertiesEnumerable)\n    propFlags.enumerable = false;\n\n  auto isIndexLike =\n      toArrayIndex(runtime.getIdentifierTable().getStringView(runtime, name))\n          .hasValue();\n  selfHandle->flags_ = computeFlags(selfHandle->flags_, propFlags, isIndexLike);\n\n  SlotIndex newSlot = selfHandle->numProperties_++;\n  addToPropertyMap(\n      selfHandle, runtime, name, NamedPropertyDescriptor(propFlags, newSlot));\n\n  return newSlot;\n}\n\nHiddenClass *HiddenClass::updateClassFlags(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime,\n    ClassFlags newFlags) {\n  if (selfHandle->flags_ == newFlags) {\n    // Nothing to do, return immediately.\n    return *selfHandle;\n  }\n\n  // A typed class is a shared orphan"
+    },
+    "objectParentDictionaryMutation": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 26339,
+      "end": 28239,
+      "startLine": 800,
+      "sha256": "3010f981934dc78ce75f92362a729a9c0fdd2b3cd802642719d0141936694812",
+      "text": "HiddenClass *HiddenClass::updateObjectParentSlowPath(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime,\n    PseudoHandle<JSObject> newParentPH) {\n  ++NumHCObjectParentChanges;\n  assert(\n      newParentPH.get() != selfHandle->objectParent_.get(runtime) &&\n      \"don't call slow path if the parent isn't changing\");\n  // A typed class is a shared orphan whose property map cannot be rebuilt from\n  // a transition chain, so a child of it would steal the map and leave every\n  // sibling object broken. Typed objects are non-extensible, so setParent\n  // rejects them before we get here.\n  assert(!selfHandle->isTyped() && \"typed classes cannot change parent\");\n\n  // In dictionary mode, update the objectParent directly without making a new\n  // HiddenClass.\n  if (LLVM_UNLIKELY(selfHandle->isDictionary())) {\n    selfHandle->objectParent_.set(\n        runtime, newParentPH.get(), runtime.getHeap());\n    return *selfHandle;\n  }\n\n  struct : public Locals {\n    PinnedValue<HiddenClass> child;\n    PinnedValue<JSObject> newParent;\n  } lv;\n  LocalsRAII lraii{runtime, &lv};\n\n  lv.newParent = std::move(newParentPH);\n\n  // Check if incrementing parentChangeCounter would exceed the maximum.\n  constexpr uint8_t maxCounter =\n      (1 << ClassFlags::kParentChangeCounterSize) - 1;\n  if (LLVM_UNLIKELY(selfHandle->flags_.parentChangeCounter >= maxCounter)) {\n    // Convert to dictionary mode and update the objectParent directly.\n    Handle<HiddenClass> dictionaryHandle =\n        copyToNewDictionary(selfHandle, runtime);\n    dictionaryHandle->objectParent_.set(\n        runtime, *lv.newParent, runtime.getHeap());\n    return *dictionaryHandle;\n  }\n\n  // Check for existing transition in parentTransitionMap_.\n  if (!selfHandle->parentTransitionMap_) {\n    selfHandle->parentTransitionMap_ =\n        std::make_unique<WeakValueObjectMap<HiddenClass>>();\n  } else if (\n      HiddenClass *existingChi"
+    },
+    "objectParentHistoryEdge": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/HiddenClass.cpp",
+      "start": 28503,
+      "end": 29003,
+      "startLine": 856,
+      "sha256": "bc917190fd17c1947f47a6d7d94870655927a6939950e137128419aa328cc8f5",
+      "text": "// Create a new HiddenClass with the new objectParent.\n  lv.child = HiddenClass::create(\n      runtime,\n      newClassFlags,\n      selfHandle,\n      lv.newParent,\n      SymbolID::empty(),\n      PropertyFlags{},\n      selfHandle->numProperties_);\n\n  selfHandle->parentTransitionMap_->insert(runtime, *lv.newParent, *lv.child);\n\n  return *lv.child;\n}\n\nHiddenClass *HiddenClass::seal(\n    Handle<HiddenClass> selfHandle,\n    Runtime &runtime) {\n  if (!selfHandle->propertyMap_)\n    initializeMissingProp"
+    },
+    "forInCacheIncludesPrototypeShapes": {
+      "file": "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/JSObject.cpp",
+      "start": 130322,
+      "end": 132122,
+      "startLine": 3673,
+      "sha256": "b9d8cd24f151f3faa4453f5c80d58fbf86d9fcfa41998deda48afe00c1d5d531",
+      "text": "// Layout of a JSArray stored in the for-in cache:\n  // [numProtos, numObjProps, class(obj),\n  // class(proto(obj)), class(proto(proto(obj))), ..., null,\n  // prop0, prop1, ...]\n  // prop0 is at index numProtos.\n  // There are numObjProps properties on obj before the proto properties start.\n\n  if (!obj->shouldCacheForIn(runtime)) {\n    arr->clear(runtime);\n    return ExecutionStatus::RETURNED;\n  }\n  MutableHandle<JSObject> head(runtime, *obj);\n  MutableHandle<> clazz(runtime);\n  GCScopeMarkerRAII marker{runtime};\n  // Push entries 0 and 1 (we'll fill them in later).\n  clazz = HermesValue::encodeTrustedNumberValue(0);\n  if (LLVM_UNLIKELY(\n          ArrayStorageSmall::push_back(arr, runtime, clazz) ==\n          ExecutionStatus::EXCEPTION)) {\n    return ExecutionStatus::EXCEPTION;\n  }\n  if (LLVM_UNLIKELY(\n          ArrayStorageSmall::push_back(arr, runtime, clazz) ==\n          ExecutionStatus::EXCEPTION)) {\n    return ExecutionStatus::EXCEPTION;\n  }\n  while (head.get()) {\n    if (!head->shouldCacheForIn(runtime)) {\n      arr->clear(runtime);\n      return ExecutionStatus::RETURNED;\n    }\n    if (head->isLazy(runtime)) {\n      // Ensure all properties have been initialized before caching the hidden\n      // class. Not doing this will result in changes to the hidden class\n      // when getOwnPropertyKeys is called later.\n      JSObject::initializeLazyObject(runtime, head);\n    }\n    clazz = HermesValue::encodeObjectValue(head->getClass(runtime));\n    if (LLVM_UNLIKELY(\n            ArrayStorageSmall::push_back(arr, runtime, clazz) ==\n            ExecutionStatus::EXCEPTION)) {\n      return ExecutionStatus::EXCEPTION;\n    }\n    head = head->getParent(runtime);\n    marker.flush();\n  }\n  clazz = HermesValue::encodeNullValue();\n  if (LLVM_UNLIKELY(\n          ArrayStorageSmall::push"
+    }
+  },
+  "correction": "GC-updated root storage APIs are available in the pinned Runtime. The earlier lookup audit described rooting as unresolved because no native cache/lifecycle proof existed; API absence is not the blocker.",
+  "lifecycle": [
+    "One separately owned bounded context per Runtime; never share SymbolIDs, HiddenClasses or cache entries across independent runtimes.",
+    "Register root callbacks on the owning mutator before any cached pointer is published. Registration appends to a std::vector and provides no deregistration token or locking; never register or alter the callback vector from inside GC.",
+    "A strong-root callback can visit each occupied HiddenClass*& with RootAcceptor::acceptPtr; this permits GC to update the stored pointer in place. Invoke only the acceptor on initialized non-null entries; no JS calls, allocation, cache filling, registry lookup or callback registration inside the callback.",
+    "Hades old-generation roots are scanned atomically before the background marker begins; young evacuation roots and complete marking occur during GC/STW. This supports same-mutator cache access, not arbitrary cross-thread access to one Runtime.",
+    "Keep the context alive through shutdown callbacks and finalizeAll. A captured raw State* may be deleted in addPostShutdownDeleter after finalizeAll; that deleter must not allocate, call JS, trigger GC or inspect dead heap objects. The remaining callback closure must have a trivial/non-dereferencing destructor.",
+    "Registration alone is not a proof for publication during concurrent marking. Runtime::markRootsForCompleteMarking does not invoke custom root callbacks. New entries must be learned from currently live handled objects with the pinned collector root/barrier discipline, then stress-tested during concurrent collections.",
+    "After any operation that can allocate or invoke JS, reload cache pointers updated by GC or use proper handles. Do not retain a copied raw shape/object pointer or descriptor pointer across an allocation."
+  ],
+  "shapePolicy": [
+    "Only cache copied slot indices, names/SymbolIDs and descriptor flag values after ordinary-object/no-Proxy/no-exotic admission. Always read current object values, including all 47 numeric clone fields, on every hit.",
+    "Reject every dictionary shape, including nominally cacheable dictionary mode, because flags, parent and property maps can mutate in place. Reject typed shapes: addNewTypedPublicProperty mutates the same typed class during construction.",
+    "For ordinary non-dictionary classes, property flag changes transition to a different HiddenClass. updateProperty may temporarily mutate and transfer the old propertyMap to a child and clear the old map; GC can also trim maps. Never cache DictPropertyMap or NamedPropertyDescriptor* addresses.",
+    "Bulk updatePropertyFlagsWithoutTransitions converts a non-dictionary class to a new dictionary class, or mutates an existing dictionary. A previously cached ordinary class cannot be reused after the object changes to that new dictionary.",
+    "Prototype changes transition ordinary shapes but mutate dictionary parents in place. Recheck the current prototype chain and all source constructor/intrinsic assumptions per hit; shape rooting does not freeze public prototypes.",
+    "Recheck finite raw numeric values and original property constraints every hit. A stable shape identifies storage layout, not field values; do not memoize numbers, aliases, descriptors from other shapes or arbitrary instance objects."
+  ],
+  "retentionAssessment": {
+    "strongRootsNotMetadataOnly": true,
+    "findings": [
+      "HiddenClassBuildMeta strongly traces objectParent, parent, propertyMap and forInCache. A shape root can therefore extend the lifetime of public prototype graphs.",
+      "updateObjectParentSlowPath retains the previous class as parent. An object changed from prototype P back to Object.prototype can have a current canonical prototype while its shape ancestry still retains P.",
+      "forInCache contains object/prototype HiddenClasses before property names. Stale for-in metadata can retain historical prototype-class graphs; it is not merely an array of strings.",
+      "A limit of 16 shape pointers does not bound their transitive metadata or public-object retention. Canonical current prototype alone is insufficient."
+    ],
+    "conservativeStrongRootRequirements": [
+      "Reject dictionary/typed classes and shape/prototype histories with parentChangeCounter!=0; also bind canonical intrinsic prototype chains and audit the traced ancestor/forIn-cache graph before claiming no extra public retention.",
+      "A stricter alternative rejects non-null forInCache edges that cannot be proven intrinsic-only; this may reject common shapes and needs actual admission profiling.",
+      "Do not claim public lifetime equivalence from shape count or current prototype checks alone."
+    ],
+    "weakAlternative": "The pinned Runtime already uses weak HiddenClass property-cache roots and offers addCustomWeakRootsFunction plus WeakRootAcceptor::acceptWeak. A bounded weak cache can update/clear dead shapes without retaining prototype graphs. It still needs the same lifecycle, moving-GC, null-invalidation and no-allocation-across-raw-pointer proofs."
+  },
+  "requiredNativeEvidence": [
+    "Private-VM ABI/header/source binding and isolated actual GC stress, including young movement, old collection, concurrent marking, cache eviction and Runtime teardown.",
+    "Descriptor/prototype mutations, deletion/dictionary conversion, typed/exotic/Proxy rejection, finite/nonfinite field changes and alias/reference reloads must fall back before effects or return current exact values.",
+    "Native profile must first demonstrate meaningful cost and actual hit rates; then full raw battle differential checks and an uncontended matched throughput run. This audit establishes neither."
+  ],
+  "scope": "Source/API assessment only; no cache is installed, no C++ helper is changed, and no native lifetime/equivalence/performance result is claimed.",
+  "producer": {
+    "file": "tools/audit-native-shape-cache.mjs",
+    "sha256": "9a0f1a739ffd49d3040402cc226317cc6cdc61aa13e29b7b8448998322a88a26"
+  }
+}
