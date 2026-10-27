@@ -1,0 +1,358 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Independent prelaunch build and transport review. Exactly one final print expression becomes a parenthesized post-battle serializer function expression; all six other optimized objects, private VM and link arguments are reused. No game/tracing source functions, captured f64 tags, events or snapshots are changed. Actual native streamed execution and full source/native comparison remain separate mandatory gates.",
+  "gameAndTraceSourceUnchanged": true,
+  "optimizedObjectsReused": 6,
+  "onlyRunnerObjectReplaced": true,
+  "serializerNoTopLevelDeclarations": true,
+  "actualSourceTransportPreflight": {
+    "events": 64419,
+    "snapshots": 55078,
+    "rows": 119499,
+    "maxUtf16CodeUnits": 225901,
+    "orderedMatched": true,
+    "schemaPassed": true,
+    "terminalDifference": null
+  },
+  "tinyActualNativeCodecPassed": true,
+  "actualNativeBattleParityProven": false,
+  "dependenciesAtFinish": [
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/native-stream-build.json",
+      "sha256": "88f116ecae5a8337353b4cbdd02fefe270f06b96bae1f170293d22de46fcb967",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/native-fast-build.json",
+      "sha256": "4f7f0df2752868e4be9efbaff2ea0da1b6cb439def933469a17bad3da08d3d90",
+      "matched": true
+    },
+    {
+      "file": "tools/battle-boundary-ndjson.mjs",
+      "sha256": "669765fa46340ad4467a352243135cf838acddc4cca4ef8b95631a10f1a184a7",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/runner.js",
+      "sha256": "edeeb730c0e098551d2277e042c5e4be51daec832d1685a5ad957e86d2831c7a",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/runner.stream.js",
+      "sha256": "efb8af73790e6a168b0f17305b0d26062ea480ba2067435a77f71ffc495774a7",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/partition_0.fast.o",
+      "sha256": "823f1ea28f7255d031066173ffb94665714483b16d90b8f2da40dbd82e29753b",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/partition_0.js",
+      "sha256": "cc28a06bc927dda8a46db9b0330c56e29585a33e5ba58cc5ce48ce53aa07d2de",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_2.o",
+      "sha256": "341699026cd41aee0b64477fb333f28975d9c6714898fd5ab7180400b2f24ecb",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_3.o",
+      "sha256": "63b3553698c9f2ffb962d6818070dc5e22647bf4dc6687b2cf8951adbf2328ae",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_4.o",
+      "sha256": "b2a10b46e3e2a0b7d581d38386bd590663d3fa01726125cb41fce8e9c0718dfb",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_5.o",
+      "sha256": "6f1d94c0b91776304c8ebef6b2dc885574a429607b9b3468c4a1783f4ef1f92b",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_6.o",
+      "sha256": "f4f04385d99e56df0f8aaef1487b805af43e9b9fb65d3de89091e6998eed3c7e",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/runner.stream.o",
+      "sha256": "f1703cb7ccbfc53637c58dfaa1d77a41b7e67815354c0abcd72810d221933c68",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-global-ed-prefilter/libhermesvm.so",
+      "sha256": "3d2e010473f6bf427115a3bbfae69cd1321d50b1587efb0e8345b3f9f22b6a8d",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/native-stream",
+      "sha256": "c734bdeeef58d9a8dcd844820f396e034f58b9a8cac36084efbb0ac8de3a4a0a",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/partition_0.o",
+      "sha256": "8aff9110a283411f28b30b08db9b76d89dc0166c8bcbdf3957a3de36001b86ec",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/runner.o",
+      "sha256": "d3b125a142e16ce7b258f0f549e71766814df7add976e00ee046faad37cf12f6",
+      "matched": true
+    },
+    {
+      "file": "tools/build-native-entity-sort-host.mjs",
+      "sha256": "c049573ed2b65d2bde76a4980e873d2591f9601b2fcb6141fc704140bf810fbe",
+      "matched": true
+    },
+    {
+      "file": "tools/native-private-vm.mjs",
+      "sha256": "47747b1921a23390805e60089f7dbf7cc750c1d1072d64ccd2ceda4344594f4b",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/entity-sort-host.inc",
+      "sha256": "ad40f07b690b7e54dc70dd63b29069eea95c2fd14da4039156c8125fd3dd173a",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/tim-sort-host.inc",
+      "sha256": "8267532890bf07c6f914d7a559a9251d50ef5c82bfe247173f02a469887b0be8",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/tim-sort.inc",
+      "sha256": "77153b5903fa2886b57d68de9b3ac0e92c4edf9aab9f469c24aeef39d58afb49",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/small-sort.inc",
+      "sha256": "dbf3373f28b1a00fb580f8ffe4b02695399a43b9a9fcff34b89e78c13ea46009",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/diagnostic-sha256-host.inc",
+      "sha256": "5f3836152d2c63f8169c75ebec8e1edd2388c15b902a601040802f21855c75f9",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/diagnostic-sha256.inc",
+      "sha256": "6578ad9a09dded407ac9050a567c6f06ae280d8240fd9df8982a3b8ace43fe1b",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/entity-update.inc",
+      "sha256": "a4a358159a5666b94353331dca21013968cc696be6580425a921d2d9e7f4d87b",
+      "matched": true
+    },
+    {
+      "file": "tools/native-entity-update.rs",
+      "sha256": "fb0e9f21bf14813f1e47a3572570a099ba553e31e3b36b174137fa791a28074c",
+      "matched": true
+    },
+    {
+      "file": "tools/native-small-sort.rs",
+      "sha256": "5a866da4f833ea5245e71c6bab4a7066159b4ebe64203273c5d56db186da3edd",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/v8_tim_sort.rs",
+      "sha256": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/js_math.rs",
+      "sha256": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+      "matched": true
+    },
+    {
+      "file": "tools/native-flat-copy-probe.mjs",
+      "sha256": "6b7985f2d819df79483badc3ba9486c7b9a12d02e4ce126f8f1d33003d9599ea",
+      "matched": true
+    },
+    {
+      "file": "tools/native-copy-bridge.mjs",
+      "sha256": "25ba85c6dd8ba2ae783ec14afd6dbdb0b8674d2c7a54c7b1c9a2f669e9b0b7db",
+      "matched": true
+    },
+    {
+      "file": "tools/native-rust-bridge.mjs",
+      "sha256": "02d100b9091cbe0b55f661fac0975e9c6f8427267676a8f8d87f3bcdc4f4de6d",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/entity-sort-copy-host.inc",
+      "sha256": "242b9d6d08000b3fe2d97284ee0a331748402c5c4ba9a853086c53681d318b3c",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/empty-array-copy.inc",
+      "sha256": "52607262f5e5552ae3e54e753f88e364660cff41852a7f7eb209538619455ff3",
+      "matched": true
+    },
+    {
+      "file": "tools/prepare-native-copy-host.mjs",
+      "sha256": "bd631ec2d6abf3c4cfa4c501cfa3bdf44d480f5b8d1eb74a6e276c1ef8e01c64",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/permanent-global-ed-prefilter.h",
+      "sha256": "0c5d445fb18b3a6d6d68481d6b5fba327a28e013cedb62db46ddd2fe3ca55bf3",
+      "matched": true
+    },
+    {
+      "file": "tools/build-native-global-ed-prefilter.mjs",
+      "sha256": "4a9fb129b044248dcea19bc03e82212a57b52b9de5bc9580adfb39d156e17a91",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/permanent-global-ed-prefilter.inc",
+      "sha256": "5e5841c52116fd46ec5aa32e082a841cc97712eaf07f32c0619f268d28594e15",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/permanent-global-ed-prefilter-wrap.c",
+      "sha256": "05ac2e6249395bc7a48f23da552a9b53e5044b4e79c983be17f7e3b03c31cc29",
+      "matched": true
+    },
+    {
+      "file": "tools/native-global-ed-prefilter-probe.mjs",
+      "sha256": "104d609b73f74fadfb700d104f56cc4dbee1c30c67a4266cb8ffec5afb4ea135",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/native-build.json",
+      "sha256": "81ba5404867032f9a64e0a43b95492f0bbe9165bb0a1cacab613f4ab9b3fdf8a",
+      "matched": true
+    },
+    {
+      "file": "tools/battle-boundary-state-trace.js",
+      "sha256": "80bd32a0f2b86775dd48aad8f322af10d9c8eb36fc744bf075d9ca621fc6c60d",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/downloads/hermes-build/bin/shermes",
+      "sha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/native-global-ed-prefilter-build.json",
+      "sha256": "ad1c642580696c089d2e77f5350607911824d445177a80a17841036d5203b216",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/native-global-ed-prefilter.json",
+      "sha256": "3abaad82a86b8026605195d79b70ccf19097d4c7e4f13f46e7e0e29ebc96d32b",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-global-ed-prefilter/global-slot-wrap.o",
+      "sha256": "d2f829a080b78373fdf7dbe1aa8132cd4e204df92268cb39e037a3f0cccbbd5b",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-entity-sort-host/libentity.a",
+      "sha256": "f47cfad7084955d1c6ca2dda4e69c58dfcac0a656824fdac4aa8680949c02ec8",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-entity-sort-host/libsmall_sort.a",
+      "sha256": "0d60cf98560b7440c6318bd0cd1501c3ab96dba45fccb134808dafc0cb4faa93",
+      "matched": true
+    },
+    {
+      "file": "tools/patch-battle-boundary-fastpaths.mjs",
+      "sha256": "c65789cc71796105b6bee320c8ec4d87464b740e4905ed750e7851c1e1feca44",
+      "matched": true
+    },
+    {
+      "file": "tools/native-entity-update.mjs",
+      "sha256": "0aefe718985a087acfcd53961d67573768cc23bdbc4b1b8e683e1b12bd634de5",
+      "matched": true
+    },
+    {
+      "file": "tools/flat-numeric-copy.mjs",
+      "sha256": "46274164dcb8434c5275ff738826524bb358751c6f0eb89636356d299fb98d1a",
+      "matched": true
+    },
+    {
+      "file": "tools/prepare-battle-boundary-stream.mjs",
+      "sha256": "12eecf8978df2fb4da2d8b117f8364143d8fafb68594ecadbc6971975f682de5",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/battle-boundary-ndjson-independent-review.json",
+      "sha256": "83a59c9e2bab28fd04d6060a51b8a33dc5572bdfe7130fb30014e748a9cb44a7",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/battle-boundary-stream-preflight.json",
+      "sha256": "eaff14f81536abae897f44b0f1f2a6366b8b8f7233dc1bf64829aed18bdb2613",
+      "matched": true
+    },
+    {
+      "file": "tools/preflight-battle-boundary-stream.mjs",
+      "sha256": "4620fee5eff4a56a89dac4a521420aed952c7619d10e94f67eb960722e1757e2",
+      "matched": true
+    },
+    {
+      "file": "tools/battle-boundary-trace.mjs",
+      "sha256": "93f71a34da9dc97e0bf9bde2108e7e739baa7c8f887b0078924f13a4419a5a4b",
+      "matched": true
+    },
+    {
+      "file": "tools/validate-battle-boundary-schema.mjs",
+      "sha256": "ab7ea12c6bf793c006884d59eda1d114746cf47a1011beeea6f7c6ede2207a80",
+      "matched": true
+    },
+    {
+      "file": "tools/native-report-compare.mjs",
+      "sha256": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/source-traced.json",
+      "sha256": "b2345870b58c727b6db5d4b187781fece2877d2dfaa300f13c17ce23f165ffb6",
+      "matched": true
+    },
+    {
+      "file": "tools/review-battle-boundary-stream-build.mjs",
+      "sha256": "b5ce5e48364505b5f6ff7a8ddabf4b29130405749875d357190777b9c812c7c5",
+      "matched": true
+    },
+    {
+      "file": "tools/run-battle-boundary-stream.mjs",
+      "sha256": "3af279c801980386b20853e25f597c62676fa93a636cd7ee2f589c3a005a7976",
+      "matched": true
+    }
+  ],
+  "qualifiesFor10000Target": false
+}
