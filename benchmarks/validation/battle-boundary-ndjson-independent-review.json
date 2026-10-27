@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "passed": true,
+  "kind": "Independent post-battle NDJSON transport review",
+  "inputs": {
+    "tools/battle-boundary-ndjson.mjs": "669765fa46340ad4467a352243135cf838acddc4cca4ef8b95631a10f1a184a7",
+    "tools/tests/battle-boundary-ndjson.test.mjs": "5d5854db1e08e06747c7d24ffd41a139462eefdeb2743d68841dc25b658387b2",
+    "tools/tests/battle-boundary-ndjson-independent.test.mjs": "e314dde79ddb62f964621a36d8a3d0a07ef74760fe1d6cc9cecd8f263d7942c7",
+    "tools/review-battle-boundary-ndjson.mjs": "b7ac88a0ba65e3cc2747148508a1a023e9d0d361d6b6388c25de79a84ec99c2c",
+    "tools/battle-boundary-state-trace.js": "80bd32a0f2b86775dd48aad8f322af10d9c8eb36fc744bf075d9ca621fc6c60d",
+    "tools/validate-battle-boundary-schema.mjs": "ab7ea12c6bf793c006884d59eda1d114746cf47a1011beeea6f7c6ede2207a80",
+    "config/native-compiler-static-hermes.json": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
+  },
+  "tests": {
+    "args": [
+      "--jitless",
+      "--test",
+      "--test-reporter=tap",
+      "tools/tests/battle-boundary-ndjson.test.mjs",
+      "tools/tests/battle-boundary-ndjson-independent.test.mjs"
+    ],
+    "passed": true,
+    "count": 12
+  },
+  "nativeCodecSmoke": {
+    "passed": true,
+    "exitCode": 0,
+    "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+    "originalVMSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "liveVMPreserved": true,
+    "sourceSha256": "43bc41a08c0539bf464a3d351468ed85308d57780ddaf000f98f8bd2713c75a8",
+    "generatedCSha256": "aa63a43a9635403e74f1c3d61c0ffffb7123deabfbddd6fc329bd78082cb2a6e",
+    "binarySha256": "6b8460a24c9e87f5b193599be771f04bc143810f7e0e0258529dc5a94da479e0",
+    "emitArgs": [
+      "-O",
+      "-emit-c",
+      "/workspace/afkarena-simx/work/battle-boundary-ndjson-review/probe.js",
+      "-o",
+      "/workspace/afkarena-simx/work/battle-boundary-ndjson-review/probe.c"
+    ],
+    "ccArgs": [
+      "/workspace/afkarena-simx/work/battle-boundary-ndjson-review/probe.c",
+      "-O2",
+      "-g0",
+      "-DNDEBUG",
+      "-fno-strict-aliasing",
+      "-fno-strict-overflow",
+      "-ffp-contract=off",
+      "-I/workspace/afkarena-simx/work/downloads/hermes-build/lib/config",
+      "-I/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+      "-L/workspace/afkarena-simx/work/downloads/hermes-build/lib",
+      "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/lib",
+      "-L/workspace/afkarena-simx/work/downloads/hermes-build/jsi",
+      "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/jsi",
+      "-L/workspace/afkarena-simx/work/downloads/hermes-build/tools/shermes",
+      "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/tools/shermes",
+      "-lshermes_console",
+      "-lhermesvm",
+      "-ldl",
+      "-lpthread",
+      "-lm",
+      "-o",
+      "/workspace/afkarena-simx/work/battle-boundary-ndjson-review/probe"
+    ],
+    "schema": {
+      "passed": true,
+      "events": 2,
+      "snapshotNodes": 1,
+      "frames": 0,
+      "scope": "Supplemental JSON schema and integrity for typed-entry boundary traces; own enumerable string-keyed data fields only. No whole-program or battle semantic qualification.",
+      "qualifiesFor10000Target": false
+    }
+  },
+  "outputs": {
+    "file": "benchmarks/validation/battle-boundary-ndjson-review.outputs.json",
+    "sha256": "86f686b11ff88042dc1981604d6edf641d348b18d8e3ffda9a7d11b22eb8534f"
+  },
+  "findings": [
+    "Emitter copies only terminal report and trace metadata, then serializes every indexed snapshot and event without modifying deeply frozen input. Per-row size limit is sixteen Mi UTF-16 code units; this is deliberately a string bound, not a UTF-8 byte claim.",
+    "Decoder requires explicit numeric process exit zero, exactly one header, ordered complete snapshot/event phases, unique snapshot hashes, exact header/footer counts and final battle completion. Unknown, duplicated, truncated, malformed, re-ordered or extra records fail.",
+    "Codec transports JSON data; final qualification must additionally run strict typed schema/hash validation and exact source/native event, snapshot-pool and raw terminal-report comparison.",
+    "Actual tiny Static Hermes serializer output roundtrips the entire valid typed trace and unicode terminal report exactly against Node, then passes the supplemental strict schema. This is a transport-only smoke check, not a completed actual native battle trace."
+  ],
+  "actualNativeBattleTraceCompared": false,
+  "qualifiesFor10000Target": false
+}
