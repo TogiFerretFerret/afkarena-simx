@@ -31,9 +31,9 @@ passes its adversarial raw-bit corpus after matching operand order explicitly.
 See `validation/component-verification-summary.json` for the exact source hashes
 and `validation/ORACLE-RUNTIME.md` for the pinned `--jitless` reference policy.
 Remaining numeric array NaN differences depend on V8 allocation-site history;
-the strict numeric check reports them as failures. The compiled VM also has
-separate NaN literal/storage discrepancies under investigation. These are not
-accepted as bit-exact matches.
+the strict numeric check reports them as failures. The compiled VM preserves literal NaN bits after a compiler repair; arbitrary
+NaN payload storage still has an explicit failing probe. These discrepancies
+are not accepted as bit-exact matches.
 
 The C/Rust attribute bridge builds and runs through
 `buck2 run //tools:native_attribute_abi_check`. It requires immutable numeric
@@ -45,3 +45,12 @@ matching ordered events and state bits, exact RNG and external-input consumption
 and a reproducible performance run with the fidelity instrumentation outside the
 timed execution path. Omitting game callbacks or shortening timeouts cannot
 qualify a result.
+
+The current eager-source gate executes the entire supplied battle script and
+passes one frozen 5v5 battle against emitted Node: 296 ticks and 15,453 executed
+callbacks, matching terminal state and input consumption. The refreshed initial
+graph also matches 10,914 nodes and 32,834 code entries, including observed private
+Cocos allocation counters. This establishes emitter parity within the adapter
+scope, not native full-battle qualification. See
+`validation/tracked-capsule-source-node.json` and the corresponding
+archives in `fixtures/` for exact contracts and replay inputs.
