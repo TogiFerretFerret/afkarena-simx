@@ -1,0 +1,20 @@
+{
+  "cases": 20000,
+  "events": 28486,
+  "rawBitsExact": true,
+  "source": [
+    {
+      "name": "ed.Buff.update",
+      "start": 40434,
+      "end": 41296,
+      "sha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8"
+    },
+    {
+      "name": "ed.Buff.updateHPRDamage",
+      "start": 41313,
+      "end": 41704,
+      "sha256": "a24eeaf3080157c38734a07cef3b5fc836728ee961e30797b6ae3f74f66520bc"
+    }
+  ],
+  "scope": "Buff update/HPR control with live identities and mutating required fixture hooks; finite numeric inputs plus null/undefined timers; not integrated full battles"
+}

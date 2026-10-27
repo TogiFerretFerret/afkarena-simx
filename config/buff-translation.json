@@ -15,12 +15,19 @@
       "sha256": "a24eeaf3080157c38734a07cef3b5fc836728ee961e30797b6ae3f74f66520bc"
     }
   ],
-  "status": "native_control_flow_and_ordered_callbacks; broad_differential_and_wholebattle_integration_pending",
+  "status": "20000_case_source_differential_passed_under_explicit_hooks;wholebattle_integration_pending",
   "domain": [
     "Plain source numeric fields and predicate views",
     "Null and undefined timers remain distinct",
     "Stable live buff/unit identities and complete required mechanics hooks",
     "Dense valid handles and original source methods; no virtual override elision"
   ],
-  "formalProof": false
+  "formalProof": false,
+  "validation": {
+    "report": "benchmarks/validation/buff-differential-summary.json",
+    "command": "node tools/check-buff.mjs ./work/check-buff",
+    "cases": 20000,
+    "rawBitsExact": true,
+    "domain": "Finite numeric input fields; null/undefined/numeric timers; mutable owner/caster/timer hook effects"
+  }
 }
