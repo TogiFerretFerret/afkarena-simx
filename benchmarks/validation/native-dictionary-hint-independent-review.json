@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "passed": true,
+  "kind": "Independent source review and C++ access-language smoke check",
+  "scope": "This review is not the native differential proof and does not establish full-battle fidelity or speed. It checks source guard/current-map structure and original header identity, plus a separate two-translation-unit example of the C++17 explicit-instantiation private-access exemption. Original class definitions remain identical across translation units; no offset casts or header overlays. Native semantics and GC/lifecycle behavior require the separate native-dictionary-hint.json proof and actual source-reference battle gate.",
+  "reviewed": {
+    "sourceAssessment": {
+      "file": "benchmarks/validation/native-dictionary-hint-assessment.json",
+      "sha256": "9af85528735e21983525297634b10db559122224baacb5a11eee56e7a9d65fb5",
+      "config": {
+        "file": "config/native-compiler-static-hermes.json",
+        "sha256": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e",
+        "commit": "4f1db42d71d0839254c7154fc8c282bcea466206"
+      },
+      "inputs": {
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h": "4a02dbbc79ecdd8599b97c6208bbb6bc66a3fbe30f8f89ab6e55d733a1f93239",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp": "04acdb2dd1d53e1c8340e67a24cdb8e62b65167fda3a086ed0f057318ec9698a",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h": "7497ff4864c478d573350ee0f958e09626662ea8999f024180bbbeb74d332866",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/JSObject.h": "1dada40009441ce464eb288f42a1b8b989ab72b3cd4e99ebacc2818b8bc6744d",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/PropertyDescriptor.h": "c539ff33ce0f9a34882c1042b5503686814f1864af96f0ab74c5c65dbe197088",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/static_h.h": "4116a79463473da92919274a8d0741789b27748bb3f323a5d0f6d668cca33e08"
+      }
+    },
+    "build": {
+      "file": "benchmarks/validation/native-dictionary-hint-build.json",
+      "sha256": "38cc47895e4d3bd7cd6e0d0c786775866857b83870cee3004365d599602c8d7e"
+    },
+    "bridge": {
+      "file": "tools/native-compiler-patches/dictionary-ordinal-host.inc",
+      "sha256": "389bb55e192ac228fa22b8c6cd7af6869f9d63d7c4af6fc82059df7d9cefc4bf"
+    },
+    "wrapper": {
+      "file": "tools/native-compiler-patches/dictionary-ordinal-wrap.c",
+      "sha256": "28dc865396fc2a09bce748e5b8afcaf051c8332737539fef3201b2328df041ef"
+    },
+    "headers": {
+      "DictPropertyMap": {
+        "original": "/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h",
+        "originalSha256": "4a02dbbc79ecdd8599b97c6208bbb6bc66a3fbe30f8f89ab6e55d733a1f93239"
+      },
+      "HiddenClass": {
+        "original": "/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h",
+        "originalSha256": "7497ff4864c478d573350ee0f958e09626662ea8999f024180bbbeb74d332866"
+      }
+    },
+    "contexts": 27
+  },
+  "findings": [
+    "Only ordinary nonlazy nonProxy nonHost JSObject receivers with dictionary nonTyped current HiddenClass are eligible.",
+    "Each call reloads current HiddenClass map, current descriptor count, current descriptor key, current descriptor flags and slot, and current receiver storage value.",
+    "The pinned original findOrAdd insertion path preserves unique valid property keys, as recorded by the source assessment uniqueInsertion context. Ordinal hints contain only SymbolID and integer ordinal. A stale ordinal either matches the same unique current key or invokes original current-map find. No map, class, receiver or descriptor pointer survives a call.",
+    "All unsupported descriptor flags and Empty values fall back. Source SmallHermesValue decoder is retained.",
+    "The guarded source path performs no VM allocation or JS calls between map/key validation and value load. NoAllocScope expresses and debug-checks this requirement; it is a no-op in release builds and is not a runtime GC lock. The C trampoline invokes original SH fallback after the entire C++ bridge returns, including all RAII scopes.",
+    "Runtime-owned shutdown lease keeps integer state alive through VM finalization and releases it afterward; no custom roots or VM object retention are introduced."
+  ],
+  "accessSmoke": {
+    "compiler": "c++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "flags": [
+      "-std=c++17",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-fno-exceptions",
+      "-fno-rtti",
+      "-ffp-contract=off"
+    ],
+    "positive": {
+      "args": [
+        "-std=c++17",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-O2",
+        "-fno-exceptions",
+        "-fno-rtti",
+        "-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-dictionary-hint-review/helper.cpp",
+        "/workspace/afkarena-simx/work/native-dictionary-hint-review/main.cpp",
+        "-o",
+        "/workspace/afkarena-simx/work/native-dictionary-hint-review/access-smoke"
+      ],
+      "status": 0,
+      "stderr": "",
+      "stdout": "17 54\n",
+      "binarySha256": "088132dbbba73b85672ee24ce5ed1649a4051572870ffbf732434b5b8a386d6d"
+    },
+    "negative": {
+      "args": [
+        "-std=c++17",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-O2",
+        "-fno-exceptions",
+        "-fno-rtti",
+        "-ffp-contract=off",
+        "-c",
+        "/workspace/afkarena-simx/work/native-dictionary-hint-review/forbidden.cpp",
+        "-o",
+        "/workspace/afkarena-simx/work/native-dictionary-hint-review/forbidden.o"
+      ],
+      "status": 1,
+      "stderr": "/workspace/afkarena-simx/work/native-dictionary-hint-review/forbidden.cpp: In function ‘int forbidden(Original&)’:\n/workspace/afkarena-simx/work/native-dictionary-hint-review/forbidden.cpp:2:47: error: ‘int Original::value_’ is private within this context\n    2 | int forbidden(Original &object){return object.value_;}\n      |                                               ^~~~~~\nIn file included from /workspace/afkarena-simx/work/native-dictionary-hint-review/forbidden.cpp:1:\n/workspace/afkarena-simx/work/native-dictionary-hint-review/original.h:1:22: note: declared private here\n    1 | class Original { int value_=17; int method_(){return value_+20;} public: int publicValue()const{return value_;} };\n      |                      ^~~~~~\n/workspace/afkarena-simx/work/native-dictionary-hint-review/forbidden.cpp:2:47: note: field ‘int Original::value_’ can be accessed via ‘int Original::publicValue() const’\n    2 | int forbidden(Original &object){return object.value_;}\n      |                                               ^~~~~~\n      |                                               publicValue()\n"
+    },
+    "sourceSha256": {
+      "header": "2ea46c688ef96bc78628cf78e3cf75a9bcb9c7584424fa2326475c31e89db9f7",
+      "helper": "771ae825dfca12a3db43def30e4fb08b96bd2fcb3067ccb4d8f06e02c1890dce",
+      "main": "f447f1f321170a5b2b64c5418a6be6f5cc711ffca9f1dd0a0b967923b0c705a8",
+      "forbidden": "36e782f1eeb3263831e63e96a8ed201f6792c1de8a8caa984645295953f68fe5"
+    }
+  },
+  "source": {
+    "file": "tools/review-native-dictionary-hint.mjs",
+    "sha256": "2c7ebb0450f74bc3e67c70807ef72bfa692464b24a06cbbd5720fb1d3db7d89f"
+  },
+  "qualifiesFor10000Target": false
+}
