@@ -23,15 +23,18 @@ export async function compileNativeUnits({root,metadata,input,output,compiler,cc
       const env={...process.env};
       if(binaryPools){unit.poolDirectory=resolve(directory,unit.name+'.string-pools');await mkdir(unit.poolDirectory,{recursive:true});env.SHERMES_BINARY_STRING_DIR=unit.poolDirectory;}
       else delete env.SHERMES_BINARY_STRING_DIR;
-      const reused=reuseManifest?.units.find(record=>record.name===unit.name);
+      const reused=reuseManifest?.units.find(record=>record.name===unit.name&&(reuseManifest.kind!=='exact-native-object-cache-v1'||record.sourceSha256===unit.sha256));
       if(reused){
         assert.equal(unit.sha256,reused.sourceSha256,'Reused native unit has different source');
         assert.equal(sha(await readFile(reused.object)),reused.objectSha256,'Reused native object changed');
-        assert.equal(reused.object,unit.object,'Resume requires the original dedicated unit directory');
+        if(reuseManifest.kind!=='exact-native-object-cache-v1')assert.equal(reused.object,unit.object,'Legacy resume requires the original dedicated unit directory');
         if(reuseManifest.kind==='exact-native-object-cache-v1'){
           const opt=unit.name==='runner'?runnerOpt:ccOpt;
           assert.equal(reused.compilerSha256,sha(await readFile(compiler)),'Reused compiler changed');
-          assert.deepEqual(reused.compileArgs,['-O','-c','-exported-unit='+unit.name,`-Wc,-${opt},-g0,-ffp-contract=off`,unit.file,'-o',unit.object],'Reused compilation flags or source path changed');
+          const cachedArgs=[...reused.compileArgs];cachedArgs[cachedArgs.length-1]=unit.object;
+          assert.deepEqual(cachedArgs,['-O','-c','-exported-unit='+unit.name,`-Wc,-${opt},-g0,-ffp-contract=off`,unit.file,'-o',unit.object],'Reused compilation flags or source path changed');
+          if(reused.object!==unit.object)await copyFile(reused.object,unit.object);
+          if(binaryPools){unit.poolDirectory=reused.poolDirectory??resolve(reused.object.slice(0,-2)+'.string-pools');}
         }
         unit.reusedObject=reused;continue;
       }

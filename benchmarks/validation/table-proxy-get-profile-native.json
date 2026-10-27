@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "rawReportMatched": false,
+  "rawReportDifference": {
+    "path": "$.tableBoundary.gets",
+    "actual": 520414,
+    "expected": 519440
+  },
+  "hostInputDifference": null,
+  "histogramMatched": false,
+  "totalReadDifferences": {
+    "immutable": 974,
+    "mutable": 30
+  },
+  "deltas": [
+    {
+      "token": "immutable|GuildTurntableTech|Level",
+      "native": 1212,
+      "node": 258,
+      "delta": 954
+    },
+    {
+      "token": "immutable|SoundAnim|Delay",
+      "native": 1536,
+      "node": 1516,
+      "delta": 20
+    },
+    {
+      "token": "mutable|AnimAtkFrame|Time",
+      "native": 1634,
+      "node": 1604,
+      "delta": 30
+    }
+  ],
+  "compileMs": 130522.389033,
+  "executionWallMs": 83324.26429400002,
+  "completed": 1,
+  "elapsedMs": 73855,
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "originalVMSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+  "privateVMSha256": "2fed1ab4eb69388eb52ae1230d76329bb5296343715eb4dfeb50b439758a692b",
+  "units": [
+    {
+      "file": "/workspace/afkarena-simx/work/table-proxy-get-profile/combined.js",
+      "sourceSha256": "21ccb8d3834f8059ea456e91b334de8a5de3e9bd7662ad7ed216066d0f9861e4",
+      "name": "combined",
+      "object": "/workspace/afkarena-simx/work/table-proxy-get-profile/native.units/combined.o",
+      "objectSha256": "78f4a518efeaf23ed81b19106b01d36308bd9b68c1fd4de156e4fd1ae22d5d65",
+      "reused": false
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "name": "factories_2",
+      "object": "/workspace/afkarena-simx/work/table-proxy-get-profile/native.units/factories_2.o",
+      "objectSha256": "341699026cd41aee0b64477fb333f28975d9c6714898fd5ab7180400b2f24ecb",
+      "reused": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "name": "factories_3",
+      "object": "/workspace/afkarena-simx/work/table-proxy-get-profile/native.units/factories_3.o",
+      "objectSha256": "63b3553698c9f2ffb962d6818070dc5e22647bf4dc6687b2cf8951adbf2328ae",
+      "reused": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sourceSha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "name": "factories_4",
+      "object": "/workspace/afkarena-simx/work/table-proxy-get-profile/native.units/factories_4.o",
+      "objectSha256": "b2a10b46e3e2a0b7d581d38386bd590663d3fa01726125cb41fce8e9c0718dfb",
+      "reused": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sourceSha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "name": "factories_5",
+      "object": "/workspace/afkarena-simx/work/table-proxy-get-profile/native.units/factories_5.o",
+      "objectSha256": "6f1d94c0b91776304c8ebef6b2dc885574a429607b9b3468c4a1783f4ef1f92b",
+      "reused": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "name": "factories_6",
+      "object": "/workspace/afkarena-simx/work/table-proxy-get-profile/native.units/factories_6.o",
+      "objectSha256": "f4f04385d99e56df0f8aaef1487b805af43e9b9fb65d3de89091e6998eed3c7e",
+      "reused": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/table-proxy-get-profile/runner.js",
+      "sourceSha256": "532259e3011fbd7b207d8dcef0a060d8a1a54d1533410120a7f2313f1b6f7670",
+      "name": "runner",
+      "object": "/workspace/afkarena-simx/work/table-proxy-get-profile/native.units/runner.o",
+      "objectSha256": "ee93d791cff8e1eb8ea916b9085268333a72caf8d3f040de8b5ee258a90832ee",
+      "reused": false
+    }
+  ],
+  "instrumenter": {
+    "file": "tools/profile-table-proxy-gets.mjs",
+    "sha256": "40ff028659c22a299cc49b00f93b2b2d6d2653804a209372d62866c44b9076cc"
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/table-proxy-get-profile-native/source.stdout.gz",
+      "sha256": "b5ee99154d8220aff9e1a6d8b58d8e8e976f9da30f0bc858480c28ad74a49352",
+      "uncompressedSha256": "2a8027cb3ea132006e084b1f9ec914fbfdec128ba9df2ceb6ce367c686b28199",
+      "uncompressedBytes": 306558
+    },
+    {
+      "file": "benchmarks/validation/table-proxy-get-profile-native/native.stdout.gz",
+      "sha256": "1c1dd01a9645113ecb3aa683bd5ce2bfc4b1b945e08d03b2a8066aa0ec806918",
+      "uncompressedSha256": "b9c0842f0941c3c9acb3ec02b9a194bbc9238195a4b6ddbad3f58be8d532dff0",
+      "uncompressedBytes": 306559
+    }
+  ],
+  "qualifiesFor10000Target": false,
+  "scope": "Private observer get-key histogram; raw source/native counter differences remain failures. This locates engine property-read differences, not a throughput qualification."
+}
