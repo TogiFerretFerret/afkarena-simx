@@ -1,0 +1,3313 @@
+{
+  "version": 1,
+  "qualifiesFor10000Target": false,
+  "scenario": "config/scenario-example-2026.json",
+  "battlesPerMode": 3,
+  "reference": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "inputHashes": {
+    "tools/profile-copy-obj.mjs": "51b3ab307c44f3348bf3c75d5f447bd5ed6f61c4c470f6c09b0e4c5750b251c8",
+    "tools/flat-numeric-copy.mjs": "46274164dcb8434c5275ff738826524bb358751c6f0eb89636356d299fb98d1a",
+    "tools/bootstrap-runtime.mjs": "8e72cf52358c7cee53beb9063cdcc74f54bfe82496491f5e4b8ce2afb8eaf59f",
+    "tools/bootstrap-host.js": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+    "tools/bootstrap-render-host.js": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+    "tools/bootstrap-render-scene.mjs": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+    "tools/bootstrap-callbacks.mjs": "5ffd831f43c1ebb7eec5377e8462570dc66e94173139d3508fb3f73cf98e69ff",
+    "tools/scenario-factory.mjs": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+    "tools/oracle-clock.js": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+    "tools/battle-trace.mjs": "64abc97d5d6e64e6952cd4b752c2d96e0df38a3628298d49614c1e8b7dae3bd7",
+    "config/scenario-example-2026.json": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc",
+    "src/srcmodule/game_base.js": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_ui_2.js": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+    "src/srcmodule/game_ui_3.js": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+    "src/srcmodule/game_ui_4.js": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+    "src/srcmodule/game_ui_5.js": "b3169c14a946ce37b01e0b207b343d1d18afcbe3c6237e9639f79b9fd61cb13c",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "src/srcmodule/ui_contra.js": "11fd88a93d7d022ae3d0b1eb1d3e1addcf69f297a824ae510adee392f124ff95",
+    "src/srcmodule/ui_gve.js": "941012b6ca87524c122d577b5889c4da8e4b13904413129142b5e16c34e340e3",
+    "src/srcmodule/ui_minigame.js": "5885132fb5661551c9a14ebc8eedee42db42e65a24e023dc78f57b4b8c53cecb",
+    "src/srcmodule/ui_war.js": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3"
+  },
+  "runs": [
+    {
+      "mode": "observe",
+      "elapsedMs": 5413.334516,
+      "stats": {
+        "calls": 62809,
+        "eligible": 7281,
+        "originalCalls": 62809,
+        "fastCalls": 0,
+        "rootCalls": 14557,
+        "maxDepth": 2,
+        "mode": "observe",
+        "reasons": {
+          "object_child": 180,
+          "flat_finite_numeric": 7281,
+          "non_number": 7065,
+          "array": 48283
+        },
+        "eligibleOwnKeyCounts": {
+          "2": 120,
+          "47": 7161
+        }
+      },
+      "results": [
+        {
+          "result": "victory",
+          "ticks": 296,
+          "frames": 296,
+          "callbacks": 15453,
+          "rngBits": "4216fd6c5e6c0000"
+        },
+        {
+          "result": "victory",
+          "ticks": 296,
+          "frames": 296,
+          "callbacks": 15453,
+          "rngBits": "4216fd6c5e6c0000"
+        },
+        {
+          "result": "victory",
+          "ticks": 296,
+          "frames": 296,
+          "callbacks": 15453,
+          "rngBits": "4216fd6c5e6c0000"
+        }
+      ],
+      "terminalGraphSha256": "abe1d6171b0aeadfddc3ae0b4d2213ddbcd476e22555558423caa61f26716fe7",
+      "terminalNodes": 12881,
+      "clock": {
+        "version": 1,
+        "mode": "record",
+        "attempts": 780,
+        "consumed": 780,
+        "total": 780,
+        "remaining": 0,
+        "counts": {
+          "Date.now": 0,
+          "Date.construct": 780,
+          "Date.call": 0
+        },
+        "finished": true,
+        "restored": false,
+        "failure": null
+      },
+      "hostRandomDraws": 2
+    },
+    {
+      "mode": "specialize",
+      "elapsedMs": 5243.960666000001,
+      "stats": {
+        "calls": 62809,
+        "eligible": 7281,
+        "originalCalls": 55528,
+        "fastCalls": 7281,
+        "rootCalls": 14557,
+        "maxDepth": 2,
+        "mode": "specialize",
+        "reasons": {
+          "object_child": 180,
+          "flat_finite_numeric": 7281,
+          "non_number": 7065,
+          "array": 48283
+        },
+        "eligibleOwnKeyCounts": {
+          "2": 120,
+          "47": 7161
+        }
+      },
+      "results": [
+        {
+          "result": "victory",
+          "ticks": 296,
+          "frames": 296,
+          "callbacks": 15453,
+          "rngBits": "4216fd6c5e6c0000"
+        },
+        {
+          "result": "victory",
+          "ticks": 296,
+          "frames": 296,
+          "callbacks": 15453,
+          "rngBits": "4216fd6c5e6c0000"
+        },
+        {
+          "result": "victory",
+          "ticks": 296,
+          "frames": 296,
+          "callbacks": 15453,
+          "rngBits": "4216fd6c5e6c0000"
+        }
+      ],
+      "terminalGraphSha256": "abe1d6171b0aeadfddc3ae0b4d2213ddbcd476e22555558423caa61f26716fe7",
+      "terminalNodes": 12881,
+      "clock": {
+        "version": 1,
+        "mode": "replay",
+        "attempts": 780,
+        "consumed": 780,
+        "total": 780,
+        "remaining": 0,
+        "counts": {
+          "Date.now": 0,
+          "Date.construct": 780,
+          "Date.call": 0
+        },
+        "finished": true,
+        "restored": false,
+        "failure": null
+      },
+      "hostRandomDraws": 2
+    }
+  ],
+  "hostClockTape": [
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a221000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a226000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a22c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a22d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a22d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a22d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a22e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a22e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a233000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a234000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a23b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a23b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a23b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a23c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a241000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a241000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a243000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a243000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a249000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a258000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a25b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a260000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a260000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a260000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a267000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a26b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a26e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a270000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a270000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a271000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a275000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a275000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a279000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a279000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a279000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a279000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a279000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a27d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a27d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a27d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a280000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a280000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a280000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a283000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a283000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a283000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a286000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a286000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a286000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a286000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a286000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a286000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a28b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a28b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a28b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a28b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a28c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a28c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a28c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a28c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a28c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a290000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a290000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a299000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a299000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a299000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a299000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a299000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a299000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a29e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a29e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a29e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2a1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2a1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2a6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2a6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2a6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2a6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2a9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2ae000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2b1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2b1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2b1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2b1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2b6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2b6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2bb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2bb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2bb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2c0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2c9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2c9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2cc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2d9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2ee000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2f5000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a2fd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a308000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a312000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a31c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a31f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a329000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a334000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a334000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a338000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a33b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a341000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a354000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a35e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a35e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a35e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a35e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a35f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a35f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a360000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a369000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a369000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a369000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a36c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a36c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a370000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a370000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a370000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a376000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a376000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a37b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a37e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a37e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a37e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a381000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a381000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a382000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a38a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a38a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a38d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a392000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a392000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a392000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a393000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a394000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a395000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a399000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3a7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3af000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3af000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3b3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3b3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3b7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3b7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ba000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3bd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3bd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3bd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3bd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3bd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3bd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3c0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3c0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3c4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ca000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ca000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ca000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ca000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3cb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3cb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ce000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3d9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3dc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3dc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3df000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3df000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3df000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3df000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3df000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3df000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3df000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3e9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ed000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ed000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3ed000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3f0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3f0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3f0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3f2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3f2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3f2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3f2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3f4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3f8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3fa000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a3fa000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a400000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a400000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a407000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a413000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a417000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a41d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a423000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a42c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a433000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a439000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a43f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a445000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a456000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a456000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a459000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a459000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a459000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a459000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a459000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a459000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a459000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a45a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a45b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a45d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a45d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a45d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a45d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a460000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a460000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a463000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a465000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a467000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a467000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a467000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a48d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a491000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a495000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a495000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a496000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a496000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a496000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a496000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a49a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a49b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4a0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4a0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4a0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4a0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4a4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4a4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4a6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4a6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4ab000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4ad000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4b0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4b3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4b3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4b3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4b7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4ba000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4bd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4bf000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4bf000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4bf000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4c9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4cb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4cb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4cb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4cd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4cd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4cd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4cd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4cd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4cd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4d6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4da000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4da000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4da000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4da000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4da000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4da000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4dd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4dd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4dd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4df000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4df000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4e3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4e3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4e3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4e3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4e9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4ed000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4f0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4f0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4f0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4f0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4f4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4f4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4f8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4f8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4f8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a4fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a503000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a503000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a506000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a507000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a507000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a507000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a511000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a524000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a52b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a533000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a53c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a546000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a54d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a551000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a559000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a561000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a561000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a564000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a567000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a56c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a57d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a586000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a586000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a586000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a586000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a586000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a586000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a587000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a58e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a58e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a58e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a591000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a591000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a594000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a594000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a594000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a598000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a598000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a59c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5a2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5a2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5a2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5a4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5a4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5a4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ad000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ad000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5af000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5b3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5b3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5b3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5b4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5b5000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5b5000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5b9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5c6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5cd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5cd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d5000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5db000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5db000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5dd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5e7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ec000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ec000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ec000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ec000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ef000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ff000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ff000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a5ff000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a601000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a601000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a601000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a601000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a601000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a605000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a605000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a605000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a608000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a608000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a608000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a60a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a60a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a60a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a60a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a60c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a610000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a613000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a613000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a619000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a619000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a61f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a62c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a630000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a636000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a63c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a642000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a649000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a64e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a654000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a65d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a66d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a66d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a670000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a670000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a670000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a670000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a670000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a670000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a670000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a670000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a671000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a673000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a673000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a673000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a673000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a677000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a677000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a679000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a67b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a67d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a67d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a67d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6a2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6a6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6aa000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6aa000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6aa000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6aa000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6aa000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ab000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ae000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6af000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6b4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6b4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6b4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6b5000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6b8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6b8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ba000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ba000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6be000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6c1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6c3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6c6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6c6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6c6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6cb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6cd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6d8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6da000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6da000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6da000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6dc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6dc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6dc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6de000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6de000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6de000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ea000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ea000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ee000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ee000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ee000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ee000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ee000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ee000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6f3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6f3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6f7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6fb000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a6ff000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a702000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a702000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a702000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a702000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a706000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a706000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a70a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a70a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a70a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a70f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a719000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a719000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a71c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a71e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a71e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a71e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a727000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a739000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a740000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a748000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a752000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a75b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a763000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a767000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a772000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a779000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a779000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a77c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a77f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a784000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a795000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a79d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a79d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a79d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a79d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a79d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a79d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a79e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7a3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7a3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7a3000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7a6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7a6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7a9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7a9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7a9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7ad000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7ad000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7b2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7b5000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7b5000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7b5000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7b7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7b7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7b7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7c0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7c0000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7c2000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7c7000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7c8000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7c9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7ca000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7cf000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7de000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7e6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7e9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7e9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7ec000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7ec000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7ef000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f1000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f4000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f6000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7f9000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7fc000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a7fd000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a800000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a800000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a800000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a800000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a800000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a800000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a800000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a805000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a805000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a805000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a805000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a808000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a80b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a80b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a80b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a80b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a80b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a80b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a80d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a80d000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a810000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a810000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a810000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a810000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a810000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a810000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a810000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a815000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a815000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a815000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a815000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a815000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a818000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a818000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a818000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a81a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a81a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a81a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a81a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a81a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a81e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a81e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a81e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a820000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a820000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a820000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a823000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a823000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a823000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a823000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a825000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a829000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a82b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a82b000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a831000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a831000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a838000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a844000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a848000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a84e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a854000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a859000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a85e000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a864000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a869000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a86f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a87f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a87f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a882000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a882000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a882000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a882000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a882000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a882000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a882000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a882000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a883000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a887000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a887000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a887000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a887000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a88a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a88a000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a88c000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a88f000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a891000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a891000"
+    },
+    {
+      "kind": "Date.construct",
+      "bits": "427a17ed4a891000"
+    }
+  ],
+  "hostRandomTape": [
+    "3fe0f30b54a00000",
+    "3fb55b24a3000000"
+  ],
+  "limitations": [
+    "Diagnostic JS specialization prototype adds a wrapper and reflection overhead; timings do not estimate native clone throughput.",
+    "Repeated single scenario, callback-only host; full actor/effect frame lifecycle is outside adapter.",
+    "Terminal engine/device descriptor graphs and result/RNG/callback counts compare exactly; this tool does not compare per-event graphs or hidden closure state.",
+    "Eligibility is conservative: plain source-realm extensible objects with own default finite-number fields, no inherited key conflicts, original Object/keys/constructor. Unsupported inputs execute the original source function."
+  ]
+}
