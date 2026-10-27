@@ -1,0 +1,305 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Source-pinned interpretation of actual callback target frequencies, not executable Rust lowering or a no-op specialization proof.",
+  "profile": {
+    "file": "benchmarks/validation/source-callback-targets.json",
+    "sha256": "01faed7c9670e014e7f9844b21265e3868692ccc8ea3c2707f7b94fa6453ab44"
+  },
+  "totalCallbacks": 15453,
+  "selectedCallbackExecutions": 12064,
+  "selectedPercent": 78.06898336892513,
+  "rows": [
+    {
+      "codeSha256": "19714802133af51a8e5a75cac0ac1e52254e93bbbcc8375ab745e4e3389f7b58",
+      "label": "Unit.applyBuffEffects queued actor buff effects",
+      "caveats": [
+        "The outer branch reads CURRENT bound this.actor at dispatch. This profile does not expose the bound receiver and does not prove its actor is absent.",
+        "Do not replace actor reads with an assumed false value. Getter/Proxy effects and method calls can make repeated property reads observable; preserve their source order.",
+        "When the guard is true, source calls actor/puppet methods, writes actor.buffEffects and logs a warning. These operations are part of this callback."
+      ],
+      "count": 5689,
+      "percent": 36.814857956383875,
+      "source": "function(){if(this.actor)for(var e=[\"slow\"],t=0;t<e.length;t++){var a=e[t],i=this.buff_effects[a],r=this.actor.buffEffects[a];if(!i&&r)this.actor.puppet.removeEffectWithID(r);else if(i&&!r){var n={x:0,y:0,sx:1,sy:1};n.y+=this.actor.hpbarHeight-108*n.sy-8,cc.warn(\"TODO 部分boss的头顶buff高度需要单独调整，之前的配置是写在buff类里的，最好能搞个全局的配置\");var l=this.actor.addEffect(\"eff_buff_Common_stun.cha\",0,n);this.actor.buffEffects[a]=l}}}",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "sourceKind": "original-module",
+          "fileSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+          "start": 85715,
+          "end": 86124,
+          "offsetUnit": "UTF-16 code units",
+          "codeSha256": "19714802133af51a8e5a75cac0ac1e52254e93bbbcc8375ab745e4e3389f7b58",
+          "contextBefore": "uffEffectsRelated={};for(var e=this.buff_list.length,t=0;t<e;t++){this.buff_list[t].applyEffects()}this.buff_effects.immoblilize&&\"Move\"===this.action_name&&this.idle(),clientCall(",
+          "contextAfter": ".bind(this))},setConstGS:function(){if(this.constGs=0,this.proto.gs)this.constGs"
+        }
+      ],
+      "resolutionCounts": {
+        "bound": 5689
+      },
+      "depthCounts": {
+        "1": 5689
+      },
+      "analysis": {
+        "freeIdentifierNames": [
+          "cc"
+        ],
+        "freeIdentifierWrites": [],
+        "memberWrites": [
+          {
+            "operator": "+=",
+            "expression": "n.y+=this.actor.hpbarHeight-108*n.sy-8"
+          },
+          {
+            "operator": "=",
+            "expression": "this.actor.buffEffects[a]=l"
+          }
+        ],
+        "directThisMemberOccurrences": [
+          "this.actor",
+          "this.buff_effects",
+          "this.actor",
+          "this.actor",
+          "this.actor",
+          "this.actor",
+          "this.actor"
+        ],
+        "scope": "Callback-body lexical analysis only. An unbound identifier may be an outer lexical or global binding; no outer binding value, constancy or alias proof is inferred.",
+        "writeListOrder": "AST preorder, not execution order. In a={x:(a=a||{}).x,...}, RHS evaluation performs the inner assignment before the outer assignment; earlier getters or exceptions can prevent later effects."
+      },
+      "calls": [
+        {
+          "callee": "this.actor.puppet.removeEffectWithID",
+          "argumentCount": 1
+        },
+        {
+          "callee": "cc.warn",
+          "argumentCount": 1
+        },
+        {
+          "callee": "this.actor.addEffect",
+          "argumentCount": 3
+        }
+      ]
+    },
+    {
+      "codeSha256": "675ca76e6be7ee1a5df6f33f068ed21378f7a2c075dfa44ecfe4ec454513715e",
+      "label": "Unit.addBuff queued effect visibility",
+      "caveats": [
+        "The callback reads outer bindings m and _ and current fields of their referenced objects. Source text matching does not authorize copying those objects or freezing their property values.",
+        "Both visibility methods execute conditionally and in source order. No claim about immutable outer bindings is made until enclosing-function CFG writes and aliases are checked."
+      ],
+      "count": 2159,
+      "percent": 13.971397139713972,
+      "source": "function(){if(!m.buffEffectVisible){var e=_.effect_id;if(e&&m.actor){var t=m.actor.puppet.getEffectById(e);if(t&&t.setVisible&&t.setInheritComponentVisible){var a=!!_.ignoreHideSet||m.buffEffectVisible;t.setInheritComponentVisible(a),t.setVisible(a)}}}}",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "sourceKind": "original-module",
+          "fileSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+          "start": 92380,
+          "end": 92633,
+          "offsetUnit": "UTF-16 code units",
+          "codeSha256": "675ca76e6be7ee1a5df6f33f068ed21378f7a2c075dfa44ecfe4ec454513715e",
+          "contextBefore": "}}.bind(this))),this.resetBuffApply(i);var u=i.info.ControlEffects.length;for(c=0;c<u;c++){\"stun\"===i.info.ControlEffects[c]&&this.heavyHurt()}var _=o||i,m=this;return clientCall((",
+          "contextAfter": ")),ed.battleEngine.addBuffEventToAll(this,_),_}i.onRemoved()}},isAttrLockExempte"
+        }
+      ],
+      "resolutionCounts": {
+        "unbound": 2159
+      },
+      "depthCounts": {
+        "0": 2159
+      },
+      "analysis": {
+        "freeIdentifierNames": [
+          "_",
+          "m"
+        ],
+        "freeIdentifierWrites": [],
+        "memberWrites": [],
+        "directThisMemberOccurrences": [],
+        "scope": "Callback-body lexical analysis only. An unbound identifier may be an outer lexical or global binding; no outer binding value, constancy or alias proof is inferred.",
+        "writeListOrder": "AST preorder, not execution order. In a={x:(a=a||{}).x,...}, RHS evaluation performs the inner assignment before the outer assignment; earlier getters or exceptions can prevent later effects."
+      },
+      "calls": [
+        {
+          "callee": "m.actor.puppet.getEffectById",
+          "argumentCount": 1
+        },
+        {
+          "callee": "t.setInheritComponentVisible",
+          "argumentCount": 1
+        },
+        {
+          "callee": "t.setVisible",
+          "argumentCount": 1
+        }
+      ]
+    },
+    {
+      "codeSha256": "bbfcf67348e7afa2acd027ad75b9ae1dc15b86d608d4c6e8d2b3959c88730256",
+      "label": "Unit.addBuff queued view dispatch",
+      "caveats": [
+        "Both a=a||{} and the outer a={...} WRITE THE CAPTURED OUTER a binding before ed.callViewMessage. Neither is a callback-local temporary; preserve their nested evaluation order.",
+        "That assignment still occurs when the current view adapter does no work. Skipping the whole callback as visual would omit this source behavior.",
+        "Default expressions use ||, preserving zero/NaN/undefined behavior and the exact order of reads from a, i.info.EffectPos and i.info.EffectScale.",
+        "A later Rust representation must preserve the outer cell until CFG analysis proves no other reader/writer can observe it; this assessment does not prove a copied value safe."
+      ],
+      "count": 2159,
+      "percent": 13.971397139713972,
+      "source": "function(){if(!o){var e=i.info.EffectPos,t=i.info.EffectScale;a={x:(a=a||{}).x||e[0]||0,y:a.y||e[1]||0,sx:a.sx||t[0]||1,sy:a.sy||t[1]||1},ed.callViewMessage(\"addBuff\",i,a)}}",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "sourceKind": "original-module",
+          "fileSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+          "start": 92029,
+          "end": 92202,
+          "offsetUnit": "UTF-16 code units",
+          "codeSha256": "bbfcf67348e7afa2acd027ad75b9ae1dc15b86d608d4c6e8d2b3959c88730256",
+          "contextBefore": "fToList(i);!o&&i.impactEffect&&(this.buffImpactEffect={name:i.name,value:{ImpactEffect:i.impactEffect,ImpactEffectZorder:i.impactEffectZorder}}),i&&(o||i.onAddedLogic(),clientCall(",
+          "contextAfter": ".bind(this))),this.resetBuffApply(i);var u=i.info.ControlEffects.length;for(c=0;"
+        }
+      ],
+      "resolutionCounts": {
+        "bound": 2159
+      },
+      "depthCounts": {
+        "1": 2159
+      },
+      "analysis": {
+        "freeIdentifierNames": [
+          "a",
+          "ed",
+          "i",
+          "o"
+        ],
+        "freeIdentifierWrites": [
+          {
+            "name": "a",
+            "operator": "=",
+            "expression": "a={x:(a=a||{}).x||e[0]||0,y:a.y||e[1]||0,sx:a.sx||t[0]||1,sy:a.sy||t[1]||1}"
+          },
+          {
+            "name": "a",
+            "operator": "=",
+            "expression": "a=a||{}"
+          }
+        ],
+        "memberWrites": [],
+        "directThisMemberOccurrences": [],
+        "scope": "Callback-body lexical analysis only. An unbound identifier may be an outer lexical or global binding; no outer binding value, constancy or alias proof is inferred.",
+        "writeListOrder": "AST preorder, not execution order. In a={x:(a=a||{}).x,...}, RHS evaluation performs the inner assignment before the outer assignment; earlier getters or exceptions can prevent later effects."
+      },
+      "calls": [
+        {
+          "callee": "ed.callViewMessage",
+          "argumentCount": 3
+        }
+      ]
+    },
+    {
+      "codeSha256": "6c9eb96919e61442e51b85270b8c94eaae556ac727c19b2be18a20ac21e05cdd",
+      "label": "Skill.update / Skill.update_TB queued sound advance",
+      "caveats": [
+        "Two source literals have identical target code. This frequency cannot attribute the 2057 executions to one creation site.",
+        "The target reads outer i and CURRENT bound receiver next_sound/playSound state. Receiver, arguments and captured i are not exposed by the public target resolver.",
+        "On its true branch it calls ed.playBattleEffect, increments next_sound_idx and assigns next_sound from the current phase sound_list. Audio output and these state mutations must all execute in source order.",
+        "Copying i at callback creation requires a separate enclosing CFG proof of no later observable writes; none is claimed here."
+      ],
+      "count": 2057,
+      "percent": 13.311331133113312,
+      "source": "function(){var e=this.next_sound;e&&i>e.Delay&&this.playSound&&(ed.playBattleEffect(e.SoundName),this.next_sound_idx++,this.next_sound=this.current_phase.sound_list[this.next_sound_idx])}",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "sourceKind": "original-module",
+          "fileSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+          "start": 19940,
+          "end": 20127,
+          "offsetUnit": "UTF-16 code units",
+          "codeSha256": "6c9eb96919e61442e51b85270b8c94eaae556ac727c19b2be18a20ac21e05cdd",
+          "contextBefore": "r.addEffect(l,f,s)}.bind(this));var c=ed.getDataTable(\"SoundEffect\")[l];c&&(o=c.SoundName),clientCall(function(){o&&this.playSound&&ed.playBattleEffect(o)}.bind(this))}}clientCall(",
+          "contextAfter": ".bind(this))}},setplaySound:function(e){this.playSound=e},setRegionState:functio"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "sourceKind": "original-module",
+          "fileSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+          "start": 37200,
+          "end": 37387,
+          "offsetUnit": "UTF-16 code units",
+          "codeSha256": "6c9eb96919e61442e51b85270b8c94eaae556ac727c19b2be18a20ac21e05cdd",
+          "contextBefore": "r.addEffect(l,f,s)}.bind(this));var c=ed.getDataTable(\"SoundEffect\")[l];c&&(o=c.SoundName),clientCall(function(){o&&this.playSound&&ed.playBattleEffect(o)}.bind(this))}}clientCall(",
+          "contextAfter": ".bind(this))}},update_turnIndex:function(){}}),ed.Skill.checkAuraHeroTag=functio"
+        }
+      ],
+      "resolutionCounts": {
+        "bound": 2057
+      },
+      "depthCounts": {
+        "1": 2057
+      },
+      "analysis": {
+        "freeIdentifierNames": [
+          "ed",
+          "i"
+        ],
+        "freeIdentifierWrites": [],
+        "memberWrites": [
+          {
+            "operator": "++",
+            "expression": "this.next_sound_idx++"
+          },
+          {
+            "operator": "=",
+            "expression": "this.next_sound=this.current_phase.sound_list[this.next_sound_idx]"
+          }
+        ],
+        "directThisMemberOccurrences": [
+          "this.next_sound",
+          "this.playSound",
+          "this.next_sound_idx",
+          "this.next_sound",
+          "this.current_phase",
+          "this.next_sound_idx"
+        ],
+        "scope": "Callback-body lexical analysis only. An unbound identifier may be an outer lexical or global binding; no outer binding value, constancy or alias proof is inferred.",
+        "writeListOrder": "AST preorder, not execution order. In a={x:(a=a||{}).x,...}, RHS evaluation performs the inner assignment before the outer assignment; earlier getters or exceptions can prevent later effects."
+      },
+      "calls": [
+        {
+          "callee": "ed.playBattleEffect",
+          "argumentCount": 1
+        }
+      ]
+    }
+  ],
+  "queueContract": {
+    "source": "tools/bootstrap-callbacks.mjs source-backed drain",
+    "frames": 296,
+    "initiallyQueued": 15450,
+    "executed": 15453,
+    "nestedAdditionalExecutions": 3,
+    "requirements": [
+      "Retain the captured queue array and source FIFO shift semantics, including appended callbacks and replacement of the global queue.",
+      "Preserve each logical before/after snapshot boundary and each callback instance identity; a shared code tag is not a shared callback object.",
+      "Keep source queued-count versus executed-count semantics distinct.",
+      "A Rust enum requires captured receiver/argument/cell semantics from source creation sites; public GetBoundFunction exposes only target identity."
+    ]
+  },
+  "qualification": {
+    "qualifiesFor10000Target": false,
+    "codeFrequencyIsNotCpuCost": true,
+    "boundReceiversInspected": false,
+    "boundArgumentsInspected": false,
+    "capturedValuesCopied": false,
+    "wholeProgramCaptureConstancyProved": false,
+    "blanketVisualCallbackSkippingAllowed": false
+  },
+  "producer": {
+    "file": "tools/assess-callback-target-lowering.mjs",
+    "sha256": "1aebd6d28483a15b218d74ce0ce0e60e2fb07a28ddd5dc2896bc4b1d167108ef"
+  }
+}
