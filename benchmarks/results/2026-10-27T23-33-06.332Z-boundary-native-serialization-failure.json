@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "passed": false,
+  "status": "failed-native-report-serialization",
+  "completeTraceEmitted": false,
+  "semanticReportMatched": null,
+  "orderedEventStateMatched": null,
+  "qualifiesFor10000Target": false,
+  "scope": "Actual optimized native trace attempt reached the final global JSON.stringify report export, which exceeded the pinned Hermes string-length limit. No complete terminal report or snapshot/event stream was emitted. Progress/counters do not establish source/native semantic parity.",
+  "error": "Uncaught RangeError: String length exceeds limit at stringify(native), global(native)",
+  "execution": {
+    "code": 1,
+    "signal": null
+  },
+  "lastProgress": {
+    "status": "boundary_trace_progress",
+    "events": 64000,
+    "frame": 295,
+    "kind": "callback:enqueue"
+  },
+  "nativeInputDependenciesUnchanged": true,
+  "observedFastPathHits": {
+    "entity": 10,
+    "copy": 18179,
+    "emptyCopy": 15752,
+    "numericCopy": 2427,
+    "sort": 446,
+    "sortUnsupportedFallbacks": 0
+  },
+  "resolution": "New post-battle NDJSON serializer emits one bounded header, every snapshot and ordered event, then exact completion footer. Only a replacement runner is compiled; all six optimized objects, original game/tracing functions and source oracle remain unchanged. A fresh actual native run and fail-closed decoder/source comparison are required.",
+  "artifacts": [
+    {
+      "label": "progress",
+      "file": "benchmarks/results/2026-10-27T23-33-06.332Z-boundary-native-serialization-failure.progress.gz",
+      "sha256": "16e196712a6dc950599d3e279b178b7417845482c23d20e78d495fd5c3cead48",
+      "uncompressedSha256": "a88c39618c057c0f548fa354f6e162cbf52f436d4504c52fee7ce83edb9af851",
+      "uncompressedBytes": 5752
+    },
+    {
+      "label": "stderr",
+      "file": "benchmarks/results/2026-10-27T23-33-06.332Z-boundary-native-serialization-failure.stderr.gz",
+      "sha256": "28bc064c0d1923a90e7808b537b7c7efd49295961045342a5fbd88febf483939",
+      "uncompressedSha256": "0733c348d66d88261121a0714de2814e6e47876964efe772da14cdc5c68b5fbd",
+      "uncompressedBytes": 630
+    },
+    {
+      "label": "execution",
+      "file": "benchmarks/results/2026-10-27T23-33-06.332Z-boundary-native-serialization-failure.execution.gz",
+      "sha256": "3789e8fab43893f8ba64fc2bd7fb6c195915390b89b6e1140645a172c5cc15b2",
+      "uncompressedSha256": "11a9859fe32507d0300f7cf6d65a8893b1157c30739f27b4ac5bd4a4995804e2",
+      "uncompressedBytes": 23701
+    },
+    {
+      "label": "build",
+      "file": "benchmarks/results/2026-10-27T23-33-06.332Z-boundary-native-serialization-failure.build.gz",
+      "sha256": "0ab3866d8a7a466b072e806b63ade03c81d7f210d4e44330c9c7d76936f3616d",
+      "uncompressedSha256": "4f7f0df2752868e4be9efbaff2ea0da1b6cb439def933469a17bad3da08d3d90",
+      "uncompressedBytes": 25334
+    },
+    {
+      "label": "runner",
+      "file": "benchmarks/results/2026-10-27T23-33-06.332Z-boundary-native-serialization-failure.runner.gz",
+      "sha256": "6c75632e7bf51653bfc89686e07cd4179fa1ddb6fc65c39fcde28600be5e2c20",
+      "uncompressedSha256": "edeeb730c0e098551d2277e042c5e4be51daec832d1685a5ad957e86d2831c7a",
+      "uncompressedBytes": 1279271
+    },
+    {
+      "label": "main",
+      "file": "benchmarks/results/2026-10-27T23-33-06.332Z-boundary-native-serialization-failure.main.gz",
+      "sha256": "ce35d073f7f4745a3c3e2afafbdabaad91b7f843e995f6f4c7e48bc984e36149",
+      "uncompressedSha256": "e02d5f14faabf8dba1d8aa7fd9433bf4f24a7cc39450919c63b4e924b4f37006",
+      "uncompressedBytes": 2224
+    }
+  ]
+}

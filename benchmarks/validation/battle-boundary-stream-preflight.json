@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Post-battle transport preflight against COMPLETE actual original-source trace. Every snapshot/event is serialized into bounded records, decoded fail-closed, schema-checked, compared in order and terminal report compared without trace. No native execution or whole-program qualification claim.",
+  "qualifiesFor10000Target": false,
+  "rows": 119499,
+  "maxUtf16CodeUnits": 225901,
+  "maxUtf8Bytes": 225901,
+  "utf16CodeUnitLimitPerRow": 16777216,
+  "events": 64419,
+  "snapshots": 55078,
+  "ordered": {
+    "passed": true,
+    "eventsCompared": 64419,
+    "sourceSnapshotNodes": 55078,
+    "nativeSnapshotNodes": 55078,
+    "rootContract": "primitive-vector-battle-boundaries-v1",
+    "qualifiesFor10000Target": false,
+    "limitations": [
+      "Not a whole-program graph: nested objects, prototype state, function code/closures, shared-object aliases outside selected roots and weak contents are omitted",
+      "Selected state includes only own enumerable string-keyed primitive fields, numeric vectors and selected ordered engine/unit/skill/buff lists; field names are encoded as entry data and cannot collide with snapshot reference tags",
+      "Own data-descriptor reads do not invoke ordinary getters; reflective inspection of an unknown Proxy can invoke traps and is outside the supported fixture domain",
+      "Payload object graphs are separately descriptor-encoded with numeric bits, accessor identities and per-payload aliases; source object arguments use stable identity tokens",
+      "Actor/effect/view lifecycle remains outside this callback-only adapter"
+    ]
+  },
+  "schema": {
+    "passed": true,
+    "events": 64419,
+    "snapshotNodes": 55078,
+    "frames": 296,
+    "scope": "Supplemental JSON schema and integrity for typed-entry boundary traces; own enumerable string-keyed data fields only. No whole-program or battle semantic qualification.",
+    "qualifiesFor10000Target": false
+  },
+  "terminalDifference": null,
+  "bindings": [
+    {
+      "file": "tools/battle-boundary-ndjson.mjs",
+      "sha256": "669765fa46340ad4467a352243135cf838acddc4cca4ef8b95631a10f1a184a7"
+    },
+    {
+      "file": "tools/preflight-battle-boundary-stream.mjs",
+      "sha256": "4620fee5eff4a56a89dac4a521420aed952c7619d10e94f67eb960722e1757e2"
+    },
+    {
+      "file": "tools/battle-boundary-trace.mjs",
+      "sha256": "93f71a34da9dc97e0bf9bde2108e7e739baa7c8f887b0078924f13a4419a5a4b"
+    },
+    {
+      "file": "tools/validate-battle-boundary-schema.mjs",
+      "sha256": "ab7ea12c6bf793c006884d59eda1d114746cf47a1011beeea6f7c6ede2207a80"
+    },
+    {
+      "file": "tools/native-report-compare.mjs",
+      "sha256": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/battle-boundary-trace/source-traced.json",
+      "sha256": "b2345870b58c727b6db5d4b187781fece2877d2dfaa300f13c17ce23f165ffb6"
+    }
+  ],
+  "output": {
+    "file": "/workspace/afkarena-simx/work/battle-boundary-trace/source-export.ndjson",
+    "sha256": "1ce4d9bbeaa9a8188b1e840177148e05605a9f5153b226535ac29705c8f60d42"
+  }
+}

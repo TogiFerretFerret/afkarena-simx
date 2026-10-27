@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {emitBattleBoundaryNDJSON,decodeBattleBoundaryNDJSON} from '../battle-boundary-ndjson.mjs';
+const report={completed:1,totalCallbacks:1,finalCapture:{bits:'8000000000000000'},trace:{version:1,status:'completed',rootContract:'primitive-vector-battle-boundaries-v1',graphHash:'sha256-interned-state-json-v1',events:[{sequence:0,kind:'battle:completed',payload:{bits:'7ff8000000000042'}}],snapshots:[{hash:'a'.repeat(64),value:{kind:'primitive-fields',entries:[['__proto__',{bits:'8000000000000000'}]]}}],qualifiesFor10000Target:false,limitations:['Narrow fixture only']}};
+function rows(value=report){const result=[];emitBattleBoundaryNDJSON(value,text=>result.push(text));return result;}
+function decode(lines,exitCode=0){return decodeBattleBoundaryNDJSON(lines.join('\n')+'\n',{exitCode});}
+test('bounded export roundtrips every event/snapshot/bit string without mutating its input',()=>{const before=JSON.stringify(report),lines=rows(),decoded=decode(lines);assert.deepEqual(decoded,report);assert.equal(JSON.stringify(report),before);assert.ok(lines.every(line=>line.length<16*1024*1024));});
+test('known progress records before header are accepted and preserve the data',()=>{const lines=rows();lines.unshift(JSON.stringify({status:'boundary_trace_progress',events:0,frame:-1,kind:'fixture'}));assert.throws(()=>decode(lines));const long=structuredClone(report);long.trace.events=Array.from({length:1001},(_,i)=>({sequence:i,kind:i===1000?'battle:completed':'fixture'}));const records=rows(long);records.unshift(JSON.stringify({status:'boundary_trace_progress',events:1000,frame:1,kind:'fixture'}));assert.deepEqual(decode(records),long);});
+test('missing footer, nonzero process exit, duplicate header/snapshot/event and unknown records fail closed',()=>{
+ for(const mutate of [r=>r.pop(),r=>r.splice(1,0,r[0]),r=>r.splice(2,0,r[1]),r=>r.splice(3,0,r[2]),r=>r.splice(1,0,'{"record":"unknown"}'),r=>r.push('{}'),r=>r.splice(1,0,''),r=>r[1]='not JSON']){const lines=rows();mutate(lines);assert.throws(()=>decode(lines));}assert.throws(()=>decode(rows(),1));assert.throws(()=>decodeBattleBoundaryNDJSON(rows().join('\n')));
+});
+test('wrong footer/header counts, snapshot/event indices, reordering, progress-after-header fail closed',()=>{
+ for(const mutate of [r=>{const x=JSON.parse(r[0]);x.snapshotCount++;r[0]=JSON.stringify(x);},r=>{const x=JSON.parse(r.at(-1));x.events++;r[r.length-1]=JSON.stringify(x);},r=>{const x=JSON.parse(r[1]);x.index++;r[1]=JSON.stringify(x);},r=>{const x=JSON.parse(r[2]);x.event.sequence++;r[2]=JSON.stringify(x);},r=>[r[1],r[2]]=[r[2],r[1]],r=>r.splice(1,0,JSON.stringify({status:'boundary_trace_progress',events:1000,frame:1,kind:'fixture'}))]){const lines=rows();mutate(lines);assert.throws(()=>decode(lines));}
+});
+test('extra trailing empty or whitespace records are rejected',()=>{const text=rows().join('\n')+'\n';for(const suffix of ['\n',' \n','\t\r\n'])assert.throws(()=>decodeBattleBoundaryNDJSON(text+suffix,{exitCode:0}));});
