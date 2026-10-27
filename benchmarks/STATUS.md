@@ -146,6 +146,19 @@ substitute for the outstanding full-program and full-scene trace gates. Earlier
 encoding attempts with reserved-field and numeric-payload omissions were
 rejected and retained as incomplete diagnostics; no partial run is a pass.
 
+The first optimized native trace reached battle termination but failed while
+serializing the entire report into one string, exceeding Hermes's string limit.
+No complete native report was emitted and no parity pass is claimed. See
+`results/2026-10-27T23-33-06.332Z-boundary-native-serialization-failure.json`.
+The replacement changes only post-battle output to bounded NDJSON records.
+Its full-source preflight round-trips all 119,499 records, all snapshots/events
+and the raw terminal report; the largest row is 225,901 UTF-16 code units.
+Actual Hermes transport tests and an independent build review pass. The six
+other optimized objects and private VM remain byte-identical. The new native
+battle/trace comparison is pending. See
+`validation/battle-boundary-stream-preflight.json` and
+`validation/battle-boundary-stream-build-independent-review.json`.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
