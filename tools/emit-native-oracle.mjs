@@ -55,6 +55,7 @@ let replayRandomIndex=0;
 const entropy=[],clockObserver={current:null},traceObserver={current:null};
 const traceSources=tableMembraneEnabled?await loadNativeTraceSources(root):[];
 const runtime=await createBootstrapRuntime({eagerBattle,tableBoundaryFactory:tableMembraneEnabled?createNativeTableBoundaryFactory(traceSources,{mutableTables}):undefined,hostRandom:()=>{if(replayInputs&&replayRandomIndex>=replayInputs.random.length)throw new Error('Replayed source host random inputs exhausted');const value=replayInputs?replayInputs.random[replayRandomIndex++]:Math.random();entropy.push(value);if(traceObserver.current)traceObserver.current('host:random',{ordinal:entropy.length-1,value});return value;},hostClock:{mode:replayInputs?'replay':'record',tape:replayInputs?replayInputs.clock:[],observe(entry,ordinal){if(clockObserver.current)clockObserver.current(entry,ordinal);}}});
+assert.equal(runtime.oracleContextMode,oracleProfile.wholeBattleContextMode,'Pinned whole-battle source global context mode');
 if(!runtime.clock)throw new Error('Copied source runtime must expose recorded hostClock before native emission');
 if(!runtime.sourceRecords)throw new Error('Copied source runtime must expose its exact sourceRecords');
 if(args.includes('--render-scene'))await installBootstrapRenderScene(runtime);
@@ -282,7 +283,7 @@ try{
 const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[]),...(records.eagerModules||[]),...(records.initializationPlan||[])].map(record=>record.file).filter(Boolean));
 const sourceInputs=Object.fromEntries(await Promise.all([...sourceFiles].sort().map(async file=>[file,sha(await readFile(resolve(root,file)))])));
 const metadata={version:1,scope,captureMode,traceEnabled,initialTrace,tableMembraneEnabled,mutableTables,eagerBattle,oracleProfile,oracleRuntime:{node:process.version,v8:process.versions.v8,execArgv:process.execArgv,nodeOptions:process.env.NODE_OPTIONS||''},executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
-  adapterInputs,sourceInputs,factoryChunks,factoryChunkPolicy:{maxFactories:factoryChunkSize,maxSourceBytes:factoryChunkBytes},
+  oracleContextMode:runtime.oracleContextMode,adapterInputs,sourceInputs,factoryChunks,factoryChunkPolicy:{maxFactories:factoryChunkSize,maxSourceBytes:factoryChunkBytes},
   sourceRuntime:{file:'tools/bootstrap-runtime.mjs',sha256:adapterInputs['tools/bootstrap-runtime.mjs'],executedFunctionSha256:sha(createBootstrapRuntime.toString())},
   definitionCount:records.definitions.size,globalCount:records.globals.size,factoryCount:allFactoryRecords.length,
   usedTableNames,
