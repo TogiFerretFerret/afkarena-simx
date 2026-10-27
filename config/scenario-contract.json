@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "factory": "tools/scenario-factory.mjs",
+  "qualificationWorkload": {
+    "heroesPerTeam": 5,
+    "positions": [1, 2, 3, 4, 5],
+    "selection": "Seeded random enabled source heroes, no duplicates in the ten-hero fixture; selection PRNG is independent of battle RNG",
+    "level": 360,
+    "quality": 15,
+    "qualityLabel": "Ascended 5-star",
+    "rank": 20,
+    "signatureLevel": 30,
+    "gear": "All four job-compatible source Mythic T4 equipment positions, quality13, enhancement5, faction and hero binding attributes",
+    "beastsPerTeam": 1,
+    "beastNormalization": "Explicit benchmark choice: source normal mythic beast quality10, level360, eight distinct source InitTalentID talents at each talent's highest supplied quality",
+    "battleTermination": "Original BattleEngine rules; no shortened benchmark timeout or substituted winner"
+  },
+  "sourceEvidence": [
+    "UnitQualityLevel[15] has Name=Ascended, Star=5, MaxLevel=360",
+    "UnitRankLevel[20] has TargetLevel=360",
+    "Eligible hero must have UnitType=Hero, Enable=true, MaxQuality>=15, UnitQuality[tid][15], UnitRank[tid][20], Signature[tid].MaxLevel>=30, and SignatureLevel[tid][30]",
+    "Equip records define Job and Position; EquipQuality[13] is Mythic T4 with MaxEnhanceLevel=5",
+    "equipData.setAndGet derives cfg_id and quality from raw tid and source Equip table; raw attrs are a name/value object",
+    "signatureData.setAndGet reads lv and validates raw quality against SignaturePower[0].QualityLimit",
+    "BattleEngine.initPetInfo reads config.pets.self_pets/oppo_pets and invokes original UnitCreate on each PetData",
+    "PetData constructor and updateTalent build original PetTalent objects; mythic quality10 getTalentCountByQuality returns8"
+  ],
+  "reuseBoundary": {
+    "shared": "JSON-wire scenario configuration and decoded source tables may be reused read-only",
+    "perBattle": "Materialization creates fresh original equipData, signatureData, PetData, talents, hero arrays and config objects",
+    "notClaimed": "This factory does not prove whole-battle fidelity or qualify a throughput number"
+  },
+  "defaultMode": "stage",
+  "defaultBattleId": 16001,
+  "modeNote": "Mode and battleId are explicit inputs. stage uses original source stage rules; idle_pvp can add its original FieldNPC mechanics rather than suppressing them."
+}

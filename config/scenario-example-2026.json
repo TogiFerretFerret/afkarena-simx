@@ -1,0 +1,894 @@
+{
+  "version": 1,
+  "scenarioSeed": 2026,
+  "battleSeed": 2027,
+  "settings": {
+    "mode": "stage",
+    "battleId": 16001,
+    "heroLevel": 360,
+    "quality": 15,
+    "signatureLevel": 30,
+    "gearQuality": 13,
+    "gearEnhance": 5,
+    "petQuality": 10,
+    "petLevel": 360
+  },
+  "players": [
+    {
+      "id": 1,
+      "tid": 124,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 11,
+            "tid": 145,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 124
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 12,
+            "tid": 148,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 124
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 13,
+            "tid": 151,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 124
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 14,
+            "tid": 154,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 124
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 124,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 1
+      }
+    },
+    {
+      "id": 2,
+      "tid": 148,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 21,
+            "tid": 147,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 4,
+              "hero_tid": 148
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 22,
+            "tid": 150,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 4,
+              "hero_tid": 148
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 23,
+            "tid": 153,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 4,
+              "hero_tid": 148
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 24,
+            "tid": 156,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 4,
+              "hero_tid": 148
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 148,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 2
+      }
+    },
+    {
+      "id": 3,
+      "tid": 62,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 31,
+            "tid": 145,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 62
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 32,
+            "tid": 148,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 62
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 33,
+            "tid": 151,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 62
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 34,
+            "tid": 154,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 62
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 62,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 3
+      }
+    },
+    {
+      "id": 4,
+      "tid": 69,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 41,
+            "tid": 147,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 69
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 42,
+            "tid": 150,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 69
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 43,
+            "tid": 153,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 69
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 44,
+            "tid": 156,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 6,
+              "hero_tid": 69
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 69,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 4
+      }
+    },
+    {
+      "id": 5,
+      "tid": 247,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 51,
+            "tid": 145,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 7,
+              "hero_tid": 247
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 52,
+            "tid": 148,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 7,
+              "hero_tid": 247
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 53,
+            "tid": 151,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 7,
+              "hero_tid": 247
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 54,
+            "tid": 154,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 7,
+              "hero_tid": 247
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 247,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 5
+      }
+    }
+  ],
+  "enemies": [
+    {
+      "id": 6,
+      "tid": 120,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 61,
+            "tid": 147,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 3,
+              "hero_tid": 120
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 62,
+            "tid": 150,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 3,
+              "hero_tid": 120
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 63,
+            "tid": 153,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 3,
+              "hero_tid": 120
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 64,
+            "tid": 156,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 3,
+              "hero_tid": 120
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 120,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 1
+      }
+    },
+    {
+      "id": 7,
+      "tid": 64,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 71,
+            "tid": 146,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 5,
+              "hero_tid": 64
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 72,
+            "tid": 149,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 5,
+              "hero_tid": 64
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 73,
+            "tid": 152,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 5,
+              "hero_tid": 64
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 74,
+            "tid": 155,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 5,
+              "hero_tid": 64
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 64,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 2
+      }
+    },
+    {
+      "id": 8,
+      "tid": 117,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 81,
+            "tid": 146,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 5,
+              "hero_tid": 117
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 82,
+            "tid": 149,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 5,
+              "hero_tid": 117
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 83,
+            "tid": 152,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 5,
+              "hero_tid": 117
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 84,
+            "tid": 155,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 5,
+              "hero_tid": 117
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 117,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 3
+      }
+    },
+    {
+      "id": 9,
+      "tid": 38,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 91,
+            "tid": 147,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 2,
+              "hero_tid": 38
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 92,
+            "tid": 150,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 2,
+              "hero_tid": 38
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 93,
+            "tid": 153,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 2,
+              "hero_tid": 38
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 94,
+            "tid": 156,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 2,
+              "hero_tid": 38
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 38,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 4
+      }
+    },
+    {
+      "id": 10,
+      "tid": 9,
+      "level": 360,
+      "pentagram_lv": 360,
+      "rank": 20,
+      "quality": 15,
+      "trans_quality": 0,
+      "equips": [
+        {
+          "index": 1,
+          "equip": {
+            "id": 101,
+            "tid": 147,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 2,
+              "hero_tid": 9
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 2,
+          "equip": {
+            "id": 102,
+            "tid": 150,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 2,
+              "hero_tid": 9
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 3,
+          "equip": {
+            "id": 103,
+            "tid": 153,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 2,
+              "hero_tid": 9
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        },
+        {
+          "index": 4,
+          "equip": {
+            "id": 104,
+            "tid": 156,
+            "amount": 1,
+            "attrs": {
+              "hero_tag": 2,
+              "hero_tid": 9
+            },
+            "enhance_lv": 5,
+            "enhance_exp": 0
+          }
+        }
+      ],
+      "sig": {
+        "tid": 9,
+        "lv": 30,
+        "quality": 15
+      },
+      "config": {
+        "slotIndex": 5
+      }
+    }
+  ],
+  "config": {
+    "mode": "stage",
+    "battle_id": 16001,
+    "localBot": true,
+    "pets": {
+      "self_pets": [
+        {
+          "id": 1001,
+          "tid": 6108,
+          "level": 360,
+          "pentagram_lv": 360,
+          "quality": 10,
+          "talents": [
+            {
+              "tid": 49,
+              "quality": 5
+            },
+            {
+              "tid": 56,
+              "quality": 5
+            },
+            {
+              "tid": 51,
+              "quality": 5
+            },
+            {
+              "tid": 55,
+              "quality": 5
+            },
+            {
+              "tid": 2,
+              "quality": 5
+            },
+            {
+              "tid": 7,
+              "quality": 5
+            },
+            {
+              "tid": 50,
+              "quality": 5
+            },
+            {
+              "tid": 1,
+              "quality": 5
+            }
+          ]
+        }
+      ],
+      "oppo_pets": [
+        {
+          "id": 1002,
+          "tid": 6112,
+          "level": 360,
+          "pentagram_lv": 360,
+          "quality": 10,
+          "talents": [
+            {
+              "tid": 11,
+              "quality": 5
+            },
+            {
+              "tid": 30,
+              "quality": 5
+            },
+            {
+              "tid": 6,
+              "quality": 5
+            },
+            {
+              "tid": 26,
+              "quality": 5
+            },
+            {
+              "tid": 2,
+              "quality": 5
+            },
+            {
+              "tid": 27,
+              "quality": 5
+            },
+            {
+              "tid": 1,
+              "quality": 5
+            },
+            {
+              "tid": 35,
+              "quality": 5
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "qualification": {
+    "teamSize": 5,
+    "heroLevel": 360,
+    "qualityLabel": "Ascended 5-star",
+    "quality": 15,
+    "rank": 20,
+    "signatureLevel": 30,
+    "gearSlots": 4,
+    "beastsPerTeam": 1,
+    "timeout": "Original engine rules; no benchmark timeout substitution"
+  },
+  "source": {
+    "heroPoolSize": 116,
+    "petPoolSize": 11,
+    "tableDigests": {
+      "Unit": "15b52ceaea8d3e43ba2cb9b14b4fda337f51755fb6a7585fdd474cde4595afbc",
+      "UnitQualityLevel": "1392fcb70e988940c61773d8c7f91eb664a01c9249806f24b1ef0f8456c10f12",
+      "UnitQuality": "1848ab2d0a0cd61a6a94cf4755965e86f1734a510179922db84b05dd7503ab37",
+      "UnitRankLevel": "f60036447083e00cbafec2841e54eedc378f024a4d323a815cc0ffce7c0f12f0",
+      "UnitRank": "2ff1c7cf592df9220f95714b76be4e7c0bbc56d2c85a61ddf0b8e1e89cb66904",
+      "Equip": "88ff7d3550475bd652e3a7bae0231bfdcb6ad577a0be2634745f4d9f2c53e452",
+      "EquipQuality": "e89a1073c76c2fecb0cedcbdb1bcdd76fe2ef1eb92154a246945104bfd0a9b7d",
+      "Signature": "b84e103214e8c6c53997e94d8913ac97a7a80468349b879dd08492527c2f8773",
+      "SignatureLevel": "289307666b7ec535226ffb41b0c2bd48e1b07996f635051d5112b8a17c885398",
+      "Pet": "c495cce19c433f1f94f75a91fa77f6bc21b8b2edaa3559d9b650cb292a7b1e97",
+      "PetQualityAttr": "1f8a43153bdf40f0951c4dd4e759d0993c58512a98c3a9f3c0bbd37d44795c89",
+      "PetTalentLib": "b96a91c7951e745b7815603cc9791195b2aa89bb43a8b3c6713d4d64830e9041",
+      "ParamBattleMode": "55ed44100ed2dbb5dd2e089edd6667942b2e42123d3e772c8b7fbeff0bd291ad"
+    }
+  },
+  "inputSha256": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a"
+}
