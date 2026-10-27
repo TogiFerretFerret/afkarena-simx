@@ -56,3 +56,12 @@ test('host entropy replay preserves every binary64 output and rejects extra or m
  const replay=createHostRandomTape(999,{replay:original.tape});assert.deepEqual(Array.from({length:20},()=>binary64(replay.random())),expected);replay.assertFullyConsumed();assert.throws(()=>replay.random(),/extra draw/);
  const short=createHostRandomTape(7,{replay:original.tape});short.random();assert.throws(()=>short.assertFullyConsumed(),/omitted 19/);
 });
+
+test('cached descriptors retain exact fresh encoding when a default function prototype becomes mutable',()=>{
+ function Source(){}const root={prototype:Source.prototype};const cached=createGraphSnapshotter({functionPolicy:'code'});
+ cached({root});Source.prototype.extra=-0;
+ const a=cached({root}),b=createGraphSnapshotter({functionPolicy:'code'})({root});
+ // Persistent IDs can differ; compare the root edge representation and data.
+ assert.equal(a.nodes[0].properties[0].value[0],b.nodes[0].properties[0].value[0]);
+ assert.ok(a.nodes.flatMap(n=>n.properties).some(p=>p.key[1]==='extra'&&p.value[1]===binary64(-0)));
+});

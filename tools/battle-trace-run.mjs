@@ -1,11 +1,12 @@
 import { runInContext } from 'node:vm';
+import { createHash } from 'node:crypto';
 import { binary64,createGraphSnapshotter,createGraphDeltaRecorder,realmIntrinsics,sourceCodeIdentity } from './battle-trace.mjs';
 import { installBootstrapCallbacks } from './bootstrap-callbacks.mjs';
 
 /** Instrument original calls while retaining their receiver, arguments, result and
  * exceptions. Callbacks themselves are never replaced or omitted.
  */
-export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keepDeltas=false,onEvent,strictGraph=false}={}){
+export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keepDeltas=false,onEvent,strictGraph=false,includeHostState=Boolean(runtime.clock),subscribeClock}={}){
   if(typeof materialize!=='function')throw new Error('A source-model materializer is required');
   const {ed,context}=runtime;
   const phase=runtime.callbacks??await installBootstrapCallbacks(context);
@@ -15,6 +16,8 @@ export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keep
   let engine,callbackCount=0,rngCount=0,hostRngCount=0,lastGraph,lastError;
   const callableId=fn=>{if(!callbackIds.has(fn))callbackIds.set(fn,nextCallback++);return callbackIds.get(fn)};
   const heroScripts={};
+  const hostState={};
+  const hostDevice={};let ledgerLength=0,ledgerHash=createHash('sha256').update('').digest('hex');
   function scriptRoots(){
     for(const list of ['unit_list','dead_unit_list','pet_list','dead_pet_list','fieldNpc_list','dead_fieldNpc_list','projectile_list']){
       const units=engine&&Object.getOwnPropertyDescriptor(engine,list)?.value;
@@ -30,9 +33,17 @@ export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keep
     }
     return heroScripts;
   }
-  const roots=()=>({engine,battleRng:context.random_seed,initialBattleSeed:ed.init_battle_seed,
-    pendingCallbacks:ed.clientCall_list,clientCallCount:ed.clientCallCount,
-    battleLog:Object.getOwnPropertyDescriptor(ed,'btLog')?.value,heroScripts:scriptRoots()});
+  const roots=()=>{
+    if(includeHostState&&runtime.host?.snapshotState){
+      const {render,...state}=runtime.host.snapshotState();
+      Object.assign(hostState,state,{renderNodes:render?.nodes??null,renderAssets:render?.assets??null});
+    }
+    if(includeHostState&&runtime.host)Object.assign(hostDevice,{version:runtime.host.version,audioEnabled:runtime.host.audioEnabled,platform:runtime.host.platform,ledgerLength,ledgerHash});
+    return{engine,battleRng:context.random_seed,initialBattleSeed:ed.init_battle_seed,
+      pendingCallbacks:ed.clientCall_list,clientCallCount:ed.clientCallCount,
+      battleLog:Object.getOwnPropertyDescriptor(ed,'btLog')?.value,heroScripts:scriptRoots(),
+      ...(includeHostState?{hostDevice,hostState,soundManager:Object.getOwnPropertyDescriptor(ed,'sound_manager')?.value}:{})};
+  };
   function record(kind,payload={},capture=true){
     let state;
     if(capture){state=delta(roots());lastGraph=state;if(keepDeltas)deltas.push({sequence:events.length,state});}
@@ -45,6 +56,28 @@ export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keep
     if(!descriptor||typeof descriptor.value!=='function')throw new Error(`Cannot instrument source method ${key}`);
     const original=descriptor.value,wrapped=make(original);
     Object.defineProperty(owner,key,{...descriptor,value:wrapped});restores.push(()=>Object.defineProperty(owner,key,descriptor));
+  }
+  function deviceOutput(event,ordinal,bootstrap=false){
+    if(ordinal!==ledgerLength)throw new Error(`Device event stream reordered: ${ordinal} instead of ${ledgerLength}`);
+    let args;
+    if(event.args.every(value=>value===null||!['object','function','symbol'].includes(typeof value))){
+      args=Array.from(event.args,value=>value===null?['null']:typeof value==='number'?['f64',binary64(value)]:typeof value==='undefined'?['undefined']:typeof value==='bigint'?['bigint',String(value)]:[typeof value,value]);
+    }else{
+      const graph=snapshot({deviceArguments:event.args});args={graphHash:graph.sha256};
+      if(keepDeltas)deltas.push({sequence:events.length,deviceArgumentGraph:graph});
+    }
+    const payload={ordinal,kind:event.kind,args};
+    ledgerHash=createHash('sha256').update(ledgerHash).update(JSON.stringify(payload)).digest('hex');ledgerLength++;
+    record(bootstrap?'device:bootstrap':'device:output',payload,false);
+  }
+  if(runtime.host?.setTraceObserver){
+    for(let ordinal=0;ordinal<runtime.host.events.length;ordinal++)deviceOutput(runtime.host.events[ordinal],ordinal,true);
+    runtime.host.setTraceObserver((event,ordinal)=>deviceOutput(event,ordinal));
+    restores.push(()=>runtime.host.setTraceObserver(null));
+  }
+  if(subscribeClock){
+    const restore=subscribeClock((entry,ordinal)=>record('host:clock',{ordinal,...entry},false));
+    if(typeof restore==='function')restores.push(restore);
   }
   // Eagerly resolve only methods that the source engine already uses. No call
   // result or callback is synthesized by the tracing layer.
@@ -107,9 +140,11 @@ export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keep
     try{record('battle:failed',lastError)}catch(snapshotError){lastError.snapshotFailure=snapshotError.message;}
   }finally{for(const restore of restores.reverse())restore();}
   const coverage={snapshot:'All reachable own descriptors and source prototypes from the engine/queue roots; canonical VM intrinsics are boundaries',
-    limitations:['Native lexical closure bindings cannot be reflected; callback execution effects and event/RNG order are checked',...(strictGraph?[]:['Standard function metadata is treated as immutable code; source function identity/hash and custom data properties remain captured']),'This instrumented source oracle is not a completed native simulator','Actor/effect/view lifecycle outside the source callback phase is not provided by this adapter'],
+    includesHostDeviceState:includeHostState,
+    limitations:['Native lexical closure bindings cannot be reflected; callback execution effects and event/RNG order are checked',...(strictGraph?[]:['Standard function metadata is treated as immutable code; source function identity/hash and custom data properties remain captured']),...(!includeHostState?['Mutable audio/device host state is outside this trace; enable with replay-controlled hostClock']:[]),'This instrumented source oracle is not a completed native simulator','Actor/effect/view lifecycle outside the source callback phase is not provided by this adapter'],
     opaque:lastGraph?.coverage.opaque??[]};
   return{version:1,status,error:lastError,inputSha256:wire.inputSha256,events,...(keepDeltas?{deltas}:{}),lastGraph,
-    callbackCount,rngCount,hostRngCount,frames:frame+1,result:engine?.result,sourceCallbackProvenance:phase.provenance,coverage,
+    callbackCount,rngCount,hostRngCount,deviceLedger:{length:ledgerLength,sha256:ledgerHash},frames:frame+1,result:engine?.result,sourceCallbackProvenance:phase.provenance,
+    hostClock:runtime.clock?{stats:runtime.clock.stats(),tape:runtime.clock.tape}:null,coverage,
     qualifiesForThroughputTarget:false};
 }

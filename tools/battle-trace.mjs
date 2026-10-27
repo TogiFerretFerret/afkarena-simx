@@ -6,6 +6,7 @@ const numberBuffer=new DataView(new ArrayBuffer(8));
 export function binary64(value){numberBuffer.setFloat64(0,value,false);return numberBuffer.getBigUint64(0,false).toString(16).padStart(16,'0');}
 const digest=text=>createHash('sha256').update(text).digest('hex');
 const functionSource=fn=>Reflect.apply(Function.prototype.toString,fn,[]);
+const sameEncoding=(a,b)=>a===b||Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&a.every((value,index)=>sameEncoding(value,b[index]));
 export function sourceCodeIdentity(fn){
   const text=functionSource(fn);
   // Native/bound function formatting is implementation-defined. Public name and
@@ -21,7 +22,7 @@ export function sourceCodeIdentity(fn){
  */
 export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,functionPolicy='graph'}={}){
   if(!['graph','code'].includes(functionPolicy))throw new Error('Unknown function snapshot policy');
-  const ids=new WeakMap(),symbols=new Map(),functionHashes=new WeakMap();let nextId=1,nextSymbol=1;
+  const ids=new WeakMap(),symbols=new Map(),functionHashes=new WeakMap(),propertyCaches=new WeakMap(),nodeCaches=new WeakMap();let nextId=1,nextSymbol=1;
   function codeOnlyFunction(value){
     for(const key of Reflect.ownKeys(value)){
       if(['length','name','arguments','caller'].includes(key))continue;
@@ -75,7 +76,8 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,fun
       const value=queue[offset],id=ids.get(value);
       if(types.isProxy(value))throw new Error(`Cannot faithfully inspect Proxy object ${id}`);
       const codeFunction=typeof value==='function'&&functionPolicy==='code';
-      const node={id,kind:typeof value==='function'?'function':Array.isArray(value)?'array':'object',...(codeFunction?{}:{prototype:encode(Reflect.getPrototypeOf(value))}),properties:[]};
+      const prototypeValue=codeFunction?null:Reflect.getPrototypeOf(value);
+      let node={id,kind:typeof value==='function'?'function':Array.isArray(value)?'array':'object',...(codeFunction?{}:{prototype:encode(prototypeValue)}),properties:[]};
       if(typeof value==='function'){
         if(!functionHashes.has(value))functionHashes.set(value,sourceCodeIdentity(value));
         node.sourceSha256=functionHashes.get(value);
@@ -97,6 +99,8 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,fun
         const get=key=>Reflect.apply(Object.getOwnPropertyDescriptor(proto,key).get,value,[]);
         node.kind=types.isDataView(value)?'dataview':'typedarray';node.buffer=encode(get('buffer'));node.byteOffset=get('byteOffset');node.byteLength=get('byteLength');
       }
+      let cache=propertyCaches.get(value);if(!cache){cache=new Map();propertyCaches.set(value,cache);}
+      const presentKeys=new Set();
       for(const key of Reflect.ownKeys(value)){
         const descriptor=Reflect.getOwnPropertyDescriptor(value,key);
         if(codeFunction){
@@ -106,10 +110,35 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,fun
             if(Reflect.ownKeys(proto).length===1&&constructor?.value===value&&constructor.writable===true&&constructor.enumerable===false&&constructor.configurable===true)continue;
           }
         }
+        presentKeys.add(key);
+        const previous=cache.get(key),data='value'in descriptor;
+        const sameValue=data&&previous?.data&&Object.is(previous.value,descriptor.value)&&
+          (typeof descriptor.value!=='number'||!Number.isNaN(descriptor.value)||previous.numberBits===binary64(descriptor.value));
+        if(previous&&previous.data===data&&previous.enumerable===descriptor.enumerable&&previous.configurable===descriptor.configurable&&
+          (data?previous.writable===descriptor.writable&&sameValue:previous.get===descriptor.get&&previous.set===descriptor.set)){
+          // Reference-valued children must still be visited: their own mutable
+          // state may have changed even though this edge retained its identity.
+          if(data){if(descriptor.value!==null&&['object','function','symbol'].includes(typeof descriptor.value)){
+            const encoded=encode(descriptor.value);
+            if(!sameEncoding(previous.property.value,encoded)){
+              const property={...previous.property,value:encoded};cache.set(key,{...previous,property});node.properties.push(property);continue;
+            }
+          }}
+          else{encode(descriptor.get);encode(descriptor.set);}
+          node.properties.push(previous.property);continue;
+        }
         const property={key:typeof key==='symbol'?symbol(key):['string',key],enumerable:descriptor.enumerable,configurable:descriptor.configurable};
         if('value'in descriptor){property.writable=descriptor.writable;property.value=encode(descriptor.value);}
         else{property.get=encode(descriptor.get);property.set=encode(descriptor.set);}
+        cache.set(key,{...descriptor,data,property,numberBits:data&&typeof descriptor.value==='number'&&Number.isNaN(descriptor.value)?binary64(descriptor.value):null});
         node.properties.push(property);
+      }
+      for(const key of cache.keys())if(!presentKeys.has(key))cache.delete(key);
+      if(['object','array','function'].includes(node.kind)){
+        const previous=nodeCaches.get(value);
+        if(previous&&previous.prototypeValue===prototypeValue&&sameEncoding(previous.node.prototype,node.prototype)&&previous.node.kind===node.kind&&previous.node.sourceSha256===node.sourceSha256&&
+          previous.node.properties.length===node.properties.length&&previous.node.properties.every((property,index)=>property===node.properties[index]))node=previous.node;
+        else nodeCaches.set(value,{prototypeValue,node});
       }
       if(!codeFunction||node.properties.length)nodes.push(node);
     }
@@ -150,8 +179,9 @@ export function createTraceRecorder(snapshot){
  */
 export function createGraphDeltaRecorder(snapshot){
   let previous=new Map();
+  const serialized=new WeakMap();
   return roots=>{
-    const state=snapshot(roots),current=new Map(state.nodes.map(node=>[node.id,JSON.stringify(node)]));
+    const state=snapshot(roots),current=new Map(state.nodes.map(node=>{if(!serialized.has(node))serialized.set(node,JSON.stringify(node));return[node.id,serialized.get(node)];}));
     const changed=state.nodes.filter(node=>previous.get(node.id)!==current.get(node.id));
     const removed=[...previous.keys()].filter(id=>!current.has(id));
     previous=current;

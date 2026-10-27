@@ -15,11 +15,13 @@ if(options.cases<1||options.maxFrames<1)throw new Error('Cases and maxFrames mus
 const sourceFiles=['src/srcmodule/game_battle.js','src/srcmodule/game_util.js','src/srcmodule/game_ui_1.js'];
 const sourceSha256=Object.fromEntries(await Promise.all(sourceFiles.map(async file=>[file,createHash('sha256').update(await readFile(resolve(root,file))).digest('hex')])));
 const hostEntropy=createHostRandomTape(options.hostSeed);
-const runtime=await createBootstrapRuntime({hostRandom:hostEntropy.random});
+let clockObserver=null;
+const runtime=await createBootstrapRuntime({hostRandom:hostEntropy.random,hostClock:{mode:'record',observe(entry,ordinal){clockObserver?.(entry,ordinal)}}});
+if(!runtime.clock)throw new Error('Source corpus requires host-clock record/replay support');
 const cases=[];
 for(let i=0;i<options.cases;i++){
  const wire=await createRealisticScenario((options.seed+i)>>>0);
- const trace=await traceBattle(runtime,wire,{materialize:instantiateScenario,maxFrames:options.maxFrames,keepDeltas:true,strictGraph:Boolean(options.strictGraph)});
+ const trace=await traceBattle(runtime,wire,{materialize:instantiateScenario,maxFrames:options.maxFrames,keepDeltas:true,strictGraph:Boolean(options.strictGraph),subscribeClock(observer){clockObserver=observer;return()=>{clockObserver=null}}});
  const path=resolve(root,`benchmarks/validation/battle-traces/source-seed-${wire.scenarioSeed}.json.gz`);
  await mkdir(resolve(path,'..'),{recursive:true});
  const bytes=gzipSync(JSON.stringify(trace));await writeFile(path,bytes);
@@ -33,6 +35,7 @@ for(let i=0;i<options.cases;i++){
 }
 const report={version:1,referenceRuntime:process.version,sourceSha256,options,cases,
  hostEntropy:{...hostEntropy.provenance,drawCount:hostEntropy.tape.length,tape:hostEntropy.tape},
+ hostClock:{stats:runtime.clock.stats(),tape:runtime.clock.tape,provenance:runtime.clockProvenance},
  completedCases:cases.filter(c=>c.status==='completed').length,allRequestedCasesCompleted:cases.length===options.cases&&cases.every(c=>c.status==='completed'),
  fidelityGate:{passed:false,nativeWholeBattleCandidateCompared:false,throughputQualification:false,
   reasons:['This command records the source oracle corpus; no whole-battle native candidate trace is supplied','Actor/effect/view lifecycle outside the copied source callback phase remains an explicit adapter boundary','Native closure environments are opaque; execution events and observable state effects are retained']}};

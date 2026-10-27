@@ -43,3 +43,22 @@ test('independent source traces match and deliberate callback or RNG omission di
  const omitted=fixture();runInContext(`ed.BattleEngine.prototype.update=function(){this.ticks++;this.running=false;this.result='victory'}`,omitted.context);
  const skipped=await run(omitted);assert.notEqual(firstTraceDifference(a.events,skipped.events),null);assert.equal(skipped.callbackCount,0);
 });
+
+test('clock inputs and append-only device outputs interleave with callbacks and RNG without dropping ledger state',async()=>{
+ const {readFile}=await import('node:fs/promises');const runtime=fixture();
+ runInContext(await readFile(new URL('../bootstrap-host.js',import.meta.url),'utf8'),runtime.context);
+ runInContext(await readFile(new URL('../oracle-clock.js',import.meta.url),'utf8'),runtime.context);
+ runtime.host=runtime.context.bootstrapHost;let observer;
+ runtime.context.__clockOptions={mode:'record',observe:(entry,ordinal)=>observer?.(entry,ordinal)};
+ runtime.clock=runInContext('installOracleClock(__clockOptions)',runtime.context);
+ runInContext(`ed.BattleEngine.prototype.update=function(){Date.now();this.ticks++;clientCall(()=>{cc.audioEngine.playEffect('sound.ogg',false);Date.now();ed.rand()});this.running=false;this.result='victory'}`,runtime.context);
+ const trace=await traceBattle(runtime,{inputSha256:'test'},{materialize:()=>({battleSeed:1,players:[],enemies:[],config:{}}),subscribeClock(fn){observer=fn;return()=>{observer=null}}});
+ assert.equal(trace.status,'completed');assert.equal(trace.coverage.includesHostDeviceState,true);
+ const kinds=trace.events.map(e=>e.kind);
+ assert.ok(kinds.indexOf('host:clock')<kinds.indexOf('callback:enqueue'));
+ assert.ok(kinds.indexOf('callback:before')<kinds.indexOf('device:output'));
+ assert.ok(kinds.indexOf('device:output')<kinds.lastIndexOf('host:clock'));
+ assert.ok(kinds.lastIndexOf('host:clock')<kinds.indexOf('rng:draw'));
+ assert.equal(trace.deviceLedger.length,runtime.host.events.length);assert.equal(runtime.clock.tape.length,2);
+ runtime.clock.finish();
+});
