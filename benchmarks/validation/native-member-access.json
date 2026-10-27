@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "passed": true,
+  "compiler": "c++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "compileArgs": [
+    "-std=c++17",
+    "-pedantic-errors",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-O2",
+    "/workspace/afkarena-simx/work/native-member-access/positive.cpp",
+    "-o",
+    "/workspace/afkarena-simx/work/native-member-access/positive"
+  ],
+  "source": "#include <type_traits>\nclass Original {int count=7; int *pair(){return &count;} public: Original()=default;};\ntemplate<class Tag,typename Tag::type Member>struct Access{friend typename Tag::type member(Tag){return Member;}};\nstruct Count {using type=int Original::*;friend type member(Count);};\nstruct Pair {using type=int*(Original::*)();friend type member(Pair);};\ntemplate struct Access<Count,&Original::count>;\ntemplate struct Access<Pair,&Original::pair>;\nstatic_assert(std::is_same<decltype(member(Count{})),int Original::*>::value,\"typed\");\nstatic_assert(std::is_same<decltype(member(Pair{})),int*(Original::*)()>::value,\"typed\");\nint main(){Original o;return (o.*member(Count{}))==7 && *(o.*member(Pair{}))()==7 ? 0:1;}\n",
+  "sourceSha256": "21e6610ef9980938c2a9a55200faae3467fbe4e5c7b989a19a3ea3d551c30be7",
+  "negativeSource": "class Original {int count=7;};\nint main(){return &Original::count==nullptr;}\n",
+  "negativeStatus": 1,
+  "negativeStderr": "/workspace/afkarena-simx/work/native-member-access/negative.cpp: In function ‘int main()’:\n/workspace/afkarena-simx/work/native-member-access/negative.cpp:2:30: error: ‘int Original::count’ is private within this context\n    2 | int main(){return &Original::count==nullptr;}\n      |                              ^~~~~\n/workspace/afkarena-simx/work/native-member-access/negative.cpp:1:21: note: declared private here\n    1 | class Original {int count=7;};\n      |                     ^~~~~\n/workspace/afkarena-simx/work/native-member-access/negative.cpp:2:30: error: ‘int Original::count’ is private within this context\n    2 | int main(){return &Original::count==nullptr;}\n      |                              ^~~~~\n/workspace/afkarena-simx/work/native-member-access/negative.cpp:1:21: note: declared private here\n    1 | class Original {int count=7;};\n      |                     ^~~~~\n",
+  "positiveBinarySha256": "661b177643dae018c827360e76703e8d6e7656707b470be5e264ca7aaba70c24",
+  "scope": "C++17 [temp.explicit] exempts names specifying explicit instantiations from usual access checking. This strict compiler check validates typed member object/function access without changing Original class definition. Negative direct access remains rejected. This is a language/toolchain check, not a VM semantic proof.",
+  "producer": {
+    "file": "tools/check-native-member-access.mjs",
+    "sha256": "7cb1f2aa522c281fb47340389669b5290a5866781beaa682b4c36e08ce6221ff"
+  }
+}

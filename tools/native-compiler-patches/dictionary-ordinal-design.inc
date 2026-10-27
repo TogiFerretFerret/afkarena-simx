@@ -1,4 +1,7 @@
-// DESIGN ONLY. Not compiled or installed. Add these PUBLIC member functions
+// ALGORITHM DESIGN ONLY. Not compiled or installed. Do not add these members
+// in only one translation unit: that would violate C++ ODR. Actual implementation
+// uses standards-based typed member pointers with unchanged class definitions.
+// A hypothetical full private rebuild could add these PUBLIC member functions
 // inside the pinned classes; no data members or object-layout changes.
 // DictPropertyMap:
 static bool tryDescriptorOrdinalHint(
