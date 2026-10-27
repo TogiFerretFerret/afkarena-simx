@@ -70,5 +70,10 @@
       "sha256": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e"
     }
   ],
-  "qualifiesFor10000Target": false
+  "qualifiesFor10000Target": false,
+  "nativeAttributeAbiBuckCheck": {
+    "command": "buck2 run //tools:native_attribute_abi_check",
+    "passed": true,
+    "logSha256": "bb62c6fec383e2e41c06cdb33cd3f0050d26d114ee3f005b3db8ac07e91a34d4"
+  }
 }
