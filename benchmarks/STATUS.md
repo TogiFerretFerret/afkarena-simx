@@ -22,10 +22,24 @@ workload with three warmups and 20 measured battles:
 | Same clone candidate, initial old-generation allocation | 0.223861 | Pass |
 | Same, 4 GiB initial / 8 GiB maximum heap | 0.192482 | Pass |
 | Same, 8 GiB initial / 8 GiB maximum heap | 0.158546 | Pass |
+| Worker-owned strong table registries, default GC | 1.324503 | Pass |
 
 These are individual diagnostic windows, not established speedups. The larger
 heap experiments consumed more memory without solving the throughput problem;
 their raw outputs and resource samples remain in `results/`.
+
+The worker-owned registry candidate measures 20 battles in 15.100 seconds,
+versus 101.582 seconds for the otherwise identical clone candidate: an observed
+6.73× improvement in this diagnostic fixture. All 309,060 measured callbacks,
+table counters/hashes, RNG, host inputs, allocation counters and final captures
+match. Only the private table helper changes; original game source bytes and six
+compiled units remain unchanged. The supplied worker loader retains every
+approved table root throughout the batch, allowing strong Maps instead of
+WeakMaps for those private registries. Generic callers and replaced table leases
+are rejected. This removes diagnostic GC overhead, not game mechanics; full
+scene/random-corpus/ordered-trace qualification is still outstanding. See
+`results/2026-10-27T21-26-15.501Z-native-warm23-worker-map.json` and
+`validation/worker-strong-map.json`. Active generic adapters remain unchanged.
 
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
