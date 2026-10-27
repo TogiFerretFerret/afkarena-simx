@@ -50,3 +50,9 @@ test('practical code identity policy retains custom function data and prototype 
  const after=snapshot({fn:sourceMethod});assert.notEqual(after.sha256,before.sha256);
  assert.ok(after.nodes.flatMap(n=>n.properties).some(p=>p.key[1]==='changed'));
 });
+
+test('host entropy replay preserves every binary64 output and rejects extra or missing draws',async()=>{
+ const {createHostRandomTape}=await import('../battle-trace.mjs');const original=createHostRandomTape(7);const expected=Array.from({length:20},()=>binary64(original.random()));
+ const replay=createHostRandomTape(999,{replay:original.tape});assert.deepEqual(Array.from({length:20},()=>binary64(replay.random())),expected);replay.assertFullyConsumed();assert.throws(()=>replay.random(),/extra draw/);
+ const short=createHostRandomTape(7,{replay:original.tape});short.random();assert.throws(()=>short.assertFullyConsumed(),/omitted 19/);
+});

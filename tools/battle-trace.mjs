@@ -158,3 +158,26 @@ export function applyGraphDelta(previous,delta){
   if(digest(JSON.stringify(graph))!==delta.sha256)throw new Error('Graph delta checksum mismatch');
   return{...graph,sha256:delta.sha256,coverage:delta.coverage};
 }
+
+/** Explicit host entropy input, separate from the game's ed.rand algorithm.
+ * Every Math.random call is either recorded or consumes one exact replay value.
+ */
+export function createHostRandomTape(seed=0x12345678,{replay}={}){
+  if(!Number.isInteger(seed)||seed<0||seed>0xffffffff)throw new Error('Host entropy seed must be uint32');
+  let state=seed>>>0;if(state===0)state=0x6d2b79f5;
+  const tape=[];
+  function random(){
+    let value;
+    if(replay){
+      if(tape.length>=replay.length)throw new Error('Host Math.random replay consumed an extra draw');
+      const hex=replay[tape.length];
+      if(!/^[0-9a-f]{16}$/.test(hex))throw new Error('Invalid host entropy replay bits');
+      numberBuffer.setBigUint64(0,BigInt(`0x${hex}`),false);value=numberBuffer.getFloat64(0,false);
+      if(!(value>=0&&value<1))throw new Error('Host Math.random replay value outside [0,1)');
+    }else{
+      state^=state<<13;state^=state>>>17;state^=state<<5;state>>>=0;value=state/4294967296;
+    }
+    tape.push(binary64(value));return value;
+  }
+  return{random,tape,assertFullyConsumed(){if(replay&&tape.length!==replay.length)throw new Error(`Host Math.random replay omitted ${replay.length-tape.length} draws`);},provenance:{algorithm:replay?'exact_binary64_replay':'xorshift32_uniform_binary64',seed,separateFromBattleRng:true}};
+}

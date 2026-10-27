@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { runInContext } from 'node:vm';
 import { binary64,createGraphSnapshotter,createGraphDeltaRecorder,realmIntrinsics } from './battle-trace.mjs';
 import { installBootstrapCallbacks } from './bootstrap-callbacks.mjs';
 
@@ -15,7 +16,7 @@ export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keep
   const snapshot=createGraphSnapshotter({intrinsics:realmIntrinsics(context),functionPolicy:strictGraph?'graph':'code'});
   const delta=createGraphDeltaRecorder(snapshot);
   const events=[],deltas=[],restores=[],callbackIds=new WeakMap();let nextCallback=1,frame=-1,activeCallback=0,snapshotSide='before';
-  let engine,callbackCount=0,rngCount=0,lastGraph,lastError;
+  let engine,callbackCount=0,rngCount=0,hostRngCount=0,lastGraph,lastError;
   const callableId=fn=>{if(!callbackIds.has(fn))callbackIds.set(fn,nextCallback++);return callbackIds.get(fn)};
   const heroScripts={};
   function scriptRoots(){
@@ -59,6 +60,11 @@ export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keep
   replace(ed,'srand',original=>function(...args){
     const before=binary64(context.random_seed),result=Reflect.apply(original,this,args);
     record('rng:seed',{input:typeof args[0]==='number'?binary64(args[0]):String(args[0]),before,after:binary64(context.random_seed)},false);return result;
+  });
+  const math=runInContext('Math',context);
+  replace(math,'random',original=>function(...args){
+    const result=Reflect.apply(original,this,args);hostRngCount++;
+    record('rng:host',{draw:hostRngCount,result:binary64(result)},false);return result;
   });
   replace(context,'clientCall',original=>function(callback){
     const result=Reflect.apply(original,this,[callback]);
@@ -108,6 +114,6 @@ export async function traceBattle(runtime,wire,{materialize,maxFrames=20000,keep
     limitations:['Native lexical closure bindings cannot be reflected; callback execution effects and event/RNG order are checked',...(strictGraph?[]:['Standard function metadata is treated as immutable code; source function identity/hash and custom data properties remain captured']),'This instrumented source oracle is not a completed native simulator','Actor/effect/view lifecycle outside the source callback phase is not provided by this adapter'],
     opaque:lastGraph?.coverage.opaque??[]};
   return{version:1,status,error:lastError,inputSha256:wire.inputSha256,events,...(keepDeltas?{deltas}:{}),lastGraph,
-    callbackCount,rngCount,frames:frame+1,result:engine?.result,sourceCallbackProvenance:phase.provenance,coverage,
+    callbackCount,rngCount,hostRngCount,frames:frame+1,result:engine?.result,sourceCallbackProvenance:phase.provenance,coverage,
     qualifiesForThroughputTarget:false};
 }
