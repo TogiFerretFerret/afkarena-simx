@@ -1,0 +1,388 @@
+{
+  "version": 1,
+  "kind": "diagnostic-exporter-comparison",
+  "qualifiesForThroughputTarget": false,
+  "scenario": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a",
+  "frames": 60,
+  "node": "v24.19.0",
+  "sourceSha256": "d5677f20804cf9c4370615639286446bbadf7aac0a375f3061219aa7ce7faacf",
+  "baseline": "production descriptor walker without experimental per-snapshot prototype-brand memoization",
+  "referenceMs": 4969.633794999998,
+  "candidateMs": 5023.076286999999,
+  "ratio": 0.989360605145832,
+  "samples": [
+    {
+      "frame": 0,
+      "reference": 89.81996699999945,
+      "candidate": 100.75059599999986
+    },
+    {
+      "frame": 1,
+      "candidate": 83.30619399999978,
+      "reference": 79.27343800000017
+    },
+    {
+      "frame": 2,
+      "reference": 79.64078599999993,
+      "candidate": 69.35706800000025
+    },
+    {
+      "frame": 3,
+      "candidate": 65.17156100000011,
+      "reference": 70.4293230000003
+    },
+    {
+      "frame": 4,
+      "reference": 72.11167399999977,
+      "candidate": 72.39662399999997
+    },
+    {
+      "frame": 5,
+      "candidate": 74.5376409999999,
+      "reference": 63.22922800000015
+    },
+    {
+      "frame": 6,
+      "reference": 64.52690099999927,
+      "candidate": 73.83102899999994
+    },
+    {
+      "frame": 7,
+      "candidate": 68.18838899999992,
+      "reference": 62.229943999999705
+    },
+    {
+      "frame": 8,
+      "reference": 86.74792400000024,
+      "candidate": 76.65742599999976
+    },
+    {
+      "frame": 9,
+      "candidate": 59.669038,
+      "reference": 58.864832999999635
+    },
+    {
+      "frame": 10,
+      "reference": 88.78021100000024,
+      "candidate": 81.81628300000011
+    },
+    {
+      "frame": 11,
+      "candidate": 64.58448600000065,
+      "reference": 59.4327600000006
+    },
+    {
+      "frame": 12,
+      "reference": 55.44909599999937,
+      "candidate": 54.68366799999967
+    },
+    {
+      "frame": 13,
+      "candidate": 55.052592000000004,
+      "reference": 62.86079399999926
+    },
+    {
+      "frame": 14,
+      "reference": 56.11970500000007,
+      "candidate": 63.53047599999991
+    },
+    {
+      "frame": 15,
+      "candidate": 81.5592430000006,
+      "reference": 61.77942900000107
+    },
+    {
+      "frame": 16,
+      "reference": 53.5670310000005,
+      "candidate": 55.746234000000186
+    },
+    {
+      "frame": 17,
+      "candidate": 56.72016000000076,
+      "reference": 53.330643000001146
+    },
+    {
+      "frame": 18,
+      "reference": 54.612842999998975,
+      "candidate": 67.28751600000032
+    },
+    {
+      "frame": 19,
+      "candidate": 71.27100400000018,
+      "reference": 72.60186099999919
+    },
+    {
+      "frame": 20,
+      "reference": 67.92367399999966,
+      "candidate": 63.581317000000126
+    },
+    {
+      "frame": 21,
+      "candidate": 62.82661299999927,
+      "reference": 78.3263879999995
+    },
+    {
+      "frame": 22,
+      "reference": 67.88231399999859,
+      "candidate": 69.29804100000001
+    },
+    {
+      "frame": 23,
+      "candidate": 80.37906400000065,
+      "reference": 77.02995499999997
+    },
+    {
+      "frame": 24,
+      "reference": 70.03890800000045,
+      "candidate": 70.43967899999916
+    },
+    {
+      "frame": 25,
+      "candidate": 92.26814299999933,
+      "reference": 76.81974599999921
+    },
+    {
+      "frame": 26,
+      "reference": 74.87046100000043,
+      "candidate": 80.50576000000001
+    },
+    {
+      "frame": 27,
+      "candidate": 82.08363699999973,
+      "reference": 98.56473200000073
+    },
+    {
+      "frame": 28,
+      "reference": 90.42485500000112,
+      "candidate": 101.79881600000044
+    },
+    {
+      "frame": 29,
+      "candidate": 93.53939799999898,
+      "reference": 73.81955200000084
+    },
+    {
+      "frame": 30,
+      "reference": 84.07605499999954,
+      "candidate": 98.53308000000106
+    },
+    {
+      "frame": 31,
+      "candidate": 104.3870020000013,
+      "reference": 85.77177499999925
+    },
+    {
+      "frame": 32,
+      "reference": 82.32131200000003,
+      "candidate": 88.6694580000003
+    },
+    {
+      "frame": 33,
+      "candidate": 96.02812699999959,
+      "reference": 122.63316499999928
+    },
+    {
+      "frame": 34,
+      "reference": 99.01188599999841,
+      "candidate": 82.98750899999868
+    },
+    {
+      "frame": 35,
+      "candidate": 83.38505700000132,
+      "reference": 83.02492400000119
+    },
+    {
+      "frame": 36,
+      "reference": 95.86487600000146,
+      "candidate": 112.70693399999982
+    },
+    {
+      "frame": 37,
+      "candidate": 88.81470099999933,
+      "reference": 87.56034200000067
+    },
+    {
+      "frame": 38,
+      "reference": 91.34069099999942,
+      "candidate": 84.50564800000029
+    },
+    {
+      "frame": 39,
+      "candidate": 93.43954499999927,
+      "reference": 83.78270199999861
+    },
+    {
+      "frame": 40,
+      "reference": 85.79243099999985,
+      "candidate": 81.98647300000084
+    },
+    {
+      "frame": 41,
+      "candidate": 78.05017999999836,
+      "reference": 77.1349799999989
+    },
+    {
+      "frame": 42,
+      "reference": 86.3422559999999,
+      "candidate": 80.04808599999888
+    },
+    {
+      "frame": 43,
+      "candidate": 78.45671000000038,
+      "reference": 101.2892439999996
+    },
+    {
+      "frame": 44,
+      "reference": 77.01343199999974,
+      "candidate": 77.86370499999975
+    },
+    {
+      "frame": 45,
+      "candidate": 77.61631000000125,
+      "reference": 78.47811000000002
+    },
+    {
+      "frame": 46,
+      "reference": 85.86704500000087,
+      "candidate": 80.038281000001
+    },
+    {
+      "frame": 47,
+      "candidate": 109.6615440000005,
+      "reference": 109.665715000001
+    },
+    {
+      "frame": 48,
+      "reference": 95.78757300000143,
+      "candidate": 99.8963909999984
+    },
+    {
+      "frame": 49,
+      "candidate": 119.23815900000045,
+      "reference": 107.72581999999966
+    },
+    {
+      "frame": 50,
+      "reference": 125.30147500000021,
+      "candidate": 100.0088050000013
+    },
+    {
+      "frame": 51,
+      "candidate": 96.78779299999951,
+      "reference": 97.28885700000137
+    },
+    {
+      "frame": 52,
+      "reference": 105.3928360000009,
+      "candidate": 125.15650300000016
+    },
+    {
+      "frame": 53,
+      "candidate": 114.96219199999905,
+      "reference": 94.39727999999923
+    },
+    {
+      "frame": 54,
+      "reference": 90.27885600000081,
+      "candidate": 95.1712439999992
+    },
+    {
+      "frame": 55,
+      "candidate": 117.09980600000017,
+      "reference": 100.12192799999866
+    },
+    {
+      "frame": 56,
+      "reference": 144.9039869999997,
+      "candidate": 93.68705100000079
+    },
+    {
+      "frame": 57,
+      "candidate": 100.22042399999918,
+      "reference": 94.64711799999895
+    },
+    {
+      "frame": 58,
+      "reference": 91.28961999999956,
+      "candidate": 87.58907099999851
+    },
+    {
+      "frame": 59,
+      "candidate": 83.24280200000067,
+      "reference": 84.41852800000015
+    }
+  ],
+  "stateHashes": [
+    "763c89c83b9aecd9d160d523a2e9459a72200433b2121bb56b341088b6efc514",
+    "d66eb8a42433eac1779b362102001f8369351288a55881d7df8657de1025715a",
+    "536936618260362737f68c00a51acd0a3c650447c1d8ce964a3561d679314583",
+    "1b77409c0a85ae474b8a8b945c0254037f78f45b0875460209317cacb0a6d397",
+    "16e412f8931e48c2564fe1e8b873a90d13e7374a9be3e81b345ba88af5840350",
+    "fba26ab0384fb41a541a60d6f81130e5ff39eee02489e2dfa2e57f6d9d822bc9",
+    "2c1e19d2ae5af963d5ee7ae4e2d78d184ca272b46cda786c16c63e67fe8aed6a",
+    "aa252979135995368403095d5e7e0d1dc0e68a3af0d7416cd324fb0515191d43",
+    "9471e2c222345fec863af28f33eb0bc7bc7daa8bc1021f4d4441da68ac93853e",
+    "2068ddc7e953a0a926b207dcb1b559600570e18ba3350f92dc6a0ce1d2bb271f",
+    "c7c905976b2618c06c5503b1b4f0c4684f2051f82739e7a88a805c7d626541c5",
+    "8a82aca0b0148a130a7b6f4f898a9f15ce1360b18795c48d414bd916344ee9d9",
+    "71b0a83eb03e96b5ed426e1a13c8b649d243148cd74f7ce7e4a0573ed4c84221",
+    "d2eb3e1c792c1a0c65ccbebfb1890bd764b5f3b1a404ddfd821cf98787833473",
+    "2d0a52a31b0088afc3f278a580907b01905a2c7c1bd54d9fd4de790a1ff6441c",
+    "0025cdeb4774b1f176e66e0d8da2d683edf348fba443dcd7290bfe2a0ff4e8bd",
+    "45b4e42aa76e498a8529de59ef2526f1d469372f292ea89725c20726f31af089",
+    "f377276dd0b9f35d2d6710b460ab1f726319aea428e48609eeba695a986da49c",
+    "f0076226426f1f94437202ddaf129c18b8e96abb1b7d67cb3f693ddaa75d9610",
+    "41a6a5a18455c8eb3020f13b498da52beb9cb3e9e4f53bd05dca8084a356ba7c",
+    "33eeeb0658f11efe427db50e29f56340d2b540b08d8ce089f83368c570cc3c33",
+    "3b7266bbce639f24c8f221c194f4b175e03d6dff06d1da091ed274e1704bb7c4",
+    "ef7973d60b8d9c6b45f5a70338df2dac560f564b93e8b2a9b47d82044d2574bf",
+    "34090beec9276d980c96d62f36a944bda7ec67303f71057daae698edaecb0c59",
+    "ee355fee426897c114d6355a86da1d05c63a299ee394b3c795fb4de5fdfa4cb5",
+    "b5b0cba6a19297005c54094a200d39caa6a6c0834f88ebb30737fa220320e855",
+    "1f49e4e61b127e0853d4764588446b4e75adc355a68fb8fb3b6144ffb15e1c0c",
+    "302eb33f79378e3f573ac3a97f456cdd05f64000673e2ac11bdd8a3b03036fe1",
+    "74d46b9ac224645ac5a8ccf28d5f911e093ad23263c71d66bb146302a4420530",
+    "fe3db39fe150cb30c11a8184f64fd36747e6cf074a31e29d85b116c5e487a997",
+    "932201be50238fdab1a142e8ed44fcf3910e00637775a81096819e737bacd2ab",
+    "ed5119bc4cbde8bdf138cf9ff96da9867e8f2e2fcd43f09ddb0255c5722dbebf",
+    "4cc700092e7ade199ad20d345d1a7dd64a390088db2cfd1669a9356b9415b0d9",
+    "6ba12e779b92344c626a7640210c9745d162c279eb48b1968e020d5e4a8e260a",
+    "c74a5048edee69537c56cd523b5ea7597eae31d1dc46d302e2cafb3f79551f8a",
+    "3e70445abae1f3dd049b134b31ee73cf4524729437c86e99057f52bd155c5d75",
+    "810e03400fdf0e344d3f95956c0fa45eeb3ff416ddb020404dc954c8c0b2dc5d",
+    "c0e9b72231e077da93a8805af9acae449fe887a33cde6aeca3c2a8efdba20bf9",
+    "0dd1d2a24c8081d717cb36b020210891c49eae3bc955574cce0f5c5af12ee666",
+    "6c2dedbe754d10a9b9f9cf7be2b0d578bcd9fa07dfa70c24a683c2e10bea2a0c",
+    "0973a212324a4b180a991bd5e3b1f003a1492e621ae6d66e58b6dfcb4573d4ad",
+    "4ff7af5b0f8e4b0d80f52be0e1e94f775b01a37db1ac6e18ea91c1596757a380",
+    "a4ccf63bc9b474333832dccc679ae0c5c81109ae25d7d711e881653fe9adc894",
+    "895dfe9395e11b6ecc978589ca09ec152ee748db4d97f280d8f3ee318cbf2064",
+    "244fb008dde37459ce21805cc7f83c95dfae44cbff1158eff5471c5d842e6837",
+    "38339a89c349ee7e86a6387575c2c4cf59079e1742ad0d514d97eb15ee64bc05",
+    "abf90d782be5c6fd61b16e5e1d7ac27946d4bd85cbeb324743d4136f1daf683e",
+    "52e1c5770ff8e6f7f966e8c1f05eccb8f2e2fdabc0e554f8c885a017019b19c8",
+    "3dd5cac2785ef9145d374f637748d92fdb8e859a68b98eaa02706b5fa4aeff00",
+    "f326a184eee68766e4001fc5e95d7d8d35ae8009ece671973ee26e70676f79b7",
+    "216c951a89bd7ada927092c168ad1976a6409b3ae1e251df95313c559dbc22b5",
+    "023ce8425f3700dbc6c265064d8e518f44aa646413e662eb83bb5517e777c743",
+    "3023d8aa63e19d4fc2b14fdf347212a704dfd402e17dca5e7093d733a016478d",
+    "cd5bb892c014f31bbd476dca811fc192f3aa011469e032cc6868f5392ca4a674",
+    "c1133c2d4446369cd89bdf53bd0f0c93546184c7ebda91f81ad1104ad43a2b95",
+    "9103b52ce8c5d87db8f1b91a7d1b3edf9904c0c8f120584e90f4d2c354d00153",
+    "d7227a72946080a2dec86779b25ef85421d29a7151838d89f6edc57d8178a647",
+    "469e82c934fba81e21b4c39849e9ea6649eda59398a3b8440587cef06fdd5e2a",
+    "c147310c96d504cb6db3f87a4c66c20be8d58cd28c2d06055487979c903fb4fb",
+    "e0131fdf94528fd64718e6b6c72de33fbe666b32efb12105fb1455594b29bd7f"
+  ],
+  "limitations": [
+    "Samples one partial realistic battle; no battle completion or throughput qualification",
+    "Each sampled graph covers engine,host and source RNG; this is not the complete ordered battle event gate",
+    "Only diagnostic serialization/representation reuse differs; source callbacks are executed normally between samples",
+    "Other concurrent processes may affect elapsed times",
+    "Returned graph records are exporter-owned immutable representations; consumers must not mutate them"
+  ],
+  "baselineSha256": "9813a661d5969a20559a1784a6d0317c426b3553fcea8aabca7ad16a979f2f34",
+  "execArgv": [
+    "--jitless"
+  ]
+}

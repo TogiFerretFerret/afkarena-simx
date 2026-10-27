@@ -1,0 +1,388 @@
+{
+  "version": 1,
+  "kind": "diagnostic-exporter-comparison",
+  "qualifiesForThroughputTarget": false,
+  "scenario": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a",
+  "frames": 60,
+  "node": "v24.19.0",
+  "sourceSha256": "d5677f20804cf9c4370615639286446bbadf7aac0a375f3061219aa7ce7faacf",
+  "baseline": "same complete walker with per-snapshot prototype-brand memoization disabled",
+  "referenceMs": 5285.144227,
+  "candidateMs": 5290.961398999989,
+  "ratio": 0.9989005453713783,
+  "samples": [
+    {
+      "frame": 0,
+      "reference": 71.71021500000006,
+      "candidate": 83.62789100000009
+    },
+    {
+      "frame": 1,
+      "candidate": 82.62226700000065,
+      "reference": 81.37960500000008
+    },
+    {
+      "frame": 2,
+      "reference": 70.64469400000053,
+      "candidate": 67.42783000000054
+    },
+    {
+      "frame": 3,
+      "candidate": 80.9792039999993,
+      "reference": 85.33699100000013
+    },
+    {
+      "frame": 4,
+      "reference": 73.82370199999968,
+      "candidate": 78.18420199999946
+    },
+    {
+      "frame": 5,
+      "candidate": 92.93230200000016,
+      "reference": 88.62167500000032
+    },
+    {
+      "frame": 6,
+      "reference": 85.73699099999976,
+      "candidate": 89.67254400000002
+    },
+    {
+      "frame": 7,
+      "candidate": 71.83673100000033,
+      "reference": 67.49439800000073
+    },
+    {
+      "frame": 8,
+      "reference": 71.79045299999962,
+      "candidate": 69.04110799999944
+    },
+    {
+      "frame": 9,
+      "candidate": 88.79983800000082,
+      "reference": 71.99024699999973
+    },
+    {
+      "frame": 10,
+      "reference": 82.83479500000067,
+      "candidate": 81.82205799999974
+    },
+    {
+      "frame": 11,
+      "candidate": 66.44611100000111,
+      "reference": 102.85293300000012
+    },
+    {
+      "frame": 12,
+      "reference": 76.64717999999993,
+      "candidate": 75.50588199999947
+    },
+    {
+      "frame": 13,
+      "candidate": 80.49708400000054,
+      "reference": 88.98629699999947
+    },
+    {
+      "frame": 14,
+      "reference": 76.48491599999943,
+      "candidate": 82.58035600000039
+    },
+    {
+      "frame": 15,
+      "candidate": 81.27311800000098,
+      "reference": 82.10091900000043
+    },
+    {
+      "frame": 16,
+      "reference": 72.48139199999969,
+      "candidate": 80.04745000000003
+    },
+    {
+      "frame": 17,
+      "candidate": 69.16167700000005,
+      "reference": 70.16725799999949
+    },
+    {
+      "frame": 18,
+      "reference": 75.78486399999929,
+      "candidate": 80.34964500000024
+    },
+    {
+      "frame": 19,
+      "candidate": 75.60558999999921,
+      "reference": 83.43818100000135
+    },
+    {
+      "frame": 20,
+      "reference": 78.91324699999859,
+      "candidate": 59.59966399999939
+    },
+    {
+      "frame": 21,
+      "candidate": 65.84281200000078,
+      "reference": 66.40446499999962
+    },
+    {
+      "frame": 22,
+      "reference": 81.02319800000078,
+      "candidate": 80.04730999999992
+    },
+    {
+      "frame": 23,
+      "candidate": 89.77541200000087,
+      "reference": 76.47428499999842
+    },
+    {
+      "frame": 24,
+      "reference": 104.67383699999846,
+      "candidate": 93.74969800000144
+    },
+    {
+      "frame": 25,
+      "candidate": 88.08960099999967,
+      "reference": 94.38878400000067
+    },
+    {
+      "frame": 26,
+      "reference": 98.0002710000008,
+      "candidate": 83.16891899999973
+    },
+    {
+      "frame": 27,
+      "candidate": 78.92798799999946,
+      "reference": 78.39049599999998
+    },
+    {
+      "frame": 28,
+      "reference": 101.30390199999965,
+      "candidate": 94.50804599999901
+    },
+    {
+      "frame": 29,
+      "candidate": 79.31711299999915,
+      "reference": 89.20545099999981
+    },
+    {
+      "frame": 30,
+      "reference": 97.67014899999958,
+      "candidate": 107.210959
+    },
+    {
+      "frame": 31,
+      "candidate": 115.78190499999982,
+      "reference": 103.29198499999984
+    },
+    {
+      "frame": 32,
+      "reference": 104.27117399999952,
+      "candidate": 127.94524799999999
+    },
+    {
+      "frame": 33,
+      "candidate": 110.78102399999989,
+      "reference": 98.03322499999922
+    },
+    {
+      "frame": 34,
+      "reference": 113.51762000000053,
+      "candidate": 104.85802899999908
+    },
+    {
+      "frame": 35,
+      "candidate": 85.11995100000058,
+      "reference": 84.7359550000001
+    },
+    {
+      "frame": 36,
+      "reference": 97.90493500000048,
+      "candidate": 114.4473909999997
+    },
+    {
+      "frame": 37,
+      "candidate": 88.8245339999994,
+      "reference": 83.79456199999913
+    },
+    {
+      "frame": 38,
+      "reference": 80.85234599999967,
+      "candidate": 81.07366399999955
+    },
+    {
+      "frame": 39,
+      "candidate": 106.26570100000026,
+      "reference": 93.34780200000023
+    },
+    {
+      "frame": 40,
+      "reference": 79.2697420000004,
+      "candidate": 83.57197399999859
+    },
+    {
+      "frame": 41,
+      "candidate": 90.38676300000043,
+      "reference": 97.68297899999925
+    },
+    {
+      "frame": 42,
+      "reference": 89.42409300000145,
+      "candidate": 87.00735699999859
+    },
+    {
+      "frame": 43,
+      "candidate": 90.37668800000029,
+      "reference": 90.47005600000011
+    },
+    {
+      "frame": 44,
+      "reference": 102.44921499999873,
+      "candidate": 89.76194099999884
+    },
+    {
+      "frame": 45,
+      "candidate": 90.33093100000042,
+      "reference": 95.74260999999933
+    },
+    {
+      "frame": 46,
+      "reference": 101.77182100000027,
+      "candidate": 117.70923399999992
+    },
+    {
+      "frame": 47,
+      "candidate": 123.21301399999902,
+      "reference": 131.93170800000007
+    },
+    {
+      "frame": 48,
+      "reference": 124.18782199999987,
+      "candidate": 113.21668599999975
+    },
+    {
+      "frame": 49,
+      "candidate": 87.0555889999996,
+      "reference": 90.58990300000005
+    },
+    {
+      "frame": 50,
+      "reference": 95.35448200000064,
+      "candidate": 82.20121699999982
+    },
+    {
+      "frame": 51,
+      "candidate": 91.14876699999877,
+      "reference": 83.49680799999987
+    },
+    {
+      "frame": 52,
+      "reference": 85.81947500000024,
+      "candidate": 90.44154400000116
+    },
+    {
+      "frame": 53,
+      "candidate": 88.36518099999739,
+      "reference": 82.76612999999998
+    },
+    {
+      "frame": 54,
+      "reference": 84.02937500000189,
+      "candidate": 88.19194499999867
+    },
+    {
+      "frame": 55,
+      "candidate": 84.67176099999779,
+      "reference": 86.36862499999916
+    },
+    {
+      "frame": 56,
+      "reference": 83.30169000000024,
+      "candidate": 84.07687299999816
+    },
+    {
+      "frame": 57,
+      "candidate": 90.19220599999971,
+      "reference": 82.78092200000174
+    },
+    {
+      "frame": 58,
+      "reference": 101.94533100000262,
+      "candidate": 94.94863400000031
+    },
+    {
+      "frame": 59,
+      "candidate": 90.34523700000136,
+      "reference": 89.25604499999827
+    }
+  ],
+  "stateHashes": [
+    "c442579b0ec0862de29e6fd3524d4b817f4dfcf292e7e6eb104b5ec26ed63c95",
+    "6deb2329306a43bcfc8d8ed87b95b12cd2982866166c555858ebf4e0aa8d4670",
+    "c5cbacc6b0b25d20416f5c76d0459f6d7b7dd6b5a77233ce3aa7ea104d15a0a7",
+    "7bf2ca16305881afe3189ddfb0d1eb72441d8fd89a9e6482e1db70ebc27cf0ce",
+    "e6f5e38468bc48d794db21a28e03b88d8abbb4560ef1024bf376f6385a0df5f8",
+    "61c30a2d917df3d842974a880b026996f15413aefec2335f11e6b382b61ab6d9",
+    "2bcc236914455dc4ae9510eba31626e43dc817e1fcc323cd857ba5f7d696d537",
+    "25958a6216a0354a995c8b6979d17775c6b12542f8835bbe63777450f66f342a",
+    "cb7c369bffaea6ea1f6cabd696c323350c9f9265a028a781326d439d6f3a3461",
+    "b8955ac8b7372ece5b73013f4bd4aa085242d12896ee511e6694ec64c3bce23a",
+    "81e076edbc680349b29673a3b0cd3234e7f41a05023b290e61d507d127de2ad3",
+    "c79e28e90a4156bad824d9999975ed491257fb5b2c0a43bbf2ef8e9a1f039e56",
+    "3b901c80300033e8a5e27cf30e15332a40d9e7cb86edc62d41d085060dc2a403",
+    "a340d76404489b362c4798dd00175674597cf0241125e45e9ea3d9d98fd8f9e5",
+    "f1602ddf12681ed394edcc55099df66615b6ce77f822db43132a0484152cb3bb",
+    "8424643805a31efba4e767c2257d461832c0362fb973cf3b354151372b9bb127",
+    "4f5327f69a49eb92bf7295e361f33d486385c6862434c3d656c97d9251331378",
+    "b8fbea039d061bed559ba02b017f4f0becd913208b2b08dca85cafb87fa19e10",
+    "fa0a693e30067e3f6d64459f8971601842a3d90823698c7738daf113e007b0ac",
+    "6eaec259162f608e5a82953abc838c5fad2b4dc0a006d55ec624cd8854e11004",
+    "a66eb3da87e0d0be6cb52a17705a794736cf633dabe47c3dbc6716854b89c559",
+    "2971cd24c7f06ea59ddb4ea661bfe16ac3aa877c6ae7a07af8691b8ca8754ad7",
+    "aa4b0447ca51cddc8c7ec99b6a26a0f15a6c83006cc7e30a2f93fbbc79575395",
+    "de41c31e04addce1123b0c5af2cd633dec637c6204f8d8445b0c1309b16d4e45",
+    "59b30995736a95eef8737319831d2204a7c30c4fd0c3b149012a5eac0073e79f",
+    "ed0c7f71361ece7e716e3c523ed72fd63b4cae6fe92e3724d8199b3e2fc5764d",
+    "328e91f584416ecd73ae8a513d5a38d8c4964824990d720a5a6efd1363945243",
+    "b4bfc03e62360e4995dd96df6775df0af765849f1f372efae93e81853464a39c",
+    "24de1c7a6909c94d7a6e7676ab9654bcabcb933d9ebdedd5213dc8dee699cd2a",
+    "35a94069dd39faf8c5c3c0dd710902c7ef2eccd8453f5c0ceb3587a291954e25",
+    "8dc4d9f93fb0b735e41f5f9b2efebf0c87d9ed5176e2eed6b4c72e99b729c3d1",
+    "09cb9ca6f576816f1c1cc0c8410989b7d8a2af8692c822d61ed6ef8ef7969fd2",
+    "71aa586dc3771da9dafa6e9589c4d43d6d6e8559d66b695b28b98b0d6494c427",
+    "c8e787317a4b34dc5e3eedb95c42d4b236992cf7b8a0f85e6ffb52fc7372d877",
+    "9a3a2168e1c47590813d82cd7e0a8b132cb4952572f12e5a897629a18be3e8c5",
+    "dabfd5de5fe5cb66578017688e7077f017aabf2a73607601a1df76d05c01ed43",
+    "88fb7e3f82b0ce9f461709bfa4ebaf692b5285d9cdd38a1a6b058bba47a750f4",
+    "bc40030c9a075e8e050ba403a9d9b01173a89acb6d63066cb89e595ca3caf380",
+    "5b774ba349fc55b6baa04157c44870506e7f5cb9a2c9d4a756606274e5cf9dcf",
+    "cb24cfac61dd21cb3b4c4bdb3088fd58fa40eddae8c2fb13881b770bc7572d2c",
+    "91d6aa9008a3602041f244031638c6ddd1e6a6e7cc43dc3c27401e5902852f9a",
+    "8784a70e90db842addd5e3b655a9ae2eb97979c07d00fb83cbb74b7caff165a3",
+    "300211cef396eeeefc3e537baffdf5d4600275a9b770c00d30884206c62c2c97",
+    "bea25d3a22b28dffba27a9700d773b2ccd87057c6f104410b0498bce201987f5",
+    "919d37f219f16989a2cf69b6498e1d8d8a21a90396fd9c35b1cfc610c8a9cba8",
+    "200ca5a27fc5f89c2848619b3f9850ca631658f195b63dac353d3838962e9b82",
+    "6836a3d90f05abb1069a05a52418266541c8ec3ba017a75e4e47a0c43e6b43b5",
+    "508046392bac4c2659b85d020fcb58b03b7feeb5c7065846993a527bf5556ec6",
+    "e5120c0a3053c546c09d917c7b8d0f414a8ad2cbe8da263f7e8fe834e45749cd",
+    "1f6731681fbd68b304250ba51c992ab08e0494c645f9c2b6ee0376bfead1f104",
+    "84b6889d9936cc0e0b3d0affcc3d59611f2069a7d87374339c9b68e73145bd17",
+    "642e7ed01ab3b44da7b78e58f58f785ed0aac8e60159fd80d9edc48def531aa7",
+    "2b14f3b6a9d10f6f0073ed305951e950d1ec58ae813502c9ac550bb7c0e48e40",
+    "1ecde3225e7e37baeace86138948d8241b386486b69654e8646ec2f9f60e1ad9",
+    "8819476784bcf8d807a1efbdcd1167d718695048782b3144c72a9c57c46e008d",
+    "5ee2d094c4a5b375e59f38e65d9802beda12d6a7951e89931b15c05271d30247",
+    "d84352bec4e026c765e856da71ba5eade7246b31775d017e8325cdef92b9fa4f",
+    "e8154c0f82b7ec0de231a87a2626eed5527aea2f837983173251867de3ec5f71",
+    "323b534f518945860410642abdc8295eaada303a379aad92bd71d71fc79d66e2",
+    "9e169bf2ecddc10409a4e8f499492eb12e09c6fba23c92d20c1c0472421c1130"
+  ],
+  "limitations": [
+    "Samples one partial realistic battle; no battle completion or throughput qualification",
+    "Each sampled graph covers engine,host and source RNG; this is not the complete ordered battle event gate",
+    "Only diagnostic serialization/representation reuse differs; source callbacks are executed normally between samples",
+    "Other concurrent processes may affect elapsed times",
+    "Returned graph records are exporter-owned immutable representations; consumers must not mutate them"
+  ],
+  "baselineSha256": "c93c8e0b263e55d57380a6afe6c725abe55fa824a9db518acfb8beefe9effd22",
+  "execArgv": [
+    "--jitless"
+  ]
+}

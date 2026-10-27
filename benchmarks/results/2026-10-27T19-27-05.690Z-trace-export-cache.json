@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "kind": "diagnostic-exporter-comparison",
+  "qualifiesForThroughputTarget": false,
+  "scenario": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a",
+  "frames": 30,
+  "node": "v24.19.0",
+  "sourceSha256": "ed30bd9e38e75102ef399bb67a9547af747b314c79c33ad92ad9da6218d270c2",
+  "baseline": "same complete walker with per-snapshot prototype-brand memoization disabled",
+  "referenceMs": 2416.413445,
+  "candidateMs": 2454.1047429999926,
+  "ratio": 0.9846415283995102,
+  "samples": [
+    {
+      "frame": 0,
+      "reference": 63.67804100000012,
+      "candidate": 82.82767100000001
+    },
+    {
+      "frame": 1,
+      "candidate": 66.31042100000013,
+      "reference": 63.584445000000414
+    },
+    {
+      "frame": 2,
+      "reference": 64.61885900000016,
+      "candidate": 64.67194699999982
+    },
+    {
+      "frame": 3,
+      "candidate": 69.45173699999941,
+      "reference": 71.21752900000047
+    },
+    {
+      "frame": 4,
+      "reference": 75.00158399999964,
+      "candidate": 76.22752800000035
+    },
+    {
+      "frame": 5,
+      "candidate": 76.01685899999939,
+      "reference": 75.51836400000047
+    },
+    {
+      "frame": 6,
+      "reference": 80.7117790000002,
+      "candidate": 78.499777
+    },
+    {
+      "frame": 7,
+      "candidate": 86.35910400000012,
+      "reference": 85.62967899999967
+    },
+    {
+      "frame": 8,
+      "reference": 90.57504400000016,
+      "candidate": 89.93626200000017
+    },
+    {
+      "frame": 9,
+      "candidate": 68.74183100000027,
+      "reference": 76.5608599999996
+    },
+    {
+      "frame": 10,
+      "reference": 84.1771090000002,
+      "candidate": 86.73864200000025
+    },
+    {
+      "frame": 11,
+      "candidate": 77.52945600000021,
+      "reference": 81.28485900000032
+    },
+    {
+      "frame": 12,
+      "reference": 82.44100100000014,
+      "candidate": 62.89896499999941
+    },
+    {
+      "frame": 13,
+      "candidate": 63.55215599999974,
+      "reference": 66.42455900000004
+    },
+    {
+      "frame": 14,
+      "reference": 57.467123000000356,
+      "candidate": 86.87045599999965
+    },
+    {
+      "frame": 15,
+      "candidate": 69.82954299999983,
+      "reference": 74.69059600000037
+    },
+    {
+      "frame": 16,
+      "reference": 83.09849000000031,
+      "candidate": 82.80011099999956
+    },
+    {
+      "frame": 17,
+      "candidate": 84.70053199999893,
+      "reference": 76.95905600000151
+    },
+    {
+      "frame": 18,
+      "reference": 65.95316000000093,
+      "candidate": 73.74298299999828
+    },
+    {
+      "frame": 19,
+      "candidate": 77.06201899999905,
+      "reference": 70.92245899999944
+    },
+    {
+      "frame": 20,
+      "reference": 64.8927279999989,
+      "candidate": 63.86763299999984
+    },
+    {
+      "frame": 21,
+      "candidate": 62.42326299999877,
+      "reference": 72.41728799999873
+    },
+    {
+      "frame": 22,
+      "reference": 68.33534599999984,
+      "candidate": 84.7322949999998
+    },
+    {
+      "frame": 23,
+      "candidate": 104.40299899999991,
+      "reference": 97.13470699999925
+    },
+    {
+      "frame": 24,
+      "reference": 101.82701199999974,
+      "candidate": 96.9583249999996
+    },
+    {
+      "frame": 25,
+      "candidate": 116.83797600000071,
+      "reference": 109.04389999999876
+    },
+    {
+      "frame": 26,
+      "reference": 107.61693700000069,
+      "candidate": 96.47243899999921
+    },
+    {
+      "frame": 27,
+      "candidate": 91.41606500000125,
+      "reference": 94.75150099999883
+    },
+    {
+      "frame": 28,
+      "reference": 87.33117300000049,
+      "candidate": 103.2406549999996
+    },
+    {
+      "frame": 29,
+      "candidate": 108.98509299999932,
+      "reference": 122.54825700000038
+    }
+  ],
+  "stateHashes": [
+    "8911f81ee3f87a4a0b17610a467b6d1a051d01c49c09c1ab34c8909aabd6b9c2",
+    "d70bcfcf5158d32453ef94be0a88cd46d56cfdda419d44bcc814e279caf6a92f",
+    "c3ed7604fe99128247c895c5c722ed2ed6bc30a283ee723dead4a04c0a117093",
+    "5fc1c0c8ce4b416801766dd9cfe2410ba66420d53a80a63fbd9d1f0939e82342",
+    "e71255e1a130525b10b6349f5c04960e6310b42b70b7f42f201727a37b85ed5d",
+    "24d7e113fbb7e12afcc80512a37f74f1fe18b235fdd8110826acb8adc2b58737",
+    "55a88ea76ff7c2042104022e8b1ae8698fde7572ceddcd2d117a17ba7f932434",
+    "b14f08c6e28e184e397e6a3f8590367c72938b9e0e96379c24277bc1012f4fac",
+    "2393f802b447446a02ac9afa5d31eb1d228bcbdc3ed4630d7353f16a7f90e87e",
+    "f1aff62686582e67306106ade485f21d030c7a001f0a8fd3f9249b3b5bdb8832",
+    "2f4db6655d434695365f8665d8007c19d518ccfa146b8ed37cb3553c056b8a8c",
+    "6ae56944e838cf3202f122855ae11eeaeaa8fe0889af8abca86d130a96916477",
+    "959a3f649099dd5cd78a17670843a95ae508668fa764f3543250d10cc64f1f54",
+    "d813dbdc245cdda2f1f6d4196b383c46b515f0e417e048a00942ae6446e4b4fb",
+    "4009660b140a52676741cd450e2780bc7de2e6facd8c46c2ea5fcae8f5071234",
+    "9f7a6687d1604c322c90c8b6a7237175325f49862d0d86244dad7cfba87eb780",
+    "24d1ab13d9531982682f9d5fbc7ed6addb34b6c14528842b9968e1d5ba7f5c8d",
+    "494e961fca12b7f39385724e27e76eb131b03c0f89b8213d0dfb3deff3b112cd",
+    "01f78d880ba880bfd0a1eae7feddc0801a3b474f50e9261b4b3644fef1d814a3",
+    "515630d957c267aabfc53101ad8eb99ed94cae0addfcf73efda6a7961d59db17",
+    "10dd404e0134d57f2e425ac1ca3afb6eab10a19a88f95b761f67668d0e934992",
+    "b801beea32f5cc74a2fe1949c2e1cdee8c328e752765032ea5e7617e52afabda",
+    "7a77b265a4c4f9e52d5dc989de2efd35b5ea67a6b1a1f756c36a0b8f2571a984",
+    "71ab2e7b014f797762dbdf5723ad6d4e5f0d32ff47e2317fbab89ff7f4c22375",
+    "68cab180bf849d771f3e804bcbf06d3e12bd319b9c303fea50d675316a5573f6",
+    "9f29d69b58bbb23b75d880ab70594ea95985eb505eae319a9af3718ccd3d883d",
+    "7e21a15dcd58e01ef252a9ba4538355d406e484269ae4477548099c738d9b7ca",
+    "074934f79fb68cc1b1eaa5c22a6012b8015d484f7b733d63313a9afa55cf0899",
+    "2d78b0d6e9ec0bfb723887dd2b94ac68ae38765dbf2a2f2e56014e793bf8f224",
+    "1356f60e5b843cb562cce24ccc54d806742c98955cfd91d86b869961f11b1806"
+  ],
+  "limitations": [
+    "Samples one partial realistic battle; no battle completion or throughput qualification",
+    "Each sampled graph covers engine,host and source RNG; this is not the complete ordered battle event gate",
+    "Only diagnostic serialization/representation reuse differs; source callbacks are executed normally between samples",
+    "Other concurrent processes may affect elapsed times",
+    "Returned graph records are exporter-owned immutable representations; consumers must not mutate them"
+  ],
+  "baselineSha256": "de47be9fc5be69deb9576dbeb6780e2af1f8f874a3646acf4737938ab16f780d",
+  "execArgv": [
+    "--jitless"
+  ]
+}

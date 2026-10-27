@@ -10,9 +10,12 @@ import { instantiateScenario } from './scenario-factory.mjs';
 const root=resolve(import.meta.dirname,'..'),frames=Number(process.argv[2]??20);
 if(!Number.isSafeInteger(frames)||frames<1||frames>1000)throw Error('Usage: node tools/benchmark-trace-export.mjs [frames<=1000]');
 let source=await readFile(resolve(root,'tools/battle-trace-portable.js'),'utf8');
-const descriptorExperiment=process.argv[3]==='descriptors';
+const descriptorExperiment=process.argv[3]==='descriptors',brandExperiment=process.argv[3]==='brands';
 let baseline=source;
-if(descriptorExperiment){
+if(brandExperiment){
+ const {gunzipSync}=await import('node:zlib');
+ source=gunzipSync(await readFile(resolve(root,'benchmarks/fixtures/trace-brand-memo/lazy-trail.js.gz'))).toString('utf8');
+}else if(descriptorExperiment){
  source=source.replace('var descriptor = Object.getOwnPropertyDescriptor;','var descriptor = Object.getOwnPropertyDescriptor;\n    var descriptorsOf = Object.getOwnPropertyDescriptors;').replace('var keys = ownKeys(value);\n                for (var ki = 0; ki < keys.length; ki++) {\n                    var key = keys[ki], propertyDescriptor = descriptor(value, key);','var descriptorMap = descriptorsOf(value), keys = ownKeys(descriptorMap);\n                for (var ki = 0; ki < keys.length; ki++) {\n                    var key = keys[ki], propertyDescriptor = descriptorMap[key];');
 }else{
 for(const [from,to] of [['previous=propertyCache.get(key)','previous=null'],['previousNode=nodeCaches.get(value)','previousNode=null'],['cached=identityHashes.get(node)','cached=null']]){
@@ -43,7 +46,7 @@ for(let frame=-2;frame<frames;frame++){
 }
 const sum=name=>samples.reduce((total,sample)=>total+sample[name],0);
 const report={version:1,kind:'diagnostic-exporter-comparison',qualifiesForThroughputTarget:false,scenario:wire.inputSha256,frames,node:process.version,
- sourceSha256:digest(source),baseline:descriptorExperiment?'same cached walker using individual descriptor reads':'same complete descriptor walker with property/node/hash reuse disabled and uncached DataView bits',
+ sourceSha256:digest(source),baselineSha256:digest(baseline),execArgv:process.execArgv,baseline:brandExperiment?'production descriptor walker without experimental per-snapshot prototype-brand memoization':descriptorExperiment?'same cached walker using individual descriptor reads':'same complete descriptor walker with property/node/hash reuse disabled and uncached DataView bits',
  referenceMs:sum('reference'),candidateMs:sum('candidate'),ratio:sum('reference')/sum('candidate'),samples,stateHashes:hashes,
  limitations:['Samples one partial realistic battle; no battle completion or throughput qualification','Each sampled graph covers engine,host and source RNG; this is not the complete ordered battle event gate','Only diagnostic serialization/representation reuse differs; source callbacks are executed normally between samples','Other concurrent processes may affect elapsed times','Returned graph records are exporter-owned immutable representations; consumers must not mutate them']};
 await mkdir(resolve(root,'benchmarks/results'),{recursive:true});const stamp=new Date().toISOString().replaceAll(':','-');
