@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "status": "design_constraints_not_yet_enforced_by_a_compiler",
+  "default_number_representation": "ieee754_binary64",
+  "integer_specialization_requires": [
+    "All reachable inputs and intermediate results are integral",
+    "Bounds exclude overflow or explicitly reproduce JavaScript conversion semantics",
+    "Negative zero, NaN, infinity and coercion behavior are preserved wherever observable"
+  ],
+  "preserve": [
+    "Evaluation order and short-circuit operand values",
+    "Object identity, aliasing and mutation visibility",
+    "Observable collection iteration order",
+    "Event ordering and tie breaking",
+    "RNG algorithm, state and consumption order",
+    "Missing, undefined and null distinctions wherever observable"
+  ],
+  "floating_point": {
+    "reassociation": false,
+    "implicit_fused_multiply_add": false,
+    "fast_math": false,
+    "transcendentals_require_reference_runtime_compatibility": true
+  },
+  "parallelism": {
+    "independent_battles": "Candidate if all mutable state including RNG is isolated",
+    "simd_gpu_matrix": "Candidate only with equivalent operation order, rounding and state visibility",
+    "parallel_reductions": "Require a separate equivalence argument; default disabled"
+  },
+  "transformation_record_requires": [
+    "Source locations and supported execution domain",
+    "Semantic preconditions and evidence establishing them",
+    "Conservative fallback or explicit rejection when preconditions are unavailable",
+    "Differential validation and performance measurements"
+  ]
+}
