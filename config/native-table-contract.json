@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "loader": "tools/bootstrap-source.mjs#loadBootstrapTableSync",
+  "packedDecoder": "tools/bootstrap-packed.mjs",
+  "decoderProvenance": "config/bootstrap-packed-config.json",
+  "literalSources": [
+    { "file": "src/srcmodule/game_battle.js", "scope": "all" },
+    { "file": "src/srcmodule/game_util.js", "scope": "all" },
+    { "file": "src/srcmodule/game_ui_1.js", "scope": "battle_setup_helpers", "start": 4440000, "end": 4505000 }
+  ],
+  "scenarioCatalog": "tools/scenario-factory.mjs",
+  "additionalTables": [
+    "Unit", "UnitQualityLevel", "UnitQuality", "UnitRankLevel", "UnitRank", "UnitLevel",
+    "Equip", "EquipQuality", "Signature", "SignatureLevel", "SignaturePower",
+    "Pet", "PetQualityAttr", "PetTalentLib", "PetTalentCatg", "PetBook",
+    "ParamBattleMode", "Param", "Skill", "SkillLevel", "Buff", "HeroRankBuff", "UnitTag",
+    "SoundBattle", "SoundEffect", "BattleField", "Stage", "StageCompanionsTest",
+    "StageBattleIdx", "StageBattleIndex", "StageBattle1", "StageBattleChap1"
+  ],
+  "dynamicBattleIds": [16001],
+  "output": "work/native-tables.json",
+  "cacheMetadata": "work/native-tables.meta.json",
+  "serialization": "Pure JSON; finite binary64 values round-trip through JSON.stringify; negative zero is emitted as literal -0",
+  "missingPolicy": "Missing or undecodable tables are recorded, never replaced with invented rows; native getDataTable must fail if a missing table is actually accessed",
+  "allLiteralOption": "--all-literals scans every supplied src/srcmodule JavaScript file instead of only prioritized sources"
+}
