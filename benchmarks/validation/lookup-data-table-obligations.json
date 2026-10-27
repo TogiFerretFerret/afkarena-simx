@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "passed": true,
+  "kind": "Source-bound lookup semantics and future slot-plan obligations",
+  "enabled": false,
+  "registeredInCompilerConfiguration": false,
+  "qualifiesFor10000Target": false,
+  "source": {
+    "file": "src/srcmodule/game_util.js",
+    "fileSha256": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "start": 639459,
+    "end": 639793,
+    "sha256": "ee1e9efd9b80f498e8556d7aeda5714386b3001cc0687260d401318558257846",
+    "text": "function(){var e=arguments;if(0==e.length)return null;var t=null;try{t=ed.getDataTable(e[0])}catch(t){for(var r=\"getDataTableCatchError:\",i=0;i<e.length;i++)r+=\" Param\"+i+\": \"+e[i];return ed.logbugly(r),null}for(var a=e[1],n=[],o=2;o<e.length;o++){var s=e[o];if((s||0===s)&&(n.push(s),!(t=t[s])))return void window.wx}return a?t[a]:t}"
+  },
+  "loader": {
+    "file": "tools/emit-native-oracle.mjs",
+    "fileSha256": "5308cd3bebe6b11459a9e67070b0049138f62aa3c6c528d1ebf56427e5f80c03",
+    "start": 23521,
+    "end": 24327,
+    "sha256": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5"
+  },
+  "trace": {
+    "file": "tools/battle-trace-instrumentation.js",
+    "sha256": "2c0d632a7d527b48247718f9f65ff486bbb1824fbf237c62a172a09579c0b989",
+    "finding": "getDataTable/logbugly receive logical code identities only. Current event wrappers do not wrap either helper or lookupDataTable. Future tracing changes require re-audit; preserve the public lookup function object/source metadata."
+  },
+  "measuredEvidence": {
+    "file": "benchmarks/validation/native-measured-perf-source.json",
+    "sha256": "bb20e447db0c2b3b9ed8697f41401c24d0f7528bb9a8d5c82b544daf2d2f03a0",
+    "finding": "Measured CPU evidence prioritizes Unit.update/addBuff/constructors/copy and property access. No lookup value-cache implementation or speedup is justified by this assessment."
+  },
+  "cases": [
+    {
+      "name": "zero_arguments_do_not_read_loader",
+      "passed": true,
+      "value": null,
+      "events": [],
+      "obligation": "Return null before any source loader lookup or callback for zero arguments. Native admission itself must remain getter-free."
+    },
+    {
+      "name": "false_keys_skip_but_negative_zero_indexes",
+      "passed": true,
+      "value": 17,
+      "events": [],
+      "obligation": "Path keys use s || s===0: false, empty string, null, undefined and NaN skip; both signed zeros index property 0."
+    },
+    {
+      "name": "falsy_field_returns_current_row",
+      "passed": true,
+      "value": true,
+      "events": [],
+      "obligation": "The second argument uses truthiness, not property-key existence. A false field selects the current row object."
+    },
+    {
+      "name": "returned_row_alias_is_canonical",
+      "passed": true,
+      "value": 7,
+      "events": [],
+      "obligation": "Raw performance-mode table rows escape and are mutable. Do not share a cloned result or treat prior guarded coverage as a general immutability proof."
+    },
+    {
+      "name": "raw_leaf_changes_after_cold_lookup",
+      "passed": true,
+      "value": {
+        "cached": 1,
+        "current": 2
+      },
+      "events": [],
+      "obligation": "Value memoization is invalid even if root-set identity and function identity stay unchanged. A slot-plan cache must load current values on every hit."
+    },
+    {
+      "name": "raw_child_replacement_under_same_lease",
+      "passed": true,
+      "value": {
+        "same": false,
+        "current": 2
+      },
+      "events": [],
+      "obligation": "A retained root-set does not prevent replacement of descendants. Resolve nodes from fresh canonical root slots, not stored raw VM pointers."
+    },
+    {
+      "name": "signed_zero_leaf_change",
+      "passed": true,
+      "value": {
+        "cached": "8000000000000000",
+        "current": "0000000000000000"
+      },
+      "events": [],
+      "obligation": "Numeric cache validation needs raw bits; === merges signed zeros, and Object.is alone merges distinct NaN payloads. Current slot reads avoid stale numeric snapshots."
+    },
+    {
+      "name": "own_getter_added_after_cold_lookup",
+      "passed": true,
+      "value": 3,
+      "events": [
+        "leaf-getter"
+      ],
+      "obligation": "Shape/descriptor changes must reject before source effects. Descriptor preflight must first reject Proxy/exotic objects without invoking their traps."
+    },
+    {
+      "name": "inherited_path_getter_is_observable",
+      "passed": true,
+      "value": 8,
+      "events": [
+        "inherited-getter"
+      ],
+      "obligation": "Only own data paths can be admitted. An inherited getter may run callbacks, mutate future keys or throw."
+    },
+    {
+      "name": "falsy_intermediate_still_reads_wx",
+      "passed": true,
+      "events": [
+        "wx-getter"
+      ],
+      "obligation": "return void window.wx always returns undefined but must execute the wx read and any getter. Do not cache misses or early-falsy paths."
+    },
+    {
+      "name": "push_override_is_observable",
+      "passed": true,
+      "value": 1,
+      "events": [
+        "push:row"
+      ],
+      "obligation": "The otherwise unused n.push is observable. Guard the actual inherited push data function and fresh-array prototype chain before eliding it."
+    },
+    {
+      "name": "native_push_still_runs_inherited_index_setter",
+      "passed": true,
+      "value": 1,
+      "events": [
+        "index-setter:row"
+      ],
+      "obligation": "Original native push is insufficient: Set-style append can invoke inherited indexed setters. Reject digit-leading own keys on Array/Object prototypes and changed chains."
+    },
+    {
+      "name": "object_prototype_index_setter",
+      "passed": true,
+      "value": 1,
+      "events": [
+        "object-index-setter:row"
+      ],
+      "obligation": "The indexed append guard must cover Object.prototype as well as Array.prototype."
+    },
+    {
+      "name": "push_precedes_key_coercion",
+      "passed": true,
+      "value": 1,
+      "events": [
+        "push",
+        "key-coercion"
+      ],
+      "obligation": "Reject coercing keys before any effect; original fallback must retain push-before-ToPropertyKey ordering."
+    },
+    {
+      "name": "unchanged_loader_identity_is_not_purity",
+      "passed": true,
+      "value": 1,
+      "events": [
+        "has-own:Test"
+      ],
+      "obligation": "The emitted loader dynamically reads Object.prototype.hasOwnProperty.call. Guard the entire property/call chain, not just ed.getDataTable identity."
+    },
+    {
+      "name": "loader_can_change_push_before_loop",
+      "passed": true,
+      "value": 1,
+      "events": [
+        "new-push:row"
+      ],
+      "obligation": "An entry-time push guard is insufficient if any admitted loader/path operation can run user code before later pushes. Prove the complete admitted path callback-free."
+    },
+    {
+      "name": "getter_exception_identity_escapes",
+      "passed": true,
+      "value": true,
+      "events": [],
+      "obligation": "The try/catch covers only getDataTable; path/field errors propagate by identity. Never replay the source after partial effects."
+    },
+    {
+      "name": "loader_error_logs_all_arguments_then_null",
+      "passed": true,
+      "value": null,
+      "events": [
+        "getDataTableCatchError: Param0: Test Param1: n Param2: row"
+      ],
+      "obligation": "Loader exceptions run ordered argument-string coercions and logbugly; its return value is discarded. Unsupported admission must fall back before calling the loader."
+    }
+  ],
+  "conclusion": [
+    "Do not implement generic value memoization. Worker root retention proves lifetime, not immutability of raw performance-mode rows. Every workload still needs its guarded fidelity gate.",
+    "A possible native slot-plan cache stores keys/SymbolIDs/slot offsets, guards current classes and own data descriptors, and loads current nodes/values through GC-aware canonical roots every time. It must not retain unrooted VM pointers or obsolete descendant aliases.",
+    "Native class-cache rooting remains an implementation blocker: any stored HiddenClass reference must use supported traced/weak runtime cache storage; stable class pointers cannot be assumed across moving GC.",
+    "Proxy/exotic detection and every admission check must be getter-free and precede source effects. Unsupported inputs execute the original once; no fallback after partial calls.",
+    "Immutable qualification Proxies require separate source-bound handler/counter/lazy-proxy proofs. No proxy-counter synthesis is implemented or approved here.",
+    "Skip unused path arrays or loader calls only after proving all relevant dynamic intrinsic/prototype chains and admitted own-data operations callback-free. Keep original warnings/errors/coercions/order and function metadata."
+  ],
+  "scope": "18 directed source executions establish concrete obligations and counterexamples, not a native optimization, complete guard proof, broad battle qualification, or performance result.",
+  "producer": {
+    "file": "tools/audit-lookup-data-table.mjs",
+    "sha256": "26020d53e257577861b94971ebb2e10617c13e332d4454cdc30793e51477fe96"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "execArgv": [
+      "--jitless"
+    ]
+  }
+}
