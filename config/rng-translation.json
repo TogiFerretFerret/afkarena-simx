@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_util.js",
+  "translation": "shape_checked_intrinsic_template",
+  "formalProof": false,
+  "domain": [
+    "Seeds and RNG state are JavaScript Number values, represented as binary64",
+    "multiplier and moder retain their source initializers; Math.floor and Math.pow are standard intrinsics",
+    "Logging and error observers do not throw, reenter, mutate RNG state, or affect battle decisions",
+    "Observer events preserve numeric values, callback order and visible RNG state; exact JS log-string rendering is not implemented",
+    "NaN payload and sign are not specified by JS; other numeric outputs retain their bits"
+  ],
+  "arithmetic": {
+    "multiplier": 25,
+    "modulus": 34359738337
+  },
+  "constants": {
+    "multiplier": {
+      "start": 287413,
+      "end": 287415
+    },
+    "moder": {
+      "start": 287422,
+      "end": 287439
+    }
+  },
+  "functions": [
+    {
+      "name": "ed.rand",
+      "start": 287469,
+      "end": 287582,
+      "sha256": "a2bfcfd578f8e22c5315df011a002ca0439bd02f3b67740d0c6d01b3e8f65973"
+    },
+    {
+      "name": "ed.randDontChangeSeed",
+      "start": 287605,
+      "end": 287658,
+      "sha256": "56b36bfe72896c6565c14611fcb4e1059b8cba43d0b16cbe180b07ee023ba19b"
+    },
+    {
+      "name": "ed.srand",
+      "start": 287668,
+      "end": 287820,
+      "sha256": "ede60c6120d82417c9d6a544dce9c82d018c0ba9ca4e87d6a45d036de693e3dc"
+    }
+  ]
+}

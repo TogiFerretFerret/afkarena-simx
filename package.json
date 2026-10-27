@@ -6,7 +6,8 @@
     "test": "node --test tools/tests/*.test.mjs",
     "index:source": "node tools/source-index.mjs work/source-index.json",
     "generate:numeric": "node tools/lower-numeric.mjs",
-    "check:generated": "node tools/lower-numeric.mjs --check"
+    "check:generated": "node tools/lower-numeric.mjs --check && node tools/generate-rng.mjs --check",
+    "generate:rng": "node tools/generate-rng.mjs"
   },
   "repository": {
     "type": "git",
