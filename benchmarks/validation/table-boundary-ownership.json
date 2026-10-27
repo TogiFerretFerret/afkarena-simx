@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "passed": true,
+  "activeAdapterChanged": false,
+  "qualifiesFor10000Target": false,
+  "scope": "Source ownership argument and focused raw/old/limited-fixed transparency checks. No hardened adapter or cache is activated.",
+  "inputs": {
+    "tools/qualification-table-membrane.js": {
+      "sha256": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41"
+    },
+    "tools/bootstrap-runtime.mjs": {
+      "sha256": "8e72cf52358c7cee53beb9063cdcc74f54bfe82496491f5e4b8ce2afb8eaf59f"
+    },
+    "tools/emit-native-oracle.mjs": {
+      "sha256": "5308cd3bebe6b11459a9e67070b0049138f62aa3c6c528d1ebf56427e5f80c03"
+    }
+  },
+  "toolSha256": "5ff2c74912b63d95bde35b2e233f8ae492e826031085f6067650d4e5d80646d3",
+  "candidateHashes": {
+    "localMap": "be08c4c8f2e3ed7a96d7c8492712f6a568e4af22ce686c8be36a2238c2771e09",
+    "limitedCapturedIntrinsics": "4c91ee9a5ea12552cf175b9bfeef5d5d212b77ff119ac50921a9ae18d57ed21a"
+  },
+  "fixture": {
+    "values": [
+      true,
+      true,
+      true,
+      2,
+      "1132b1f7ef90ef0338aa49cfb1a6bda3d86d3c0157d40eeb52324bcdaffe161f"
+    ],
+    "stats": {
+      "roots": 1,
+      "nodes": 4,
+      "proxies": 4,
+      "gets": 6,
+      "descriptors": 1,
+      "writes": 0,
+      "failures": 0,
+      "clean": true,
+      "firstFailure": null
+    }
+  },
+  "transparency": [
+    {
+      "name": "Reflect.get",
+      "raw": {
+        "value": 1,
+        "events": ""
+      },
+      "old": {
+        "value": 1,
+        "events": "get;"
+      },
+      "limitedFixed": {
+        "value": 1,
+        "events": ""
+      }
+    },
+    {
+      "name": "WeakMap.prototype.set",
+      "raw": {
+        "value": 1,
+        "events": ""
+      },
+      "old": {
+        "value": 1,
+        "events": "weakSet;weakSet;weakSet;"
+      },
+      "limitedFixed": {
+        "value": 1,
+        "events": ""
+      }
+    },
+    {
+      "name": "Proxy constructor",
+      "raw": {
+        "value": 1,
+        "events": ""
+      },
+      "old": {
+        "value": 1,
+        "events": "proxy;"
+      },
+      "limitedFixed": {
+        "value": 1,
+        "events": ""
+      }
+    },
+    {
+      "name": "Array.isArray",
+      "raw": {
+        "value": 1,
+        "events": ""
+      },
+      "old": {
+        "value": 1,
+        "events": "arrayIsArray;"
+      },
+      "limitedFixed": {
+        "value": 1,
+        "events": ""
+      }
+    },
+    {
+      "name": "Object.isExtensible",
+      "raw": {
+        "value": 1,
+        "events": ""
+      },
+      "old": {
+        "value": 1,
+        "events": "isExtensible;"
+      },
+      "limitedFixed": {
+        "value": 1,
+        "events": ""
+      }
+    }
+  ],
+  "lateInstallation": {
+    "raw": {
+      "value": 1,
+      "events": ""
+    },
+    "limitedFixed": {
+      "value": 1,
+      "events": "get;"
+    },
+    "transparent": false
+  },
+  "privateArrayPrototypeCounterexample": {
+    "leakedRawRecord": true,
+    "error": "TypeError"
+  },
+  "ownership": {
+    "localMap": {
+      "candidate": "Replace only register-local graph-validation WeakMap with Map.",
+      "argument": [
+        "Every successful scalar object visit appends its record to pending; record.raw strongly references its key.",
+        "External digest/isProxy callbacks occur while pending is still needed for publication and retains every validated raw key.",
+        "With callback-free trusted private intrinsics, no outside observer runs between final pending publication and register returning.",
+        "Neither local nor scalar escapes into a published record or makeProxy closure. Final local.get(root) only obtains the returned root proxy; the local Map dies with registration."
+      ],
+      "conditions": [
+        "Map/WeakMap constructors and methods must be trusted native captures; swapping user-hookable global container types is not a general semantic proof.",
+        "The small fixture matches all raw counters and metadata, but full20 report parity and native GC/performance evidence remain required before activation."
+      ]
+    },
+    "persistentMaps": {
+      "genericAPIEligible": false,
+      "reason": "A caller may release wrapped roots while retaining the boundary. Persistent Map records would pin otherwise unreachable graphs; WeakMap ephemerons do not.",
+      "workerLoaderArgument": "Current source tables Map and emitted __nativeTables/__nativeWrappedTables caches have no eviction. Eligibility requires this exact worker lifecycle, immutable graph edges and absence of aliases that detach nodes to be proved and enforced.",
+      "privacyWarning": "The emitted __nativeTables binding is top-level state; privacy against arbitrary global reflection has not been established."
+    }
+  },
+  "requiredHardening": [
+    "Capture trusted intrinsics before any original/game code or extension can mutate them. Comparing already-mutated globals cannot recover pristine natives.",
+    "Protect private raw-record containers against inherited numeric setters. Capturing Array.push alone still invokes inherited setters.",
+    "Treat options.isProxy as an explicit trusted raw-receiving host capability.",
+    "Audit private serialization, path and metadata operations for inherited hooks before claiming complete raw-table transparency.",
+    "Establish a source-backed private loader and lifetime boundary before read caching or persistent strong-map substitution."
+  ],
+  "fullNode20": {
+    "executed": false,
+    "requiredBeforeActivation": true,
+    "reason": "Only scoped proposals were exercised. The active adapter stays frozen and concurrent native GC/RSS trials take priority."
+  },
+  "correction": "Callbacks caused only by diagnostic lookups of replaced Reflect.get/private WeakMap methods are instrumentation-induced effects, not original raw-table read semantics that fidelity should preserve."
+}
