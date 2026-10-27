@@ -6,6 +6,8 @@ import { spawnSync } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { createBootstrapRuntime } from './bootstrap-runtime.mjs';
 import { instantiateScenario } from './scenario-factory.mjs';
+import { installBootstrapRenderScene } from './bootstrap-render-scene.mjs';
+import { closeSourceSelection } from './native-source-closure.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 const args=process.argv.slice(2);
@@ -20,13 +22,14 @@ if(!['all','final','checksum'].includes(captureMode))throw new Error('Capture mu
 if(!['all','battle','battle-core','observed'].includes(scope))throw new Error('Scope must be all, battle, battle-core, or observed');
 if(!Number.isSafeInteger(battles)||battles<1||!Number.isSafeInteger(warmup)||warmup<0)throw new Error('Invalid battle count');
 const sha=value=>createHash('sha256').update(value).digest('hex');
-const adapterFiles=['tools/emit-native-oracle.mjs','tools/bootstrap-runtime.mjs','tools/bootstrap-source.mjs','tools/bootstrap-packed.mjs','tools/bootstrap-realm.mjs','tools/bootstrap-callbacks.mjs','tools/scenario-factory.mjs','tools/bootstrap-host.js','tools/oracle-clock.js','config/bootstrap-packed-config.json'];
+const adapterFiles=['tools/emit-native-oracle.mjs','tools/native-source-closure.mjs','tools/bootstrap-runtime.mjs','tools/bootstrap-source.mjs','tools/bootstrap-packed.mjs','tools/bootstrap-realm.mjs','tools/bootstrap-callbacks.mjs','tools/bootstrap-declarations.mjs','tools/bootstrap-render-scene.mjs','tools/scenario-factory.mjs','tools/bootstrap-host.js','tools/oracle-clock.js','config/bootstrap-packed-config.json'];
 const adapterInputs=Object.fromEntries(await Promise.all(adapterFiles.map(async file=>[file,sha(await readFile(resolve(root,file)))])));
 const wireText=await readFile(scenarioPath,'utf8'),wire=JSON.parse(wireText);
 const entropy=[];
 const runtime=await createBootstrapRuntime({hostRandom:()=>{const value=Math.random();entropy.push(value);return value;},hostClock:{mode:'record',tape:[]}});
 if(!runtime.clock)throw new Error('Copied source runtime must expose recorded hostClock before native emission');
 if(!runtime.sourceRecords)throw new Error('Copied source runtime must expose its exact sourceRecords');
+if(args.includes('--render-scene'))await installBootstrapRenderScene(runtime);
 
 function __nativeBits(value){
   var data=new DataView(new ArrayBuffer(8));data.setFloat64(0,value,false);var result='';
@@ -102,20 +105,7 @@ if(scope!=='all'){
   if(scope==='battle'||scope==='battle-core')for(const map of maps)for(const[name,list]of map)if(list.some(r=>scope==='battle-core'?r.file.endsWith('/game_battle.js'):baseline.has(r.file.split('/').at(-1))))selected.add(name);
   function parents(name){for(let p=name.lastIndexOf('.');p>0;p=name.lastIndexOf('.',p-1))selected.add(name.slice(0,p));}
   for(const name of [...selected])parents(name);
-  if(scope==='battle'||scope==='battle-core'){
-    let changed=true;
-    while(changed){
-      const before=selected.size;
-      for(const map of maps)for(const[name,list]of map){
-        if(!selected.has(name))continue;
-        for(const record of list){
-          for(const ref of record.source.matchAll(/\bed(?:\.[A-Za-z_$][\w$]*)+/g)){selected.add(ref[0]);parents(ref[0]);}
-          for(const ref of record.source.matchAll(/\b[A-Za-z_$][\w$]*\b/g))if(records.globals.has(ref[0]))selected.add(ref[0]);
-        }
-      }
-      changed=selected.size!==before;
-    }
-  }
+  if(scope==='battle'||scope==='battle-core')for(const name of closeSourceSelection(records,selected))selected.add(name);
   records.definitions=new Map([...records.definitions].filter(([name])=>selected.has(name)));
   records.globals=new Map([...records.globals].filter(([name])=>selected.has(name)));
 }
@@ -126,6 +116,7 @@ const cocosManifest=JSON.parse(await readFile(resolve(root,'config/bootstrap-coc
 const cocosSource=await readFile(resolve(root,cocosManifest.file),'utf8');
 assert.equal(sha(cocosSource),cocosManifest.sha256);
 const capturedHosts=records.hostSources||[];
+for(const record of capturedHosts)adapterInputs[record.file]=sha(record.source);
 const hostSource=capturedHosts.find(r=>r.phase==='before-original-initializers')?.source??await readFile(resolve(root,'tools/bootstrap-host.js'),'utf8');
 const clockSource=await readFile(resolve(root,'tools/oracle-clock.js'),'utf8');
 if(runtime.clockProvenance)assert.equal(sha(clockSource),runtime.clockProvenance.sha256,'Clock helper changed while reference was running; regenerate with a frozen helper');
@@ -219,6 +210,7 @@ try{
   put('var __nativeSourceSnapshot=('+snapshot+');var __nativeSnapshots=0;var __nativeScene={snapshot:function(){__nativeSnapshots++;return __nativeSourceSnapshot.apply(this,arguments);}};');
   put('function __nativeDrain(){'+drainBody+'}');
   put('var __nativeCallbacks={updateFrame:function(elapsed){resetClientCall();ed.battleEngine.update(elapsed);__nativeSnapshots=0;__nativeDrain.call(__nativeScene);return{queued:ed.clientCallCount,executed:__nativeSnapshots/2,pending:ed.clientCall_list.length};}};');
+  if(runtime.renderScene)put('('+runtime.renderScene.source+')(__nativeScene);');
   put('var __nativeRealmCopy='+realmCopy+';function importBootstrapValue(_context,value){return __nativeRealmCopy(value);}');
   put(instantiateScenario.toString());
   put(__nativeBits.toString());put(__nativePrimitiveState.toString());put(__nativeUnitState.toString());put(__nativeRun.toString());
@@ -227,8 +219,10 @@ try{
   put('__nativeClock.finish();if(__nativeEntropyIndex!==__nativeHostInputs.random.length)throw new Error("Unconsumed host random inputs: "+(__nativeHostInputs.random.length-__nativeEntropyIndex));');
   put('__nativeResult.hostInputConsumption={random:__nativeEntropyIndex,clock:__nativeClock.stats()};print(JSON.stringify(__nativeResult));');
 }finally{closeSync(fd);}
-const metadata={version:1,scope,captureMode,output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
-  adapterInputs,
+const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[])].map(record=>record.file).filter(Boolean));
+const sourceInputs=Object.fromEntries(await Promise.all([...sourceFiles].sort().map(async file=>[file,sha(await readFile(resolve(root,file)))])));
+const metadata={version:1,scope,captureMode,executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
+  adapterInputs,sourceInputs,
   sourceRuntime:{file:'tools/bootstrap-runtime.mjs',sha256:adapterInputs['tools/bootstrap-runtime.mjs'],executedFunctionSha256:sha(createBootstrapRuntime.toString())},
   definitionCount:records.definitions.size,globalCount:records.globals.size,factoryCount:allFactoryRecords.length,
   usedTableNames,
@@ -237,6 +231,7 @@ const metadata={version:1,scope,captureMode,output,outputSha256:sha(await readFi
   functionDeclarations:(records.functionDeclarations||[]).map(({source,...record})=>({...record,sha256:sha(source)})),
   cocos:cocosManifest,host:{file:'tools/bootstrap-host.js',sha256:sha(hostSource)},clock:{file:'tools/oracle-clock.js',sha256:sha(clockSource)},
   hostSources:capturedHosts.map(({source,...record})=>({...record,sha256:sha(source)})),
+  renderScene:runtime.renderScene?{sha256:sha(runtime.renderScene.source),functions:runtime.renderScene.functions,resources:runtime.renderScene.resources}:null,
   tableBundle:{file:tablesPath,sha256:sha(tableBytes),bytes:tableBytes.length,embedded:args.includes('--embed-tables')},
   hostInputs:{file:hostInputsPath,sha256:sha(JSON.stringify(hostInputs)+'\n'),randomCount:entropy.length,clockCount:runtime.clock.tape.length},reference:{file:referencePath,sha256:sha(JSON.stringify(reference)+'\n')},
   limitations:runtime.limitations,qualification:scope==='observed'?'Compiler plumbing only: observed factory keys for this exact source run; broader inputs may explicitly fail and this is not the full-domain throughput qualification':'Emitted static original-source factories; no throughput or whole-program equivalence claim until emitted Node and native executions match the copied source oracle'};
