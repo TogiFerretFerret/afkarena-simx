@@ -1,15 +1,16 @@
-import { readFile,writeFile,mkdir } from 'node:fs/promises';
+import { readFile,writeFile,mkdir,copyFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
 
 // Separate SHUnits share the JavaScript global environment. Factory modules
 // contain declarations only; initialize them in source order before the runner.
-export async function compileNativeUnits({root,metadata,input,output,compiler,ccOpt,binaryPools,run,sha,jobs=2}) {
+export async function compileNativeUnits({root,metadata,input,output,compiler,ccOpt,runnerOpt=ccOpt,reuseManifest,binaryPools,run,sha,jobs=2}) {
   assert.ok(Number.isSafeInteger(jobs)&&jobs>0&&jobs<=4,'Native compile jobs must be 1..4');
   const config=JSON.parse(await readFile(resolve(root,'config/native-compiler-static-hermes.json'),'utf8'));
   const build=resolve(root,'work/downloads/hermes-build');
   const include=resolve(root,'work/downloads',config.source.directory,'include');
   const units=[...metadata.factoryChunks.map((chunk,index)=>({...chunk,name:'factories_'+index})),{file:input,sha256:metadata.outputSha256,name:'runner'}];
+  assert.ok(units.length<=8,'Pinned SHRuntime ABI supports at most 8 SHUnits; combine source chunks before compiling');
   const directory=output+'.units';await mkdir(directory,{recursive:true});
   let next=0;
   async function worker(){
@@ -20,7 +21,17 @@ export async function compileNativeUnits({root,metadata,input,output,compiler,cc
       const env={...process.env};
       if(binaryPools){unit.poolDirectory=resolve(directory,unit.name+'.string-pools');await mkdir(unit.poolDirectory,{recursive:true});env.SHERMES_BINARY_STRING_DIR=unit.poolDirectory;}
       else delete env.SHERMES_BINARY_STRING_DIR;
-      unit.compileArgs=['-O','-c','-exported-unit='+unit.name,`-Wc,-${ccOpt},-g0,-ffp-contract=off`,unit.file,'-o',unit.object];
+      const reused=reuseManifest?.units.find(record=>record.name===unit.name);
+      if(reused){
+        assert.equal(unit.sha256,reused.sourceSha256,'Reused native unit has different source');
+        assert.equal(sha(await readFile(reused.object)),reused.objectSha256,'Reused native object changed');
+        assert.equal(reused.object,unit.object,'Resume requires the original dedicated unit directory');
+        unit.reusedObject=reused;continue;
+      }
+      const opt=unit.name==='runner'?runnerOpt:ccOpt;
+      assert.ok(['O0','Og','O1','O2','O3','Os'].includes(opt));
+      unit.compilerSha256=sha(await readFile(compiler));
+      unit.compileArgs=['-O','-c','-exported-unit='+unit.name,`-Wc,-${opt},-g0,-ffp-contract=off`,unit.file,'-o',unit.object];
       const result=await run(compiler,unit.compileArgs,unit.object+'.stdout',unit.object+'.stderr',env);
       assert.equal(result.code,0,await readFile(unit.object+'.stderr','utf8'));
     }

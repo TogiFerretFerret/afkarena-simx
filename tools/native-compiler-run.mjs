@@ -14,11 +14,15 @@ const input=resolve(root,option('--input','work/native-oracle.js'));
 const compiler=resolve(root,option('--compiler','work/downloads/hermes-build/bin/shermes'));
 const output=resolve(root,option('--output','work/native-oracle'));
 const ccOpt=option('--cc-opt','O1');
+const runnerOpt=option('--runner-opt',ccOpt);
 const binaryPools=!args.includes('--text-pools');
 const plumbing=args.includes('--plumbing');
 assert.ok(['O0','Og','O1','O2','O3','Os'].includes(ccOpt),'--cc-opt must be a supported GCC optimization level');
 const sha=contents=>createHash('sha256').update(contents).digest('hex');
 const metadata=JSON.parse(await readFile(input+'.metadata.json','utf8'));
+const resumePath=option('--resume-manifest',null);
+const reuseManifest=resumePath?JSON.parse(await readFile(resolve(root,resumePath),'utf8')):undefined;
+assert.ok(!reuseManifest||plumbing,'Explicit object resume is compiler plumbing until a fresh complete qualification');
 assert.equal(sha(await readFile(input)),metadata.outputSha256,'Emitted source changed after reference creation');
 const compilerSha256=sha(await readFile(compiler));
 async function dependencyStatus(){
@@ -54,7 +58,7 @@ if(binaryPools)compileEnv.SHERMES_BINARY_STRING_DIR=poolDirectory;
 else delete compileEnv.SHERMES_BINARY_STRING_DIR;
 const start=performance.now();
 const compiled=metadata.factoryChunks?.length
- ?await compileNativeUnits({root,metadata,input,output,compiler,ccOpt,binaryPools,run,sha,jobs:Number(option('--compile-jobs','2'))})
+ ?await compileNativeUnits({root,metadata,input,output,compiler,ccOpt,runnerOpt,reuseManifest,binaryPools,run,sha,jobs:Number(option('--compile-jobs','2'))})
  :await run(compiler,compileArgs,output+'.compile.stdout',output+'.compile.stderr',compileEnv);
 const compileMs=performance.now()-start;
 if(compiled.code!==0){console.error(await readFile(output+'.compile.stderr','utf8'));throw new Error(`Native compile failed (${compiled.code??compiled.signal})`);}

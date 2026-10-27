@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "scope": "Broad factory compiler plumbing; no simulated battle completed",
+  "status": "native initialization aborted before battle runner",
+  "diagnostic": "Too many SH units registered",
+  "compilationSucceeded": true,
+  "executionSucceeded": false,
+  "completedBattles": 0,
+  "qualifiesFor10000Target": false,
+  "input": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.js",
+    "sha256": "12369170a211a5d620531cfe970f828caee834d0ca3857a8226dc6efb81ac994",
+    "factories": 49353
+  },
+  "unitCount": 26,
+  "pinnedABIUnitCapacity": 8,
+  "abiSource": "include/hermes/VM/sh_runtime.h SHRuntime::units[8]; increasing it shifts later frame/stack field offsets and requires rebuilding native objects",
+  "executable": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-battle-chunks",
+    "bytes": 326893880,
+    "sha256": "18fbcde4021fd92503b09906a1e05b711421bc6de892ea99526df640f463474f"
+  },
+  "units": [
+    {
+      "name": "factories_0",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_0.o",
+      "sourceSha256": "25a2be87303bc84f17edfc3230aa3f272c242a432666b337222ff3eec3d543a6",
+      "objectSha256": "9073069a68e15981176c66578b0c8063e106e995217a437bfa77cc2470a6ea7c",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_1",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_1.o",
+      "sourceSha256": "5ace1a97ae79b75f56ac9d235d36dfdf0c93a013e966dee58866a738ae306e52",
+      "objectSha256": "2cb6ed0301ee41fcfc1afee9ff7d0339ec47b6d93b9abf3d471b6edd5cfd1c5b",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_2",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_2.o",
+      "sourceSha256": "6e551a6fdba558a2471797f9be226bd701599b8cffd2b0ebd69fc16839e24834",
+      "objectSha256": "7b95a5c4976322bb59b37737cebff1d54c1cd6c8ca3e4eb5fd4af54cbe00f73b",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_3",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_3.o",
+      "sourceSha256": "537e283d6e41bd652930d76c6994200d696f4301eaee73e74e30dd530e0621d7",
+      "objectSha256": "d25d2947c6adf352b16ca778fd31c01b8ec3feb74a1c318038de4a275da34c7b",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_4",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_4.o",
+      "sourceSha256": "95d17c279b61440416e766695cf80eff5a81116cb77e0234aafa96f25f8c006b",
+      "objectSha256": "273acb1d96e28515760fbfcf3a75eb6d10b1d62547ca302101caf25b7d5fcfcd",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_5",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_5.o",
+      "sourceSha256": "d18870875322c37543a568156940cf18797424aebd3168d0badd9e5230754cad",
+      "objectSha256": "d174b451afb4663e97dbf1e6c7cb82ad9fe6dd86f1273d6238981ccf0e47833d",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_6",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_6.o",
+      "sourceSha256": "599be672b35f8abfa225b4694a43d4318543bd167e934066d3530ee943e5330f",
+      "objectSha256": "6446effe844ecc083a5937fa9c58c5adcc776dc3b6f3748e449d966eae67441a",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_7",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_7.o",
+      "sourceSha256": "914d02f9789ff44da20d121126d01d966653f8b568ddb3b533870d316469e6a4",
+      "objectSha256": "d717ad45e154bbfac38f70fc1d44ce19e58950fa18a5c536b4051506b4de601b",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_8",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_8.o",
+      "sourceSha256": "e78ddc923f8c91f74c4efda486391d4b202898e64eedcee9b0c61a5f419a4b98",
+      "objectSha256": "1f488d34a98d7950a6d457f875d9e20c09e4762541d32f4d421b6688776c309e",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_9",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_9.o",
+      "sourceSha256": "714b3f052f15a94b704503781d6753ae920ae659d403a4c1fc56e769d3d4bd0c",
+      "objectSha256": "b2509ea1941e9d1cf52c867f00c1e61e689b6a1c8f8ef17518b0849e83c9442d",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_10",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_10.o",
+      "sourceSha256": "c2350577c840c76542e2373de79817c89e16e6801328d0247f97cfa573b88f6e",
+      "objectSha256": "2850faf4088ff585bae1b2e91a4999bbb20c3d8fb92d05986fa5191d59bdef2c",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_11",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_11.o",
+      "sourceSha256": "9022b6c4b16df8301c265328f3a0cc7ba6f082f723ce6fc8e87474e077332b3a",
+      "objectSha256": "a12f4eb51caaeb82ff20fdee035fe8f914df26978ead0b5e7735d9d7f3db4c94",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_12",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_12.o",
+      "sourceSha256": "008beea5a15b323836c91065e6e67c45584271fa6b23893e5ecef991c6afa680",
+      "objectSha256": "662ce1867cbeae8315244ec57da57aad1a7f130f17bc2bc1d97e32ea8ddb0d7a",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_13",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_13.o",
+      "sourceSha256": "a3f23ff9f1b52700bbe61b921b164a3717358a0afbe99f29806d9056e1f96c57",
+      "objectSha256": "d1f3225ff7012382db297b2c6509db915865315032b5348c8a620c48031dbaa9",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_14",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_14.o",
+      "sourceSha256": "f7648748a9fddc6de5745aa3d67732f4e1a634dd5788a662aeaf04fadb016a63",
+      "objectSha256": "9e5939b38308c675661932a3bfa39f2f9b065b75b7cbfef072e061bd52eba0ea",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_15",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_15.o",
+      "sourceSha256": "4cb090733ebb02868dcb0a2564065a62ad0030f10c3ecc203859854b753c38ca",
+      "objectSha256": "c5de3f8cc7f4d7cde462b684ac2e3baba3d1bfb689a1835b64006c7974e4ade1",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_16",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_16.o",
+      "sourceSha256": "c6c4229b3b919b60d60c3662d57ddc1075ee2d25a3a3761877181c0e78b2a25c",
+      "objectSha256": "ffbbbe8618ffad45205c48cb14b48fd68d3e53376a460517031d2794258c27eb",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_17",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_17.o",
+      "sourceSha256": "dd2907bdc50e3a640d8459dbb5f798fe3c6da7966670d0e794669c8f5248ce3a",
+      "objectSha256": "69536a7618eac8303dd3d49d6ee1912280f950d5a038b573689ad4064066ecd7",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_18",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_18.o",
+      "sourceSha256": "1ae988b1fe11494253375ce1680532a12b417bf5359a02f2cc865ca05e2a2329",
+      "objectSha256": "af20692f2b890a085091def792bbdf656e807cd65bc64bd7c6396bfa64b1e586",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_19",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_19.o",
+      "sourceSha256": "b34dc7eaa0fb53b0f801e8f2dfa51a8e40f4b3c87e11ae8b78d2e2019caf42de",
+      "objectSha256": "5a346a1b70fa20b80bb8ea7221022a887f5e1f8d9c7a623aa5272ddb8dc08462",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_20",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_20.o",
+      "sourceSha256": "2c83e4910fe5ba9df0c45256c3d5657347e4848c3fb9efd28dd3cab6de4dcd5f",
+      "objectSha256": "16e34b29abc79d3e725353bd743cf6936fbeac1494f08524807c80c2a372a408",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_21",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_21.o",
+      "sourceSha256": "201fa9c01b630673464107720d3cd54111aa23ba3e35ccee6fcc253bda266f12",
+      "objectSha256": "38240c8828f8ef107810af1db83c090322e35948c7ea27ac745c000b63613666",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_22",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_22.o",
+      "sourceSha256": "6f4cca40a3443b9c285d2fdd19e057e38dec50daa5c286ce0590cd44b6e0b9d7",
+      "objectSha256": "b064034ddf727b9b45e053a2ad1f200c40a29ef47ee7fd65c686f9746f656f88",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_23",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_23.o",
+      "sourceSha256": "8a5302168072bee5046285e208ceac5e64b85a364a59afca0eac38d7d1dba3dc",
+      "objectSha256": "e07faff9d59e6c20276960d1e8af91a863bb3b351ce8986ede1b8cad45e80df4",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "factories_24",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/factories_24.o",
+      "sourceSha256": "70e1a8bc7ba525a8fee5c7166ccc83b925915fb5c641e2344fb006c6663aab0e",
+      "objectSha256": "42153e1691d6cc60e2e5921450c6012af9fa269ab5720d996397063145297736",
+      "compilerSha256": "a0a92dd5b42ea924e7c79be7781e0f0854517cbe86f114289b965d4d7a230d1a",
+      "ccOpt": "O1"
+    },
+    {
+      "name": "runner",
+      "object": "/workspace/afkarena-simx/work/native-oracle-battle-chunks.units/runner.o",
+      "sourceSha256": "12369170a211a5d620531cfe970f828caee834d0ca3857a8226dc6efb81ac994",
+      "objectSha256": "47e82a5d159fb61dd986a198073b5ea4c03902a2489db0a2b408f03f4ccd5720",
+      "compilerSha256": "19034c163046bb1d9973dcc85a1176bd77385dae8655be3084477b3883282dc1",
+      "ccOpt": "O0"
+    }
+  ],
+  "compilerSourceManifest": "config/native-compiler-static-hermes.json",
+  "flags": "All25 factory objects O1, main runner O0, -g0 -ffp-contract=off; source and object hashes verified on resume",
+  "limits": "The25 factory objects were emitted before the literal-buffer patch; main used the patched compiler. This is explicit mixed-toolchain plumbing and never battle qualification.",
+  "nextStep": "Use at most8 SHUnits; authentic eager game_battle module plus scoped external helpers avoids enormous unused UI closure."
+}
