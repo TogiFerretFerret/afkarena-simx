@@ -22,7 +22,7 @@ export function partitionNativeProgram(source,{bodyUnits=7}={}){
       }
       path.skip();
     },
-    Class(path){if(!path.getFunctionParent())throw new Error('Global class declarations and static blocks require a shared lexical environment');},
+    Class(path){if(!path.getFunctionParent()&&(path.isClassDeclaration()||path.node.body.body.some(node=>node.type==='StaticBlock')))throw new Error('Global class declarations and outer static blocks require a shared lexical environment');},
     VariableDeclaration(path){
       if(path.getFunctionParent())return;
       const node=path.node;if(node.kind!=='var')throw new Error('Global lexical declarations require a shared lexical environment');

@@ -51,3 +51,9 @@ test('declaration source-order matrix retains first property insertion and last 
     same(`record(Object.keys(globalThis).filter(k=>/^v[0-9]$/.test(k)));record([${Array.from({length:5},(_,i)=>`typeof v${i}==='function'?v${i}():typeof v${i}`).join(',')}]);`+declarations.join('\n'));
   }
 });
+
+test('anonymous class names and catch-shadowed var initializers retain their evaluation scope',()=>{
+  same(`record(typeof caught);var C=class { method(){ return 1; } };record([C.name,C.toString(),new C().method()]);
+  try {throw 7} catch(caught){var caught=record(['catch',caught]);record(caught)}
+  record(['global',typeof caught,caught]);`);
+});
