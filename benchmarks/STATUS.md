@@ -113,6 +113,14 @@ Entity calls were admitted across the warmups and measured battles, making this
 a small opportunity in this fixture. Native CPU profiling and the combined
 empty-array/numeric clone candidate are the next measurements.
 
+The combined clone candidate passes the same raw report but is slower: 20 battles
+in 101.582 seconds, 0.196885 battles/second. Keep it optional, not a promoted
+optimization. Across all 23 battles it admits 55,821 numeric object copies and
+only 76 empty arrays; source Node profile counts did not establish native
+admission rates. See
+`results/2026-10-27T21-01-54.537Z-native-warm23-entity-copy.json`. Its separate
+native CPU profile is diagnostic and cannot establish throughput.
+
 Archived ordered traces can be checked with
 `node tools/check-archived-native-trace.mjs reference.stdout.gz candidate.stdout.gz metadata.json gate.json`.
 This gate rejects missing state captures and compares complete ordered captures,
