@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "baseCommit": "4f1db42d71d0839254c7154fc8c282bcea466206",
+  "patch": "tools/native-compiler-patches/unit-header-init.patch",
+  "sha256": "89b3b9eadaf22862323d392a50ca502d3c59ceaa165447dbfb6bcc3f44e1cc80",
+  "purpose": "Initialize only SHUnit header after calloc; preserve zeroed trailing symbol/cache storage while avoiding giant O0 native stack temporary and redundant whole-UnitData copy",
+  "proof": "Every nonzero designated initializer is nested inside .unit; calloc already initializes the entire UnitData to zero, so assigning its .unit member produces identical header values and untouched zero tail.",
+  "files": [
+    {
+      "path": "lib/BCGen/SH/SH.cpp",
+      "originalSha256": "3f33c41987a826faa34be8433424acf8ba2eab3eb261ba63a0fbc157adee386e",
+      "patchedSha256": "513c94d6ded0fe3fa86878d96ce97161d69aebd754fcf48f1298a75cc22db427"
+    }
+  ]
+}

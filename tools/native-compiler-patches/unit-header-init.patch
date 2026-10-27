@@ -1,0 +1,23 @@
+--- a/lib/BCGen/SH/SH.cpp
++++ b/lib/BCGen/SH/SH.cpp
+@@ -3183,7 +3183,10 @@
+        << moduleGen.literalBuffers.objShapeTable.size() << "];\n};\n"
+        << "SHUnit *CREATE_THIS_UNIT(void) {\n"
+        << "  struct UnitData *unit_data = calloc(sizeof(struct UnitData), 1);\n"
+-       << "  *unit_data = (struct UnitData){.unit = {.index = &unit_index,"
++       // calloc already zeroed all trailing symbol/cache arrays. Assigning the
++       // whole UnitData materializes that enormous zero aggregate on C stack
++       // at -O0. Only the small header contains nonzero initializers.
++       << "  unit_data->unit = (SHUnit){.index = &unit_index,"
+        << ".num_symbols =" << moduleGen.stringTable.size()
+        << ", .num_write_prop_cache_entries = " << nextWriteCacheIdx
+        << ", .num_read_prop_cache_entries = " << nextReadCacheIdx
+@@ -3204,7 +3207,7 @@
+        << ".source_locations_size = " << moduleGen.srcLocationTable.size()
+        << ", " << ".unit_main = _0_global, "
+        << ".unit_main_info = &s_function_info_table[0], "
+-       << ".unit_name = \"sh_compiled\" }};\n"
++       << ".unit_name = \"sh_compiled\" };\n"
+        << "  return (SHUnit *)unit_data;\n}\n"
+        << R"(
+ SHSymbolID *get_symbols(SHUnit *unit) {
