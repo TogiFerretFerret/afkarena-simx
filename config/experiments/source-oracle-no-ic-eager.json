@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "status": "experimental-only",
+  "adopted": false,
+  "officialProfileUnchanged": "config/source-oracle-runtime.json",
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "platform": "linux",
+  "architecture": "x64",
+  "candidateFlags": ["--jitless", "--no-use-ic", "--no-lazy-feedback-allocation"],
+  "nodeOptions": "",
+  "testOnlyFlags": ["--expose-gc"],
+  "observedStorageBehavior": "Tested Number-array literal stores consistently canonicalized NaNs to positive quiet NaN across cold, warm, reversed and forced-GC histories.",
+  "referencePolicyChanged": false,
+  "statelessRustNumericQualified": false,
+  "currentRustNumericRawDifferencesAgainstCandidate": 36,
+  "fullBattleEquivalence": false,
+  "throughputQualified": false,
+  "evidence": "benchmarks/validation/array-runtime-flags-summary.json",
+  "description": "Preserved as an experiment for a future explicit decision. No simulator or reference launcher consumes this file; adopting it would require renewed qualification and would redefine the selected VM storage behavior."
+}
