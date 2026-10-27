@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "status": "Source evidence; full scene/reference runtime configuration is not established",
+  "records": [
+    {
+      "name": "clientCall",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4337876,
+      "end": 4337915,
+      "sha256": "c0e7b95d7e41b2283fb8417b41dca3d6f10e7c4cf574ffcc7b68d1939ef2ed85",
+      "source": "function(e){ed.clientCall_list.push(e)}"
+    },
+    {
+      "name": "resetClientCall",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4337932,
+      "end": 4337965,
+      "sha256": "1eb2a139e9d2ade9e4c1672ed85351e0219c96fc5e0c2928b44d6d877508cff9",
+      "source": "function(){ed.clientCall_list=[]}"
+    },
+    {
+      "name": "ed.battleBaseScene.onUpdate",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4343228,
+      "end": 4343636,
+      "sha256": "7585ae3612bec452b83d67f5cc6a058bc004004ee134ef056041c3354636b849",
+      "source": "function(e){if(ed.fpsTracker.onUpdate(e),ed.battleVFXFilter.onUpdate(e),e*=this.speedRate,e*=ed.bt_speed,!this.pauseFlag){ed.clientCall_list=[],ed.battleEngine.update(e),ed.clientCallCount=ed.clientCall_list.length;for(var t=ed.clientCall_list;t.length>0;){var i=t.shift();this.snapshot(),i(),this.snapshot(i)}this.updateActor(e),this.updateEffect(e),this.viewUpdate&&this.viewUpdate(e),this.checkDialog(e)}}"
+    },
+    {
+      "name": "ed.battleBaseScene.snapshot",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4342606,
+      "end": 4343218,
+      "sha256": "3e143dc33efc9f3575a3f6982a3fe3a04f0ad7dbadcb6d039493f6074e3495a5",
+      "source": "function(e){if(!ed.openDebug)return!1;if(\"idle\"===ed.battleEngine.mode)return!1;var t=ed.battleEngine.toString(),i=ed.MD5(t)+window.random_seed;if(this.snap_shot){var a=this.snap_shot!==i;if(this.snap_shot=null,a){this.pauseFlag=!0,cc.log(e),cc.sys.platform===cc.sys.WIN32&&cc.sys.jsb&&jsb.fileUtils.writeStringToFile(\"{0}\\n{1}\".format(t,this.strRecord),\"snapshot.txt\");var n=ed.confirmDialog.create({okText:T(\"charge_mgr_8_1945829674_0\",\"确认\"),cancelText:T(\"charge_mgr_10_333975736_0\",\"取消\")});n.setCanClickPanel(!1),n.setString(\"clientcall的调用改变了战斗逻辑，请看输出日志。。。。\"),n.show()}}else this.snap_shot=i,this.strRecord=t}"
+    },
+    {
+      "name": "ed.battleBackgroundScene.onUpdate",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4421761,
+      "end": 4422426,
+      "sha256": "5f4fa5e46d152163ce1584fe7960840d9e0122b0486d3e2fa6a4b239fed9a09f",
+      "source": "function(e){this.updateTimer(),this.updateHpMpBar(e),this.updateDeathCnt(),ed.fpsTracker.onUpdate(e),ed.battleVFXFilter.onUpdate(e),ed.clientCallCount=ed.clientCall_list.length;for(var t=ed.clientCall_list;t.length>0;){var i=t.shift();this.snapshot(),i(),this.snapshot(i)}ed.clientCall_list=[],this.updateActor(e),this.updateEffect(e),this.viewUpdate&&this.viewUpdate(e),this.speed_four_effect&&this.speed_four_effect.update(e),this.speed_effect&&this.speed_effect.update(e),this.auto_effect&&this.auto_effect.update(e),this.glass_effect&&this.glass_effect.update(e),this.heatBar&&this.heatBar.update(e),this._updateBattleEffectProgresses(e),this.setEndStepInfo(e)}"
+    },
+    {
+      "name": "ed.BattleEngine.updateLocalBattleEngine",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 235091,
+      "end": 235212,
+      "sha256": "2742c2b3f22131136a9b70f248c805b54bf8ece70eabc8192b2a7913de68020d",
+      "source": "function(e){if(this.next_tick-=e,this.next_tick<=0)for(this.tick();this.next_tick<=0;)this.next_tick+=this.tick_interval}"
+    }
+  ],
+  "observations": [
+    "clientCall appends callback to ed.clientCall_list; it does not execute it",
+    "battleBaseScene.onUpdate clears queue before engine.update and drains captured queue by shift afterwards",
+    "Callbacks appended to the captured queue during draining also execute in the same drain",
+    "Replacing ed.clientCall_list while draining does not replace the locally captured drain array",
+    "battleBaseScene.snapshot with openDebug compares serialized engine state plus random_seed around each callback and pauses on divergence",
+    "Local engine.update executes at most one tick per call, then advances next_tick to a positive value without catchup ticks",
+    "Background-scene onUpdate drains existing queue before resetting the queue; it is a distinct execution contract"
+  ]
+}
