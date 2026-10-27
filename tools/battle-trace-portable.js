@@ -311,11 +311,11 @@
                     options.onProgress({events:events.length,kind:kind,frame:payload&&payload.frame,nodes:graph.nodes.length,codeEntries:graph.codeTable.length});
                 return event;
             },
-            finish: function (summary) {
+            finish: function (summary, roots) {
                 if (finished) throw new Error("Trace already completed");
                 if (!summary || summary.status !== "completed" || summary.running !== false)
                     throw new Error("Only a terminated source battle can complete a trace");
-                this.record("battle:completed", summary, {});
+                this.record("battle:completed", summary, roots || {});
                 finished = true;
                 return { version: 1, status: "completed", graphHash:options.compact?'sha256-merkle-v1':null,events: events, qualifiesForThroughputTarget: false };
             }

@@ -5,7 +5,7 @@ import {createContext,runInContext} from 'node:vm';
 import {installBootstrapCallbacks} from '../bootstrap-callbacks.mjs';
 import {comparePortableBattleTraces} from '../battle-trace-portable.mjs';
 
-async function fixture({compact=true,skip=false,extraRng=false,scriptMutation=false,programState=false,globalMutation=false,lazyPrototype=false,lazyEngine=false}={}){
+async function fixture({compact=true,skip=false,extraRng=false,scriptMutation=false,programState=false,globalMutation=false,lazyPrototype=false,lazyEngine=false,classManager=false,observeManager=true,counterMutation=false,finalMutation=false}={}){
  const context=createContext({});
  runInContext(`var neverAssigned;var createdEngines=0;var random_seed=1,ed={},shared_global_counter=0;ed.rand=function(){random_seed=random_seed*25%34359738337;return random_seed/34359738337};ed.srand=function(n){random_seed=n;ed.init_battle_seed=n};
   ed.battlehero={Hero:{counter:0}};
@@ -14,7 +14,17 @@ async function fixture({compact=true,skip=false,extraRng=false,scriptMutation=fa
  context.skip=skip;context.extraRng=extraRng;context.scriptMutation=scriptMutation;context.globalMutation=globalMutation;
  if(lazyPrototype)runInContext(`var active=new Set(),name='ed.Unit.prototype.hidden';Object.defineProperty(ed.Unit.prototype,'hidden',{enumerable:true,configurable:true,get:function(){if(active.has(name))throw new Error('Source dependency cycle at '+name);throw new Error('Missing original parent definition: '+name)}})`,context);
  if(lazyEngine)runInContext(`var lazyQueueReads=0;Object.defineProperty(ed,'battleEngine',{get:function(){return this._battleEngineInstance||(this._battleEngineInstance=new ed.BattleEngine),this._battleEngineInstance},set:function(e){this._battleEngineInstance=e},configurable:true});Object.defineProperty(ed,'clientCall_list',{get:function(){lazyQueueReads++;throw new Error('lazy queue getter must not run during capture')},set:function(value){Object.defineProperty(ed,'clientCall_list',{value:value,writable:true,enumerable:true,configurable:true})},enumerable:true,configurable:true})`,context);
- const runtime={ed:context.ed,context,callbacks:await installBootstrapCallbacks(context)};
+ let classManagerObserver;
+ if(classManager){
+  runInContext('var ClassManager=function(){var id=0,instanceId=0;this.getNewID=function () {return id++;};this.getNewInstanceId=function () {return instanceId++;};};var classManager=new ClassManager();',context);
+  if(observeManager){
+   context.managerProof={constructorSource:context.ClassManager.toString(),methods:{getNewID:{source:context.classManager.getNewID.toString(),counterBinding:'id',prefix:false,direction:1},getNewInstanceId:{source:context.classManager.getNewInstanceId.toString(),counterBinding:'instanceId',prefix:false,direction:1}}};
+   runInContext(await readFile(new URL('../oracle-class-manager.js',import.meta.url),'utf8'),context);
+   classManagerObserver=runInContext('installClassManagerObserver(managerProof)',context);
+   delete context.managerProof;
+  }
+ }
+ const runtime={ed:context.ed,context,callbacks:await installBootstrapCallbacks(context),classManagerObserver};
  for(const name of ['battle-trace-portable.js','battle-trace-instrumentation.js'])runInContext(await readFile(new URL('../'+name,import.meta.url),'utf8'),context);
  context.runtime=runtime;context.compact=compact;context.programState=programState;
  const original=context.ed.rand;
@@ -22,8 +32,10 @@ async function fixture({compact=true,skip=false,extraRng=false,scriptMutation=fa
  instrumentation.record('diagnostic:initial',{});
  assert.equal(context.createdEngines,0,'capture must not invoke the original lazy engine getter');
  runInContext('ed.battleEngine=new ed.BattleEngine();ed.srand(12);ed.battleEngine.enterBattle()',context);
+ if(counterMutation)runInContext('classManager.getNewInstanceId()',context);
  instrumentation.record('battle:entered',{});
  instrumentation.beginFrame();runtime.callbacks.updateFrame(.125);instrumentation.endFrame();
+ if(finalMutation)runInContext('ed.battleEngine.finalOnly=17',context);
  const trace=instrumentation.stop({status:'completed',running:context.ed.battleEngine.running,result:context.ed.battleEngine.result});
  assert.equal(context.ed.rand,original);
  return{trace,context};
@@ -73,4 +85,27 @@ test('initial source snapshots never instantiate the lazy battle engine or mater
  const {context}=await fixture({lazyEngine:true});
  assert.equal(context.createdEngines,1,'only the actual driver constructed its engine');
  assert.equal(context.lazyQueueReads,0);
+});
+
+
+test('program-state traces include hidden allocator counters and vendor globals',async()=>{
+ const reference=await fixture({programState:true,classManager:true});
+ const same=await fixture({programState:true,classManager:true});
+ const changed=await fixture({programState:true,classManager:true,counterMutation:true});
+ assert.equal(comparePortableBattleTraces(reference.trace,same.trace).passed,true);
+ assert.equal(comparePortableBattleTraces(reference.trace,changed.trace).passed,false);
+ const {trace}=await fixture({programState:true,classManager:true,compact:false});
+ const names=new Set(trace.events[0].graph.nodes.flatMap(node=>node.properties.map(property=>property.key[1])));
+ for(const name of ['ClassManager','classManager','classManagerCounters','instanceCalls','nextInstanceId'])assert.ok(names.has(name),name);
+});
+
+test('a source vendor manager requires an allocator observer for complete program-state traces',async()=>{
+ await assert.rejects(fixture({programState:true,classManager:true,observeManager:false}),/requires the original ClassManager counter observer/);
+});
+
+test('completion snapshots retain state changes after the last frame',async()=>{
+ const reference=await fixture(),changed=await fixture({finalMutation:true});
+ assert.equal(JSON.stringify(reference.trace.events.slice(0,-1)),JSON.stringify(changed.trace.events.slice(0,-1)));
+ assert.equal(reference.trace.events.at(-1).kind,'battle:completed');
+ assert.equal(comparePortableBattleTraces(reference.trace,changed.trace).passed,false);
 });

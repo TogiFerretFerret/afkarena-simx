@@ -14,8 +14,11 @@
   var trace=host.installPortableBattleTrace(options),restores=[],callbackIds=new WeakMap(),nextCallback=1,frame=-1,stopped=false;
   var knownNames=new Set(options.definitionNames||[]),knownPaths=new Set(),registered=new WeakSet(),loaderRevision=-1;
   knownNames.forEach(function(name){knownPaths.add(name);for(var p=name.lastIndexOf('.');p>0;p=name.lastIndexOf('.',p-1))knownPaths.add(name.slice(0,p));});
-  var globalNames=options.globalNames||[];
+  var globalNames=Array.from(new Set((options.globalNames||[]).concat(['ClassManager','classManager'])));
   if(options.programState&&!Array.isArray(options.globalNames))throw new Error('Program-state trace requires the complete source global-name catalog');
+  if(options.programState&&ownVendorManager()&&!runtime.classManagerObserver)
+   throw new Error('Program-state trace requires the original ClassManager counter observer before bootstrap');
+  function ownVendorManager(){var d=Object.getOwnPropertyDescriptor(host,'classManager');return d&&'value'in d?d.value:null;}
   function logical(fn,name){if(typeof fn==='function'&&!registered.has(fn)){trace.capture.registerFunctionCode(fn,name);registered.add(fn);}}
   (options.adapterCodes||[]).forEach(function(entry){logical(entry.fn,entry.identity);});
   function loaderAccessors(){
@@ -95,11 +98,12 @@
      pendingCallbacks:Object.getOwnPropertyDescriptor(ed,'clientCall_list'),clientCallCount:Object.getOwnPropertyDescriptor(ed,'clientCallCount')},
     battleLog:Object.getOwnPropertyDescriptor(ed,'btLog')?.value,
     heroScripts:scriptRoots(engine),
+    classManagerCounters:runtime.classManagerObserver?runtime.classManagerObserver.snapshot():null,
     hostState:runtime.host?.snapshotState?runtime.host.snapshotState():null,
     soundManager:Object.getOwnPropertyDescriptor(ed,'sound_manager')?.value,
     program:program,mutableTables:options.mutableTableRoots?options.mutableTableRoots():null};
   }
-  function record(kind,payload){if(options.assertImmutableClean)options.assertImmutableClean();loaderAccessors();trace.record(kind,{frame:frame,data:payload},roots());}
+  function record(kind,payload){if(options.assertImmutableClean)options.assertImmutableClean();if(runtime.classManagerObserver)runtime.classManagerObserver.assertIntact();loaderAccessors();trace.record(kind,{frame:frame,data:payload},roots());}
   function callbackId(fn){if(!callbackIds.has(fn))callbackIds.set(fn,nextCallback++);return callbackIds.get(fn);}
   function replace(owner,key,make){
    var d=Object.getOwnPropertyDescriptor(owner,key);
@@ -146,7 +150,9 @@
     if(stopped)throw new Error('Trace already stopped');
     try{
      if(options.assertImmutableClean)options.assertImmutableClean();
-     var result=trace.finish(summary);
+     if(runtime.classManagerObserver)runtime.classManagerObserver.assertIntact();
+     loaderAccessors();
+     var result=trace.finish(summary,roots());
      result.rootContract=options.programState?'ed-cc-source-globals':'engine-queue-hero-scripts-device';
      result.boundaries=['Native lexical closure environments and weak collections are opaque',
       'Private source table-loader cache requires an independent write-set proof or explicit table-state coverage'];
