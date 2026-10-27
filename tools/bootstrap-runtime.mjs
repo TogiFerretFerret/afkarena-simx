@@ -15,7 +15,7 @@ const root=resolve(import.meta.dirname,'..');
  * Original RHS expressions are evaluated on demand. Required lexical closures,
  * module side effects and dynamic property names fail rather than being invented.
  */
-export async function createBootstrapRuntime({hostRandom,hostClock}={}){
+export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundaryFactory}={}){
   if(hostRandom!==undefined&&typeof hostRandom!=='function')throw new Error('hostRandom must be an explicit entropy input function');
   const extracted=await loadBootstrapSourceRecords();
   const {ordered,functionDeclarations,initializers}=extracted;
@@ -112,7 +112,13 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
       }finally{active.delete(name);}
     },set(value){Object.defineProperty(context,name,{configurable:true,enumerable:true,writable:true,value});}});
   }
-  ed.getDataTable=name=>{if(!tables.has(name))tables.set(name,importBootstrapValue(context,loadBootstrapTableSync(name)));return tables.get(name);};
+  if(tableBoundaryFactory!==undefined&&typeof tableBoundaryFactory!=='function')throw new Error('tableBoundaryFactory must install a qualification boundary in the source realm');
+  const tableBoundary=tableBoundaryFactory?tableBoundaryFactory(context):null;
+  if(tableBoundary&&typeof tableBoundary.wrap!=='function')throw new Error('Source table boundary requires wrap');
+  ed.getDataTable=name=>{if(!tables.has(name)){
+    const raw=importBootstrapValue(context,loadBootstrapTableSync(name));
+    tables.set(name,tableBoundary?tableBoundary.wrap(raw,{name}):raw);
+  }return tables.get(name);};
   ed.logbugly=message=>{throw new Error(message);};
   // These original statements have effects beyond their RHS values. Execute them
   // in original module/source order rather than losing computed writes/descriptors.
@@ -123,7 +129,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock}={}){
   new ed.soundManager();
   ed.audio_effect_switch=context.bootstrapHost.audioEnabled;
   const callbacks=await installBootstrapCallbacks(context);
-  return {context,ed,loaded,tables,provenance,callbacks,clock,clockProvenance,host:context.bootstrapHost,importValue:value=>importBootstrapValue(context,value),
+  return {context,ed,loaded,tables,tableBoundary,provenance,callbacks,clock,clockProvenance,host:context.bootstrapHost,importValue:value=>importBootstrapValue(context,value),
     sourceRecords:{definitions,globals,functionDeclarations,initializers,postInitializers,hostSources},
     sourceRecordsCache:extracted.cache,
     hostProvenance:{file:'tools/bootstrap-host.js',sha256:createHash('sha256').update(hostSource).digest('hex')},

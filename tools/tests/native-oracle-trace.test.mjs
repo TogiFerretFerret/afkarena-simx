@@ -10,7 +10,7 @@ test('native reference adapter exports matching completed ordered graph traces a
   function run(){
     const context=createContext({});
     runInContext(`var random_seed=1;var ed={clientCall_list:[],clientCallCount:0,battleEngine:{ticks:0,running:true},Unit:function Unit(){},rand:function(){return ++random_seed;},srand:function(seed){random_seed=seed;}};function clientCall(fn){ed.clientCall_list.push(fn);}var scene={snapshot:function(callback){}};`,context);
-    const runtime={context,ed:context.ed,callbacks:{sceneHost:context.scene},sourceRecords:{definitions:new Map()},host:{}};
+    const runtime={context,ed:context.ed,callbacks:{sceneHost:context.scene},sourceRecords:{definitions:new Map(),globals:new Map()},host:{}};
     const observer={current:null};
     const trace=installNativeReferenceTrace(runtime,sources,{clockObserver:observer});
     assert.equal(typeof observer.current,'function');

@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "passed": false,
+  "qualifiesForThroughputTarget": false,
+  "command": "node tools/emit-native-oracle.mjs --scope observed --capture final --table-membrane --host-inputs benchmarks/fixtures/frozen-2026-observed-pinned/host-inputs.json.gz --output work/native-oracle-table-membrane.js",
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "scenario": {
+    "file": "config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc"
+  },
+  "boundary": {
+    "file": "tools/qualification-table-membrane.js",
+    "sha256": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41"
+  },
+  "originalSource": {
+    "file": "src/srcmodule/game_battle.js",
+    "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
+  },
+  "failure": {
+    "phase": "Unit construction and Skill.rebuildPhaseList",
+    "table": "AnimAtkFrame",
+    "path": [
+      "SPhoenix.cha",
+      "atk",
+      "0.5"
+    ],
+    "property": "Type",
+    "operation": "set",
+    "sourceOffset": 11767,
+    "message": "Qualification table membrane: set on AnimAtkFrame[\"SPhoenix.cha\",\"atk\",\"0.5\"] key Type"
+  },
+  "conclusion": "The supplied source legally mutates this table. Read-only treatment is invalid for it; preserve the write and capture mutable table state before any fidelity claim."
+}
