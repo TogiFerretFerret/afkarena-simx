@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "source": {
+    "file": "src/srcmodule/game_battle.js",
+    "start": 248,
+    "end": 378,
+    "sha256": "9edd5c9d243911ad4d96ea84f24834a455446c4d7796efadc4c340268e39ad94"
+  },
+  "compilerSource": {
+    "url": "https://codeload.github.com/facebook/hermes/tar.gz/4f1db42d71d0839254c7154fc8c282bcea466206",
+    "archive": "static-hermes.tar.gz",
+    "directory": "hermes-4f1db42d71d0839254c7154fc8c282bcea466206",
+    "sha256": "623657ae55d2ac20c3409696c7358ca5f30b170343d8a0e65f3abba6f3b63787"
+  },
+  "storageConfig": {
+    "file": "work/downloads/hermes-build/lib/config/libhermesvm-config.h",
+    "sha256": "12b69de6e7090980d33bfa7cc4cabc5e32a98ef292249b8f4f49ec855041ec59",
+    "boxedDoubles": false,
+    "compressedPointers": false
+  },
+  "evidence": [
+    {
+      "file": "include/hermes/VM/JSObject.h",
+      "sha256": "1dada40009441ce464eb288f42a1b8b989ab72b3cd4e99ebacc2818b8bc6744d",
+      "line": 465,
+      "needle": "meaning no property\n  ///   checks need to be made when reading an indexed value.",
+      "conclusion": "hasFastIndexProperties only proves fast reads; position writes additionally require writable storage."
+    },
+    {
+      "file": "lib/VM/JSArray.cpp",
+      "sha256": "c7588ba1b8ddceb750028b0ba7c63ecb52fabb43afa1adeb6821a5a930f7bec7",
+      "line": 99,
+      "needle": "if (LLVM_UNLIKELY(self->getClass(runtime)->isFrozen()))\n        indexedElementFlags.writable = 0;",
+      "conclusion": "Frozen dense arrays are not writable. A failed source assignment must remain a source fallback."
+    },
+    {
+      "file": "include/hermes/VM/JSArray.h",
+      "sha256": "524aca1a3367ccc54a2c3eac303dd20b8cacd31708c5771f08542298fcd3796a",
+      "line": 94,
+      "needle": "and were never passed to user JS code.",
+      "conclusion": "unsafeSetExistingElementAt has a stronger ownership contract than source-created battle arrays satisfy."
+    },
+    {
+      "file": "include/hermes/VM/ArrayStorage.h",
+      "sha256": "6babb391186f13d7d4ee9c7b58483329cd490fc64fe6626d82d62b5f2072c137",
+      "line": 174,
+      "needle": "data()[index].set(val, this, gc);",
+      "conclusion": "Existing indexed writes use GC-aware storage.set; no raw Rust pointer stores bypass this contract."
+    },
+    {
+      "file": "include/hermes/VM/SmallHermesValue.h",
+      "sha256": "097907104fd501471b982e3384396107851fb85f0214f608153be62e3db6d699",
+      "line": 35,
+      "needle": "A 32-bit representation\n/// inherently requires boxing doubles",
+      "conclusion": "A raw u64 slot ABI must be separately rejected when pointer compression or boxed doubles is enabled."
+    },
+    {
+      "file": "include/hermes/VM/HermesValue.h",
+      "sha256": "6f9812aa0be712f349714f6d9098e96e7ab9abbd7d76522cea8115e5a6d0c7b8",
+      "line": 569,
+      "needle": "Some GCs still need to do a write barrier though",
+      "conclusion": "Even non-pointer writes retain the VM write barrier contract."
+    },
+    {
+      "file": "include/hermes/VM/JSObject.h",
+      "sha256": "1dada40009441ce464eb288f42a1b8b989ab72b3cd4e99ebacc2818b8bc6744d",
+      "line": 2006,
+      "needle": "self->directProps()[index].set<NeedsBarriers>",
+      "conclusion": "Named direction writes must preserve GC-aware direct/indirect slot storage."
+    }
+  ],
+  "nextGuardedBlock": "ed.Entity.update",
+  "canonicalState": "Keep original VM objects and arrays. Capture position/velocity references once, retain whole-vector identity, and reload velocity[0] after both position writes.",
+  "requiredGuard": [
+    "No Proxy/host object/accessor/coercing property reads; position, velocity and direction must be actual own ordinary data properties.",
+    "position/velocity must be dense plain Number arrays with actual own 0/1 slots; position slots writable.",
+    "direction must be a writable Number property, even if its write branch is not eventually taken, or use a separate no-write proof.",
+    "All inputs including dt finite; preserve ordered multiplication then addition without FMA or algebraic reassociation.",
+    "Guard current MXCSR; source fallback executes before any observable mutation if any guard fails.",
+    "No allocation, JS callback, GC safepoint, descriptor/prototype changes or reentrancy while borrowing storage; re-resolve after any such boundary.",
+    "Use the pinned VM encoding and GC-aware write helpers. Passing copied double bits into Rust is a scalar bridge, not a zero-copy canonical-slot borrow."
+  ],
+  "finiteInputProof": "Finite vector components and finite dt produce finite or infinite deltas; adding a finite old component cannot produce NaN. Direction negation is finite. The comparison may transiently produce NaN after overflow times zero, but stores no NaN. This narrow guard avoids VM-specific NaN array-store policy without changing it.",
+  "implementationStatus": "Reviewed integration contract; no unused raw-slot Rust abstraction added. Existing Vec2Arena update is the alias-preserving arithmetic reference, not canonical VM integration.",
+  "qualifiesFor10000Target": false
+}
