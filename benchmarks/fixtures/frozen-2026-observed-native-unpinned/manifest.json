@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "description": "Recorded source inputs and exact captured output for reproducible differential diagnostics; this archive does not upgrade qualification.",
+  "scope": "observed",
+  "executionContract": null,
+  "oracleProfile": null,
+  "oracleRuntime": null,
+  "qualification": "Diagnostic evidence only; actor/effect/view lifecycle excluded. Unpinned historical fixtures remain unqualified.",
+  "scenario": {
+    "file": "config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc"
+  },
+  "sourceInputs": null,
+  "generatedProgramSha256": "35a41bd22fecb88923353ecad3a59498845855d427587c9e3f7ffc73f840a4d1",
+  "factoryCount": 1313,
+  "factoryChunks": [],
+  "tableBundle": {
+    "sha256": "d9e47d92780a31d2e1e618c6af4052d40431f9fd3a07f6068480c963a01b7ab4",
+    "bytes": 101695086
+  },
+  "rebuild": {
+    "tables": "node tools/prepare-native-tables.mjs",
+    "emitter": "node tools/emit-native-oracle.mjs --scenario config/scenario-example-2026.json --scope observed --capture undefined --battles 1 --warmup 0 --host-inputs benchmarks/fixtures/frozen-2026-observed-native-unpinned/host-inputs.json.gz --output work/native-oracle-replay.js",
+    "native": "node tools/native-compiler-run.mjs --input work/native-oracle-replay.js --output work/native-oracle-replay --cc-opt O1 --compile-jobs 2 --plumbing",
+    "replay": "The emitter command consumes the archived exact random/clock tapes and rejects missing/extra host inputs. Rebuilding with changed source/oracle/compiler versions requires a new qualification."
+  },
+  "artifacts": [
+    {
+      "file": "metadata.json.gz",
+      "compression": "gzip",
+      "sha256": "58806d4d1a5ab52fc23f6e470cfecf0a4a048fe1cb46fbb6feb8433ce9c9a5bb",
+      "uncompressedSha256": "c5b14820bc6ca2aa994622730002eb353a9aeabc05f86a24597f46d2dc4cae72",
+      "uncompressedBytes": 300734,
+      "bytes": 45532
+    },
+    {
+      "file": "host-inputs.json.gz",
+      "compression": "gzip",
+      "sha256": "c5342c778f004aeac83c5338dcf5c9fd0f8573c314555a93933a2e38365d14b9",
+      "uncompressedSha256": "dd43259a39f6010266cbf8d85a7e44ac5e8acef5c5d9ed4bc13f72e82eef8c5d",
+      "uncompressedBytes": 13593,
+      "bytes": 501
+    },
+    {
+      "file": "reference.json.gz",
+      "compression": "gzip",
+      "sha256": "8ab251886a7d2c92e51fbe699f392bfdaeda8306de053b4da1f90419c18e915b",
+      "uncompressedSha256": "3ee3c49843432214470cd8b82a77e79069bb6d38a40025616b5c282b9a2cf954",
+      "uncompressedBytes": 224283,
+      "bytes": 14190
+    },
+    {
+      "file": "node.stdout.gz",
+      "compression": "gzip",
+      "sha256": "b0b6074ac8e436dee8f28c4697f01b0aed5c066f53e523f84623fed36e120bc8",
+      "uncompressedSha256": "6b137e13c22fdd27497609a61197b92045b3e051c6b16cee6d27db8526763611",
+      "uncompressedBytes": 224519,
+      "bytes": 14337
+    },
+    {
+      "file": "node.stderr.gz",
+      "compression": "gzip",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0,
+      "bytes": 20
+    }
+  ]
+}

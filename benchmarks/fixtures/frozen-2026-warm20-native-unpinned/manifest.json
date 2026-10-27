@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "description": "Recorded source inputs and exact captured output for reproducible differential diagnostics; this archive does not upgrade qualification.",
+  "scope": "observed",
+  "captureMode": "final",
+  "executionContract": null,
+  "oracleProfile": null,
+  "oracleRuntime": null,
+  "qualification": "Diagnostic evidence only; actor/effect/view lifecycle excluded. Unpinned historical fixtures remain unqualified.",
+  "scenario": {
+    "file": "config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc"
+  },
+  "adapterInputs": {
+    "tools/emit-native-oracle.mjs": "d3e082ea336244107cc17ae1699739f3fb3807c7a7c4047f0bc6a0fd0abd030b",
+    "tools/bootstrap-runtime.mjs": "ae4b9673e52a95432a65ad3de980039870aa0d9e7a4b96a106b3db1a50a58172",
+    "tools/bootstrap-source.mjs": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+    "tools/bootstrap-packed.mjs": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+    "tools/bootstrap-realm.mjs": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+    "tools/bootstrap-callbacks.mjs": "2b211e65b304a4afc68e68375684f162f2ced96cd795782a667b18d9e62c64d4",
+    "tools/scenario-factory.mjs": "4edb29bb820d1d9e79a0afc93160c6711c7c1c32589c026827617cc4443fa726",
+    "tools/bootstrap-host.js": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+    "tools/oracle-clock.js": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+    "config/bootstrap-packed-config.json": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6"
+  },
+  "sourceInputs": null,
+  "generatedProgramSha256": "148a5aba1a189b427ddc99bf450d3c8beb48d59948b2d91e75ef9b8604e671ed",
+  "factoryCount": 1313,
+  "factoryChunks": [],
+  "tableBundle": {
+    "sha256": "d9e47d92780a31d2e1e618c6af4052d40431f9fd3a07f6068480c963a01b7ab4",
+    "bytes": 101695086
+  },
+  "rebuild": {
+    "tables": "node tools/prepare-native-tables.mjs",
+    "emitter": "node tools/emit-native-oracle.mjs --scenario config/scenario-example-2026.json --scope observed --capture final --battles 20 --warmup 3 --host-inputs benchmarks/fixtures/frozen-2026-warm20-native-unpinned/host-inputs.json.gz --output work/native-oracle-replay.js",
+    "native": "node tools/native-compiler-run.mjs --input work/native-oracle-replay.js --output work/native-oracle-replay --cc-opt O1 --compile-jobs 2 --plumbing",
+    "replay": "The emitter command consumes the archived exact random/clock tapes and rejects missing/extra host inputs. Rebuilding with changed source/oracle/compiler versions requires a new qualification."
+  },
+  "artifacts": [
+    {
+      "file": "metadata.json.gz",
+      "compression": "gzip",
+      "sha256": "74f4caac14cdc281d67aaae7bfe7ac19bd594283a8b43ff34ed12e8ae87be80d",
+      "uncompressedSha256": "b8804f773c8a3b8da8c514548e44e7f0a79592378cb76194b2bfa3ef8704fa6e",
+      "uncompressedBytes": 306058,
+      "bytes": 47078
+    },
+    {
+      "file": "host-inputs.json.gz",
+      "compression": "gzip",
+      "sha256": "dd8ee9a58460adfbb8e40a32db070cc6c7aa08d48fb30c792a234d0908a4e2e0",
+      "uncompressedSha256": "4d76c8d637fe8557dbc7d113254fd20008c9806e9ef724a9166699f9f22aca91",
+      "uncompressedBytes": 311033,
+      "bytes": 8165
+    },
+    {
+      "file": "reference.json.gz",
+      "compression": "gzip",
+      "sha256": "83756477778f97399f9b50e6339bd3b12e42d4dd27969eef3aa043614ee50f4e",
+      "uncompressedSha256": "f606c7941d833f28b6a7643d59caf4b281d0d8da90f4a532cbc783a041f69339",
+      "uncompressedBytes": 686721,
+      "bytes": 34838
+    },
+    {
+      "file": "node.stdout.gz",
+      "compression": "gzip",
+      "sha256": "6a47bdf8a171e8c1829531848958658aa972e46a96e40807b2aa74cdf2a2ba3b",
+      "uncompressedSha256": "8e9f350975b7baeffe36b1051f27bf8f8d823030f0662d1f3298c1c1805fd0fb",
+      "uncompressedBytes": 686960,
+      "bytes": 35072
+    },
+    {
+      "file": "node.stderr.gz",
+      "compression": "gzip",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0,
+      "bytes": 20
+    }
+  ]
+}
