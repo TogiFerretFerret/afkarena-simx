@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "engine": "JavaScript source in provisional headless runtime",
+  "nativeRustFullBattles": false,
+  "validatedAgainstOriginalRuntime": false,
+  "commands": {
+    "mirror": "npm run benchmark:battles -- --battles 1000 --warmup 20 --team mirror",
+    "initial": "npm run benchmark:battles -- --battles 1000 --warmup 20 --team initial",
+    "profile": "node tools/profile-battles.mjs --battles 1000 --warmup 20 --team initial",
+    "verify": "npm run verify"
+  },
+  "measurements": [
+    {
+      "file": "results/2026-10-27-js-stage1-mirror-1000.json",
+      "fixture": "mirrored stage enemy prototypes; nonempty teams",
+      "battles": 1000,
+      "battlesPerSecond": 221.25940841552023,
+      "simulationOnlyBattlesPerSecond": 395.64775990321147,
+      "ticksPerBattle": 102,
+      "result": "victory",
+      "signature": "3c2e3d48f97d1f7746da590f7fa9a11bdfab0ac36a51e1e036a880d0b171026f"
+    },
+    {
+      "file": "results/2026-10-27-js-stage1-initial-1000.json",
+      "fixture": "source-table initial player hero versus stage enemies",
+      "battles": 1000,
+      "battlesPerSecond": 228.59739566805146,
+      "simulationOnlyBattlesPerSecond": 375.5743539349783,
+      "ticksPerBattle": 112,
+      "result": "victory",
+      "signature": "47859e48b61ca8bbcb4c8a9a560a16be88bbbe0468d1edf4338195bad65c7a1f"
+    }
+  ],
+  "profile": {
+    "summary": "profiles/initial-stage1-1000.json",
+    "raw": "profiles/initial-stage1-1000.cpuprofile"
+  },
+  "limitations": [
+    "Single-thread stage-1 fixtures; throughput does not generalize to larger formations",
+    "Initial source loading excluded; simulation-only excludes battle setup; main throughput includes setup and result-signature validation",
+    "Lazy module initialization and suppressed clientCall rendering callbacks still require validation against the original runtime"
+  ],
+  "nextNativeTargets": [
+    "Unit.update and isAlive",
+    "Typed initialization and data copying",
+    "Eliminate logging work only after establishing disabled-log invariants"
+  ]
+}
