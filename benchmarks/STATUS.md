@@ -64,3 +64,19 @@ stacks, source hashes and host inputs are retained in
 `validation/random-5v5-preflight.json`; rerun with
 `node tools/preflight-random-battles.mjs`. These are concrete blockers to full-scene
 qualification, separate from callback-only diagnostic measurements.
+
+A backend compatibility audit also found observable sorting differences: Hermes
+and V8 use different comparison schedules. Some supplied comparators consume RNG
+or violate normal ordering rules, including a battle comparator for Sala. The
+isolated Rust V8 small-sort component matches 20,000 cases and 1,814,158 ordered
+comparisons for lengths 0–63, including RNG and exceptions. It is not yet the VM
+sort implementation; larger inputs remain unsupported by that component. See
+`validation/v8-small-sort.json` for the admitted domain and exact source pin.
+
+The fresh seven-unit native runs complete the frozen battle, but their raw
+reports remain negative: private immutable/mutable table read counters differ by
+974/30. Every other compared field matches, including final captures and table
+hashes. Attribution is in progress; no diagnostic counts have been normalized.
+The first-battle timings include lazy guarded-table registration and are cold
+measurements, not steady-state simulation throughput. Raw results are committed
+in `results/` (2026-10-27 19:55 and 19:57 UTC).
