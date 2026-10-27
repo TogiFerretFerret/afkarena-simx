@@ -71,16 +71,19 @@ or violate normal ordering rules, including a battle comparator for Sala. The
 Rust V8 sort kernels match both the small-array corpus and a full 20,000-case
 corpus with 12,284,696 ordered comparisons, including RNG, exceptions, merges and
 gallops. The private VM adapter also passes 5,512 generated cases plus directed
-mutation/coercion cases and 668 forced GC collections. Production battle
-integration is pending. See `validation/v8-full-sort.json` and
+mutation/coercion cases and 668 forced GC collections. The private battle runtime now uses this kernel. See `validation/v8-full-sort.json` and
 `validation/native-tim-sort.json` for exact domains and source pins.
 
-The fresh seven-unit native runs complete the frozen battle, but their raw
-reports remain negative: private immutable/mutable table read counters differ by
-974/30. Every other compared field matches, including final captures and table
-hashes. The extra reads are attributed exactly to three sort comparator fields:
-GuildTurntableTech.Level, SoundAnim.Delay, and AnimAtkFrame.Time. No diagnostic
-counts have been normalized; the V8 sort implementation is being integrated.
-The first-battle timings include lazy guarded-table registration and are cold
-measurements, not steady-state simulation throughput. Raw results are committed
-in `results/` (2026-10-27 19:55 and 19:57 UTC).
+The earlier seven-unit native runs remain archived as raw negative results:
+private immutable/mutable table read counters differed by 974/30. Exact
+attribution to GuildTurntableTech.Level, SoundAnim.Delay and AnimAtkFrame.Time
+led to the V8 sort repair; no diagnostic counts were normalized.
+
+The repaired private native runtime now passes EVERY compared report field for
+the frozen battle, including table counters/hashes, final captures, callback
+counts, RNG, host inputs and private allocation counters. It executes 446 Rust
+sorts and 142 admitted default string sorts with zero unsupported fallbacks.
+See `results/2026-10-27T20-33-51.021Z-native-oracle-seven-v8-sort.json`. The first
+battle takes 72.5 seconds including lazy guarded-table validation; this is a cold
+measurement, not steady-state simulation throughput. Actor/effect/view lifecycle
+and the full random roster remain unqualified.
