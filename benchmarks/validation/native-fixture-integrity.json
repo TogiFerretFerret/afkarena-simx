@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "passed": true,
+  "fixtures": 8,
+  "results": [
+    {
+      "fixture": "frozen-2026-broad-unpinned",
+      "integrityValid": true,
+      "nodeComparisonPassed": true,
+      "difference": null,
+      "pinnedSourceProfile": false,
+      "completed": 1,
+      "randomInputs": 2,
+      "clockInputs": 260,
+      "qualifiesForThroughputTarget": false
+    },
+    {
+      "fixture": "frozen-2026-eager-pinned",
+      "integrityValid": true,
+      "nodeComparisonPassed": true,
+      "difference": null,
+      "pinnedSourceProfile": true,
+      "completed": 1,
+      "randomInputs": 2,
+      "clockInputs": 260,
+      "qualifiesForThroughputTarget": false
+    },
+    {
+      "fixture": "frozen-2026-initial-global-descriptor-failure",
+      "integrityValid": true,
+      "nodeComparisonPassed": false,
+      "difference": {
+        "path": "$.initialGraph.nodes.32.properties.0.configurable",
+        "actual": false,
+        "expected": true
+      },
+      "pinnedSourceProfile": true,
+      "completed": 0,
+      "randomInputs": 2,
+      "clockInputs": 0,
+      "qualifiesForThroughputTarget": false
+    },
+    {
+      "fixture": "frozen-2026-observed-native-unpinned",
+      "integrityValid": true,
+      "nodeComparisonPassed": true,
+      "difference": null,
+      "pinnedSourceProfile": false,
+      "completed": 1,
+      "randomInputs": 2,
+      "clockInputs": 260,
+      "qualifiesForThroughputTarget": false
+    },
+    {
+      "fixture": "frozen-2026-observed-pinned",
+      "integrityValid": true,
+      "nodeComparisonPassed": true,
+      "difference": null,
+      "pinnedSourceProfile": true,
+      "completed": 1,
+      "randomInputs": 2,
+      "clockInputs": 260,
+      "qualifiesForThroughputTarget": false
+    },
+    {
+      "fixture": "frozen-2026-table-policy-pinned",
+      "integrityValid": true,
+      "nodeComparisonPassed": true,
+      "difference": null,
+      "pinnedSourceProfile": true,
+      "completed": 1,
+      "randomInputs": 2,
+      "clockInputs": 260,
+      "qualifiesForThroughputTarget": false
+    },
+    {
+      "fixture": "frozen-2026-warm20-native-unpinned",
+      "integrityValid": true,
+      "nodeComparisonPassed": true,
+      "difference": null,
+      "pinnedSourceProfile": false,
+      "completed": 20,
+      "randomInputs": 2,
+      "clockInputs": 5980,
+      "qualifiesForThroughputTarget": false
+    },
+    {
+      "fixture": "frozen-2026-warm20-pinned",
+      "integrityValid": true,
+      "nodeComparisonPassed": true,
+      "difference": null,
+      "pinnedSourceProfile": true,
+      "completed": 20,
+      "randomInputs": 2,
+      "clockInputs": 5980,
+      "qualifiesForThroughputTarget": false
+    }
+  ],
+  "meaning": "Integrity and recorded source-versus-Node comparison only. Declared failed gates remain negative evidence; these fixtures do not establish complete battle fidelity or throughput qualification."
+}
