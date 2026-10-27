@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "command": "rustc --edition=2024 --test crates/battle-core/src/lib.rs -o work/core-tests && work/core-tests",
+  "passed": 41,
+  "failed": 0,
+  "scope": "Rust core unit tests after extracting the source-ordered Unit action-speed helper; not an integrated battle qualification.",
+  "sourceFiles": [
+    {
+      "file": "crates/battle-core/src/ai.rs",
+      "sha256": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde"
+    },
+    {
+      "file": "crates/battle-core/src/buff.rs",
+      "sha256": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145"
+    },
+    {
+      "file": "crates/battle-core/src/clock.rs",
+      "sha256": "95a00c6a78a6a1c6d82e42f8c81da7e0e4c3d6512468925697045fe975798cba"
+    },
+    {
+      "file": "crates/battle-core/src/config.rs",
+      "sha256": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36"
+    },
+    {
+      "file": "crates/battle-core/src/damage.rs",
+      "sha256": "8375af2f3c4d929bdef52fb86195357511f890a28c47d45ed6ed779e34641601"
+    },
+    {
+      "file": "crates/battle-core/src/engine.rs",
+      "sha256": "1a7cd93944a3cc86b25cc39d19edc7bf9b73f213174487744e606aabcd889110"
+    },
+    {
+      "file": "crates/battle-core/src/entity.rs",
+      "sha256": "6e5b05c246f3f0736e68e5f2b0abd11e831cff8d9d443b87fece5df17c65c8ac"
+    },
+    {
+      "file": "crates/battle-core/src/ffi.rs",
+      "sha256": "62e5d0c44521e8bb824c180ebdab811897397ebe968d27a0df98587ae1e06eb6"
+    },
+    {
+      "file": "crates/battle-core/src/js_math.rs",
+      "sha256": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d"
+    },
+    {
+      "file": "crates/battle-core/src/lib.rs",
+      "sha256": "7be1cad96fb6ad2991489a8153fab32e0d63b9415bdbf1c5772f8fae6eb6bf03"
+    },
+    {
+      "file": "crates/battle-core/src/numeric.rs",
+      "sha256": "113358834ead99b82800e8fe23a1d9b98f70e547a003c3cc45f860b30b5dc080"
+    },
+    {
+      "file": "crates/battle-core/src/rng.rs",
+      "sha256": "d343b560ebc3808ac57e8df064b63d5e4f75f6e9ed7bbefd0f2a20cae675d035"
+    },
+    {
+      "file": "crates/battle-core/src/scheduler.rs",
+      "sha256": "944041e9fcbb66e2dfb7f67121798e45e8a4db336f724bd7b047fe23829fe152"
+    },
+    {
+      "file": "crates/battle-core/src/skill.rs",
+      "sha256": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742"
+    },
+    {
+      "file": "crates/battle-core/src/unit.rs",
+      "sha256": "c097a9298d8e3cfeb11b9cbb3656e438b0c96d3b13526d4769eba7cd3a53809f"
+    },
+    {
+      "file": "crates/battle-core/src/unit_speeder.rs",
+      "sha256": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e"
+    }
+  ],
+  "qualifiesFor10000Target": false
+}
