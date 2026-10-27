@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "description": "Recorded source inputs and exact captured output for reproducible differential diagnostics; this archive does not upgrade qualification.",
+  "scope": "battle-core",
+  "captureMode": "final",
+  "executionContract": {
+    "engineFrames": true,
+    "queuedCallbacks": true,
+    "sourceCallbackSnapshots": true,
+    "actorEffectViewLifecycle": false,
+    "renderSceneMethods": false,
+    "qualifiesFor10000Target": false
+  },
+  "oracleProfile": null,
+  "oracleRuntime": null,
+  "qualification": "Diagnostic evidence only; actor/effect/view lifecycle excluded. Unpinned historical fixtures remain unqualified.",
+  "scenario": {
+    "file": "config/scenario-example-2026.json",
+    "sha256": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc"
+  },
+  "adapterInputs": {
+    "tools/emit-native-oracle.mjs": "93139514a2ab7da754b4d7f496a63d7bc21f27b3198a1a1d776f54753cb29450",
+    "tools/native-source-closure.mjs": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+    "tools/bootstrap-runtime.mjs": "64a36f1b66d38deac11823190728181aea9178cecaec39dd2e1bca30d8c4f313",
+    "tools/bootstrap-source.mjs": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+    "tools/bootstrap-packed.mjs": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+    "tools/bootstrap-realm.mjs": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+    "tools/bootstrap-callbacks.mjs": "af25f0c363f7157f4ce998a322915ea1896b4e38cfc5efe17e62b798b3986ea4",
+    "tools/bootstrap-declarations.mjs": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+    "tools/bootstrap-render-scene.mjs": "7bc000cb1d75e3732b33734c9f9b67d07e531a727ffd9391d6ee732ea1b1c6db",
+    "tools/scenario-factory.mjs": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+    "tools/bootstrap-host.js": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+    "tools/oracle-clock.js": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+    "config/bootstrap-packed-config.json": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+    "tools/bootstrap-vendor-CCClass.js": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+    "tools/bootstrap-render-host.js": "67591f598d90b3444434cae39526cb30f9634372df322b28db6e1e30d354945b",
+    "tools/bootstrap-vendor-CCGeometry.js": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+    "tools/bootstrap-vendor-CCPointExtension.js": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+    "tools/bootstrap-vendor-CCAffineTransform.js": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696"
+  },
+  "sourceInputs": {
+    "src/srcmodule/game_base.js": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_ui_2.js": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+    "src/srcmodule/game_ui_3.js": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+    "src/srcmodule/game_ui_4.js": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+    "src/srcmodule/game_ui_5.js": "b3169c14a946ce37b01e0b207b343d1d18afcbe3c6237e9639f79b9fd61cb13c",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "src/srcmodule/ui_contra.js": "11fd88a93d7d022ae3d0b1eb1d3e1addcf69f297a824ae510adee392f124ff95",
+    "src/srcmodule/ui_gve.js": "941012b6ca87524c122d577b5889c4da8e4b13904413129142b5e16c34e340e3",
+    "src/srcmodule/ui_minigame.js": "5885132fb5661551c9a14ebc8eedee42db42e65a24e023dc78f57b4b8c53cecb",
+    "src/srcmodule/ui_war.js": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3"
+  },
+  "generatedProgramSha256": "12369170a211a5d620531cfe970f828caee834d0ca3857a8226dc6efb81ac994",
+  "factoryCount": 49353,
+  "factoryChunks": [
+    {
+      "sha256": "25a2be87303bc84f17edfc3230aa3f272c242a432666b337222ff3eec3d543a6",
+      "firstFactory": 0,
+      "count": 2000
+    },
+    {
+      "sha256": "5ace1a97ae79b75f56ac9d235d36dfdf0c93a013e966dee58866a738ae306e52",
+      "firstFactory": 2000,
+      "count": 2000
+    },
+    {
+      "sha256": "6e551a6fdba558a2471797f9be226bd701599b8cffd2b0ebd69fc16839e24834",
+      "firstFactory": 4000,
+      "count": 2000
+    },
+    {
+      "sha256": "537e283d6e41bd652930d76c6994200d696f4301eaee73e74e30dd530e0621d7",
+      "firstFactory": 6000,
+      "count": 2000
+    },
+    {
+      "sha256": "95d17c279b61440416e766695cf80eff5a81116cb77e0234aafa96f25f8c006b",
+      "firstFactory": 8000,
+      "count": 2000
+    },
+    {
+      "sha256": "d18870875322c37543a568156940cf18797424aebd3168d0badd9e5230754cad",
+      "firstFactory": 10000,
+      "count": 2000
+    },
+    {
+      "sha256": "599be672b35f8abfa225b4694a43d4318543bd167e934066d3530ee943e5330f",
+      "firstFactory": 12000,
+      "count": 2000
+    },
+    {
+      "sha256": "914d02f9789ff44da20d121126d01d966653f8b568ddb3b533870d316469e6a4",
+      "firstFactory": 14000,
+      "count": 2000
+    },
+    {
+      "sha256": "e78ddc923f8c91f74c4efda486391d4b202898e64eedcee9b0c61a5f419a4b98",
+      "firstFactory": 16000,
+      "count": 2000
+    },
+    {
+      "sha256": "714b3f052f15a94b704503781d6753ae920ae659d403a4c1fc56e769d3d4bd0c",
+      "firstFactory": 18000,
+      "count": 2000
+    },
+    {
+      "sha256": "c2350577c840c76542e2373de79817c89e16e6801328d0247f97cfa573b88f6e",
+      "firstFactory": 20000,
+      "count": 2000
+    },
+    {
+      "sha256": "9022b6c4b16df8301c265328f3a0cc7ba6f082f723ce6fc8e87474e077332b3a",
+      "firstFactory": 22000,
+      "count": 2000
+    },
+    {
+      "sha256": "008beea5a15b323836c91065e6e67c45584271fa6b23893e5ecef991c6afa680",
+      "firstFactory": 24000,
+      "count": 2000
+    },
+    {
+      "sha256": "a3f23ff9f1b52700bbe61b921b164a3717358a0afbe99f29806d9056e1f96c57",
+      "firstFactory": 26000,
+      "count": 2000
+    },
+    {
+      "sha256": "f7648748a9fddc6de5745aa3d67732f4e1a634dd5788a662aeaf04fadb016a63",
+      "firstFactory": 28000,
+      "count": 2000
+    },
+    {
+      "sha256": "4cb090733ebb02868dcb0a2564065a62ad0030f10c3ecc203859854b753c38ca",
+      "firstFactory": 30000,
+      "count": 2000
+    },
+    {
+      "sha256": "c6c4229b3b919b60d60c3662d57ddc1075ee2d25a3a3761877181c0e78b2a25c",
+      "firstFactory": 32000,
+      "count": 2000
+    },
+    {
+      "sha256": "dd2907bdc50e3a640d8459dbb5f798fe3c6da7966670d0e794669c8f5248ce3a",
+      "firstFactory": 34000,
+      "count": 2000
+    },
+    {
+      "sha256": "1ae988b1fe11494253375ce1680532a12b417bf5359a02f2cc865ca05e2a2329",
+      "firstFactory": 36000,
+      "count": 2000
+    },
+    {
+      "sha256": "b34dc7eaa0fb53b0f801e8f2dfa51a8e40f4b3c87e11ae8b78d2e2019caf42de",
+      "firstFactory": 38000,
+      "count": 2000
+    },
+    {
+      "sha256": "2c83e4910fe5ba9df0c45256c3d5657347e4848c3fb9efd28dd3cab6de4dcd5f",
+      "firstFactory": 40000,
+      "count": 2000
+    },
+    {
+      "sha256": "201fa9c01b630673464107720d3cd54111aa23ba3e35ccee6fcc253bda266f12",
+      "firstFactory": 42000,
+      "count": 2000
+    },
+    {
+      "sha256": "6f4cca40a3443b9c285d2fdd19e057e38dec50daa5c286ce0590cd44b6e0b9d7",
+      "firstFactory": 44000,
+      "count": 2000
+    },
+    {
+      "sha256": "8a5302168072bee5046285e208ceac5e64b85a364a59afca0eac38d7d1dba3dc",
+      "firstFactory": 46000,
+      "count": 2000
+    },
+    {
+      "sha256": "70e1a8bc7ba525a8fee5c7166ccc83b925915fb5c641e2344fb006c6663aab0e",
+      "firstFactory": 48000,
+      "count": 1353
+    }
+  ],
+  "tableBundle": {
+    "sha256": "91dba76e4f840237264b782855193a71fd2ce1b45f6bb328e5f37fb474f9c1c1",
+    "bytes": 101695086
+  },
+  "rebuild": {
+    "tables": "node tools/prepare-native-tables.mjs",
+    "emitter": "node tools/emit-native-oracle.mjs --scenario config/scenario-example-2026.json --scope battle-core --capture final --battles 1 --warmup 0 --host-inputs benchmarks/fixtures/frozen-2026-broad-unpinned/host-inputs.json.gz --output work/native-oracle-replay.js --factory-chunk-size 2000",
+    "native": "node tools/native-compiler-run.mjs --input work/native-oracle-replay.js --output work/native-oracle-replay --cc-opt O1 --compile-jobs 2 --plumbing",
+    "replay": "The emitter command consumes the archived exact random/clock tapes and rejects missing/extra host inputs. Rebuilding with changed source/oracle/compiler versions requires a new qualification."
+  },
+  "artifacts": [
+    {
+      "file": "metadata.json.gz",
+      "compression": "gzip",
+      "sha256": "0e028ce04f6333e28dc49912e4c9b06357f8e9df039bff86d4dfc7a79b2a0863",
+      "uncompressedSha256": "fdece5cd9ede839277dc28c08032d84974f44c6b9b713bd368cb4f3354ee13cf",
+      "uncompressedBytes": 11407107,
+      "bytes": 2138534
+    },
+    {
+      "file": "host-inputs.json.gz",
+      "compression": "gzip",
+      "sha256": "5cc21d7301c5b3a6556ad38ae064eec5fb4b0d9b6346de88902f7b31bdb9de87",
+      "uncompressedSha256": "56dc7f27a3eb39de6afcd76a4b81bccd6d638552817ee81324b95629f77e3150",
+      "uncompressedBytes": 13593,
+      "bytes": 489
+    },
+    {
+      "file": "reference.json.gz",
+      "compression": "gzip",
+      "sha256": "7ff76d655a86d3f5537b22db83c58c74b8955fec26e478564885f8f6fe4e33f5",
+      "uncompressedSha256": "c8e6b878abceaa2488511a4805a08bdc295c3b937d003166ccf2f68ff0cb2ed3",
+      "uncompressedBytes": 224363,
+      "bytes": 14230
+    },
+    {
+      "file": "node.stdout.gz",
+      "compression": "gzip",
+      "sha256": "1b6177a0dbc538a88f75350bad681022c163754f3518e065137d3abf2cb7b5d0",
+      "uncompressedSha256": "1b9bd926bea9b76e14a76ff6d28ba455fb3976347bf40d795819c88aea78d825",
+      "uncompressedBytes": 224599,
+      "bytes": 14375
+    },
+    {
+      "file": "node.stderr.gz",
+      "compression": "gzip",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0,
+      "bytes": 20
+    }
+  ]
+}
