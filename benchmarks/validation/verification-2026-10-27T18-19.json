@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "command": "npm run verify",
+  "commandPassed": true,
+  "nodeTests": 105,
+  "rustTests": 38,
+  "nativeAttributeAbiCheckPassed": true,
+  "rawNumericGatePassed": false,
+  "numericNaNStorageBitDifferences": 2,
+  "fullBattleEquivalence": false,
+  "qualifiesForBattleThroughputTarget": false,
+  "referenceProfile": "config/source-oracle-runtime.json",
+  "log": "benchmarks/validation/verification-2026-10-27T18-19.log.gz",
+  "uncompressedLogSha256": "dd1abe9beef70949706482b1681a67f0edd2dfeee9c2cf864ec7d7cb5727c018",
+  "scope": "Historical combined verification log; per-component source hashes are recorded in each printed result. Known numeric-array NaN diagnostics are visible, not an all-domain raw-bit pass."
+}
