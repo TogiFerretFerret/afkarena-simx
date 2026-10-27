@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Rechecks complete committed raw source/native captures without requiring ignored compiler/build work files. Recomputes chunk integrity, fail-closed NDJSON transport, strict selected-state schema, every ordered snapshot/event and both terminal report comparisons. This replays diagnostic evidence, not a new simulator execution or a throughput benchmark.",
+  "source": {
+    "file": "benchmarks/results/2026-10-27T23-15-36.402Z-boundary-source-reference.json",
+    "sha256": "3cc4ec9de2635b657a33d8ae328e6197f202f2c5844f29fa9ee0d9678a48d230"
+  },
+  "native": {
+    "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.json",
+    "sha256": "dd207fc9b35fd34b2c6d4a9cafe1eae80576b5579903750c159591bcb4aa4c25"
+  },
+  "sourceTerminalDifference": null,
+  "nativeTerminalDifference": null,
+  "sourceSchema": {
+    "passed": true,
+    "events": 64419,
+    "snapshotNodes": 55078,
+    "frames": 296,
+    "scope": "Supplemental JSON schema and integrity for typed-entry boundary traces; own enumerable string-keyed data fields only. No whole-program or battle semantic qualification.",
+    "qualifiesFor10000Target": false
+  },
+  "nativeSchema": {
+    "passed": true,
+    "events": 64419,
+    "snapshotNodes": 55078,
+    "frames": 296,
+    "scope": "Supplemental JSON schema and integrity for typed-entry boundary traces; own enumerable string-keyed data fields only. No whole-program or battle semantic qualification.",
+    "qualifiesFor10000Target": false
+  },
+  "ordered": {
+    "passed": true,
+    "eventsCompared": 64419,
+    "sourceSnapshotNodes": 55078,
+    "nativeSnapshotNodes": 55078,
+    "rootContract": "primitive-vector-battle-boundaries-v1",
+    "qualifiesFor10000Target": false,
+    "limitations": [
+      "Not a whole-program graph: nested objects, prototype state, function code/closures, shared-object aliases outside selected roots and weak contents are omitted",
+      "Selected state includes only own enumerable string-keyed primitive fields, numeric vectors and selected ordered engine/unit/skill/buff lists; field names are encoded as entry data and cannot collide with snapshot reference tags",
+      "Own data-descriptor reads do not invoke ordinary getters; reflective inspection of an unknown Proxy can invoke traps and is outside the supported fixture domain",
+      "Payload object graphs are separately descriptor-encoded with numeric bits, accessor identities and per-payload aliases; source object arguments use stable identity tokens",
+      "Actor/effect/view lifecycle remains outside this callback-only adapter"
+    ]
+  },
+  "completeProgramRootContract": false,
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "Not a whole-program graph: nested objects, prototype state, function code/closures, shared-object aliases outside selected roots and weak contents are omitted",
+    "Selected state includes only own enumerable string-keyed primitive fields, numeric vectors and selected ordered engine/unit/skill/buff lists; field names are encoded as entry data and cannot collide with snapshot reference tags",
+    "Own data-descriptor reads do not invoke ordinary getters; reflective inspection of an unknown Proxy can invoke traps and is outside the supported fixture domain",
+    "Payload object graphs are separately descriptor-encoded with numeric bits, accessor identities and per-payload aliases; source object arguments use stable identity tokens",
+    "Actor/effect/view lifecycle remains outside this callback-only adapter"
+  ]
+}
