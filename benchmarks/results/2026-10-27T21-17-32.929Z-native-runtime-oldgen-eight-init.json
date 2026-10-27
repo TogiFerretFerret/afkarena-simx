@@ -1,0 +1,346 @@
+{
+  "version": 1,
+  "name": "oldgen-eight-init",
+  "semanticReportMatched": true,
+  "firstDifference": null,
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "runtimeArgs": [
+    "-Xhermes-internal-test-methods",
+    "-gc-alloc-young=false",
+    "-gc-init-heap=8GiB",
+    "-gc-max-heap=8GiB"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/native-runtime-replay",
+    "LANG": "C",
+    "LD_LIBRARY_PATH": "/workspace/afkarena-simx/work/native-combined-copy"
+  },
+  "sourceReport": {
+    "file": "benchmarks/results/2026-10-27T21-01-54.537Z-native-warm23-entity-copy.json",
+    "sha256": "eac33b5dec3d7641836673964d3f4c27db026c8c47b5c0feba7a0f9e71673d7a"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/native-warm23-entity-copy",
+    "sha256": "19afa8994e34a06bdea0349561b80738177fb8ecb00287bd288449e5315c0dc0"
+  },
+  "privateVM": {
+    "file": "/workspace/afkarena-simx/work/native-combined-copy/libhermesvm.so",
+    "sha256": "70cc55a159f3d434218754ce94165134231f584a1f7e89379b6d366e632767dd"
+  },
+  "machine": {
+    "version": 1,
+    "capturedAt": "2026-10-27T21:17:32.928Z",
+    "runtime": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "kernel": "6.18.55",
+    "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+    "logicalCpus": 5,
+    "availableParallelism": 4,
+    "cgroupV2": {
+      "cpuMax": "400000 100000",
+      "memoryMax": "17179869184",
+      "cpuQuotaCores": 4
+    },
+    "effectiveCpuCapacity": 4,
+    "scope": "Host resource snapshot. CPU affinity and cgroup quota are distinct; this file is not a throughput result."
+  },
+  "resourceSamplingPeriodMs": 250,
+  "resourceScope": "Maximum observed /proc VmRSS and cumulative VmHWM sampled every250ms; final subinterval can be missed.",
+  "gcBudgetScope": "GC allocation flags may delay the first old-generation collection until after this finite20battle window. First oldGC resets promotion mode; sustained throughput across multiple GC cycles is not established by this result.",
+  "peakSampledRSSKiB": 6712864,
+  "peakKernelHighWaterRSSKiB": 6713084,
+  "resourceSamples": 889,
+  "completed": 20,
+  "measuredBattles": 20,
+  "warmupBattles": 3,
+  "elapsedMs": 126146,
+  "battlesPerSecond": 0.15854644618140884,
+  "wallMs": 222541.542672,
+  "timingScope": "elapsedMs measures20original battles after3warmups, including scenario materialization and engine setup. Final capture/report hashing occurs after measured timer. Wall time includes VM/script/table cold initialization,3warmups,20battles and report. Their difference is combined overhead, not an isolated cold-init or warmup measurement.",
+  "totalCallbacks": 309060,
+  "classManagerCounters": {
+    "nextClassId": 172,
+    "nextInstanceId": 56542,
+    "classCounterValue": 172,
+    "instanceCounterValue": 56542,
+    "lastClassId": 171,
+    "lastInstanceId": 56541,
+    "classCalls": 46,
+    "instanceCalls": 55848,
+    "classKnown": true,
+    "instanceKnown": true
+  },
+  "hostInputConsumption": {
+    "random": 2,
+    "clock": {
+      "version": 1,
+      "mode": "replay",
+      "attempts": 5980,
+      "consumed": 5980,
+      "total": 5980,
+      "remaining": 0,
+      "counts": {
+        "Date.now": 0,
+        "Date.construct": 5980,
+        "Date.call": 0
+      },
+      "finished": true,
+      "restored": false,
+      "failure": null
+    }
+  },
+  "dependenciesAtFinish": [
+    {
+      "file": "tools/emit-native-oracle.mjs",
+      "sha256": "5308cd3bebe6b11459a9e67070b0049138f62aa3c6c528d1ebf56427e5f80c03",
+      "matched": true
+    },
+    {
+      "file": "tools/native-oracle-trace.mjs",
+      "sha256": "856484545c543dd68e36e2b465843e21a08ba3301e54b0312ad47cb827218ce9",
+      "matched": true
+    },
+    {
+      "file": "tools/native-report-compare.mjs",
+      "sha256": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+      "matched": true
+    },
+    {
+      "file": "tools/battle-trace-portable.js",
+      "sha256": "9813a661d5969a20559a1784a6d0317c426b3553fcea8aabca7ad16a979f2f34",
+      "matched": true
+    },
+    {
+      "file": "tools/battle-trace-instrumentation.js",
+      "sha256": "2c0d632a7d527b48247718f9f65ff486bbb1824fbf237c62a172a09579c0b989",
+      "matched": true
+    },
+    {
+      "file": "tools/qualification-table-membrane.js",
+      "sha256": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+      "matched": true
+    },
+    {
+      "file": "tools/qualification-mutable-table-capsule.js",
+      "sha256": "3820aaa6fc9cde91b5063ded9e7fd72cd50265a94c70666306682d078c917c21",
+      "matched": true
+    },
+    {
+      "file": "tools/qualification-table-policy.js",
+      "sha256": "511f27e81ac760765300df2f690378bddf6958aba1f997808e181c5a15819a44",
+      "matched": true
+    },
+    {
+      "file": "tools/native-source-closure.mjs",
+      "sha256": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-runtime.mjs",
+      "sha256": "8e72cf52358c7cee53beb9063cdcc74f54bfe82496491f5e4b8ce2afb8eaf59f",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-records.mjs",
+      "sha256": "13d13e2ead5ad64af77bace24d91540045369483ff2327306ca5d2ce193c5741",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-records-extractor.mjs",
+      "sha256": "57aa817af90dda082b0bac89d03bfcde7f04d2b55f339c8ff9a2792cd21f231d",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-source.mjs",
+      "sha256": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-packed.mjs",
+      "sha256": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-realm.mjs",
+      "sha256": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-callbacks.mjs",
+      "sha256": "5ffd831f43c1ebb7eec5377e8462570dc66e94173139d3508fb3f73cf98e69ff",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-declarations.mjs",
+      "sha256": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-render-scene.mjs",
+      "sha256": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+      "matched": true
+    },
+    {
+      "file": "tools/scenario-factory.mjs",
+      "sha256": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-host.js",
+      "sha256": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+      "matched": true
+    },
+    {
+      "file": "tools/oracle-clock.js",
+      "sha256": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+      "matched": true
+    },
+    {
+      "file": "config/bootstrap-packed-config.json",
+      "sha256": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+      "matched": true
+    },
+    {
+      "file": "config/source-oracle-runtime.json",
+      "sha256": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+      "matched": true
+    },
+    {
+      "file": "tools/oracle-class-manager.js",
+      "sha256": "54022d5d5857e4f73b3518be0acfb642256948f6dffe7a7f3838c5a2900f5e3d",
+      "matched": true
+    },
+    {
+      "file": "config/oracle-class-manager.json",
+      "sha256": "94f4f9515c167489d014ea02c62a9da5f1c4062c630879cde4856b5a6c68a738",
+      "matched": true
+    },
+    {
+      "file": "config/qualification-mutable-table-capsule.json",
+      "sha256": "7ede868a426815489070f0525e9d8f028f0f8a43e7123debce8ac4d86d54a39a",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-realm-init.js",
+      "sha256": "1b7ae0bfe4cca713e51abfa81fed12b3f9b70e33e6af4301a722cfc32832d82c",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCClass.js",
+      "sha256": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-render-host.js",
+      "sha256": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCGeometry.js",
+      "sha256": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCPointExtension.js",
+      "sha256": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCAffineTransform.js",
+      "sha256": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCTypesPredicates.js",
+      "sha256": "54736c655de08ad96cec9f709f0984e8c3256a5abff980d0786472418d956458",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "sha256": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_1.js",
+      "sha256": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_2.js",
+      "sha256": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_3.js",
+      "sha256": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_4.js",
+      "sha256": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "sha256": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "sha256": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-warm23-current.js",
+      "sha256": "de689b347811c47a050cb16d4d5e4acdd8cf16db9f9a427875c25eccdf938033",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-warm23-current.js.metadata.json",
+      "sha256": "3c3855472d4b8a5d9e6c0fcdedac499f5534dcf12a0a9a3c85c0f4749a90ba2d",
+      "matched": true
+    },
+    {
+      "file": "tools/prepare-warm-native-partition.mjs",
+      "sha256": "d305b5e5af171879fca8e75cf939b6d00a76d82911259664c45d274c808ec5ed",
+      "matched": true
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-27T21-17-32.929Z-native-runtime-oldgen-eight-init.actual.gz",
+      "sha256": "4edf9f36864410751f3eed6947a1ad90701aa52bc899152d5b6e70e633eedc90",
+      "uncompressedSha256": "476112d6229b7c91066b0bdf0a274594d39d19fd202bf1eeba3c1a66a7549819",
+      "uncompressedBytes": 687632
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T21-17-32.929Z-native-runtime-oldgen-eight-init.stderr.gz",
+      "sha256": "e740f5b248d817f79ad46d61b4c80bacc8ad65c31cd68144052ad836e0f55a28",
+      "uncompressedSha256": "6cae5b9c16bbe8ea7398de26befad9e6925c34096fc20453ba910f2ec2f56461",
+      "uncompressedBytes": 133
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T21-17-32.929Z-native-runtime-oldgen-eight-init.reference.gz",
+      "sha256": "480b8fd4f513a3c6b91eb564782c3f066864dd6c28d84ffbf8c0a36e027d6d82",
+      "uncompressedSha256": "467139f71442d274c248eb2d5e91d801a6b44a1c4c5b28abb2f8ee625869feb5",
+      "uncompressedBytes": 687389
+    }
+  ],
+  "producer": {
+    "file": "tools/replay-native-runtime.mjs",
+    "sha256": "1a0707d279dd00d845095f3eb72220c1e1f067bfc3e759772ef7726cc3536386"
+  },
+  "qualifiesFor10000Target": false,
+  "qualification": "Same one fixed callback-only scenario, original source/binary/objects/helpers and strict full raw report; only explicitly recorded VM/runtime options differ. Complete random5v5 and actor/effect/view lifecycle qualification remain required."
+}
