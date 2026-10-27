@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Native executable static-symbol to retained original JS source mapping; no performance or battle qualification claim.",
+  "qualifiesFor10000Target": false,
+  "binary": {
+    "file": "work/native-warm23-entity-copy",
+    "sha256": "19afa8994e34a06bdea0349561b80738177fb8ecb00287bd288449e5315c0dc0"
+  },
+  "inputReport": {
+    "file": "benchmarks/results/2026-10-27T21-01-54.537Z-native-warm23-entity-copy.json",
+    "sha256": "eac33b5dec3d7641836673964d3f4c27db026c8c47b5c0feba7a0f9e71673d7a"
+  },
+  "mapping": {
+    "file": "benchmarks/validation/native-copy-js-symbol-map.json.gz",
+    "sha256": "a096f182ae534ad05bb4257545596484b5183a32756f3c4d6c244b6b6bee57de",
+    "bytes": 3126474
+  },
+  "toolSha256": "7b6b5352821c8c60adf2cc0ce017a3dd92d738636590b95fdcc83c4eeca12fbc",
+  "units": [
+    {
+      "name": "partition_0",
+      "nfiRows": 3204,
+      "generatedC": {
+        "file": "work/native-warm23-entity.units/partition_0.entity-copy.c",
+        "sha256": "f08b398539bbafe9a1918dfd37d34941dddf9e1237b281bd7225c84b49b38434",
+        "nfiRowsVerified": 3204
+      }
+    },
+    {
+      "name": "factories_2",
+      "nfiRows": 3679,
+      "generatedC": null
+    },
+    {
+      "name": "factories_3",
+      "nfiRows": 3237,
+      "generatedC": null
+    },
+    {
+      "name": "factories_4",
+      "nfiRows": 3371,
+      "generatedC": null
+    },
+    {
+      "name": "factories_5",
+      "nfiRows": 3341,
+      "generatedC": null
+    },
+    {
+      "name": "factories_6",
+      "nfiRows": 2396,
+      "generatedC": null
+    },
+    {
+      "name": "runner",
+      "nfiRows": 3690,
+      "generatedC": null
+    }
+  ],
+  "functions": 22918,
+  "withRetainedSource": 22911,
+  "uniqueOriginalSource": 15946,
+  "repeatedOriginalSource": 6490,
+  "noOriginalSource": 133,
+  "duplicateSymbolNames": 3237,
+  "unresolved": [],
+  "examples": [
+    {
+      "unit": "partition_0",
+      "symbol": "_564_update_11_",
+      "address": "0x39afa8",
+      "size": 26977,
+      "nfiIndex": 564,
+      "name": "update",
+      "argumentCount": 1,
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "sourceLength": 5784,
+      "sourceStatus": "Unique exact source occurrence",
+      "sourceRangeCount": 1,
+      "originalGameRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 97200,
+          "end": 102984,
+          "contextBefore": "te_Dead&&this.state!==ed.emUnitState_Dying},checkFakeDead:function(){return this.isFakeDead},update:"
+        }
+      ]
+    },
+    {
+      "unit": "partition_0",
+      "symbol": "_3058_get_18_",
+      "address": "0x7022b",
+      "size": 3818,
+      "nfiIndex": 3058,
+      "name": "get",
+      "argumentCount": 0,
+      "sourceSha256": "7ec6e1f869473c0f438742ee4cf415d13e3fb2633fc55b64f95032a231e07f1a",
+      "sourceLength": 753,
+      "sourceStatus": "Unique exact source occurrence",
+      "sourceRangeCount": 1,
+      "originalGameRangeCount": 0,
+      "ranges": [
+        {
+          "file": "tools/emit-native-oracle.mjs",
+          "start": 20153,
+          "end": 20906,
+          "contextBefore": "r.value,name);return;}\n      Object.defineProperty(owner,key,{configurable:true,enumerable:true,get:"
+        }
+      ]
+    },
+    {
+      "unit": "partition_0",
+      "symbol": "_3178_child_1_",
+      "address": "0x5a277",
+      "size": 2191,
+      "nfiIndex": 3178,
+      "name": "child",
+      "argumentCount": 2,
+      "sourceSha256": "dc309c7464c46565ec9681585f8978309ac6b22ed968581f889d1a415f26cac7",
+      "sourceLength": 199,
+      "sourceStatus": "Unique exact source occurrence",
+      "sourceRangeCount": 1,
+      "originalGameRangeCount": 0,
+      "ranges": [
+        {
+          "file": "tools/qualification-mutable-table-capsule.js",
+          "start": 6510,
+          "end": 6709,
+          "contextBefore": "}\n  function proxyFor(record){\n   if(record.proxy)return record.proxy;\n   var target=record.raw;\n   "
+        }
+      ]
+    },
+    {
+      "unit": "partition_0",
+      "symbol": "_3179_get_20_",
+      "address": "0x18fc48",
+      "size": 887,
+      "nfiIndex": 3179,
+      "name": "get",
+      "argumentCount": 3,
+      "sourceSha256": "0ad5fa417e6d8821948f9ddf75f2e1a7ced98b8726f6f5b7735ae9002fa59643",
+      "sourceLength": 88,
+      "sourceStatus": "Repeated exact source; all occurrences retained in shared sourceRecords",
+      "sourceRangeCount": 2,
+      "originalGameRangeCount": 0,
+      "ranges": [
+        {
+          "file": "tools/qualification-table-membrane.js",
+          "start": 6559,
+          "end": 6647,
+          "contextBefore": "efined?\"\":\" key \"+String(key)),true);}\n            var proxy=new Proxy(target,{\n                get:"
+        },
+        {
+          "file": "tools/qualification-mutable-table-capsule.js",
+          "start": 6750,
+          "end": 6838,
+          "contextBefore": "get,key))fail(\"unregistered raw own child\");}return value;}\n   var proxy=new Proxy(target,{\n    get:"
+        }
+      ]
+    },
+    {
+      "unit": "partition_0",
+      "symbol": "_3168_child",
+      "address": "0x5e08a",
+      "size": 2275,
+      "nfiIndex": 3168,
+      "name": "child",
+      "argumentCount": 2,
+      "sourceSha256": "11e3e72b47b9f51a69d8bfcb83ff4fad5d7e40fe47cb4f0490d8fcabdac3cb31",
+      "sourceLength": 259,
+      "sourceStatus": "Unique exact source occurrence",
+      "sourceRangeCount": 1,
+      "originalGameRangeCount": 0,
+      "ranges": [
+        {
+          "file": "tools/qualification-table-membrane.js",
+          "start": 6075,
+          "end": 6334,
+          "contextBefore": "d){\n            if(record.proxy)return record.proxy;\n            var target=record.raw;\n            "
+        }
+      ]
+    },
+    {
+      "unit": "partition_0",
+      "symbol": "_3169_get_19_",
+      "address": "0x18ffbf",
+      "size": 884,
+      "nfiIndex": 3169,
+      "name": "get",
+      "argumentCount": 3,
+      "sourceSha256": "0ad5fa417e6d8821948f9ddf75f2e1a7ced98b8726f6f5b7735ae9002fa59643",
+      "sourceLength": 88,
+      "sourceStatus": "Repeated exact source; all occurrences retained in shared sourceRecords",
+      "sourceRangeCount": 2,
+      "originalGameRangeCount": 0,
+      "ranges": [
+        {
+          "file": "tools/qualification-table-membrane.js",
+          "start": 6559,
+          "end": 6647,
+          "contextBefore": "efined?\"\":\" key \"+String(key)),true);}\n            var proxy=new Proxy(target,{\n                get:"
+        },
+        {
+          "file": "tools/qualification-mutable-table-capsule.js",
+          "start": 6750,
+          "end": 6838,
+          "contextBefore": "get,key))fail(\"unregistered raw own child\");}return value;}\n   var proxy=new Proxy(target,{\n    get:"
+        }
+      ]
+    }
+  ]
+}
