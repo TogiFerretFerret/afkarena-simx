@@ -14,6 +14,17 @@ const functionSource=fn=>Reflect.apply(Function.prototype.toString,fn,[]);
 export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,functionPolicy='graph'}={}){
   if(!['graph','code'].includes(functionPolicy))throw new Error('Unknown function snapshot policy');
   const ids=new WeakMap(),symbols=new Map(),functionHashes=new WeakMap();let nextId=1,nextSymbol=1;
+  function codeOnlyFunction(value){
+    for(const key of Reflect.ownKeys(value)){
+      if(['length','name','arguments','caller'].includes(key))continue;
+      if(key!=='prototype')return false;
+      const p=Reflect.getOwnPropertyDescriptor(value,key);
+      if(!p||!('value'in p)||!p.value||types.isProxy(p.value))return false;
+      const keys=Reflect.ownKeys(p.value),d=Reflect.getOwnPropertyDescriptor(p.value,'constructor');
+      if(keys.length!==1||keys[0]!=='constructor'||d?.value!==value||d.writable!==true||d.enumerable!==false||d.configurable!==true)return false;
+    }
+    return true;
+  }
   function symbol(value){if(!symbols.has(value))symbols.set(value,nextSymbol++);return['symbol',symbols.get(value),Symbol.keyFor(value)??null,value.description??null];}
   return function snapshot(roots){
     const queue=[],nodes=[],seen=new Set(),opaque=[];let opaqueFunctionCount=0;
@@ -39,7 +50,12 @@ export function createGraphSnapshotter({intrinsics=new Map(),maxNodes=100000,fun
       }
       if(!ids.has(value))ids.set(value,nextId++);
       const id=ids.get(value);
-      if(!seen.has(id)){if(seen.size>=maxNodes)throw new Error(`Battle snapshot exceeds ${maxNodes} nodes; no partial snapshot emitted`);seen.add(id);queue.push(value);}
+      if(!seen.has(id)){
+        if(seen.size>=maxNodes)throw new Error(`Battle snapshot exceeds ${maxNodes} nodes; no partial snapshot emitted`);
+        seen.add(id);
+        if(typeof value==='function'&&functionPolicy==='code'&&codeOnlyFunction(value))opaqueFunctionCount++;
+        else queue.push(value);
+      }
       if(typeof value==='function'&&functionPolicy==='code'){
         if(!functionHashes.has(value))functionHashes.set(value,digest(functionSource(value)));
         return['function',id,functionHashes.get(value)];

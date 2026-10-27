@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "test": "bounded one-frame realistic 5v5 source trace smoke",
+  "expectedFailure": "The source battle remains running after the intentionally tiny maxFrames=1 bound",
+  "passed": true,
+  "mode": "mutable_graph_with_code_identities",
+  "milliseconds": 40262.060267,
+  "status": "failed",
+  "error": "Original source battle did not terminate in 1 frames",
+  "events": 512,
+  "callbacks": 98,
+  "rng": 20,
+  "nodes": 3708,
+  "coverage": [
+    "Native lexical closure bindings cannot be reflected; callback execution effects and event/RNG order are checked",
+    "Standard function metadata is treated as immutable code; source function identity/hash and custom data properties remain captured",
+    "This instrumented source oracle is not a completed native simulator",
+    "Actor/effect/view lifecycle outside the source callback phase is not provided by this adapter"
+  ],
+  "qualifiesForThroughputTarget": false,
+  "throughputQualification": false
+}
