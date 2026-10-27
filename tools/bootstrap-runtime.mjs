@@ -83,6 +83,7 @@ export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundary
     assert.equal(proof.vendor.file,provenance.file);assert.equal(proof.vendor.sha256,provenance.sha256);
     assert.equal(createHash('sha256').update(proof.constructorSource).digest('hex'),proof.constructorSha256);
     for(const record of Object.values(proof.methods))assert.equal(createHash('sha256').update(record.source).digest('hex'),record.sha256);
+    for(const[file,sha256]of Object.entries(proof.reflectionScope.sourceModuleSha256))assert.equal(createHash('sha256').update(await readFile(resolve(root,file))).digest('hex'),sha256,`ClassManager reflection/alias source scope changed: ${file}`);
     runInContext(source,context,{filename:file});
     context.__classManagerObserverProof=importBootstrapValue(context,proof);
     try{classManagerObserver=runInContext('installClassManagerObserver(__classManagerObserverProof)',context);}
