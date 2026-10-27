@@ -1,0 +1,177 @@
+{
+  "version": 1,
+  "previousReview": {
+    "commit": "639c9e3",
+    "file": "benchmarks/validation/native-dictionary-hint-independent-review.json",
+    "sha256": "712c532cd81453e747d321882127ee754602e7a28fd6a364479700e83ba900d3"
+  },
+  "nativeProofReference": {
+    "file": "benchmarks/validation/native-dictionary-lease.json",
+    "sha256": "29b996b053eece4126a891577699d569a5134cd1f6780b9e3575ddd3348fb68a",
+    "interleavedRuntimeProof": {
+      "passed": true,
+      "runtimes": 2,
+      "interleavedChecks": 20000,
+      "adoptionChecks": 20000,
+      "bothSourceReportsMatched": true,
+      "secondRuntimeOriginalFallback": true,
+      "deadOwnerCleared": true,
+      "automaticShutdownRelease": true,
+      "releaseDeadIdempotent": true,
+      "releaseWhileAliveRejected": true,
+      "adoptionRetiredOldLease": true,
+      "boundedLiveContexts": 1,
+      "lifecycle": [
+        {
+          "created": 9,
+          "destroyed": 8,
+          "liveContexts": 1,
+          "otherRuntimeFallbacks": 44520
+        },
+        {
+          "created": 9,
+          "destroyed": 9,
+          "liveContexts": 0,
+          "otherRuntimeFallbacks": 44520
+        },
+        {
+          "created": 10,
+          "destroyed": 9,
+          "liveContexts": 1,
+          "otherRuntimeFallbacks": 44520
+        },
+        {
+          "created": 10,
+          "destroyed": 10,
+          "liveContexts": 0,
+          "otherRuntimeFallbacks": 44520
+        },
+        {
+          "created": 10,
+          "destroyed": 10,
+          "liveContexts": 0,
+          "otherRuntimeFallbacks": 44520
+        }
+      ]
+    },
+    "iterations": 8,
+    "mutationCasesPerIteration": 24000,
+    "emptyGuardTested": true
+  },
+  "passed": true,
+  "kind": "Independent dictionary TLS ownership and source-access review",
+  "scope": "This review is not the native differential proof and does not establish full-battle fidelity or speed. It checks source guard/current-map structure and original header identity, plus a separate two-translation-unit example of the C++17 explicit-instantiation private-access exemption. Original class definitions remain identical across translation units; no offset casts or header overlays. Native semantics and GC/lifecycle behavior require the separate native-dictionary-lease.json proof and actual source-reference battle gate.",
+  "reviewed": {
+    "sourceAssessment": {
+      "file": "benchmarks/validation/native-dictionary-hint-assessment.json",
+      "sha256": "9af85528735e21983525297634b10db559122224baacb5a11eee56e7a9d65fb5",
+      "config": {
+        "file": "config/native-compiler-static-hermes.json",
+        "sha256": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e",
+        "commit": "4f1db42d71d0839254c7154fc8c282bcea466206"
+      },
+      "inputs": {
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h": "4a02dbbc79ecdd8599b97c6208bbb6bc66a3fbe30f8f89ab6e55d733a1f93239",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/lib/VM/DictPropertyMap.cpp": "04acdb2dd1d53e1c8340e67a24cdb8e62b65167fda3a086ed0f057318ec9698a",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h": "7497ff4864c478d573350ee0f958e09626662ea8999f024180bbbeb74d332866",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/JSObject.h": "1dada40009441ce464eb288f42a1b8b989ab72b3cd4e99ebacc2818b8bc6744d",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/PropertyDescriptor.h": "c539ff33ce0f9a34882c1042b5503686814f1864af96f0ab74c5c65dbe197088",
+        "work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/static_h.h": "4116a79463473da92919274a8d0741789b27748bb3f323a5d0f6d668cca33e08"
+      }
+    },
+    "build": {
+      "file": "benchmarks/validation/native-dictionary-lease-build.json",
+      "sha256": "41cb0a969407e9bde3033c8d6f0a958076d3d5ee0c7397cb2998bc9020578391"
+    },
+    "bridge": {
+      "file": "tools/native-compiler-patches/dictionary-lease-host.inc",
+      "sha256": "c004d56cffdd816cfcf56f7278321292a7c0b6248cb36810b9054749ee45a050"
+    },
+    "wrapper": {
+      "file": "tools/native-compiler-patches/dictionary-lease-wrap.c",
+      "sha256": "bc4b3c323a02c17054419aa35f814989c78a9087014a7b0da5442b103fd72d10"
+    },
+    "headers": {
+      "DictPropertyMap": {
+        "original": "/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/DictPropertyMap.h",
+        "originalSha256": "4a02dbbc79ecdd8599b97c6208bbb6bc66a3fbe30f8f89ab6e55d733a1f93239"
+      },
+      "HiddenClass": {
+        "original": "/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include/hermes/VM/HiddenClass.h",
+        "originalSha256": "7497ff4864c478d573350ee0f958e09626662ea8999f024180bbbeb74d332866"
+      }
+    },
+    "contexts": 36
+  },
+  "findings": [
+    "Only ordinary nonlazy nonProxy nonHost JSObject receivers with dictionary nonTyped current HiddenClass are eligible.",
+    "Each call reloads current HiddenClass map, current descriptor count, current descriptor key, current descriptor flags and slot, and current receiver storage value.",
+    "The pinned original findOrAdd insertion path preserves unique valid property keys, as recorded by the source assessment uniqueInsertion context. Ordinal hints contain only SymbolID and integer ordinal. A stale ordinal either matches the same unique current key or invokes original current-map find. No map, class, receiver or descriptor pointer survives a call.",
+    "All unsupported descriptor flags and Empty values fall back. Source SmallHermesValue decoder is retained.",
+    "The guarded source path performs no VM allocation or JS calls between map/key validation and value load. NoAllocScope expresses and debug-checks this requirement; it is a no-op in release builds and is not a runtime GC lock. The C trampoline invokes original SH fallback after the entire C++ bridge returns, including all RAII scopes.",
+    "One thread-local owning shared_ptr lease supplies borrowed raw state pointers on reads; no weak_ptr lock or shared ownership copy occurs on the existing-owner fast path. The runtime shutdown callback marks the captured state dead and clears its opaque Runtime owner pointer. The same-thread callback clears matching TLS ownership while its captured strong lease keeps the integer state alive until the callback is destroyed. At most one cache context exists per worker thread; optional release_dead is idempotent after shutdown and rejects a live lease. A second LIVE Runtime on the same thread deliberately uses original-helper fallback and creates no additional cache context. No custom GC roots or retained GC objects are introduced.",
+    "Worker scope requires each Runtime initialization, use and shutdown on the same mutator thread, with shutdown completed before that thread exits. Independent Runtime-per-worker parallelism is allowed; migration of a Runtime across threads and concurrent use of a Runtime are outside this unsynchronized cache contract."
+  ],
+  "accessSmoke": {
+    "compiler": "c++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "flags": [
+      "-std=c++17",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-fno-exceptions",
+      "-fno-rtti",
+      "-ffp-contract=off"
+    ],
+    "positive": {
+      "args": [
+        "-std=c++17",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-O2",
+        "-fno-exceptions",
+        "-fno-rtti",
+        "-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-dictionary-lease-review/helper.cpp",
+        "/workspace/afkarena-simx/work/native-dictionary-lease-review/main.cpp",
+        "-o",
+        "/workspace/afkarena-simx/work/native-dictionary-lease-review/access-smoke"
+      ],
+      "status": 0,
+      "stderr": "",
+      "stdout": "17 54\n",
+      "binarySha256": "088132dbbba73b85672ee24ce5ed1649a4051572870ffbf732434b5b8a386d6d"
+    },
+    "negative": {
+      "args": [
+        "-std=c++17",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-O2",
+        "-fno-exceptions",
+        "-fno-rtti",
+        "-ffp-contract=off",
+        "-c",
+        "/workspace/afkarena-simx/work/native-dictionary-lease-review/forbidden.cpp",
+        "-o",
+        "/workspace/afkarena-simx/work/native-dictionary-lease-review/forbidden.o"
+      ],
+      "status": 1,
+      "stderr": "/workspace/afkarena-simx/work/native-dictionary-lease-review/forbidden.cpp: In function ‘int forbidden(Original&)’:\n/workspace/afkarena-simx/work/native-dictionary-lease-review/forbidden.cpp:2:47: error: ‘int Original::value_’ is private within this context\n    2 | int forbidden(Original &object){return object.value_;}\n      |                                               ^~~~~~\nIn file included from /workspace/afkarena-simx/work/native-dictionary-lease-review/forbidden.cpp:1:\n/workspace/afkarena-simx/work/native-dictionary-lease-review/original.h:1:22: note: declared private here\n    1 | class Original { int value_=17; int method_(){return value_+20;} public: int publicValue()const{return value_;} };\n      |                      ^~~~~~\n/workspace/afkarena-simx/work/native-dictionary-lease-review/forbidden.cpp:2:47: note: field ‘int Original::value_’ can be accessed via ‘int Original::publicValue() const’\n    2 | int forbidden(Original &object){return object.value_;}\n      |                                               ^~~~~~\n      |                                               publicValue()\n"
+    },
+    "sourceSha256": {
+      "header": "2ea46c688ef96bc78628cf78e3cf75a9bcb9c7584424fa2326475c31e89db9f7",
+      "helper": "771ae825dfca12a3db43def30e4fb08b96bd2fcb3067ccb4d8f06e02c1890dce",
+      "main": "f447f1f321170a5b2b64c5418a6be6f5cc711ffca9f1dd0a0b967923b0c705a8",
+      "forbidden": "36e782f1eeb3263831e63e96a8ed201f6792c1de8a8caa984645295953f68fe5"
+    }
+  },
+  "source": {
+    "file": "tools/review-native-dictionary-lease.mjs",
+    "sha256": "d016575b21a074c063cb48707be93f158c943a3c98816386de742480ea16ef1c"
+  },
+  "qualifiesFor10000Target": false
+}
