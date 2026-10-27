@@ -1,9 +1,9 @@
 {
   "version": 1,
   "command": "rustc --edition=2024 --test crates/battle-core/src/lib.rs -o work/core-tests && work/core-tests",
-  "passed": 41,
+  "passed": 44,
   "failed": 0,
-  "scope": "Rust core unit tests after extracting the source-ordered Unit action-speed helper; not an integrated battle qualification.",
+  "scope": "Rust core unit tests with both source-pinned V8 sort kernels exported; full sort comparator traces and VM adapter have separate reports. Not an integrated battle qualification.",
   "sourceFiles": [
     {
       "file": "crates/battle-core/src/ai.rs",
@@ -43,7 +43,7 @@
     },
     {
       "file": "crates/battle-core/src/lib.rs",
-      "sha256": "7be1cad96fb6ad2991489a8153fab32e0d63b9415bdbf1c5772f8fae6eb6bf03"
+      "sha256": "3909be9496acd4eccd35d67c1c330be91393712f252f289136a18edeaaaa321e"
     },
     {
       "file": "crates/battle-core/src/numeric.rs",
@@ -68,12 +68,22 @@
     {
       "file": "crates/battle-core/src/unit_speeder.rs",
       "sha256": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e"
+    },
+    {
+      "file": "crates/battle-core/src/v8_small_sort.rs",
+      "sha256": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4"
+    },
+    {
+      "file": "crates/battle-core/src/v8_tim_sort.rs",
+      "sha256": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885"
     }
   ],
   "qualifiesFor10000Target": false,
   "nativeAttributeAbiBuckCheck": {
     "command": "buck2 run //tools:native_attribute_abi_check",
     "passed": true,
-    "logSha256": "bb62c6fec383e2e41c06cdb33cd3f0050d26d114ee3f005b3db8ac07e91a34d4"
-  }
+    "logSha256": "6bdd8b58c5cd87c9324a279089570b89f29d766952a44c379b80ad4b394271c4"
+  },
+  "log": "benchmarks/validation/core-unit-tests.log.gz",
+  "uncompressedLogSha256": "04fe11fc5dfd6ae0783fb39a4bded4c522b9f13a1243e0f4561a2eed7179d24a"
 }
