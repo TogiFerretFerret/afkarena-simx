@@ -54,3 +54,13 @@ Cocos allocation counters. This establishes emitter parity within the adapter
 scope, not native full-battle qualification. See
 `validation/tracked-capsule-source-node.json` and the corresponding
 archives in `fixtures/` for exact contracts and replay inputs.
+
+The full-scene random-team preflight covers eight independent seeds and two
+mirror variants: 57 distinct heroes and 10 beasts. All ten stop at the first
+unsupported actor operation on tick 1: four missing animation durations, three
+missing atlas geometry records, two unsupported setSkin calls, and one unsupported
+setTransform call. No case counts as completed. Exact inputs, phases, error
+stacks, source hashes and host inputs are retained in
+`validation/random-5v5-preflight.json`; rerun with
+`node tools/preflight-random-battles.mjs`. These are concrete blockers to full-scene
+qualification, separate from callback-only diagnostic measurements.
