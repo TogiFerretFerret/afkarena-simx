@@ -3,6 +3,7 @@ import { openSync,writeSync,closeSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { gunzipSync } from 'node:zlib';
 import assert from 'node:assert/strict';
 import { createBootstrapRuntime } from './bootstrap-runtime.mjs';
 import { instantiateScenario } from './scenario-factory.mjs';
@@ -10,6 +11,7 @@ import { installBootstrapRenderScene } from './bootstrap-render-scene.mjs';
 import { closeSourceSelection } from './native-source-closure.mjs';
 import { loadNativeTraceSources,installNativeReferenceTrace,traceSourceFiles } from './native-oracle-trace.mjs';
 import { comparePortableBattleTraces } from './battle-trace-portable.mjs';
+import { compareNativeReports,compareHostInputConsumption } from './native-report-compare.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 const args=process.argv.slice(2);
@@ -36,12 +38,16 @@ if(!['all','final','checksum'].includes(captureMode))throw new Error('Capture mu
 if(!['all','battle','battle-core','observed'].includes(scope))throw new Error('Scope must be all, battle, battle-core, or observed');
 if(!Number.isSafeInteger(battles)||battles<1||!Number.isSafeInteger(warmup)||warmup<0)throw new Error('Invalid battle count');
 const sha=value=>createHash('sha256').update(value).digest('hex');
-const adapterFiles=['tools/emit-native-oracle.mjs','tools/native-oracle-trace.mjs',...traceSourceFiles,'tools/native-source-closure.mjs','tools/bootstrap-runtime.mjs','tools/bootstrap-source.mjs','tools/bootstrap-packed.mjs','tools/bootstrap-realm.mjs','tools/bootstrap-callbacks.mjs','tools/bootstrap-declarations.mjs','tools/bootstrap-render-scene.mjs','tools/scenario-factory.mjs','tools/bootstrap-host.js','tools/oracle-clock.js','config/bootstrap-packed-config.json','config/source-oracle-runtime.json'];
+const adapterFiles=['tools/emit-native-oracle.mjs','tools/native-oracle-trace.mjs','tools/native-report-compare.mjs',...traceSourceFiles,'tools/native-source-closure.mjs','tools/bootstrap-runtime.mjs','tools/bootstrap-records.mjs','tools/bootstrap-records-extractor.mjs','tools/bootstrap-source.mjs','tools/bootstrap-packed.mjs','tools/bootstrap-realm.mjs','tools/bootstrap-callbacks.mjs','tools/bootstrap-declarations.mjs','tools/bootstrap-render-scene.mjs','tools/scenario-factory.mjs','tools/bootstrap-host.js','tools/oracle-clock.js','config/bootstrap-packed-config.json','config/source-oracle-runtime.json'];
 const adapterInputs=Object.fromEntries(await Promise.all(adapterFiles.map(async file=>[file,sha(await readFile(resolve(root,file)))])));
 const wireText=await readFile(scenarioPath,'utf8'),wire=JSON.parse(wireText);
+const replayInputFile=option('--host-inputs',null);
+const replayInputBytes=replayInputFile?await readFile(resolve(root,replayInputFile)):null;
+const replayInputs=replayInputBytes?JSON.parse((replayInputBytes[0]===31&&replayInputBytes[1]===139?gunzipSync(replayInputBytes):replayInputBytes).toString('utf8')):null;
+let replayRandomIndex=0;
 const entropy=[],clockObserver={current:null},traceObserver={current:null};
 const traceSources=traceEnabled?await loadNativeTraceSources(root):[];
-const runtime=await createBootstrapRuntime({hostRandom:()=>{const value=Math.random();entropy.push(value);if(traceObserver.current)traceObserver.current('host:random',{ordinal:entropy.length-1,value});return value;},hostClock:{mode:'record',tape:[],observe(entry,ordinal){if(clockObserver.current)clockObserver.current(entry,ordinal);}}});
+const runtime=await createBootstrapRuntime({hostRandom:()=>{if(replayInputs&&replayRandomIndex>=replayInputs.random.length)throw new Error('Replayed source host random inputs exhausted');const value=replayInputs?replayInputs.random[replayRandomIndex++]:Math.random();entropy.push(value);if(traceObserver.current)traceObserver.current('host:random',{ordinal:entropy.length-1,value});return value;},hostClock:{mode:replayInputs?'replay':'record',tape:replayInputs?replayInputs.clock:[],observe(entry,ordinal){if(clockObserver.current)clockObserver.current(entry,ordinal);}}});
 if(!runtime.clock)throw new Error('Copied source runtime must expose recorded hostClock before native emission');
 if(!runtime.sourceRecords)throw new Error('Copied source runtime must expose its exact sourceRecords');
 if(args.includes('--render-scene'))await installBootstrapRenderScene(runtime);
@@ -104,6 +110,7 @@ function __nativeRun(runtime,wire,battles,warmup,wallNow,captureMode){
 }
 const reference=__nativeRun(runtime,wire,battles,warmup,Date.now,captureMode);
 runtime.clock.finish();
+if(replayInputs)assert.equal(replayRandomIndex,replayInputs.random.length,'Unconsumed replayed source random inputs');
 const usedTableNames=[...runtime.tables.keys()].sort();
 // Include every table actually requested by the copied source oracle, including
 // dynamically selected helpers outside the prioritized literal-source regions.
@@ -117,7 +124,8 @@ await mkdir(resolve(output,'..'),{recursive:true});
 await writeFile(hostInputsPath,JSON.stringify(hostInputs)+'\n');
 await writeFile(referencePath,JSON.stringify(reference)+'\n');
 
-const records={...runtime.sourceRecords};
+const cloneRecordMap=map=>new Map([...map].map(([name,list])=>[name,list.map(record=>({...record}))]));
+const records={...runtime.sourceRecords,definitions:cloneRecordMap(runtime.sourceRecords.definitions),globals:cloneRecordMap(runtime.sourceRecords.globals)};
 if(scope!=='all'){
   const selected=new Set(scope==='observed'||scope==='battle-core'?runtime.loaded:[]);
   const maps=[records.definitions,records.globals];
@@ -265,6 +273,7 @@ const metadata={version:1,scope,captureMode,traceEnabled,oracleProfile,oracleRun
   hostSources:capturedHosts.map(({source,...record})=>({...record,sha256:sha(source)})),
   renderScene:runtime.renderScene?{sha256:sha(runtime.renderScene.source),functions:runtime.renderScene.functions,resources:runtime.renderScene.resources}:null,
   tableBundle:{file:tablesPath,sha256:sha(tableBytes),bytes:tableBytes.length,embedded:args.includes('--embed-tables')},
+  hostInputMode:replayInputs?'replay':'record',replayedHostInput:replayInputBytes?{file:replayInputFile,sha256:sha(replayInputBytes)}:null,
   hostInputs:{file:hostInputsPath,sha256:sha(JSON.stringify(hostInputs)+'\n'),randomCount:entropy.length,clockCount:runtime.clock.tape.length},reference:{file:referencePath,sha256:sha(JSON.stringify(reference)+'\n')},
   limitations:runtime.limitations,qualification:scope==='observed'?'Compiler plumbing only: observed factory keys for this exact source run; broader inputs may explicitly fail and this is not the full-domain throughput qualification':'Emitted static original-source factories; no throughput or whole-program equivalence claim until emitted Node and native executions match the copied source oracle'};
 await writeFile(output+'.metadata.json',JSON.stringify(metadata,null,2)+'\n');
@@ -276,11 +285,11 @@ if(!args.includes('--no-node-check')){
   if(checked.error)throw checked.error;
   assert.equal(checked.status,0,'Emitted Node failed; see '+output+'.node.stderr');
   const result=JSON.parse(checked.stdout.trim().split('\n').at(-1));
-  // The output contract is JSON. VM arrays/prototypes and absent undefined keys
-  // are normalized exactly as in the persisted copied-oracle reference artifact.
-  assert.deepEqual(result.results,JSON.parse(JSON.stringify(reference.results)),'Emitted Node original-source results differ from copied oracle');
-  assert.equal(result.checksum,reference.checksum,'Emitted Node terminal checksum differs from copied oracle');
-  if(captureMode==='final')assert.deepEqual(result.finalCapture,JSON.parse(JSON.stringify(reference.finalCapture)),'Emitted Node final state/device capture differs from copied oracle');
+  const normalizedReference=JSON.parse(JSON.stringify(reference));
+  const difference=compareNativeReports(result,normalizedReference);
+  assert.equal(difference,null,'Emitted Node semantic report differs: '+JSON.stringify(difference));
+  const hostDifference=compareHostInputConsumption(result.hostInputConsumption,metadata.hostInputs);
+  assert.equal(hostDifference,null,'Emitted Node host inputs differ: '+JSON.stringify(hostDifference));
   if(traceEnabled){const gate=comparePortableBattleTraces(reference.trace,result.trace);await writeFile(output+'.trace-gate.json',JSON.stringify(gate,null,2)+'\n');assert.equal(gate.passed,true,'Emitted Node ordered graph trace differs: '+JSON.stringify(gate.difference));}
   console.log(JSON.stringify({status:'node_match',completed:result.completed,results:result.results.map(x=>({result:x.result,ticks:x.ticks,callbacks:x.callbacks,rngBits:x.rngBits}))}));
 }
