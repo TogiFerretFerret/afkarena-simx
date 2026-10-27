@@ -110,8 +110,7 @@ field: 20 battles in 91.308 seconds, 0.219039 battles/second. See
 `results/2026-10-27T20-56-14.019Z-native-warm23-baseline.json`. The roughly 0.9%
 difference from this single pair does not establish an Entity speedup. Only 230
 Entity calls were admitted across the warmups and measured battles, making this
-a small opportunity in this fixture. Native CPU profiling and the combined
-empty-array/numeric clone candidate are the next measurements.
+a small opportunity in this fixture.
 
 The combined clone candidate passes the same raw report but is slower: 20 battles
 in 101.582 seconds, 0.196885 battles/second. Keep it optional, not a promoted
@@ -120,6 +119,18 @@ only 76 empty arrays; source Node profile counts did not establish native
 admission rates. See
 `results/2026-10-27T21-01-54.537Z-native-warm23-entity-copy.json`. Its separate
 native CPU profile is diagnostic and cannot establish throughput.
+
+The actual native CPU profile passes replay and processing gates: 9,380 samples,
+zero lost samples, exact executable/DSO/source attribution. Young-generation
+evacuation accounts for 66.34% of all samples, with weak-reference acceptance
+adding roughly 5.3%. GC also dominates later elapsed-time bins; this is not just
+an initial boot hotspot. Exact evidence is in
+`results/2026-10-27T21-02-54.615Z-native-perf-entity-copy.json` and
+`validation/native-copy-perf-source.json`. The profile includes cold setup,
+warmups, measured battles and final diagnostics, without exact phase markers.
+Runtime GC settings are being tested against the unchanged executable and full
+report gate. A larger allocation budget may postpone collection beyond a short
+measurement window; it cannot by itself establish sustained throughput.
 
 Archived ordered traces can be checked with
 `node tools/check-archived-native-trace.mjs reference.stdout.gz candidate.stdout.gz metadata.json gate.json`.
