@@ -9,9 +9,12 @@
   var ed=runtime.ed,context=runtime.context,callbacks=runtime.callbacks;
   if(!callbacks||!callbacks.sceneHost)throw new Error('Trace needs the actual source callback sceneHost');
   var trace=host.installPortableBattleTrace(options),restores=[],callbackIds=new WeakMap(),nextCallback=1,frame=-1,stopped=false;
-  var knownNames=new Set(options.definitionNames||[]),registered=new WeakSet();
+  var knownNames=new Set(options.definitionNames||[]),registered=new WeakSet(),loaderRevision=-1;
   function logical(fn,name){if(typeof fn==='function'&&!registered.has(fn)){trace.capture.registerFunctionCode(fn,name);registered.add(fn);}}
   function loaderAccessors(){
+   var revision=runtime.loaded&&(runtime.loaded.length??runtime.loaded.size);
+   if(revision!==undefined&&revision===loaderRevision)return;
+   loaderRevision=revision;
    // Normalize only audited loader-created descriptors, identified by the exact
    // source definition catalog path. Original source accessor code is retained.
    var queue=[[ed,'ed']],visited=new WeakSet();
@@ -23,7 +26,10 @@
     for(var j=0;j<keys.length;j++){
      var key=keys[j];if(typeof key!=='string')continue;
      var name=prefix+'.'+key,d=Object.getOwnPropertyDescriptor(object,key);
-     if(!('value'in d)&&knownNames.has(name)&&d.enumerable&&d.configurable){
+     var getterCode=typeof d.get==='function'?Function.prototype.toString.call(d.get):'';
+     var isLoader=getterCode.includes('Missing original parent definition:')&&getterCode.includes('active.has(name)')||
+      getterCode.includes('Unsupported scoped source definition:')&&getterCode.includes('__nativeActive[name]');
+     if(!('value'in d)&&knownNames.has(name)&&isLoader&&d.enumerable&&d.configurable){
       logical(d.get,'source-loader:get:'+name);logical(d.set,'source-loader:set:'+name);
      }else if('value'in d&&knownNames.has(name))queue.push([d.value,name]);
     }
