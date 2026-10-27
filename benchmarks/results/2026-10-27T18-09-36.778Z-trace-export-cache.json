@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "kind": "diagnostic-exporter-comparison",
+  "qualifiesForThroughputTarget": false,
+  "scenario": "e9f0eac1ebfc6bf50a424bbae24ebf2e9a9c8d8902e7f4d76eb7ad37a2e6034a",
+  "frames": 20,
+  "node": "v24.19.0",
+  "sourceSha256": "2899d978e3ddfbac2774306649f379f8ca89fc9ad5d7d99a92d327031b9057f0",
+  "baseline": "same complete descriptor walker with property/node/hash reuse disabled and uncached DataView bits",
+  "referenceMs": 1405.472525999996,
+  "candidateMs": 1138.3608949999998,
+  "ratio": 1.2346458246881329,
+  "samples": [
+    {
+      "frame": 0,
+      "reference": 78.99890699999924,
+      "candidate": 76.3477039999998
+    },
+    {
+      "frame": 1,
+      "candidate": 110.55844400000024,
+      "reference": 101.19051700000091
+    },
+    {
+      "frame": 2,
+      "reference": 137.04336400000102,
+      "candidate": 58.24451500000032
+    },
+    {
+      "frame": 3,
+      "candidate": 66.30014399999891,
+      "reference": 84.01949500000046
+    },
+    {
+      "frame": 4,
+      "reference": 89.98643099999936,
+      "candidate": 74.12225699999908
+    },
+    {
+      "frame": 5,
+      "candidate": 57.91022899999916,
+      "reference": 58.93978199999947
+    },
+    {
+      "frame": 6,
+      "reference": 58.40763499999957,
+      "candidate": 56.694870000001174
+    },
+    {
+      "frame": 7,
+      "candidate": 44.53179199999977,
+      "reference": 65.27849099999912
+    },
+    {
+      "frame": 8,
+      "reference": 55.64023899999847,
+      "candidate": 44.519765000000916
+    },
+    {
+      "frame": 9,
+      "candidate": 51.28203100000064,
+      "reference": 62.381633999999394
+    },
+    {
+      "frame": 10,
+      "reference": 54.20472599999994,
+      "candidate": 79.4540820000002
+    },
+    {
+      "frame": 11,
+      "candidate": 54.819014999999126,
+      "reference": 67.01599300000089
+    },
+    {
+      "frame": 12,
+      "reference": 63.95487299999877,
+      "candidate": 41.15803100000085
+    },
+    {
+      "frame": 13,
+      "candidate": 41.59625899999992,
+      "reference": 62.014751999999135
+    },
+    {
+      "frame": 14,
+      "reference": 64.15911400000005,
+      "candidate": 45.708654000000024
+    },
+    {
+      "frame": 15,
+      "candidate": 51.46754599999986,
+      "reference": 58.5038370000002
+    },
+    {
+      "frame": 16,
+      "reference": 60.71475900000041,
+      "candidate": 51.580002000000604
+    },
+    {
+      "frame": 17,
+      "candidate": 42.73500400000012,
+      "reference": 57.286715999998705
+    },
+    {
+      "frame": 18,
+      "reference": 62.05208700000003,
+      "candidate": 46.93663100000049
+    },
+    {
+      "frame": 19,
+      "candidate": 42.393919999998616,
+      "reference": 63.679174000000785
+    }
+  ],
+  "stateHashes": [
+    "73a6ecfa7378525229427134bca81edb7c781556764f7d59cce388795db73471",
+    "c0b2a0c15a5d8eb4d3ad10f9924fb07729ded40e726f0858e8394466af5ee89a",
+    "8c1fa28e98ed586f61ff2751a3d46c670700331396bb6df4fe689566afbed175",
+    "587b56fe9eb3541c124e126b2c3a18128d5bd52d2afffa4594fec53a19a3dc47",
+    "3d16dcff70e3844ce4eee91b85bc15c1b42dfc45d30c90004065b9efb09b68c8",
+    "bddf6e8975d69a2b079fbf190fe873b1c16e0eea7eaf167d45b241d146b0461a",
+    "d84f491f7e03e5b09bb8dfc809c266d363764a2c9d5a2b185fa101dfdbd40ef5",
+    "274ce7ad6131b42ebe5807b8c847edb285ba1d1e1c8b57e3e0014b5b31f5aa66",
+    "ee48e8988bb03c49752deb918549b697c094afbb3e9dec46af51c70623111a13",
+    "c211c985fd9417f837ed804b9deb679db35d26e562ccde0c73d22c02b69a5625",
+    "e0f299f4d188b7679102fa3696f2ad8961fcf02be317c892f7c7d4857d7dbf0e",
+    "f55e558387d569039fd21118a51a23a48be1d4105256e4df2905e07a194ea1e2",
+    "ec23a3a72dc1e228d1d0424d6af472a35a71a36956f04d2cf6e6b16598c11b78",
+    "12e8aefeaad0e5f91717e2f10b91387cfd4d734f42261107d569b9d12194398b",
+    "27cae3462f75c985da2da7e09901affbd4c1968fc552a602a6bc7d9c831ae88c",
+    "280f4af6836118a305b72716875e4836af3ea429157c2c8d72a817114b70d34d",
+    "28f0e9c848c205c98c954c0b9384128ca87bab1fcb2facf17e93e8d43571a2d3",
+    "923bad9af5940b1c7c5737bbff901977e23e53794795feca609ef9864f0dccde",
+    "0fc48b1a8acf2abe6147aec466f7f19c4b279ca101c2bb034d1573c5d1fb34cf",
+    "36d4481da73ce88124a935319b1b36c68e282236a223cb09a30be5ca6da9ea9d"
+  ],
+  "limitations": [
+    "Samples one partial realistic battle; no battle completion or throughput qualification",
+    "Each sampled graph covers engine,host and source RNG; this is not the complete ordered battle event gate",
+    "Only diagnostic serialization/representation reuse differs; source callbacks are executed normally between samples",
+    "Other concurrent processes may affect elapsed times",
+    "Returned graph records are exporter-owned immutable representations; consumers must not mutate them"
+  ]
+}

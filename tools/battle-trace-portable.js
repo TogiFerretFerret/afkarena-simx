@@ -11,10 +11,20 @@
     var functionText = Function.prototype.toString;
     function apply(fn, receiver, args) { return Reflect.apply(fn, receiver, args); }
     var data = new DataView(new ArrayBuffer(8));
+    // Number Map equality is bit-exact except zero and NaN. Handle signed zero
+    // directly and never memoize NaNs, retaining their sign/payload through the
+    // same DataView store as the uncached encoder. Bound diagnostic cache size.
+    var numberBits = new Map();
     function bits(value) {
+        if (value === 0) return 1 / value < 0 ? "8000000000000000" : "0000000000000000";
+        var cacheable = value === value, cached = cacheable ? numberBits.get(value) : undefined;
+        if (cached !== undefined) return cached;
         data.setFloat64(0, value, false);
-        return data.getUint32(0, false).toString(16).padStart(8, "0") + data.getUint32(4, false).toString(16).padStart(8, "0");
+        var encoded = data.getUint32(0, false).toString(16).padStart(8, "0") + data.getUint32(4, false).toString(16).padStart(8, "0");
+        if (cacheable) { if (numberBits.size >= 4096) numberBits.clear(); numberBits.set(value, encoded); }
+        return encoded;
     }
+    var typedArrayBrand = /^(Uint|Int|Float|BigInt|BigUint).*Array$/;
     // SHA-256 over UTF-8, including replacement of lone UTF-16 surrogates as in
     // Node's UTF-8 encoder. Diagnostic hashing requires no host crypto binding.
     host.portableTraceSha256 = function portableTraceSha256(text) {
@@ -57,6 +67,13 @@
         var ids = new WeakMap(), nextId = 1, symbols = new Map(), nextSymbol = 1;
         var codeOverrides = new WeakMap(), functionCodes = new WeakMap(), codeIds = new Map(), codeTable = [];
         var intrinsics = new WeakMap(), brands = new WeakMap();
+        var propertyCaches = new WeakMap(), nodeCaches = new WeakMap();
+        function sameEncoding(a,b) {
+            if(a===b)return true;
+            if(!Array.isArray(a)||!Array.isArray(b)||a.length!==b.length)return false;
+            for(var i=0;i<a.length;i++)if(!sameEncoding(a[i],b[i]))return false;
+            return true;
+        }
         var standardFunctions = ["length", "name", "arguments", "caller"];
         var names = ["Object", "Function", "Array", "String", "Number", "Boolean", "BigInt", "Symbol", "Date", "RegExp", "Map", "Set", "WeakMap", "WeakSet", "Promise", "ArrayBuffer", "SharedArrayBuffer", "DataView", "Uint8Array", "Int8Array", "Uint16Array", "Int16Array", "Uint32Array", "Int32Array", "Float32Array", "Float64Array", "BigInt64Array", "BigUint64Array", "Error", "TypeError", "RangeError"];
         for (var ni = 0; ni < names.length; ni++) {
@@ -165,7 +182,7 @@
                     } else if (type === "ArrayBuffer" || type === "SharedArrayBuffer") {
                         apply(descriptor(host[type].prototype, "byteLength").get, value, []);
                         var bytes = new Uint8Array(value), hex = ""; for (var bi = 0; bi < bytes.length; bi++) hex += (bytes[bi] + 256).toString(16).slice(1); node.bytes = hex; node.kind = "arraybuffer";
-                    } else if (type === "DataView" || /^(Uint|Int|Float|BigInt|BigUint).*Array$/.test(type)) {
+                    } else if (type === "DataView" || typedArrayBrand.test(type)) {
                         var p = type === "DataView" ? DataView.prototype : typedPrototype;
                         node.buffer = encode(apply(descriptor(p, "buffer").get, value, []));
                         node.byteOffset = apply(descriptor(p, "byteOffset").get, value, []); node.byteLength = apply(descriptor(p, "byteLength").get, value, []); node.kind = type === "DataView" ? "dataview" : "typedarray";
@@ -177,15 +194,46 @@
                     node.kind = "object"; node.nativeBrandRejected = type;
                     delete node.value; delete node.time; delete node.entries; delete node.pattern; delete node.flags; delete node.bytes; delete node.buffer; delete node.byteOffset; delete node.byteLength;
                 }
+                var propertyCache=propertyCaches.get(value);
+                if(!propertyCache){propertyCache=new Map();propertyCaches.set(value,propertyCache);}
                 var keys = ownKeys(value);
                 for (var ki = 0; ki < keys.length; ki++) {
                     var key = keys[ki], propertyDescriptor = descriptor(value, key);
                     if (codeFunction && standardFunctions.indexOf(key) !== -1) continue;
                     if (codeFunction && key === "prototype" && "value" in propertyDescriptor && propertyDescriptor.writable && !propertyDescriptor.enumerable && !propertyDescriptor.configurable && defaultPrototype(propertyDescriptor.value, value)) continue;
+                    var previous=propertyCache.get(key),isData="value" in propertyDescriptor;
+                    var sameValue=isData&&previous&&previous.data&&Object.is(previous.value,propertyDescriptor.value)&&
+                        (typeof propertyDescriptor.value!=="number"||propertyDescriptor.value===propertyDescriptor.value||previous.numberBits===bits(propertyDescriptor.value));
+                    if(previous&&previous.data===isData&&previous.enumerable===propertyDescriptor.enumerable&&previous.configurable===propertyDescriptor.configurable&&
+                        (isData?previous.writable===propertyDescriptor.writable&&sameValue:previous.get===propertyDescriptor.get&&previous.set===propertyDescriptor.set)){
+                        var reusable=true;
+                        if(isData){
+                            var child=propertyDescriptor.value,childType=typeof child;
+                            // Even unchanged edges must traverse every mutable
+                            // descendant and re-check function/prototype shape.
+                            if(child!==null&&(childType==="object"||childType==="function"||childType==="symbol"))reusable=sameEncoding(previous.property.value,encode(child));
+                        }else{
+                            reusable=sameEncoding(previous.property.get,encode(propertyDescriptor.get));
+                            reusable=sameEncoding(previous.property.set,encode(propertyDescriptor.set))&&reusable;
+                        }
+                        if(reusable){node.properties.push(previous.property);continue;}
+                    }
                     var property = { key: typeof key === "symbol" ? symbol(key) : ["string", key], enumerable: propertyDescriptor.enumerable, configurable: propertyDescriptor.configurable };
                     if ("value" in propertyDescriptor) { property.writable = propertyDescriptor.writable; property.value = encode(propertyDescriptor.value); }
                     else { property.get = encode(propertyDescriptor.get); property.set = encode(propertyDescriptor.set); }
+                    propertyCache.set(key,{data:isData,value:propertyDescriptor.value,get:propertyDescriptor.get,set:propertyDescriptor.set,
+                        enumerable:propertyDescriptor.enumerable,configurable:propertyDescriptor.configurable,writable:propertyDescriptor.writable,
+                        numberBits:isData&&typeof propertyDescriptor.value==="number"&&propertyDescriptor.value!==propertyDescriptor.value?bits(propertyDescriptor.value):null,property:property});
                     node.properties.push(property);
+                }
+                if(propertyCache.size>node.properties.length)for(var cachedKey of propertyCache.keys())if(keys.indexOf(cachedKey)===-1)propertyCache.delete(cachedKey);
+                // Reuse only ordinary graph records with no native internal
+                // fields. Native objects and rejected brands are rebuilt above.
+                if((node.kind==="object"||node.kind==="array"||node.kind==="function")&&node.nativeBrandRejected===undefined){
+                    var previousNode=nodeCaches.get(value),same=previousNode&&previousNode.kind===node.kind&&previousNode.extensible===node.extensible&&previousNode.code===node.code&&
+                        sameEncoding(previousNode.prototype,node.prototype)&&previousNode.properties.length===node.properties.length;
+                    for(var pi=0;same&&pi<node.properties.length;pi++)if(previousNode.properties[pi]!==node.properties[pi])same=false;
+                    if(same)node=previousNode;else nodeCaches.set(value,node);
                 }
                 if (!codeFunction || node.properties.length) nodes.push(node);
             }
@@ -209,7 +257,7 @@
     // JSON's lossy NaN/-0 conversion. This is a diagnostic path, never a timer.
     host.installPortableBattleTrace = function installPortableBattleTrace(options) {
         options = options || {};
-        var capture = host.installGraphCapture(options), events = [], finished = false, canonicalCode=[], codeHashes=[], nodeHashes=new Map();
+        var capture = host.installGraphCapture(options), events = [], finished = false, canonicalCode=[], codeHashes=[], nodeHashes=new Map(), identityHashes=new WeakMap();
         var digest=options.digest||host.portableTraceSha256;
         var maxEvents = options.maxEvents === undefined ? 1000000 : options.maxEvents;
         return {
@@ -228,8 +276,12 @@
                     }
                     var orderedHashes=[];
                     for(var ni=0;ni<graph.nodes.length;ni++){
-                        var node=graph.nodes[ni],text=JSON.stringify(node),cached=nodeHashes.get(node.id);
-                        if(!cached||cached.text!==text){cached={text:text,hash:digest(text)};nodeHashes.set(node.id,cached);}
+                        var node=graph.nodes[ni],cached=identityHashes.get(node);
+                        if(!cached){
+                            var text=JSON.stringify(node);cached=nodeHashes.get(node.id);
+                            if(!cached||cached.text!==text){cached={text:text,hash:digest(text)};nodeHashes.set(node.id,cached);}
+                            identityHashes.set(node,cached);
+                        }
                         orderedHashes.push([node.id,cached.hash]);
                     }
                     // Exact Merkle coverage: every node byte and its traversal
