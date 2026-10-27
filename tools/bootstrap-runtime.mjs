@@ -7,6 +7,7 @@ import { parse } from '@babel/parser';
 import traverse from '@babel/traverse';
 import { staticName } from './source-index.mjs';
 import { loadBootstrapTableSync } from './bootstrap-source.mjs';
+import { installBootstrapCallbacks } from './bootstrap-callbacks.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 
@@ -14,7 +15,8 @@ const root=resolve(import.meta.dirname,'..');
  * Original RHS expressions are evaluated on demand. Required lexical closures,
  * module side effects and dynamic property names fail rather than being invented.
  */
-export async function createBootstrapRuntime(){
+export async function createBootstrapRuntime({hostRandom}={}){
+  if(hostRandom!==undefined&&typeof hostRandom!=='function')throw new Error('hostRandom must be an explicit entropy input function');
   const definitions=new Map();
   const globals=new Map();
   const initializers=[];
@@ -56,10 +58,14 @@ export async function createBootstrapRuntime(){
   const loaded=[],active=new Set();
   const cc={game:{config:null,CONFIG_KEY:{}},Node:function Node(){},error:(...args)=>{throw new Error(args.join(' '));}};
   const ed={};
-  const context=createContext({ed,cc,window:{},HTMLElement:function HTMLElement(){},console,
-    clientCall:()=>{},
-  });
+  const context=createContext({ed,cc,window:{},HTMLElement:function HTMLElement(){},console});
   context.window=context;
+  if(hostRandom){
+    context.__hostRandom=hostRandom;
+    runInContext('Math.random=__hostRandom;delete __hostRandom;',context);
+  }
+  const hostSource=await readFile(resolve(root,'tools/bootstrap-host.js'),'utf8');
+  runInContext(hostSource,context,{filename:'tools/bootstrap-host.js'});
   for(const initializer of initializers)runInContext(initializer.source,context,{filename:`${initializer.file}:${initializer.start}`});
   const provenance=JSON.parse(await readFile(resolve(root,'config/bootstrap-cocos-runtime.json'),'utf8'));
   const cocos=await readFile(resolve(root,provenance.file),'utf8');
@@ -114,6 +120,9 @@ export async function createBootstrapRuntime(){
   ed.getDataTable=name=>{if(!tables.has(name))tables.set(name,loadBootstrapTableSync(name));return tables.get(name);};
   ed.logbugly=message=>{throw new Error(message);};
   for(const initializer of postInitializers)runInContext(initializer.source,context,{filename:`${initializer.file}:${initializer.start}`});
-  return {context,ed,loaded,tables,provenance,initializers:initializers.map(({source,...record})=>record),
-    limitations:['Lazy symbol evaluation is diagnostic and does not establish original module side-effect order','clientCall is an explicitly suppressed rendering boundary; callbacks are not executed','Cocos runtime revision is provisional; missing closures/globals fail explicitly']};
+  const callbacks=await installBootstrapCallbacks(context);
+  return {context,ed,loaded,tables,provenance,callbacks,host:context.bootstrapHost,
+    hostProvenance:{file:'tools/bootstrap-host.js',sha256:createHash('sha256').update(hostSource).digest('hex')},
+    initializers:initializers.map(({source,...record})=>record),
+    limitations:['Lazy symbol evaluation does not establish all original module side-effect order','Original queued callbacks execute after each local engine frame; actor/effect/view scene updates are outside this headless adapter','Headless Linux device output is recorded; physical audio/render output is not produced','Cocos runtime revision is pinned but original engine revision is not supplied; missing closures/globals fail explicitly']};
 }
