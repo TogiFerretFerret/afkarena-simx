@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "passed": true,
+  "difference": null,
+  "originalInput": {
+    "file": "work/native-oracle-capsule-flatcopy.js",
+    "sha256": "7a8750fa49334d40782ffbf0727b5e48d75efd3b3f3fd6eabbae0aa37aca4559",
+    "metadataSha256": "d1fcb04c80fc28c6f1f50e11e8583f37f1146de4e6a689bbcda4187a6bcc7f79"
+  },
+  "originalPartitionUnits": [
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-seven/unit-0.js",
+      "sha256": "e3b6dba9ef6e8cbd711d20a9f5f81023e61f4e431d4948e999e935eb036bd872",
+      "bytes": 1433582
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "bytes": 1214707
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "bytes": 1202106
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "bytes": 1219549
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "bytes": 1213047
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "bytes": 1223796
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-7.js",
+      "sha256": "2a34af1a32c9affd8efc63a9764ef71bade0b3b2d17606af8d8f298efa9c21bc",
+      "bytes": 1269674
+    }
+  ],
+  "instrumenter": {
+    "file": "tools/profile-table-proxy-gets.mjs",
+    "sha256": "40ff028659c22a299cc49b00f93b2b2d6d2653804a209372d62866c44b9076cc"
+  },
+  "units": [
+    {
+      "file": "/workspace/afkarena-simx/work/table-proxy-get-profile/combined.js",
+      "sha256": "21ccb8d3834f8059ea456e91b334de8a5de3e9bd7662ad7ed216066d0f9861e4",
+      "nativeName": "combined"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "bytes": 1214707,
+      "nativeName": "factories_2"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "bytes": 1202106,
+      "nativeName": "factories_3"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "bytes": 1219549,
+      "nativeName": "factories_4"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "bytes": 1213047,
+      "nativeName": "factories_5"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "bytes": 1223796,
+      "nativeName": "factories_6"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/table-proxy-get-profile/runner.js",
+      "sha256": "532259e3011fbd7b207d8dcef0a060d8a1a54d1533410120a7f2313f1b6f7670",
+      "nativeName": "runner"
+    }
+  ],
+  "totals": {
+    "immutable": 519440,
+    "mutable": 3028
+  },
+  "reference": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-capsule-flatcopy.js.reference.json",
+    "sha256": "44cef991f295d33c9575d56f92b313498f32154b502f6df33887a50293c14373"
+  },
+  "sourceInputs": {
+    "src/srcmodule/game_base.js": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_ui_2.js": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+    "src/srcmodule/game_ui_3.js": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+    "src/srcmodule/game_ui_4.js": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "src/srcmodule/ui_war.js": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3"
+  },
+  "tableBundle": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-capsule-flatcopy.js.tables.json",
+    "sha256": "91dba76e4f840237264b782855193a71fd2ce1b45f6bb328e5f37fb474f9c1c1",
+    "bytes": 101695086,
+    "embedded": false
+  },
+  "hostInputs": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-capsule-flatcopy.js.host-inputs.json",
+    "sha256": "56dc7f27a3eb39de6afcd76a4b81bccd6d638552817ee81324b95629f77e3150",
+    "randomCount": 2,
+    "clockCount": 260
+  },
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "nodeReport": {
+    "file": "/workspace/afkarena-simx/work/table-proxy-get-profile/node.stdout",
+    "sha256": "2a8027cb3ea132006e084b1f9ec914fbfdec128ba9df2ceb6ce367c686b28199"
+  },
+  "scope": "Exactly two private JSON-table proxy get traps gain a private family/table/key counter; all original trap bodies and game code remain intact. Source Node complete report, including existing diagnostic counts, must still equal the uninstrumented baseline.",
+  "qualifiesFor10000Target": false
+}
