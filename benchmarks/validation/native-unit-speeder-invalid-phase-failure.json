@@ -1,0 +1,700 @@
+{
+  "version": 1,
+  "passed": false,
+  "stage": "Untouched native vs pinned original source",
+  "difference": {
+    "path": "$.rows.21.error.message",
+    "expected": "Cannot read properties of null (reading 'onPhaseFinished')",
+    "actual": "Cannot read property 'onPhaseFinished' of null"
+  },
+  "case": {
+    "expected": {
+      "label": 21,
+      "error": {
+        "sameSentinel": false,
+        "name": "TypeError",
+        "message": "Cannot read properties of null (reading 'onPhaseFinished')"
+      },
+      "events": [
+        [
+          "alive"
+        ],
+        [
+          "finished",
+          "3ff0000000000000",
+          "3fc6000000000000",
+          "4059000000000000",
+          "4024000000000000"
+        ],
+        [
+          "alive"
+        ],
+        [
+          "tb"
+        ],
+        [
+          "rect"
+        ],
+        [
+          "skill",
+          "3fc6000000000000",
+          "3fa88ee23b88ee24",
+          "3fc6000000000000"
+        ]
+      ],
+      "state": {
+        "unit": [
+          [
+            "action_duration",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "action_elapsed",
+            {
+              "bits": "3fe5800000000000"
+            }
+          ],
+          [
+            "action_loop",
+            false
+          ],
+          [
+            "action_name",
+            "atk"
+          ],
+          [
+            "buff_list",
+            []
+          ],
+          [
+            "camp",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "current_skill",
+            null
+          ],
+          [
+            "destination",
+            null
+          ],
+          [
+            "direction",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "dt_action",
+            {
+              "bits": "3fc6000000000000"
+            }
+          ],
+          [
+            "enterDelayTimer",
+            null
+          ],
+          [
+            "forceDestination",
+            null
+          ],
+          [
+            "frozen_model",
+            false
+          ],
+          [
+            "global_cd",
+            {
+              "bits": "3fff3b88ee23b88f"
+            }
+          ],
+          [
+            "gravityCoef",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "height",
+            {
+              "bits": "0000000000000000"
+            }
+          ],
+          [
+            "hp",
+            {
+              "bits": "4059000000000000"
+            }
+          ],
+          [
+            "knock_state",
+            false
+          ],
+          [
+            "knockup_time",
+            {
+              "bits": "0000000000000000"
+            }
+          ],
+          [
+            "knockup_v",
+            [
+              "0000000000000000",
+              "0000000000000000"
+            ]
+          ],
+          [
+            "mp",
+            {
+              "bits": "4024000000000000"
+            }
+          ],
+          [
+            "name",
+            "probe"
+          ],
+          [
+            "position",
+            [
+              "3f96000000000000",
+              "bfa6000000000000"
+            ]
+          ],
+          [
+            "previous_position",
+            [
+              "0000000000000000",
+              "0000000000000000"
+            ]
+          ],
+          [
+            "speeder",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "state",
+            {
+              "bits": "4000000000000000"
+            }
+          ],
+          [
+            "thumpResistanceLevel",
+            {
+              "bits": "0000000000000000"
+            }
+          ],
+          [
+            "thumpResistanceReduce",
+            null
+          ],
+          [
+            "velocity",
+            [
+              "3fc0000000000000",
+              "bfd0000000000000"
+            ]
+          ],
+          [
+            "walkIgnoreRect",
+            false
+          ],
+          [
+            "walk_v",
+            [
+              "3fc0000000000000",
+              "bfd0000000000000"
+            ]
+          ],
+          [
+            "zSpeed",
+            null
+          ]
+        ],
+        "attrs": [
+          [
+            "ATKHAST",
+            {
+              "bits": "c050000000000000"
+            }
+          ],
+          [
+            "AllMpRatio",
+            {
+              "bits": "3fb999999999999a"
+            }
+          ],
+          [
+            "DOTRATIO",
+            {
+              "bits": "3fd0000000000000"
+            }
+          ],
+          [
+            "HAST",
+            {
+              "bits": "c03d000000000000"
+            }
+          ],
+          [
+            "HEAL",
+            {
+              "bits": "402e000000000000"
+            }
+          ],
+          [
+            "HPR",
+            {
+              "bits": "3ff4000000000000"
+            }
+          ],
+          [
+            "MPR",
+            {
+              "bits": "4004000000000000"
+            }
+          ],
+          [
+            "MSFix",
+            {
+              "bits": "0000000000000000"
+            }
+          ],
+          [
+            "MSPD",
+            {
+              "bits": "c060200000000000"
+            }
+          ],
+          [
+            "PRMpRatio",
+            {
+              "bits": "4039000000000000"
+            }
+          ]
+        ],
+        "effects": [
+          [
+            "disableAI",
+            false
+          ],
+          [
+            "fix",
+            false
+          ],
+          [
+            "frozen",
+            false
+          ],
+          [
+            "immoblilize",
+            false
+          ],
+          [
+            "motionless",
+            false
+          ],
+          [
+            "noHPR",
+            false
+          ],
+          [
+            "stopBuff",
+            false
+          ],
+          [
+            "unheal",
+            false
+          ]
+        ],
+        "config": [
+          [
+            "is_boss",
+            true
+          ],
+          [
+            "is_summoned",
+            false
+          ]
+        ],
+        "skill": [
+          [
+            "lockActionSpeeder",
+            false
+          ],
+          [
+            "lockMSFix",
+            false
+          ],
+          [
+            "lockUnitDirection",
+            false
+          ],
+          [
+            "target",
+            null
+          ]
+        ],
+        "info": [
+          [
+            "SetSpeeder",
+            {
+              "bits": "0000000000000000"
+            }
+          ]
+        ],
+        "sameCurrent": false,
+        "sameBasic": true
+      }
+    },
+    "actual": {
+      "label": 21,
+      "error": {
+        "sameSentinel": false,
+        "name": "TypeError",
+        "message": "Cannot read property 'onPhaseFinished' of null"
+      },
+      "events": [
+        [
+          "alive"
+        ],
+        [
+          "finished",
+          "3ff0000000000000",
+          "3fc6000000000000",
+          "4059000000000000",
+          "4024000000000000"
+        ],
+        [
+          "alive"
+        ],
+        [
+          "tb"
+        ],
+        [
+          "rect"
+        ],
+        [
+          "skill",
+          "3fc6000000000000",
+          "3fa88ee23b88ee24",
+          "3fc6000000000000"
+        ]
+      ],
+      "state": {
+        "unit": [
+          [
+            "action_duration",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "action_elapsed",
+            {
+              "bits": "3fe5800000000000"
+            }
+          ],
+          [
+            "action_loop",
+            false
+          ],
+          [
+            "action_name",
+            "atk"
+          ],
+          [
+            "buff_list",
+            []
+          ],
+          [
+            "camp",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "current_skill",
+            null
+          ],
+          [
+            "destination",
+            null
+          ],
+          [
+            "direction",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "dt_action",
+            {
+              "bits": "3fc6000000000000"
+            }
+          ],
+          [
+            "enterDelayTimer",
+            null
+          ],
+          [
+            "forceDestination",
+            null
+          ],
+          [
+            "frozen_model",
+            false
+          ],
+          [
+            "global_cd",
+            {
+              "bits": "3fff3b88ee23b88f"
+            }
+          ],
+          [
+            "gravityCoef",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "height",
+            {
+              "bits": "0000000000000000"
+            }
+          ],
+          [
+            "hp",
+            {
+              "bits": "4059000000000000"
+            }
+          ],
+          [
+            "knock_state",
+            false
+          ],
+          [
+            "knockup_time",
+            {
+              "bits": "0000000000000000"
+            }
+          ],
+          [
+            "knockup_v",
+            [
+              "0000000000000000",
+              "0000000000000000"
+            ]
+          ],
+          [
+            "mp",
+            {
+              "bits": "4024000000000000"
+            }
+          ],
+          [
+            "name",
+            "probe"
+          ],
+          [
+            "position",
+            [
+              "3f96000000000000",
+              "bfa6000000000000"
+            ]
+          ],
+          [
+            "previous_position",
+            [
+              "0000000000000000",
+              "0000000000000000"
+            ]
+          ],
+          [
+            "speeder",
+            {
+              "bits": "3ff0000000000000"
+            }
+          ],
+          [
+            "state",
+            {
+              "bits": "4000000000000000"
+            }
+          ],
+          [
+            "thumpResistanceLevel",
+            {
+              "bits": "0000000000000000"
+            }
+          ],
+          [
+            "thumpResistanceReduce",
+            null
+          ],
+          [
+            "velocity",
+            [
+              "3fc0000000000000",
+              "bfd0000000000000"
+            ]
+          ],
+          [
+            "walkIgnoreRect",
+            false
+          ],
+          [
+            "walk_v",
+            [
+              "3fc0000000000000",
+              "bfd0000000000000"
+            ]
+          ],
+          [
+            "zSpeed",
+            null
+          ]
+        ],
+        "attrs": [
+          [
+            "ATKHAST",
+            {
+              "bits": "c050000000000000"
+            }
+          ],
+          [
+            "AllMpRatio",
+            {
+              "bits": "3fb999999999999a"
+            }
+          ],
+          [
+            "DOTRATIO",
+            {
+              "bits": "3fd0000000000000"
+            }
+          ],
+          [
+            "HAST",
+            {
+              "bits": "c03d000000000000"
+            }
+          ],
+          [
+            "HEAL",
+            {
+              "bits": "402e000000000000"
+            }
+          ],
+          [
+            "HPR",
+            {
+              "bits": "3ff4000000000000"
+            }
+          ],
+          [
+            "MPR",
+            {
+              "bits": "4004000000000000"
+            }
+          ],
+          [
+            "MSFix",
+            {
+              "bits": "0000000000000000"
+            }
+          ],
+          [
+            "MSPD",
+            {
+              "bits": "c060200000000000"
+            }
+          ],
+          [
+            "PRMpRatio",
+            {
+              "bits": "4039000000000000"
+            }
+          ]
+        ],
+        "effects": [
+          [
+            "disableAI",
+            false
+          ],
+          [
+            "fix",
+            false
+          ],
+          [
+            "frozen",
+            false
+          ],
+          [
+            "immoblilize",
+            false
+          ],
+          [
+            "motionless",
+            false
+          ],
+          [
+            "noHPR",
+            false
+          ],
+          [
+            "stopBuff",
+            false
+          ],
+          [
+            "unheal",
+            false
+          ]
+        ],
+        "config": [
+          [
+            "is_boss",
+            true
+          ],
+          [
+            "is_summoned",
+            false
+          ]
+        ],
+        "skill": [
+          [
+            "lockActionSpeeder",
+            false
+          ],
+          [
+            "lockMSFix",
+            false
+          ],
+          [
+            "lockUnitDirection",
+            false
+          ],
+          [
+            "target",
+            null
+          ]
+        ],
+        "info": [
+          [
+            "SetSpeeder",
+            {
+              "bits": "0000000000000000"
+            }
+          ]
+        ],
+        "sameCurrent": false,
+        "sameBasic": true
+      }
+    }
+  }
+}
