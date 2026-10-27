@@ -1,0 +1,39 @@
+--- a/lib/VM/JSLib/Math.cpp
++++ b/lib/VM/JSLib/Math.cpp
+@@ -17,6 +17,7 @@
+ #include "hermes/VM/SingleObject.h"
+ #include "hermes/VM/StringPrimitive.h"
+ #include "hermes/VM/StaticHUtils.h"
++#include "hermes/VM/JSArray.h"
+ 
+ #ifndef _USE_MATH_DEFINES
+ #define _USE_MATH_DEFINES
+@@ -139,6 +140,28 @@
+       function->getContext() == reinterpret_cast<void *>(MathKind::floor);
+ }
+ 
++// Read only actual own dense Number elements. This preflight invokes no JS,
++// allocates nothing, and never observes proxy/getter/prototype-index behavior.
++extern "C" SHERMES_EXPORT bool simx_dense_finite_vec2(
++    SHRuntime *shr, SHLegacyValue input, double *output) {
++  Runtime &runtime = getRuntime(shr);
++  auto value = HermesValue::fromRaw(input.raw);
++  if (!vmisa<JSArray>(value))
++    return false;
++  auto *array = vmcast<JSArray>(value);
++  if (!array->hasFastIndexProperties(runtime) ||
++      array->getBeginIndex() != 0 || array->getEndIndex() < 2)
++    return false;
++  auto x = array->at(runtime, 0).unboxToHV(runtime);
++  auto y = array->at(runtime, 1).unboxToHV(runtime);
++  if (!x.isNumber() || !y.isNumber() ||
++      !std::isfinite(x.getNumber()) || !std::isfinite(y.getNumber()))
++    return false;
++  output[0] = x.getNumber();
++  output[1] = y.getNumber();
++  return true;
++}
++
+ // Implementation of 2-arg Math functions like pow and atan2
+ // Interprets the ctx pointer as an enum and invoke corresponding
+ // function with the first two arguments

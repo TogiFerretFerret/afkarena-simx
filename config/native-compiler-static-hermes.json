@@ -51,9 +51,11 @@
     "config/native-compiler-math-patch.json",
     "config/native-compiler-binary-pools-patch.json",
     "config/native-compiler-literal-bits-patch.json",
-    "config/native-compiler-floor-guard-patch.json"
+    "config/native-compiler-floor-guard-patch.json",
+    "config/native-compiler-vector-guard-patch.json"
   ],
   "vendorManifests": [
     "config/native-compiler-v8-math.json"
-  ]
+  ],
+  "maximumSHUnits": 8
 }

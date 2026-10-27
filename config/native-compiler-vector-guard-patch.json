@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "baseCommit": "4f1db42d71d0839254c7154fc8c282bcea466206",
+  "patch": "tools/native-compiler-patches/dense-vector-guard.patch",
+  "sha256": "c2e10e7f4ad8940dc11e7e2acb224ec44fee69952b85a8088acb07849eb3d34b",
+  "purpose": "Expose no-allocation/no-JavaScript guard and direct canonical values for actual JSArray own dense finite Number indices0/1; reject proxies, accessors, holes, nonnumeric and exoticarraylike objects before Rust geometry",
+  "files": [
+    {
+      "path": "lib/VM/JSLib/Math.cpp",
+      "originalSha256": "723f8737ec1e69e370c485bfb22daab68131105668bcb2cca50935a5fbf4f33f",
+      "patchedSha256": "af1615c9f8ae966430e5086e6857b32541727036ec2b8f4edcbeeb2caddd53e4"
+    }
+  ]
+}

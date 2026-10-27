@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "matched": true,
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "sourceCases": 20000,
+  "finiteRawBitOutputs": 160000,
+  "rustHits": {
+    "ed.edpDistanceSQ": 40000,
+    "ed.edpLengthSQ": 40001,
+    "ed.edpDot": 40000,
+    "ed.edpCross": 40000
+  },
+  "mutableCanonicalVectors": true,
+  "aliasCases": 5000,
+  "fallbackCases": 36,
+  "finiteDifference": null,
+  "fallbackDifference": null,
+  "identityDifference": null,
+  "kernels": [
+    {
+      "name": "ed.edpDistanceSQ",
+      "sha256": "2c6a18411d11be16eae9d8659081594c850c37f3612c4635df5d41f86b82c1f4"
+    },
+    {
+      "name": "ed.edpLengthSQ",
+      "sha256": "4c8c23921a80224a072e1ef760d3ce432b6884fd68056f781fcf98f0878b3e06"
+    },
+    {
+      "name": "ed.edpDot",
+      "sha256": "82ca74e6d48bc9630e26604bd0494ad7fc6c19cbbf68e39f8c48238162f42c8b"
+    },
+    {
+      "name": "ed.edpCross",
+      "sha256": "9fd095e6d677c6ba84fa31b6f7c8081f12aa428a06a584c3d2c983d4d354805b"
+    }
+  ],
+  "compilerSha256": "19034c163046bb1d9973dcc85a1176bd77385dae8655be3084477b3883282dc1",
+  "vmSha256": "ed5d1d022fee93664e6ef4ab2e632ca69a97ebad319f273eba3c3738dfe1de2a",
+  "scope": "Source scalar geometry through canonical guarded VM arrays and existing Rust kernels; unsupported shapes execute original source without extra getters/traps. Not whole-battle qualification."
+}
