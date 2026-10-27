@@ -73,17 +73,13 @@ impl World{
   }
   if terminate{h.terminate(self,id)?;return Ok(());}
   if self.local_bot&&self.units[id].is_alive(){h.debug_checks(self,id)?;}
-  let mut speed=self.units[id].attribs.mspd;
-  if self.units[id].is_boss&&speed< -75.0{speed= -75.0;}
-  if let Some(skill)=self.units[id].current_skill{
-   let view=self.skills[skill];
-   match view.set_speeder.filter(|x|truthy(*x)){Some(value)=>{if value>0.0{speed=value;}},None=>speed=0.0}
-   if Some(skill)==self.units[id].basic_skill{speed+=self.units[id].attribs.atkhast;}
-   if view.lock_action_speeder{speed=0.0;}
-  }else{speed=0.0;}
-  let mut speeder=if speed>=0.0{(speed+100.0)/100.0}else{100.0/(100.0-speed)};
-  if self.fx(id).frozen||self.fx(id).motionless{speeder=0.0;}
-  self.units[id].speeder=speeder;let action_dt=dt*speeder;self.units[id].dt_action=action_dt;
+  let speed=crate::unit_speeder::calculate(crate::unit_speeder::Input{
+   mspd:self.units[id].attribs.mspd,atkhast:self.units[id].attribs.atkhast,dt,is_boss:self.units[id].is_boss,
+   skill:self.units[id].current_skill.map(|skill|{let view=self.skills[skill];crate::unit_speeder::SkillSpeed{
+    set_speeder:view.set_speeder,is_basic:Some(skill)==self.units[id].basic_skill,lock_action_speeder:view.lock_action_speeder}}),
+   frozen:self.fx(id).frozen,motionless:self.fx(id).motionless,
+  });
+  self.units[id].speeder=speed.speeder;let action_dt=speed.dt_action;self.units[id].dt_action=action_dt;
   let mut finished=false;
   if self.units[id].action_name.as_ref().is_some_and(|x|!x.is_empty()){
    let mut elapsed=self.units[id].action_elapsed+action_dt;let duration=self.units[id].action_duration;

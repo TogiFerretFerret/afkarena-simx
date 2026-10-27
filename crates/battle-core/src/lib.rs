@@ -6,6 +6,7 @@ pub mod scheduler;
 pub mod clock;
 pub mod engine;
 pub mod unit;
+pub mod unit_speeder;
 pub mod ai;
 pub mod skill;
 pub mod buff;

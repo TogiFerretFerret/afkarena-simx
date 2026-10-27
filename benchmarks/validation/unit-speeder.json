@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "kind": "source-unit-speeder-block-differential",
+  "source": {
+    "file": "src/srcmodule/game_battle.js",
+    "start": 97801,
+    "end": 98202,
+    "sha256": "a6f6d65083f52a608a25ee50152ac82d6e1822b6948b83cb8f6a56780e7ac7cc"
+  },
+  "cases": 20000,
+  "directedCases": 8193,
+  "rawBitOutputs": 60000,
+  "admitted": 17485,
+  "rejected": 2515,
+  "rawBitsExact": true,
+  "corpusSha256": "159eb3628cbf5162cc28e6e0dcbb45981dbba8c9b34043da52b46401c7d2f589",
+  "runnerSha256": "7d1b0a1efde2757520cb267cae72eb35b1ebfea0091b93c60e01600a686659fa",
+  "rustSha256": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
+  "arithmeticSha256": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+  "runnerSourceSha256": "b980227c08d5a92faa1cf76de70279c981c33f1a7edddab5ec06d3601e8dc7ea",
+  "referenceRuntime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ],
+    "NODE_OPTIONS": ""
+  },
+  "reusedBy": "Existing typed Rust World.update_unit",
+  "integratedWithCanonicalVm": false,
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "Tests the exact original callback-free block, output Number bits and conservative arithmetic admission only.",
+    "Does not establish canonical VM slot guards, interior continuation splice, source write descriptors, complete battles or battle throughput.",
+    "No NaN payload normalization; guarded path rejects before any future VM output write."
+  ]
+}

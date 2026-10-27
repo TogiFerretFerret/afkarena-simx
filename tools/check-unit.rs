@@ -1,6 +1,7 @@
 #[path="../crates/battle-core/src/entity.rs"]mod entity;
 #[path="../crates/battle-core/src/js_math.rs"]mod js_math;
 #[path="../crates/battle-core/src/unit.rs"]mod unit;
+#[path="../crates/battle-core/src/unit_speeder.rs"]mod unit_speeder;
 use entity::{Vec2Arena,Vec2Id};
 use unit::{Attributes,Effects,SkillView,BuffView,State,Unit,World,Hooks,Rect,Result};
 use std::io::{self,BufRead,Write};
