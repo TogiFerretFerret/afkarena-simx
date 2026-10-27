@@ -21,7 +21,7 @@ impl Vec2Arena {
     #[inline]
     pub fn get(&self, id: Vec2Id) -> &[f64; 2] { &self.values[id.0] }
     #[inline]
-    fn set_component(&mut self, id: Vec2Id, component: usize, value: f64) {
+    pub(crate) fn set_component(&mut self, id: Vec2Id, component: usize, value: f64) {
         self.values[id.0][component] = value;
     }
     pub fn values(&self) -> &[[f64; 2]] { &self.values }

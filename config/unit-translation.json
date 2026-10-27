@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_battle.js",
+  "sourceName": "ed.Unit.update",
+  "start": 97200,
+  "end": 102984,
+  "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+  "status": "experimental_native_control_flow_requires_mechanics_hooks_and_differential_validation",
+  "formalProof": false,
+  "domain": [
+    "Number-valued numeric fields; missing optional numbers explicitly represented",
+    "Dense valid unit/skill/buff IDs with stable object identity and fixed source prototypes",
+    "Unit.isAlive is the original source implementation; overrides require a separate dispatch path",
+    "Effects use stable identities and predicate views that host buff mechanics must keep synchronized",
+    "Every required hook implements the corresponding source method; no silent defaults",
+    "Vector aliases and replacements are preserved through arena handles",
+    "Non-escaping fresh edpMult result uses an inline vector; global edpZero retains arena identity"
+  ],
+  "pending": [
+    "Full unit differential trace over all branches and callback mutations",
+    "Integration of skill/AI/buff/damage implementations into one world",
+    "Complete realistic 5v5 native battles; this module does not establish battles/second"
+  ]
+}
