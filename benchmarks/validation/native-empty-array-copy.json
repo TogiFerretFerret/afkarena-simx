@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "matched": true,
+  "difference": null,
+  "sourceCases": 20000,
+  "fallbackCases": 20,
+  "cloneHits": 20000,
+  "originalSourceSha256": "5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072",
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "vmSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "Guarded original intrinsic empty Array clone in isolated private VM; unsupported shapes execute unchanged original copyObj. Not installed in live compiler; not whole-battle qualification.",
+  "privateVM": {
+    "output": "/workspace/afkarena-simx/work/native-empty-array-copy/libhermesvm.so",
+    "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "privateSha256": "9611ef38936d581326c1cc22fa62969ecb8c5dd366cb6549db6f7eac23ddf5fa",
+    "helperSha256": "52607262f5e5552ae3e54e753f88e364660cff41852a7f7eb209538619455ff3"
+  }
+}
