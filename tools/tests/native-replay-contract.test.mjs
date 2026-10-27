@@ -30,3 +30,10 @@ test('duplicate options, missing values and shell syntax are rejected without ex
   const base=fixture().manifest.rebuild.emitter;
   for(const command of[base+' --scope observed',base+' --unknown',base+'; touch /tmp/unsafe',base+' $(echo unsafe)'])assert.throws(()=>parseNativeReplayCommand(command));
 });
+test('nontrace allocator observation must remain enabled in the replay contract',()=>{
+  const f=fixture();f.metadata.traceEnabled=false;f.metadata.initialTrace=false;f.metadata.observeClassManager=true;
+  f.manifest.rebuild.emitter=f.manifest.rebuild.emitter.replace('--trace-initial','--table-membrane')+' --observe-class-manager';
+  assert.equal(check(f).valid,true);
+  f.manifest.rebuild.emitter=f.manifest.rebuild.emitter.replace(' --observe-class-manager','');
+  assert.throws(()=>check(f),/replay options differ/);
+});

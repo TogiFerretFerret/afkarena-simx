@@ -32,6 +32,7 @@ const scope=option('--scope',args.includes('--all-definitions')?'all':'battle-co
 const captureMode=option('--capture','all');
 const initialTrace=args.includes('--trace-initial');
 const traceEnabled=args.includes('--trace')||initialTrace;
+const observeClassManager=traceEnabled||args.includes('--observe-class-manager');
 const tableMembraneEnabled=traceEnabled||args.includes('--table-membrane');
 const eagerBattle=args.includes('--eager-battle');
 const trackMutable=args.includes('--tracked-mutable-tables');
@@ -56,7 +57,7 @@ const replayInputs=replayInputBytes?JSON.parse((replayInputBytes[0]===31&&replay
 let replayRandomIndex=0;
 const entropy=[],clockObserver={current:null},traceObserver={current:null};
 const traceSources=tableMembraneEnabled?await loadNativeTraceSources(root):[];
-const runtime=await createBootstrapRuntime({eagerBattle,observeClassManager:traceEnabled,tableBoundaryFactory:tableMembraneEnabled?createNativeTableBoundaryFactory(traceSources,{mutableTables,trackMutable}):undefined,hostRandom:()=>{if(replayInputs&&replayRandomIndex>=replayInputs.random.length)throw new Error('Replayed source host random inputs exhausted');const value=replayInputs?replayInputs.random[replayRandomIndex++]:Math.random();entropy.push(value);if(traceObserver.current)traceObserver.current('host:random',{ordinal:entropy.length-1,value});return value;},hostClock:{mode:replayInputs?'replay':'record',tape:replayInputs?replayInputs.clock:[],observe(entry,ordinal){if(clockObserver.current)clockObserver.current(entry,ordinal);}}});
+const runtime=await createBootstrapRuntime({eagerBattle,observeClassManager,tableBoundaryFactory:tableMembraneEnabled?createNativeTableBoundaryFactory(traceSources,{mutableTables,trackMutable}):undefined,hostRandom:()=>{if(replayInputs&&replayRandomIndex>=replayInputs.random.length)throw new Error('Replayed source host random inputs exhausted');const value=replayInputs?replayInputs.random[replayRandomIndex++]:Math.random();entropy.push(value);if(traceObserver.current)traceObserver.current('host:random',{ordinal:entropy.length-1,value});return value;},hostClock:{mode:replayInputs?'replay':'record',tape:replayInputs?replayInputs.clock:[],observe(entry,ordinal){if(clockObserver.current)clockObserver.current(entry,ordinal);}}});
 assert.equal(runtime.oracleContextMode,oracleProfile.wholeBattleContextMode,'Pinned whole-battle source global context mode');
 if(!runtime.clock)throw new Error('Copied source runtime must expose recorded hostClock before native emission');
 if(!runtime.sourceRecords)throw new Error('Copied source runtime must expose its exact sourceRecords');
@@ -115,7 +116,7 @@ function __nativeRun(runtime,wire,battles,warmup,wallNow,captureMode){
   var elapsedMs=wallNow()-start;
   var report={completed:results.length,elapsedMs:elapsedMs,battlesPerSecond:elapsedMs>0?results.length*1000/elapsedMs:null,capture:captureMode,checksum:checksum,totalCallbacks:totalCallbacks,results:results};
   if(captureMode==='final')report.finalCapture=fullCapture(lastEngine,lastEventStart);
-  if(runtime.classManagerObserver)runtime.classManagerObserver.assertIntact();
+  if(runtime.classManagerObserver){runtime.classManagerObserver.assertIntact();report.classManagerCounters=runtime.classManagerObserver.snapshot();}
   if(runtime.tableBoundary){runtime.tableBoundary.assertClean();report.tableBoundary=runtime.tableBoundary.stats();}
   if(runtime.nativeTrace)report.trace=runtime.nativeTrace.stop({status:'completed',running:lastEngine.running,ticks:lastEngine.ticks,result:lastEngine.result});
   return report;
@@ -290,7 +291,7 @@ try{
 }finally{closeSync(fd);}
 const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[]),...(records.eagerModules||[]),...(records.initializationPlan||[])].map(record=>record.file).filter(Boolean));
 const sourceInputs=Object.fromEntries(await Promise.all([...sourceFiles].sort().map(async file=>[file,sha(await readFile(resolve(root,file)))])));
-const metadata={version:1,scope,captureMode,traceEnabled,initialTrace,tableMembraneEnabled,mutableTables,trackMutable,eagerBattle,oracleProfile,oracleRuntime:{node:process.version,v8:process.versions.v8,execArgv:process.execArgv,nodeOptions:process.env.NODE_OPTIONS||''},executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
+const metadata={version:1,scope,captureMode,traceEnabled,initialTrace,tableMembraneEnabled,mutableTables,trackMutable,eagerBattle,observeClassManager,oracleProfile,oracleRuntime:{node:process.version,v8:process.versions.v8,execArgv:process.execArgv,nodeOptions:process.env.NODE_OPTIONS||''},executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
   oracleContextMode:runtime.oracleContextMode,adapterInputs,sourceInputs,factoryChunks,factoryChunkPolicy:{maxFactories:factoryChunkSize,maxSourceBytes:factoryChunkBytes},
   sourceRuntime:{file:'tools/bootstrap-runtime.mjs',sha256:adapterInputs['tools/bootstrap-runtime.mjs'],executedFunctionSha256:sha(createBootstrapRuntime.toString())},
   definitionCount:records.definitions.size,globalCount:records.globals.size,factoryCount:allFactoryRecords.length,

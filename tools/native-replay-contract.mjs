@@ -9,7 +9,7 @@ export function parseNativeReplayCommand(command){
   assert.match(command,/^[A-Za-z0-9_./,:=+ -]+$/,'Replay command must use plain command arguments');
   const words=command.trim().split(/\s+/);
   assert.deepEqual(words.splice(0,2),['node','tools/emit-native-oracle.mjs']);
-  const result=new Map(),switches=new Set(['--trace','--trace-initial','--table-membrane','--tracked-mutable-tables','--eager-battle']);
+  const result=new Map(),switches=new Set(['--trace','--trace-initial','--table-membrane','--tracked-mutable-tables','--eager-battle','--observe-class-manager']);
   for(let i=0;i<words.length;i++){
     const key=words[i];assert.ok(key.startsWith('--'),'Unexpected replay argument '+key);assert.ok(!result.has(key),'Duplicate replay option '+key);
     if(switches.has(key))result.set(key,true);
@@ -31,6 +31,7 @@ export function validateNativeReplayContract(manifest,metadata,{root,fixtureDire
   if(metadata.mutableTables?.length)required.set('--mutable-tables',metadata.mutableTables.join(','));
   if(metadata.trackMutable)required.set('--tracked-mutable-tables',true);
   if(metadata.eagerBattle)required.set('--eager-battle',true);
+  if(metadata.observeClassManager&&!metadata.traceEnabled&&!metadata.initialTrace)required.set('--observe-class-manager',true);
   if(metadata.factoryChunks?.length)required.set('--factory-chunk-size',String(metadata.factoryChunks[0].count));
   if(metadata.factoryChunkPolicy?.maxSourceBytes)required.set('--factory-chunk-bytes',String(metadata.factoryChunkPolicy.maxSourceBytes));
   assert.deepEqual([...opts].sort(),[...required].sort(),'Archived replay options differ from captured source execution');
