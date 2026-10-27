@@ -40,3 +40,11 @@ rust_binary(
     edition = "2024",
     deps = [":battle_core"],
 )
+
+rust_binary(
+    name = "clock_check",
+    srcs = ["examples/clock_check.rs"],
+    crate_root = "examples/clock_check.rs",
+    edition = "2024",
+    deps = [":battle_core"],
+)
