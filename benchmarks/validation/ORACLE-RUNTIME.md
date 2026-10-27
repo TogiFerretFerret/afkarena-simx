@@ -3,6 +3,22 @@ Node v24.19.0, V8 13.6.233.17-node.51, Linux x64, `--jitless`, and empty
 `NODE_OPTIONS`. Consumers must use and report that profile before claiming raw-bit
 qualification. Existing results are not automatically requalified by this pin.
 
+Whole-battle contexts also use `vm.constants.DONT_CONTEXTIFY`. This returns the
+actual VM global and preserves ordinary Script binding descriptors. Node's
+contextified sandbox instead marks initialized `var`/function globals configurable
+and omits uninitialized bindings from parent-wrapper reflection. The actual AOT
+probe in `global-descriptors-native.json` matches the ordinary VM's descriptors,
+constructor identities, and global accessor receiver; the old contextified mode
+fails that comparison. No native flags are normalized to conceal the difference.
+
+`createBootstrapRuntime({eagerBattle:true})` executes the complete original
+`game_battle.js` once, with every battle-module lazy factory, initializer replay,
+and future global accessor excluded. Original helper-side statements that precede
+the battle module execute first; audio startup follows it. The exact module bytes,
+hash, and execution plan are exported for the candidate. External prerequisite
+modules still use the explicit lazy adapter, so this establishes authentic battle
+module execution rather than proving the whole application's original boot order.
+
 `node tools/probe-oracle-tiers.mjs work/component-verification/damage-primitives`
 reproduces the experiment. It runs three fresh processes for each of default,
 `--jitless`, and `--no-opt`, both cold and after two complete corpus warmups. Every
