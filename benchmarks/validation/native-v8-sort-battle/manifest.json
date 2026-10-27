@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "semanticReportMatched": true,
+  "qualifiesFor10000Target": false,
+  "report": "benchmarks/results/2026-10-27T20-33-51.021Z-native-oracle-seven-v8-sort.json",
+  "reportSha256": "5b1452b0b464a36f2fce1b2edee84b7b44daa16d1800007ddf0d19082d6d3509",
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/native-v8-sort-battle/native.stdout.gz",
+      "sha256": "a969524b9879712453944989dea84386670a135f4c032d5840b4665034e3e77f",
+      "uncompressedSha256": "6a97d36495050a874857144be20e0b26984206aaae3772f6b9f4212d5236ff38",
+      "uncompressedBytes": 225259
+    },
+    {
+      "file": "benchmarks/validation/native-v8-sort-battle/source-reference.json.gz",
+      "sha256": "c3606c4e94c637016df687862634fd02db2c73c55314bfede6699a617888f9ee",
+      "uncompressedSha256": "44cef991f295d33c9575d56f92b313498f32154b502f6df33887a50293c14373",
+      "uncompressedBytes": 225021
+    },
+    {
+      "file": "benchmarks/validation/native-v8-sort-battle/native.stderr.gz",
+      "sha256": "e96703f8258299cc1eab784f0a9057d2f33db31c5571d8f0f11e7fdb12c94f94",
+      "uncompressedSha256": "d3c657b3a9a366f57265a522991ce7c1847bc91a67738ed3516cd4208c4e4ef3",
+      "uncompressedBytes": 56
+    }
+  ],
+  "scope": "One frozen source fixture with exact captured terminal state, callback counts, RNG, private table read counters, Cocos allocator counters and host tapes. Full ordered graph trace, random corpus and actor/effect lifecycle qualification remain outstanding. First-battle timing includes lazy table registration and diagnostic hashing."
+}
