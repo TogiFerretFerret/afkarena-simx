@@ -248,3 +248,75 @@ pub fn walk_to<H:MovementHooks>(world:&mut MovementWorld,argument:WalkArgument,h
     if let Some(id)=borrowed{destination=world.ai.vectors[id];}
     hooks.walk_towards(world,destination);
 }
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum UnitAiState{Idle,Walk,Other}
+#[derive(Clone, Debug)]
+pub struct AiControl{
+    pub owner:usize,
+    pub state:UnitAiState,
+    pub fear:bool,
+    pub fear_target:Option<usize>,
+    pub force_destination:Option<usize>,
+    pub destination:Option<usize>,
+    pub skills:SkillSelection,
+    pub ignore_controllable:Vec<bool>,
+}
+/// All source calls remain explicit. An adapter can bind these to the native
+/// targeting/movement/selection functions and Skill world without virtual dispatch.
+pub trait ControlHooks{
+    fn walk_away_from(&mut self,state:&mut AiControl,target:usize);
+    fn walk_to(&mut self,state:&mut AiControl,target:WalkArgument);
+    fn search_target(&mut self,state:&mut AiControl,turnbased:bool)->Option<usize>;
+    fn find_skill_to_cast(&mut self,state:&mut AiControl)->Option<usize>;
+    fn cast_skill(&mut self,state:&mut AiControl,skill:usize,target:Option<usize>);
+    fn is_out_of_stage(&mut self,state:&mut AiControl)->bool;
+    fn idle(&mut self,state:&mut AiControl);
+    fn check_trigger(&mut self,state:&mut AiControl)->Option<bool>;
+    fn trigger(&mut self,state:&mut AiControl,skill:usize);
+    fn can_cast_with_target(&mut self,state:&mut AiControl,skill:usize,target:Option<usize>)->bool;
+    fn will_cast(&mut self,state:&mut AiControl,skill:usize)->bool;
+}
+
+pub fn update<H:ControlHooks>(state:&mut AiControl,hooks:&mut H){
+    if matches!(state.state,UnitAiState::Idle|UnitAiState::Walk){
+        if state.fear{
+            if let Some(target)=state.fear_target{hooks.walk_away_from(state,target);return;}
+        }
+        if let Some(destination)=state.force_destination{hooks.walk_to(state,WalkArgument::Vector(destination));return;}
+        if let Some(destination)=state.destination{hooks.walk_to(state,WalkArgument::Vector(destination));return;}
+        let target=hooks.search_target(state,state.skills.turnbased);
+        state.skills.target=target;
+        if let Some(skill)=hooks.find_skill_to_cast(state){hooks.cast_skill(state,skill,target);}
+        else if let Some(target)=target{hooks.walk_to(state,WalkArgument::Unit(target));}
+        else if hooks.is_out_of_stage(state){hooks.walk_to(state,WalkArgument::Unit(state.owner));}
+        else{hooks.idle(state);}
+    }else if hooks.check_trigger(state).unwrap_or(false){
+        let skill=state.skills.current_skill.expect("source current_skill.trigger would fail for null/undefined");
+        hooks.trigger(state,skill);
+    }
+}
+
+pub fn cast_skill_when_controlled<H:ControlHooks>(state:&mut AiControl,hooks:&mut H){
+    if state.force_destination.is_some()||state.destination.is_some()||state.skills.current_skill.is_some(){return;}
+    let target=hooks.search_target(state,false);
+    state.skills.target=target;
+    let list=state.skills.list;let length=state.skills.lists[list].len();
+    let mut selected=None;
+    for index in 0..length{
+        let skill=state.skills.lists[list][index];
+        if state.ignore_controllable[skill]{
+            if state.skills.manual&&Some(skill)==state.skills.manual_skill{
+                let current_target=state.skills.target;
+                if hooks.can_cast_with_target(state,skill,current_target){
+                    state.skills.can_cast_manual=ManualCast::Cast;
+                    state.skills.will_cast_manual=hooks.will_cast(state,skill);
+                }
+            }else{
+                let current_target=state.skills.target;
+                if hooks.can_cast_with_target(state,skill,current_target)&&hooks.will_cast(state,skill){selected=Some(skill);break;}
+            }
+        }
+    }
+    if let Some(skill)=selected{hooks.cast_skill(state,skill,target);}
+}
