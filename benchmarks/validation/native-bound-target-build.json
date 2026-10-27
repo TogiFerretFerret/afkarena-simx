@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "passed": true,
+  "implemented": true,
+  "semanticProofPassed": false,
+  "scope": "BUILD ONLY public V8 bound-target metadata observer addon. Original collector is not modified. Node/V8 ABI and official matching headers are pinned; no V8 layout offsets or internal object casts.",
+  "qualifiesFor10000Target": false,
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "moduleABI": "137",
+  "abiVariables": {
+    "v8_enable_pointer_compression": 0,
+    "v8_enable_sandbox": 0,
+    "v8_enable_pointer_compression_shared_cage": 0,
+    "v8_enable_31bit_smis_on_64bit_arch": 0
+  },
+  "headers": {
+    "url": "https://nodejs.org/download/release/v24.19.0/node-v24.19.0-headers.tar.gz",
+    "sha256": "54f14a297d47ea0794fe272363703d9dc419c96ac68f20d890f98b63754a3e4c",
+    "files": {
+      "node.h": "473ecc57aa0fbf22ba6ddc906fb30c909a727c3834217d1299345650d740b50a",
+      "node_version.h": "35aa8d0d91cb154b9e8b0c9ae68d3560bc586ba06c3fb0a8ff51863e74caa3ca",
+      "v8.h": "e27a005daa45f342845ffb9b33409686c380b1d5a97f46f3ab4749517a213d25",
+      "v8-version.h": "7a945b923eec649417fc366a50b1439af006869ca764f37d1d07be15eed47802",
+      "v8-object.h": "fa891650c8d9279a552136e76d416ef6fafbbc73dca9db4d981644b0d42fca15",
+      "v8-function.h": "335c745cdc90804e34ea3694da3bd5db88492e73c4e94c5169c55b67a8604b74",
+      "v8-value.h": "4bdb297358d309e003ea09279f2cf0e94024dbdafdd34a106513344b70d1685c",
+      "v8-local-handle.h": "f2d45e5b71ebde65715bd08460ca1a19ac7d096f95257df33e15cea23694ba4d"
+    }
+  },
+  "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+  "args": [
+    "-std=c++20",
+    "-O3",
+    "-fPIC",
+    "-shared",
+    "-DNODE_GYP_MODULE_NAME=bound_target",
+    "-I/workspace/afkarena-simx/work/node-trace-observer/node-v24.19.0/include/node",
+    "tools/native-bound-target.cc",
+    "-o",
+    "/workspace/afkarena-simx/work/node-trace-observer/bound-target.node"
+  ],
+  "source": {
+    "file": "tools/native-bound-target.cc",
+    "sha256": "a139cd8892527153c4fa10db728c223fd9f3cf0688134661f7aa46bb432c80d3"
+  },
+  "producer": {
+    "file": "tools/build-native-bound-target.mjs",
+    "sha256": "9962f8dfbfd4fec0175c36b7b94547c06509cdb1402f8132423885906972a383"
+  },
+  "output": {
+    "file": "/workspace/afkarena-simx/work/node-trace-observer/bound-target.node",
+    "sha256": "41f34281b8da6a87a588660cd6778477abdf947391eeb9594bcbffed7a87d54f"
+  }
+}

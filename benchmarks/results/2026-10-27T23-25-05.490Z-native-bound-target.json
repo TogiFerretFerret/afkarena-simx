@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Actual public-V8 Function::GetBoundFunction metadata observer, no callback execution or bind interception. Resolves bound target identity only; bound receiver/arguments and closure values remain inaccessible. Proxy targets stay explicitly opaque. Source-only profiling aid, not battle performance or fidelity qualification.",
+  "qualifiesFor10000Target": false,
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "execArgv": [
+    "--jitless",
+    "--expose-gc"
+  ],
+  "buildProof": {
+    "file": "benchmarks/validation/native-bound-target-build.json",
+    "sha256": "e8c3b7b2beabc1a5a48345af567e5323f9625a7cf63077ec456e829bca6cc3c4"
+  },
+  "api": {
+    "export": "resolveTarget(function)",
+    "fields": [
+      "kind",
+      "targetKind",
+      "depth",
+      "scriptId",
+      "target"
+    ],
+    "kinds": [
+      "unbound",
+      "bound",
+      "proxy",
+      "bound-proxy-target",
+      "non-function",
+      "depth-limit",
+      "unsupported-bound-target"
+    ],
+    "targetKind": "script when public ScriptId()>0; no-script-id is metadata, not proof of a particular native implementation",
+    "maximumDepth": 4096
+  },
+  "directedCases": [
+    {
+      "label": "ordinary script function",
+      "kind": "unbound",
+      "targetKind": "script",
+      "depth": 0,
+      "scriptId": 88,
+      "identityMatched": true
+    },
+    {
+      "label": "bound source function",
+      "kind": "bound",
+      "targetKind": "script",
+      "depth": 1,
+      "scriptId": 88,
+      "identityMatched": true
+    },
+    {
+      "label": "nested bound source function",
+      "kind": "bound",
+      "targetKind": "script",
+      "depth": 2,
+      "scriptId": 88,
+      "identityMatched": true
+    },
+    {
+      "label": "unbound native function",
+      "kind": "unbound",
+      "targetKind": "no-script-id",
+      "depth": 0,
+      "scriptId": 0,
+      "identityMatched": true
+    },
+    {
+      "label": "bound native function",
+      "kind": "bound",
+      "targetKind": "no-script-id",
+      "depth": 1,
+      "scriptId": 0,
+      "identityMatched": true
+    },
+    {
+      "label": "Proxy function remains opaque",
+      "kind": "proxy",
+      "targetKind": "proxy",
+      "depth": 0,
+      "scriptId": 0,
+      "identityMatched": true
+    },
+    {
+      "label": "revoked Proxy remains opaque",
+      "kind": "proxy",
+      "targetKind": "proxy",
+      "depth": 0,
+      "scriptId": 0,
+      "identityMatched": true
+    },
+    {
+      "label": "bound revoked Proxy remains opaque",
+      "kind": "bound-proxy-target",
+      "targetKind": "proxy",
+      "depth": 1,
+      "scriptId": 0,
+      "identityMatched": true
+    },
+    {
+      "label": "nonfunction undefined",
+      "kind": "non-function",
+      "targetKind": "non-function",
+      "depth": 0,
+      "scriptId": 0,
+      "identityMatched": true
+    },
+    {
+      "label": "nonfunction number",
+      "kind": "non-function",
+      "targetKind": "non-function",
+      "depth": 0,
+      "scriptId": 0,
+      "identityMatched": true
+    },
+    {
+      "label": "nonfunction plain object",
+      "kind": "non-function",
+      "targetKind": "non-function",
+      "depth": 0,
+      "scriptId": 0,
+      "identityMatched": true
+    },
+    {
+      "label": "nonfunction symbol",
+      "kind": "non-function",
+      "targetKind": "non-function",
+      "depth": 0,
+      "scriptId": 0,
+      "identityMatched": true
+    },
+    {
+      "label": "getter-bearing target",
+      "kind": "unbound",
+      "targetKind": "script",
+      "depth": 0,
+      "scriptId": 88,
+      "identityMatched": true
+    },
+    {
+      "label": "getter-bearing bound chain",
+      "kind": "bound",
+      "targetKind": "script",
+      "depth": 2,
+      "scriptId": 88,
+      "identityMatched": true
+    },
+    {
+      "label": "cross-realm nested bound function",
+      "kind": "bound",
+      "targetKind": "script",
+      "depth": 2,
+      "scriptId": 159,
+      "identityMatched": true
+    }
+  ],
+  "stressCases": 20000,
+  "forcedCollections": 79,
+  "callbackCalls": 0,
+  "getterCalls": 0,
+  "proxyTraps": 0,
+  "depthLimitTested": true,
+  "retainedNativePointers": false,
+  "dependenciesAtFinish": [
+    {
+      "file": "tools/check-native-bound-target.mjs",
+      "sha256": "7ab2523ecebe8cb0c594b01de747614406f74db499525a30b545e6a258c26124"
+    },
+    {
+      "file": "benchmarks/validation/native-bound-target-build.json",
+      "sha256": "e8c3b7b2beabc1a5a48345af567e5323f9625a7cf63077ec456e829bca6cc3c4"
+    },
+    {
+      "file": "tools/native-bound-target.cc",
+      "sha256": "a139cd8892527153c4fa10db728c223fd9f3cf0688134661f7aa46bb432c80d3"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/node-trace-observer/bound-target.node",
+      "sha256": "41f34281b8da6a87a588660cd6778477abdf947391eeb9594bcbffed7a87d54f"
+    },
+    {
+      "file": "tools/build-native-bound-target.mjs",
+      "sha256": "9962f8dfbfd4fec0175c36b7b94547c06509cdb1402f8132423885906972a383"
+    },
+    {
+      "file": "config/source-oracle-runtime.json",
+      "sha256": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
+    }
+  ],
+  "producer": {
+    "file": "tools/check-native-bound-target.mjs",
+    "sha256": "7ab2523ecebe8cb0c594b01de747614406f74db499525a30b545e6a258c26124"
+  },
+  "limitations": [
+    "Only pinned Node/V8 build and ABI supported",
+    "Depth-limit/Proxy results are unresolved, never silently attributed to a source target",
+    "GetBoundFunction exposes target, not boundThis, boundArgs or native closure state",
+    "No game callback is invoked, replaced or intercepted by this observer"
+  ],
+  "resultFile": "benchmarks/results/2026-10-27T23-25-05.490Z-native-bound-target.json"
+}
