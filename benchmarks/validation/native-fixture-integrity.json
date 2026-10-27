@@ -1,7 +1,7 @@
 {
   "version": 1,
   "passed": true,
-  "fixtures": 11,
+  "fixtures": 12,
   "results": [
     {
       "fixture": "frozen-2026-broad-unpinned",
@@ -21,6 +21,22 @@
     },
     {
       "fixture": "frozen-2026-capsule-pinned",
+      "integrityValid": true,
+      "replayContract": {
+        "valid": true,
+        "legacyCaptureInferred": false,
+        "sourceProfilePinned": true
+      },
+      "nodeComparisonPassed": true,
+      "difference": null,
+      "pinnedSourceProfile": true,
+      "completed": 1,
+      "randomInputs": 2,
+      "clockInputs": 260,
+      "qualifiesForThroughputTarget": false
+    },
+    {
+      "fixture": "frozen-2026-counter-capsule-pinned",
       "integrityValid": true,
       "replayContract": {
         "valid": true,
