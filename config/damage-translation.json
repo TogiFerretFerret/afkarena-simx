@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "functions": [
+    {
+      "name": "ed.calculateCritCoef",
+      "file": "src/srcmodule/game_util.js",
+      "start": 521156,
+      "end": 521314,
+      "sha256": "246b4b24de5ff26677ff9b575f3d78ba426b7b1fbcfa4527cd86dfb0eaf4f8bb"
+    },
+    {
+      "name": "ed.Unit.getLostHPAfterImmunity",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 118999,
+      "end": 119046,
+      "sha256": "ccef30345836227bd1a5a47f897baa3f232bb6ca387ee84e6a50a79093010cba"
+    },
+    {
+      "name": "ed.fixProbability",
+      "file": "src/srcmodule/game_util.js",
+      "start": 521825,
+      "end": 522133,
+      "sha256": "3bf5dcc7f8fedef7264987441292f70781ea735444ebf2913cfa0230b75c341f"
+    },
+    {
+      "name": "ed.fixGainMp",
+      "file": "src/srcmodule/game_util.js",
+      "start": 522432,
+      "end": 522793,
+      "sha256": "296c6862bbea1fcb3e9cafec7e42f6124730cfc3d2be2f181077e38c856a29fc"
+    },
+    {
+      "name": "ed.Unit.checkDodge",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 119058,
+      "end": 119263,
+      "sha256": "8c6aeb28ce54f97f0af8c46ccb919cd392b75c60fd8874a856ce884caf9e0b3b"
+    },
+    {
+      "name": "ed.Unit.checkMDodge",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 119276,
+      "end": 119410,
+      "sha256": "4fb39dda659813ab16c80d3108f2021e321556c78e23eb00cc3269c134619d5a"
+    },
+    {
+      "name": "ed.Skill.power",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 28776,
+      "end": 29146,
+      "sha256": "4d96902d24c7d7478a50a92b7b27252a3941037e275e6b5817d7461400bfea94"
+    },
+    {
+      "name": "ed.rand",
+      "file": "src/srcmodule/game_util.js",
+      "start": 287469,
+      "end": 287582,
+      "sha256": "a2bfcfd578f8e22c5315df011a002ca0439bd02f3b67740d0c6d01b3e8f65973"
+    },
+    {
+      "name": "ed.srand",
+      "file": "src/srcmodule/game_util.js",
+      "start": 287668,
+      "end": 287820,
+      "sha256": "ede60c6120d82417c9d6a544dce9c82d018c0ba9ca4e87d6a45d036de693e3dc"
+    }
+  ],
+  "sourceMathNaNEncoding": "fff8000000000000",
+  "target": "x64 V8 source oracle matching session Node",
+  "nativeWholeBattle": false,
+  "fullTakeDamage": false,
+  "validation": {
+    "finite": {
+      "version": 1,
+      "inputDomain": "bounded finite game-scale values",
+      "cases": 20000,
+      "outputValues": 120000,
+      "rngDraws": 14942,
+      "nanPolicy": "bits",
+      "nanBitDifferences": 0,
+      "rawBitsExact": true,
+      "scope": "Source damage math, dodge RNG consumption and live-buff power transforms; not full takeDamage or battles"
+    },
+    "adversarial": {
+      "version": 1,
+      "cases": 20000,
+      "outputValues": 120000,
+      "rngDraws": 14942,
+      "nanPolicy": "semantic",
+      "nanBitDifferences": 165,
+      "firstNaNDifference": {
+        "case": 79,
+        "output": 2,
+        "expected": "fff8000000000000",
+        "actual": "7ff8000000000000"
+      },
+      "rawBitsExact": false,
+      "scope": "Source damage math, dodge RNG consumption and live-buff power transforms; not full takeDamage or battles"
+    }
+  },
+  "limitations": [
+    "Adversarial NaN sign/payload differences are reported explicitly; they are not a full-fidelity pass",
+    "Current module ports damage math, probability/MP correction, live buff power transforms and dodge RNG ordering; full takeDamage control is not yet implemented"
+  ]
+}
