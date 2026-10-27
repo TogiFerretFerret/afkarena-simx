@@ -152,7 +152,7 @@ impl World{
   let attack_haste=(100.0+max(-80.0,self.units[id].attribs.atkhast))/100.0;self.units[id].global_cd-=cd_dt*attack_haste;
   let action_name=self.units[id].action_name.clone();let mut index=0;
   while index<self.units[id].skills.len(){let skill=self.units[id].skills[index];let skill_cd=if h.skill_is_basic(self,skill)?{cd_dt*attack_haste}else{cd_dt};let skill=self.units[id].skills[index];h.update_skill(self,skill,action_dt,skill_cd,dt)?;index+=1;}
-  if finished&&action_name==self.units[id].action_name&&self.units[id].state==State::Attack{let skill=self.units[id].current_skill.ok_or("source current_skill is missing during phase completion")?;h.phase_finished(self,skill)?;}
+  if finished&&action_name==self.units[id].action_name&&self.units[id].state==State::Attack{let skill=self.units[id].current_skill.ok_or("Cannot read properties of null (reading 'onPhaseFinished')")?;h.phase_finished(self,skill)?;}
   let effects=self.units[id].effects;
   if self.freeze_level==0.0{if self.effects[effects].disable_ai{h.cast_when_controlled(self,id)?;}else{h.update_ai(self,id,dt)?;}}
   else if h.is_pet(self,id)?&&!self.units[id].frozen_model&&!self.effects[effects].disable_ai{h.update_ai(self,id,dt)?;}
