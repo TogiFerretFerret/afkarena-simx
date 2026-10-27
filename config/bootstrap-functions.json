@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "offsetUnit": "utf16_code_units",
+  "functions": [
+    {
+      "name": "ed.getBattleIdByStage",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4446702,
+      "end": 4446954,
+      "sha256": "3dec744ce333daa077714a8a2490236f84884dba739ad59cf99ecd2c8e8ea984"
+    },
+    {
+      "name": "ed.getStageBattleTableInfo",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4471110,
+      "end": 4471313,
+      "sha256": "696b343522a83e870f1e850ceea5d0a7a0aba60fbfe17c9f8a3f0be4e65c8e3d"
+    },
+    {
+      "name": "ed.getStageBattleInfo",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4471336,
+      "end": 4471825,
+      "sha256": "94f076879914828bfc3a99ae5ace921805e450ca3f77363bb2306b43796017ca"
+    },
+    {
+      "name": "ed.copyHeroConfig",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4463331,
+      "end": 4463382,
+      "sha256": "bf4a0a9535fa6371769d552f64057a6e83a18ff1193179a98486107f51ae2aa3"
+    },
+    {
+      "name": "ed.lookupDataTable",
+      "file": "src/srcmodule/game_util.js",
+      "start": 639459,
+      "end": 639793,
+      "sha256": "ee1e9efd9b80f498e8556d7aeda5714386b3001cc0687260d401318558257846"
+    },
+    {
+      "name": "ed.transferUID",
+      "file": "src/srcmodule/game_util.js",
+      "start": 319375,
+      "end": 319410,
+      "sha256": "9898c3ac2a7d0e9a06a2d9dfb2613419b6be6064fb3e105c4f11b22c1dd30dec"
+    },
+    {
+      "name": "ed.BattleEngine.initHeroInfo",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 226418,
+      "end": 227261,
+      "sha256": "d1b031737520552af94aa637c3a71e1ba991df5853650cf94203992d9bf9bbed"
+    },
+    {
+      "name": "ed.BattleEngine.createConfig",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 227275,
+      "end": 228638,
+      "sha256": "94b1e8e4ffce3c1e30ada6eefcbe66ee05ef2f187c087b8217e0ca9e16267869"
+    },
+    {
+      "name": "ed.BattleEngine.enterBattle",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 223337,
+      "end": 224808,
+      "sha256": "2368255fd93aa73a6edb9ff0cebcb9e906ea6ff3e4560379a88c4f2153903bad"
+    },
+    {
+      "name": "ed.BattleEngine.initConfig",
+      "file": "src/srcmodule/game_battle.js",
+      "start": 222056,
+      "end": 223324,
+      "sha256": "c39119da2b21477e091ac1df795a94bcbe2fe87ced0d585f292ee4a6e8ec318e"
+    },
+    {
+      "name": "ed.getStageHeroes",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4468835,
+      "end": 4469006,
+      "sha256": "51d12edab0880da6df7b873e4865e0a8c38f705f9adaa3f9376fe4d48431eaa4"
+    },
+    {
+      "name": "ed.getBattleHeroes",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4471845,
+      "end": 4472648,
+      "sha256": "e187f1e916bc521f327732a76db90eccacc2219c51647ab29e3c2707103c07ae"
+    },
+    {
+      "name": "ed.getStageHeroEquips",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4470627,
+      "end": 4470845,
+      "sha256": "5abdd2a315ce5121109e7dc8b979f7d52176f864ac7274a2310f870c32e30d55"
+    },
+    {
+      "name": "ed.battleTools.getHeroConfig",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4473638,
+      "end": 4473977,
+      "sha256": "a5256635bc690bc477a926453e2e8591a84bc394858da19e3409d2784ef4c124"
+    },
+    {
+      "name": "ed.battleTools.modFormat",
+      "file": "src/srcmodule/game_ui_1.js",
+      "start": 4474003,
+      "end": 4474034,
+      "sha256": "fab1dedfae9d917f5d95001d130708e4dd7874b55d740544c51a49fce6786258"
+    }
+  ]
+}
