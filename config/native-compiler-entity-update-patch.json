@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "baseCommit": "4f1db42d71d0839254c7154fc8c282bcea466206",
+  "patch": "tools/native-compiler-patches/entity-update.patch",
+  "sha256": "af22858231dd541a98d4d04320cf00caf0f5c7fa60cee33a8c13df9324051bd9",
+  "purpose": "Opt-in source-identified Entity.update canonical VM block with finite Number guards, source-ordered Rust arithmetic and GC-aware original array/property writes. Not registered in active compiler configuration.",
+  "helper": "tools/native-compiler-patches/entity-update.inc",
+  "helperSha256": "a4a358159a5666b94353331dca21013968cc696be6580425a921d2d9e7f4d87b",
+  "registeredInCompilerConfiguration": false,
+  "files": [
+    {
+      "path": "lib/VM/JSLib/Math.cpp",
+      "originalSha256": "af1615c9f8ae966430e5086e6857b32541727036ec2b8f4edcbeeb2caddd53e4",
+      "patchedSha256": "ba3aa134a798d342e0d6830f35cfc93d2fc0c39c4dce5efd3f6de00aa3ad67c8"
+    }
+  ]
+}

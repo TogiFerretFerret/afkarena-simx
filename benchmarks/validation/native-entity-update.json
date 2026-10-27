@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "matched": true,
+  "source": {
+    "file": "src/srcmodule/game_battle.js",
+    "name": "ed.Entity.update",
+    "start": 248,
+    "end": 378,
+    "sha256": "9edd5c9d243911ad4d96ea84f24834a455446c4d7796efadc4c340268e39ad94"
+  },
+  "numericPolicy": "Strict raw bits for all captured numeric outputs; no NaN normalization.",
+  "inputSha256": "7f737e08c927adad3fc00c354ad6fc8125c8ba838feff9da68f0a76ef342c81a",
+  "actualOutputSha256": "42835a0ecdafb770fa804803418447955d510dc78de73b52302c812694b99ac4",
+  "nodeOutputSha256": "42835a0ecdafb770fa804803418447955d510dc78de73b52302c812694b99ac4",
+  "unmodifiedNativeOutputSha256": "42835a0ecdafb770fa804803418447955d510dc78de73b52302c812694b99ac4",
+  "outputArchive": "benchmarks/validation/native-entity-update.outputs.json.gz",
+  "outputArchiveSha256": "9752919fba5080eec35658e1a648f480603473e9f54a434da3eb4efcf48fd970",
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "sourceCases": 20000,
+  "updates": 40000,
+  "aliasCases": 6667,
+  "directedCases": 19,
+  "directedFastCases": 2,
+  "directedFallbackCases": 17,
+  "rustIntegratedUpdates": 39919,
+  "nativeDifference": null,
+  "oracleDifference": null,
+  "sourceHashes": {
+    "tools/native-compiler-patches/entity-update.inc": "a4a358159a5666b94353331dca21013968cc696be6580425a921d2d9e7f4d87b",
+    "tools/native-entity-update.rs": "fb0e9f21bf14813f1e47a3572570a099ba553e31e3b36b174137fa791a28074c",
+    "tools/native-entity-update.mjs": "0aefe718985a087acfcd53961d67573768cc23bdbc4b1b8e683e1b12bd634de5",
+    "tools/native-entity-update-probe.mjs": "94db8464be271d5ae99a7b97841bbae86828af0f086b3f134316144f7c2e3dc7",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d"
+  },
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "vmSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+  "privateProbeVMSha256": "224f069863441db1d5f5125acd926edfee4702a339ebe7d4b867737d6cc04179",
+  "liveVMPreserved": true,
+  "loadedPrivateVM": "/workspace/afkarena-simx/work/native-entity-update/libhermesvm.so",
+  "privateVMArchiveSha256": "88ac09a7bf67673c357f48772ea65a569224d2777cf30ec4a0196e63ae882fab",
+  "canonicalArraysRetained": true,
+  "gcAwareWrites": true,
+  "scope": "Opt-in isolated original Entity.update VM function-body block; guard failures execute original source, with no extra getters or Proxy traps. Not integrated whole-battle qualification or a throughput result.",
+  "qualifiesFor10000Target": false
+}
