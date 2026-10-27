@@ -1,0 +1,1007 @@
+{
+  "version": 1,
+  "scope": "Bounded textual source inventory plus AST proof of two no-op explicit GC bindings. This is evidence for runtime GC experiments, not proof of GC-timing non-observability or new battle equivalence.",
+  "qualifiesFor10000Target": false,
+  "sourceCount": 18,
+  "inputs": {
+    "src/res/backdownload.js": {
+      "sha256": "1edc3074867ede6c1b0c666781bf19d7e96d177b9c59bcda89c443f9c3d5032d",
+      "bytes": 1419793
+    },
+    "src/res/config_load.js": {
+      "sha256": "46ef8339301ec030900759ec3570d0258c51bbe2a24db7b16e60c2e2acac1b6a",
+      "bytes": 18421
+    },
+    "src/res/csv_withtranslate.js": {
+      "sha256": "f0ed52465652d2732e6952339c8a06119f3bb36bb88e6f4093c3628ecab7ab0b",
+      "bytes": 23876
+    },
+    "src/res/loading.js": {
+      "sha256": "a47e6d7f68c22f1ebeaba172d72eb615adb3d459885cd25224768fe5a26d62bc",
+      "bytes": 17700
+    },
+    "src/res/version.js": {
+      "sha256": "5041dffafa915080671e6c5a944db0c2c16eeab25bf4d435ba68059068d2fe65",
+      "bytes": 142
+    },
+    "src/script/jsb_boot.js": {
+      "sha256": "bdbe166804249422a87ac6ccc47816a4c7063d1fda562e96354cdc3cfdd8afff",
+      "bytes": 208246
+    },
+    "src/srcmodule/game_base.js": {
+      "sha256": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+      "bytes": 1213452
+    },
+    "src/srcmodule/game_battle.js": {
+      "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+      "bytes": 7851592
+    },
+    "src/srcmodule/game_ui_1.js": {
+      "sha256": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+      "bytes": 5754881
+    },
+    "src/srcmodule/game_ui_2.js": {
+      "sha256": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+      "bytes": 4653478
+    },
+    "src/srcmodule/game_ui_3.js": {
+      "sha256": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+      "bytes": 4468059
+    },
+    "src/srcmodule/game_ui_4.js": {
+      "sha256": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+      "bytes": 4221165
+    },
+    "src/srcmodule/game_ui_5.js": {
+      "sha256": "b3169c14a946ce37b01e0b207b343d1d18afcbe3c6237e9639f79b9fd61cb13c",
+      "bytes": 1376461
+    },
+    "src/srcmodule/game_util.js": {
+      "sha256": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+      "bytes": 1037080
+    },
+    "src/srcmodule/ui_contra.js": {
+      "sha256": "11fd88a93d7d022ae3d0b1eb1d3e1addcf69f297a824ae510adee392f124ff95",
+      "bytes": 1030149
+    },
+    "src/srcmodule/ui_gve.js": {
+      "sha256": "941012b6ca87524c122d577b5889c4da8e4b13904413129142b5e16c34e340e3",
+      "bytes": 965808
+    },
+    "src/srcmodule/ui_minigame.js": {
+      "sha256": "5885132fb5661551c9a14ebc8eedee42db42e65a24e023dc78f57b4b8c53cecb",
+      "bytes": 495972
+    },
+    "src/srcmodule/ui_war.js": {
+      "sha256": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3",
+      "bytes": 2655442
+    }
+  },
+  "exactNameTotals": {
+    "WeakRef": 0,
+    "FinalizationRegistry": 0,
+    "WeakMap": 0,
+    "WeakSet": 0,
+    "gc": 0,
+    "collectGarbage": 0,
+    "garbageCollect": 5,
+    "getJSBindingObjectCount": 4,
+    "releaseJSBindingObject": 2,
+    "__jsc__": 4,
+    "HermesInternal": 0,
+    "getHeapInfo": 0,
+    "getInstrumentedStats": 0,
+    "getRuntimeProperties": 0,
+    "getGCStats": 0,
+    "gczeal": 0,
+    "gcparam": 0,
+    "FinalizationGroup": 0,
+    "WeakCell": 0,
+    "WeakReference": 0,
+    "onGC": 0,
+    "onGarbageCollect": 0,
+    "onGarbageCollection": 0,
+    "memoryUsage": 0,
+    "usedJSHeapSize": 0,
+    "totalJSHeapSize": 0
+  },
+  "occurrences": [
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 2655,
+      "token": "garbageCollect",
+      "context": "dy...\n\tif (!cc.sys.jsb2)\n\t{\n\t\treturn false;\n\t}\n\n\tif (ed && ed.isNonBattleScene())\n\t\treturn true;\n\n\treturn false;\n};\n\ncc.garbageCollect = function ( dt ) {\n\t// body...\n\n\treturn;\n\n\t\n\tif (!cc.sys.jsb2 || !cc.isGCScene())\n\t{\n\t\treturn;\n\t}\n\n\t__garbage_collect_total_time__ += dt;\n\n\tif (__garbage_coll"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 2922,
+      "token": "getJSBindingObjectCount",
+      "context": "+= dt;\n\n\tif (__garbage_collect_total_time__ >= __garbage_collect_interval__)\n\t{\n\n\t\tvar currJSBindedObjectCount = cc.sys.getJSBindingObjectCount();\n\t\tif (currJSBindedObjectCount - __garbage_js_binded_object_count__ >= __garbage_collect_threshold__)\n\t\t{\n\t\t\tcc.sys.garbageCollect();\n\t\t\t__garbage_js_binded_"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 3064,
+      "token": "garbageCollect",
+      "context": "t();\n\t\tif (currJSBindedObjectCount - __garbage_js_binded_object_count__ >= __garbage_collect_threshold__)\n\t\t{\n\t\t\tcc.sys.garbageCollect();\n\t\t\t__garbage_js_binded_object_count__ = cc.sys.getJSBindingObjectCount();\n\n\t\t}\n\t\t__garbage_collect_total_time__ -= __garbage_collect_interval__;\n\t}\n};\n\n//\n/"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 3129,
+      "token": "getJSBindingObjectCount",
+      "context": "ount__ >= __garbage_collect_threshold__)\n\t\t{\n\t\t\tcc.sys.garbageCollect();\n\t\t\t__garbage_js_binded_object_count__ = cc.sys.getJSBindingObjectCount();\n\n\t\t}\n\t\t__garbage_collect_total_time__ -= __garbage_collect_interval__;\n\t}\n};\n\n//\n// cocos2d boot\n//\ncc.appendLanguagedb = function(key,value){\n\thg.languageD"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65408,
+      "token": "garbageCollect",
+      "context": "[\"mouse\"] = false;\n\t\t}\n\t}\n\n\t/**\n\t * Forces the garbage collection, only available in JSB\n\t * @memberof cc.sys\n\t * @name garbageCollect\n\t * @function\n\t */\n\tsys.garbageCollect = function() {\n\t\t//会有卡顿\n\t\t// __jsc__.garbageCollect();\n\t};\n\n\tsys.releaseJSBindingObject = function (argument) {\n\t\t// bod"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65447,
+      "token": "garbageCollect",
+      "context": "ces the garbage collection, only available in JSB\n\t * @memberof cc.sys\n\t * @name garbageCollect\n\t * @function\n\t */\n\tsys.garbageCollect = function() {\n\t\t//会有卡顿\n\t\t// __jsc__.garbageCollect();\n\t};\n\n\tsys.releaseJSBindingObject = function (argument) {\n\t\t// body...\n\t\t__jsc__.releaseJSBindingObject()"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65491,
+      "token": "__jsc__",
+      "context": "n JSB\n\t * @memberof cc.sys\n\t * @name garbageCollect\n\t * @function\n\t */\n\tsys.garbageCollect = function() {\n\t\t//会有卡顿\n\t\t// __jsc__.garbageCollect();\n\t};\n\n\tsys.releaseJSBindingObject = function (argument) {\n\t\t// body...\n\t\t__jsc__.releaseJSBindingObject();\n\t};\n\n\n\tsys.getJSBindingObjectCount "
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65499,
+      "token": "garbageCollect",
+      "context": "* @memberof cc.sys\n\t * @name garbageCollect\n\t * @function\n\t */\n\tsys.garbageCollect = function() {\n\t\t//会有卡顿\n\t\t// __jsc__.garbageCollect();\n\t};\n\n\tsys.releaseJSBindingObject = function (argument) {\n\t\t// body...\n\t\t__jsc__.releaseJSBindingObject();\n\t};\n\n\n\tsys.getJSBindingObjectCount = function (arg"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65527,
+      "token": "releaseJSBindingObject",
+      "context": " garbageCollect\n\t * @function\n\t */\n\tsys.garbageCollect = function() {\n\t\t//会有卡顿\n\t\t// __jsc__.garbageCollect();\n\t};\n\n\tsys.releaseJSBindingObject = function (argument) {\n\t\t// body...\n\t\t__jsc__.releaseJSBindingObject();\n\t};\n\n\n\tsys.getJSBindingObjectCount = function (argument) {\n\t\t// body...\n\n\t\tif (cc.sys."
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65589,
+      "token": "__jsc__",
+      "context": "ion() {\n\t\t//会有卡顿\n\t\t// __jsc__.garbageCollect();\n\t};\n\n\tsys.releaseJSBindingObject = function (argument) {\n\t\t// body...\n\t\t__jsc__.releaseJSBindingObject();\n\t};\n\n\n\tsys.getJSBindingObjectCount = function (argument) {\n\t\t// body...\n\n\t\tif (cc.sys.jsb2)\n\t\t{\n\t\t\treturn __jsc__.getJSBindingObjectC"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65597,
+      "token": "releaseJSBindingObject",
+      "context": "\t\t//会有卡顿\n\t\t// __jsc__.garbageCollect();\n\t};\n\n\tsys.releaseJSBindingObject = function (argument) {\n\t\t// body...\n\t\t__jsc__.releaseJSBindingObject();\n\t};\n\n\n\tsys.getJSBindingObjectCount = function (argument) {\n\t\t// body...\n\n\t\tif (cc.sys.jsb2)\n\t\t{\n\t\t\treturn __jsc__.getJSBindingObjectCount();\n\t\t}\n\n\t\treturn 0"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65634,
+      "token": "getJSBindingObjectCount",
+      "context": ");\n\t};\n\n\tsys.releaseJSBindingObject = function (argument) {\n\t\t// body...\n\t\t__jsc__.releaseJSBindingObject();\n\t};\n\n\n\tsys.getJSBindingObjectCount = function (argument) {\n\t\t// body...\n\n\t\tif (cc.sys.jsb2)\n\t\t{\n\t\t\treturn __jsc__.getJSBindingObjectCount();\n\t\t}\n\n\t\treturn 0;\n\t};\n\n\t/**\n\t * Dumps rooted objects, "
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65729,
+      "token": "__jsc__",
+      "context": "dingObject();\n\t};\n\n\n\tsys.getJSBindingObjectCount = function (argument) {\n\t\t// body...\n\n\t\tif (cc.sys.jsb2)\n\t\t{\n\t\t\treturn __jsc__.getJSBindingObjectCount();\n\t\t}\n\n\t\treturn 0;\n\t};\n\n\t/**\n\t * Dumps rooted objects, only available in JSB\n\t * @memberof cc.sys\n\t * @name dumpRoot\n\t * @function\n\t *"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65737,
+      "token": "getJSBindingObjectCount",
+      "context": "ct();\n\t};\n\n\n\tsys.getJSBindingObjectCount = function (argument) {\n\t\t// body...\n\n\t\tif (cc.sys.jsb2)\n\t\t{\n\t\t\treturn __jsc__.getJSBindingObjectCount();\n\t\t}\n\n\t\treturn 0;\n\t};\n\n\t/**\n\t * Dumps rooted objects, only available in JSB\n\t * @memberof cc.sys\n\t * @name dumpRoot\n\t * @function\n\t */\n\tsys.dumpRoot = functi"
+    },
+    {
+      "file": "src/script/jsb_boot.js",
+      "offsetUTF16": 65929,
+      "token": "__jsc__",
+      "context": "bjects, only available in JSB\n\t * @memberof cc.sys\n\t * @name dumpRoot\n\t * @function\n\t */\n\tsys.dumpRoot = function() {\n\t\t__jsc__.dumpRoot();\n\t};\n\n\t/**\n\t * Restart the JS VM, only available in JSB\n\t * @memberof cc.sys\n\t * @name restartVM\n\t * @function\n\t */\n\tsys.restartVM = function() {\n\t\t"
+    }
+  ],
+  "noOpDefinitions": [
+    {
+      "binding": "cc.garbageCollect",
+      "offsetUTF16": 2652,
+      "sourceSha256": "308b7ab876facd29b5bd5d50a9328b58efc9e5f856ca1ee6ab3212fcb19e8482",
+      "emptyBody": false,
+      "unconditionalFirstReturn": true,
+      "source": "cc.garbageCollect = function ( dt ) {\n\t// body...\n\n\treturn;\n\n\t\n\tif (!cc.sys.jsb2 || !cc.isGCScene())\n\t{\n\t\treturn;\n\t}\n\n\t__garbage_collect_total_time__ += dt;\n\n\tif (__garbage_collect_total_time__ >= __garbage_collect_interval__)\n\t{\n\n\t\tvar currJSBindedObjectCount = cc.sys.getJSBindingObjectCount();\n\t\tif (currJSBindedObjectCount - __garbage_js_binded_object_count__ >= __garbage_collect_threshold__)\n\t\t{\n\t\t\tcc.sys.garbageCollect();\n\t\t\t__garbage_js_binded_object_count__ = cc.sys.getJSBindingObjectCount();\n\n\t\t}\n\t\t__garbage_collect_total_time__ -= __garbage_collect_interval__;\n\t}\n}"
+    },
+    {
+      "binding": "sys.garbageCollect",
+      "offsetUTF16": 65443,
+      "sourceSha256": "3f0fc624aa896c34411bea49c344f0f34a641fb5435929e1cea3f69a43a20159",
+      "emptyBody": true,
+      "unconditionalFirstReturn": false,
+      "source": "sys.garbageCollect = function() {\n\t\t//会有卡顿\n\t\t// __jsc__.garbageCollect();\n\t}"
+    }
+  ],
+  "finalizationNameOccurrences": [
+    {
+      "file": "src/srcmodule/game_ui_5.js",
+      "offsetUTF16": 741197,
+      "token": "_finalizeLoveLevelUpFlow",
+      "context": "&(n=!i.DialogID&&i.PortraitDialogID>0);var s=this._createGiftFlowOnce(e,t),a=this._createGiftFlowOnce(e,function(){this._finalizeLoveLevelUpFlow(e,s)}.bind(this)),o=this._createGiftFlowOnce(e,function(){this._showLoveLevelReward(e,a)}.bind(this)),r=this._createGiftFlowOnce(e,function(){e.newState.loveLe"
+    },
+    {
+      "file": "src/srcmodule/game_ui_5.js",
+      "offsetUTF16": 744284,
+      "token": "_finalizeLoveLevelUpFlow",
+      "context": "|wheat_stroke_20>\".format([a]))):i())}.bind(this),!0,!0,{notFlyRewards:!0,closeCallback:i,rewardIconScale:s})}else i()},_finalizeLoveLevelUpFlow:function(e,t){if(this._isGiftFlowActive(e)){this._updateView(),e.didFinalUpdate=!0;var i=this._createGiftFlowOnce(e,function(){this._playLoveProgressOverflow(e"
+    },
+    {
+      "file": "src/srcmodule/game_ui_5.js",
+      "offsetUTF16": 904050,
+      "token": "_finalizeLoveLevelUpFlow",
+      "context": "&(n=!i.DialogID&&i.PortraitDialogID>0);var s=this._createGiftFlowOnce(e,t),a=this._createGiftFlowOnce(e,function(){this._finalizeLoveLevelUpFlow(e,s)}.bind(this)),o=this._createGiftFlowOnce(e,function(){this._showLoveLevelReward(e,a)}.bind(this)),r=this._createGiftFlowOnce(e,function(){e.newState.loveLe"
+    },
+    {
+      "file": "src/srcmodule/game_ui_5.js",
+      "offsetUTF16": 907287,
+      "token": "_finalizeLoveLevelUpFlow",
+      "context": "|wheat_stroke_20>\".format([a]))):i())}.bind(this),!0,!0,{notFlyRewards:!0,closeCallback:i,rewardIconScale:s})}else i()},_finalizeLoveLevelUpFlow:function(e,t){if(this._isGiftFlowActive(e)){this._updateView(),e.didFinalUpdate=!0;var i=this._createGiftFlowOnce(e,function(){this._playLoveProgressOverflow(e"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 707238,
+      "token": "finalize",
+      "context": ")},reset:function(){u.reset.call(this),this._doReset()},update:function(e){return this._append(e),this._process(),this},finalize:function(e){return e&&this._append(e),this._doFinalize()},blockSize:16,_createHelper:function(e){return function(t,r){return new e.init(r).finalize(t)}},_creat"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 707290,
+      "token": "_doFinalize",
+      "context": "()},update:function(e){return this._append(e),this._process(),this},finalize:function(e){return e&&this._append(e),this._doFinalize()},blockSize:16,_createHelper:function(e){return function(t,r){return new e.init(r).finalize(t)}},_createHmacHelper:function(e){return function(t,r){return new"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 707386,
+      "token": "finalize",
+      "context": "e&&this._append(e),this._doFinalize()},blockSize:16,_createHelper:function(e){return function(t,r){return new e.init(r).finalize(t)}},_createHmacHelper:function(e){return function(t,r){return new f.HMAC.init(e,r).finalize(t)}}}),i.algo={});return i}(Math);return t=(e=n).lib.WordArray,e.e"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 707479,
+      "token": "finalize",
+      "context": "(t,r){return new e.init(r).finalize(t)}},_createHmacHelper:function(e){return function(t,r){return new f.HMAC.init(e,r).finalize(t)}}}),i.algo={});return i}(Math);return t=(e=n).lib.WordArray,e.enc.Base64={stringify:function(e){var t=e.words,r=e.sigBytes,i=this._map;e.clamp();for(var a=["
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 710481,
+      "token": "_doFinalize",
+      "context": ",k,T,10,s[61]),k=f(k,A,E,M,h,15,s[62]),M=f(M,k,A,E,y,21,s[63]),n[0]=n[0]+E|0,n[1]=n[1]+M|0,n[2]=n[2]+k|0,n[3]=n[3]+A|0},_doFinalize:function(){var t=this._data,r=t.words,i=8*this._nDataBytes,a=8*t.sigBytes;r[a>>>5]|=128<<24-a%32;var n=e.floor(i/4294967296),o=i;r[15+(a+64>>>9<<4)]=16711935&("
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 711954,
+      "token": "_doFinalize",
+      "context": ":(a^n^s)-899497514,l=s,s=n,n=a<<30|a>>>2,a=i,i=u}r[0]=r[0]+i|0,r[1]=r[1]+a|0,r[2]=r[2]+n|0,r[3]=r[3]+s|0,r[4]=r[4]+l|0},_doFinalize:function(){var e=this._data,t=e.words,r=8*this._nDataBytes,i=8*e.sigBytes;return t[i>>>5]|=128<<24-i%32,t[14+(i+64>>>9<<4)]=Math.floor(r/4294967296),t[15+(i+64"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 713276,
+      "token": "_doFinalize",
+      "context": "v+b)|0}r[0]=r[0]+i|0,r[1]=r[1]+a|0,r[2]=r[2]+n|0,r[3]=r[3]+o|0,r[4]=r[4]+s|0,r[5]=r[5]+d|0,r[6]=r[6]+u|0,r[7]=r[7]+f|0},_doFinalize:function(){var t=this._data,r=t.words,i=8*this._nDataBytes,a=8*t.sigBytes;return r[a>>>5]|=128<<24-a%32,r[14+(a+64>>>9<<4)]=e.floor(i/4294967296),r[15+(a+64>>>"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 716777,
+      "token": "_doFinalize",
+      "context": "r]))+D|0,T=D,D=I,I=v(w,10),w=C,C=E;E=M[1]+h+I|0,M[1]=M[2]+y+D|0,M[2]=M[3]+S+T|0,M[3]=M[4]+n+C|0,M[4]=M[0]+o+w|0,M[0]=E},_doFinalize:function(){var e=this._data,t=e.words,r=8*this._nDataBytes,i=8*e.sigBytes;t[i>>>5]|=128<<24-i%32,t[14+(i+64>>>9<<4)]=16711935&(r<<8|r>>>24)|4278255360&(r<<24|r"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 717665,
+      "token": "finalize",
+      "context": "t:function(e,t){e=this._hasher=new e.init,\"string\"==typeof t&&(t=r.parse(t));var i=e.blockSize,a=4*i;t.sigBytes>a&&(t=e.finalize(t)),t.clamp();for(var n=this._oKey=t.clone(),o=this._iKey=t.clone(),s=n.words,l=o.words,c=0;c<i;c++)s[c]^=1549556828,l[c]^=909522486;n.sigBytes=o.sigBytes=a,th"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 717968,
+      "token": "finalize",
+      "context": "et:function(){var e=this._hasher;e.reset(),e.update(this._iKey)},update:function(e){return this._hasher.update(e),this},finalize:function(e){var t=this._hasher,r=t.finalize(e);return t.reset(),t.finalize(this._oKey.clone().concat(r))}})}(),function(){var e=n,t=e.lib,r=t.Base,i=t.WordArra"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 718012,
+      "token": "finalize",
+      "context": ".update(this._iKey)},update:function(e){return this._hasher.update(e),this},finalize:function(e){var t=this._hasher,r=t.finalize(e);return t.reset(),t.finalize(this._oKey.clone().concat(r))}})}(),function(){var e=n,t=e.lib,r=t.Base,i=t.WordArray,a=e.algo,o=a.SHA1,s=a.HMAC,l=a.PBKDF2=r.ex"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 718043,
+      "token": "finalize",
+      "context": "ction(e){return this._hasher.update(e),this},finalize:function(e){var t=this._hasher,r=t.finalize(e);return t.reset(),t.finalize(this._oKey.clone().concat(r))}})}(),function(){var e=n,t=e.lib,r=t.Base,i=t.WordArray,a=e.algo,o=a.SHA1,s=a.HMAC,l=a.PBKDF2=r.extend({cfg:r.extend({keySize:4,h"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 718451,
+      "token": "finalize",
+      "context": "(r.hasher,e),n=i.create(),o=i.create([1]),l=n.words,c=o.words,d=r.keySize,u=r.iterations;l.length<d;){var f=a.update(t).finalize(o);a.reset();for(var h=f.words,p=h.length,g=f,_=1;_<u;_++){g=a.finalize(g),a.reset();for(var m=g.words,b=0;b<p;b++)h[b]^=m[b]}n.concat(f),c[0]++}return n.sigBy"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 718523,
+      "token": "finalize",
+      "context": "e,u=r.iterations;l.length<d;){var f=a.update(t).finalize(o);a.reset();for(var h=f.words,p=h.length,g=f,_=1;_<u;_++){g=a.finalize(g),a.reset();for(var m=g.words,b=0;b<p;b++)h[b]^=m[b]}n.concat(f),c[0]++}return n.sigBytes=4*d,n}});e.PBKDF2=function(e,t,r){return l.create(r).compute(e,t)}}("
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 719032,
+      "token": "finalize",
+      "context": "cfg,a=r.hasher.create(),n=i.create(),o=n.words,s=r.keySize,l=r.iterations;o.length<s;){c&&a.update(c);var c=a.update(e).finalize(t);a.reset();for(var d=1;d<l;d++)c=a.finalize(c),a.reset();n.concat(c)}return n.sigBytes=4*s,n}});e.EvpKDF=function(e,t,r){return s.create(r).compute(e,t)}}(),"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 719078,
+      "token": "finalize",
+      "context": ",s=r.keySize,l=r.iterations;o.length<s;){c&&a.update(c);var c=a.update(e).finalize(t);a.reset();for(var d=1;d<l;d++)c=a.finalize(c),a.reset();n.concat(c)}return n.sigBytes=4*s,n}});e.EvpKDF=function(e,t,r){return s.create(r).compute(e,t)}}(),function(){var e=n,t=e.lib.WordArray,r=e.algo,"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 719410,
+      "token": "_doFinalize",
+      "context": "ction(){this._hash=new t.init([3238371032,914150663,812702999,4144912697,4290775857,1750603025,1694076839,3204075428])},_doFinalize:function(){var e=i._doFinalize.call(this);return e.sigBytes-=4,e}});e.SHA224=i._createHelper(a),e.HmacSHA224=i._createHmacHelper(a)}(),function(e){var t=n,r=t."
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 719441,
+      "token": "_doFinalize",
+      "context": "3238371032,914150663,812702999,4144912697,4290775857,1750603025,1694076839,3204075428])},_doFinalize:function(){var e=i._doFinalize.call(this);return e.sigBytes-=4,e}});e.SHA224=i._createHelper(a),e.HmacSHA224=i._createHmacHelper(a)}(),function(e){var t=n,r=t.lib,i=r.Base,a=r.WordArray,o=t."
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 721619,
+      "token": "_doFinalize",
+      "context": ",L=u[(f+2)%5+5*g];M.high=k.high^~A.high&L.high,M.low=k.low^~A.low&L.low}M=r[0];var O=d[s];M.high^=O.high,M.low^=O.low}},_doFinalize:function(){var t=this._data,r=t.words,a=(this._nDataBytes,8*t.sigBytes),n=32*this.blockSize;r[a>>>5]|=1<<24-a%32,r[(e.ceil((a+1)/n)*n>>>5)-1]|=128,t.sigBytes=4"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 726440,
+      "token": "_doFinalize",
+      "context": "low=w+H,d.high=C+U+(w>>>0<H>>>0?1:0),D=u.low=D+V,u.high=I+G+(D>>>0<V>>>0?1:0),M=f.low=M+j,f.high=E+z+(M>>>0<j>>>0?1:0)},_doFinalize:function(){var e=this._data,t=e.words,r=8*this._nDataBytes,i=8*e.sigBytes;return t[i>>>5]|=128<<24-i%32,t[30+(i+128>>>10<<5)]=Math.floor(r/4294967296),t[31+(i+"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 727252,
+      "token": "_doFinalize",
+      "context": "15,4290775857),new r.init(2394180231,1750603025),new r.init(3675008525,1694076839),new r.init(1203062813,3204075428)])},_doFinalize:function(){var e=o._doFinalize.call(this);return e.sigBytes-=16,e}});e.SHA384=o._createHelper(s),e.HmacSHA384=o._createHmacHelper(s)}(),n.lib.Cipher||function("
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 727283,
+      "token": "_doFinalize",
+      "context": "80231,1750603025),new r.init(3675008525,1694076839),new r.init(1203062813,3204075428)])},_doFinalize:function(){var e=o._doFinalize.call(this);return e.sigBytes-=16,e}});e.SHA384=o._createHelper(s),e.HmacSHA384=o._createHmacHelper(s)}(),n.lib.Cipher||function(e){var t=n,r=t.lib,i=r.Base,a=r"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 727930,
+      "token": "finalize",
+      "context": "set()},reset:function(){o.reset.call(this),this._doReset()},process:function(e){return this._append(e),this._process()},finalize:function(e){return e&&this._append(e),this._doFinalize()},keySize:4,ivSize:4,_ENC_XFORM_MODE:1,_DEC_XFORM_MODE:2,_createHelper:function(){function e(e){return\""
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 727982,
+      "token": "_doFinalize",
+      "context": "eset()},process:function(e){return this._append(e),this._process()},finalize:function(e){return e&&this._append(e),this._doFinalize()},keySize:4,ivSize:4,_ENC_XFORM_MODE:1,_DEC_XFORM_MODE:2,_createHelper:function(){function e(e){return\"string\"==typeof e?v:m}return function(t){return{encrypt"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 728289,
+      "token": "_doFinalize",
+      "context": "{return e(i).encrypt(t,r,i,a)},decrypt:function(r,i,a){return e(i).decrypt(t,r,i,a)}}}}()}),u=(r.StreamCipher=d.extend({_doFinalize:function(){return this._process(!0)},blockSize:1}),t.mode={}),f=r.BlockCipherMode=i.extend({createEncryptor:function(e,t){return this.Encryptor.create(e,t)},cr"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 729711,
+      "token": "_doFinalize",
+      "context": "is._mode=i.call(r,this,t&&t.words),this._mode.__creator=i)},_doProcessBlock:function(e,t){this._mode.processBlock(e,t)},_doFinalize:function(){var e=this.cfg.padding;if(this._xformMode==this._ENC_XFORM_MODE){e.pad(this._data,this.blockSize);var t=this._process(!0)}else{t=this._process(!0);e"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 730532,
+      "token": "finalize",
+      "context": "pher=i.extend({cfg:i.extend({format:_}),encrypt:function(e,t,r,i){i=this.cfg.extend(i);var a=e.createEncryptor(r,i),n=a.finalize(t),o=a.cfg;return g.create({ciphertext:n,key:r,iv:o.iv,algorithm:e,mode:o.mode,padding:o.padding,blockSize:e.blockSize,formatter:i.format})},decrypt:function(e"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 730785,
+      "token": "finalize",
+      "context": "tter:i.format})},decrypt:function(e,t,r,i){return i=this.cfg.extend(i),t=this._parse(t,i.format),e.createDecryptor(r,i).finalize(t.ciphertext)},_parse:function(e,t){return\"string\"==typeof e?t.parse(e,this):e}}),b=(t.kdf={}).OpenSSL={execute:function(e,t,r,i){i||(i=a.random(8));var n=c.cr"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 751773,
+      "token": "finalized",
+      "context": "his.blocks=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];this.h0=this.h1=this.h2=this.h3=this.start=this.bytes=this.hBytes=0,this.finalized=this.hashed=!1,this.first=!0}var r=\"input is invalid type\",e=\"object\"==typeof window,i=e?window:{};i.JS_MD5_NO_WINDOW&&(e=!1);var s=!e&&\"object\"==typeof self,h"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 753483,
+      "token": "finalized",
+      "context": "structor===i?e.createHash(\"md5\").update(new i(a)).digest(\"hex\"):t(a)};return s};t.prototype.update=function(e){if(!this.finalized){var t,i=typeof e;if(\"string\"!==i){if(\"object\"!==i)throw r;if(null===e)throw r;if(a&&e.constructor===ArrayBuffer)e=new Uint8Array(e);else if(!(Array.isArray(e)"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 754977,
+      "token": "finalize",
+      "context": "turn this.bytes>4294967295&&(this.hBytes+=this.bytes/4294967296<<0,this.bytes=this.bytes%4294967296),this}},t.prototype.finalize=function(){if(!this.finalized){this.finalized=!0;var e=this.blocks,t=this.lastByteIndex;e[t>>2]|=u[3&t],t>=56&&(this.hashed||this.hash(),e[0]=e[16],e[16]=e[1]="
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 755006,
+      "token": "finalized",
+      "context": "this.hBytes+=this.bytes/4294967296<<0,this.bytes=this.bytes%4294967296),this}},t.prototype.finalize=function(){if(!this.finalized){this.finalized=!0;var e=this.blocks,t=this.lastByteIndex;e[t>>2]|=u[3&t],t>=56&&(this.hashed||this.hash(),e[0]=e[16],e[16]=e[1]=e[2]=e[3]=e[4]=e[5]=e[6]=e[7]="
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 755022,
+      "token": "finalized",
+      "context": "s.bytes/4294967296<<0,this.bytes=this.bytes%4294967296),this}},t.prototype.finalize=function(){if(!this.finalized){this.finalized=!0;var e=this.blocks,t=this.lastByteIndex;e[t>>2]|=u[3&t],t>=56&&(this.hashed||this.hash(),e[0]=e[16],e[16]=e[1]=e[2]=e[3]=e[4]=e[5]=e[6]=e[7]=e[8]=e[9]=e[10]="
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 759156,
+      "token": "finalize",
+      "context": ":(this.h0=this.h0+e<<0,this.h1=this.h1+t<<0,this.h2=this.h2+r<<0,this.h3=this.h3+i<<0)},t.prototype.hex=function(){this.finalize();var e=this.h0,t=this.h1,r=this.h2,i=this.h3;return n[e>>4&15]+n[15&e]+n[e>>12&15]+n[e>>8&15]+n[e>>20&15]+n[e>>16&15]+n[e>>28&15]+n[e>>24&15]+n[t>>4&15]+n[15&"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 759651,
+      "token": "finalize",
+      "context": "[i>>20&15]+n[i>>16&15]+n[i>>28&15]+n[i>>24&15]},t.prototype.toString=t.prototype.hex,t.prototype.digest=function(){this.finalize();var e=this.h0,t=this.h1,r=this.h2,i=this.h3;return[255&e,e>>8&255,e>>16&255,e>>24&255,255&t,t>>8&255,t>>16&255,t>>24&255,255&r,r>>8&255,r>>16&255,r>>24&255,2"
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "offsetUTF16": 759932,
+      "token": "finalize",
+      "context": "4&255,255&i,i>>8&255,i>>16&255,i>>24&255]},t.prototype.array=t.prototype.digest,t.prototype.arrayBuffer=function(){this.finalize();var e=new ArrayBuffer(16),t=new Uint32Array(e);return t[0]=this.h0,t[1]=this.h1,t[2]=this.h2,t[3]=this.h3,e},t.prototype.buffer=t.prototype.arrayBuffer,t.pro"
+    }
+  ],
+  "explicitOwnership": [
+    {
+      "file": "src/script/jsb_boot.js",
+      "retainCalls": 1,
+      "releaseOrAutoreleaseCalls": 2,
+      "samples": [
+        {
+          "file": "src/script/jsb_boot.js",
+          "offsetUTF16": 51972,
+          "token": ".retain(",
+          "context": " cc.getProgram(shaderName);\n\tif( prev === program )\n\t\treturn;\n\n\tif(prev) {\n\t\tprev.release();\n\t}\n\n\tif (program)\n\t\tprogram.retain();\n\tcc._programs[shaderName] = program;\n\tcc._programsData[shaderName] = data;\n};\n\ncc.clearProgram = function() {\n\tvar keys = Object.keys(cc._programs || {});\n\tf"
+        },
+        {
+          "file": "src/script/jsb_boot.js",
+          "offsetUTF16": 51933,
+          "token": ".release(",
+          "context": "rogram, shaderName, data) {\n\tvar prev = cc.getProgram(shaderName);\n\tif( prev === program )\n\t\treturn;\n\n\tif(prev) {\n\t\tprev.release();\n\t}\n\n\tif (program)\n\t\tprogram.retain();\n\tcc._programs[shaderName] = program;\n\tcc._programsData[shaderName] = data;\n};\n\ncc.clearProgram = function() {\n\tvar keys"
+        },
+        {
+          "file": "src/script/jsb_boot.js",
+          "offsetUTF16": 52247,
+          "token": ".release(",
+          "context": "ms || {});\n\tfor (var i= 0,len=keys.length; i<len; i++) {\n\t\tvar program = cc._programs[keys[i]];\n\t\tif(program)\n\t\t\tprogram.release();\n\t}\n\tcc._programs = {};\n};\n\ncc.resetProgram = function() {\n\tvar keys = Object.keys(cc._programs || {});\n\tfor (var i= 0,len=keys.length; i<len; i++) {\n\t\tvar sh"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "retainCalls": 37,
+      "releaseOrAutoreleaseCalls": 35,
+      "samples": [
+        {
+          "file": "src/srcmodule/game_base.js",
+          "offsetUTF16": 17507,
+          "token": ".retain(",
+          "context": "entity;if(cc.sys.jsb){var o=null,r=cc.director.getContentScaleFactor();if(o=EDFcaActor.create(e,t*r,s),ed.fcaAutoRelease.retain(o,e),o&&o.getMRoot()){if(o.setCascadeColorEnabled(!0),o.pRoot=o.getMRoot(),o.pRoot.setCascadeOpacityEnabled(!0),a&&a.length>0)for(var c=a.length,l=0;l<c;l+=2)a["
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "offsetUTF16": 17788,
+          "token": ".retain(",
+          "context": "l+=2)a[l]&&a[l+1]&&o.changeComponent(a[l],a[l+1]);return o}}else{if((o=new ed.FcaActor(e,s))&&o.pRoot){ed.fcaAutoRelease.retain(o,e);var d=o.pRoot.getScale();if(o.pRoot.setScale(t*d),a&&a.length>0)for(c=a.length,l=0;l<c;l+=2)o.changeComponent(a[l],a[l+1]);return o.setName(e),o}}return cc"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "offsetUTF16": 20659,
+          "token": ".retain(",
+          "context": "\"eff_UI\");if(cc.sys.jsb){var r=null;if((r=EDFcaEffect.create(e,o)).setScale(1),\"batch\"!==r.getName()&&(ed.fcaAutoRelease.retain(r,e),r.setName(\"batch\")),r&&r.getMRoot()){var c=r.getMRoot();c.setCascadeOpacityEnabled(!0),r.pRoot=c,r.pRoot.name=r.pRoot.getName();var l=c.getScale(),d=cc.dir"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "offsetUTF16": 29962,
+          "token": ".release(",
+          "context": "ction(e,t){this.fcaRefCount[t]=(this.fcaRefCount[t]||0)+1;var i=this;cc.sys.jsb?e.registerDestructCallback((function(){i.release(t)})):e.destroy=function(){i.release(t)}},release:function(e){void 0!==this.fcaRefCount[e]?(this.fcaRefCount[e]--,this.needClear()&&this.clear()):cc.error(\"ed.r"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "offsetUTF16": 29999,
+          "token": ".release(",
+          "context": "fcaRefCount[t]||0)+1;var i=this;cc.sys.jsb?e.registerDestructCallback((function(){i.release(t)})):e.destroy=function(){i.release(t)}},release:function(e){void 0!==this.fcaRefCount[e]?(this.fcaRefCount[e]--,this.needClear()&&this.clear()):cc.error(\"ed.releaseHeroResource error\")},needClear"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "offsetUTF16": 70850,
+          "token": ".release(",
+          "context": "nction(){return this.getRoot().isRunning()},retain:function(){this.getRoot().retain()},release:function(){this.getRoot().release()},setGarbageCollectEnabled:function(e){this._grabageCollectEnabled=e},registerHandler:function(e){var t=this,i=this.root;if(cc.sys.jsb2?(i.registerOnEnterCallb"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "retainCalls": 1,
+      "releaseOrAutoreleaseCalls": 6,
+      "samples": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "offsetUTF16": 7454894,
+          "token": ".retain(",
+          "context": "._space,this._sx=this._space,this._sy=t-this._space,this._width=e,this._height=t,this._plist={},cc.sys.jsb&&this._render.retain(),this.indx=glocalIndx++},clear:function(){cc.sys.jsb?(this._render.release(),this._render=null):this._render=null},insertSpriteFrame:function(e){var t=e.getCon"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "offsetUTF16": 57956,
+          "token": ".release(",
+          "context": "is.caster=e.caster,this.previous_position=[this.position[0],this.position[1]]},release:function(){this.actor&&this.actor.release(),this.skill=null,this.actor=null,this.source=null,this.target=null},enableTrack:function(e){this.track=!0,this.track_target=e;var t=ed.edpSub(e.position,this.p"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "offsetUTF16": 64627,
+          "token": ".release(",
+          "context": "in=!0,this.jump_gap=t.ChainJumpDistance?Math.pow(t.ChainJumpDistance,2):14400},release:function(){this.actor&&this.actor.release(),this.actor=null,this.skill=null,this.source=null,this.target=null},jump:function(){this.jumps_remaining--,this.jump_timer+=this.skill.info.ChainGap;var e=this"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "offsetUTF16": 78624,
+          "token": ".release(",
+          "context": "_CardRelic(s);else cc.error(\"have no script for cardRelic\",f)}this.idle()}},release:function(){if(this.actor&&this.actor.release(),this.skill_list&&this.skill_list.length>0)for(var e=0;e<this.skill_list.length;e++)this.skill_list[e].release();this.skill_list=[],this.buff_list=[],this.skil"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/game_ui_1.js",
+      "retainCalls": 104,
+      "releaseOrAutoreleaseCalls": 113,
+      "samples": [
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "offsetUTF16": 116264,
+          "token": ".retain(",
+          "context": "().width;B.width=x,y.btn.ui_editor.node.setPosition(cc.p(x-.5*MAIN_BUTTON_SIZE.width,.5*B.height))}M.setContentSize(B),M.retain(),M.removeFromParent(),_.pushBackCustomItem(M),M.release(),y.btn.addBubbleNode&&(y.btn.addBubbleNode(),y.btn.bubbleNode&&y.btn.bubbleNode.setNotAllShow(!this.ch"
+        },
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "offsetUTF16": 250692,
+          "token": ".retain(",
+          "context": "ByHero(i,{clickHandler:function(e){var i=e.getData();t.onSelectHeroIconHandler(e,i)}}),n.enableLongTouch(!1),n.getRoot().retain(),t.heroListIcon[i.tid]=n),n.getRoot().setTouchEnabled(!0),n.setData(i),n.is_destory=!1,n}}},c=ed.scrollTableView.create();c.setPosition(cc.p(n.width/2,n.height"
+        },
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "offsetUTF16": 282090,
+          "token": ".retain(",
+          "context": "].setScale(.7),s[a].uiscale=1,\"equip\"==s[a].type&&(s[a].uiscale=.7),s[a].enableTip&&s[a].enableTip(!1),s[a].retain&&s[a].retain(),this._pre_reward_icons.push(s[a]);var o=this._ui_panel_get_item.getContentSize(),r={cell_num:s.length,cell_size:cc.size(78,78),column_num:s.length,size:o,offs"
+        },
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "offsetUTF16": 116320,
+          "token": ".release(",
+          "context": "(x-.5*MAIN_BUTTON_SIZE.width,.5*B.height))}M.setContentSize(B),M.retain(),M.removeFromParent(),_.pushBackCustomItem(M),M.release(),y.btn.addBubbleNode&&(y.btn.addBubbleNode(),y.btn.bubbleNode&&y.btn.bubbleNode.setNotAllShow(!this.checkBubbleAllShow(y.btn))),y.btn.addVxAction&&y.btn.addVxA"
+        },
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "offsetUTF16": 246834,
+          "token": ".release(",
+          "context": "\"),ed.multSelectHeroMgr.isCanTouch=!0},destory:function(){for(var e in this.heroListIcon){this.heroListIcon[e].getRoot().release()}this.heroListIcon=null},start:function(){this.fitUI(),this._initComponent(),this.registerTouch(),this.registerEvent()},fitUI:function(){var e=this.ui_editor.g"
+        },
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "offsetUTF16": 278335,
+          "token": ".release(",
+          "context": "Mgr.clear();for(var t=0;t<this._pre_reward_icons.length;t++)this._pre_reward_icons[t].release&&this._pre_reward_icons[t].release();this._pre_reward_icons=[]},initData:function(e){this.batchMgr=ed.BagBatchUseMgr.getInstance(),this.batchMgr.resetItemProxyData(),this._pre_reward_icons=[]},in"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/game_ui_2.js",
+      "retainCalls": 58,
+      "releaseOrAutoreleaseCalls": 53,
+      "samples": [
+        {
+          "file": "src/srcmodule/game_ui_2.js",
+          "offsetUTF16": 33800,
+          "token": ".retain(",
+          "context": "Node(ed.display.width,ed.display.height,(function(){ed.getCurrentScene().ccScene().visit()})),ed.worldView.radiaMaplNode.retain(),ed.worldView.radiaMaplNode.renderTexture.retain();var t=ed.setTimeout(function(){this.world_map.ui_editor.node;this.ui_editor.node.setVisible(!1),ed.worldView"
+        },
+        {
+          "file": "src/srcmodule/game_ui_2.js",
+          "offsetUTF16": 33850,
+          "token": ".retain(",
+          "context": "){ed.getCurrentScene().ccScene().visit()})),ed.worldView.radiaMaplNode.retain(),ed.worldView.radiaMaplNode.renderTexture.retain();var t=ed.setTimeout(function(){this.world_map.ui_editor.node;this.ui_editor.node.setVisible(!1),ed.worldView.radiaMaplNode.x=ed.worldView.radiaMaplNode.getCon"
+        },
+        {
+          "file": "src/srcmodule/game_ui_2.js",
+          "offsetUTF16": 37113,
+          "token": ".retain(",
+          "context": "ode(ed.display.width,ed.display.height,(function(){ed.getCurrentScene().ccScene().visit()}),i,n),ed.worldView.radialNode.retain(),ed.worldView.radialNode.renderTexture.retain()}var a=[];ed.worldView.showClouding||(e&&(ed.worldView.showClouding=!0,a=a.concat(ed.getHeroEffectRes([\"spine_ef"
+        },
+        {
+          "file": "src/srcmodule/game_ui_2.js",
+          "offsetUTF16": 35010,
+          "token": ".release(",
+          "context": "adiaMaplNode.renderTexture&&(ed.worldView.radiaMaplNode.renderTexture.cleanup(),ed.worldView.radiaMaplNode.renderTexture.release()),ed.worldView.radiaMaplNode.release(),ed.worldView.radiaMaplNode=null),ed.worldView.radialNode&&(ed.worldView.radialNode.renderTexture&&(ed.worldView.radialNo"
+        },
+        {
+          "file": "src/srcmodule/game_ui_2.js",
+          "offsetUTF16": 35048,
+          "token": ".release(",
+          "context": "iew.radiaMaplNode.renderTexture.cleanup(),ed.worldView.radiaMaplNode.renderTexture.release()),ed.worldView.radiaMaplNode.release(),ed.worldView.radiaMaplNode=null),ed.worldView.radialNode&&(ed.worldView.radialNode.renderTexture&&(ed.worldView.radialNode.renderTexture.cleanup(),ed.worldVie"
+        },
+        {
+          "file": "src/srcmodule/game_ui_2.js",
+          "offsetUTF16": 35243,
+          "token": ".release(",
+          "context": "rldView.radialNode.renderTexture&&(ed.worldView.radialNode.renderTexture.cleanup(),ed.worldView.radialNode.renderTexture.release()),ed.worldView.radialNode.release(),ed.worldView.radialNode=null)}));ed.worldView.radiaMaplNode.runAction(cc.sequence(cc.spawn(a,t))),ed.worldView.radialNode.r"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/game_ui_3.js",
+      "retainCalls": 51,
+      "releaseOrAutoreleaseCalls": 44,
+      "samples": [
+        {
+          "file": "src/srcmodule/game_ui_3.js",
+          "offsetUTF16": 40541,
+          "token": ".retain(",
+          "context": "r/chat/chat_icon_com_node.csb\",this.chatImgView=ed.ShareToChatImgCommonView.create(e)}this.chatImgView&&this.chatImgView.retain()}.bind(this))},onSaveImg:function(e,t){return e.saveToFile(this.saveFileName,cc.IMAGE_FORMAT_PNG,!0,t)},onCloseShareView:function(){this.shareView=null}}),ed.s"
+        },
+        {
+          "file": "src/srcmodule/game_ui_3.js",
+          "offsetUTF16": 279431,
+          "token": ".retain(",
+          "context": "T(\"guildActivityEntranceView_0_377_0\",\"公会角逐\")),ed.fitLongScreen(e,[\"sv_info\"]),this.updateBannerList(),this.fitUI(),this.retain()},fitUI:function(){var e=this.ui_editor;ed.display.widescreen&&ed.fitWideScreen(e,[\"btn_back\"],\"left\")},updateBannerList:function(){this._banner_list=ed.gManor"
+        },
+        {
+          "file": "src/srcmodule/game_ui_3.js",
+          "offsetUTF16": 671012,
+          "token": ".retain(",
+          "context": "_\"+(t+1)).setVisible(!0)}if(this.relic_info){var i=this.relic_info.node,n=this.relic_info.parent,s=this.relic_info.pos;i.retain(),i.removeFromParent(),n.addChild(i),i.setPosition(s),i.release(),this.relic_info=null}},createPreLayer:function(){var e=this.ui_editor;e.setVisible(\"mask_layer"
+        },
+        {
+          "file": "src/srcmodule/game_ui_3.js",
+          "offsetUTF16": 31388,
+          "token": ".release(",
+          "context": "1,this.saveSprite=null,this.saveFilePath=\"\",this.saveSuccess=!1,this.saveImgCheckInterval=-1},close:function(){this.root.release(),this.shareMgr.onCloseShareView(),this.saveSprite,ed.clearInterval(this.saveImgCheckInterval),ed.clearInterval(this.viewReadyCheckInterval)},initComponent:func"
+        },
+        {
+          "file": "src/srcmodule/game_ui_3.js",
+          "offsetUTF16": 55298,
+          "token": ".release(",
+          "context": "pIds[i]},is_diy:!1});this.addComponent(t,1,e),this.curPumpkin=t},close:function(){this.curPumpkin.setDestroy(),this.root.release(),this.shareMgr.onCloseShareView(),this.saveSprite,ed.clearInterval(this.saveImgCheckInterval),ed.clearInterval(this.viewReadyCheckInterval)}}),ed.sharePumpkinO"
+        },
+        {
+          "file": "src/srcmodule/game_ui_3.js",
+          "offsetUTF16": 57231,
+          "token": ".release(",
+          "context": "parts[i],is_diy:!0});this.addComponent(t,1,e),this.curPumpkin=t},close:function(){this.curPumpkin.setDestroy(),this.root.release(),this.shareMgr.onCloseShareView(),this.saveSprite,ed.clearInterval(this.saveImgCheckInterval),ed.clearInterval(this.viewReadyCheckInterval)}}),ed.sharePumpkinD"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/game_ui_4.js",
+      "retainCalls": 44,
+      "releaseOrAutoreleaseCalls": 34,
+      "samples": [
+        {
+          "file": "src/srcmodule/game_ui_4.js",
+          "offsetUTF16": 220908,
+          "token": ".retain(",
+          "context": "ing(e),t.ignoreContentAdaptWithSize(!1),t.setContentSize(cc.size(i.width,r+c)),t.setTextAreaSize(cc.size(i.width,r+c)),t.retain(),t.removeFromParent(),t.setPosition(0,r+c),t.setAnchorPoint(0,1),d.addChild(t),t.release(),s.addChild(d),this.txtInfoScrollView=d}else t.setString(e)}}}),ed.ac"
+        },
+        {
+          "file": "src/srcmodule/game_ui_4.js",
+          "offsetUTF16": 249038,
+          "token": ".retain(",
+          "context": "()}this._lastIcons=[]}var i=ed.readreward.getRewardIcons(e,null,null,null,!0);for(t=0;t<i.length;t++){(n=i[t]).getRoot().retain()}this._lastIcons=i;for(t=0;t<i.length;t++){var n;(n=i[t])&&n.setScale(.65),function(e,t){e.setRenderCallBack((function(){e.setRerenderWhenScale(!1),e.setScale("
+        },
+        {
+          "file": "src/srcmodule/game_ui_4.js",
+          "offsetUTF16": 249471,
+          "token": ".retain(",
+          "context": ".easing(cc.easeBackOut());e.stopAllActions(),e.root.runAction(new cc.Sequence(i,new cc.Spawn(n,a)))}))}(n,t),n.getRoot().retain(),n.setCascadeOpacityEnabled(!0)}var a=this.ui_editor.getComponent(\"Panel_rewards_1\");if(a){var s=.65,o=a.getContentSize(),r=110*i.length*s,d=cc.p(0,0);r<o.widt"
+        },
+        {
+          "file": "src/srcmodule/game_ui_4.js",
+          "offsetUTF16": 220997,
+          "token": ".release(",
+          "context": "reaSize(cc.size(i.width,r+c)),t.retain(),t.removeFromParent(),t.setPosition(0,r+c),t.setAnchorPoint(0,1),d.addChild(t),t.release(),s.addChild(d),this.txtInfoScrollView=d}else t.setString(e)}}}),ed.actClashNpcLetterView.create=function(){return new ed.actClashNpcLetterView},ed.actChclashBa"
+        },
+        {
+          "file": "src/srcmodule/game_ui_4.js",
+          "offsetUTF16": 248910,
+          "token": ".release(",
+          "context": "veComponent(this.rewardView),this._lastIcons){for(var t=0;t<this._lastIcons.length;t++){(n=this._lastIcons[t]).getRoot().release()}this._lastIcons=[]}var i=ed.readreward.getRewardIcons(e,null,null,null,!0);for(t=0;t<i.length;t++){(n=i[t]).getRoot().retain()}this._lastIcons=i;for(t=0;t<i.l"
+        },
+        {
+          "file": "src/srcmodule/game_ui_4.js",
+          "offsetUTF16": 1405239,
+          "token": ".release(",
+          "context": "eamBattleResultView_0_545_0\",\"无尽层\"):T(\"map_multi_record_view_0_1370962686_0\",\"第{0}层\").format(e)},destory:function(){this.release()}}),ed.AssistBattleReportTimeNode=ed.baseComponent.extend({ctor:function(e){this._super(\"res/uieditor/Organize_Team/Organize_Team_popup_acting_log_time_node.cs"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/game_ui_5.js",
+      "retainCalls": 32,
+      "releaseOrAutoreleaseCalls": 23,
+      "samples": [
+        {
+          "file": "src/srcmodule/game_ui_5.js",
+          "offsetUTF16": 145138,
+          "token": ".retain(",
+          "context": "etRewardIcons(e,null,null,null,!0);this.leftIcons=t;for(var i=0;i<t.length;i++){var n=t[i];n&&n.setScale(.7),n.getRoot().retain()}var s=this.ui_editor.getComponent(\"Panel_rewards_1\");if(s){var a=s.getContentSize(),o=110*t.length*.7,r=cc.p(0,0);o<a.width&&(r.x+=(a.width-o)/2);var d={direc"
+        },
+        {
+          "file": "src/srcmodule/game_ui_5.js",
+          "offsetUTF16": 145933,
+          "token": ".retain(",
+          "context": "tRewardIcons(e,null,null,null,!0);this.rightIcons=t;for(var i=0;i<t.length;i++){var n=t[i];n&&n.setScale(.7),n.getRoot().retain()}var s=this.ui_editor.getComponent(\"Panel_rewards_2\");if(s){var a=s.getContentSize(),o=110*t.length*.7,r=cc.p(0,0);o<a.width&&(r.x+=(a.width-o)/2);var d={direc"
+        },
+        {
+          "file": "src/srcmodule/game_ui_5.js",
+          "offsetUTF16": 149100,
+          "token": ".retain(",
+          "context": "()}this._lastIcons=[]}var i=ed.readreward.getRewardIcons(e,null,null,null,!0);for(t=0;t<i.length;t++){(n=i[t]).getRoot().retain()}this._lastIcons=i;for(t=0;t<i.length;t++){var n;(n=i[t])&&n.setScale(.7),n.getRoot().retain()}var s=this.ui_editor.getComponent(\"Panel_rewards_1\");if(s){var a"
+        },
+        {
+          "file": "src/srcmodule/game_ui_5.js",
+          "offsetUTF16": 148972,
+          "token": ".release(",
+          "context": "veComponent(this.rewardView),this._lastIcons){for(var t=0;t<this._lastIcons.length;t++){(n=this._lastIcons[t]).getRoot().release()}this._lastIcons=[]}var i=ed.readreward.getRewardIcons(e,null,null,null,!0);for(t=0;t<i.length;t++){(n=i[t]).getRoot().retain()}this._lastIcons=i;for(t=0;t<i.l"
+        },
+        {
+          "file": "src/srcmodule/game_ui_5.js",
+          "offsetUTF16": 215325,
+          "token": ".release(",
+          "context": "s.data=e,this.type=t,this.ids=i,this.initComponent()},destroy:function(){this.itemNodes.forEach((function(e){e.getRoot().release()}))},initComponent:function(){for(var e=this,t=this.ids,i=(this.data.raid_key.split(\":\")[0],{assets:[],equips:[],heroes:[],frames:[],furnitures:[],furniture_sk"
+        },
+        {
+          "file": "src/srcmodule/game_ui_5.js",
+          "offsetUTF16": 344648,
+          "token": ".release(",
+          "context": "sing(cc.easeCircleActionOut()),cc.callFunc((function(){l&&(l.getRoot().removeFromParent(),l=null),d.removeFromParent(),d.release(),e.setFlying(!1),e.getNode()&&e.getNode().show(),s?e.getNode()&&e.getNode().playSurpriseEffect(s):h?ed.setTimeout((function(){e.getNode()&&e.getNode().playInEf"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "retainCalls": 68,
+      "releaseOrAutoreleaseCalls": 71,
+      "samples": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "offsetUTF16": 291994,
+          "token": ".retain(",
+          "context": "a)return o;var s=ed.playerhero.QualityColor[i],l=cc.color(250,237,209,255),c=cc.color(100,72,126,255);return a.retain&&a.retain(),ed.setTimeout((function(){(o=ed.createGradientText(t,r,s,l,c)).setAnchorPoint(ccp(.5,.5));var e=a.getContentSize(),i=ccp(e.width/2,e.height/2);o.setPosition(i"
+        },
+        {
+          "file": "src/srcmodule/game_util.js",
+          "offsetUTF16": 292704,
+          "token": ".retain(",
+          "context": "eAllChildren||!1,g=e.alignSetting,_=e.isSystemFont||!1,m=null;return a?!cc.sys.jsb||cc.sys.isObjectValid(a)?(a.retain&&a.retain(),ed.setTimeout((function(){if(!cc.sys.jsb||cc.sys.isObjectValid(a)){p&&a.removeAllChildren(),(m=r.indexOf(\"<text\")>=0?ed.createGradientCssText(r,i,o,s,l,c,t):e"
+        },
+        {
+          "file": "src/srcmodule/game_util.js",
+          "offsetUTF16": 304384,
+          "token": ".retain(",
+          "context": "neWidth||20,n=e.horizontal||cc.TEXT_ALIGNMENT_CENTER,o=e.vertical||cc.VERTICAL_TEXT_ALIGNMENT_CENTER,s=new cc.LabelTTF;s.retain(),s.setFontSize(r),s.setFontName(i),s.setDimensions(cc.size(a,0)),s.setHorizontalAlignment(n),s.setVerticalAlignment(o),s.setString(t);var l=s.getContentSize();"
+        },
+        {
+          "file": "src/srcmodule/game_util.js",
+          "offsetUTF16": 129153,
+          "token": ".release(",
+          "context": "tMusicCallbackFunc=e},releaseMusic:function(e){var t=this.data[e];if(t){cc.log(\"release music \"+e);var r=t.Res;cc.loader.release(ed.soundAutoFormat(r))}},_updateSound:function(e){if(this.interval-=e,this.play_rand_interval&&(this.play_rand_interval-=e),this.play_rand_interval<0&&(this.pla"
+        },
+        {
+          "file": "src/srcmodule/game_util.js",
+          "offsetUTF16": 292190,
+          "token": ".release(",
+          "context": "AnchorPoint(ccp(.5,.5));var e=a.getContentSize(),i=ccp(e.width/2,e.height/2);o.setPosition(i),a.addChild(o),a.release&&a.release(),n&&n(o)}),0),null},ed.getColorFromConfig=function(e){var t=e.split(\";\")||[];return new cc.Color(Number(t[0]),Number(t[1]),Number(t[2]),255)},ed.addGradualLabe"
+        },
+        {
+          "file": "src/srcmodule/game_util.js",
+          "offsetUTF16": 293045,
+          "token": ".release(",
+          "context": "nt(h);var e=a.getContentSize(),b=ccp(e.width/2+d,e.height/2+u);m.setPosition(b),m.setScale(f),a.addChild(m),a.release&&a.release(),n&&n(m)}}),0),null):void 0:m},ed.createRichTextFromLabel=function(e,t,r){var i=e.getContentSize(),a=ed.createNormalCssText(t,r);return a.setCascadeOpacityEnab"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/ui_contra.js",
+      "retainCalls": 4,
+      "releaseOrAutoreleaseCalls": 4,
+      "samples": [
+        {
+          "file": "src/srcmodule/ui_contra.js",
+          "offsetUTF16": 51385,
+          "token": ".retain(",
+          "context": "me();this._effectPool[e]||(this._effectPool[e]=[]),this._effectPool[e].length>=this._poolMaxSize?t.removeFromParent():(t.retain(),t.removeFromParent(),this._effectPool[e].push(t))}else t.removeFromParent()},clearAllEffects:function(){for(var t in this._effectPool){for(var e=0;e<this._eff"
+        },
+        {
+          "file": "src/srcmodule/ui_contra.js",
+          "offsetUTF16": 729158,
+          "token": ".retain(",
+          "context": "png\".format([t]),o=i.getComponent(\"img_bg_part_{0}\".format([t]));if(this._clickBodyPartSprite){this._clickBodyPartSprite.retain(),this._clickBodyPartSprite.removeFromParent(!1);var r=cc.spriteFrameCache.getSpriteFrame(a);r?this._clickBodyPartSprite.setSpriteFrame(r):this._clickBodyPartSp"
+        },
+        {
+          "file": "src/srcmodule/ui_contra.js",
+          "offsetUTF16": 827765,
+          "token": ".retain(",
+          "context": "tLocalZOrder(),this._hideBubble();var n=i.convertToWorldSpace(t.getPosition()),a=e.getRoot(),o=a.convertToNodeSpace(n);t.retain(),t.removeFromParent(!1),a.addChild(t,ed.ZORDER_TYPE.DIALOG_LAYER+1),t.setPosition(o),t.release()}}}}},_restoreToOriginalParent:function(){if(this._originalPare"
+        },
+        {
+          "file": "src/srcmodule/ui_contra.js",
+          "offsetUTF16": 51598,
+          "token": ".release(",
+          "context": "llEffects:function(){for(var t in this._effectPool){for(var e=0;e<this._effectPool[t].length;e++){this._effectPool[t][e].release()}this._effectPool[t]=[]}this._effectPool={}}},ed.ContraGameTools={getDirectionToTarget:function(t,e){var i=t.getPosition(),n=e.getPosition();return cc.pNormali"
+        },
+        {
+          "file": "src/srcmodule/ui_contra.js",
+          "offsetUTF16": 729462,
+          "token": ".release(",
+          "context": "e(a),this._clickBodyPartSprite.setAnchorPoint(cc.p(0,0)),o.addChild(this._clickBodyPartSprite),this._clickBodyPartSprite.release()}else{var s=ed.createSprite(a);s.setAnchorPoint(cc.p(0,0)),o.addChild(s),this._clickBodyPartSprite=s}this._clickBodyPartSprite.setOpacity(255);var c=cc.fadeTo("
+        },
+        {
+          "file": "src/srcmodule/ui_contra.js",
+          "offsetUTF16": 827860,
+          "token": ".release(",
+          "context": "a.convertToNodeSpace(n);t.retain(),t.removeFromParent(!1),a.addChild(t,ed.ZORDER_TYPE.DIALOG_LAYER+1),t.setPosition(o),t.release()}}}}},_restoreToOriginalParent:function(){if(this._originalParent){var t=this.getRoot();if(t&&cc.sys.isObjectValid(this._originalParent)){var e=t.getParent();i"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/ui_gve.js",
+      "retainCalls": 11,
+      "releaseOrAutoreleaseCalls": 8,
+      "samples": [
+        {
+          "file": "src/srcmodule/ui_gve.js",
+          "offsetUTF16": 26860,
+          "token": ".retain(",
+          "context": "_noUseFca[e]||[];var t=this._noUseFca[e],i=null;return t.length>0?i=t.pop():(i=ed.FcaEffect.create(e,1))&&(cc.sys.jsb&&i.retain(),this._allFca[e].push(i)),i&&(i.setVisible(!0),ed.gveMapMgr.MAP_CMP.addEffect(i,ed.gveMapMgr.OBJECT_LAYER),cc.Camera&&i.setCameraMask(ed.gveMapConfig.CameraFla"
+        },
+        {
+          "file": "src/srcmodule/ui_gve.js",
+          "offsetUTF16": 137441,
+          "token": ".retain(",
+          "context": "(),this.objectStates=[]},initComponent:function(){this.img_block=this.ui_editor.getComponent(\"img_block\"),this.img_block.retain(),this.img_block.removeFromParent(),this.img_cell=this.ui_editor.getComponent(\"img_cell\"),this.img_cell.retain(),this.img_cell.removeFromParent(),this.img_objec"
+        },
+        {
+          "file": "src/srcmodule/ui_gve.js",
+          "offsetUTF16": 137552,
+          "token": ".retain(",
+          "context": "img_block.retain(),this.img_block.removeFromParent(),this.img_cell=this.ui_editor.getComponent(\"img_cell\"),this.img_cell.retain(),this.img_cell.removeFromParent(),this.img_object=this.ui_editor.getComponent(\"img_object\"),this.img_object.retain(),this.img_object.removeFromParent()},start:"
+        },
+        {
+          "file": "src/srcmodule/ui_gve.js",
+          "offsetUTF16": 30238,
+          "token": ".release(",
+          "context": "tion(e){for(var t=Object.keys(e),i=0;i<t.length;i++){e[t[i]].forEach((function(e){cc.sys.jsb&&cc.sys.isObjectValid(e)&&e.release(),e=null}))}};e(this._allFca),e(this._noUseFca),this._allFca={},this._noUseFca={}}}),ed.gveCellNodeCacheMgr._instance=null,ed.gveCellNodeCacheMgr.getInstance=fu"
+        },
+        {
+          "file": "src/srcmodule/ui_gve.js",
+          "offsetUTF16": 139102,
+          "token": ".release(",
+          "context": "ctStates=null,this.gveCellData&&(this.gveCellData._bind_node=null),this.gveCellData=null,this.img_block&&(this.img_block.release(),this.img_block=null),this.img_cell&&(this.img_cell.release(),this.img_cell=null),this.img_object&&(this.img_object.release(),this.img_object=null)},setVisible"
+        },
+        {
+          "file": "src/srcmodule/ui_gve.js",
+          "offsetUTF16": 139163,
+          "token": ".release(",
+          "context": "null),this.gveCellData=null,this.img_block&&(this.img_block.release(),this.img_block=null),this.img_cell&&(this.img_cell.release(),this.img_cell=null),this.img_object&&(this.img_object.release(),this.img_object=null)},setVisible:function(e){(this.getRoot().setVisible(e),this.img_block.set"
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/ui_minigame.js",
+      "retainCalls": 13,
+      "releaseOrAutoreleaseCalls": 17,
+      "samples": [
+        {
+          "file": "src/srcmodule/ui_minigame.js",
+          "offsetUTF16": 1426,
+          "token": ".retain(",
+          "context": "ol={},this.poolOut={}}}),ed.MGNodePool=ed.MGNativeObjectPool.extend({createNode:function(e){var t=new ed.MGNode;return t.retain(),t}}),ed.MGPopupPool=ed.MGNativeObjectPool.extend({createNode:function(e){var t=new ed.MGPopup;return t.retain(),t},get:function(e){var t=this._super(e);return"
+        },
+        {
+          "file": "src/srcmodule/ui_minigame.js",
+          "offsetUTF16": 1538,
+          "token": ".retain(",
+          "context": "return t.retain(),t}}),ed.MGPopupPool=ed.MGNativeObjectPool.extend({createNode:function(e){var t=new ed.MGPopup;return t.retain(),t},get:function(e){var t=this._super(e);return t&&t.setVisible(!0),t},put:function(e,t){this._super(e,t),t.setVisible(!1)},clear:function(){for(var e in this."
+        },
+        {
+          "file": "src/srcmodule/ui_minigame.js",
+          "offsetUTF16": 2075,
+          "token": ".retain(",
+          "context": "oolOut={}}}),ed.MGDropItemPool=ed.MGNativeObjectPool.extend({createNode:function(e){var t=new ed.MGDropItemNode;return t.retain(),t}}),ed.MGExpItemPool=ed.MGNativeObjectPool.extend({createNode:function(e){var t=new ed.MGDropItemNode;return t.retain(),t}}),ed.MGSpritePool=ed.MGNativeObjec"
+        },
+        {
+          "file": "src/srcmodule/ui_minigame.js",
+          "offsetUTF16": 1206,
+          "token": ".release(",
+          "context": "t),cc.error(\"这个节点不是通过pool创建的\"))}},clear:function(){for(var e in this.pool)for(var t=this.pool[e],i=0;i<t.length;i++)t[i].release();for(var e in this.poolOut)for(t=this.poolOut[e],i=0;i<t.length;i++)t[i].release();this.pool={},this.poolOut={}}}),ed.MGNodePool=ed.MGNativeObjectPool.extend({"
+        },
+        {
+          "file": "src/srcmodule/ui_minigame.js",
+          "offsetUTF16": 1288,
+          "token": ".release(",
+          "context": "t=this.pool[e],i=0;i<t.length;i++)t[i].release();for(var e in this.poolOut)for(t=this.poolOut[e],i=0;i<t.length;i++)t[i].release();this.pool={},this.poolOut={}}}),ed.MGNodePool=ed.MGNativeObjectPool.extend({createNode:function(e){var t=new ed.MGNode;return t.retain(),t}}),ed.MGPopupPool=e"
+        },
+        {
+          "file": "src/srcmodule/ui_minigame.js",
+          "offsetUTF16": 1785,
+          "token": ".release(",
+          "context": "(!1)},clear:function(){for(var e in this.pool)for(var t=this.pool[e],i=0;i<t.length;i++)t[i].fadeAction&&t[i].fadeAction.release(),t[i].release();for(var e in this.poolOut)for(t=this.poolOut[e],i=0;i<t.length;i++)t[i].fadeAction&&t[i].fadeAction.release(),t[i].release();this.pool={},this."
+        }
+      ]
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "retainCalls": 11,
+      "releaseOrAutoreleaseCalls": 18,
+      "samples": [
+        {
+          "file": "src/srcmodule/ui_war.js",
+          "offsetUTF16": 401641,
+          "token": ".retain(",
+          "context": "Out={}}}),ed.WarBesiegeEffectPool=ed.WarBesiegePool.extend({createNode:function(e){var t=ed.FcaEffect.create(e);return t.retain(),t},put:function(e,t){t&&cc.sys.isObjectValid(t)&&(t.setScaleX(1),t.setOpacity(255),this._super(e,t))}}),ed.WarBesiegeEffectPool.create=function(e){return new "
+        },
+        {
+          "file": "src/srcmodule/ui_war.js",
+          "offsetUTF16": 407012,
+          "token": ".retain(",
+          "context": "t().addChild(i),i.setPosition(s),r+=100,ed.setHermiteSplineShader(i,r,n);else{var o=this.parent.convertToWorldSpace(s);i.retain(),i.setPosition(o);var l=s.x-o.x,d=s.y-o.y,c=function(e){ed.setTimeout(function(){var t=ed.renderNode(this.layer_size.width,this.layer_size.height-610,(function"
+        },
+        {
+          "file": "src/srcmodule/ui_war.js",
+          "offsetUTF16": 408231,
+          "token": ".retain(",
+          "context": "tRoot().addChild(u),u.setPosition(s),n-=230,ed.setHermiteSplineShader(u,n,r);else{o=this.parent.convertToWorldSpace(s);u.retain(),u.setPosition(o);l=s.x-o.x,d=s.y-o.y,c=function(e){ed.setTimeout(function(){var t=ed.renderNode(this.layer_size.width,this.layer_size.height,(function(){e.vis"
+        },
+        {
+          "file": "src/srcmodule/ui_war.js",
+          "offsetUTF16": 174021,
+          "token": ".release(",
+          "context": "t[0]):i(!0,t||[])}))}},_unloadGuideNetData:function(){this._guideRawNetData=null,this.netData=null,cc.sys.jsb||cc.loader.release(this._guideNetJsonPath)}}),ed.WarBesiegeGuidePlayMgr._instance=null,ed.WarBesiegeGuidePlayMgr.getInstance=function(){return ed.WarArmyManager.getInstance().isWa"
+        },
+        {
+          "file": "src/srcmodule/ui_war.js",
+          "offsetUTF16": 401406,
+          "token": ".release(",
+          "context": "t),cc.error(\"这个节点不是通过pool创建的\"))}},clear:function(){for(var e in this.pool)for(var t=this.pool[e],i=0;i<t.length;i++)t[i].release();for(var e in this.poolOut)for(t=this.poolOut[e],i=0;i<t.length;i++)t[i].release();this.pool={},this.poolOut={}}}),ed.WarBesiegeEffectPool=ed.WarBesiegePool.ex"
+        },
+        {
+          "file": "src/srcmodule/ui_war.js",
+          "offsetUTF16": 401488,
+          "token": ".release(",
+          "context": "t=this.pool[e],i=0;i<t.length;i++)t[i].release();for(var e in this.poolOut)for(t=this.poolOut[e],i=0;i<t.length;i++)t[i].release();this.pool={},this.poolOut={}}}),ed.WarBesiegeEffectPool=ed.WarBesiegePool.extend({createNode:function(e){var t=ed.FcaEffect.create(e);return t.retain(),t},put"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    "No literal WeakRef, FinalizationRegistry, WeakMap, WeakSet, gc or collectGarbage identifier spelling occurs in the 18 supplied original scripts. Matching includes comments and strings, so this bounded absence is deliberately conservative.",
+    "The only garbageCollect spelling appears in jsb_boot. cc.garbageCollect begins with unconditional return; sys.garbageCollect has an empty AST body. The native __jsc__.garbageCollect call is commented out.",
+    "The retained finalize/finalized spelling contexts in game_util concern CryptoJS and MD5 digest/cipher processing; game_ui_5 finalizeLoveLevelUpFlow is an explicit application flow method. They do not name a standard GC finalizer registration API.",
+    "Native JS binding count and explicit releaseJSBindingObject entry points are present in jsb_boot, and retain/release methods occur in original code. Their native implementation and finalization behavior are not supplied by this textual audit."
+  ],
+  "limitations": [
+    "Text matches do not establish lexical binding identity or reachability. No claim follows solely from substring absence: constructed names, aliases, eval/Function-generated code, downloaded scripts and native injected APIs are not resolved.",
+    "The audit does not establish absence of native finalizers or GC-visible Cocos lifetime effects. Explicit native ownership calls are inventoried separately, not removed or normalized.",
+    "Harness WeakMaps and VM collector implementation are outside these18 originals. WeakMap has no standard iteration, but this audit does not prove every external weak consumer is unobservable.",
+    "Each heap/young-generation/GC runtime configuration still requires the unchanged strict battle report and input-consumption gate; broad ordered trace and full-scene/random-roster qualification remain separate."
+  ],
+  "tool": {
+    "file": "tools/audit-gc-observability.mjs",
+    "sha256": "e2719bd747e1a8d1c50c73e2a336fd9d0d828e12a3cc37568421dd041817d649"
+  }
+}
