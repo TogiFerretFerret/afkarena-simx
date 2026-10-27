@@ -68,15 +68,19 @@ qualification, separate from callback-only diagnostic measurements.
 A backend compatibility audit also found observable sorting differences: Hermes
 and V8 use different comparison schedules. Some supplied comparators consume RNG
 or violate normal ordering rules, including a battle comparator for Sala. The
-isolated Rust V8 small-sort component matches 20,000 cases and 1,814,158 ordered
-comparisons for lengths 0–63, including RNG and exceptions. It is not yet the VM
-sort implementation; larger inputs remain unsupported by that component. See
-`validation/v8-small-sort.json` for the admitted domain and exact source pin.
+Rust V8 sort kernels match both the small-array corpus and a full 20,000-case
+corpus with 12,284,696 ordered comparisons, including RNG, exceptions, merges and
+gallops. The private VM adapter also passes 5,512 generated cases plus directed
+mutation/coercion cases and 668 forced GC collections. Production battle
+integration is pending. See `validation/v8-full-sort.json` and
+`validation/native-tim-sort.json` for exact domains and source pins.
 
 The fresh seven-unit native runs complete the frozen battle, but their raw
 reports remain negative: private immutable/mutable table read counters differ by
 974/30. Every other compared field matches, including final captures and table
-hashes. Attribution is in progress; no diagnostic counts have been normalized.
+hashes. The extra reads are attributed exactly to three sort comparator fields:
+GuildTurntableTech.Level, SoundAnim.Delay, and AnimAtkFrame.Time. No diagnostic
+counts have been normalized; the V8 sort implementation is being integrated.
 The first-battle timings include lazy guarded-table registration and are cold
 measurements, not steady-state simulation throughput. Raw results are committed
 in `results/` (2026-10-27 19:55 and 19:57 UTC).
