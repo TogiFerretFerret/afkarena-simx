@@ -20,13 +20,14 @@ const metadata=JSON.parse(await readFile(input+'.metadata.json','utf8'));
 assert.equal(sha(await readFile(input)),metadata.outputSha256,'Emitted source changed after reference creation');
 const compilerSha256=sha(await readFile(compiler));
 async function dependencyStatus(){
- const entries=metadata.adapterInputs?Object.entries(metadata.adapterInputs):[metadata.sourceRuntime,metadata.host,metadata.clock].filter(Boolean).map(item=>[item.file,item.sha256]);
+ const adapters=metadata.adapterInputs?Object.entries(metadata.adapterInputs):[metadata.sourceRuntime,metadata.host,metadata.clock].filter(Boolean).map(item=>[item.file,item.sha256]);
+ const entries=[...adapters,...Object.entries(metadata.sourceInputs??{})];
  const checks=[];
  for(const [file,expected]of entries){let actual=null;try{actual=sha(await readFile(resolve(root,file)))}catch{}checks.push({file,expected,actual,matched:actual===expected});}
  for(const item of [metadata.tableBundle,metadata.hostInputs,metadata.reference].filter(Boolean)){
   let actual=null;try{actual=sha(await readFile(item.file))}catch{}checks.push({file:item.file,expected:item.sha256,actual,matched:actual===item.sha256});
  }
- return{completeAdapterManifest:Boolean(metadata.adapterInputs),current:checks.every(item=>item.matched),checks};
+ return{completeAdapterManifest:Boolean(metadata.adapterInputs),completeSourceManifest:Boolean(metadata.sourceInputs),current:checks.every(item=>item.matched),checks};
 }
 const dependenciesAtStart=await dependencyStatus();
 assert.ok(dependenciesAtStart.current||plumbing,'Reference/helper inputs changed after emission; regenerate, or use --plumbing for explicitly unqualified compiler diagnosis');
