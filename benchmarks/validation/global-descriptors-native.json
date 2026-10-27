@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "reference": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ],
+    "NODE_OPTIONS": ""
+  },
+  "sourceSha256": "1bca09620285d1cad21794b7b53ccc8bd68a603386d36b540685f0cd248f1edf",
+  "compiler": {
+    "file": "work/downloads/hermes-build/bin/shermes",
+    "sha256": "19034c163046bb1d9973dcc85a1176bd77385dae8655be3084477b3883282dc1",
+    "flags": [
+      "-O",
+      "-Wc,-O1,-g0,-ffp-contract=off"
+    ]
+  },
+  "contextified": {
+    "parentIsVmGlobal": false,
+    "observation": {
+      "descriptors": [
+        {
+          "name": "uninitialized",
+          "present": true,
+          "writable": true,
+          "enumerable": true,
+          "configurable": false,
+          "valueType": "undefined"
+        },
+        {
+          "name": "initialized",
+          "present": true,
+          "writable": true,
+          "enumerable": true,
+          "configurable": true,
+          "valueType": "number"
+        },
+        {
+          "name": "declared",
+          "present": true,
+          "writable": true,
+          "enumerable": true,
+          "configurable": true,
+          "valueType": "function"
+        }
+      ],
+      "getterReceiverIsGlobal": true,
+      "objectConstructor": true,
+      "functionConstructor": true
+    }
+  },
+  "ordinary": {
+    "parentIsVmGlobal": true,
+    "observation": {
+      "descriptors": [
+        {
+          "name": "uninitialized",
+          "present": true,
+          "writable": true,
+          "enumerable": true,
+          "configurable": false,
+          "valueType": "undefined"
+        },
+        {
+          "name": "initialized",
+          "present": true,
+          "writable": true,
+          "enumerable": true,
+          "configurable": false,
+          "valueType": "number"
+        },
+        {
+          "name": "declared",
+          "present": true,
+          "writable": true,
+          "enumerable": true,
+          "configurable": false,
+          "valueType": "function"
+        }
+      ],
+      "getterReceiverIsGlobal": true,
+      "objectConstructor": true,
+      "functionConstructor": true
+    }
+  },
+  "native": {
+    "descriptors": [
+      {
+        "name": "uninitialized",
+        "present": true,
+        "writable": true,
+        "enumerable": true,
+        "configurable": false,
+        "valueType": "undefined"
+      },
+      {
+        "name": "initialized",
+        "present": true,
+        "writable": true,
+        "enumerable": true,
+        "configurable": false,
+        "valueType": "number"
+      },
+      {
+        "name": "declared",
+        "present": true,
+        "writable": true,
+        "enumerable": true,
+        "configurable": false,
+        "valueType": "function"
+      }
+    ],
+    "getterReceiverIsGlobal": true,
+    "objectConstructor": true,
+    "functionConstructor": true
+  },
+  "ordinaryMatchesNative": true,
+  "contextifiedMatchesNative": false,
+  "qualifiesForThroughputTarget": false,
+  "scope": "Actual compiler probe of source global bindings and realm identity; no battle workload"
+}

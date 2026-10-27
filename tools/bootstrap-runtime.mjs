@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { createContext, runInContext } from 'node:vm';
+import { constants, createContext, runInContext } from 'node:vm';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
 import {loadBootstrapSourceRecords} from './bootstrap-records.mjs';
@@ -37,7 +37,12 @@ export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundary
   const postInitializers=helperRecords(extracted.postInitializers);
   const tables=new Map();
   const loaded=[],active=new Set();
-  const context=createContext({console});
+  // Keep ordinary Script global-binding descriptors. Node's contextified
+  // sandbox wrapper changes initialized var/function configurability and hides
+  // uninitialized bindings from parent reflection.
+  const oracleContextMode='vm.constants.DONT_CONTEXTIFY';
+  const context=createContext(constants.DONT_CONTEXTIFY);
+  context.console=console;
   const realmInitSource=await readFile(resolve(root,'tools/bootstrap-realm-init.js'),'utf8');
   runInContext(realmInitSource,context,{filename:'tools/bootstrap-realm-init.js'});
   const ed=context.ed;
@@ -152,8 +157,8 @@ export async function createBootstrapRuntime({hostRandom,hostClock,tableBoundary
   new ed.soundManager();
   ed.audio_effect_switch=context.bootstrapHost.audioEnabled;
   const callbacks=await installBootstrapCallbacks(context);
-  return {context,ed,loaded,tables,tableBoundary,provenance,callbacks,clock,clockProvenance,host:context.bootstrapHost,importValue:value=>importBootstrapValue(context,value),
-    sourceRecords:{definitions,globals,functionDeclarations,initializers,postInitializers,eagerModules,initializationPlan,sourceGlobalNames,sourceDefinitionNames,hostSources},
+  return {context,oracleContextMode,ed,loaded,tables,tableBoundary,provenance,callbacks,clock,clockProvenance,host:context.bootstrapHost,importValue:value=>importBootstrapValue(context,value),
+    sourceRecords:{oracleContextMode,definitions,globals,functionDeclarations,initializers,postInitializers,eagerModules,initializationPlan,sourceGlobalNames,sourceDefinitionNames,hostSources},
     sourceRecordsCache:extracted.cache,
     hostProvenance:{file:'tools/bootstrap-host.js',sha256:createHash('sha256').update(hostSource).digest('hex')},
     initializers:initializers.map(({source,...record})=>record),

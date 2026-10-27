@@ -6,6 +6,8 @@
   "architecture": "x64",
   "rawBitReferenceFlags": ["--jitless"],
   "rawBitReferenceNodeOptions": "",
+  "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+  "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
   "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
   "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
   "existingResultsAutomaticallyRequalified": false,
