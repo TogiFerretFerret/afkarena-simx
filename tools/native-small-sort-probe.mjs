@@ -7,14 +7,15 @@ import assert from'node:assert/strict';
 import{patchFlatNumericCopyC}from'./native-rust-bridge.mjs';
 import{buildPrivateVMHelper}from'./native-private-vm.mjs';
 import{firstDifference}from'./native-report-compare.mjs';
-const full=process.argv.includes('--full-timsort');
-assert.ok(process.argv.slice(2).every(x=>x==='--full-timsort'));
-const root=resolve(import.meta.dirname,'..'),directory=resolve(root,full?'work/native-tim-sort':'work/native-small-sort');await mkdir(directory,{recursive:true});
+const builtin=process.argv.includes('--install-builtin'),full=builtin||process.argv.includes('--full-timsort');
+assert.ok(process.argv.slice(2).every(x=>['--full-timsort','--install-builtin'].includes(x)));
+const root=resolve(import.meta.dirname,'..'),directory=resolve(root,builtin?'work/native-sort-host-proof':full?'work/native-tim-sort':'work/native-small-sort');await mkdir(directory,{recursive:true});
 const sha=b=>createHash('sha256').update(b).digest('hex'),profile=JSON.parse(await readFile(resolve(root,'config/source-oracle-runtime.json')));
 assert.equal(process.version,profile.node);assert.equal(process.versions.v8,profile.v8);
 if(JSON.stringify(process.execArgv)!==JSON.stringify(profile.rawBitReferenceFlags)||(process.env.NODE_OPTIONS??'')!==''){const r=spawnSync(process.execPath,[...profile.rawBitReferenceFlags,process.argv[1],...process.argv.slice(2)],{cwd:root,env:{...process.env,NODE_OPTIONS:''},stdio:'inherit'});process.exit(r.status??1);}
 const inputs=['tools/native-small-sort-probe.mjs','tools/native-small-sort.rs','tools/native-compiler-patches/small-sort.inc','crates/battle-core/src/v8_small_sort.rs','tools/native-private-vm.mjs','tools/native-rust-bridge.mjs','tools/native-report-compare.mjs','config/native-compiler-static-hermes.json'];
 if(full)inputs.push('tools/native-compiler-patches/tim-sort.inc','crates/battle-core/src/v8_tim_sort.rs');
+if(builtin)inputs.push('tools/native-compiler-patches/tim-sort-host.inc','tools/native-compiler-patches/diagnostic-sha256-host.inc','tools/native-compiler-patches/diagnostic-sha256.inc');
 const hashInputs=async()=>Object.fromEntries(await Promise.all(inputs.map(async p=>[p,sha(await readFile(resolve(root,p)))])));const inputHashes=await hashInputs();
 const candidate='function(a,b){return a.sort(b)}';
 const script=`var candidateSort=${candidate};
@@ -63,9 +64,31 @@ if(${full})for(var shape=0;shape<3;shape++){
  var result=candidateSort(list,function(a,b){calls.push([a.id,b.id]);return a.Level-b.Level;});
  guild.push({shape:shape,same:result===list,calls:calls,levelReads:events,ids:list.map(function(row){return row.id;})});
 }
+var methods=[];
+if(${builtin}){
+ var descriptor=Object.getOwnPropertyDescriptor(Array.prototype,'sort'),captured=descriptor.value;
+ methods.push({name:captured.name,length:captured.length,source:captured.toString(),flags:[descriptor.writable,descriptor.enumerable,descriptor.configurable]});
+ var source=[{id:3},{id:1},{id:2}],events=[];var comparator=function(a,b){events.push([a.id,b.id]);return a.id-b.id;};
+ var array=source.slice();captured.call(array,comparator);methods.push(['captured',snap(array),events.slice()]);
+ array=source.slice();array.sort=function(cmp){events.push('own-sort');return'own-return';};methods.push(['own-override',candidateSort(array,comparator),snap(array),events.slice()]);
+ Array.prototype.sort=function(cmp){events.push('prototype-sort');return captured.call(this,cmp);};array=source.slice();candidateSort(array,comparator);methods.push(['prototype-override',snap(array),events.slice()]);
+ Object.defineProperty(Array.prototype,'sort',{configurable:true,get:function(){events.push('prototype-sort-get');return captured;}});array=source.slice();candidateSort(array,comparator);methods.push(['prototype-getter',snap(array),events.slice()]);
+ Object.defineProperty(Array.prototype,'sort',descriptor);methods.push(['restored-identity',Array.prototype.sort===captured]);
+ array=source.slice();captured.bind(array)(comparator);methods.push(['bound-sort-alias',snap(array),events.slice()]);
+}
+var defaults=[];
+if(${builtin}){
+ var strings=['','a','A','00','0','10','2','~'];
+ var codes=[0,255,256,937,55296,57343,65535];for(var code=0;code<codes.length;code++)strings.push(String.fromCharCode(codes[code]));strings.push(String.fromCharCode(55357,56832));
+ for(var index=0;index<5000;index++){
+  var values=[];for(var j=0;j<index%128;j++)values.push((index+j)%7===0?undefined:strings[draw()%strings.length]+String.fromCharCode(draw()%65536));
+  var result=candidateSort(values,undefined);
+  defaults.push({same:result===values,values:values.map(function(v){return v===undefined?['undefined']:['string',v];})});
+ }
+}
 var unsupported=[];
 if(typeof hermescli!=='undefined'){
- function reject(label,make,compare){var before=0,traps=0;var value=make(function(){traps++}),cmp=arguments.length>=3?compare:function(){before++;return 0;},error=null;try{candidateSort(value,cmp)}catch(e){error=e.message}unsupported.push([label,error,before,traps]);}
+ function reject(label,make,compare){var before=0,traps=0;var value=make(function(){traps++}),cmp=arguments.length>=3?compare:function(){before++;return 0;},error=null;try{if(${builtin})Array.prototype.sort.call(value,cmp);else candidateSort(value,cmp)}catch(e){error=e.message}unsupported.push([label,error,before,traps]);}
  reject('large',function(){return new Array(${full?4097:64}).fill(1)});
  reject('hole',function(){return new Array(2)});
  reject('getter',function(trap){var a=[1,2];Object.defineProperty(a,'0',{get:function(){trap();return 1;}});return a;});
@@ -75,17 +98,26 @@ if(typeof hermescli!=='undefined'){
  reject('custom-prototype',function(){var a=[1,2];Object.setPrototypeOf(a,Object.create(Array.prototype));return a;});
  reject('bound-comparator',function(){return[1,2]},function(a,b){return a-b}.bind(null));
  reject('default-comparator',function(){return[1,2]},null);
+ reject('default-number',function(){return[1,2]},undefined);
+ reject('default-object',function(trap){return[{toString:function(){trap();return'a';}},{toString:function(){trap();return'b';}}]},undefined);
 }
-print(JSON.stringify({outputs:outputs,directed:directed,coercions:coercions,guild:guild,orderedCalls:orderedCalls,strictThis:strictThis,randomState:randomState,source:candidateSort.toString(),name:candidateSort.name,length:candidateSort.length,unsupported:unsupported}));`;
+print(JSON.stringify({outputs:outputs,directed:directed,coercions:coercions,guild:guild,methods:methods,defaults:defaults,orderedCalls:orderedCalls,strictThis:strictThis,randomState:randomState,source:candidateSort.toString(),name:candidateSort.name,length:candidateSort.length,unsupported:unsupported}));`;
 function run(command,args,options={}){const r=spawnSync(command,args,{cwd:root,encoding:'utf8',maxBuffer:128*1024*1024,...options});if(r.error)throw r.error;assert.equal(r.status,0,r.stderr);return r;}
 const compiler=resolve(root,'work/downloads/hermes-build/bin/shermes'),pools=resolve(directory,'pools'),original=resolve(directory,'original.c'),jsfile=resolve(directory,'probe.js');await mkdir(pools,{recursive:true});await writeFile(jsfile,script);
 const rustc=resolve(root,'work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc'),rustlib=resolve(directory,'libsmall_sort.a');run(rustc,['--edition=2024','--crate-type=staticlib','-O',...(full?['--cfg','simx_full_sort']:[]),resolve(root,'tools/native-small-sort.rs'),'-o',rustlib]);
-const privateVM=await buildPrivateVMHelper({root,directory,helperFile:full?'tools/native-compiler-patches/tim-sort.inc':'tools/native-compiler-patches/small-sort.inc'});
+const privateVM=await buildPrivateVMHelper({root,directory,helperFile:builtin?'tools/native-compiler-patches/tim-sort-host.inc':full?'tools/native-compiler-patches/tim-sort.inc':'tools/native-compiler-patches/small-sort.inc'});
 run(compiler,['-O','-emit-c',jsfile,'-o',original],{env:{...process.env,SHERMES_BINARY_STRING_DIR:pools}});
-let{source}=await patchFlatNumericCopyC(await readFile(original,'utf8'),pools,candidate);
+let source=await readFile(original,'utf8');
+if(!builtin){({source}=await patchFlatNumericCopyC(source,pools,candidate));
 source=source.replace('extern SHLegacyValue simx_flat_numeric_copy(SHRuntime *,SHLegacyValue);',`extern int battle_v8_small_sort(uint32_t*,size_t,void*,int(*)(void*,uint32_t,uint32_t,double*));\nextern SHLegacyValue simx_v8_small_sort(SHRuntime*,SHLegacyValue,SHLegacyValue,int(*)(uint32_t*,size_t,void*,int(*)(void*,uint32_t,uint32_t,double*)));`);
 source=source.replace('simx_flat_numeric_copy(shr,_sh_ljs_param(shr->stackPointer,1))','simx_v8_small_sort(shr,_sh_ljs_param(shr->stackPointer,1),_sh_ljs_param(shr->stackPointer,2),battle_v8_small_sort)');
+}else{
+ const marker='#include "hermes/VM/static_h.h"';assert.ok(source.includes(marker));
+ source=source.replace(marker,marker+'\nextern int battle_v8_small_sort(uint32_t*,size_t,void*,int(*)(void*,uint32_t,uint32_t,double*));\nextern bool simx_install_v8_sort(SHRuntime*,int(*)(uint32_t*,size_t,void*,int(*)(void*,uint32_t,uint32_t,double*)));\nextern uint64_t simx_sort_calls(void);extern uint64_t simx_sort_hits(void);extern uint64_t simx_sort_fallbacks(void);extern uint64_t simx_sort_default_string_hits(void);');
+ const init=/init_console_bindings\(shr, scriptArgc, \(const char \*const \*\)scriptArgv\);/;assert.ok(init.test(source));source=source.replace(init,match=>match+'\nif(!simx_install_v8_sort(shr,battle_v8_small_sort))return 2;');
+}
 source=source.replace(/int main\(int argc,\s*char \*\*argv\) \{/,'int simx_original_main(int argc,char **argv) {');source+='\n#include <stdio.h>\nextern void simx_small_sort_set_gc_period(uint64_t);extern uint64_t simx_small_sort_gc_count(void);int main(int argc,char **argv){simx_small_sort_set_gc_period(4096);int result=simx_original_main(argc,argv);fprintf(stderr,"gc_cycles:%llu\\n",(unsigned long long)simx_small_sort_gc_count());fprintf(stderr,"sort_hits:%zu\\n",simx_copy_hits);return result;}\n';
+if(builtin)source=source.replace('simx_copy_hits);return result;','(size_t)simx_sort_hits());fprintf(stderr,"sort_calls:%llu\\n",(unsigned long long)simx_sort_calls());fprintf(stderr,"sort_fallbacks:%llu\\n",(unsigned long long)simx_sort_fallbacks());fprintf(stderr,"sort_default_strings:%llu\\n",(unsigned long long)simx_sort_default_string_hits());return result;');
 const patched=resolve(directory,'patched.c');await writeFile(patched,source);
 const config=JSON.parse(await readFile(resolve(root,'config/native-compiler-static-hermes.json'))),build=resolve(root,'work/downloads/hermes-build'),binary=resolve(directory,'probe');
 const args=[patched,rustlib,'-O2','-g0','-DNDEBUG','-fno-strict-aliasing','-fno-strict-overflow','-ffp-contract=off','-I'+resolve(build,'lib/config'),'-I'+resolve(root,'work/downloads',config.source.directory,'include'),'-L'+directory,'-Wl,-rpath,'+directory];
@@ -96,5 +128,7 @@ const difference=firstDifference(actual,expected),hits=Number(/sort_hits:(\d+)/.
 assert.deepEqual(await hashInputs(),inputHashes,'Native sort inputs changed during proof');
 assert.equal(sha(await readFile(resolve(build,'lib/libhermesvm.so'))),privateVM.originalSha256,'Live VM changed during private proof');
 const forcedCollections=Number(/gc_cycles:(\d+)/.exec(execution.stderr)[1]);assert.ok(forcedCollections>0);
-const report={version:1,qualifiesFor10000Target:false,matched:difference===null,difference,cases:actual.outputs.length,largeCases:actual.outputs.length-5000,guildCases:actual.guild.length,guildAscendingComparatorCalls:actual.guild[0]?.calls.length??null,guildAscendingLevelReads:actual.guild[0]?.levelReads.length??null,directedCases:actual.directed.length,coercionCases:actual.coercions.length,orderedComparatorCalls:actual.orderedCalls,forcedCollections,strictThis:actual.strictThis,hits,unsupported,privateVM,oracleProfile:profile,inputHashes,compilerSha256:sha(await readFile(compiler)),binarySha256:sha(await readFile(binary)),referenceCanonicalSha256:sha(JSON.stringify(expected)),candidateCanonicalSha256:sha(JSON.stringify(actual)),scope:full?'Isolated C++ VM snapshot/coercion/writeback plus full Rust pinned V8 TimSort; dense arrays<=4096, ordinary compiled JS comparator. No live Array.prototype.sort replacement.':'Isolated C++ VM snapshot/coercion/writeback plus Rust V8 smallsort token schedule; dense admitted arrays<=63 only, ordinary compiled JS comparator. No live Array.prototype.sort replacement.',limitations:['Unsupported shapes fail closed before comparator/user getters; no Hermes sorting fallback.','Comparator callback mutations, throws, coercions, GC and generic writeback checked; native VM TypeError messages are not matched, only failure boundary and error type.','No original full battle/scene or broad roster qualification follows from this component.']};
-await writeFile(resolve(root,'benchmarks/validation',full?'native-tim-sort.json':'native-small-sort.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));assert.equal(difference,null);assert.equal(hits,expected.outputs.filter(x=>x.returned).length+expected.directed.filter(x=>x.returned).length+expected.coercions.filter(x=>x.returned).length+expected.coercions.find(x=>x.kind===4).effects.filter(x=>Array.isArray(x)&&x[0]==='nested-result').length+expected.guild.length);for(const row of unsupported){assert.equal(row[1],'Unsupported native small sort admission',row[0]);assert.equal(row[2],0,row[0]);assert.equal(row[3],0,row[0]);}
+const installerMetrics=builtin?{calls:Number(/sort_calls:(\d+)/.exec(execution.stderr)[1]),hits,defaultStringHits:Number(/sort_default_strings:(\d+)/.exec(execution.stderr)[1]),fallbacks:Number(/sort_fallbacks:(\d+)/.exec(execution.stderr)[1]),strict:true}:null;
+const report={version:1,qualifiesFor10000Target:false,installerMetrics,matched:difference===null,difference,cases:actual.outputs.length,largeCases:actual.outputs.length-5000,defaultStringCases:actual.defaults.length,guildCases:actual.guild.length,guildAscendingComparatorCalls:actual.guild[0]?.calls.length??null,guildAscendingLevelReads:actual.guild[0]?.levelReads.length??null,directedCases:actual.directed.length,coercionCases:actual.coercions.length,orderedComparatorCalls:actual.orderedCalls,forcedCollections,strictThis:actual.strictThis,hits,unsupported,privateVM,oracleProfile:profile,inputHashes,compilerSha256:sha(await readFile(compiler)),binarySha256:sha(await readFile(binary)),referenceCanonicalSha256:sha(JSON.stringify(expected)),candidateCanonicalSha256:sha(JSON.stringify(actual)),scope:builtin?'Private NativeCallable Array.prototype.sort installed before original script, preserving method lookup, aliases, descriptors/name/arity, rooted callback pipeline and exact Rust TimSort within dense4096 contract.':full?'Isolated C++ VM snapshot/coercion/writeback plus full Rust pinned V8 TimSort; dense arrays<=4096, ordinary compiled JS comparator. No live Array.prototype.sort replacement.':'Isolated C++ VM snapshot/coercion/writeback plus Rust V8 smallsort token schedule; dense admitted arrays<=63 only, ordinary compiled JS comparator. No live Array.prototype.sort replacement.',limitations:['Unsupported shapes fail closed before comparator/user getters; no Hermes sorting fallback.','Comparator callback mutations, throws, coercions, GC and generic writeback checked; native VM TypeError messages are not matched, only failure boundary and error type.','No original full battle/scene or broad roster qualification follows from this component.']};
+await writeFile(resolve(root,'benchmarks/validation',builtin?'native-sort-host.json':full?'native-tim-sort.json':'native-small-sort.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));assert.equal(difference,null);if(!builtin)assert.equal(hits,expected.outputs.filter(x=>x.returned).length+expected.directed.filter(x=>x.returned).length+expected.coercions.filter(x=>x.returned).length+expected.coercions.find(x=>x.kind===4).effects.filter(x=>Array.isArray(x)&&x[0]==='nested-result').length+expected.guild.length);if(builtin){assert.equal(installerMetrics.fallbacks,unsupported.length);assert.equal(installerMetrics.defaultStringHits,actual.defaults.length);assert.equal(installerMetrics.calls,installerMetrics.hits+installerMetrics.defaultStringHits+installerMetrics.fallbacks);}
+for(const row of unsupported){assert.equal(row[1],builtin?'Unsupported native TimSort admission':'Unsupported native small sort admission',row[0]);assert.equal(row[2],0,row[0]);assert.equal(row[3],0,row[0]);}

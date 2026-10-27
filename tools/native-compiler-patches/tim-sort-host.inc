@@ -6,14 +6,38 @@
 namespace hermes { namespace vm {
 CallResult<HermesValue> arrayPrototypeSort(void *,Runtime &);
 static SimxSmallSort simxHostSort=nullptr;
-static uint64_t simxSortCalls=0,simxSortHandled=0,simxSortFallbacks=0;
+static uint64_t simxSortCalls=0,simxSortHandled=0,simxSortFallbacks=0,simxSortDefaultStrings=0;
 static bool simxSortStrict=true;
 extern "C" SHERMES_EXPORT uint64_t simx_sort_calls(){return simxSortCalls;}
 extern "C" SHERMES_EXPORT uint64_t simx_sort_hits(){return simxSortHandled;}
 extern "C" SHERMES_EXPORT uint64_t simx_sort_fallbacks(){return simxSortFallbacks;}
+extern "C" SHERMES_EXPORT uint64_t simx_sort_default_string_hits(){return simxSortDefaultStrings;}
 extern "C" SHERMES_EXPORT void simx_sort_set_strict(bool strict){simxSortStrict=strict;}
+// Primitive strings have no observable ToString/identity operations. With no
+// holes, accessors or writable-descriptor changes, the original VM's default
+// UTF-16 ordering has the same final values regardless of comparison schedule.
+// ArrayImpl::_getOwnIndexedPropertyFlagsImpl proves every present fast index
+// is writable unless the hidden class is frozen; sealed indices remain writable.
+static bool simxAdmitDefaultStrings(Runtime &runtime,HermesValue value){
+  if(!vmisa<JSArray>(value))return false;
+  GCScope scope(runtime);auto array=runtime.makeHandle<JSArray>(value);
+  auto length=JSArray::getLength(*array,runtime);
+  if(length>SIMX_SORT_LIMIT||array->getParent(runtime)!=runtime.arrayPrototype.get()||
+      !array->hasFastIndexProperties(runtime)||array->getClass(runtime)->isFrozen())return false;
+  NamedPropertyDescriptor descriptor;
+  if(!JSObject::getOwnNamedDescriptor(array,runtime,Predefined::getSymbolID(Predefined::length),descriptor)||
+      descriptor.flags.accessor||!descriptor.flags.writable)return false;
+  for(uint32_t index=0;index<length;index++){
+    auto element=array->at(runtime,index).unboxToHV(runtime);
+    if(!element.isString()&&!element.isUndefined())return false;
+  }
+  return true;
+}
 static CallResult<HermesValue> simxHostSortCall(void *,Runtime &runtime){
   auto args=runtime.getCurrentFrame().getNativeArgs();simxSortCalls++;
+  if(args.getArg(0).isUndefined()&&simxAdmitDefaultStrings(runtime,args.getThisArg())){
+    simxSortDefaultStrings++;return arrayPrototypeSort(nullptr,runtime);
+  }
   auto result=simxSmallSortImpl(runtime,args.getThisArg(),args.getArg(0),simxHostSort);
   if(result==ExecutionStatus::EXCEPTION){simxSortHandled++;return ExecutionStatus::EXCEPTION;}
   if(!result->isUndefined()){simxSortHandled++;return result;}
