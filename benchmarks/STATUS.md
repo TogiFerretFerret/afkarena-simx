@@ -107,6 +107,19 @@ or an established speedup across workloads. See
 `validation/native-global-ed-prefilter-adjacent-pair.json`. The full-game qualification limits
 above continue to apply.
 
+The broader current-dictionary ordinal-hint candidate passes the complete raw
+battle report, but measures 8.954 seconds for 20 battles (2.233639/second), so it
+is not promoted. It records 72,935,092 ordinal hits across the full process;
+high admission counts alone do not demonstrate a useful optimization. The
+isolated proof compares 192,000 mutation cases against both pinned JS and
+untouched native execution, including forced GC, current descriptors, getters,
+exceptions and internal Empty rejection. No original class definitions or live
+VM files change. See
+`results/2026-10-27T22-53-56.831Z-native-warm23-dictionary-hint.json` and
+`validation/native-dictionary-hint.json`. The worker benchmark uses one active
+runtime per thread; alternating live runtimes requires a separate bounded
+context-lifetime check before broader embedding claims.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
