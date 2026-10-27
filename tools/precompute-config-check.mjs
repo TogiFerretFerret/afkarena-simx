@@ -28,7 +28,9 @@ if(process.argv.includes('--live')){
   const {createBootstrapRuntime}=await import('./bootstrap-runtime.mjs');
   const runtime=await createBootstrapRuntime();
   const wire=await createRealisticScenario(2026),before=JSON.stringify(wire);
+  const initialBattleSeed=runtime.context.random_seed;
   const a=instantiateScenario(runtime,wire),b=instantiateScenario(runtime,wire);
+  assert.ok(Object.is(runtime.context.random_seed,initialBattleSeed),'input materialization must not consume battle RNG');
   for(const hero of [...a.players,...a.enemies]){
     assert.equal(hero.sig.lv,30);assert.equal(hero.sig.isValid,true);
     for(const slot of hero.equips){assert.equal(slot.equip.cfg_id,wire.players.concat(wire.enemies).find(h=>h.id===hero.id).equips.find(s=>s.index===slot.index).equip.tid);assert.equal(slot.equip.enhance_lv,5);assert.equal(slot.equip.quality,13);}

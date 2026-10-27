@@ -48,7 +48,7 @@ export async function createRealisticScenario(seed=2026,options={}){
   const settings={mode:'stage',battleId:16001,heroLevel:360,quality:15,signatureLevel:30,gearQuality:13,gearEnhance:5,petQuality:10,petLevel:360,...options};
   if(settings.quality!==ascended.Quality||settings.heroLevel!==360||settings.signatureLevel!==30)throw new Error('This qualification factory requires source A5, level360 and SI30');
   if(!tables.ParamBattleMode[settings.mode]?.Pet)throw new Error('Chosen source battle mode disables beasts');
-  if(!tables.EquipQuality[settings.gearQuality]||settings.gearEnhance>tables.EquipQuality[settings.gearQuality].MaxEnhanceLevel||settings.gearEnhance<0)throw new Error('Invalid source gear enhancement');
+  if(!tables.EquipQuality[settings.gearQuality]||!Number.isInteger(settings.gearEnhance)||settings.gearEnhance>tables.EquipQuality[settings.gearQuality].MaxEnhanceLevel||settings.gearEnhance<0)throw new Error('Invalid source gear enhancement');
   if(settings.petQuality!==10)throw new Error('This factory currently implements source mythic beasts (quality10)');
   const rank=Object.values(tables.UnitRankLevel).filter(row=>row.TargetLevel<=settings.heroLevel).sort((a,b)=>b.TargetLevel-a.TargetLevel)[0]?.Rank;
   if(rank!==20)throw new Error('Source level360 rank mapping changed');
@@ -77,7 +77,7 @@ export async function createRealisticScenario(seed=2026,options={}){
   const config={mode:settings.mode,battle_id:settings.battleId,localBot:true,pets:{self_pets:[beast(1001)],oppo_pets:[beast(1002)]}};
   const input={version:1,scenarioSeed:seed,battleSeed:1+(seed%2147483646),settings,players,enemies,config,
     qualification:{teamSize:5,heroLevel:360,qualityLabel:'Ascended 5-star',quality:15,rank:20,signatureLevel:30,gearSlots:4,beastsPerTeam:1,timeout:'Original engine rules; no benchmark timeout substitution'},
-    source:{heroPoolSize:heroes.length,petPoolSize:pets.length,tableDigests}};
+    source:{heroPoolSize:heroes.length,petPoolSize:pets.length,tableDigests:{...tableDigests}}};
   input.inputSha256=createHash('sha256').update(JSON.stringify(input)).digest('hex');
   return input;
 }
