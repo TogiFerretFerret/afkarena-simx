@@ -19,7 +19,7 @@ const oracleProfile=JSON.parse(await readFile(resolve(root,'config/source-oracle
 assert.equal(process.version,oracleProfile.node,'Pinned source oracle Node version');
 assert.equal(process.versions.v8,oracleProfile.v8,'Pinned source oracle V8 version');
 assert.equal(process.platform,oracleProfile.platform);assert.equal(process.arch,oracleProfile.architecture);
-if(!oracleProfile.rawBitReferenceFlags.every(flag=>process.execArgv.includes(flag))||(process.env.NODE_OPTIONS||'')!==oracleProfile.rawBitReferenceNodeOptions){
+if(JSON.stringify(process.execArgv)!==JSON.stringify(oracleProfile.rawBitReferenceFlags)||(process.env.NODE_OPTIONS||'')!==oracleProfile.rawBitReferenceNodeOptions){
   const child=spawnSync(process.execPath,[...oracleProfile.rawBitReferenceFlags,process.argv[1],...args],{cwd:process.cwd(),env:{...process.env,NODE_OPTIONS:oracleProfile.rawBitReferenceNodeOptions},stdio:'inherit'});
   if(child.error)throw child.error;process.exit(child.status??1);
 }
