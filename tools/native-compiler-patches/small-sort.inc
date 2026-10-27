@@ -4,6 +4,10 @@
 #include "hermes/VM/Callable.h"
 #include "hermes/VM/Operations.h"
 #include <cmath>
+#include <vector>
+#ifndef SIMX_SORT_LIMIT
+#define SIMX_SORT_LIMIT 63
+#endif
 
 namespace hermes { namespace vm {
 using SimxSmallCompare=int(*)(void*,uint32_t,uint32_t,double*);
@@ -43,7 +47,7 @@ static CallResult<HermesValue> simxSmallSortImpl(
   auto receiver=runtime.makeHandle<JSArray>(value);
   auto comparator=runtime.makeHandle<Callable>(compare);
   const uint32_t length=JSArray::getLength(*receiver,runtime);
-  if(length>=64||receiver->getParent(runtime)!=runtime.arrayPrototype.get()||
+  if(length>SIMX_SORT_LIMIT||receiver->getParent(runtime)!=runtime.arrayPrototype.get()||
       !receiver->hasFastIndexProperties(runtime))return unsupported;
   NamedPropertyDescriptor lengthDescriptor;
   auto ownLength=JSObject::getOwnNamedDescriptor(receiver,runtime,
@@ -70,9 +74,11 @@ static CallResult<HermesValue> simxSmallSortImpl(
     if(element.unboxToHV(runtime).isUndefined())continue;
     JSArray::unsafeSetExistingElementAt(*work,runtime,defined++,element);
   }
-  uint32_t tokens[64];for(uint32_t i=0;i<defined;i++)tokens[i]=i;
+  // Tokens carry no GC pointers and can move independently of rooted values.
+  std::vector<uint32_t> tokens(defined?defined:1);
+  for(uint32_t i=0;i<defined;i++)tokens[i]=i;
   SimxSmallSortContext context{runtime,work,comparator};
-  int status=sort(tokens,defined,&context,simxSmallCompare);
+  int status=sort(tokens.data(),defined,&context,simxSmallCompare);
   if(status==1)return ExecutionStatus::EXCEPTION;
   if(status!=0)return runtime.raiseTypeError("Native small sort internal contract failed");
   // Use generic ThrowOnError Put after callbacks. This preserves index

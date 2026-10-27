@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "qualifiesFor10000Target": false,
+  "matched": true,
+  "difference": null,
+  "cases": 5512,
+  "largeCases": 512,
+  "guildCases": 3,
+  "guildAscendingComparatorCalls": 114,
+  "guildAscendingLevelReads": 228,
+  "directedCases": 11,
+  "coercionCases": 8,
+  "orderedComparatorCalls": 1370215,
+  "forcedCollections": 668,
+  "strictThis": true,
+  "hits": 4478,
+  "unsupported": [
+    [
+      "large",
+      "Unsupported native small sort admission",
+      0,
+      0
+    ],
+    [
+      "hole",
+      "Unsupported native small sort admission",
+      0,
+      0
+    ],
+    [
+      "getter",
+      "Unsupported native small sort admission",
+      0,
+      0
+    ],
+    [
+      "proxy",
+      "Unsupported native small sort admission",
+      0,
+      0
+    ],
+    [
+      "frozen",
+      "Unsupported native small sort admission",
+      0,
+      0
+    ],
+    [
+      "length-readonly",
+      "Unsupported native small sort admission",
+      0,
+      0
+    ],
+    [
+      "custom-prototype",
+      "Unsupported native small sort admission",
+      0,
+      0
+    ],
+    [
+      "bound-comparator",
+      "Unsupported native small sort admission",
+      0,
+      0
+    ],
+    [
+      "default-comparator",
+      "Unsupported native small sort admission",
+      0,
+      0
+    ]
+  ],
+  "privateVM": {
+    "output": "/workspace/afkarena-simx/work/native-tim-sort/libhermesvm.so",
+    "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "privateSha256": "8c1dc4f9ed6f0167824653d114fd53da3e280805759d23f55a1e6e3b18a1ff7e",
+    "helperSha256": "77153b5903fa2886b57d68de9b3ac0e92c4edf9aab9f469c24aeef39d58afb49"
+  },
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "inputHashes": {
+    "tools/native-small-sort-probe.mjs": "a277e0e36140caaf39cd8098073061bef5b96ec19bc78b45b23c00309861dec5",
+    "tools/native-small-sort.rs": "5a866da4f833ea5245e71c6bab4a7066159b4ebe64203273c5d56db186da3edd",
+    "tools/native-compiler-patches/small-sort.inc": "dbf3373f28b1a00fb580f8ffe4b02695399a43b9a9fcff34b89e78c13ea46009",
+    "crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
+    "tools/native-private-vm.mjs": "47747b1921a23390805e60089f7dbf7cc750c1d1072d64ccd2ceda4344594f4b",
+    "tools/native-rust-bridge.mjs": "02d100b9091cbe0b55f661fac0975e9c6f8427267676a8f8d87f3bcdc4f4de6d",
+    "tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+    "config/native-compiler-static-hermes.json": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e",
+    "tools/native-compiler-patches/tim-sort.inc": "77153b5903fa2886b57d68de9b3ac0e92c4edf9aab9f469c24aeef39d58afb49",
+    "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885"
+  },
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "binarySha256": "90417ee3af56790aaab0a4139607460669a044d506500e6dd315d332284e67c2",
+  "referenceCanonicalSha256": "0c2a749b524a49e11aa89ac7819e3b0f9b0790cc620d51f6ae944f89d03bda3c",
+  "candidateCanonicalSha256": "0c2a749b524a49e11aa89ac7819e3b0f9b0790cc620d51f6ae944f89d03bda3c",
+  "scope": "Isolated C++ VM snapshot/coercion/writeback plus full Rust pinned V8 TimSort; dense arrays<=4096, ordinary compiled JS comparator. No live Array.prototype.sort replacement.",
+  "limitations": [
+    "Unsupported shapes fail closed before comparator/user getters; no Hermes sorting fallback.",
+    "Comparator callback mutations, throws, coercions, GC and generic writeback checked; native VM TypeError messages are not matched, only failure boundary and error type.",
+    "No original full battle/scene or broad roster qualification follows from this component."
+  ]
+}
