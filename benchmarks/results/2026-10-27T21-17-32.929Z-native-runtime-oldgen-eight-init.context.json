@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "result": {
+    "file": "benchmarks/results/2026-10-27T21-17-32.929Z-native-runtime-oldgen-eight-init.json",
+    "sha256": "b11dd66bc0ccba6231e051e0904a7f8319e26c126d6ff6d62b9b022aee877411"
+  },
+  "overlappingExperiment": {
+    "file": "benchmarks/validation/worker-strong-map-aborted-memory.json",
+    "sha256": "9aa05fd7936694c435858108654eef6d10d0293cccb2a925057e8e1516848b27",
+    "execution": {
+      "code": null,
+      "signal": "SIGKILL"
+    }
+  },
+  "resourceContext": "A separate Node strong-Map ownership proof overlapped this eight-GiB initial-heap trial. Its owner stopped that Node process under shared memory pressure (reported cgroup usage15.9GB), while this native trial completed and passed the unchanged full raw report gate. Native VmHWM samples are in the result; the15.9GB shared-resource observation is an operator report, not this trial's own RSS.",
+  "interpretation": "Retain the exact fidelity result and observed timing, but do not attribute its slower timing solely to GC flags or treat it as a controlled regression measurement. The later strong-Map native benchmark uses a fresh default-GC process.",
+  "qualifiesFor10000Target": false
+}
