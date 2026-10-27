@@ -1,8 +1,8 @@
 import{readFile,writeFile,mkdir}from'node:fs/promises';import{resolve}from'node:path';import{spawnSync}from'node:child_process';import{createHash}from'node:crypto';import{runInNewContext}from'node:vm';import assert from'node:assert/strict';
-import{buildPrivateVMHelper}from'./native-private-vm.mjs';import{diagnosticDigestSource,patchDiagnosticDigestC}from'./native-diagnostic-sha256.mjs';import{firstDifference}from'./native-report-compare.mjs';import{gzipSync}from'node:zlib';
+import{buildPrivateVMHelper}from'./native-private-vm.mjs';import{diagnosticDigestSource,patchDiagnosticDigestC}from'./native-diagnostic-sha256.mjs';import{firstDifference}from'./native-report-compare.mjs';import{diagnosticSha256CasesSource}from'./diagnostic-sha256-cases.mjs';import{gzipSync}from'node:zlib';
 const root=resolve(import.meta.dirname,'..'),directory=resolve(root,'work/native-diagnostic-sha256');await mkdir(directory,{recursive:true});
 const sha=b=>createHash('sha256').update(b).digest('hex');
-const casesSource=`function makeCases(){var out=['','abc','a\\u0000b','\\ud800\\udc00','\\udbff\\udfff','\\ud800x\\udc00','\\ud800\\ud800','\\udc00\\udc00'];for(var i=0;i<65536;i++)out.push(String.fromCharCode(i));for(var n=0;n<130;n++)out.push('a'.repeat(n));var state=123456789;for(var i=0;i<4096;i++){var text='';for(var j=0;j<i%257;j++){state=(Math.imul(state,1664525)+1013904223)>>>0;text+=String.fromCharCode(state>>>16);}out.push(text);}return out;}`;
+const casesSource=diagnosticSha256CasesSource;
 const portableSource=await readFile(resolve(root,'tools/battle-trace-portable.js'),'utf8');
 const script=portableSource+'\n'+diagnosticDigestSource+'\n'+casesSource+`
 var cases=makeCases(),hashes=[];for(var i=0;i<cases.length;i++){if(typeof gc==='function'&&i%137===0)gc();hashes.push(diagnosticDigest(cases[i]));}

@@ -23,16 +23,20 @@ class SimxDiagnosticSha256 {
   void finish(char hex[64]){uint64_t bits=length_*8;byte(128);while(used_!=56)byte(0);for(int shift=56;shift>=0;shift-=8)byte(uint8_t(bits>>shift));static constexpr char digits[]="0123456789abcdef";for(unsigned i=0;i<32;i++){uint8_t b=uint8_t(h_[i/4]>>(24-8*(i%4)));hex[2*i]=digits[b>>4];hex[2*i+1]=digits[b&15];}}
 };
 }
-extern "C" SHERMES_EXPORT SHLegacyValue simx_diagnostic_sha256(SHRuntime *shr,SHLegacyValue input){
-  auto value=HermesValue::fromRaw(input.raw);
-  // Nonprimitive strings (including proxies and String boxes) cause no property
-  // reads here and use the caller's complete original JavaScript fallback.
-  if(!value.isString())return SHLegacyValue{HermesValue::encodeUndefinedValue().getRaw()};
-  Runtime &runtime=getRuntime(shr);GCScope scope(runtime);
+static CallResult<HermesValue> simxDiagnosticDigestString(Runtime &runtime,HermesValue value){
+  GCScope scope(runtime);
   auto rooted=runtime.makeHandle(vmcast<StringPrimitive>(value));
   auto view=StringPrimitive::createStringView(runtime,rooted);SimxDiagnosticSha256 sha;
   for(uint32_t i=0;i<view.length();i++){uint32_t c=view[i];if(c>=0xd800&&c<=0xdbff){uint32_t next=i+1<view.length()?view[i+1]:0;if(next>=0xdc00&&next<=0xdfff){c=0x10000+((c-0xd800)<<10)+(next-0xdc00);++i;}else c=0xfffd;}else if(c>=0xdc00&&c<=0xdfff)c=0xfffd;sha.codepoint(c);}
   char hex[64];sha.finish(hex);auto output=StringPrimitive::create(runtime,ASCIIRef(hex,64));
+  if(output==ExecutionStatus::EXCEPTION)return ExecutionStatus::EXCEPTION;
+  return *output;
+}
+extern "C" SHERMES_EXPORT SHLegacyValue simx_diagnostic_sha256(SHRuntime *shr,SHLegacyValue input){
+  auto value=HermesValue::fromRaw(input.raw);
+  // No JS property reads for boxes/proxies or other unsupported inputs.
+  if(!value.isString())return SHLegacyValue{HermesValue::encodeUndefinedValue().getRaw()};
+  auto output=simxDiagnosticDigestString(getRuntime(shr),value);
   if(output==ExecutionStatus::EXCEPTION)_sh_throw_current(shr);
   return SHLegacyValue{output->getRaw()};
 }
