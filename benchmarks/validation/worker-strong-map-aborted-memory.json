@@ -1,0 +1,254 @@
+{
+  "version": 1,
+  "passed": false,
+  "difference": {
+    "path": "$execution",
+    "message": "Unexpected end of JSON input"
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "EXPERIMENTAL worker-scoped strong Map registries in the immutable qualification host helper only. All original game source bytes remain unchanged. One fixed callback-only fixture, three warmups then twenty measured battles; no broad battle/scene qualification or speed claim.",
+  "input": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm23-current.js",
+    "sha256": "de689b347811c47a050cb16d4d5e4acdd8cf16db9f9a427875c25eccdf938033",
+    "metadataSha256": "3c3855472d4b8a5d9e6c0fcdedac499f5534dcf12a0a9a3c85c0f4749a90ba2d"
+  },
+  "baselineManifest": {
+    "file": "work/native-warm23-partition/manifest.json",
+    "sha256": "8219c382c4d535d11927149f68f1f2aa4583d191b058262119dd6a57224c7a78"
+  },
+  "metadataSha256": "3c3855472d4b8a5d9e6c0fcdedac499f5534dcf12a0a9a3c85c0f4749a90ba2d",
+  "candidate": {
+    "file": "benchmarks/validation/worker-strong-map-helper.js",
+    "sha256": "d3f592758dfae8581de00febb5781d164c0c1058de4c82bc29321e9c3b45a139",
+    "sourceSha256": "746616f2e4429b7eea1dfbd55f1ccdfbb6563042b91f9365354b3a9bf23de16d",
+    "activeAdapterChanged": false
+  },
+  "replacementProof": {
+    "start": 1207057,
+    "end": 1215358,
+    "oldHelperSha256": "a157ada4233c4c003c802f878bb5bf4a7f36dd41f21cc5fedf56c805d5bb82fd",
+    "newHelperSha256": "746616f2e4429b7eea1dfbd55f1ccdfbb6563042b91f9365354b3a9bf23de16d",
+    "unchangedPrefixSha256": "0c46a3c199524b0eb66fc779c7da050b8303bd693aacedc09cea8d6551e00e1b",
+    "unchangedSuffixSha256": "7292d779e999f237648a98d972ef56f0ef7cc93d26bb571e85eb5478af0aa723",
+    "allOriginalGameFunctionSourceBytesUnchanged": true,
+    "reason": "The sole edit replaces one exact known host-membrane IIFE. Every byte outside that host helper, and every other source unit, is unchanged; original module/helper source inputs remain separately pinned."
+  },
+  "units": [
+    {
+      "file": "/workspace/afkarena-simx/work/native-worker-strong-map/combined.js",
+      "sha256": "96b8a7973a67e1495127409cb58765311a42ae9e572701a16de996e49a757dc0",
+      "bytes": 1778562,
+      "nativeName": "combined",
+      "unchangedFromBaseline": false
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "bytes": 1214707,
+      "nativeName": "factories_2",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "bytes": 1202106,
+      "nativeName": "factories_3",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "bytes": 1219549,
+      "nativeName": "factories_4",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "bytes": 1213047,
+      "nativeName": "factories_5",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "bytes": 1223796,
+      "nativeName": "factories_6",
+      "unchangedFromBaseline": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sha256": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
+      "bytes": 1269675,
+      "nativeName": "runner",
+      "unchangedFromBaseline": true
+    }
+  ],
+  "sourceInputs": {
+    "src/srcmodule/game_base.js": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "src/srcmodule/game_ui_1.js": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+    "src/srcmodule/game_ui_2.js": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+    "src/srcmodule/game_ui_3.js": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+    "src/srcmodule/game_ui_4.js": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "src/srcmodule/ui_war.js": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3"
+  },
+  "approvedImmutableTables": [
+    "AnimDuration",
+    "Astrolabe",
+    "AstrolabeTag",
+    "BattleFieldPosition",
+    "BattleGround",
+    "Equip",
+    "GuildTurntableTech",
+    "Param",
+    "ParamBattleMode",
+    "Pet",
+    "PetBook",
+    "PetQualityAttr",
+    "PetTalentCatg",
+    "PetTalentLib",
+    "SignatureLevel",
+    "SignaturePower",
+    "Skill",
+    "SkillBuff",
+    "SkinArtRes",
+    "Sound",
+    "SoundAnim",
+    "SoundBattle",
+    "SoundEffect",
+    "StageBattleBoss",
+    "StageBattleIdx",
+    "Transct",
+    "TransctHeroAttrs",
+    "Unit",
+    "UnitGS",
+    "UnitLevel",
+    "UnitPuppet",
+    "UnitQuality",
+    "UnitRank",
+    "UnitTag",
+    "UnitTexas",
+    "WarEffect"
+  ],
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "reference": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm23-current.js.reference.json",
+    "sha256": "467139f71442d274c248eb2d5e91d801a6b44a1c4c5b28abb2f8ee625869feb5"
+  },
+  "hostInputs": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm23-current.js.host-inputs.json",
+    "sha256": "a408711a043b547179013ae58a046b7ba04365749df6c83120a20a41401c77b8",
+    "randomCount": 2,
+    "clockCount": 5980
+  },
+  "tableBundle": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm23-current.js.tables.json",
+    "sha256": "91dba76e4f840237264b782855193a71fd2ce1b45f6bb328e5f37fb474f9c1c1",
+    "bytes": 101695086,
+    "embedded": false
+  },
+  "gcAudit": {
+    "file": "benchmarks/validation/gc-observability.json",
+    "sha256": "820907e74811c48eafda8cb6a378c3e4548857ba1c1037334136cf85cbe458f8",
+    "sourceCount": 18,
+    "exactNameTotals": {
+      "WeakRef": 0,
+      "FinalizationRegistry": 0,
+      "WeakMap": 0,
+      "WeakSet": 0,
+      "gc": 0,
+      "collectGarbage": 0,
+      "garbageCollect": 5,
+      "getJSBindingObjectCount": 4,
+      "releaseJSBindingObject": 2,
+      "__jsc__": 4,
+      "HermesInternal": 0,
+      "getHeapInfo": 0,
+      "getInstrumentedStats": 0,
+      "getRuntimeProperties": 0,
+      "getGCStats": 0,
+      "gczeal": 0,
+      "gcparam": 0,
+      "FinalizationGroup": 0,
+      "WeakCell": 0,
+      "WeakReference": 0,
+      "onGC": 0,
+      "onGarbageCollect": 0,
+      "onGarbageCollection": 0,
+      "memoryUsage": 0,
+      "usedJSHeapSize": 0,
+      "totalJSHeapSize": 0
+    },
+    "limitations": [
+      "Text matches do not establish lexical binding identity or reachability. No claim follows solely from substring absence: constructed names, aliases, eval/Function-generated code, downloaded scripts and native injected APIs are not resolved.",
+      "The audit does not establish absence of native finalizers or GC-visible Cocos lifetime effects. Explicit native ownership calls are inventoried separately, not removed or normalized.",
+      "Harness WeakMaps and VM collector implementation are outside these18 originals. WeakMap has no standard iteration, but this audit does not prove every external weak consumer is unobservable.",
+      "Each heap/young-generation/GC runtime configuration still requires the unchanged strict battle report and input-consumption gate; broad ordered trace and full-scene/random-roster qualification remain separate."
+    ]
+  },
+  "ownershipArgument": [
+    "The native worker loader assigns __nativeTables once from the pinned JSON bundle and has no eviction. Every decoded raw root remains reachable through that binding for the single process/batch lifetime.",
+    "Immutable graph edges cannot change through exposed table proxies. Under the bounded loader domain, every raw descendant remains strongly reachable from a leased root, so records Map does not add a raw-key lifetime.",
+    "Each created proxy is already strongly retained by record.proxy while its raw key is reachable. proxies Map therefore adds no proxy-key lifetime within the worker lease.",
+    "The register-local graph map never escapes; pending retains its raw keys throughout external validation/digest callbacks.",
+    "Captured Map constructor and bound native get/has/set operations do not consult later mutable Map/Function prototype method properties. Generic root wrapping and parsing are rejected; this helper is not promoted as a generic library.",
+    "The lease and source audit are bounded to this supplied-source worker. Arbitrary host raw aliases, reflection into added harness globals, cross-worker reuse, root eviction and hostile pre-bootstrap intrinsic replacement are outside this experimental domain."
+  ],
+  "leaseChecks": [
+    "Every wrap requires an approved immutable table name and exact own data-root identity in the retained __nativeTables object.",
+    "A replaced worker root-set binding fails sticky qualification.",
+    "Generic parse and roots outside the loader bundle fail sticky qualification."
+  ],
+  "intrinsicCaptureOrdering": "The helper captures trusted host-bootstrap Map/call/bind identities at its IIFE evaluation. This is a bounded harness-domain assumption, not a test that arbitrary pre-mutated globals are pristine; hostile pre-bootstrap extensions are unsupported.",
+  "observed": null,
+  "comparedFields": [],
+  "execution": {
+    "code": null,
+    "signal": "SIGKILL"
+  },
+  "artifacts": [
+    {
+      "label": "actual",
+      "file": "benchmarks/validation/worker-strong-map-aborted-memory-actual.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "stderr",
+      "file": "benchmarks/validation/worker-strong-map-aborted-memory-stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    }
+  ],
+  "unit0Archive": {
+    "file": "benchmarks/validation/worker-strong-map-unit0.js.gz",
+    "sha256": "fc037021823af6350c5fb06b74e65e53cdf60ef754fb35dab102e81b20c26b0e"
+  },
+  "producer": {
+    "file": "tools/probe-worker-strong-map.mjs",
+    "sha256": "acf4f9c641cc1fb0a3719b04d3bdb2f3df5f2a2816416aba410e98aef3a4d735"
+  },
+  "cancelledByAgentForMemoryHeadroom": true,
+  "cancellationReason": "The candidate Node process reached ~2GiB RSS while concurrent8GiB nativeGC trial used ~5.9GiB RSS and cgroupusage reached ~15.9GB. Agent killed ONLY its own Node proof to preserve native trial; no OOM or semantic mismatch established."
+}

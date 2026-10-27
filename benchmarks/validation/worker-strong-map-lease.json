@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Small experimental worker-lease/captured-Map identities proof only; full20 battle report parity is a separate gate.",
+  "qualifiesFor10000Target": false,
+  "helper": {
+    "file": "benchmarks/validation/worker-strong-map-helper.js",
+    "sha256": "d3f592758dfae8581de00febb5781d164c0c1058de4c82bc29321e9c3b45a139"
+  },
+  "toolSha256": "790329a8901c76d75f8feb29b4ddc8d7aa2732955a56f0304a2c7d7597481f6f",
+  "captured": {
+    "negativeZero": true,
+    "canonical": true,
+    "descriptor": true,
+    "clean": true,
+    "stats": {
+      "roots": 1,
+      "nodes": 3,
+      "proxies": 2,
+      "gets": 3,
+      "descriptors": 1,
+      "writes": 0,
+      "failures": 0,
+      "clean": true,
+      "firstFailure": null
+    }
+  },
+  "directed": [
+    {
+      "label": "generic-raw-root",
+      "rejected": true,
+      "sticky": true
+    },
+    {
+      "label": "unapproved-name",
+      "rejected": true,
+      "sticky": true
+    },
+    {
+      "label": "generic-parse",
+      "rejected": true,
+      "sticky": true
+    },
+    {
+      "label": "root-set-replacement",
+      "rejected": true,
+      "sticky": true
+    }
+  ]
+}
