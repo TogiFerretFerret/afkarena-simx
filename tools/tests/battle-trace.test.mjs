@@ -30,3 +30,11 @@ test('independent realm snapshots are deterministic and event changes fail compa
  assert.deepEqual(snapshot(),snapshot());const events=[{kind:'rng',bits:binary64(1)},{kind:'callback',id:2}];
  assert.equal(firstTraceDifference(events,events),null);assert.equal(firstTraceDifference(events,events.slice(1)).kind,'event_count');assert.equal(firstTraceDifference(events,[events[1],events[0]]).index,0);
 });
+
+test('graph deltas reconstruct complete snapshots including removals and alias changes',async()=>{
+ const {createGraphDeltaRecorder,applyGraphDelta}=await import('../battle-trace.mjs');
+ const snapshot=createGraphSnapshotter(),capture=createGraphDeltaRecorder(snapshot);const shared={hp:1};let roots={unit:shared,list:[shared]};
+ let restored=applyGraphDelta(null,capture(roots));assert.deepEqual(restored,snapshot(roots));
+ shared.hp=-0;roots.list.push({hp:NaN});restored=applyGraphDelta(restored,capture(roots));assert.deepEqual(restored,snapshot(roots));
+ roots={only:roots.list[1]};restored=applyGraphDelta(restored,capture(roots));assert.deepEqual(restored,snapshot(roots));
+});

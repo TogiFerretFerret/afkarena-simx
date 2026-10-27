@@ -92,3 +92,25 @@ export function createTraceRecorder(snapshot){
   const events=[];
   return{events,record(kind,payload,roots){const state=snapshot(roots);const event={sequence:events.length,kind,payload,stateHash:state.sha256};events.push(event);return{event,state};}};
 }
+
+/** Lossless per-snapshot graph deltas. Roots and BFS order are retained so the
+ * exact complete graph/hash can be reconstructed without repeated function data.
+ */
+export function createGraphDeltaRecorder(snapshot){
+  let previous=new Map();
+  return roots=>{
+    const state=snapshot(roots),current=new Map(state.nodes.map(node=>[node.id,JSON.stringify(node)]));
+    const changed=state.nodes.filter(node=>previous.get(node.id)!==current.get(node.id));
+    const removed=[...previous.keys()].filter(id=>!current.has(id));
+    previous=current;
+    return{version:state.version,roots:state.roots,order:state.nodes.map(node=>node.id),changed,removed,sha256:state.sha256,coverage:state.coverage};
+  };
+}
+export function applyGraphDelta(previous,delta){
+  const nodes=new Map(previous?.nodes.map(node=>[node.id,node])??[]);
+  for(const id of delta.removed)nodes.delete(id);
+  for(const node of delta.changed)nodes.set(node.id,node);
+  const graph={version:delta.version,roots:delta.roots,nodes:delta.order.map(id=>{if(!nodes.has(id))throw new Error(`Missing graph delta node ${id}`);return nodes.get(id);})};
+  if(digest(JSON.stringify(graph))!==delta.sha256)throw new Error('Graph delta checksum mismatch');
+  return{...graph,sha256:delta.sha256,coverage:delta.coverage};
+}
