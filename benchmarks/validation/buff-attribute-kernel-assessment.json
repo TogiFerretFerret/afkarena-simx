@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "passed": true,
+  "integrated": false,
+  "qualifiesFor10000Target": false,
+  "source": {
+    "file": "src/srcmodule/game_battle.js",
+    "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
+  },
+  "methods": {
+    "applyPercentValue": {
+      "start": 41723,
+      "end": 42574,
+      "sha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+      "text": "function(){for(var e=this.info,t=this.owner.attribs,a=ed.AttrDebugMgr&&ed.AttrDebugMgr.getDynamic(this.owner),i=this.owner.buff_effects.noAttrUp&&!this.owner.isAttrLockExemptedFor(\"noAttrUp\",e.ID),r=this.owner.buff_effects.noAttrDown&&!this.owner.isAttrLockExemptedFor(\"noAttrDown\",e.ID),n=this.attrib.length,l=0;l<n;l++){var o=this.attrib[l],f=0,s=a&&t[o],c=0,d=e[ed.attrib_names_x[o]];if(d){var u=ed.attrib_names_a[o];if(e.AddSource&&\"owner\"===e.AddSource&&this.owner){var _=e[u];a&&(c=this.owner.attribs[_]||0),f+=(this.owner.attribs[_]||0)*d}else{_=e[u];a&&(c=this.caster_attribs[_]||0),f+=(this.caster_attribs[_]||0)*d}}0!==f&&(\"HPR\"===o||\"MPR\"===o||f>0&&!i||f<0&&!r)&&(t[o]=t[o]+f),a&&d&&ed.AttrDebugMgr.recordBuffValue(a,this,o,s,t[o],f,{kind:\"percent\",basis:c,coefficient:d,basisAttr:e[ed.attrib_names_a[o]]},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}}"
+    },
+    "applyFixedValue": {
+      "start": 42591,
+      "end": 43256,
+      "sha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+      "text": "function(){for(var e=this.info,t=this.owner.attribs,a=ed.AttrDebugMgr&&ed.AttrDebugMgr.getDynamic(this.owner),i=this.owner.buff_effects.noAttrUp&&!this.owner.isAttrLockExemptedFor(\"noAttrUp\",e.ID),r=this.owner.buff_effects.noAttrDown&&!this.owner.isAttrLockExemptedFor(\"noAttrDown\",e.ID),n=this.attrib.length,l=0;l<n;l++){var o=this.attrib[l],f=e[o]||0,s=a&&t[o];0!==f&&(\"HPR\"===o&&(f<0&&this.owner.rageObject&&(f=this.owner.rageObject.processHPR(this.owner,f,this)),this.buffIncHPR=f),(\"HPR\"===o||\"MPR\"===o||f>0&&!i||f<0&&!r)&&(t[o]=t[o]+f)),a&&e[o]&&ed.AttrDebugMgr.recordBuffValue(a,this,o,s,t[o],f,{kind:\"fixed\",value:e[o]||0},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}}"
+    }
+  },
+  "fixtures": {
+    "count": 12,
+    "names": [
+      "percent initializes positive zero before multiply/add; signed zero is not reassociated",
+      "percent owner basis uses current target values in sequential duplicate attributes",
+      "percent caster/target alias uses current state, not a precomputed vector",
+      "lock callback runs even for an empty attribute list",
+      "debug callback precedes lock tests and can change owner flags and list",
+      "percent reads AddSource twice; first getter cannot be memoized",
+      "percent debug basis is read separately from arithmetic basis",
+      "fixed HPR rage callback changes f before buffIncHPR and attribute write",
+      "fixed HPR writes buffIncHPR even when ordinary upward changes are locked",
+      "prototype setter is observable and rejects a direct raw-slot store",
+      "attribute length captured once but each item read live after preceding setter",
+      "throwing lock callback leaves arithmetic untouched; no fallback replay after prefix"
+    ]
+  },
+  "profile": {
+    "file": "benchmarks/validation/native-no-proxy-measured-perf-source.json",
+    "sha256": "698db443312bdebfdc22b86ceed39c0ebf4f9202fc213a3b29c750d77d15c579",
+    "samples": 3451,
+    "inclusive": [
+      {
+        "samples": 1375,
+        "percentOfAllSamples": 39.84352361634309,
+        "unit": "partition_0",
+        "symbol": "_546_addBuff_1_",
+        "address": "0x1ed026",
+        "name": "addBuff",
+        "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+        "sourceRangeCount": 1,
+        "ranges": [
+          {
+            "file": "src/srcmodule/game_battle.js",
+            "start": 90693,
+            "end": 92695,
+            "contextBefore": "+){if(t[i].info.ForceOrder.endsWith(\"defer\"))break}return t.splice(i,0,e)}return t.push(e)},addBuff:"
+          }
+        ]
+      },
+      {
+        "samples": 663,
+        "percentOfAllSamples": 19.21182266009852,
+        "unit": "partition_0",
+        "symbol": "_534_resetBuffApply",
+        "address": "0x2956a7",
+        "name": "resetBuffApply",
+        "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+        "sourceRangeCount": 1,
+        "ranges": [
+          {
+            "file": "src/srcmodule/game_battle.js",
+            "start": 87423,
+            "end": 87610,
+            "contextBefore": "s.rebuild(\"rebuild\"),this.addInitBuff(),this.applyBuffEffects(),this.initHpInfo(!0)},resetBuffApply:"
+          }
+        ]
+      },
+      {
+        "samples": 127,
+        "percentOfAllSamples": 3.6800927267458707,
+        "unit": "partition_0",
+        "symbol": "_381_applyPercentValue",
+        "address": "0x4a316d",
+        "name": "applyPercentValue",
+        "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+        "sourceRangeCount": 1,
+        "ranges": [
+          {
+            "file": "src/srcmodule/game_battle.js",
+            "start": 41723,
+            "end": 42574,
+            "contextBefore": "alBearDamage(a,this.caster,this.owner)),this.owner.battledata.addBearDamage(a))}},applyPercentValue:"
+          }
+        ]
+      },
+      {
+        "samples": 64,
+        "percentOfAllSamples": 1.8545349174152421,
+        "unit": "partition_0",
+        "symbol": "_382_applyFixedValue",
+        "address": "0x1434d0",
+        "name": "applyFixedValue",
+        "sourceSha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+        "sourceRangeCount": 1,
+        "ranges": [
+          {
+            "file": "src/srcmodule/game_battle.js",
+            "start": 42591,
+            "end": 43256,
+            "contextBefore": "coefficient:d,basisAttr:e[ed.attrib_names_a[o]]},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}},applyFixedValue:"
+          }
+        ]
+      },
+      {
+        "samples": 34,
+        "percentOfAllSamples": 0.9852216748768473,
+        "unit": "partition_0",
+        "symbol": "_356_addBuff",
+        "address": "0x299ceb",
+        "name": "addBuff",
+        "sourceSha256": "2bb963d9151b8cd4a5d4246eb94df8b261d8a854a5a3a6e97bd2f3ffb638eb81",
+        "sourceRangeCount": 1,
+        "ranges": [
+          {
+            "file": "src/srcmodule/game_battle.js",
+            "start": 31924,
+            "end": 32216,
+            "contextBefore": "d.edpCompMult([1,0],ed.edpSub(e.position,f.position))),e.knockUp(a,ed.edpMult(o,i),r,n,l)}},addBuff:"
+          }
+        ]
+      }
+    ],
+    "leaf": [
+      {
+        "samples": 7,
+        "percentOfAllSamples": 0.2028397565922921,
+        "unit": "partition_0",
+        "symbol": "_381_applyPercentValue",
+        "address": "0x4a316d",
+        "name": "applyPercentValue",
+        "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+        "sourceRangeCount": 1,
+        "ranges": [
+          {
+            "file": "src/srcmodule/game_battle.js",
+            "start": 41723,
+            "end": 42574,
+            "contextBefore": "alBearDamage(a,this.caster,this.owner)),this.owner.battledata.addBearDamage(a))}},applyPercentValue:"
+          }
+        ]
+      },
+      {
+        "samples": 6,
+        "percentOfAllSamples": 0.17386264850767894,
+        "unit": "partition_0",
+        "symbol": "_546_addBuff_1_",
+        "address": "0x1ed026",
+        "name": "addBuff",
+        "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+        "sourceRangeCount": 1,
+        "ranges": [
+          {
+            "file": "src/srcmodule/game_battle.js",
+            "start": 90693,
+            "end": 92695,
+            "contextBefore": "+){if(t[i].info.ForceOrder.endsWith(\"defer\"))break}return t.splice(i,0,e)}return t.push(e)},addBuff:"
+          }
+        ]
+      },
+      {
+        "samples": 5,
+        "percentOfAllSamples": 0.14488554042306578,
+        "unit": "partition_0",
+        "symbol": "_382_applyFixedValue",
+        "address": "0x1434d0",
+        "name": "applyFixedValue",
+        "sourceSha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+        "sourceRangeCount": 1,
+        "ranges": [
+          {
+            "file": "src/srcmodule/game_battle.js",
+            "start": 42591,
+            "end": 43256,
+            "contextBefore": "coefficient:d,basisAttr:e[ed.attrib_names_a[o]]},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}},applyFixedValue:"
+          }
+        ]
+      },
+      {
+        "samples": 2,
+        "percentOfAllSamples": 0.057954216169226316,
+        "unit": "partition_0",
+        "symbol": "_534_resetBuffApply",
+        "address": "0x2956a7",
+        "name": "resetBuffApply",
+        "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+        "sourceRangeCount": 1,
+        "ranges": [
+          {
+            "file": "src/srcmodule/game_battle.js",
+            "start": 87423,
+            "end": 87610,
+            "contextBefore": "s.rebuild(\"rebuild\"),this.addInitBuff(),this.applyBuffEffects(),this.initHpInfo(!0)},resetBuffApply:"
+          }
+        ]
+      }
+    ],
+    "note": "Inclusive ancestry overlaps. addBuff/resetBuffApply cost does not establish an arithmetic-only speedup."
+  },
+  "proposedFirstKernel": {
+    "method": "applyPercentValue",
+    "placement": "Whole-function guarded entry before source prefix; fallback only before any observable effect. Do not skip or replay getDynamic/isAttrLockExemptedFor callbacks.",
+    "guards": [
+      "Use native getter-free metadata inspection, rejecting Proxy/Host/lazy/exotic receivers. JS Object.getPrototypeOf or descriptor inspection alone cannot guard arbitrary Proxies safely.",
+      "Require current canonical own DATA links info, owner, owner.attribs, owner.buff_effects, caster_attribs, attrib; normal dense ordinary array with own length and every indexed element; reject holes/accessors/inherited items and non-string attribute keys.",
+      "Require current exact original function identity/source metadata. Require AttrDebugMgr absent/falsy DATA, noAttrUp and noAttrDown falsy DATA, and all branch-needed name maps/current input values guarded as ordinary own DATA. A truthy debug manager may return false but still has required effects.",
+      "Require finite numeric basis/coefficient/target values; exact JS truthiness for zero and negative zero. Reject strings, undefined, null, booleans and object coercions rather than translating ||0 as generic numeric conversion.",
+      "Require writable own target data slots; reject setters/prototype interception. Keep output objects/array identities and use GC-aware current slots, never raw descriptor pointers across allocation.",
+      "First version should reject owner-basis selection and all input/output aliasing, or prove each repeated read/write using sequential current values. Duplicate attribute names cannot be reduced to one sum.",
+      "Do not allocate or invoke JS during admit/execute. All guards and finite-result checks must complete before first write; if using a temporary execution plan, evaluate aliases and duplicate attributes against evolving target values.",
+      "Maintain f=+0; f += (basis || +0) * coefficient; t[o] = t[o] + f in source order. No FMA, reassociation, vector reduction, reciprocal multiplication or reassigned operation order. Preserve raw signed-zero/NaN behavior or reject before mutation.",
+      "Whole-function fast path only when every source prefix/loop read is proved nonobservable. Otherwise use a CFG-proven interior splice after callbacks with exact live locals and original continuation; never restart the whole function after callback effects."
+    ],
+    "fallbackScope": "Fixed-value HPR remains original because processHPR and buffIncHPR are observable. Fixed non-HPR may share an arithmetic kernel only after independent guard proof.",
+    "nextRequiredEvidence": [
+      "Measure actual admission/hit counts and time in this loop from the exact warmed fixture.",
+      "Actual untouched-native-vs-candidate tests with moving GC, current data mutation, aliasing, Proxy/accessor rejection, exceptions, callback mutations and f64::to_bits().",
+      "Strict full raw source battle gate and ordered event/state trace before broader fidelity qualification."
+    ],
+    "performanceClaim": null
+  }
+}
