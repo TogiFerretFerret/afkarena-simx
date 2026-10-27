@@ -210,6 +210,7 @@
     host.installPortableBattleTrace = function installPortableBattleTrace(options) {
         options = options || {};
         var capture = host.installGraphCapture(options), events = [], finished = false, canonicalCode=[], codeHashes=[], nodeHashes=new Map();
+        var digest=options.digest||host.portableTraceSha256;
         var maxEvents = options.maxEvents === undefined ? 1000000 : options.maxEvents;
         return {
             capture: capture,
@@ -222,19 +223,19 @@
                 if(options.compact){
                     while(canonicalCode.length<graph.codeTable.length){
                         var entry=graph.codeTable[canonicalCode.length];
-                        canonicalCode.push(entry.kind==='source'?{kind:'source',sha256:host.portableTraceSha256(entry.source)}:entry);
-                        codeHashes.push(host.portableTraceSha256(JSON.stringify(canonicalCode[canonicalCode.length-1])));
+                        canonicalCode.push(entry.kind==='source'?{kind:'source',sha256:digest(entry.source)}:entry);
+                        codeHashes.push(digest(JSON.stringify(canonicalCode[canonicalCode.length-1])));
                     }
                     var orderedHashes=[];
                     for(var ni=0;ni<graph.nodes.length;ni++){
                         var node=graph.nodes[ni],text=JSON.stringify(node),cached=nodeHashes.get(node.id);
-                        if(!cached||cached.text!==text){cached={text:text,hash:host.portableTraceSha256(text)};nodeHashes.set(node.id,cached);}
+                        if(!cached||cached.text!==text){cached={text:text,hash:digest(text)};nodeHashes.set(node.id,cached);}
                         orderedHashes.push([node.id,cached.hash]);
                     }
                     // Exact Merkle coverage: every node byte and its traversal
                     // order are covered. Reuse needs equality of the complete
                     // serialization; no mutable field is assumed invariant.
-                    event.stateHash=host.portableTraceSha256(JSON.stringify(['portable-graph-merkle-v1',graph.version,graph.roots,orderedHashes,codeHashes,
+                    event.stateHash=digest(JSON.stringify(['portable-graph-merkle-v1',graph.version,graph.roots,orderedHashes,codeHashes,
                         {accessorsInvoked:graph.coverage.accessorsInvoked,functionPolicy:graph.coverage.functionPolicy,opaque:graph.coverage.opaque}]));
                 }else event.graph=graph;
                 events.push(event);
