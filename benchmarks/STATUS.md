@@ -87,3 +87,16 @@ See `results/2026-10-27T20-33-51.021Z-native-oracle-seven-v8-sort.json`. The fir
 battle takes 72.5 seconds including lazy guarded-table validation; this is a cold
 measurement, not steady-state simulation throughput. Actor/effect/view lifecycle
 and the full random roster remain unqualified.
+
+The refreshed warmed workload passes source JS, emitted Node, and seven-unit
+Node replay with every compared semantic field intact: three warmups followed
+by 20 measured battles and 309,060 measured callbacks. All replay inputs and
+outputs are committed under `fixtures/warm23-counter-capsule/`; the source gate
+is `validation/warm23-source-node.json`. This establishes the reference for the
+next native measurement, not a new native throughput result.
+
+Archived ordered traces can be checked with
+`node tools/check-archived-native-trace.mjs reference.stdout.gz candidate.stdout.gz metadata.json gate.json`.
+This gate rejects missing state captures and compares complete ordered captures,
+semantic report fields and replay consumption. Adding the checker does not
+establish that an actual native battle has passed the ordered-trace gate.
