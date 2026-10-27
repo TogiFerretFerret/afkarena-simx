@@ -7,6 +7,23 @@ pub struct LocalClock {
     pub next_tick: f64,
     pub tick_interval: f64,
 }
+#[derive(Clone, Copy, Debug)]
+pub enum Event {
+    Entered,
+    NextTickWritten,
+    TickIntervalWritten,
+    CallbackEntered,
+    CallbackReturned,
+    Returned,
+}
+pub trait Observer {
+    fn observe(&mut self, event: Event, clock: &LocalClock);
+}
+struct NoopObserver;
+impl Observer for NoopObserver {
+    #[inline(always)]
+    fn observe(&mut self, _: Event, _: &LocalClock) {}
+}
 impl Default for LocalClock {
     fn default() -> Self { Self { next_tick: 0.0, tick_interval: 1.0 / 8.0 } }
 }
@@ -15,11 +32,26 @@ impl LocalClock {
     /// not terminate. Battle setup supplies a positive tick interval.
     #[inline]
     pub fn update_with<F: FnMut(&mut Self)>(&mut self, elapsed: f64, mut tick: F) {
+        self.update_traced_with(elapsed, &mut NoopObserver, |clock, _| tick(clock));
+    }
+
+    /// Trace observers are nonthrowing and do not mutate the clock. A traced
+    /// callback emits write events for its own field mutations.
+    #[inline]
+    pub fn update_traced_with<O: Observer, F: FnMut(&mut Self, &mut O)>(&mut self, elapsed: f64, observer: &mut O, mut tick: F) {
+        observer.observe(Event::Entered, self);
         self.next_tick -= elapsed;
+        observer.observe(Event::NextTickWritten, self);
         if self.next_tick <= 0.0 {
-            tick(self);
-            while self.next_tick <= 0.0 { self.next_tick += self.tick_interval; }
+            observer.observe(Event::CallbackEntered, self);
+            tick(self, observer);
+            observer.observe(Event::CallbackReturned, self);
+            while self.next_tick <= 0.0 {
+                self.next_tick += self.tick_interval;
+                observer.observe(Event::NextTickWritten, self);
+            }
         }
+        observer.observe(Event::Returned, self);
     }
 }
 

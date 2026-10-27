@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_battle.js",
+  "sourceName": "ed.BattleEngine.updateLocalBattleEngine",
+  "start": 235091,
+  "end": 235212,
+  "sha256": "2742c2b3f22131136a9b70f248c805b54bf8ece70eabc8192b2a7913de68020d",
+  "translation": "ordered_local_clock_repeated_addition",
+  "formalProof": false,
+  "domain": [
+    "Clock fields and elapsed are JavaScript Number values represented as binary64",
+    "Clock has ordinary data fields; nonthrowing trace setters observe writes without changing values",
+    "The tick callback may update next_tick and tick_interval; mutations are visible to the following loop",
+    "Only terminating inputs and callbacks are supported; zero/negative intervals can leave the original source in an infinite loop",
+    "Repeated additions are preserved exactly; replacing them with ceil or division is not assumed equivalent",
+    "Callbacks and observers do not reenter updateLocalBattleEngine",
+    "NaN payload and sign are diagnostic; all non-NaN numeric fields require raw bit equality"
+  ],
+  "protocol": "nextTickBits intervalBits elapsedBits mode nextMutationBits intervalMutationBits; mode0none,1next,2interval,3both(next then interval)",
+  "trace": {
+    "events": [
+      "enter",
+      "next_tick_write",
+      "tick_interval_write",
+      "callback_enter",
+      "callback_return",
+      "return"
+    ],
+    "fields": [
+      "kind",
+      "next_tick",
+      "tick_interval"
+    ],
+    "numericPolicy": "Default semantic NaN classification with explicit mismatch counts; --strict-bits requires raw NaN bits too"
+  }
+}
