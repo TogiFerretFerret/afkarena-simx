@@ -32,6 +32,9 @@ const scope=option('--scope',args.includes('--all-definitions')?'all':'battle-co
 const captureMode=option('--capture','all');
 const traceEnabled=args.includes('--trace');
 const tableMembraneEnabled=traceEnabled||args.includes('--table-membrane');
+const eagerBattle=args.includes('--eager-battle');
+const mutableTables=(option('--mutable-tables','')).split(',').filter(Boolean);
+if(mutableTables.length&&!tableMembraneEnabled)throw new Error('Mutable table policy requires table qualification mode');
 if(traceEnabled&&(battles!==1||warmup!==0))throw new Error('Diagnostic trace requires one battle and no warmup');
 const factoryChunkSize=Number(option('--factory-chunk-size',args.includes('--factory-chunk-bytes')?'2000':'0'));
 const factoryChunkBytes=Number(option('--factory-chunk-bytes','0'));
@@ -50,7 +53,7 @@ const replayInputs=replayInputBytes?JSON.parse((replayInputBytes[0]===31&&replay
 let replayRandomIndex=0;
 const entropy=[],clockObserver={current:null},traceObserver={current:null};
 const traceSources=tableMembraneEnabled?await loadNativeTraceSources(root):[];
-const runtime=await createBootstrapRuntime({tableBoundaryFactory:tableMembraneEnabled?createNativeTableBoundaryFactory(traceSources):undefined,hostRandom:()=>{if(replayInputs&&replayRandomIndex>=replayInputs.random.length)throw new Error('Replayed source host random inputs exhausted');const value=replayInputs?replayInputs.random[replayRandomIndex++]:Math.random();entropy.push(value);if(traceObserver.current)traceObserver.current('host:random',{ordinal:entropy.length-1,value});return value;},hostClock:{mode:replayInputs?'replay':'record',tape:replayInputs?replayInputs.clock:[],observe(entry,ordinal){if(clockObserver.current)clockObserver.current(entry,ordinal);}}});
+const runtime=await createBootstrapRuntime({eagerBattle,tableBoundaryFactory:tableMembraneEnabled?createNativeTableBoundaryFactory(traceSources,{mutableTables}):undefined,hostRandom:()=>{if(replayInputs&&replayRandomIndex>=replayInputs.random.length)throw new Error('Replayed source host random inputs exhausted');const value=replayInputs?replayInputs.random[replayRandomIndex++]:Math.random();entropy.push(value);if(traceObserver.current)traceObserver.current('host:random',{ordinal:entropy.length-1,value});return value;},hostClock:{mode:replayInputs?'replay':'record',tape:replayInputs?replayInputs.clock:[],observe(entry,ordinal){if(clockObserver.current)clockObserver.current(entry,ordinal);}}});
 if(!runtime.clock)throw new Error('Copied source runtime must expose recorded hostClock before native emission');
 if(!runtime.sourceRecords)throw new Error('Copied source runtime must expose its exact sourceRecords');
 if(args.includes('--render-scene'))await installBootstrapRenderScene(runtime);
@@ -246,7 +249,7 @@ try{
   if(args.includes('--embed-tables'))put('var __nativeTableText='+JSON.stringify(tableBytes.toString('utf8'))+';');
   else put('var __nativeTablePath='+JSON.stringify(tablesPath)+';var __nativeTableText=null;');
   for(const record of traceSources)put(record.source);
-  if(tableMembraneEnabled)put('var __nativeTableBoundary=installQualificationTableMembrane({digest:globalThis.__nativeDiagnosticDigest||portableTraceSha256});var __nativeWrappedTables=Object.create(null);');
+  if(tableMembraneEnabled)put('var __nativeTableBoundary=installQualificationTablePolicy({mutableTables:'+JSON.stringify(mutableTables)+',digest:globalThis.__nativeDiagnosticDigest||portableTraceSha256});var __nativeWrappedTables=Object.create(null);');
   put(`var __nativeTables=null;ed.getDataTable=function(name){
     if(__nativeTables===null){
       if(__nativeTableText===null){if(typeof hermescli!=='object'||typeof hermescli.loadFile!=='function')throw new Error('External table IO requires hermescli.loadFile host binding');__nativeTableText=__nativeDecodeUTF8(hermescli.loadFile(__nativeTablePath));}
@@ -254,7 +257,7 @@ try{
     }
     if(!Object.prototype.hasOwnProperty.call(__nativeTables,name))throw new Error('Missing native source table: '+name);if(typeof __nativeTableBoundary!=='undefined'){if(!Object.prototype.hasOwnProperty.call(__nativeWrappedTables,name))__nativeWrappedTables[name]=__nativeTableBoundary.wrap(__nativeTables[name],{name:name});return __nativeWrappedTables[name];}return __nativeTables[name];
   };ed.logbugly=function(message){throw new Error(message);};`);
-  for(const record of records.postInitializers)put(record.source+';');
+  for(const record of records.initializationPlan||records.postInitializers)put(record.source+';');
   put('new ed.soundManager();ed.audio_effect_switch=bootstrapHost.audioEnabled;');
   put('globalThis.clientCall=('+clientCall+');globalThis.resetClientCall=('+resetMatch[1]+');');
   put('var __nativeSourceSnapshot=('+snapshot+');var __nativeSnapshots=0;var __nativeScene={snapshot:function(){__nativeSnapshots++;return __nativeSourceSnapshot.apply(this,arguments);}};');
@@ -264,7 +267,7 @@ try{
   put('__nativeCallbacks.sceneHost=__nativeScene;');
   put('var __nativeRuntime={ed:ed,context:globalThis,callbacks:__nativeCallbacks,host:bootstrapHost,loaded:__nativeLoaded};');
   if(tableMembraneEnabled)put('__nativeRuntime.tableBoundary=__nativeTableBoundary;');
-  if(traceEnabled)put(' __nativeRuntime.nativeTrace=installBattleTraceInstrumentation(__nativeRuntime,{compact:true,programState:true,maxNodes:300000,globalNames:'+JSON.stringify([...new Set([...runtime.sourceRecords.globals.keys(),...(runtime.sourceRecords.functionDeclarations||[]).map(record=>record.name)])])+',adapterCodes:[{fn:ed.getDataTable,identity:"source-table-loader"},{fn:ed.logbugly,identity:"source-logbugly"}],immutableReference:function(value){return __nativeTableBoundary.immutableMetadata(value);},assertImmutableClean:function(){__nativeTableBoundary.assertClean();},digest:globalThis.__nativeDiagnosticDigest,definitionNames:__nativeDefinitionNames,subscribeClock:function(observer){__nativeClockObserver=observer;return function(){__nativeClockObserver=null;};}});');
+  if(traceEnabled)put(' __nativeRuntime.nativeTrace=installBattleTraceInstrumentation(__nativeRuntime,{compact:true,programState:true,maxNodes:300000,globalNames:'+JSON.stringify([...new Set([...runtime.sourceRecords.globals.keys(),...(runtime.sourceRecords.functionDeclarations||[]).map(record=>record.name)])])+',adapterCodes:[{fn:ed.getDataTable,identity:"source-table-loader"},{fn:ed.logbugly,identity:"source-logbugly"}],mutableTableRoots:function(){return __nativeTableBoundary.mutableRoots();},immutableReference:function(value){return __nativeTableBoundary.immutableMetadata(value);},assertImmutableClean:function(){__nativeTableBoundary.assertClean();},digest:globalThis.__nativeDiagnosticDigest,definitionNames:__nativeDefinitionNames,subscribeClock:function(observer){__nativeClockObserver=observer;return function(){__nativeClockObserver=null;};}});');
   put('var __nativeRealmCopy='+realmCopy+';function importBootstrapValue(_context,value){return __nativeRealmCopy(value);}');
   put(instantiateScenario.toString());
   put(__nativeBits.toString());put(__nativePrimitiveState.toString());put(__nativeUnitState.toString());put(__nativeRun.toString());
@@ -273,14 +276,15 @@ try{
   put('__nativeClock.finish();if(__nativeEntropyIndex!==__nativeHostInputs.random.length)throw new Error("Unconsumed host random inputs: "+(__nativeHostInputs.random.length-__nativeEntropyIndex));');
   put('__nativeResult.hostInputConsumption={random:__nativeEntropyIndex,clock:__nativeClock.stats()};print(JSON.stringify(__nativeResult));');
 }finally{closeSync(fd);}
-const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[])].map(record=>record.file).filter(Boolean));
+const sourceFiles=new Set([...allFactoryRecords,...records.initializers,...records.postInitializers,...(records.functionDeclarations||[]),...(records.eagerModules||[]),...(records.initializationPlan||[])].map(record=>record.file).filter(Boolean));
 const sourceInputs=Object.fromEntries(await Promise.all([...sourceFiles].sort().map(async file=>[file,sha(await readFile(resolve(root,file)))])));
-const metadata={version:1,scope,captureMode,traceEnabled,tableMembraneEnabled,oracleProfile,oracleRuntime:{node:process.version,v8:process.versions.v8,execArgv:process.execArgv,nodeOptions:process.env.NODE_OPTIONS||''},executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
+const metadata={version:1,scope,captureMode,traceEnabled,tableMembraneEnabled,mutableTables,eagerBattle,oracleProfile,oracleRuntime:{node:process.version,v8:process.versions.v8,execArgv:process.execArgv,nodeOptions:process.env.NODE_OPTIONS||''},executionContract:{engineFrames:true,queuedCallbacks:true,sourceCallbackSnapshots:true,actorEffectViewLifecycle:false,renderSceneMethods:!!runtime.renderScene,qualifiesFor10000Target:false},output,outputSha256:sha(await readFile(output)),scenario:{file:scenarioPath,sha256:sha(wireText),inputSha256:wire.inputSha256},battles,warmup,
   adapterInputs,sourceInputs,factoryChunks,factoryChunkPolicy:{maxFactories:factoryChunkSize,maxSourceBytes:factoryChunkBytes},
   sourceRuntime:{file:'tools/bootstrap-runtime.mjs',sha256:adapterInputs['tools/bootstrap-runtime.mjs'],executedFunctionSha256:sha(createBootstrapRuntime.toString())},
   definitionCount:records.definitions.size,globalCount:records.globals.size,factoryCount:allFactoryRecords.length,
   usedTableNames,
   originalRecords:allFactoryRecords.map(({source,factoryId,...record})=>({...record,sha256:sha(source)})),
+  eagerModules:(records.eagerModules||[]).map(({source,...record})=>({...record,sha256:sha(source)})),initializationPlan:(records.initializationPlan||[]).map(({source,...record})=>({...record,sha256:sha(source)})),
   initializers:records.initializers.map(({source,...record})=>({...record,sha256:sha(source)})),postInitializers:records.postInitializers.map(({source,...record})=>({...record,sha256:sha(source)})),
   functionDeclarations:(records.functionDeclarations||[]).map(({source,...record})=>({...record,sha256:sha(source)})),
   cocos:cocosManifest,host:{file:'tools/bootstrap-host.js',sha256:sha(hostSource)},clock:{file:'tools/oracle-clock.js',sha256:sha(clockSource)},

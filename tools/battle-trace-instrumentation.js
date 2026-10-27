@@ -82,7 +82,7 @@
     heroScripts:scriptRoots(engine),
     hostState:runtime.host?.snapshotState?runtime.host.snapshotState():null,
     soundManager:Object.getOwnPropertyDescriptor(ed,'sound_manager')?.value,
-    program:program};
+    program:program,mutableTables:options.mutableTableRoots?options.mutableTableRoots():null};
   }
   function record(kind,payload){if(options.assertImmutableClean)options.assertImmutableClean();loaderAccessors();trace.record(kind,{frame:frame,data:payload},roots());}
   function callbackId(fn){if(!callbackIds.has(fn))callbackIds.set(fn,nextCallback++);return callbackIds.get(fn);}
