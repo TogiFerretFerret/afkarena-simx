@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Diagnostic exact-graph codeOnly native predicate experiment. Captured original realm intrinsics required; factory is created before source program code. No game function source or active collector changes. No full battle or throughput qualification.",
+  "qualifiesFor10000Target": false,
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "execArgv": [
+    "--jitless"
+  ],
+  "buildProof": {
+    "file": "benchmarks/validation/native-trace-code-only-build.json",
+    "sha256": "170b49c2a14dfca294f6583ee3e021bc5a9996886cdcb693b0dbfe4c0ef6142d"
+  },
+  "producer": {
+    "file": "tools/check-native-trace-code-only.mjs",
+    "sha256": "2c0f96b8dce0eb10a1e76c1bd5e5c42c30675e181013e70dae44e1e061e8b7a2"
+  },
+  "originalCollectorSha256": "9813a661d5969a20559a1784a6d0317c426b3553fcea8aabca7ad16a979f2f34",
+  "candidateCollectorSha256": "34342baa4aaae298eeebf2f256ec8155d88ba9582b9b1383b731601a3f66458e",
+  "nativeSourceSha256": "a4b1584414fb50ff9259f5a42403ecbfc511474bf2f1782858291740f19516b4",
+  "nativeBinarySha256": "5505b293d7bc997672d75f8873de6cda44a73405e91927441adca9281ecc7c70",
+  "directedMutations": 20,
+  "directedGraphHashes": [
+    "0d599583854f75da40104a9b6986fbf24f725877c3cc9cf1f9f2b369f338c431",
+    "5c61181730311611395d899ec5c0f4aa935c33acb168eaa35cb17908f629d919",
+    "1ef4272a41f486e84d34079b38a7aebd3a8e6a9d04156d919ec947cdbe3918df",
+    "0d599583854f75da40104a9b6986fbf24f725877c3cc9cf1f9f2b369f338c431",
+    "9c97b705846e50ee7adbe42ddeac75581aae2777c61bec0b36b05dcf06a59ac0",
+    "0d599583854f75da40104a9b6986fbf24f725877c3cc9cf1f9f2b369f338c431",
+    "2f041f4ab026a345c7a0daa13cccc221acbaf288d907fe63e2c360c9ebbd00f7",
+    "0d599583854f75da40104a9b6986fbf24f725877c3cc9cf1f9f2b369f338c431",
+    "6f9706a5a64f335f3503a52de90e85eb6567e7391558b0b4e61a79ea6fbc85ea",
+    "6f9706a5a64f335f3503a52de90e85eb6567e7391558b0b4e61a79ea6fbc85ea",
+    "44ad5e90c855c6617fe7f5373583f8614e86af28bc4dc15d0584a033c569212e",
+    "d53e3e2131816f7f4d90be81fcfa36ef44b6eb968d9ebda00de597e8db0b019d",
+    "4620ac93e0b56fbfc268986a72185bd85536b97569d9e45ee676456c17710f57",
+    "d53e3e2131816f7f4d90be81fcfa36ef44b6eb968d9ebda00de597e8db0b019d",
+    "6bd4f3407d46cba96d3fd5b467eedfe5c3a0af5e02f7a388934f6490f8fa4b3c",
+    "1bead00a9efe06de87bf43a5856a2cd0a46e710114540690ee9b7440748b870d",
+    "bbb94ce3e9564956fd73de96a1c9319d4c9711a515e796be0d23cda4c3c40bb0",
+    "1bead00a9efe06de87bf43a5856a2cd0a46e710114540690ee9b7440748b870d",
+    "d7d5ceb7764d206efb55863f0e6ffa0cd9873e926222d10c73f5b02f678a304c",
+    "4228da0fe787e3c5047bfc236ce3a1943bec0d686144019508ffa7bba185d9f9"
+  ],
+  "fallbackCases": 5,
+  "fallbackResults": [
+    {
+      "answer": true,
+      "events": [
+        "keys",
+        "descriptor:constructor",
+        "parent"
+      ]
+    },
+    {
+      "identity": true,
+      "events": [
+        "throw"
+      ]
+    },
+    {
+      "first": false,
+      "afterRestore": false,
+      "calls": 1
+    },
+    {
+      "answer": false,
+      "calls": 1
+    },
+    {
+      "answer": true,
+      "calls": 0
+    }
+  ],
+  "functionCount": 3000,
+  "samples": [
+    {
+      "referenceMs": 16.136063000000007,
+      "candidateMs": 22.71293400000002,
+      "graphSha256": "37adc3a07bfe3f6fc9b85bed3271473a2ca4c3b3d8c6f78e2fdac677cfd9ac66"
+    },
+    {
+      "referenceMs": 10.480190000000022,
+      "candidateMs": 22.023087000000004,
+      "graphSha256": "37adc3a07bfe3f6fc9b85bed3271473a2ca4c3b3d8c6f78e2fdac677cfd9ac66"
+    },
+    {
+      "referenceMs": 8.02327600000001,
+      "candidateMs": 18.962001000000015,
+      "graphSha256": "37adc3a07bfe3f6fc9b85bed3271473a2ca4c3b3d8c6f78e2fdac677cfd9ac66"
+    },
+    {
+      "referenceMs": 10.052538999999967,
+      "candidateMs": 17.10539300000005,
+      "graphSha256": "37adc3a07bfe3f6fc9b85bed3271473a2ca4c3b3d8c6f78e2fdac677cfd9ac66"
+    },
+    {
+      "referenceMs": 8.384196999999972,
+      "candidateMs": 19.00021700000002,
+      "graphSha256": "37adc3a07bfe3f6fc9b85bed3271473a2ca4c3b3d8c6f78e2fdac677cfd9ac66"
+    },
+    {
+      "referenceMs": 9.544549000000018,
+      "candidateMs": 18.614238999999998,
+      "graphSha256": "37adc3a07bfe3f6fc9b85bed3271473a2ca4c3b3d8c6f78e2fdac677cfd9ac66"
+    },
+    {
+      "referenceMs": 8.637321000000043,
+      "candidateMs": 19.664828,
+      "graphSha256": "37adc3a07bfe3f6fc9b85bed3271473a2ca4c3b3d8c6f78e2fdac677cfd9ac66"
+    },
+    {
+      "referenceMs": 11.459863999999982,
+      "candidateMs": 19.171335,
+      "graphSha256": "37adc3a07bfe3f6fc9b85bed3271473a2ca4c3b3d8c6f78e2fdac677cfd9ac66"
+    }
+  ],
+  "referenceMs": 82.71799900000002,
+  "candidateMs": 157.2540340000001,
+  "ratio": 0.5260151164071248,
+  "limitations": [
+    "Observer only; no battle mechanics changed",
+    "Single ordinary-function-heavy microbenchmark, not representative full-program performance",
+    "Native inspector conservatively and permanently falls back after unsupported shapes or intrinsic mutation",
+    "Factory must capture original realm intrinsics before untrusted program execution",
+    "Shared trace closure/weak-content coverage boundaries remain unchanged"
+  ],
+  "resultFile": "benchmarks/results/2026-10-27T23-21-07.789Z-native-trace-code-only.json"
+}

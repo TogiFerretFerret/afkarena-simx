@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "passed": true,
+  "promote": false,
+  "qualifiesFor10000Target": false,
+  "scope": "Existing FULL portable collector acceleration experiment, not the separate narrower battle boundary state recorder. Experimental addon remains unused by active collector/source/native battle paths.",
+  "finding": "A native codeOnly metadata predicate preserves the compared graphs but is roughly twice as slow as the existing JS predicate. No promotion recommended.",
+  "priorWork": [
+    {
+      "file": "benchmarks/results/2026-10-27T18-11-57.409Z-trace-export-cache.json",
+      "sha256": "e1b284b20c12d1669ae5fe5e52c4c15d209f2444620df7b01e382bd598d1126e",
+      "experiment": "same cached walker using individual descriptor reads",
+      "referenceMs": 1660.8872069999961,
+      "candidateMs": 2135.491065999997,
+      "ratio": 0.7777542287315748
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T19-28-26.830Z-trace-export-cache.json",
+      "sha256": "f55973924e9fdca98992fc310282b7f50356b8e03fffea928c6f554326703fb0",
+      "experiment": "production descriptor walker without experimental per-snapshot prototype-brand memoization",
+      "referenceMs": 4969.633794999998,
+      "candidateMs": 5023.076286999999,
+      "ratio": 0.989360605145832
+    }
+  ],
+  "existingCaches": [
+    "bit-exact finite number encoding; signed zero special and NaNs uncached",
+    "function code identity and code tables",
+    "current property descriptors and immutable graph-record representations",
+    "Merkle node/code hashing reuse"
+  ],
+  "currentResult": {
+    "file": "benchmarks/results/2026-10-27T23-21-07.789Z-native-trace-code-only.json",
+    "sha256": "015c1ced8093b3649c30e872ef5782da9c0f6bb0e24cae9f781fd4fb832be63b",
+    "referenceMs": 82.71799900000002,
+    "candidateMs": 157.2540340000001,
+    "ratio": 0.5260151164071248
+  },
+  "exploratoryTimingTotals": [
+    {
+      "referenceMs": 75.95245599999998,
+      "candidateMs": 145.22706599999995,
+      "ratio": 0.5229910518195005
+    },
+    {
+      "referenceMs": 101.08432799999997,
+      "candidateMs": 215.89988300000005,
+      "ratio": 0.46820001287355933
+    }
+  ],
+  "exploratoryProvenance": "Two earlier local trial totals were retained from execution output before timestamped result archiving was added. Original producer hashes for those exploratory invocations were not captured; they are not independently qualified results.",
+  "directedCoverage": {
+    "entireGraphMutations": 20,
+    "compactMerkleComparisons": 20,
+    "guardAndFallbackCases": 5,
+    "details": [
+      "mutable function own properties/prototypes/descriptors and constructor accessor",
+      "symbol keys, aliases/cycles, sparse arrays, source getter noninvocation",
+      "Proxy prototype trap order and exact thrown sentinel identity",
+      "observer private-array mutation through a replaced indexOf followed by restoration",
+      "inherited descriptor-object value getter and captured descriptor intrinsic behavior"
+    ]
+  },
+  "nativeSafety": [
+    "Official matching Node24.19.0 headers pinned to published SHA256; Node137 ABI and V8 version checked",
+    "Public V8 APIs only; no object layout offsets, internal headers or mismatched ABI",
+    "No game values, properties, descriptor pointers or hidden-class shapes cached",
+    "Per-collector native callback data retains only observer primordials and observer-private array",
+    "Unsupported/exotic or modified-intrinsic case permanently returns to original JS predicate"
+  ],
+  "performanceInterpretation": "The native experiment still allocates public descriptor/key arrays and crosses V8 APIs repeatedly. The measurement shows this primitive is not a useful acceleration; it does not prove which individual cost dominates.",
+  "nextMeaningfulScope": "A whole snapshot walker in one native call could remove substantially more interpreter work, but would need a separate identity/weak-root lifecycle, brand/prototype/descriptor/function-code implementation and exact-format differential proof. This is a larger unimplemented task, not a claimed speedup.",
+  "limitations": [
+    "Observer only; no battle mechanics changed",
+    "Single ordinary-function-heavy microbenchmark, not representative full-program performance",
+    "Native inspector conservatively and permanently falls back after unsupported shapes or intrinsic mutation",
+    "Factory must capture original realm intrinsics before untrusted program execution",
+    "Shared trace closure/weak-content coverage boundaries remain unchanged"
+  ]
+}
