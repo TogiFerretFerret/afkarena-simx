@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "file": "tools/bootstrap-vendor-CCClass.js",
+  "sha256": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+  "source": "https://github.com/cocos2d/cocos2d-html5/blob/c0324ad511b7e327a597d9a0d27e5a7d9f4fbc07/cocos2d/core/platform/CCClass.js",
+  "license": "MIT; retained in vendored source",
+  "status": "Provisional upstream runtime; game engine revision is not supplied or established",
+  "hostBoundaries": [
+    "cc.game.config disables exposed class-name generation",
+    "cc.Node and HTMLElement are host sentinel constructors; no rendering or DOM objects are created",
+    "ClassManager consumes host Math.random for class and instance IDs, independently of ed.rand"
+  ]
+}
