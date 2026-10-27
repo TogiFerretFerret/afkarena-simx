@@ -13,6 +13,9 @@ if(JSON.stringify(process.execArgv)!==JSON.stringify(policy.rawBitReferenceFlags
 }
 assert.equal(process.version,policy.node);assert.equal(process.versions.v8,policy.v8);
 const pin=JSON.parse(await readFile(resolve(root,'config/skill-cache-specialization.json'))).parser;
+const contract=JSON.parse(await readFile(resolve(root,'config/native-skill-cache-ir.json')));
+assert.deepEqual(contract.source,pin);assert.equal(contract.enabledInNativeBattle,false);
+assert.equal(contract.rust.sha256,sha(await readFile(resolve(root,contract.rust.file))));
 const parser=(await readFile(resolve(root,pin.file),'utf8')).slice(pin.start,pin.end);assert.equal(sha(parser),pin.sha256);
 const rustc=resolve(root,'work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc');
 const binary=resolve(root,'work/check-skill-cache-ir');
@@ -51,6 +54,13 @@ const directed=[
  ['array-check-getter','["stage","1","2"]','Object.defineProperty(Array,"isArray",{get(){events.push(["arrayCheck:get"]);return savedArrayCheck},configurable:true})'],
  ['push-override','["stage","1","2"]','Array.prototype.push=function(v){events[events.length]=["push",v];return savedPush.call(this,v)}'],
  ['push-getter','["stage","1","2"]','Object.defineProperty(Array.prototype,"push",{get(){events[events.length]=["push:get"];return savedPush},configurable:true})'],
+ ['array-index-setter','["stage","1","2"]','Object.defineProperty(Array.prototype,"0",{set(v){Object.defineProperty(events,events.length,{value:["index:set",v],writable:true,enumerable:true,configurable:true})},configurable:true})'],
+ ['array-index-throw','["stage","1","2"]','Object.defineProperty(Array.prototype,"0",{set(v){throw sentinel},configurable:true})'],
+ ['array-index-getter','["stage","1","2"]','Object.defineProperty(Array.prototype,"0",{get(){Object.defineProperty(events,events.length,{value:["index:get"],writable:true,enumerable:true,configurable:true});return 4},configurable:true})'],
+ ['array-index-readonly','["stage","1","2"]','Object.defineProperty(Array.prototype,"0",{value:7,writable:false,configurable:true})'],
+ ['array-later-index-setter','["stage","1","2","3","4"]','Object.defineProperty(Array.prototype,"1",{set(v){Object.defineProperty(events,events.length,{value:["index1:set",v],writable:true,enumerable:true,configurable:true})},configurable:true})'],
+ ['object-index-setter','["stage","1","2"]','Object.defineProperty(Object.prototype,"0",{set(v){Object.defineProperty(events,events.length,{value:["object-index:set",v],writable:true,enumerable:true,configurable:true})},configurable:true})'],
+ ['array-extended-prototype','["stage","1","2"]','Object.setPrototypeOf(Array.prototype,{set 0(v){Object.defineProperty(events,events.length,{value:["extended-index:set",v],writable:true,enumerable:true,configurable:true})}})'],
  ['array-global-getter','["stage","1","2"]','Object.defineProperty(globalThis,"Array",{get(){events.push(["Array:get"]);return savedArray},configurable:true})'],
  ['parser-override','["stage","1","2"]','ed.parseUseSkillCacheStageBattle=function(v){events.push(["replacement",this===ed]);return {changed:v}}'],
  ['frozen-input','Object.freeze(["stage","1","2"])'],
@@ -59,24 +69,27 @@ const directed=[
  ['leading-zero','["stage","000000000","000000009"]'],
  ['inverted-range','["stage","999999999","0"]']
 ];
-for(const[label,expression,setup='']of directed)records.push({id:records.length,kind:'directed',label,tokens:['stage','1','2'],expression,setup});
+for(const[label,expression,setup='']of directed)records.push({id:records.length,kind:'directed',label,tokens:label==='array-later-index-setter'?['stage','1','2','3','4']:['stage','1','2'],expression,setup});
 const hex=s=>Array.from({length:s.length},(_,i)=>s.charCodeAt(i).toString(16).padStart(4,'0')).join('');
 const input=records.map(r=>r.tokens.length?r.tokens.map(hex).join(','):'~').join('\n')+'\n';
 const execution=spawnSync(binary,[],{cwd:root,input,encoding:'utf8',maxBuffer:64*1024*1024});assert.equal(execution.status,0,execution.stderr);
 const irs=execution.stdout.trim().split('\n').map(JSON.parse);assert.equal(irs.length,records.length);
+assert.equal(contract.validation.cases,records.length);
 const guardSource=`
 var savedArray=Array,savedArrayCheck=Array.isArray,savedPush=Array.prototype.push,savedParseInt=parseInt;
 var savedIsNaN=isNaN,savedIsFinite=isFinite,savedParser=ed.parseUseSkillCacheStageBattle;
-var descriptor=Object.getOwnPropertyDescriptor,prototype=Object.getPrototypeOf,apply=Reflect.apply;
+var descriptor=Object.getOwnPropertyDescriptor,prototype=Object.getPrototypeOf,ownKeys=Reflect.ownKeys,apply=Reflect.apply;
 var arrayProto=prototype([]),objectProto=prototype({});
 function sameData(object,key,value){var d=descriptor(object,key);return !!d&&('value'in d)&&d.value===value;}
+function hasIndexedProperties(object){var keys=ownKeys(object);for(var i=0;i<keys.length;i++){var key=keys[i];if(typeof key==='string'&&key.length&&key[0]>='0'&&key[0]<='9')return true;}return false;}
 function optimized(input,ir,tokens){
  var fn=ed.parseUseSkillCacheStageBattle;
  function fallback(){return apply(fn,ed,[input]);}
  if(!ir||fn!==savedParser||__isProxy(input)||!savedArrayCheck(input))return fallback();
  if(!sameData(globalThis,'Array',savedArray)||!sameData(savedArray,'isArray',savedArrayCheck)||
     !sameData(globalThis,'parseInt',savedParseInt)||!sameData(globalThis,'isNaN',savedIsNaN)||
-    !sameData(globalThis,'isFinite',savedIsFinite)||!sameData(arrayProto,'push',savedPush)||prototype(objectProto)!==null)return fallback();
+    !sameData(globalThis,'isFinite',savedIsFinite)||!sameData(arrayProto,'push',savedPush)||prototype(objectProto)!==null||
+    prototype(arrayProto)!==objectProto||hasIndexedProperties(arrayProto)||hasIndexedProperties(objectProto))return fallback();
  var length=descriptor(input,'length');if(!length||length.value!==tokens.length)return fallback();
  for(var i=0;i<tokens.length;i++){var d=descriptor(input,String(i));if(!d||!('value'in d)||typeof d.value!=='string'||d.value!==tokens[i])return fallback();}
  for(i=0;i<ir.modes.length;i++)if(descriptor(objectProto,tokens[ir.modes[i]]))return fallback();
@@ -117,12 +130,13 @@ for(let index=0;index<records.length;index++){
   observations.push(observation);
  }
  try{assert.deepEqual(observations[1],observations[0]);}catch(e){if(!firstFailure)firstFailure={id:index,label:record.label??record.kind,message:e.message,expected:observations[0],actual:observations[1]};}
- gold.push({...record,ir:irs[index],expected:observations[0]});
+ if(record.label&&(/index/.test(record.label)||record.label==='array-extended-prototype'))assert.equal(pair[1].__admitted,0,'Indexed prototype must fall back before source effects: '+record.label);
+ gold.push({...record,ir:irs[index],candidateAdmitted:pair[1].__admitted>0,expected:observations[0]});
 }
 const artifact='benchmarks/validation/skill-cache-ir-gold.jsonl.gz',bytes=Buffer.from(gold.map(x=>JSON.stringify(x)).join('\n')+'\n'),compressed=gzipSync(bytes,{level:9});await writeFile(resolve(root,artifact),compressed);
-const files=['tools/check-skill-cache-ir.mjs','tools/check-skill-cache-ir.rs','tools/native-skill-cache-ir.rs','config/skill-cache-specialization.json'];const hashes={};for(const file of files)hashes[file]=sha(await readFile(resolve(root,file)));
+const files=['tools/check-skill-cache-ir.mjs','tools/check-skill-cache-ir.rs','tools/native-skill-cache-ir.rs','config/skill-cache-specialization.json','config/native-skill-cache-ir.json'];const hashes={};for(const file of files)hashes[file]=sha(await readFile(resolve(root,file)));
 const report={version:1,passed:firstFailure===null,source:pin,oracle:policy,cases:records.length,strictCases:16000,quirkyCases:6000,directedCases:directed.length,admitted,fallbacks,rustCache:JSON.parse(execution.stderr.trim()),firstFailure,inputHashes:hashes,artifact:{file:artifact,sha256:sha(compressed),uncompressedSha256:sha(bytes),bytes:compressed.length},qualifiesFor10000Target:false,enabledInNativeBattle:false,
  scope:'Isolated Rust immutable parse IR plus guarded source-realm fresh materialization. Original public parser function stays untouched; this adapter is not a deployed function replacement.',
- proof:['IR contains only input token indices and exactly representable <=9-digit nonnegative integer values; no JS heap result is cached.','Each admitted call allocates fresh ordinary result/mode/range objects in original insertion order. Repeated modes share the correct per-call mode array only.','Source parser intrinsics, dense own primitive-string inputs and absence of mode keys on the intrinsic Object prototype are checked getter-free before admission. Proxy detection uses Node host capability here; a native VM adapter must use VM object kinds.','Unsupported arrays, strings, getters, proxies, prototype collisions, coercions and changed intrinsics execute the complete original source; warnings, exceptions, input mutations, read order, exact result descriptors, aliases and f64 bits are compared.','Return values are mutated between repeated admitted calls to test cache isolation. Original public parser identity and Function.toString are retained by leaving it untouched.'],
+ proof:['IR contains only input token indices and exactly representable <=9-digit nonnegative integer values; no JS heap result is cached.','Each admitted call allocates fresh ordinary result/mode/range objects in original insertion order. Repeated modes share the correct per-call mode array only.','Source parser intrinsics, dense own primitive-string inputs and absence of mode keys on the intrinsic Object prototype are checked getter-free before admission. Proxy detection uses Node host capability here; a native VM adapter must use VM object kinds.','Literal-array prototype must directly inherit from intrinsic Object prototype, which must have null prototype. Any own digit-leading key on either prototype rejects admission, including inherited numeric setters, getters and nonwritable data. Rejected cases execute original push, preserving setter effects and throws.','Unsupported arrays, strings, getters, proxies, prototype collisions, coercions and changed intrinsics execute the complete original source; warnings, exceptions, input mutations, read order, exact result descriptors, aliases and f64 bits are compared.','Return values are mutated between repeated admitted calls to test cache isolation. Original public parser identity and Function.toString are retained by leaving it untouched.'],
  limitations:['No C++/Rust canonical VM adapter or original generated-C body trampoline is implemented or enabled. Native lowering must preserve original function object/metadata and check every listed intrinsic/prototype guard.','These are parser cases, not battle cases. Full callback/state trace and raw table counter equality remain required for battle deployment.','No allocation-count equivalence is claimed for GC/heap telemetry; ordinary source Cocos ClassMgr counters are not called by either original parser or IR materialization.','The old opt-in helper-level specialization remains separate and is not enabled by this proof. No throughput or speedup is measured.']};
 await writeFile(resolve(root,'benchmarks/validation/skill-cache-ir.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({cases:records.length,admitted,fallbacks,passed:report.passed,firstFailure:report.firstFailure?.id??null,compressedBytes:compressed.length}));if(firstFailure)process.exitCode=1;
