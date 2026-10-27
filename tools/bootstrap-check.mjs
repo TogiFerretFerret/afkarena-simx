@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createContext } from 'node:vm';
-import { loadBootstrapFunctions } from './bootstrap-source.mjs';
+import { loadBootstrapFunctions, loadBootstrapTable, loadBootstrapTableSync } from './bootstrap-source.mjs';
 import { createStageFixture } from './bootstrap-stage.mjs';
 import { installBootstrapDataClasses } from './bootstrap-data.mjs';
 
@@ -21,6 +21,10 @@ const fixture=await createStageFixture(1);
 assert.equal(fixture.rounds[0].battleId,16001);
 assert.equal(fixture.rounds[0].enemies[0].tid,1008);
 assert.equal(fixture.rounds[0].enemies[0].config.hp_mod,.55);
+const packed=await loadBootstrapTable('GuildIceBreakAllocateByContribute');
+assert.deepEqual(packed,loadBootstrapTableSync('GuildIceBreakAllocateByContribute'));
+assert.equal(packed[1].Percent,20);
+assert.equal(packed[2].RewardPercent,60);
 const equipped=await createStageFixture(7);
 const equip=equipped.rounds.flatMap(r=>r.enemies).flatMap(h=>h.equips).map(e=>e.equip)[0];
 assert.ok(equip);

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "decompressor": {
+    "source": "src/srcmodule/game_util.js",
+    "start": 0,
+    "end": 6141,
+    "sha256": "9f44c8490ca80b3cc98d6bbcad5cd024c8a1e49b2e1794074f9d71d193fa5c38"
+  },
+  "format": {
+    "status": "Observed source asset container; fields agree with original Encrypt.dataDecode header handling",
+    "headerLength": "u32le at offset0; payload begins headerLength+4",
+    "magic": "bytes35,36 at offsets4,5",
+    "filenameLength": "u32le at offset6",
+    "filename": "UTF8 bytes at offset10",
+    "md5": "u32le length and ASCII digest immediately after filename",
+    "payload": "u32le decompressed length followed by original LZ4 block",
+    "encryptedFiles": "Not supported by this container adapter; require original decryption path"
+  }
+}

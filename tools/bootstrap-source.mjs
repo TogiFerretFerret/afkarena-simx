@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { runInContext } from 'node:vm';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
+import { decodeBootstrapPackedConfig } from './bootstrap-packed.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 
@@ -40,9 +41,9 @@ export async function loadBootstrapTable(name) {
   if(!/^[A-Za-z0-9_]+$/.test(name))throw new Error('Invalid table name');
   for(const directory of ['src/srcmodule','src/csvjson/en']){
     let text;
-    try{text=await readFile(resolve(root,directory,`${name}.json`),'utf8');}
+    try{text=await readFile(resolve(root,directory,`${name}.json`));}
     catch(error){if(error.code==='ENOENT')continue;throw error;}
-    const value=JSON.parse(text);
+    const value=parseTableBuffer(text);
     const table=value.ed?.[`${name}Table`];
     if(!table)throw new Error(`Unexpected source table envelope: ${directory}/${name}.json`);
     return table;
@@ -54,14 +55,19 @@ export function loadBootstrapTableSync(name) {
   if(!/^[A-Za-z0-9_]+$/.test(name))throw new Error('Invalid table name');
   for(const directory of ['src/srcmodule','src/csvjson/en']){
     let text;
-    try{text=readFileSync(resolve(root,directory,`${name}.json`),'utf8');}
+    try{text=readFileSync(resolve(root,directory,`${name}.json`));}
     catch(error){if(error.code==='ENOENT')continue;throw error;}
     let value;
-    try{value=JSON.parse(text);}
+    try{value=parseTableBuffer(text);}
     catch{throw new Error(`Source table requires packed-config decoder: ${directory}/${name}.json`);}
     const table=value.ed?.[`${name}Table`];
     if(!table)throw new Error(`Unexpected source table envelope: ${directory}/${name}.json`);
     return table;
   }
   throw new Error(`Missing supplied table: ${name}`);
+}
+
+function parseTableBuffer(buffer){
+  const bytes=buffer.length>6&&buffer[4]===35&&buffer[5]===36?decodeBootstrapPackedConfig(buffer).data:buffer;
+  return JSON.parse(bytes.toString('utf8'));
 }
