@@ -130,6 +130,22 @@ timing trials. Teardown leaves zero live contexts. See
 `validation/native-dictionary-lease.json` and its independent review. Runtime
 initialization, use and shutdown remain on the same worker thread.
 
+A new **selected-state ordered trace** has a completed independent source JS
+reference: one fresh battle, 296 frames, 15,453 callbacks, 64,419 events and
+55,078 content-addressed snapshot nodes. Traced and fresh untraced JS terminal
+reports match in every raw field except timings. Both integrity and strict
+schema gates pass; approximately 266 MiB of reconstructable snapshots are
+preserved in 13 gzip chunks. Native comparison is still pending. See
+`results/2026-10-27T23-15-36.402Z-boundary-source-reference.json`.
+
+This diagnostic captures selected engine/unit/skill/buff lists, own enumerable
+string-keyed data fields, numeric vectors, RNG/callback/mechanic boundaries and
+typed payloads. It omits non-enumerable and symbol-keyed state, unselected nested
+objects, prototypes, closures and the actor/effect/view lifecycle. It cannot
+substitute for the outstanding full-program and full-scene trace gates. Earlier
+encoding attempts with reserved-field and numeric-payload omissions were
+rejected and retained as incomplete diagnostics; no partial run is a pass.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
