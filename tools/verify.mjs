@@ -1,4 +1,4 @@
-import { readFile, readdir, access } from 'node:fs/promises';
+import { readFile, readdir, access, mkdir } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import { resolve, delimiter } from 'node:path';
 import assert from 'node:assert/strict';
@@ -24,8 +24,15 @@ const tests=(await readdir(resolve(root,'tools/tests'))).filter(n=>n.endsWith('.
 run(process.execPath,['--test',...tests]);
 run(process.execPath,['tools/lower-numeric.mjs','--check']);
 run(process.execPath,['tools/generate-rng.mjs','--check']);
-const targets=['root//crates/battle-core:numeric_check','root//crates/battle-core:rng_check'];
+await mkdir(resolve(root,'work'),{recursive:true});
+run('rustc',['--edition=2024','--test','crates/battle-core/src/lib.rs','-o','work/core-tests']);
+run(resolve(root,'work/core-tests'),[]);
+run(process.execPath,['tools/bootstrap-check.mjs']);
+const targets=['root//crates/battle-core:numeric_check','root//crates/battle-core:rng_check',
+  'root//crates/battle-core:entity_check','root//crates/battle-core:scheduler_check'];
 const artifacts=JSON.parse(run(buck,['build',...targets,'--show-json-output'],true));
 run(process.execPath,['tools/check-numeric.mjs',artifacts[targets[0]]]);
 run(process.execPath,['tools/check-rng.mjs',artifacts[targets[1]]]);
+run(process.execPath,['tools/check-entity.mjs',artifacts[targets[2]],'--strict-bits']);
+run(process.execPath,['tools/check-scheduler.mjs',artifacts[targets[3]]]);
 console.log('Verification passed. Full battle execution and battle equivalence are not implemented yet.');
