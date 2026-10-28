@@ -14,20 +14,40 @@ JavaScript frame and environment; dependency groups become small Cargo crates
 to keep Rust compilation within memory limits. AST coverage does not establish
 complete runtime semantics.
 
-The first whole-program native debug build initialized modules 0 through 5 and
-entered module 6, the battle runner. It stopped while loading the external table
-bundle with `Unsupported("ArrayBuffer allocation exceeds supported resource bound")`.
-Source-proven specialization of that file-loading path is the current integration
-work. The pinned Node reference completed its 20 measured battles after three
-warmups. The native run has **no completed battle or battle throughput result**
-yet; its retained failure and reference outputs are in
-[rust-full-program-initial.json](../../benchmarks/validation/rust-full-program-initial.json).
+The [first pure Rust battle](../../benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.json)
+completed with victory, 296 frames/ticks and 15,453 callbacks. Every non-timing
+final-report field matched pinned Node, including captured raw state bits. Its
+cold diagnostic timer measured **8.677 seconds, or 0.115 battles/second**, with
+concurrent work; this is not a steady-state benchmark or a speed improvement.
+The harness deliberately stops after its report, before consuming the remainder
+of the original 23-battle host tape. Complete intermediate Rust event/state
+tracing remains unqualified.
+
+That battle retained **1,498,859 additional heap objects**. The
+[20-battle batch attempt](../../benchmarks/validation/rust-full-program-release.json)
+was stopped at approximately **13.5 GiB peak RSS** without a complete report;
+it has no qualified throughput result. The pinned Node reference completed the
+batch. The earlier external-table allocation failure is retained in
+[the initial attempt](../../benchmarks/validation/rust-full-program-initial.json)
+and has been passed by the newer diagnostic.
+
+The next candidate contains validated empty-block environment elision, unused
+strict-function arguments elision, constant-time callable-identity lookup and a
+shared intrinsic strict-arguments thrower. Full-program rebuild and battle speed
+measurements for these changes are pending. The
+[first-battle profile](../../benchmarks/RUST_FIRST_BATTLE_PROFILE.md) explains
+the observed lookup/string/allocation costs and its measurement limits.
 
 Generated source gates separately verify operators, closures, control flow,
 collections, typed buffers and selected real mechanics. Their case counts are
 component evidence, not counts of complete battles. Older approximately
 3 battles/second results use the earlier mixed JavaScript/Rust implementation;
 they are not measurements of this native pipeline.
+
+The [ordered trace preparation](../../benchmarks/validation/rust-program-trace-preparation.json)
+matches all 64,419 events and 55,078 snapshot nodes between pinned Node and the
+accepted archive. It prepares the next native trace comparison; it is not a
+successful generated Rust trace. See [trace commands and scope](TRACE_GATE.md).
 
 ## Generate, build and compare
 

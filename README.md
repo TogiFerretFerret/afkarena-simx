@@ -2,34 +2,36 @@
 
 A source-driven Rust port of the AFK Arena companion battle simulator. The goal is **10,000 faithful battles per second**: preserve the original execution order, callbacks, RNG consumption, timeouts and floating-point behavior while replacing dynamic object-heavy execution with Rust.
 
-**That target is not reached.** The latest native battle experiment measured **2.783 battles/second**, about three, not 2,783. It still executes most game mechanics through Static Hermes compiled from the supplied JavaScript. The Rust execution core is being connected; this is not yet a complete Rust simulator.
+**That target is not reached.** The generated pure Rust backend has completed its first fixed-fixture battle, matching every non-timing final-report field against pinned Node. That cold diagnostic took **8.677 seconds, or 0.115 battles/second**. It is slower than the older approximately 3 battles/second Static Hermes implementation; no new speed improvement is established.
+
+The Rust arena retained **1,498,859 additional objects** during that battle. The 20-battle batch was stopped at approximately **13.5 GiB peak RSS** without producing a complete report. Allocation and lookup fixes are validated at component level; the next full-program build and battle measurements remain pending.
 
 ## Current results
 
 | Evidence | Result | Coverage |
 | --- | --- | --- |
-| [Rust speed-block battle run](benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.json) | 20 measured battles after 3 warmups; 2.783 battles/sec; 72,677 Rust admissions | One frozen callback-only fixture; raw source reports, callbacks, host inputs and runtime cleanup match |
-| [Prior cache candidate](benchmarks/results/2026-10-27T22-50-55.607Z-native-warm23-global-ed-prefilter.json) | 2.849 battles/sec in the adjacent trial | Same fixture; the Rust speed-block trial establishes no improvement and remains unpromoted |
-| [Ordered selected-state trace](benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.json) | All 64,419 events and 55,078 snapshot nodes match | One complete battle on the **pre-speed-block core**; selected state, not the full object graph or scene |
-| [Rust resource controllers](benchmarks/validation/unit-resources.json) | 20,008 source differential cases; 42,806 ordered events | Base HP/MP setters and transfer selectors, including mutation/error prefixes and raw float bits |
+| [First pure Rust battle](benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.json) | Victory; 296 frames/ticks; 15,453 callbacks; all captured final fields match Node | One cold diagnostic; intentionally stops before the remaining original host tape is consumed; no full intermediate Rust trace |
+| [Pure Rust batch attempt](benchmarks/validation/rust-full-program-release.json) | Stopped for retained memory; no complete batch report or qualified BPS | Failed run, retained honestly; the pinned Node reference completed its batch |
+| [Prepared ordered trace reference](benchmarks/validation/rust-program-trace-preparation.json) | Node matches all 64,419 events and 55,078 snapshot nodes in the accepted archive | Source preparation for the next Rust trace gate; **not a new Rust trace result** |
+| [Earlier Static Hermes/Rust run](benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.json) | 20 measured battles after 3 warmups; 2.783 battles/sec | Historical mixed backend; one frozen callback fixture, not the generated pure Rust backend |
 
 **20,000 component cases are not 20,000 battles.** Fixed-fixture results do not qualify the random-team corpus. See [benchmark status](benchmarks/STATUS.md) for exact scopes, failed experiments and archived evidence.
 
 ## Timing profile
 
-The [current measured-window profile](benchmarks/CURRENT_TIMING.md) attributes **43.22% of sampled self CPU to property reads/lookup/key hashing**, 4.98% to property writes/shape changes, and 4.97% to GC. Unit updates contain 53.67% of sampled CPU inclusively, buff addition 39.53%, and buff recomputation 20.67%; those inclusive costs overlap.
+The [first pure Rust battle profile](benchmarks/RUST_FIRST_BATTLE_PROFILE.md) points to property lookup, UTF-16/UTF-8 string interning, hashing and allocation. It includes initialization and final diagnostics, so its sample percentages are whole-process attribution rather than battle-only costs. The single-battle report still matches Node; its deliberate diagnostic stop is retained as a nonzero exit, not reported as a successful batch.
 
-This points to typed Rust state and the unit/buff execution path as the large opportunities. The profile excludes startup, warmups and final reporting, and passes the raw battle comparison. Its 12.38-second instrumented window includes sampling overhead and is not a replacement for the separate unprofiled throughput measurement.
+The pending candidate removes [empty block environments](benchmarks/validation/rust-empty-block-environment-assessment.json), [provably unused strict-function arguments objects](benchmarks/validation/rust-generated-arguments-elision.json), the [linear callable-identity lookup](benchmarks/validation/rust-function-identity-index.json), and repeated allocation of the [shared strict-arguments thrower](benchmarks/validation/rust-generated-poison-intrinsic.json). Source gates validate these changes; their battle BPS is not measured yet. The [earlier Hermes timing profile](benchmarks/CURRENT_TIMING.md) describes the historical backend and should not be used as the current Rust profile.
 
 ## Where the Rust work lives
 
-- [`crates/battle-core/src`](crates/battle-core/src): engine, scheduler, units, skill timelines, typed callback queues, buffs, damage, AI, RNG and numeric semantics.
-- [`unit_skill_runtime.rs`](crates/battle-core/src/unit_skill_runtime.rs): connects Rust unit updates to Rust skill execution and deferred callbacks. Shared unit fields have a canonical owner; host mutations are reconciled at call boundaries.
-- [`unit_resources.rs`](crates/battle-core/src/unit_resources.rs): base HP/MP setters and transfer selectors operating on the canonical unit arena.
-- [`engine_runtime.rs`](crates/battle-core/src/engine_runtime.rs): fallible engine orchestration that retains mutations before a failing mechanics call.
+- [`tools/rust-port`](tools/rust-port/README.md): Babel source lowering, generated-program builds, Node differential gates and profiling.
+- [`crates/js-runtime/src`](crates/js-runtime/src): native Rust values, binary64 operations, UTF-16 strings, objects, closures, builtins and source execution semantics. The generated backend has no JavaScript execution fallback.
+- [`crates/generated-battle/src`](crates/generated-battle/src): committed generated Rust for selected real unit, skill, engine and buff methods. The complete seven-module workspace is generated under ignored `work/`.
+- [`crates/battle-core/src`](crates/battle-core/src): numerical semantics and earlier typed engine, scheduler, unit, buff and resource implementations with their own component gates.
 - [`src`](src): supplied JavaScript reference and data. [`tools`](tools) contains extraction, compilation, differential testing and profiling tools.
 
-The connected Rust path still requires concrete mechanics hooks. Untranslated mechanics must be dispatched explicitly or fail; a missing callback is not a successful battle. Rust Entity, clone, sort and guarded numeric implementations also have separate native-runtime integrations. These paths have different coverage and should not be conflated.
+The complete frozen source lowers 22,986 functions into Rust. AST coverage alone does not prove every runtime behavior or battle. The earlier typed-core and Hermes integrations have separate coverage; a missing callback or an unsupported operation cannot become a successful battle.
 
 ## Build and check
 
@@ -62,7 +64,21 @@ That checker exercises a composed controller fixture, not complete battles. Its 
 
 ## Reproduce battle evidence
 
-The warmed native experiment can be rerun in a workspace containing its SHA-bound compiler, private VM and seven-unit build prerequisites:
+The active pure Rust pipeline uses prepared frozen source modules and the external table bundle recorded by the coverage manifest. Generate, build with input provenance, then compare the complete batch against pinned Node:
+
+```sh
+node tools/rust-port/generate-program.mjs --through 6 --out work/rust-battle-full
+node tools/rust-port/build-program.mjs --profile release --jobs 2 \
+  --output benchmarks/validation/rust-program-release-build.json
+node tools/rust-port/check-program.mjs --profile release \
+  --binary work/rust-port-shared-target/release/rust-battle-program \
+  --build-proof benchmarks/validation/rust-program-release-build.json \
+  --output benchmarks/validation/rust-full-program-release.json
+```
+
+The current retained batch failed for memory; these commands are the validation workflow, not a claim that it already passes. [Pipeline details](tools/rust-port/README.md) cover prerequisites and smaller diagnostic workloads. [Ordered trace instructions](tools/rust-port/TRACE_GATE.md) describe the prepared one-battle Node event/state reference and streamed archive checker; no generated Rust ordered-trace candidate has passed yet.
+
+The older mixed-backend experiment can be rerun in a workspace containing its SHA-bound compiler, private VM and seven-unit build prerequisites:
 
 ```sh
 node tools/run-native-unit-speeder-battle.mjs
