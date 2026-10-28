@@ -49,7 +49,7 @@ impl Runtime {
 }
 fn error_constructor(rt:&mut Runtime,_this:Value,args:&[Value],_:EnvId)->JsResult<Value>{
  let id=rt.call_stack.last().copied().ok_or_else(||JsError::Unsupported("Error constructor has no active native call".into()))?;
- let name=rt.functions[id.0].name.clone();let intrinsic=rt.error_prototype(&name)?;
+ let name=rt.string_text(rt.functions[id.0].name);let intrinsic=rt.error_prototype(&name)?;
  // Ordinary [[Construct]] already reads the current newTarget.prototype before
  // message coercion and supplies that fresh object. Calling Error as a function
  // instead creates a fresh intrinsic Error instance and ignores the receiver.
