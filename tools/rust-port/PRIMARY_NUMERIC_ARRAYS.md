@@ -1,0 +1,11 @@
+# Primary small numeric Arrays
+
+The candidate stores Number elements of Arrays with initial length at most four in an authoritative boxed `[u64; 4]`, with presence bits in `ObjectKind::Array`. It does not retain duplicate dictionary descriptors. Canonical key IDs `0` through `3` are reserved before intrinsic installation. Other String IDs remain private implementation details.
+
+Every present primary element is writable, enumerable and configurable. Changes to a different value type, descriptor attributes, accessor or out-of-domain property materialize all present values into the original dictionary before proceeding. Raw Number bits survive materialization. Missing elements remain holes. Array lengths, both length coercions, prototype lookup and callbacks retain the original runtime paths. Length shrink includes primary properties, and enumeration merges primary keys in numeric order. Unsupported raw-property shortcuts fall back. GC traces logical keys, ignores dead storage bits and retains the box for arena reuse.
+
+The public `primary_numeric_arrays_enabled` switch defaults to false on this isolated branch. Both switch settings share the same binary and Object layout; the layout adds one pointer per object. Whole-battle speed and memory therefore need separate verification against the previous runtime.
+
+Validation: 57 library tests pass, including raw signaling-NaN payloads, negative zero, descriptor materialization and 23 actual source-authorized GC safepoints with live arrays and reclaimed ID reuse. `check-primary-numeric-arrays.mjs` compares 70 OFF/ON source observations against the pinned JS oracle: holes, key order, length coercion and errors, read-only/nonconfigurable properties, accessor and mixed-value fallback, prototypes, mutation during iteration and array builtins. These checks do not qualify complete battle fidelity.
+
+`benchmark-unit-update-primary-numeric-arrays.mjs` measures the original unchanged Unit.update body with all fixture callbacks and complete ordered event/state comparisons. It reports updates/sec, not battles/sec. Release settings explicitly use optimization level 3, 64 codegen units and no LTO. Full battle qualification remains mandatory before promotion.
