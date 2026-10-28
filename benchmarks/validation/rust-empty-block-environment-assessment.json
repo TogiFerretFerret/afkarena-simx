@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "passed": true,
+  "beforeStatementsRef": "095cbe3^",
+  "otherCompilerModulesIdentical": true,
+  "sourceUnchanged": true,
+  "inputs": {
+    "tools/rust-port/compile.mjs": "4d4cc501ade4f75d0c5ed35f57a018f4a8324a0a80ffeb971da8fcd4cdd4fd9b",
+    "tools/rust-port/expressions.mjs": "9e336ef4eb2b3023988388bf170532d7aedba06edcd4a7725dc536084ae2823a",
+    "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
+    "tools/rust-port/statements.mjs": "c4a8b00c71751c7c5eeb1b83d9b5ac0dcee7ed821dc15f0e7d956bc5fddaf7da"
+  },
+  "rows": [
+    {
+      "name": "ed.Unit.update",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 97200,
+        "end": 102984,
+        "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e"
+      },
+      "functions": 1,
+      "beforeBlockEnvironmentInstructions": 18,
+      "afterBlockEnvironmentInstructions": 0,
+      "elidedInstructions": 18
+    },
+    {
+      "name": "ed.Skill.update",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 18788,
+        "end": 20141,
+        "sha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838"
+      },
+      "functions": 4,
+      "beforeBlockEnvironmentInstructions": 4,
+      "afterBlockEnvironmentInstructions": 0,
+      "elidedInstructions": 4
+    },
+    {
+      "name": "ed.BattleEngine.tick",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 235523,
+        "end": 237381,
+        "sha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609"
+      },
+      "functions": 1,
+      "beforeBlockEnvironmentInstructions": 6,
+      "afterBlockEnvironmentInstructions": 0,
+      "elidedInstructions": 6
+    },
+    {
+      "name": "ed.Buff.update",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 40434,
+        "end": 41296,
+        "sha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8"
+      },
+      "functions": 1,
+      "beforeBlockEnvironmentInstructions": 3,
+      "afterBlockEnvironmentInstructions": 0,
+      "elidedInstructions": 3
+    },
+    {
+      "name": "setHp",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 96538,
+        "end": 96698,
+        "sha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b"
+      },
+      "functions": 1,
+      "beforeBlockEnvironmentInstructions": 0,
+      "afterBlockEnvironmentInstructions": 0,
+      "elidedInstructions": 0
+    },
+    {
+      "name": "setMp",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 96816,
+        "end": 96945,
+        "sha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c"
+      },
+      "functions": 1,
+      "beforeBlockEnvironmentInstructions": 0,
+      "afterBlockEnvironmentInstructions": 0,
+      "elidedInstructions": 0
+    },
+    {
+      "name": "ed.Unit.addBuff",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 90693,
+        "end": 92695,
+        "sha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07"
+      },
+      "functions": 3,
+      "beforeBlockEnvironmentInstructions": 12,
+      "afterBlockEnvironmentInstructions": 0,
+      "elidedInstructions": 12
+    },
+    {
+      "name": "ed.Unit.resetBuffApply",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 87423,
+        "end": 87610,
+        "sha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8"
+      },
+      "functions": 1,
+      "beforeBlockEnvironmentInstructions": 0,
+      "afterBlockEnvironmentInstructions": 0,
+      "elidedInstructions": 0
+    }
+  ],
+  "qualifiesFor10000Target": false,
+  "scope": "Static counts of explicit child_block_env allocation instructions in generated original game methods, using identical compiler modules except statements.mjs. This records removed allocation sites, not dynamic allocation counts, peak memory or battle throughput. Loop execution multiplies site counts; paths may remain unexecuted. Function/catch/lexical-loop allocations are retained. Exact source semantic gates are separate."
+}
