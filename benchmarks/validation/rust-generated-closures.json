@@ -1,7 +1,7 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 47,
+  "cases": 50,
   "firstDifference": null,
   "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
   "sourceInputsAtFinish": [
@@ -57,7 +57,7 @@
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+      "sha256": "34ed696950d40f7744810590d63c619e8d616ce7cd5851e43abb8e8d61408e56",
       "matched": true
     },
     {
@@ -602,7 +602,7 @@
     },
     {
       "file": "tools/rust-port/check-closures.mjs",
-      "sha256": "4b42d431a4124c150a68f8a1bdddf99a2dc839d3c4a822f62c48f1572a5dfb2d",
+      "sha256": "8ef8f9bbfbb31e62107eeba21b325e216e4a3804e30f431dca6f3930b29b752b",
       "matched": true
     }
   ],
@@ -624,29 +624,29 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "1ccc3a93ab53e7362902243b80ee73fc3966bb202d4bbd2e6fdbf8caefbfd11a",
+  "generatedRustSha256": "c5985f7ad1fa3b340856aadd7cd40bf7d113d3dc8a45fba784da130bd3dd0c06",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-next-execution-wave/work/rust-port-closures/check",
-    "sha256": "558a290a2e21c7e37baf2ce01d5223c7f462bdba732603d9f89507d9590850a8"
+    "file": "/workspace/afkarena-simx/work/candidate-stack-apply/work/rust-port-closures/check",
+    "sha256": "caa831c60add7285fa149c4122be5daf44948c3cea075562ed021e938f13884d"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-next-execution-wave/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-stack-apply/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/candidate-next-execution-wave/work/rust-port-closures/main.rs",
+    "/workspace/afkarena-simx/work/candidate-stack-apply/work/rust-port-closures/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-next-execution-wave/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-stack-apply/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-next-execution-wave/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-stack-apply/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-next-execution-wave/work/rust-port-closures/check"
+    "/workspace/afkarena-simx/work/candidate-stack-apply/work/rust-port-closures/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-closures.outputs.json.gz",
-    "sha256": "abd5a9f81482ac341f63e1213e5646755b91929352cc26dd361074cbd4717bd7"
+    "sha256": "d07ec695084ff8dcbcd074178c9d39c65fb5824cc7228a6ec4eba2c54151950f"
   },
   "qualifiesFor10000Target": false,
   "scope": "Directed pure Rust generated closure, receiver, bind/construct, source-metadata, mapped-argument, hoisting and lexical-cell cases. This is not a complete battle or unrestricted ECMAScript qualification."
