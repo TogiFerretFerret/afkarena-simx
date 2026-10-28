@@ -37,3 +37,6 @@ pub mod override_dispatch;
 pub mod reachability;
 
 pub mod battle_gc;
+
+// Generated guarded arithmetic uses the same pinned helpers as Runtime::binary.
+pub use battle_core::js_math as numeric_arithmetic;
