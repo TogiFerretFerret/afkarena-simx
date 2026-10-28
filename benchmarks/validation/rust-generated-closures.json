@@ -21,6 +21,11 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/src/battle_gc.rs",
+      "sha256": "a6b132b68e0f694fdbbfbf51db90e1196f0e334b12371e3bc2b51af01b61ac8b",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/src/binary.rs",
       "sha256": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
       "matched": true
@@ -32,17 +37,17 @@
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "f3492c996faa47117dff91ecd97f1adcdf9d92a640903e52262dbc1251f8c0c8",
+      "sha256": "e448c944b39ae4025e80c447c6da1120a587154b11e9f082d16edf73f71501cb",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/collections.rs",
-      "sha256": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
+      "sha256": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/copy_obj.rs",
-      "sha256": "d0762d0a2eb22fcfe90be4428a28fa4a0eb6b6737ebd70dfeb1be55efd0fbee2",
+      "sha256": "9fd0cf451530b7349a77b5138722848e7570fca50aa6d1708b10d03d90d28067",
       "matched": true
     },
     {
@@ -52,12 +57,12 @@
     },
     {
       "file": "crates/js-runtime/src/diagnostics.rs",
-      "sha256": "7a22261fee149ee9776723b5cb9790bca62c45c4b29a7338d166e81a5490a898",
+      "sha256": "0dc56a84e7b559e79dbe0c915a3fc56958baa688d8d61e7e4b5cfaee46e02034",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/env.rs",
-      "sha256": "81bd3ad26c1c2560d8df63b1985aecf620fd56f3269fc60469ca57762b727043",
+      "sha256": "80809132329b25bc6481434d760905dcb73927d000469577ec7e0b1d74f8220a",
       "matched": true
     },
     {
@@ -97,12 +102,12 @@
     },
     {
       "file": "crates/js-runtime/src/lazy_arguments.rs",
-      "sha256": "8635bf10297dfd4ea34ddfac0c02f4306e95f40875d4b1cc7cc8302a428f3117",
+      "sha256": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "3a9cd0b7c1af37933b5e63553aa42d919d31e861bed8f533e0263930bf471f0e",
+      "sha256": "1d5e567b56c246c8a86d01363514df91aba8202e61e46cb3c0649703c524fb42",
       "matched": true
     },
     {
@@ -121,6 +126,11 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/src/reachability.rs",
+      "sha256": "ac6659d61fd437a96b367f6575af8f625e5899bf1e11d228c829a8c18a2686ba",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/src/reflection_bootstrap.rs",
       "sha256": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
       "matched": true
@@ -132,7 +142,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "2acf0c285495969c588345ab692144e2321799da9378aa361b828c78e0458bc5",
+      "sha256": "199321fcc5e6c6cdabb6e24af67f011aebafed6742cb19cb9ecfb756666c3221",
       "matched": true
     },
     {
@@ -142,7 +152,7 @@
     },
     {
       "file": "crates/js-runtime/src/utf8_guard.rs",
-      "sha256": "b9bd175f82739fcbdfc794efc02da2fb9c24316bf9e905a61b65e05e6ed2bc07",
+      "sha256": "7e7d6ab64be768e46f5b65e014192153649e351695bead9c0509812bb947e5f0",
       "matched": true
     },
     {
@@ -497,7 +507,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "7b31396748997250cea0fb3188c0b12e59ec6978b314b1dec5b4e2f2e296e258",
+      "sha256": "b770804fa833780614500042834d167a113cbc3608d7e581b0911153c026099e",
       "matched": true
     },
     {
@@ -507,7 +517,7 @@
     },
     {
       "file": "tools/rust-port/statements.mjs",
-      "sha256": "c4a8b00c71751c7c5eeb1b83d9b5ac0dcee7ed821dc15f0e7d956bc5fddaf7da",
+      "sha256": "db8397d9e99eea9bbb180f9f826744a938787e9f1ef982429efe9d7359a23663",
       "matched": true
     },
     {
@@ -537,7 +547,7 @@
   "generatedRustSha256": "e9265c2f300a17f3f5c8f3aac1fe67293a9b3ee01aed2dfe168c6ce3458beae0",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-closures/check",
-    "sha256": "a4a3a535fe1a618eabae9b998ac8981d7004aa3fb939b1699a389d4dae549ad1"
+    "sha256": "08c37621cdee0fc5babf8530bee6c276cf968741e66c384815f96afd94b69c2d"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
