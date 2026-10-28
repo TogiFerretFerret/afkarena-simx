@@ -43,8 +43,8 @@ impl Runtime{
   // Standard descriptors and no inherited conflicts make each source write
   // an ordinary fresh own property. Numeric key ordering remains own_keys's
   // responsibility, just as for the original source-created object.
-  let properties=object.properties.clone();let property_index=object.property_index.clone();
-  let target=self.alloc_object(Some(self.object_prototype));self.objects[target.0].properties=properties;self.objects[target.0].property_index=property_index;
+  let properties=object.properties.clone();let property_index=object.property_index.clone();let own_key_bloom=object.own_key_bloom;
+  let target=self.alloc_object(Some(self.object_prototype));self.objects[target.0].properties=properties;self.objects[target.0].property_index=property_index;self.objects[target.0].own_key_bloom=own_key_bloom;
   Ok(Some(Value::Object(target)))
  }
 }

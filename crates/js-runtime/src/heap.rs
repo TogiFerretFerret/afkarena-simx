@@ -24,16 +24,20 @@ pub enum ObjectKind { Ordinary, Arguments, Math, Json, Error, Date(f64), RegExp(
 pub struct Object {
  pub prototype:Option<ObjectId>, pub extensible:bool, pub kind:ObjectKind,
  pub(crate) is_function:bool,
+ pub(crate) own_key_bloom:[u64;4],
+ pub(crate) bloom_trusted:bool,
  pub properties:Vec<Option<(PropertyKey,Descriptor)>>,
  pub property_index:HashMap<PropertyKey,usize,IdBuildHasher>,
  pub arguments_map:HashMap<PropertyKey,BindingRef>,
 }
 pub type HeapObject=Object;
 impl Object {
- pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::new()}}
- pub(crate) fn reset_for_reuse(&mut self,prototype:Option<ObjectId>){self.prototype=prototype;self.extensible=true;self.kind=ObjectKind::Ordinary;self.is_function=false;self.properties.clear();self.property_index.clear();self.arguments_map.clear();}
+ pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,own_key_bloom:[0;4],bloom_trusted:false,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::new()}}
+ pub(crate) fn reset_for_reuse(&mut self,prototype:Option<ObjectId>){self.prototype=prototype;self.extensible=true;self.kind=ObjectKind::Ordinary;self.is_function=false;self.own_key_bloom=[0;4];self.bloom_trusted=false;self.properties.clear();self.property_index.clear();self.arguments_map.clear();}
+ #[inline] pub(crate) fn bloom_mask(key:PropertyKey)->[(usize,u64);2]{let mut hash=(key.0.0 as u64).wrapping_add(0x9e3779b97f4a7c15);hash=(hash^(hash>>30)).wrapping_mul(0xbf58476d1ce4e5b9);hash=(hash^(hash>>27)).wrapping_mul(0x94d049bb133111eb);hash^=hash>>31;let a=(hash&255)as usize;let b=((hash>>8)&255)as usize;[(a>>6,1u64<<(a&63)),(b>>6,1u64<<(b&63))]}
+ #[inline] pub(crate) fn may_have_key(&self,mask:[(usize,u64);2])->bool{mask.iter().all(|&(word,bit)|self.own_key_bloom[word]&bit!=0)}
  pub fn own(&self,key:PropertyKey)->Option<Descriptor>{self.property_index.get(&key).and_then(|i|self.properties[*i].map(|(_,d)|d))}
- pub fn insert(&mut self,key:PropertyKey,descriptor:Descriptor){if let Some(i)=self.property_index.get(&key).copied(){self.properties[i]=Some((key,descriptor))}else{let i=self.properties.len();self.properties.push(Some((key,descriptor)));self.property_index.insert(key,i);}}
+ pub fn insert(&mut self,key:PropertyKey,descriptor:Descriptor){if self.bloom_trusted{for(word,bit)in Self::bloom_mask(key){self.own_key_bloom[word]|=bit;}}if let Some(i)=self.property_index.get(&key).copied(){self.properties[i]=Some((key,descriptor))}else{let i=self.properties.len();self.properties.push(Some((key,descriptor)));self.property_index.insert(key,i);}}
  pub fn remove(&mut self,key:PropertyKey){if let Some(i)=self.property_index.remove(&key){self.properties[i]=None;}self.arguments_map.remove(&key);}
 }
 

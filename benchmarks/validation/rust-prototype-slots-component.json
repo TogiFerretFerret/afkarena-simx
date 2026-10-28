@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "scope": "Inherited data read component with ten alternating receivers; all modes share candidate heap layout. Maintained-bloom mode has no Object.own filter or prototype IC. This does not measure battles or original-layout memory overhead.",
+  "rows": [
+    {
+      "mode": "baseline",
+      "depth": 1,
+      "reads": 200000,
+      "receivers": 10,
+      "ownFields": 40,
+      "elapsedNs": [
+        17999829,
+        16430734,
+        17917698,
+        15037050,
+        15487944,
+        16093096,
+        18887348
+      ],
+      "medianNs": 16430734
+    },
+    {
+      "mode": "bloom",
+      "depth": 1,
+      "reads": 200000,
+      "receivers": 10,
+      "ownFields": 40,
+      "elapsedNs": [
+        15370541,
+        15757812,
+        15367676,
+        16083332,
+        16434410,
+        14832157,
+        14432507
+      ],
+      "medianNs": 15370541
+    },
+    {
+      "mode": "prototype",
+      "depth": 1,
+      "reads": 200000,
+      "receivers": 10,
+      "ownFields": 40,
+      "elapsedNs": [
+        6439297,
+        3445833,
+        3550877,
+        3727748,
+        3537037,
+        3876628,
+        3841266
+      ],
+      "medianNs": 3727748
+    },
+    {
+      "mode": "baseline",
+      "depth": 3,
+      "reads": 200000,
+      "receivers": 10,
+      "ownFields": 40,
+      "elapsedNs": [
+        20214255,
+        21174612,
+        21712786,
+        19991587,
+        19685014,
+        19995863,
+        19997585
+      ],
+      "medianNs": 19997585
+    },
+    {
+      "mode": "bloom",
+      "depth": 3,
+      "reads": 200000,
+      "receivers": 10,
+      "ownFields": 40,
+      "elapsedNs": [
+        24921639,
+        21215802,
+        22325960,
+        20504614,
+        21677293,
+        21793305,
+        22232992
+      ],
+      "medianNs": 21793305
+    },
+    {
+      "mode": "prototype",
+      "depth": 3,
+      "reads": 200000,
+      "receivers": 10,
+      "ownFields": 40,
+      "elapsedNs": [
+        4497634,
+        4161017,
+        4142710,
+        3784762,
+        3991097,
+        4153175,
+        3924268
+      ],
+      "medianNs": 4142710
+    }
+  ],
+  "sourceInputsUnchanged": {
+    "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
+    "crates/js-runtime/src/closures.rs": "e448c944b39ae4025e80c447c6da1120a587154b11e9f082d16edf73f71501cb",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "c60648c877fbf1367d488d42fa7056646f0c814aec7c0b3ca466f5882169eccb",
+    "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+    "crates/js-runtime/src/diagnostics.rs": "0dc56a84e7b559e79dbe0c915a3fc56958baa688d8d61e7e4b5cfaee46e02034",
+    "crates/js-runtime/src/env.rs": "15bc6229afd44e5ccfdd29bff8a4eaa034712cc6660630a87172be9663fe7649",
+    "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "f50a3f26b6571f580de596134a28ef64b04f2bac761f6368eada19473060061d",
+    "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+    "crates/js-runtime/src/lib.rs": "7a68c3d61d422f906f77f4244a57e3e759c6cd6d43e97116e8e218816773547d",
+    "crates/js-runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+    "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/property_slots.rs": "92bc8777c8c0f512ae3e6ae206092c219b4b2bf3291a4306c1a575ad9ae5a6ee",
+    "crates/js-runtime/src/reachability.rs": "52173fb09c06399243fd8e19697602397edc1eee34c77550b6ee85e8c8a71b04",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "01b04eb3340a860d084483d737df42bf3ccd068f50aebe311970081d27dec364",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "7e7d6ab64be768e46f5b65e014192153649e351695bead9c0509812bb947e5f0",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+    "crates/js-runtime/tests/ordinary_heap.rs": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+    "crates/js-runtime/tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+    "crates/js-runtime/tests/prototype_slots.rs": "813dd7fe4b0a33ce959c299728471cfbbcabf876186b23f1c3d967caf2523408",
+    "crates/js-runtime/tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+    "tools/rust-port/bench-prototype-slots.rs": "07c17f1c405ded631f57dc807991e7c7e17cc0f2070dbced2de4b4f521b7c44a",
+    "tools/rust-port/benchmark-prototype-slots.mjs": "3e7ea6a0afbc0249a798dd3914a50f5ad4c8f218d9fc0f80db1c4d20fe4583aa"
+  },
+  "binarySha256": "29952b8ccc30f68026e8b610eae55f0b62db25c32617ed4c5cb36b598a139bfb"
+}
