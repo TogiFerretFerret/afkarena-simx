@@ -40,7 +40,7 @@ fn string_replace(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Va
  let mut output=Vec::new();let mut next_source=0;for result in results{let length_key=rt.string("length");let length_value=rt.get(result,length_key)?;let length=position(rt,length_value,1_000_000)?;let zero=rt.string("0");let matched=rt.get(result,zero)?;let matched=rt.to_string(matched)?;let matched_units=rt.string_units(matched).to_vec();let index_key=rt.string("index");let at=rt.get(result,index_key)?;let at=position(rt,at,units.len())?;let mut captures=Vec::new();for i in 1..length{let key=rt.string(&i.to_string());let value=rt.get(result,key)?;captures.push(if matches!(value,Value::Undefined){value}else{Value::String(rt.to_string(value)?)});}let groups_key=rt.string("groups");let groups=rt.get(result,groups_key)?;let replacement=if functional{let mut call=vec![Value::String(matched)];call.extend_from_slice(&captures);call.push(Value::Number(at as f64));call.push(Value::String(input));if !matches!(groups,Value::Undefined){call.push(groups)}let result=rt.call_value(replacement,Value::Undefined,&call)?;let string=rt.to_string(result)?;rt.string_units(string).to_vec()}else{let groups=if matches!(groups,Value::Undefined){groups}else{rt.to_object(groups)?};substitution(rt,&units,at,&matched_units,&captures,groups,&replacement_units)?};if at>=next_source{output.extend_from_slice(&units[next_source..at]);output.extend(replacement);next_source=(at+matched_units.len()).min(units.len());}}output.extend_from_slice(&units[next_source..]);Ok(rt.string_utf16(&output))}
 fn string_split(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Value>{
  rt.require_object_coercible(this)?;
- let input=rt.to_string(this)?;let units=rt.string_units(input).to_vec();let separator=arg(args,0);let mut values=Vec::new();
+ let input=rt.to_string(this)?;let units=rt.owned_shared_units(input);let separator=arg(args,0);let mut values=Vec::new();
  if rt.is_regexp(separator){
   let constructor_key=rt.string("constructor");let constructor=rt.get(separator,constructor_key)?;
   if !matches!(constructor,Value::Undefined)&&constructor!=rt.regexp_constructor{return Err(JsError::Unsupported("custom RegExp species constructor is not implemented".into()))}
@@ -65,7 +65,7 @@ fn string_split(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Valu
  }
  let limit=if matches!(arg(args,1),Value::Undefined){u32::MAX}else{rt.to_uint32(args[1])?}as usize;
  // Even a zero limit converts a non-RegExp separator after converting limit.
- let separator_string=rt.to_string(separator)?;let separator_units=rt.string_units(separator_string).to_vec();
+ let separator_string=rt.to_string(separator)?;let separator_units=rt.owned_shared_units(separator_string);
  if limit==0{return Ok(rt.array(&[]))}
  if matches!(separator,Value::Undefined){return Ok(rt.array(&[Some(Value::String(input))]))}
  if separator_units.is_empty(){for unit in units.iter().take(limit){values.push(Some(rt.string_utf16(&[*unit])));}}
