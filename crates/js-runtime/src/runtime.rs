@@ -83,7 +83,9 @@ impl Runtime {
  fn read_start(&self,value:Value)->JsResult<ObjectId>{match value{Value::String(_)=>Ok(self.string_prototype),Value::Number(_)=>Ok(self.number_prototype),Value::Bool(_)=>Ok(self.boolean_prototype),_=>self.object_id(value)}}
  pub fn get<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<Value>{let key=key.into();let result=self.get_inner(receiver,key);self.record_get(receiver,key,&result);result}
  fn get_inner<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<Value>{
-  self.require_object_coercible(receiver)?;let key=self.key(key)?;
+  self.require_object_coercible(receiver)?;let key=key.into();
+  if let KeyInput::Value(Value::Number(index))=key{if let Some(value)=self.binary_get_number(receiver,index){return Ok(value)}}
+  let key=self.key(key)?;
   if let Value::String(id)=receiver{if self.is_length(key){return Ok(Value::Number(self.string_units(id).len()as f64))}if let Some(index)=self.index(key){if let Some(unit)=self.string_units(id).get(index as usize).copied(){return Ok(self.string_utf16(&[unit]))}}}
   let mut current=Some(self.read_start(receiver)?);while let Some(id)=current{if let Some(value)=self.typed_get(id,key)?{return Ok(value)}if let Some(d)=self.own_descriptor(id,key)?{return match d.kind{PropertyKind::Data{value,..}=>Ok(value),PropertyKind::Accessor{get:Some(get),..}=>self.call_value(get,receiver,&[]),PropertyKind::Accessor{get:None,..}=>Ok(Value::Undefined)}}current=self.objects[id.0].prototype;}Ok(Value::Undefined)
  }

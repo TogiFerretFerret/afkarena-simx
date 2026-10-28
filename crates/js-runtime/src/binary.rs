@@ -91,6 +91,12 @@ const DATA_VIEW_METHODS:[(&str,usize,NativeFn);16]=[("getInt8",1,get_i8),("getUi
  use super::*;
  fn create(rt:&mut Runtime,name:&str,args:&[Value])->Value{let global=rt.global_env;let constructor=rt.lookup(global,name).unwrap();rt.construct(constructor,args).unwrap()}
  fn method(rt:&mut Runtime,object:Value,name:&str,args:&[Value])->Value{let key=rt.string(name);let function=rt.get_property(object,key).unwrap();rt.call_value(function,object,args).unwrap()}
+ #[test]fn numeric_typed_reads_preserve_bits_and_do_not_intern_byte_positions(){
+  let mut rt=Runtime::new();let buffer=create(&mut rt,"ArrayBuffer",&[Value::Number(16.0)]);let view=create(&mut rt,"DataView",&[buffer]);let typed=create(&mut rt,"Float64Array",&[buffer]);
+  for (i,bits) in [0x7ff0000000001234u64,0x8000000000000000].into_iter().enumerate(){method(&mut rt,view,"setFloat64",&[Value::Number((i*8)as f64),Value::Number(f64::from_bits(bits)),Value::Bool(true)]);}
+  for index in [0.0,-0.0,1.0,2.0,-1.0,0.5,f64::NAN,f64::INFINITY,f64::NEG_INFINITY,1e21]{let key=rt.to_string_value(Value::Number(index)).unwrap();let expected=rt.get(typed,Value::String(key)).unwrap();let before=rt.strings.len();let actual=rt.get(typed,Value::Number(index)).unwrap();match(actual,expected){(Value::Number(a),Value::Number(b))=>assert_eq!(a.to_bits(),b.to_bits()),(a,b)=>assert_eq!(a,b)}assert_eq!(rt.strings.len(),before);}
+  let id=rt.object_id(typed).unwrap();let(buffer,_,_,_)=rt.typed_parts(id).unwrap();rt.buffers[buffer.0].detached=true;assert_eq!(rt.get(typed,Value::Number(0.0)).unwrap(),Value::Undefined);
+ }
  #[test]fn data_view_hash_preserves_f64_payloads_and_both_endian_orders(){
   let mut rt=Runtime::new();let buffer=create(&mut rt,"ArrayBuffer",&[Value::Number(16.0)]);let view=create(&mut rt,"DataView",&[buffer,Value::Number(4.0),Value::Number(8.0)]);
   for bits in[0,1,1u64<<63,0x3ff0000000000000,0x7ff0000000000000,0xfff0000000000000,0x7ff0000000000001,0x7ff8000000001234,0xfff8000000005678]{for little in[false,true]{method(&mut rt,view,"setFloat64",&[Value::Number(0.0),Value::Number(f64::from_bits(bits)),Value::Bool(little)]);let first=method(&mut rt,view,"getUint32",&[Value::Number(0.0),Value::Bool(little)]);let second=method(&mut rt,view,"getUint32",&[Value::Number(4.0),Value::Bool(little)]);let(Value::Number(a),Value::Number(b))=(first,second)else{panic!("uint32 outputs")};let actual=if little{(b as u64)<<32|a as u64}else{(a as u64)<<32|b as u64};assert_eq!(actual,bits);let value=method(&mut rt,view,"getFloat64",&[Value::Number(0.0),Value::Bool(little)]);let Value::Number(n)=value else{panic!("float output")};assert_eq!(n.to_bits(),bits);}}
@@ -111,6 +117,18 @@ const DATA_VIEW_METHODS:[(&str,usize,NativeFn);16]=[("getInt8",1,get_i8),("getUi
 }
 use crate::{PropertyKey,Descriptor,PropertyKind};
 impl Runtime {
+ /// Numeric primitive property keys stringify without user code. On a typed
+ /// array their canonical numeric index is the same number, except -0 becomes
+ /// the string "0". Avoid permanently interning every byte position while
+ /// decoding large host-loaded tables; object keys still take normal coercion.
+ pub(crate) fn binary_get_number(&self,receiver:Value,index:f64)->Option<Value>{
+  let Value::Object(id)=receiver else{return None};
+  let(buffer,offset,length,kind)=self.typed_parts(id)?;
+  let index=if index==0.0{0.0}else{index};
+  let Some(index)=self.typed_index(buffer,length,index)else{return Some(Value::Undefined)};
+  let begin=offset+index*kind.bytes();
+  Some(Value::Number(read_number(&self.buffers[buffer.0].bytes[begin..begin+kind.bytes()],kind,true)))
+ }
  fn typed_parts(&self,id:ObjectId)->Option<(BufferId,usize,usize,TypedArrayKind)>{match self.objects.get(id.0)?.kind{ObjectKind::TypedArray{buffer,byte_offset,length,kind}=>Some((buffer,byte_offset,length,kind)),_=>None}}
  pub fn validate_typed_array(&self,value:Value)->JsResult<()>{let id=self.object_id(value)?;let Some((buffer,_,_,_))=self.typed_parts(id)else{return Err(JsError::TypeError("receiver is not a typed array".into()))};if self.buffers[buffer.0].detached{return Err(JsError::TypeError("typed array buffer is detached".into()))}Ok(())}
  pub fn binary_is_typed_array_prototype(&self,id:ObjectId)->bool{self.binary_prototypes.get("TypedArray").copied()==Some(id)}
