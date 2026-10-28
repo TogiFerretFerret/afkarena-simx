@@ -27,3 +27,6 @@ pub use value::{Value,StringId,ObjectId,FunctionId,JsError,JsResult,BinaryOp,Una
 pub use heap::{PropertyKey,KeyInput,Descriptor,PropertyKind,ObjectKind,ForInIterator};
 pub use env::{EnvId,BindingRef};
 pub use runtime::{Runtime,Completion};
+
+pub mod utf8_guard;
+pub mod utf8_loader;
