@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "command": "cargo test -p js-runtime --lib dense_array_shift",
+  "stdout": "\nrunning 3 tests\ntest dense_array_shift::tests::accepts_dense_callbacks_preserves_destination_flags_and_aliases ... ok\ntest dense_array_shift::tests::rejects_poison_holes_readonly_lengths_and_numeric_history_without_mutation ... ok\ntest dense_array_shift::tests::repeated_dense_queues_survive_twenty_three_actual_collections_and_id_reuse ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 46 filtered out; finished in 0.01s\n\n",
+  "sourceInputs": {
+    "crates/js-runtime/src/dense_array_shift.rs": "90974353bcf13dbc33eec8d4bf1043bb2f07e4279a7207535e516ee800874b6c",
+    "crates/js-runtime/src/builtins.rs": "cb9749dd7313c2b5232e0277f82a9af52d761b381694868d0b78ce8b4a43ddff",
+    "crates/js-runtime/src/runtime.rs": "f3d528baf047efce95b1a73328919d61ff68b63a71f5e5815c47858f2571086e",
+    "crates/js-runtime/src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d"
+  },
+  "scope": "Dense callbacks/raw guard and23actualcollections with reused IDs; no battle qualification."
+}
