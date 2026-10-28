@@ -28,9 +28,9 @@ pub enum BindingRef {
  Cell{env:EnvId,index:usize},Global{object:ObjectId,name:StringId},Unresolvable{name:StringId},
 }
 impl Runtime {
- pub fn child_env(&mut self,parent:EnvId)->EnvId{let id=EnvId(self.environments.len());self.environments.push(Environment::new(Some(parent),EnvKind::Function));id}
- pub fn child_block_env(&mut self,parent:EnvId)->EnvId{let id=EnvId(self.environments.len());self.environments.push(Environment::new(Some(parent),EnvKind::Block));id}
- pub fn new_env(&mut self,parent:Option<EnvId>)->EnvId{match parent{Some(parent)=>self.child_env(parent),None=>{let id=EnvId(self.environments.len());self.environments.push(Environment::new(None,EnvKind::Function));id}}}
+ pub fn child_env(&mut self,parent:EnvId)->EnvId{self.allocate_environment_record(Environment::new(Some(parent),EnvKind::Function))}
+ pub fn child_block_env(&mut self,parent:EnvId)->EnvId{self.allocate_environment_record(Environment::new(Some(parent),EnvKind::Block))}
+ pub fn new_env(&mut self,parent:Option<EnvId>)->EnvId{match parent{Some(parent)=>self.child_env(parent),None=>{self.allocate_environment_record(Environment::new(None,EnvKind::Function))}}}
  fn variable_env(&self,mut env:EnvId)->JsResult<EnvId>{loop{let e=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;if e.kind!=EnvKind::Block{return Ok(env)}env=e.parent.ok_or_else(||JsError::Unsupported("block environment has no parent".into()))?;}}
  /// Hoisting creates a cell only if absent; parameter values are not reset.
  pub fn declare(&mut self,env:EnvId,name:&str,value:Value)->JsResult<()>{
@@ -89,7 +89,7 @@ impl Runtime {
  pub fn clone_loop_env(&mut self,env:EnvId,names:&[&str])->JsResult<EnvId>{
   let name_ids=names.iter().map(|name|self.intern(name)).collect::<Vec<_>>();let old=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid loop environment".into()))?;let mut new=Environment::new(old.parent,old.kind);
   for (name,name_id) in names.iter().zip(name_ids){let index=*old.bindings.get(&name_id).ok_or_else(||JsError::ReferenceError(format!("loop binding {name} is missing")))?;let binding=&old.cells[index];if binding.object_backed{return Err(JsError::Unsupported("global object binding cannot be a loop lexical cell".into()))}new.insert(name,binding.clone());}
-  let id=EnvId(self.environments.len());self.environments.push(new);Ok(id)
+  Ok(self.allocate_environment_record(new))
  }
  pub(crate) fn declare_function_name(&mut self,env:EnvId,name:&str,value:Value)->JsResult<()>{
   let name_id=self.intern(name);let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid function-name environment".into()))?;

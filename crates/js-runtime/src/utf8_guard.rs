@@ -53,3 +53,6 @@ impl Runtime{
  }
  #[test]fn prototype_numeric_poison_is_rejected_without_getter_invocation(){fn never(_: &mut Runtime,_:Value,_:&[Value],_:EnvId)->crate::JsResult<Value>{panic!("guard ran getter")};let mut rt=Runtime::new();let value=bytes(&mut rt);let getter=rt.native_function("poison",0,never).unwrap();let key=rt.string("0");rt.define_accessor(Value::Object(rt.array_prototype),key,Some(getter),None,true,true).unwrap();assert!(!rt.utf8_loader_intrinsics_intact(value,rt.global_env));}
 }
+
+
+impl Utf8LoaderGuard{pub(crate) fn reachability_roots(&self)->Vec<Value>{let mut out=Vec::new();for name in &self.bindings{out.push(Value::String(*name))}for(object,key,descriptor)in &self.properties{out.push(Value::Object(*object));out.push(Value::String(key.0));if let Some(d)=descriptor{match d.kind{PropertyKind::Data{value,..}=>out.push(value),PropertyKind::Accessor{get,set}=>{out.extend(get);out.extend(set)}}}}for(object,parent)in &self.prototypes{out.push(Value::Object(*object));out.extend(parent.map(Value::Object))}out.push(Value::Object(self.uint8_prototype));out.push(Value::String(self.length_key.0));out}}

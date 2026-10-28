@@ -53,3 +53,5 @@ impl Runtime {
         Ok(object)
     }
 }
+
+impl ActiveArgumentsFrame {pub(crate) fn reachability_roots(&self)->(FunctionId,Vec<Value>,Option<EnvId>){(self.callee,self.original.values().to_vec(),self.metadata.map(|metadata|metadata.env))}}

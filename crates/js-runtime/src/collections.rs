@@ -125,3 +125,17 @@ iter!(map_keys,CollectionKind::Map,CollectionIteration::Keys);iter!(map_values,C
 fn iterator_next(rt:&mut Runtime,this:Value,kind:CollectionKind)->JsResult<Value>{let object=rt.object_id(this)?;let ObjectKind::CollectionIterator(id)=rt.objects[object.0].kind else{return Err(JsError::TypeError("incompatible iterator receiver".into()))};if rt.collection_records[rt.collection_iterators[id].collection].kind!=kind{return Err(JsError::TypeError("incompatible iterator brand".into()))}let value=rt.collection_iterator_next(this)?;let result=rt.object();let key=rt.string("value");rt.define_data(result,key,value.unwrap_or(Value::Undefined),true,true,true)?;let key=rt.string("done");rt.define_data(result,key,Value::Bool(value.is_none()),true,true,true)?;Ok(result)}
 fn map_iterator_next(rt:&mut Runtime,this:Value,_:&[Value],_:EnvId)->JsResult<Value>{iterator_next(rt,this,CollectionKind::Map)}fn set_iterator_next(rt:&mut Runtime,this:Value,_:&[Value],_:EnvId)->JsResult<Value>{iterator_next(rt,this,CollectionKind::Set)}
 fn unsupported_set_operation(_:&mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{Err(JsError::Unsupported("new Set algebra operations are not implemented".into()))}
+
+
+impl CollectionRecord {pub(crate) fn reachability_slots(&self)->impl Iterator<Item=(Value,Value)>+'_ {self.slots.iter().flatten().copied()}}
+impl CollectionIterator {pub(crate) fn reachability_collection(&self)->usize{self.collection}}
+
+impl CollectionRecord{
+ pub(crate) fn prune_for_native_gc(&mut self,record_live:bool,objects:&[bool],functions:&[bool]){
+  if !record_live{self.slots.clear();self.slots.shrink_to_fit();self.index.clear();self.index.shrink_to_fit();return}
+  if !matches!(self.kind,CollectionKind::WeakMap|CollectionKind::WeakSet){return}
+  let live=|key:Value|match key{Value::Object(id)=>objects.get(id.0).copied().unwrap_or(false),Value::Function(id)=>functions.get(id.0).copied().unwrap_or(false),_=>false};
+  for slot in &mut self.slots{if slot.is_some_and(|(key,_)|!live(key)){*slot=None}}
+  self.index.retain(|_,index|self.slots.get(*index).is_some_and(Option::is_some));
+ }
+}
