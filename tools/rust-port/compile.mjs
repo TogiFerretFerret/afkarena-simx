@@ -70,7 +70,8 @@ function diagnostic(error,node,filename){return{filename,start:node.start??0,end
 
 /** Babel AST -> native Rust execution functions. Unsupported bodies are explicit
  * hard-failure stubs, listed in the manifest; no JavaScript backend is emitted. */
-export function compileSource(source,{filename='input.js',mode='script',moduleName='generated',allowUnsupported=true,emitRust=true,sourcePoolPath=null,largeBody=false,cacheLocalBindings=true,staticLiteralStrings=true,literalPropertySlots=true,numericLiteralKeys=true,nativeNumericOps=true,sourceSpecializations=true,nativeBattleGc=false,nativeLocalBindings=true}={}){
+export function compileSource(source,{filename='input.js',mode='script',moduleName='generated',allowUnsupported=true,emitRust=true,sourcePoolPath=null,largeBody=false,cacheLocalBindings=true,staticLiteralStrings=true,literalPropertySlots=true,numericLiteralKeys=true,nativeNumericOps=true,sourceSpecializations=true,nativeBattleGc=false,nativeBattleGcCadence=1,nativeLocalBindings=true}={}){
+ if(!Number.isSafeInteger(nativeBattleGcCadence)||nativeBattleGcCadence<1)throw new Error('nativeBattleGcCadence must be a positive safe integer');
  const root=mode==='function'?parseExpression(source,{sourceType:'script'}):parse(source,{sourceType:mode==='module'?'module':'script',allowReturnOutsideFunction:false}).program;
  if(mode==='function'&&!FUNCTION_TYPES.has(root.type))throw Error('--function input must be a function expression');
  // V8 legacy f.arguments snapshots current uncaptured formal cells, but raw
@@ -180,10 +181,19 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
     const loops=body.filter(statement=>statement.type==='ForStatement');
     if(loops.length!==1)ctx.unsupported(node,'Pinned battle GC loop shape changed');
     const loop=loops[0];record.battleGcSafePoints=[];record.battleGcRoot=true;
+    const gcCounter=nativeBattleGcCadence===1?null:ctx.fresh('battle_gc_backedges');
+    if(gcCounter)ctx.emit(`let mut ${gcCounter}: usize = 0;`);
     ctx.battleLoopBackedge=(candidate,local)=>{
      if(candidate!==loop||local.nativeBindingNames?.size)return;
+     if(gcCounter){
+      local.emit(`${gcCounter} += 1;`);
+      // The source-exact local loop bindings are read without coercion. The
+      // final original loop iteration collects even when the cadence is partial.
+      local.emit(`if ${gcCounter} % ${nativeBattleGcCadence} == 0 || matches!((rt.lookup(${local.functionEnv}, "battleIndex")?, rt.lookup(${local.functionEnv}, "battles")?), (Value::Number(index), Value::Number(total)) if index + 1.0 >= total) {`);
+     }
      local.emit(`rt.collect_native_battle_backedge(${local.functionEnv}, parent)?;`);
-     record.battleGcSafePoints.push({kind:'outer-battle-loop-backedge',start:loop.start,end:loop.end,environment:'function',sourceSha256:NATIVE_BATTLE_RUN_SOURCE_SHA256});
+     if(gcCounter)local.emit('}');
+     record.battleGcSafePoints.push({kind:'outer-battle-loop-backedge',start:loop.start,end:loop.end,environment:'function',cadence:nativeBattleGcCadence,sourceSha256:NATIVE_BATTLE_RUN_SOURCE_SHA256});
     };
    }
    if(split){
@@ -211,7 +221,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
   if(emitRust)compiled.push(`pub fn js_function_${id}(rt: &mut Runtime, this: Value, args: &[Value], parent: EnvId) -> JsResult<Value> {\n${contents}\n}`);
  }
  const first=records[0],entry=!emitRust?'':mode==='function'?(()=>{const{ctx,lines}=context(first);ctx.env='parent';ctx.thisValue='Value::Undefined';const value=ctx.makeClosure(root);ctx.emit(`Ok(${value})`);return`pub fn create_function(rt: &mut Runtime, parent: EnvId) -> JsResult<Value> {\n${lines.join('\n')}\n}`;})():`pub fn run(rt: &mut Runtime, env: EnvId, this: Value) -> JsResult<Value> { js_function_0(rt, this, &[], env) }`;
- const diagnostics=records.flatMap(record=>record.diagnostics),manifest={version:1,moduleName,filename,mode,sourceSha256:sha(source),sourceUtf16Length:source.length,sourcePoolPath,emitsRust:emitRust,diagnosticsScope:'First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.',astNodes:Object.values(inventory).reduce((a,b)=>a+b,0),astNodeTypes:inventory,largeBody:splitOptions,cacheLocalBindings,staticLiteralStrings,literalPropertySlots,numericLiteralKeys,nativeNumericOps,sourceSpecializations,nativeBattleGc,nativeLocalBindings,functions:records.map(({node,id,strict,supported,diagnostics,split,estimatedOwnAstNodes,helpers,cachedBindings,sourceSpecialization,battleGcSafePoints,nativeBindings})=>({id,nativeBindings:nativeBindings??[],battleGcSafePoints:battleGcSafePoints??[],sourceSpecialization:sourceSpecialization??null,split,estimatedOwnAstNodes,helpers,cachedBindings:cachedBindings??0,name:node.id?.name??inferName(node),start:node.start,end:node.end,line:node.loc?.start.line,column:node.loc?.start.column,strict,supported,sourceSha256:sha(source.slice(node.start,node.end)),diagnostics})),compiledFunctions:records.filter(r=>r.supported).length,unsupportedFunctions:records.filter(r=>!r.supported).length,complete:diagnostics.length===0,diagnostics,semanticallyQualified:false,executionBackend:'Generated Rust with native js-runtime; no JS interpreter or engine fallback.',qualification:'Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately.'};
+ const diagnostics=records.flatMap(record=>record.diagnostics),manifest={version:1,moduleName,filename,mode,sourceSha256:sha(source),sourceUtf16Length:source.length,sourcePoolPath,emitsRust:emitRust,diagnosticsScope:'First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.',astNodes:Object.values(inventory).reduce((a,b)=>a+b,0),astNodeTypes:inventory,largeBody:splitOptions,cacheLocalBindings,staticLiteralStrings,literalPropertySlots,numericLiteralKeys,nativeNumericOps,sourceSpecializations,nativeBattleGc,nativeBattleGcCadence,nativeLocalBindings,functions:records.map(({node,id,strict,supported,diagnostics,split,estimatedOwnAstNodes,helpers,cachedBindings,sourceSpecialization,battleGcSafePoints,nativeBindings})=>({id,nativeBindings:nativeBindings??[],battleGcSafePoints:battleGcSafePoints??[],sourceSpecialization:sourceSpecialization??null,split,estimatedOwnAstNodes,helpers,cachedBindings:cachedBindings??0,name:node.id?.name??inferName(node),start:node.start,end:node.end,line:node.loc?.start.line,column:node.loc?.start.column,strict,supported,sourceSha256:sha(source.slice(node.start,node.end)),diagnostics})),compiledFunctions:records.filter(r=>r.supported).length,unsupportedFunctions:records.filter(r=>!r.supported).length,complete:diagnostics.length===0,diagnostics,semanticallyQualified:false,executionBackend:'Generated Rust with native js-runtime; no JS interpreter or engine fallback.',qualification:'Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately.'};
  if(!allowUnsupported&&!manifest.complete){const error=Error('Unsupported syntax: '+diagnostics.map(d=>`${d.filename}:${d.line}:${d.column}: ${d.reason}`).join('\n'));error.manifest=manifest;throw error;}
  const header=`// Generated by tools/rust-port/compile.mjs; source SHA-256 ${manifest.sourceSha256}
 #![allow(unused_imports,unused_variables,unused_mut,dead_code,unreachable_patterns,unused_assignments)]
