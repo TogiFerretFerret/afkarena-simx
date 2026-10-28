@@ -50,6 +50,14 @@ retains full report and host-input parity. Per measured battle it records
 with 84.1 MB of old and 168.5 MB of new requested sizes. These are traffic
 counts, not live or peak memory. Atomic accounting changes timing.
 
+The [sampled allocation attribution](../../benchmarks/results/2026-10-28T21-22-31.989Z-rust-measured-allocations.sample-attribution.json)
+retains the same exact battle comparison and allocation totals. Of 654 sampled
+allocation ordinals, 346 originate in builtin index-key formatting, 145 in
+primitive-to-string UTF-16 construction, and 56 in array index formatting.
+These are allocation samples, not CPU time percentages. The next integrated
+runtime includes stack formatting, integer-key reuse, string hashing, guarded
+length reads and dense callback shifts; its full-battle build/check is pending.
+
 Generated source gates separately verify operators, closures, control flow,
 collections, typed buffers and selected real mechanics. Their case counts are
 component evidence, not counts of complete battles. Older approximately
