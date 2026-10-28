@@ -201,7 +201,7 @@ This single trial establishes no gain over the previous C-prefilter result
 see `validation/native-unit-speeder-independent-review.json`.
 
 The earlier complete 64,419-event trace belongs to the pre-Speeder core.
-`validation/battle-boundary-speeder-prepared.json` records optional source-bound
+`validation/battle-boundary-speeder-preparation.json` records optional source-bound
 trace preparation only, with a fresh CFG audit and six unchanged objects; no
 new Speeder trace was compiled or run after the slower benchmark. Avoiding that
 costly run does not extend the earlier trace pass to this candidate.
