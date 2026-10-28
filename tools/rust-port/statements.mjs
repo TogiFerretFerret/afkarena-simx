@@ -32,7 +32,12 @@ function instantiateFunctions(ctx,local,statements,env){
  }
 }
 function block(ctx,node){
- const env=ctx.temp(`rt.child_block_env(${ctx.env})`),local=child(ctx,{env,pendingLabels:[]});
+ // An empty declarative environment contributes no names to resolution. Reuse
+ // its parent unless this block owns lexical declarations or block functions.
+ // Nested blocks, lexical loop heads, and catch parameters instantiate their
+ // own environments independently; var bindings remain function-hoisted.
+ const ownsBindings=lexicalNames(node.body).length!==0||node.body.some(statement=>statement.type==='FunctionDeclaration');
+ const env=ownsBindings?ctx.temp(`rt.child_block_env(${ctx.env})`):ctx.env,local=child(ctx,{env,pendingLabels:[]});
  declareLexicals(local,node.body);
  instantiateFunctions(ctx,local,node.body,env);
  const completion=emitStatements(node.body,local);ctx.emit(`Ok(${completion})`);

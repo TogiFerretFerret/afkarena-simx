@@ -22,7 +22,7 @@
     },
     {
       "file": "crates/js-runtime/src/binary.rs",
-      "sha256": "2fad8e414a698fe9141aae4a7745dba2fa5430133acd50d24edd784941fafbc3",
+      "sha256": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
       "matched": true
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "61a281b88857dfa63f285117ddd06848fe8d0fa40a7cc5ef2b88478b7aae29fd",
+      "sha256": "a1806767845af02d84eed017266cbd57137394fc4999bd29e19c2efa4de85ea4",
       "matched": true
     },
     {
@@ -122,12 +122,22 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "c9877e312899f864c70b6ea25f9a9e8a8dca61a918902796f0a0f810fc074eb0",
+      "sha256": "7fa62da98e1c0066f788ce2ec945a79c296b45442b20f0f9ccf158d221047c76",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/strings.rs",
       "sha256": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/utf8_guard.rs",
+      "sha256": "b9bd175f82739fcbdfc794efc02da2fb9c24316bf9e905a61b65e05e6ed2bc07",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/utf8_loader.rs",
+      "sha256": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
       "matched": true
     },
     {
@@ -1082,7 +1092,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "088c45933912ea22acf5e88a425a7c7f7140896ae825ba6b417a48b121ab01a1",
+      "sha256": "4d4cc501ade4f75d0c5ed35f57a018f4a8324a0a80ffeb971da8fcd4cdd4fd9b",
       "matched": true
     },
     {
@@ -1097,7 +1107,7 @@
     },
     {
       "file": "tools/rust-port/statements.mjs",
-      "sha256": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
+      "sha256": "c4a8b00c71751c7c5eeb1b83d9b5ac0dcee7ed821dc15f0e7d956bc5fddaf7da",
       "matched": true
     },
     {
@@ -1124,10 +1134,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "e74379105c0f92a623b98b4f8460e9aabe6dda683a492952f1680940d6d75234",
+  "generatedRustSha256": "20c74ee5efe5c754822cc287a6cb38d79cbaa2d7d51c9427d5350144f75f171f",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-control/check",
-    "sha256": "f4b65bdf96196cfde6024d23fce589141432edeeb26964fd71348e77234efe46"
+    "sha256": "cde978f6ffea3f88b502326058529add771e68e17fa93356ebab964e3bd3ef85"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
