@@ -14,29 +14,27 @@ JavaScript frame and environment; dependency groups become small Cargo crates
 to keep Rust compilation within memory limits. AST coverage does not establish
 complete runtime semantics.
 
-The [first pure Rust battle](../../benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.json)
-completed with victory, 296 frames/ticks and 15,453 callbacks. Every non-timing
-final-report field matched pinned Node, including captured raw state bits. Its
-cold diagnostic timer measured **8.677 seconds, or 0.115 battles/second**, with
-concurrent work; this is not a steady-state benchmark or a speed improvement.
-The harness deliberately stops after its report, before consuming the remainder
-of the original 23-battle host tape. Complete intermediate Rust event/state
-tracing remains unqualified.
+The [latest native batch](../../benchmarks/validation/rust-full-program-next.json)
+passes every non-timing final-report field and host-input check for **20 battles
+after three warmups at 0.390778 battles/second**. Its observed high-water RSS is
+2.53 GiB. The previous qualified batch measured 0.384357; the single-pair change
+is only 1.7%, despite large component and cold-start improvements.
 
-That battle retained **1,498,859 additional heap objects**. The
-[20-battle batch attempt](../../benchmarks/validation/rust-full-program-release.json)
-was stopped at approximately **13.5 GiB peak RSS** without a complete report;
-it has no qualified throughput result. The pinned Node reference completed the
-batch. The earlier external-table allocation failure is retained in
-[the initial attempt](../../benchmarks/validation/rust-full-program-initial.json)
-and has been passed by the newer diagnostic.
+The [latest cold diagnostic](../../benchmarks/results/2026-10-28T20-56-07.133Z-rust-one-battle-check.json)
+matches the Node final report at 0.486381 battles/second and adds 386,457 objects.
+It intentionally stops before the unused original clock suffix is consumed.
+The [earlier four-process trial](../../benchmarks/results/2026-10-28T20-20-38.054Z-rust-parallel-four.json)
+measures 1.287522 aggregate battles/second with every worker report matching Node.
+These measurements remain below the historical approximately 3 battles/second
+mixed backend and the 10,000 target. Cold, warm and aggregate rates have different
+measurement windows and must be kept separate.
 
-The next candidate contains validated empty-block environment elision, unused
-strict-function arguments elision, constant-time callable-identity lookup and a
-shared intrinsic strict-arguments thrower. Full-program rebuild and battle speed
-measurements for these changes are pending. The
-[first-battle profile](../../benchmarks/RUST_FIRST_BATTLE_PROFILE.md) explains
-the observed lookup/string/allocation costs and its measurement limits.
+Allocation elision, callable indexing, source-specialized clones and giant-string
+collection have source gates and retained battle comparisons. Earlier
+[memory failures](../../benchmarks/validation/rust-full-program-release.json)
+remain archived. The [warm profile](../../benchmarks/RUST_WARM_BATTLE_PROFILE.md)
+records actual collection pauses and its raw-get diagnostic overhead; a new
+diagnostic-free profile is being collected before further optimization choices.
 
 Generated source gates separately verify operators, closures, control flow,
 collections, typed buffers and selected real mechanics. Their case counts are
@@ -46,8 +44,9 @@ they are not measurements of this native pipeline.
 
 The [ordered trace preparation](../../benchmarks/validation/rust-program-trace-preparation.json)
 matches all 64,419 events and 55,078 snapshot nodes between pinned Node and the
-accepted archive. It prepares the next native trace comparison; it is not a
-successful generated Rust trace. See [trace commands and scope](TRACE_GATE.md).
+accepted archive. The bounded generated-Rust prefix attempt exceeded its memory
+limit without a complete export. No native ordered-trace pass is claimed.
+See [trace commands and scope](TRACE_GATE.md).
 
 ## Generate, build and compare
 
@@ -67,14 +66,14 @@ cargo generate-lockfile --offline --manifest-path work/rust-battle-full/Cargo.to
 node tools/rust-port/build-program.mjs \
   --manifest work/rust-battle-full/program-manifest.json \
   --profile release --jobs 2 \
-  --output benchmarks/validation/rust-program-release-build.json
+  --output benchmarks/validation/rust-program-review-build.json
 
 node tools/rust-port/check-program.mjs \
   --manifest work/rust-battle-full/program-manifest.json \
   --binary work/rust-port-shared-target/release/rust-battle-program \
-  --build-proof benchmarks/validation/rust-program-release-build.json \
+  --build-proof benchmarks/validation/rust-program-review-build.json \
   --profile release \
-  --output benchmarks/validation/rust-full-program-release.json
+  --output benchmarks/validation/rust-full-program-review.json
 ```
 
 Generation writes Rust and UTF-16 source pools only when their bytes change.

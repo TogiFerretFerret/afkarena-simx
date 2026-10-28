@@ -2,16 +2,18 @@
 
 A source-driven Rust port of the AFK Arena companion battle simulator. The goal is **10,000 faithful battles per second**: preserve the original execution order, callbacks, RNG consumption, timeouts and floating-point behavior while replacing dynamic object-heavy execution with Rust.
 
-**That target is not reached.** The generated pure Rust backend has completed its first fixed-fixture battle, matching every non-timing final-report field against pinned Node. That cold diagnostic took **8.677 seconds, or 0.115 battles/second**. It is slower than the older approximately 3 battles/second Static Hermes implementation; no new speed improvement is established.
+**That target is not reached.** The latest pure Rust run completes **20 measured battles after three warmups at 0.391 battles/second**, matching every non-timing report field and host-input count against pinned Node. The prior qualified run measured 0.384; this single comparison shows only a 1.7% change, not an established material warm-speed gain.
 
-The Rust arena retained **1,498,859 additional objects** during that battle. The 20-battle batch was stopped at approximately **13.5 GiB peak RSS** without producing a complete report. Allocation and lookup fixes are validated at component level; the next full-program build and battle measurements remain pending.
+An earlier four-process run completed **80 battles at 1.288 aggregate battles/second**, with overlapping measured windows and exact reports from every worker. Both rates remain below the historical approximately 3 battles/second Static Hermes result. The latest single-process batch has an observed lifetime high-water RSS of **2.53 GiB**. Earlier memory failures are retained as history.
 
 ## Current results
 
 | Evidence | Result | Coverage |
 | --- | --- | --- |
-| [First pure Rust battle](benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.json) | Victory; 296 frames/ticks; 15,453 callbacks; all captured final fields match Node | One cold diagnostic; intentionally stops before the remaining original host tape is consumed; no full intermediate Rust trace |
-| [Pure Rust batch attempt](benchmarks/validation/rust-full-program-release.json) | Stopped for retained memory; no complete batch report or qualified BPS | Failed run, retained honestly; the pinned Node reference completed its batch |
+| [Latest pure Rust batch](benchmarks/validation/rust-full-program-next.json) | 20 measured after 3 warmups; **0.390778 battles/sec**; 2.53 GiB observed HWM | Every non-timing final-report field and full host consumption match pinned Node; build provenance passes |
+| [Prior pure Rust batch](benchmarks/validation/rust-full-program-gc.json) | Same 20/3 workload; **0.384357 battles/sec** | Exact report/host parity; its external memory monitor failed to observe the child and makes no RSS claim |
+| [Four independent Rust processes](benchmarks/results/2026-10-28T20-20-38.054Z-rust-parallel-four.json) | **1.287522 aggregate battles/sec**, 80 battles over 62.135 s | Earlier qualified runtime; all four measured windows overlap, each full report/host tape matches Node; not a sum of isolated rates |
+| [Latest cold single battle](benchmarks/results/2026-10-28T20-56-07.133Z-rust-one-battle-check.json) | 2.056 s; **0.486381 battles/sec**; 386,457 added objects | Diagnostic final-report parity; unfinished original clock suffix; cold improvement does not establish warm throughput |
 | [Prepared ordered trace reference](benchmarks/validation/rust-program-trace-preparation.json) | Node matches all 64,419 events and 55,078 snapshot nodes in the accepted archive | Source preparation for the next Rust trace gate; **not a new Rust trace result** |
 | [Earlier Static Hermes/Rust run](benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.json) | 20 measured battles after 3 warmups; 2.783 battles/sec | Historical mixed backend; one frozen callback fixture, not the generated pure Rust backend |
 
@@ -19,9 +21,9 @@ The Rust arena retained **1,498,859 additional objects** during that battle. The
 
 ## Timing profile
 
-The [first pure Rust battle profile](benchmarks/RUST_FIRST_BATTLE_PROFILE.md) points to property lookup, UTF-16/UTF-8 string interning, hashing and allocation. It includes initialization and final diagnostics, so its sample percentages are whole-process attribution rather than battle-only costs. The single-battle report still matches Node; its deliberate diagnostic stop is retained as a nonzero exit, not reported as a successful batch.
+The [warm Rust profile](benchmarks/RUST_WARM_BATTLE_PROFILE.md) isolates the 20 measured battles after warmup, matches the complete source report and records 23 actual collections. Measured-window collection pauses total 4.831 seconds. It enables raw-get diagnostics, so its overhead and attribution must be kept separate from the unprofiled 0.384 run. A new diagnostic-free warm profile is being collected to locate the remaining steady-state cost.
 
-The pending candidate removes [empty block environments](benchmarks/validation/rust-empty-block-environment-assessment.json), [provably unused strict-function arguments objects](benchmarks/validation/rust-generated-arguments-elision.json), the [linear callable-identity lookup](benchmarks/validation/rust-function-identity-index.json), and repeated allocation of the [shared strict-arguments thrower](benchmarks/validation/rust-generated-poison-intrinsic.json). Source gates validate these changes; their battle BPS is not measured yet. The [earlier Hermes timing profile](benchmarks/CURRENT_TIMING.md) describes the historical backend and should not be used as the current Rust profile.
+Environment/arguments elision, callable-identity indexing, clone specialization and giant-string collection have passed component gates and the retained battle checks. Large component or cold-start wins have not translated into a large warm-batch win. The [real clone diagnostic](benchmarks/RUST_COPY_OBJ_DIAGNOSTIC.md) shows that targeted numeric objects and empty arrays already have the likely native-copy allocation signature. The [earlier Hermes profile](benchmarks/CURRENT_TIMING.md) describes a different backend.
 
 ## Where the Rust work lives
 
@@ -70,14 +72,14 @@ The active pure Rust pipeline uses prepared frozen source modules and the extern
 node tools/rust-port/generate-program.mjs --through 6 --out work/rust-battle-full
 cargo generate-lockfile --offline --manifest-path work/rust-battle-full/Cargo.toml
 node tools/rust-port/build-program.mjs --profile release --jobs 2 \
-  --output benchmarks/validation/rust-program-release-build.json
+  --output benchmarks/validation/rust-program-review-build.json
 node tools/rust-port/check-program.mjs --profile release \
   --binary work/rust-port-shared-target/release/rust-battle-program \
-  --build-proof benchmarks/validation/rust-program-release-build.json \
-  --output benchmarks/validation/rust-full-program-release.json
+  --build-proof benchmarks/validation/rust-program-review-build.json \
+  --output benchmarks/validation/rust-full-program-review.json
 ```
 
-Regeneration can change generated crate partitions, so refresh the standalone workspace lockfile before the build wrapper snapshots inputs and invokes Cargo with `--locked`. The current retained batch failed for memory; these commands are the validation workflow, not a claim that it already passes. [Pipeline details](tools/rust-port/README.md) cover prerequisites and smaller diagnostic workloads. [Ordered trace instructions](tools/rust-port/TRACE_GATE.md) describe the prepared one-battle Node event/state reference and streamed archive checker; no generated Rust ordered-trace candidate has passed yet.
+Regeneration can change generated crate partitions, so refresh the standalone workspace lockfile before the build wrapper snapshots inputs and invokes Cargo with `--locked`. Use new result paths to preserve retained records. [Pipeline details](tools/rust-port/README.md) cover prerequisites and smaller diagnostics. [Ordered trace instructions](tools/rust-port/TRACE_GATE.md) describe the prepared Node reference; a bounded native trace attempt hit its memory limit without a complete export, so no generated Rust ordered-trace pass is claimed.
 
 The older mixed-backend experiment can be rerun in a workspace containing its SHA-bound compiler, private VM and seven-unit build prerequisites:
 
