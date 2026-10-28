@@ -59,6 +59,20 @@ const cases=[
  ['array-own-names-holes','var result=Object.getOwnPropertyNames([,1]).join(",");'],
  ['array-cyclic-join','var a=[];a[0]=a;var result=a.join(",");'],
  ['array-sort-holes-and-undefined','var a=[3,,void 0,1];a.sort();var result=a.join(",")+":"+("2" in a)+":"+("3" in a);'],
+ ['argument-spread-live-array-length','var a=[1,,];Object.defineProperty(a,"1",{get:function(){a[2]=4;return 3}});function f(){return arguments.length+":"+arguments[0]+":"+arguments[1]+":"+arguments[2]}var result=f(...a);'],
+ ['argument-spread-order-and-arguments-object','var log="";function f(){log+="F";return arguments.length}function g(){return f((log+="A",1),...arguments,(log+="B",4))}var result=g(2,3)+":"+log;'],
+ ['array-spread-holes-become-own-undefined','var a=[,...[,2],,];var result=a.length+":"+("0" in a)+":"+("1" in a)+":"+("2" in a)+":"+("3" in a);'],
+ ['string-spread-code-points','var a=[..."💩"];var result=a.length+":"+a[0].length;'],
+ ['compound-left-coercion-after-rhs','var log="",o={x:{valueOf:function(){log+="V";return 1}}};o.x+=(log+="R",2);var result=log+":"+o.x;'],
+ ['computed-key-method-replaced-by-rhs','var k={toString:function(){return"x"}},o={x:1};o[k]+=(k.toString=function(){return"y"},2);var result=o.x+":"+o.y;'],
+ ['regexp-literal-captures-and-index','var r=/(a+)/i,m=r.exec("AAA");var result=m[0]+":"+m[1]+":"+m.index;'],
+ ['regexp-global-last-index-reset','var r=/a/g;var result=r.test("a")+":"+r.lastIndex+":"+r.test("a")+":"+r.lastIndex;'],
+ ['regexp-dot-without-unicode','var r=/./g,m=r.exec("💩");var result=m[0].length+":"+r.lastIndex;'],
+ ['regexp-dot-with-unicode','var r=/./gu,m=r.exec("💩");var result=m[0].length+":"+r.lastIndex;'],
+ ['regexp-literal-fresh-per-call','function f(){return /a/g}var result=f()===f();'],
+ ['regexp-literal-source-and-flags','var r=/a(b+)/gim;var result=r.source+":"+r.flags;'],
+
+
 
 ];
 await mkdir(work,{recursive:true});

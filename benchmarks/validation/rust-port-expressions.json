@@ -1,7 +1,7 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 52,
+  "cases": 64,
   "results": [
     {
       "name": "computed-simple-rhs-before-coercion",
@@ -366,28 +366,115 @@
       "expected": "s:0031002c0033002c002c003a0074007200750065003a00660061006c00730065",
       "actual": "s:0031002c0033002c002c003a0074007200750065003a00660061006c00730065",
       "passed": true
+    },
+    {
+      "name": "argument-spread-live-array-length",
+      "source": "var a=[1,,];Object.defineProperty(a,\"1\",{get:function(){a[2]=4;return 3}});function f(){return arguments.length+\":\"+arguments[0]+\":\"+arguments[1]+\":\"+arguments[2]}var result=f(...a);",
+      "expected": "s:0033003a0031003a0033003a0034",
+      "actual": "s:0033003a0031003a0033003a0034",
+      "passed": true
+    },
+    {
+      "name": "argument-spread-order-and-arguments-object",
+      "source": "var log=\"\";function f(){log+=\"F\";return arguments.length}function g(){return f((log+=\"A\",1),...arguments,(log+=\"B\",4))}var result=g(2,3)+\":\"+log;",
+      "expected": "s:0034003a004100420046",
+      "actual": "s:0034003a004100420046",
+      "passed": true
+    },
+    {
+      "name": "array-spread-holes-become-own-undefined",
+      "source": "var a=[,...[,2],,];var result=a.length+\":\"+(\"0\" in a)+\":\"+(\"1\" in a)+\":\"+(\"2\" in a)+\":\"+(\"3\" in a);",
+      "expected": "s:0034003a00660061006c00730065003a0074007200750065003a0074007200750065003a00660061006c00730065",
+      "actual": "s:0034003a00660061006c00730065003a0074007200750065003a0074007200750065003a00660061006c00730065",
+      "passed": true
+    },
+    {
+      "name": "string-spread-code-points",
+      "source": "var a=[...\"💩\"];var result=a.length+\":\"+a[0].length;",
+      "expected": "s:0031003a0032",
+      "actual": "s:0031003a0032",
+      "passed": true
+    },
+    {
+      "name": "compound-left-coercion-after-rhs",
+      "source": "var log=\"\",o={x:{valueOf:function(){log+=\"V\";return 1}}};o.x+=(log+=\"R\",2);var result=log+\":\"+o.x;",
+      "expected": "s:00520056003a0033",
+      "actual": "s:00520056003a0033",
+      "passed": true
+    },
+    {
+      "name": "computed-key-method-replaced-by-rhs",
+      "source": "var k={toString:function(){return\"x\"}},o={x:1};o[k]+=(k.toString=function(){return\"y\"},2);var result=o.x+\":\"+o.y;",
+      "expected": "s:0031003a0033",
+      "actual": "s:0031003a0033",
+      "passed": true
+    },
+    {
+      "name": "regexp-literal-captures-and-index",
+      "source": "var r=/(a+)/i,m=r.exec(\"AAA\");var result=m[0]+\":\"+m[1]+\":\"+m.index;",
+      "expected": "s:004100410041003a004100410041003a0030",
+      "actual": "s:004100410041003a004100410041003a0030",
+      "passed": true
+    },
+    {
+      "name": "regexp-global-last-index-reset",
+      "source": "var r=/a/g;var result=r.test(\"a\")+\":\"+r.lastIndex+\":\"+r.test(\"a\")+\":\"+r.lastIndex;",
+      "expected": "s:0074007200750065003a0031003a00660061006c00730065003a0030",
+      "actual": "s:0074007200750065003a0031003a00660061006c00730065003a0030",
+      "passed": true
+    },
+    {
+      "name": "regexp-dot-without-unicode",
+      "source": "var r=/./g,m=r.exec(\"💩\");var result=m[0].length+\":\"+r.lastIndex;",
+      "expected": "s:0031003a0031",
+      "actual": "s:0031003a0031",
+      "passed": true
+    },
+    {
+      "name": "regexp-dot-with-unicode",
+      "source": "var r=/./gu,m=r.exec(\"💩\");var result=m[0].length+\":\"+r.lastIndex;",
+      "expected": "s:0032003a0032",
+      "actual": "s:0032003a0032",
+      "passed": true
+    },
+    {
+      "name": "regexp-literal-fresh-per-call",
+      "source": "function f(){return /a/g}var result=f()===f();",
+      "expected": "b:false",
+      "actual": "b:false",
+      "passed": true
+    },
+    {
+      "name": "regexp-literal-source-and-flags",
+      "source": "var r=/a(b+)/gim;var result=r.source+\":\"+r.flags;",
+      "expected": "s:006100280062002b0029003a00670069006d",
+      "actual": "s:006100280062002b0029003a00670069006d",
+      "passed": true
     }
   ],
   "compilerInputs": {
-    "tools/rust-port/expressions.mjs": "3bc4cf1fea126a649bbf9995531a7dcc9b31c93bcd2c678180c1391982b321c9",
-    "tools/rust-port/statements.mjs": "d7ef2e86f5583cb6bc0d4b981809da2d5146963e295ed8248c3a4c8536033212",
-    "tools/rust-port/compile.mjs": "f3faf1f5418ac47ba48ecaca101c58008a8014af9c283d5886b0c59940c7fa6a",
-    "tools/rust-port/tests/expressions.mjs": "8b5653067c1de9c9c8b37690bff866b4f51903e2cd4f7ebe8972d7ce3768d809",
-    "crates/js-runtime/src/builtins.rs": "26d6606da12c9e57b50d1a23cdacb9dcff2addf25158c3e29e5b2779e0b9d635",
-    "crates/js-runtime/src/closures.rs": "d2f522e4160b826a07811a0bc9305c38b3f72c1d0930406da6b262e707b51b06",
+    "tools/rust-port/expressions.mjs": "2b68a0ee1d2236e768c0ca99118e1c398213e647dd2d9105adc59154f5a1952e",
+    "tools/rust-port/statements.mjs": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
+    "tools/rust-port/compile.mjs": "d9f2d8b1b04e32a019109c215865e247b0952aa150352d4a8d09eab89f7883ca",
+    "tools/rust-port/tests/expressions.mjs": "8a297e18a51c254cc98a5120abdcd83843f67a23017fcfcd8e3038e3c4307041",
+    "crates/js-runtime/src/builtins.rs": "c969dc1497e19cfdeb6fb167b6889751de1d5ea6eb5170790b0dab202e8e81ad",
+    "crates/js-runtime/src/closures.rs": "922229364f8687e6dec675dbf09a929dcc788fc009d578f82bf7dbbb02974136",
     "crates/js-runtime/src/env.rs": "66f56718bbc5abfcad6267cc763a9548f40f18d26aefaaf6c5aeaeda9b3bbac4",
-    "crates/js-runtime/src/heap.rs": "ea31816d97fcf6aea99d82e0b3195a1b85f9c4f37e20d5f60cd9e793f9f1df48",
-    "crates/js-runtime/src/lib.rs": "dd44aaf6793d76814e34fdc18c77871fdaf169f9476ffa789a742b14a87b17f9",
-    "crates/js-runtime/src/math.rs": "685dadef7ae94184088e00964c252659f17f461cae70ebf9f05501abc5630b35",
-    "crates/js-runtime/src/runtime.rs": "9ad4e043ea78e16649994cc0738e6701b6d21746597de91724331f8401ec4085",
-    "crates/js-runtime/src/value.rs": "8014bdc99cee41920a4eeea63362d1ebb035231c8b88a65263b979cac2be653c",
-    "crates/js-runtime/Cargo.toml": "dba12785d4d09b17f4142f7c1857fe29ae29c8955c7c1a11bfba2ef2e6c31d10",
+    "crates/js-runtime/src/heap.rs": "20013b7cd2521e1644fcf7906421b5a52a5a0704fe9ec366fe37e23f689b5feb",
+    "crates/js-runtime/src/iterators.rs": "94f2136f525bd49671c5ebc8ae42a68781dbb3c4e2ef331d3843301560404ea4",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lib.rs": "ae0d11acddc2a4aba737b3e1ee782d83e5424952940f5dc56dd2e888764ff9eb",
+    "crates/js-runtime/src/math.rs": "8c1f3c1c66ed45c44352207033f107f9c747747db7507e4f8066d854abea2781",
+    "crates/js-runtime/src/regex.rs": "5f68065ce678c7c021800ddc8c2d117371379ce853088858f49270f964a695e9",
+    "crates/js-runtime/src/runtime.rs": "c1f24c79ae83c544b2fd8e19f3d763f327d45097f2823c6e21a023cea2899895",
+    "crates/js-runtime/src/value.rs": "7f6e0d0830fcedcc1036e3fcf598215ccd3b16dfc86404c5e56df46d5b5abbf0",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
     "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
   },
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-expression-tests/target/release/expression-tests",
-    "sha256": "083813790f9c6410d4cfb29bba1339c6194590da405e9e346ad805e29eb2690c"
+    "sha256": "5ef6755d5a63ce511f75279ee332fe01ff2d9376dec76d9c7f8228b689e311b3"
   },
   "buildArgs": [
     "build",
