@@ -426,12 +426,163 @@
         "executionBackend": "Generated Rust with native js-runtime; no JS interpreter or engine fallback.",
         "qualification": "Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately."
       }
+    },
+    {
+      "module": "unit_add_buff",
+      "file": "crates/generated-battle/src/unit_add_buff.rs",
+      "name": "ed.Unit.addBuff",
+      "config": "config/generated-battle-source.json",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 90693,
+        "end": 92695,
+        "sha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07"
+      },
+      "generatedSha256": "e5b9ed28adde00d746d845d863356eb3f6fab073114223049fd5cbb9d4797dc6",
+      "rustLines": 1169,
+      "coverage": {
+        "version": 1,
+        "moduleName": "unit_add_buff",
+        "filename": "src/srcmodule/game_battle.js#ed.Unit.addBuff@90693",
+        "mode": "function",
+        "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+        "sourceUtf16Length": 2002,
+        "astNodes": 575,
+        "astNodeTypes": {
+          "FunctionExpression": 3,
+          "Identifier": 232,
+          "BlockStatement": 15,
+          "IfStatement": 14,
+          "LogicalExpression": 30,
+          "CallExpression": 39,
+          "MemberExpression": 94,
+          "ThisExpression": 24,
+          "UnaryExpression": 13,
+          "VariableDeclaration": 13,
+          "VariableDeclarator": 17,
+          "BinaryExpression": 10,
+          "StringLiteral": 5,
+          "ReturnStatement": 4,
+          "ExpressionStatement": 13,
+          "AssignmentExpression": 8,
+          "ConditionalExpression": 5,
+          "SequenceExpression": 7,
+          "NullLiteral": 1,
+          "ForStatement": 2,
+          "NumericLiteral": 11,
+          "UpdateExpression": 2,
+          "BreakStatement": 1,
+          "ObjectExpression": 4,
+          "ObjectProperty": 8
+        },
+        "functions": [
+          {
+            "id": 0,
+            "name": "",
+            "start": 0,
+            "end": 2002,
+            "line": 1,
+            "column": 0,
+            "strict": false,
+            "supported": true,
+            "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+            "diagnostics": []
+          },
+          {
+            "id": 1,
+            "name": "",
+            "start": 1336,
+            "end": 1509,
+            "line": 1,
+            "column": 1336,
+            "strict": false,
+            "supported": true,
+            "sourceSha256": "bbfcf67348e7afa2acd027ad75b9ae1dc15b86d608d4c6e8d2b3959c88730256",
+            "diagnostics": []
+          },
+          {
+            "id": 2,
+            "name": "",
+            "start": 1687,
+            "end": 1940,
+            "line": 1,
+            "column": 1687,
+            "strict": false,
+            "supported": true,
+            "sourceSha256": "675ca76e6be7ee1a5df6f33f068ed21378f7a2c075dfa44ecfe4ec454513715e",
+            "diagnostics": []
+          }
+        ],
+        "compiledFunctions": 3,
+        "unsupportedFunctions": 0,
+        "complete": true,
+        "diagnostics": [],
+        "semanticallyQualified": false,
+        "executionBackend": "Generated Rust with native js-runtime; no JS interpreter or engine fallback.",
+        "qualification": "Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately."
+      }
+    },
+    {
+      "module": "reset_buff_apply",
+      "file": "crates/generated-battle/src/reset_buff_apply.rs",
+      "name": "ed.Unit.resetBuffApply",
+      "config": "config/generated-battle-source.json",
+      "source": {
+        "file": "src/srcmodule/game_battle.js",
+        "start": 87423,
+        "end": 87610,
+        "sha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8"
+      },
+      "generatedSha256": "00f495d98b90651599acf00dc54beb401424958993e2844329210ecbefd68bf7",
+      "rustLines": 73,
+      "coverage": {
+        "version": 1,
+        "moduleName": "reset_buff_apply",
+        "filename": "src/srcmodule/game_battle.js#ed.Unit.resetBuffApply@87423",
+        "mode": "function",
+        "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+        "sourceUtf16Length": 187,
+        "astNodes": 39,
+        "astNodeTypes": {
+          "FunctionExpression": 1,
+          "Identifier": 12,
+          "BlockStatement": 1,
+          "ExpressionStatement": 1,
+          "SequenceExpression": 1,
+          "LogicalExpression": 3,
+          "CallExpression": 7,
+          "MemberExpression": 7,
+          "StringLiteral": 2,
+          "ThisExpression": 4
+        },
+        "functions": [
+          {
+            "id": 0,
+            "name": "",
+            "start": 0,
+            "end": 187,
+            "line": 1,
+            "column": 0,
+            "strict": false,
+            "supported": true,
+            "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+            "diagnostics": []
+          }
+        ],
+        "compiledFunctions": 1,
+        "unsupportedFunctions": 0,
+        "complete": true,
+        "diagnostics": [],
+        "semanticallyQualified": false,
+        "executionBackend": "Generated Rust with native js-runtime; no JS interpreter or engine fallback.",
+        "qualification": "Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately."
+      }
     }
   ],
   "sourceInputs": {
-    "tools/rust-port/generate-battle.mjs": "28ce7c52e16e04c89f44713a13f28d020054a909526d13135946b2ad9ce04ce2",
+    "tools/rust-port/generate-battle.mjs": "42c1a92ddfd0def34f530ea71bb181d0d32d33b876b5b19c58d896e8203f854e",
     "tools/rust-port/compile.mjs": "a207927b167b8199b339b1ee399da45b2a9a462b7d879c4a3cd4b6cc2f793306",
-    "tools/rust-port/expressions.mjs": "27e249f72164105f96cba4a3fe8b36f3ff0adc48adfad0565bec759cbe4c03aa",
+    "tools/rust-port/expressions.mjs": "23ec6a42b278b27aba59a37b50c935ae4f7e3485bb71468067ac4acb794dadc0",
     "tools/rust-port/statements.mjs": "4572c7fd6b722f3049637083918abc79365528b0d2b026708674081302c8b857",
     "tools/rust-port/CONTRACT.md": "a0b80d83e836c917906747c10f8e46464bf24bdf6ef7cc9c69b6acfda47917cc",
     "config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
@@ -439,10 +590,11 @@
     "config/skill-translation.json": "158a8d5e47fea006c2d5852bd5ed1f621f6aa8a03746816161ee0cf801a11c60",
     "config/scheduler-translation.json": "d697a43ae52094af30610de1928e2e6ac0ec74246b6096edec72b60fdb618cb9",
     "config/buff-translation.json": "0d069459b030758490c652b95576fb592e12e9fa77323ffd1c9d26bd128d3799",
-    "config/unit-resources-translation.json": "423f2108926ff78250bb3dabd5de2de04e0ed75e89c50f30e740e7a275624421"
+    "config/unit-resources-translation.json": "423f2108926ff78250bb3dabd5de2de04e0ed75e89c50f30e740e7a275624421",
+    "config/generated-battle-source.json": "edcb3f4bced5477ad46438bd09358a963607f6d844efadc73c632633cbe6cfd6"
   },
   "completeCompileCoverage": true,
-  "compiledFunctions": 9,
+  "compiledFunctions": 13,
   "unsupportedFunctions": 0,
   "semanticallyQualified": false,
   "qualifiesFor10000Target": false,

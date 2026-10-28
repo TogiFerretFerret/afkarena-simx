@@ -11,6 +11,8 @@ const selected=[
  {module:'buff_update',config:'config/buff-translation.json',name:'ed.Buff.update'},
  {module:'set_hp',config:'config/unit-resources-translation.json',name:'setHp'},
  {module:'set_mp',config:'config/unit-resources-translation.json',name:'setMp'},
+ {module:'unit_add_buff',config:'config/generated-battle-source.json',name:'ed.Unit.addBuff'},
+ {module:'reset_buff_apply',config:'config/generated-battle-source.json',name:'ed.Unit.resetBuffApply'},
 ];
 const inputs=new Map();
 async function input(file){const bytes=await readFile(resolve(root,file));const digest=sha(bytes);if(inputs.has(file)&&inputs.get(file)!==digest)throw Error('Source changed during generation: '+file);inputs.set(file,digest);return bytes;}
@@ -21,6 +23,7 @@ for(const item of selected){
  const pin=item.name?config.functions.find(fn=>fn.name===item.name):config;
  if(!pin)throw Error('Missing pinned function '+item.name);
  const sourceFile=config.source,full=(await input(sourceFile)).toString('utf8'),source=full.slice(pin.start,pin.end);
+ if(config.sourceSha256&&sha(full)!==config.sourceSha256)throw Error('Changed pinned source file '+sourceFile);
  if(sha(source)!==pin.sha256)throw Error('Changed original function '+(pin.name??pin.sourceName));
  const name=pin.name??pin.sourceName,result=compileSource(source,{filename:sourceFile+'#'+name+'@'+pin.start,mode:'function',moduleName:item.module});
  const file=directory+'/src/'+item.module+'.rs';

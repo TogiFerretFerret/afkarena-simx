@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_battle.js",
+  "sourceSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+  "functions": [
+    {
+      "module": "reset_buff_apply",
+      "name": "ed.Unit.resetBuffApply",
+      "start": 87423,
+      "end": 87610,
+      "sha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+      "nodeType": "FunctionExpression"
+    },
+    {
+      "module": "unit_add_buff",
+      "name": "ed.Unit.addBuff",
+      "start": 90693,
+      "end": 92695,
+      "sha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "nodeType": "FunctionExpression"
+    }
+  ],
+  "scope": "Exact Babel AST function ranges for additional generated native Rust source. These pins establish source identity, not semantic or battle qualification."
+}
