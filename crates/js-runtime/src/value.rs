@@ -297,25 +297,20 @@ pub fn number_rem(dividend:f64,divisor:f64)->JsResult<f64>{
     );}
     Ok(result)
 }
-pub(crate) fn number_pow(base: f64, exponent: f64) -> JsResult<f64> {
-    if exponent.is_nan() { return Ok(CONVERSION_NAN); }
-    if exponent == 0.0 { return Ok(1.0); }
-    if base.is_nan() { return Ok(CONVERSION_NAN); }
-    let odd = exponent.is_finite() && exponent.abs() < 9_007_199_254_740_992.0 && exponent.fract() == 0.0 && exponent.abs() % 2.0 == 1.0;
-    if base.is_infinite() { return Ok(if exponent > 0.0 { if base.is_sign_negative() && odd { f64::NEG_INFINITY } else { f64::INFINITY } } else if base.is_sign_negative() && odd { -0.0 } else { 0.0 }); }
-    if base == 0.0 { return Ok(if exponent > 0.0 { if base.is_sign_negative() && odd { -0.0 } else { 0.0 } } else if base.is_sign_negative() && odd { f64::NEG_INFINITY } else { f64::INFINITY }); }
-    if exponent.is_infinite() { return Ok(if base.abs() == 1.0 { CONVERSION_NAN } else if (base.abs() > 1.0) == exponent.is_sign_positive() { f64::INFINITY } else { 0.0 }); }
-    if base < 0.0 && exponent.fract() != 0.0 { return Ok(arithmetic::REFERENCE_NAN); }
-    if exponent == 1.0 { return Ok(base); }
-    if exponent == 2.0 { return Ok(arithmetic::mul(base, base)); }
-    if exponent == -1.0 {
-        // V8's general pow is not interchangeable with correctly-rounded 1/x.
-        // Only exact binary powers of two admit that reduction.
-        let magnitude=base.to_bits()&0x7fff_ffff_ffff_ffff;
-        let fraction=magnitude&((1_u64<<52)-1);
-        let binary_power=if magnitude>>52!=0 {fraction==0}else{fraction.count_ones()==1};
-        if binary_power{return Ok(arithmetic::div(1.0, base));}
+/// Pinned Node24.19 V8 src/numbers/ieee754.cc (use_std_math_pow=true).
+/// Source and BSD license are retained under tools/native-compiler-vendor/v8-math.
+/// Keep the wrapper's special cases: a reciprocal is NOT an equivalent pow(-1).
+pub(crate) fn number_pow(mut base:f64,exponent:f64)->JsResult<f64>{
+    if exponent.is_nan(){return Ok(CONVERSION_NAN)}
+    if exponent.is_infinite()&&(base==1.0||base== -1.0){return Ok(CONVERSION_NAN)}
+    if base.is_nan(){base=CONVERSION_NAN;}
+    if exponent==2.0{return Ok(arithmetic::mul(base,base))}
+    if exponent==0.5 {
+        return Ok(if base.is_infinite(){f64::INFINITY}else{arithmetic::add(base,0.0).sqrt()});
     }
-    if exponent == 0.5 && base > 0.0 { return Ok(base.sqrt()); }
-    Err(JsError::Unsupported("finite general Number exponentiation requires a pinned V8-compatible pow implementation".into()))
+    Ok(std_pow(base,exponent))
 }
+// Never allow a compile-time constant call site to turn this into a different
+// reciprocal/polynomial: the pinned reference deliberately calls platform pow.
+#[inline(never)]
+fn std_pow(base:f64,exponent:f64)->f64{base.powf(exponent)}
