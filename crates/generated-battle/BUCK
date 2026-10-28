@@ -1,0 +1,11 @@
+load("@prelude//:rules.bzl", "rust_library")
+
+rust_library(
+    name = "generated_battle",
+    srcs = glob(["src/**/*.rs"]),
+    crate = "generated_battle",
+    crate_root = "src/lib.rs",
+    edition = "2024",
+    deps = ["//crates/js-runtime:js_runtime"],
+    visibility = ["PUBLIC"],
+)
