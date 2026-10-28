@@ -105,6 +105,30 @@ const cases=[
   [
     "relational-utf16-order",
     "function(){return (\"\\ud800\"<\"\\ue000\")+\";\"+(\"\\udfff\">\"\\ud800\");}"
+  ],
+  [
+    "atan-object-coercion",
+    "function(){var e=\"\";var a={valueOf:function(){e+=\"v\";return 1;}};var r=Math.atan(a);return e+\";\"+r;}"
+  ],
+  [
+    "atan2-object-coercion-order",
+    "function(){var e=\"\";var a={valueOf:function(){e+=\"y\";return 1;}},b={valueOf:function(){e+=\"x\";return -1;}};var r=Math.atan2(a,b);return e+\";\"+r;}"
+  ],
+  [
+    "atan2-throw-stops-second-coercion",
+    "function(){var e=\"\",s={};var a={valueOf:function(){e+=\"y\";throw s;}},b={valueOf:function(){e+=\"bad\";return -1;}};try{Math.atan2(a,b);}catch(x){return e+\";\"+(x===s);}return \"bad\";}"
+  ],
+  [
+    "atan2-nan-still-converts-second",
+    "function(){var e=\"\";var a={valueOf:function(){e+=\"y\";return NaN;}},b={valueOf:function(){e+=\"x\";return -1;}};var r=Math.atan2(a,b);return e+\";\"+r;}"
+  ],
+  [
+    "atan2-quadrant-raw-bits",
+    "function(){return Math.atan2(1,-1);}"
+  ],
+  [
+    "atan-negative-zero-raw-bits",
+    "function(){return Math.atan(-0);}"
   ]
 ];
 const tracked=new Map();async function bind(file){const bytes=await readFile(resolve(root,file));tracked.set(file,sha(bytes));}

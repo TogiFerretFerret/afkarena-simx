@@ -1,0 +1,269 @@
+{
+  "version": 1,
+  "passed": false,
+  "cases": 107560,
+  "compared": 107560,
+  "unsupportedCount": 0,
+  "unsupported": [],
+  "failures": [
+    {
+      "index": 755,
+      "input": "math atan2 u d7ff8123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 761,
+      "input": "math atan2 u dfff8abcdef012345",
+      "expected": "dfff8abcdef012345",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 767,
+      "input": "math atan2 u d7ff0123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 6785,
+      "input": "math atan2 d7ff8000000000000 d7ff8123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 6791,
+      "input": "math atan2 d7ff8000000000000 dfff8abcdef012345",
+      "expected": "dfff8abcdef012345",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 6797,
+      "input": "math atan2 d7ff8000000000000 d7ff0123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 9863,
+      "input": "math atan2 d7ff8123456789abc u",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 9953,
+      "input": "math atan2 d7ff8123456789abc d7ff8000000000000",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 10007,
+      "input": "math atan2 d7ff8123456789abc dfff8abcdef012345",
+      "expected": "dfff8abcdef012345",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 10037,
+      "input": "math atan2 d7ff8123456789abc s006200610064",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 10043,
+      "input": "math atan2 d7ff8123456789abc sd800",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 10265,
+      "input": "math atan2 dfff8abcdef012345 u",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "dfff8abcdef012345"
+    },
+    {
+      "index": 10355,
+      "input": "math atan2 dfff8abcdef012345 d7ff8000000000000",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "dfff8abcdef012345"
+    },
+    {
+      "index": 10403,
+      "input": "math atan2 dfff8abcdef012345 d7ff8123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "dfff8abcdef012345"
+    },
+    {
+      "index": 10415,
+      "input": "math atan2 dfff8abcdef012345 d7ff0123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "dfff8abcdef012345"
+    },
+    {
+      "index": 10439,
+      "input": "math atan2 dfff8abcdef012345 s006200610064",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "dfff8abcdef012345"
+    },
+    {
+      "index": 10445,
+      "input": "math atan2 dfff8abcdef012345 sd800",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "dfff8abcdef012345"
+    },
+    {
+      "index": 10667,
+      "input": "math atan2 d7ff0123456789abc u",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 10757,
+      "input": "math atan2 d7ff0123456789abc d7ff8000000000000",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 10811,
+      "input": "math atan2 d7ff0123456789abc dfff8abcdef012345",
+      "expected": "dfff8abcdef012345",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 10841,
+      "input": "math atan2 d7ff0123456789abc s006200610064",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 10847,
+      "input": "math atan2 d7ff0123456789abc sd800",
+      "expected": "d7ff8000000000000",
+      "kind": "atan2",
+      "actual": "d7ff8123456789abc"
+    },
+    {
+      "index": 12413,
+      "input": "math atan2 s006200610064 d7ff8123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 12419,
+      "input": "math atan2 s006200610064 dfff8abcdef012345",
+      "expected": "dfff8abcdef012345",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 12425,
+      "input": "math atan2 s006200610064 d7ff0123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 12815,
+      "input": "math atan2 sd800 d7ff8123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 12821,
+      "input": "math atan2 sd800 dfff8abcdef012345",
+      "expected": "dfff8abcdef012345",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    },
+    {
+      "index": 12827,
+      "input": "math atan2 sd800 d7ff0123456789abc",
+      "expected": "d7ff8123456789abc",
+      "kind": "atan2",
+      "actual": "d7ff8000000000000"
+    }
+  ],
+  "sources": {
+    "tools/rust-port/check-math.mjs": "a97f76df9638d16ca36dccad00d1acba0d503bf54d2ac80d8403aee0800340a2",
+    "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+    "crates/js-runtime/src/math.rs": "0a2389cff3913406018c10bd4a288aa4e11577e8ca91077bfc47edef446433c2",
+    "crates/js-runtime/src/fdlibm.rs": "2bd1db59199bbe87d4c109f1dc6003369494110e6f402d5fda446c2b0207b9f4",
+    "tools/native-compiler-vendor/v8-math/src/base/ieee754.cc": "1bf999809d4c4c1d31ad5ff3578d32614796f159e08b9e7782560d017721a0c2",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "config/native-compiler-v8-math.json": "d0261ceee0a02cec960c57f36afd1974cd6e3cb43a0d5b340d71c8ef8ad605c7",
+    "tools/native-compiler-vendor/v8-math/src/numbers/ieee754.cc": "0582ca75d4d3e8c58b784734ef7ddf891e5154bf8e35c4d550ea2263265859fc"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/target/debug/examples/value_check",
+    "sha256": "df750ea850174b843a797c1844a8cbdb44aa9c3435b6e194c22dfbeb9e961a00"
+  },
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/rust-atan-nan-operand-failure.input.gz",
+      "sha256": "3514ed65bae8140541d2295e73fa85021dd710f076d44d331654f92e25471526",
+      "uncompressedSha256": "b9892cb63683c88956a4159e3e6a16cadb9cf13640003e08e75857d941afc3e0"
+    },
+    {
+      "file": "benchmarks/validation/rust-atan-nan-operand-failure.expected.gz",
+      "sha256": "a045acc9e3ef8d175d5534b981fb216a2bb26bedb68cd7290c6ee946e768420a",
+      "uncompressedSha256": "ad5f191cf5afca50deebfec6560db2de950b56a50825fc8e90b2ef2bf0635b63"
+    },
+    {
+      "file": "benchmarks/validation/rust-atan-nan-operand-failure.actual.gz",
+      "sha256": "d2155bad7466c17bfd2556e036fdfff13bb2e5157f8a454cf9820b3044a95563",
+      "uncompressedSha256": "4b6198b75020fee1d6aab047db84cc26ab141ce051336cb6a38fb384875bfa04"
+    },
+    {
+      "file": "benchmarks/validation/rust-atan-nan-operand-failure.stderr.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Actual pure Rust Math natives, primitive coercions, raw f64 bits and UTF-16 string arguments compared to pinned jitless V8. Pow follows the pinned V8 use_std_math_pow wrapper and platform Rust powf; all submitted Math cases are compared without normalization. Object coercion side effects and generated-program integration require separate gates; this is not battle qualification.",
+  "qualifiesFor10000Target": false,
+  "failedCandidateSource": {
+    "file": "benchmarks/validation/rust-atan-nan-operand-failure.source.rs.gz",
+    "sha256": "af5cdcad08199e19c0776b71637277cd266b23c81745e1e5ef3cc71205f52cde",
+    "uncompressedSha256": "2bd1db59199bbe87d4c109f1dc6003369494110e6f402d5fda446c2b0207b9f4"
+  }
+}

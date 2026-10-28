@@ -1,16 +1,18 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 44114,
-  "compared": 44114,
+  "cases": 107560,
+  "compared": 107560,
   "unsupportedCount": 0,
   "unsupported": [],
   "failures": [],
   "sources": {
-    "tools/rust-port/check-math.mjs": "a7e6332377f09d25796e5d23fef7cc36e2c4bcdc7666a705eea85a2aa24494c0",
+    "tools/rust-port/check-math.mjs": "a97f76df9638d16ca36dccad00d1acba0d503bf54d2ac80d8403aee0800340a2",
     "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
     "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
-    "crates/js-runtime/src/math.rs": "8c1f3c1c66ed45c44352207033f107f9c747747db7507e4f8066d854abea2781",
+    "crates/js-runtime/src/math.rs": "0a2389cff3913406018c10bd4a288aa4e11577e8ca91077bfc47edef446433c2",
+    "crates/js-runtime/src/fdlibm.rs": "b0d84d9e230007c559b3f3533b9890b170225e044b8cf39379ce161e2144f9df",
+    "tools/native-compiler-vendor/v8-math/src/base/ieee754.cc": "1bf999809d4c4c1d31ad5ff3578d32614796f159e08b9e7782560d017721a0c2",
     "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
     "config/native-compiler-v8-math.json": "d0261ceee0a02cec960c57f36afd1974cd6e3cb43a0d5b340d71c8ef8ad605c7",
@@ -18,7 +20,7 @@
   },
   "binary": {
     "file": "/workspace/afkarena-simx/target/release/examples/value_check",
-    "sha256": "9be6dd36f2a3b7d4d954030cecd1b7dcce20587b98f28c8948eb2eb146d48ee1"
+    "sha256": "37267b9a699fcc9ef1b45df81184f094b3fbd83eed783793c7b54ceaf5446da4"
   },
   "oracleProfile": {
     "version": 1,
@@ -41,18 +43,18 @@
   "artifacts": [
     {
       "file": "benchmarks/validation/rust-math-semantics.input.gz",
-      "sha256": "bc1b1793f915b50cc720a96cf7d2b5a103bc4cc039539bfef3b161a6803791e9",
-      "uncompressedSha256": "0db1ead8cb8eeb60f56fa061498d474d099d7f35211ccb392b8de03eac886214"
+      "sha256": "3514ed65bae8140541d2295e73fa85021dd710f076d44d331654f92e25471526",
+      "uncompressedSha256": "b9892cb63683c88956a4159e3e6a16cadb9cf13640003e08e75857d941afc3e0"
     },
     {
       "file": "benchmarks/validation/rust-math-semantics.expected.gz",
-      "sha256": "e8f9f4f28ae4d8a63bb73c57feddb27b1b56e2211625973808efd12fc9a9456b",
-      "uncompressedSha256": "aad82ee417f8d4ff623e1294cf0e47b50ff0faac8191386d63bea35445d2d6c4"
+      "sha256": "a045acc9e3ef8d175d5534b981fb216a2bb26bedb68cd7290c6ee946e768420a",
+      "uncompressedSha256": "ad5f191cf5afca50deebfec6560db2de950b56a50825fc8e90b2ef2bf0635b63"
     },
     {
       "file": "benchmarks/validation/rust-math-semantics.actual.gz",
-      "sha256": "e8f9f4f28ae4d8a63bb73c57feddb27b1b56e2211625973808efd12fc9a9456b",
-      "uncompressedSha256": "aad82ee417f8d4ff623e1294cf0e47b50ff0faac8191386d63bea35445d2d6c4"
+      "sha256": "a045acc9e3ef8d175d5534b981fb216a2bb26bedb68cd7290c6ee946e768420a",
+      "uncompressedSha256": "ad5f191cf5afca50deebfec6560db2de950b56a50825fc8e90b2ef2bf0635b63"
     },
     {
       "file": "benchmarks/validation/rust-math-semantics.stderr.gz",
