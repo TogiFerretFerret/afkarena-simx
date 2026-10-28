@@ -26,7 +26,7 @@ async function track(file){const absolute=resolve(root,file);inputs.set(absolute
 async function tree(directory,generated=false){
  for(const entry of (await readdir(directory,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name))){
   if(entry.isDirectory()){if(entry.name!=='target'&&entry.name!=='.git')await tree(resolve(directory,entry.name),generated);}
-  else if(entry.name.endsWith('.rs')||entry.name.endsWith('.utf16le')||entry.name==='native_battle_run.js'||entry.name==='Cargo.toml'||entry.name==='Cargo.lock'||generated&&entry.name==='manifest.json')await track(resolve(directory,entry.name));
+  else if(entry.name.endsWith('.rs')||entry.name.endsWith('.utf16le')||entry.name.endsWith('.js')||entry.name==='Cargo.toml'||entry.name==='Cargo.lock'||generated&&entry.name==='manifest.json')await track(resolve(directory,entry.name));
  }
 }
 async function snapshot(){
