@@ -10,7 +10,7 @@ const DAY:i64=86_400_000;
 impl Runtime {
  pub fn install_date_builtins(&mut self)->JsResult<()> {
   let prototype=self.object();let constructor=self.native_function("Date",7,date_constructor)?;
-  self.set_function_constructible(constructor,true)?;self.set_constructor_default_prototype(constructor,prototype)?;
+  self.set_function_constructible(constructor,true)?;self.set_constructor_default_prototype(constructor,prototype)?;self.set_native_construct_allocates_object(constructor,true)?;
   let key=self.string("prototype");self.define_data(constructor,key,prototype,false,false,false)?;
   let key=self.string("constructor");self.define_data(prototype,key,constructor,true,false,true)?;
   for(name,arity,code)in[("now",0,date_now as NativeFn),("parse",1,date_parse as NativeFn),("UTC",7,date_utc as NativeFn)]{let method=self.native_function(name,arity,code)?;let key=self.string(name);self.define_data(constructor,key,method,true,false,true)?;}
@@ -27,17 +27,23 @@ fn clip(value:f64)->f64{if !value.is_finite()||value.abs()>8.64e15{CONVERSION_NA
 fn wall_now()->JsResult<f64>{match SystemTime::now().duration_since(UNIX_EPOCH){Ok(duration)=>Ok(duration.as_millis()as f64),Err(error)=>Ok(-(error.duration().as_millis()as f64))}}
 fn utc_domain()->JsResult<()> {
  let declared=std::env::var("TZ").ok();
- let utc=match declared.as_deref(){Some("UTC"|"Etc/UTC"|"GMT"|"Etc/GMT"|"UTC0"|"GMT0")=>true,Some("")=>true,Some(_)=>false,None=>std::fs::read_to_string("/etc/timezone").is_ok_and(|s|matches!(s.trim(),"UTC"|"Etc/UTC"|"GMT"|"Etc/GMT"))};
+ let utc=match declared.as_deref(){Some("UTC"|"Etc/UTC"|"GMT"|"Etc/GMT"|"UTC0"|"GMT0")=>true,Some("")=>true,Some(_)=>false,None=>std::fs::read_to_string("/etc/timezone").is_ok_and(|s|matches!(s.trim(),"UTC"|"Etc/UTC"|"GMT"|"Etc/GMT"))||std::fs::read("/etc/localtime").ok().zip(std::fs::read("/usr/share/zoneinfo/Etc/UTC").ok()).is_some_and(|(actual,utc)|actual==utc)};
  if utc{Ok(())}else{Err(JsError::Unsupported("Date local-time operation requires a verified UTC host time zone".into()))}
 }
 fn date_now(_: &mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(wall_now()?))}
-fn date_constructor(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Value>{
+fn date_constructor(rt:&mut Runtime,_this:Value,args:&[Value],_:EnvId)->JsResult<Value>{
  if !rt.is_construct_call(){utc_domain()?;return Ok(rt.string(&display(wall_now()?,Display::Full)?));}
  let value=match args.len(){0=>wall_now()?,1=>{
   if args[0].is_object()&&matches!(rt.objects[rt.object_id(args[0])?.0].kind,ObjectKind::Date(_)){time(rt,args[0])?}
   else{let primitive=rt.to_primitive(args[0],Hint::Default)?;if let Value::String(id)=primitive{parse(rt.string_units(id))?}else{clip(rt.to_number(primitive)?)}}
  },_=>{utc_domain()?;components(rt,args,false)?}};
- let id=rt.object_id(this)?;rt.objects[id.0].kind=ObjectKind::Date(clip(value));Ok(this)
+ // Date differs from ordinary source functions: argument conversions precede
+ // the newTarget.prototype read. The closure constructor dispatcher deliberately
+ // defers allocation for this native intrinsic.
+ let target=rt.current_new_target();let key=rt.string("prototype");let candidate=rt.get(target,key)?;
+ let default=rt.call_stack.last().and_then(|id|rt.functions.get(id.0)).map(|f|f.constructor_default_prototype).ok_or_else(||JsError::Unsupported("Date constructor frame is missing".into()))?;
+ let prototype=if candidate.is_object(){rt.object_id(candidate)?}else{default};
+ let id=rt.alloc_object(Some(prototype));rt.objects[id.0].kind=ObjectKind::Date(clip(value));Ok(Value::Object(id))
 }
 fn date_get_time(rt:&mut Runtime,this:Value,_:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(time(rt,this)?))}
 fn date_set_time(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Value>{time(rt,this)?;let value=clip(rt.to_number(arg(args,0))?);let id=rt.object_id(this)?;rt.objects[id.0].kind=ObjectKind::Date(value);Ok(Value::Number(value))}
