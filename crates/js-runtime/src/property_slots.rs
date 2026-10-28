@@ -17,6 +17,8 @@ impl LiteralReadSite {
 #[derive(Clone,Copy,Default)]
 pub(crate) struct CachedSlot { key:Option<PropertyKey>,index:Option<usize> }
 impl Runtime {
+ pub(crate) fn invalidate_reclaimed_literal_string_keys(&mut self,reclaimed:&[bool]){for entry in &mut self.literal_property_slots{if entry.key.is_some_and(|key|reclaimed.get(key.0.0).copied().unwrap_or(false)){*entry=CachedSlot::default();}}}
+
     #[inline]
     pub fn get_literal_cached(&mut self,receiver:Value,site:&'static LiteralReadSite)->JsResult<Value>{
         if !self.literal_property_slots_enabled{let key=self.static_string(site.text);return self.get(receiver,key)}
