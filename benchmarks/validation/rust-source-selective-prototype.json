@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Static generated-site selection only. Exact frozen Buff source ancestors authorize optional guarded prototype probing; all other sites invoke the ordinary const-false entry. Runtime semantic differential evidence is separate.",
+  "rows": [
+    {
+      "name": "exact-original-buff-fixture",
+      "sourceSha256": "7ab0b1d4280798db909de399a5f3f06cc19f72d9efcb18c56dbaf67f0686bd32",
+      "enabled": true,
+      "sites": 93,
+      "hintedFunctions": [
+        {
+          "id": 18,
+          "start": 1733,
+          "end": 1920,
+          "proof": {
+            "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+            "start": 1733,
+            "end": 1920
+          }
+        },
+        {
+          "id": 19,
+          "start": 1944,
+          "end": 3946,
+          "proof": {
+            "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+            "start": 1944,
+            "end": 3946
+          }
+        },
+        {
+          "id": 20,
+          "start": 3280,
+          "end": 3453,
+          "proof": {
+            "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+            "start": 1944,
+            "end": 3946
+          }
+        },
+        {
+          "id": 21,
+          "start": 3631,
+          "end": 3884,
+          "proof": {
+            "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+            "start": 1944,
+            "end": 3946
+          }
+        }
+      ]
+    },
+    {
+      "name": "specializations-disabled",
+      "sourceSha256": "7ab0b1d4280798db909de399a5f3f06cc19f72d9efcb18c56dbaf67f0686bd32",
+      "enabled": false,
+      "sites": 0,
+      "hintedFunctions": []
+    },
+    {
+      "name": "reset-exact",
+      "sourceSha256": "f5a438f7fa1ed8f8126c782cee4bde36762c9cf617bb346146d3022babd74573",
+      "enabled": true,
+      "sites": 7,
+      "hintedFunctions": [
+        {
+          "id": 1,
+          "start": 13,
+          "end": 200,
+          "proof": {
+            "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+            "start": 13,
+            "end": 200
+          }
+        }
+      ]
+    },
+    {
+      "name": "reset-same-semantics-different-source",
+      "sourceSha256": "9dfcc96b6eeb3d5974d3cf18a8a470eb17ee3aa36e9ede68c191969e6f23048d",
+      "enabled": true,
+      "sites": 0,
+      "hintedFunctions": []
+    },
+    {
+      "name": "add-exact",
+      "sourceSha256": "d99fb81b50e86d751a115c6fda65cfa0e60f4b7410ca556cadab6206d7708dd3",
+      "enabled": true,
+      "sites": 86,
+      "hintedFunctions": [
+        {
+          "id": 1,
+          "start": 13,
+          "end": 2015,
+          "proof": {
+            "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+            "start": 13,
+            "end": 2015
+          }
+        },
+        {
+          "id": 2,
+          "start": 1349,
+          "end": 1522,
+          "proof": {
+            "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+            "start": 13,
+            "end": 2015
+          }
+        },
+        {
+          "id": 3,
+          "start": 1700,
+          "end": 1953,
+          "proof": {
+            "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+            "start": 13,
+            "end": 2015
+          }
+        }
+      ]
+    },
+    {
+      "name": "add-same-semantics-different-source",
+      "sourceSha256": "c95a118d496216e0bdf198ae6ac15a5978a0845dedd0d0e6107efa0df7eff297",
+      "enabled": true,
+      "sites": 0,
+      "hintedFunctions": []
+    },
+    {
+      "name": "unrelated-read-sites",
+      "sourceSha256": "8a11f7173031e7f3c00305c8764d9c6e94cf605246994a22ca97918b92385367",
+      "enabled": true,
+      "sites": 0,
+      "hintedFunctions": []
+    }
+  ],
+  "inputs": {
+    "tools/rust-port/compile.mjs": "ccdfdf7e0b75df310810ccab20d9c4ec0a84d6e4be8e43fc76a562ad0d0a755d",
+    "tools/rust-port/expressions.mjs": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
+    "tools/rust-port/check-source-selective-prototype.mjs": "7bc60240e201d47d10709fab01a532a76d6aefaef810094622cb0182182aeb91",
+    "tools/rust-port/prototype-buff-fixture.mjs": "1c982691b598f733006857816d5d49166ce3a0cb8d1f661cd9cccb2163f1df64",
+    "crates/js-runtime/src/property_slots.rs": "c8796b4307180fda010476025fccc28462a39e2b108eb84651213cff96510d81"
+  }
+}
