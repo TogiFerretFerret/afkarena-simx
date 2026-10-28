@@ -16,6 +16,25 @@ function strictDirective(node){return(node.directives??node.body?.directives??[]
 function lexicalDeclarations(body){return body.flatMap(node=>node.type==='VariableDeclaration'&&node.kind!=='var'?node.declarations.flatMap(d=>bindings(d.id).map(name=>({name,mutable:node.kind==='let'}))):[]);}
 function hoists(node){const names=new Set(),functions=[];const body=directBody(node)??[];for(const entry of body)if(entry.type==='FunctionDeclaration'){if(!entry.id)throw Error('Anonymous function declaration');names.add(entry.id.name);functions.push(entry);}
  const walk=current=>{if(FUNCTION_TYPES.has(current.type))return;if(current.type==='VariableDeclaration'&&current.kind==='var')for(const declaration of current.declarations)for(const name of bindings(declaration.id))names.add(name);for(const child of childNodes(current))walk(child);};for(const entry of body)walk(entry);return{names:[...names],functions};}
+function lexicalScopeNames(node){
+ if(node.type==='Program'||node.type==='BlockStatement')return new Set((node.body??[]).flatMap(entry=>entry.type==='VariableDeclaration'&&entry.kind!=='var'?entry.declarations.flatMap(d=>bindings(d.id)):entry.type==='ClassDeclaration'&&entry.id?[entry.id.name]:[]));
+ if(node.type==='SwitchStatement')return new Set(node.cases.flatMap(entry=>[...lexicalScopeNames({type:'BlockStatement',body:entry.consequent})]));
+ const declaration=node.type==='ForStatement'?node.init:['ForInStatement','ForOfStatement'].includes(node.type)?node.left:null;
+ return new Set(declaration?.type==='VariableDeclaration'&&declaration.kind!=='var'?declaration.declarations.flatMap(d=>bindings(d.id)):[]);
+}
+function annexBPlan(record,parents){
+ const eligible=new WeakSet(),names=new Set();
+ const walk=node=>{if(FUNCTION_TYPES.has(node.type)){
+  if(node.type!=='FunctionDeclaration')return;const parent=parents.get(node),direct=parent===record.node||parent===record.node.body;
+  if(direct)return;
+  if(!['BlockStatement','SwitchCase'].includes(parent?.type)){const error=Error('Conditional/labeled function declaration requires Annex B statement normalization');error.node=node;throw error;}
+  if(!record.strict){let ancestor=parent,conflict=false;while(ancestor&&ancestor!==record.node){if(lexicalScopeNames(ancestor).has(node.id.name))conflict=true;if(ancestor.type==='CatchClause'&&ancestor.param&&bindings(ancestor.param).includes(node.id.name)){const error=Error('Annex B function shadowing a catch parameter requires separate instantiation semantics');error.node=node;throw error;}ancestor=parents.get(ancestor);}
+   if(!conflict){eligible.add(node);names.add(node.id.name);}
+  }
+  return;
+ }for(const child of childNodes(node))walk(child);};
+ for(const node of directBody(record.node)??[])walk(node);return{eligible,names:[...names]};
+}
 function diagnostic(error,node,filename){return{filename,start:node.start??0,end:node.end??0,line:node.loc?.start.line??null,column:node.loc?.start.column??null,nodeType:node.type,reason:error.message??String(error)};}
 
 /** Babel AST -> native Rust execution functions. Unsupported bodies are explicit
@@ -40,7 +59,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
   const value=ctx.temp(rhs);if(!emitRust)return value;if(node.type==='ObjectMethod')ctx.emit(`rt.set_function_constructable(${value}, false)?;`);if(sourcePoolPath)ctx.emit(`rt.set_function_source_range(${value}, __JS_SOURCE_POOL, ${node.start}, ${node.end})?;`);else ctx.emit(`rt.set_function_source(${value}, &[${utf16(source.slice(node.start,node.end)).join(',')}])?;`);return value;
  }
  function context(record){const lines=[],state={counter:0};
-  const ctx={env:'env',functionEnv:'env',thisValue:'this',strict:record.strict,pendingLabels:[],emit(line){if(emitRust)lines.push(line);},fresh(prefix='temporary'){return prefix.replace(/[^A-Za-z0-9_]/g,'_')+'_'+state.counter++;},temp(rhs){const name=this.fresh('value');this.emit(`let ${name} = ${rhs};`);return name;},expression(node){return emitExpression(node,this);},makeClosure(node,options){return closure(node,this,options);},child(overrides={}){return Object.assign(Object.create(this),overrides);},rustString,unsupported(node,reason){const error=Error(reason);error.node=node;throw error;}};
+  const ctx={env:'env',functionEnv:'env',thisValue:'this',strict:record.strict,pendingLabels:[],annexBDeclarations:new WeakSet(),emit(line){if(emitRust)lines.push(line);},fresh(prefix='temporary'){return prefix.replace(/[^A-Za-z0-9_]/g,'_')+'_'+state.counter++;},temp(rhs){const name=this.fresh('value');this.emit(`let ${name} = ${rhs};`);return name;},expression(node){return emitExpression(node,this);},makeClosure(node,options){return closure(node,this,options);},child(overrides={}){return Object.assign(Object.create(this),overrides);},rustString,instantiateBlockFunctions(functions,local){const unique=new Map();for(const fn of functions)unique.set(fn.id.name,fn);for(const name of unique.keys())local.emit(`rt.declare_lexical(${local.env}, ${rustString(name)}, true)?;`);for(const[name,fn]of unique){const value=local.makeClosure(fn);local.emit(`rt.initialize(${local.env}, ${rustString(name)}, ${value})?;`);}},unsupported(node,reason){const error=Error(reason);error.node=node;throw error;}};
   return{ctx,lines};
  }
  for(const record of records){const{node,id,strict}=record,{ctx,lines}=context(record);let supported=true;
@@ -49,7 +68,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
    if(node.type==='ClassMethod'||node.type==='ClassPrivateMethod')ctx.unsupported(node,'Class home-object/super semantics are not implemented');
    for(const parameter of node.params??[])if(parameter.type!=='Identifier')ctx.unsupported(parameter,'Non-simple parameter initialization and TDZ are not implemented');
    if(node.type==='Program')ctx.emit('let env = parent;');else ctx.emit('let env = rt.child_env(parent);');
-   const body=directBody(node),declarations=hoists(node),params=node.params??[];
+   const body=directBody(node),declarations=hoists(node),params=node.params??[],annex=annexBPlan(record,parents);ctx.annexBDeclarations=annex.eligible;for(const name of annex.names)if(!declarations.names.includes(name))declarations.names.push(name);
    for(let index=0;index<params.length;index++){const name=rustString(params[index].name);ctx.emit(`rt.declare(env, ${name}, Value::Undefined)?;`);ctx.emit(`rt.assign(env, ${name}, args.get(${index}).copied().unwrap_or(Value::Undefined), false)?;`);}
    if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'&&!params.some(p=>p.name==='arguments')){const argsValue=ctx.temp(`rt.arguments_object(env, &[${params.map(p=>rustString(p.name)).join(',')}], args, ${strict})?`);ctx.emit(`rt.declare(env, "arguments", ${argsValue})?;`);}
    for(const name of declarations.names)ctx.emit(`rt.declare(env, ${rustString(name)}, Value::Undefined)?;`);
