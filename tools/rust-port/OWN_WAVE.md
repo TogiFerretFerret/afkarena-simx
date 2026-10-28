@@ -13,3 +13,10 @@ attribute fixture by 1.193x. The writable Set candidate's longer 10,000-update
 paired run measured 0.981x with substantial variation, so its earlier short
 1.109x result does not establish a repeatable speed improvement. Neither number
 qualifies complete battle throughput. Full-workload comparison remains required.
+
+The next combined source adds primary small numeric Array storage and canonical
+ID hashing for mapped argument bindings. With all three candidate switches on,
+59 library and 26 integration tests pass, including 23 real source-guarded GC
+safepoints with raw numeric bits and dead object-ID reuse. The generated Array
+gate passes 70 OFF/ON observations, and 40 argument source cases pass.
+See `rust-own-primary-combined*.json` for exact runtime hashes and reports.
