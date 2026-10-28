@@ -1,0 +1,15 @@
+# Exact stage-range parser
+
+`ed.parseUseSkillCacheStageBattle` reparses the same configured mode/range tokens on every call from `func_battleModeLimit`. The exact 661-character function in `game_ui_1.js` is pinned by `config/native-stage-range-parser.json` (SHA256 `6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c`).
+
+The native helper accepts dense own String data tokens, at most 128 entries, ASCII identifier mode names of at most 64 UTF-16 units, and unsigned decimal bounds that fit u32. The conversion to f64 is exact throughout this integer domain. Signed zero, whitespace, exponents, hexadecimal, non-string/coercible values, incomplete/invalid ranges, inherited destinations and all other shapes return to the complete original source body before observable work. Warnings and custom coercions retain their original order.
+
+Every invocation revalidates the captured Array/parseInt/isNaN/isFinite bindings, Array.isArray and Array.prototype.push descriptors, prototype links, numeric prototype properties, input descriptors and inherited output destinations. Captured builtin identities and cached token IDs are GC roots. Changing a getter, builtin, lexical binding or relevant prototype forces source execution, including on a cache hit.
+
+A single bounded plan retains canonical String IDs and immutable u32 range triples. Tokens are read and compared on every call. Every accepted invocation allocates a new result object and new group/range arrays in source allocation order; callers can freely mutate them without changing future results. No battle result, mutable JS result object or hero/mode decision is cached. The outer source function, including every getDataTable and getBattleId call, is unchanged. The parser's original function metadata and call frame remain intact.
+
+Validation: 62 native tests pass, including fresh output identity, cached plan reuse, negative-zero rejection, exact u32 boundary bits, and 23 actual source-authorized GC safepoints. Seventy-six OFF/ON source observations match pinned Node/V8 for warnings, exceptions, getters/coercions, modified builtins, lexical shadows, prototype setters, input/result mutation and cache-hit mutation.
+
+The actual shipped Param.Stage.UseSkillCacheStageBattle configuration contains 33 tokens and 11 mode/range groups. A paired same-entry, same-binary benchmark runs 3 × 2,000 parses per variant after five warmup calls. Complete outputs, 44,000 Number bit patterns per trial, ordered warning events, key ordering, prototypes and parser source metadata match Node. The measured parser windows include validation and fresh output allocation; snapshots run after timing. OFF: 40,533.7 parses/sec; ON: 213,688.7 parses/sec; aggregate ratio 5.2719× (individual pairs 6.31×, 5.40×, 4.31×). Evidence: `benchmarks/results/2026-10-28T23-13-40.556Z-rust-stage-range-parser.json`.
+
+The `native_stage_range_parser_enabled` flag defaults to false on this isolated branch. These are parser component rates, not battles/sec; complete battle A/B and oracle qualification remain required.
