@@ -92,7 +92,7 @@
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
     "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
     "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
-    "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
+    "crates/js-runtime/src/builtins.rs": "4b60241842033d099cd7bd84d75ee411b12235910ae480ddf35b20f73cf200c1",
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
@@ -104,12 +104,13 @@
     "crates/js-runtime/src/expose_scan.rs": "b5b771050b64fcbf14fa68ea4f4c2e5acfa8905a385623e8b43c6f648937cf9c",
     "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
     "crates/js-runtime/src/heap.rs": "ee453f2eeefb16b53de12c96752a4d18aab574904a6ea20c97ec396e78f506bb",
-    "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+    "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
     "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
     "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
     "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
     "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
-    "crates/js-runtime/src/lib.rs": "d3751c606dd595cc5dc342123430903a1ca69f28091a0a5f7a7ce9cd9b01adc7",
+    "crates/js-runtime/src/lib.rs": "3b69b6197a508478104106f5582d5c71f0bdfa8f72a86fe204ad1871261e6af6",
     "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
     "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
@@ -118,24 +119,25 @@
     "crates/js-runtime/src/reachability.rs": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
-    "crates/js-runtime/src/runtime.rs": "0d974c69870a65451f3d433a526c1ee4b4637a128f3b115268cde435d4655b09",
+    "crates/js-runtime/src/runtime.rs": "8a3c2b08b112083d0ef709b1b7418af5514e423604ea41bdf9d6fdd7db86295b",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
     "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
     "crates/js-runtime/src/utf8_guard.rs": "7e7d6ab64be768e46f5b65e014192153649e351695bead9c0509812bb947e5f0",
     "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
-    "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
     "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
     "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
   },
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-fast-length/work/rust-port-shared-target/release/arrays-tests",
-    "sha256": "530151961025ef797c441f16fc0bf481618f8d021c3de372cd420081a79e2f7f"
+    "file": "/workspace/afkarena-simx/work/candidate-integration-string-wave/work/rust-port-shared-target/release/arrays-tests",
+    "sha256": "31769ffba14235ce2ffe17ead5447a8f92dae6cf959ed73d758ca555c1c29ebe"
   },
   "buildArgs": [
     "build",
     "--release",
     "--manifest-path",
-    "/workspace/afkarena-simx/work/candidate-fast-length/work/rust-port-arrays-tests/Cargo.toml"
+    "/workspace/afkarena-simx/work/candidate-integration-string-wave/work/rust-port-arrays-tests/Cargo.toml"
   ],
   "scope": "Actual generated Rust executed against source JS Array programs. Ordered observable effects and primitive results compare exactly; Number results use raw f64 bits and arrays use UTF-16 units. This is a language-Array gate, not battle fidelity or throughput.",
   "qualifiesFor10000Target": false
