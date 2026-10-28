@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "passed": true,
+  "meaning": "Correctness gate and provenance assessment only; speed effect remains unmeasured under comparable load.",
+  "candidate": {
+    "file": "benchmarks/results/2026-10-28T15-34-59.585Z-native-warm23-hot-o3-symbolic-battle.json",
+    "sha256": "8a8060819fe836ed50fb3f70900b9d7f9575134e66492a8a0cc089d764f0fd0f",
+    "elapsedMs": 17078,
+    "battlesPerSecond": 1.1710973181871414
+  },
+  "earlierO3": {
+    "file": "benchmarks/results/2026-10-28T15-31-21.072Z-native-warm23-hot-o3-battle.json",
+    "sha256": "8fc613dcb3796bdf6f752493ff4780ca1550b9c2cc0d9260bbff4c3f032a890f",
+    "elapsedMs": 9451,
+    "battlesPerSecond": 2.1161781822029413
+  },
+  "allFastPathCountsMatched": true,
+  "allRawSourceReportAndHostInputsMatched": true,
+  "contention": {
+    "provisional": true,
+    "parallelExperimentsAuthorized": true,
+    "knownConcurrentWork": "Heap-budget battle trial and independent parallel-worker experiment were authorized to overlap this run. Cgroup CPU quota is four cores; sample is not an isolated timing comparison."
+  },
+  "establishesSpeedup": false,
+  "promoted": false,
+  "qualifiesFor10000Target": false,
+  "nextRequiredEvidence": "A load-matched paired trial is needed before concluding whether local DSO function binding helps. No waiting or repeated isolated trial was inserted into the authorized concurrent experimentation phase."
+}
