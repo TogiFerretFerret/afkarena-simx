@@ -40,6 +40,7 @@ impl Runtime {
   rt.install_function_builtins().expect("fresh Function intrinsics");
   rt.function_prototype_value=rt.value_for_object(rt.function_prototype);
   rt.install_basic_builtins().expect("fresh Object and Array intrinsics");
+  rt.install_array_from_builtin().expect("fresh Array.from intrinsic");
   rt.install_math_builtins().expect("fresh Math intrinsics");
   rt.install_json_builtins().expect("fresh JSON intrinsics");
   rt.install_regexp_builtins().expect("fresh RegExp intrinsics");

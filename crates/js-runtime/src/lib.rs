@@ -1,6 +1,7 @@
 //! Source-derived JavaScript execution support in Rust, without a JS VM.
 pub mod value;
 pub mod heap;
+pub mod id_hash;
 pub mod runtime;
 pub mod env;
 pub mod closures;
@@ -18,6 +19,7 @@ pub mod binary;
 pub mod collections;
 pub mod reflection_bootstrap;
 pub mod strings;
+pub mod array_from;
 pub mod diagnostics;
 pub mod numeric_bootstrap;
 pub use binary::{BufferId,TypedArrayKind};
