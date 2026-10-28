@@ -9,6 +9,7 @@ import {planLocalBindings,planNativeLocals} from './bindings.mjs';
 
 const FUNCTION_TYPES=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression','ObjectMethod','ClassMethod','ClassPrivateMethod']);
 const NATIVE_DATA_OBJ_SOURCE_SHA256='6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9';
+const NATIVE_STAGE_RANGE_SOURCE_SHA256='6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c';
 const NATIVE_EXPOSE_SOURCE_SHA256='9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911';
 const NATIVE_UTF8_SOURCE_SHA256='5fe05bd8580b1b6d11ff573eab9df79cdb29df580fe1127d1f43afaab2c6fae1';
 const NATIVE_COPY_OBJ_SOURCE_SHA256='5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072';
@@ -183,6 +184,10 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
    if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_CLASS_DISPATCH_SOURCE_SHA256){
     record.sourceSpecialization='native-class-dispatch-v1';
     ctx.emit(`if let Some(value) = rt.try_native_class_dispatch(this, args, parent, ${ctx.strict})? { return Ok(value); }`);
+   }
+   if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_STAGE_RANGE_SOURCE_SHA256){
+    record.sourceSpecialization='native-stage-range-parser-v1';
+    ctx.emit('if let Some(value) = rt.try_native_stage_range_parser(args.first().copied().unwrap_or(Value::Undefined), parent)? { return Ok(value); }');
    }
    const activationLine=lines.length;
    if(node.type==='Program')ctx.emit('let env = parent;');else ctx.emit('let env = rt.child_env(parent);');
