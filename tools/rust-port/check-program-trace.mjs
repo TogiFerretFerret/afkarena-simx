@@ -6,7 +6,7 @@ import {gunzipSync} from 'node:zlib';
 import {Readable} from 'node:stream';
 import {createInterface} from 'node:readline';
 import assert from 'node:assert/strict';
-import {compareNativeReports} from '../native-report-compare.mjs';
+import {compareNativeReports,firstDifference} from '../native-report-compare.mjs';
 
 const root=resolve(import.meta.dirname,'../..'),args=process.argv.slice(2),option=(name,fallback)=>args.includes(name)?args[args.indexOf(name)+1]:fallback;
 assert.ok(args.includes('--candidate')&&args.includes('--exit-code'),'Provide candidate NDJSON and its observed process exit code');
@@ -37,9 +37,9 @@ const candidateBefore=await hashFile(candidateFile);let comparison=null,error=nu
 try{
  assert.equal(exitCode,0,'Candidate execution must finish successfully');
  const expected=await collect(Readable.from(chunks())),actual=await collect(createReadStream(candidateFile),expected);
- const terminalDifference=compareNativeReports(actual.header.report,expected.header.report),traceHeaderMatched=JSON.stringify(actual.header.traceHeader)===JSON.stringify(expected.header.traceHeader);
+ const terminalDifference=compareNativeReports(actual.header.report,expected.header.report),hostDifference=firstDifference(actual.header.report.hostInputConsumption,expected.header.report.hostInputConsumption,'$.hostInputConsumption'),traceHeaderMatched=JSON.stringify(actual.header.traceHeader)===JSON.stringify(expected.header.traceHeader);
  const sameSnapshotPool=actual.snapshots.size===expected.snapshots.size&&[...actual.snapshots].every(hash=>expected.snapshots.has(hash)),sameEventCount=actual.events.length===expected.events.length;
- comparison={passed:!terminalDifference&&traceHeaderMatched&&sameSnapshotPool&&sameEventCount&&!actual.firstDifference,terminalDifference,traceHeaderMatched,sameSnapshotPool,sameEventCount,firstDifference:actual.firstDifference,events:actual.events.length,snapshots:actual.snapshots.size,hostInputConsumption:actual.header.report.hostInputConsumption,rootContract:actual.header.traceHeader.rootContract};
+ comparison={passed:!terminalDifference&&!hostDifference&&traceHeaderMatched&&sameSnapshotPool&&sameEventCount&&!actual.firstDifference,terminalDifference,hostDifference,traceHeaderMatched,sameSnapshotPool,sameEventCount,firstDifference:actual.firstDifference,events:actual.events.length,snapshots:actual.snapshots.size,hostInputConsumption:actual.header.report.hostInputConsumption,rootContract:actual.header.traceHeader.rootContract};
 }catch(value){error=String(value.stack??value);}
 const candidateUnchanged=await hashFile(candidateFile)===candidateBefore,referenceUnchanged=sha(await readFile(referenceFile))===sha(referenceBytes),changedArchiveInputs=[];
 for(const row of archiveInputs)if(sha(await readFile(resolve(root,row.file)))!==row.sha256)changedArchiveInputs.push(row.file);

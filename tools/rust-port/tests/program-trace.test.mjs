@@ -21,6 +21,7 @@ test('streamed trace checker rejects bit, callback order, count and exit changes
   assert.equal((await check(records)).passed,true);
   const timing=structuredClone(records);timing[0].report.elapsedMs=2;timing[0].report.battlesPerSecond=500;assert.equal((await check(timing)).passed,true);
   assert.equal((await check(records,1)).passed,false);
+  const host=structuredClone(records);host[0].report.hostInputConsumption.clock.consumed=259;assert.equal((await check(host)).passed,false);
   const bits=structuredClone(records);bits[1].snapshot.value.bits='3ff0000000000001';bits[1].snapshot.hash=hash(bits[1].snapshot.value);for(const row of bits)if(row.record==='event'){row.event.state.value.$boundaryNode=bits[1].snapshot.hash;row.event.stateHash=hash(row.event.state);}assert.equal((await check(bits)).passed,false);
   const order=structuredClone(records);order[2].event.kind='battle:completed';order[3].event.kind='callback:after';assert.equal((await check(order)).passed,false);
   const missing=structuredClone(records);missing.splice(3,1);missing[0].eventCount=1;missing.at(-1).events=1;assert.equal((await check(missing)).passed,false);
