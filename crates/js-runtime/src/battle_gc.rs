@@ -111,6 +111,9 @@ impl Runtime{
    method(rt,weak,"set",&[dead_getter,dead_value]);method(rt,weak,"set",&[dead_setter,dead_value]);
    rt.define_accessor(owner,replace,Some(dead_getter),Some(dead_setter),true,true)?;rt.define_data(owner,replace,Value::Number(-0.0),true,true,true)?;
    rt.define_accessor(owner,remove,Some(dead_getter),Some(dead_setter),true,true)?;rt.delete(owner,remove,true)?;
+   // Deliberately retain stale handles in an UNREFERENCED physical arena slot:
+   // only live stored descriptors may define GC edges, never spare arena data.
+   let owner_id=rt.object_id(owner)?;rt.objects[owner_id.0].accessor_slots.as_mut().unwrap().push(Some((Some(dead_getter),Some(dead_setter))));
    rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;
    assert!(rt.native_battle_gc.free_functions.contains(&getter_id.0)&&rt.native_battle_gc.free_functions.contains(&setter_id.0),"discarded accessor handles must not stay rooted");assert!(rt.native_battle_gc.free_objects.contains(&dead_value_id.0),"weak value must die with discarded accessors");
    assert_eq!(method(rt,weak,"has",&[Value::Object(getter_object)]),Value::Bool(false));assert_eq!(method(rt,weak,"has",&[Value::Object(setter_object)]),Value::Bool(false));assert_eq!(method(rt,weak,"get",&[Value::Object(live_key)]),live_value);
