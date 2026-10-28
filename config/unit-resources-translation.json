@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "source": "src/srcmodule/game_battle.js",
+  "functions": [
+    {
+      "name": "setMp",
+      "start": 96816,
+      "end": 96945,
+      "sha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c",
+      "source": "function(e,t){e>this.info.MP&&(e=this.info.MP),e<0&&(e=0),e>this.mp&&this.buff_effects.noAddMp||(this.mp=e,ed.btLog.setMP(this))}"
+    },
+    {
+      "name": "setHp",
+      "start": 96538,
+      "end": 96698,
+      "sha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b",
+      "source": "function(e){e>this.attribs.HP&&(e=this.attribs.HP),e<0&&(e=0);var t=this.hp;this.hp=e,t!==e&&(this.lastHpChangeTick=ed.battleEngine.ticks),ed.btLog.setHp(this)}"
+    },
+    {
+      "name": "getTransferTarget",
+      "start": 116826,
+      "end": 116968,
+      "sha256": "b78cb49c7056f4e8d6c301a57dbed56f7bfd45ae372f31d5fdb983a8eb494b8a",
+      "source": "function(){var e=this;return this.buff_effects.transferHeal&&this.buffEffectsRelated.transferHeal&&(e=this.buffEffectsRelated.transferHeal),e}"
+    },
+    {
+      "name": "getTransferMpTarget",
+      "start": 116989,
+      "end": 117125,
+      "sha256": "abec750622954c5b5e4dc5f9a362f739644b475fa0f33d0dbe7d77a0e50aebfa",
+      "source": "function(){var e=this;return this.buff_effects.transferMp&&this.buffEffectsRelated.transferMp&&(e=this.buffEffectsRelated.transferMp),e}"
+    }
+  ],
+  "domain": "Number-valued canonical unit::World hp/mp fields, stable unit IDs, typed truth predicates and ordinary source method dispatch. Metadata getters and mandatory btLog calls remain explicit required hooks; no whole-battle equivalence claim."
+}

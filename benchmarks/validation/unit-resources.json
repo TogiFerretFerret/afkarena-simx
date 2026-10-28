@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Base resource controllers against the canonical Rust unit::World hp/mp arena, with source-pinned metadata getters/log hooks. This is a component fixture gate, not whole-battle qualification or measured simulation throughput.",
+  "cases": 20008,
+  "generatedCases": 20000,
+  "directedCases": [
+    "mp-clamp-rereads-changing-maximum",
+    "no-add-getter-only-on-increase",
+    "hp-signed-zero-does-not-change-tick",
+    "hp-nan-updates-tick",
+    "hp-log-throw-keeps-hp-and-tick",
+    "transfer-second-read-null",
+    "transfer-second-read-undefined",
+    "transfer-disabled-does-not-read-related"
+  ],
+  "events": 42806,
+  "rawF64BitsMatched": true,
+  "sourceFunctions": [
+    {
+      "name": "setMp",
+      "start": 96816,
+      "end": 96945,
+      "sha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c"
+    },
+    {
+      "name": "setHp",
+      "start": 96538,
+      "end": 96698,
+      "sha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b"
+    },
+    {
+      "name": "getTransferTarget",
+      "start": 116826,
+      "end": 116968,
+      "sha256": "b78cb49c7056f4e8d6c301a57dbed56f7bfd45ae372f31d5fdb983a8eb494b8a"
+    },
+    {
+      "name": "getTransferMpTarget",
+      "start": 116989,
+      "end": 117125,
+      "sha256": "abec750622954c5b5e4dc5f9a362f739644b475fa0f33d0dbe7d77a0e50aebfa"
+    }
+  ],
+  "sourceFile": "src/srcmodule/game_battle.js",
+  "sourceFileSha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+  "sources": {
+    "crates/battle-core/src/unit_resources.rs": "2f0e194badbaca8499189801115c7e6cf01575fc8157de7ec589100da89908fb",
+    "crates/battle-core/src/unit.rs": "c097a9298d8e3cfeb11b9cbb3656e438b0c96d3b13526d4769eba7cd3a53809f",
+    "crates/battle-core/src/skill.rs": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742",
+    "tools/check-unit-resources.rs": "a9cac60599b4b8e27f80e09ddf1fad9431eccbf777c729bedbac70e48a5a2025",
+    "tools/check-unit-resources.mjs": "c3a2dc4f50b04f345c5cec84f9131203d47123249a7e7e5bd454823ea96c7a48",
+    "config/unit-resources-translation.json": "423f2108926ff78250bb3dabd5de2de04e0ed75e89c50f30e740e7a275624421"
+  },
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "compiler": {
+    "path": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853",
+    "args": [
+      "--edition=2024",
+      "-O",
+      "-A",
+      "dead_code",
+      "tools/check-unit-resources.rs",
+      "-o",
+      "/workspace/afkarena-simx/work/unit-resources/check"
+    ]
+  },
+  "binarySha256": "ea065fcbcb66d325a2bc22c59236db1c17b9533ae427c07e26f1a0e4de35293d",
+  "inputSha256": "0b167450f5151c7e91b9d49b20f13dd809030a56b64d58f7ba84401edc479024",
+  "archive": {
+    "file": "benchmarks/validation/unit-resources.outputs.json.gz",
+    "sha256": "96e760305c3edda1aa4843591b93770fcb2b6bb7ffcec9bc1a9fb480eebf0a39",
+    "uncompressedSha256": "2b11da41a0a99024106bb3695c58384d4abde5eedc459647041b9007036bb8f6"
+  },
+  "integration": {
+    "canonicalUnitArena": true,
+    "additionalUnitRegistry": false,
+    "virtualOverrideDispatch": "Required at caller; these are base method implementations.",
+    "requiredHooks": "All metadata/getter/log hooks are mandatory and errors preserve already-performed mutations.",
+    "nativeBattleIntegrated": false
+  },
+  "qualifiesFor10000Target": false
+}
