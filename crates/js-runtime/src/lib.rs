@@ -51,3 +51,5 @@ pub use string_hash::StringHashMode;
 pub mod index_keys;
 
 pub mod dense_array_shift;
+
+mod dynamic_slots;
