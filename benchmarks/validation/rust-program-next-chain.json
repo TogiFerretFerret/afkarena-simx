@@ -1,0 +1,148 @@
+{
+  "startedAt": "2026-10-28T20:44:14.579Z",
+  "stage": "passed",
+  "events": [
+    {
+      "at": "2026-10-28T20:44:14.579Z",
+      "kind": "chain-waiting-build",
+      "pid": 118299,
+      "proof": "benchmarks/validation/rust-program-next-build.json"
+    },
+    {
+      "at": "2026-10-28T20:56:07.077Z",
+      "kind": "first-build-finished",
+      "status": 0,
+      "passed": true,
+      "changedInputs": []
+    },
+    {
+      "at": "2026-10-28T20:56:18.500Z",
+      "kind": "one-battle-finished",
+      "output": "/workspace/afkarena-simx/benchmarks/results/2026-10-28T20-56-07.133Z-rust-one-battle-check.json",
+      "passed": true,
+      "timing": {
+        "externalBattleMs": 2101.047134,
+        "reportElapsedMs": 2056,
+        "reportBattlesPerSecond": 0.48638132295719844,
+        "scope": "One cold battle, potentially contended; diagnostic timer only. Initialization excluded from battle markers; no steady-state throughput claim."
+      },
+      "memory": {
+        "objectsBefore": 1152205,
+        "objectsAfter": 1538662,
+        "objectsAdded": 386457,
+        "peakRssKiB": 1928280,
+        "peakHwmKiB": 1939412
+      },
+      "intentionalStop": true,
+      "difference": null,
+      "hostPrefixDifference": null,
+      "changedInputs": [],
+      "changedLibraries": []
+    },
+    {
+      "at": "2026-10-28T20:57:49.293Z",
+      "kind": "full-batch-finished",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-full-program-next.json",
+      "passed": true,
+      "completed": 20,
+      "battlesPerSecond": 0.3907776475185619,
+      "native": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "wallMs": 63782.305079
+      },
+      "firstDifference": null,
+      "hostDifference": null
+    }
+  ],
+  "nativeMonitor": {
+    "maxRssKiB": 14680064,
+    "peakRssKiB": 2656728,
+    "peakHwmKiB": 2656868,
+    "termination": null,
+    "pid": 135372,
+    "observed": true
+  },
+  "activeBuildProof": "benchmarks/validation/rust-program-next-build.json",
+  "one": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/afkarena-simx/tools/rust-port/check-one-battle.mjs"
+    ],
+    "pid": 134774,
+    "status": 0,
+    "signal": null,
+    "error": null,
+    "stdoutFile": "/workspace/afkarena-simx/work/rust-battle-full/next-one-check.stdout",
+    "stderrFile": "/workspace/afkarena-simx/work/rust-battle-full/next-one-check.stderr"
+  },
+  "oneSummary": {
+    "output": "/workspace/afkarena-simx/benchmarks/results/2026-10-28T20-56-07.133Z-rust-one-battle-check.json",
+    "passed": true,
+    "timing": {
+      "externalBattleMs": 2101.047134,
+      "reportElapsedMs": 2056,
+      "reportBattlesPerSecond": 0.48638132295719844,
+      "scope": "One cold battle, potentially contended; diagnostic timer only. Initialization excluded from battle markers; no steady-state throughput claim."
+    },
+    "memory": {
+      "objectsBefore": 1152205,
+      "objectsAfter": 1538662,
+      "objectsAdded": 386457,
+      "peakRssKiB": 1928280,
+      "peakHwmKiB": 1939412
+    },
+    "intentionalStop": true,
+    "difference": null,
+    "hostPrefixDifference": null,
+    "changedInputs": [],
+    "changedLibraries": []
+  },
+  "full": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/afkarena-simx/tools/rust-port/check-program.mjs",
+      "--profile",
+      "release",
+      "--binary",
+      "work/rust-port-shared-target/release/rust-battle-program",
+      "--build-proof",
+      "benchmarks/validation/rust-program-next-build.json",
+      "--output",
+      "benchmarks/validation/rust-full-program-next.json"
+    ],
+    "pid": 134831,
+    "status": 0,
+    "signal": null,
+    "error": null,
+    "stdoutFile": "/workspace/afkarena-simx/work/rust-battle-full/next-full-check.stdout",
+    "stderrFile": "/workspace/afkarena-simx/work/rust-battle-full/next-full-check.stderr"
+  },
+  "fullSummary": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-full-program-next.json",
+    "passed": true,
+    "completed": 20,
+    "battlesPerSecond": 0.3907776475185619,
+    "native": {
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "wallMs": 63782.305079
+    },
+    "firstDifference": null,
+    "hostDifference": null
+  },
+  "finishedAt": "2026-10-28T20:57:49.294Z",
+  "driver": {
+    "file": "/workspace/afkarena-simx/work/run-next-validation-chain.mjs",
+    "sha256": "f89b3a522646491afc7c53180f20dc674fd44140f07243da0c21f40b42f45a0e",
+    "artifact": "/workspace/afkarena-simx/benchmarks/validation/rust-program-next-chain-driver.mjs.gz"
+  },
+  "externalProcessDiscovery": {
+    "file": "tools/rust-port/native-process-discovery.mjs",
+    "sha256": "4ea2b444b71015442437b787774c02a4446a0b6ed0ea392c26278bd70696e5bb",
+    "artifact": "benchmarks/validation/rust-program-next-process-discovery.mjs.gz",
+    "method": "ps PPid/comm graph discovers descendant PID, then /proc/PID/status is sampled every100ms; task/children is unsupported in this environment."
+  }
+}
