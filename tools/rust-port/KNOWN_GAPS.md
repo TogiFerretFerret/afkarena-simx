@@ -5,13 +5,14 @@ the game's behavior. AST coverage and passing component gates do not establish
 whole-battle fidelity. Preserve failing evidence until the corresponding behavior
 is implemented and independently compared with the pinned Node/V8 reference.
 
-## Array constructor and inherited indexed setters
+## Array constructor regression: inherited indexed setters
 
-Run `node tools/rust-port/check-array-constructor.mjs`. The checker exits with
-status 1 while this gap remains and writes
+Run `node tools/rust-port/check-array-constructor.mjs`. The checker compares 14
+source cases, exits with status 1 on a mismatch and writes
 `benchmarks/validation/rust-generated-array-constructor.json`, with source hashes,
 the exact first difference and an archived observation. `expectedFailure: true`
-labels a known failure; it does not turn it into a passing test.
+labels a known failure; it does not turn it into a passing test. The original
+failing report is retained in commit `a123472`; the current constructor passes.
 
 ```js
 var count = 0;
@@ -23,12 +24,13 @@ delete Array.prototype[0];
 count + ":" + Object.hasOwn(a, "0") + ":" + a[0] + ":" + a.length;
 ```
 
-The source reference returns `0:true:7:2`; the recorded Rust result is
-`1:false:undefined:2`. The Rust constructor currently writes elements through
-`Set`, allowing the inherited setter to consume index 0, instead
-of creating the required own data property. This is not evidence that the fixed
-battle fixture installs such a setter. Array literals already create own data
-properties. Code inspection also identifies `filter` output and the removed-item
+The source reference returns `0:true:7:2`; the original Rust result was
+`1:false:undefined:2`. The constructor now creates own data properties, preventing
+an inherited setter from consuming an element. The regression covers calls,
+construction, alternate prototypes, reflected construction, descriptor flags,
+holes and length errors. This is not evidence that the fixed battle fixture
+installs such a setter. Array literals already create own data properties.
+Code inspection also identifies `filter` output and the removed-item
 array from `splice` as using `Set`; those paths need their own source comparisons
 before claiming they are fixed.
 
