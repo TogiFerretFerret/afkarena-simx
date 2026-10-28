@@ -1,6 +1,6 @@
 //! Stable identity object heap. Property order and descriptors are observable.
 use std::collections::HashMap;
-use crate::id_hash::IdBuildHasher;
+use crate::property_index::PropertyIndex;
 use crate::value::{Value,StringId,ObjectId};
 use crate::env::BindingRef;
 
@@ -25,12 +25,12 @@ pub struct Object {
  pub prototype:Option<ObjectId>, pub extensible:bool, pub kind:ObjectKind,
  pub(crate) is_function:bool,
  pub properties:Vec<Option<(PropertyKey,Descriptor)>>,
- pub property_index:HashMap<PropertyKey,usize,IdBuildHasher>,
+ pub property_index:PropertyIndex,
  pub arguments_map:HashMap<PropertyKey,BindingRef>,
 }
 pub type HeapObject=Object;
 impl Object {
- pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::new()}}
+ pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,properties:vec![],property_index:PropertyIndex::default(),arguments_map:HashMap::new()}}
  pub(crate) fn reset_for_reuse(&mut self,prototype:Option<ObjectId>){self.prototype=prototype;self.extensible=true;self.kind=ObjectKind::Ordinary;self.is_function=false;self.properties.clear();self.property_index.clear();self.arguments_map.clear();}
  pub fn own(&self,key:PropertyKey)->Option<Descriptor>{self.property_index.get(&key).and_then(|i|self.properties[*i].map(|(_,d)|d))}
  pub fn insert(&mut self,key:PropertyKey,descriptor:Descriptor){if let Some(i)=self.property_index.get(&key).copied(){self.properties[i]=Some((key,descriptor))}else{let i=self.properties.len();self.properties.push(Some((key,descriptor)));self.property_index.insert(key,i);}}

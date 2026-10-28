@@ -44,3 +44,5 @@ pub mod battle_gc;
 pub use battle_core::js_math as numeric_arithmetic;
 
 pub mod expose_scan;
+
+pub mod property_index;

@@ -11,3 +11,7 @@ path = "src/lib.rs"
 battle-core = { path = "../battle-core" }
 ryu-js = { version = "=1.0.2", path = "../../third-party/ryu-js" }
 regress = { version = "=0.12.0", path = "../../third-party/regress", features = ["utf16"] }
+
+[features]
+default = []
+small-property-index = []

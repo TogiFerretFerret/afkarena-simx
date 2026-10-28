@@ -1,0 +1,9 @@
+The first isolated inline-four property index experiment is rejected. It removed allocations but increased every Object from 160 to 200 bytes (index32→72 bytes), including empty and large objects. The Cargo feature remains off by default, where the public field remains exactly the original HashMap type.
+
+Both rounds used alternating paired binaries with identical generated original Unit.update source and three trials per variant. All ordered fixture events/state bits matched pinned jitless Node. Unit.update ratios were 0.9958x and 0.9713x. Allocation calls fell from 2,138,984 to 1,948,763 per10,000updates, and retained live bytes fell162.0→157.9MB, but throughput did not improve.
+
+Parsing the actual 97MB source table produced identical raw heap fingerprints and1,032,950objects. JSON parse ratios were0.9381x and1.0125x under a contended build. Allocation calls fell15,384,493→14,750,962, but retained live bytes increased1.4414→1.4598GB and RSS rose. Reduced allocation counts therefore do not justify integration. Timings include the same atomic counting allocator in both variants and are provisional; its overhead can amplify allocation-saving speedups.
+
+Both feature states pass49Rustlibrarytests, including GC/reachability, randomized map operations, growth/deletion/clone/clear, reserve/get_mut/iteration, and physical-property tombstone/descriptor checks. Observable enumeration order stays in the unchanged physical property Vec. Index removal compacts only hidden lookup entries. Large clear retains its capacity for existing GC reuse behavior.
+
+The repository's property_index references use get/insert/remove/clone/clear/len/is_empty/capacity/indexing; these remain supported. Additional common iteration/reserve methods are supplied. Default feature-off public Rust host compatibility is unchanged. Opting in changes the concrete field type; external hosts assigning a HashMap directly can use .into(), and a complete HashMap API is not claimed.
