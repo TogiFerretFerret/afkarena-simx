@@ -220,3 +220,9 @@ impl Runtime {
 }
 fn same_value(a:Value,b:Value)->bool{match(a,b){(Value::Number(a),Value::Number(b))=>(a.is_nan()&&b.is_nan())||a.to_bits()==b.to_bits(),_=>a==b}}
 fn optional_same(a:Option<Value>,b:Option<Value>)->bool{match(a,b){(Some(a),Some(b))=>same_value(a,b),(None,None)=>true,_=>false}}
+
+#[cfg(test)]mod shared_utf16_tests{
+ use super::*;use std::sync::Arc;
+ #[test]fn canonical_utf16_table_and_full_equality_index_share_one_immutable_payload(){for mode in[crate::StringHashMode::Sip,crate::StringHashMode::Fx]{let mut rt=Runtime::new_with_string_hash(mode);let expected=vec![0,0xd800,0xdc00,0xdfff,0xffff];let mut input=expected.clone();let id=rt.intern_utf16(&input);input[0]=99;assert_eq!(rt.string_units(id),expected);assert_eq!(rt.intern_utf16(&expected.clone()),id);let(key,found)=rt.string_index.get_key_value(expected.as_slice()).unwrap();assert_eq!(*found,id);assert!(Arc::ptr_eq(key,&rt.strings[id.0]));assert_eq!(Arc::strong_count(key),2);let held=rt.owned_shared_units(id);assert_eq!(Arc::strong_count(&held),3);for index in 0..1000{rt.intern(&format!("unrelated-{index}"));}assert_eq!(&*held,expected);assert!(Arc::ptr_eq(&held,&rt.strings[id.0]));assert_eq!(rt.intern_utf16(&held),id);}}
+ #[test]fn utf8_static_literal_and_utf16_routes_keep_original_canonical_ids_and_surrogates(){let mut rt=Runtime::new();let Value::String(literal)=rt.static_string("a💩z")else{panic!()};assert_eq!(rt.intern("a💩z"),literal);assert_eq!(rt.intern_utf16(&[97,0xd83d,0xdca9,122]),literal);let lone=rt.intern_utf16(&[0xd800]);let replacement=rt.intern_utf16(&[0xfffd]);assert_ne!(lone,replacement);assert_eq!(rt.string_units(lone),&[0xd800]);let held=rt.owned_shared_units(literal);let(key,_)=rt.string_index.get_key_value(held.as_ref()).unwrap();assert!(Arc::ptr_eq(&held,key));}
+}
