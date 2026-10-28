@@ -15,6 +15,12 @@ A source-driven Rust port of the AFK Arena companion battle simulator. The goal 
 
 **20,000 component cases are not 20,000 battles.** Fixed-fixture results do not qualify the random-team corpus. See [benchmark status](benchmarks/STATUS.md) for exact scopes, failed experiments and archived evidence.
 
+## Timing profile
+
+The [current measured-window profile](benchmarks/CURRENT_TIMING.md) attributes **43.22% of sampled self CPU to property reads/lookup/key hashing**, 4.98% to property writes/shape changes, and 4.97% to GC. Unit updates contain 53.67% of sampled CPU inclusively, buff addition 39.53%, and buff recomputation 20.67%; those inclusive costs overlap.
+
+This points to typed Rust state and the unit/buff execution path as the large opportunities. The profile excludes startup, warmups and final reporting, and passes the raw battle comparison. Its 12.38-second instrumented window includes sampling overhead and is not a replacement for the separate unprofiled throughput measurement.
+
 ## Where the Rust work lives
 
 - [`crates/battle-core/src`](crates/battle-core/src): engine, scheduler, units, skill timelines, typed callback queues, buffs, damage, AI, RNG and numeric semantics.
