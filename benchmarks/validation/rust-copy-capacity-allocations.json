@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "sourceCommit": "ac7f3dd",
+  "libraryTests": 61,
+  "sourceOracleCases": 52,
+  "logs": {
+    "library": {
+      "file": "benchmarks/validation/rust-copy-capacity-library.log.gz",
+      "sha256": "2ecb374c3504b7f594cc88166cb43c95892c6cb1f3dc19086ee13465487f41df",
+      "uncompressedSha256": "3dbffb34f3ff9fb758f55f6dc79f3343dea1e10ca0962d7dcb5247f6ff6e1559"
+    },
+    "allocation-build": {
+      "file": "benchmarks/validation/rust-copy-capacity-allocation-build.log.gz",
+      "sha256": "e289723a3fbafddf54b0a6bcbea07b997282af4c0cdd3220371ccd7926aa2dd6",
+      "uncompressedSha256": "4723e0c4cee3b0b5281891788403dd2e4069f1862f3c9ac452f699ad908499ed"
+    },
+    "source": {
+      "file": "benchmarks/validation/rust-copy-capacity-source.log.gz",
+      "sha256": "af552f31e44fbfa0a59fbf6c611630f3f2ddaac3ebdee4c26b1c27d3bb8dd1fd",
+      "uncompressedSha256": "f0c56ab7dc7346aef1ebc0158ac666b03f0f5b3cf896a0e66da44a7e1e06f21d"
+    }
+  },
+  "rows": [
+    {
+      "reuse": false,
+      "rounds": 23,
+      "recycledDestinations": 22,
+      "allocations": 46,
+      "reallocations": 0,
+      "requestedBytes": 77280
+    },
+    {
+      "reuse": true,
+      "rounds": 23,
+      "recycledDestinations": 22,
+      "allocations": 2,
+      "reallocations": 0,
+      "requestedBytes": 3360
+    }
+  ],
+  "allocationsEliminated": 44,
+  "requestedBytesEliminated": 73920,
+  "stdHashMapCloneFromReuseObserved": true,
+  "binarySha256": "2d1d47b790f8d233f588c77844b335682c84eca4cb91bf775a66571e9b8e9d4c",
+  "command": "target/release/examples/copy_capacity_alloc",
+  "scope": "Allocator counts only around direct source-guarded helper calls.23 original-source-qualified GC backedges and22 destination-ID reuses per variant. Source keys/order/descriptors and finite raw-number bits checked; counts include helper guard work, exclude GC/observers/setup. No throughput claim or full-battle qualification."
+}
