@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "passed": true,
+  "input": {
+    "file": "crates/js-runtime/src/id_hash.rs",
+    "sha256": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10"
+  },
+  "standaloneSourceSha256": "96ad8cbef137ddb250268d10816acd8664db96572c7f27e02f423513d3c76854",
+  "rows": [
+    {
+      "label": "standard",
+      "trial": 0,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "31697544"
+    },
+    {
+      "label": "integer",
+      "trial": 0,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "11342517"
+    },
+    {
+      "label": "integer",
+      "trial": 1,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "11482423"
+    },
+    {
+      "label": "standard",
+      "trial": 1,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "20231976"
+    },
+    {
+      "label": "standard",
+      "trial": 2,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "20748989"
+    },
+    {
+      "label": "integer",
+      "trial": 2,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "6882730"
+    },
+    {
+      "label": "integer",
+      "trial": 3,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "10543995"
+    },
+    {
+      "label": "standard",
+      "trial": 3,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "31537702"
+    },
+    {
+      "label": "standard",
+      "trial": 4,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "28609991"
+    },
+    {
+      "label": "integer",
+      "trial": 4,
+      "size": 8,
+      "lookups": 2000000,
+      "elapsedNs": "10664006"
+    },
+    {
+      "label": "standard",
+      "trial": 0,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "27325667"
+    },
+    {
+      "label": "integer",
+      "trial": 0,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "10957730"
+    },
+    {
+      "label": "integer",
+      "trial": 1,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "10842660"
+    },
+    {
+      "label": "standard",
+      "trial": 1,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "29011854"
+    },
+    {
+      "label": "standard",
+      "trial": 2,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "28693554"
+    },
+    {
+      "label": "integer",
+      "trial": 2,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "10813406"
+    },
+    {
+      "label": "integer",
+      "trial": 3,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "10855438"
+    },
+    {
+      "label": "standard",
+      "trial": 3,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "29245558"
+    },
+    {
+      "label": "standard",
+      "trial": 4,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "27748311"
+    },
+    {
+      "label": "integer",
+      "trial": 4,
+      "size": 32,
+      "lookups": 2000000,
+      "elapsedNs": "9981018"
+    },
+    {
+      "label": "standard",
+      "trial": 0,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "23787299"
+    },
+    {
+      "label": "integer",
+      "trial": 0,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "11546203"
+    },
+    {
+      "label": "integer",
+      "trial": 1,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "9623001"
+    },
+    {
+      "label": "standard",
+      "trial": 1,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "25274963"
+    },
+    {
+      "label": "standard",
+      "trial": 2,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "25563399"
+    },
+    {
+      "label": "integer",
+      "trial": 2,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "9942582"
+    },
+    {
+      "label": "integer",
+      "trial": 3,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "9910755"
+    },
+    {
+      "label": "standard",
+      "trial": 3,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "25585712"
+    },
+    {
+      "label": "standard",
+      "trial": 4,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "25555066"
+    },
+    {
+      "label": "integer",
+      "trial": 4,
+      "size": 128,
+      "lookups": 2000000,
+      "elapsedNs": "9740454"
+    },
+    {
+      "label": "standard",
+      "trial": 0,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "28158696"
+    },
+    {
+      "label": "integer",
+      "trial": 0,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "10154615"
+    },
+    {
+      "label": "integer",
+      "trial": 1,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "10238609"
+    },
+    {
+      "label": "standard",
+      "trial": 1,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "25633371"
+    },
+    {
+      "label": "standard",
+      "trial": 2,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "25956889"
+    },
+    {
+      "label": "integer",
+      "trial": 2,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "9947069"
+    },
+    {
+      "label": "integer",
+      "trial": 3,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "9859029"
+    },
+    {
+      "label": "standard",
+      "trial": 3,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "25727110"
+    },
+    {
+      "label": "standard",
+      "trial": 4,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "25533474"
+    },
+    {
+      "label": "integer",
+      "trial": 4,
+      "size": 512,
+      "lookups": 1999872,
+      "elapsedNs": "10120255"
+    }
+  ],
+  "summaries": [
+    {
+      "size": 8,
+      "standardElapsedNs": "132826202",
+      "integerElapsedNs": "50915671",
+      "observedLookupRatio": 2.608748925257216
+    },
+    {
+      "size": 32,
+      "standardElapsedNs": "142024944",
+      "integerElapsedNs": "53450252",
+      "observedLookupRatio": 2.6571426454640474
+    },
+    {
+      "size": 128,
+      "standardElapsedNs": "125766439",
+      "integerElapsedNs": "50762995",
+      "observedLookupRatio": 2.4775220414004333
+    },
+    {
+      "size": 512,
+      "standardElapsedNs": "131009540",
+      "integerElapsedNs": "50319577",
+      "observedLookupRatio": 2.6035501053595898
+    }
+  ],
+  "scope": "Lookup-only microbenchmark of the exact PropertyKey(StringId(usize)) hash layout; alternating five trials at four object sizes. Both use std HashMap and identical preallocated keys. Correct integer sums asserted. This measures hashing and lookup only, not JavaScript semantics, whole-battle throughput, or isolated speedup. Shared environment contention remains possible.",
+  "qualifiesFor10000Target": false
+}

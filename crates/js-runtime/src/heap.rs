@@ -1,5 +1,6 @@
 //! Stable identity object heap. Property order and descriptors are observable.
 use std::collections::HashMap;
+use crate::id_hash::IdBuildHasher;
 use crate::value::{Value,StringId,ObjectId};
 use crate::env::BindingRef;
 
@@ -23,12 +24,12 @@ pub enum ObjectKind { Ordinary, Arguments, Math, Json, Error, Date(f64), RegExp(
 pub struct Object {
  pub prototype:Option<ObjectId>, pub extensible:bool, pub kind:ObjectKind,
  pub properties:Vec<Option<(PropertyKey,Descriptor)>>,
- pub property_index:HashMap<PropertyKey,usize>,
+ pub property_index:HashMap<PropertyKey,usize,IdBuildHasher>,
  pub arguments_map:HashMap<PropertyKey,BindingRef>,
 }
 pub type HeapObject=Object;
 impl Object {
- pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,properties:vec![],property_index:HashMap::new(),arguments_map:HashMap::new()}}
+ pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::new()}}
  pub fn own(&self,key:PropertyKey)->Option<Descriptor>{self.property_index.get(&key).and_then(|i|self.properties[*i].map(|(_,d)|d))}
  pub fn insert(&mut self,key:PropertyKey,descriptor:Descriptor){if let Some(i)=self.property_index.get(&key).copied(){self.properties[i]=Some((key,descriptor))}else{let i=self.properties.len();self.properties.push(Some((key,descriptor)));self.property_index.insert(key,i);}}
  pub fn remove(&mut self,key:PropertyKey){if let Some(i)=self.property_index.remove(&key){self.properties[i]=None;}self.arguments_map.remove(&key);}
