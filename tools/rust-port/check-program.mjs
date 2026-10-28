@@ -32,6 +32,7 @@ if(args.includes('--oracle')){
   assert.equal(sha(bytes),unit.sourceSha256,'Frozen source changed');
   vm.runInContext(bytes.toString('utf8'),context,{filename:unit.file});
  }
+ await new Promise(resolve=>process.stdout.write('',resolve));
  process.exit(0);
 }
 assert.equal(manifest.units.length,7,'A whole-program gate requires all seven modules');
