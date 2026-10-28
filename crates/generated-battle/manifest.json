@@ -14,8 +14,8 @@
         "end": 102984,
         "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e"
       },
-      "generatedSha256": "1f954398dce85456a7de904f3eb023c9750afd964a73700201256800de9f688b",
-      "rustLines": 2658,
+      "generatedSha256": "bd1ee9f43e8e0f9110fa62e698a77b71974fa7a4560d0e025b9e9e7a951a6442",
+      "rustLines": 2661,
       "coverage": {
         "version": 1,
         "moduleName": "unit_update",
@@ -55,15 +55,20 @@
         "largeBody": null,
         "cacheLocalBindings": true,
         "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
         "literalPropertySlots": true,
         "numericLiteralKeys": true,
         "nativeNumericOps": true,
         "sourceSpecializations": true,
         "nativeBattleGc": false,
+        "nativeBattleGcCadence": 1,
         "nativeLocalBindings": true,
+        "nativeParameters": true,
         "functions": [
           {
             "id": 0,
+            "staticEnvironmentKeys": 4,
+            "nativeActivationElided": true,
             "nativeBindings": [
               "t",
               "a",
@@ -104,14 +109,15 @@
               "I",
               "H",
               "G",
-              "U"
+              "U",
+              "e"
             ],
             "battleGcSafePoints": [],
             "sourceSpecialization": null,
             "split": false,
             "estimatedOwnAstNodes": 1843,
             "helpers": [],
-            "cachedBindings": 1,
+            "cachedBindings": 0,
             "name": "",
             "start": 0,
             "end": 5784,
@@ -143,8 +149,8 @@
         "end": 20141,
         "sha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838"
       },
-      "generatedSha256": "a35e5ddf61b1c7a465690e213994e2b9196b78a16aef3fd59f93b7c3ec5b1bbb",
-      "rustLines": 585,
+      "generatedSha256": "d23dba3595f293ea3f99a375fd50a1cb8e9ee39a4253c2a32282a58fe961033d",
+      "rustLines": 596,
       "coverage": {
         "version": 1,
         "moduleName": "skill_update",
@@ -183,26 +189,34 @@
         "largeBody": null,
         "cacheLocalBindings": true,
         "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
         "literalPropertySlots": true,
         "numericLiteralKeys": true,
         "nativeNumericOps": true,
         "sourceSpecializations": true,
         "nativeBattleGc": false,
+        "nativeBattleGcCadence": 1,
         "nativeLocalBindings": true,
+        "nativeParameters": true,
         "functions": [
           {
             "id": 0,
+            "staticEnvironmentKeys": 7,
+            "nativeActivationElided": false,
             "nativeBindings": [
               "r",
               "n",
-              "c"
+              "c",
+              "e",
+              "t",
+              "a"
             ],
             "battleGcSafePoints": [],
             "sourceSpecialization": null,
             "split": false,
             "estimatedOwnAstNodes": 272,
             "helpers": [],
-            "cachedBindings": 8,
+            "cachedBindings": 5,
             "name": "",
             "start": 0,
             "end": 1353,
@@ -215,6 +229,8 @@
           },
           {
             "id": 1,
+            "staticEnvironmentKeys": 3,
+            "nativeActivationElided": true,
             "nativeBindings": [],
             "battleGcSafePoints": [],
             "sourceSpecialization": null,
@@ -234,6 +250,8 @@
           },
           {
             "id": 2,
+            "staticEnvironmentKeys": 2,
+            "nativeActivationElided": true,
             "nativeBindings": [],
             "battleGcSafePoints": [],
             "sourceSpecialization": null,
@@ -253,6 +271,8 @@
           },
           {
             "id": 3,
+            "staticEnvironmentKeys": 2,
+            "nativeActivationElided": true,
             "nativeBindings": [
               "e"
             ],
@@ -293,8 +313,8 @@
         "end": 237381,
         "sha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609"
       },
-      "generatedSha256": "051bf393ffe70080f11705b6b25af7b7403c4edad1ad1f28069d20fbdac1d4c3",
-      "rustLines": 713,
+      "generatedSha256": "f885c792df18795a64f6f267b05144d81aa3e449b55b63ff979ae142b5baf009",
+      "rustLines": 714,
       "coverage": {
         "version": 1,
         "moduleName": "engine_tick",
@@ -333,15 +353,20 @@
         "largeBody": null,
         "cacheLocalBindings": true,
         "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
         "literalPropertySlots": true,
         "numericLiteralKeys": true,
         "nativeNumericOps": true,
         "sourceSpecializations": true,
         "nativeBattleGc": false,
+        "nativeBattleGcCadence": 1,
         "nativeLocalBindings": true,
+        "nativeParameters": true,
         "functions": [
           {
             "id": 0,
+            "staticEnvironmentKeys": 1,
+            "nativeActivationElided": true,
             "nativeBindings": [
               "e",
               "t",
@@ -394,8 +419,8 @@
         "end": 41296,
         "sha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8"
       },
-      "generatedSha256": "d762feb2ae87fb2597cb3fff793da90122f88861825820af4d70aeefda068238",
-      "rustLines": 399,
+      "generatedSha256": "68d0bc7cc6052e7d2c750c5fbd52bb12aa044eef48533c580f38a39622da9603",
+      "rustLines": 400,
       "coverage": {
         "version": 1,
         "moduleName": "buff_update",
@@ -431,28 +456,34 @@
         "largeBody": null,
         "cacheLocalBindings": true,
         "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
         "literalPropertySlots": true,
         "numericLiteralKeys": true,
         "nativeNumericOps": true,
         "sourceSpecializations": true,
         "nativeBattleGc": false,
+        "nativeBattleGcCadence": 1,
         "nativeLocalBindings": true,
+        "nativeParameters": true,
         "functions": [
           {
             "id": 0,
+            "staticEnvironmentKeys": 2,
+            "nativeActivationElided": true,
             "nativeBindings": [
               "t",
               "a",
               "i",
               "r",
-              "n"
+              "n",
+              "e"
             ],
             "battleGcSafePoints": [],
             "sourceSpecialization": null,
             "split": false,
             "estimatedOwnAstNodes": 254,
             "helpers": [],
-            "cachedBindings": 1,
+            "cachedBindings": 0,
             "name": "",
             "start": 0,
             "end": 862,
@@ -484,8 +515,8 @@
         "end": 96698,
         "sha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b"
       },
-      "generatedSha256": "ddf02a2930c0f38d34c90ec308315bd2168bb8a2ff996fb3d038511e0f6e23e9",
-      "rustLines": 97,
+      "generatedSha256": "b87f79552fa12d767947db9f5f5fc8682f9a4ec7254d041c95ecfe5764d02ecf",
+      "rustLines": 99,
       "coverage": {
         "version": 1,
         "moduleName": "set_hp",
@@ -516,15 +547,20 @@
         "largeBody": null,
         "cacheLocalBindings": true,
         "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
         "literalPropertySlots": true,
         "numericLiteralKeys": true,
         "nativeNumericOps": true,
         "sourceSpecializations": true,
         "nativeBattleGc": false,
+        "nativeBattleGcCadence": 1,
         "nativeLocalBindings": true,
+        "nativeParameters": true,
         "functions": [
           {
             "id": 0,
+            "staticEnvironmentKeys": 2,
+            "nativeActivationElided": false,
             "nativeBindings": [
               "t"
             ],
@@ -565,8 +601,8 @@
         "end": 96945,
         "sha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c"
       },
-      "generatedSha256": "f6fea155eb4ed80b762d9d3e9b16f220a435bffb9c63a17f8b87e5e358a75e53",
-      "rustLines": 87,
+      "generatedSha256": "1ab9a411ef460393969e48b819c644e7ad0446bcbb85a98bbc7f9cb1eeb3bd88",
+      "rustLines": 88,
       "coverage": {
         "version": 1,
         "moduleName": "set_mp",
@@ -595,22 +631,29 @@
         "largeBody": null,
         "cacheLocalBindings": true,
         "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
         "literalPropertySlots": true,
         "numericLiteralKeys": true,
         "nativeNumericOps": true,
         "sourceSpecializations": true,
         "nativeBattleGc": false,
+        "nativeBattleGcCadence": 1,
         "nativeLocalBindings": true,
+        "nativeParameters": true,
         "functions": [
           {
             "id": 0,
-            "nativeBindings": [],
+            "staticEnvironmentKeys": 2,
+            "nativeActivationElided": false,
+            "nativeBindings": [
+              "t"
+            ],
             "battleGcSafePoints": [],
             "sourceSpecialization": null,
             "split": false,
             "estimatedOwnAstNodes": 49,
             "helpers": [],
-            "cachedBindings": 2,
+            "cachedBindings": 1,
             "name": "",
             "start": 0,
             "end": 129,
@@ -642,8 +685,8 @@
         "end": 92695,
         "sha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07"
       },
-      "generatedSha256": "2bb8a388717328d2933e53c8edcdb921a44e66141ea8f21d514e245ff8a884e1",
-      "rustLines": 1085,
+      "generatedSha256": "483237de97a07498ab4438fc82194f91a75cefa2c3e3c815f5415a585a3f52a5",
+      "rustLines": 1096,
       "coverage": {
         "version": 1,
         "moduleName": "unit_add_buff",
@@ -685,15 +728,20 @@
         "largeBody": null,
         "cacheLocalBindings": true,
         "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
         "literalPropertySlots": true,
         "numericLiteralKeys": true,
         "nativeNumericOps": true,
         "sourceSpecializations": true,
         "nativeBattleGc": false,
+        "nativeBattleGcCadence": 1,
         "nativeLocalBindings": true,
+        "nativeParameters": true,
         "functions": [
           {
             "id": 0,
+            "staticEnvironmentKeys": 7,
+            "nativeActivationElided": false,
             "nativeBindings": [
               "r",
               "n",
@@ -702,14 +750,16 @@
               "s",
               "c",
               "d",
-              "u"
+              "u",
+              "e",
+              "t"
             ],
             "battleGcSafePoints": [],
             "sourceSpecialization": null,
             "split": false,
             "estimatedOwnAstNodes": 423,
             "helpers": [],
-            "cachedBindings": 7,
+            "cachedBindings": 5,
             "name": "",
             "start": 0,
             "end": 2002,
@@ -722,6 +772,8 @@
           },
           {
             "id": 1,
+            "staticEnvironmentKeys": 4,
+            "nativeActivationElided": true,
             "nativeBindings": [
               "e",
               "t"
@@ -744,6 +796,8 @@
           },
           {
             "id": 2,
+            "staticEnvironmentKeys": 2,
+            "nativeActivationElided": true,
             "nativeBindings": [
               "e",
               "t",
@@ -786,8 +840,8 @@
         "end": 87610,
         "sha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8"
       },
-      "generatedSha256": "0b9944eaf63f6380766bcce4198a73b5a42e85445810b1058d02754eac3b5cd7",
-      "rustLines": 73,
+      "generatedSha256": "27d94187e0629860c3c936fb3a035c3b36c5ca4124ef82ffe84d83bea50a9ff0",
+      "rustLines": 72,
       "coverage": {
         "version": 1,
         "moduleName": "reset_buff_apply",
@@ -814,22 +868,29 @@
         "largeBody": null,
         "cacheLocalBindings": true,
         "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
         "literalPropertySlots": true,
         "numericLiteralKeys": true,
         "nativeNumericOps": true,
         "sourceSpecializations": true,
         "nativeBattleGc": false,
+        "nativeBattleGcCadence": 1,
         "nativeLocalBindings": true,
+        "nativeParameters": true,
         "functions": [
           {
             "id": 0,
-            "nativeBindings": [],
+            "staticEnvironmentKeys": 0,
+            "nativeActivationElided": true,
+            "nativeBindings": [
+              "e"
+            ],
             "battleGcSafePoints": [],
             "sourceSpecialization": null,
             "split": false,
             "estimatedOwnAstNodes": 36,
             "helpers": [],
-            "cachedBindings": 1,
+            "cachedBindings": 0,
             "name": "",
             "start": 0,
             "end": 187,
@@ -853,10 +914,10 @@
   ],
   "sourceInputs": {
     "tools/rust-port/generate-battle.mjs": "fd517127b738180096cb2db2c272dd7003a4c694007de586de8fb906934e6f0e",
-    "tools/rust-port/compile.mjs": "998aa6f86a1d15dc9cc772cac2b5a2d5a75fecd19619c8e0c8d4461f9466eb74",
-    "tools/rust-port/expressions.mjs": "9336631cd9b90eeff21b1aeffb3fd46910172912a5761f6a9bb0137dc12347a1",
+    "tools/rust-port/compile.mjs": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
+    "tools/rust-port/expressions.mjs": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
-    "tools/rust-port/statements.mjs": "f087b439cf03a88e89dcb38a4e25796aeba4c0e6a26dc4b0c78030fe5239c030",
+    "tools/rust-port/statements.mjs": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
     "tools/rust-port/CONTRACT.md": "a0b80d83e836c917906747c10f8e46464bf24bdf6ef7cc9c69b6acfda47917cc",
     "config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
     "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",

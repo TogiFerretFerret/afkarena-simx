@@ -7,20 +7,19 @@ use js_runtime::{Runtime,Value,EnvId,JsResult,JsError,Completion,BinaryOp,UnaryO
 
 
 pub fn js_function_0(rt: &mut Runtime, this: Value, args: &[Value], parent: EnvId) -> JsResult<Value> {
-let env = rt.child_env(parent);
-rt.declare(env, "e", Value::Undefined)?;
-rt.assign(env, "e", args.get(0).copied().unwrap_or(Value::Undefined), false)?;
-rt.register_lazy_arguments(env, &["e"], args, &[false])?;
-let value_0 = rt.resolve_binding(env, "e")?;
+let env = parent;
+let mut native_local_0 = Value::Undefined;
+native_local_0 = args.get(0).copied().unwrap_or(Value::Undefined);
+rt.register_lazy_arguments(env, &["e"], args, &[true])?;
 let statement_result_1: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_2: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_3 = rt.read_binding(value_0)?;
+let value_3 = native_local_0;
 static LITERAL_READ_SITE_4: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isImpactAttribs");
 let value_5 = rt.get_literal_cached(value_3, &LITERAL_READ_SITE_4)?;
 let value_6 = rt.call(value_5, value_3, &[])?;
 let mut logical_7 = value_6;
 if !rt.truthy(value_6) {
-let value_8 = rt.read_binding(value_0)?;
+let value_8 = native_local_0;
 static LITERAL_READ_SITE_9: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hasEffectOrNot");
 let value_10 = rt.get_literal_cached(value_8, &LITERAL_READ_SITE_9)?;
 let value_11 = rt.static_string("noAttrUp");
@@ -29,7 +28,7 @@ logical_7 = value_12;
 }
 let mut logical_13 = logical_7;
 if !rt.truthy(logical_7) {
-let value_14 = rt.read_binding(value_0)?;
+let value_14 = native_local_0;
 static LITERAL_READ_SITE_15: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hasEffectOrNot");
 let value_16 = rt.get_literal_cached(value_14, &LITERAL_READ_SITE_15)?;
 let value_17 = rt.static_string("noAttrDown");
@@ -48,7 +47,7 @@ let value_24 = rt.get_literal_cached(this, &LITERAL_READ_SITE_23)?;
 let value_25 = rt.call(value_24, this, &[])?;
 static LITERAL_READ_SITE_26: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("judgeCurrentSkill");
 let value_27 = rt.get_literal_cached(this, &LITERAL_READ_SITE_26)?;
-let value_28 = rt.read_binding(value_0)?;
+let value_28 = native_local_0;
 let value_29 = rt.call(value_27, this, &[value_28])?;
 static LITERAL_READ_SITE_30: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("recheckManualCast");
 let value_31 = rt.get_literal_cached(this, &LITERAL_READ_SITE_30)?;

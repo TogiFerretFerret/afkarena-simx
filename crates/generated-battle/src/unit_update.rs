@@ -7,7 +7,11 @@ use js_runtime::{Runtime,Value,EnvId,JsResult,JsError,Completion,BinaryOp,UnaryO
 
 
 pub fn js_function_0(rt: &mut Runtime, this: Value, args: &[Value], parent: EnvId) -> JsResult<Value> {
-let env = rt.child_env(parent);
+let env = parent;
+let env_name_83 = rt.static_identifier_id("ed");
+let env_name_113 = rt.static_identifier_id("console");
+let env_name_125 = rt.static_identifier_id("isNaN");
+let env_name_173 = rt.static_identifier_id("Math");
 let mut native_local_0 = Value::Undefined;
 let mut native_local_1 = Value::Undefined;
 let mut native_local_2 = Value::Undefined;
@@ -48,10 +52,9 @@ let mut native_local_36 = Value::Undefined;
 let mut native_local_37 = Value::Undefined;
 let mut native_local_38 = Value::Undefined;
 let mut native_local_39 = Value::Undefined;
-rt.declare(env, "e", Value::Undefined)?;
-rt.assign(env, "e", args.get(0).copied().unwrap_or(Value::Undefined), false)?;
-rt.register_lazy_arguments(env, &["e"], args, &[false])?;
-let value_40 = rt.resolve_binding(env, "e")?;
+let mut native_local_40 = Value::Undefined;
+native_local_40 = args.get(0).copied().unwrap_or(Value::Undefined);
+rt.register_lazy_arguments(env, &["e"], args, &[true])?;
 let statement_result_41: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_42: JsResult<Completion> = (|| -> JsResult<Completion> {
 static LITERAL_READ_SITE_43: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
@@ -79,7 +82,7 @@ let mut logical_60 = logical_52;
 if rt.truthy(logical_52) {
 static LITERAL_READ_SITE_61: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("delayTerminateTimer");
 let value_62 = rt.get_literal_cached(this, &LITERAL_READ_SITE_61)?;
-let value_63 = rt.read_binding(value_40)?;
+let value_63 = native_local_40;
 let value_66 = match (value_62, value_63) { (Value::Number(numeric_left_64), Value::Number(numeric_right_65)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_64, numeric_right_65)), _ => rt.binary(BinaryOp::Sub, value_62, value_63)? };
 let value_67 = rt.static_string("delayTerminateTimer");
 let value_68 = rt.set(this, value_67, value_66, false)?;
@@ -102,2550 +105,2550 @@ Ok(value_79)
 let statement_result_80: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_81: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_82: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_83 = rt.resolve_binding(env, "ed")?;
-let value_84 = rt.read_binding(value_83)?;
-static LITERAL_READ_SITE_85: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battleEngine");
-let value_86 = rt.get_literal_cached(value_84, &LITERAL_READ_SITE_85)?;
-static LITERAL_READ_SITE_87: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("config");
-let value_88 = rt.get_literal_cached(value_86, &LITERAL_READ_SITE_87)?;
-static LITERAL_READ_SITE_89: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("localBot");
-let value_90 = rt.get_literal_cached(value_88, &LITERAL_READ_SITE_89)?;
-let value_91 = rt.resolve_binding(env, "ed")?;
-let value_92 = rt.read_binding(value_91)?;
-static LITERAL_READ_SITE_93: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battleEngine");
-let value_94 = rt.get_literal_cached(value_92, &LITERAL_READ_SITE_93)?;
-static LITERAL_READ_SITE_95: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("config");
-let value_96 = rt.get_literal_cached(value_94, &LITERAL_READ_SITE_95)?;
-static LITERAL_READ_SITE_97: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("localBot");
-let value_98 = rt.get_literal_cached(value_96, &LITERAL_READ_SITE_97)?;
-let mut logical_99 = value_98;
-if rt.truthy(value_98) {
-static LITERAL_READ_SITE_100: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
-let value_101 = rt.get_literal_cached(this, &LITERAL_READ_SITE_100)?;
-let value_102 = rt.call(value_101, this, &[])?;
-logical_99 = value_102;
+let value_84 = rt.resolve_binding_id(env, env_name_83)?;
+let value_85 = rt.read_binding(value_84)?;
+static LITERAL_READ_SITE_86: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battleEngine");
+let value_87 = rt.get_literal_cached(value_85, &LITERAL_READ_SITE_86)?;
+static LITERAL_READ_SITE_88: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("config");
+let value_89 = rt.get_literal_cached(value_87, &LITERAL_READ_SITE_88)?;
+static LITERAL_READ_SITE_90: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("localBot");
+let value_91 = rt.get_literal_cached(value_89, &LITERAL_READ_SITE_90)?;
+let value_92 = rt.resolve_binding_id(env, env_name_83)?;
+let value_93 = rt.read_binding(value_92)?;
+static LITERAL_READ_SITE_94: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battleEngine");
+let value_95 = rt.get_literal_cached(value_93, &LITERAL_READ_SITE_94)?;
+static LITERAL_READ_SITE_96: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("config");
+let value_97 = rt.get_literal_cached(value_95, &LITERAL_READ_SITE_96)?;
+static LITERAL_READ_SITE_98: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("localBot");
+let value_99 = rt.get_literal_cached(value_97, &LITERAL_READ_SITE_98)?;
+let mut logical_100 = value_99;
+if rt.truthy(value_99) {
+static LITERAL_READ_SITE_101: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
+let value_102 = rt.get_literal_cached(this, &LITERAL_READ_SITE_101)?;
+let value_103 = rt.call(value_102, this, &[])?;
+logical_100 = value_103;
 }
-let mut logical_103 = logical_99;
-if rt.truthy(logical_99) {
-let value_104 = rt.static_string("number");
-static LITERAL_READ_SITE_105: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hp");
-let value_106 = rt.get_literal_cached(this, &LITERAL_READ_SITE_105)?;
-let value_107 = rt.unary(UnaryOp::TypeOf, value_106)?;
-let value_110 = match (value_104, value_107) { (Value::Number(numeric_left_108), Value::Number(numeric_right_109)) => Value::Bool(numeric_left_108 != numeric_right_109), _ => rt.binary(BinaryOp::Ne, value_104, value_107)? };
-let mut logical_111 = value_110;
-if rt.truthy(value_110) {
-let value_112 = rt.resolve_binding(env, "console")?;
-let value_113 = rt.read_binding(value_112)?;
-static LITERAL_READ_SITE_114: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("log");
-let value_115 = rt.get_literal_cached(value_113, &LITERAL_READ_SITE_114)?;
-static LITERAL_READ_SITE_116: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("name");
-let value_117 = rt.get_literal_cached(this, &LITERAL_READ_SITE_116)?;
-let value_118 = rt.static_string(" hp error");
-let value_121 = match (value_117, value_118) { (Value::Number(numeric_left_119), Value::Number(numeric_right_120)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_119, numeric_right_120)), _ => rt.binary(BinaryOp::Add, value_117, value_118)? };
-let value_122 = rt.call(value_115, value_113, &[value_121])?;
-logical_111 = value_122;
+let mut logical_104 = logical_100;
+if rt.truthy(logical_100) {
+let value_105 = rt.static_string("number");
+static LITERAL_READ_SITE_106: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hp");
+let value_107 = rt.get_literal_cached(this, &LITERAL_READ_SITE_106)?;
+let value_108 = rt.unary(UnaryOp::TypeOf, value_107)?;
+let value_111 = match (value_105, value_108) { (Value::Number(numeric_left_109), Value::Number(numeric_right_110)) => Value::Bool(numeric_left_109 != numeric_right_110), _ => rt.binary(BinaryOp::Ne, value_105, value_108)? };
+let mut logical_112 = value_111;
+if rt.truthy(value_111) {
+let value_114 = rt.resolve_binding_id(env, env_name_113)?;
+let value_115 = rt.read_binding(value_114)?;
+static LITERAL_READ_SITE_116: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("log");
+let value_117 = rt.get_literal_cached(value_115, &LITERAL_READ_SITE_116)?;
+static LITERAL_READ_SITE_118: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("name");
+let value_119 = rt.get_literal_cached(this, &LITERAL_READ_SITE_118)?;
+let value_120 = rt.static_string(" hp error");
+let value_123 = match (value_119, value_120) { (Value::Number(numeric_left_121), Value::Number(numeric_right_122)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_121, numeric_right_122)), _ => rt.binary(BinaryOp::Add, value_119, value_120)? };
+let value_124 = rt.call(value_117, value_115, &[value_123])?;
+logical_112 = value_124;
 }
-let value_123 = rt.resolve_binding(env, "isNaN")?;
-let value_124 = rt.read_binding(value_123)?;
-static LITERAL_READ_SITE_125: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_126 = rt.get_literal_cached(this, &LITERAL_READ_SITE_125)?;
-let value_127 = rt.static_string("0");
-let value_128 = rt.get(value_126, value_127)?;
-let value_129 = rt.call(value_124, Value::Undefined, &[value_128])?;
-let mut logical_130 = value_129;
-if !rt.truthy(value_129) {
-let value_131 = rt.resolve_binding(env, "isNaN")?;
-let value_132 = rt.read_binding(value_131)?;
-static LITERAL_READ_SITE_133: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_134 = rt.get_literal_cached(this, &LITERAL_READ_SITE_133)?;
-let value_135 = rt.static_string("1");
-let value_136 = rt.get(value_134, value_135)?;
-let value_137 = rt.call(value_132, Value::Undefined, &[value_136])?;
-logical_130 = value_137;
+let value_126 = rt.resolve_binding_id(env, env_name_125)?;
+let value_127 = rt.read_binding(value_126)?;
+static LITERAL_READ_SITE_128: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_129 = rt.get_literal_cached(this, &LITERAL_READ_SITE_128)?;
+let value_130 = rt.static_string("0");
+let value_131 = rt.get(value_129, value_130)?;
+let value_132 = rt.call(value_127, Value::Undefined, &[value_131])?;
+let mut logical_133 = value_132;
+if !rt.truthy(value_132) {
+let value_134 = rt.resolve_binding_id(env, env_name_125)?;
+let value_135 = rt.read_binding(value_134)?;
+static LITERAL_READ_SITE_136: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_137 = rt.get_literal_cached(this, &LITERAL_READ_SITE_136)?;
+let value_138 = rt.static_string("1");
+let value_139 = rt.get(value_137, value_138)?;
+let value_140 = rt.call(value_135, Value::Undefined, &[value_139])?;
+logical_133 = value_140;
 }
-let mut logical_138 = logical_130;
-if !rt.truthy(logical_130) {
-let value_139 = rt.static_string("number");
-static LITERAL_READ_SITE_140: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_141 = rt.get_literal_cached(this, &LITERAL_READ_SITE_140)?;
-let value_142 = rt.static_string("0");
-let value_143 = rt.get(value_141, value_142)?;
-let value_144 = rt.unary(UnaryOp::TypeOf, value_143)?;
-let value_147 = match (value_139, value_144) { (Value::Number(numeric_left_145), Value::Number(numeric_right_146)) => Value::Bool(numeric_left_145 != numeric_right_146), _ => rt.binary(BinaryOp::Ne, value_139, value_144)? };
-logical_138 = value_147;
+let mut logical_141 = logical_133;
+if !rt.truthy(logical_133) {
+let value_142 = rt.static_string("number");
+static LITERAL_READ_SITE_143: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_144 = rt.get_literal_cached(this, &LITERAL_READ_SITE_143)?;
+let value_145 = rt.static_string("0");
+let value_146 = rt.get(value_144, value_145)?;
+let value_147 = rt.unary(UnaryOp::TypeOf, value_146)?;
+let value_150 = match (value_142, value_147) { (Value::Number(numeric_left_148), Value::Number(numeric_right_149)) => Value::Bool(numeric_left_148 != numeric_right_149), _ => rt.binary(BinaryOp::Ne, value_142, value_147)? };
+logical_141 = value_150;
 }
-let mut logical_148 = logical_138;
-if !rt.truthy(logical_138) {
-let value_149 = rt.static_string("number");
-static LITERAL_READ_SITE_150: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_151 = rt.get_literal_cached(this, &LITERAL_READ_SITE_150)?;
-let value_152 = rt.static_string("1");
-let value_153 = rt.get(value_151, value_152)?;
-let value_154 = rt.unary(UnaryOp::TypeOf, value_153)?;
-let value_157 = match (value_149, value_154) { (Value::Number(numeric_left_155), Value::Number(numeric_right_156)) => Value::Bool(numeric_left_155 != numeric_right_156), _ => rt.binary(BinaryOp::Ne, value_149, value_154)? };
-logical_148 = value_157;
+let mut logical_151 = logical_141;
+if !rt.truthy(logical_141) {
+let value_152 = rt.static_string("number");
+static LITERAL_READ_SITE_153: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_154 = rt.get_literal_cached(this, &LITERAL_READ_SITE_153)?;
+let value_155 = rt.static_string("1");
+let value_156 = rt.get(value_154, value_155)?;
+let value_157 = rt.unary(UnaryOp::TypeOf, value_156)?;
+let value_160 = match (value_152, value_157) { (Value::Number(numeric_left_158), Value::Number(numeric_right_159)) => Value::Bool(numeric_left_158 != numeric_right_159), _ => rt.binary(BinaryOp::Ne, value_152, value_157)? };
+logical_151 = value_160;
 }
-let mut logical_158 = logical_148;
-if rt.truthy(logical_148) {
-let value_159 = rt.resolve_binding(env, "console")?;
-let value_160 = rt.read_binding(value_159)?;
-static LITERAL_READ_SITE_161: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("log");
-let value_162 = rt.get_literal_cached(value_160, &LITERAL_READ_SITE_161)?;
-static LITERAL_READ_SITE_163: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("name");
-let value_164 = rt.get_literal_cached(this, &LITERAL_READ_SITE_163)?;
-let value_165 = rt.static_string(" position error");
-let value_168 = match (value_164, value_165) { (Value::Number(numeric_left_166), Value::Number(numeric_right_167)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_166, numeric_right_167)), _ => rt.binary(BinaryOp::Add, value_164, value_165)? };
-let value_169 = rt.call(value_162, value_160, &[value_168])?;
-logical_158 = value_169;
+let mut logical_161 = logical_151;
+if rt.truthy(logical_151) {
+let value_162 = rt.resolve_binding_id(env, env_name_113)?;
+let value_163 = rt.read_binding(value_162)?;
+static LITERAL_READ_SITE_164: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("log");
+let value_165 = rt.get_literal_cached(value_163, &LITERAL_READ_SITE_164)?;
+static LITERAL_READ_SITE_166: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("name");
+let value_167 = rt.get_literal_cached(this, &LITERAL_READ_SITE_166)?;
+let value_168 = rt.static_string(" position error");
+let value_171 = match (value_167, value_168) { (Value::Number(numeric_left_169), Value::Number(numeric_right_170)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_169, numeric_right_170)), _ => rt.binary(BinaryOp::Add, value_167, value_168)? };
+let value_172 = rt.call(value_165, value_163, &[value_171])?;
+logical_161 = value_172;
 }
-let value_170 = rt.resolve_binding(env, "Math")?;
-let value_171 = rt.read_binding(value_170)?;
-static LITERAL_READ_SITE_172: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
-let value_173 = rt.get_literal_cached(value_171, &LITERAL_READ_SITE_172)?;
-static LITERAL_READ_SITE_174: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_175 = rt.get_literal_cached(this, &LITERAL_READ_SITE_174)?;
-let value_176 = rt.static_string("0");
-let value_177 = rt.get(value_175, value_176)?;
-let value_178 = rt.call(value_173, value_171, &[value_177])?;
-let value_179 = Value::Number(f64::from_bits(0x40d6c94000000000u64));
-let value_182 = match (value_178, value_179) { (Value::Number(numeric_left_180), Value::Number(numeric_right_181)) => Value::Bool(numeric_left_180 > numeric_right_181), _ => rt.binary(BinaryOp::Gt, value_178, value_179)? };
-let mut logical_183 = value_182;
-if !rt.truthy(value_182) {
-let value_184 = rt.resolve_binding(env, "Math")?;
-let value_185 = rt.read_binding(value_184)?;
-static LITERAL_READ_SITE_186: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
-let value_187 = rt.get_literal_cached(value_185, &LITERAL_READ_SITE_186)?;
-static LITERAL_READ_SITE_188: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_189 = rt.get_literal_cached(this, &LITERAL_READ_SITE_188)?;
-let value_190 = rt.static_string("1");
-let value_191 = rt.get(value_189, value_190)?;
-let value_192 = rt.call(value_187, value_185, &[value_191])?;
-let value_193 = Value::Number(f64::from_bits(0x40d6c94000000000u64));
-let value_196 = match (value_192, value_193) { (Value::Number(numeric_left_194), Value::Number(numeric_right_195)) => Value::Bool(numeric_left_194 > numeric_right_195), _ => rt.binary(BinaryOp::Gt, value_192, value_193)? };
-logical_183 = value_196;
+let value_174 = rt.resolve_binding_id(env, env_name_173)?;
+let value_175 = rt.read_binding(value_174)?;
+static LITERAL_READ_SITE_176: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
+let value_177 = rt.get_literal_cached(value_175, &LITERAL_READ_SITE_176)?;
+static LITERAL_READ_SITE_178: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_179 = rt.get_literal_cached(this, &LITERAL_READ_SITE_178)?;
+let value_180 = rt.static_string("0");
+let value_181 = rt.get(value_179, value_180)?;
+let value_182 = rt.call(value_177, value_175, &[value_181])?;
+let value_183 = Value::Number(f64::from_bits(0x40d6c94000000000u64));
+let value_186 = match (value_182, value_183) { (Value::Number(numeric_left_184), Value::Number(numeric_right_185)) => Value::Bool(numeric_left_184 > numeric_right_185), _ => rt.binary(BinaryOp::Gt, value_182, value_183)? };
+let mut logical_187 = value_186;
+if !rt.truthy(value_186) {
+let value_188 = rt.resolve_binding_id(env, env_name_173)?;
+let value_189 = rt.read_binding(value_188)?;
+static LITERAL_READ_SITE_190: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
+let value_191 = rt.get_literal_cached(value_189, &LITERAL_READ_SITE_190)?;
+static LITERAL_READ_SITE_192: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_193 = rt.get_literal_cached(this, &LITERAL_READ_SITE_192)?;
+let value_194 = rt.static_string("1");
+let value_195 = rt.get(value_193, value_194)?;
+let value_196 = rt.call(value_191, value_189, &[value_195])?;
+let value_197 = Value::Number(f64::from_bits(0x40d6c94000000000u64));
+let value_200 = match (value_196, value_197) { (Value::Number(numeric_left_198), Value::Number(numeric_right_199)) => Value::Bool(numeric_left_198 > numeric_right_199), _ => rt.binary(BinaryOp::Gt, value_196, value_197)? };
+logical_187 = value_200;
 }
-let mut logical_197 = logical_183;
-if rt.truthy(logical_183) {
-let value_198 = rt.resolve_binding(env, "console")?;
-let value_199 = rt.read_binding(value_198)?;
-static LITERAL_READ_SITE_200: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("log");
-let value_201 = rt.get_literal_cached(value_199, &LITERAL_READ_SITE_200)?;
-static LITERAL_READ_SITE_202: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("name");
-let value_203 = rt.get_literal_cached(this, &LITERAL_READ_SITE_202)?;
-let value_204 = rt.static_string(" position error v2");
-let value_207 = match (value_203, value_204) { (Value::Number(numeric_left_205), Value::Number(numeric_right_206)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_205, numeric_right_206)), _ => rt.binary(BinaryOp::Add, value_203, value_204)? };
-let value_208 = rt.call(value_201, value_199, &[value_207])?;
-logical_197 = value_208;
+let mut logical_201 = logical_187;
+if rt.truthy(logical_187) {
+let value_202 = rt.resolve_binding_id(env, env_name_113)?;
+let value_203 = rt.read_binding(value_202)?;
+static LITERAL_READ_SITE_204: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("log");
+let value_205 = rt.get_literal_cached(value_203, &LITERAL_READ_SITE_204)?;
+static LITERAL_READ_SITE_206: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("name");
+let value_207 = rt.get_literal_cached(this, &LITERAL_READ_SITE_206)?;
+let value_208 = rt.static_string(" position error v2");
+let value_211 = match (value_207, value_208) { (Value::Number(numeric_left_209), Value::Number(numeric_right_210)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_209, numeric_right_210)), _ => rt.binary(BinaryOp::Add, value_207, value_208)? };
+let value_212 = rt.call(value_205, value_203, &[value_211])?;
+logical_201 = value_212;
 }
-logical_103 = logical_197;
+logical_104 = logical_201;
 }
 Ok(Completion::Normal)
 })();
-let value_209 = statement_result_82?;
-if !matches!(value_209, Completion::Normal) { return Ok(value_209); }
-let statement_result_210: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_211: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_212 = rt.get_literal_cached(this, &LITERAL_READ_SITE_211)?;
-static LITERAL_READ_SITE_213: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("MSPD");
-let value_214 = rt.get_literal_cached(value_212, &LITERAL_READ_SITE_213)?;
-native_local_0 = value_214;
+let value_213 = statement_result_82?;
+if !matches!(value_213, Completion::Normal) { return Ok(value_213); }
+let statement_result_214: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_215: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_216 = rt.get_literal_cached(this, &LITERAL_READ_SITE_215)?;
+static LITERAL_READ_SITE_217: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("MSPD");
+let value_218 = rt.get_literal_cached(value_216, &LITERAL_READ_SITE_217)?;
+native_local_0 = value_218;
 Ok(Completion::Normal)
 })();
-let value_215 = statement_result_210?;
-if !matches!(value_215, Completion::Normal) { return Ok(value_215); }
-let statement_result_216: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_217: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("config");
-let value_218 = rt.get_literal_cached(this, &LITERAL_READ_SITE_217)?;
-static LITERAL_READ_SITE_219: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("is_boss");
-let value_220 = rt.get_literal_cached(value_218, &LITERAL_READ_SITE_219)?;
-let mut logical_221 = value_220;
-if rt.truthy(value_220) {
-let value_222 = native_local_0;
-let value_223 = Value::Number(f64::from_bits(0xc052c00000000000u64));
-let value_226 = match (value_222, value_223) { (Value::Number(numeric_left_224), Value::Number(numeric_right_225)) => Value::Bool(numeric_left_224 < numeric_right_225), _ => rt.binary(BinaryOp::Lt, value_222, value_223)? };
-logical_221 = value_226;
+let value_219 = statement_result_214?;
+if !matches!(value_219, Completion::Normal) { return Ok(value_219); }
+let statement_result_220: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_221: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("config");
+let value_222 = rt.get_literal_cached(this, &LITERAL_READ_SITE_221)?;
+static LITERAL_READ_SITE_223: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("is_boss");
+let value_224 = rt.get_literal_cached(value_222, &LITERAL_READ_SITE_223)?;
+let mut logical_225 = value_224;
+if rt.truthy(value_224) {
+let value_226 = native_local_0;
+let value_227 = Value::Number(f64::from_bits(0xc052c00000000000u64));
+let value_230 = match (value_226, value_227) { (Value::Number(numeric_left_228), Value::Number(numeric_right_229)) => Value::Bool(numeric_left_228 < numeric_right_229), _ => rt.binary(BinaryOp::Lt, value_226, value_227)? };
+logical_225 = value_230;
 }
-let mut logical_227 = logical_221;
-if rt.truthy(logical_221) {
-let value_228 = Value::Number(f64::from_bits(0xc052c00000000000u64));
-native_local_0 = value_228;
-let value_229 = native_local_0;
-logical_227 = value_228;
+let mut logical_231 = logical_225;
+if rt.truthy(logical_225) {
+let value_232 = Value::Number(f64::from_bits(0xc052c00000000000u64));
+native_local_0 = value_232;
+let value_233 = native_local_0;
+logical_231 = value_232;
 }
-static LITERAL_READ_SITE_230: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_231 = rt.get_literal_cached(this, &LITERAL_READ_SITE_230)?;
-if rt.truthy(value_231) {
-let statement_result_232: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_233: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_234: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_235: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_236 = rt.get_literal_cached(this, &LITERAL_READ_SITE_235)?;
-static LITERAL_READ_SITE_237: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("info");
-let value_238 = rt.get_literal_cached(value_236, &LITERAL_READ_SITE_237)?;
-static LITERAL_READ_SITE_239: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("SetSpeeder");
-let value_240 = rt.get_literal_cached(value_238, &LITERAL_READ_SITE_239)?;
-native_local_1 = value_240;
+static LITERAL_READ_SITE_234: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_235 = rt.get_literal_cached(this, &LITERAL_READ_SITE_234)?;
+if rt.truthy(value_235) {
+let statement_result_236: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_237: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_238: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_239: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_240 = rt.get_literal_cached(this, &LITERAL_READ_SITE_239)?;
+static LITERAL_READ_SITE_241: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("info");
+let value_242 = rt.get_literal_cached(value_240, &LITERAL_READ_SITE_241)?;
+static LITERAL_READ_SITE_243: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("SetSpeeder");
+let value_244 = rt.get_literal_cached(value_242, &LITERAL_READ_SITE_243)?;
+native_local_1 = value_244;
 Ok(Completion::Normal)
 })();
-let value_241 = statement_result_234?;
-if !matches!(value_241, Completion::Normal) { return Ok(value_241); }
-let statement_result_242: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_243 = native_local_1;
-let mut conditional_244 = Value::Undefined;
-if rt.truthy(value_243) {
-let value_245 = native_local_1;
-let value_246 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_249 = match (value_245, value_246) { (Value::Number(numeric_left_247), Value::Number(numeric_right_248)) => Value::Bool(numeric_left_247 > numeric_right_248), _ => rt.binary(BinaryOp::Gt, value_245, value_246)? };
-let mut logical_250 = value_249;
-if rt.truthy(value_249) {
-let value_251 = native_local_1;
-native_local_0 = value_251;
-let value_252 = native_local_0;
-logical_250 = value_251;
+let value_245 = statement_result_238?;
+if !matches!(value_245, Completion::Normal) { return Ok(value_245); }
+let statement_result_246: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_247 = native_local_1;
+let mut conditional_248 = Value::Undefined;
+if rt.truthy(value_247) {
+let value_249 = native_local_1;
+let value_250 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_253 = match (value_249, value_250) { (Value::Number(numeric_left_251), Value::Number(numeric_right_252)) => Value::Bool(numeric_left_251 > numeric_right_252), _ => rt.binary(BinaryOp::Gt, value_249, value_250)? };
+let mut logical_254 = value_253;
+if rt.truthy(value_253) {
+let value_255 = native_local_1;
+native_local_0 = value_255;
+let value_256 = native_local_0;
+logical_254 = value_255;
 }
-conditional_244 = logical_250;
+conditional_248 = logical_254;
 } else {
-let value_253 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_0 = value_253;
-let value_254 = native_local_0;
-conditional_244 = value_253;
+let value_257 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_0 = value_257;
+let value_258 = native_local_0;
+conditional_248 = value_257;
 }
-static LITERAL_READ_SITE_255: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_256 = rt.get_literal_cached(this, &LITERAL_READ_SITE_255)?;
-static LITERAL_READ_SITE_257: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("basic_skill");
-let value_258 = rt.get_literal_cached(this, &LITERAL_READ_SITE_257)?;
-let value_261 = match (value_256, value_258) { (Value::Number(numeric_left_259), Value::Number(numeric_right_260)) => Value::Bool(numeric_left_259 == numeric_right_260), _ => rt.binary(BinaryOp::StrictEq, value_256, value_258)? };
-let mut logical_262 = value_261;
-if rt.truthy(value_261) {
-let value_263 = native_local_0;
-static LITERAL_READ_SITE_264: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_265 = rt.get_literal_cached(this, &LITERAL_READ_SITE_264)?;
-static LITERAL_READ_SITE_266: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ATKHAST");
-let value_267 = rt.get_literal_cached(value_265, &LITERAL_READ_SITE_266)?;
-let value_270 = match (value_263, value_267) { (Value::Number(numeric_left_268), Value::Number(numeric_right_269)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_268, numeric_right_269)), _ => rt.binary(BinaryOp::Add, value_263, value_267)? };
-native_local_0 = value_270;
-let value_271 = native_local_0;
-logical_262 = value_270;
+static LITERAL_READ_SITE_259: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_260 = rt.get_literal_cached(this, &LITERAL_READ_SITE_259)?;
+static LITERAL_READ_SITE_261: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("basic_skill");
+let value_262 = rt.get_literal_cached(this, &LITERAL_READ_SITE_261)?;
+let value_265 = match (value_260, value_262) { (Value::Number(numeric_left_263), Value::Number(numeric_right_264)) => Value::Bool(numeric_left_263 == numeric_right_264), _ => rt.binary(BinaryOp::StrictEq, value_260, value_262)? };
+let mut logical_266 = value_265;
+if rt.truthy(value_265) {
+let value_267 = native_local_0;
+static LITERAL_READ_SITE_268: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_269 = rt.get_literal_cached(this, &LITERAL_READ_SITE_268)?;
+static LITERAL_READ_SITE_270: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ATKHAST");
+let value_271 = rt.get_literal_cached(value_269, &LITERAL_READ_SITE_270)?;
+let value_274 = match (value_267, value_271) { (Value::Number(numeric_left_272), Value::Number(numeric_right_273)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_272, numeric_right_273)), _ => rt.binary(BinaryOp::Add, value_267, value_271)? };
+native_local_0 = value_274;
+let value_275 = native_local_0;
+logical_266 = value_274;
 }
-static LITERAL_READ_SITE_272: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_273 = rt.get_literal_cached(this, &LITERAL_READ_SITE_272)?;
-static LITERAL_READ_SITE_274: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lockActionSpeeder");
-let value_275 = rt.get_literal_cached(value_273, &LITERAL_READ_SITE_274)?;
-let mut logical_276 = value_275;
-if rt.truthy(value_275) {
-let value_277 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_0 = value_277;
-let value_278 = native_local_0;
-logical_276 = value_277;
+static LITERAL_READ_SITE_276: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_277 = rt.get_literal_cached(this, &LITERAL_READ_SITE_276)?;
+static LITERAL_READ_SITE_278: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lockActionSpeeder");
+let value_279 = rt.get_literal_cached(value_277, &LITERAL_READ_SITE_278)?;
+let mut logical_280 = value_279;
+if rt.truthy(value_279) {
+let value_281 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_0 = value_281;
+let value_282 = native_local_0;
+logical_280 = value_281;
 }
 Ok(Completion::Normal)
 })();
-let value_279 = statement_result_242?;
-if !matches!(value_279, Completion::Normal) { return Ok(value_279); }
+let value_283 = statement_result_246?;
+if !matches!(value_283, Completion::Normal) { return Ok(value_283); }
 Ok(Completion::Normal)
 })();
-let value_280 = statement_result_233?;
-Ok(value_280)
+let value_284 = statement_result_237?;
+Ok(value_284)
 })();
-let value_281 = statement_result_232?;
-Ok(value_281)
-} else {
-let statement_result_282: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_283 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_0 = value_283;
-let value_284 = native_local_0;
-Ok(Completion::Normal)
-})();
-let value_285 = statement_result_282?;
+let value_285 = statement_result_236?;
 Ok(value_285)
-}
-})();
-let value_286 = statement_result_216?;
-if !matches!(value_286, Completion::Normal) { return Ok(value_286); }
-let statement_result_287: JsResult<Completion> = (|| -> JsResult<Completion> {
+} else {
+let statement_result_286: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_287 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_0 = value_287;
 let value_288 = native_local_0;
-let value_289 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_292 = match (value_288, value_289) { (Value::Number(numeric_left_290), Value::Number(numeric_right_291)) => Value::Bool(numeric_left_290 >= numeric_right_291), _ => rt.binary(BinaryOp::Ge, value_288, value_289)? };
-let mut conditional_293 = Value::Undefined;
-if rt.truthy(value_292) {
-let value_294 = native_local_0;
-let value_295 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_298 = match (value_294, value_295) { (Value::Number(numeric_left_296), Value::Number(numeric_right_297)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_296, numeric_right_297)), _ => rt.binary(BinaryOp::Add, value_294, value_295)? };
+Ok(Completion::Normal)
+})();
+let value_289 = statement_result_286?;
+Ok(value_289)
+}
+})();
+let value_290 = statement_result_220?;
+if !matches!(value_290, Completion::Normal) { return Ok(value_290); }
+let statement_result_291: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_292 = native_local_0;
+let value_293 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_296 = match (value_292, value_293) { (Value::Number(numeric_left_294), Value::Number(numeric_right_295)) => Value::Bool(numeric_left_294 >= numeric_right_295), _ => rt.binary(BinaryOp::Ge, value_292, value_293)? };
+let mut conditional_297 = Value::Undefined;
+if rt.truthy(value_296) {
+let value_298 = native_local_0;
 let value_299 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_302 = match (value_298, value_299) { (Value::Number(numeric_left_300), Value::Number(numeric_right_301)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_300, numeric_right_301)), _ => rt.binary(BinaryOp::Div, value_298, value_299)? };
-conditional_293 = value_302;
-} else {
+let value_302 = match (value_298, value_299) { (Value::Number(numeric_left_300), Value::Number(numeric_right_301)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_300, numeric_right_301)), _ => rt.binary(BinaryOp::Add, value_298, value_299)? };
 let value_303 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_304 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_305 = native_local_0;
-let value_308 = match (value_304, value_305) { (Value::Number(numeric_left_306), Value::Number(numeric_right_307)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_306, numeric_right_307)), _ => rt.binary(BinaryOp::Sub, value_304, value_305)? };
-let value_311 = match (value_303, value_308) { (Value::Number(numeric_left_309), Value::Number(numeric_right_310)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_309, numeric_right_310)), _ => rt.binary(BinaryOp::Div, value_303, value_308)? };
-conditional_293 = value_311;
-}
-native_local_2 = conditional_293;
-Ok(Completion::Normal)
-})();
-let value_312 = statement_result_287?;
-if !matches!(value_312, Completion::Normal) { return Ok(value_312); }
-let statement_result_313: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_314: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_315 = rt.get_literal_cached(this, &LITERAL_READ_SITE_314)?;
-static LITERAL_READ_SITE_316: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("frozen");
-let value_317 = rt.get_literal_cached(value_315, &LITERAL_READ_SITE_316)?;
-let mut logical_318 = value_317;
-if !rt.truthy(value_317) {
-static LITERAL_READ_SITE_319: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_320 = rt.get_literal_cached(this, &LITERAL_READ_SITE_319)?;
-static LITERAL_READ_SITE_321: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("motionless");
-let value_322 = rt.get_literal_cached(value_320, &LITERAL_READ_SITE_321)?;
-logical_318 = value_322;
-}
-let mut conditional_323 = Value::Undefined;
-if rt.truthy(logical_318) {
-let value_324 = Value::Number(f64::from_bits(0x0000000000000000u64));
-conditional_323 = value_324;
+let value_306 = match (value_302, value_303) { (Value::Number(numeric_left_304), Value::Number(numeric_right_305)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_304, numeric_right_305)), _ => rt.binary(BinaryOp::Div, value_302, value_303)? };
+conditional_297 = value_306;
 } else {
-let value_325 = native_local_2;
-conditional_323 = value_325;
+let value_307 = Value::Number(f64::from_bits(0x4059000000000000u64));
+let value_308 = Value::Number(f64::from_bits(0x4059000000000000u64));
+let value_309 = native_local_0;
+let value_312 = match (value_308, value_309) { (Value::Number(numeric_left_310), Value::Number(numeric_right_311)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_310, numeric_right_311)), _ => rt.binary(BinaryOp::Sub, value_308, value_309)? };
+let value_315 = match (value_307, value_312) { (Value::Number(numeric_left_313), Value::Number(numeric_right_314)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_313, numeric_right_314)), _ => rt.binary(BinaryOp::Div, value_307, value_312)? };
+conditional_297 = value_315;
 }
-native_local_2 = conditional_323;
-let value_326 = native_local_2;
-let value_327 = native_local_2;
-let value_328 = rt.static_string("speeder");
-let value_329 = rt.set(this, value_328, value_327, false)?;
+native_local_2 = conditional_297;
 Ok(Completion::Normal)
 })();
-let value_330 = statement_result_313?;
-if !matches!(value_330, Completion::Normal) { return Ok(value_330); }
-let statement_result_331: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_332 = rt.read_binding(value_40)?;
-native_local_3 = value_332;
-let value_333 = rt.read_binding(value_40)?;
-let value_334 = native_local_2;
-let value_337 = match (value_333, value_334) { (Value::Number(numeric_left_335), Value::Number(numeric_right_336)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_335, numeric_right_336)), _ => rt.binary(BinaryOp::Mul, value_333, value_334)? };
-native_local_4 = value_337;
+let value_316 = statement_result_291?;
+if !matches!(value_316, Completion::Normal) { return Ok(value_316); }
+let statement_result_317: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_318: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_319 = rt.get_literal_cached(this, &LITERAL_READ_SITE_318)?;
+static LITERAL_READ_SITE_320: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("frozen");
+let value_321 = rt.get_literal_cached(value_319, &LITERAL_READ_SITE_320)?;
+let mut logical_322 = value_321;
+if !rt.truthy(value_321) {
+static LITERAL_READ_SITE_323: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_324 = rt.get_literal_cached(this, &LITERAL_READ_SITE_323)?;
+static LITERAL_READ_SITE_325: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("motionless");
+let value_326 = rt.get_literal_cached(value_324, &LITERAL_READ_SITE_325)?;
+logical_322 = value_326;
+}
+let mut conditional_327 = Value::Undefined;
+if rt.truthy(logical_322) {
+let value_328 = Value::Number(f64::from_bits(0x0000000000000000u64));
+conditional_327 = value_328;
+} else {
+let value_329 = native_local_2;
+conditional_327 = value_329;
+}
+native_local_2 = conditional_327;
+let value_330 = native_local_2;
+let value_331 = native_local_2;
+let value_332 = rt.static_string("speeder");
+let value_333 = rt.set(this, value_332, value_331, false)?;
 Ok(Completion::Normal)
 })();
-let value_338 = statement_result_331?;
-if !matches!(value_338, Completion::Normal) { return Ok(value_338); }
-let statement_result_339: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_340 = native_local_4;
-let value_341 = rt.static_string("dt_action");
-let value_342 = rt.set(this, value_341, value_340, false)?;
+let value_334 = statement_result_317?;
+if !matches!(value_334, Completion::Normal) { return Ok(value_334); }
+let statement_result_335: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_336 = native_local_40;
+native_local_3 = value_336;
+let value_337 = native_local_40;
+let value_338 = native_local_2;
+let value_341 = match (value_337, value_338) { (Value::Number(numeric_left_339), Value::Number(numeric_right_340)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_339, numeric_right_340)), _ => rt.binary(BinaryOp::Mul, value_337, value_338)? };
+native_local_4 = value_341;
 Ok(Completion::Normal)
 })();
-let value_343 = statement_result_339?;
-if !matches!(value_343, Completion::Normal) { return Ok(value_343); }
-let statement_result_344: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_345 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_346 = rt.unary(UnaryOp::Not, value_345)?;
-native_local_5 = value_346;
+let value_342 = statement_result_335?;
+if !matches!(value_342, Completion::Normal) { return Ok(value_342); }
+let statement_result_343: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_344 = native_local_4;
+let value_345 = rt.static_string("dt_action");
+let value_346 = rt.set(this, value_345, value_344, false)?;
 Ok(Completion::Normal)
 })();
-let value_347 = statement_result_344?;
+let value_347 = statement_result_343?;
 if !matches!(value_347, Completion::Normal) { return Ok(value_347); }
 let statement_result_348: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_349: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_name");
-let value_350 = rt.get_literal_cached(this, &LITERAL_READ_SITE_349)?;
-if rt.truthy(value_350) {
-let statement_result_351: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_349 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_350 = rt.unary(UnaryOp::Not, value_349)?;
+native_local_5 = value_350;
+Ok(Completion::Normal)
+})();
+let value_351 = statement_result_348?;
+if !matches!(value_351, Completion::Normal) { return Ok(value_351); }
 let statement_result_352: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_353: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_354: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_elapsed");
-let value_355 = rt.get_literal_cached(this, &LITERAL_READ_SITE_354)?;
-let value_356 = native_local_4;
-let value_359 = match (value_355, value_356) { (Value::Number(numeric_left_357), Value::Number(numeric_right_358)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_357, numeric_right_358)), _ => rt.binary(BinaryOp::Add, value_355, value_356)? };
-native_local_6 = value_359;
-static LITERAL_READ_SITE_360: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_duration");
-let value_361 = rt.get_literal_cached(this, &LITERAL_READ_SITE_360)?;
-native_local_7 = value_361;
+static LITERAL_READ_SITE_353: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_name");
+let value_354 = rt.get_literal_cached(this, &LITERAL_READ_SITE_353)?;
+if rt.truthy(value_354) {
+let statement_result_355: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_356: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_357: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_358: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_elapsed");
+let value_359 = rt.get_literal_cached(this, &LITERAL_READ_SITE_358)?;
+let value_360 = native_local_4;
+let value_363 = match (value_359, value_360) { (Value::Number(numeric_left_361), Value::Number(numeric_right_362)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_361, numeric_right_362)), _ => rt.binary(BinaryOp::Add, value_359, value_360)? };
+native_local_6 = value_363;
+static LITERAL_READ_SITE_364: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_duration");
+let value_365 = rt.get_literal_cached(this, &LITERAL_READ_SITE_364)?;
+native_local_7 = value_365;
 Ok(Completion::Normal)
 })();
-let value_362 = statement_result_353?;
-if !matches!(value_362, Completion::Normal) { return Ok(value_362); }
-let statement_result_363: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_364 = native_local_7;
-let value_365 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_368 = match (value_364, value_365) { (Value::Number(numeric_left_366), Value::Number(numeric_right_367)) => Value::Bool(numeric_left_366 > numeric_right_367), _ => rt.binary(BinaryOp::Gt, value_364, value_365)? };
-let mut logical_369 = value_368;
-if rt.truthy(value_368) {
-let value_370 = native_local_6;
-let value_371 = native_local_7;
-let value_374 = match (value_370, value_371) { (Value::Number(numeric_left_372), Value::Number(numeric_right_373)) => Value::Bool(numeric_left_372 > numeric_right_373), _ => rt.binary(BinaryOp::Gt, value_370, value_371)? };
-logical_369 = value_374;
+let value_366 = statement_result_357?;
+if !matches!(value_366, Completion::Normal) { return Ok(value_366); }
+let statement_result_367: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_368 = native_local_7;
+let value_369 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_372 = match (value_368, value_369) { (Value::Number(numeric_left_370), Value::Number(numeric_right_371)) => Value::Bool(numeric_left_370 > numeric_right_371), _ => rt.binary(BinaryOp::Gt, value_368, value_369)? };
+let mut logical_373 = value_372;
+if rt.truthy(value_372) {
+let value_374 = native_local_6;
+let value_375 = native_local_7;
+let value_378 = match (value_374, value_375) { (Value::Number(numeric_left_376), Value::Number(numeric_right_377)) => Value::Bool(numeric_left_376 > numeric_right_377), _ => rt.binary(BinaryOp::Gt, value_374, value_375)? };
+logical_373 = value_378;
 }
-let mut logical_375 = logical_369;
-if rt.truthy(logical_369) {
-let value_376 = native_local_6;
-let value_377 = native_local_7;
-let value_380 = match (value_376, value_377) { (Value::Number(numeric_left_378), Value::Number(numeric_right_379)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_378, numeric_right_379)), _ => rt.binary(BinaryOp::Sub, value_376, value_377)? };
-native_local_6 = value_380;
-let value_381 = native_local_6;
-static LITERAL_READ_SITE_382: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_loop");
-let value_383 = rt.get_literal_cached(this, &LITERAL_READ_SITE_382)?;
-let mut logical_384 = value_383;
-if !rt.truthy(value_383) {
-let value_385 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_386 = rt.unary(UnaryOp::Not, value_385)?;
-native_local_5 = value_386;
-let value_387 = native_local_5;
-static LITERAL_READ_SITE_388: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onActionFinished");
-let value_389 = rt.get_literal_cached(this, &LITERAL_READ_SITE_388)?;
-let value_390 = rt.call(value_389, this, &[])?;
-logical_384 = value_390;
+let mut logical_379 = logical_373;
+if rt.truthy(logical_373) {
+let value_380 = native_local_6;
+let value_381 = native_local_7;
+let value_384 = match (value_380, value_381) { (Value::Number(numeric_left_382), Value::Number(numeric_right_383)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_382, numeric_right_383)), _ => rt.binary(BinaryOp::Sub, value_380, value_381)? };
+native_local_6 = value_384;
+let value_385 = native_local_6;
+static LITERAL_READ_SITE_386: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_loop");
+let value_387 = rt.get_literal_cached(this, &LITERAL_READ_SITE_386)?;
+let mut logical_388 = value_387;
+if !rt.truthy(value_387) {
+let value_389 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_390 = rt.unary(UnaryOp::Not, value_389)?;
+native_local_5 = value_390;
+let value_391 = native_local_5;
+static LITERAL_READ_SITE_392: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onActionFinished");
+let value_393 = rt.get_literal_cached(this, &LITERAL_READ_SITE_392)?;
+let value_394 = rt.call(value_393, this, &[])?;
+logical_388 = value_394;
 }
-logical_375 = logical_384;
+logical_379 = logical_388;
 }
-let value_391 = native_local_6;
-let value_392 = rt.static_string("action_elapsed");
-let value_393 = rt.set(this, value_392, value_391, false)?;
+let value_395 = native_local_6;
+let value_396 = rt.static_string("action_elapsed");
+let value_397 = rt.set(this, value_396, value_395, false)?;
 Ok(Completion::Normal)
 })();
-let value_394 = statement_result_363?;
-if !matches!(value_394, Completion::Normal) { return Ok(value_394); }
+let value_398 = statement_result_367?;
+if !matches!(value_398, Completion::Normal) { return Ok(value_398); }
 Ok(Completion::Normal)
 })();
-let value_395 = statement_result_352?;
-Ok(value_395)
+let value_399 = statement_result_356?;
+Ok(value_399)
 })();
-let value_396 = statement_result_351?;
-Ok(value_396)
+let value_400 = statement_result_355?;
+Ok(value_400)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_397 = statement_result_348?;
-if !matches!(value_397, Completion::Normal) { return Ok(value_397); }
-let statement_result_398: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_399: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("state");
-let value_400 = rt.get_literal_cached(this, &LITERAL_READ_SITE_399)?;
-let value_401 = rt.resolve_binding(env, "ed")?;
-let value_402 = rt.read_binding(value_401)?;
-static LITERAL_READ_SITE_403: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("emUnitState_Fall");
-let value_404 = rt.get_literal_cached(value_402, &LITERAL_READ_SITE_403)?;
-let value_407 = match (value_400, value_404) { (Value::Number(numeric_left_405), Value::Number(numeric_right_406)) => Value::Bool(numeric_left_405 == numeric_right_406), _ => rt.binary(BinaryOp::StrictEq, value_400, value_404)? };
-if rt.truthy(value_407) {
-let statement_result_408: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_409 = rt.static_string("number");
-static LITERAL_READ_SITE_410: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenDelay");
-let value_411 = rt.get_literal_cached(this, &LITERAL_READ_SITE_410)?;
-let value_412 = rt.unary(UnaryOp::TypeOf, value_411)?;
-let value_415 = match (value_409, value_412) { (Value::Number(numeric_left_413), Value::Number(numeric_right_414)) => Value::Bool(numeric_left_413 == numeric_right_414), _ => rt.binary(BinaryOp::Eq, value_409, value_412)? };
-if rt.truthy(value_415) {
-let statement_result_416: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_417: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenDelay");
-let value_418 = rt.get_literal_cached(this, &LITERAL_READ_SITE_417)?;
-let value_419 = native_local_4;
-let value_422 = match (value_418, value_419) { (Value::Number(numeric_left_420), Value::Number(numeric_right_421)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_420, numeric_right_421)), _ => rt.binary(BinaryOp::Sub, value_418, value_419)? };
-let value_423 = rt.static_string("fall_fronzenDelay");
-let value_424 = rt.set(this, value_423, value_422, false)?;
-static LITERAL_READ_SITE_425: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenTime");
-let value_426 = rt.get_literal_cached(this, &LITERAL_READ_SITE_425)?;
-let value_427 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_430 = match (value_426, value_427) { (Value::Number(numeric_left_428), Value::Number(numeric_right_429)) => Value::Bool(numeric_left_428 > numeric_right_429), _ => rt.binary(BinaryOp::Gt, value_426, value_427)? };
-let mut logical_431 = value_430;
-if rt.truthy(value_430) {
-static LITERAL_READ_SITE_432: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenDelay");
-let value_433 = rt.get_literal_cached(this, &LITERAL_READ_SITE_432)?;
-let value_434 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_437 = match (value_433, value_434) { (Value::Number(numeric_left_435), Value::Number(numeric_right_436)) => Value::Bool(numeric_left_435 <= numeric_right_436), _ => rt.binary(BinaryOp::Le, value_433, value_434)? };
-logical_431 = value_437;
+let value_401 = statement_result_352?;
+if !matches!(value_401, Completion::Normal) { return Ok(value_401); }
+let statement_result_402: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_403: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("state");
+let value_404 = rt.get_literal_cached(this, &LITERAL_READ_SITE_403)?;
+let value_405 = rt.resolve_binding_id(env, env_name_83)?;
+let value_406 = rt.read_binding(value_405)?;
+static LITERAL_READ_SITE_407: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("emUnitState_Fall");
+let value_408 = rt.get_literal_cached(value_406, &LITERAL_READ_SITE_407)?;
+let value_411 = match (value_404, value_408) { (Value::Number(numeric_left_409), Value::Number(numeric_right_410)) => Value::Bool(numeric_left_409 == numeric_right_410), _ => rt.binary(BinaryOp::StrictEq, value_404, value_408)? };
+if rt.truthy(value_411) {
+let statement_result_412: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_413 = rt.static_string("number");
+static LITERAL_READ_SITE_414: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenDelay");
+let value_415 = rt.get_literal_cached(this, &LITERAL_READ_SITE_414)?;
+let value_416 = rt.unary(UnaryOp::TypeOf, value_415)?;
+let value_419 = match (value_413, value_416) { (Value::Number(numeric_left_417), Value::Number(numeric_right_418)) => Value::Bool(numeric_left_417 == numeric_right_418), _ => rt.binary(BinaryOp::Eq, value_413, value_416)? };
+if rt.truthy(value_419) {
+let statement_result_420: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_421: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenDelay");
+let value_422 = rt.get_literal_cached(this, &LITERAL_READ_SITE_421)?;
+let value_423 = native_local_4;
+let value_426 = match (value_422, value_423) { (Value::Number(numeric_left_424), Value::Number(numeric_right_425)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_424, numeric_right_425)), _ => rt.binary(BinaryOp::Sub, value_422, value_423)? };
+let value_427 = rt.static_string("fall_fronzenDelay");
+let value_428 = rt.set(this, value_427, value_426, false)?;
+static LITERAL_READ_SITE_429: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenTime");
+let value_430 = rt.get_literal_cached(this, &LITERAL_READ_SITE_429)?;
+let value_431 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_434 = match (value_430, value_431) { (Value::Number(numeric_left_432), Value::Number(numeric_right_433)) => Value::Bool(numeric_left_432 > numeric_right_433), _ => rt.binary(BinaryOp::Gt, value_430, value_431)? };
+let mut logical_435 = value_434;
+if rt.truthy(value_434) {
+static LITERAL_READ_SITE_436: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenDelay");
+let value_437 = rt.get_literal_cached(this, &LITERAL_READ_SITE_436)?;
+let value_438 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_441 = match (value_437, value_438) { (Value::Number(numeric_left_439), Value::Number(numeric_right_440)) => Value::Bool(numeric_left_439 <= numeric_right_440), _ => rt.binary(BinaryOp::Le, value_437, value_438)? };
+logical_435 = value_441;
 }
-if rt.truthy(logical_431) {
-let statement_result_438: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_439: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("addBuff");
-let value_440 = rt.get_literal_cached(this, &LITERAL_READ_SITE_439)?;
-let value_441 = Value::Number(f64::from_bits(0x4034000000000000u64));
-let value_442 = rt.call(value_440, this, &[value_441,this])?;
-native_local_31 = value_442;
-let value_443 = native_local_31;
-let mut logical_444 = value_442;
-if rt.truthy(value_442) {
-let value_445 = native_local_31;
-static LITERAL_READ_SITE_446: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenTime");
-let value_447 = rt.get_literal_cached(this, &LITERAL_READ_SITE_446)?;
-let value_448 = rt.static_string("timer");
-let value_449 = rt.set(value_445, value_448, value_447, false)?;
-logical_444 = value_447;
+if rt.truthy(logical_435) {
+let statement_result_442: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_443: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("addBuff");
+let value_444 = rt.get_literal_cached(this, &LITERAL_READ_SITE_443)?;
+let value_445 = Value::Number(f64::from_bits(0x4034000000000000u64));
+let value_446 = rt.call(value_444, this, &[value_445,this])?;
+native_local_31 = value_446;
+let value_447 = native_local_31;
+let mut logical_448 = value_446;
+if rt.truthy(value_446) {
+let value_449 = native_local_31;
+static LITERAL_READ_SITE_450: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall_fronzenTime");
+let value_451 = rt.get_literal_cached(this, &LITERAL_READ_SITE_450)?;
+let value_452 = rt.static_string("timer");
+let value_453 = rt.set(value_449, value_452, value_451, false)?;
+logical_448 = value_451;
 }
-let value_450 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_451 = rt.static_string("fall_fronzenTime");
-let value_452 = rt.set(this, value_451, value_450, false)?;
-let value_453 = Value::Null;
-let value_454 = rt.static_string("fall_fronzenDelay");
-let value_455 = rt.set(this, value_454, value_453, false)?;
+let value_454 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_455 = rt.static_string("fall_fronzenTime");
+let value_456 = rt.set(this, value_455, value_454, false)?;
+let value_457 = Value::Null;
+let value_458 = rt.static_string("fall_fronzenDelay");
+let value_459 = rt.set(this, value_458, value_457, false)?;
 Ok(Completion::Normal)
 })();
-let value_456 = statement_result_438?;
-Ok(value_456)
+let value_460 = statement_result_442?;
+Ok(value_460)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_457 = statement_result_416?;
-Ok(value_457)
+let value_461 = statement_result_420?;
+Ok(value_461)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_458 = statement_result_408?;
-Ok(value_458)
+let value_462 = statement_result_412?;
+Ok(value_462)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_459 = statement_result_398?;
-if !matches!(value_459, Completion::Normal) { return Ok(value_459); }
-let statement_result_460: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_461: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
-let value_462 = rt.get_literal_cached(this, &LITERAL_READ_SITE_461)?;
-let value_463 = rt.call(value_462, this, &[])?;
-if rt.truthy(value_463) {
+let value_463 = statement_result_402?;
+if !matches!(value_463, Completion::Normal) { return Ok(value_463); }
 let statement_result_464: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_465: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_466: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_467: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_468 = rt.get_literal_cached(this, &LITERAL_READ_SITE_467)?;
-static LITERAL_READ_SITE_469: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("immoblilize");
-let value_470 = rt.get_literal_cached(value_468, &LITERAL_READ_SITE_469)?;
-let value_471 = rt.unary(UnaryOp::Not, value_470)?;
-native_local_8 = value_471;
+static LITERAL_READ_SITE_465: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
+let value_466 = rt.get_literal_cached(this, &LITERAL_READ_SITE_465)?;
+let value_467 = rt.call(value_466, this, &[])?;
+if rt.truthy(value_467) {
+let statement_result_468: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_469: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_470: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_471: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_472 = rt.get_literal_cached(this, &LITERAL_READ_SITE_471)?;
+static LITERAL_READ_SITE_473: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("immoblilize");
+let value_474 = rt.get_literal_cached(value_472, &LITERAL_READ_SITE_473)?;
+let value_475 = rt.unary(UnaryOp::Not, value_474)?;
+native_local_8 = value_475;
 Ok(Completion::Normal)
 })();
-let value_472 = statement_result_466?;
-if !matches!(value_472, Completion::Normal) { return Ok(value_472); }
-let statement_result_473: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_474: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("previous_position");
-let value_475 = rt.get_literal_cached(this, &LITERAL_READ_SITE_474)?;
-let value_476 = rt.static_string("0");
-static LITERAL_READ_SITE_477: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_478 = rt.get_literal_cached(this, &LITERAL_READ_SITE_477)?;
-let value_479 = rt.static_string("0");
-let value_480 = rt.get(value_478, value_479)?;
-let value_481 = rt.set(value_475, value_476, value_480, false)?;
-static LITERAL_READ_SITE_482: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("previous_position");
-let value_483 = rt.get_literal_cached(this, &LITERAL_READ_SITE_482)?;
-let value_484 = rt.static_string("1");
-static LITERAL_READ_SITE_485: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_486 = rt.get_literal_cached(this, &LITERAL_READ_SITE_485)?;
-let value_487 = rt.static_string("1");
-let value_488 = rt.get(value_486, value_487)?;
-let value_489 = rt.set(value_483, value_484, value_488, false)?;
+let value_476 = statement_result_470?;
+if !matches!(value_476, Completion::Normal) { return Ok(value_476); }
+let statement_result_477: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_478: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("previous_position");
+let value_479 = rt.get_literal_cached(this, &LITERAL_READ_SITE_478)?;
+let value_480 = rt.static_string("0");
+static LITERAL_READ_SITE_481: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_482 = rt.get_literal_cached(this, &LITERAL_READ_SITE_481)?;
+let value_483 = rt.static_string("0");
+let value_484 = rt.get(value_482, value_483)?;
+let value_485 = rt.set(value_479, value_480, value_484, false)?;
+static LITERAL_READ_SITE_486: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("previous_position");
+let value_487 = rt.get_literal_cached(this, &LITERAL_READ_SITE_486)?;
+let value_488 = rt.static_string("1");
+static LITERAL_READ_SITE_489: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_490 = rt.get_literal_cached(this, &LITERAL_READ_SITE_489)?;
+let value_491 = rt.static_string("1");
+let value_492 = rt.get(value_490, value_491)?;
+let value_493 = rt.set(value_487, value_488, value_492, false)?;
 Ok(Completion::Normal)
 })();
-let value_490 = statement_result_473?;
-if !matches!(value_490, Completion::Normal) { return Ok(value_490); }
-let statement_result_491: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_492: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_493 = rt.get_literal_cached(this, &LITERAL_READ_SITE_492)?;
-static LITERAL_READ_SITE_494: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("MSFix");
-let value_495 = rt.get_literal_cached(value_493, &LITERAL_READ_SITE_494)?;
-native_local_9 = value_495;
+let value_494 = statement_result_477?;
+if !matches!(value_494, Completion::Normal) { return Ok(value_494); }
+let statement_result_495: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_496: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_497 = rt.get_literal_cached(this, &LITERAL_READ_SITE_496)?;
+static LITERAL_READ_SITE_498: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("MSFix");
+let value_499 = rt.get_literal_cached(value_497, &LITERAL_READ_SITE_498)?;
+native_local_9 = value_499;
 Ok(Completion::Normal)
 })();
-let value_496 = statement_result_491?;
-if !matches!(value_496, Completion::Normal) { return Ok(value_496); }
-let statement_result_497: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_498: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_499 = rt.get_literal_cached(this, &LITERAL_READ_SITE_498)?;
-let mut logical_500 = value_499;
-if rt.truthy(value_499) {
-static LITERAL_READ_SITE_501: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_502 = rt.get_literal_cached(this, &LITERAL_READ_SITE_501)?;
-static LITERAL_READ_SITE_503: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lockMSFix");
-let value_504 = rt.get_literal_cached(value_502, &LITERAL_READ_SITE_503)?;
-logical_500 = value_504;
+let value_500 = statement_result_495?;
+if !matches!(value_500, Completion::Normal) { return Ok(value_500); }
+let statement_result_501: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_502: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_503 = rt.get_literal_cached(this, &LITERAL_READ_SITE_502)?;
+let mut logical_504 = value_503;
+if rt.truthy(value_503) {
+static LITERAL_READ_SITE_505: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_506 = rt.get_literal_cached(this, &LITERAL_READ_SITE_505)?;
+static LITERAL_READ_SITE_507: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lockMSFix");
+let value_508 = rt.get_literal_cached(value_506, &LITERAL_READ_SITE_507)?;
+logical_504 = value_508;
 }
-let mut logical_505 = logical_500;
-if rt.truthy(logical_500) {
-let value_506 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_9 = value_506;
-let value_507 = native_local_9;
-logical_505 = value_506;
-}
-Ok(Completion::Normal)
-})();
-let value_508 = statement_result_497?;
-if !matches!(value_508, Completion::Normal) { return Ok(value_508); }
-let statement_result_509: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_510 = rt.resolve_binding(env, "Math")?;
-let value_511 = rt.read_binding(value_510)?;
-static LITERAL_READ_SITE_512: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("max");
-let value_513 = rt.get_literal_cached(value_511, &LITERAL_READ_SITE_512)?;
-let value_514 = Value::Number(f64::from_bits(0x3fa999999999999au64));
-let value_515 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_516 = native_local_9;
-let value_519 = match (value_515, value_516) { (Value::Number(numeric_left_517), Value::Number(numeric_right_518)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_517, numeric_right_518)), _ => rt.binary(BinaryOp::Add, value_515, value_516)? };
-let value_520 = rt.call(value_513, value_511, &[value_514,value_519])?;
-native_local_10 = value_520;
-Ok(Completion::Normal)
-})();
-let value_521 = statement_result_509?;
-if !matches!(value_521, Completion::Normal) { return Ok(value_521); }
-let statement_result_522: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_523: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_524 = rt.get_literal_cached(this, &LITERAL_READ_SITE_523)?;
-static LITERAL_READ_SITE_525: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("frozen");
-let value_526 = rt.get_literal_cached(value_524, &LITERAL_READ_SITE_525)?;
-let mut logical_527 = value_526;
-if !rt.truthy(value_526) {
-static LITERAL_READ_SITE_528: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_529 = rt.get_literal_cached(this, &LITERAL_READ_SITE_528)?;
-static LITERAL_READ_SITE_530: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("motionless");
-let value_531 = rt.get_literal_cached(value_529, &LITERAL_READ_SITE_530)?;
-logical_527 = value_531;
-}
-let mut logical_532 = logical_527;
-if rt.truthy(logical_527) {
-let value_533 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_10 = value_533;
-let value_534 = native_local_10;
-logical_532 = value_533;
+let mut logical_509 = logical_504;
+if rt.truthy(logical_504) {
+let value_510 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_9 = value_510;
+let value_511 = native_local_9;
+logical_509 = value_510;
 }
 Ok(Completion::Normal)
 })();
-let value_535 = statement_result_522?;
-if !matches!(value_535, Completion::Normal) { return Ok(value_535); }
-let statement_result_536: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_537 = native_local_8;
-let mut conditional_538 = Value::Undefined;
-if rt.truthy(value_537) {
-let value_539 = rt.resolve_binding(env, "ed")?;
-let value_540 = rt.read_binding(value_539)?;
-static LITERAL_READ_SITE_541: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("edpMult");
-let value_542 = rt.get_literal_cached(value_540, &LITERAL_READ_SITE_541)?;
-static LITERAL_READ_SITE_543: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("walk_v");
-let value_544 = rt.get_literal_cached(this, &LITERAL_READ_SITE_543)?;
-let value_545 = native_local_10;
-let value_546 = rt.call(value_542, value_540, &[value_544,value_545])?;
-conditional_538 = value_546;
+let value_512 = statement_result_501?;
+if !matches!(value_512, Completion::Normal) { return Ok(value_512); }
+let statement_result_513: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_514 = rt.resolve_binding_id(env, env_name_173)?;
+let value_515 = rt.read_binding(value_514)?;
+static LITERAL_READ_SITE_516: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("max");
+let value_517 = rt.get_literal_cached(value_515, &LITERAL_READ_SITE_516)?;
+let value_518 = Value::Number(f64::from_bits(0x3fa999999999999au64));
+let value_519 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_520 = native_local_9;
+let value_523 = match (value_519, value_520) { (Value::Number(numeric_left_521), Value::Number(numeric_right_522)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_521, numeric_right_522)), _ => rt.binary(BinaryOp::Add, value_519, value_520)? };
+let value_524 = rt.call(value_517, value_515, &[value_518,value_523])?;
+native_local_10 = value_524;
+Ok(Completion::Normal)
+})();
+let value_525 = statement_result_513?;
+if !matches!(value_525, Completion::Normal) { return Ok(value_525); }
+let statement_result_526: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_527: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_528 = rt.get_literal_cached(this, &LITERAL_READ_SITE_527)?;
+static LITERAL_READ_SITE_529: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("frozen");
+let value_530 = rt.get_literal_cached(value_528, &LITERAL_READ_SITE_529)?;
+let mut logical_531 = value_530;
+if !rt.truthy(value_530) {
+static LITERAL_READ_SITE_532: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_533 = rt.get_literal_cached(this, &LITERAL_READ_SITE_532)?;
+static LITERAL_READ_SITE_534: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("motionless");
+let value_535 = rt.get_literal_cached(value_533, &LITERAL_READ_SITE_534)?;
+logical_531 = value_535;
+}
+let mut logical_536 = logical_531;
+if rt.truthy(logical_531) {
+let value_537 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_10 = value_537;
+let value_538 = native_local_10;
+logical_536 = value_537;
+}
+Ok(Completion::Normal)
+})();
+let value_539 = statement_result_526?;
+if !matches!(value_539, Completion::Normal) { return Ok(value_539); }
+let statement_result_540: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_541 = native_local_8;
+let mut conditional_542 = Value::Undefined;
+if rt.truthy(value_541) {
+let value_543 = rt.resolve_binding_id(env, env_name_83)?;
+let value_544 = rt.read_binding(value_543)?;
+static LITERAL_READ_SITE_545: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("edpMult");
+let value_546 = rt.get_literal_cached(value_544, &LITERAL_READ_SITE_545)?;
+static LITERAL_READ_SITE_547: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("walk_v");
+let value_548 = rt.get_literal_cached(this, &LITERAL_READ_SITE_547)?;
+let value_549 = native_local_10;
+let value_550 = rt.call(value_546, value_544, &[value_548,value_549])?;
+conditional_542 = value_550;
 } else {
-let value_547 = rt.resolve_binding(env, "ed")?;
-let value_548 = rt.read_binding(value_547)?;
-static LITERAL_READ_SITE_549: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("edpZero");
-let value_550 = rt.get_literal_cached(value_548, &LITERAL_READ_SITE_549)?;
-conditional_538 = value_550;
+let value_551 = rt.resolve_binding_id(env, env_name_83)?;
+let value_552 = rt.read_binding(value_551)?;
+static LITERAL_READ_SITE_553: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("edpZero");
+let value_554 = rt.get_literal_cached(value_552, &LITERAL_READ_SITE_553)?;
+conditional_542 = value_554;
 }
-native_local_11 = conditional_538;
-static LITERAL_READ_SITE_551: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_v");
-let value_552 = rt.get_literal_cached(this, &LITERAL_READ_SITE_551)?;
-native_local_12 = value_552;
-static LITERAL_READ_SITE_553: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("velocity");
-let value_554 = rt.get_literal_cached(this, &LITERAL_READ_SITE_553)?;
-native_local_13 = value_554;
+native_local_11 = conditional_542;
+static LITERAL_READ_SITE_555: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_v");
+let value_556 = rt.get_literal_cached(this, &LITERAL_READ_SITE_555)?;
+native_local_12 = value_556;
+static LITERAL_READ_SITE_557: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("velocity");
+let value_558 = rt.get_literal_cached(this, &LITERAL_READ_SITE_557)?;
+native_local_13 = value_558;
 Ok(Completion::Normal)
 })();
-let value_555 = statement_result_536?;
-if !matches!(value_555, Completion::Normal) { return Ok(value_555); }
-let statement_result_556: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_557 = native_local_13;
-let value_558 = rt.static_string("0");
-let value_559 = native_local_11;
-let value_560 = rt.static_string("0");
-let value_561 = rt.get(value_559, value_560)?;
-let value_562 = native_local_12;
-let value_563 = rt.static_string("0");
-let value_564 = rt.get(value_562, value_563)?;
-let value_567 = match (value_561, value_564) { (Value::Number(numeric_left_565), Value::Number(numeric_right_566)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_565, numeric_right_566)), _ => rt.binary(BinaryOp::Add, value_561, value_564)? };
-let value_568 = rt.set(value_557, value_558, value_567, false)?;
-let value_569 = native_local_13;
-let value_570 = rt.static_string("1");
-let value_571 = native_local_11;
-let value_572 = rt.static_string("1");
-let value_573 = rt.get(value_571, value_572)?;
-let value_574 = native_local_12;
-let value_575 = rt.static_string("1");
-let value_576 = rt.get(value_574, value_575)?;
-let value_579 = match (value_573, value_576) { (Value::Number(numeric_left_577), Value::Number(numeric_right_578)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_577, numeric_right_578)), _ => rt.binary(BinaryOp::Add, value_573, value_576)? };
-let value_580 = rt.set(value_569, value_570, value_579, false)?;
-static LITERAL_READ_SITE_581: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_582 = rt.get_literal_cached(this, &LITERAL_READ_SITE_581)?;
-static LITERAL_READ_SITE_583: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("motionless");
-let value_584 = rt.get_literal_cached(value_582, &LITERAL_READ_SITE_583)?;
-let value_585 = rt.unary(UnaryOp::Not, value_584)?;
-if rt.truthy(value_585) {
-let statement_result_586: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_587: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_588: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_589 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_14 = value_589;
-Ok(Completion::Normal)
-})();
-let value_590 = statement_result_588?;
-if !matches!(value_590, Completion::Normal) { return Ok(value_590); }
+let value_559 = statement_result_540?;
+if !matches!(value_559, Completion::Normal) { return Ok(value_559); }
+let statement_result_560: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_561 = native_local_13;
+let value_562 = rt.static_string("0");
+let value_563 = native_local_11;
+let value_564 = rt.static_string("0");
+let value_565 = rt.get(value_563, value_564)?;
+let value_566 = native_local_12;
+let value_567 = rt.static_string("0");
+let value_568 = rt.get(value_566, value_567)?;
+let value_571 = match (value_565, value_568) { (Value::Number(numeric_left_569), Value::Number(numeric_right_570)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_569, numeric_right_570)), _ => rt.binary(BinaryOp::Add, value_565, value_568)? };
+let value_572 = rt.set(value_561, value_562, value_571, false)?;
+let value_573 = native_local_13;
+let value_574 = rt.static_string("1");
+let value_575 = native_local_11;
+let value_576 = rt.static_string("1");
+let value_577 = rt.get(value_575, value_576)?;
+let value_578 = native_local_12;
+let value_579 = rt.static_string("1");
+let value_580 = rt.get(value_578, value_579)?;
+let value_583 = match (value_577, value_580) { (Value::Number(numeric_left_581), Value::Number(numeric_right_582)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_581, numeric_right_582)), _ => rt.binary(BinaryOp::Add, value_577, value_580)? };
+let value_584 = rt.set(value_573, value_574, value_583, false)?;
+static LITERAL_READ_SITE_585: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_586 = rt.get_literal_cached(this, &LITERAL_READ_SITE_585)?;
+static LITERAL_READ_SITE_587: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("motionless");
+let value_588 = rt.get_literal_cached(value_586, &LITERAL_READ_SITE_587)?;
+let value_589 = rt.unary(UnaryOp::Not, value_588)?;
+if rt.truthy(value_589) {
+let statement_result_590: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_591: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_592 = Value::Null;
-static LITERAL_READ_SITE_593: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("zSpeed");
-let value_594 = rt.get_literal_cached(this, &LITERAL_READ_SITE_593)?;
-let value_597 = match (value_592, value_594) { (Value::Number(numeric_left_595), Value::Number(numeric_right_596)) => Value::Bool(numeric_left_595 != numeric_right_596), _ => rt.binary(BinaryOp::StrictNe, value_592, value_594)? };
-let mut logical_598 = value_597;
-if rt.truthy(value_597) {
-let value_599 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_600 = rt.unary(UnaryOp::Void, value_599)?;
-static LITERAL_READ_SITE_601: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("zSpeed");
-let value_602 = rt.get_literal_cached(this, &LITERAL_READ_SITE_601)?;
-let value_605 = match (value_600, value_602) { (Value::Number(numeric_left_603), Value::Number(numeric_right_604)) => Value::Bool(numeric_left_603 != numeric_right_604), _ => rt.binary(BinaryOp::StrictNe, value_600, value_602)? };
-logical_598 = value_605;
+let statement_result_592: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_593 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_14 = value_593;
+Ok(Completion::Normal)
+})();
+let value_594 = statement_result_592?;
+if !matches!(value_594, Completion::Normal) { return Ok(value_594); }
+let statement_result_595: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_596 = Value::Null;
+static LITERAL_READ_SITE_597: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("zSpeed");
+let value_598 = rt.get_literal_cached(this, &LITERAL_READ_SITE_597)?;
+let value_601 = match (value_596, value_598) { (Value::Number(numeric_left_599), Value::Number(numeric_right_600)) => Value::Bool(numeric_left_599 != numeric_right_600), _ => rt.binary(BinaryOp::StrictNe, value_596, value_598)? };
+let mut logical_602 = value_601;
+if rt.truthy(value_601) {
+let value_603 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_604 = rt.unary(UnaryOp::Void, value_603)?;
+static LITERAL_READ_SITE_605: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("zSpeed");
+let value_606 = rt.get_literal_cached(this, &LITERAL_READ_SITE_605)?;
+let value_609 = match (value_604, value_606) { (Value::Number(numeric_left_607), Value::Number(numeric_right_608)) => Value::Bool(numeric_left_607 != numeric_right_608), _ => rt.binary(BinaryOp::StrictNe, value_604, value_606)? };
+logical_602 = value_609;
 }
-let mut logical_606 = logical_598;
-if rt.truthy(logical_598) {
-static LITERAL_READ_SITE_607: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("height");
-let value_608 = rt.get_literal_cached(this, &LITERAL_READ_SITE_607)?;
-static LITERAL_READ_SITE_609: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("zSpeed");
-let value_610 = rt.get_literal_cached(this, &LITERAL_READ_SITE_609)?;
-let value_611 = native_local_3;
-let value_614 = match (value_610, value_611) { (Value::Number(numeric_left_612), Value::Number(numeric_right_613)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_612, numeric_right_613)), _ => rt.binary(BinaryOp::Mul, value_610, value_611)? };
-let value_617 = match (value_608, value_614) { (Value::Number(numeric_left_615), Value::Number(numeric_right_616)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_615, numeric_right_616)), _ => rt.binary(BinaryOp::Add, value_608, value_614)? };
-native_local_14 = value_617;
-let value_618 = native_local_14;
-static LITERAL_READ_SITE_619: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("zSpeed");
-let value_620 = rt.get_literal_cached(this, &LITERAL_READ_SITE_619)?;
-let value_621 = rt.resolve_binding(env, "ed")?;
-let value_622 = rt.read_binding(value_621)?;
-static LITERAL_READ_SITE_623: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("gravity");
-let value_624 = rt.get_literal_cached(value_622, &LITERAL_READ_SITE_623)?;
-static LITERAL_READ_SITE_625: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("gravityCoef");
-let value_626 = rt.get_literal_cached(this, &LITERAL_READ_SITE_625)?;
-let value_629 = match (value_624, value_626) { (Value::Number(numeric_left_627), Value::Number(numeric_right_628)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_627, numeric_right_628)), _ => rt.binary(BinaryOp::Mul, value_624, value_626)? };
-let value_630 = native_local_3;
-let value_633 = match (value_629, value_630) { (Value::Number(numeric_left_631), Value::Number(numeric_right_632)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_631, numeric_right_632)), _ => rt.binary(BinaryOp::Mul, value_629, value_630)? };
-let value_636 = match (value_620, value_633) { (Value::Number(numeric_left_634), Value::Number(numeric_right_635)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_634, numeric_right_635)), _ => rt.binary(BinaryOp::Add, value_620, value_633)? };
-let value_637 = rt.static_string("zSpeed");
-let value_638 = rt.set(this, value_637, value_636, false)?;
-let value_639 = native_local_14;
-let value_640 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_643 = match (value_639, value_640) { (Value::Number(numeric_left_641), Value::Number(numeric_right_642)) => Value::Bool(numeric_left_641 < numeric_right_642), _ => rt.binary(BinaryOp::Lt, value_639, value_640)? };
-let mut logical_644 = value_643;
-if rt.truthy(value_643) {
-let value_645 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_646 = rt.static_string("zSpeed");
-let value_647 = rt.set(this, value_646, value_645, false)?;
-let value_648 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_14 = value_648;
-let value_649 = native_local_14;
-logical_644 = value_648;
+let mut logical_610 = logical_602;
+if rt.truthy(logical_602) {
+static LITERAL_READ_SITE_611: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("height");
+let value_612 = rt.get_literal_cached(this, &LITERAL_READ_SITE_611)?;
+static LITERAL_READ_SITE_613: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("zSpeed");
+let value_614 = rt.get_literal_cached(this, &LITERAL_READ_SITE_613)?;
+let value_615 = native_local_3;
+let value_618 = match (value_614, value_615) { (Value::Number(numeric_left_616), Value::Number(numeric_right_617)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_616, numeric_right_617)), _ => rt.binary(BinaryOp::Mul, value_614, value_615)? };
+let value_621 = match (value_612, value_618) { (Value::Number(numeric_left_619), Value::Number(numeric_right_620)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_619, numeric_right_620)), _ => rt.binary(BinaryOp::Add, value_612, value_618)? };
+native_local_14 = value_621;
+let value_622 = native_local_14;
+static LITERAL_READ_SITE_623: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("zSpeed");
+let value_624 = rt.get_literal_cached(this, &LITERAL_READ_SITE_623)?;
+let value_625 = rt.resolve_binding_id(env, env_name_83)?;
+let value_626 = rt.read_binding(value_625)?;
+static LITERAL_READ_SITE_627: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("gravity");
+let value_628 = rt.get_literal_cached(value_626, &LITERAL_READ_SITE_627)?;
+static LITERAL_READ_SITE_629: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("gravityCoef");
+let value_630 = rt.get_literal_cached(this, &LITERAL_READ_SITE_629)?;
+let value_633 = match (value_628, value_630) { (Value::Number(numeric_left_631), Value::Number(numeric_right_632)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_631, numeric_right_632)), _ => rt.binary(BinaryOp::Mul, value_628, value_630)? };
+let value_634 = native_local_3;
+let value_637 = match (value_633, value_634) { (Value::Number(numeric_left_635), Value::Number(numeric_right_636)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_635, numeric_right_636)), _ => rt.binary(BinaryOp::Mul, value_633, value_634)? };
+let value_640 = match (value_624, value_637) { (Value::Number(numeric_left_638), Value::Number(numeric_right_639)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_638, numeric_right_639)), _ => rt.binary(BinaryOp::Add, value_624, value_637)? };
+let value_641 = rt.static_string("zSpeed");
+let value_642 = rt.set(this, value_641, value_640, false)?;
+let value_643 = native_local_14;
+let value_644 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_647 = match (value_643, value_644) { (Value::Number(numeric_left_645), Value::Number(numeric_right_646)) => Value::Bool(numeric_left_645 < numeric_right_646), _ => rt.binary(BinaryOp::Lt, value_643, value_644)? };
+let mut logical_648 = value_647;
+if rt.truthy(value_647) {
+let value_649 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_650 = rt.static_string("zSpeed");
+let value_651 = rt.set(this, value_650, value_649, false)?;
+let value_652 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_14 = value_652;
+let value_653 = native_local_14;
+logical_648 = value_652;
 }
-let value_650 = native_local_14;
-let value_651 = rt.static_string("height");
-let value_652 = rt.set(this, value_651, value_650, false)?;
-logical_606 = value_650;
+let value_654 = native_local_14;
+let value_655 = rt.static_string("height");
+let value_656 = rt.set(this, value_655, value_654, false)?;
+logical_610 = value_654;
 }
 Ok(Completion::Normal)
 })();
-let value_653 = statement_result_591?;
-if !matches!(value_653, Completion::Normal) { return Ok(value_653); }
+let value_657 = statement_result_595?;
+if !matches!(value_657, Completion::Normal) { return Ok(value_657); }
 Ok(Completion::Normal)
 })();
-let value_654 = statement_result_587?;
-Ok(value_654)
+let value_658 = statement_result_591?;
+Ok(value_658)
 })();
-let value_655 = statement_result_586?;
-Ok(value_655)
+let value_659 = statement_result_590?;
+Ok(value_659)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_656 = statement_result_556?;
-if !matches!(value_656, Completion::Normal) { return Ok(value_656); }
-let statement_result_657: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_658: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isMode_TB");
-let value_659 = rt.get_literal_cached(this, &LITERAL_READ_SITE_658)?;
-let value_660 = rt.call(value_659, this, &[])?;
-if rt.truthy(value_660) {
+let value_660 = statement_result_560?;
+if !matches!(value_660, Completion::Normal) { return Ok(value_660); }
 let statement_result_661: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_662: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("camp");
+static LITERAL_READ_SITE_662: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isMode_TB");
 let value_663 = rt.get_literal_cached(this, &LITERAL_READ_SITE_662)?;
-let value_664 = rt.static_string("direction");
-let value_665 = rt.set(this, value_664, value_663, false)?;
+let value_664 = rt.call(value_663, this, &[])?;
+if rt.truthy(value_664) {
+let statement_result_665: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_666: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("camp");
+let value_667 = rt.get_literal_cached(this, &LITERAL_READ_SITE_666)?;
+let value_668 = rt.static_string("direction");
+let value_669 = rt.set(this, value_668, value_667, false)?;
 Ok(Completion::Normal)
 })();
-let value_666 = statement_result_661?;
-Ok(value_666)
+let value_670 = statement_result_665?;
+Ok(value_670)
 } else {
-let statement_result_667: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_668: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_669 = rt.get_literal_cached(this, &LITERAL_READ_SITE_668)?;
-static LITERAL_READ_SITE_670: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fix");
-let value_671 = rt.get_literal_cached(value_669, &LITERAL_READ_SITE_670)?;
-if rt.truthy(value_671) {
-let statement_result_672: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_673: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("camp");
-let value_674 = rt.get_literal_cached(this, &LITERAL_READ_SITE_673)?;
-let value_675 = rt.static_string("direction");
-let value_676 = rt.set(this, value_675, value_674, false)?;
+let statement_result_671: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_672: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_673 = rt.get_literal_cached(this, &LITERAL_READ_SITE_672)?;
+static LITERAL_READ_SITE_674: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fix");
+let value_675 = rt.get_literal_cached(value_673, &LITERAL_READ_SITE_674)?;
+if rt.truthy(value_675) {
+let statement_result_676: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_677: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("camp");
+let value_678 = rt.get_literal_cached(this, &LITERAL_READ_SITE_677)?;
+let value_679 = rt.static_string("direction");
+let value_680 = rt.set(this, value_679, value_678, false)?;
 Ok(Completion::Normal)
 })();
-let value_677 = statement_result_672?;
-Ok(value_677)
+let value_681 = statement_result_676?;
+Ok(value_681)
 } else {
-let statement_result_678: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_679: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_680: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_681 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_15 = value_681;
-Ok(Completion::Normal)
-})();
-let value_682 = statement_result_680?;
-if !matches!(value_682, Completion::Normal) { return Ok(value_682); }
+let statement_result_682: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_683: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_684 = native_local_8;
-let mut logical_685 = value_684;
-if rt.truthy(value_684) {
-let value_686 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_687 = native_local_11;
-let value_688 = rt.static_string("0");
-let value_689 = rt.get(value_687, value_688)?;
-let value_692 = match (value_686, value_689) { (Value::Number(numeric_left_690), Value::Number(numeric_right_691)) => Value::Bool(numeric_left_690 != numeric_right_691), _ => rt.binary(BinaryOp::StrictNe, value_686, value_689)? };
-logical_685 = value_692;
+let statement_result_684: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_685 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_15 = value_685;
+Ok(Completion::Normal)
+})();
+let value_686 = statement_result_684?;
+if !matches!(value_686, Completion::Normal) { return Ok(value_686); }
+let statement_result_687: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_688 = native_local_8;
+let mut logical_689 = value_688;
+if rt.truthy(value_688) {
+let value_690 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_691 = native_local_11;
+let value_692 = rt.static_string("0");
+let value_693 = rt.get(value_691, value_692)?;
+let value_696 = match (value_690, value_693) { (Value::Number(numeric_left_694), Value::Number(numeric_right_695)) => Value::Bool(numeric_left_694 != numeric_right_695), _ => rt.binary(BinaryOp::StrictNe, value_690, value_693)? };
+logical_689 = value_696;
 }
-let mut conditional_693 = Value::Undefined;
-if rt.truthy(logical_685) {
-let value_694 = native_local_11;
-let value_695 = rt.static_string("0");
-let value_696 = rt.get(value_694, value_695)?;
-native_local_15 = value_696;
-let value_697 = native_local_15;
-conditional_693 = value_696;
+let mut conditional_697 = Value::Undefined;
+if rt.truthy(logical_689) {
+let value_698 = native_local_11;
+let value_699 = rt.static_string("0");
+let value_700 = rt.get(value_698, value_699)?;
+native_local_15 = value_700;
+let value_701 = native_local_15;
+conditional_697 = value_700;
 } else {
-static LITERAL_READ_SITE_698: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_699 = rt.get_literal_cached(this, &LITERAL_READ_SITE_698)?;
-let mut logical_700 = value_699;
-if rt.truthy(value_699) {
-static LITERAL_READ_SITE_701: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_702 = rt.get_literal_cached(this, &LITERAL_READ_SITE_701)?;
-static LITERAL_READ_SITE_703: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("target");
-let value_704 = rt.get_literal_cached(value_702, &LITERAL_READ_SITE_703)?;
-logical_700 = value_704;
+static LITERAL_READ_SITE_702: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_703 = rt.get_literal_cached(this, &LITERAL_READ_SITE_702)?;
+let mut logical_704 = value_703;
+if rt.truthy(value_703) {
+static LITERAL_READ_SITE_705: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_706 = rt.get_literal_cached(this, &LITERAL_READ_SITE_705)?;
+static LITERAL_READ_SITE_707: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("target");
+let value_708 = rt.get_literal_cached(value_706, &LITERAL_READ_SITE_707)?;
+logical_704 = value_708;
 }
-let mut logical_705 = logical_700;
-if rt.truthy(logical_700) {
-static LITERAL_READ_SITE_706: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_707 = rt.get_literal_cached(this, &LITERAL_READ_SITE_706)?;
-static LITERAL_READ_SITE_708: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lockUnitDirection");
-let value_709 = rt.get_literal_cached(value_707, &LITERAL_READ_SITE_708)?;
-let value_710 = rt.unary(UnaryOp::Not, value_709)?;
-logical_705 = value_710;
+let mut logical_709 = logical_704;
+if rt.truthy(logical_704) {
+static LITERAL_READ_SITE_710: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_711 = rt.get_literal_cached(this, &LITERAL_READ_SITE_710)?;
+static LITERAL_READ_SITE_712: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lockUnitDirection");
+let value_713 = rt.get_literal_cached(value_711, &LITERAL_READ_SITE_712)?;
+let value_714 = rt.unary(UnaryOp::Not, value_713)?;
+logical_709 = value_714;
 }
-let mut logical_711 = logical_705;
-if rt.truthy(logical_705) {
-static LITERAL_READ_SITE_712: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_713 = rt.get_literal_cached(this, &LITERAL_READ_SITE_712)?;
-static LITERAL_READ_SITE_714: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("target");
-let value_715 = rt.get_literal_cached(value_713, &LITERAL_READ_SITE_714)?;
-static LITERAL_READ_SITE_716: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_717 = rt.get_literal_cached(value_715, &LITERAL_READ_SITE_716)?;
-let value_718 = rt.static_string("0");
-let value_719 = rt.get(value_717, value_718)?;
+let mut logical_715 = logical_709;
+if rt.truthy(logical_709) {
+static LITERAL_READ_SITE_716: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_717 = rt.get_literal_cached(this, &LITERAL_READ_SITE_716)?;
+static LITERAL_READ_SITE_718: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("target");
+let value_719 = rt.get_literal_cached(value_717, &LITERAL_READ_SITE_718)?;
 static LITERAL_READ_SITE_720: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_721 = rt.get_literal_cached(this, &LITERAL_READ_SITE_720)?;
+let value_721 = rt.get_literal_cached(value_719, &LITERAL_READ_SITE_720)?;
 let value_722 = rt.static_string("0");
 let value_723 = rt.get(value_721, value_722)?;
-let value_726 = match (value_719, value_723) { (Value::Number(numeric_left_724), Value::Number(numeric_right_725)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_724, numeric_right_725)), _ => rt.binary(BinaryOp::Sub, value_719, value_723)? };
-native_local_15 = value_726;
-let value_727 = native_local_15;
-logical_711 = value_726;
+static LITERAL_READ_SITE_724: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_725 = rt.get_literal_cached(this, &LITERAL_READ_SITE_724)?;
+let value_726 = rt.static_string("0");
+let value_727 = rt.get(value_725, value_726)?;
+let value_730 = match (value_723, value_727) { (Value::Number(numeric_left_728), Value::Number(numeric_right_729)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_728, numeric_right_729)), _ => rt.binary(BinaryOp::Sub, value_723, value_727)? };
+native_local_15 = value_730;
+let value_731 = native_local_15;
+logical_715 = value_730;
 }
-conditional_693 = logical_711;
+conditional_697 = logical_715;
 }
-let value_728 = native_local_15;
-static LITERAL_READ_SITE_729: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("direction");
-let value_730 = rt.get_literal_cached(this, &LITERAL_READ_SITE_729)?;
-let value_733 = match (value_728, value_730) { (Value::Number(numeric_left_731), Value::Number(numeric_right_732)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_731, numeric_right_732)), _ => rt.binary(BinaryOp::Mul, value_728, value_730)? };
-let value_734 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_737 = match (value_733, value_734) { (Value::Number(numeric_left_735), Value::Number(numeric_right_736)) => Value::Bool(numeric_left_735 < numeric_right_736), _ => rt.binary(BinaryOp::Lt, value_733, value_734)? };
-let mut logical_738 = value_737;
-if rt.truthy(value_737) {
-static LITERAL_READ_SITE_739: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("direction");
-let value_740 = rt.get_literal_cached(this, &LITERAL_READ_SITE_739)?;
-let value_741 = Value::Number(f64::from_bits(0xbff0000000000000u64));
-let value_744 = match (value_740, value_741) { (Value::Number(numeric_left_742), Value::Number(numeric_right_743)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_742, numeric_right_743)), _ => rt.binary(BinaryOp::Mul, value_740, value_741)? };
-let value_745 = rt.static_string("direction");
-let value_746 = rt.set(this, value_745, value_744, false)?;
-logical_738 = value_744;
+let value_732 = native_local_15;
+static LITERAL_READ_SITE_733: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("direction");
+let value_734 = rt.get_literal_cached(this, &LITERAL_READ_SITE_733)?;
+let value_737 = match (value_732, value_734) { (Value::Number(numeric_left_735), Value::Number(numeric_right_736)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_735, numeric_right_736)), _ => rt.binary(BinaryOp::Mul, value_732, value_734)? };
+let value_738 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_741 = match (value_737, value_738) { (Value::Number(numeric_left_739), Value::Number(numeric_right_740)) => Value::Bool(numeric_left_739 < numeric_right_740), _ => rt.binary(BinaryOp::Lt, value_737, value_738)? };
+let mut logical_742 = value_741;
+if rt.truthy(value_741) {
+static LITERAL_READ_SITE_743: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("direction");
+let value_744 = rt.get_literal_cached(this, &LITERAL_READ_SITE_743)?;
+let value_745 = Value::Number(f64::from_bits(0xbff0000000000000u64));
+let value_748 = match (value_744, value_745) { (Value::Number(numeric_left_746), Value::Number(numeric_right_747)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_746, numeric_right_747)), _ => rt.binary(BinaryOp::Mul, value_744, value_745)? };
+let value_749 = rt.static_string("direction");
+let value_750 = rt.set(this, value_749, value_748, false)?;
+logical_742 = value_748;
 }
 Ok(Completion::Normal)
 })();
-let value_747 = statement_result_683?;
-if !matches!(value_747, Completion::Normal) { return Ok(value_747); }
-Ok(Completion::Normal)
-})();
-let value_748 = statement_result_679?;
-Ok(value_748)
-})();
-let value_749 = statement_result_678?;
-Ok(value_749)
-}
-})();
-let value_750 = statement_result_667?;
-Ok(value_750)
-}
-})();
-let value_751 = statement_result_657?;
+let value_751 = statement_result_687?;
 if !matches!(value_751, Completion::Normal) { return Ok(value_751); }
-let statement_result_752: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_753: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_time");
-let value_754 = rt.get_literal_cached(this, &LITERAL_READ_SITE_753)?;
-let value_755 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_758 = match (value_754, value_755) { (Value::Number(numeric_left_756), Value::Number(numeric_right_757)) => Value::Bool(numeric_left_756 > numeric_right_757), _ => rt.binary(BinaryOp::Gt, value_754, value_755)? };
-let mut logical_759 = value_758;
-if rt.truthy(value_758) {
-static LITERAL_READ_SITE_760: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_time");
-let value_761 = rt.get_literal_cached(this, &LITERAL_READ_SITE_760)?;
-let value_762 = rt.read_binding(value_40)?;
-let value_765 = match (value_761, value_762) { (Value::Number(numeric_left_763), Value::Number(numeric_right_764)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_763, numeric_right_764)), _ => rt.binary(BinaryOp::Sub, value_761, value_762)? };
-let value_766 = rt.static_string("knockup_time");
-let value_767 = rt.set(this, value_766, value_765, false)?;
-static LITERAL_READ_SITE_768: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
-let value_769 = rt.get_literal_cached(this, &LITERAL_READ_SITE_768)?;
-let mut logical_770 = value_769;
-if rt.truthy(value_769) {
-static LITERAL_READ_SITE_771: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
-let value_772 = rt.get_literal_cached(this, &LITERAL_READ_SITE_771)?;
-let value_773 = rt.static_string("0");
-let value_774 = rt.get(value_772, value_773)?;
-let mut logical_775 = value_774;
-if !rt.truthy(value_774) {
-static LITERAL_READ_SITE_776: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
-let value_777 = rt.get_literal_cached(this, &LITERAL_READ_SITE_776)?;
-let value_778 = rt.static_string("1");
-let value_779 = rt.get(value_777, value_778)?;
-logical_775 = value_779;
+Ok(Completion::Normal)
+})();
+let value_752 = statement_result_683?;
+Ok(value_752)
+})();
+let value_753 = statement_result_682?;
+Ok(value_753)
 }
-logical_770 = logical_775;
+})();
+let value_754 = statement_result_671?;
+Ok(value_754)
 }
-let mut logical_780 = logical_770;
-if rt.truthy(logical_770) {
-static LITERAL_READ_SITE_781: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_v");
-let value_782 = rt.get_literal_cached(this, &LITERAL_READ_SITE_781)?;
-let value_783 = rt.static_string("0");
-let value_784 = rt.get(value_782, value_783)?;
-static LITERAL_READ_SITE_785: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
+})();
+let value_755 = statement_result_661?;
+if !matches!(value_755, Completion::Normal) { return Ok(value_755); }
+let statement_result_756: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_757: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_time");
+let value_758 = rt.get_literal_cached(this, &LITERAL_READ_SITE_757)?;
+let value_759 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_762 = match (value_758, value_759) { (Value::Number(numeric_left_760), Value::Number(numeric_right_761)) => Value::Bool(numeric_left_760 > numeric_right_761), _ => rt.binary(BinaryOp::Gt, value_758, value_759)? };
+let mut logical_763 = value_762;
+if rt.truthy(value_762) {
+static LITERAL_READ_SITE_764: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_time");
+let value_765 = rt.get_literal_cached(this, &LITERAL_READ_SITE_764)?;
+let value_766 = native_local_40;
+let value_769 = match (value_765, value_766) { (Value::Number(numeric_left_767), Value::Number(numeric_right_768)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_767, numeric_right_768)), _ => rt.binary(BinaryOp::Sub, value_765, value_766)? };
+let value_770 = rt.static_string("knockup_time");
+let value_771 = rt.set(this, value_770, value_769, false)?;
+static LITERAL_READ_SITE_772: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
+let value_773 = rt.get_literal_cached(this, &LITERAL_READ_SITE_772)?;
+let mut logical_774 = value_773;
+if rt.truthy(value_773) {
+static LITERAL_READ_SITE_775: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
+let value_776 = rt.get_literal_cached(this, &LITERAL_READ_SITE_775)?;
+let value_777 = rt.static_string("0");
+let value_778 = rt.get(value_776, value_777)?;
+let mut logical_779 = value_778;
+if !rt.truthy(value_778) {
+static LITERAL_READ_SITE_780: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
+let value_781 = rt.get_literal_cached(this, &LITERAL_READ_SITE_780)?;
+let value_782 = rt.static_string("1");
+let value_783 = rt.get(value_781, value_782)?;
+logical_779 = value_783;
+}
+logical_774 = logical_779;
+}
+let mut logical_784 = logical_774;
+if rt.truthy(logical_774) {
+static LITERAL_READ_SITE_785: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_v");
 let value_786 = rt.get_literal_cached(this, &LITERAL_READ_SITE_785)?;
 let value_787 = rt.static_string("0");
 let value_788 = rt.get(value_786, value_787)?;
-let value_789 = rt.read_binding(value_40)?;
-let value_792 = match (value_788, value_789) { (Value::Number(numeric_left_790), Value::Number(numeric_right_791)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_790, numeric_right_791)), _ => rt.binary(BinaryOp::Mul, value_788, value_789)? };
-let value_795 = match (value_784, value_792) { (Value::Number(numeric_left_793), Value::Number(numeric_right_794)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_793, numeric_right_794)), _ => rt.binary(BinaryOp::Add, value_784, value_792)? };
-let value_796 = rt.set(value_782, value_783, value_795, false)?;
-static LITERAL_READ_SITE_797: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_v");
-let value_798 = rt.get_literal_cached(this, &LITERAL_READ_SITE_797)?;
-let value_799 = rt.static_string("1");
-let value_800 = rt.get(value_798, value_799)?;
-static LITERAL_READ_SITE_801: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
+static LITERAL_READ_SITE_789: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
+let value_790 = rt.get_literal_cached(this, &LITERAL_READ_SITE_789)?;
+let value_791 = rt.static_string("0");
+let value_792 = rt.get(value_790, value_791)?;
+let value_793 = native_local_40;
+let value_796 = match (value_792, value_793) { (Value::Number(numeric_left_794), Value::Number(numeric_right_795)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_794, numeric_right_795)), _ => rt.binary(BinaryOp::Mul, value_792, value_793)? };
+let value_799 = match (value_788, value_796) { (Value::Number(numeric_left_797), Value::Number(numeric_right_798)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_797, numeric_right_798)), _ => rt.binary(BinaryOp::Add, value_788, value_796)? };
+let value_800 = rt.set(value_786, value_787, value_799, false)?;
+static LITERAL_READ_SITE_801: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_v");
 let value_802 = rt.get_literal_cached(this, &LITERAL_READ_SITE_801)?;
 let value_803 = rt.static_string("1");
 let value_804 = rt.get(value_802, value_803)?;
-let value_805 = rt.read_binding(value_40)?;
-let value_808 = match (value_804, value_805) { (Value::Number(numeric_left_806), Value::Number(numeric_right_807)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_806, numeric_right_807)), _ => rt.binary(BinaryOp::Mul, value_804, value_805)? };
-let value_811 = match (value_800, value_808) { (Value::Number(numeric_left_809), Value::Number(numeric_right_810)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_809, numeric_right_810)), _ => rt.binary(BinaryOp::Add, value_800, value_808)? };
-let value_812 = rt.set(value_798, value_799, value_811, false)?;
-logical_780 = value_811;
+static LITERAL_READ_SITE_805: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_accel");
+let value_806 = rt.get_literal_cached(this, &LITERAL_READ_SITE_805)?;
+let value_807 = rt.static_string("1");
+let value_808 = rt.get(value_806, value_807)?;
+let value_809 = native_local_40;
+let value_812 = match (value_808, value_809) { (Value::Number(numeric_left_810), Value::Number(numeric_right_811)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_810, numeric_right_811)), _ => rt.binary(BinaryOp::Mul, value_808, value_809)? };
+let value_815 = match (value_804, value_812) { (Value::Number(numeric_left_813), Value::Number(numeric_right_814)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_813, numeric_right_814)), _ => rt.binary(BinaryOp::Add, value_804, value_812)? };
+let value_816 = rt.set(value_802, value_803, value_815, false)?;
+logical_784 = value_815;
 }
-static LITERAL_READ_SITE_813: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_time");
-let value_814 = rt.get_literal_cached(this, &LITERAL_READ_SITE_813)?;
-let value_815 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_818 = match (value_814, value_815) { (Value::Number(numeric_left_816), Value::Number(numeric_right_817)) => Value::Bool(numeric_left_816 <= numeric_right_817), _ => rt.binary(BinaryOp::Le, value_814, value_815)? };
-let mut logical_819 = value_818;
-if rt.truthy(value_818) {
-let value_820 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_821 = rt.unary(UnaryOp::Not, value_820)?;
-static LITERAL_READ_SITE_822: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knock_state");
-let value_823 = rt.get_literal_cached(this, &LITERAL_READ_SITE_822)?;
-let value_826 = match (value_821, value_823) { (Value::Number(numeric_left_824), Value::Number(numeric_right_825)) => Value::Bool(numeric_left_824 == numeric_right_825), _ => rt.binary(BinaryOp::StrictEq, value_821, value_823)? };
-logical_819 = value_826;
+static LITERAL_READ_SITE_817: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knockup_time");
+let value_818 = rt.get_literal_cached(this, &LITERAL_READ_SITE_817)?;
+let value_819 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_822 = match (value_818, value_819) { (Value::Number(numeric_left_820), Value::Number(numeric_right_821)) => Value::Bool(numeric_left_820 <= numeric_right_821), _ => rt.binary(BinaryOp::Le, value_818, value_819)? };
+let mut logical_823 = value_822;
+if rt.truthy(value_822) {
+let value_824 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_825 = rt.unary(UnaryOp::Not, value_824)?;
+static LITERAL_READ_SITE_826: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knock_state");
+let value_827 = rt.get_literal_cached(this, &LITERAL_READ_SITE_826)?;
+let value_830 = match (value_825, value_827) { (Value::Number(numeric_left_828), Value::Number(numeric_right_829)) => Value::Bool(numeric_left_828 == numeric_right_829), _ => rt.binary(BinaryOp::StrictEq, value_825, value_827)? };
+logical_823 = value_830;
 }
-let mut logical_827 = logical_819;
-if rt.truthy(logical_819) {
-let value_828 = rt.array(&[]);
-static LITERAL_READ_SITE_829: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("walk_v");
-let value_830 = rt.get_literal_cached(this, &LITERAL_READ_SITE_829)?;
-let value_831 = rt.static_string("0");
-let value_832 = rt.get(value_830, value_831)?;
-let value_833 = rt.static_string("0");
-rt.define_data(value_828, value_833, value_832, true, true, true)?;
-static LITERAL_READ_SITE_834: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("walk_v");
-let value_835 = rt.get_literal_cached(this, &LITERAL_READ_SITE_834)?;
-let value_836 = rt.static_string("1");
-let value_837 = rt.get(value_835, value_836)?;
-let value_838 = rt.static_string("1");
-rt.define_data(value_828, value_838, value_837, true, true, true)?;
-let value_839 = rt.static_string("velocity");
-let value_840 = rt.set(this, value_839, value_828, false)?;
-let value_841 = rt.array(&[]);
-let value_842 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_843 = rt.static_string("0");
-rt.define_data(value_841, value_843, value_842, true, true, true)?;
-let value_844 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_845 = rt.static_string("1");
-rt.define_data(value_841, value_845, value_844, true, true, true)?;
-let value_846 = rt.static_string("knockup_v");
-let value_847 = rt.set(this, value_846, value_841, false)?;
-let value_848 = Value::Null;
-let value_849 = rt.static_string("knockup_accel");
-let value_850 = rt.set(this, value_849, value_848, false)?;
-let value_851 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_852 = rt.unary(UnaryOp::Not, value_851)?;
-let value_853 = rt.static_string("knock_state");
+let mut logical_831 = logical_823;
+if rt.truthy(logical_823) {
+let value_832 = rt.array(&[]);
+static LITERAL_READ_SITE_833: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("walk_v");
+let value_834 = rt.get_literal_cached(this, &LITERAL_READ_SITE_833)?;
+let value_835 = rt.static_string("0");
+let value_836 = rt.get(value_834, value_835)?;
+let value_837 = rt.static_string("0");
+rt.define_data(value_832, value_837, value_836, true, true, true)?;
+static LITERAL_READ_SITE_838: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("walk_v");
+let value_839 = rt.get_literal_cached(this, &LITERAL_READ_SITE_838)?;
+let value_840 = rt.static_string("1");
+let value_841 = rt.get(value_839, value_840)?;
+let value_842 = rt.static_string("1");
+rt.define_data(value_832, value_842, value_841, true, true, true)?;
+let value_843 = rt.static_string("velocity");
+let value_844 = rt.set(this, value_843, value_832, false)?;
+let value_845 = rt.array(&[]);
+let value_846 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_847 = rt.static_string("0");
+rt.define_data(value_845, value_847, value_846, true, true, true)?;
+let value_848 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_849 = rt.static_string("1");
+rt.define_data(value_845, value_849, value_848, true, true, true)?;
+let value_850 = rt.static_string("knockup_v");
+let value_851 = rt.set(this, value_850, value_845, false)?;
+let value_852 = Value::Null;
+let value_853 = rt.static_string("knockup_accel");
 let value_854 = rt.set(this, value_853, value_852, false)?;
-static LITERAL_READ_SITE_855: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knock_notFall");
-let value_856 = rt.get_literal_cached(this, &LITERAL_READ_SITE_855)?;
-let mut logical_857 = value_856;
-if !rt.truthy(value_856) {
-static LITERAL_READ_SITE_858: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall");
-let value_859 = rt.get_literal_cached(this, &LITERAL_READ_SITE_858)?;
-let value_860 = rt.call(value_859, this, &[])?;
-logical_857 = value_860;
+let value_855 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_856 = rt.unary(UnaryOp::Not, value_855)?;
+let value_857 = rt.static_string("knock_state");
+let value_858 = rt.set(this, value_857, value_856, false)?;
+static LITERAL_READ_SITE_859: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("knock_notFall");
+let value_860 = rt.get_literal_cached(this, &LITERAL_READ_SITE_859)?;
+let mut logical_861 = value_860;
+if !rt.truthy(value_860) {
+static LITERAL_READ_SITE_862: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fall");
+let value_863 = rt.get_literal_cached(this, &LITERAL_READ_SITE_862)?;
+let value_864 = rt.call(value_863, this, &[])?;
+logical_861 = value_864;
 }
-let value_861 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_862 = rt.unary(UnaryOp::Not, value_861)?;
-let value_863 = rt.static_string("knock_notFall");
-let value_864 = rt.set(this, value_863, value_862, false)?;
-logical_827 = value_862;
+let value_865 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_866 = rt.unary(UnaryOp::Not, value_865)?;
+let value_867 = rt.static_string("knock_notFall");
+let value_868 = rt.set(this, value_867, value_866, false)?;
+logical_831 = value_866;
 }
-logical_759 = logical_827;
+logical_763 = logical_831;
 }
 Ok(Completion::Normal)
 })();
-let value_865 = statement_result_752?;
-if !matches!(value_865, Completion::Normal) { return Ok(value_865); }
-let statement_result_866: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_867 = rt.resolve_binding(env, "ed")?;
-let value_868 = rt.read_binding(value_867)?;
-static LITERAL_READ_SITE_869: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battleEngine");
-let value_870 = rt.get_literal_cached(value_868, &LITERAL_READ_SITE_869)?;
-static LITERAL_READ_SITE_871: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("getStageRect");
-let value_872 = rt.get_literal_cached(value_870, &LITERAL_READ_SITE_871)?;
-let value_873 = rt.call(value_872, value_870, &[])?;
-native_local_16 = value_873;
+let value_869 = statement_result_756?;
+if !matches!(value_869, Completion::Normal) { return Ok(value_869); }
+let statement_result_870: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_871 = rt.resolve_binding_id(env, env_name_83)?;
+let value_872 = rt.read_binding(value_871)?;
+static LITERAL_READ_SITE_873: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battleEngine");
+let value_874 = rt.get_literal_cached(value_872, &LITERAL_READ_SITE_873)?;
+static LITERAL_READ_SITE_875: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("getStageRect");
+let value_876 = rt.get_literal_cached(value_874, &LITERAL_READ_SITE_875)?;
+let value_877 = rt.call(value_876, value_874, &[])?;
+native_local_16 = value_877;
 Ok(Completion::Normal)
 })();
-let value_874 = statement_result_866?;
-if !matches!(value_874, Completion::Normal) { return Ok(value_874); }
-let statement_result_875: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_876: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("walkIgnoreRect");
-let value_877 = rt.get_literal_cached(this, &LITERAL_READ_SITE_876)?;
-let value_878 = rt.unary(UnaryOp::Not, value_877)?;
-if rt.truthy(value_878) {
+let value_878 = statement_result_870?;
+if !matches!(value_878, Completion::Normal) { return Ok(value_878); }
 let statement_result_879: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_880: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_881: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_882 = native_local_3;
-let mut logical_883 = value_882;
-if !rt.truthy(value_882) {
-let value_884 = Value::Number(f64::from_bits(0x3fc0000000000000u64));
-logical_883 = value_884;
+static LITERAL_READ_SITE_880: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("walkIgnoreRect");
+let value_881 = rt.get_literal_cached(this, &LITERAL_READ_SITE_880)?;
+let value_882 = rt.unary(UnaryOp::Not, value_881)?;
+if rt.truthy(value_882) {
+let statement_result_883: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_884: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_885: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_886 = native_local_3;
+let mut logical_887 = value_886;
+if !rt.truthy(value_886) {
+let value_888 = Value::Number(f64::from_bits(0x3fc0000000000000u64));
+logical_887 = value_888;
 }
-native_local_17 = logical_883;
+native_local_17 = logical_887;
 Ok(Completion::Normal)
 })();
-let value_885 = statement_result_881?;
-if !matches!(value_885, Completion::Normal) { return Ok(value_885); }
-let statement_result_886: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_887: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_888 = rt.get_literal_cached(this, &LITERAL_READ_SITE_887)?;
-let value_889 = rt.static_string("0");
-let value_890 = rt.get(value_888, value_889)?;
-let value_891 = native_local_13;
-let value_892 = rt.static_string("0");
-let value_893 = rt.get(value_891, value_892)?;
-let value_894 = native_local_17;
-let value_897 = match (value_893, value_894) { (Value::Number(numeric_left_895), Value::Number(numeric_right_896)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_895, numeric_right_896)), _ => rt.binary(BinaryOp::Mul, value_893, value_894)? };
-let value_900 = match (value_890, value_897) { (Value::Number(numeric_left_898), Value::Number(numeric_right_899)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_898, numeric_right_899)), _ => rt.binary(BinaryOp::Add, value_890, value_897)? };
-let value_901 = native_local_16;
-static LITERAL_READ_SITE_902: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("maxX");
-let value_903 = rt.get_literal_cached(value_901, &LITERAL_READ_SITE_902)?;
-let value_906 = match (value_900, value_903) { (Value::Number(numeric_left_904), Value::Number(numeric_right_905)) => Value::Bool(numeric_left_904 > numeric_right_905), _ => rt.binary(BinaryOp::Gt, value_900, value_903)? };
-let mut logical_907 = value_906;
-if rt.truthy(value_906) {
-let value_908 = native_local_13;
-let value_909 = rt.static_string("0");
-let value_910 = rt.get(value_908, value_909)?;
-let value_911 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_914 = match (value_910, value_911) { (Value::Number(numeric_left_912), Value::Number(numeric_right_913)) => Value::Bool(numeric_left_912 > numeric_right_913), _ => rt.binary(BinaryOp::Gt, value_910, value_911)? };
-logical_907 = value_914;
+let value_889 = statement_result_885?;
+if !matches!(value_889, Completion::Normal) { return Ok(value_889); }
+let statement_result_890: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_891: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_892 = rt.get_literal_cached(this, &LITERAL_READ_SITE_891)?;
+let value_893 = rt.static_string("0");
+let value_894 = rt.get(value_892, value_893)?;
+let value_895 = native_local_13;
+let value_896 = rt.static_string("0");
+let value_897 = rt.get(value_895, value_896)?;
+let value_898 = native_local_17;
+let value_901 = match (value_897, value_898) { (Value::Number(numeric_left_899), Value::Number(numeric_right_900)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_899, numeric_right_900)), _ => rt.binary(BinaryOp::Mul, value_897, value_898)? };
+let value_904 = match (value_894, value_901) { (Value::Number(numeric_left_902), Value::Number(numeric_right_903)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_902, numeric_right_903)), _ => rt.binary(BinaryOp::Add, value_894, value_901)? };
+let value_905 = native_local_16;
+static LITERAL_READ_SITE_906: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("maxX");
+let value_907 = rt.get_literal_cached(value_905, &LITERAL_READ_SITE_906)?;
+let value_910 = match (value_904, value_907) { (Value::Number(numeric_left_908), Value::Number(numeric_right_909)) => Value::Bool(numeric_left_908 > numeric_right_909), _ => rt.binary(BinaryOp::Gt, value_904, value_907)? };
+let mut logical_911 = value_910;
+if rt.truthy(value_910) {
+let value_912 = native_local_13;
+let value_913 = rt.static_string("0");
+let value_914 = rt.get(value_912, value_913)?;
+let value_915 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_918 = match (value_914, value_915) { (Value::Number(numeric_left_916), Value::Number(numeric_right_917)) => Value::Bool(numeric_left_916 > numeric_right_917), _ => rt.binary(BinaryOp::Gt, value_914, value_915)? };
+logical_911 = value_918;
 }
-if rt.truthy(logical_907) {
-let statement_result_915: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_916: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_917: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_918 = native_local_16;
-static LITERAL_READ_SITE_919: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("maxX");
-let value_920 = rt.get_literal_cached(value_918, &LITERAL_READ_SITE_919)?;
-static LITERAL_READ_SITE_921: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_922 = rt.get_literal_cached(this, &LITERAL_READ_SITE_921)?;
-let value_923 = rt.static_string("0");
-let value_924 = rt.get(value_922, value_923)?;
-let value_927 = match (value_920, value_924) { (Value::Number(numeric_left_925), Value::Number(numeric_right_926)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_925, numeric_right_926)), _ => rt.binary(BinaryOp::Sub, value_920, value_924)? };
-let value_928 = native_local_17;
-let value_931 = match (value_927, value_928) { (Value::Number(numeric_left_929), Value::Number(numeric_right_930)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_929, numeric_right_930)), _ => rt.binary(BinaryOp::Div, value_927, value_928)? };
-native_local_19 = value_931;
-let value_932 = native_local_19;
-let value_933 = native_local_13;
-let value_934 = rt.static_string("0");
-let value_935 = rt.get(value_933, value_934)?;
-let value_938 = match (value_931, value_935) { (Value::Number(numeric_left_936), Value::Number(numeric_right_937)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_936, numeric_right_937)), _ => rt.binary(BinaryOp::Div, value_931, value_935)? };
-native_local_18 = value_938;
+if rt.truthy(logical_911) {
+let statement_result_919: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_920: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_921: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_922 = native_local_16;
+static LITERAL_READ_SITE_923: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("maxX");
+let value_924 = rt.get_literal_cached(value_922, &LITERAL_READ_SITE_923)?;
+static LITERAL_READ_SITE_925: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_926 = rt.get_literal_cached(this, &LITERAL_READ_SITE_925)?;
+let value_927 = rt.static_string("0");
+let value_928 = rt.get(value_926, value_927)?;
+let value_931 = match (value_924, value_928) { (Value::Number(numeric_left_929), Value::Number(numeric_right_930)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_929, numeric_right_930)), _ => rt.binary(BinaryOp::Sub, value_924, value_928)? };
+let value_932 = native_local_17;
+let value_935 = match (value_931, value_932) { (Value::Number(numeric_left_933), Value::Number(numeric_right_934)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_933, numeric_right_934)), _ => rt.binary(BinaryOp::Div, value_931, value_932)? };
+native_local_19 = value_935;
+let value_936 = native_local_19;
+let value_937 = native_local_13;
+let value_938 = rt.static_string("0");
+let value_939 = rt.get(value_937, value_938)?;
+let value_942 = match (value_935, value_939) { (Value::Number(numeric_left_940), Value::Number(numeric_right_941)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_940, numeric_right_941)), _ => rt.binary(BinaryOp::Div, value_935, value_939)? };
+native_local_18 = value_942;
 Ok(Completion::Normal)
 })();
-let value_939 = statement_result_917?;
-if !matches!(value_939, Completion::Normal) { return Ok(value_939); }
-let statement_result_940: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_941 = rt.resolve_binding(env, "Math")?;
-let value_942 = rt.read_binding(value_941)?;
-static LITERAL_READ_SITE_943: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
-let value_944 = rt.get_literal_cached(value_942, &LITERAL_READ_SITE_943)?;
-let value_945 = native_local_18;
-let value_946 = rt.call(value_944, value_942, &[value_945])?;
-let value_947 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_950 = match (value_946, value_947) { (Value::Number(numeric_left_948), Value::Number(numeric_right_949)) => Value::Bool(numeric_left_948 > numeric_right_949), _ => rt.binary(BinaryOp::Gt, value_946, value_947)? };
-let mut logical_951 = value_950;
-if rt.truthy(value_950) {
-let value_952 = native_local_18;
-let value_953 = rt.resolve_binding(env, "Math")?;
-let value_954 = rt.read_binding(value_953)?;
-static LITERAL_READ_SITE_955: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
-let value_956 = rt.get_literal_cached(value_954, &LITERAL_READ_SITE_955)?;
-let value_957 = native_local_18;
-let value_958 = rt.call(value_956, value_954, &[value_957])?;
-let value_961 = match (value_952, value_958) { (Value::Number(numeric_left_959), Value::Number(numeric_right_960)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_959, numeric_right_960)), _ => rt.binary(BinaryOp::Div, value_952, value_958)? };
-native_local_18 = value_961;
-let value_962 = native_local_18;
-logical_951 = value_961;
+let value_943 = statement_result_921?;
+if !matches!(value_943, Completion::Normal) { return Ok(value_943); }
+let statement_result_944: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_945 = rt.resolve_binding_id(env, env_name_173)?;
+let value_946 = rt.read_binding(value_945)?;
+static LITERAL_READ_SITE_947: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
+let value_948 = rt.get_literal_cached(value_946, &LITERAL_READ_SITE_947)?;
+let value_949 = native_local_18;
+let value_950 = rt.call(value_948, value_946, &[value_949])?;
+let value_951 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_954 = match (value_950, value_951) { (Value::Number(numeric_left_952), Value::Number(numeric_right_953)) => Value::Bool(numeric_left_952 > numeric_right_953), _ => rt.binary(BinaryOp::Gt, value_950, value_951)? };
+let mut logical_955 = value_954;
+if rt.truthy(value_954) {
+let value_956 = native_local_18;
+let value_957 = rt.resolve_binding_id(env, env_name_173)?;
+let value_958 = rt.read_binding(value_957)?;
+static LITERAL_READ_SITE_959: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
+let value_960 = rt.get_literal_cached(value_958, &LITERAL_READ_SITE_959)?;
+let value_961 = native_local_18;
+let value_962 = rt.call(value_960, value_958, &[value_961])?;
+let value_965 = match (value_956, value_962) { (Value::Number(numeric_left_963), Value::Number(numeric_right_964)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_963, numeric_right_964)), _ => rt.binary(BinaryOp::Div, value_956, value_962)? };
+native_local_18 = value_965;
+let value_966 = native_local_18;
+logical_955 = value_965;
 }
-let value_963 = native_local_13;
-let value_964 = rt.static_string("0");
-let value_965 = native_local_19;
-let value_966 = rt.set(value_963, value_964, value_965, false)?;
 let value_967 = native_local_13;
-let value_968 = rt.static_string("1");
-let value_969 = native_local_13;
-let value_970 = rt.static_string("1");
-let value_971 = rt.get(value_969, value_970)?;
-let value_972 = native_local_18;
-let value_975 = match (value_971, value_972) { (Value::Number(numeric_left_973), Value::Number(numeric_right_974)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_973, numeric_right_974)), _ => rt.binary(BinaryOp::Mul, value_971, value_972)? };
-let value_976 = rt.set(value_967, value_968, value_975, false)?;
+let value_968 = rt.static_string("0");
+let value_969 = native_local_19;
+let value_970 = rt.set(value_967, value_968, value_969, false)?;
+let value_971 = native_local_13;
+let value_972 = rt.static_string("1");
+let value_973 = native_local_13;
+let value_974 = rt.static_string("1");
+let value_975 = rt.get(value_973, value_974)?;
+let value_976 = native_local_18;
+let value_979 = match (value_975, value_976) { (Value::Number(numeric_left_977), Value::Number(numeric_right_978)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_977, numeric_right_978)), _ => rt.binary(BinaryOp::Mul, value_975, value_976)? };
+let value_980 = rt.set(value_971, value_972, value_979, false)?;
 Ok(Completion::Normal)
 })();
-let value_977 = statement_result_940?;
-if !matches!(value_977, Completion::Normal) { return Ok(value_977); }
+let value_981 = statement_result_944?;
+if !matches!(value_981, Completion::Normal) { return Ok(value_981); }
 Ok(Completion::Normal)
 })();
-let value_978 = statement_result_916?;
-Ok(value_978)
+let value_982 = statement_result_920?;
+Ok(value_982)
 })();
-let value_979 = statement_result_915?;
-Ok(value_979)
+let value_983 = statement_result_919?;
+Ok(value_983)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_980 = statement_result_886?;
-if !matches!(value_980, Completion::Normal) { return Ok(value_980); }
-let statement_result_981: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_982: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_983 = rt.get_literal_cached(this, &LITERAL_READ_SITE_982)?;
-let value_984 = rt.static_string("0");
-let value_985 = rt.get(value_983, value_984)?;
-let value_986 = native_local_13;
-let value_987 = rt.static_string("0");
-let value_988 = rt.get(value_986, value_987)?;
-let value_989 = native_local_17;
-let value_992 = match (value_988, value_989) { (Value::Number(numeric_left_990), Value::Number(numeric_right_991)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_990, numeric_right_991)), _ => rt.binary(BinaryOp::Mul, value_988, value_989)? };
-let value_995 = match (value_985, value_992) { (Value::Number(numeric_left_993), Value::Number(numeric_right_994)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_993, numeric_right_994)), _ => rt.binary(BinaryOp::Add, value_985, value_992)? };
-let value_996 = native_local_16;
-static LITERAL_READ_SITE_997: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("minX");
-let value_998 = rt.get_literal_cached(value_996, &LITERAL_READ_SITE_997)?;
-let value_1001 = match (value_995, value_998) { (Value::Number(numeric_left_999), Value::Number(numeric_right_1000)) => Value::Bool(numeric_left_999 < numeric_right_1000), _ => rt.binary(BinaryOp::Lt, value_995, value_998)? };
-let mut logical_1002 = value_1001;
-if rt.truthy(value_1001) {
-let value_1003 = native_local_13;
-let value_1004 = rt.static_string("0");
-let value_1005 = rt.get(value_1003, value_1004)?;
-let value_1006 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1009 = match (value_1005, value_1006) { (Value::Number(numeric_left_1007), Value::Number(numeric_right_1008)) => Value::Bool(numeric_left_1007 < numeric_right_1008), _ => rt.binary(BinaryOp::Lt, value_1005, value_1006)? };
-logical_1002 = value_1009;
+let value_984 = statement_result_890?;
+if !matches!(value_984, Completion::Normal) { return Ok(value_984); }
+let statement_result_985: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_986: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_987 = rt.get_literal_cached(this, &LITERAL_READ_SITE_986)?;
+let value_988 = rt.static_string("0");
+let value_989 = rt.get(value_987, value_988)?;
+let value_990 = native_local_13;
+let value_991 = rt.static_string("0");
+let value_992 = rt.get(value_990, value_991)?;
+let value_993 = native_local_17;
+let value_996 = match (value_992, value_993) { (Value::Number(numeric_left_994), Value::Number(numeric_right_995)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_994, numeric_right_995)), _ => rt.binary(BinaryOp::Mul, value_992, value_993)? };
+let value_999 = match (value_989, value_996) { (Value::Number(numeric_left_997), Value::Number(numeric_right_998)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_997, numeric_right_998)), _ => rt.binary(BinaryOp::Add, value_989, value_996)? };
+let value_1000 = native_local_16;
+static LITERAL_READ_SITE_1001: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("minX");
+let value_1002 = rt.get_literal_cached(value_1000, &LITERAL_READ_SITE_1001)?;
+let value_1005 = match (value_999, value_1002) { (Value::Number(numeric_left_1003), Value::Number(numeric_right_1004)) => Value::Bool(numeric_left_1003 < numeric_right_1004), _ => rt.binary(BinaryOp::Lt, value_999, value_1002)? };
+let mut logical_1006 = value_1005;
+if rt.truthy(value_1005) {
+let value_1007 = native_local_13;
+let value_1008 = rt.static_string("0");
+let value_1009 = rt.get(value_1007, value_1008)?;
+let value_1010 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1013 = match (value_1009, value_1010) { (Value::Number(numeric_left_1011), Value::Number(numeric_right_1012)) => Value::Bool(numeric_left_1011 < numeric_right_1012), _ => rt.binary(BinaryOp::Lt, value_1009, value_1010)? };
+logical_1006 = value_1013;
 }
-if rt.truthy(logical_1002) {
-let statement_result_1010: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1011: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1012: JsResult<Completion> = (|| -> JsResult<Completion> {
-Ok(Completion::Normal)
-})();
-let value_1013 = statement_result_1012?;
-if !matches!(value_1013, Completion::Normal) { return Ok(value_1013); }
+if rt.truthy(logical_1006) {
 let statement_result_1014: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1015 = native_local_16;
-static LITERAL_READ_SITE_1016: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("minX");
-let value_1017 = rt.get_literal_cached(value_1015, &LITERAL_READ_SITE_1016)?;
-static LITERAL_READ_SITE_1018: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_1019 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1018)?;
-let value_1020 = rt.static_string("0");
-let value_1021 = rt.get(value_1019, value_1020)?;
-let value_1024 = match (value_1017, value_1021) { (Value::Number(numeric_left_1022), Value::Number(numeric_right_1023)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1022, numeric_right_1023)), _ => rt.binary(BinaryOp::Sub, value_1017, value_1021)? };
-let value_1025 = native_local_17;
-let value_1028 = match (value_1024, value_1025) { (Value::Number(numeric_left_1026), Value::Number(numeric_right_1027)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1026, numeric_right_1027)), _ => rt.binary(BinaryOp::Div, value_1024, value_1025)? };
-native_local_19 = value_1028;
-let value_1029 = native_local_19;
-let value_1030 = native_local_13;
-let value_1031 = rt.static_string("0");
-let value_1032 = rt.get(value_1030, value_1031)?;
-let value_1035 = match (value_1028, value_1032) { (Value::Number(numeric_left_1033), Value::Number(numeric_right_1034)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1033, numeric_right_1034)), _ => rt.binary(BinaryOp::Div, value_1028, value_1032)? };
-native_local_18 = value_1035;
-let value_1036 = native_local_18;
+let statement_result_1015: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1016: JsResult<Completion> = (|| -> JsResult<Completion> {
 Ok(Completion::Normal)
 })();
-let value_1037 = statement_result_1014?;
-if !matches!(value_1037, Completion::Normal) { return Ok(value_1037); }
-let statement_result_1038: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1039 = rt.resolve_binding(env, "Math")?;
-let value_1040 = rt.read_binding(value_1039)?;
-static LITERAL_READ_SITE_1041: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
-let value_1042 = rt.get_literal_cached(value_1040, &LITERAL_READ_SITE_1041)?;
-let value_1043 = native_local_18;
-let value_1044 = rt.call(value_1042, value_1040, &[value_1043])?;
-let value_1045 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1048 = match (value_1044, value_1045) { (Value::Number(numeric_left_1046), Value::Number(numeric_right_1047)) => Value::Bool(numeric_left_1046 > numeric_right_1047), _ => rt.binary(BinaryOp::Gt, value_1044, value_1045)? };
-let mut logical_1049 = value_1048;
-if rt.truthy(value_1048) {
-let value_1050 = native_local_18;
-let value_1051 = rt.resolve_binding(env, "Math")?;
-let value_1052 = rt.read_binding(value_1051)?;
-static LITERAL_READ_SITE_1053: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
-let value_1054 = rt.get_literal_cached(value_1052, &LITERAL_READ_SITE_1053)?;
-let value_1055 = native_local_18;
-let value_1056 = rt.call(value_1054, value_1052, &[value_1055])?;
-let value_1059 = match (value_1050, value_1056) { (Value::Number(numeric_left_1057), Value::Number(numeric_right_1058)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1057, numeric_right_1058)), _ => rt.binary(BinaryOp::Div, value_1050, value_1056)? };
-native_local_18 = value_1059;
-let value_1060 = native_local_18;
-logical_1049 = value_1059;
+let value_1017 = statement_result_1016?;
+if !matches!(value_1017, Completion::Normal) { return Ok(value_1017); }
+let statement_result_1018: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1019 = native_local_16;
+static LITERAL_READ_SITE_1020: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("minX");
+let value_1021 = rt.get_literal_cached(value_1019, &LITERAL_READ_SITE_1020)?;
+static LITERAL_READ_SITE_1022: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_1023 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1022)?;
+let value_1024 = rt.static_string("0");
+let value_1025 = rt.get(value_1023, value_1024)?;
+let value_1028 = match (value_1021, value_1025) { (Value::Number(numeric_left_1026), Value::Number(numeric_right_1027)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1026, numeric_right_1027)), _ => rt.binary(BinaryOp::Sub, value_1021, value_1025)? };
+let value_1029 = native_local_17;
+let value_1032 = match (value_1028, value_1029) { (Value::Number(numeric_left_1030), Value::Number(numeric_right_1031)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1030, numeric_right_1031)), _ => rt.binary(BinaryOp::Div, value_1028, value_1029)? };
+native_local_19 = value_1032;
+let value_1033 = native_local_19;
+let value_1034 = native_local_13;
+let value_1035 = rt.static_string("0");
+let value_1036 = rt.get(value_1034, value_1035)?;
+let value_1039 = match (value_1032, value_1036) { (Value::Number(numeric_left_1037), Value::Number(numeric_right_1038)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1037, numeric_right_1038)), _ => rt.binary(BinaryOp::Div, value_1032, value_1036)? };
+native_local_18 = value_1039;
+let value_1040 = native_local_18;
+Ok(Completion::Normal)
+})();
+let value_1041 = statement_result_1018?;
+if !matches!(value_1041, Completion::Normal) { return Ok(value_1041); }
+let statement_result_1042: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1043 = rt.resolve_binding_id(env, env_name_173)?;
+let value_1044 = rt.read_binding(value_1043)?;
+static LITERAL_READ_SITE_1045: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
+let value_1046 = rt.get_literal_cached(value_1044, &LITERAL_READ_SITE_1045)?;
+let value_1047 = native_local_18;
+let value_1048 = rt.call(value_1046, value_1044, &[value_1047])?;
+let value_1049 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1052 = match (value_1048, value_1049) { (Value::Number(numeric_left_1050), Value::Number(numeric_right_1051)) => Value::Bool(numeric_left_1050 > numeric_right_1051), _ => rt.binary(BinaryOp::Gt, value_1048, value_1049)? };
+let mut logical_1053 = value_1052;
+if rt.truthy(value_1052) {
+let value_1054 = native_local_18;
+let value_1055 = rt.resolve_binding_id(env, env_name_173)?;
+let value_1056 = rt.read_binding(value_1055)?;
+static LITERAL_READ_SITE_1057: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
+let value_1058 = rt.get_literal_cached(value_1056, &LITERAL_READ_SITE_1057)?;
+let value_1059 = native_local_18;
+let value_1060 = rt.call(value_1058, value_1056, &[value_1059])?;
+let value_1063 = match (value_1054, value_1060) { (Value::Number(numeric_left_1061), Value::Number(numeric_right_1062)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1061, numeric_right_1062)), _ => rt.binary(BinaryOp::Div, value_1054, value_1060)? };
+native_local_18 = value_1063;
+let value_1064 = native_local_18;
+logical_1053 = value_1063;
 }
-let value_1061 = native_local_13;
-let value_1062 = rt.static_string("0");
-let value_1063 = native_local_19;
-let value_1064 = rt.set(value_1061, value_1062, value_1063, false)?;
 let value_1065 = native_local_13;
-let value_1066 = rt.static_string("1");
-let value_1067 = native_local_13;
-let value_1068 = rt.static_string("1");
-let value_1069 = rt.get(value_1067, value_1068)?;
-let value_1070 = native_local_18;
-let value_1073 = match (value_1069, value_1070) { (Value::Number(numeric_left_1071), Value::Number(numeric_right_1072)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1071, numeric_right_1072)), _ => rt.binary(BinaryOp::Mul, value_1069, value_1070)? };
-let value_1074 = rt.set(value_1065, value_1066, value_1073, false)?;
+let value_1066 = rt.static_string("0");
+let value_1067 = native_local_19;
+let value_1068 = rt.set(value_1065, value_1066, value_1067, false)?;
+let value_1069 = native_local_13;
+let value_1070 = rt.static_string("1");
+let value_1071 = native_local_13;
+let value_1072 = rt.static_string("1");
+let value_1073 = rt.get(value_1071, value_1072)?;
+let value_1074 = native_local_18;
+let value_1077 = match (value_1073, value_1074) { (Value::Number(numeric_left_1075), Value::Number(numeric_right_1076)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1075, numeric_right_1076)), _ => rt.binary(BinaryOp::Mul, value_1073, value_1074)? };
+let value_1078 = rt.set(value_1069, value_1070, value_1077, false)?;
 Ok(Completion::Normal)
 })();
-let value_1075 = statement_result_1038?;
-if !matches!(value_1075, Completion::Normal) { return Ok(value_1075); }
+let value_1079 = statement_result_1042?;
+if !matches!(value_1079, Completion::Normal) { return Ok(value_1079); }
 Ok(Completion::Normal)
 })();
-let value_1076 = statement_result_1011?;
-Ok(value_1076)
-})();
-let value_1077 = statement_result_1010?;
-Ok(value_1077)
-} else {
-Ok(Completion::Normal)
-}
-})();
-let value_1078 = statement_result_981?;
-if !matches!(value_1078, Completion::Normal) { return Ok(value_1078); }
-Ok(Completion::Normal)
-})();
-let value_1079 = statement_result_880?;
-Ok(value_1079)
-})();
-let value_1080 = statement_result_879?;
+let value_1080 = statement_result_1015?;
 Ok(value_1080)
+})();
+let value_1081 = statement_result_1014?;
+Ok(value_1081)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_1081 = statement_result_875?;
-if !matches!(value_1081, Completion::Normal) { return Ok(value_1081); }
-let statement_result_1082: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1083: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_1084 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1083)?;
-let value_1085 = rt.static_string("0");
-let value_1086 = rt.get(value_1084, value_1085)?;
-let value_1087 = native_local_13;
-let value_1088 = rt.static_string("0");
-let value_1089 = rt.get(value_1087, value_1088)?;
-let value_1090 = native_local_3;
-let value_1093 = match (value_1089, value_1090) { (Value::Number(numeric_left_1091), Value::Number(numeric_right_1092)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1091, numeric_right_1092)), _ => rt.binary(BinaryOp::Mul, value_1089, value_1090)? };
-let value_1096 = match (value_1086, value_1093) { (Value::Number(numeric_left_1094), Value::Number(numeric_right_1095)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1094, numeric_right_1095)), _ => rt.binary(BinaryOp::Add, value_1086, value_1093)? };
-let value_1097 = rt.set(value_1084, value_1085, value_1096, false)?;
-static LITERAL_READ_SITE_1098: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_1099 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1098)?;
-let value_1100 = rt.static_string("1");
-let value_1101 = rt.get(value_1099, value_1100)?;
-let value_1102 = native_local_13;
-let value_1103 = rt.static_string("1");
-let value_1104 = rt.get(value_1102, value_1103)?;
-let value_1105 = native_local_3;
-let value_1108 = match (value_1104, value_1105) { (Value::Number(numeric_left_1106), Value::Number(numeric_right_1107)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1106, numeric_right_1107)), _ => rt.binary(BinaryOp::Mul, value_1104, value_1105)? };
-let value_1111 = match (value_1101, value_1108) { (Value::Number(numeric_left_1109), Value::Number(numeric_right_1110)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1109, numeric_right_1110)), _ => rt.binary(BinaryOp::Add, value_1101, value_1108)? };
-let value_1112 = rt.set(value_1099, value_1100, value_1111, false)?;
+let value_1082 = statement_result_985?;
+if !matches!(value_1082, Completion::Normal) { return Ok(value_1082); }
 Ok(Completion::Normal)
 })();
-let value_1113 = statement_result_1082?;
-if !matches!(value_1113, Completion::Normal) { return Ok(value_1113); }
-let statement_result_1114: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1115 = rt.array(&[]);
-static LITERAL_READ_SITE_1116: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("previous_position");
-let value_1117 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1116)?;
-let value_1118 = rt.static_string("0");
-let value_1119 = rt.get(value_1117, value_1118)?;
-let mut logical_1120 = value_1119;
-if !rt.truthy(value_1119) {
-let value_1121 = Value::Number(f64::from_bits(0x0000000000000000u64));
-logical_1120 = value_1121;
+let value_1083 = statement_result_884?;
+Ok(value_1083)
+})();
+let value_1084 = statement_result_883?;
+Ok(value_1084)
+} else {
+Ok(Completion::Normal)
 }
+})();
+let value_1085 = statement_result_879?;
+if !matches!(value_1085, Completion::Normal) { return Ok(value_1085); }
+let statement_result_1086: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1087: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_1088 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1087)?;
+let value_1089 = rt.static_string("0");
+let value_1090 = rt.get(value_1088, value_1089)?;
+let value_1091 = native_local_13;
+let value_1092 = rt.static_string("0");
+let value_1093 = rt.get(value_1091, value_1092)?;
+let value_1094 = native_local_3;
+let value_1097 = match (value_1093, value_1094) { (Value::Number(numeric_left_1095), Value::Number(numeric_right_1096)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1095, numeric_right_1096)), _ => rt.binary(BinaryOp::Mul, value_1093, value_1094)? };
+let value_1100 = match (value_1090, value_1097) { (Value::Number(numeric_left_1098), Value::Number(numeric_right_1099)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1098, numeric_right_1099)), _ => rt.binary(BinaryOp::Add, value_1090, value_1097)? };
+let value_1101 = rt.set(value_1088, value_1089, value_1100, false)?;
+static LITERAL_READ_SITE_1102: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_1103 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1102)?;
+let value_1104 = rt.static_string("1");
+let value_1105 = rt.get(value_1103, value_1104)?;
+let value_1106 = native_local_13;
+let value_1107 = rt.static_string("1");
+let value_1108 = rt.get(value_1106, value_1107)?;
+let value_1109 = native_local_3;
+let value_1112 = match (value_1108, value_1109) { (Value::Number(numeric_left_1110), Value::Number(numeric_right_1111)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1110, numeric_right_1111)), _ => rt.binary(BinaryOp::Mul, value_1108, value_1109)? };
+let value_1115 = match (value_1105, value_1112) { (Value::Number(numeric_left_1113), Value::Number(numeric_right_1114)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1113, numeric_right_1114)), _ => rt.binary(BinaryOp::Add, value_1105, value_1112)? };
+let value_1116 = rt.set(value_1103, value_1104, value_1115, false)?;
+Ok(Completion::Normal)
+})();
+let value_1117 = statement_result_1086?;
+if !matches!(value_1117, Completion::Normal) { return Ok(value_1117); }
+let statement_result_1118: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1119 = rt.array(&[]);
+static LITERAL_READ_SITE_1120: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("previous_position");
+let value_1121 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1120)?;
 let value_1122 = rt.static_string("0");
-rt.define_data(value_1115, value_1122, logical_1120, true, true, true)?;
-static LITERAL_READ_SITE_1123: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("previous_position");
-let value_1124 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1123)?;
-let value_1125 = rt.static_string("1");
-let value_1126 = rt.get(value_1124, value_1125)?;
-let mut logical_1127 = value_1126;
-if !rt.truthy(value_1126) {
-let value_1128 = Value::Number(f64::from_bits(0x0000000000000000u64));
-logical_1127 = value_1128;
+let value_1123 = rt.get(value_1121, value_1122)?;
+let mut logical_1124 = value_1123;
+if !rt.truthy(value_1123) {
+let value_1125 = Value::Number(f64::from_bits(0x0000000000000000u64));
+logical_1124 = value_1125;
 }
+let value_1126 = rt.static_string("0");
+rt.define_data(value_1119, value_1126, logical_1124, true, true, true)?;
+static LITERAL_READ_SITE_1127: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("previous_position");
+let value_1128 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1127)?;
 let value_1129 = rt.static_string("1");
-rt.define_data(value_1115, value_1129, logical_1127, true, true, true)?;
-native_local_20 = value_1115;
-Ok(Completion::Normal)
-})();
-let value_1130 = statement_result_1114?;
-if !matches!(value_1130, Completion::Normal) { return Ok(value_1130); }
-let statement_result_1131: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1132: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("forceDestination");
-let value_1133 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1132)?;
-let mut logical_1134 = value_1133;
-if rt.truthy(value_1133) {
-let value_1135 = native_local_20;
-logical_1134 = value_1135;
+let value_1130 = rt.get(value_1128, value_1129)?;
+let mut logical_1131 = value_1130;
+if !rt.truthy(value_1130) {
+let value_1132 = Value::Number(f64::from_bits(0x0000000000000000u64));
+logical_1131 = value_1132;
 }
-if rt.truthy(logical_1134) {
-let statement_result_1136: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1137: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1138: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1139: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("forceDestination");
-let value_1140 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1139)?;
-native_local_22 = value_1140;
+let value_1133 = rt.static_string("1");
+rt.define_data(value_1119, value_1133, logical_1131, true, true, true)?;
+native_local_20 = value_1119;
 Ok(Completion::Normal)
 })();
-let value_1141 = statement_result_1138?;
-if !matches!(value_1141, Completion::Normal) { return Ok(value_1141); }
+let value_1134 = statement_result_1118?;
+if !matches!(value_1134, Completion::Normal) { return Ok(value_1134); }
+let statement_result_1135: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1136: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("forceDestination");
+let value_1137 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1136)?;
+let mut logical_1138 = value_1137;
+if rt.truthy(value_1137) {
+let value_1139 = native_local_20;
+logical_1138 = value_1139;
+}
+if rt.truthy(logical_1138) {
+let statement_result_1140: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1141: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_1142: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1143: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+static LITERAL_READ_SITE_1143: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("forceDestination");
 let value_1144 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1143)?;
-let value_1145 = rt.static_string("0");
-let value_1146 = rt.get(value_1144, value_1145)?;
-let value_1147 = native_local_22;
-let value_1148 = rt.static_string("0");
-let value_1149 = rt.get(value_1147, value_1148)?;
-let value_1152 = match (value_1146, value_1149) { (Value::Number(numeric_left_1150), Value::Number(numeric_right_1151)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1150, numeric_right_1151)), _ => rt.binary(BinaryOp::Sub, value_1146, value_1149)? };
-let value_1153 = native_local_20;
-let value_1154 = rt.static_string("0");
-let value_1155 = rt.get(value_1153, value_1154)?;
-let value_1156 = native_local_22;
-let value_1157 = rt.static_string("0");
-let value_1158 = rt.get(value_1156, value_1157)?;
-let value_1161 = match (value_1155, value_1158) { (Value::Number(numeric_left_1159), Value::Number(numeric_right_1160)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1159, numeric_right_1160)), _ => rt.binary(BinaryOp::Sub, value_1155, value_1158)? };
-let value_1164 = match (value_1152, value_1161) { (Value::Number(numeric_left_1162), Value::Number(numeric_right_1163)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1162, numeric_right_1163)), _ => rt.binary(BinaryOp::Mul, value_1152, value_1161)? };
-let value_1165 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1168 = match (value_1164, value_1165) { (Value::Number(numeric_left_1166), Value::Number(numeric_right_1167)) => Value::Bool(numeric_left_1166 < numeric_right_1167), _ => rt.binary(BinaryOp::Lt, value_1164, value_1165)? };
-let mut logical_1169 = value_1168;
-if !rt.truthy(value_1168) {
-static LITERAL_READ_SITE_1170: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_1171 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1170)?;
-let value_1172 = rt.static_string("1");
-let value_1173 = rt.get(value_1171, value_1172)?;
-let value_1174 = native_local_22;
-let value_1175 = rt.static_string("1");
-let value_1176 = rt.get(value_1174, value_1175)?;
-let value_1179 = match (value_1173, value_1176) { (Value::Number(numeric_left_1177), Value::Number(numeric_right_1178)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1177, numeric_right_1178)), _ => rt.binary(BinaryOp::Sub, value_1173, value_1176)? };
-let value_1180 = native_local_20;
-let value_1181 = rt.static_string("1");
-let value_1182 = rt.get(value_1180, value_1181)?;
-let value_1183 = native_local_22;
-let value_1184 = rt.static_string("1");
-let value_1185 = rt.get(value_1183, value_1184)?;
-let value_1188 = match (value_1182, value_1185) { (Value::Number(numeric_left_1186), Value::Number(numeric_right_1187)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1186, numeric_right_1187)), _ => rt.binary(BinaryOp::Sub, value_1182, value_1185)? };
-let value_1191 = match (value_1179, value_1188) { (Value::Number(numeric_left_1189), Value::Number(numeric_right_1190)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1189, numeric_right_1190)), _ => rt.binary(BinaryOp::Mul, value_1179, value_1188)? };
-let value_1192 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1195 = match (value_1191, value_1192) { (Value::Number(numeric_left_1193), Value::Number(numeric_right_1194)) => Value::Bool(numeric_left_1193 < numeric_right_1194), _ => rt.binary(BinaryOp::Lt, value_1191, value_1192)? };
-logical_1169 = value_1195;
+native_local_22 = value_1144;
+Ok(Completion::Normal)
+})();
+let value_1145 = statement_result_1142?;
+if !matches!(value_1145, Completion::Normal) { return Ok(value_1145); }
+let statement_result_1146: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1147: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_1148 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1147)?;
+let value_1149 = rt.static_string("0");
+let value_1150 = rt.get(value_1148, value_1149)?;
+let value_1151 = native_local_22;
+let value_1152 = rt.static_string("0");
+let value_1153 = rt.get(value_1151, value_1152)?;
+let value_1156 = match (value_1150, value_1153) { (Value::Number(numeric_left_1154), Value::Number(numeric_right_1155)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1154, numeric_right_1155)), _ => rt.binary(BinaryOp::Sub, value_1150, value_1153)? };
+let value_1157 = native_local_20;
+let value_1158 = rt.static_string("0");
+let value_1159 = rt.get(value_1157, value_1158)?;
+let value_1160 = native_local_22;
+let value_1161 = rt.static_string("0");
+let value_1162 = rt.get(value_1160, value_1161)?;
+let value_1165 = match (value_1159, value_1162) { (Value::Number(numeric_left_1163), Value::Number(numeric_right_1164)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1163, numeric_right_1164)), _ => rt.binary(BinaryOp::Sub, value_1159, value_1162)? };
+let value_1168 = match (value_1156, value_1165) { (Value::Number(numeric_left_1166), Value::Number(numeric_right_1167)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1166, numeric_right_1167)), _ => rt.binary(BinaryOp::Mul, value_1156, value_1165)? };
+let value_1169 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1172 = match (value_1168, value_1169) { (Value::Number(numeric_left_1170), Value::Number(numeric_right_1171)) => Value::Bool(numeric_left_1170 < numeric_right_1171), _ => rt.binary(BinaryOp::Lt, value_1168, value_1169)? };
+let mut logical_1173 = value_1172;
+if !rt.truthy(value_1172) {
+static LITERAL_READ_SITE_1174: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_1175 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1174)?;
+let value_1176 = rt.static_string("1");
+let value_1177 = rt.get(value_1175, value_1176)?;
+let value_1178 = native_local_22;
+let value_1179 = rt.static_string("1");
+let value_1180 = rt.get(value_1178, value_1179)?;
+let value_1183 = match (value_1177, value_1180) { (Value::Number(numeric_left_1181), Value::Number(numeric_right_1182)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1181, numeric_right_1182)), _ => rt.binary(BinaryOp::Sub, value_1177, value_1180)? };
+let value_1184 = native_local_20;
+let value_1185 = rt.static_string("1");
+let value_1186 = rt.get(value_1184, value_1185)?;
+let value_1187 = native_local_22;
+let value_1188 = rt.static_string("1");
+let value_1189 = rt.get(value_1187, value_1188)?;
+let value_1192 = match (value_1186, value_1189) { (Value::Number(numeric_left_1190), Value::Number(numeric_right_1191)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1190, numeric_right_1191)), _ => rt.binary(BinaryOp::Sub, value_1186, value_1189)? };
+let value_1195 = match (value_1183, value_1192) { (Value::Number(numeric_left_1193), Value::Number(numeric_right_1194)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1193, numeric_right_1194)), _ => rt.binary(BinaryOp::Mul, value_1183, value_1192)? };
+let value_1196 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1199 = match (value_1195, value_1196) { (Value::Number(numeric_left_1197), Value::Number(numeric_right_1198)) => Value::Bool(numeric_left_1197 < numeric_right_1198), _ => rt.binary(BinaryOp::Lt, value_1195, value_1196)? };
+logical_1173 = value_1199;
 }
-let mut logical_1196 = logical_1169;
-if !rt.truthy(logical_1169) {
-let value_1197 = rt.resolve_binding(env, "ed")?;
-let value_1198 = rt.read_binding(value_1197)?;
-static LITERAL_READ_SITE_1199: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("edpDistanceSQ");
-let value_1200 = rt.get_literal_cached(value_1198, &LITERAL_READ_SITE_1199)?;
-static LITERAL_READ_SITE_1201: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_1202 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1201)?;
-static LITERAL_READ_SITE_1203: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("forceDestination");
-let value_1204 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1203)?;
-let value_1205 = rt.call(value_1200, value_1198, &[value_1202,value_1204])?;
-let value_1206 = Value::Number(f64::from_bits(0x4022000000000000u64));
-let value_1209 = match (value_1205, value_1206) { (Value::Number(numeric_left_1207), Value::Number(numeric_right_1208)) => Value::Bool(numeric_left_1207 <= numeric_right_1208), _ => rt.binary(BinaryOp::Le, value_1205, value_1206)? };
-logical_1196 = value_1209;
+let mut logical_1200 = logical_1173;
+if !rt.truthy(logical_1173) {
+let value_1201 = rt.resolve_binding_id(env, env_name_83)?;
+let value_1202 = rt.read_binding(value_1201)?;
+static LITERAL_READ_SITE_1203: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("edpDistanceSQ");
+let value_1204 = rt.get_literal_cached(value_1202, &LITERAL_READ_SITE_1203)?;
+static LITERAL_READ_SITE_1205: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_1206 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1205)?;
+static LITERAL_READ_SITE_1207: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("forceDestination");
+let value_1208 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1207)?;
+let value_1209 = rt.call(value_1204, value_1202, &[value_1206,value_1208])?;
+let value_1210 = Value::Number(f64::from_bits(0x4022000000000000u64));
+let value_1213 = match (value_1209, value_1210) { (Value::Number(numeric_left_1211), Value::Number(numeric_right_1212)) => Value::Bool(numeric_left_1211 <= numeric_right_1212), _ => rt.binary(BinaryOp::Le, value_1209, value_1210)? };
+logical_1200 = value_1213;
 }
-let mut logical_1210 = logical_1196;
-if rt.truthy(logical_1196) {
-let value_1211 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1212 = rt.unary(UnaryOp::Not, value_1211)?;
-native_local_21 = value_1212;
-let value_1213 = native_local_21;
-logical_1210 = value_1212;
+let mut logical_1214 = logical_1200;
+if rt.truthy(logical_1200) {
+let value_1215 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1216 = rt.unary(UnaryOp::Not, value_1215)?;
+native_local_21 = value_1216;
+let value_1217 = native_local_21;
+logical_1214 = value_1216;
 }
-let value_1214 = native_local_21;
-let mut logical_1215 = value_1214;
-if rt.truthy(value_1214) {
-let value_1216 = Value::Null;
-let value_1217 = rt.static_string("forceDestination");
-let value_1218 = rt.set(this, value_1217, value_1216, false)?;
-logical_1215 = value_1216;
+let value_1218 = native_local_21;
+let mut logical_1219 = value_1218;
+if rt.truthy(value_1218) {
+let value_1220 = Value::Null;
+let value_1221 = rt.static_string("forceDestination");
+let value_1222 = rt.set(this, value_1221, value_1220, false)?;
+logical_1219 = value_1220;
 }
 Ok(Completion::Normal)
 })();
-let value_1219 = statement_result_1142?;
-if !matches!(value_1219, Completion::Normal) { return Ok(value_1219); }
+let value_1223 = statement_result_1146?;
+if !matches!(value_1223, Completion::Normal) { return Ok(value_1223); }
 Ok(Completion::Normal)
 })();
-let value_1220 = statement_result_1137?;
-Ok(value_1220)
+let value_1224 = statement_result_1141?;
+Ok(value_1224)
 })();
-let value_1221 = statement_result_1136?;
-Ok(value_1221)
+let value_1225 = statement_result_1140?;
+Ok(value_1225)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_1222 = statement_result_1131?;
-if !matches!(value_1222, Completion::Normal) { return Ok(value_1222); }
-let statement_result_1223: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1224: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("destination");
-let value_1225 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1224)?;
-let mut logical_1226 = value_1225;
-if rt.truthy(value_1225) {
-let value_1227 = native_local_20;
-logical_1226 = value_1227;
+let value_1226 = statement_result_1135?;
+if !matches!(value_1226, Completion::Normal) { return Ok(value_1226); }
+let statement_result_1227: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1228: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("destination");
+let value_1229 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1228)?;
+let mut logical_1230 = value_1229;
+if rt.truthy(value_1229) {
+let value_1231 = native_local_20;
+logical_1230 = value_1231;
 }
-if rt.truthy(logical_1226) {
-let statement_result_1228: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1229: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1230: JsResult<Completion> = (|| -> JsResult<Completion> {
-Ok(Completion::Normal)
-})();
-let value_1231 = statement_result_1230?;
-if !matches!(value_1231, Completion::Normal) { return Ok(value_1231); }
+if rt.truthy(logical_1230) {
 let statement_result_1232: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1233: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("destination");
-let value_1234 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1233)?;
-native_local_22 = value_1234;
-let value_1235 = native_local_22;
+let statement_result_1233: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1234: JsResult<Completion> = (|| -> JsResult<Completion> {
 Ok(Completion::Normal)
 })();
-let value_1236 = statement_result_1232?;
-if !matches!(value_1236, Completion::Normal) { return Ok(value_1236); }
-let statement_result_1237: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1238: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_1239 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1238)?;
-let value_1240 = rt.static_string("0");
-let value_1241 = rt.get(value_1239, value_1240)?;
-let value_1242 = native_local_22;
-let value_1243 = rt.static_string("0");
-let value_1244 = rt.get(value_1242, value_1243)?;
-let value_1247 = match (value_1241, value_1244) { (Value::Number(numeric_left_1245), Value::Number(numeric_right_1246)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1245, numeric_right_1246)), _ => rt.binary(BinaryOp::Sub, value_1241, value_1244)? };
-let value_1248 = native_local_20;
-let value_1249 = rt.static_string("0");
-let value_1250 = rt.get(value_1248, value_1249)?;
-let value_1251 = native_local_22;
-let value_1252 = rt.static_string("0");
-let value_1253 = rt.get(value_1251, value_1252)?;
-let value_1256 = match (value_1250, value_1253) { (Value::Number(numeric_left_1254), Value::Number(numeric_right_1255)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1254, numeric_right_1255)), _ => rt.binary(BinaryOp::Sub, value_1250, value_1253)? };
-let value_1259 = match (value_1247, value_1256) { (Value::Number(numeric_left_1257), Value::Number(numeric_right_1258)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1257, numeric_right_1258)), _ => rt.binary(BinaryOp::Mul, value_1247, value_1256)? };
-let value_1260 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1263 = match (value_1259, value_1260) { (Value::Number(numeric_left_1261), Value::Number(numeric_right_1262)) => Value::Bool(numeric_left_1261 < numeric_right_1262), _ => rt.binary(BinaryOp::Lt, value_1259, value_1260)? };
-let mut logical_1264 = value_1263;
-if !rt.truthy(value_1263) {
-static LITERAL_READ_SITE_1265: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_1266 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1265)?;
-let value_1267 = rt.static_string("1");
-let value_1268 = rt.get(value_1266, value_1267)?;
-let value_1269 = native_local_22;
-let value_1270 = rt.static_string("1");
-let value_1271 = rt.get(value_1269, value_1270)?;
-let value_1274 = match (value_1268, value_1271) { (Value::Number(numeric_left_1272), Value::Number(numeric_right_1273)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1272, numeric_right_1273)), _ => rt.binary(BinaryOp::Sub, value_1268, value_1271)? };
-let value_1275 = native_local_20;
-let value_1276 = rt.static_string("1");
-let value_1277 = rt.get(value_1275, value_1276)?;
-let value_1278 = native_local_22;
-let value_1279 = rt.static_string("1");
-let value_1280 = rt.get(value_1278, value_1279)?;
-let value_1283 = match (value_1277, value_1280) { (Value::Number(numeric_left_1281), Value::Number(numeric_right_1282)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1281, numeric_right_1282)), _ => rt.binary(BinaryOp::Sub, value_1277, value_1280)? };
-let value_1286 = match (value_1274, value_1283) { (Value::Number(numeric_left_1284), Value::Number(numeric_right_1285)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1284, numeric_right_1285)), _ => rt.binary(BinaryOp::Mul, value_1274, value_1283)? };
-let value_1287 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1290 = match (value_1286, value_1287) { (Value::Number(numeric_left_1288), Value::Number(numeric_right_1289)) => Value::Bool(numeric_left_1288 < numeric_right_1289), _ => rt.binary(BinaryOp::Lt, value_1286, value_1287)? };
-logical_1264 = value_1290;
+let value_1235 = statement_result_1234?;
+if !matches!(value_1235, Completion::Normal) { return Ok(value_1235); }
+let statement_result_1236: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1237: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("destination");
+let value_1238 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1237)?;
+native_local_22 = value_1238;
+let value_1239 = native_local_22;
+Ok(Completion::Normal)
+})();
+let value_1240 = statement_result_1236?;
+if !matches!(value_1240, Completion::Normal) { return Ok(value_1240); }
+let statement_result_1241: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1242: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_1243 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1242)?;
+let value_1244 = rt.static_string("0");
+let value_1245 = rt.get(value_1243, value_1244)?;
+let value_1246 = native_local_22;
+let value_1247 = rt.static_string("0");
+let value_1248 = rt.get(value_1246, value_1247)?;
+let value_1251 = match (value_1245, value_1248) { (Value::Number(numeric_left_1249), Value::Number(numeric_right_1250)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1249, numeric_right_1250)), _ => rt.binary(BinaryOp::Sub, value_1245, value_1248)? };
+let value_1252 = native_local_20;
+let value_1253 = rt.static_string("0");
+let value_1254 = rt.get(value_1252, value_1253)?;
+let value_1255 = native_local_22;
+let value_1256 = rt.static_string("0");
+let value_1257 = rt.get(value_1255, value_1256)?;
+let value_1260 = match (value_1254, value_1257) { (Value::Number(numeric_left_1258), Value::Number(numeric_right_1259)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1258, numeric_right_1259)), _ => rt.binary(BinaryOp::Sub, value_1254, value_1257)? };
+let value_1263 = match (value_1251, value_1260) { (Value::Number(numeric_left_1261), Value::Number(numeric_right_1262)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1261, numeric_right_1262)), _ => rt.binary(BinaryOp::Mul, value_1251, value_1260)? };
+let value_1264 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1267 = match (value_1263, value_1264) { (Value::Number(numeric_left_1265), Value::Number(numeric_right_1266)) => Value::Bool(numeric_left_1265 < numeric_right_1266), _ => rt.binary(BinaryOp::Lt, value_1263, value_1264)? };
+let mut logical_1268 = value_1267;
+if !rt.truthy(value_1267) {
+static LITERAL_READ_SITE_1269: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_1270 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1269)?;
+let value_1271 = rt.static_string("1");
+let value_1272 = rt.get(value_1270, value_1271)?;
+let value_1273 = native_local_22;
+let value_1274 = rt.static_string("1");
+let value_1275 = rt.get(value_1273, value_1274)?;
+let value_1278 = match (value_1272, value_1275) { (Value::Number(numeric_left_1276), Value::Number(numeric_right_1277)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1276, numeric_right_1277)), _ => rt.binary(BinaryOp::Sub, value_1272, value_1275)? };
+let value_1279 = native_local_20;
+let value_1280 = rt.static_string("1");
+let value_1281 = rt.get(value_1279, value_1280)?;
+let value_1282 = native_local_22;
+let value_1283 = rt.static_string("1");
+let value_1284 = rt.get(value_1282, value_1283)?;
+let value_1287 = match (value_1281, value_1284) { (Value::Number(numeric_left_1285), Value::Number(numeric_right_1286)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1285, numeric_right_1286)), _ => rt.binary(BinaryOp::Sub, value_1281, value_1284)? };
+let value_1290 = match (value_1278, value_1287) { (Value::Number(numeric_left_1288), Value::Number(numeric_right_1289)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1288, numeric_right_1289)), _ => rt.binary(BinaryOp::Mul, value_1278, value_1287)? };
+let value_1291 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1294 = match (value_1290, value_1291) { (Value::Number(numeric_left_1292), Value::Number(numeric_right_1293)) => Value::Bool(numeric_left_1292 < numeric_right_1293), _ => rt.binary(BinaryOp::Lt, value_1290, value_1291)? };
+logical_1268 = value_1294;
 }
-let mut logical_1291 = logical_1264;
-if !rt.truthy(logical_1264) {
-let value_1292 = rt.resolve_binding(env, "ed")?;
-let value_1293 = rt.read_binding(value_1292)?;
-static LITERAL_READ_SITE_1294: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("edpDistanceSQ");
-let value_1295 = rt.get_literal_cached(value_1293, &LITERAL_READ_SITE_1294)?;
-static LITERAL_READ_SITE_1296: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_1297 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1296)?;
-static LITERAL_READ_SITE_1298: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("destination");
-let value_1299 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1298)?;
-let value_1300 = rt.call(value_1295, value_1293, &[value_1297,value_1299])?;
-let value_1301 = Value::Number(f64::from_bits(0x4022000000000000u64));
-let value_1304 = match (value_1300, value_1301) { (Value::Number(numeric_left_1302), Value::Number(numeric_right_1303)) => Value::Bool(numeric_left_1302 <= numeric_right_1303), _ => rt.binary(BinaryOp::Le, value_1300, value_1301)? };
-logical_1291 = value_1304;
+let mut logical_1295 = logical_1268;
+if !rt.truthy(logical_1268) {
+let value_1296 = rt.resolve_binding_id(env, env_name_83)?;
+let value_1297 = rt.read_binding(value_1296)?;
+static LITERAL_READ_SITE_1298: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("edpDistanceSQ");
+let value_1299 = rt.get_literal_cached(value_1297, &LITERAL_READ_SITE_1298)?;
+static LITERAL_READ_SITE_1300: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_1301 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1300)?;
+static LITERAL_READ_SITE_1302: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("destination");
+let value_1303 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1302)?;
+let value_1304 = rt.call(value_1299, value_1297, &[value_1301,value_1303])?;
+let value_1305 = Value::Number(f64::from_bits(0x4022000000000000u64));
+let value_1308 = match (value_1304, value_1305) { (Value::Number(numeric_left_1306), Value::Number(numeric_right_1307)) => Value::Bool(numeric_left_1306 <= numeric_right_1307), _ => rt.binary(BinaryOp::Le, value_1304, value_1305)? };
+logical_1295 = value_1308;
 }
-let mut logical_1305 = logical_1291;
-if rt.truthy(logical_1291) {
-let value_1306 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1307 = rt.unary(UnaryOp::Not, value_1306)?;
-native_local_23 = value_1307;
-let value_1308 = native_local_23;
-logical_1305 = value_1307;
+let mut logical_1309 = logical_1295;
+if rt.truthy(logical_1295) {
+let value_1310 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1311 = rt.unary(UnaryOp::Not, value_1310)?;
+native_local_23 = value_1311;
+let value_1312 = native_local_23;
+logical_1309 = value_1311;
 }
-let value_1309 = native_local_23;
-let mut logical_1310 = value_1309;
-if rt.truthy(value_1309) {
-let value_1311 = Value::Null;
-let value_1312 = rt.static_string("destination");
-let value_1313 = rt.set(this, value_1312, value_1311, false)?;
-logical_1310 = value_1311;
+let value_1313 = native_local_23;
+let mut logical_1314 = value_1313;
+if rt.truthy(value_1313) {
+let value_1315 = Value::Null;
+let value_1316 = rt.static_string("destination");
+let value_1317 = rt.set(this, value_1316, value_1315, false)?;
+logical_1314 = value_1315;
 }
 Ok(Completion::Normal)
 })();
-let value_1314 = statement_result_1237?;
-if !matches!(value_1314, Completion::Normal) { return Ok(value_1314); }
+let value_1318 = statement_result_1241?;
+if !matches!(value_1318, Completion::Normal) { return Ok(value_1318); }
 Ok(Completion::Normal)
 })();
-let value_1315 = statement_result_1229?;
-Ok(value_1315)
+let value_1319 = statement_result_1233?;
+Ok(value_1319)
 })();
-let value_1316 = statement_result_1228?;
-Ok(value_1316)
+let value_1320 = statement_result_1232?;
+Ok(value_1320)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_1317 = statement_result_1223?;
-if !matches!(value_1317, Completion::Normal) { return Ok(value_1317); }
-let statement_result_1318: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1319: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_1320 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1319)?;
-static LITERAL_READ_SITE_1321: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("HAST");
-let value_1322 = rt.get_literal_cached(value_1320, &LITERAL_READ_SITE_1321)?;
-native_local_24 = value_1322;
-let value_1323 = rt.read_binding(value_40)?;
-let value_1324 = native_local_24;
-let value_1325 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1328 = match (value_1324, value_1325) { (Value::Number(numeric_left_1326), Value::Number(numeric_right_1327)) => Value::Bool(numeric_left_1326 > numeric_right_1327), _ => rt.binary(BinaryOp::Gt, value_1324, value_1325)? };
-let mut conditional_1329 = Value::Undefined;
-if rt.truthy(value_1328) {
-let value_1330 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_1331 = native_local_24;
-let value_1334 = match (value_1330, value_1331) { (Value::Number(numeric_left_1332), Value::Number(numeric_right_1333)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1332, numeric_right_1333)), _ => rt.binary(BinaryOp::Add, value_1330, value_1331)? };
-let value_1335 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_1338 = match (value_1334, value_1335) { (Value::Number(numeric_left_1336), Value::Number(numeric_right_1337)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1336, numeric_right_1337)), _ => rt.binary(BinaryOp::Div, value_1334, value_1335)? };
-conditional_1329 = value_1338;
-} else {
+let value_1321 = statement_result_1227?;
+if !matches!(value_1321, Completion::Normal) { return Ok(value_1321); }
+let statement_result_1322: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1323: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_1324 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1323)?;
+static LITERAL_READ_SITE_1325: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("HAST");
+let value_1326 = rt.get_literal_cached(value_1324, &LITERAL_READ_SITE_1325)?;
+native_local_24 = value_1326;
+let value_1327 = native_local_40;
+let value_1328 = native_local_24;
+let value_1329 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1332 = match (value_1328, value_1329) { (Value::Number(numeric_left_1330), Value::Number(numeric_right_1331)) => Value::Bool(numeric_left_1330 > numeric_right_1331), _ => rt.binary(BinaryOp::Gt, value_1328, value_1329)? };
+let mut conditional_1333 = Value::Undefined;
+if rt.truthy(value_1332) {
+let value_1334 = Value::Number(f64::from_bits(0x4059000000000000u64));
+let value_1335 = native_local_24;
+let value_1338 = match (value_1334, value_1335) { (Value::Number(numeric_left_1336), Value::Number(numeric_right_1337)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1336, numeric_right_1337)), _ => rt.binary(BinaryOp::Add, value_1334, value_1335)? };
 let value_1339 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_1340 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_1341 = native_local_24;
-let value_1344 = match (value_1340, value_1341) { (Value::Number(numeric_left_1342), Value::Number(numeric_right_1343)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1342, numeric_right_1343)), _ => rt.binary(BinaryOp::Sub, value_1340, value_1341)? };
-let value_1347 = match (value_1339, value_1344) { (Value::Number(numeric_left_1345), Value::Number(numeric_right_1346)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1345, numeric_right_1346)), _ => rt.binary(BinaryOp::Div, value_1339, value_1344)? };
-conditional_1329 = value_1347;
+let value_1342 = match (value_1338, value_1339) { (Value::Number(numeric_left_1340), Value::Number(numeric_right_1341)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1340, numeric_right_1341)), _ => rt.binary(BinaryOp::Div, value_1338, value_1339)? };
+conditional_1333 = value_1342;
+} else {
+let value_1343 = Value::Number(f64::from_bits(0x4059000000000000u64));
+let value_1344 = Value::Number(f64::from_bits(0x4059000000000000u64));
+let value_1345 = native_local_24;
+let value_1348 = match (value_1344, value_1345) { (Value::Number(numeric_left_1346), Value::Number(numeric_right_1347)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1346, numeric_right_1347)), _ => rt.binary(BinaryOp::Sub, value_1344, value_1345)? };
+let value_1351 = match (value_1343, value_1348) { (Value::Number(numeric_left_1349), Value::Number(numeric_right_1350)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1349, numeric_right_1350)), _ => rt.binary(BinaryOp::Div, value_1343, value_1348)? };
+conditional_1333 = value_1351;
 }
-let value_1350 = match (value_1323, conditional_1329) { (Value::Number(numeric_left_1348), Value::Number(numeric_right_1349)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1348, numeric_right_1349)), _ => rt.binary(BinaryOp::Mul, value_1323, conditional_1329)? };
-native_local_25 = value_1350;
-static LITERAL_READ_SITE_1351: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_1352 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1351)?;
-static LITERAL_READ_SITE_1353: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ATKHAST");
-let value_1354 = rt.get_literal_cached(value_1352, &LITERAL_READ_SITE_1353)?;
-native_local_26 = value_1354;
+let value_1354 = match (value_1327, conditional_1333) { (Value::Number(numeric_left_1352), Value::Number(numeric_right_1353)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1352, numeric_right_1353)), _ => rt.binary(BinaryOp::Mul, value_1327, conditional_1333)? };
+native_local_25 = value_1354;
+static LITERAL_READ_SITE_1355: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_1356 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1355)?;
+static LITERAL_READ_SITE_1357: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ATKHAST");
+let value_1358 = rt.get_literal_cached(value_1356, &LITERAL_READ_SITE_1357)?;
+native_local_26 = value_1358;
 Ok(Completion::Normal)
 })();
-let value_1355 = statement_result_1318?;
-if !matches!(value_1355, Completion::Normal) { return Ok(value_1355); }
-let statement_result_1356: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1357 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_1358 = rt.resolve_binding(env, "Math")?;
-let value_1359 = rt.read_binding(value_1358)?;
-static LITERAL_READ_SITE_1360: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("max");
-let value_1361 = rt.get_literal_cached(value_1359, &LITERAL_READ_SITE_1360)?;
-let value_1362 = Value::Number(f64::from_bits(0xc054000000000000u64));
-let value_1363 = native_local_26;
-let value_1364 = rt.call(value_1361, value_1359, &[value_1362,value_1363])?;
-let value_1367 = match (value_1357, value_1364) { (Value::Number(numeric_left_1365), Value::Number(numeric_right_1366)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1365, numeric_right_1366)), _ => rt.binary(BinaryOp::Add, value_1357, value_1364)? };
-let value_1368 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_1371 = match (value_1367, value_1368) { (Value::Number(numeric_left_1369), Value::Number(numeric_right_1370)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1369, numeric_right_1370)), _ => rt.binary(BinaryOp::Div, value_1367, value_1368)? };
-native_local_26 = value_1371;
-let value_1372 = native_local_26;
-static LITERAL_READ_SITE_1373: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("global_cd");
-let value_1374 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1373)?;
-let value_1375 = native_local_25;
+let value_1359 = statement_result_1322?;
+if !matches!(value_1359, Completion::Normal) { return Ok(value_1359); }
+let statement_result_1360: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1361 = Value::Number(f64::from_bits(0x4059000000000000u64));
+let value_1362 = rt.resolve_binding_id(env, env_name_173)?;
+let value_1363 = rt.read_binding(value_1362)?;
+static LITERAL_READ_SITE_1364: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("max");
+let value_1365 = rt.get_literal_cached(value_1363, &LITERAL_READ_SITE_1364)?;
+let value_1366 = Value::Number(f64::from_bits(0xc054000000000000u64));
+let value_1367 = native_local_26;
+let value_1368 = rt.call(value_1365, value_1363, &[value_1366,value_1367])?;
+let value_1371 = match (value_1361, value_1368) { (Value::Number(numeric_left_1369), Value::Number(numeric_right_1370)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1369, numeric_right_1370)), _ => rt.binary(BinaryOp::Add, value_1361, value_1368)? };
+let value_1372 = Value::Number(f64::from_bits(0x4059000000000000u64));
+let value_1375 = match (value_1371, value_1372) { (Value::Number(numeric_left_1373), Value::Number(numeric_right_1374)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1373, numeric_right_1374)), _ => rt.binary(BinaryOp::Div, value_1371, value_1372)? };
+native_local_26 = value_1375;
 let value_1376 = native_local_26;
-let value_1379 = match (value_1375, value_1376) { (Value::Number(numeric_left_1377), Value::Number(numeric_right_1378)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1377, numeric_right_1378)), _ => rt.binary(BinaryOp::Mul, value_1375, value_1376)? };
-let value_1382 = match (value_1374, value_1379) { (Value::Number(numeric_left_1380), Value::Number(numeric_right_1381)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1380, numeric_right_1381)), _ => rt.binary(BinaryOp::Sub, value_1374, value_1379)? };
-let value_1383 = rt.static_string("global_cd");
-let value_1384 = rt.set(this, value_1383, value_1382, false)?;
+static LITERAL_READ_SITE_1377: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("global_cd");
+let value_1378 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1377)?;
+let value_1379 = native_local_25;
+let value_1380 = native_local_26;
+let value_1383 = match (value_1379, value_1380) { (Value::Number(numeric_left_1381), Value::Number(numeric_right_1382)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1381, numeric_right_1382)), _ => rt.binary(BinaryOp::Mul, value_1379, value_1380)? };
+let value_1386 = match (value_1378, value_1383) { (Value::Number(numeric_left_1384), Value::Number(numeric_right_1385)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1384, numeric_right_1385)), _ => rt.binary(BinaryOp::Sub, value_1378, value_1383)? };
+let value_1387 = rt.static_string("global_cd");
+let value_1388 = rt.set(this, value_1387, value_1386, false)?;
 Ok(Completion::Normal)
 })();
-let value_1385 = statement_result_1356?;
-if !matches!(value_1385, Completion::Normal) { return Ok(value_1385); }
-let statement_result_1386: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1387: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1388: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_name");
-let value_1389 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1388)?;
-native_local_27 = value_1389;
-let value_1390 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_28 = value_1390;
+let value_1389 = statement_result_1360?;
+if !matches!(value_1389, Completion::Normal) { return Ok(value_1389); }
+let statement_result_1390: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1391: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1392: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_name");
+let value_1393 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1392)?;
+native_local_27 = value_1393;
+let value_1394 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_28 = value_1394;
 Ok(Completion::Normal)
 })();
-let value_1391 = statement_result_1387?;
-if !matches!(value_1391, Completion::Normal) { return Ok(value_1391); }
+let value_1395 = statement_result_1391?;
+if !matches!(value_1395, Completion::Normal) { return Ok(value_1395); }
 loop {
-let value_1392 = native_local_28;
-static LITERAL_READ_SITE_1393: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("skill_list");
-let value_1394 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1393)?;
-static LITERAL_READ_SITE_1395: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
-let value_1396 = rt.get_literal_cached(value_1394, &LITERAL_READ_SITE_1395)?;
-let value_1399 = match (value_1392, value_1396) { (Value::Number(numeric_left_1397), Value::Number(numeric_right_1398)) => Value::Bool(numeric_left_1397 < numeric_right_1398), _ => rt.binary(BinaryOp::Lt, value_1392, value_1396)? };
-if !rt.truthy(value_1399) { break; }
-let statement_result_1400: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1401: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1402: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1403 = native_local_25;
-native_local_29 = value_1403;
+let value_1396 = native_local_28;
+static LITERAL_READ_SITE_1397: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("skill_list");
+let value_1398 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1397)?;
+static LITERAL_READ_SITE_1399: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
+let value_1400 = rt.get_literal_cached(value_1398, &LITERAL_READ_SITE_1399)?;
+let value_1403 = match (value_1396, value_1400) { (Value::Number(numeric_left_1401), Value::Number(numeric_right_1402)) => Value::Bool(numeric_left_1401 < numeric_right_1402), _ => rt.binary(BinaryOp::Lt, value_1396, value_1400)? };
+if !rt.truthy(value_1403) { break; }
+let statement_result_1404: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1405: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1406: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1407 = native_local_25;
+native_local_29 = value_1407;
 Ok(Completion::Normal)
 })();
-let value_1404 = statement_result_1402?;
-if !matches!(value_1404, Completion::Normal) { return Ok(value_1404); }
-let statement_result_1405: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1406: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("skill_list");
-let value_1407 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1406)?;
-let value_1408 = native_local_28;
-let value_1409 = rt.get(value_1407, value_1408)?;
+let value_1408 = statement_result_1406?;
+if !matches!(value_1408, Completion::Normal) { return Ok(value_1408); }
+let statement_result_1409: JsResult<Completion> = (|| -> JsResult<Completion> {
 static LITERAL_READ_SITE_1410: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("skill_list");
 let value_1411 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1410)?;
 let value_1412 = native_local_28;
 let value_1413 = rt.get(value_1411, value_1412)?;
-static LITERAL_READ_SITE_1414: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("caster");
-let value_1415 = rt.get_literal_cached(value_1413, &LITERAL_READ_SITE_1414)?;
-static LITERAL_READ_SITE_1416: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("basic_skill");
-let value_1417 = rt.get_literal_cached(value_1415, &LITERAL_READ_SITE_1416)?;
-let value_1420 = match (value_1409, value_1417) { (Value::Number(numeric_left_1418), Value::Number(numeric_right_1419)) => Value::Bool(numeric_left_1418 == numeric_right_1419), _ => rt.binary(BinaryOp::StrictEq, value_1409, value_1417)? };
-let mut logical_1421 = value_1420;
-if rt.truthy(value_1420) {
-let value_1422 = native_local_25;
-let value_1423 = native_local_26;
-let value_1426 = match (value_1422, value_1423) { (Value::Number(numeric_left_1424), Value::Number(numeric_right_1425)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1424, numeric_right_1425)), _ => rt.binary(BinaryOp::Mul, value_1422, value_1423)? };
-native_local_29 = value_1426;
-let value_1427 = native_local_29;
-logical_1421 = value_1426;
+static LITERAL_READ_SITE_1414: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("skill_list");
+let value_1415 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1414)?;
+let value_1416 = native_local_28;
+let value_1417 = rt.get(value_1415, value_1416)?;
+static LITERAL_READ_SITE_1418: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("caster");
+let value_1419 = rt.get_literal_cached(value_1417, &LITERAL_READ_SITE_1418)?;
+static LITERAL_READ_SITE_1420: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("basic_skill");
+let value_1421 = rt.get_literal_cached(value_1419, &LITERAL_READ_SITE_1420)?;
+let value_1424 = match (value_1413, value_1421) { (Value::Number(numeric_left_1422), Value::Number(numeric_right_1423)) => Value::Bool(numeric_left_1422 == numeric_right_1423), _ => rt.binary(BinaryOp::StrictEq, value_1413, value_1421)? };
+let mut logical_1425 = value_1424;
+if rt.truthy(value_1424) {
+let value_1426 = native_local_25;
+let value_1427 = native_local_26;
+let value_1430 = match (value_1426, value_1427) { (Value::Number(numeric_left_1428), Value::Number(numeric_right_1429)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1428, numeric_right_1429)), _ => rt.binary(BinaryOp::Mul, value_1426, value_1427)? };
+native_local_29 = value_1430;
+let value_1431 = native_local_29;
+logical_1425 = value_1430;
 }
-static LITERAL_READ_SITE_1428: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("skill_list");
-let value_1429 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1428)?;
-let value_1430 = native_local_28;
-let value_1431 = rt.get(value_1429, value_1430)?;
-static LITERAL_READ_SITE_1432: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("update");
-let value_1433 = rt.get_literal_cached(value_1431, &LITERAL_READ_SITE_1432)?;
-let value_1434 = native_local_4;
-let value_1435 = native_local_29;
-let value_1436 = rt.read_binding(value_40)?;
-let value_1437 = rt.call(value_1433, value_1431, &[value_1434,value_1435,value_1436])?;
+static LITERAL_READ_SITE_1432: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("skill_list");
+let value_1433 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1432)?;
+let value_1434 = native_local_28;
+let value_1435 = rt.get(value_1433, value_1434)?;
+static LITERAL_READ_SITE_1436: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("update");
+let value_1437 = rt.get_literal_cached(value_1435, &LITERAL_READ_SITE_1436)?;
+let value_1438 = native_local_4;
+let value_1439 = native_local_29;
+let value_1440 = native_local_40;
+let value_1441 = rt.call(value_1437, value_1435, &[value_1438,value_1439,value_1440])?;
 Ok(Completion::Normal)
 })();
-let value_1438 = statement_result_1405?;
-if !matches!(value_1438, Completion::Normal) { return Ok(value_1438); }
+let value_1442 = statement_result_1409?;
+if !matches!(value_1442, Completion::Normal) { return Ok(value_1442); }
 Ok(Completion::Normal)
 })();
-let value_1439 = statement_result_1401?;
-Ok(value_1439)
+let value_1443 = statement_result_1405?;
+Ok(value_1443)
 })();
-let value_1440 = statement_result_1400?;
-match value_1440 {
+let value_1444 = statement_result_1404?;
+match value_1444 {
 Completion::Normal | Completion::Continue(None) => {},
-Completion::Continue(target_label_1441) if false => {},
+Completion::Continue(target_label_1445) if false => {},
 Completion::Break(None) => break,
-Completion::Break(target_label_1441) if false => break,
+Completion::Break(target_label_1445) if false => break,
 other => return Ok(other),
 }
-let value_1442 = native_local_28;
-let value_1443 = rt.to_number(value_1442)?;
-let value_1444 = Value::Number(value_1443);
-let value_1445 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1448 = match (value_1444, value_1445) { (Value::Number(numeric_left_1446), Value::Number(numeric_right_1447)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1446, numeric_right_1447)), _ => rt.binary(BinaryOp::Add, value_1444, value_1445)? };
-native_local_28 = value_1448;
-let value_1449 = native_local_28;
+let value_1446 = native_local_28;
+let value_1447 = rt.to_number(value_1446)?;
+let value_1448 = Value::Number(value_1447);
+let value_1449 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1452 = match (value_1448, value_1449) { (Value::Number(numeric_left_1450), Value::Number(numeric_right_1451)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1450, numeric_right_1451)), _ => rt.binary(BinaryOp::Add, value_1448, value_1449)? };
+native_local_28 = value_1452;
+let value_1453 = native_local_28;
 }
 Ok(Completion::Normal)
 })();
-let value_1450 = statement_result_1386?;
-if !matches!(value_1450, Completion::Normal) { return Ok(value_1450); }
-let statement_result_1451: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1452 = native_local_5;
-let mut logical_1453 = value_1452;
-if rt.truthy(value_1452) {
-let value_1454 = native_local_27;
-static LITERAL_READ_SITE_1455: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_name");
-let value_1456 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1455)?;
-let value_1459 = match (value_1454, value_1456) { (Value::Number(numeric_left_1457), Value::Number(numeric_right_1458)) => Value::Bool(numeric_left_1457 == numeric_right_1458), _ => rt.binary(BinaryOp::StrictEq, value_1454, value_1456)? };
-logical_1453 = value_1459;
+let value_1454 = statement_result_1390?;
+if !matches!(value_1454, Completion::Normal) { return Ok(value_1454); }
+let statement_result_1455: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1456 = native_local_5;
+let mut logical_1457 = value_1456;
+if rt.truthy(value_1456) {
+let value_1458 = native_local_27;
+static LITERAL_READ_SITE_1459: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("action_name");
+let value_1460 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1459)?;
+let value_1463 = match (value_1458, value_1460) { (Value::Number(numeric_left_1461), Value::Number(numeric_right_1462)) => Value::Bool(numeric_left_1461 == numeric_right_1462), _ => rt.binary(BinaryOp::StrictEq, value_1458, value_1460)? };
+logical_1457 = value_1463;
 }
-let mut logical_1460 = logical_1453;
-if rt.truthy(logical_1453) {
-static LITERAL_READ_SITE_1461: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("state");
-let value_1462 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1461)?;
-let value_1463 = rt.resolve_binding(env, "ed")?;
-let value_1464 = rt.read_binding(value_1463)?;
-static LITERAL_READ_SITE_1465: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("emUnitState_Attack");
-let value_1466 = rt.get_literal_cached(value_1464, &LITERAL_READ_SITE_1465)?;
-let value_1469 = match (value_1462, value_1466) { (Value::Number(numeric_left_1467), Value::Number(numeric_right_1468)) => Value::Bool(numeric_left_1467 == numeric_right_1468), _ => rt.binary(BinaryOp::StrictEq, value_1462, value_1466)? };
-logical_1460 = value_1469;
+let mut logical_1464 = logical_1457;
+if rt.truthy(logical_1457) {
+static LITERAL_READ_SITE_1465: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("state");
+let value_1466 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1465)?;
+let value_1467 = rt.resolve_binding_id(env, env_name_83)?;
+let value_1468 = rt.read_binding(value_1467)?;
+static LITERAL_READ_SITE_1469: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("emUnitState_Attack");
+let value_1470 = rt.get_literal_cached(value_1468, &LITERAL_READ_SITE_1469)?;
+let value_1473 = match (value_1466, value_1470) { (Value::Number(numeric_left_1471), Value::Number(numeric_right_1472)) => Value::Bool(numeric_left_1471 == numeric_right_1472), _ => rt.binary(BinaryOp::StrictEq, value_1466, value_1470)? };
+logical_1464 = value_1473;
 }
-let mut logical_1470 = logical_1460;
-if rt.truthy(logical_1460) {
-static LITERAL_READ_SITE_1471: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
-let value_1472 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1471)?;
-static LITERAL_READ_SITE_1473: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onPhaseFinished");
-let value_1474 = rt.get_literal_cached(value_1472, &LITERAL_READ_SITE_1473)?;
-let value_1475 = rt.call(value_1474, value_1472, &[])?;
-logical_1470 = value_1475;
+let mut logical_1474 = logical_1464;
+if rt.truthy(logical_1464) {
+static LITERAL_READ_SITE_1475: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("current_skill");
+let value_1476 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1475)?;
+static LITERAL_READ_SITE_1477: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onPhaseFinished");
+let value_1478 = rt.get_literal_cached(value_1476, &LITERAL_READ_SITE_1477)?;
+let value_1479 = rt.call(value_1478, value_1476, &[])?;
+logical_1474 = value_1479;
 }
 Ok(Completion::Normal)
 })();
-let value_1476 = statement_result_1451?;
-if !matches!(value_1476, Completion::Normal) { return Ok(value_1476); }
-let statement_result_1477: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1478: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_1479 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1478)?;
-native_local_30 = value_1479;
-Ok(Completion::Normal)
-})();
-let value_1480 = statement_result_1477?;
+let value_1480 = statement_result_1455?;
 if !matches!(value_1480, Completion::Normal) { return Ok(value_1480); }
 let statement_result_1481: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1482 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1483 = rt.resolve_binding(env, "ed")?;
-let value_1484 = rt.read_binding(value_1483)?;
-static LITERAL_READ_SITE_1485: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battleEngine");
-let value_1486 = rt.get_literal_cached(value_1484, &LITERAL_READ_SITE_1485)?;
-static LITERAL_READ_SITE_1487: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("freeze_level");
-let value_1488 = rt.get_literal_cached(value_1486, &LITERAL_READ_SITE_1487)?;
-let value_1491 = match (value_1482, value_1488) { (Value::Number(numeric_left_1489), Value::Number(numeric_right_1490)) => Value::Bool(numeric_left_1489 == numeric_right_1490), _ => rt.binary(BinaryOp::StrictEq, value_1482, value_1488)? };
-let mut conditional_1492 = Value::Undefined;
-if rt.truthy(value_1491) {
-let value_1493 = native_local_30;
-static LITERAL_READ_SITE_1494: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("disableAI");
-let value_1495 = rt.get_literal_cached(value_1493, &LITERAL_READ_SITE_1494)?;
+static LITERAL_READ_SITE_1482: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_1483 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1482)?;
+native_local_30 = value_1483;
+Ok(Completion::Normal)
+})();
+let value_1484 = statement_result_1481?;
+if !matches!(value_1484, Completion::Normal) { return Ok(value_1484); }
+let statement_result_1485: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1486 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1487 = rt.resolve_binding_id(env, env_name_83)?;
+let value_1488 = rt.read_binding(value_1487)?;
+static LITERAL_READ_SITE_1489: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battleEngine");
+let value_1490 = rt.get_literal_cached(value_1488, &LITERAL_READ_SITE_1489)?;
+static LITERAL_READ_SITE_1491: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("freeze_level");
+let value_1492 = rt.get_literal_cached(value_1490, &LITERAL_READ_SITE_1491)?;
+let value_1495 = match (value_1486, value_1492) { (Value::Number(numeric_left_1493), Value::Number(numeric_right_1494)) => Value::Bool(numeric_left_1493 == numeric_right_1494), _ => rt.binary(BinaryOp::StrictEq, value_1486, value_1492)? };
 let mut conditional_1496 = Value::Undefined;
 if rt.truthy(value_1495) {
-static LITERAL_READ_SITE_1497: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ai");
-let value_1498 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1497)?;
-static LITERAL_READ_SITE_1499: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("castSkillWhenControlled");
-let value_1500 = rt.get_literal_cached(value_1498, &LITERAL_READ_SITE_1499)?;
-let value_1501 = rt.call(value_1500, value_1498, &[])?;
-conditional_1496 = value_1501;
+let value_1497 = native_local_30;
+static LITERAL_READ_SITE_1498: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("disableAI");
+let value_1499 = rt.get_literal_cached(value_1497, &LITERAL_READ_SITE_1498)?;
+let mut conditional_1500 = Value::Undefined;
+if rt.truthy(value_1499) {
+static LITERAL_READ_SITE_1501: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ai");
+let value_1502 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1501)?;
+static LITERAL_READ_SITE_1503: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("castSkillWhenControlled");
+let value_1504 = rt.get_literal_cached(value_1502, &LITERAL_READ_SITE_1503)?;
+let value_1505 = rt.call(value_1504, value_1502, &[])?;
+conditional_1500 = value_1505;
 } else {
-static LITERAL_READ_SITE_1502: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ai");
-let value_1503 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1502)?;
-static LITERAL_READ_SITE_1504: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("update");
-let value_1505 = rt.get_literal_cached(value_1503, &LITERAL_READ_SITE_1504)?;
-let value_1506 = rt.read_binding(value_40)?;
-let value_1507 = rt.call(value_1505, value_1503, &[value_1506])?;
-conditional_1496 = value_1507;
+static LITERAL_READ_SITE_1506: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ai");
+let value_1507 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1506)?;
+static LITERAL_READ_SITE_1508: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("update");
+let value_1509 = rt.get_literal_cached(value_1507, &LITERAL_READ_SITE_1508)?;
+let value_1510 = native_local_40;
+let value_1511 = rt.call(value_1509, value_1507, &[value_1510])?;
+conditional_1500 = value_1511;
 }
-conditional_1492 = conditional_1496;
+conditional_1496 = conditional_1500;
 } else {
-static LITERAL_READ_SITE_1508: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isPet");
-let value_1509 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1508)?;
-let value_1510 = rt.call(value_1509, this, &[])?;
-let mut logical_1511 = value_1510;
-if rt.truthy(value_1510) {
-static LITERAL_READ_SITE_1512: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("frozen_model");
+static LITERAL_READ_SITE_1512: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isPet");
 let value_1513 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1512)?;
-let value_1514 = rt.unary(UnaryOp::Not, value_1513)?;
-logical_1511 = value_1514;
+let value_1514 = rt.call(value_1513, this, &[])?;
+let mut logical_1515 = value_1514;
+if rt.truthy(value_1514) {
+static LITERAL_READ_SITE_1516: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("frozen_model");
+let value_1517 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1516)?;
+let value_1518 = rt.unary(UnaryOp::Not, value_1517)?;
+logical_1515 = value_1518;
 }
-let mut logical_1515 = logical_1511;
-if rt.truthy(logical_1511) {
-let value_1516 = native_local_30;
-static LITERAL_READ_SITE_1517: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("disableAI");
-let value_1518 = rt.get_literal_cached(value_1516, &LITERAL_READ_SITE_1517)?;
-let mut logical_1519 = value_1518;
-if !rt.truthy(value_1518) {
-static LITERAL_READ_SITE_1520: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ai");
-let value_1521 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1520)?;
-static LITERAL_READ_SITE_1522: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("update");
-let value_1523 = rt.get_literal_cached(value_1521, &LITERAL_READ_SITE_1522)?;
-let value_1524 = rt.read_binding(value_40)?;
-let value_1525 = rt.call(value_1523, value_1521, &[value_1524])?;
-logical_1519 = value_1525;
+let mut logical_1519 = logical_1515;
+if rt.truthy(logical_1515) {
+let value_1520 = native_local_30;
+static LITERAL_READ_SITE_1521: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("disableAI");
+let value_1522 = rt.get_literal_cached(value_1520, &LITERAL_READ_SITE_1521)?;
+let mut logical_1523 = value_1522;
+if !rt.truthy(value_1522) {
+static LITERAL_READ_SITE_1524: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ai");
+let value_1525 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1524)?;
+static LITERAL_READ_SITE_1526: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("update");
+let value_1527 = rt.get_literal_cached(value_1525, &LITERAL_READ_SITE_1526)?;
+let value_1528 = native_local_40;
+let value_1529 = rt.call(value_1527, value_1525, &[value_1528])?;
+logical_1523 = value_1529;
 }
-logical_1515 = logical_1519;
+logical_1519 = logical_1523;
 }
-conditional_1492 = logical_1515;
+conditional_1496 = logical_1519;
 }
-static LITERAL_READ_SITE_1526: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("recheckManualCast");
-let value_1527 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1526)?;
-let value_1528 = rt.call(value_1527, this, &[])?;
+static LITERAL_READ_SITE_1530: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("recheckManualCast");
+let value_1531 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1530)?;
+let value_1532 = rt.call(value_1531, this, &[])?;
 Ok(Completion::Normal)
 })();
-let value_1529 = statement_result_1481?;
-if !matches!(value_1529, Completion::Normal) { return Ok(value_1529); }
-let statement_result_1530: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1531 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_28 = value_1531;
-let value_1532 = native_local_28;
+let value_1533 = statement_result_1485?;
+if !matches!(value_1533, Completion::Normal) { return Ok(value_1533); }
+let statement_result_1534: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1535 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_28 = value_1535;
+let value_1536 = native_local_28;
 loop {
-let value_1533 = native_local_28;
-static LITERAL_READ_SITE_1534: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
-let value_1535 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1534)?;
-static LITERAL_READ_SITE_1536: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
-let value_1537 = rt.get_literal_cached(value_1535, &LITERAL_READ_SITE_1536)?;
-let value_1540 = match (value_1533, value_1537) { (Value::Number(numeric_left_1538), Value::Number(numeric_right_1539)) => Value::Bool(numeric_left_1538 < numeric_right_1539), _ => rt.binary(BinaryOp::Lt, value_1533, value_1537)? };
-if !rt.truthy(value_1540) { break; }
-let statement_result_1541: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1542: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1543: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1544: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
-let value_1545 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1544)?;
-let value_1546 = native_local_28;
-let value_1547 = rt.get(value_1545, value_1546)?;
-native_local_31 = value_1547;
+let value_1537 = native_local_28;
+static LITERAL_READ_SITE_1538: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
+let value_1539 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1538)?;
+static LITERAL_READ_SITE_1540: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
+let value_1541 = rt.get_literal_cached(value_1539, &LITERAL_READ_SITE_1540)?;
+let value_1544 = match (value_1537, value_1541) { (Value::Number(numeric_left_1542), Value::Number(numeric_right_1543)) => Value::Bool(numeric_left_1542 < numeric_right_1543), _ => rt.binary(BinaryOp::Lt, value_1537, value_1541)? };
+if !rt.truthy(value_1544) { break; }
+let statement_result_1545: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1546: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1547: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1548: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
+let value_1549 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1548)?;
+let value_1550 = native_local_28;
+let value_1551 = rt.get(value_1549, value_1550)?;
+native_local_31 = value_1551;
 Ok(Completion::Normal)
 })();
-let value_1548 = statement_result_1543?;
-if !matches!(value_1548, Completion::Normal) { return Ok(value_1548); }
-let statement_result_1549: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1550: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_1551 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1550)?;
-static LITERAL_READ_SITE_1552: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("stopBuff");
-let value_1553 = rt.get_literal_cached(value_1551, &LITERAL_READ_SITE_1552)?;
-let value_1554 = rt.unary(UnaryOp::Not, value_1553)?;
-let mut logical_1555 = value_1554;
-if !rt.truthy(value_1554) {
-let value_1556 = native_local_31;
-static LITERAL_READ_SITE_1557: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hasEffectOrNot");
-let value_1558 = rt.get_literal_cached(value_1556, &LITERAL_READ_SITE_1557)?;
-let value_1559 = rt.static_string("stopBuff");
-let value_1560 = rt.call(value_1558, value_1556, &[value_1559])?;
-logical_1555 = value_1560;
+let value_1552 = statement_result_1547?;
+if !matches!(value_1552, Completion::Normal) { return Ok(value_1552); }
+let statement_result_1553: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1554: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_1555 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1554)?;
+static LITERAL_READ_SITE_1556: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("stopBuff");
+let value_1557 = rt.get_literal_cached(value_1555, &LITERAL_READ_SITE_1556)?;
+let value_1558 = rt.unary(UnaryOp::Not, value_1557)?;
+let mut logical_1559 = value_1558;
+if !rt.truthy(value_1558) {
+let value_1560 = native_local_31;
+static LITERAL_READ_SITE_1561: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hasEffectOrNot");
+let value_1562 = rt.get_literal_cached(value_1560, &LITERAL_READ_SITE_1561)?;
+let value_1563 = rt.static_string("stopBuff");
+let value_1564 = rt.call(value_1562, value_1560, &[value_1563])?;
+logical_1559 = value_1564;
 }
-if rt.truthy(logical_1555) {
-let statement_result_1561: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1562: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1563: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1564: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
-let value_1565 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1564)?;
-static LITERAL_READ_SITE_1566: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
-let value_1567 = rt.get_literal_cached(value_1565, &LITERAL_READ_SITE_1566)?;
-native_local_32 = value_1567;
+if rt.truthy(logical_1559) {
+let statement_result_1565: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1566: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1567: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1568: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
+let value_1569 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1568)?;
+static LITERAL_READ_SITE_1570: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
+let value_1571 = rt.get_literal_cached(value_1569, &LITERAL_READ_SITE_1570)?;
+native_local_32 = value_1571;
 Ok(Completion::Normal)
 })();
-let value_1568 = statement_result_1563?;
-if !matches!(value_1568, Completion::Normal) { return Ok(value_1568); }
-let statement_result_1569: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1570 = native_local_31;
-static LITERAL_READ_SITE_1571: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("update");
-let value_1572 = rt.get_literal_cached(value_1570, &LITERAL_READ_SITE_1571)?;
-let value_1573 = rt.read_binding(value_40)?;
-let value_1574 = rt.call(value_1572, value_1570, &[value_1573])?;
-let value_1575 = native_local_32;
-static LITERAL_READ_SITE_1576: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
-let value_1577 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1576)?;
-static LITERAL_READ_SITE_1578: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
-let value_1579 = rt.get_literal_cached(value_1577, &LITERAL_READ_SITE_1578)?;
-let value_1580 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1583 = match (value_1579, value_1580) { (Value::Number(numeric_left_1581), Value::Number(numeric_right_1582)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1581, numeric_right_1582)), _ => rt.binary(BinaryOp::Add, value_1579, value_1580)? };
-let value_1586 = match (value_1575, value_1583) { (Value::Number(numeric_left_1584), Value::Number(numeric_right_1585)) => Value::Bool(numeric_left_1584 == numeric_right_1585), _ => rt.binary(BinaryOp::Eq, value_1575, value_1583)? };
-let mut logical_1587 = value_1586;
-if rt.truthy(value_1586) {
-let value_1588 = native_local_28;
-let value_1589 = rt.to_number(value_1588)?;
-let value_1590 = Value::Number(value_1589);
-let value_1591 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1594 = match (value_1590, value_1591) { (Value::Number(numeric_left_1592), Value::Number(numeric_right_1593)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1592, numeric_right_1593)), _ => rt.binary(BinaryOp::Sub, value_1590, value_1591)? };
-native_local_28 = value_1594;
-let value_1595 = native_local_28;
-logical_1587 = value_1590;
+let value_1572 = statement_result_1567?;
+if !matches!(value_1572, Completion::Normal) { return Ok(value_1572); }
+let statement_result_1573: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1574 = native_local_31;
+static LITERAL_READ_SITE_1575: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("update");
+let value_1576 = rt.get_literal_cached(value_1574, &LITERAL_READ_SITE_1575)?;
+let value_1577 = native_local_40;
+let value_1578 = rt.call(value_1576, value_1574, &[value_1577])?;
+let value_1579 = native_local_32;
+static LITERAL_READ_SITE_1580: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
+let value_1581 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1580)?;
+static LITERAL_READ_SITE_1582: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
+let value_1583 = rt.get_literal_cached(value_1581, &LITERAL_READ_SITE_1582)?;
+let value_1584 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1587 = match (value_1583, value_1584) { (Value::Number(numeric_left_1585), Value::Number(numeric_right_1586)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1585, numeric_right_1586)), _ => rt.binary(BinaryOp::Add, value_1583, value_1584)? };
+let value_1590 = match (value_1579, value_1587) { (Value::Number(numeric_left_1588), Value::Number(numeric_right_1589)) => Value::Bool(numeric_left_1588 == numeric_right_1589), _ => rt.binary(BinaryOp::Eq, value_1579, value_1587)? };
+let mut logical_1591 = value_1590;
+if rt.truthy(value_1590) {
+let value_1592 = native_local_28;
+let value_1593 = rt.to_number(value_1592)?;
+let value_1594 = Value::Number(value_1593);
+let value_1595 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1598 = match (value_1594, value_1595) { (Value::Number(numeric_left_1596), Value::Number(numeric_right_1597)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1596, numeric_right_1597)), _ => rt.binary(BinaryOp::Sub, value_1594, value_1595)? };
+native_local_28 = value_1598;
+let value_1599 = native_local_28;
+logical_1591 = value_1594;
 }
 Ok(Completion::Normal)
 })();
-let value_1596 = statement_result_1569?;
-if !matches!(value_1596, Completion::Normal) { return Ok(value_1596); }
+let value_1600 = statement_result_1573?;
+if !matches!(value_1600, Completion::Normal) { return Ok(value_1600); }
 Ok(Completion::Normal)
 })();
-let value_1597 = statement_result_1562?;
-Ok(value_1597)
+let value_1601 = statement_result_1566?;
+Ok(value_1601)
 })();
-let value_1598 = statement_result_1561?;
-Ok(value_1598)
+let value_1602 = statement_result_1565?;
+Ok(value_1602)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_1599 = statement_result_1549?;
-if !matches!(value_1599, Completion::Normal) { return Ok(value_1599); }
-let statement_result_1600: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1601 = native_local_31;
-static LITERAL_READ_SITE_1602: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("clearOnCasterDeathFlag");
-let value_1603 = rt.get_literal_cached(value_1601, &LITERAL_READ_SITE_1602)?;
-let mut logical_1604 = value_1603;
-if rt.truthy(value_1603) {
+let value_1603 = statement_result_1553?;
+if !matches!(value_1603, Completion::Normal) { return Ok(value_1603); }
+let statement_result_1604: JsResult<Completion> = (|| -> JsResult<Completion> {
 let value_1605 = native_local_31;
-static LITERAL_READ_SITE_1606: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("caster");
+static LITERAL_READ_SITE_1606: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("clearOnCasterDeathFlag");
 let value_1607 = rt.get_literal_cached(value_1605, &LITERAL_READ_SITE_1606)?;
-logical_1604 = value_1607;
-}
-let mut logical_1608 = logical_1604;
-if rt.truthy(logical_1604) {
+let mut logical_1608 = value_1607;
+if rt.truthy(value_1607) {
 let value_1609 = native_local_31;
 static LITERAL_READ_SITE_1610: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("caster");
 let value_1611 = rt.get_literal_cached(value_1609, &LITERAL_READ_SITE_1610)?;
-static LITERAL_READ_SITE_1612: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
-let value_1613 = rt.get_literal_cached(value_1611, &LITERAL_READ_SITE_1612)?;
-let value_1614 = rt.call(value_1613, value_1611, &[])?;
-let value_1615 = rt.unary(UnaryOp::Not, value_1614)?;
-logical_1608 = value_1615;
+logical_1608 = value_1611;
 }
-let mut logical_1616 = logical_1608;
+let mut logical_1612 = logical_1608;
 if rt.truthy(logical_1608) {
-let value_1617 = native_local_31;
-let value_1618 = Value::Number(f64::from_bits(0xbff0000000000000u64));
-let value_1619 = rt.static_string("timer");
-let value_1620 = rt.set(value_1617, value_1619, value_1618, false)?;
-logical_1616 = value_1618;
+let value_1613 = native_local_31;
+static LITERAL_READ_SITE_1614: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("caster");
+let value_1615 = rt.get_literal_cached(value_1613, &LITERAL_READ_SITE_1614)?;
+static LITERAL_READ_SITE_1616: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
+let value_1617 = rt.get_literal_cached(value_1615, &LITERAL_READ_SITE_1616)?;
+let value_1618 = rt.call(value_1617, value_1615, &[])?;
+let value_1619 = rt.unary(UnaryOp::Not, value_1618)?;
+logical_1612 = value_1619;
+}
+let mut logical_1620 = logical_1612;
+if rt.truthy(logical_1612) {
+let value_1621 = native_local_31;
+let value_1622 = Value::Number(f64::from_bits(0xbff0000000000000u64));
+let value_1623 = rt.static_string("timer");
+let value_1624 = rt.set(value_1621, value_1623, value_1622, false)?;
+logical_1620 = value_1622;
 }
 Ok(Completion::Normal)
 })();
-let value_1621 = statement_result_1600?;
-if !matches!(value_1621, Completion::Normal) { return Ok(value_1621); }
+let value_1625 = statement_result_1604?;
+if !matches!(value_1625, Completion::Normal) { return Ok(value_1625); }
 Ok(Completion::Normal)
 })();
-let value_1622 = statement_result_1542?;
-Ok(value_1622)
+let value_1626 = statement_result_1546?;
+Ok(value_1626)
 })();
-let value_1623 = statement_result_1541?;
-match value_1623 {
+let value_1627 = statement_result_1545?;
+match value_1627 {
 Completion::Normal | Completion::Continue(None) => {},
-Completion::Continue(target_label_1624) if false => {},
+Completion::Continue(target_label_1628) if false => {},
 Completion::Break(None) => break,
-Completion::Break(target_label_1624) if false => break,
+Completion::Break(target_label_1628) if false => break,
 other => return Ok(other),
 }
-let value_1625 = native_local_28;
-let value_1626 = rt.to_number(value_1625)?;
-let value_1627 = Value::Number(value_1626);
-let value_1628 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1631 = match (value_1627, value_1628) { (Value::Number(numeric_left_1629), Value::Number(numeric_right_1630)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1629, numeric_right_1630)), _ => rt.binary(BinaryOp::Add, value_1627, value_1628)? };
-native_local_28 = value_1631;
-let value_1632 = native_local_28;
+let value_1629 = native_local_28;
+let value_1630 = rt.to_number(value_1629)?;
+let value_1631 = Value::Number(value_1630);
+let value_1632 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1635 = match (value_1631, value_1632) { (Value::Number(numeric_left_1633), Value::Number(numeric_right_1634)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1633, numeric_right_1634)), _ => rt.binary(BinaryOp::Add, value_1631, value_1632)? };
+native_local_28 = value_1635;
+let value_1636 = native_local_28;
 }
 Ok(Completion::Normal)
 })();
-let value_1633 = statement_result_1530?;
-if !matches!(value_1633, Completion::Normal) { return Ok(value_1633); }
-let statement_result_1634: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1635: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
-let value_1636 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1635)?;
-let value_1637 = rt.call(value_1636, this, &[])?;
-if rt.truthy(value_1637) {
+let value_1637 = statement_result_1534?;
+if !matches!(value_1637, Completion::Normal) { return Ok(value_1637); }
 let statement_result_1638: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1639: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1640: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1641: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_1642 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1641)?;
-static LITERAL_READ_SITE_1643: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("MPR");
-let value_1644 = rt.get_literal_cached(value_1642, &LITERAL_READ_SITE_1643)?;
-native_local_33 = value_1644;
-static LITERAL_READ_SITE_1645: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("getTransferMpTarget");
+static LITERAL_READ_SITE_1639: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
+let value_1640 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1639)?;
+let value_1641 = rt.call(value_1640, this, &[])?;
+if rt.truthy(value_1641) {
+let statement_result_1642: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1643: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1644: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1645: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
 let value_1646 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1645)?;
-let value_1647 = rt.call(value_1646, this, &[])?;
-native_local_34 = value_1647;
+static LITERAL_READ_SITE_1647: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("MPR");
+let value_1648 = rt.get_literal_cached(value_1646, &LITERAL_READ_SITE_1647)?;
+native_local_33 = value_1648;
+static LITERAL_READ_SITE_1649: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("getTransferMpTarget");
+let value_1650 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1649)?;
+let value_1651 = rt.call(value_1650, this, &[])?;
+native_local_34 = value_1651;
 Ok(Completion::Normal)
 })();
-let value_1648 = statement_result_1640?;
-if !matches!(value_1648, Completion::Normal) { return Ok(value_1648); }
-let statement_result_1649: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1650 = native_local_33;
-let value_1651 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1652 = native_local_34;
-static LITERAL_READ_SITE_1653: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_1654 = rt.get_literal_cached(value_1652, &LITERAL_READ_SITE_1653)?;
-static LITERAL_READ_SITE_1655: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("AllMpRatio");
-let value_1656 = rt.get_literal_cached(value_1654, &LITERAL_READ_SITE_1655)?;
-let value_1659 = match (value_1651, value_1656) { (Value::Number(numeric_left_1657), Value::Number(numeric_right_1658)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1657, numeric_right_1658)), _ => rt.binary(BinaryOp::Add, value_1651, value_1656)? };
-let value_1660 = native_local_34;
-static LITERAL_READ_SITE_1661: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_1662 = rt.get_literal_cached(value_1660, &LITERAL_READ_SITE_1661)?;
-static LITERAL_READ_SITE_1663: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("PRMpRatio");
-let value_1664 = rt.get_literal_cached(value_1662, &LITERAL_READ_SITE_1663)?;
-let value_1665 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_1668 = match (value_1664, value_1665) { (Value::Number(numeric_left_1666), Value::Number(numeric_right_1667)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1666, numeric_right_1667)), _ => rt.binary(BinaryOp::Div, value_1664, value_1665)? };
-let mut logical_1669 = value_1668;
-if !rt.truthy(value_1668) {
-let value_1670 = Value::Number(f64::from_bits(0x0000000000000000u64));
-logical_1669 = value_1670;
+let value_1652 = statement_result_1644?;
+if !matches!(value_1652, Completion::Normal) { return Ok(value_1652); }
+let statement_result_1653: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1654 = native_local_33;
+let value_1655 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1656 = native_local_34;
+static LITERAL_READ_SITE_1657: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_1658 = rt.get_literal_cached(value_1656, &LITERAL_READ_SITE_1657)?;
+static LITERAL_READ_SITE_1659: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("AllMpRatio");
+let value_1660 = rt.get_literal_cached(value_1658, &LITERAL_READ_SITE_1659)?;
+let value_1663 = match (value_1655, value_1660) { (Value::Number(numeric_left_1661), Value::Number(numeric_right_1662)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1661, numeric_right_1662)), _ => rt.binary(BinaryOp::Add, value_1655, value_1660)? };
+let value_1664 = native_local_34;
+static LITERAL_READ_SITE_1665: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_1666 = rt.get_literal_cached(value_1664, &LITERAL_READ_SITE_1665)?;
+static LITERAL_READ_SITE_1667: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("PRMpRatio");
+let value_1668 = rt.get_literal_cached(value_1666, &LITERAL_READ_SITE_1667)?;
+let value_1669 = Value::Number(f64::from_bits(0x4059000000000000u64));
+let value_1672 = match (value_1668, value_1669) { (Value::Number(numeric_left_1670), Value::Number(numeric_right_1671)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1670, numeric_right_1671)), _ => rt.binary(BinaryOp::Div, value_1668, value_1669)? };
+let mut logical_1673 = value_1672;
+if !rt.truthy(value_1672) {
+let value_1674 = Value::Number(f64::from_bits(0x0000000000000000u64));
+logical_1673 = value_1674;
 }
-let value_1673 = match (value_1659, logical_1669) { (Value::Number(numeric_left_1671), Value::Number(numeric_right_1672)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1671, numeric_right_1672)), _ => rt.binary(BinaryOp::Add, value_1659, logical_1669)? };
-let value_1676 = match (value_1650, value_1673) { (Value::Number(numeric_left_1674), Value::Number(numeric_right_1675)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1674, numeric_right_1675)), _ => rt.binary(BinaryOp::Mul, value_1650, value_1673)? };
-native_local_33 = value_1676;
-let value_1677 = native_local_33;
-let value_1678 = native_local_34;
-static LITERAL_READ_SITE_1679: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("setMp");
-let value_1680 = rt.get_literal_cached(value_1678, &LITERAL_READ_SITE_1679)?;
-let value_1681 = native_local_34;
-static LITERAL_READ_SITE_1682: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("mp");
-let value_1683 = rt.get_literal_cached(value_1681, &LITERAL_READ_SITE_1682)?;
-let value_1684 = native_local_33;
-let value_1685 = rt.read_binding(value_40)?;
-let value_1688 = match (value_1684, value_1685) { (Value::Number(numeric_left_1686), Value::Number(numeric_right_1687)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1686, numeric_right_1687)), _ => rt.binary(BinaryOp::Mul, value_1684, value_1685)? };
-let value_1691 = match (value_1683, value_1688) { (Value::Number(numeric_left_1689), Value::Number(numeric_right_1690)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1689, numeric_right_1690)), _ => rt.binary(BinaryOp::Add, value_1683, value_1688)? };
-let value_1692 = rt.call(value_1680, value_1678, &[value_1691,this])?;
-static LITERAL_READ_SITE_1693: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_1694 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1693)?;
-static LITERAL_READ_SITE_1695: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("noHPR");
-let value_1696 = rt.get_literal_cached(value_1694, &LITERAL_READ_SITE_1695)?;
-let value_1697 = rt.unary(UnaryOp::Not, value_1696)?;
-if rt.truthy(value_1697) {
-let statement_result_1698: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1699: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1700: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1701 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_28 = value_1701;
-let value_1702 = native_local_28;
+let value_1677 = match (value_1663, logical_1673) { (Value::Number(numeric_left_1675), Value::Number(numeric_right_1676)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1675, numeric_right_1676)), _ => rt.binary(BinaryOp::Add, value_1663, logical_1673)? };
+let value_1680 = match (value_1654, value_1677) { (Value::Number(numeric_left_1678), Value::Number(numeric_right_1679)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1678, numeric_right_1679)), _ => rt.binary(BinaryOp::Mul, value_1654, value_1677)? };
+native_local_33 = value_1680;
+let value_1681 = native_local_33;
+let value_1682 = native_local_34;
+static LITERAL_READ_SITE_1683: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("setMp");
+let value_1684 = rt.get_literal_cached(value_1682, &LITERAL_READ_SITE_1683)?;
+let value_1685 = native_local_34;
+static LITERAL_READ_SITE_1686: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("mp");
+let value_1687 = rt.get_literal_cached(value_1685, &LITERAL_READ_SITE_1686)?;
+let value_1688 = native_local_33;
+let value_1689 = native_local_40;
+let value_1692 = match (value_1688, value_1689) { (Value::Number(numeric_left_1690), Value::Number(numeric_right_1691)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1690, numeric_right_1691)), _ => rt.binary(BinaryOp::Mul, value_1688, value_1689)? };
+let value_1695 = match (value_1687, value_1692) { (Value::Number(numeric_left_1693), Value::Number(numeric_right_1694)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1693, numeric_right_1694)), _ => rt.binary(BinaryOp::Add, value_1687, value_1692)? };
+let value_1696 = rt.call(value_1684, value_1682, &[value_1695,this])?;
+static LITERAL_READ_SITE_1697: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_1698 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1697)?;
+static LITERAL_READ_SITE_1699: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("noHPR");
+let value_1700 = rt.get_literal_cached(value_1698, &LITERAL_READ_SITE_1699)?;
+let value_1701 = rt.unary(UnaryOp::Not, value_1700)?;
+if rt.truthy(value_1701) {
+let statement_result_1702: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1703: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1704: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1705 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_28 = value_1705;
+let value_1706 = native_local_28;
 loop {
-let value_1703 = native_local_28;
-static LITERAL_READ_SITE_1704: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
-let value_1705 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1704)?;
-static LITERAL_READ_SITE_1706: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
-let value_1707 = rt.get_literal_cached(value_1705, &LITERAL_READ_SITE_1706)?;
-let value_1710 = match (value_1703, value_1707) { (Value::Number(numeric_left_1708), Value::Number(numeric_right_1709)) => Value::Bool(numeric_left_1708 < numeric_right_1709), _ => rt.binary(BinaryOp::Lt, value_1703, value_1707)? };
-if !rt.truthy(value_1710) { break; }
-let statement_result_1711: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1712: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
-let value_1713 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1712)?;
-let value_1714 = native_local_28;
-let value_1715 = rt.get(value_1713, value_1714)?;
-static LITERAL_READ_SITE_1716: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("updateHPRDamage");
-let value_1717 = rt.get_literal_cached(value_1715, &LITERAL_READ_SITE_1716)?;
-let value_1718 = rt.read_binding(value_40)?;
-let value_1719 = rt.call(value_1717, value_1715, &[value_1718])?;
+let value_1707 = native_local_28;
+static LITERAL_READ_SITE_1708: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
+let value_1709 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1708)?;
+static LITERAL_READ_SITE_1710: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
+let value_1711 = rt.get_literal_cached(value_1709, &LITERAL_READ_SITE_1710)?;
+let value_1714 = match (value_1707, value_1711) { (Value::Number(numeric_left_1712), Value::Number(numeric_right_1713)) => Value::Bool(numeric_left_1712 < numeric_right_1713), _ => rt.binary(BinaryOp::Lt, value_1707, value_1711)? };
+if !rt.truthy(value_1714) { break; }
+let statement_result_1715: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1716: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
+let value_1717 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1716)?;
+let value_1718 = native_local_28;
+let value_1719 = rt.get(value_1717, value_1718)?;
+static LITERAL_READ_SITE_1720: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("updateHPRDamage");
+let value_1721 = rt.get_literal_cached(value_1719, &LITERAL_READ_SITE_1720)?;
+let value_1722 = native_local_40;
+let value_1723 = rt.call(value_1721, value_1719, &[value_1722])?;
 Ok(Completion::Normal)
 })();
-let value_1720 = statement_result_1711?;
-match value_1720 {
+let value_1724 = statement_result_1715?;
+match value_1724 {
 Completion::Normal | Completion::Continue(None) => {},
-Completion::Continue(target_label_1721) if false => {},
+Completion::Continue(target_label_1725) if false => {},
 Completion::Break(None) => break,
-Completion::Break(target_label_1721) if false => break,
+Completion::Break(target_label_1725) if false => break,
 other => return Ok(other),
 }
-let value_1722 = native_local_28;
-let value_1723 = rt.to_number(value_1722)?;
-let value_1724 = Value::Number(value_1723);
-let value_1725 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1728 = match (value_1724, value_1725) { (Value::Number(numeric_left_1726), Value::Number(numeric_right_1727)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1726, numeric_right_1727)), _ => rt.binary(BinaryOp::Add, value_1724, value_1725)? };
-native_local_28 = value_1728;
-let value_1729 = native_local_28;
+let value_1726 = native_local_28;
+let value_1727 = rt.to_number(value_1726)?;
+let value_1728 = Value::Number(value_1727);
+let value_1729 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1732 = match (value_1728, value_1729) { (Value::Number(numeric_left_1730), Value::Number(numeric_right_1731)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1730, numeric_right_1731)), _ => rt.binary(BinaryOp::Add, value_1728, value_1729)? };
+native_local_28 = value_1732;
+let value_1733 = native_local_28;
 }
 Ok(Completion::Normal)
 })();
-let value_1730 = statement_result_1700?;
-if !matches!(value_1730, Completion::Normal) { return Ok(value_1730); }
-let statement_result_1731: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1732: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_1733 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1732)?;
-static LITERAL_READ_SITE_1734: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("HPR");
-let value_1735 = rt.get_literal_cached(value_1733, &LITERAL_READ_SITE_1734)?;
-native_local_35 = value_1735;
+let value_1734 = statement_result_1704?;
+if !matches!(value_1734, Completion::Normal) { return Ok(value_1734); }
+let statement_result_1735: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1736: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_1737 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1736)?;
+static LITERAL_READ_SITE_1738: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("HPR");
+let value_1739 = rt.get_literal_cached(value_1737, &LITERAL_READ_SITE_1738)?;
+native_local_35 = value_1739;
 native_local_36 = this;
 Ok(Completion::Normal)
 })();
-let value_1736 = statement_result_1731?;
-if !matches!(value_1736, Completion::Normal) { return Ok(value_1736); }
-let statement_result_1737: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1738 = native_local_35;
-let value_1739 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1742 = match (value_1738, value_1739) { (Value::Number(numeric_left_1740), Value::Number(numeric_right_1741)) => Value::Bool(numeric_left_1740 > numeric_right_1741), _ => rt.binary(BinaryOp::Gt, value_1738, value_1739)? };
-let mut logical_1743 = value_1742;
-if rt.truthy(value_1742) {
-static LITERAL_READ_SITE_1744: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("getTransferTarget");
-let value_1745 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1744)?;
-let value_1746 = rt.call(value_1745, this, &[])?;
-native_local_36 = value_1746;
-let value_1747 = native_local_36;
-let value_1748 = native_local_35;
-let value_1749 = rt.resolve_binding(env, "Math")?;
-let value_1750 = rt.read_binding(value_1749)?;
-static LITERAL_READ_SITE_1751: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("max");
-let value_1752 = rt.get_literal_cached(value_1750, &LITERAL_READ_SITE_1751)?;
-let value_1753 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1754 = native_local_36;
-static LITERAL_READ_SITE_1755: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_1740 = statement_result_1735?;
+if !matches!(value_1740, Completion::Normal) { return Ok(value_1740); }
+let statement_result_1741: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1742 = native_local_35;
+let value_1743 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1746 = match (value_1742, value_1743) { (Value::Number(numeric_left_1744), Value::Number(numeric_right_1745)) => Value::Bool(numeric_left_1744 > numeric_right_1745), _ => rt.binary(BinaryOp::Gt, value_1742, value_1743)? };
+let mut logical_1747 = value_1746;
+if rt.truthy(value_1746) {
+static LITERAL_READ_SITE_1748: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("getTransferTarget");
+let value_1749 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1748)?;
+let value_1750 = rt.call(value_1749, this, &[])?;
+native_local_36 = value_1750;
+let value_1751 = native_local_36;
+let value_1752 = native_local_35;
+let value_1753 = rt.resolve_binding_id(env, env_name_173)?;
+let value_1754 = rt.read_binding(value_1753)?;
+static LITERAL_READ_SITE_1755: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("max");
 let value_1756 = rt.get_literal_cached(value_1754, &LITERAL_READ_SITE_1755)?;
-static LITERAL_READ_SITE_1757: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("HEAL");
-let value_1758 = rt.get_literal_cached(value_1756, &LITERAL_READ_SITE_1757)?;
-let mut logical_1759 = value_1758;
-if !rt.truthy(value_1758) {
-let value_1760 = Value::Number(f64::from_bits(0x0000000000000000u64));
-logical_1759 = value_1760;
+let value_1757 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1758 = native_local_36;
+static LITERAL_READ_SITE_1759: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_1760 = rt.get_literal_cached(value_1758, &LITERAL_READ_SITE_1759)?;
+static LITERAL_READ_SITE_1761: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("HEAL");
+let value_1762 = rt.get_literal_cached(value_1760, &LITERAL_READ_SITE_1761)?;
+let mut logical_1763 = value_1762;
+if !rt.truthy(value_1762) {
+let value_1764 = Value::Number(f64::from_bits(0x0000000000000000u64));
+logical_1763 = value_1764;
 }
-let value_1761 = Value::Number(f64::from_bits(0x4059000000000000u64));
-let value_1764 = match (logical_1759, value_1761) { (Value::Number(numeric_left_1762), Value::Number(numeric_right_1763)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1762, numeric_right_1763)), _ => rt.binary(BinaryOp::Div, logical_1759, value_1761)? };
-let value_1765 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1768 = match (value_1764, value_1765) { (Value::Number(numeric_left_1766), Value::Number(numeric_right_1767)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1766, numeric_right_1767)), _ => rt.binary(BinaryOp::Add, value_1764, value_1765)? };
-let value_1769 = rt.call(value_1752, value_1750, &[value_1753,value_1768])?;
-let value_1772 = match (value_1748, value_1769) { (Value::Number(numeric_left_1770), Value::Number(numeric_right_1771)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1770, numeric_right_1771)), _ => rt.binary(BinaryOp::Mul, value_1748, value_1769)? };
-native_local_35 = value_1772;
-let value_1773 = native_local_35;
-logical_1743 = value_1772;
+let value_1765 = Value::Number(f64::from_bits(0x4059000000000000u64));
+let value_1768 = match (logical_1763, value_1765) { (Value::Number(numeric_left_1766), Value::Number(numeric_right_1767)) => Value::Number(js_runtime::numeric_arithmetic::div(numeric_left_1766, numeric_right_1767)), _ => rt.binary(BinaryOp::Div, logical_1763, value_1765)? };
+let value_1769 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1772 = match (value_1768, value_1769) { (Value::Number(numeric_left_1770), Value::Number(numeric_right_1771)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1770, numeric_right_1771)), _ => rt.binary(BinaryOp::Add, value_1768, value_1769)? };
+let value_1773 = rt.call(value_1756, value_1754, &[value_1757,value_1772])?;
+let value_1776 = match (value_1752, value_1773) { (Value::Number(numeric_left_1774), Value::Number(numeric_right_1775)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1774, numeric_right_1775)), _ => rt.binary(BinaryOp::Mul, value_1752, value_1773)? };
+native_local_35 = value_1776;
+let value_1777 = native_local_35;
+logical_1747 = value_1776;
 }
-let value_1774 = native_local_36;
-let mut logical_1775 = value_1774;
-if rt.truthy(value_1774) {
-let value_1776 = native_local_36;
-static LITERAL_READ_SITE_1777: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
-let value_1778 = rt.get_literal_cached(value_1776, &LITERAL_READ_SITE_1777)?;
-let value_1779 = rt.call(value_1778, value_1776, &[])?;
-logical_1775 = value_1779;
+let value_1778 = native_local_36;
+let mut logical_1779 = value_1778;
+if rt.truthy(value_1778) {
+let value_1780 = native_local_36;
+static LITERAL_READ_SITE_1781: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
+let value_1782 = rt.get_literal_cached(value_1780, &LITERAL_READ_SITE_1781)?;
+let value_1783 = rt.call(value_1782, value_1780, &[])?;
+logical_1779 = value_1783;
 }
-let mut logical_1780 = logical_1775;
-if rt.truthy(logical_1775) {
-let value_1781 = native_local_35;
-let value_1782 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1785 = match (value_1781, value_1782) { (Value::Number(numeric_left_1783), Value::Number(numeric_right_1784)) => Value::Bool(numeric_left_1783 < numeric_right_1784), _ => rt.binary(BinaryOp::Lt, value_1781, value_1782)? };
-let mut logical_1786 = value_1785;
-if !rt.truthy(value_1785) {
-let value_1787 = native_local_36;
-static LITERAL_READ_SITE_1788: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_1789 = rt.get_literal_cached(value_1787, &LITERAL_READ_SITE_1788)?;
-static LITERAL_READ_SITE_1790: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("unheal");
-let value_1791 = rt.get_literal_cached(value_1789, &LITERAL_READ_SITE_1790)?;
-let value_1792 = rt.unary(UnaryOp::Not, value_1791)?;
-logical_1786 = value_1792;
+let mut logical_1784 = logical_1779;
+if rt.truthy(logical_1779) {
+let value_1785 = native_local_35;
+let value_1786 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1789 = match (value_1785, value_1786) { (Value::Number(numeric_left_1787), Value::Number(numeric_right_1788)) => Value::Bool(numeric_left_1787 < numeric_right_1788), _ => rt.binary(BinaryOp::Lt, value_1785, value_1786)? };
+let mut logical_1790 = value_1789;
+if !rt.truthy(value_1789) {
+let value_1791 = native_local_36;
+static LITERAL_READ_SITE_1792: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_1793 = rt.get_literal_cached(value_1791, &LITERAL_READ_SITE_1792)?;
+static LITERAL_READ_SITE_1794: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("unheal");
+let value_1795 = rt.get_literal_cached(value_1793, &LITERAL_READ_SITE_1794)?;
+let value_1796 = rt.unary(UnaryOp::Not, value_1795)?;
+logical_1790 = value_1796;
 }
-logical_1780 = logical_1786;
+logical_1784 = logical_1790;
 }
-if rt.truthy(logical_1780) {
-let statement_result_1793: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1794 = native_local_35;
-let value_1795 = rt.resolve_binding(env, "Math")?;
-let value_1796 = rt.read_binding(value_1795)?;
-static LITERAL_READ_SITE_1797: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("max");
-let value_1798 = rt.get_literal_cached(value_1796, &LITERAL_READ_SITE_1797)?;
-let value_1799 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1800 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1801 = native_local_36;
-static LITERAL_READ_SITE_1802: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
-let value_1803 = rt.get_literal_cached(value_1801, &LITERAL_READ_SITE_1802)?;
-static LITERAL_READ_SITE_1804: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("DOTRATIO");
-let value_1805 = rt.get_literal_cached(value_1803, &LITERAL_READ_SITE_1804)?;
-let value_1808 = match (value_1800, value_1805) { (Value::Number(numeric_left_1806), Value::Number(numeric_right_1807)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1806, numeric_right_1807)), _ => rt.binary(BinaryOp::Add, value_1800, value_1805)? };
-let value_1809 = rt.call(value_1798, value_1796, &[value_1799,value_1808])?;
-let value_1812 = match (value_1794, value_1809) { (Value::Number(numeric_left_1810), Value::Number(numeric_right_1811)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1810, numeric_right_1811)), _ => rt.binary(BinaryOp::Mul, value_1794, value_1809)? };
-native_local_35 = value_1812;
-let value_1813 = native_local_35;
-let value_1814 = native_local_36;
-static LITERAL_READ_SITE_1815: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("setHp");
-let value_1816 = rt.get_literal_cached(value_1814, &LITERAL_READ_SITE_1815)?;
-let value_1817 = native_local_36;
-static LITERAL_READ_SITE_1818: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hp");
-let value_1819 = rt.get_literal_cached(value_1817, &LITERAL_READ_SITE_1818)?;
-let value_1820 = native_local_35;
-let value_1821 = rt.read_binding(value_40)?;
-let value_1824 = match (value_1820, value_1821) { (Value::Number(numeric_left_1822), Value::Number(numeric_right_1823)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1822, numeric_right_1823)), _ => rt.binary(BinaryOp::Mul, value_1820, value_1821)? };
-let value_1827 = match (value_1819, value_1824) { (Value::Number(numeric_left_1825), Value::Number(numeric_right_1826)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1825, numeric_right_1826)), _ => rt.binary(BinaryOp::Add, value_1819, value_1824)? };
-let value_1828 = rt.call(value_1816, value_1814, &[value_1827])?;
-let value_1829 = native_local_35;
-let value_1830 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1833 = match (value_1829, value_1830) { (Value::Number(numeric_left_1831), Value::Number(numeric_right_1832)) => Value::Bool(numeric_left_1831 > numeric_right_1832), _ => rt.binary(BinaryOp::Gt, value_1829, value_1830)? };
-let mut logical_1834 = value_1833;
-if rt.truthy(value_1833) {
-let value_1835 = native_local_36;
-static LITERAL_READ_SITE_1836: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battledata");
-let value_1837 = rt.get_literal_cached(value_1835, &LITERAL_READ_SITE_1836)?;
-static LITERAL_READ_SITE_1838: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("addRestore");
-let value_1839 = rt.get_literal_cached(value_1837, &LITERAL_READ_SITE_1838)?;
-let value_1840 = native_local_35;
-let value_1841 = rt.read_binding(value_40)?;
-let value_1844 = match (value_1840, value_1841) { (Value::Number(numeric_left_1842), Value::Number(numeric_right_1843)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1842, numeric_right_1843)), _ => rt.binary(BinaryOp::Mul, value_1840, value_1841)? };
-let value_1845 = rt.call(value_1839, value_1837, &[value_1844])?;
-logical_1834 = value_1845;
+if rt.truthy(logical_1784) {
+let statement_result_1797: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1798 = native_local_35;
+let value_1799 = rt.resolve_binding_id(env, env_name_173)?;
+let value_1800 = rt.read_binding(value_1799)?;
+static LITERAL_READ_SITE_1801: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("max");
+let value_1802 = rt.get_literal_cached(value_1800, &LITERAL_READ_SITE_1801)?;
+let value_1803 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1804 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1805 = native_local_36;
+static LITERAL_READ_SITE_1806: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("attribs");
+let value_1807 = rt.get_literal_cached(value_1805, &LITERAL_READ_SITE_1806)?;
+static LITERAL_READ_SITE_1808: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("DOTRATIO");
+let value_1809 = rt.get_literal_cached(value_1807, &LITERAL_READ_SITE_1808)?;
+let value_1812 = match (value_1804, value_1809) { (Value::Number(numeric_left_1810), Value::Number(numeric_right_1811)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1810, numeric_right_1811)), _ => rt.binary(BinaryOp::Add, value_1804, value_1809)? };
+let value_1813 = rt.call(value_1802, value_1800, &[value_1803,value_1812])?;
+let value_1816 = match (value_1798, value_1813) { (Value::Number(numeric_left_1814), Value::Number(numeric_right_1815)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1814, numeric_right_1815)), _ => rt.binary(BinaryOp::Mul, value_1798, value_1813)? };
+native_local_35 = value_1816;
+let value_1817 = native_local_35;
+let value_1818 = native_local_36;
+static LITERAL_READ_SITE_1819: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("setHp");
+let value_1820 = rt.get_literal_cached(value_1818, &LITERAL_READ_SITE_1819)?;
+let value_1821 = native_local_36;
+static LITERAL_READ_SITE_1822: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hp");
+let value_1823 = rt.get_literal_cached(value_1821, &LITERAL_READ_SITE_1822)?;
+let value_1824 = native_local_35;
+let value_1825 = native_local_40;
+let value_1828 = match (value_1824, value_1825) { (Value::Number(numeric_left_1826), Value::Number(numeric_right_1827)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1826, numeric_right_1827)), _ => rt.binary(BinaryOp::Mul, value_1824, value_1825)? };
+let value_1831 = match (value_1823, value_1828) { (Value::Number(numeric_left_1829), Value::Number(numeric_right_1830)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1829, numeric_right_1830)), _ => rt.binary(BinaryOp::Add, value_1823, value_1828)? };
+let value_1832 = rt.call(value_1820, value_1818, &[value_1831])?;
+let value_1833 = native_local_35;
+let value_1834 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1837 = match (value_1833, value_1834) { (Value::Number(numeric_left_1835), Value::Number(numeric_right_1836)) => Value::Bool(numeric_left_1835 > numeric_right_1836), _ => rt.binary(BinaryOp::Gt, value_1833, value_1834)? };
+let mut logical_1838 = value_1837;
+if rt.truthy(value_1837) {
+let value_1839 = native_local_36;
+static LITERAL_READ_SITE_1840: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("battledata");
+let value_1841 = rt.get_literal_cached(value_1839, &LITERAL_READ_SITE_1840)?;
+static LITERAL_READ_SITE_1842: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("addRestore");
+let value_1843 = rt.get_literal_cached(value_1841, &LITERAL_READ_SITE_1842)?;
+let value_1844 = native_local_35;
+let value_1845 = native_local_40;
+let value_1848 = match (value_1844, value_1845) { (Value::Number(numeric_left_1846), Value::Number(numeric_right_1847)) => Value::Number(js_runtime::numeric_arithmetic::mul(numeric_left_1846, numeric_right_1847)), _ => rt.binary(BinaryOp::Mul, value_1844, value_1845)? };
+let value_1849 = rt.call(value_1843, value_1841, &[value_1848])?;
+logical_1838 = value_1849;
 }
 Ok(Completion::Normal)
 })();
-let value_1846 = statement_result_1793?;
-Ok(value_1846)
+let value_1850 = statement_result_1797?;
+Ok(value_1850)
 } else {
-let statement_result_1847: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1848 = native_local_36;
-let mut logical_1849 = value_1848;
-if rt.truthy(value_1848) {
-let value_1850 = native_local_36;
-static LITERAL_READ_SITE_1851: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
-let value_1852 = rt.get_literal_cached(value_1850, &LITERAL_READ_SITE_1851)?;
-let value_1853 = rt.call(value_1852, value_1850, &[])?;
-logical_1849 = value_1853;
+let statement_result_1851: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1852 = native_local_36;
+let mut logical_1853 = value_1852;
+if rt.truthy(value_1852) {
+let value_1854 = native_local_36;
+static LITERAL_READ_SITE_1855: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
+let value_1856 = rt.get_literal_cached(value_1854, &LITERAL_READ_SITE_1855)?;
+let value_1857 = rt.call(value_1856, value_1854, &[])?;
+logical_1853 = value_1857;
 }
-let mut logical_1854 = logical_1849;
-if rt.truthy(logical_1849) {
-let value_1855 = native_local_35;
-let value_1856 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1859 = match (value_1855, value_1856) { (Value::Number(numeric_left_1857), Value::Number(numeric_right_1858)) => Value::Bool(numeric_left_1857 > numeric_right_1858), _ => rt.binary(BinaryOp::Gt, value_1855, value_1856)? };
-logical_1854 = value_1859;
+let mut logical_1858 = logical_1853;
+if rt.truthy(logical_1853) {
+let value_1859 = native_local_35;
+let value_1860 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1863 = match (value_1859, value_1860) { (Value::Number(numeric_left_1861), Value::Number(numeric_right_1862)) => Value::Bool(numeric_left_1861 > numeric_right_1862), _ => rt.binary(BinaryOp::Gt, value_1859, value_1860)? };
+logical_1858 = value_1863;
 }
-let mut logical_1860 = logical_1854;
-if rt.truthy(logical_1854) {
-let value_1861 = native_local_36;
-static LITERAL_READ_SITE_1862: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
-let value_1863 = rt.get_literal_cached(value_1861, &LITERAL_READ_SITE_1862)?;
-static LITERAL_READ_SITE_1864: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("unheal");
-let value_1865 = rt.get_literal_cached(value_1863, &LITERAL_READ_SITE_1864)?;
-logical_1860 = value_1865;
+let mut logical_1864 = logical_1858;
+if rt.truthy(logical_1858) {
+let value_1865 = native_local_36;
+static LITERAL_READ_SITE_1866: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_1867 = rt.get_literal_cached(value_1865, &LITERAL_READ_SITE_1866)?;
+static LITERAL_READ_SITE_1868: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("unheal");
+let value_1869 = rt.get_literal_cached(value_1867, &LITERAL_READ_SITE_1868)?;
+logical_1864 = value_1869;
 }
-if rt.truthy(logical_1860) {
-let statement_result_1866: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1867: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1868 = Value::Number(f64::from_bits(0x0000000000000000u64));
-native_local_37 = value_1868;
+if rt.truthy(logical_1864) {
+let statement_result_1870: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1871: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1872 = Value::Number(f64::from_bits(0x0000000000000000u64));
+native_local_37 = value_1872;
 Ok(Completion::Normal)
 })();
-let value_1869 = statement_result_1867?;
-if !matches!(value_1869, Completion::Normal) { return Ok(value_1869); }
+let value_1873 = statement_result_1871?;
+if !matches!(value_1873, Completion::Normal) { return Ok(value_1873); }
 loop {
-let value_1870 = native_local_37;
-static LITERAL_READ_SITE_1871: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
-let value_1872 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1871)?;
-static LITERAL_READ_SITE_1873: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
-let value_1874 = rt.get_literal_cached(value_1872, &LITERAL_READ_SITE_1873)?;
-let value_1877 = match (value_1870, value_1874) { (Value::Number(numeric_left_1875), Value::Number(numeric_right_1876)) => Value::Bool(numeric_left_1875 < numeric_right_1876), _ => rt.binary(BinaryOp::Lt, value_1870, value_1874)? };
-if !rt.truthy(value_1877) { break; }
-let statement_result_1878: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1879: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1880: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_1881: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
-let value_1882 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1881)?;
-let value_1883 = native_local_37;
-let value_1884 = rt.get(value_1882, value_1883)?;
-native_local_38 = value_1884;
-let value_1885 = native_local_38;
-let mut logical_1886 = value_1885;
-if rt.truthy(value_1885) {
-let value_1887 = native_local_38;
-static LITERAL_READ_SITE_1888: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("effectsRelatedNumber");
-let value_1889 = rt.get_literal_cached(value_1887, &LITERAL_READ_SITE_1888)?;
-logical_1886 = value_1889;
-}
-let mut logical_1890 = logical_1886;
-if rt.truthy(logical_1886) {
+let value_1874 = native_local_37;
+static LITERAL_READ_SITE_1875: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
+let value_1876 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1875)?;
+static LITERAL_READ_SITE_1877: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("length");
+let value_1878 = rt.get_literal_cached(value_1876, &LITERAL_READ_SITE_1877)?;
+let value_1881 = match (value_1874, value_1878) { (Value::Number(numeric_left_1879), Value::Number(numeric_right_1880)) => Value::Bool(numeric_left_1879 < numeric_right_1880), _ => rt.binary(BinaryOp::Lt, value_1874, value_1878)? };
+if !rt.truthy(value_1881) { break; }
+let statement_result_1882: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1883: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1884: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_1885: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_list");
+let value_1886 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1885)?;
+let value_1887 = native_local_37;
+let value_1888 = rt.get(value_1886, value_1887)?;
+native_local_38 = value_1888;
+let value_1889 = native_local_38;
+let mut logical_1890 = value_1889;
+if rt.truthy(value_1889) {
 let value_1891 = native_local_38;
 static LITERAL_READ_SITE_1892: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("effectsRelatedNumber");
 let value_1893 = rt.get_literal_cached(value_1891, &LITERAL_READ_SITE_1892)?;
-static LITERAL_READ_SITE_1894: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("unheal");
-let value_1895 = rt.get_literal_cached(value_1893, &LITERAL_READ_SITE_1894)?;
-logical_1890 = value_1895;
+logical_1890 = value_1893;
 }
-native_local_39 = logical_1890;
+let mut logical_1894 = logical_1890;
+if rt.truthy(logical_1890) {
+let value_1895 = native_local_38;
+static LITERAL_READ_SITE_1896: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("effectsRelatedNumber");
+let value_1897 = rt.get_literal_cached(value_1895, &LITERAL_READ_SITE_1896)?;
+static LITERAL_READ_SITE_1898: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("unheal");
+let value_1899 = rt.get_literal_cached(value_1897, &LITERAL_READ_SITE_1898)?;
+logical_1894 = value_1899;
+}
+native_local_39 = logical_1894;
 Ok(Completion::Normal)
 })();
-let value_1896 = statement_result_1880?;
-if !matches!(value_1896, Completion::Normal) { return Ok(value_1896); }
-let statement_result_1897: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1898 = native_local_38;
-static LITERAL_READ_SITE_1899: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hasEffectOrNot");
-let value_1900 = rt.get_literal_cached(value_1898, &LITERAL_READ_SITE_1899)?;
-let value_1901 = rt.static_string("unheal");
-let value_1902 = rt.call(value_1900, value_1898, &[value_1901])?;
-let mut logical_1903 = value_1902;
-if rt.truthy(value_1902) {
-let value_1904 = native_local_39;
-let value_1905 = rt.unary(UnaryOp::Not, value_1904)?;
-logical_1903 = value_1905;
+let value_1900 = statement_result_1884?;
+if !matches!(value_1900, Completion::Normal) { return Ok(value_1900); }
+let statement_result_1901: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1902 = native_local_38;
+static LITERAL_READ_SITE_1903: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hasEffectOrNot");
+let value_1904 = rt.get_literal_cached(value_1902, &LITERAL_READ_SITE_1903)?;
+let value_1905 = rt.static_string("unheal");
+let value_1906 = rt.call(value_1904, value_1902, &[value_1905])?;
+let mut logical_1907 = value_1906;
+if rt.truthy(value_1906) {
+let value_1908 = native_local_39;
+let value_1909 = rt.unary(UnaryOp::Not, value_1908)?;
+logical_1907 = value_1909;
 }
-if rt.truthy(logical_1903) {
-let statement_result_1906: JsResult<Completion> = (|| -> JsResult<Completion> {
+if rt.truthy(logical_1907) {
+let statement_result_1910: JsResult<Completion> = (|| -> JsResult<Completion> {
 Ok(Completion::Break(None))
 })();
-let value_1907 = statement_result_1906?;
-Ok(value_1907)
+let value_1911 = statement_result_1910?;
+Ok(value_1911)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_1908 = statement_result_1897?;
-if !matches!(value_1908, Completion::Normal) { return Ok(value_1908); }
-let statement_result_1909: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1910 = native_local_38;
-let mut logical_1911 = value_1910;
-if rt.truthy(value_1910) {
-let value_1912 = native_local_39;
-logical_1911 = value_1912;
-}
-if rt.truthy(logical_1911) {
+let value_1912 = statement_result_1901?;
+if !matches!(value_1912, Completion::Normal) { return Ok(value_1912); }
 let statement_result_1913: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1914: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_1915: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1916 = native_local_38;
-static LITERAL_READ_SITE_1917: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("effectsRelatedNumber");
-let value_1918 = rt.get_literal_cached(value_1916, &LITERAL_READ_SITE_1917)?;
-static LITERAL_READ_SITE_1919: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("unheal");
-let value_1920 = rt.get_literal_cached(value_1918, &LITERAL_READ_SITE_1919)?;
-let value_1921 = rt.to_number(value_1920)?;
-let value_1922 = Value::Number(value_1921);
-let value_1923 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1926 = match (value_1922, value_1923) { (Value::Number(numeric_left_1924), Value::Number(numeric_right_1925)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1924, numeric_right_1925)), _ => rt.binary(BinaryOp::Sub, value_1922, value_1923)? };
-let value_1927 = rt.static_string("unheal");
-let value_1928 = rt.set(value_1918, value_1927, value_1926, false)?;
+let value_1914 = native_local_38;
+let mut logical_1915 = value_1914;
+if rt.truthy(value_1914) {
+let value_1916 = native_local_39;
+logical_1915 = value_1916;
+}
+if rt.truthy(logical_1915) {
+let statement_result_1917: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1918: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_1919: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1920 = native_local_38;
+static LITERAL_READ_SITE_1921: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("effectsRelatedNumber");
+let value_1922 = rt.get_literal_cached(value_1920, &LITERAL_READ_SITE_1921)?;
+static LITERAL_READ_SITE_1923: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("unheal");
+let value_1924 = rt.get_literal_cached(value_1922, &LITERAL_READ_SITE_1923)?;
+let value_1925 = rt.to_number(value_1924)?;
+let value_1926 = Value::Number(value_1925);
+let value_1927 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1930 = match (value_1926, value_1927) { (Value::Number(numeric_left_1928), Value::Number(numeric_right_1929)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1928, numeric_right_1929)), _ => rt.binary(BinaryOp::Sub, value_1926, value_1927)? };
+let value_1931 = rt.static_string("unheal");
+let value_1932 = rt.set(value_1922, value_1931, value_1930, false)?;
 Ok(Completion::Normal)
 })();
-let value_1929 = statement_result_1915?;
-if !matches!(value_1929, Completion::Normal) { return Ok(value_1929); }
-let statement_result_1930: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1933 = statement_result_1919?;
+if !matches!(value_1933, Completion::Normal) { return Ok(value_1933); }
+let statement_result_1934: JsResult<Completion> = (|| -> JsResult<Completion> {
 Ok(Completion::Break(None))
 })();
-let value_1931 = statement_result_1930?;
-if !matches!(value_1931, Completion::Normal) { return Ok(value_1931); }
+let value_1935 = statement_result_1934?;
+if !matches!(value_1935, Completion::Normal) { return Ok(value_1935); }
 Ok(Completion::Normal)
 })();
-let value_1932 = statement_result_1914?;
-Ok(value_1932)
+let value_1936 = statement_result_1918?;
+Ok(value_1936)
 })();
-let value_1933 = statement_result_1913?;
-Ok(value_1933)
+let value_1937 = statement_result_1917?;
+Ok(value_1937)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_1934 = statement_result_1909?;
-if !matches!(value_1934, Completion::Normal) { return Ok(value_1934); }
+let value_1938 = statement_result_1913?;
+if !matches!(value_1938, Completion::Normal) { return Ok(value_1938); }
 Ok(Completion::Normal)
 })();
-let value_1935 = statement_result_1879?;
-Ok(value_1935)
+let value_1939 = statement_result_1883?;
+Ok(value_1939)
 })();
-let value_1936 = statement_result_1878?;
-match value_1936 {
+let value_1940 = statement_result_1882?;
+match value_1940 {
 Completion::Normal | Completion::Continue(None) => {},
-Completion::Continue(target_label_1937) if false => {},
+Completion::Continue(target_label_1941) if false => {},
 Completion::Break(None) => break,
-Completion::Break(target_label_1937) if false => break,
+Completion::Break(target_label_1941) if false => break,
 other => return Ok(other),
 }
-let value_1938 = native_local_37;
-let value_1939 = rt.to_number(value_1938)?;
-let value_1940 = Value::Number(value_1939);
-let value_1941 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1944 = match (value_1940, value_1941) { (Value::Number(numeric_left_1942), Value::Number(numeric_right_1943)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1942, numeric_right_1943)), _ => rt.binary(BinaryOp::Add, value_1940, value_1941)? };
-native_local_37 = value_1944;
-let value_1945 = native_local_37;
+let value_1942 = native_local_37;
+let value_1943 = rt.to_number(value_1942)?;
+let value_1944 = Value::Number(value_1943);
+let value_1945 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1948 = match (value_1944, value_1945) { (Value::Number(numeric_left_1946), Value::Number(numeric_right_1947)) => Value::Number(js_runtime::numeric_arithmetic::add(numeric_left_1946, numeric_right_1947)), _ => rt.binary(BinaryOp::Add, value_1944, value_1945)? };
+native_local_37 = value_1948;
+let value_1949 = native_local_37;
 }
 Ok(Completion::Normal)
 })();
-let value_1946 = statement_result_1866?;
-Ok(value_1946)
-} else {
-Ok(Completion::Normal)
-}
-})();
-let value_1947 = statement_result_1847?;
-Ok(value_1947)
-}
-})();
-let value_1948 = statement_result_1737?;
-if !matches!(value_1948, Completion::Normal) { return Ok(value_1948); }
-Ok(Completion::Normal)
-})();
-let value_1949 = statement_result_1699?;
-Ok(value_1949)
-})();
-let value_1950 = statement_result_1698?;
+let value_1950 = statement_result_1870?;
 Ok(value_1950)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_1951 = statement_result_1649?;
-if !matches!(value_1951, Completion::Normal) { return Ok(value_1951); }
-let statement_result_1952: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_1953 = Value::Number(f64::from_bits(0x0000000000000000u64));
-static LITERAL_READ_SITE_1954: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hp");
-let value_1955 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1954)?;
-let value_1958 = match (value_1953, value_1955) { (Value::Number(numeric_left_1956), Value::Number(numeric_right_1957)) => Value::Bool(numeric_left_1956 == numeric_right_1957), _ => rt.binary(BinaryOp::StrictEq, value_1953, value_1955)? };
-let mut logical_1959 = value_1958;
-if rt.truthy(value_1958) {
-static LITERAL_READ_SITE_1960: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
-let value_1961 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1960)?;
-let value_1962 = rt.call(value_1961, this, &[])?;
-logical_1959 = value_1962;
+let value_1951 = statement_result_1851?;
+Ok(value_1951)
 }
-let mut logical_1963 = logical_1959;
-if rt.truthy(logical_1959) {
-let value_1964 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_1965 = rt.static_string("hp");
-let value_1966 = rt.set(this, value_1965, value_1964, false)?;
-logical_1963 = value_1964;
-}
-static LITERAL_READ_SITE_1967: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceLevel");
-let value_1968 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1967)?;
-let value_1969 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1972 = match (value_1968, value_1969) { (Value::Number(numeric_left_1970), Value::Number(numeric_right_1971)) => Value::Bool(numeric_left_1970 > numeric_right_1971), _ => rt.binary(BinaryOp::Gt, value_1968, value_1969)? };
-let mut logical_1973 = value_1972;
-if rt.truthy(value_1972) {
-let value_1974 = rt.static_string("number");
-static LITERAL_READ_SITE_1975: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceReduce");
-let value_1976 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1975)?;
-let value_1977 = rt.unary(UnaryOp::TypeOf, value_1976)?;
-let value_1980 = match (value_1974, value_1977) { (Value::Number(numeric_left_1978), Value::Number(numeric_right_1979)) => Value::Bool(numeric_left_1978 == numeric_right_1979), _ => rt.binary(BinaryOp::Eq, value_1974, value_1977)? };
-logical_1973 = value_1980;
-}
-let mut logical_1981 = logical_1973;
-if rt.truthy(logical_1973) {
-static LITERAL_READ_SITE_1982: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceReduce");
-let value_1983 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1982)?;
-let value_1984 = rt.read_binding(value_40)?;
-let value_1987 = match (value_1983, value_1984) { (Value::Number(numeric_left_1985), Value::Number(numeric_right_1986)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1985, numeric_right_1986)), _ => rt.binary(BinaryOp::Sub, value_1983, value_1984)? };
-let value_1988 = rt.static_string("thumpResistanceReduce");
-let value_1989 = rt.set(this, value_1988, value_1987, false)?;
-static LITERAL_READ_SITE_1990: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceReduce");
-let value_1991 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1990)?;
-let value_1992 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_1995 = match (value_1991, value_1992) { (Value::Number(numeric_left_1993), Value::Number(numeric_right_1994)) => Value::Bool(numeric_left_1993 <= numeric_right_1994), _ => rt.binary(BinaryOp::Le, value_1991, value_1992)? };
-let mut logical_1996 = value_1995;
-if rt.truthy(value_1995) {
-let value_1997 = Value::Number(f64::from_bits(0x4000000000000000u64));
-let value_1998 = rt.static_string("thumpResistanceReduce");
-let value_1999 = rt.set(this, value_1998, value_1997, false)?;
-static LITERAL_READ_SITE_2000: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceLevel");
-let value_2001 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2000)?;
-let value_2002 = rt.to_number(value_2001)?;
-let value_2003 = Value::Number(value_2002);
-let value_2004 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
-let value_2007 = match (value_2003, value_2004) { (Value::Number(numeric_left_2005), Value::Number(numeric_right_2006)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_2005, numeric_right_2006)), _ => rt.binary(BinaryOp::Sub, value_2003, value_2004)? };
-let value_2008 = rt.static_string("thumpResistanceLevel");
-let value_2009 = rt.set(this, value_2008, value_2007, false)?;
-logical_1996 = value_2003;
-}
-logical_1981 = logical_1996;
-}
-let value_2010 = rt.resolve_binding(env, "Math")?;
-let value_2011 = rt.read_binding(value_2010)?;
-static LITERAL_READ_SITE_2012: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
-let value_2013 = rt.get_literal_cached(value_2011, &LITERAL_READ_SITE_2012)?;
-static LITERAL_READ_SITE_2014: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_2015 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2014)?;
-let value_2016 = rt.static_string("0");
-let value_2017 = rt.get(value_2015, value_2016)?;
-let value_2018 = rt.call(value_2013, value_2011, &[value_2017])?;
-let value_2019 = Value::Number(f64::from_bits(0x40d6c94000000000u64));
-let value_2022 = match (value_2018, value_2019) { (Value::Number(numeric_left_2020), Value::Number(numeric_right_2021)) => Value::Bool(numeric_left_2020 > numeric_right_2021), _ => rt.binary(BinaryOp::Gt, value_2018, value_2019)? };
-let mut logical_2023 = value_2022;
-if !rt.truthy(value_2022) {
-let value_2024 = rt.resolve_binding(env, "Math")?;
-let value_2025 = rt.read_binding(value_2024)?;
-static LITERAL_READ_SITE_2026: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
-let value_2027 = rt.get_literal_cached(value_2025, &LITERAL_READ_SITE_2026)?;
-static LITERAL_READ_SITE_2028: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_2029 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2028)?;
-let value_2030 = rt.static_string("1");
-let value_2031 = rt.get(value_2029, value_2030)?;
-let value_2032 = rt.call(value_2027, value_2025, &[value_2031])?;
-let value_2033 = Value::Number(f64::from_bits(0x40d6c94000000000u64));
-let value_2036 = match (value_2032, value_2033) { (Value::Number(numeric_left_2034), Value::Number(numeric_right_2035)) => Value::Bool(numeric_left_2034 > numeric_right_2035), _ => rt.binary(BinaryOp::Gt, value_2032, value_2033)? };
-logical_2023 = value_2036;
-}
-let mut logical_2037 = logical_2023;
-if rt.truthy(logical_2023) {
-let value_2038 = rt.resolve_binding(env, "ed")?;
-let value_2039 = rt.read_binding(value_2038)?;
-static LITERAL_READ_SITE_2040: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fixPosition");
-let value_2041 = rt.get_literal_cached(value_2039, &LITERAL_READ_SITE_2040)?;
-static LITERAL_READ_SITE_2042: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
-let value_2043 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2042)?;
-let value_2044 = rt.call(value_2041, value_2039, &[value_2043])?;
-let value_2045 = rt.static_string("position");
-let value_2046 = rt.set(this, value_2045, value_2044, false)?;
-logical_2037 = value_2044;
-}
-let value_2047 = rt.static_string("number");
-static LITERAL_READ_SITE_2048: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("enterDelayTimer");
-let value_2049 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2048)?;
-let value_2050 = rt.unary(UnaryOp::TypeOf, value_2049)?;
-let value_2053 = match (value_2047, value_2050) { (Value::Number(numeric_left_2051), Value::Number(numeric_right_2052)) => Value::Bool(numeric_left_2051 == numeric_right_2052), _ => rt.binary(BinaryOp::Eq, value_2047, value_2050)? };
-let mut logical_2054 = value_2053;
-if rt.truthy(value_2053) {
-static LITERAL_READ_SITE_2055: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("enterDelayTimer");
-let value_2056 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2055)?;
-let value_2057 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_2060 = match (value_2056, value_2057) { (Value::Number(numeric_left_2058), Value::Number(numeric_right_2059)) => Value::Bool(numeric_left_2058 > numeric_right_2059), _ => rt.binary(BinaryOp::Gt, value_2056, value_2057)? };
-logical_2054 = value_2060;
-}
-let mut logical_2061 = logical_2054;
-if rt.truthy(logical_2054) {
-static LITERAL_READ_SITE_2062: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("enterDelayTimer");
-let value_2063 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2062)?;
-let value_2064 = rt.read_binding(value_40)?;
-let value_2067 = match (value_2063, value_2064) { (Value::Number(numeric_left_2065), Value::Number(numeric_right_2066)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_2065, numeric_right_2066)), _ => rt.binary(BinaryOp::Sub, value_2063, value_2064)? };
-let value_2068 = rt.static_string("enterDelayTimer");
-let value_2069 = rt.set(this, value_2068, value_2067, false)?;
-logical_2061 = value_2067;
-}
+})();
+let value_1952 = statement_result_1741?;
+if !matches!(value_1952, Completion::Normal) { return Ok(value_1952); }
 Ok(Completion::Normal)
 })();
-let value_2070 = statement_result_1952?;
-if !matches!(value_2070, Completion::Normal) { return Ok(value_2070); }
-Ok(Completion::Normal)
+let value_1953 = statement_result_1703?;
+Ok(value_1953)
 })();
-let value_2071 = statement_result_1639?;
-Ok(value_2071)
-})();
-let value_2072 = statement_result_1638?;
-Ok(value_2072)
+let value_1954 = statement_result_1702?;
+Ok(value_1954)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_2073 = statement_result_1634?;
-if !matches!(value_2073, Completion::Normal) { return Ok(value_2073); }
+let value_1955 = statement_result_1653?;
+if !matches!(value_1955, Completion::Normal) { return Ok(value_1955); }
+let statement_result_1956: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_1957 = Value::Number(f64::from_bits(0x0000000000000000u64));
+static LITERAL_READ_SITE_1958: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hp");
+let value_1959 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1958)?;
+let value_1962 = match (value_1957, value_1959) { (Value::Number(numeric_left_1960), Value::Number(numeric_right_1961)) => Value::Bool(numeric_left_1960 == numeric_right_1961), _ => rt.binary(BinaryOp::StrictEq, value_1957, value_1959)? };
+let mut logical_1963 = value_1962;
+if rt.truthy(value_1962) {
+static LITERAL_READ_SITE_1964: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isAlive");
+let value_1965 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1964)?;
+let value_1966 = rt.call(value_1965, this, &[])?;
+logical_1963 = value_1966;
+}
+let mut logical_1967 = logical_1963;
+if rt.truthy(logical_1963) {
+let value_1968 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_1969 = rt.static_string("hp");
+let value_1970 = rt.set(this, value_1969, value_1968, false)?;
+logical_1967 = value_1968;
+}
+static LITERAL_READ_SITE_1971: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceLevel");
+let value_1972 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1971)?;
+let value_1973 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1976 = match (value_1972, value_1973) { (Value::Number(numeric_left_1974), Value::Number(numeric_right_1975)) => Value::Bool(numeric_left_1974 > numeric_right_1975), _ => rt.binary(BinaryOp::Gt, value_1972, value_1973)? };
+let mut logical_1977 = value_1976;
+if rt.truthy(value_1976) {
+let value_1978 = rt.static_string("number");
+static LITERAL_READ_SITE_1979: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceReduce");
+let value_1980 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1979)?;
+let value_1981 = rt.unary(UnaryOp::TypeOf, value_1980)?;
+let value_1984 = match (value_1978, value_1981) { (Value::Number(numeric_left_1982), Value::Number(numeric_right_1983)) => Value::Bool(numeric_left_1982 == numeric_right_1983), _ => rt.binary(BinaryOp::Eq, value_1978, value_1981)? };
+logical_1977 = value_1984;
+}
+let mut logical_1985 = logical_1977;
+if rt.truthy(logical_1977) {
+static LITERAL_READ_SITE_1986: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceReduce");
+let value_1987 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1986)?;
+let value_1988 = native_local_40;
+let value_1991 = match (value_1987, value_1988) { (Value::Number(numeric_left_1989), Value::Number(numeric_right_1990)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_1989, numeric_right_1990)), _ => rt.binary(BinaryOp::Sub, value_1987, value_1988)? };
+let value_1992 = rt.static_string("thumpResistanceReduce");
+let value_1993 = rt.set(this, value_1992, value_1991, false)?;
+static LITERAL_READ_SITE_1994: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceReduce");
+let value_1995 = rt.get_literal_cached(this, &LITERAL_READ_SITE_1994)?;
+let value_1996 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_1999 = match (value_1995, value_1996) { (Value::Number(numeric_left_1997), Value::Number(numeric_right_1998)) => Value::Bool(numeric_left_1997 <= numeric_right_1998), _ => rt.binary(BinaryOp::Le, value_1995, value_1996)? };
+let mut logical_2000 = value_1999;
+if rt.truthy(value_1999) {
+let value_2001 = Value::Number(f64::from_bits(0x4000000000000000u64));
+let value_2002 = rt.static_string("thumpResistanceReduce");
+let value_2003 = rt.set(this, value_2002, value_2001, false)?;
+static LITERAL_READ_SITE_2004: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("thumpResistanceLevel");
+let value_2005 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2004)?;
+let value_2006 = rt.to_number(value_2005)?;
+let value_2007 = Value::Number(value_2006);
+let value_2008 = Value::Number(f64::from_bits(0x3ff0000000000000u64));
+let value_2011 = match (value_2007, value_2008) { (Value::Number(numeric_left_2009), Value::Number(numeric_right_2010)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_2009, numeric_right_2010)), _ => rt.binary(BinaryOp::Sub, value_2007, value_2008)? };
+let value_2012 = rt.static_string("thumpResistanceLevel");
+let value_2013 = rt.set(this, value_2012, value_2011, false)?;
+logical_2000 = value_2007;
+}
+logical_1985 = logical_2000;
+}
+let value_2014 = rt.resolve_binding_id(env, env_name_173)?;
+let value_2015 = rt.read_binding(value_2014)?;
+static LITERAL_READ_SITE_2016: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
+let value_2017 = rt.get_literal_cached(value_2015, &LITERAL_READ_SITE_2016)?;
+static LITERAL_READ_SITE_2018: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_2019 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2018)?;
+let value_2020 = rt.static_string("0");
+let value_2021 = rt.get(value_2019, value_2020)?;
+let value_2022 = rt.call(value_2017, value_2015, &[value_2021])?;
+let value_2023 = Value::Number(f64::from_bits(0x40d6c94000000000u64));
+let value_2026 = match (value_2022, value_2023) { (Value::Number(numeric_left_2024), Value::Number(numeric_right_2025)) => Value::Bool(numeric_left_2024 > numeric_right_2025), _ => rt.binary(BinaryOp::Gt, value_2022, value_2023)? };
+let mut logical_2027 = value_2026;
+if !rt.truthy(value_2026) {
+let value_2028 = rt.resolve_binding_id(env, env_name_173)?;
+let value_2029 = rt.read_binding(value_2028)?;
+static LITERAL_READ_SITE_2030: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("abs");
+let value_2031 = rt.get_literal_cached(value_2029, &LITERAL_READ_SITE_2030)?;
+static LITERAL_READ_SITE_2032: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_2033 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2032)?;
+let value_2034 = rt.static_string("1");
+let value_2035 = rt.get(value_2033, value_2034)?;
+let value_2036 = rt.call(value_2031, value_2029, &[value_2035])?;
+let value_2037 = Value::Number(f64::from_bits(0x40d6c94000000000u64));
+let value_2040 = match (value_2036, value_2037) { (Value::Number(numeric_left_2038), Value::Number(numeric_right_2039)) => Value::Bool(numeric_left_2038 > numeric_right_2039), _ => rt.binary(BinaryOp::Gt, value_2036, value_2037)? };
+logical_2027 = value_2040;
+}
+let mut logical_2041 = logical_2027;
+if rt.truthy(logical_2027) {
+let value_2042 = rt.resolve_binding_id(env, env_name_83)?;
+let value_2043 = rt.read_binding(value_2042)?;
+static LITERAL_READ_SITE_2044: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("fixPosition");
+let value_2045 = rt.get_literal_cached(value_2043, &LITERAL_READ_SITE_2044)?;
+static LITERAL_READ_SITE_2046: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("position");
+let value_2047 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2046)?;
+let value_2048 = rt.call(value_2045, value_2043, &[value_2047])?;
+let value_2049 = rt.static_string("position");
+let value_2050 = rt.set(this, value_2049, value_2048, false)?;
+logical_2041 = value_2048;
+}
+let value_2051 = rt.static_string("number");
+static LITERAL_READ_SITE_2052: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("enterDelayTimer");
+let value_2053 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2052)?;
+let value_2054 = rt.unary(UnaryOp::TypeOf, value_2053)?;
+let value_2057 = match (value_2051, value_2054) { (Value::Number(numeric_left_2055), Value::Number(numeric_right_2056)) => Value::Bool(numeric_left_2055 == numeric_right_2056), _ => rt.binary(BinaryOp::Eq, value_2051, value_2054)? };
+let mut logical_2058 = value_2057;
+if rt.truthy(value_2057) {
+static LITERAL_READ_SITE_2059: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("enterDelayTimer");
+let value_2060 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2059)?;
+let value_2061 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_2064 = match (value_2060, value_2061) { (Value::Number(numeric_left_2062), Value::Number(numeric_right_2063)) => Value::Bool(numeric_left_2062 > numeric_right_2063), _ => rt.binary(BinaryOp::Gt, value_2060, value_2061)? };
+logical_2058 = value_2064;
+}
+let mut logical_2065 = logical_2058;
+if rt.truthy(logical_2058) {
+static LITERAL_READ_SITE_2066: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("enterDelayTimer");
+let value_2067 = rt.get_literal_cached(this, &LITERAL_READ_SITE_2066)?;
+let value_2068 = native_local_40;
+let value_2071 = match (value_2067, value_2068) { (Value::Number(numeric_left_2069), Value::Number(numeric_right_2070)) => Value::Number(js_runtime::numeric_arithmetic::sub(numeric_left_2069, numeric_right_2070)), _ => rt.binary(BinaryOp::Sub, value_2067, value_2068)? };
+let value_2072 = rt.static_string("enterDelayTimer");
+let value_2073 = rt.set(this, value_2072, value_2071, false)?;
+logical_2065 = value_2071;
+}
 Ok(Completion::Normal)
 })();
-let value_2074 = statement_result_465?;
-Ok(value_2074)
+let value_2074 = statement_result_1956?;
+if !matches!(value_2074, Completion::Normal) { return Ok(value_2074); }
+Ok(Completion::Normal)
 })();
-let value_2075 = statement_result_464?;
+let value_2075 = statement_result_1643?;
 Ok(value_2075)
+})();
+let value_2076 = statement_result_1642?;
+Ok(value_2076)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_2076 = statement_result_460?;
-if !matches!(value_2076, Completion::Normal) { return Ok(value_2076); }
+let value_2077 = statement_result_1638?;
+if !matches!(value_2077, Completion::Normal) { return Ok(value_2077); }
 Ok(Completion::Normal)
 })();
-let value_2077 = statement_result_81?;
-Ok(value_2077)
-})();
-let value_2078 = statement_result_80?;
+let value_2078 = statement_result_469?;
 Ok(value_2078)
+})();
+let value_2079 = statement_result_468?;
+Ok(value_2079)
+} else {
+Ok(Completion::Normal)
 }
 })();
-let value_2079 = statement_result_42?;
-if !matches!(value_2079, Completion::Normal) { return Ok(value_2079); }
+let value_2080 = statement_result_464?;
+if !matches!(value_2080, Completion::Normal) { return Ok(value_2080); }
 Ok(Completion::Normal)
 })();
-let value_2080 = statement_result_41?;
-match value_2080 { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }
+let value_2081 = statement_result_81?;
+Ok(value_2081)
+})();
+let value_2082 = statement_result_80?;
+Ok(value_2082)
+}
+})();
+let value_2083 = statement_result_42?;
+if !matches!(value_2083, Completion::Normal) { return Ok(value_2083); }
+Ok(Completion::Normal)
+})();
+let value_2084 = statement_result_41?;
+match value_2084 { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }
 }
 
 

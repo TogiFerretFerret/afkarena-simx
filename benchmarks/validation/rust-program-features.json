@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "passed": true,
+  "programDirectory": "work/rust-battle-full",
+  "programManifestSha256": "34a4d936fa6d824fef2ad91c676aa2e9f993bb5e9819a997d00923b6cc3114cc",
+  "units": [
+    {
+      "index": 0,
+      "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+      "sha256": "d6080daea93c0816a4fb70997eec0a1adcf7b6430213abedb70d4143a73fca80",
+      "functions": 3260,
+      "flags": {
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
+        "literalPropertySlots": true,
+        "numericLiteralKeys": true,
+        "nativeNumericOps": true,
+        "sourceSpecializations": true,
+        "nativeLocalBindings": true,
+        "nativeParameters": true
+      }
+    },
+    {
+      "index": 1,
+      "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+      "sha256": "8997b20db48827ebaa2154484d89d433ca9dc99d5c0cbf67865c352e46127e23",
+      "functions": 3679,
+      "flags": {
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
+        "literalPropertySlots": true,
+        "numericLiteralKeys": true,
+        "nativeNumericOps": true,
+        "sourceSpecializations": true,
+        "nativeLocalBindings": true,
+        "nativeParameters": true
+      }
+    },
+    {
+      "index": 2,
+      "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+      "sha256": "eb897d7caa930f027b5229b917421f48968f98379c5bb46a441c19dfecb0ebc9",
+      "functions": 3237,
+      "flags": {
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
+        "literalPropertySlots": true,
+        "numericLiteralKeys": true,
+        "nativeNumericOps": true,
+        "sourceSpecializations": true,
+        "nativeLocalBindings": true,
+        "nativeParameters": true
+      }
+    },
+    {
+      "index": 3,
+      "file": "work/rust-battle-full/battle-unit-3/manifest.json",
+      "sha256": "ee8bb9ecd640b44c9bd5e58b20d1d7f28689d1aa410ee4f2d1e578683a88c671",
+      "functions": 3371,
+      "flags": {
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
+        "literalPropertySlots": true,
+        "numericLiteralKeys": true,
+        "nativeNumericOps": true,
+        "sourceSpecializations": true,
+        "nativeLocalBindings": true,
+        "nativeParameters": true
+      }
+    },
+    {
+      "index": 4,
+      "file": "work/rust-battle-full/battle-unit-4/manifest.json",
+      "sha256": "d00790db36e4e97c7e15d4822b27097d84958673f15e8cd49e65352382eb0bd9",
+      "functions": 3348,
+      "flags": {
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
+        "literalPropertySlots": true,
+        "numericLiteralKeys": true,
+        "nativeNumericOps": true,
+        "sourceSpecializations": true,
+        "nativeLocalBindings": true,
+        "nativeParameters": true
+      }
+    },
+    {
+      "index": 5,
+      "file": "work/rust-battle-full/battle-unit-5/manifest.json",
+      "sha256": "52ba6d68aa0db8a9f6746b58bb7d2f3029cde17241c0ac5f165f226878ab3911",
+      "functions": 2398,
+      "flags": {
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
+        "literalPropertySlots": true,
+        "numericLiteralKeys": true,
+        "nativeNumericOps": true,
+        "sourceSpecializations": true,
+        "nativeLocalBindings": true,
+        "nativeParameters": true
+      }
+    },
+    {
+      "index": 6,
+      "file": "work/rust-battle-full/battle-unit-6/manifest.json",
+      "sha256": "1df31ac14b79d76911d753b67cbc146ec2d883223fe0edcdeb902d6fd70a8b8c",
+      "functions": 3693,
+      "flags": {
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
+        "staticEnvironmentNames": true,
+        "literalPropertySlots": true,
+        "numericLiteralKeys": true,
+        "nativeNumericOps": true,
+        "sourceSpecializations": true,
+        "nativeLocalBindings": true,
+        "nativeParameters": true
+      }
+    }
+  ],
+  "functions": 22986,
+  "elidedActivations": 18818,
+  "unitUpdateNativeBindings": [
+    "t",
+    "a",
+    "i",
+    "r",
+    "n",
+    "l",
+    "o",
+    "f",
+    "s",
+    "c",
+    "d",
+    "u",
+    "_",
+    "m",
+    "p",
+    "k",
+    "g",
+    "v",
+    "h",
+    "S",
+    "B",
+    "A",
+    "b",
+    "D",
+    "y",
+    "C",
+    "T",
+    "M",
+    "E",
+    "P",
+    "R",
+    "O",
+    "L",
+    "x",
+    "w",
+    "F",
+    "I",
+    "H",
+    "G",
+    "U",
+    "e"
+  ],
+  "defaultGcCadence": 1,
+  "classHooks": 1,
+  "exposeHooks": 1,
+  "gcRootEnvironmentBacked": true,
+  "exposeRootEnvironmentBacked": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Read-only generated feature/source-guard assertions. This does not establish successful native build, battle semantics or throughput."
+}

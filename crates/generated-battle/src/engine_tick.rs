@@ -7,7 +7,8 @@ use js_runtime::{Runtime,Value,EnvId,JsResult,JsError,Completion,BinaryOp,UnaryO
 
 
 pub fn js_function_0(rt: &mut Runtime, this: Value, args: &[Value], parent: EnvId) -> JsResult<Value> {
-let env = rt.child_env(parent);
+let env = parent;
+let env_name_259 = rt.static_identifier_id("ed");
 let mut native_local_0 = Value::Undefined;
 let mut native_local_1 = Value::Undefined;
 let mut native_local_2 = Value::Undefined;
@@ -362,345 +363,345 @@ static LITERAL_READ_SITE_256: js_runtime::property_slots::LiteralReadSite = js_r
 let value_257 = rt.get_literal_cached(this, &LITERAL_READ_SITE_256)?;
 let mut logical_258 = value_257;
 if !rt.truthy(value_257) {
-let value_259 = rt.resolve_binding(env, "ed")?;
-let value_260 = rt.read_binding(value_259)?;
-static LITERAL_READ_SITE_261: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("getDataTable");
-let value_262 = rt.get_literal_cached(value_260, &LITERAL_READ_SITE_261)?;
-let value_263 = rt.static_string("RTPvpParams");
-let value_264 = rt.call(value_262, value_260, &[value_263])?;
-static LITERAL_READ_SITE_265: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("PlayerHP");
-let value_266 = rt.get_literal_cached(value_264, &LITERAL_READ_SITE_265)?;
-static LITERAL_READ_SITE_267: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("Value");
-let value_268 = rt.get_literal_cached(value_266, &LITERAL_READ_SITE_267)?;
-let value_269 = rt.static_string("limitDeadCount");
-let value_270 = rt.set(this, value_269, value_268, false)?;
-logical_258 = value_268;
+let value_260 = rt.resolve_binding_id(env, env_name_259)?;
+let value_261 = rt.read_binding(value_260)?;
+static LITERAL_READ_SITE_262: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("getDataTable");
+let value_263 = rt.get_literal_cached(value_261, &LITERAL_READ_SITE_262)?;
+let value_264 = rt.static_string("RTPvpParams");
+let value_265 = rt.call(value_263, value_261, &[value_264])?;
+static LITERAL_READ_SITE_266: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("PlayerHP");
+let value_267 = rt.get_literal_cached(value_265, &LITERAL_READ_SITE_266)?;
+static LITERAL_READ_SITE_268: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("Value");
+let value_269 = rt.get_literal_cached(value_267, &LITERAL_READ_SITE_268)?;
+let value_270 = rt.static_string("limitDeadCount");
+let value_271 = rt.set(this, value_270, value_269, false)?;
+logical_258 = value_269;
 }
-static LITERAL_READ_SITE_271: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("enemy_hero_dead_count");
-let value_272 = rt.get_literal_cached(this, &LITERAL_READ_SITE_271)?;
-static LITERAL_READ_SITE_273: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("limitDeadCount");
-let value_274 = rt.get_literal_cached(this, &LITERAL_READ_SITE_273)?;
-let value_277 = match (value_272, value_274) { (Value::Number(numeric_left_275), Value::Number(numeric_right_276)) => Value::Bool(numeric_left_275 >= numeric_right_276), _ => rt.binary(BinaryOp::Ge, value_272, value_274)? };
-let mut conditional_278 = Value::Undefined;
-if rt.truthy(value_277) {
-static LITERAL_READ_SITE_279: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_280 = rt.get_literal_cached(this, &LITERAL_READ_SITE_279)?;
-let value_281 = rt.static_string("victory");
-let value_282 = rt.call(value_280, this, &[value_281])?;
-conditional_278 = value_282;
+static LITERAL_READ_SITE_272: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("enemy_hero_dead_count");
+let value_273 = rt.get_literal_cached(this, &LITERAL_READ_SITE_272)?;
+static LITERAL_READ_SITE_274: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("limitDeadCount");
+let value_275 = rt.get_literal_cached(this, &LITERAL_READ_SITE_274)?;
+let value_278 = match (value_273, value_275) { (Value::Number(numeric_left_276), Value::Number(numeric_right_277)) => Value::Bool(numeric_left_276 >= numeric_right_277), _ => rt.binary(BinaryOp::Ge, value_273, value_275)? };
+let mut conditional_279 = Value::Undefined;
+if rt.truthy(value_278) {
+static LITERAL_READ_SITE_280: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_281 = rt.get_literal_cached(this, &LITERAL_READ_SITE_280)?;
+let value_282 = rt.static_string("victory");
+let value_283 = rt.call(value_281, this, &[value_282])?;
+conditional_279 = value_283;
 } else {
-static LITERAL_READ_SITE_283: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("player_hero_dead_count");
-let value_284 = rt.get_literal_cached(this, &LITERAL_READ_SITE_283)?;
-static LITERAL_READ_SITE_285: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("limitDeadCount");
-let value_286 = rt.get_literal_cached(this, &LITERAL_READ_SITE_285)?;
-let value_289 = match (value_284, value_286) { (Value::Number(numeric_left_287), Value::Number(numeric_right_288)) => Value::Bool(numeric_left_287 >= numeric_right_288), _ => rt.binary(BinaryOp::Ge, value_284, value_286)? };
-let mut conditional_290 = Value::Undefined;
-if rt.truthy(value_289) {
-static LITERAL_READ_SITE_291: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_292 = rt.get_literal_cached(this, &LITERAL_READ_SITE_291)?;
-let value_293 = rt.static_string("defeat");
-let value_294 = rt.call(value_292, this, &[value_293])?;
-conditional_290 = value_294;
+static LITERAL_READ_SITE_284: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("player_hero_dead_count");
+let value_285 = rt.get_literal_cached(this, &LITERAL_READ_SITE_284)?;
+static LITERAL_READ_SITE_286: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("limitDeadCount");
+let value_287 = rt.get_literal_cached(this, &LITERAL_READ_SITE_286)?;
+let value_290 = match (value_285, value_287) { (Value::Number(numeric_left_288), Value::Number(numeric_right_289)) => Value::Bool(numeric_left_288 >= numeric_right_289), _ => rt.binary(BinaryOp::Ge, value_285, value_287)? };
+let mut conditional_291 = Value::Undefined;
+if rt.truthy(value_290) {
+static LITERAL_READ_SITE_292: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_293 = rt.get_literal_cached(this, &LITERAL_READ_SITE_292)?;
+let value_294 = rt.static_string("defeat");
+let value_295 = rt.call(value_293, this, &[value_294])?;
+conditional_291 = value_295;
 } else {
-let value_295 = native_local_10;
-let mut logical_296 = value_295;
-if rt.truthy(value_295) {
-static LITERAL_READ_SITE_297: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_298 = rt.get_literal_cached(this, &LITERAL_READ_SITE_297)?;
-let value_299 = rt.static_string("timeout");
-let value_300 = rt.call(value_298, this, &[value_299])?;
-logical_296 = value_300;
+let value_296 = native_local_10;
+let mut logical_297 = value_296;
+if rt.truthy(value_296) {
+static LITERAL_READ_SITE_298: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_299 = rt.get_literal_cached(this, &LITERAL_READ_SITE_298)?;
+let value_300 = rt.static_string("timeout");
+let value_301 = rt.call(value_299, this, &[value_300])?;
+logical_297 = value_301;
 }
-conditional_290 = logical_296;
+conditional_291 = logical_297;
 }
-conditional_278 = conditional_290;
+conditional_279 = conditional_291;
 }
 Ok(Completion::Normal)
 })();
-let value_301 = statement_result_255?;
-Ok(value_301)
+let value_302 = statement_result_255?;
+Ok(value_302)
 } else {
-let statement_result_302: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_303 = rt.static_string("deep_stage");
-let value_304 = native_local_9;
-let value_307 = match (value_303, value_304) { (Value::Number(numeric_left_305), Value::Number(numeric_right_306)) => Value::Bool(numeric_left_305 == numeric_right_306), _ => rt.binary(BinaryOp::StrictEq, value_303, value_304)? };
-if rt.truthy(value_307) {
-let statement_result_308: JsResult<Completion> = (|| -> JsResult<Completion> {
+let statement_result_303: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_304 = rt.static_string("deep_stage");
+let value_305 = native_local_9;
+let value_308 = match (value_304, value_305) { (Value::Number(numeric_left_306), Value::Number(numeric_right_307)) => Value::Bool(numeric_left_306 == numeric_right_307), _ => rt.binary(BinaryOp::StrictEq, value_304, value_305)? };
+if rt.truthy(value_308) {
 let statement_result_309: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_310: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_311 = rt.resolve_binding(env, "ed")?;
-let value_312 = rt.read_binding(value_311)?;
-static LITERAL_READ_SITE_313: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lookupDataTable");
-let value_314 = rt.get_literal_cached(value_312, &LITERAL_READ_SITE_313)?;
-let value_315 = rt.static_string("DeepStage");
-let value_316 = rt.static_string("DeathLimit");
-let value_317 = native_local_8;
-static LITERAL_READ_SITE_318: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("param");
-let value_319 = rt.get_literal_cached(value_317, &LITERAL_READ_SITE_318)?;
-let value_320 = rt.call(value_314, value_312, &[value_315,value_316,value_319])?;
-native_local_11 = value_320;
+let statement_result_311: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_312 = rt.resolve_binding_id(env, env_name_259)?;
+let value_313 = rt.read_binding(value_312)?;
+static LITERAL_READ_SITE_314: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lookupDataTable");
+let value_315 = rt.get_literal_cached(value_313, &LITERAL_READ_SITE_314)?;
+let value_316 = rt.static_string("DeepStage");
+let value_317 = rt.static_string("DeathLimit");
+let value_318 = native_local_8;
+static LITERAL_READ_SITE_319: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("param");
+let value_320 = rt.get_literal_cached(value_318, &LITERAL_READ_SITE_319)?;
+let value_321 = rt.call(value_315, value_313, &[value_316,value_317,value_320])?;
+native_local_11 = value_321;
 Ok(Completion::Normal)
 })();
-let value_321 = statement_result_310?;
-if !matches!(value_321, Completion::Normal) { return Ok(value_321); }
-let statement_result_322: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_323: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("alive_enemy_count");
-let value_324 = rt.get_literal_cached(this, &LITERAL_READ_SITE_323)?;
-let value_325 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_328 = match (value_324, value_325) { (Value::Number(numeric_left_326), Value::Number(numeric_right_327)) => Value::Bool(numeric_left_326 <= numeric_right_327), _ => rt.binary(BinaryOp::Le, value_324, value_325)? };
-let mut logical_329 = value_328;
-if rt.truthy(value_328) {
-static LITERAL_READ_SITE_330: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("player_hero_dead_count");
-let value_331 = rt.get_literal_cached(this, &LITERAL_READ_SITE_330)?;
-let value_332 = native_local_11;
-let value_335 = match (value_331, value_332) { (Value::Number(numeric_left_333), Value::Number(numeric_right_334)) => Value::Bool(numeric_left_333 <= numeric_right_334), _ => rt.binary(BinaryOp::Le, value_331, value_332)? };
-logical_329 = value_335;
+let value_322 = statement_result_311?;
+if !matches!(value_322, Completion::Normal) { return Ok(value_322); }
+let statement_result_323: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_324: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("alive_enemy_count");
+let value_325 = rt.get_literal_cached(this, &LITERAL_READ_SITE_324)?;
+let value_326 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_329 = match (value_325, value_326) { (Value::Number(numeric_left_327), Value::Number(numeric_right_328)) => Value::Bool(numeric_left_327 <= numeric_right_328), _ => rt.binary(BinaryOp::Le, value_325, value_326)? };
+let mut logical_330 = value_329;
+if rt.truthy(value_329) {
+static LITERAL_READ_SITE_331: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("player_hero_dead_count");
+let value_332 = rt.get_literal_cached(this, &LITERAL_READ_SITE_331)?;
+let value_333 = native_local_11;
+let value_336 = match (value_332, value_333) { (Value::Number(numeric_left_334), Value::Number(numeric_right_335)) => Value::Bool(numeric_left_334 <= numeric_right_335), _ => rt.binary(BinaryOp::Le, value_332, value_333)? };
+logical_330 = value_336;
 }
-let mut conditional_336 = Value::Undefined;
-if rt.truthy(logical_329) {
-static LITERAL_READ_SITE_337: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_338 = rt.get_literal_cached(this, &LITERAL_READ_SITE_337)?;
-let value_339 = rt.static_string("victory");
-let value_340 = rt.call(value_338, this, &[value_339])?;
-conditional_336 = value_340;
+let mut conditional_337 = Value::Undefined;
+if rt.truthy(logical_330) {
+static LITERAL_READ_SITE_338: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_339 = rt.get_literal_cached(this, &LITERAL_READ_SITE_338)?;
+let value_340 = rt.static_string("victory");
+let value_341 = rt.call(value_339, this, &[value_340])?;
+conditional_337 = value_341;
 } else {
-static LITERAL_READ_SITE_341: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("player_hero_dead_count");
-let value_342 = rt.get_literal_cached(this, &LITERAL_READ_SITE_341)?;
-let value_343 = native_local_11;
-let value_346 = match (value_342, value_343) { (Value::Number(numeric_left_344), Value::Number(numeric_right_345)) => Value::Bool(numeric_left_344 > numeric_right_345), _ => rt.binary(BinaryOp::Gt, value_342, value_343)? };
-let mut logical_347 = value_346;
-if !rt.truthy(value_346) {
-static LITERAL_READ_SITE_348: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("alive_player_count");
-let value_349 = rt.get_literal_cached(this, &LITERAL_READ_SITE_348)?;
-let value_350 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_353 = match (value_349, value_350) { (Value::Number(numeric_left_351), Value::Number(numeric_right_352)) => Value::Bool(numeric_left_351 <= numeric_right_352), _ => rt.binary(BinaryOp::Le, value_349, value_350)? };
-logical_347 = value_353;
+static LITERAL_READ_SITE_342: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("player_hero_dead_count");
+let value_343 = rt.get_literal_cached(this, &LITERAL_READ_SITE_342)?;
+let value_344 = native_local_11;
+let value_347 = match (value_343, value_344) { (Value::Number(numeric_left_345), Value::Number(numeric_right_346)) => Value::Bool(numeric_left_345 > numeric_right_346), _ => rt.binary(BinaryOp::Gt, value_343, value_344)? };
+let mut logical_348 = value_347;
+if !rt.truthy(value_347) {
+static LITERAL_READ_SITE_349: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("alive_player_count");
+let value_350 = rt.get_literal_cached(this, &LITERAL_READ_SITE_349)?;
+let value_351 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_354 = match (value_350, value_351) { (Value::Number(numeric_left_352), Value::Number(numeric_right_353)) => Value::Bool(numeric_left_352 <= numeric_right_353), _ => rt.binary(BinaryOp::Le, value_350, value_351)? };
+logical_348 = value_354;
 }
-let mut conditional_354 = Value::Undefined;
-if rt.truthy(logical_347) {
-static LITERAL_READ_SITE_355: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_356 = rt.get_literal_cached(this, &LITERAL_READ_SITE_355)?;
-let value_357 = rt.static_string("defeat");
-let value_358 = rt.call(value_356, this, &[value_357])?;
-conditional_354 = value_358;
+let mut conditional_355 = Value::Undefined;
+if rt.truthy(logical_348) {
+static LITERAL_READ_SITE_356: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_357 = rt.get_literal_cached(this, &LITERAL_READ_SITE_356)?;
+let value_358 = rt.static_string("defeat");
+let value_359 = rt.call(value_357, this, &[value_358])?;
+conditional_355 = value_359;
 } else {
-let value_359 = native_local_10;
-let mut logical_360 = value_359;
-if rt.truthy(value_359) {
-static LITERAL_READ_SITE_361: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_362 = rt.get_literal_cached(this, &LITERAL_READ_SITE_361)?;
-let value_363 = rt.static_string("timeout");
-let value_364 = rt.call(value_362, this, &[value_363])?;
-logical_360 = value_364;
+let value_360 = native_local_10;
+let mut logical_361 = value_360;
+if rt.truthy(value_360) {
+static LITERAL_READ_SITE_362: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_363 = rt.get_literal_cached(this, &LITERAL_READ_SITE_362)?;
+let value_364 = rt.static_string("timeout");
+let value_365 = rt.call(value_363, this, &[value_364])?;
+logical_361 = value_365;
 }
-conditional_354 = logical_360;
+conditional_355 = logical_361;
 }
-conditional_336 = conditional_354;
+conditional_337 = conditional_355;
 }
 Ok(Completion::Normal)
 })();
-let value_365 = statement_result_322?;
-if !matches!(value_365, Completion::Normal) { return Ok(value_365); }
+let value_366 = statement_result_323?;
+if !matches!(value_366, Completion::Normal) { return Ok(value_366); }
 Ok(Completion::Normal)
 })();
-let value_366 = statement_result_309?;
-Ok(value_366)
-})();
-let value_367 = statement_result_308?;
+let value_367 = statement_result_310?;
 Ok(value_367)
+})();
+let value_368 = statement_result_309?;
+Ok(value_368)
 } else {
-let statement_result_368: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_369 = rt.resolve_binding(env, "ed")?;
-let value_370 = rt.read_binding(value_369)?;
-static LITERAL_READ_SITE_371: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("halloweenFunBattleMgr");
-let value_372 = rt.get_literal_cached(value_370, &LITERAL_READ_SITE_371)?;
-static LITERAL_READ_SITE_373: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isHalloweenFunMode");
-let value_374 = rt.get_literal_cached(value_372, &LITERAL_READ_SITE_373)?;
-let value_375 = native_local_9;
-let value_376 = rt.call(value_374, value_372, &[value_375])?;
-if rt.truthy(value_376) {
-let statement_result_377: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_378: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("checkHalloweenFunBattleEnd");
-let value_379 = rt.get_literal_cached(this, &LITERAL_READ_SITE_378)?;
-let value_380 = rt.call(value_379, this, &[])?;
+let statement_result_369: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_370 = rt.resolve_binding_id(env, env_name_259)?;
+let value_371 = rt.read_binding(value_370)?;
+static LITERAL_READ_SITE_372: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("halloweenFunBattleMgr");
+let value_373 = rt.get_literal_cached(value_371, &LITERAL_READ_SITE_372)?;
+static LITERAL_READ_SITE_374: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isHalloweenFunMode");
+let value_375 = rt.get_literal_cached(value_373, &LITERAL_READ_SITE_374)?;
+let value_376 = native_local_9;
+let value_377 = rt.call(value_375, value_373, &[value_376])?;
+if rt.truthy(value_377) {
+let statement_result_378: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_379: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("checkHalloweenFunBattleEnd");
+let value_380 = rt.get_literal_cached(this, &LITERAL_READ_SITE_379)?;
+let value_381 = rt.call(value_380, this, &[])?;
 Ok(Completion::Normal)
 })();
-let value_381 = statement_result_377?;
-Ok(value_381)
+let value_382 = statement_result_378?;
+Ok(value_382)
 } else {
-let statement_result_382: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_383: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_384: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_385 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_386 = rt.unary(UnaryOp::Void, value_385)?;
-native_local_12 = value_386;
+let statement_result_385: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_386 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_387 = rt.unary(UnaryOp::Void, value_386)?;
+native_local_12 = value_387;
 Ok(Completion::Normal)
 })();
-let value_387 = statement_result_384?;
-if !matches!(value_387, Completion::Normal) { return Ok(value_387); }
-let statement_result_388: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_389 = rt.resolve_binding(env, "ed")?;
-let value_390 = rt.read_binding(value_389)?;
-static LITERAL_READ_SITE_391: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("BattleEngine");
-let value_392 = rt.get_literal_cached(value_390, &LITERAL_READ_SITE_391)?;
-static LITERAL_READ_SITE_393: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("modesUsingMaxTicks");
-let value_394 = rt.get_literal_cached(value_392, &LITERAL_READ_SITE_393)?;
-static LITERAL_READ_SITE_395: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("indexOf");
-let value_396 = rt.get_literal_cached(value_394, &LITERAL_READ_SITE_395)?;
-let value_397 = native_local_9;
-let value_398 = rt.call(value_396, value_394, &[value_397])?;
-let value_399 = Value::Number(f64::from_bits(0xbff0000000000000u64));
-let value_402 = match (value_398, value_399) { (Value::Number(numeric_left_400), Value::Number(numeric_right_401)) => Value::Bool(numeric_left_400 > numeric_right_401), _ => rt.binary(BinaryOp::Gt, value_398, value_399)? };
-let mut logical_403 = value_402;
-if rt.truthy(value_402) {
-let value_404 = rt.resolve_binding(env, "ed")?;
-let value_405 = rt.read_binding(value_404)?;
-static LITERAL_READ_SITE_406: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lookupDataTable");
-let value_407 = rt.get_literal_cached(value_405, &LITERAL_READ_SITE_406)?;
-let value_408 = rt.static_string("ParamBattleMode");
-let value_409 = rt.static_string("MaxTicks");
-let value_410 = native_local_9;
-let value_411 = rt.call(value_407, value_405, &[value_408,value_409,value_410])?;
-let mut logical_412 = value_411;
-if !rt.truthy(value_411) {
-let value_413 = Value::Number(f64::from_bits(0x40b2c00000000000u64));
-logical_412 = value_413;
+let value_388 = statement_result_385?;
+if !matches!(value_388, Completion::Normal) { return Ok(value_388); }
+let statement_result_389: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_390 = rt.resolve_binding_id(env, env_name_259)?;
+let value_391 = rt.read_binding(value_390)?;
+static LITERAL_READ_SITE_392: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("BattleEngine");
+let value_393 = rt.get_literal_cached(value_391, &LITERAL_READ_SITE_392)?;
+static LITERAL_READ_SITE_394: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("modesUsingMaxTicks");
+let value_395 = rt.get_literal_cached(value_393, &LITERAL_READ_SITE_394)?;
+static LITERAL_READ_SITE_396: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("indexOf");
+let value_397 = rt.get_literal_cached(value_395, &LITERAL_READ_SITE_396)?;
+let value_398 = native_local_9;
+let value_399 = rt.call(value_397, value_395, &[value_398])?;
+let value_400 = Value::Number(f64::from_bits(0xbff0000000000000u64));
+let value_403 = match (value_399, value_400) { (Value::Number(numeric_left_401), Value::Number(numeric_right_402)) => Value::Bool(numeric_left_401 > numeric_right_402), _ => rt.binary(BinaryOp::Gt, value_399, value_400)? };
+let mut logical_404 = value_403;
+if rt.truthy(value_403) {
+let value_405 = rt.resolve_binding_id(env, env_name_259)?;
+let value_406 = rt.read_binding(value_405)?;
+static LITERAL_READ_SITE_407: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("lookupDataTable");
+let value_408 = rt.get_literal_cached(value_406, &LITERAL_READ_SITE_407)?;
+let value_409 = rt.static_string("ParamBattleMode");
+let value_410 = rt.static_string("MaxTicks");
+let value_411 = native_local_9;
+let value_412 = rt.call(value_408, value_406, &[value_409,value_410,value_411])?;
+let mut logical_413 = value_412;
+if !rt.truthy(value_412) {
+let value_414 = Value::Number(f64::from_bits(0x40b2c00000000000u64));
+logical_413 = value_414;
 }
-native_local_12 = logical_412;
-let value_414 = native_local_12;
-logical_403 = logical_412;
-}
+native_local_12 = logical_413;
 let value_415 = native_local_12;
-let value_416 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_419 = match (value_415, value_416) { (Value::Number(numeric_left_417), Value::Number(numeric_right_418)) => Value::Bool(numeric_left_417 > numeric_right_418), _ => rt.binary(BinaryOp::Gt, value_415, value_416)? };
-let mut logical_420 = value_419;
-if rt.truthy(value_419) {
-static LITERAL_READ_SITE_421: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ticks");
-let value_422 = rt.get_literal_cached(this, &LITERAL_READ_SITE_421)?;
-let value_423 = native_local_12;
-let value_426 = match (value_422, value_423) { (Value::Number(numeric_left_424), Value::Number(numeric_right_425)) => Value::Bool(numeric_left_424 >= numeric_right_425), _ => rt.binary(BinaryOp::Ge, value_422, value_423)? };
-logical_420 = value_426;
+logical_404 = logical_413;
 }
-if rt.truthy(logical_420) {
-let statement_result_427: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_428: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_429 = rt.get_literal_cached(this, &LITERAL_READ_SITE_428)?;
-let value_430 = rt.static_string("defeat");
-let value_431 = rt.call(value_429, this, &[value_430])?;
-let value_432 = rt.resolve_binding(env, "ed")?;
-let value_433 = rt.read_binding(value_432)?;
-static LITERAL_READ_SITE_434: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("btLog");
-let value_435 = rt.get_literal_cached(value_433, &LITERAL_READ_SITE_434)?;
-static LITERAL_READ_SITE_436: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("append");
-let value_437 = rt.get_literal_cached(value_435, &LITERAL_READ_SITE_436)?;
-static LITERAL_READ_SITE_438: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("toBtLogString");
-let value_439 = rt.get_literal_cached(this, &LITERAL_READ_SITE_438)?;
-let value_440 = rt.call(value_439, this, &[])?;
-let value_441 = rt.call(value_437, value_435, &[value_440])?;
-let value_442 = rt.unary(UnaryOp::Void, value_441)?;
-Ok(Completion::Return(value_442))
+let value_416 = native_local_12;
+let value_417 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_420 = match (value_416, value_417) { (Value::Number(numeric_left_418), Value::Number(numeric_right_419)) => Value::Bool(numeric_left_418 > numeric_right_419), _ => rt.binary(BinaryOp::Gt, value_416, value_417)? };
+let mut logical_421 = value_420;
+if rt.truthy(value_420) {
+static LITERAL_READ_SITE_422: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("ticks");
+let value_423 = rt.get_literal_cached(this, &LITERAL_READ_SITE_422)?;
+let value_424 = native_local_12;
+let value_427 = match (value_423, value_424) { (Value::Number(numeric_left_425), Value::Number(numeric_right_426)) => Value::Bool(numeric_left_425 >= numeric_right_426), _ => rt.binary(BinaryOp::Ge, value_423, value_424)? };
+logical_421 = value_427;
+}
+if rt.truthy(logical_421) {
+let statement_result_428: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_429: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_430 = rt.get_literal_cached(this, &LITERAL_READ_SITE_429)?;
+let value_431 = rt.static_string("defeat");
+let value_432 = rt.call(value_430, this, &[value_431])?;
+let value_433 = rt.resolve_binding_id(env, env_name_259)?;
+let value_434 = rt.read_binding(value_433)?;
+static LITERAL_READ_SITE_435: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("btLog");
+let value_436 = rt.get_literal_cached(value_434, &LITERAL_READ_SITE_435)?;
+static LITERAL_READ_SITE_437: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("append");
+let value_438 = rt.get_literal_cached(value_436, &LITERAL_READ_SITE_437)?;
+static LITERAL_READ_SITE_439: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("toBtLogString");
+let value_440 = rt.get_literal_cached(this, &LITERAL_READ_SITE_439)?;
+let value_441 = rt.call(value_440, this, &[])?;
+let value_442 = rt.call(value_438, value_436, &[value_441])?;
+let value_443 = rt.unary(UnaryOp::Void, value_442)?;
+Ok(Completion::Return(value_443))
 })();
-let value_443 = statement_result_427?;
-Ok(value_443)
+let value_444 = statement_result_428?;
+Ok(value_444)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_444 = statement_result_388?;
-if !matches!(value_444, Completion::Normal) { return Ok(value_444); }
-let statement_result_445: JsResult<Completion> = (|| -> JsResult<Completion> {
-static LITERAL_READ_SITE_446: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("alive_enemy_count");
-let value_447 = rt.get_literal_cached(this, &LITERAL_READ_SITE_446)?;
-let value_448 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_451 = match (value_447, value_448) { (Value::Number(numeric_left_449), Value::Number(numeric_right_450)) => Value::Bool(numeric_left_449 <= numeric_right_450), _ => rt.binary(BinaryOp::Le, value_447, value_448)? };
-let mut conditional_452 = Value::Undefined;
-if rt.truthy(value_451) {
-static LITERAL_READ_SITE_453: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_454 = rt.get_literal_cached(this, &LITERAL_READ_SITE_453)?;
-let value_455 = rt.static_string("victory");
-let value_456 = rt.call(value_454, this, &[value_455])?;
-conditional_452 = value_456;
+let value_445 = statement_result_389?;
+if !matches!(value_445, Completion::Normal) { return Ok(value_445); }
+let statement_result_446: JsResult<Completion> = (|| -> JsResult<Completion> {
+static LITERAL_READ_SITE_447: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("alive_enemy_count");
+let value_448 = rt.get_literal_cached(this, &LITERAL_READ_SITE_447)?;
+let value_449 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_452 = match (value_448, value_449) { (Value::Number(numeric_left_450), Value::Number(numeric_right_451)) => Value::Bool(numeric_left_450 <= numeric_right_451), _ => rt.binary(BinaryOp::Le, value_448, value_449)? };
+let mut conditional_453 = Value::Undefined;
+if rt.truthy(value_452) {
+static LITERAL_READ_SITE_454: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_455 = rt.get_literal_cached(this, &LITERAL_READ_SITE_454)?;
+let value_456 = rt.static_string("victory");
+let value_457 = rt.call(value_455, this, &[value_456])?;
+conditional_453 = value_457;
 } else {
-static LITERAL_READ_SITE_457: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("alive_player_count");
-let value_458 = rt.get_literal_cached(this, &LITERAL_READ_SITE_457)?;
-let value_459 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_462 = match (value_458, value_459) { (Value::Number(numeric_left_460), Value::Number(numeric_right_461)) => Value::Bool(numeric_left_460 <= numeric_right_461), _ => rt.binary(BinaryOp::Le, value_458, value_459)? };
-let mut conditional_463 = Value::Undefined;
-if rt.truthy(value_462) {
-static LITERAL_READ_SITE_464: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_465 = rt.get_literal_cached(this, &LITERAL_READ_SITE_464)?;
-let value_466 = rt.static_string("defeat");
-let value_467 = rt.call(value_465, this, &[value_466])?;
-conditional_463 = value_467;
+static LITERAL_READ_SITE_458: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("alive_player_count");
+let value_459 = rt.get_literal_cached(this, &LITERAL_READ_SITE_458)?;
+let value_460 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_463 = match (value_459, value_460) { (Value::Number(numeric_left_461), Value::Number(numeric_right_462)) => Value::Bool(numeric_left_461 <= numeric_right_462), _ => rt.binary(BinaryOp::Le, value_459, value_460)? };
+let mut conditional_464 = Value::Undefined;
+if rt.truthy(value_463) {
+static LITERAL_READ_SITE_465: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_466 = rt.get_literal_cached(this, &LITERAL_READ_SITE_465)?;
+let value_467 = rt.static_string("defeat");
+let value_468 = rt.call(value_466, this, &[value_467])?;
+conditional_464 = value_468;
 } else {
-let value_468 = native_local_10;
-let mut logical_469 = value_468;
-if rt.truthy(value_468) {
-static LITERAL_READ_SITE_470: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
-let value_471 = rt.get_literal_cached(this, &LITERAL_READ_SITE_470)?;
-let value_472 = rt.static_string("timeout");
-let value_473 = rt.call(value_471, this, &[value_472])?;
-logical_469 = value_473;
+let value_469 = native_local_10;
+let mut logical_470 = value_469;
+if rt.truthy(value_469) {
+static LITERAL_READ_SITE_471: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("onBattleEnd");
+let value_472 = rt.get_literal_cached(this, &LITERAL_READ_SITE_471)?;
+let value_473 = rt.static_string("timeout");
+let value_474 = rt.call(value_472, this, &[value_473])?;
+logical_470 = value_474;
 }
-conditional_463 = logical_469;
+conditional_464 = logical_470;
 }
-conditional_452 = conditional_463;
+conditional_453 = conditional_464;
 }
 Ok(Completion::Normal)
 })();
-let value_474 = statement_result_445?;
-if !matches!(value_474, Completion::Normal) { return Ok(value_474); }
+let value_475 = statement_result_446?;
+if !matches!(value_475, Completion::Normal) { return Ok(value_475); }
 Ok(Completion::Normal)
 })();
-let value_475 = statement_result_383?;
-Ok(value_475)
-})();
-let value_476 = statement_result_382?;
+let value_476 = statement_result_384?;
 Ok(value_476)
-}
 })();
-let value_477 = statement_result_368?;
+let value_477 = statement_result_383?;
 Ok(value_477)
 }
 })();
-let value_478 = statement_result_302?;
+let value_478 = statement_result_369?;
 Ok(value_478)
 }
 })();
-let value_479 = statement_result_249?;
-if !matches!(value_479, Completion::Normal) { return Ok(value_479); }
-let statement_result_480: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_481 = rt.resolve_binding(env, "ed")?;
-let value_482 = rt.read_binding(value_481)?;
-static LITERAL_READ_SITE_483: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("btLog");
-let value_484 = rt.get_literal_cached(value_482, &LITERAL_READ_SITE_483)?;
-static LITERAL_READ_SITE_485: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("append");
-let value_486 = rt.get_literal_cached(value_484, &LITERAL_READ_SITE_485)?;
-static LITERAL_READ_SITE_487: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("toBtLogString");
-let value_488 = rt.get_literal_cached(this, &LITERAL_READ_SITE_487)?;
-let value_489 = rt.call(value_488, this, &[])?;
-let value_490 = rt.call(value_486, value_484, &[value_489])?;
+let value_479 = statement_result_303?;
+Ok(value_479)
+}
+})();
+let value_480 = statement_result_249?;
+if !matches!(value_480, Completion::Normal) { return Ok(value_480); }
+let statement_result_481: JsResult<Completion> = (|| -> JsResult<Completion> {
+let value_482 = rt.resolve_binding_id(env, env_name_259)?;
+let value_483 = rt.read_binding(value_482)?;
+static LITERAL_READ_SITE_484: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("btLog");
+let value_485 = rt.get_literal_cached(value_483, &LITERAL_READ_SITE_484)?;
+static LITERAL_READ_SITE_486: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("append");
+let value_487 = rt.get_literal_cached(value_485, &LITERAL_READ_SITE_486)?;
+static LITERAL_READ_SITE_488: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("toBtLogString");
+let value_489 = rt.get_literal_cached(this, &LITERAL_READ_SITE_488)?;
+let value_490 = rt.call(value_489, this, &[])?;
+let value_491 = rt.call(value_487, value_485, &[value_490])?;
 Ok(Completion::Normal)
 })();
-let value_491 = statement_result_480?;
-if !matches!(value_491, Completion::Normal) { return Ok(value_491); }
+let value_492 = statement_result_481?;
+if !matches!(value_492, Completion::Normal) { return Ok(value_492); }
 Ok(Completion::Normal)
 })();
-let value_492 = statement_result_18?;
-Ok(value_492)
-})();
-let value_493 = statement_result_17?;
+let value_493 = statement_result_18?;
 Ok(value_493)
+})();
+let value_494 = statement_result_17?;
+Ok(value_494)
 } else {
 Ok(Completion::Normal)
 }
 })();
-let value_494 = statement_result_14?;
-if !matches!(value_494, Completion::Normal) { return Ok(value_494); }
+let value_495 = statement_result_14?;
+if !matches!(value_495, Completion::Normal) { return Ok(value_495); }
 Ok(Completion::Normal)
 })();
-let value_495 = statement_result_13?;
-match value_495 { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }
+let value_496 = statement_result_13?;
+match value_496 { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }
 }
 
 
