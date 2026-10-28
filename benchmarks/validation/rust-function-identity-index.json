@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "passed": true,
+  "rows": [
+    {
+      "functions": 1308,
+      "repeat": 0,
+      "queries": 1024,
+      "linearNs": 688724,
+      "indexedNs": 10826,
+      "checksum": "ed7b9483a614f500"
+    },
+    {
+      "functions": 1308,
+      "repeat": 1,
+      "queries": 1024,
+      "linearNs": 668785,
+      "indexedNs": 10676,
+      "checksum": "ed7b9483a614f500"
+    },
+    {
+      "functions": 1308,
+      "repeat": 2,
+      "queries": 1024,
+      "linearNs": 690597,
+      "indexedNs": 11466,
+      "checksum": "ed7b9483a614f500"
+    },
+    {
+      "functions": 1308,
+      "repeat": 3,
+      "queries": 1024,
+      "linearNs": 686862,
+      "indexedNs": 10736,
+      "checksum": "ed7b9483a614f500"
+    },
+    {
+      "functions": 1308,
+      "repeat": 4,
+      "queries": 1024,
+      "linearNs": 732419,
+      "indexedNs": 11327,
+      "checksum": "ed7b9483a614f500"
+    },
+    {
+      "functions": 10308,
+      "repeat": 0,
+      "queries": 1024,
+      "linearNs": 5745704,
+      "indexedNs": 11297,
+      "checksum": "719b9530fed13100"
+    },
+    {
+      "functions": 10308,
+      "repeat": 1,
+      "queries": 1024,
+      "linearNs": 5884819,
+      "indexedNs": 13761,
+      "checksum": "719b9530fed13100"
+    },
+    {
+      "functions": 10308,
+      "repeat": 2,
+      "queries": 1024,
+      "linearNs": 5688379,
+      "indexedNs": 11036,
+      "checksum": "719b9530fed13100"
+    },
+    {
+      "functions": 10308,
+      "repeat": 3,
+      "queries": 1024,
+      "linearNs": 6028680,
+      "indexedNs": 11456,
+      "checksum": "719b9530fed13100"
+    },
+    {
+      "functions": 10308,
+      "repeat": 4,
+      "queries": 1024,
+      "linearNs": 5767085,
+      "indexedNs": 10916,
+      "checksum": "719b9530fed13100"
+    },
+    {
+      "functions": 100308,
+      "repeat": 0,
+      "queries": 1024,
+      "linearNs": 174051282,
+      "indexedNs": 13990,
+      "checksum": "9adb9bf6762b8900"
+    },
+    {
+      "functions": 100308,
+      "repeat": 1,
+      "queries": 1024,
+      "linearNs": 189123434,
+      "indexedNs": 14441,
+      "checksum": "9adb9bf6762b8900"
+    },
+    {
+      "functions": 100308,
+      "repeat": 2,
+      "queries": 1024,
+      "linearNs": 202604162,
+      "indexedNs": 13620,
+      "checksum": "9adb9bf6762b8900"
+    },
+    {
+      "functions": 100308,
+      "repeat": 3,
+      "queries": 1024,
+      "linearNs": 197062893,
+      "indexedNs": 14171,
+      "checksum": "9adb9bf6762b8900"
+    },
+    {
+      "functions": 100308,
+      "repeat": 4,
+      "queries": 1024,
+      "linearNs": 189450716,
+      "indexedNs": 13850,
+      "checksum": "9adb9bf6762b8900"
+    }
+  ],
+  "binarySha256": "8c267dc2987092cc7379e9af6fbddd10a26c8d9d6b1b840257bb21284a175df7",
+  "sources": {
+    "tools/rust-port/bench-function-identity.rs": "eab6d1513cf6966d44bece4b167e2e34aa31fbf8c41b1c081cca23f46489599a",
+    "tools/rust-port/bench-function-identity.mjs": "67fb8408477ca851ec76ab481a7b89e56cc63c125f2086b3c0c83bd9b118ef71",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
+    "crates/js-runtime/src/closures.rs": "b4755929c6c286c29096cfd512d1b510604b71d99e16c8d26d4782b79d0eba47",
+    "crates/js-runtime/src/collections.rs": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
+    "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+    "crates/js-runtime/src/diagnostics.rs": "7a22261fee149ee9776723b5cb9790bca62c45c4b29a7338d166e81a5490a898",
+    "crates/js-runtime/src/env.rs": "81bd3ad26c1c2560d8df63b1985aecf620fd56f3269fc60469ca57762b727043",
+    "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "901181256a48ad047045daf799eb843268c69e8ed09bdf6477358e4ff2be09fc",
+    "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lib.rs": "a1806767845af02d84eed017266cbd57137394fc4999bd29e19c2efa4de85ea4",
+    "crates/js-runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+    "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "00ad96d602f50c1228e6e5dbd1ebdf567efa00285a62ef27186c0070fb1aa04f",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "b9bd175f82739fcbdfc794efc02da2fb9c24316bf9e905a61b65e05e6ed2bc07",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7"
+  },
+  "scope": "Lookup-only diagnostic comparing the old linear algorithm over a mirrored FunctionRecord arena with matching function IDs/layout against the real runtime index. Initial intrinsic rows are placeholder records because they are not queried. This is not a whole-runtime before/after benchmark or battle throughput.",
+  "timing": "Provisional under concurrent work; five repeats. Allocation/setup excluded; identical mixed queries and identity checksums required.",
+  "qualifiesFor10000Target": false
+}
