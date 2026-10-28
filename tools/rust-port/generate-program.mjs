@@ -10,6 +10,8 @@ const args=process.argv.slice(2);
 const option=(name,fallback)=>args.includes(name)?args[args.indexOf(name)+1]:fallback;
 const through=Number(option('--through','0'));
 const chunkSize=Number(option('--chunk-size','100'));
+const nativeBattleGcCadence=Number(option('--gc-cadence','1'));
+assert.ok(Number.isSafeInteger(nativeBattleGcCadence)&&nativeBattleGcCadence>0,'--gc-cadence must be a positive safe integer');
 assert.ok(Number.isInteger(through)&&through>=0&&through<=6);
 assert.ok(Number.isInteger(chunkSize)&&chunkSize>0);
 const output=resolve(root,option('--out','work/rust-battle-program'));
@@ -49,7 +51,7 @@ for(const unit of coverage.units.slice(0,through+1)){
  const sourceBytes=await readFile(unit.file);assert.equal(sha(sourceBytes),unit.sha256,'Frozen battle input changed');
  const name=`battle-unit-${unit.index}`,directory=resolve(output,name),src=resolve(directory,'src');
  await mkdir(src,{recursive:true});
- const result=compileSource(sourceBytes.toString('utf8'),{filename:unit.file,mode:'script',moduleName:`battle_unit_${unit.index}`,sourcePoolPath:'source.utf16le',nativeBattleGc,largeBody:{maxStatements:24,maxEstimatedNodes:600}});
+ const result=compileSource(sourceBytes.toString('utf8'),{filename:unit.file,mode:'script',moduleName:`battle_unit_${unit.index}`,sourcePoolPath:'source.utf16le',nativeBattleGc,nativeBattleGcCadence,largeBody:{maxStatements:24,maxEstimatedNodes:600}});
  const poolName=`${name}-source`,pool=resolve(output,poolName);await mkdir(resolve(pool,'src'),{recursive:true});
  await writeFile(resolve(pool,'src/source.utf16le'),result.sourcePool);
  await writeFile(resolve(pool,'src/lib.rs'),'pub static __JS_SOURCE_POOL: &[u8] = include_bytes!("source.utf16le");\n');
@@ -97,6 +99,6 @@ fn main(){if let Err(error)=execute(){eprintln!("pure_rust_execution_error:{erro
 `);
 await writeFile(resolve(output,'Cargo.toml'),'[workspace]\nmembers = '+JSON.stringify(members)+'\nresolver = "2"\n[profile.dev]\ndebug = 0\ncodegen-units = 64\n[profile.release]\ncodegen-units = 64\nlto = false\n');
 const sources={};for(const file of ['tools/rust-port/generate-program.mjs','tools/rust-port/battle-gc-proof.mjs','tools/rust-port/program-host.rs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])sources[file]=sha(await readFile(resolve(root,file)));
-const manifest={version:1,prepared:true,executed:false,qualifiesFor10000Target:false,output,through,chunkSize,nativeBattleGc,gcProof,units:reports,sources,runtimePath,scope:'Actual frozen battle JavaScript modules lowered into native Rust functions with shared global environment and static UTF16 source pools. Preparation and compile coverage do not establish successful initialization, mechanics parity, or throughput.'};
+const manifest={version:1,prepared:true,executed:false,qualifiesFor10000Target:false,output,through,chunkSize,nativeBattleGc,nativeBattleGcCadence,gcProof,units:reports,sources,runtimePath,scope:'Actual frozen battle JavaScript modules lowered into native Rust functions with shared global environment and static UTF16 source pools. Preparation and compile coverage do not establish successful initialization, mechanics parity, or throughput.'};
 await writeFile(resolve(output,'program-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(JSON.stringify({output,units:reports.length,functions:reports.reduce((n,u)=>n+u.functions,0),unsupported:reports.reduce((n,u)=>n+u.unsupportedFunctions,0),next:`cargo run --manifest-path ${relative(root,resolve(output,'Cargo.toml'))} -p rust-battle-program -j 2`}));

@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "scope": "CLI validation and actual frozen unit0 generation; full battle cadence behavior is qualified by the separate OFF/1/4 collector fixture.",
+  "invalidValuesRejected": 5,
+  "sourceInputsUnchanged": {
+    "tools/rust-port/generate-program.mjs": "b9681f25d4471e564a48f1b47476bddb859d6a42b7dd6cadc6a9d00a466a52e2",
+    "tools/rust-port/compile.mjs": "a74efd68bb623259f2613fb602d8844d0c0fb1250de4a03844e0e37ed642beaf",
+    "tools/rust-port/check-gc-cadence-generator.mjs": "f12da8b60bf79358c5f98e691e3556d564fd4ed55d03a726d451a457e9935bec"
+  },
+  "rows": [
+    {
+      "label": "four",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tools/rust-port/generate-program.mjs",
+        "--through",
+        "0",
+        "--out",
+        "work/cadence-generator-smoke",
+        "--gc-cadence",
+        "4"
+      ],
+      "cadence": 4,
+      "functions": 3260,
+      "programManifestSha256": "ef542d8ea4ab49e3958fb7e691d82e87adc699250edf24ae21b1c5a85dd60349",
+      "unitManifestSha256": "a2b5be7350225d867f840957004f2d08b2932d30fcfe9c2c81ba1271b64b8342",
+      "generatorSha256": "b9681f25d4471e564a48f1b47476bddb859d6a42b7dd6cadc6a9d00a466a52e2",
+      "compilerSha256": "a74efd68bb623259f2613fb602d8844d0c0fb1250de4a03844e0e37ed642beaf"
+    },
+    {
+      "label": "default",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tools/rust-port/generate-program.mjs",
+        "--through",
+        "0",
+        "--out",
+        "work/cadence-generator-smoke"
+      ],
+      "cadence": 1,
+      "functions": 3260,
+      "programManifestSha256": "92e508efad436a6636fae4be1dd615b3c17c3a2d410f0ab7472fba443ee6afe7",
+      "unitManifestSha256": "8d19b03c14e7681de2afb1971ebbe3a2e90240464dcf327d14bd9a4986ead7a2",
+      "generatorSha256": "b9681f25d4471e564a48f1b47476bddb859d6a42b7dd6cadc6a9d00a466a52e2",
+      "compilerSha256": "a74efd68bb623259f2613fb602d8844d0c0fb1250de4a03844e0e37ed642beaf"
+    }
+  ]
+}
