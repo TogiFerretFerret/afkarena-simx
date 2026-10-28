@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "libraryTests": 47,
+  "focusedLengthTests": 3,
+  "existingSlotTests": 4,
+  "sourceCases": 27,
+  "broadGateRefreshPending": false,
+  "scope": "Isolated virtual literal-length read proof; no native battle throughput qualification.",
+  "sourceSha256": {
+    "crates/js-runtime/src/property_slots.rs": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
+    "crates/js-runtime/src/runtime.rs": "0d974c69870a65451f3d433a526c1ee4b4637a128f3b115268cde435d4655b09",
+    "crates/js-runtime/tests/fast_length.rs": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7"
+  },
+  "semanticGates": {
+    "fastLength": 27,
+    "strings": 15,
+    "arrays": 11,
+    "closures": 47,
+    "arguments": 40,
+    "controlFlow": 40,
+    "reflection": 24,
+    "typedArrays": 20000
+  },
+  "allSourceHashesStable": true
+}

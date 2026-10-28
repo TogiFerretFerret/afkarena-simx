@@ -1,0 +1,311 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "implementationHead": "e7af7c2",
+  "base": "233ece5",
+  "scope": "Combined isolated StringHash, primitive stack ToString, virtual literal length, parseInt stack, integer property-key memo and native usize stack index formatting. Original compiler unchanged. All relevant generated source gates and full runtime Rust test suite pass. No full battle or throughput qualification is claimed. Initial unpinned typed-array invocation rejected before execution; corrected --jitless retry passed20000cases and failure stderr retained.",
+  "rustTestsPassed": 72,
+  "generatedSourceReports": [
+    {
+      "file": "benchmarks/validation/rust-generated-fast-length.json",
+      "sha256": "2cbc4627dcd7c2965e228e156f69357518bb3d2ae4dcb7bd2623a290588bff0a",
+      "passed": true,
+      "cases": 27
+    },
+    {
+      "file": "benchmarks/validation/rust-port-strings.json",
+      "sha256": "f0a0480d78ad18df399d2ee6e1cd76393e11c94c7ad3e445582d89c9c7cc357f",
+      "passed": true,
+      "cases": 15
+    },
+    {
+      "file": "benchmarks/validation/rust-port-arrays.json",
+      "sha256": "d44ad9317b302609acade1c84b2efadaffa2ebab623d934662be6272bdfa7ad4",
+      "passed": true,
+      "cases": 11
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-reflection.json",
+      "sha256": "dfabef3fff7ff42e011b8a08262a66dbc0e0296553b6a739f340687db6beb521",
+      "passed": true,
+      "cases": 24
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-arguments-elision.json",
+      "sha256": "4f01caf3f79417131fd83882185e33a550acb2708139ec7b65bc0a4730671cfb",
+      "passed": true,
+      "cases": 40
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-closures.json",
+      "sha256": "13da4f4880077b15b9944bed014fe45709ae32c8cb2d49abec828894524ee9e5",
+      "passed": true,
+      "cases": 47
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-control-flow.json",
+      "sha256": "3d22c9fb63746228d750c3687804153258d313a9806b9027877206d902c499d1",
+      "passed": true,
+      "cases": 40
+    },
+    {
+      "file": "benchmarks/validation/generated-rust-typed-arrays.json",
+      "sha256": "472d2e70be0d8e53ad758b49c24a99187164b53e0970644d763726d2c9d36600",
+      "passed": true,
+      "cases": 20000
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-parse-int-stack.json",
+      "sha256": "16f9538bdd5e1753973e8e987a86df8f029f99e3e4fe5c20b2536de0304ced28",
+      "passed": true,
+      "cases": 228
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-coercions.json",
+      "sha256": "48080770922c93261e429cebfda389c45f9646da99d2eb52efc5556b59ce43fe",
+      "passed": true,
+      "cases": 40
+    },
+    {
+      "file": "benchmarks/validation/rust-value-semantics.json",
+      "sha256": "ffb14c2e30275298c0c49d4c82a8d51b871748a1e4372bc3726604e0a8df7978",
+      "passed": true,
+      "cases": 79116
+    }
+  ],
+  "existingUnsupportedValueCases": 90,
+  "sourceHashes": {
+    "crates/js-runtime/tests/fast_length.rs": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+    "crates/js-runtime/tests/numeric_property_keys.rs": "7d729c37f9b4c77b67a98ab7e5dc9cc8260c8d9769d5c61880c2618df13adb21",
+    "crates/js-runtime/tests/ordinary_heap.rs": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+    "crates/js-runtime/tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+    "crates/js-runtime/tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+    "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/copy_obj.rs": "9fd0cf451530b7349a77b5138722848e7570fca50aa6d1708b10d03d90d28067",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/reachability.rs": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/diagnostics.rs": "0dc56a84e7b559e79dbe0c915a3fc56958baa688d8d61e7e4b5cfaee46e02034",
+    "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/heap.rs": "ee453f2eeefb16b53de12c96752a4d18aab574904a6ea20c97ec396e78f506bb",
+    "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "crates/js-runtime/src/expose_scan.rs": "b5b771050b64fcbf14fa68ea4f4c2e5acfa8905a385623e8b43c6f648937cf9c",
+    "crates/js-runtime/src/builtins.rs": "4b60241842033d099cd7bd84d75ee411b12235910ae480ddf35b20f73cf200c1",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "8a3c2b08b112083d0ef709b1b7418af5514e423604ea41bdf9d6fdd7db86295b",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "crates/js-runtime/src/property_slots.rs": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
+    "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
+    "crates/js-runtime/src/utf8_guard.rs": "7e7d6ab64be768e46f5b65e014192153649e351695bead9c0509812bb947e5f0",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/lib.rs": "3b69b6197a508478104106f5582d5c71f0bdfa8f72a86fe204ad1871261e6af6",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+    "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "crates/battle-core/tests/runtime_shared_state.rs": "b4c144507aac7fec4470c6f9cdd2d553b257d1d2a225ed5dae7c1ec84a02a147",
+    "crates/battle-core/src/damage.rs": "8375af2f3c4d929bdef52fb86195357511f890a28c47d45ed6ed779e34641601",
+    "crates/battle-core/src/scheduler.rs": "944041e9fcbb66e2dfb7f67121798e45e8a4db336f724bd7b047fe23829fe152",
+    "crates/battle-core/src/clock.rs": "95a00c6a78a6a1c6d82e42f8c81da7e0e4c3d6512468925697045fe975798cba",
+    "crates/battle-core/src/skill.rs": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742",
+    "crates/battle-core/src/ffi.rs": "62e5d0c44521e8bb824c180ebdab811897397ebe968d27a0df98587ae1e06eb6",
+    "crates/battle-core/src/engine_runtime.rs": "e4d950171ce10100698a75511fc9a2992b4fee38716d96085adc28854598f28e",
+    "crates/battle-core/src/unit_resources.rs": "2f0e194badbaca8499189801115c7e6cf01575fc8157de7ec589100da89908fb",
+    "crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
+    "crates/battle-core/src/rng.rs": "d343b560ebc3808ac57e8df064b63d5e4f75f6e9ed7bbefd0f2a20cae675d035",
+    "crates/battle-core/src/config.rs": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36",
+    "crates/battle-core/src/unit.rs": "c097a9298d8e3cfeb11b9cbb3656e438b0c96d3b13526d4769eba7cd3a53809f",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
+    "crates/battle-core/src/engine.rs": "1a7cd93944a3cc86b25cc39d19edc7bf9b73f213174487744e606aabcd889110",
+    "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+    "crates/battle-core/src/unit_skill_runtime.rs": "8684ac88baa412c51347f9fa9be2f2979c7711faad8c55cd42a3829de517d949",
+    "crates/battle-core/src/buff.rs": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145",
+    "crates/battle-core/src/lib.rs": "d90b6af65542229452fd86e19a6d6616c5e4410f3f6714fa86728980d6878723",
+    "crates/battle-core/src/numeric.rs": "113358834ead99b82800e8fe23a1d9b98f70e547a003c3cc45f860b30b5dc080",
+    "crates/battle-core/src/ai.rs": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
+    "crates/battle-core/src/entity.rs": "6e5b05c246f3f0736e68e5f2b0abd11e831cff8d9d443b87fece5df17c65c8ac",
+    "crates/battle-core/examples/entity_check.rs": "5a8c4747cc2b845ecec1e1adc090f9f218d0ce80e7e804dbb040d0580dddb084",
+    "crates/battle-core/examples/rng_check.rs": "fc2505690ad75d713f9c7773346025cf22af3c9b4e071e0de73d36b8943b974d",
+    "crates/battle-core/examples/engine_unit_runtime_check.rs": "7361b4ccc985b409da98ed3068c407ab5974506aff09a7992972b757894fe5b1",
+    "crates/battle-core/examples/unit_skill_runtime_check.rs": "1b57dfa10f22fe6f63cb73fb1ded9f220f061bb387d8b03bfd38c7f8f4673303",
+    "crates/battle-core/examples/engine_check.rs": "481e02b682fd14041417d0d20e1dab54d7426d2d5988811e290da03d00358a35",
+    "crates/battle-core/examples/scheduler_check.rs": "fab294014bc5439b626231034be23a5bf5271e3d2649f0e74df2755279ec25cc",
+    "crates/battle-core/examples/clock_check.rs": "3644748cb79d28e90dc2aa34f79f21257d154e379048b132d5b82bd4be8b7ab0",
+    "crates/battle-core/examples/numeric_check.rs": "700f0118d9d18fbef5bc3c319387a2ca72b6dfbf88db394a168a2341b2889dd9",
+    "crates/battle-core/examples/engine_runtime_check.rs": "d5e4485216e976d9fee2beff4b9dc721458db4ade389d44b66b6ed5d0d4c98c2"
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-arguments-elision.stdout.gz",
+      "sha256": "3c01964cfe06c1bb3edbe1de93a529a107b05f3bc9e9ece6a4948c95924c86c3",
+      "uncompressedSha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-arrays.stdout.gz",
+      "sha256": "be9d100e8aca8a6e459b4e5fb406dba107b4ab9224d4624e7c3ccaf8f3e93013",
+      "uncompressedSha256": "5660af29743e2593054a2fd6a3fe807ed59697f97e74addcbb179549bab4caa2"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-closures.stdout.gz",
+      "sha256": "21b63ef87399bb2ac3a474a367ba26a2294c19876a7fcfa6c6dca0a4a5a2be08",
+      "uncompressedSha256": "31d97c0b72ee6e6d135fe83b790209d9a3bcab2469e4b9aea664d7e786a419a3"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-coercions.stdout.gz",
+      "sha256": "3c01964cfe06c1bb3edbe1de93a529a107b05f3bc9e9ece6a4948c95924c86c3",
+      "uncompressedSha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-control-flow.stdout.gz",
+      "sha256": "3c01964cfe06c1bb3edbe1de93a529a107b05f3bc9e9ece6a4948c95924c86c3",
+      "uncompressedSha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-fast-length.stdout.gz",
+      "sha256": "b04d76122aa0429ec7e85f67022665c96f5d86c2327865ca01998753eadf22ae",
+      "uncompressedSha256": "840e95c1882da7afe51502e42fcbd8aacd292d1bf2edee4b1e39378a14eea4a4"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-generated-typed-arrays-retry.stdout.gz",
+      "sha256": "f5c04e42445743feef9b3de08c98f51bd2ffe7a01d1e0143abc706375ccf8716",
+      "uncompressedSha256": "557b557cff75ff834a573a00e7f413a0ada5dff88c39c379d79a88278c21266d"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-generated-typed-arrays.stdout.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-parse-int-stack.stdout.gz",
+      "sha256": "fedda9517a64c719f8c249f172257a48cc736a01ac880ba567c477e8fc132941",
+      "uncompressedSha256": "46413c85f9e039f59c9bc27204b16efc954d752403539d2bf22294d737d631a1"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-reflection-bootstrap.stdout.gz",
+      "sha256": "0d78490762d39fd851be3b6a3d46156ec5a7a8cbfa03771cb63c9f69a7dcb2a1",
+      "uncompressedSha256": "86337178e0f91fdceb9d5e9c4c8f61532bbd7fd76e185760b796df2cc20f4acd"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-rust-tests.stdout.gz",
+      "sha256": "93f1a0d747b6124ea5b1c68b867fcdf863de63e3634075ec7f21f1451f404b24",
+      "uncompressedSha256": "f0f92323abfa9a24025a751bbed4551e8acb5f92055fb46fc04e36da7c1266ac"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-strings.stdout.gz",
+      "sha256": "5dacaf90f2b2036602dc2fd5a5b395185bfb9ebbcce2f90e59598851854928ec",
+      "uncompressedSha256": "f597a10393e3f3bc2d20a223c27a877310f6311080d86d553a3c684154676afb"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-value-build.stdout.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-values.stdout.gz",
+      "sha256": "e4ddeffb1ed4bf54f601cbf87e4d7ed20768416ec048f4012a1c50ecad49e5b7",
+      "uncompressedSha256": "32934631983e353b4a7e9cc52a260167ea0874e4c585325a2e740d0accd95fff"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-arguments-elision.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-arrays.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-closures.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-coercions.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-control-flow.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-fast-length.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-generated-typed-arrays-retry.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-generated-typed-arrays.stderr.gz",
+      "sha256": "049b2937b411fa20e91d64ee3dad6c690f3bb69718dce7ca0c9e371bc8079eb1",
+      "uncompressedSha256": "10a05682f5f66a6bc41d7e2e2c707e997b6717ab91cd8d1f91f81f297bb80667"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-parse-int-stack.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-reflection-bootstrap.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-rust-tests.stderr.gz",
+      "sha256": "200fe4f09b951d6c1dc462d98ea662980f568fa5f69f2cf62abf2f44cf486ed1",
+      "uncompressedSha256": "fd89d6523c8a7a16ec684c2be3300cdffcb692fdf5d7ee86f7a19190b1854cf0"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-strings.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-value-build.stderr.gz",
+      "sha256": "4ed20ec0f6f9d74111d10b5cec23fc0a96e4b04b5ce5dd702561c7f67772cfae",
+      "uncompressedSha256": "06022217218daae621c0d86bf7fef2ef8e21b7354474379924f2e2f16adb4f95"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-values.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-wave-driver.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-wave-progress.jsonl.gz",
+      "sha256": "f22ca958fb6cedfcfa072cc3dd73e64e103f826bfff35bfb48232e0b0d7a849e",
+      "uncompressedSha256": "dca3fc1f97e9889b458033daca4bb1aa07dd567c866adf0ec3981bce4be991e9"
+    },
+    {
+      "file": "benchmarks/validation/rust-integrated-string-wave.combined-wave-executions.json.gz",
+      "sha256": "de29e33a5d57b3c9472f48967ca6972569ee4d26343b1526b7a5eab7623a7c40",
+      "uncompressedSha256": "a3e8f73398eeb9c39a7cad5c19302d69a5a3552d0ee8e46d9f0e2e589eb82634"
+    }
+  ]
+}

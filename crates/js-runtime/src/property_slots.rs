@@ -4,9 +4,9 @@
 use std::sync::atomic::{AtomicUsize,Ordering};
 use crate::{Runtime,Value,JsResult,JsError,ObjectKind,PropertyKey,PropertyKind,KeyInput};
 static NEXT_SITE:AtomicUsize=AtomicUsize::new(1);
-pub struct LiteralReadSite { ticket:AtomicUsize,text:&'static str }
+pub struct LiteralReadSite { ticket:AtomicUsize,text:&'static str,is_length:bool }
 impl LiteralReadSite {
-    pub const fn new(text:&'static str)->Self{Self{ticket:AtomicUsize::new(0),text}}
+    pub const fn new(text:&'static str)->Self{Self{ticket:AtomicUsize::new(0),text,is_length:text.len()==6&&text.as_bytes()[0]==b'l'&&text.as_bytes()[1]==b'e'&&text.as_bytes()[2]==b'n'&&text.as_bytes()[3]==b'g'&&text.as_bytes()[4]==b't'&&text.as_bytes()[5]==b'h'}}
     #[inline]
     fn index(&self)->JsResult<usize>{
         let mut id=self.ticket.load(Ordering::Relaxed);
@@ -22,6 +22,16 @@ impl Runtime {
     #[inline]
     pub fn get_literal_cached(&mut self,receiver:Value,site:&'static LiteralReadSite)->JsResult<Value>{
         if !self.literal_property_slots_enabled{let key=self.static_string(site.text);return self.get(receiver,key)}
+        // These nonconfigurable own virtual descriptors precede every raw
+        // property/prototype lookup and cannot invoke a source callback.
+        if site.is_length&&self.literal_length_fast_path_enabled {
+            let length=match receiver{
+                Value::String(id)=>Some(self.string_units(id).len()),
+                Value::Object(id)=>self.objects.get(id.0).filter(|object|!object.is_function).and_then(|object|match object.kind{ObjectKind::Array{length,..}=>Some(length as usize),ObjectKind::BoxedString(id)=>Some(self.string_units(id).len()),_=>None}),
+                _=>None,
+            };
+            if let Some(length)=length{let result=Ok(Value::Number(length as f64));if self.diagnostics.enabled{let key=self.static_string(site.text);self.record_get(receiver,KeyInput::Value(key),&result);}return result}
+        }
         let id=site.index()?;
         if self.literal_property_slots.len()<=id{self.literal_property_slots.resize(id+1,CachedSlot::default());}
         let entry=self.literal_property_slots[id];
@@ -49,4 +59,8 @@ impl Runtime {
         }
         result
     }
+}
+
+#[cfg(test)]mod length_tests{use super::*;static LENGTH:LiteralReadSite=LiteralReadSite::new("length");
+#[test]fn fast_length_records_exactly_one_get_and_zero_has_positive_zero_bits(){let mut rt=Runtime::new();rt.diagnostics=crate::diagnostics::Diagnostics::from_env();rt.diagnostics.enabled=true;let array=rt.array(&[]);let before=rt.diagnostics.reachability_roots().len();let Value::Number(n)=rt.get_literal_cached(array,&LENGTH).unwrap()else{panic!()};assert_eq!(n.to_bits(),0);let after=rt.diagnostics.reachability_roots().len();assert_eq!(after,before+3);}
 }
