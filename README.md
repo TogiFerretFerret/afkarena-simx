@@ -24,7 +24,9 @@ An earlier four-process run completed **80 battles at 1.288 aggregate battles/se
 
 ## Timing profile
 
-The [warm Rust profile](benchmarks/RUST_WARM_BATTLE_PROFILE.md) isolates the 20 measured battles after warmup, matches the complete source report and records 23 actual collections. Measured-window collection pauses total 4.831 seconds. It enables raw-get diagnostics, so its overhead and attribution must be kept separate from the unprofiled 0.384 run. The completed [trace-disabled warm profile](benchmarks/RUST_WARM_TRACE0_PROFILE.md) also matches the report and host tape. Its 4,660 samples point to property access, key conversion, hash tables and GC; profiling timing is not a new throughput result.
+The [latest trace-disabled warm profile](benchmarks/RUST_ALLOCATION_WAVE_PROFILE.md) matches the complete report and host tape, with 3,277 CPU samples and zero lost samples. Property reads, descriptors, hash-table insertion and GC remain prominent costs. Profiling timing is separate from throughput. Earlier [trace-enabled](benchmarks/RUST_WARM_BATTLE_PROFILE.md) and [trace-disabled](benchmarks/RUST_WARM_TRACE0_PROFILE.md) profiles remain archived.
+
+The [GC cadence experiment](benchmarks/RUST_GC_CADENCE.md) also matches all full reports and host tapes. Against its same-rebinding cadence-1 control, cadence 2 gains 12.7% at 3.01 GiB observed HWM; cadence 8 gains 21.6% at 4.64 GiB. These derivative-runner rates are separate from the qualified program and four-worker benchmark above.
 
 The [counted allocation diagnostic](benchmarks/results/2026-10-28T21-18-46.972Z-rust-measured-allocations.json) also matches the full report and host tape. Each measured battle requests about **4.289 million allocations / 110.3 MB**, plus **185,910 reallocations** with 84.1 MB of old and 168.5 MB of new requested sizes. These are allocation traffic counts, not live bytes or peak memory; instrumented timing is not throughput evidence.
 

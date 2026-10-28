@@ -61,6 +61,14 @@ These are allocation samples, not CPU time percentages. The next integrated
 runtime includes stack formatting, integer-key reuse, string hashing, guarded
 length reads and dense callback shifts; its full-battle build/check now passes.
 
+The [latest trace-disabled profile](../../benchmarks/RUST_ALLOCATION_WAVE_PROFILE.md)
+retains exact report/tape parity and 3,277 samples. Property access and GC remain
+prominent. A [same-binary GC cadence experiment](../../benchmarks/RUST_GC_CADENCE.md)
+passes full reports/tapes at all four cadences: cadence 2 is 12.7% faster than
+its same-rebinding control at 3.01 GiB HWM, while cadence 8 is 21.6% faster at
+4.64 GiB. These derivative-runner measurements do not replace the original
+qualified program's throughput or qualify four cadence-8 workers.
+
 Generated source gates separately verify operators, closures, control flow,
 collections, typed buffers and selected real mechanics. Their case counts are
 component evidence, not counts of complete battles. Older approximately
