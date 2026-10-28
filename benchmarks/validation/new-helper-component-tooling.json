@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "preparedNativeBinary": false,
+  "ranBattleWorkload": false,
+  "tests": 8,
+  "toolInputs": {
+    "tools/rust-port/benchmark-program-new-helpers.mjs": "f42a9b0a867715dd070fbd306f3a97c5a4e217f9ae19eb373a6ea0d29be404e2",
+    "tools/rust-port/helper-component-ab-support.mjs": "a667f113b53df8bdb8179c722a1fa24c83e7fb82e0f13f185b06ece2919ca3ac",
+    "tools/rust-port/tests/helper-component-ab.test.mjs": "2a2b304ebbd8d41dcc33cda68eafa63e7aae30fc2bcb0484d91dda809484ee5e",
+    "tools/rust-port/component-ab-support.mjs": "ef3f24f03c942ce02eff4d51be1d262d5eeceff0fab60034cf1475f4c7111713"
+  },
+  "verifiedRuntimeFlags": {
+    "file": "/workspace/afkarena-simx/crates/js-runtime/src/runtime.rs",
+    "sha256": "01c3725b1deb8fa3fd4cf905761a17d3e030452b14de37aaee5a8d3f5dbab38a",
+    "flags": [
+      "native_stage_range_parser_enabled",
+      "buff_attribute_loop_enabled",
+      "native_data_obj_scan_enabled",
+      "one_hop_literal_slots_enabled"
+    ]
+  },
+  "log": {
+    "file": "benchmarks/validation/new-helper-component-tooling.tests.log.gz",
+    "sha256": "0578b3354e1fb044a930d9c8545602875d97d0e52e8fd58dcaa20f1c92dcdfe2"
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "Tool configuration, helper allowlist, fixed older flags, post-run admission marker order and manifest GC checks. Native compilation and execution are deliberately deferred until the NEXT full frozen build and Node battle baseline pass."
+}
