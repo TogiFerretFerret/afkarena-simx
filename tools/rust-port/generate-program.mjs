@@ -69,16 +69,19 @@ for(const unit of coverage.units.slice(0,through+1)){
  console.log(JSON.stringify(reports.at(-1)));
 }
 const app=resolve(output,'app');await mkdir(resolve(app,'src'),{recursive:true});
+await writeFile(resolve(app,'src/program_host.rs'),await readFile(resolve(root,'tools/rust-port/program-host.rs')));
 const dependencies=[`js-runtime = { path = "${relative(app,resolve(root,'crates/js-runtime')).replaceAll('\\','/')}" }`,...reports.map(r=>`battle-unit-${r.index} = { path = "../battle-unit-${r.index}" }`)];
 await writeFile(resolve(app,'Cargo.toml'),'[package]\nname = "rust-battle-program"\nversion = "0.1.0"\nedition = "2024"\npublish = false\n[dependencies]\n'+dependencies.join('\n')+'\n');
 const calls=reports.map(r=>`eprintln!("unit_start:${r.index}");\n battle_unit_${r.index}::run(&mut rt, env, global)?;\n eprintln!("unit_finished:${r.index}");`).join('\n');
-await writeFile(resolve(app,'src/main.rs'),`use js_runtime::{Runtime,Value,EnvId,JsResult};
+await writeFile(resolve(app,'src/main.rs'),`mod program_host;
+use js_runtime::{Runtime,Value,EnvId,JsResult};
 fn print(rt:&mut Runtime,_this:Value,args:&[Value],_env:EnvId)->JsResult<Value>{
  let mut parts=Vec::new();for &arg in args{let id=rt.to_string(arg)?;parts.push(String::from_utf16_lossy(rt.string_units(id)));}
  println!("{}",parts.join(" "));Ok(Value::Undefined)
 }
 fn execute()->JsResult<Value>{
  let mut rt=Runtime::new();let env=rt.global_env;let global=Value::Object(rt.global_object);
+ program_host::install(&mut rt)?;
  let printer=rt.make_closure_with_flags(print,env,0,"print",true,None);
  rt.declare(env,"print",printer)?;
  ${calls}
@@ -87,7 +90,7 @@ fn execute()->JsResult<Value>{
 fn main(){if let Err(error)=execute(){eprintln!("pure_rust_execution_error:{error:?}");std::process::exit(1);}}
 `);
 await writeFile(resolve(output,'Cargo.toml'),'[workspace]\nmembers = '+JSON.stringify(members)+'\nresolver = "2"\n[profile.dev]\ndebug = 0\ncodegen-units = 64\n[profile.release]\ncodegen-units = 64\nlto = false\n');
-const sources={};for(const file of ['tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])sources[file]=sha(await readFile(resolve(root,file)));
+const sources={};for(const file of ['tools/rust-port/generate-program.mjs','tools/rust-port/program-host.rs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])sources[file]=sha(await readFile(resolve(root,file)));
 const manifest={version:1,prepared:true,executed:false,qualifiesFor10000Target:false,output,through,chunkSize,units:reports,sources,runtimePath,scope:'Actual frozen battle JavaScript modules lowered into native Rust functions with shared global environment and static UTF16 source pools. Preparation and compile coverage do not establish successful initialization, mechanics parity, or throughput.'};
 await writeFile(resolve(output,'program-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(JSON.stringify({output,units:reports.length,functions:reports.reduce((n,u)=>n+u.functions,0),unsupported:reports.reduce((n,u)=>n+u.unsupportedFunctions,0),next:`cargo run --manifest-path ${relative(root,resolve(output,'Cargo.toml'))} -p rust-battle-program -j 2`}));
