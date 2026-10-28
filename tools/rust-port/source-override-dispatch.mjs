@@ -1,0 +1,1 @@
+export const sourceOverrideDispatcher='function(r,i,a,n,o){var s=this;switch(arguments.length){case 0:return t(e,s);case 1:return t(e,s,r);case 2:return t(e,s,r,i);case 3:return t(e,s,r,i,a);case 4:return t(e,s,r,i,a,n);case 5:return t(e,s,r,i,a,n,o);default:var l=ed.arg2arry(arguments);return l.unshift(s),l.unshift(e),t.apply(null,l)}}';
