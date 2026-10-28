@@ -14,8 +14,8 @@
         "end": 102984,
         "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e"
       },
-      "generatedSha256": "adf5d3db3462e2c78c598a04e60a523d170ea42673e1168348f32631dd709275",
-      "rustLines": 2831,
+      "generatedSha256": "18d91c98f9f0b6dfca06488dfc1bac2b1f881f4a681ef78e541d1b3073266f8a",
+      "rustLines": 2828,
       "coverage": {
         "version": 1,
         "moduleName": "unit_update",
@@ -23,6 +23,9 @@
         "mode": "function",
         "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
         "sourceUtf16Length": 5784,
+        "sourcePoolPath": null,
+        "emitsRust": true,
+        "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
         "astNodes": 1846,
         "astNodeTypes": {
           "FunctionExpression": 1,
@@ -83,8 +86,8 @@
         "end": 20141,
         "sha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838"
       },
-      "generatedSha256": "77b0c62ce1f572c8afc1b956d0d7fe03631ec21a9695113a7cd17216023a4547",
-      "rustLines": 601,
+      "generatedSha256": "456b9affb2d1df7933832606a091ad16d888b2029b45916597174082d9dc3813",
+      "rustLines": 602,
       "coverage": {
         "version": 1,
         "moduleName": "skill_update",
@@ -92,6 +95,9 @@
         "mode": "function",
         "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
         "sourceUtf16Length": 1353,
+        "sourcePoolPath": null,
+        "emitsRust": true,
+        "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
         "astNodes": 354,
         "astNodeTypes": {
           "FunctionExpression": 4,
@@ -187,8 +193,8 @@
         "end": 237381,
         "sha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609"
       },
-      "generatedSha256": "8abf0a221d79435871cfee7ee55979c16c17283812494d7f55071b429218fef9",
-      "rustLines": 749,
+      "generatedSha256": "df33c3ea6989fb770027392d92b7534ef5453cede7ed5bb1c417e8b4330e05d1",
+      "rustLines": 750,
       "coverage": {
         "version": 1,
         "moduleName": "engine_tick",
@@ -196,6 +202,9 @@
         "mode": "function",
         "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
         "sourceUtf16Length": 1858,
+        "sourcePoolPath": null,
+        "emitsRust": true,
+        "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
         "astNodes": 454,
         "astNodeTypes": {
           "FunctionExpression": 1,
@@ -255,8 +264,8 @@
         "end": 41296,
         "sha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8"
       },
-      "generatedSha256": "f9460e27414489a3e3e7d3b97fcdb4852ed79dafef16ced104ff5221007d9966",
-      "rustLines": 412,
+      "generatedSha256": "6666e61a801553d7e85808b5128f6273a3bb7fba473fb8a6210dbdea630bb1b6",
+      "rustLines": 414,
       "coverage": {
         "version": 1,
         "moduleName": "buff_update",
@@ -264,6 +273,9 @@
         "mode": "function",
         "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
         "sourceUtf16Length": 862,
+        "sourcePoolPath": null,
+        "emitsRust": true,
+        "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
         "astNodes": 257,
         "astNodeTypes": {
           "FunctionExpression": 1,
@@ -320,8 +332,8 @@
         "end": 96698,
         "sha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b"
       },
-      "generatedSha256": "383eaf4d268454996fec9a45516045795a54b90a1cb4c5a1bd413b184927135b",
-      "rustLines": 100,
+      "generatedSha256": "332fbca23881426a5809ff47b40b671946075c1976c84a5b0ece93a762ad31ee",
+      "rustLines": 102,
       "coverage": {
         "version": 1,
         "moduleName": "set_hp",
@@ -329,6 +341,9 @@
         "mode": "function",
         "sourceSha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b",
         "sourceUtf16Length": 160,
+        "sourcePoolPath": null,
+        "emitsRust": true,
+        "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
         "astNodes": 60,
         "astNodeTypes": {
           "FunctionExpression": 1,
@@ -380,8 +395,8 @@
         "end": 96945,
         "sha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c"
       },
-      "generatedSha256": "613e5f27ff0cc154fc097f942027eb0ec5fb90fb60b44e2f202848257ab4baf4",
-      "rustLines": 88,
+      "generatedSha256": "72c2d45e0bcb560d0e18693752b53333ab86b4dfbc9dddcb82ccfba6ed0b9467",
+      "rustLines": 90,
       "coverage": {
         "version": 1,
         "moduleName": "set_mp",
@@ -389,6 +404,9 @@
         "mode": "function",
         "sourceSha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c",
         "sourceUtf16Length": 129,
+        "sourcePoolPath": null,
+        "emitsRust": true,
+        "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
         "astNodes": 53,
         "astNodeTypes": {
           "FunctionExpression": 1,
@@ -438,8 +456,8 @@
         "end": 92695,
         "sha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07"
       },
-      "generatedSha256": "e5b9ed28adde00d746d845d863356eb3f6fab073114223049fd5cbb9d4797dc6",
-      "rustLines": 1169,
+      "generatedSha256": "cc3c0e0f7434c8d3d432d530dc53199045d11dc61eb4414e41b9cd2d86bb80b7",
+      "rustLines": 1170,
       "coverage": {
         "version": 1,
         "moduleName": "unit_add_buff",
@@ -447,6 +465,9 @@
         "mode": "function",
         "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
         "sourceUtf16Length": 2002,
+        "sourcePoolPath": null,
+        "emitsRust": true,
+        "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
         "astNodes": 575,
         "astNodeTypes": {
           "FunctionExpression": 3,
@@ -533,8 +554,8 @@
         "end": 87610,
         "sha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8"
       },
-      "generatedSha256": "00f495d98b90651599acf00dc54beb401424958993e2844329210ecbefd68bf7",
-      "rustLines": 73,
+      "generatedSha256": "9a53cebc48bb110206256d5d071eaf6aa8a806db34d143c9b651592947ba41c3",
+      "rustLines": 75,
       "coverage": {
         "version": 1,
         "moduleName": "reset_buff_apply",
@@ -542,6 +563,9 @@
         "mode": "function",
         "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
         "sourceUtf16Length": 187,
+        "sourcePoolPath": null,
+        "emitsRust": true,
+        "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
         "astNodes": 39,
         "astNodeTypes": {
           "FunctionExpression": 1,
@@ -581,9 +605,9 @@
   ],
   "sourceInputs": {
     "tools/rust-port/generate-battle.mjs": "42c1a92ddfd0def34f530ea71bb181d0d32d33b876b5b19c58d896e8203f854e",
-    "tools/rust-port/compile.mjs": "a207927b167b8199b339b1ee399da45b2a9a462b7d879c4a3cd4b6cc2f793306",
-    "tools/rust-port/expressions.mjs": "23ec6a42b278b27aba59a37b50c935ae4f7e3485bb71468067ac4acb794dadc0",
-    "tools/rust-port/statements.mjs": "4572c7fd6b722f3049637083918abc79365528b0d2b026708674081302c8b857",
+    "tools/rust-port/compile.mjs": "d9f2d8b1b04e32a019109c215865e247b0952aa150352d4a8d09eab89f7883ca",
+    "tools/rust-port/expressions.mjs": "2b68a0ee1d2236e768c0ca99118e1c398213e647dd2d9105adc59154f5a1952e",
+    "tools/rust-port/statements.mjs": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
     "tools/rust-port/CONTRACT.md": "a0b80d83e836c917906747c10f8e46464bf24bdf6ef7cc9c69b6acfda47917cc",
     "config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
     "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
