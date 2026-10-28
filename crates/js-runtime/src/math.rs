@@ -10,7 +10,7 @@ impl Runtime {
         let object=self.object();
         let id=self.object_id(object)?;self.objects[id.0].kind=ObjectKind::Math;
         for (name,arity,code) in [
-            ("abs",1,math_abs as NativeFn),("atan",1,math_atan as NativeFn),("atan2",2,math_atan2 as NativeFn),("sin",1,math_sin as NativeFn),("cos",1,math_cos as NativeFn),("tan",1,math_tan as NativeFn),("log",1,math_log as NativeFn),("asin",1,math_asin as NativeFn),("floor",1,math_floor as NativeFn),
+            ("abs",1,math_abs as NativeFn),("acos",1,math_acos as NativeFn),("atan",1,math_atan as NativeFn),("atan2",2,math_atan2 as NativeFn),("sin",1,math_sin as NativeFn),("cos",1,math_cos as NativeFn),("tan",1,math_tan as NativeFn),("log",1,math_log as NativeFn),("asin",1,math_asin as NativeFn),("floor",1,math_floor as NativeFn),
             ("ceil",1,math_ceil as NativeFn),("round",1,math_round as NativeFn),
             ("trunc",1,math_trunc as NativeFn),("sqrt",1,math_sqrt as NativeFn),
             ("min",2,math_min as NativeFn),("max",2,math_max as NativeFn),
@@ -20,7 +20,7 @@ impl Runtime {
             let value=self.native_function(name,arity,code)?;let key=self.string(name);
             self.define_data(object,key,value,true,false,true)?;
         }
-        for name in ["acos","acosh","asinh","atanh","cbrt","cosh","exp","expm1","fround","hypot","log10","log1p","log2","random","sinh","tanh"] {
+        for name in ["acosh","asinh","atanh","cbrt","cosh","exp","expm1","fround","hypot","log10","log1p","log2","random","sinh","tanh"] {
             let arity=if name=="random"{0}else if matches!(name,"atan2"|"hypot"){2}else{1};
             let value=self.native_function(name,arity,unsupported_math)?;let key=self.string(name);
             self.define_data(object,key,value,true,false,true)?;
@@ -65,3 +65,5 @@ fn math_tan(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(V
 
 fn math_log(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(fdlibm::log(first(rt,args)?)))}
 fn math_asin(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(fdlibm::asin(first(rt,args)?)))}
+
+fn math_acos(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(fdlibm::acos(first(rt,args)?)))}

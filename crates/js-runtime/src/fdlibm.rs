@@ -243,3 +243,19 @@ pub fn asin(x:f64)->f64{
  else{let w=low_zero(s);let c=div(sub(t,mul(w,w)),add(s,w));let r=div(p,q);let p=sub(mul(mul(2.0,s),r),sub(pio2_lo,mul(2.0,c)));let q=sub(pio4_hi,mul(2.0,w));t=sub(pio4_hi,sub(p,q));}
  if hx>0{t}else{neg(t)}
 }
+
+/// Pinned V8 acos; retain its branch thresholds and separate rounded operations.
+pub fn acos(x:f64)->f64{
+ let pi=f64::from_bits(0x400921fb54442d18);let hi=f64::from_bits(0x3ff921fb54442d18);let lo=f64::from_bits(0x3c91a62633145c07);
+ let hx=(x.to_bits()>>32)as i32;let ix=hx&0x7fffffff;
+ if ix>=0x3ff00000{if((ix-0x3ff00000)as u32|x.to_bits()as u32)==0{return if hx>0{0.0}else{add(pi,mul(2.0,lo))}}return SIGNALING_NAN}
+ if ix<0x3fe00000{
+  if ix<=0x3c600000{return add(hi,lo)}
+  let(p,q)=asin_ratio(mul(x,x));let r=div(p,q);return sub(hi,sub(x,sub(lo,mul(x,r))))
+ }
+ if hx<0{
+  let z=mul(add(1.0,x),0.5);let(p,q)=asin_ratio(z);let s=z.sqrt();let r=div(p,q);let w=sub(mul(r,s),lo);sub(pi,mul(2.0,add(s,w)))
+ }else{
+  let z=mul(sub(1.0,x),0.5);let s=z.sqrt();let df=low_zero(s);let c=div(sub(z,mul(df,df)),add(s,df));let(p,q)=asin_ratio(z);let r=div(p,q);let w=add(mul(r,s),c);mul(2.0,add(df,w))
+ }
+}
