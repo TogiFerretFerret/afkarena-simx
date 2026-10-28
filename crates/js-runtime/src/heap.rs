@@ -119,3 +119,24 @@ mod primary_numeric_tests {
  }
  #[test]fn runtime_primary_arrays_survive_actual_source_safepoints_and_reuse(){let mut rt=crate::Runtime::new();rt.primary_numeric_arrays_enabled=true;let f=rt.make_closure(primary_gc_rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(f,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();assert_eq!(rt.call(f,Value::Undefined,&[]).unwrap(),Value::Number(23.0));}
 }
+
+#[cfg(test)]mod compact_property_tests{
+ use super::*;
+ fn key(index:usize)->PropertyKey{PropertyKey(StringId(index))}
+ fn accessor(get:Option<Value>,set:Option<Value>)->Descriptor{Descriptor{kind:PropertyKind::Accessor{get,set},enumerable:false,configurable:true}}
+ #[test]fn compact_layout_and_accessor_replacement_deletion_reuse(){
+  eprintln!("compact stored={} former={} Object={}",std::mem::size_of::<StoredProperty>(),std::mem::size_of::<Option<(PropertyKey,Descriptor)>>(),std::mem::size_of::<Object>());
+  assert_eq!(std::mem::size_of::<StoredProperty>(),24);assert!(std::mem::size_of::<StoredProperty>()<std::mem::size_of::<Option<(PropertyKey,Descriptor)>>());
+  let mut object=Object::new(None);object.insert(key(1),accessor(Some(Value::Function(crate::value::FunctionId(7))),None));
+  assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);let first=object.property_index[&key(1)];
+  object.insert(key(1),accessor(None,Some(Value::Undefined)));assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);assert_eq!(object.property_index[&key(1)],first);
+  let PropertyKind::Accessor{get,set}=object.own(key(1)).unwrap().kind else{panic!()};assert_eq!((get,set),(None,Some(Value::Undefined)));
+  object.insert(key(1),Descriptor::data(Value::Number(f64::from_bits(0xfff0000000000042)),true,true,true));assert!(object.accessor_slots.as_ref().unwrap()[0].is_none());
+  object.insert(key(2),accessor(Some(Value::Null),Some(Value::Bool(false))));assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);assert!(object.own_slot(first,key(2)).is_none());
+  object.remove(key(2));assert!(object.accessor_slots.as_ref().unwrap()[0].is_none());assert!(object.iter_properties().all(|(k,_)|k!=key(2)));
+  object.insert(key(2),accessor(None,None));assert!(object.property_index[&key(2)]>first);assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);
+  object.reset_for_reuse(None);assert!(object.properties.is_empty());assert!(object.accessor_slots.as_ref().unwrap().is_empty());assert_eq!(object.iter_properties().count(),0);
+ }
+ #[test]fn physical_data_guards_preserve_attributes_and_all_raw_bits(){let mut object=Object::new(None);object.insert(key(3),Descriptor::data(Value::Number(-0.0),true,false,false));assert!(object.set_existing_data_slot(0,key(3),Value::Number(f64::from_bits(0x7ff0000000000042))));let descriptor=object.own(key(3)).unwrap();assert!(!descriptor.enumerable&&!descriptor.configurable);let Value::Number(value)=object.data_slot(0,key(3)).unwrap()else{panic!()};assert_eq!(value.to_bits(),0x7ff0000000000042);assert!(!object.set_existing_data_slot(0,key(4),Value::Null));object.insert(key(3),accessor(None,None));assert!(object.data_slot(0,key(3)).is_none());assert!(!object.set_existing_data_slot(0,key(3),Value::Null));object.insert(key(3),Descriptor::data(Value::Bool(true),false,true,true));assert!(!object.set_existing_data_slot(0,key(3),Value::Null));}
+ #[test]fn storage_clone_copies_accessor_identities_holes_and_releases_old_arena(){let mut source=Object::new(None);source.insert(key(4),accessor(Some(Value::Object(ObjectId(81))),Some(Value::Function(crate::value::FunctionId(91)))));source.insert(key(5),Descriptor::data(Value::String(StringId(17)),false,false,true));source.remove(key(5));let mut target=Object::new(None);target.insert(key(8),accessor(Some(Value::Object(ObjectId(999))),None));target.clone_property_storage_from(&source);target.property_index.clone_from(&source.property_index);let PropertyKind::Accessor{get,set}=target.own(key(4)).unwrap().kind else{panic!()};assert_eq!((get,set),(Some(Value::Object(ObjectId(81))),Some(Value::Function(crate::value::FunctionId(91)))));assert!(target.property_at(1).is_none());assert_eq!(target.iter_properties().count(),1);let data=Object::new(None);target.clone_property_storage_from(&data);target.property_index.clear();assert_eq!(target.iter_properties().count(),0);assert!(target.accessor_slots.as_ref().unwrap().is_empty());}
+}
