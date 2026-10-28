@@ -81,6 +81,10 @@ impl Runtime {
   match close{Err(error)=>Err(error),Ok(None)=>pending,Ok(Some(value))if value.is_object()=>pending,Ok(Some(_))=>Err(JsError::TypeError("iterator return result is not an object".into()))}
  }
  pub fn argument_spread(&mut self,value:Value)->JsResult<Vec<Value>>{
-  let mut iterator=self.iterator(value)?;let mut values=Vec::new();while let Some(value)=self.iterator_next(&mut iterator)?{values.push(value);}Ok(values)
+  let mut iterator=self.iterator(value)?;
+  // Reserve from intrinsic array metadata only; reading a source length getter
+  // here would change callback ordering. Iteration still rechecks live length.
+  let capacity=match &iterator.kind{IteratorKind::Array{object:Value::Object(id),..}=>match self.objects[id.0].kind{ObjectKind::Array{length,..}=>(length as usize).min(1024),_=>0},_=>0};
+  let mut values=Vec::with_capacity(capacity);while let Some(value)=self.iterator_next(&mut iterator)?{values.push(value);}Ok(values)
  }
 }
