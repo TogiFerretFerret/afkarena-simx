@@ -1,0 +1,171 @@
+{
+  "startedAt": "2026-10-28T20:10:40.782Z",
+  "stage": "passed",
+  "events": [
+    {
+      "at": "2026-10-28T20:10:40.783Z",
+      "kind": "chain-waiting-build",
+      "pid": 101849,
+      "proof": "benchmarks/validation/rust-program-gc-build.json"
+    },
+    {
+      "at": "2026-10-28T20:12:41.062Z",
+      "kind": "first-build-finished",
+      "status": 0,
+      "passed": false,
+      "changedInputs": [
+        {
+          "file": "/workspace/afkarena-simx/crates/js-runtime/tests/property_slots.rs",
+          "before": "80871b696ddf1a19382314fd7b64726fc0f90d40d6aad6bc591fd8de06bedf81",
+          "after": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-28T20:12:44.019Z",
+      "kind": "resume-build-finished",
+      "status": 0,
+      "passed": true
+    },
+    {
+      "at": "2026-10-28T20:13:00.036Z",
+      "kind": "one-battle-finished",
+      "output": "/workspace/afkarena-simx/benchmarks/results/2026-10-28T20-12-44.073Z-rust-one-battle-check.json",
+      "passed": true,
+      "timing": {
+        "externalBattleMs": 4609.006128,
+        "reportElapsedMs": 4561,
+        "reportBattlesPerSecond": 0.21925016443762332,
+        "scope": "One cold battle, potentially contended; diagnostic timer only. Initialization excluded from battle markers; no steady-state throughput claim."
+      },
+      "memory": {
+        "objectsBefore": 1168507,
+        "objectsAfter": 1557402,
+        "objectsAdded": 388895,
+        "peakRssKiB": 2147888,
+        "peakHwmKiB": 2158780
+      },
+      "intentionalStop": true,
+      "difference": null,
+      "hostPrefixDifference": null,
+      "changedInputs": [],
+      "changedLibraries": []
+    },
+    {
+      "at": "2026-10-28T20:14:26.781Z",
+      "kind": "full-batch-finished",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-full-program-gc.json",
+      "passed": true,
+      "completed": 20,
+      "battlesPerSecond": 0.3843566830018257,
+      "native": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "wallMs": 64829.493411
+      },
+      "firstDifference": null,
+      "hostDifference": null
+    }
+  ],
+  "nativeMonitor": {
+    "maxRssKiB": 14680064,
+    "peakRssKiB": null,
+    "peakHwmKiB": null,
+    "termination": null,
+    "observed": false,
+    "scope": "Child discovery failed; no RSS measurement or cap enforcement established."
+  },
+  "resume": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/afkarena-simx/tools/rust-port/build-program.mjs",
+      "--profile",
+      "release",
+      "--jobs",
+      "4",
+      "--output",
+      "benchmarks/validation/rust-program-gc-resume-build.json"
+    ],
+    "pid": 104425,
+    "status": 0,
+    "signal": null,
+    "error": null,
+    "stdoutFile": "/workspace/afkarena-simx/work/rust-battle-full/gc-resume-build.stdout",
+    "stderrFile": "/workspace/afkarena-simx/work/rust-battle-full/gc-resume-build.stderr"
+  },
+  "one": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/afkarena-simx/tools/rust-port/check-one-battle.mjs"
+    ],
+    "pid": 104451,
+    "status": 0,
+    "signal": null,
+    "error": null,
+    "stdoutFile": "/workspace/afkarena-simx/work/rust-battle-full/gc-one-check.stdout",
+    "stderrFile": "/workspace/afkarena-simx/work/rust-battle-full/gc-one-check.stderr"
+  },
+  "oneSummary": {
+    "output": "/workspace/afkarena-simx/benchmarks/results/2026-10-28T20-12-44.073Z-rust-one-battle-check.json",
+    "passed": true,
+    "timing": {
+      "externalBattleMs": 4609.006128,
+      "reportElapsedMs": 4561,
+      "reportBattlesPerSecond": 0.21925016443762332,
+      "scope": "One cold battle, potentially contended; diagnostic timer only. Initialization excluded from battle markers; no steady-state throughput claim."
+    },
+    "memory": {
+      "objectsBefore": 1168507,
+      "objectsAfter": 1557402,
+      "objectsAdded": 388895,
+      "peakRssKiB": 2147888,
+      "peakHwmKiB": 2158780
+    },
+    "intentionalStop": true,
+    "difference": null,
+    "hostPrefixDifference": null,
+    "changedInputs": [],
+    "changedLibraries": []
+  },
+  "full": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/afkarena-simx/tools/rust-port/check-program.mjs",
+      "--profile",
+      "release",
+      "--binary",
+      "work/rust-port-shared-target/release/rust-battle-program",
+      "--build-proof",
+      "benchmarks/validation/rust-program-gc-resume-build.json",
+      "--output",
+      "benchmarks/validation/rust-full-program-gc.json"
+    ],
+    "pid": 104503,
+    "status": 0,
+    "signal": null,
+    "error": null,
+    "stdoutFile": "/workspace/afkarena-simx/work/rust-battle-full/gc-full-check.stdout",
+    "stderrFile": "/workspace/afkarena-simx/work/rust-battle-full/gc-full-check.stderr"
+  },
+  "fullSummary": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-full-program-gc.json",
+    "passed": true,
+    "completed": 20,
+    "battlesPerSecond": 0.3843566830018257,
+    "native": {
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "wallMs": 64829.493411
+    },
+    "firstDifference": null,
+    "hostDifference": null
+  },
+  "finishedAt": "2026-10-28T20:14:26.782Z",
+  "driver": {
+    "file": "/workspace/afkarena-simx/work/run-gc-validation-chain.mjs",
+    "sha256": "2fc0ff8f9759e6dda2e90663b3cf03fbc464fc34fcb23a5120638d5c4de8cf91",
+    "artifact": "/workspace/afkarena-simx/benchmarks/validation/rust-program-gc-chain-driver.mjs.gz"
+  }
+}
