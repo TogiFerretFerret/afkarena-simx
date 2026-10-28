@@ -50,6 +50,7 @@ node tools/rust-port/build-program.mjs \
 node tools/rust-port/check-program.mjs \
   --manifest work/rust-battle-full/program-manifest.json \
   --binary work/rust-port-shared-target/release/rust-battle-program \
+  --build-proof benchmarks/validation/rust-program-release-build.json \
   --profile release \
   --output benchmarks/validation/rust-full-program-release.json
 ```
@@ -69,9 +70,12 @@ consumption, and preserves both raw outputs. Positive throughput is reported
 only on a passing comparison. Use release builds for speed measurements;
 unoptimized debug execution is for finding semantic failures.
 
-The build proof and semantic report are separate artifacts. The checker currently
-does not automatically consume the build proof to verify executable provenance;
-retain both and match their binary and manifest hashes when reviewing results.
+The build proof and semantic report are separate artifacts. With `--build-proof`,
+the checker requires a passed build, matching binary and manifest hashes, matching
+profile and unchanged build inputs. It freezes the proof and those inputs across
+both executions. Omitting the option permits semantic debugging but leaves
+`binaryBoundToManifest` false. An invalid supplied proof fails the check while
+retaining execution diagnostics.
 
 For the smaller committed battle-method crate:
 

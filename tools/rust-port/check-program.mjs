@@ -8,6 +8,7 @@ import {readFileSync} from 'node:fs';
 import {parse as parseSource} from '@babel/parser';
 import assert from 'node:assert/strict';
 import {compareNativeReports,firstDifference} from '../native-report-compare.mjs';
+import {verifyBuildProof} from './build-proof.mjs';
 
 const root=resolve(import.meta.dirname,'../..');
 const args=process.argv.slice(2);
@@ -62,7 +63,16 @@ while(pending.length){const node=pending.pop();
 assert.equal(externalInputs.size,1,'The fixed harness must have exactly one external table bundle');
 for(const file of externalInputs)await track(file);
 for(const directory of ['crates/js-runtime','crates/battle-core','third-party'])await trackTree(directory);
-for(const file of ['Cargo.toml','Cargo.lock','config/source-oracle-runtime.json','tools/rust-port/check-program.mjs','tools/native-report-compare.mjs','tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])await track(file);
+for(const file of ['Cargo.toml','Cargo.lock','config/source-oracle-runtime.json','tools/rust-port/check-program.mjs','tools/rust-port/build-proof.mjs','tools/native-report-compare.mjs','tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])await track(file);
+const buildProofRequested=args.includes('--build-proof');
+let buildProof=null;
+if(buildProofRequested){
+ const verification=await verifyBuildProof(option('--build-proof'),{root,manifestFile,manifestSha256:sha(manifestBytes),binarySha256:binaryBefore,buildProfile:option('--profile','debug')});
+ buildProof=verification.result;
+ // Keep every build input and the proof itself frozen throughout both runs.
+ if(buildProof.sha256)tracked.set(buildProof.file,buildProof.sha256);
+ for(const [file,digest] of Object.entries(verification.inputs))if(!tracked.has(file))tracked.set(file,digest);
+}
 const timeout=Number(option('--timeout-ms','600000'));
 const run=(command,argv,env)=>{
  const begin=performance.now();
@@ -90,14 +100,15 @@ const changedInputs=[];for(const [file,before] of tracked){let after=null;try{af
 const expectedBattles=20;
 const completedWorkload=expected?.completed===expectedBattles&&actual?.completed===expectedBattles&&expected.results?.length===expectedBattles&&actual.results?.length===expectedBattles;
 const validTiming=[expected,actual].every(report=>Number.isFinite(report?.elapsedMs)&&report.elapsedMs>0&&Number.isFinite(report?.battlesPerSecond)&&report.battlesPerSecond>0);
-const passed=oracle.status===0&&native.status===0&&!!actual&&!!expected&&!difference&&!hostDifference&&binaryUnchanged&&changedInputs.length===0&&completedWorkload&&validTiming;
+const binaryBoundToManifest=buildProof?.valid===true&&binaryUnchanged&&changedInputs.length===0;
+const passed=oracle.status===0&&native.status===0&&!!actual&&!!expected&&!difference&&!hostDifference&&binaryUnchanged&&changedInputs.length===0&&completedWorkload&&validTiming&&(!buildProofRequested||binaryBoundToManifest);
 const compact=result=>({status:result.status,signal:result.signal,error:result.error,wallMs:result.wallMs});
 const report={version:1,passed,qualifiesFor10000Target:false,
  scope:'Seven frozen source modules executed as generated native Rust and pinned Node. Exact non-timing report and host consumption comparison. This fixed callback fixture does not qualify full-scene random battles or 20k battle coverage.',
  buildProfile:option('--profile','debug'),traceEnabled:false,
  manifest:{file:manifestFile,sha256:sha(manifestBytes)},
  binary:{file:binary,sha256:binaryBefore,unchanged:binaryUnchanged},
- provenance:{inputs:Object.fromEntries(tracked),externalInputs:[...externalInputs],unchanged:changedInputs.length===0,changedInputs,binaryBoundToManifest:false},
+ provenance:{inputs:Object.fromEntries(tracked),externalInputs:[...externalInputs],unchanged:changedInputs.length===0,changedInputs,buildProofRequested,buildProof,binaryBoundToManifest},
  expectedBattles,completedWorkload,validTiming,
  producer:{file:'tools/rust-port/check-program.mjs',sha256:sha(await readFile(import.meta.filename))},
  oracle:compact(oracle),native:compact(native),firstDifference:difference,hostDifference,
