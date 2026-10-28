@@ -1,0 +1,20 @@
+import{readFile,writeFile}from'node:fs/promises';
+import{resolve}from'node:path';
+import{createHash}from'node:crypto';
+import{gzipSync,gunzipSync}from'node:zlib';
+import assert from'node:assert/strict';
+import{firstDifference}from'../native-report-compare.mjs';
+const root=resolve(import.meta.dirname,'../..'),file=process.argv[2],oracle=process.argv[3];
+assert.ok(file&&oracle,'Provide profile JSON and the one-battle raw source oracle JSON');
+const sha=b=>createHash('sha256').update(b).digest('hex'),bytes=await readFile(resolve(root,file)),profile=JSON.parse(bytes);
+async function artifact(label){const row=profile.artifacts.find(row=>row.label===label);assert.ok(row);const chunks=[];for(const chunk of row.chunks){const bytes=await readFile(resolve(root,chunk.file));assert.equal(sha(bytes),chunk.sha256);chunks.push(bytes);}const raw=gunzipSync(Buffer.concat(chunks));assert.equal(sha(raw),row.uncompressedSha256);return raw;}
+const stdout=(await artifact('record-stdout')).toString(),stderr=(await artifact('record-stderr')).toString();
+const lines=stdout.split('\n').filter(line=>line.startsWith('ONE_BATTLE_REPORT:'));assert.equal(lines.length,1);
+const actual=JSON.parse(lines[0].slice('ONE_BATTLE_REPORT:'.length)),expectedBytes=await readFile(resolve(root,oracle)),expected=JSON.parse(expectedBytes);
+const semantic=value=>{const copy={...value};delete copy.elapsedMs;delete copy.battlesPerSecond;return copy;};
+const difference=firstDifference(semantic(actual),semantic(expected));assert.equal(difference,null,JSON.stringify(difference));assert.equal(actual.completed,1);
+assert.equal(profile.execution.code,1);assert.match(stderr,/probe_error:Unsupported\("diagnostic stop after one real battle; remaining host tape intentionally unconsumed"\)/);
+const start=/one_battle_start:objects:(\d+)/.exec(stderr),end=/one_battle_complete:elapsed_ms:([0-9.]+):objects:(\d+)/.exec(stderr);assert.ok(start&&end);
+const prefix=file.replace(/\.json$/,''),oracleArchive=prefix+'.oracle-report.json.gz',compressed=gzipSync(expectedBytes,{level:9});await writeFile(resolve(root,oracleArchive),compressed);
+const result={version:1,passed:true,profile:{file,sha256:sha(bytes)},oracle:{file:oracleArchive,sha256:sha(compressed),uncompressedSha256:sha(expectedBytes)},compared:'Every raw final report field except elapsedMs and battlesPerSecond; no state, callback, checksum, result or f64-bit normalization.',firstDifference:difference,completed:actual.completed,totalCallbacks:actual.totalCallbacks,reportedResult:actual.results,diagnosticStop:{exitCode:1,intentional:true,reason:'The unchanged source battle runner was invoked for one measured battle and zero warmups, then stopped after emitting its report; remaining full-workload host tape deliberately remains unconsumed.'},sampling:{scope:profile.scope,samples:profile.sampled,lostSamples:profile.lostSamples,selfGroups:profile.selfGroups,topSelf:profile.topSelf.slice(0,15)},profiledDiagnosticBattleWallMs:Number(end[1]),objects:{before:Number(start[1]),after:Number(end[2]),delta:Number(end[2])-Number(start[1])},qualifiesFor10000Target:false,limitations:['Whole-process sampling includes source/table initialization, decoder probes, one battle and final diagnostics. It is not battle-only timing.','The profile runner returns diagnostic exit1 by design; original profileSucceeded remains false rather than relabeling it as a completed normal workload. Raw data and all perf report commands succeeded.','Sampling and concurrent work alter elapsed time. No speedup or benchmark BPS inference is supported.','One fixed callback fixture with matching final report does not establish the broad random corpus, ordered native event trace, complete host tape consumption or full-scene fidelity.']};
+const output=prefix+'.assessment.json';await writeFile(resolve(root,output),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({output,passed:true,samples:profile.sampled,completed:actual.completed,objects:result.objects,topSelf:result.sampling.topSelf.slice(0,6)}));

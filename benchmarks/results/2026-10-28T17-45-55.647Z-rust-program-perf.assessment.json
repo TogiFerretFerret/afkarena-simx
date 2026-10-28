@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "passed": true,
+  "profile": {
+    "file": "benchmarks/results/2026-10-28T17-45-55.647Z-rust-program-perf.json",
+    "sha256": "3dfe9d2f0bfa7d868a52b948e91a256fe9ea3a0d784eb83e61e16ecde6ec2bf4"
+  },
+  "oracle": {
+    "file": "benchmarks/results/2026-10-28T17-45-55.647Z-rust-program-perf.oracle-report.json.gz",
+    "sha256": "b5339234b904b726b98750e22fe674adcac702986a269fe61cb86729626d2ce3",
+    "uncompressedSha256": "21071839a2cb1fefe7723602d9200eae83f2b6178de9dbdde905b47dfc624b1f"
+  },
+  "compared": "Every raw final report field except elapsedMs and battlesPerSecond; no state, callback, checksum, result or f64-bit normalization.",
+  "firstDifference": null,
+  "completed": 1,
+  "totalCallbacks": 15453,
+  "reportedResult": [
+    {
+      "result": "victory",
+      "ticks": 296,
+      "frames": 296,
+      "callbacks": 15453,
+      "queuedCallbacks": 15450,
+      "rngBits": "4216fd6c5e6c0000"
+    }
+  ],
+  "diagnosticStop": {
+    "exitCode": 1,
+    "intentional": true,
+    "reason": "The unchanged source battle runner was invoked for one measured battle and zero warmups, then stopped after emitting its report; remaining full-workload host tape deliberately remains unconsumed."
+  },
+  "sampling": {
+    "scope": "whole",
+    "samples": 1071,
+    "lostSamples": "0",
+    "selfGroups": [
+      {
+        "name": "Rust JavaScript semantics runtime",
+        "samples": 634,
+        "periodNs": "6404040340",
+        "percent": 59.19701213818861
+      },
+      {
+        "name": "Unresolved",
+        "samples": 180,
+        "periodNs": "1818181800",
+        "percent": 16.80672268907563
+      },
+      {
+        "name": "Other Rust and system code",
+        "samples": 143,
+        "periodNs": "1444444430",
+        "percent": 13.352007469654529
+      },
+      {
+        "name": "Allocation, collections and memory",
+        "samples": 73,
+        "periodNs": "737373730",
+        "percent": 6.816059757236228
+      },
+      {
+        "name": "Generated source execution",
+        "samples": 41,
+        "periodNs": "414141410",
+        "percent": 3.828197945845005
+      }
+    ],
+    "topSelf": [
+      {
+        "symbol": "<core::hash::sip::Hasher<core::hash::sip::Sip13Rounds> as core::hash::Hasher>::write",
+        "dso": "battle-probe",
+        "samples": 72,
+        "periodNs": "727272720",
+        "rawSymbol": "_RNvXs3_NtNtCskADBYZwJmSU_4core4hash3sipINtB5_6HasherNtB5_11Sip13RoundsENtB7_6Hasher5writeCsddBioDaU7Da_10js_runtime.llvm.17533478849139948811",
+        "percent": 6.722689075630252
+      },
+      {
+        "symbol": "<js_runtime::heap::Object>::own",
+        "dso": "battle-probe",
+        "samples": 70,
+        "periodNs": "707070700",
+        "rawSymbol": "_RNvMs2_NtCsddBioDaU7Da_10js_runtime4heapNtB5_6Object3own",
+        "percent": 6.5359477124183005
+      },
+      {
+        "symbol": "js_runtime::builtins::proto_get",
+        "dso": "battle-probe",
+        "samples": 70,
+        "periodNs": "707070700",
+        "rawSymbol": "_RNvNtCsddBioDaU7Da_10js_runtime8builtins9proto_get",
+        "percent": 6.5359477124183005
+      },
+      {
+        "symbol": "<js_runtime::runtime::Runtime>::intern_utf16",
+        "dso": "battle-probe",
+        "samples": 65,
+        "periodNs": "656565650",
+        "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime12intern_utf16",
+        "percent": 6.069094304388422
+      },
+      {
+        "symbol": "<js_runtime::runtime::Runtime>::intern",
+        "dso": "battle-probe",
+        "samples": 48,
+        "periodNs": "484848480",
+        "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime6intern",
+        "percent": 4.481792717086835
+      },
+      {
+        "symbol": "cfree",
+        "dso": "libc.so.6",
+        "samples": 34,
+        "periodNs": "343434340",
+        "rawSymbol": "cfree",
+        "percent": 3.1746031746031744
+      },
+      {
+        "symbol": "<js_runtime::runtime::Runtime>::static_string",
+        "dso": "battle-probe",
+        "samples": 30,
+        "periodNs": "303030300",
+        "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime12literal_poolNtNtB6_7runtime7Runtime13static_string",
+        "percent": 2.8011204481792715
+      },
+      {
+        "symbol": "<hashbrown::raw::RawTable<(js_runtime::heap::PropertyKey, usize)>>::reserve_rehash::<hashbrown::map::make_hasher<js_runtime::heap::PropertyKey, usize, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>::{closure#0}>",
+        "dso": "battle-probe",
+        "samples": 27,
+        "periodNs": "272727270",
+        "rawSymbol": "_RINvMs6_NtCs3BTM885nGDo_9hashbrown3rawINtB6_8RawTableTNtNtCsddBioDaU7Da_10js_runtime4heap11PropertyKeyjEE14reserve_rehashNCINvNtB8_3map11make_hasherBQ_jINtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBU_7id_hash8IdHasherEE0EBU_",
+        "percent": 2.5210084033613445
+      },
+      {
+        "symbol": "0x000000000017221a",
+        "dso": "libc.so.6",
+        "samples": 25,
+        "periodNs": "252525250",
+        "rawSymbol": "0x000000000017221a",
+        "percent": 2.3342670401493932
+      },
+      {
+        "symbol": "0x000000000009eb1b",
+        "dso": "libc.so.6",
+        "samples": 24,
+        "periodNs": "242424240",
+        "rawSymbol": "0x000000000009eb1b",
+        "percent": 2.2408963585434174
+      },
+      {
+        "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&str>",
+        "dso": "battle-probe",
+        "samples": 22,
+        "periodNs": "222222220",
+        "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneReECsddBioDaU7Da_10js_runtime",
+        "percent": 2.0541549953314657
+      },
+      {
+        "symbol": "<js_runtime::runtime::Runtime>::resolve_binding",
+        "dso": "battle-probe",
+        "samples": 22,
+        "periodNs": "222222220",
+        "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime15resolve_binding",
+        "percent": 2.0541549953314657
+      },
+      {
+        "symbol": "<js_runtime::json::Parser>::string",
+        "dso": "battle-probe",
+        "samples": 20,
+        "periodNs": "202020200",
+        "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime4jsonNtB4_6Parser6string",
+        "percent": 1.8674136321195145
+      },
+      {
+        "symbol": "0x000000000009eda5",
+        "dso": "libc.so.6",
+        "samples": 19,
+        "periodNs": "191919190",
+        "rawSymbol": "0x000000000009eda5",
+        "percent": 1.7740429505135387
+      },
+      {
+        "symbol": "0x00000000000a01d0",
+        "dso": "libc.so.6",
+        "samples": 18,
+        "periodNs": "181818180",
+        "rawSymbol": "0x00000000000a01d0",
+        "percent": 1.680672268907563
+      }
+    ]
+  },
+  "profiledDiagnosticBattleWallMs": 7743.645183,
+  "objects": {
+    "before": 1190405,
+    "after": 2689264,
+    "delta": 1498859
+  },
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "Whole-process sampling includes source/table initialization, decoder probes, one battle and final diagnostics. It is not battle-only timing.",
+    "The profile runner returns diagnostic exit1 by design; original profileSucceeded remains false rather than relabeling it as a completed normal workload. Raw data and all perf report commands succeeded.",
+    "Sampling and concurrent work alter elapsed time. No speedup or benchmark BPS inference is supported.",
+    "One fixed callback fixture with matching final report does not establish the broad random corpus, ordered native event trace, complete host tape consumption or full-scene fidelity."
+  ]
+}
