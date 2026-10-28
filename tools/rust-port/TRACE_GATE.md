@@ -124,3 +124,5 @@ establishes no native trace parity. Observer allocation remains a limitation.
 Preparation now requires the observer compiler fingerprints to match the main
 manifest, preventing accidental mixing of a newer observer API with older game
 rlibs. Reprepare after regenerating the next full build.
+
+The next native retry completed and its [archived prefix comparison](../../benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.comparison.json) matched all 1,000 events, 1,437 required snapshots, the full terminal report and host consumption. The orchestrator session disappeared before its final provenance footer was written; [recovery metadata](../../benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.recovered.json) explicitly leaves complete execution provenance unqualified. No elapsed time, peak RSS or unchanged-library claim is inferred. The emitted observer reported completion; no native child remains. This is prefix evidence, not complete later-event coverage or a throughput result.

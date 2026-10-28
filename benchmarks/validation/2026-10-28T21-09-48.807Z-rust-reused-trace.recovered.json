@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "comparisonPassed": true,
+  "completeExecutionProvenancePassed": false,
+  "qualifiesFor10000Target": false,
+  "scope": "Recovered ordered-prefix comparison only: 1000 events, 1437 required snapshots, complete terminal and host inputs match. Original monitor session disappeared after comparison artifacts were written and before final provenance footer. No elapsed/RSS or unchanged-library claim is recovered.",
+  "comparison": "2026-10-28T21-09-48.807Z-rust-reused-trace.comparison.json",
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.comparison-stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.comparison-stdout.gz",
+      "sha256": "0f20bade6abc4f1b3a89f4f6e63818f938694b64575eada51b9ac56153edb725",
+      "bytes": 427
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.comparison.json",
+      "sha256": "900675ffa527938d28674c40ca5c5b6f921bf9a776438d5ae593e62beccbdb28",
+      "bytes": 4738
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.compile-stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.compile-stdout.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.copied-prefix-source.gz",
+      "sha256": "2a601be9c310ff5837bb884a4acc500dc482697ca17517a5d9f0fc983047614f",
+      "bytes": 6108
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.copied-unit0-source.gz",
+      "sha256": "25fbc21bc5b705b76311108e8bd5602075be0595d882dcf3c4a64e9ee9e59b8f",
+      "bytes": 6069
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.main-source.gz",
+      "sha256": "4bdb004d9de39cdae1f03f430f6e2ee63a4039d53da5ebadce366190082096f4",
+      "bytes": 2010
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.native-stderr.gz",
+      "sha256": "2ba748b11f1aa0a297960a10fde911d32b1d97440539bcdc5168becd30e08f51",
+      "bytes": 106
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.native-stdout.gz",
+      "sha256": "ba137a575141a2bc20f65e486275b60fdf004873ba0bbe0fd096a8215bbf55c9",
+      "bytes": 250541
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.observer-rust.gz",
+      "sha256": "49885aae91bd1e766a72a8a50852e9cbfbf109bdb4df89b07bd60dbc58b24362",
+      "bytes": 40938
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.observer-source.gz",
+      "sha256": "2735129bb73bcd62039f1fe90b9516985ab23f00874429244d988908ce74dbba",
+      "bytes": 3751
+    },
+    {
+      "file": "benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.preparation-proof.gz",
+      "sha256": "f6bd1981661edd042decf8127e2e0aad6c89077b7dbcd7ad194b1abb09ed807d",
+      "bytes": 62523
+    }
+  ]
+}
