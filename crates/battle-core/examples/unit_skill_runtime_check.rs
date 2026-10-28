@@ -17,6 +17,7 @@ pub(crate) fn snapshot(w:&u::World,t:&s::World,last_tick:f64)->String{
 pub(crate) struct Host{pub action:usize,pub used:bool,pub events:Vec<String>,pub last_tick:f64,pub frame:usize}
 impl Host{
  fn event(&mut self,c:&mut r::Context<'_>,kind:impl AsRef<str>){let state=c.inspect(|u,s|snapshot(u,s,self.last_tick)).expect("valid fixture arena");self.events.push(format!("{{\"kind\":{:?},\"state\":{}}}",kind.as_ref(),state));}
+ pub(crate) fn event_runtime(&mut self,runtime:&mut r::Runtime,kind:impl AsRef<str>){runtime.inspect(|u,s|self.event_world(u,s,kind)).expect("valid fixture arena");}
  pub(crate) fn event_world(&mut self,u:&u::World,s:&s::World,kind:impl AsRef<str>){self.events.push(format!("{{\"kind\":{:?},\"state\":{}}}",kind.as_ref(),snapshot(u,s,self.last_tick)));}
  fn once(&mut self,action:usize)->bool{if self.action==action&&!self.used{self.used=true;true}else{false}}
 }
@@ -93,8 +94,8 @@ pub(crate) fn make(n:&[f64],action:usize)->r::Runtime{
 }
 fn main()->io::Result<()>{let stdin=io::stdin();let mut out=io::BufWriter::new(io::stdout().lock());for line in stdin.lock().lines(){let line=line?;let mut input=line.split_whitespace();let action=input.next().unwrap().parse::<usize>().unwrap();let n=(0..9).map(|_|f64::from_bits(u64::from_str_radix(input.next().unwrap(),16).unwrap())).collect::<Vec<_>>();assert!(input.next().is_none());let mut runtime=make(&n,action);let mut host=Host{action,used:false,events:vec![],last_tick:-1.0,frame:0};let mut errors=vec![];
  for frame in 0..2{
-  host.frame=frame;host.event_world(runtime.units(),runtime.timelines(),format!("frame:{frame}:enter"));if let Err(error)=runtime.update_unit(0,n[0],&mut host){assert_eq!(error,"fixture-sentinel");errors.push(format!("unit:{frame}"));host.event_world(runtime.units(),runtime.timelines(),"error:unit");}host.event_world(runtime.units(),runtime.timelines(),format!("frame:{frame}:after-unit"));
-  if let Err(error)=runtime.drain_callbacks(&mut host){assert_eq!(error,"fixture-sentinel");errors.push(format!("drain:{frame}"));host.event_world(runtime.units(),runtime.timelines(),"error:drain");}host.event_world(runtime.units(),runtime.timelines(),format!("frame:{frame}:after-drain"));
+  host.frame=frame;host.event_runtime(&mut runtime,format!("frame:{frame}:enter"));if let Err(error)=runtime.update_unit(0,n[0],&mut host){assert_eq!(error,"fixture-sentinel");errors.push(format!("unit:{frame}"));host.event_runtime(&mut runtime,"error:unit");}host.event_runtime(&mut runtime,format!("frame:{frame}:after-unit"));
+  if let Err(error)=runtime.drain_callbacks(&mut host){assert_eq!(error,"fixture-sentinel");errors.push(format!("drain:{frame}"));host.event_runtime(&mut runtime,"error:drain");}host.event_runtime(&mut runtime,format!("frame:{frame}:after-drain"));
  }
  writeln!(out,"{{\"frames\":[{}],\"errors\":{:?},\"used\":{}}}",host.events.join(","),errors,host.used)?;
  }out.flush()}
