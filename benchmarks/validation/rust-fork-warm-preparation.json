@@ -1,0 +1,14 @@
+{
+  "prepared": true,
+  "executed": false,
+  "qualified": false,
+  "staticChecksPassed": 19,
+  "linuxHelperRustMetadataCompilePassed": true,
+  "scope": "Preparation only. No fork or native battle was run. Actual four-child20-battle report/tape/class/PSS qualification awaits a completed frozen build and released serial slot.",
+  "sourceSha256": {
+    "tools/rust-port/program-fork-warm.rs": "0730c5aecea9f9d3da70602d6677cd422dfa2b1b9a7402abf3cdc2099e9ab7e4",
+    "tools/rust-port/program-fork-benchmark.rs": "8c7a55d6fd263512778deb48df614cb925e1774697dd29fabef1b0482a7f534a",
+    "tools/rust-port/benchmark-fork-program.mjs": "f7298c8e92da220a2f2a32d77475a4494a44a9d9a71a12cd5338dc23d2574dc1",
+    "tools/rust-port/tests/fork-benchmark.test.mjs": "3f2174c19840132586907827f4f9a2333bdf963e048dc676cef31c493ee485d5"
+  }
+}
