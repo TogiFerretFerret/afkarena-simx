@@ -57,3 +57,26 @@ impl Runtime{
 }
 
 impl CopyObjGuard {pub(crate) fn reachability_roots(&self)->Vec<Value>{let mut out=vec![Value::String(self.object_name),Value::String(self.constructor_key.0)];for(object,key,d)in &self.properties{out.push(Value::Object(*object));out.push(Value::String(key.0));match d.kind{PropertyKind::Data{value,..}=>out.push(value),PropertyKind::Accessor{get,set}=>{out.extend(get);out.extend(set)}}}out}}
+
+impl Runtime {
+ /// Only skips the exact createDataObj primitive-only instanceof loop. Its
+ /// source copy call and every subsequently-created closure remain original.
+ pub fn try_native_data_obj_scan(&mut self,env:EnvId,parent:EnvId)->JsResult<bool>{
+  if !self.native_data_obj_scan_enabled||!self.copy_obj_intrinsics_intact(parent){return Ok(false)}
+  let array_key=self.intern("Array");let target_key=self.intern("t");let result_key=self.intern("r");
+  let Some(array)=self.data_obj_raw_binding(env,array_key)else{return Ok(false)};
+  let Some(Descriptor{kind:PropertyKind::Data{value:original_array,..},..})=self.objects[self.global_object.0].own(PropertyKey(array_key))else{return Ok(false)};
+  if array!=original_array||!matches!(array,Value::Function(_)){return Ok(false)}
+  let Some(Value::Object(target))=self.data_obj_raw_binding(env,target_key)else{return Ok(false)};
+  let Some(record)=self.environments.get(env.0)else{return Ok(false)};let Some(&slot)=record.bindings.get(&result_key)else{return Ok(false)};let Some(binding)=record.cells.get(slot)else{return Ok(false)};
+  if !binding.alive||!binding.initialized||binding.object_backed{return Ok(false)}
+  let object=&self.objects[target.0];if !matches!(object.kind,ObjectKind::Ordinary)||object.prototype!=Some(self.object_prototype)||!object.arguments_map.is_empty(){return Ok(false)}
+  // An inherited enumerable entry or an own accessor can execute arbitrary
+  // source work. Reject all such shapes before advancing the source loop.
+  if self.objects[self.object_prototype.0].properties.iter().flatten().any(|(_,d)|d.enumerable){return Ok(false)}
+  for(_,descriptor)in object.properties.iter().flatten(){if !descriptor.enumerable{continue}let PropertyKind::Data{value,..}=descriptor.kind else{return Ok(false)};if matches!(value,Value::Object(_)|Value::Function(_)){return Ok(false)}}
+  if let Some(last)=self.own_keys(Value::Object(target),true)?.last().copied(){self.assign_id(env,result_key,last,false)?;}
+  Ok(true)
+ }
+ fn data_obj_raw_binding(&self,mut env:EnvId,name:crate::StringId)->Option<Value>{loop{let record=self.environments.get(env.0)?;if let Some(&slot)=record.bindings.get(&name){let binding=record.cells.get(slot)?;if !binding.alive||!binding.initialized{return None}if !binding.object_backed{return Some(binding.value)}break}if let Some(parent)=record.parent{env=parent}else{break}}match self.objects[self.global_object.0].own(PropertyKey(name))?.kind{PropertyKind::Data{value,..}=>Some(value),_=>None}}
+}

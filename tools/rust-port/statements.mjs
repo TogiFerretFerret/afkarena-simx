@@ -73,6 +73,7 @@ function forStatement(ctx,node){
  loopBody(local,node.body,()=>{local.battleLoopBackedge?.(node,local);clone();if(node.update)local.expression(node.update);});local.emit('}');if(fast)ctx.emit('}');normal(ctx);
 }
 function forInStatement(ctx,node){
+ const fast=ctx.sourceLoopFastPath?.(node,ctx);if(fast)ctx.emit(`if !(${fast}) {`);
  if(node.left.type==='VariableDeclaration')declarationKind(node.left);
  let head=ctx;
  if(node.left.type==='VariableDeclaration'&&node.left.kind!=='var'){const env=ctx.temp(`rt.child_block_env(${ctx.env})`);head=child(ctx,{env});declareLexicals(head,[node.left]);}
@@ -86,7 +87,7 @@ function forInStatement(ctx,node){
   if(node.left.kind!=='var'){const env=ctx.temp(`rt.child_block_env(${ctx.env})`);local=child(ctx,{env});declareLexicals(local,[node.left]);}
   bindPattern(local,declaration.id,key,node.left.kind);
  }else{const ref=emitReference(node.left,ctx);writeReference(ref,key,ctx);}
- loopBody(local,node.body);ctx.emit('}');normal(ctx);
+ loopBody(local,node.body);ctx.emit('}');if(fast)ctx.emit('}');normal(ctx);
 }
 function forOfStatement(ctx,node){
  if(node.await)unsupported(node,'async iteration is not implemented');
