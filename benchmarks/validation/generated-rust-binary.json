@@ -1,7 +1,37 @@
 {
-  "version": 1,
+  "version": 2,
   "passed": true,
   "cases": 20000,
+  "numberBitsCorpus": [
+    "0000000000000000",
+    "8000000000000000",
+    "3ff0000000000000",
+    "bff0000000000000",
+    "3fe0000000000000",
+    "bfe0000000000000",
+    "4008000000000000",
+    "4010000000000000",
+    "4020000000000000",
+    "402e000000000000",
+    "4030000000000000",
+    "4034000000000000",
+    "4038000000000000",
+    "403f000000000000",
+    "4059000000000000",
+    "c059000000000000",
+    "3fc0000000000000",
+    "3fb999999999999a",
+    "7ff0000000000000",
+    "fff0000000000000",
+    "7ff0000000000001",
+    "7ff4000000000000",
+    "fff0000000001234",
+    "7ff8000000000000",
+    "fff8000000000000",
+    "7ff8000000001234",
+    "fff8000000001234"
+  ],
+  "nanCorpusConstruction": "Raw hexadecimal strings without prior numeric-array storage",
   "splitNativeBodies": false,
   "originalSourceFunctions": [
     {
@@ -55,9 +85,11 @@
     "largeBody": null,
     "cacheLocalBindings": true,
     "staticLiteralStrings": true,
+    "sourceSpecializations": true,
     "functions": [
       {
         "id": 0,
+        "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 329,
         "helpers": [],
@@ -74,6 +106,7 @@
       },
       {
         "id": 1,
+        "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 58,
         "helpers": [],
@@ -90,6 +123,7 @@
       },
       {
         "id": 2,
+        "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 8,
         "helpers": [],
@@ -106,6 +140,7 @@
       },
       {
         "id": 3,
+        "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 23,
         "helpers": [],
@@ -122,6 +157,7 @@
       },
       {
         "id": 4,
+        "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 23,
         "helpers": [],
@@ -138,6 +174,7 @@
       },
       {
         "id": 5,
+        "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 6,
         "helpers": [],
@@ -154,6 +191,7 @@
       },
       {
         "id": 6,
+        "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 0,
         "helpers": [],
@@ -170,6 +208,7 @@
       },
       {
         "id": 7,
+        "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 24,
         "helpers": [],
@@ -346,27 +385,31 @@
     "third-party/ryu-js/tests/s2d_test.rs": "03213cc3f984f84be5e17f6bd86d431afaeb27eb2bfaf88f3bab1111dbbe2bc5",
     "third-party/ryu-js/tests/s2f_test.rs": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
     "third-party/ryu-js/tests/to_fixed.rs": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
-    "crates/js-runtime/src/binary.rs": "3a1701c1070d04b809750b63cd8514e5236df3b2de6b84b78a9ce52fb641b884",
-    "crates/js-runtime/src/builtins.rs": "f1e9e8bd3b08c915eafffe7c46d39ac34672203c277cb73d76d04013ce91bcf3",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/builtins.rs": "bf3077e07472b9ef259a78dca61312b3f203b1572eda5adae4f8af398eca34b4",
     "crates/js-runtime/src/closures.rs": "ffe747fcac1e0a9fac9b36b90f64a6a90ac70ddc559d2d5f2ccb772d80a047f7",
-    "crates/js-runtime/src/collections.rs": "bdc533e3d02302a89f3ef3bee9450e9724f63fbcd994d965f912ebc995f3f666",
+    "crates/js-runtime/src/collections.rs": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
     "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
     "crates/js-runtime/src/diagnostics.rs": "7a22261fee149ee9776723b5cb9790bca62c45c4b29a7338d166e81a5490a898",
-    "crates/js-runtime/src/env.rs": "9abb8c38b70ce333144da35e734446b449c77bf2bdbc6daf407856540b2c9557",
+    "crates/js-runtime/src/env.rs": "81bd3ad26c1c2560d8df63b1985aecf620fd56f3269fc60469ca57762b727043",
     "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
-    "crates/js-runtime/src/fdlibm.rs": "766dbf40c4356d3701729ed3e2fdaee459bf045e80b7db1b5a569aca23eeecab",
-    "crates/js-runtime/src/heap.rs": "5dc8a666468dcbc524db8f48fe33595fc6b70b53b15f0d44e9ebc61f43f1b058",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "901181256a48ad047045daf799eb843268c69e8ed09bdf6477358e4ff2be09fc",
     "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
-    "crates/js-runtime/src/iterators.rs": "5d9f8545e1c5e6b4a456b77d2a31cd888e0303c8243e73bce78174f68b7983d8",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
     "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
-    "crates/js-runtime/src/lib.rs": "9c4a61c2357dac32b22a45b36b65bbb314d57ecff726dca127742f3c34f44abb",
+    "crates/js-runtime/src/lib.rs": "a1806767845af02d84eed017266cbd57137394fc4999bd29e19c2efa4de85ea4",
     "crates/js-runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
-    "crates/js-runtime/src/math.rs": "edfc28d37d56bdf831c26fab7e9438985259164bdf25ab7788da55cd320f9b3f",
+    "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
-    "crates/js-runtime/src/runtime.rs": "85d259b73959baddec059453dfc414a5b81ea6e21ce114f3fd6fc9de8d29e36c",
+    "crates/js-runtime/src/runtime.rs": "7fa62da98e1c0066f788ce2ec945a79c296b45442b20f0f9ccf158d221047c76",
     "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "f5859762a499fd23f992084477c8a0c799412eb6e050033980fbf69daaf4dc8e",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
     "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
     "crates/battle-core/src/ai.rs": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
     "crates/battle-core/src/buff.rs": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145",
@@ -389,11 +432,11 @@
     "crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
     "crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
     "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
-    "tools/rust-port/compile.mjs": "088c45933912ea22acf5e88a425a7c7f7140896ae825ba6b417a48b121ab01a1",
+    "tools/rust-port/compile.mjs": "4d4cc501ade4f75d0c5ed35f57a018f4a8324a0a80ffeb971da8fcd4cdd4fd9b",
     "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
     "tools/rust-port/expressions.mjs": "9e336ef4eb2b3023988388bf170532d7aedba06edcd4a7725dc536084ae2823a",
     "tools/rust-port/statements.mjs": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
-    "tools/rust-port/check-generated-binary.mjs": "3fc0a19059aabc6a43224baab78c6deb051ee4830c94ce17891c4391f48fea9a",
+    "tools/rust-port/check-generated-binary.mjs": "e0f747cfd46f7bf8349011c92380c50e48ff9837468d0df0fe4be72084d85790",
     "Cargo.toml": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
     "Cargo.lock": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
     "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
@@ -446,22 +489,22 @@
       "--offline"
     ]
   },
-  "binarySha256": "b8b26d70cef1ae50b38a441830c944b1d5ee08cbacee75fde0a9bd9c20127abd",
+  "binarySha256": "2f619f86c8c47a809479964cd01c4e6dfd0dd700c8871dc666b10fadcbe4617c",
   "artifacts": [
     {
       "file": "benchmarks/validation/generated-rust-binary.input.gz",
-      "sha256": "3098fc23b69a01b4b5fbbb6dd3e22fcac38e88bd5facec5af67184480c8af2cc",
-      "uncompressedSha256": "9dfdc8d64d58899d7c77908acc5192c200c215207f3530fe65b03323be295733"
+      "sha256": "0c39bf81bfefc8e2a7cf682cce49e85163a4b53b63fc0661ae67a65a9e35f5eb",
+      "uncompressedSha256": "da4e847e5a8b653ae93420472976937d7ef1c676434dc3ae6c017d8c5affe357"
     },
     {
       "file": "benchmarks/validation/generated-rust-binary.actual.gz",
-      "sha256": "56e39de1890c6e82628cf101879e423dc8bede8f4a383928f43af7f5fc6e3a10",
-      "uncompressedSha256": "81047b022b15eb4ab85bfad865375772e6f94c3c7db5aebce9ab5c628cfe2687"
+      "sha256": "989873ec145fbdf658f047baeab2c8b75f7f048e2a0a9d72ed44e1b09a909527",
+      "uncompressedSha256": "7969ac35c6a914b73c623c81a7f51db5077d451c9a1266b1fa5eeae1d09b4e25"
     },
     {
       "file": "benchmarks/validation/generated-rust-binary.expected.gz",
-      "sha256": "56e39de1890c6e82628cf101879e423dc8bede8f4a383928f43af7f5fc6e3a10",
-      "uncompressedSha256": "81047b022b15eb4ab85bfad865375772e6f94c3c7db5aebce9ab5c628cfe2687"
+      "sha256": "989873ec145fbdf658f047baeab2c8b75f7f048e2a0a9d72ed44e1b09a909527",
+      "uncompressedSha256": "7969ac35c6a914b73c623c81a7f51db5077d451c9a1266b1fa5eeae1d09b4e25"
     },
     {
       "file": "benchmarks/validation/generated-rust-binary.generated.gz",
@@ -485,8 +528,8 @@
     },
     {
       "file": "benchmarks/validation/generated-rust-binary.manifest.gz",
-      "sha256": "3bd4870ed1cc5a049f29bfa3e517e191b6fee0ad214eadedc3710c44b549cd84",
-      "uncompressedSha256": "1f815ccffb017f0129a9f3a024312b1df9bb52b8d1f61c1c5b716b24cec81a7f"
+      "sha256": "61ce3bac0b489d1ba29f6ac3f72d8b6fd5623de9d8026312080c4fae9397098f",
+      "uncompressedSha256": "f03ed215e4632f27d8014c91f61abd99102600ccba0f4470155f94751865fc96"
     }
   ],
   "scope": "Actual copied oracle __nativeBits helper, DataView/ArrayBuffer constructors and all numeric endian get/set methods compiled through Babel into Rust without a JS execution backend. Compares byte snapshots, exact hexadecimal float bits, coercion/getter/derived-prototype order, view identity/windows and source sentinel exception prefixes. This is a binary-data component gate, not whole-battle or unrestricted JS qualification.",
