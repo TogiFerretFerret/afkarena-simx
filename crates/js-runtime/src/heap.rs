@@ -44,7 +44,7 @@ impl Object {
   let index=key.0.0;if index<4&&self.primary_numeric_mask()&(1<<index)!=0{if let Some(bits)=&self.numeric_elements{return Some(Descriptor::data(Value::Number(f64::from_bits(bits[index])),true,true,true))}}
   self.property_index.get(&key).and_then(|i|self.properties[*i].map(|(_,d)|d))
  }
- fn dictionary_insert(&mut self,key:PropertyKey,descriptor:Descriptor){if let Some(i)=self.property_index.get(&key).copied(){self.properties[i]=Some((key,descriptor))}else{let i=self.properties.len();self.properties.push(Some((key,descriptor)));self.property_index.insert(key,i);}}
+ fn dictionary_insert(&mut self,key:PropertyKey,descriptor:Descriptor){match self.property_index.entry(key){std::collections::hash_map::Entry::Occupied(entry)=>{self.properties[*entry.get()]=Some((key,descriptor));},std::collections::hash_map::Entry::Vacant(entry)=>{let index=self.properties.len();self.properties.push(Some((key,descriptor)));entry.insert(index);}}}
  /// General descriptors, other value types and keys leave the primary domain.
  /// Materialization changes locations only; key order and Number bits survive.
  pub(crate) fn materialize_primary_numeric(&mut self){
