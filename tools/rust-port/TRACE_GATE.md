@@ -19,6 +19,12 @@ Node streams and comparison report under
 `benchmarks/validation/rust-program-trace-preparation.*`.
 The observer is expensive; this is a diagnostic run, not a speed benchmark.
 
+The [prepared Node reference](../../benchmarks/validation/rust-program-trace-preparation.json)
+passed with 64,419 ordered events and 55,078 snapshot nodes matching the accepted
+archive. It completed 296 frames and 15,453 callbacks. All input fingerprints
+remained unchanged. This establishes a source reference, not a new native Rust
+battle result.
+
 To compare a future candidate's NDJSON output against that prepared Node trace:
 
 ```sh

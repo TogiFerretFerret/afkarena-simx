@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Archived NDJSON comparison only. Every ordered selected-state event JSON and exact-bit snapshot pool matches the selected passed trace reference. Candidate exit code is caller-supplied, not independently witnessed by this checker. Does not establish executable provenance, full-program graph coverage or throughput.",
+  "candidate": {
+    "file": "/workspace/afkarena-simx/work/rust-battle-trace/node.stdout",
+    "sha256": "f8a960721d9305ed4424e033a087e0301397e095ca6258495e87dfaf27b2c2e7",
+    "unchanged": true,
+    "callerReportedExitCode": 0
+  },
+  "reference": {
+    "file": "/workspace/afkarena-simx/benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.json",
+    "label": "native-traced",
+    "sha256": "dd207fc9b35fd34b2c6d4a9cafe1eae80576b5579903750c159591bcb4aa4c25",
+    "unchanged": true
+  },
+  "producerInputs": {
+    "/workspace/afkarena-simx/tools/rust-port/check-program-trace.mjs": "ebdbae5ab5b96f569c7b2a395af8a926b663ab0a9475189cbb0cc1f3721aafc0",
+    "/workspace/afkarena-simx/tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341"
+  },
+  "changedProducerInputs": [],
+  "archiveInputs": [
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-000.gz",
+      "sha256": "8e0d6cef3ba368a3107d194c0f22cfad1f1a4cb6e3a047d0e5495d4b0e87d0a6"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-001.gz",
+      "sha256": "2397bd11e7d2bbec2bd2dd440b622c93cc02d17c882ba40e020d8230e37718f1"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-002.gz",
+      "sha256": "943dedee5860ebff86a973848de4324650a6a9a58b5223c8f0909a5a4e025b2e"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-003.gz",
+      "sha256": "3a1df8ed7ae73638b0a9b18b5a6b21f786897e81866a307a7827be833122ccb2"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-004.gz",
+      "sha256": "63ae78b7d7d99506e321f0417eebca62020d3ff0d5a76f87d2e61cff569da396"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-005.gz",
+      "sha256": "3d8f29f935e1a98fc00ffcd7fc1271d735678c43d30191e4a950cebbf1d173fa"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-006.gz",
+      "sha256": "4caa510f10ed5b1c1120c164a3734d5792000380b007d0b359f530c519876a3c"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-007.gz",
+      "sha256": "0fd16e77740cb87ad8c8514c5bb4a399161bab3e76fb6048c5ec34332bfd37c0"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-008.gz",
+      "sha256": "967b14d9e6a2cdf15a2454f906bb48533dc7a32b3fdcdbf731afded7adf8df54"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-009.gz",
+      "sha256": "91f3c267f897b454e7c8534f846979e97cca5be8c98c25cbc13e946a135f6512"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-010.gz",
+      "sha256": "46b147d3cadc364c776926178479030e46afb4034d17f779ef3143971da761ee"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-011.gz",
+      "sha256": "32f213840fe8b113d5f93a600b1386b24b539fefc99ac0694c236c0f4eaf7f94"
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T23-49-07.298Z-boundary-optimized-native.native-traced.part-012.gz",
+      "sha256": "6f6918668132b0e0b4566292d15794637844938773fbdfd71a1c8027e725f62b"
+    }
+  ],
+  "changedArchiveInputs": [],
+  "comparison": {
+    "passed": true,
+    "terminalDifference": null,
+    "hostDifference": null,
+    "traceHeaderMatched": true,
+    "sameSnapshotPool": true,
+    "sameEventCount": true,
+    "firstDifference": null,
+    "events": 64419,
+    "snapshots": 55078,
+    "hostInputConsumption": {
+      "random": 2,
+      "clock": {
+        "version": 1,
+        "mode": "replay",
+        "attempts": 260,
+        "consumed": 260,
+        "total": 260,
+        "remaining": 0,
+        "counts": {
+          "Date.now": 0,
+          "Date.construct": 260,
+          "Date.call": 0
+        },
+        "finished": true,
+        "restored": false,
+        "failure": null
+      }
+    },
+    "rootContract": "primitive-vector-battle-boundaries-v1"
+  },
+  "error": null
+}
