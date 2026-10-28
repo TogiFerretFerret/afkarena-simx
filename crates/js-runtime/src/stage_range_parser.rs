@@ -4,8 +4,8 @@ use crate::{Runtime,Value,StringId,ObjectId,ObjectKind,PropertyKey,Descriptor,Pr
 pub(crate) struct StageRangeGuard{bindings:Vec<(StringId,Value)>,properties:Vec<(ObjectId,PropertyKey,Descriptor)>}
 pub(crate) struct StageRangePlan{tokens:Vec<StringId>,ranges:Vec<(StringId,u32,u32)>}
 fn same(a:Descriptor,b:Descriptor)->bool{a.enumerable==b.enumerable&&a.configurable==b.configurable&&match(a.kind,b.kind){(PropertyKind::Data{value:a,writable:aw},PropertyKind::Data{value:b,writable:bw})=>a==b&&aw==bw,_=>false}}
-fn uint(units:&[u16])->Option<u32>{if units.is_empty()||units.len()>10{return None}let mut n=0u32;for &unit in units{if !(48..=57).contains(&unit){return None}n=n.checked_mul(10)?.checked_add(u32::from(unit-48))?;}Some(n)}
-fn mode(units:&[u16])->bool{if units.is_empty()||units.len()>64{return false}let letter=|c:u16|c==95||(65..=90).contains(&c)||(97..=122).contains(&c);letter(units[0])&&units[1..].iter().all(|&c|letter(c)||(48..=57).contains(&c))}
+pub(crate)fn uint(units:&[u16])->Option<u32>{if units.is_empty()||units.len()>10{return None}let mut n=0u32;for &unit in units{if !(48..=57).contains(&unit){return None}n=n.checked_mul(10)?.checked_add(u32::from(unit-48))?;}Some(n)}
+pub(crate)fn mode(units:&[u16])->bool{if units.is_empty()||units.len()>64{return false}let letter=|c:u16|c==95||(65..=90).contains(&c)||(97..=122).contains(&c);letter(units[0])&&units[1..].iter().all(|&c|letter(c)||(48..=57).contains(&c))}
 impl Runtime {
  pub(crate) fn capture_stage_range_guard(&mut self){
   let mut bindings=Vec::new();let mut properties=Vec::new();let mut array=None;
@@ -14,7 +14,7 @@ impl Runtime {
   self.stage_range_guard=Some(StageRangeGuard{bindings,properties});
  }
  fn stage_range_raw_binding(&self,mut env:EnvId,name:StringId)->Option<Value>{loop{let e=self.environments.get(env.0)?;if let Some(&slot)=e.bindings.get(&name){let b=e.cells.get(slot)?;if !b.alive||!b.initialized{return None}if !b.object_backed{return Some(b.value)}break}if let Some(parent)=e.parent{env=parent}else{break}}match self.objects[self.global_object.0].own(PropertyKey(name))?.kind{PropertyKind::Data{value,..}=>Some(value),_=>None}}
- fn stage_range_intrinsics_intact(&self,parent:EnvId)->bool{
+ pub(crate) fn stage_range_intrinsics_intact(&self,parent:EnvId)->bool{
   let Some(guard)=&self.stage_range_guard else{return false};for &(name,value)in &guard.bindings{if self.stage_range_raw_binding(parent,name)!=Some(value){return false}}
   for &(object,key,expected)in &guard.properties{let Some(actual)=self.objects[object.0].own(key)else{return false};if !same(actual,expected){return false}}
   if self.objects[self.object_prototype.0].prototype.is_some()||self.objects[self.array_prototype.0].prototype!=Some(self.object_prototype){return false}

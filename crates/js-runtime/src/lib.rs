@@ -58,3 +58,4 @@ mod stage_range_parser;
 mod buff_attribute_loop;
 
 pub mod stored_property;
+mod battle_mode_limit;
