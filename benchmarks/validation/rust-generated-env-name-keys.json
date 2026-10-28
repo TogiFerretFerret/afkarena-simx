@@ -1,7 +1,7 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 42,
+  "cases": 63,
   "firstDifference": null,
   "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
   "sourceInputsAtFinish": [
@@ -1147,7 +1147,7 @@
     },
     {
       "file": "tools/rust-port/check-env-name-keys.mjs",
-      "sha256": "a167ead0c9af7da0cf229bc2060365981532688617a9dae175de023dd7246a92",
+      "sha256": "09a66a32899bf696c85516eb02642e17fbfdf50c0fc4e94d5825a9b373d0bc53",
       "matched": true
     }
   ],
@@ -1169,10 +1169,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "1fdd51d6d68e5ac629029b9be2beb55228009cd412f5a05202b9ca65605bcd85",
+  "generatedRustSha256": "8ffe24086be6e1726070f42e1f17904efc790da2253d96819b11c4c0a2ad1279",
   "binary": {
     "file": "/workspace/afkarena-simx/work/candidate-env-name-keys/work/rust-port-env-name-keys/check",
-    "sha256": "9518b3e43b16faca8099bd0416b825ceaf807f27aa3eb8b691dae7812b8c9964"
+    "sha256": "c691588dd1e1ca42c50546a390da71fd7ea211a4d6d348dd30cf8bc4ab8c989e"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/candidate-env-name-keys/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
@@ -1191,7 +1191,7 @@
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-env-name-keys.outputs.json.gz",
-    "sha256": "a0c24aab23a0ea41d0f88172e64e378a5746a4db008f57dcfd94f5a9a66afe71"
+    "sha256": "cf48f8464d7d87a8f0e7e08db1b14c46023c48fd56e3828f7a8728faafd44f0b"
   },
   "qualifiesFor10000Target": false,
   "scope": "Static environment name IDs ON/OFF with dynamic global getters/deletion/prototypes, captured mutable cells, TDZ, const, typeof, sloppy/strict assignment, Unicode names, mapped/duplicate arguments, catch shadowing, loop closures and AnnexB. Name caching does not cache binding values or remove source resolution. This is an environment component gate, not battle qualification. This is not a complete battle or unrestricted ECMAScript qualification."
