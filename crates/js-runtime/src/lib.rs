@@ -5,6 +5,7 @@ pub mod id_hash;
 pub mod runtime;
 pub mod env;
 pub mod closures;
+mod lazy_arguments;
 pub mod literal_pool;
 pub mod iterators;
 pub use iterators::IteratorRecord;

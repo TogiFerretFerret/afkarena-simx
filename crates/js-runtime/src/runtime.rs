@@ -16,6 +16,7 @@ pub struct Runtime {
  pub(crate) static_literal_strings:HashMap<(u8,usize,usize),StringId>,
  pub(crate) diagnostics:crate::diagnostics::Diagnostics,
  pub(crate) throw_type_error:Option<Value>,
+ pub(crate) active_argument_frames:Vec<crate::lazy_arguments::ActiveArgumentsFrame>,
  pub objects:Vec<Object>,pub(crate) functions:Vec<FunctionRecord>,pub(crate) environments:Vec<Environment>,
  pub call_stack:Vec<FunctionId>,pub global_env:EnvId,pub global_object:ObjectId,
  pub construct_stack:Vec<(FunctionId,usize)>,
@@ -38,7 +39,7 @@ impl Runtime {
  pub fn new()->Self{
   let mut objects=vec![Object::new(None)];
   for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{copy_obj_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::new(),string_utf8_index:HashMap::new(),static_literal_strings:HashMap::new(),diagnostics:crate::diagnostics::Diagnostics::from_env(),throw_type_error:None,objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  let mut rt=Self{copy_obj_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::new(),string_utf8_index:HashMap::new(),static_literal_strings:HashMap::new(),diagnostics:crate::diagnostics::Diagnostics::from_env(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
   rt.install_function_builtins().expect("fresh Function intrinsics");
@@ -78,6 +79,19 @@ impl Runtime {
  fn is_length(&self,key:PropertyKey)->bool{self.string_units(key.0)==[108,101,110,103,116,104]}
  pub(crate) fn own_descriptor(&mut self,id:ObjectId,key:PropertyKey)->JsResult<Option<Descriptor>>{
   if let Some(value)=self.typed_own_descriptor(id,key)?{return Ok(value)}
+  // Only an ordinary sloppy function's original legacy data property has
+  // V8's active-arguments reflection behavior. A manually added property on
+  // an arrow, bound function or method remains an ordinary property.
+  if self.string_units(key.0)==[97,114,103,117,109,101,110,116,115]{
+   if let Some(callee)=self.function_objects.get(&id).copied(){
+    let function=&self.functions[callee.0];
+    if function.constructible&&matches!(function.kind,crate::closures::FunctionKind::Native{strict:false,arrow_this:None,..}){
+     if let Some(Descriptor{kind:PropertyKind::Data{value:Value::Null,writable:false},enumerable:false,configurable:false})=self.objects[id.0].own(key){
+      let value=self.active_function_arguments(callee)?;return Ok(Some(Descriptor::data(value,false,false,false)))
+     }
+    }
+   }
+  }
   let object=self.objects.get(id.0).ok_or_else(||JsError::TypeError("invalid object identity".into()))?;
   if let Some(binding)=object.arguments_map.get(&key).copied(){let mut desc=object.own(key);if let Some(ref mut d)=desc{if let PropertyKind::Data{ref mut value,..}=d.kind{*value=self.read_binding(binding)?;}}return Ok(desc)}
   match object.kind{

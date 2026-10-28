@@ -63,7 +63,7 @@ impl Runtime {
   let Value::Function(id)=callee else{self.report_noncallable(callee);return Err(JsError::TypeError("value is not callable".into()))};let kind=self.functions.get(id.0).map(|f|f.kind.clone()).ok_or_else(||JsError::TypeError("invalid function".into()))?;
   match kind{
    FunctionKind::Bound{target,bound_this,args:mut bound}=>{bound.extend_from_slice(args);self.call_value(Value::Function(target),bound_this,&bound)},
-   FunctionKind::Native{code,env,strict,arrow_this}=>{let receiver=if let Some(this)=arrow_this{this}else if strict{this}else{match this{Value::Null|Value::Undefined=>Value::Object(self.global_object),Value::Object(_)|Value::Function(_)=>this,_=>self.to_object(this)?}};self.call_stack.push(id);let result=code(self,receiver,args,env);self.call_stack.pop();result},
+   FunctionKind::Native{code,env,strict,arrow_this}=>{let receiver=if let Some(this)=arrow_this{this}else if strict{this}else{match this{Value::Null|Value::Undefined=>Value::Object(self.global_object),Value::Object(_)|Value::Function(_)=>this,_=>self.to_object(this)?}};let track_arguments=!strict&&arrow_this.is_none();if track_arguments{self.active_argument_frames.push(crate::lazy_arguments::ActiveArgumentsFrame::new(id,args));}self.call_stack.push(id);let result=code(self,receiver,args,env);self.call_stack.pop();if track_arguments{self.active_argument_frames.pop();}result},
   }
  }
  pub fn construct(&mut self,callee:Value,args:&[Value])->JsResult<Value>{self.construct_with_new_target(callee,args,callee)}
