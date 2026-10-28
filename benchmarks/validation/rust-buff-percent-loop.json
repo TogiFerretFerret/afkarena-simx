@@ -6,7 +6,7 @@
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
     "crates/js-runtime/src/battle_gc.rs": "96256aa10f57ee8d833f1bef99d7c1185d7205d2ae7519a7bfa573cdb8ae527f",
     "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
-    "crates/js-runtime/src/buff_attribute_loop.rs": "2e57ab1dbbd140ec6a14044119fe30c7c58ac0d91355473a4a811a01406d66a7",
+    "crates/js-runtime/src/buff_attribute_loop.rs": "ad8fe069ffbc64eb69a7f9444fa31d3b13b65e9cb1ef9030f6b75eb78c848a44",
     "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
@@ -52,7 +52,7 @@
   "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
   "binary": {
     "file": "/workspace/afkarena-simx/work/candidate-buff-attribute-loop/target/release/buff-percent-loop-gate",
-    "sha256": "c0070a2fd2a3ef3c3dbac3818b3b93f38796d3b1fc073b8ac6643c9db0725729"
+    "sha256": "fae5466d8f4bff564fed608b83d9beeda85d36e1c73adfdd2bc33dcafe5eb1e8"
   },
   "artifacts": [
     {
@@ -72,8 +72,8 @@
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.compile.gz",
-      "sha256": "70120243ab9560fa3a656e5ebb769e4ab99130f04c70055aee780a1465eb2eb4",
-      "uncompressedSha256": "abf0e18082c04b4a182369846e1fb54f76ddc0b91d3f23229f98b9ac2a452cec"
+      "sha256": "e9a9dc8d40a5014bf6bdfacc7419be9ba5551e098b3a16e916ce1fd6c25229fb",
+      "uncompressedSha256": "df409a208fad358246e0a88f614643d9075e40d20b62e6f65c702fef475d1ba7"
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.stdout.gz",

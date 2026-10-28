@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "scope": "Exact-source callback-preserving Buff percent loop splice; all numeric writes validated and finite results computed before first mutation. Component qualification only.",
+  "libraryTests": 62,
+  "integrationTests": 26,
+  "sourceGate": {
+    "file": "benchmarks/validation/rust-buff-percent-loop.json",
+    "sha256": "b7e612d9c8680ea252969e0034d314d3ea15802b0816ff58b13c97218b484e54",
+    "cases": 30,
+    "observations": 60
+  },
+  "controlGate": {
+    "file": "benchmarks/validation/rust-buff-percent-loop-control.json",
+    "sha256": "16d249a299ff638c105d1daa5e5d133a11736e544ccc32e791316f155ea68e51",
+    "cases": 40
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/rust-buff-percent-loop.library-tests.gz",
+      "sha256": "aa9f544c9893caa60dabdead5b131e39545dfcf152942d200784371b85ebfdd4",
+      "uncompressedSha256": "81f8a7d411e340c07a78e34378f6487e728739b5e6b9336d0873132e069dcaf1"
+    },
+    {
+      "file": "benchmarks/validation/rust-buff-percent-loop.initial-archive-failure.gz",
+      "sha256": "22b1bf8009507f3231701ff074ffba8ab3d81cdab40848363747df6370c88db8",
+      "uncompressedSha256": "cb168c6c92d95428ffed645f1c2a56f963b9983c2632eb172f8b41111aa6c61f"
+    },
+    {
+      "file": "benchmarks/validation/rust-buff-percent-loop.benchmark-success.gz",
+      "sha256": "eaa1d55785efb5180c0f5427f7b4d1306c67f5b5509688fe50df1aa666dbd43f",
+      "uncompressedSha256": "88d9dc766fcf5a9e5a388e401e19cb1fbe1e851a5ff64e4651e3ddd032b87dd9"
+    },
+    {
+      "file": "benchmarks/validation/rust-buff-percent-loop.final-gate.gz",
+      "sha256": "dd5b20d398784ef2752aa77f79a45688aa9ca9f7460bed5361bcd50ea49c7b2b",
+      "uncompressedSha256": "5413a9991a48051a3370e7c4afe8542edb6c6d3f55c5551435c876e26f926901"
+    }
+  ],
+  "benchmark": {
+    "file": "benchmarks/results/2026-10-28T23-12-52.615Z-rust-buff-percent-loop.json",
+    "ratio": 1.2467276679046282,
+    "kind": "original source percent+fixed method pairs/sec",
+    "originalDebugPrefixCallbacksPreserved": true
+  },
+  "qualifiesFor10000Target": false
+}
