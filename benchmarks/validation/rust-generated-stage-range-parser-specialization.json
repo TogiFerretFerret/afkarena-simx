@@ -1202,12 +1202,7 @@
     },
     {
       "file": "tools/rust-port/check-stage-range-parser-specialization.mjs",
-      "sha256": "67eae5bc58a5d13c963f1d56b463e4a634b9cab2c0ddeeed095e82abd48b385f",
-      "matched": true
-    },
-    {
-      "file": "tools/flat-numeric-copy.mjs",
-      "sha256": "46274164dcb8434c5275ff738826524bb358751c6f0eb89636356d299fb98d1a",
+      "sha256": "fed875d1bd3a24ed4742917c7425b380d5db77e7a6bf07164e7838c812c91486",
       "matched": true
     },
     {
@@ -1264,5 +1259,5 @@
     "sha256": "db70d6d622eeb2905d755ab9c0f172a22a24b670de32ba8caa4a27c52c6f98d5"
   },
   "qualifiesFor10000Target": false,
-  "scope": "Guarded exact-source createDataObj primitive-only for-in scan, with mutable Array binding, getters, inherited enumerable properties, copy callbacks, closure identity/source and wrap/recover behavior. This is a copy component gate, not battle qualification. This is not a complete battle or unrestricted ECMAScript qualification."
+  "scope": "Guarded exact-source parseUseSkillCacheStageBattle with fresh mutable outputs, warning branches, coercions, mutable builtin bindings, getters and inherited output setters. This is a parser component gate, not battle qualification. This is not a complete battle or unrestricted ECMAScript qualification."
 }
