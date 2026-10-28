@@ -32,3 +32,6 @@ pub use runtime::{Runtime,Completion};
 pub mod utf8_guard;
 pub mod utf8_loader;
 pub mod copy_obj;
+
+// Generated guarded arithmetic uses the same pinned helpers as Runtime::binary.
+pub use battle_core::js_math as numeric_arithmetic;
