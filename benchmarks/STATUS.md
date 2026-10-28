@@ -190,8 +190,21 @@ See `validation/native-unit-speeder.json` and
 universal `Unit.update` equivalence. An invalid null-skill Attack state exposes
 an existing V8/Hermes exception-message mismatch, retained without normalization
 in `validation/native-unit-speeder-invalid-phase-failure.json`. The new candidate
-still needs its own battle and ordered-trace checks before any performance
-result can be assessed.
+now passes its own complete raw source-report battle comparison: 20 measured
+battles after three warmups, 72,677 actual Rust admissions, exact callbacks,
+RNG/clock consumption, ClassMgr counters, established fast-path counts and
+runtime cleanup. It takes **7.187 seconds (2.782802 battles/second)**. See
+`results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.json`.
+This single trial establishes no gain over the previous C-prefilter result
+(7.021 seconds); the Speeder candidate remains unpromoted. Its independent
+19-case extension passes with ten admissions and nine conservative fallbacks;
+see `validation/native-unit-speeder-independent-review.json`.
+
+The earlier complete 64,419-event trace belongs to the pre-Speeder core.
+`validation/battle-boundary-speeder-prepared.json` records optional source-bound
+trace preparation only, with a fresh CFG audit and six unchanged objects; no
+new Speeder trace was compiled or run after the slower benchmark. Avoiding that
+costly run does not extend the earlier trace pass to this candidate.
 
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
