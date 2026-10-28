@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "passed": true,
+  "sourceInputsUnchanged": true,
+  "preparedBinariesExecutedWithoutRecompilation": true,
+  "compilerProfile": {
+    "optLevel": 3,
+    "codegenUnits": 64,
+    "lto": false
+  },
+  "sameBinaryWithinEachFixture": true,
+  "rows": [
+    {
+      "mode": "unit",
+      "enabled": false,
+      "trial": 0,
+      "elapsedNs": "673187938",
+      "count": 10000,
+      "events": 150220,
+      "objectBytes": null
+    },
+    {
+      "mode": "unit",
+      "enabled": true,
+      "trial": 0,
+      "elapsedNs": "635723491",
+      "count": 10000,
+      "events": 150220,
+      "objectBytes": null
+    },
+    {
+      "mode": "unit",
+      "enabled": true,
+      "trial": 1,
+      "elapsedNs": "622347798",
+      "count": 10000,
+      "events": 150220,
+      "objectBytes": null
+    },
+    {
+      "mode": "unit",
+      "enabled": false,
+      "trial": 1,
+      "elapsedNs": "638428000",
+      "count": 10000,
+      "events": 150220,
+      "objectBytes": null
+    },
+    {
+      "mode": "unit",
+      "enabled": false,
+      "trial": 2,
+      "elapsedNs": "649092173",
+      "count": 10000,
+      "events": 150220,
+      "objectBytes": null
+    },
+    {
+      "mode": "unit",
+      "enabled": true,
+      "trial": 2,
+      "elapsedNs": "670246928",
+      "count": 10000,
+      "events": 150220,
+      "objectBytes": null
+    },
+    {
+      "mode": "reset",
+      "enabled": false,
+      "trial": 0,
+      "elapsedNs": "214085157",
+      "count": 20000,
+      "events": 119999,
+      "objectBytes": 160
+    },
+    {
+      "mode": "reset",
+      "enabled": true,
+      "trial": 0,
+      "elapsedNs": "185842447",
+      "count": 20000,
+      "events": 119999,
+      "objectBytes": 160
+    },
+    {
+      "mode": "reset",
+      "enabled": true,
+      "trial": 1,
+      "elapsedNs": "185934262",
+      "count": 20000,
+      "events": 119999,
+      "objectBytes": 160
+    },
+    {
+      "mode": "reset",
+      "enabled": false,
+      "trial": 1,
+      "elapsedNs": "240926262",
+      "count": 20000,
+      "events": 119999,
+      "objectBytes": 160
+    },
+    {
+      "mode": "reset",
+      "enabled": false,
+      "trial": 2,
+      "elapsedNs": "240004033",
+      "count": 20000,
+      "events": 119999,
+      "objectBytes": 160
+    },
+    {
+      "mode": "reset",
+      "enabled": true,
+      "trial": 2,
+      "elapsedNs": "195595453",
+      "count": 20000,
+      "events": 119999,
+      "objectBytes": 160
+    },
+    {
+      "mode": "add",
+      "enabled": false,
+      "trial": 0,
+      "elapsedNs": "1784338025",
+      "count": 20000,
+      "events": 440000,
+      "objectBytes": 160
+    },
+    {
+      "mode": "add",
+      "enabled": true,
+      "trial": 0,
+      "elapsedNs": "1661816450",
+      "count": 20000,
+      "events": 440000,
+      "objectBytes": 160
+    },
+    {
+      "mode": "add",
+      "enabled": true,
+      "trial": 1,
+      "elapsedNs": "1476706673",
+      "count": 20000,
+      "events": 440000,
+      "objectBytes": 160
+    },
+    {
+      "mode": "add",
+      "enabled": false,
+      "trial": 1,
+      "elapsedNs": "1556169988",
+      "count": 20000,
+      "events": 440000,
+      "objectBytes": 160
+    },
+    {
+      "mode": "add",
+      "enabled": false,
+      "trial": 2,
+      "elapsedNs": "1594016358",
+      "count": 20000,
+      "events": 440000,
+      "objectBytes": 160
+    },
+    {
+      "mode": "add",
+      "enabled": true,
+      "trial": 2,
+      "elapsedNs": "1560766791",
+      "count": 20000,
+      "events": 440000,
+      "objectBytes": 160
+    }
+  ],
+  "summaries": [
+    {
+      "mode": "unit",
+      "baselineNs": "1960708111",
+      "hintedNs": "1928318217",
+      "baselinePerSecond": 15300.594632976454,
+      "hintedPerSecond": 15557.598188681117,
+      "observedSpeedup": 1.0167969652075324
+    },
+    {
+      "mode": "reset",
+      "baselineNs": "695015452",
+      "hintedNs": "567372162",
+      "baselinePerSecond": 86329.01589071432,
+      "hintedPerSecond": 105750.6941977883,
+      "observedSpeedup": 1.22497277545316
+    },
+    {
+      "mode": "add",
+      "baselineNs": "4934524371",
+      "hintedNs": "4699289914",
+      "baselinePerSecond": 12159.226601983682,
+      "hintedPerSecond": 12767.886446258526,
+      "observedSpeedup": 1.0500574472537214
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "proof",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.proof.gz",
+      "sha256": "e05c851657bbaf3eb77d29dd99bbaf96aadfc2882e182ee75ab0e8fdb1d2cac6",
+      "uncompressedSha256": "a2e2a34682ce66d295730226babd5483273bb80fa357624966e1bcc209a4bed3"
+    },
+    {
+      "label": "unit-actual",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.unit-actual.gz",
+      "sha256": "8e577694164b5c48084bd29d645ff9a4c22924d6303a58aa5d21ca521c67f388",
+      "uncompressedSha256": "4cb4b05bcdea7e89186a5b420426e170b0ab97c036f00647ce84f15cd6731c0c"
+    },
+    {
+      "label": "buff-actual",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.buff-actual.gz",
+      "sha256": "7d507c50c8b38ae0423dad7374d3aee383a62dcba7c56562cc723d8341c8ff9f",
+      "uncompressedSha256": "2e82d5f08ca9d25548e2eb9e1ae99b2c06c2d696b33a66aee9b72b810f253487"
+    },
+    {
+      "label": "unit-source",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.unit-source.gz",
+      "sha256": "f1a7488755f576926ed44419e8fd345f9c14be5f6fb9905e30cd094db67336c4",
+      "uncompressedSha256": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206"
+    },
+    {
+      "label": "buff-source",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.buff-source.gz",
+      "sha256": "4fa4579f8b5b8e2133a42df36ccf236ae66e289705ff903d1700919811d7693a",
+      "uncompressedSha256": "b7097586b5dbc0ea94996432d0ae9cb2931a3eb99c869d5385da42f018e885c2"
+    },
+    {
+      "label": "unit-generated",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.unit-generated.gz",
+      "sha256": "0430fa63f7059729f6c5da80cf43ffd5e0a38928b41c731c2e140a8e3f321ccc",
+      "uncompressedSha256": "5a4bde75b47df51e102fb88c90fa728a058cda0d6c81fe95456fc9e2566de598"
+    },
+    {
+      "label": "buff-generated",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.buff-generated.gz",
+      "sha256": "d38887aa435369f6a7f8a8fdb35932a715703cfc2f289918ef4b526f9e068ca7",
+      "uncompressedSha256": "c660019419787991a7e96f7c129142decb03a5567c00c61c0afcd215991d704f"
+    },
+    {
+      "label": "unit-driver",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.unit-driver.gz",
+      "sha256": "fd21c4f2397db5a79871d5ea3ae72c43b073f5fea3630b26221c216f1da7ee5d",
+      "uncompressedSha256": "6696fc897d4fe30285f774b524a1fdad2640339eaabe48b726ab032c1d68ad2f"
+    },
+    {
+      "label": "buff-driver",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.buff-driver.gz",
+      "sha256": "6f446c0c38b7c0c41089febe02baa91844e3ea5edb05f6de31d32a20b6818e42",
+      "uncompressedSha256": "9dc73268ed05b9ae0cc1c2958dfa038ab663607963099c3796135ab3253c5e0b"
+    },
+    {
+      "label": "expected",
+      "file": "benchmarks/results/2026-10-28T22-46-08.246Z-rust-source-selective-prototype.expected.gz",
+      "sha256": "8cc90c1c8e4ee48d9026cf85d70cbce02dc226cc2bd71eddd6d1fbee6f1cd6eb",
+      "uncompressedSha256": "c85664087e0cf8bfdf80514d3c38e86a0b3a7b0e84c04c35e61ede3b38f8b884"
+    }
+  ],
+  "oracle": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "analysisScriptSha256": "8be41f828610449d7a66a684556f1b7bed8404615dfefaba1033e7c17ac19971",
+  "qualification": "Ordered callback logs and selected raw-bit state match pinned jitless Node for every enabled/disabled trial. Source-component calls/updates per second, not complete battles/sec. Hints compile only inside exact SHA-pinned resetBuffApply/addBuff source ancestry; unrelated Unit.update fixture has no hinted sites.",
+  "timingLimit": "Full build process group was paused for timing with automatic resume. Last buff trial may overlap automatic resume; retain all evidence and do not treat this cohort as a robust full-workload speed qualification.",
+  "qualifiesFor10000Target": false
+}
