@@ -146,3 +146,14 @@ runner's complete final provenance footer, unchanged source/library hashes and
 another successful build-proof validation; recovered comparison output alone
 cannot pass. The helper does not wait for a build, so launch it only after the
 chain passes. It neither builds the game nor reruns Node.
+
+The allocation-wave durable retry now passes with a complete monitor/provenance
+footer in [the post-full gate](../../benchmarks/validation/rust-native-prefix-after-full.json).
+Its native child exited successfully in 42.07 seconds with 11,632,588 KiB peak
+RSS. All 1,000 ordered event payloads and selected-state bits, the 1,437-node
+transitive snapshot closure, complete terminal report and host consumption match.
+The binary, source inputs and linked-library set remained unchanged, and the
+completed main release build proof was verified again afterward. This replaces
+the earlier recovered comparison's missing provenance limitation for this retry;
+it does not observe the remaining 63,419 intermediate events, establish an
+exhaustive graph trace, or qualify a throughput target.

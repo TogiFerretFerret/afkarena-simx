@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Archived NDJSON prefix comparison only: every event payload and selected-state bit for the requested ordered prefix, its complete transitive snapshot closure, and the full battle terminal report are compared to the accepted complete trace. Later intermediate events are unobserved. Candidate exit code is caller-supplied; executable provenance, exhaustive graph coverage and throughput require separate evidence.",
+  "candidate": {
+    "file": "/workspace/afkarena-simx/work/rust-reused-trace-prefix/native.stdout",
+    "sha256": "79a77a0802fc235c38e29593f30d8256a3ca468ec9dfc979ecbf5182ae733677",
+    "unchanged": true,
+    "callerReportedExitCode": 0
+  },
+  "reference": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.json",
+    "label": "oracle-stdout",
+    "sha256": "35601d20e746b4fc6bc87698da359a59e2b631664b9437fbd7e41c36a884ad4e",
+    "unchanged": true
+  },
+  "producerInputs": {
+    "/workspace/afkarena-simx/tools/rust-port/check-program-trace-prefix.mjs": "cd06a4c0f1ae16f30b7c030b48dbbf6edb22a67f43a9a5a04f8ced7ec3b12521",
+    "/workspace/afkarena-simx/tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341"
+  },
+  "changedProducerInputs": [],
+  "archiveInputs": [
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-000.gz",
+      "sha256": "781bc6357445adc3ac68dba620353adc81218ec3fc34d1e98411a9219c4e177d"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-001.gz",
+      "sha256": "ee6f021c8805604428919618616df0edffff367c4e92b6afb0131d7c64980662"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-002.gz",
+      "sha256": "a05beccfa9e938e41b12850fb899b6fb86f999587a55b34cbcc74377b946b2cb"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-003.gz",
+      "sha256": "330deaa46adee40a32c858fde40282ef6a803bb52c06f856d78808fada9e90e4"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-004.gz",
+      "sha256": "3524aba8908bbe9cc77298b7843fe9177fc18c19b0cf1c73a5796a4078f15c22"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-005.gz",
+      "sha256": "a9cccdbb61e790148fc51e0973b33aa25dfdfb524c842ea12067fc1c4ce7bcbd"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-006.gz",
+      "sha256": "dd21960c4bf12de45771a179e1eb3a188a8c98ef9b14e38c56b934ba5f33fced"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-007.gz",
+      "sha256": "e3a662d9dedb95cdab036b9170a0d56ae00e9807be544f9c41fb54a47c967f27"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-008.gz",
+      "sha256": "0df6d0c16e5a2793fc1dedab1dfd7f625505a85d58052200c1456bf62726a60f"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-009.gz",
+      "sha256": "39f97b77e012543f0381fc709b408fc102d1c0e4fbfdbe1b5fb06e4a160013d3"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-010.gz",
+      "sha256": "1f0be2bb00257b4c429e52fcda66e28ea1a2caafc9356ad06a5eeee7398c3a27"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-011.gz",
+      "sha256": "98ac29a13e690c6e8fd5ec409a72d8738f3bebee6f47fd1e3e60ffc2900e5947"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-012.gz",
+      "sha256": "fdd7fdebb55abff5b9b48ca1d6601dc7931d5f7ecfb1aab5cd23839a89d8edfb"
+    }
+  ],
+  "changedArchiveInputs": [],
+  "comparison": {
+    "passed": true,
+    "terminalDifference": null,
+    "hostDifference": null,
+    "traceHeaderMatched": true,
+    "sameSnapshotPool": true,
+    "sameEventCount": true,
+    "firstDifference": null,
+    "events": 1000,
+    "prefixLimit": 1000,
+    "unobservedReferenceEvents": 63419,
+    "snapshots": 1437,
+    "requiredSnapshots": 1437,
+    "hostInputConsumption": {
+      "random": 2,
+      "clock": {
+        "version": 1,
+        "mode": "replay",
+        "attempts": 260,
+        "consumed": 260,
+        "total": 260,
+        "remaining": 0,
+        "counts": {
+          "Date.now": 0,
+          "Date.construct": 260,
+          "Date.call": 0
+        },
+        "finished": true,
+        "restored": false,
+        "failure": null
+      }
+    },
+    "rootContract": "primitive-vector-battle-boundaries-v1"
+  },
+  "error": null
+}

@@ -16,6 +16,7 @@ An earlier four-process run completed **80 battles at 1.288 aggregate battles/se
 | [Same-binary runtime A/B](benchmarks/results/2026-10-28-allocation-wave-ab.json) | **0.472224 reference → 0.625076 optimized battles/sec**, 1.324× | Each complete report/tape matches Node; reference disables hashing/key/length/shift fast paths, stack number conversion remains enabled in both |
 | [Four independent Rust processes](benchmarks/results/2026-10-28T20-20-38.054Z-rust-parallel-four.json) | **1.287522 aggregate battles/sec**, 80 battles over 62.135 s | Earlier qualified runtime; all four measured windows overlap, each full report/host tape matches Node; not a sum of isolated rates |
 | [Latest cold single battle](benchmarks/results/2026-10-28T20-56-07.133Z-rust-one-battle-check.json) | 2.056 s; **0.486381 battles/sec**; 386,457 added objects | Diagnostic final-report parity; unfinished original clock suffix; cold improvement does not establish warm throughput |
+| [Native ordered trace prefix](benchmarks/validation/rust-native-prefix-after-full.json) | 1,000 ordered events and 1,437 required snapshot nodes match | Full terminal report/host tape and build/link provenance pass; remaining 63,419 intermediate events unobserved |
 | [Prepared ordered trace reference](benchmarks/validation/rust-program-trace-preparation.json) | Node matches all 64,419 events and 55,078 snapshot nodes in the accepted archive | Source preparation for the next Rust trace gate; **not a new Rust trace result** |
 | [Earlier Static Hermes/Rust run](benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.json) | 20 measured battles after 3 warmups; 2.783 battles/sec | Historical mixed backend; one frozen callback fixture, not the generated pure Rust backend |
 
@@ -83,7 +84,7 @@ node tools/rust-port/check-program.mjs --profile release \
   --output benchmarks/validation/rust-full-program-review.json
 ```
 
-Regeneration can change generated crate partitions, so refresh the standalone workspace lockfile before the build wrapper snapshots inputs and invokes Cargo with `--locked`. Use new result paths to preserve retained records. [Pipeline details](tools/rust-port/README.md) cover prerequisites and smaller diagnostics. [Ordered trace instructions](tools/rust-port/TRACE_GATE.md) describe the prepared Node reference; a bounded native trace attempt hit its memory limit without a complete export, so no generated Rust ordered-trace pass is claimed.
+Regeneration can change generated crate partitions, so refresh the standalone workspace lockfile before the build wrapper snapshots inputs and invokes Cargo with `--locked`. Use new result paths to preserve retained records. [Pipeline details](tools/rust-port/README.md) cover prerequisites and smaller diagnostics. [Ordered trace instructions](tools/rust-port/TRACE_GATE.md) retain the complete Node reference and a passing native 1,000-event prefix with all 1,437 required snapshots, full terminal report/host tape and complete provenance. Later intermediate events remain unobserved.
 
 The older mixed-backend experiment can be rerun in a workspace containing its SHA-bound compiler, private VM and seven-unit build prerequisites:
 

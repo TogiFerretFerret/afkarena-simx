@@ -69,8 +69,10 @@ they are not measurements of this native pipeline.
 
 The [ordered trace preparation](../../benchmarks/validation/rust-program-trace-preparation.json)
 matches all 64,419 events and 55,078 snapshot nodes between pinned Node and the
-accepted archive. The bounded generated-Rust prefix attempt exceeded its memory
-limit without a complete export. No native ordered-trace pass is claimed.
+accepted archive. The [durable generated-Rust prefix gate](../../benchmarks/validation/rust-native-prefix-after-full.json)
+now matches the first 1,000 events and all 1,437 required snapshot nodes, the full
+terminal report and host tape, with complete build/link provenance. The remaining
+63,419 intermediate events are unobserved; complete native trace parity is open.
 See [trace commands and scope](TRACE_GATE.md).
 
 ## Generate, build and compare

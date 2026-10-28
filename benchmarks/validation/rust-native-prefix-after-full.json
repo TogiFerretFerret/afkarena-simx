@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "pid": 164797,
+  "startedAt": "2026-10-28T21:51:10.198Z",
+  "stage": "passed",
+  "steps": [
+    {
+      "name": "prepare",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/workspace/afkarena-simx/tools/rust-port/prepare-reused-trace.mjs",
+        "--prefix-events",
+        "1000",
+        "--output",
+        "/workspace/afkarena-simx/work/rust-reused-trace-prefix"
+      ],
+      "pid": 164808,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "wallMs": 2504.878723,
+      "stdoutFile": "/workspace/afkarena-simx/benchmarks/validation/rust-native-prefix-after-full.json.prepare.stdout",
+      "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-native-prefix-after-full.json.prepare.stderr"
+    },
+    {
+      "name": "native",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/workspace/afkarena-simx/tools/rust-port/run-reused-trace.mjs",
+        "--work",
+        "/workspace/afkarena-simx/work/rust-reused-trace-prefix",
+        "--max-rss-gib",
+        "12",
+        "--timeout-ms",
+        "120000",
+        "--output",
+        "/workspace/afkarena-simx/benchmarks/validation/rust-native-prefix-after-full.json.trace.json"
+      ],
+      "pid": 164824,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "wallMs": 54694.661859,
+      "stdoutFile": "/workspace/afkarena-simx/benchmarks/validation/rust-native-prefix-after-full.json.native.stdout",
+      "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-native-prefix-after-full.json.native.stderr"
+    }
+  ],
+  "scope": "Native first1000 ordered selected-state events, full transitive snapshot closure and terminal report, gated by a completed unchanged full-program build and20-battle exact gate. Later trace events and exhaustive graph coverage remain unqualified.",
+  "gate": {
+    "chain": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-allocation-wave-chain.json",
+      "sha256": "c94008bd1b8cabbd7b1343212a984f78c97f6863041465510fa1769648c325eb"
+    },
+    "full": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-allocation-wave-full.json",
+      "sha256": "b33cdd392c86a1a46cad2c5f3553030ed2e25d8b911cd81c63a8b1d434b457d8"
+    },
+    "build": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-allocation-wave-build.json",
+      "sha256": "0fcbed2b0fed1d8c435a6c397f48341c1c85aef010ff6b38c39f2465a97b2fb6"
+    },
+    "verification": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-allocation-wave-build.json",
+      "sha256": "0fcbed2b0fed1d8c435a6c397f48341c1c85aef010ff6b38c39f2465a97b2fb6",
+      "valid": true,
+      "reasons": [],
+      "inputCount": 1424,
+      "changedInputs": [],
+      "buildProfile": "release"
+    }
+  },
+  "preparedVerification": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-allocation-wave-build.json",
+    "sha256": "0fcbed2b0fed1d8c435a6c397f48341c1c85aef010ff6b38c39f2465a97b2fb6",
+    "valid": true,
+    "reasons": [],
+    "inputCount": 1424,
+    "changedInputs": [],
+    "buildProfile": "release"
+  },
+  "trace": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-native-prefix-after-full.json.trace.json",
+    "sha256": "627dd9ce7d22f8695ea56e17822bb052cc31cc2a0b1482aa2beff97e2621786f"
+  },
+  "finalVerification": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-allocation-wave-build.json",
+    "sha256": "0fcbed2b0fed1d8c435a6c397f48341c1c85aef010ff6b38c39f2465a97b2fb6",
+    "valid": true,
+    "reasons": [],
+    "inputCount": 1424,
+    "changedInputs": [],
+    "buildProfile": "release"
+  },
+  "finishedAt": "2026-10-28T21:52:09.858Z"
+}
