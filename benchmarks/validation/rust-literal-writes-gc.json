@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "command": "cargo test -p js-runtime --test property_slots",
+  "stdout": "\nrunning 6 tests\ntest data_slot_value_is_live_and_delete_reinsert_does_not_reuse_tombstone ... ok\ntest physical_function_alias_never_caches_legacy_null_slot ... ok\ntest cached_writes_revalidate_descriptor_and_keep_flags_and_raw_bits ... ok\ntest sites_and_runtime_interners_remain_independent ... ok\ntest cached_writes_survive_twenty_three_gc_reuse_rounds ... ok\ntest twenty_three_collections_recycle_slots_without_caching_values_or_function_aliases ... ok\n\ntest result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s\n\n",
+  "sourceInputs": {
+    "crates/js-runtime/src/property_slots.rs": "499ae9784544f28f3ef075ec43183db4651b1e5e46997b56ba47368a441cc63a",
+    "crates/js-runtime/tests/property_slots.rs": "ceec2de2ce7a11630225e80b2e921230195000213e219db6113022cba0378395",
+    "crates/js-runtime/src/battle_gc.rs": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3",
+    "crates/js-runtime/src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d"
+  },
+  "scope": "Six native runtime property-site tests, including cached writes across23 actual collections, recycled object/function IDs, rawNaN/signedzero bits and descriptor flags. No battle qualification."
+}

@@ -65,3 +65,43 @@ fn twenty_three_collections_recycle_slots_without_caching_values_or_function_ali
     rt.set_function_source(function,&include_str!("../src/native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();
     rt.enable_native_battle_gc();assert_eq!(rt.call(function,Value::Undefined,&[]).unwrap(),Value::Number(23.0));
 }
+
+#[test]
+fn cached_writes_revalidate_descriptor_and_keep_flags_and_raw_bits(){
+ let mut rt=Runtime::new();let object=rt.object();let x=rt.string("x");
+ rt.define_data(object,x,Value::Null,true,false,false).unwrap();
+ for bits in[0x8000000000000000,0x7ff0000000000042,0xfff8000000000088]{
+  rt.set_literal_cached(object,&X,Value::Number(f64::from_bits(bits)),true).unwrap();
+  let Value::Number(actual)=rt.get_literal_cached(object,&X).unwrap()else{panic!("number")};assert_eq!(actual.to_bits(),bits);
+ }
+ let key=js_runtime::PropertyKey(rt.intern("x"));let descriptor=rt.objects[rt.object_id(object).unwrap().0].own(key).unwrap();assert!(!descriptor.enumerable&&!descriptor.configurable);
+ rt.define_data(object,x,Value::Number(7.0),false,false,false).unwrap();
+ assert_eq!(rt.set_literal_cached(object,&X,Value::Number(8.0),false).unwrap(),Value::Number(8.0));assert!(rt.set_literal_cached(object,&X,Value::Number(9.0),true).is_err());assert_eq!(rt.get(object,x).unwrap(),Value::Number(7.0));
+}
+
+fn write_slot_gc_rounds(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{
+    let env=rt.child_env(parent);
+    for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}
+    let initial=rt.objects.len();let mut reclaimed_ids=std::collections::HashSet::new();let mut reused=0;
+    for round in 0..23 {
+        let object=rt.object();let id=rt.object_id(object)?;
+        if reclaimed_ids.contains(&id){reused+=1;}
+        let x=rt.intern("x");let y=rt.intern("y");
+        if round%2==1{rt.define_data(object,y,Value::Number(88.0),true,true,true)?;}
+        let bits=if round==0{0x8000000000000000}else{0x7ff0000000000042+round as u64};
+        rt.define_data(object,x,Value::Number(f64::from_bits(bits)),true,true,true)?;
+        rt.set_literal_cached(object,&X,Value::Number(f64::from_bits(bits)),true)?;
+        let Value::Number(value)=rt.get_literal_cached(object,&X)?else{panic!("cached value must remain numeric")};assert_eq!(value.to_bits(),bits);
+        // Root neither the object nor its cyclic function/prototype records.
+        let dead=rt.make_closure(gc_noop,env,0,"dead");reclaimed_ids.insert(rt.object_id(dead)?);reclaimed_ids.insert(id);
+        let function=rt.make_closure(legacy,env,1,"reused");
+        assert_eq!(rt.call(function,Value::Undefined,&[Value::Number(round as f64)])?,Value::Bool(true));
+        rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;
+        rt.collect_native_battle_backedge(env,parent)?;
+    }
+    assert!(reused>0,"object IDs must actually recycle across collection rounds");
+    assert!(rt.objects.len()<initial+32,"cached locations must not retain whole receiver objects");
+    Ok(Value::Number(rt.native_battle_gc_stats().collections as f64))
+}
+#[test]
+fn cached_writes_survive_twenty_three_gc_reuse_rounds(){let mut rt=Runtime::new();let function=rt.make_closure(write_slot_gc_rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(function,&include_str!("../src/native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();assert_eq!(rt.call(function,Value::Undefined,&[]).unwrap(),Value::Number(23.0));}

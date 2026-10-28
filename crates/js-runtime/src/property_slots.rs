@@ -48,3 +48,42 @@ impl Runtime {
         result
     }
 }
+
+impl Runtime {
+    /// Revalidate the current own writable data slot AFTER RHS evaluation.
+    /// Cache locations never retain receivers/values and tolerate GC ID reuse.
+    #[inline]
+    pub fn set_literal_cached(&mut self,receiver:Value,site:&'static LiteralReadSite,value:Value,strict:bool)->JsResult<Value>{
+        if !self.literal_property_slots_enabled{let key=self.static_string(site.text);return self.set(receiver,key,value,strict)}
+        let id=site.index()?;
+        if self.literal_property_slots.len()<=id{self.literal_property_slots.resize(id+1,CachedSlot::default());}
+        let entry=self.literal_property_slots[id];
+        let key=match entry.key{Some(key)=>key,None=>{let key=PropertyKey(self.intern(site.text));self.literal_property_slots[id].key=Some(key);key}};
+        if let Value::Object(object)=receiver{
+            if let Some(object)=self.objects.get_mut(object.0){
+                if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary)&&object.arguments_map.is_empty(){
+                    if let Some(index)=entry.index{
+                        if let Some(Some((actual,descriptor)))=object.properties.get_mut(index){
+                            if *actual==key&&matches!(descriptor.kind,PropertyKind::Data{writable:true,..}){
+                                descriptor.kind=PropertyKind::Data{value,writable:true};return Ok(value)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        let result=self.set(receiver,Value::String(key.0),value,strict);
+        // Setters/RHS callbacks may replace descriptors or physical layouts.
+        // Populate only from the current post-call receiver's own writable data.
+        if let Value::Object(object)=receiver{
+            if let Some(object)=self.objects.get(object.0){
+                if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary)&&object.arguments_map.is_empty(){
+                    if let Some(index)=object.property_index.get(&key).copied(){
+                        if matches!(object.properties.get(index),Some(Some((actual,crate::Descriptor{kind:PropertyKind::Data{writable:true,..},..})))if *actual==key){self.literal_property_slots[id].index=Some(index);}
+                    }
+                }
+            }
+        }
+        result
+    }
+}
