@@ -1,4 +1,4 @@
-import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
@@ -32,10 +32,20 @@ const cases=[
  ['constructor-prototype-and-this','function F(v){this.x=v}F.prototype.y=3;var o=new F(7);var result=o.x+":"+o.y;'],
  ['negative-zero-result','var result=-0;'],
  ['division-nan-bits','var result=0/0;'],
+ ['dynamic-division-nan-bits','var z=0;var result=z/z;'],
+ ['literal-negative-zero-division','var result=-0/0;'],
+ ['literal-remainder-nan','var result=0%0;'],
+ ['literal-infinity-subtraction','var result=1e999-1e999;'],
+ ['dynamic-infinity-subtraction','var a=1e999;var result=a-a;'],
+ ['literal-pow-invalid','var result=(-1)**0.5;'],
+ ['literal-overflow','var result=1e308*1e308;'],
+ ['strict-literal-fold','"use strict";var result=(0/0)+1;'],
  ['sequence-order','var log="";var result=(log+="A",log+="B",log);'],
 ];
 await mkdir(work,{recursive:true});
 const files=['tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/compile.mjs','tools/rust-port/tests/expressions.mjs'];
+async function collect(directory){const out=[];for(const row of await readdir(resolve(root,directory),{withFileTypes:true})){const file=directory+'/'+row.name;if(row.isDirectory())out.push(...await collect(file));else if(file.endsWith('.rs'))out.push(file);}return out;}
+files.push(...await collect('crates/js-runtime/src'),'crates/js-runtime/Cargo.toml','crates/battle-core/src/js_math.rs','config/source-oracle-runtime.json');
 const before={};for(const f of files)before[f]=sha(await readFile(resolve(root,f)));
 const modules=[],manifests=[];
 for(let i=0;i<cases.length;i++){const [name,source]=cases[i],out=compileSource(source,{filename:name+'.js',allowUnsupported:false});manifests.push(out.manifest);await writeFile(resolve(work,'case_'+i+'.rs'),out.rust);modules.push(`#[path="case_${i}.rs"] mod case_${i};`);}

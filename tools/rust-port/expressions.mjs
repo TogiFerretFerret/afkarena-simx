@@ -1,3 +1,32 @@
+import {createContext,Script} from 'node:vm';
+import {readFileSync} from 'node:fs';
+const numericFoldOperators=new Set(['+','-','*','/','%','**','<<','>>','>>>','|','^','&']);
+const numericFoldCache=new Map();let numericFoldRealm=null;
+// V8 folds literal numeric subtrees in its parser. Invalid literal arithmetic
+// can therefore have DIFFERENT NaN bits from dynamic arithmetic. This compiler
+// folds only a reconstructed literal/operator whitelist, never user statements,
+// names, calls, property reads or arbitrary source text.
+function numericFoldSource(node){
+ node=unwrap(node);
+ if(node?.type==='NumericLiteral'){
+  const raw=node.extra?.raw;
+  if(typeof raw==='string'&&/^(?:0[xX][0-9a-fA-F_]+|0[bB][01_]+|0[oO][0-7_]+|(?:[0-9][0-9_]*(?:\.[0-9_]*)?|\.[0-9_]+)(?:[eE][+-]?[0-9_]+)?)$/.test(raw))return raw;
+  if(Number.isFinite(node.value))return Object.is(node.value,-0)?'(-0)':String(node.value);
+  if(node.value===Infinity)return '1e999';
+  if(node.value===-Infinity)return '(-1e999)';
+  return null;
+ }
+ if(node?.type==='UnaryExpression'&&['+','-','~'].includes(node.operator)){const value=numericFoldSource(node.argument);return value===null?null:'('+node.operator+'('+value+'))';}
+ if(node?.type==='BinaryExpression'&&numericFoldOperators.has(node.operator)){const left=numericFoldSource(node.left),right=numericFoldSource(node.right);return left===null||right===null?null:'(('+left+')'+node.operator+'('+right+'))';}
+ return null;
+}
+function foldNumeric(node,ctx){
+ if(!['BinaryExpression','UnaryExpression'].includes(node.type))return null;
+ const source=numericFoldSource(node);if(source===null)return null;
+ if(!numericFoldRealm){const profile=JSON.parse(readFileSync(new URL('../../config/source-oracle-runtime.json',import.meta.url),'utf8'));if(process.version!==profile.node||process.versions.v8!==profile.v8)throw Error('Numeric source folding requires the pinned Node/V8 compiler host');numericFoldRealm=createContext(Object.create(null));}
+ let bits=numericFoldCache.get(source);if(bits===undefined){const number=new Script(source).runInContext(numericFoldRealm);if(typeof number!=='number')throw Error('Numeric fold whitelist produced a non-Number');const buffer=new ArrayBuffer(8),view=new DataView(buffer);view.setFloat64(0,number,false);bits=view.getBigUint64(0,false).toString(16).padStart(16,'0');numericFoldCache.set(source,bits);}
+ return ctx.temp(`Value::Number(f64::from_bits(0x${bits}u64))`);
+}
 // Expressions emit ordered Rust temporaries; the JS oracle is never a fallback.
 // A property Reference stores a RAW key Value. GetValue and PutValue each perform
 // their own coercion: o[key]+=rhs coerces key BEFORE rhs and AGAIN on the write.
@@ -29,7 +58,7 @@ function object(node,ctx){const value=ctx.temp('rt.object()');for(const prop of 
  }return value;}
 function array(node,ctx){const value=ctx.temp('rt.array(&[])');let index=0;for(const element of node.elements){if(element?.type==='SpreadElement')unsupportedExpression(element,'array iterator spread is not yet implemented');if(element){const entry=emitExpression(element,ctx),key=stringValue(ctx,index);ctx.emit(`rt.define_data(${value}, ${key}, ${entry}, true, true, true)?;`);}index++;}if(node.elements.length&&node.elements.at(-1)===null){const key=stringValue(ctx,'length'),length=numberValue(ctx,index);ctx.emit(`rt.set(${value}, ${key}, ${length}, true)?;`);}return value;}
 function template(node,ctx){let value=stringValue(ctx,node.quasis[0].value.cooked);for(let i=0;i<node.expressions.length;i++){const expression=emitExpression(node.expressions[i],ctx),text=ctx.temp(`rt.to_string(${expression})?`),asValue=ctx.temp(`Value::String(${text})`);value=ctx.temp(`rt.binary(BinaryOp::Add, ${value}, ${asValue})?`);const tail=stringValue(ctx,node.quasis[i+1].value.cooked);value=ctx.temp(`rt.binary(BinaryOp::Add, ${value}, ${tail})?`);}return value;}
-export function emitExpression(node,ctx){if(!node)unsupportedExpression(node,'missing AST node');node=unwrap(node);switch(node.type){
+export function emitExpression(node,ctx){if(!node)unsupportedExpression(node,'missing AST node');node=unwrap(node);const folded=foldNumeric(node,ctx);if(folded!==null)return folded;switch(node.type){
  case 'Identifier':return readReference(emitReference(node,ctx),ctx);
  case 'ThisExpression':return ctx.thisValue;
  case 'NumericLiteral':return numberValue(ctx,node.value);

@@ -1,0 +1,7 @@
+{
+  "name": "division-nan-bits",
+  "source": "var result=0/0;",
+  "expected": "d:7ff8000000000000",
+  "actual": "d:fff8000000000000",
+  "passed": false
+}
