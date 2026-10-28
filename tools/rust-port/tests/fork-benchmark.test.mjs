@@ -1,0 +1,12 @@
+import assert from'node:assert/strict';import{readFile}from'node:fs/promises';import{spawnSync}from'node:child_process';
+import{validateParallelSource,aggregateParallelWindows}from'../parallel-benchmark-support.mjs';
+const root=new URL('../../../',import.meta.url),read=p=>readFile(new URL(p,root),'utf8');
+const driver=await read('tools/rust-port/program-fork-benchmark.rs'),fork=await read('tools/rust-port/program-fork-warm.rs'),runner=await read('tools/rust-port/benchmark-fork-program.mjs');
+const run=await read('crates/js-runtime/src/native_battle_run.js');
+const sourceGuard=validateParallelSource(run,'__nativeRun(__nativeRuntime,__nativeWire,20,3,__nativeWallNow,"final");');assert.equal(sourceGuard.battles,20);
+assert.ok(driver.indexOf('if ordinal==0.0')<driver.indexOf('let stamp='));assert.ok(driver.includes('fork_warm::start'));assert.ok(driver.includes('parallelWallCalls'));assert.ok(driver.includes('finish_child(0)'));
+assert.ok(fork.includes('read_dir("/proc/self/task")?.count()!=1'));assert.ok(fork.includes('for index in 0..4'));assert.ok(fork.includes('waitpid'));assert.ok(fork.includes('wait-results.json'));assert.ok(fork.includes('sync_all'));assert.ok(fork.includes('dup2'));assert.ok(fork.includes('_exit'));
+assert.ok(runner.includes('smaps_rollup'));assert.ok(runner.includes('compareNativeReports'));assert.ok(runner.includes('hostInputConsumption'));assert.ok(runner.includes('sample.processes.length===5'));
+const summary=aggregateParallelWindows([0,1,2,3].map(i=>({startUnixNs:String(1000+i),endUnixNs:String(2000+i)})));assert.equal(summary.completed,80);assert.equal(summary.elapsedNs,'1003');
+const child=spawnSync(process.execPath,[new URL('tools/rust-port/benchmark-fork-program.mjs',root).pathname],{encoding:'utf8'});assert.equal(child.status,0);assert.match(child.stdout,/No workload or build runs without --run/);
+console.log(JSON.stringify({passed:true,cases:19,scope:'Static host-tool contracts and default no-run behavior only; no fork or native battle execution.'}));
