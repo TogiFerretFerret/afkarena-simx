@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "sourceFunctionBodiesUnchanged": true,
+  "preparation": {
+    "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/work/shared-utf16-controller/preparation.json",
+    "sha256": "4973247f42d52c03a995558fc26b3cfa926949de959ac02a2bbe367f7f882fbf"
+  },
+  "updates": 5000,
+  "trials": 3,
+  "stageTokens": 33,
+  "heroTokens": 16,
+  "rows": [
+    {
+      "variant": "baseline",
+      "counting": false,
+      "trial": 0,
+      "elapsedNs": "107790921",
+      "controllerCalls": 5000,
+      "callsPerSecond": 46386.095912474855,
+      "allocations": null
+    },
+    {
+      "variant": "shared",
+      "counting": false,
+      "trial": 0,
+      "elapsedNs": "120287541",
+      "controllerCalls": 5000,
+      "callsPerSecond": 41567.06470539622,
+      "allocations": null
+    },
+    {
+      "variant": "shared",
+      "counting": false,
+      "trial": 1,
+      "elapsedNs": "109879444",
+      "controllerCalls": 5000,
+      "callsPerSecond": 45504.41664047736,
+      "allocations": null
+    },
+    {
+      "variant": "baseline",
+      "counting": false,
+      "trial": 1,
+      "elapsedNs": "105671327",
+      "controllerCalls": 5000,
+      "callsPerSecond": 47316.52513458074,
+      "allocations": null
+    },
+    {
+      "variant": "baseline",
+      "counting": false,
+      "trial": 2,
+      "elapsedNs": "129177797",
+      "controllerCalls": 5000,
+      "callsPerSecond": 38706.34208137177,
+      "allocations": null
+    },
+    {
+      "variant": "shared",
+      "counting": false,
+      "trial": 2,
+      "elapsedNs": "100512732",
+      "controllerCalls": 5000,
+      "callsPerSecond": 49744.941765188516,
+      "allocations": null
+    },
+    {
+      "variant": "baseline",
+      "counting": true,
+      "trial": 0,
+      "elapsedNs": "106209840",
+      "controllerCalls": 5000,
+      "callsPerSecond": 47076.61738309746,
+      "allocations": {
+        "allocations": 369932,
+        "allocatedBytes": 51117416,
+        "deallocations": 121692,
+        "deallocatedBytes": 25653256,
+        "reallocations": 81703,
+        "reallocatedOldBytes": 70243648,
+        "reallocatedNewBytes": 140487296
+      }
+    },
+    {
+      "variant": "shared",
+      "counting": true,
+      "trial": 0,
+      "elapsedNs": "114908643",
+      "controllerCalls": 5000,
+      "callsPerSecond": 43512.82783837243,
+      "allocations": {
+        "allocations": 336648,
+        "allocatedBytes": 47817088,
+        "deallocations": 101692,
+        "deallocatedBytes": 22356280,
+        "reallocations": 81703,
+        "reallocatedOldBytes": 70243648,
+        "reallocatedNewBytes": 140487296
+      }
+    }
+  ],
+  "totals": {
+    "baseline": {
+      "controllerCalls": 15000,
+      "elapsedNs": "342640045",
+      "callsPerSecond": 43777.72014359851
+    },
+    "shared": {
+      "controllerCalls": 15000,
+      "elapsedNs": "330679717",
+      "callsPerSecond": 45361.11297083274
+    }
+  },
+  "sharedToBaselineRatio": 1.036168919305081,
+  "orderedCallbacksAndBooleanResultsAndSourceMetadataMatched": true,
+  "artifacts": [
+    {
+      "label": "preparation",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.preparation.gz",
+      "sha256": "e690108ac77a7e77e88f24027e603765f47df9ba73f64a847b59940d55905d39",
+      "uncompressedSha256": "1a9862987e865719f0efe0ebcbcfb9dbee187e4f0233b8178edef715cd9b72d0"
+    },
+    {
+      "label": "source",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.source.gz",
+      "sha256": "4f7191d35f936ba3983cae322e8199d7e4f54e5b6688300fab814fc9dfc4dfe5",
+      "uncompressedSha256": "5e434276a30493148dbd107a08ec55e292a7411f3cc34dc1eb3af0f989809f36"
+    },
+    {
+      "label": "expected",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.expected.gz",
+      "sha256": "0abef0cc7ef2ea105a4101db570cf120333fa72656b02eec6ecb5ed6bda299a9",
+      "uncompressedSha256": "88154a32028b449a0f0b53c846eaa0f4bebc2c48a47349033cd79843f816376e"
+    },
+    {
+      "label": "native-0",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.native-0.gz",
+      "sha256": "4d8fffc760e452c2ea7971c7083dcda39ef4474f36e035b47562768e3a41f995",
+      "uncompressedSha256": "8d2733911e1e9a946a5d8c05a4dccf2c88967ef7ac218a79651f95c1ac358012"
+    },
+    {
+      "label": "native-1",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.native-1.gz",
+      "sha256": "72fab0e131e1f3668a22a3906dbba22514603ece6fcc8fd47f4e98a1ff3c0be8",
+      "uncompressedSha256": "9466a86c13bb6ef26d4e45dd1433f12d53ae24b053d7277be2ed5b8e4352bdf6"
+    },
+    {
+      "label": "native-2",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.native-2.gz",
+      "sha256": "2ba0990feca44e2e137fbcf6d751ed912211ccfe609e8182e4dac13d0e1951ad",
+      "uncompressedSha256": "fbeb559e0aa608953cb3736e1e71658cfcab754f1ef287f3b461978afdb178d1"
+    },
+    {
+      "label": "native-3",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.native-3.gz",
+      "sha256": "272aa2d03ae8a7baa22a20a28e74fa46b8293f9f807aef141dcfb8b084359cf5",
+      "uncompressedSha256": "09d719289262bf1252a37d6c538d77786e1c67868be6ce0b6af48d8d5090fa1b"
+    },
+    {
+      "label": "native-4",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.native-4.gz",
+      "sha256": "1ea4e4350a5613c83feb9fcda036b63f3260782c9ff49615fb73140b6cdc155f",
+      "uncompressedSha256": "f11d203b4e6159929a6a9315ab3aee0f23958db18b4dcd80ac78b5427a6f39d0"
+    },
+    {
+      "label": "native-5",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.native-5.gz",
+      "sha256": "64267c877fc9785ff27ef56f825ddd8d3affc144c1ae68428b1d2d0750f4be71",
+      "uncompressedSha256": "892c0ea4f7a3eda7ccc7ac2cdf85d21486dfe09fa4729c9bb0a51c844adf9b7b"
+    },
+    {
+      "label": "native-6",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.native-6.gz",
+      "sha256": "1239474906347cf13c0dc2bd06892bb0186192dc85161ef804ddfb0a7a4dcf88",
+      "uncompressedSha256": "6d53b28b3139eff7b7613d1a3a13dfe854acd78cd768db1d68ed622fc07174ec"
+    },
+    {
+      "label": "native-7",
+      "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/benchmarks/results/2026-10-28T23-56-01.155Z-shared-utf16-controller.native-7.gz",
+      "sha256": "63816685e7d0ed401b203512e24ae41b2211be57b9b608bf25c54f8fb353410d",
+      "uncompressedSha256": "741ec56e9e6099aaed8c0079136ba51cc7ae7fccb8fd6250446f3e8797a77265"
+    }
+  ],
+  "oracle": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ]
+  },
+  "scope": "Actual unchanged getNeedReadSkillCacheTb plus original parser and explicit fixture callbacks. Timing runs use uninstrumented binaries; separate measured allocation runs use the same source. Independent process arenas, no battle/BPS or full-GC qualification."
+}
