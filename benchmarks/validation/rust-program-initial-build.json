@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "passed": false,
+  "stage": "compile",
+  "executed": false,
+  "qualifiesFor10000Target": false,
+  "reason": "rustc compiling the single 22 MB unit-0 crate was SIGKILLed; cgroup memory.events recorded an OOM kill. File-level shards alone did not bound frontend memory.",
+  "generatedUnit": {
+    "index": 0,
+    "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+    "sourceSha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
+    "functions": 3260,
+    "compiledFunctions": 3234,
+    "unsupportedFunctions": 26,
+    "chunks": 33,
+    "rustBytes": 22008044,
+    "sourcePoolBytes": 3543164
+  },
+  "programManifestSha256": "2f159ea73a9ec6452fe0e71b963d20571d6f95f4469292270c6cf45e618f3a2e",
+  "stderr": {
+    "file": "benchmarks/validation/rust-program-initial-build.stderr.gz",
+    "sha256": "d81f053fff78d315ce0f2a127ce641805486f2f031b0b985cbae83b2e27ea6d3",
+    "uncompressedSha256": "18bd4644af22c9d2fcc670c53f140a9a3ede00aff4dd4de29f2002db2fb03877"
+  },
+  "remediation": "Split oversized native bodies into same-environment Rust helpers and partition the native dependency graph into small crates with one shared source pool. No source mechanics may be omitted."
+}

@@ -17,24 +17,50 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 const runtimePath=relative(output,resolve(root,'crates/js-runtime')).replaceAll('\\','/');
 const members=['app'];
 const reports=[];
+// Group strongly connected native helpers, then form small dependency-ordered
+// crates. Splitting files inside one crate does not bound rustc frontend memory.
+function partition(functions,maxCount,maxBytes=384*1024){
+ const nodes=functions.map(row=>({...row,name:row.name??/^pub fn (\w+)\(/m.exec(row.rust)?.[1]}));
+ assert.ok(nodes.every(n=>n.name));const byName=new Map(nodes.map(n=>[n.name,n]));
+ for(const node of nodes)node.refs=[...new Set((node.rust.match(/\b[A-Za-z_][A-Za-z_0-9]*\b/g)??[]).filter(name=>name!==node.name&&byName.has(name)))];
+ let index=0;const stack=[],components=[];
+ function visit(node){node.index=index;node.low=index++;node.onStack=true;stack.push(node);
+  for(const name of node.refs){const child=byName.get(name);if(child.index===undefined){visit(child);node.low=Math.min(node.low,child.low);}else if(child.onStack)node.low=Math.min(node.low,child.index);}
+  if(node.low===node.index){const component=[];let child;do{child=stack.pop();child.onStack=false;component.push(child);}while(child!==node);components.push(component);}
+ }
+ for(const node of nodes)if(node.index===undefined)visit(node);
+ const groups=[];let current=[],bytes=0;
+ for(const component of components){const size=component.reduce((n,row)=>n+Buffer.byteLength(row.rust),0);if(current.length&&(current.length+component.length>maxCount||bytes+size>maxBytes)){groups.push(current);current=[];bytes=0;}current.push(...component);bytes+=size;}
+ if(current.length)groups.push(current);
+ const owner=new Map();groups.forEach((group,id)=>group.forEach(node=>owner.set(node.name,id)));
+ return{groups,owner};
+}
 for(const unit of coverage.units.slice(0,through+1)){
  const sourceBytes=await readFile(unit.file);assert.equal(sha(sourceBytes),unit.sha256,'Frozen battle input changed');
  const name=`battle-unit-${unit.index}`,directory=resolve(output,name),src=resolve(directory,'src');
  await mkdir(src,{recursive:true});
- const result=compileSource(sourceBytes.toString('utf8'),{filename:unit.file,mode:'script',moduleName:`battle_unit_${unit.index}`,sourcePoolPath:'source.utf16le'});
- await writeFile(resolve(src,'source.utf16le'),result.sourcePool);
- const modules=[];
- for(let index=0;index<result.functions.length;index+=chunkSize){
-  const module=`chunk_${String(index/chunkSize).padStart(4,'0')}`;
-  const text='use super::*;\n'+result.functions.slice(index,index+chunkSize).map(row=>row.rust).join('\n\n')+'\n';
-  await writeFile(resolve(src,module+'.rs'),text);modules.push(module);
+ const result=compileSource(sourceBytes.toString('utf8'),{filename:unit.file,mode:'script',moduleName:`battle_unit_${unit.index}`,sourcePoolPath:'source.utf16le',largeBody:{maxStatements:24,maxEstimatedNodes:600}});
+ const poolName=`${name}-source`,pool=resolve(output,poolName);await mkdir(resolve(pool,'src'),{recursive:true});
+ await writeFile(resolve(pool,'src/source.utf16le'),result.sourcePool);
+ await writeFile(resolve(pool,'src/lib.rs'),'pub static __JS_SOURCE_POOL: &[u8] = include_bytes!("source.utf16le");\n');
+ await writeFile(resolve(pool,'Cargo.toml'),`[package]\nname="${poolName}"\nversion="0.1.0"\nedition="2024"\n`);members.push(poolName);
+ const lowered=[...result.functions,...(result.helpers??[])],{groups,owner}=partition(lowered,chunkSize);
+ const groupName=id=>`${name}-part-${String(id).padStart(4,'0')}`;
+ for(let id=0;id<groups.length;id++){
+  const group=groups[id],part=groupName(id),partDir=resolve(output,part);await mkdir(resolve(partDir,'src'),{recursive:true});
+  const references=new Map();for(const fn of group)for(const ref of fn.refs){const target=owner.get(ref);if(target!==id){if(!references.has(target))references.set(target,new Set());references.get(target).add(ref);}}
+  const imports=[...references].map(([target,names])=>`use ${groupName(target).replaceAll('-','_')}::{${[...names].join(',')}};`).join('\n');
+  const header='#![allow(unused_imports,unused_variables,unused_mut,unused_assignments,dead_code,unreachable_patterns)]\nuse js_runtime::{Runtime,Value,EnvId,JsResult,JsError,Completion,BinaryOp,UnaryOp};\n';
+  await writeFile(resolve(partDir,'src/lib.rs'),header+`use ${poolName.replaceAll('-','_')}::__JS_SOURCE_POOL;\n`+imports+'\n'+group.map(row=>row.rust).join('\n\n')+'\n');
+  const deps=[`js-runtime={path="${relative(partDir,resolve(root,'crates/js-runtime')).replaceAll('\\','/')}"}`,`${poolName}={path="../${poolName}"}`,...[...references.keys()].map(target=>`${groupName(target)}={path="../${groupName(target)}"}`)];
+  await writeFile(resolve(partDir,'Cargo.toml'),`[package]\nname="${part}"\nversion="0.1.0"\nedition="2024"\n[dependencies]\n${deps.join('\n')}\n`);members.push(part);
  }
- const lib=result.header+'\n'+modules.map(m=>`mod ${m};\npub use ${m}::*;`).join('\n')+'\n'+result.entry+'\n';
- await writeFile(resolve(src,'lib.rs'),lib);
- await writeFile(resolve(directory,'Cargo.toml'),`[package]\nname = "${name}"\nversion = "0.1.0"\nedition = "2024"\npublish = false\n[dependencies]\njs-runtime = { path = "${relative(directory,resolve(root,'crates/js-runtime')).replaceAll('\\','/')}" }\n`);
+ const entryOwner=owner.get('js_function_0');assert.notEqual(entryOwner,undefined);
+ await writeFile(resolve(src,'lib.rs'),'use js_runtime::{Runtime,Value,EnvId,JsResult};\n'+`use ${groupName(entryOwner).replaceAll('-','_')}::js_function_0;\n`+result.entry+'\n');
+ await writeFile(resolve(directory,'Cargo.toml'),`[package]\nname = "${name}"\nversion = "0.1.0"\nedition = "2024"\npublish = false\n[dependencies]\njs-runtime = { path = "${relative(directory,resolve(root,'crates/js-runtime')).replaceAll('\\','/')}" }\n${groupName(entryOwner)}={path="../${groupName(entryOwner)}"}\n`);
  await writeFile(resolve(directory,'manifest.json'),JSON.stringify(result.manifest,null,2)+'\n');
  members.push(name);
- reports.push({index:unit.index,file:unit.file,sourceSha256:unit.sha256,functions:result.manifest.functions.length,compiledFunctions:result.manifest.compiledFunctions,unsupportedFunctions:result.manifest.unsupportedFunctions,chunks:modules.length,rustBytes:result.functions.reduce((n,f)=>n+Buffer.byteLength(f.rust),0),sourcePoolBytes:result.sourcePool.length});
+ reports.push({index:unit.index,file:unit.file,sourceSha256:unit.sha256,functions:result.manifest.functions.length,compiledFunctions:result.manifest.compiledFunctions,unsupportedFunctions:result.manifest.unsupportedFunctions,helperFunctions:result.helpers?.length??0,crates:groups.length,rustBytes:lowered.reduce((n,f)=>n+Buffer.byteLength(f.rust),0),largestNativeFunctionBytes:Math.max(...lowered.map(f=>Buffer.byteLength(f.rust))),sourcePoolBytes:result.sourcePool.length});
  console.log(JSON.stringify(reports.at(-1)));
 }
 const app=resolve(output,'app');await mkdir(resolve(app,'src'),{recursive:true});
