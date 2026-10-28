@@ -196,7 +196,7 @@ impl Runtime {
         let b = self.to_number(right)?;
         let number = match op {
             Sub => arithmetic::sub(a, b), Mul => arithmetic::mul(a, b), Div => arithmetic::div(a, b),
-            Rem => a % b,
+            Rem => number_rem(a, b)?,
             Pow => number_pow(a, b)?,
             Shl => ((number_to_uint32(a) as i32).wrapping_shl(number_to_uint32(b) & 31)) as f64,
             Shr => ((number_to_uint32(a) as i32).wrapping_shr(number_to_uint32(b) & 31)) as f64,
@@ -267,7 +267,35 @@ fn radix_integer(digits: &[u8], radix_bits: u32) -> f64 {
     if exponent > 1023 { return f64::INFINITY; }
     f64::from_bits(((exponent as u64 + 1023) << 52) | (significand & ((1_u64 << 52)-1)))
 }
-fn number_pow(base: f64, exponent: f64) -> JsResult<f64> {
+/// Pinned V8 Float64Mod uses x87 FPREM, including its NaN operand choice.
+/// The tagged-Smi zero-divisor path instead returns V8's positive root NaN.
+/// A plain f64 does not retain array/boxing provenance, so reject that ambiguous
+/// domain instead of claiming a guessed NaN payload is execution-equivalent.
+pub fn number_rem(dividend:f64,divisor:f64)->JsResult<f64>{
+    if divisor.to_bits()==0 && dividend.is_finite() && dividend.fract()==0.0
+        && dividend>=i32::MIN as f64 && dividend<=i32::MAX as f64
+        && dividend.to_bits()!=(-0.0_f64).to_bits(){
+        return Err(JsError::Unsupported("integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance".into()));
+    }
+    let mut result=0.0_f64;
+    // FPREM may need repeated iterations for a large exponent difference. The
+    // x87 stack is restored before returning; no JS engine or host fmod is used.
+    unsafe {std::arch::asm!(
+        "fld qword ptr [{divisor}]",
+        "fld qword ptr [{dividend}]",
+        "2:",
+        "fprem",
+        "fnstsw ax",
+        "test ax, 0x400",
+        "jnz 2b",
+        "fstp qword ptr [{result}]",
+        "fstp st(0)",
+        divisor=in(reg)&divisor,dividend=in(reg)&dividend,result=in(reg)&mut result,
+        out("ax") _,options(nostack),
+    );}
+    Ok(result)
+}
+pub(crate) fn number_pow(base: f64, exponent: f64) -> JsResult<f64> {
     if exponent.is_nan() { return Ok(CONVERSION_NAN); }
     if exponent == 0.0 { return Ok(1.0); }
     if base.is_nan() { return Ok(CONVERSION_NAN); }
@@ -275,7 +303,7 @@ fn number_pow(base: f64, exponent: f64) -> JsResult<f64> {
     if base.is_infinite() { return Ok(if exponent > 0.0 { if base.is_sign_negative() && odd { f64::NEG_INFINITY } else { f64::INFINITY } } else if base.is_sign_negative() && odd { -0.0 } else { 0.0 }); }
     if base == 0.0 { return Ok(if exponent > 0.0 { if base.is_sign_negative() && odd { -0.0 } else { 0.0 } } else if base.is_sign_negative() && odd { f64::NEG_INFINITY } else { f64::INFINITY }); }
     if exponent.is_infinite() { return Ok(if base.abs() == 1.0 { CONVERSION_NAN } else if (base.abs() > 1.0) == exponent.is_sign_positive() { f64::INFINITY } else { 0.0 }); }
-    if base < 0.0 && exponent.fract() != 0.0 { return Ok(CONVERSION_NAN); }
+    if base < 0.0 && exponent.fract() != 0.0 { return Ok(arithmetic::REFERENCE_NAN); }
     if exponent == 1.0 { return Ok(base); }
     if exponent == 2.0 { return Ok(arithmetic::mul(base, base)); }
     if exponent == -1.0 { return Ok(arithmetic::div(1.0, base)); }
