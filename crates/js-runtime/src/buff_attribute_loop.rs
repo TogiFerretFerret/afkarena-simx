@@ -10,7 +10,7 @@ impl Runtime {
  /// `e,t,a,i,r,n` are source locals after the unchanged for initializer.
  /// A miss does no source-visible work, and continues at the original loop.
  pub fn try_native_buff_percent_loop(&mut self,this:Value,e:Value,t:Value,a:Value,i:Value,r:Value,n:Value,parent:EnvId)->bool{
-  if !self.buff_attribute_loop_enabled||self.truthy(a){return false}
+  if !self.buff_attribute_loop_enabled{return false}self.buff_percent_loop_attempts=self.buff_percent_loop_attempts.wrapping_add(1);if self.truthy(a){return false}
   let(Value::Object(receiver),Value::Object(info),Value::Object(target),Value::Number(length))=(this,e,t,n)else{return false};
   if !length.is_finite()||length<0.0||length>64.0||length.fract()!=0.0||!self.buff_plain(target)||receiver==target||info==target{return false}
   let names=["ed","attrib","attrib_names_x","attrib_names_a","caster_attribs","AddSource","owner","HPR","MPR"];let keys=names.map(|s|PropertyKey(self.intern(s)));
@@ -26,7 +26,7 @@ impl Runtime {
   let Some(array)=self.objects.get(list.0)else{return false};if array.is_function||!array.arguments_map.is_empty()||!matches!(array.kind,ObjectKind::Array{length:actual,..}if actual>=length as u32){return false}
   let mut plan=[None;64];let mut seen=[PropertyKey(crate::StringId(0));64];
   for index in 0..length as usize{
-   let index_key=PropertyKey(self.intern(&index.to_string()));let Some(d)=self.objects[list.0].own(index_key)else{return false};let PropertyKind::Data{value:Value::String(attr),..}=d.kind else{return false};let key=PropertyKey(attr);if seen[..index].contains(&key){return false}seen[index]=key;
+   let index_key=self.index_property_key(index);let Some(d)=self.objects[list.0].own(index_key)else{return false};let PropertyKind::Data{value:Value::String(attr),..}=d.kind else{return false};let key=PropertyKey(attr);if seen[..index].contains(&key){return false}seen[index]=key;
    let Some(Value::String(coefficient_key))=self.buff_data(xmap,key,Some(target))else{return false};let Some(coefficient)=self.buff_data(info,PropertyKey(coefficient_key),Some(target))else{return false};if !self.truthy(coefficient){continue}let Value::Number(coefficient)=coefficient else{return false};if !coefficient.is_finite(){return false}
    let Some(Value::String(basis_key))=self.buff_data(amap,key,Some(target))else{return false};let Some(Value::String(basis_name))=self.buff_data(info,PropertyKey(basis_key),Some(target))else{return false};let Some(basis)=self.buff_data(caster,PropertyKey(basis_name),Some(target))else{return false};let basis=if !self.truthy(basis){0.0}else if let Value::Number(n)=basis{n}else{return false};if !basis.is_finite(){return false}
    let amount=add(0.0,mul(basis,coefficient));if !amount.is_finite(){return false}if amount==0.0{continue}if key!=keys[7]&&key!=keys[8]&&!((amount>0.0&&!self.truthy(i))||(amount<0.0&&!self.truthy(r))){continue}
@@ -34,6 +34,6 @@ impl Runtime {
   }
   // No callback, allocation, type guard, or fallible operation follows a write.
   for operation in plan.into_iter().flatten(){let(slot,value)=operation;let(_,d)=self.objects[target.0].properties[slot].as_mut().expect("validated own slot");if let PropertyKind::Data{value:current,..}=&mut d.kind{*current=Value::Number(value)}else{unreachable!("validated descriptor")}}
-  true
+  self.buff_percent_loop_hits=self.buff_percent_loop_hits.wrapping_add(1);true
  }
 }
