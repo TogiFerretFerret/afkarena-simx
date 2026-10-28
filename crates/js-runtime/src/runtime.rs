@@ -84,7 +84,7 @@ impl Runtime {
   // Only an ordinary sloppy function's original legacy data property has
   // V8's active-arguments reflection behavior. A manually added property on
   // an arrow, bound function or method remains an ordinary property.
-  if self.string_units(key.0)==[97,114,103,117,109,101,110,116,115]{
+  if self.objects.get(id.0).is_some_and(|object|object.is_function)&&self.string_units(key.0)==[97,114,103,117,109,101,110,116,115]{
    if let Some(callee)=self.function_objects.get(&id).copied(){
     let function=&self.functions[callee.0];
     if function.constructible&&matches!(function.kind,crate::closures::FunctionKind::Native{strict:false,arrow_this:None,..}){
