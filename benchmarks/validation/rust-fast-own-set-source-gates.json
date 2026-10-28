@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Default-enabled isolated writable own Data Set compared to pinned JS through existing full coercion/reflection/argument component gates. An invalid reflection filename rejected before execution and corrected launcher are both retained.",
+  "cases": {
+    "coercions": 40,
+    "reflection": 24,
+    "arguments": 40
+  },
+  "reports": [
+    {
+      "file": "benchmarks/validation/rust-generated-coercions.json",
+      "sha256": "9ce87aef85f463f33118ee76e329149cb6aa49d6a98030e85b84c3f971f486bd"
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-reflection.json",
+      "sha256": "867734ad599593e2e6ce06e5a15dd79e6c378b74535c24796be9489dd688d5e2"
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-arguments-elision.json",
+      "sha256": "454362f482d6a6de9023daa1b15539899b18d46ca2ee79a48549af7aebf41107"
+    }
+  ],
+  "runtimeSha256": "fe5485dfc8988216582cec2f22b3226d611bff42bc512ab2c2b2b552068f3601",
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.coercions.stdout.gz",
+      "sha256": "d464be7c1ad4a69b1f347b51fc20ced43398766e19b4e3c066cae350399205b2",
+      "uncompressedSha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf"
+    },
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.coercions.stderr.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.reflection.stdout.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.reflection.stderr.gz",
+      "sha256": "e83a7a62ee8e82954a4ffcc405330046072789b80083153454c832908d9d617e",
+      "uncompressedSha256": "5eb4b8a07275c2fa938c63f8511e741d5a43c57dba3c46b2e218649c4c54be50"
+    },
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.reflection-retry.stdout.gz",
+      "sha256": "62eb8c5a3c7ec2afd0a4dec92ee806f5b5a5fa4bbc6d1914f84d16c9e0eff539",
+      "uncompressedSha256": "86337178e0f91fdceb9d5e9c4c8f61532bbd7fd76e185760b796df2cc20f4acd"
+    },
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.reflection-retry.stderr.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.arguments.stdout.gz",
+      "sha256": "d464be7c1ad4a69b1f347b51fc20ced43398766e19b4e3c066cae350399205b2",
+      "uncompressedSha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf"
+    },
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.arguments.stderr.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
