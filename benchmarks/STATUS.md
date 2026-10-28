@@ -178,6 +178,21 @@ This is one frozen callback-only battle, not a throughput measurement, random
 battle corpus qualification or the outstanding full-program/full-scene gate.
 The 10,000 faithful battles/second target remains unmet.
 
+A guarded Rust numeric interior now runs inside the original compiled
+`Unit.update`. Its separate whole-function fixture gate passes 20,020 cases,
+including 19,796 Rust admissions, exact callback order, selected state and raw
+float bits through the unchanged continuation. Both native runs record 207
+actual forced collections; the source GC mirror is explicitly a no-op. The
+splice restores all three CFG-proven live numeric registers, including the
+100 constant reused by later MP arithmetic, and preserves registered GC roots.
+See `validation/native-unit-speeder.json` and
+`validation/unit-speeder-liveness.json`. This is a bounded fixture gate, not
+universal `Unit.update` equivalence. An invalid null-skill Attack state exposes
+an existing V8/Hermes exception-message mismatch, retained without normalization
+in `validation/native-unit-speeder-invalid-phase-failure.json`. The new candidate
+still needs its own battle and ordered-trace checks before any performance
+result can be assessed.
+
 The warmed Static Hermes experiment recorded 20 completed repetitions of that
 frozen fixture at 2.123 battles/second. It matched the emitted Node reference's
 terminal state and recorded host-input consumption. See
