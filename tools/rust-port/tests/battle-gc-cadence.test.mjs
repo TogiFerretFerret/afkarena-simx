@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {compileSource} from '../compile.mjs';
+const source=await readFile(new URL('../../../crates/js-runtime/src/native_battle_run.js',import.meta.url),'utf8');
+const compile=options=>compileSource(source,{mode:'function',allowUnsupported:false,...options});
+const one=compile({nativeBattleGc:true}),four=compile({nativeBattleGc:true,nativeBattleGcCadence:4});
+assert.equal(one.manifest.nativeBattleGcCadence,1);
+assert.equal(four.manifest.functions[0].battleGcSafePoints[0].cadence,4);
+assert.ok(!one.rust.includes('battle_gc_backedges'));
+assert.ok(four.rust.includes('% 4 == 0 || matches!'));
+assert.ok(four.rust.includes('index + 1.0 >= total'));
+assert.ok(!compile({nativeBattleGcCadence:4}).rust.includes('battle_gc_backedges'));
+assert.ok(!compile({nativeBattleGc:true,nativeBattleGcCadence:4,largeBody:{minimumNodes:1}}).rust.includes('battle_gc_backedges'));
+for(const cadence of [0,-1,1.5,Infinity,Number.MAX_SAFE_INTEGER+1])assert.throws(()=>compile({nativeBattleGcCadence:cadence}),/positive safe integer/);
+const changed=compileSource(source.replace('battleIndex++','battleIndex+=1'),{mode:'function',nativeBattleGc:true,nativeBattleGcCadence:4,allowUnsupported:false});
+assert.ok(!changed.rust.includes('battle_gc_backedges'));
+console.log(JSON.stringify({passed:true,cases:13,scope:'Cadence only changes the exact opt-in proven backedge; default remains every iteration.'}));
