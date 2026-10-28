@@ -1,0 +1,608 @@
+{
+  "version": 1,
+  "passed": true,
+  "cacheLocalBindings": false,
+  "cachedBindingDeclarations": 0,
+  "cases": 80,
+  "results": [
+    {
+      "name": "computed-simple-rhs-before-coercion",
+      "source": "var log=\"\";var k={toString:function(){log+=\"K\";return \"x\"}};var o={};o[k]=(log+=\"R\",3);var result=log+\":\"+o.x;",
+      "expected": "s:0052004b003a0033",
+      "actual": "s:0052004b003a0033",
+      "passed": true
+    },
+    {
+      "name": "computed-compound-coerces-twice",
+      "source": "var log=\"\",n=0;var k={toString:function(){log+=\"K\";n++;return n===1?\"x\":\"y\"}};var o={x:1};o[k]+=(log+=\"R\",2);var result=log+\":\"+o.x+\":\"+o.y;",
+      "expected": "s:004b0052004b003a0031003a0033",
+      "actual": "s:004b0052004b003a0031003a0033",
+      "passed": true
+    },
+    {
+      "name": "null-assignment-rhs-prefix",
+      "source": "var log=\"\";var k={toString:function(){log+=\"K\";return\"x\"}};try{null[k]=(log+=\"R\",3)}catch(e){log+=\"T\"}var result=log;",
+      "expected": "s:00520054",
+      "actual": "s:00520054",
+      "passed": true
+    },
+    {
+      "name": "null-compound-stops-before-rhs",
+      "source": "var log=\"\";var k={toString:function(){log+=\"K\";return\"x\"}};try{null[k]+=(log+=\"R\",3)}catch(e){log+=\"T\"}var result=log;",
+      "expected": "s:0054",
+      "actual": "s:0054",
+      "passed": true
+    },
+    {
+      "name": "method-receiver-survives-argument-mutation",
+      "source": "var o={x:3,m:function(v){return this.x+v}},old=o;var a=o.m((o={x:100},2));var result=a+\":\"+old.m(4);",
+      "expected": "s:0035003a0037",
+      "actual": "s:0035003a0037",
+      "passed": true
+    },
+    {
+      "name": "callee-read-before-arguments",
+      "source": "var log=\"\";var f=function(v){log+=\"F\";return v};var o={get m(){log+=\"G\";return f}};var result=o.m((log+=\"A\",2))+\":\"+log;",
+      "expected": "s:0032003a004700410046",
+      "actual": "s:0032003a004700410046",
+      "passed": true
+    },
+    {
+      "name": "method-and-sequence-this",
+      "source": "var x=9;var o={x:3,m:function(){return this.x}};var result=o.m()+\":\"+(0,o.m)();",
+      "expected": "s:0033003a0039",
+      "actual": "s:0033003a0039",
+      "passed": true
+    },
+    {
+      "name": "postfix-converts-old-value",
+      "source": "var log=\"\",n=0;var k={toString:function(){log+=\"K\";n++;return n===1?\"x\":\"y\"}};var o={x:{valueOf:function(){log+=\"V\";return 4}}};var old=o[k]++;var result=log+\":\"+old+\":\"+o.y;",
+      "expected": "s:004b0056004b003a0034003a0035",
+      "actual": "s:004b0056004b003a0034003a0035",
+      "passed": true
+    },
+    {
+      "name": "logical-short-circuit-values",
+      "source": "var log=\"\";var a=0&&(log+=\"bad\"),b=\"\"||(log+=\"B\",4),c=0??(log+=\"bad\"),d=null??(log+=\"D\",5);var result=log+\":\"+a+\":\"+b+\":\"+c+\":\"+d;",
+      "expected": "s:00420044003a0030003a0034003a0030003a0035",
+      "actual": "s:00420044003a0030003a0034003a0030003a0035",
+      "passed": true
+    },
+    {
+      "name": "logical-assignment-store-order",
+      "source": "var log=\"\",n=0;var k={toString:function(){log+=\"K\";n++;return n===1?\"x\":\"y\"}};var o={x:0};o[k]||=(log+=\"R\",7);var result=log+\":\"+o.y;",
+      "expected": "s:004b0052004b003a0037",
+      "actual": "s:004b0052004b003a0037",
+      "passed": true
+    },
+    {
+      "name": "object-getter-setter-merge",
+      "source": "var log=\"\";var o={get x(){log+=\"G\";return 2},set x(v){log+=\"S\"+v}};o.x+=3;var result=log;",
+      "expected": "s:004700530035",
+      "actual": "s:004700530035",
+      "passed": true
+    },
+    {
+      "name": "object-computed-key-coerces-before-value",
+      "source": "var log=\"\";var k={toString:function(){log+=\"K\";return\"x\"}};var o={[k]:(log+=\"V\",2)};var result=log+\":\"+o.x;",
+      "expected": "s:004b0056003a0032",
+      "actual": "s:004b0056003a0032",
+      "passed": true
+    },
+    {
+      "name": "array-holes-and-length",
+      "source": "var a=[,3,,];var result=a.length+\":\"+(0 in a)+\":\"+(1 in a)+\":\"+(2 in a);",
+      "expected": "s:0033003a00660061006c00730065003a0074007200750065003a00660061006c00730065",
+      "actual": "s:0033003a00660061006c00730065003a0074007200750065003a00660061006c00730065",
+      "passed": true
+    },
+    {
+      "name": "typeof-unbound",
+      "source": "var result=typeof never_declared_expression_test;",
+      "expected": "s:0075006e0064006500660069006e00650064",
+      "actual": "s:0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "delete-binding-and-property",
+      "source": "var x=2,o={a:1};var result=(delete x)+\":\"+(delete o.a)+\":\"+(\"a\" in o)+\":\"+(delete never_declared_expression_test);",
+      "expected": "s:00660061006c00730065003a0074007200750065003a00660061006c00730065003a0074007200750065",
+      "actual": "s:00660061006c00730065003a0074007200750065003a00660061006c00730065003a0074007200750065",
+      "passed": true
+    },
+    {
+      "name": "lone-surrogate-string-length",
+      "source": "var s=\"\\ud800x\";var result=s.length+\":\"+s[0].length;",
+      "expected": "s:0032003a0031",
+      "actual": "s:0032003a0031",
+      "passed": true
+    },
+    {
+      "name": "template-coercion-before-next-expression",
+      "source": "var log=\"\";var o={toString:function(){log+=\"S\";return\"x\"}};var s=`a${o}${(log+=\"N\",3)}`;var result=log+\":\"+s;",
+      "expected": "s:0053004e003a006100780033",
+      "actual": "s:0053004e003a006100780033",
+      "passed": true
+    },
+    {
+      "name": "anonymous-assignment-name",
+      "source": "var f;f=function(){};var result=f.name;",
+      "expected": "s:0066",
+      "actual": "s:0066",
+      "passed": true
+    },
+    {
+      "name": "object-computed-function-name",
+      "source": "var o={[\"f\"]:function(){}};var result=o.f.name;",
+      "expected": "s:0066",
+      "actual": "s:0066",
+      "passed": true
+    },
+    {
+      "name": "proto-literal-anonymous-function-no-name",
+      "source": "var o={__proto__:function(){}};var result=o.name;",
+      "expected": "s:",
+      "actual": "s:",
+      "passed": true
+    },
+    {
+      "name": "object-method-not-constructible",
+      "source": "var o={m(){}};var result=\"prototype\" in o.m;",
+      "expected": "b:false",
+      "actual": "b:false",
+      "passed": true
+    },
+    {
+      "name": "strict-function-this",
+      "source": "function f(){\"use strict\";return this===void 0}var result=f();",
+      "expected": "b:true",
+      "actual": "b:true",
+      "passed": true
+    },
+    {
+      "name": "constructor-prototype-and-this",
+      "source": "function F(v){this.x=v}F.prototype.y=3;var o=new F(7);var result=o.x+\":\"+o.y;",
+      "expected": "s:0037003a0033",
+      "actual": "s:0037003a0033",
+      "passed": true
+    },
+    {
+      "name": "negative-zero-result",
+      "source": "var result=-0;",
+      "expected": "d:8000000000000000",
+      "actual": "d:8000000000000000",
+      "passed": true
+    },
+    {
+      "name": "division-nan-bits",
+      "source": "var result=0/0;",
+      "expected": "d:7ff8000000000000",
+      "actual": "d:7ff8000000000000",
+      "passed": true
+    },
+    {
+      "name": "dynamic-division-nan-bits",
+      "source": "var z=0;var result=z/z;",
+      "expected": "d:fff8000000000000",
+      "actual": "d:fff8000000000000",
+      "passed": true
+    },
+    {
+      "name": "literal-negative-zero-division",
+      "source": "var result=-0/0;",
+      "expected": "d:7ff8000000000000",
+      "actual": "d:7ff8000000000000",
+      "passed": true
+    },
+    {
+      "name": "literal-remainder-nan",
+      "source": "var result=0%0;",
+      "expected": "d:7ff8000000000000",
+      "actual": "d:7ff8000000000000",
+      "passed": true
+    },
+    {
+      "name": "literal-infinity-subtraction",
+      "source": "var result=1e999-1e999;",
+      "expected": "d:7ff8000000000000",
+      "actual": "d:7ff8000000000000",
+      "passed": true
+    },
+    {
+      "name": "dynamic-infinity-subtraction",
+      "source": "var a=1e999;var result=a-a;",
+      "expected": "d:fff8000000000000",
+      "actual": "d:fff8000000000000",
+      "passed": true
+    },
+    {
+      "name": "literal-pow-invalid",
+      "source": "var result=(-1)**0.5;",
+      "expected": "d:7ff8000000000000",
+      "actual": "d:7ff8000000000000",
+      "passed": true
+    },
+    {
+      "name": "literal-overflow",
+      "source": "var result=1e308*1e308;",
+      "expected": "d:7ff0000000000000",
+      "actual": "d:7ff0000000000000",
+      "passed": true
+    },
+    {
+      "name": "strict-literal-fold",
+      "source": "\"use strict\";var result=(0/0)+1;",
+      "expected": "d:7ff8000000000000",
+      "actual": "d:7ff8000000000000",
+      "passed": true
+    },
+    {
+      "name": "sequence-order",
+      "source": "var log=\"\";var result=(log+=\"A\",log+=\"B\",log);",
+      "expected": "s:00410042",
+      "actual": "s:00410042",
+      "passed": true
+    },
+    {
+      "name": "optional-member-skips-computed-chain",
+      "source": "var n=0,a=null;var v=a?.[n++].x;var result=n+\":\"+typeof v;",
+      "expected": "s:0030003a0075006e0064006500660069006e00650064",
+      "actual": "s:0030003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "optional-call-skips-arguments",
+      "source": "var log=\"\",a=null;a?.m((log+=\"A\",2));var result=log;",
+      "expected": "s:",
+      "actual": "s:",
+      "passed": true
+    },
+    {
+      "name": "grouped-optional-callee-evaluates-arguments",
+      "source": "var log=\"\",a=null;try{(a?.m)((log+=\"A\",2))}catch(e){log+=\"T\"}var result=log;",
+      "expected": "s:00410054",
+      "actual": "s:00410054",
+      "passed": true
+    },
+    {
+      "name": "grouped-optional-member-breaks-chain",
+      "source": "var log=\"\",a=null;try{(a?.b)[(log+=\"K\",\"c\")]}catch(e){log+=\"T\"}var result=log;",
+      "expected": "s:004b0054",
+      "actual": "s:004b0054",
+      "passed": true
+    },
+    {
+      "name": "optional-delete-does-not-read-getter",
+      "source": "var log=\"\",o={get x(){log+=\"G\";return 2}};var r=delete o?.x;var result=log+\":\"+r+\":\"+(\"x\" in o);",
+      "expected": "s:003a0074007200750065003a00660061006c00730065",
+      "actual": "s:003a0074007200750065003a00660061006c00730065",
+      "passed": true
+    },
+    {
+      "name": "optional-delete-chain-shortcircuits",
+      "source": "var o=null;var result=delete o?.x.y;",
+      "expected": "b:true",
+      "actual": "b:true",
+      "passed": true
+    },
+    {
+      "name": "optional-method-receiver-captured",
+      "source": "var o={x:3,m(v){return this.x+v}};var result=o?.m((o={x:100},2));",
+      "expected": "d:4014000000000000",
+      "actual": "d:4014000000000000",
+      "passed": true
+    },
+    {
+      "name": "optional-null-method-getter-prefix",
+      "source": "var log=\"\",o={get m(){log+=\"G\";return null}};o.m?.((log+=\"A\",2));var result=log;",
+      "expected": "s:0047",
+      "actual": "s:0047",
+      "passed": true
+    },
+    {
+      "name": "new-target-constructor",
+      "source": "function F(){this.x=new.target===F}var o=new F;var result=o.x;",
+      "expected": "b:true",
+      "actual": "b:true",
+      "passed": true
+    },
+    {
+      "name": "new-target-nested-ordinary-function",
+      "source": "var log=\"\";function F(){log=(function(){return new.target===void 0})()+\":\"+(new.target===F)}new F;var result=log;",
+      "expected": "s:0074007200750065003a0074007200750065",
+      "actual": "s:0074007200750065003a0074007200750065",
+      "passed": true
+    },
+    {
+      "name": "new-target-arrow-capture",
+      "source": "function F(){this.test=()=>new.target===F}var o=new F;var result=o.test();",
+      "expected": "b:true",
+      "actual": "b:true",
+      "passed": true
+    },
+    {
+      "name": "new-target-arrow-ordinary-call",
+      "source": "function f(){return ()=>new.target}var g=f();var result=g()===void 0;",
+      "expected": "b:true",
+      "actual": "b:true",
+      "passed": true
+    },
+    {
+      "name": "array-length-object-coerces-twice",
+      "source": "var n=0,a=[],v={valueOf:function(){n++;return 2}};a.length=v;var result=n*10+a.length;",
+      "expected": "d:4036000000000000",
+      "actual": "d:4036000000000000",
+      "passed": true
+    },
+    {
+      "name": "array-shrink-nonconfig-retains-prefix",
+      "source": "var a=[0,1,2,3];Object.defineProperty(a,\"2\",{configurable:false});a.length=0;var result=a.length*10+(\"3\" in a?1:0);",
+      "expected": "d:403e000000000000",
+      "actual": "d:403e000000000000",
+      "passed": true
+    },
+    {
+      "name": "object-keys-boxes-string",
+      "source": "var result=Object.keys(\"ab\").length;",
+      "expected": "d:4000000000000000",
+      "actual": "d:4000000000000000",
+      "passed": true
+    },
+    {
+      "name": "array-own-names-holes",
+      "source": "var result=Object.getOwnPropertyNames([,1]).join(\",\");",
+      "expected": "s:0031002c006c0065006e006700740068",
+      "actual": "s:0031002c006c0065006e006700740068",
+      "passed": true
+    },
+    {
+      "name": "array-cyclic-join",
+      "source": "var a=[];a[0]=a;var result=a.join(\",\");",
+      "expected": "s:",
+      "actual": "s:",
+      "passed": true
+    },
+    {
+      "name": "array-sort-holes-and-undefined",
+      "source": "var a=[3,,void 0,1];a.sort();var result=a.join(\",\")+\":\"+(\"2\" in a)+\":\"+(\"3\" in a);",
+      "expected": "s:0031002c0033002c002c003a0074007200750065003a00660061006c00730065",
+      "actual": "s:0031002c0033002c002c003a0074007200750065003a00660061006c00730065",
+      "passed": true
+    },
+    {
+      "name": "argument-spread-live-array-length",
+      "source": "var a=[1,,];Object.defineProperty(a,\"1\",{get:function(){a[2]=4;return 3}});function f(){return arguments.length+\":\"+arguments[0]+\":\"+arguments[1]+\":\"+arguments[2]}var result=f(...a);",
+      "expected": "s:0033003a0031003a0033003a0034",
+      "actual": "s:0033003a0031003a0033003a0034",
+      "passed": true
+    },
+    {
+      "name": "argument-spread-order-and-arguments-object",
+      "source": "var log=\"\";function f(){log+=\"F\";return arguments.length}function g(){return f((log+=\"A\",1),...arguments,(log+=\"B\",4))}var result=g(2,3)+\":\"+log;",
+      "expected": "s:0034003a004100420046",
+      "actual": "s:0034003a004100420046",
+      "passed": true
+    },
+    {
+      "name": "array-spread-holes-become-own-undefined",
+      "source": "var a=[,...[,2],,];var result=a.length+\":\"+(\"0\" in a)+\":\"+(\"1\" in a)+\":\"+(\"2\" in a)+\":\"+(\"3\" in a);",
+      "expected": "s:0034003a00660061006c00730065003a0074007200750065003a0074007200750065003a00660061006c00730065",
+      "actual": "s:0034003a00660061006c00730065003a0074007200750065003a0074007200750065003a00660061006c00730065",
+      "passed": true
+    },
+    {
+      "name": "string-spread-code-points",
+      "source": "var a=[...\"💩\"];var result=a.length+\":\"+a[0].length;",
+      "expected": "s:0031003a0032",
+      "actual": "s:0031003a0032",
+      "passed": true
+    },
+    {
+      "name": "compound-left-coercion-after-rhs",
+      "source": "var log=\"\",o={x:{valueOf:function(){log+=\"V\";return 1}}};o.x+=(log+=\"R\",2);var result=log+\":\"+o.x;",
+      "expected": "s:00520056003a0033",
+      "actual": "s:00520056003a0033",
+      "passed": true
+    },
+    {
+      "name": "computed-key-method-replaced-by-rhs",
+      "source": "var k={toString:function(){return\"x\"}},o={x:1};o[k]+=(k.toString=function(){return\"y\"},2);var result=o.x+\":\"+o.y;",
+      "expected": "s:0031003a0033",
+      "actual": "s:0031003a0033",
+      "passed": true
+    },
+    {
+      "name": "regexp-literal-captures-and-index",
+      "source": "var r=/(a+)/i,m=r.exec(\"AAA\");var result=m[0]+\":\"+m[1]+\":\"+m.index;",
+      "expected": "s:004100410041003a004100410041003a0030",
+      "actual": "s:004100410041003a004100410041003a0030",
+      "passed": true
+    },
+    {
+      "name": "regexp-global-last-index-reset",
+      "source": "var r=/a/g;var result=r.test(\"a\")+\":\"+r.lastIndex+\":\"+r.test(\"a\")+\":\"+r.lastIndex;",
+      "expected": "s:0074007200750065003a0031003a00660061006c00730065003a0030",
+      "actual": "s:0074007200750065003a0031003a00660061006c00730065003a0030",
+      "passed": true
+    },
+    {
+      "name": "regexp-dot-without-unicode",
+      "source": "var r=/./g,m=r.exec(\"💩\");var result=m[0].length+\":\"+r.lastIndex;",
+      "expected": "s:0031003a0031",
+      "actual": "s:0031003a0031",
+      "passed": true
+    },
+    {
+      "name": "regexp-dot-with-unicode",
+      "source": "var r=/./gu,m=r.exec(\"💩\");var result=m[0].length+\":\"+r.lastIndex;",
+      "expected": "s:0032003a0032",
+      "actual": "s:0032003a0032",
+      "passed": true
+    },
+    {
+      "name": "regexp-literal-fresh-per-call",
+      "source": "function f(){return /a/g}var result=f()===f();",
+      "expected": "b:false",
+      "actual": "b:false",
+      "passed": true
+    },
+    {
+      "name": "regexp-literal-source-and-flags",
+      "source": "var r=/a(b+)/gim;var result=r.source+\":\"+r.flags;",
+      "expected": "s:006100280062002b0029003a00670069006d",
+      "actual": "s:006100280062002b0029003a00670069006d",
+      "passed": true
+    },
+    {
+      "name": "cached-parameter-mapped-arguments",
+      "source": "function f(x){arguments[0]=3;var a=x;x=4;return a+\":\"+arguments[0]}var result=f(1);",
+      "expected": "s:0033003a0034",
+      "actual": "s:0033003a0034",
+      "passed": true
+    },
+    {
+      "name": "cached-strict-parameter-unmapped-arguments",
+      "source": "function f(x){\"use strict\";arguments[0]=3;x=4;return arguments[0]+\":\"+x}var result=f(1);",
+      "expected": "s:0033003a0034",
+      "actual": "s:0033003a0034",
+      "passed": true
+    },
+    {
+      "name": "cached-duplicate-parameter-last-mapping",
+      "source": "function f(x,x){arguments[0]=3;arguments[1]=5;var r=x;x=7;return r+\":\"+arguments[0]+\":\"+arguments[1]}var result=f(1,2);",
+      "expected": "s:0035003a0033003a0037",
+      "actual": "s:0035003a0033003a0037",
+      "passed": true
+    },
+    {
+      "name": "cached-function-hoisting-var-no-reset",
+      "source": "function f(){function g(){return 3}var g;return g()}var result=f();",
+      "expected": "d:4008000000000000",
+      "actual": "d:4008000000000000",
+      "passed": true
+    },
+    {
+      "name": "cached-mutable-closure-cells",
+      "source": "function f(){var x=1;function g(){x+=2}g();var y=x;g();return y+\":\"+x}var result=f();",
+      "expected": "s:0033003a0035",
+      "actual": "s:0033003a0035",
+      "passed": true
+    },
+    {
+      "name": "cached-block-let-shadow",
+      "source": "function f(x){{let x=7;x++;}return x}var result=f(2);",
+      "expected": "d:4000000000000000",
+      "actual": "d:4000000000000000",
+      "passed": true
+    },
+    {
+      "name": "cached-typeof-tdz-shadow",
+      "source": "function f(x){var log=\"\";try{{log=typeof x;let x=7}}catch(e){log=\"T\"}return log+\":\"+x}var result=f(2);",
+      "expected": "s:0054003a0032",
+      "actual": "s:0054003a0032",
+      "passed": true
+    },
+    {
+      "name": "cached-for-let-shadow",
+      "source": "function f(i){var sum=0;for(let i=0;i<3;i++)sum+=i;return i+\":\"+sum}var result=f(9);",
+      "expected": "s:0039003a0033",
+      "actual": "s:0039003a0033",
+      "passed": true
+    },
+    {
+      "name": "cached-catch-parameter-shadow",
+      "source": "function f(e){try{throw 7}catch(e){e++}return e}var result=f(2);",
+      "expected": "d:4000000000000000",
+      "actual": "d:4000000000000000",
+      "passed": true
+    },
+    {
+      "name": "cached-catch-var-initializer-shadow",
+      "source": "function f(){var x=1;try{throw 7}catch(x){var x=9}return x}var result=f();",
+      "expected": "d:3ff0000000000000",
+      "actual": "d:3ff0000000000000",
+      "passed": true
+    },
+    {
+      "name": "cached-named-function-private-self-cell",
+      "source": "var f=function name(n){if(n)return name(n-1)+1;return 0};var result=f(3);",
+      "expected": "d:4008000000000000",
+      "actual": "d:4008000000000000",
+      "passed": true
+    },
+    {
+      "name": "cached-annex-block-function-shadow",
+      "source": "function f(){var x=1;{function x(){return 7}var y=x()}return typeof x+\":\"+y}var result=f();",
+      "expected": "s:00660075006e006300740069006f006e003a0037",
+      "actual": "s:00660075006e006300740069006f006e003a0037",
+      "passed": true
+    },
+    {
+      "name": "uncached-free-global-property-change",
+      "source": "var g=(function(){return this})();g.x=1;function f(){var r=x;Object.defineProperty(g,\"x\",{get:function(){return 7},configurable:true});return r+\":\"+x}var result=f();",
+      "expected": "s:0031003a0037",
+      "actual": "s:0031003a0037",
+      "passed": true
+    },
+    {
+      "name": "cached-for-of-closure-shadow",
+      "source": "function f(i){var a=[];for(let i of [1,2,3])a.push(()=>i);return i+\":\"+a[0]()+\":\"+a[2]()}var result=f(9);",
+      "expected": "s:0039003a0031003a0033",
+      "actual": "s:0039003a0031003a0033",
+      "passed": true
+    },
+    {
+      "name": "cached-switch-tdz-shadow",
+      "source": "function f(x){try{switch(0){case 0:return typeof x;case 1:let x=7}}catch(e){return\"T:\"+x}}var result=f(2);",
+      "expected": "s:0054003a0032",
+      "actual": "s:0054003a0032",
+      "passed": true
+    },
+    {
+      "name": "cached-arrow-parameter-vs-free-outer",
+      "source": "function f(x){var a=y=>{var z=y+1;return z+x};x=7;return a(2)}var result=f(1);",
+      "expected": "d:4024000000000000",
+      "actual": "d:4024000000000000",
+      "passed": true
+    }
+  ],
+  "compilerInputs": {
+    "tools/rust-port/expressions.mjs": "c6db7628e11187af3daa70debc9685d0a1958cd66ee2b81586879b0929e9f732",
+    "tools/rust-port/statements.mjs": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
+    "tools/rust-port/compile.mjs": "c39bdc9f12bf448e6887815bac6049aa19b67f402ab28a38430c63918deb5f5e",
+    "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
+    "tools/rust-port/tests/expressions.mjs": "6206d488c956b49d5153dfb7b23a0a04d2643996f99050f83fb908df9a28b1c1",
+    "crates/js-runtime/src/binary.rs": "4bd775b9d1d2a3a1a2d0cb2a1a5abb3b967040c7eaf3230a73a6a7722b0462e2",
+    "crates/js-runtime/src/builtins.rs": "94bf03aff4e47b7d03830c69da85089433a880e92b0c707de7f1200f8e1cd737",
+    "crates/js-runtime/src/closures.rs": "adbfe7c2f8168becb118017e543a7b1fe8c1a574c533408ca132e75a76074a05",
+    "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+    "crates/js-runtime/src/env.rs": "9abb8c38b70ce333144da35e734446b449c77bf2bdbc6daf407856540b2c9557",
+    "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/fdlibm.rs": "b0d84d9e230007c559b3f3533b9890b170225e044b8cf39379ce161e2144f9df",
+    "crates/js-runtime/src/heap.rs": "628edb25147dcfe9df5cc6d1c606fc4e0f05cc63550e2ff7984ef1cbfb94ad5a",
+    "crates/js-runtime/src/host.rs": "dc2e4227c25c1c5f64da0faa360b9c91fac08979d37e24ee9d397ae5ecf2a2cd",
+    "crates/js-runtime/src/iterators.rs": "94f2136f525bd49671c5ebc8ae42a68781dbb3c4e2ef331d3843301560404ea4",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lib.rs": "4bb1b8b61572c89fdf19de71702494ab246c8b7228986d0b8b59cdecef9e9714",
+    "crates/js-runtime/src/literal_pool.rs": "60099da207e6b757599245ce65ba5b9be092c5964f2e963cd22ea7c6355d655c",
+    "crates/js-runtime/src/math.rs": "0a2389cff3913406018c10bd4a288aa4e11577e8ca91077bfc47edef446433c2",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "8f1b9519c4a0b089785324d4e80269874fe3822cc586b10ee01a27b9acd1e508",
+    "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/rust-port-expression-tests-uncached/target/release/expression-tests",
+    "sha256": "48b488ddad73aa1b8a0e9e2631cfb1a24914565334e3dfc278752cd1b8567b74"
+  },
+  "buildArgs": [
+    "build",
+    "--release",
+    "--manifest-path",
+    "/workspace/afkarena-simx/work/rust-port-expression-tests-uncached/Cargo.toml"
+  ],
+  "scope": "Actual generated Rust executed against source JS expression programs. Ordered observable effects and primitive results compare exactly; Number results use raw f64 bits and strings use UTF-16 units. This is a language-expression gate, not battle fidelity or throughput.",
+  "qualifiesFor10000Target": false
+}

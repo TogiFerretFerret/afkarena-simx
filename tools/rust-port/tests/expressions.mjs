@@ -5,7 +5,8 @@ import {spawnSync} from 'node:child_process';
 import {createContext,runInContext,constants} from 'node:vm';
 import assert from 'node:assert/strict';
 import {compileSource} from '../compile.mjs';
-const root=resolve(import.meta.dirname,'../../..'),work=resolve(root,'work/rust-port-expression-tests'),sha=b=>createHash('sha256').update(b).digest('hex');
+const cacheLocalBindings=!process.argv.includes('--no-local-cache');
+const root=resolve(import.meta.dirname,'../../..'),work=resolve(root,'work/rust-port-expression-tests'+(cacheLocalBindings?'':'-uncached')),sha=b=>createHash('sha256').update(b).digest('hex');
 const cases=[
  ['computed-simple-rhs-before-coercion','var log="";var k={toString:function(){log+="K";return "x"}};var o={};o[k]=(log+="R",3);var result=log+":"+o.x;'],
  ['computed-compound-coerces-twice','var log="",n=0;var k={toString:function(){log+="K";n++;return n===1?"x":"y"}};var o={x:1};o[k]+=(log+="R",2);var result=log+":"+o.x+":"+o.y;'],
@@ -71,17 +72,34 @@ const cases=[
  ['regexp-dot-with-unicode','var r=/./gu,m=r.exec("💩");var result=m[0].length+":"+r.lastIndex;'],
  ['regexp-literal-fresh-per-call','function f(){return /a/g}var result=f()===f();'],
  ['regexp-literal-source-and-flags','var r=/a(b+)/gim;var result=r.source+":"+r.flags;'],
+ ['cached-parameter-mapped-arguments','function f(x){arguments[0]=3;var a=x;x=4;return a+":"+arguments[0]}var result=f(1);'],
+ ['cached-strict-parameter-unmapped-arguments','function f(x){"use strict";arguments[0]=3;x=4;return arguments[0]+":"+x}var result=f(1);'],
+ ['cached-duplicate-parameter-last-mapping','function f(x,x){arguments[0]=3;arguments[1]=5;var r=x;x=7;return r+":"+arguments[0]+":"+arguments[1]}var result=f(1,2);'],
+ ['cached-function-hoisting-var-no-reset','function f(){function g(){return 3}var g;return g()}var result=f();'],
+ ['cached-mutable-closure-cells','function f(){var x=1;function g(){x+=2}g();var y=x;g();return y+":"+x}var result=f();'],
+ ['cached-block-let-shadow','function f(x){{let x=7;x++;}return x}var result=f(2);'],
+ ['cached-typeof-tdz-shadow','function f(x){var log="";try{{log=typeof x;let x=7}}catch(e){log="T"}return log+":"+x}var result=f(2);'],
+ ['cached-for-let-shadow','function f(i){var sum=0;for(let i=0;i<3;i++)sum+=i;return i+":"+sum}var result=f(9);'],
+ ['cached-catch-parameter-shadow','function f(e){try{throw 7}catch(e){e++}return e}var result=f(2);'],
+ ['cached-catch-var-initializer-shadow','function f(){var x=1;try{throw 7}catch(x){var x=9}return x}var result=f();'],
+ ['cached-named-function-private-self-cell','var f=function name(n){if(n)return name(n-1)+1;return 0};var result=f(3);'],
+ ['cached-annex-block-function-shadow','function f(){var x=1;{function x(){return 7}var y=x()}return typeof x+":"+y}var result=f();'],
+ ['uncached-free-global-property-change','var g=(function(){return this})();g.x=1;function f(){var r=x;Object.defineProperty(g,"x",{get:function(){return 7},configurable:true});return r+":"+x}var result=f();'],
+ ['cached-for-of-closure-shadow','function f(i){var a=[];for(let i of [1,2,3])a.push(()=>i);return i+":"+a[0]()+":"+a[2]()}var result=f(9);'],
+ ['cached-switch-tdz-shadow','function f(x){try{switch(0){case 0:return typeof x;case 1:let x=7}}catch(e){return"T:"+x}}var result=f(2);'],
+ ['cached-arrow-parameter-vs-free-outer','function f(x){var a=y=>{var z=y+1;return z+x};x=7;return a(2)}var result=f(1);'],
+
 
 
 
 ];
 await mkdir(work,{recursive:true});
-const files=['tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/compile.mjs','tools/rust-port/tests/expressions.mjs'];
+const files=['tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/compile.mjs','tools/rust-port/bindings.mjs','tools/rust-port/tests/expressions.mjs'];
 async function collect(directory){const out=[];for(const row of await readdir(resolve(root,directory),{withFileTypes:true})){const file=directory+'/'+row.name;if(row.isDirectory())out.push(...await collect(file));else if(file.endsWith('.rs'))out.push(file);}return out;}
 files.push(...await collect('crates/js-runtime/src'),'crates/js-runtime/Cargo.toml','crates/battle-core/src/js_math.rs','config/source-oracle-runtime.json');
 const before={};for(const f of files)before[f]=sha(await readFile(resolve(root,f)));
 const modules=[],manifests=[];
-for(let i=0;i<cases.length;i++){const [name,source]=cases[i],out=compileSource(source,{filename:name+'.js',allowUnsupported:false});manifests.push(out.manifest);await writeFile(resolve(work,'case_'+i+'.rs'),out.rust);modules.push(`#[path="case_${i}.rs"] mod case_${i};`);}
+for(let i=0;i<cases.length;i++){const [name,source]=cases[i],out=compileSource(source,{filename:name+'.js',allowUnsupported:false,cacheLocalBindings});manifests.push(out.manifest);await writeFile(resolve(work,'case_'+i+'.rs'),out.rust);modules.push(`#[path="case_${i}.rs"] mod case_${i};`);}
 const runCases=cases.map((_,i)=>`{ let mut rt=Runtime::new(); let env=rt.global_env; case_${i}::run(&mut rt,env,Value::Undefined)?; let value=rt.lookup(env,"result")?; println!("{}",encode(&rt,value)); }`).join('\n');
 await writeFile(resolve(work,'main.rs'),modules.join('\n')+'\nuse js_runtime::{Runtime,Value,JsResult};\nfn encode(rt:&Runtime,v:Value)->String{match v{Value::Undefined=>"u".into(),Value::Null=>"n".into(),Value::Bool(v)=>format!("b:{v}"),Value::Number(v)=>format!("d:{:016x}",v.to_bits()),Value::String(id)=>format!("s:{}",rt.string_units(id).iter().map(|n|format!("{n:04x}")).collect::<String>()),_=>"object".into()}}\nfn main()->JsResult<()>{\n'+runCases+'\nOk(())}\n');
 await writeFile(resolve(work,'Cargo.toml'),'[package]\nname="rust-port-expression-tests"\nversion="0.1.0"\nedition="2024"\n[workspace]\n[dependencies]\njs-runtime={path="../../crates/js-runtime"}\n[[bin]]\nname="expression-tests"\npath="main.rs"\n');
@@ -91,4 +109,4 @@ function encode(v){if(v===undefined)return'u';if(v===null)return'n';if(typeof v=
 const results=cases.map(([name,source],i)=>{const realm=createContext(constants.DONT_CONTEXTIFY);runInContext(source,realm);const expected=encode(realm.result);return{name,source,expected,actual:actual[i],passed:expected===actual[i]};});
 const failure=results.find(r=>!r.passed);if(failure){await writeFile(resolve(root,'benchmarks/validation/rust-port-expression-failure.json'),JSON.stringify(failure,null,2)+'\n');throw Error('Expression differential first failure '+JSON.stringify(failure));}
 for(const[f,expected]of Object.entries(before))assert.equal(sha(await readFile(resolve(root,f))),expected,'Compiler source changed during gate '+f);
-const report={version:1,passed:true,cases:results.length,results,compilerInputs:before,binary:{file:binary,sha256:sha(await readFile(binary))},buildArgs:args,scope:'Actual generated Rust executed against source JS expression programs. Ordered observable effects and primitive results compare exactly; Number results use raw f64 bits and strings use UTF-16 units. This is a language-expression gate, not battle fidelity or throughput.',qualifiesFor10000Target:false};await writeFile(resolve(root,'benchmarks/validation/rust-port-expressions.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:true,cases:results.length}));
+const report={version:1,passed:true,cacheLocalBindings,cachedBindingDeclarations:manifests.reduce((n,m)=>n+m.functions.reduce((a,f)=>a+(f.cachedBindings??0),0),0),cases:results.length,results,compilerInputs:before,binary:{file:binary,sha256:sha(await readFile(binary))},buildArgs:args,scope:'Actual generated Rust executed against source JS expression programs. Ordered observable effects and primitive results compare exactly; Number results use raw f64 bits and strings use UTF-16 units. This is a language-expression gate, not battle fidelity or throughput.',qualifiesFor10000Target:false};await writeFile(resolve(root,'benchmarks/validation/rust-port-expressions'+(cacheLocalBindings?'':'-uncached')+'.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:true,cases:results.length}));
