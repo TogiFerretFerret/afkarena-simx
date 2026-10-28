@@ -51,6 +51,18 @@ impl Runtime {
   let name_id=self.intern(name);let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;let index=*e.bindings.get(&name_id).ok_or_else(||JsError::ReferenceError(format!("{name} is not defined")))?;let b=&mut e.cells[index];
   if b.initialized{return Err(JsError::TypeError(format!("binding {name} is already initialized")))}b.value=value;b.initialized=true;Ok(value)
  }
+ /// Cache only addresses whose environment lookup cannot change during a call.
+ /// This raw walk never calls getters or observes a TDZ value.
+ pub fn stable_binding_reference(&self,mut env:EnvId,name:StringId)->JsResult<Option<BindingRef>>{
+  loop {let e=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;
+   if let Some(&index)=e.bindings.get(&name){let b=&e.cells[index];
+    if !b.object_backed{return Ok(if b.alive&&!b.deletable{Some(BindingRef::Cell{env,index})}else{None})}
+    return Ok(self.objects[self.global_object.0].own(crate::heap::PropertyKey(name)).filter(|d|!d.configurable).map(|_|BindingRef::Global{object:self.global_object,name}));
+   }
+   if let Some(parent)=e.parent{env=parent;continue}
+   return Ok(if e.kind==EnvKind::Global{self.objects[self.global_object.0].own(crate::heap::PropertyKey(name)).filter(|d|!d.configurable).map(|_|BindingRef::Global{object:self.global_object,name})}else{None})
+  }
+ }
  pub fn resolve_binding(&mut self,env:EnvId,name:&str)->JsResult<BindingRef>{let name_id=self.intern(name);self.resolve_binding_id(env,name_id)}
  pub fn resolve_binding_id(&mut self,mut env:EnvId,name_id:StringId)->JsResult<BindingRef>{
   loop{
