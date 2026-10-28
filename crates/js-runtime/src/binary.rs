@@ -53,8 +53,13 @@ impl Runtime {
  }
 }
 fn array_buffer_constructor(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{
- if !rt.is_construct_call(){return Err(JsError::TypeError("ArrayBuffer constructor requires new".into()))}let length=to_index(rt,arg(args,0))?;let options=arg(args,1);if !matches!(options,Value::Undefined){let key=rt.string("maxByteLength");let maximum=rt.get_property(options,key)?;if !matches!(maximum,Value::Undefined){return Err(JsError::Unsupported("resizable ArrayBuffer is not implemented".into()))}}
- let prototype=rt.binary_object("ArrayBuffer")?;rt.allocate_buffer(prototype,length)
+ if !rt.is_construct_call(){return Err(JsError::TypeError("ArrayBuffer constructor requires new".into()))}
+ // The pinned V8 constructor rejects negative integers before reading the
+ // derived prototype, but defers an oversized positive allocation until after
+ // options and GetPrototypeFromConstructor. ToIndex would throw too early.
+ let number=rt.to_number(arg(args,0))?;let length=if number.is_nan(){0.0}else{number.trunc()};if length<0.0{return Err(JsError::RangeError("ArrayBuffer length is negative".into()))}
+ let options=arg(args,1);if !matches!(options,Value::Undefined){let key=rt.string("maxByteLength");let maximum=rt.get_property(options,key)?;if !matches!(maximum,Value::Undefined){return Err(JsError::Unsupported("resizable ArrayBuffer is not implemented".into()))}}
+ let prototype=rt.binary_object("ArrayBuffer")?;if !length.is_finite()||length>9_007_199_254_740_991.0{return Err(JsError::RangeError("ArrayBuffer length is outside the valid range".into()))}rt.allocate_buffer(prototype,length as usize)
 }
 fn array_buffer_length(rt:&mut Runtime,this:Value,_:&[Value],_:EnvId)->JsResult<Value>{let buffer=rt.array_buffer_id(this)?;let data=&rt.buffers[buffer.0];Ok(Value::Number(if data.detached{0.0}else{data.bytes.len()as f64}))}
 fn array_buffer_is_view(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let is_view=rt.object_id(arg(args,0)).ok().is_some_and(|id|matches!(rt.objects[id.0].kind,ObjectKind::DataView{..}|ObjectKind::TypedArray{..}));Ok(Value::Bool(is_view))}
