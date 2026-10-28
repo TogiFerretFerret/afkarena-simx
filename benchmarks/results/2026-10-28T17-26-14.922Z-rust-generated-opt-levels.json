@@ -1,0 +1,574 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "timingQualification": "PROVISIONAL_CONTENDED",
+  "sourceReference": {
+    "file": "benchmarks/results/2026-10-28T16-51-16.199Z-rust-unit-update-bindings.json",
+    "sha256": "593dc7bc72fd5d31dc66d4ee3ccd37f9cc1c3614fde0ed9889104717092d2363"
+  },
+  "runtime": {
+    "rlib": "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libjs_runtime-fc78162aaf2a8cbe.rlib",
+    "sha256": "d5efaaa8c3a10102a945c006a25c78f0d4ac4e7cbeb47a98bb2a8c87a1420deb",
+    "sourceRoot": "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime",
+    "sourceManifest": {
+      "array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+      "binary.rs": "a860ff038bc8e4191251eedcca07525365d41a963259a8198e96cdaba6807ffa",
+      "builtins.rs": "bf3077e07472b9ef259a78dca61312b3f203b1572eda5adae4f8af398eca34b4",
+      "closures.rs": "ffe747fcac1e0a9fac9b36b90f64a6a90ac70ddc559d2d5f2ccb772d80a047f7",
+      "collections.rs": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
+      "date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+      "diagnostics.rs": "7a22261fee149ee9776723b5cb9790bca62c45c4b29a7338d166e81a5490a898",
+      "env.rs": "81bd3ad26c1c2560d8df63b1985aecf620fd56f3269fc60469ca57762b727043",
+      "errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+      "fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+      "heap.rs": "901181256a48ad047045daf799eb843268c69e8ed09bdf6477358e4ff2be09fc",
+      "host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+      "id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+      "iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+      "json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+      "lib.rs": "61a281b88857dfa63f285117ddd06848fe8d0fa40a7cc5ef2b88478b7aae29fd",
+      "literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+      "math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
+      "numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+      "reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+      "regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+      "runtime.rs": "9e67c85a03aba7433a47a7050ef756e4f426981dedf2e0b64b1b7d0995ea9a5c",
+      "strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+      "value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7"
+    },
+    "optimization": "Existing Cargo release rlib, linked unchanged into both generated optimization variants; no LTO."
+  },
+  "sameOptimizedRuntime": true,
+  "allOrderedEventsAndSelectedStateBitsMatch": true,
+  "orderedEventsPerTrial": 45068,
+  "inputs": {
+    "/workspace/afkarena-simx/benchmarks/validation/rust-unit-update-optimization-assessment.json": "9cefe7bf7dbcb873f337e6119cd6a106d2e761e4f003ad2021c1602569827a03",
+    "/workspace/afkarena-simx/benchmarks/results/2026-10-28T16-51-16.199Z-rust-unit-update-bindings.json": "593dc7bc72fd5d31dc66d4ee3ccd37f9cc1c3614fde0ed9889104717092d2363",
+    "/workspace/afkarena-simx/config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "/workspace/afkarena-simx/tools/rust-port/benchmark-generated-opt-levels.mjs": "47ccc94b2beba097176591c2aa839e58c56f552525e8c4b1d8cf5f49421b702c",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/manifest.json": "06f8f38623d200a67e152292635d6398a9d2cddcd4b122abfd4dcb0ef415a19b",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/Cargo.toml": "ecdbe8de54e83b430c57f984a3a43739d4ef2da928bfb7f4ca9e5355c25c66d3",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/Cargo.toml": "1fa67ec463d707690ac4c2bf5c446382aeee00c7a8de4a5a2fb7c460145eec22",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libbattle_core-c89c3a9abbe0c0a0.rlib": "047155b9340faa503720f63c43ebdc4edd4bdcceb59823fad3921f583c68a800",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libbattle_core-c89c3a9abbe0c0a0.rmeta": "2cc3a6a5eb92dd99f038e7c9b4e6f2ea3c94aa57cd3e6e89c181447f3a4a9eec",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libjs_runtime-fc78162aaf2a8cbe.rlib": "d5efaaa8c3a10102a945c006a25c78f0d4ac4e7cbeb47a98bb2a8c87a1420deb",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libjs_runtime-fc78162aaf2a8cbe.rmeta": "38058bebad4bf0af2682c3d544f24a15d9fc3d1f5ca7bedb7e2dd1a0bff4ead5",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libmemchr-6f83b7d915519fa1.rlib": "45a5b035a983c1163f2fec0a821b2623bd3d6d88ae6a6bdf46db743b5da8f0b8",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libmemchr-6f83b7d915519fa1.rmeta": "eaed69c37e87d56213e826f129665a8498fb2d4e2b25f21af777edfa5ff75f7a",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libregress-e1e29170b263e811.rlib": "68dc1dc65c6c0cf3cb2a1be45d88663dcc3e2a93c6f460c870df7588a08139f7",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libregress-e1e29170b263e811.rmeta": "0cd466478db1a2840c0562ee8acf350f386e8e2e362d3d8b38d4e12bf9ae55fa",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libryu_js-a1bf82cf0545c8d4.rlib": "feec6ca7c64f9b7d51bbc63df43311a45e8b3a39e6a113c60db48aaf9e0619a5",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libryu_js-a1bf82cf0545c8d4.rmeta": "c573d641a6a79714d8fb0f6941e65787e2f47879cc6c89f3c1ea9fdc59fc2797",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/binary.rs": "a860ff038bc8e4191251eedcca07525365d41a963259a8198e96cdaba6807ffa",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/builtins.rs": "bf3077e07472b9ef259a78dca61312b3f203b1572eda5adae4f8af398eca34b4",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/closures.rs": "ffe747fcac1e0a9fac9b36b90f64a6a90ac70ddc559d2d5f2ccb772d80a047f7",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/collections.rs": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/diagnostics.rs": "7a22261fee149ee9776723b5cb9790bca62c45c4b29a7338d166e81a5490a898",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/env.rs": "81bd3ad26c1c2560d8df63b1985aecf620fd56f3269fc60469ca57762b727043",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/heap.rs": "901181256a48ad047045daf799eb843268c69e8ed09bdf6477358e4ff2be09fc",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/lib.rs": "61a281b88857dfa63f285117ddd06848fe8d0fa40a7cc5ef2b88478b7aae29fd",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/runtime.rs": "9e67c85a03aba7433a47a7050ef756e4f426981dedf2e0b64b1b7d0995ea9a5c",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+    "/workspace/afkarena-simx/work/rust-unit-update-benchmark/baseline.utf16le": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206",
+    "/workspace/afkarena-simx/work/rust-generated-opt-levels/baseline.rs": "35b2984462db2e15913de036d02508386852f4571d724f333a48556a8cafd4af",
+    "/workspace/afkarena-simx/work/rust-unit-update-benchmark/cached.utf16le": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206",
+    "/workspace/afkarena-simx/work/rust-generated-opt-levels/cached.rs": "6b232355cec160c8e2dd5ef4033a11f335442d69d9dd72a11b08c2ae7fbc3d90",
+    "/workspace/afkarena-simx/work/rust-generated-opt-levels/main.rs": "ed18f8b06f8e807900364db9613616b2944448d9a10d7d1fc5eac32e7b63de83",
+    "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
+  },
+  "changedInputs": [],
+  "toolchain": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n",
+  "builds": [
+    {
+      "level": 1,
+      "command": [
+        "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+        "--edition=2024",
+        "--crate-name",
+        "unit_update_opt1",
+        "/workspace/afkarena-simx/work/rust-generated-opt-levels/main.rs",
+        "--extern",
+        "js_runtime=/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libjs_runtime-fc78162aaf2a8cbe.rlib",
+        "-L",
+        "dependency=/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps",
+        "-C",
+        "opt-level=1",
+        "-C",
+        "codegen-units=64",
+        "-C",
+        "debuginfo=0",
+        "-C",
+        "lto=off",
+        "-o",
+        "/workspace/afkarena-simx/work/rust-generated-opt-levels/unit-update-opt1"
+      ],
+      "wallMs": 3888.413193,
+      "status": 0,
+      "signal": null,
+      "binary": {
+        "file": "/workspace/afkarena-simx/work/rust-generated-opt-levels/unit-update-opt1",
+        "sha256": "e625cc1eed381e6c5dc9a9d351ab8b28b9f6435e5c066ef97167aa28e15d7a12",
+        "bytes": 7188800
+      }
+    },
+    {
+      "level": 3,
+      "command": [
+        "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+        "--edition=2024",
+        "--crate-name",
+        "unit_update_opt3",
+        "/workspace/afkarena-simx/work/rust-generated-opt-levels/main.rs",
+        "--extern",
+        "js_runtime=/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps/libjs_runtime-fc78162aaf2a8cbe.rlib",
+        "-L",
+        "dependency=/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/deps",
+        "-C",
+        "opt-level=3",
+        "-C",
+        "codegen-units=64",
+        "-C",
+        "debuginfo=0",
+        "-C",
+        "lto=off",
+        "-o",
+        "/workspace/afkarena-simx/work/rust-generated-opt-levels/unit-update-opt3"
+      ],
+      "wallMs": 4012.520992999999,
+      "status": 0,
+      "signal": null,
+      "binary": {
+        "file": "/workspace/afkarena-simx/work/rust-generated-opt-levels/unit-update-opt3",
+        "sha256": "1548d627437bf79d42089cf5cb96f545efc53f1f0b42f938d2a3ef010e3da2b5",
+        "bytes": 7150432
+      }
+    }
+  ],
+  "rows": [
+    {
+      "pair": 0,
+      "level": 1,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "elapsedNs": "416092649",
+      "updates": 3000,
+      "updatesPerSecond": 7209.932709001067,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 1,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "elapsedNs": "383138686",
+      "updates": 3000,
+      "updatesPerSecond": 7830.062871803031,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 1,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "elapsedNs": "394827663",
+      "updates": 3000,
+      "updatesPerSecond": 7598.251797265786,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 1,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "elapsedNs": "394902655",
+      "updates": 3000,
+      "updatesPerSecond": 7596.808889522406,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 1,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "elapsedNs": "414207416",
+      "updates": 3000,
+      "updatesPerSecond": 7242.748159777033,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 1,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "elapsedNs": "375939185",
+      "updates": 3000,
+      "updatesPerSecond": 7980.014107866941,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 3,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "elapsedNs": "419768424",
+      "updates": 3000,
+      "updatesPerSecond": 7146.797682905278,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 3,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "elapsedNs": "358112166",
+      "updates": 3000,
+      "updatesPerSecond": 8377.263563841056,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 3,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "elapsedNs": "373036564",
+      "updates": 3000,
+      "updatesPerSecond": 8042.107100257335,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 3,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "elapsedNs": "387137925",
+      "updates": 3000,
+      "updatesPerSecond": 7749.176214136086,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 3,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "elapsedNs": "384901687",
+      "updates": 3000,
+      "updatesPerSecond": 7794.1981064894635,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 0,
+      "level": 3,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "elapsedNs": "355892601",
+      "updates": 3000,
+      "updatesPerSecond": 8429.509328293118,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 3,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "elapsedNs": "393785883",
+      "updates": 3000,
+      "updatesPerSecond": 7618.353347623688,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 3,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "elapsedNs": "361108045",
+      "updates": 3000,
+      "updatesPerSecond": 8307.762846989466,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 3,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "elapsedNs": "358304950",
+      "updates": 3000,
+      "updatesPerSecond": 8372.756223434813,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 3,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "elapsedNs": "369273902",
+      "updates": 3000,
+      "updatesPerSecond": 8124.0509652913415,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 3,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "elapsedNs": "375819138",
+      "updates": 3000,
+      "updatesPerSecond": 7982.563144509155,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 3,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "elapsedNs": "395804507",
+      "updates": 3000,
+      "updatesPerSecond": 7579.499341072435,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 1,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "elapsedNs": "478551652",
+      "updates": 3000,
+      "updatesPerSecond": 6268.915774216155,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 1,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "elapsedNs": "490546904",
+      "updates": 3000,
+      "updatesPerSecond": 6115.623145386317,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 1,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "elapsedNs": "500723308",
+      "updates": 3000,
+      "updatesPerSecond": 5991.332842049366,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 1,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "elapsedNs": "417218047",
+      "updates": 3000,
+      "updatesPerSecond": 7190.484739506007,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 1,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "elapsedNs": "391414241",
+      "updates": 3000,
+      "updatesPerSecond": 7664.514178982057,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 1,
+      "level": 1,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "elapsedNs": "388023329",
+      "updates": 3000,
+      "updatesPerSecond": 7731.493896852785,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 1,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "elapsedNs": "496555981",
+      "updates": 3000,
+      "updatesPerSecond": 6041.614872825387,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 1,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "elapsedNs": "394069377",
+      "updates": 3000,
+      "updatesPerSecond": 7612.872694748874,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 1,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "elapsedNs": "382034237",
+      "updates": 3000,
+      "updatesPerSecond": 7852.6993380438835,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 1,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "elapsedNs": "386706301",
+      "updates": 3000,
+      "updatesPerSecond": 7757.825492478852,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 1,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "elapsedNs": "367240408",
+      "updates": 3000,
+      "updatesPerSecond": 8169.035690647636,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 1,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "elapsedNs": "373398805",
+      "updates": 3000,
+      "updatesPerSecond": 8034.305305288805,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 3,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "elapsedNs": "491906875",
+      "updates": 3000,
+      "updatesPerSecond": 6098.715331026833,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 3,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "elapsedNs": "401240262",
+      "updates": 3000,
+      "updatesPerSecond": 7476.816970077643,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 3,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "elapsedNs": "432690696",
+      "updates": 3000,
+      "updatesPerSecond": 6933.359158709528,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 3,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "elapsedNs": "571310235",
+      "updates": 3000,
+      "updatesPerSecond": 5251.087441134325,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 3,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "elapsedNs": "491395111",
+      "updates": 3000,
+      "updatesPerSecond": 6105.06684507897,
+      "orderedEvents": 45068
+    },
+    {
+      "pair": 2,
+      "level": 3,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "elapsedNs": "472390768",
+      "updates": 3000,
+      "updatesPerSecond": 6350.674490742799,
+      "orderedEvents": 45068
+    }
+  ],
+  "summaries": [
+    {
+      "compilerVariant": "baseline",
+      "opt1": {
+        "level": 1,
+        "trials": 9,
+        "updates": 27000,
+        "elapsedNs": 3762889350,
+        "updatesPerSecond": 7175.337217928027
+      },
+      "opt3": {
+        "level": 3,
+        "trials": 9,
+        "updates": 27000,
+        "elapsedNs": 3885299180,
+        "updatesPerSecond": 6949.271793272816
+      },
+      "observedOpt1OverOpt3": 1.0325308077421942
+    },
+    {
+      "compilerVariant": "cached",
+      "opt1": {
+        "level": 1,
+        "trials": 9,
+        "updates": 27000,
+        "elapsedNs": 3682701494,
+        "updatesPerSecond": 7331.5744010176895
+      },
+      "opt3": {
+        "level": 3,
+        "trials": 9,
+        "updates": 27000,
+        "elapsedNs": 3508580559,
+        "updatesPerSecond": 7695.419713462535
+      },
+      "observedOpt1OverOpt3": 0.9527192374175087
+    }
+  ],
+  "observedCompileWallRatioOpt3OverOpt1": 1.0319173384720073,
+  "artifacts": {
+    "outputs": {
+      "file": "benchmarks/results/2026-10-28T17-26-14.922Z-rust-generated-opt-levels.outputs.json.gz",
+      "sha256": "a02335a985d8d16455c6ca5dd035d699ec5380ef9104078ae87dbb50fdb727d8"
+    },
+    "fixture": {
+      "file": "benchmarks/results/2026-10-28T17-26-14.922Z-rust-generated-opt-levels.fixture.json.gz",
+      "sha256": "82d1a22c0355e3648676f7f7a3fc6a21801028b5eb59d568662b4198f7c592bb"
+    }
+  },
+  "scope": "Unchanged original Unit.update component fixture, generated Rust opt-level1 versus3, same frozen optimized runtime and codegen-units64. Each process retains baseline/cached generated paths, three3000-update trials each, five warmup updates, every callback and raw-bit observer. Three alternating process pairs. Updates/sec are component counts, not battles/sec. Compile wall includes linking and is sequential and potentially contended; no estimate of full175MB program build speed."
+}
