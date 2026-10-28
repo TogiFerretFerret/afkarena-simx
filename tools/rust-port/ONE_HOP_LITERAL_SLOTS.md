@@ -25,3 +25,11 @@ node --jitless tools/rust-port/benchmark-one-hop-buffs.mjs --calls 20000
 ```
 
 The benchmark's `--prepare-only` builds its binary without executing timed trials. Source inputs are hashed before/after, and the report binds the binary, generated source, original source bodies and compiler profile.
+
+## Packed combined candidate: do not enable globally
+
+`candidate-integration-metadata` packs key, physical index and weak owner IDs into three usize fields with usize::MAX sentinels. These IDs index non-zero-sized Vec elements, so a valid index cannot reach the sentinel. The resulting slot is 24 bytes, smaller than the original 32-byte own-only slot; Object remains 160 bytes. All 56 runtime library tests and 24 source cases pass, including the 23-collection weak-owner reuse test. Test output is archived at `benchmarks/validation/rust-packed-one-hop-library-tests.log.gz`.
+
+The quiet combined-source rerun (`2026-10-28T22-37-30.603Z-rust-one-hop-buffs.json`) measures resetBuffApply 1.0934x and addBuff 1.0879x. However the unchanged original Unit.update fixture (`2026-10-28T22-37-05.186Z-rust-unit-update-one-hop-slots.json`) regresses to 0.9267x: 16,767 updates/sec with the one-hop switch off versus 15,538 on. All three on trials are slower (669.5/611.1/650.1ms versus respective off 601.5/595.7/592.1ms). Every trial's 150,220 ordered events and selected raw-bit state matches pinned Node.
+
+Therefore globally enabling one-hop lookup is not recommended. The source component gains do not establish full-battle improvement. The runtime switch remains false. Packing alone is a separate candidate and its paired same-source evidence should be considered separately. A future candidate could restrict learning/probing to demonstrated useful source read sites while retaining all fresh semantic guards, but this candidate does not implement that restriction.
