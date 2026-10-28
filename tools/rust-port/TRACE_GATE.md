@@ -126,3 +126,23 @@ manifest, preventing accidental mixing of a newer observer API with older game
 rlibs. Reprepare after regenerating the next full build.
 
 The next native retry completed and its [archived prefix comparison](../../benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.comparison.json) matched all 1,000 events, 1,437 required snapshots, the full terminal report and host consumption. The orchestrator session disappeared before its final provenance footer was written; [recovery metadata](../../benchmarks/validation/2026-10-28T21-09-48.807Z-rust-reused-trace.recovered.json) explicitly leaves complete execution provenance unqualified. No elapsed time, peak RSS or unchanged-library claim is inferred. The emitted observer reported completion; no native child remains. This is prefix evidence, not complete later-event coverage or a throughput result.
+
+For the next completed release, use the durable post-full gate (reserve the
+native serial slot first):
+
+```sh
+setsid node tools/rust-port/trace-after-full-pass.mjs \
+  --chain benchmarks/validation/rust-program-allocation-wave-chain.json \
+  --output benchmarks/validation/rust-native-prefix-after-full.json \
+  > work/native-prefix-after-full.log 2>&1 < /dev/null &
+```
+
+Replace the chain path with the current build label. The gate refuses an
+incomplete/failed full chain, revalidates its unchanged release build proof,
+requires the derived source to equal the already accepted Node prefix, and
+runs only the native observer with 12 GiB/120-second limits. Stage checkpoints
+are written before and after each child. Passing requires the original native
+runner's complete final provenance footer, unchanged source/library hashes and
+another successful build-proof validation; recovered comparison output alone
+cannot pass. The helper does not wait for a build, so launch it only after the
+chain passes. It neither builds the game nor reruns Node.
