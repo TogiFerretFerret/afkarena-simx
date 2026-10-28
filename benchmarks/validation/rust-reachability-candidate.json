@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "passed": true,
+  "branch": "candidate/reachability",
+  "baseCommit": "fd5e027",
+  "graphTests": 6,
+  "allLibraryTests": 27,
+  "sources": {
+    "crates/js-runtime/src/reachability.rs": "a87dfd17a620a45ea400ebabb751952e670c35ed9ed985b117bf3f7a7d1ca29b",
+    "crates/js-runtime/src/collections.rs": "e6d45e0868263404c976d8f38b32b7863e69c1b1d74ba4949e73867aa0bf5b4f",
+    "crates/js-runtime/src/diagnostics.rs": "da58ed735a19512a2606f33fdec755c48ff387e0fdfaca668441a954fde2dea8",
+    "crates/js-runtime/src/lib.rs": "0d66da2d85c6570339929326ad03f477731f0fe2c52f7840e5b0a1652592037f",
+    "crates/js-runtime/src/utf8_guard.rs": "d779467c1271f7495ba69f8e8e4a85ce35d1ba7145d04ac8abc076280ca6175d"
+  },
+  "command": "cargo test -p js-runtime --lib",
+  "stdout": "\nrunning 27 tests\ntest binary::tests::numeric_typed_reads_preserve_bits_and_do_not_intern_byte_positions ... ok\ntest binary::tests::same_element_float_copy_preserves_signaling_nan_and_clamping_uses_even_ties ... ok\ntest binary::tests::data_view_hash_preserves_f64_payloads_and_both_endian_orders ... ok\ntest binary::tests::integer_views_share_bytes_and_bounds_respect_view_window ... ok\ntest binary::tests::typed_set_overlap_subarray_alias_and_slice_copy_are_distinct ... ok\ntest closures::tests::bound_constructor_ignores_bound_this_and_uses_target_prototype ... ok\ntest closures::tests::mapped_arguments_follow_live_cells_and_detach_on_descriptor_change ... ok\ntest binary::tests::typed_arrays_share_bytes_and_reject_canonical_invalid_indices ... ok\ntest closures::tests::shared_capture_mutation_and_throw_prefix_survive_calls ... ok\ntest closures::tests::new_target_tracks_constructor_frames_and_escapes_in_arrows ... ok\ntest closures::tests::source_metadata_and_function_prototype_are_actual_callable_objects ... ok\ntest closures::tests::static_little_endian_source_range_retains_utf16_units ... ok\ntest env::tests::global_var_properties_remain_live_and_inherited_names_get_own_bindings ... ok\ntest env::tests::references_resolve_before_rhs_and_loop_cells_are_fresh ... ok\ntest closures::tests::strict_sloppy_arrow_and_bound_receivers_remain_distinct ... ok\ntest env::tests::var_hoisting_does_not_reset_parameters_and_tdz_hides_parent ... ok\ntest reachability::tests::cache_only_strings_are_distinguished_and_active_execution_is_rejected ... ok\ntest reachability::tests::closure_cells_and_bound_arguments_survive_only_with_explicit_host_roots ... ok\ntest reachability::tests::invalid_host_roots_are_rejected_and_explicit_environments_are_supported ... ok\ntest reachability::tests::unreachable_cycles_and_live_accessors_are_traced_without_execution ... ok\ntest reachability::tests::views_retain_shared_backing_buffer_and_iterators_retain_collections ... ok\ntest reachability::tests::weak_map_ephemeron_fixpoint_does_not_turn_unrooted_cycles_into_roots ... ok\ntest utf8_guard::tests::prototype_numeric_poison_is_rejected_without_getter_invocation ... ok\ntest utf8_guard::tests::pristine_bytes_pass_but_raw_mutations_and_shadowing_fall_back ... ok\ntest utf8_loader::tests::preserves_permissive_source_bit_operations ... ok\ntest utf8_guard::tests::modified_intrinsics_force_original_source_without_observers ... ok\ntest id_hash::tests::integer_lookup_matches_standard_table_after_replacements_and_deletes ... ok\n\ntest result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.30s\n\n",
+  "scope": "Isolated candidate read-only graph diagnostics; no reclamation, runtime reset, mutation, battle execution or speed qualification. Explicit host values/environments are required and active execution stacks are rejected.",
+  "weakPolicies": [
+    "Ephemeron",
+    "ConservativeStrong"
+  ],
+  "qualifiesFor10000Target": false
+}

@@ -38,3 +38,5 @@ impl Runtime{
   };eprintln!("rust_port_source_frame:{depth} function=#{} name={:?} source_range={range} source_prefix={:?}",id.0,function.name,String::from_utf16_lossy(&units));}
  }
 }
+
+impl Diagnostics{pub(crate) fn reachability_roots(&self)->Vec<Value>{let mut out=Vec::new();for record in &self.recent{out.push(record.receiver);out.push(match record.key{KeyInput::Value(v)=>v,KeyInput::Prepared(k)=>Value::String(k.0)});if let GetOutcome::Value(v)|GetOutcome::Throw(v)=record.outcome{out.push(v)}}out}}
