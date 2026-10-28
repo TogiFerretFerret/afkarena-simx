@@ -9,17 +9,31 @@ enum IteratorKind { Array{object:Value,index:u64}, String{string:StringId,index:
 #[derive(Debug)]
 pub struct IteratorRecord {kind:IteratorKind,done:bool}
 impl Runtime {
+ /// Tests only intrinsic iterator selection; this never runs source getters,
+ /// ToString, or next methods. A true result must still be acquired normally so
+ /// errors from iterator creation propagate rather than becoming array-like.
+ pub fn has_intrinsic_iterator(&self,value:Value)->JsResult<bool>{
+  if matches!(value,Value::String(_)){return Ok(true)}
+  let id=match value{Value::Number(_)=>self.number_prototype,Value::Bool(_)=>self.boolean_prototype,Value::Null|Value::Undefined=>return Ok(false),_=>self.object_id(value)?};
+  if matches!(self.objects[id.0].kind,ObjectKind::Arguments){return Ok(true)}
+  let mut cursor=Some(id);let mut seen=std::collections::HashSet::new();
+  while let Some(object)=cursor{if !seen.insert(object){return Err(JsError::Unsupported("cyclic iterator prototype chain".into()))}
+   if object==self.array_prototype||object==self.string_prototype||self.binary_is_typed_array_prototype(object)||self.collection_prototypes.get("Map")==Some(&object)||self.collection_prototypes.get("Set")==Some(&object)||self.collection_is_iterator_prototype(object){return Ok(true)}
+   cursor=self.objects[object.0].prototype;
+  }Ok(false)
+ }
  pub fn iterator(&mut self,value:Value)->JsResult<IteratorRecord>{
   if let Value::String(string)=value{return Ok(IteratorRecord{kind:IteratorKind::String{string,index:0},done:false})}
-  if matches!(value,Value::Undefined|Value::Null|Value::Bool(_)|Value::Number(_)){return Err(JsError::TypeError("value is not iterable".into()))}
-  let id=self.object_id(value)?;
+  if matches!(value,Value::Undefined|Value::Null){return Err(JsError::TypeError("value is not iterable".into()))}
+  let boxed=if value.is_object(){value}else{self.to_object(value)?};let id=self.object_id(boxed)?;
   if matches!(self.objects[id.0].kind,ObjectKind::Arguments){return Ok(IteratorRecord{kind:IteratorKind::Array{object:value,index:0},done:false})}
   let mut cursor=Some(id);let mut seen=std::collections::HashSet::new();
   while let Some(object)=cursor{
    if !seen.insert(object){return Err(JsError::Unsupported("cyclic iterator prototype chain".into()))}
-   if object==self.array_prototype{return Ok(IteratorRecord{kind:IteratorKind::Array{object:value,index:0},done:false})}
+   if object==self.array_prototype{return Ok(IteratorRecord{kind:IteratorKind::Array{object:boxed,index:0},done:false})}
+   if self.binary_is_typed_array_prototype(object){if self.typed_array_length(value)?.is_none(){return Err(JsError::TypeError("typed array iterator has an incompatible receiver".into()))}return Ok(IteratorRecord{kind:IteratorKind::Array{object:value,index:0},done:false})}
    if object==self.string_prototype{let string=self.to_string_value(value)?;return Ok(IteratorRecord{kind:IteratorKind::String{string,index:0},done:false})}
-   if let Some(iterator)=self.collection_iterator_from_prototype(value,object)?{let key=self.string("next");let next_method=self.get_property(iterator,key)?;if !next_method.is_callable(){return Err(JsError::TypeError("iterator next method is not callable".into()))}return Ok(IteratorRecord{kind:IteratorKind::Object{iterator,next_method},done:false})}
+   if let Some(iterator)=self.collection_iterator_from_prototype(value,object)?{if !iterator.is_object(){return Err(JsError::TypeError("iterator method returned a non-object".into()))}let key=self.string("next");let next_method=self.get_property(iterator,key)?;if !next_method.is_callable(){return Err(JsError::TypeError("iterator next method is not callable".into()))}return Ok(IteratorRecord{kind:IteratorKind::Object{iterator,next_method},done:false})}
    cursor=self.objects[object.0].prototype;
   }
   Err(JsError::TypeError("value is not iterable".into()))
@@ -28,8 +42,7 @@ impl Runtime {
   if iterator.done{return Ok(None)}
   let result=(||match &mut iterator.kind{
    IteratorKind::Array{object,index}=>{
-    let length_key=self.string("length");let length_value=self.get_property(*object,length_key)?;let n=self.to_number(length_value)?;
-    let length=if n.is_nan()||n<=0.0{0}else if n>=9_007_199_254_740_991.0{9_007_199_254_740_991}else{n.floor()as u64};
+    let length=if let Some(length)=self.typed_array_length(*object)?{length as u64}else{let length_key=self.string("length");let length_value=self.get_property(*object,length_key)?;let n=self.to_number(length_value)?;if n.is_nan()||n<=0.0{0}else if n>=9_007_199_254_740_991.0{9_007_199_254_740_991}else{n.floor()as u64}};
     if *index>=length{return Ok(None)}
     let key=self.string(&index.to_string());*index+=1;self.get_property(*object,key).map(Some)
    },

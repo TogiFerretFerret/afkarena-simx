@@ -1,7 +1,7 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 60,
+  "cases": 66,
   "explicitUnsupportedProbes": 1,
   "rejected": [
     {
@@ -27,7 +27,7 @@
     },
     {
       "file": "crates/js-runtime/src/binary.rs",
-      "sha256": "163e5669b91b839781092a10d91e9f630a27a5f5003a3c56f905537d4ad730b6",
+      "sha256": "4afef0152e201220e2da9078bc57cc7f93d34fa4d59a99dcbb007a5eed71b91c",
       "matched": true
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "file": "crates/js-runtime/src/fdlibm.rs",
-      "sha256": "82d802350cd6daa20332e4560d2a9e3e063c40eab704504b1ef04f6996537a99",
+      "sha256": "766dbf40c4356d3701729ed3e2fdaee459bf045e80b7db1b5a569aca23eeecab",
       "matched": true
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "file": "crates/js-runtime/src/iterators.rs",
-      "sha256": "825226ea78f50fd6ef72aaf55fec68d8556702ab5328db94800365b5d3625213",
+      "sha256": "5d9f8545e1c5e6b4a456b77d2a31cd888e0303c8243e73bce78174f68b7983d8",
       "matched": true
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "1cf21f9d345908c13a6415596a0f6f0c27cfc0073bbf189f628d6074ca18f0e1",
+      "sha256": "9c4a61c2357dac32b22a45b36b65bbb314d57ecff726dca127742f3c34f44abb",
       "matched": true
     },
     {
@@ -102,7 +102,12 @@
     },
     {
       "file": "crates/js-runtime/src/math.rs",
-      "sha256": "4312fa72c6da6e6c13fd300e0a4221f7e892b1c3fa5897937c3ff5d9ade837d3",
+      "sha256": "edfc28d37d56bdf831c26fab7e9438985259164bdf25ab7788da55cd320f9b3f",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/numeric_bootstrap.rs",
+      "sha256": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
       "matched": true
     },
     {
@@ -117,7 +122,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "9d1db238489683f5439a748ee98c49f25c221fd7e9b333d685f72c53b141a64c",
+      "sha256": "85d259b73959baddec059453dfc414a5b81ea6e21ce114f3fd6fc9de8d29e36c",
       "matched": true
     },
     {
@@ -1077,12 +1082,12 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "c39bdc9f12bf448e6887815bac6049aa19b67f402ab28a38430c63918deb5f5e",
+      "sha256": "088c45933912ea22acf5e88a425a7c7f7140896ae825ba6b417a48b121ab01a1",
       "matched": true
     },
     {
       "file": "tools/rust-port/expressions.mjs",
-      "sha256": "fbea15e2ae854df13e57a22aa86ed4fa0842c5edb4bd50c9850ced3f9e3352da",
+      "sha256": "9e336ef4eb2b3023988388bf170532d7aedba06edcd4a7725dc536084ae2823a",
       "matched": true
     },
     {
@@ -1097,7 +1102,7 @@
     },
     {
       "file": "tools/rust-port/check-collections.mjs",
-      "sha256": "3184b53a17a1cd22543305953097cc16b8294c5f3d6b9c6836e53e8b916a053b",
+      "sha256": "a270fa91086c1375befcb9fdbc0c3f6c9844b268bf9a79cd493455a61dd6b46c",
       "matched": true
     }
   ],
@@ -1119,10 +1124,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "006a58db6380ba33080f95c270ff8cd1ea6b3f4aca643e872ea1f996eafff4bd",
+  "generatedRustSha256": "067b4eb9153209fa641d270912b7e84dd8704f946a366f43fe5ad509a14cdda0",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-collections/check",
-    "sha256": "1f2890e04140f31b96fc111d2762b611ea40ce33f88d507ca0bd240c1ae0c5ec"
+    "sha256": "3af7c9f827421a9adf6a645f43f568b26229e16c418a618fccdb97a252fbe68a"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
@@ -1141,7 +1146,7 @@
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-collections.outputs.json.gz",
-    "sha256": "ee47a9331a3952a52353fc9a4636bf553e00557da4a14617d2e305611c69d05c"
+    "sha256": "712dee237d908c0c72a3ad44778965d28ff24e7fc24796f780ac92556c95b44b"
   },
   "qualifiesFor10000Target": false,
   "scope": "Source-generated Rust Map/Set/WeakMap/WeakSet operations, SameValueZero and insertion order, live mutation and forEach, native iterators and IteratorClose error precedence. Weak operations cover stable live handles only: garbage collection, WeakRef/FinalizationRegistry liveness and Symbol keys/iterator overrides are not qualified. New Set algebra operations explicitly hard-fail. This is not a complete battle qualification."
