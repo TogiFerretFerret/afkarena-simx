@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "passed": false,
+  "qualifiesFor10000Target": false,
+  "scope": "Archived NDJSON prefix comparison only: every event payload and selected-state bit for the requested ordered prefix, its complete transitive snapshot closure, and the full battle terminal report are compared to the accepted complete trace. Later intermediate events are unobserved. Candidate exit code is caller-supplied; executable provenance, exhaustive graph coverage and throughput require separate evidence.",
+  "candidate": {
+    "file": "/workspace/afkarena-simx/work/rust-reused-trace-prefix/derived-source.stdout",
+    "sha256": "e4812350e008c808ad9cce8823a214a0664010633337adea76aa28067bcaf7cb",
+    "unchanged": true,
+    "callerReportedExitCode": 1
+  },
+  "reference": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.json",
+    "label": "oracle-stdout",
+    "sha256": "35601d20e746b4fc6bc87698da359a59e2b631664b9437fbd7e41c36a884ad4e",
+    "unchanged": true
+  },
+  "producerInputs": {
+    "/workspace/afkarena-simx/tools/rust-port/check-program-trace-prefix.mjs": "cd06a4c0f1ae16f30b7c030b48dbbf6edb22a67f43a9a5a04f8ced7ec3b12521",
+    "/workspace/afkarena-simx/tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341"
+  },
+  "changedProducerInputs": [],
+  "archiveInputs": [],
+  "changedArchiveInputs": [],
+  "comparison": null,
+  "error": "AssertionError [ERR_ASSERTION]: Candidate execution must finish successfully\n\n1 !== 0\n\n    at file:///workspace/afkarena-simx/tools/rust-port/check-program-trace-prefix.mjs:41:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+}

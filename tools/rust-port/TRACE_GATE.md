@@ -64,3 +64,63 @@ a candidate is generated. The final-report checker is a separate 20-battle gate;
 it cannot substitute for this ordered trace comparison. The generic Rust arena
 also retains temporary observer allocations, so fitting a complete trace in
 memory remains an integration concern.
+
+## Reuse the completed main release build
+
+The diagnostic wrapper can link the existing game crates without rebuilding
+original game functions:
+
+```sh
+node tools/rust-port/prepare-reused-trace.mjs --prefix-events 1000
+node tools/rust-port/run-reused-trace.mjs --oracle \
+  --work work/rust-reused-trace-prefix
+node tools/rust-port/run-reused-trace.mjs \
+  --work work/rust-reused-trace-prefix --max-rss-gib 12 --timeout-ms 120000
+```
+
+Wait for the full main release build and its input proof before the native
+command. Coordinate its execution separately from battle benchmarks and warm
+profiling. The runner invokes `rustc` for a small observer app; it never invokes
+Cargo or recompiles the original game-function crates.
+
+Preparation guards every unchanged initialization statement and reuses public
+compiled initialization helpers. It copies only the helper containing the host
+input literal and the prefix of the helper preceding the original battle call.
+The input JSON is replaced **before** the original clock installer copies and
+freezes its replay tape. The diagnostic uses the accepted 260-clock/two-random
+input prefix, one battle, and no warmups. All original game function definitions
+and their source strings remain in the existing libraries.
+
+Prefix mode records exactly the first requested number of events, then stops
+capturing state while all wrapped original game methods and callbacks continue
+to execute. Its header explicitly includes `prefixLimit` and `truncated`.
+`check-program-trace-prefix.mjs` checks every prefix event payload, exact numeric
+bits, and the complete transitive closure of referenced snapshots against the
+accepted full trace. It also compares the entire terminal battle report. Events
+after the limit are **not** qualified by this comparison.
+
+The original full observer took about eight minutes in pinned Node. A retained
+120-second complete-observer attempt stopped before completion and established
+no trace parity. Prefix mode avoids making that cost a prerequisite for the
+next native battle check. A failed, timed-out, or incomplete prefix attempt does
+not establish prefix parity either.
+
+```sh
+node --test tools/rust-port/tests/program-trace-prefix.test.mjs
+```
+
+The regression fixture checks payload bits, callback order, required nested
+snapshots, unexpected snapshots, final-report changes, missing footers and
+failed process exit codes. This remains the selected-state contract described
+above; it is not a complete object graph or a throughput result.
+
+The derived pinned-Node prefix reference passed 1,000 events, all 1,437 required
+snapshots and the full terminal report in
+[the retained source check](../../benchmarks/validation/2026-10-28T20-23-55.444Z-rust-reused-trace-source.json).
+The initial native wrapper compiled, but its diagnostic run exceeded the 12 GiB
+RSS limit before exporting a complete prefix;
+[that retained attempt](../../benchmarks/validation/2026-10-28T20-27-52.407Z-rust-reused-trace.json)
+establishes no native trace parity. Observer allocation remains a limitation.
+Preparation now requires the observer compiler fingerprints to match the main
+manifest, preventing accidental mixing of a newer observer API with older game
+rlibs. Reprepare after regenerating the next full build.

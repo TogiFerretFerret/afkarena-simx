@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "passed": false,
+  "qualifiesFor10000Target": false,
+  "backend": "Pinned Node derived trace source",
+  "scope": "Ordered first 1000 selected-state events plus the full battle terminal report; all original game methods and callbacks execute after recording stops. This is prefix qualification only, not later-event or exhaustive graph qualification.",
+  "limits": {
+    "timeoutMs": 120000,
+    "maxRssKiB": 12582912
+  },
+  "artifacts": [
+    {
+      "label": "preparation-proof",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.preparation-proof.gz",
+      "sha256": "e4d8e86d7abcfe774420d56338bc27234591a0f9c97b3e0727fbacb91e5be8c9",
+      "uncompressedSha256": "c8a6cc92f9389a36ebe0be2667a3f23670ae3cbc921c2b7091089598199cf8c7",
+      "uncompressedBytes": 201453
+    },
+    {
+      "label": "main-source",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.main-source.gz",
+      "sha256": "473888a24df655acbc3c96ca10eb552c6e1b94bc20ba66e90b82f16ea9e0b3f5",
+      "uncompressedSha256": "f8a680e43b3baaf8af07c4c70a818f81301809837cbbc988b4de2b084d48db6f",
+      "uncompressedBytes": 65906
+    },
+    {
+      "label": "copied-prefix-source",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.copied-prefix-source.gz",
+      "sha256": "5997072e3dd96a0a49814bb5d6c4829e10fc0213772e019beff629ddbca27593",
+      "uncompressedSha256": "db691a38b37e709d6903130ef9737d34f69930cf78ea2abc918a20c1381a66aa",
+      "uncompressedBytes": 46857
+    },
+    {
+      "label": "observer-source",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.observer-source.gz",
+      "sha256": "38c90e58d4435cd200dfac43999f057fd3e61ca7f1f5a0ddc576fb43ece7fca9",
+      "uncompressedSha256": "7f42499d2fd384fa19045a7f158daeb2c7d827d3a051f649fb37b4b96d422dd0",
+      "uncompressedBytes": 10972
+    },
+    {
+      "label": "observer-rust",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.observer-rust.gz",
+      "sha256": "8afd5725f565ee74c1e28b48fd483086d97033dda99c275d8f29906e8e021968",
+      "uncompressedSha256": "c58388b187a4c7283d5437ea012599fa9f193ed654b45deeb52bafc83e56aae3",
+      "uncompressedBytes": 330233
+    },
+    {
+      "label": "source-stdout",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.source-stdout.gz",
+      "sha256": "dae2625c7998de2d5e5d1e4a270341a222648cc6f1c523c013111502ba948a79",
+      "uncompressedSha256": "e4812350e008c808ad9cce8823a214a0664010633337adea76aa28067bcaf7cb",
+      "uncompressedBytes": 91
+    },
+    {
+      "label": "source-stderr",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.source-stderr.gz",
+      "sha256": "4d7335da321b687172e068ef59a5ce1469aeddbe7ee47582f39f93848f9816f5",
+      "uncompressedSha256": "0a7b78c91a1b519f9361ec46c246efdc2a615c9c9c9680b568a155f330c5fe67",
+      "uncompressedBytes": 657
+    },
+    {
+      "label": "comparison-stdout",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.comparison-stdout.gz",
+      "sha256": "2446dcbc847137fbafcf307224c7ee06288ac36e0f9e1e6ce128c5ba7f1b3f97",
+      "uncompressedSha256": "b53b12ec5313263f0b572c0125e6511f50bb8364f0320d21c8ece6fb712ea193",
+      "uncompressedBytes": 435
+    },
+    {
+      "label": "comparison-stderr",
+      "file": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.comparison-stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "failed-unit6-source",
+      "file": "benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.failed-unit6-source.gz",
+      "sha256": "58b6e2f427c3d12fca7ca429515942448f55c03589b6fa5972dc8eea8587bb9e",
+      "uncompressedSha256": "643ded34e47507e26fbc93926b94ec424195015c8fdbf11a34ac15080fa48b5d",
+      "uncompressedBytes": 1280181
+    },
+    {
+      "label": "failed-oracle-manifest",
+      "file": "benchmarks/validation/2026-10-28T20-12-07.592Z-rust-reused-trace-source.failed-oracle-manifest.gz",
+      "sha256": "6b8fd13486e635b999d23268114a310b44baef75336ea68f8a5b10759fc56a26",
+      "uncompressedSha256": "18e422efff7b12b58b93218f74cd56bfd011d50a5f01defabb2c7a1be545f8f6",
+      "uncompressedBytes": 3230
+    }
+  ],
+  "preparation": {
+    "file": "/workspace/afkarena-simx/work/rust-reused-trace-prefix/proof.json",
+    "sha256": "c8a6cc92f9389a36ebe0be2667a3f23670ae3cbc921c2b7091089598199cf8c7"
+  },
+  "execution": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--jitless",
+      "/workspace/afkarena-simx/tools/rust-port/check-program.mjs",
+      "--oracle",
+      "--manifest",
+      "/workspace/afkarena-simx/work/rust-reused-trace-prefix/oracle-manifest.json"
+    ],
+    "status": 1,
+    "signal": null,
+    "error": null,
+    "pid": 103629,
+    "wallMs": 17685.157252999998,
+    "peakRssKiB": 791508,
+    "peakHwmKiB": 791508,
+    "termination": null
+  },
+  "traceMode": {
+    "kind": "ordered-prefix",
+    "events": 1000,
+    "originalObserverTailSha256": "dcee8aff62c84f595849e3921a0b245bbca45fc5cef8b91dc31d29a03f77039f",
+    "gameContinuesAfterLimit": true
+  },
+  "comparisonExecution": {
+    "status": 1,
+    "signal": null,
+    "error": null,
+    "pid": 103878,
+    "wallMs": 80.21203000000241,
+    "peakRssKiB": 16,
+    "peakHwmKiB": 16,
+    "termination": null
+  },
+  "comparison": {
+    "version": 1,
+    "passed": false,
+    "qualifiesFor10000Target": false,
+    "scope": "Archived NDJSON prefix comparison only: every event payload and selected-state bit for the requested ordered prefix, its complete transitive snapshot closure, and the full battle terminal report are compared to the accepted complete trace. Later intermediate events are unobserved. Candidate exit code is caller-supplied; executable provenance, exhaustive graph coverage and throughput require separate evidence.",
+    "candidate": {
+      "file": "/workspace/afkarena-simx/work/rust-reused-trace-prefix/derived-source.stdout",
+      "sha256": "e4812350e008c808ad9cce8823a214a0664010633337adea76aa28067bcaf7cb",
+      "unchanged": true,
+      "callerReportedExitCode": 1
+    },
+    "reference": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.json",
+      "label": "oracle-stdout",
+      "sha256": "35601d20e746b4fc6bc87698da359a59e2b631664b9437fbd7e41c36a884ad4e",
+      "unchanged": true
+    },
+    "producerInputs": {
+      "/workspace/afkarena-simx/tools/rust-port/check-program-trace-prefix.mjs": "cd06a4c0f1ae16f30b7c030b48dbbf6edb22a67f43a9a5a04f8ced7ec3b12521",
+      "/workspace/afkarena-simx/tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341"
+    },
+    "changedProducerInputs": [],
+    "archiveInputs": [],
+    "changedArchiveInputs": [],
+    "comparison": null,
+    "error": "AssertionError [ERR_ASSERTION]: Candidate execution must finish successfully\n\n1 !== 0\n\n    at file:///workspace/afkarena-simx/tools/rust-port/check-program-trace-prefix.mjs:41:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+  },
+  "changedInputs": [],
+  "inputs": {
+    "/workspace/afkarena-simx/work/rust-reused-trace-prefix/proof.json": "c8a6cc92f9389a36ebe0be2667a3f23670ae3cbc921c2b7091089598199cf8c7",
+    "/workspace/afkarena-simx/work/rust-battle-full/program-manifest.json": "ea538470b5d67d81bf8d478d6443e02cccf0172b9b1c7413e1cfd92109906621",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+    "/workspace/afkarena-simx/work/native-warm23-partition/runner.js": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
+    "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
+    "/workspace/afkarena-simx/work/rust-battle-trace/unit-0.js": "cc28a06bc927dda8a46db9b0330c56e29585a33e5ba58cc5ce48ce53aa07d2de",
+    "/workspace/afkarena-simx/work/rust-battle-trace/unit-6.js": "efb8af73790e6a168b0f17305b0d26062ea480ba2067435a77f71ffc495774a7",
+    "/workspace/afkarena-simx/work/native-oracle-warm23-current.js.tables.json": "91dba76e4f840237264b782855193a71fd2ce1b45f6bb328e5f37fb474f9c1c1",
+    "/workspace/afkarena-simx/tools/rust-port/prepare-reused-trace.mjs": "88cb04eddbd5f2fb7529509a0b6de801480d38faaff3b677974ab170be238db0",
+    "/workspace/afkarena-simx/tools/rust-port/program-host.rs": "8c7fbb1bb7f2351c5679e342b05ee7e96bdd20fd4eedb8bea7e58e81e453e104",
+    "/workspace/afkarena-simx/work/rust-battle-full/battle-unit-6/src/lib.rs": "31d9279ad5372b415473c0c7cf57af6c461823e23212c73699e5da298d50d578",
+    "/workspace/afkarena-simx/work/rust-battle-full/battle-unit-6-part-0080/src/lib.rs": "3a1e34ac9fe4ea31b4ecc88ed040e9ed63bd0bbb036deb451fa90bcadb3707d7",
+    "/workspace/afkarena-simx/work/rust-reused-trace-prefix/main.rs": "f8a680e43b3baaf8af07c4c70a818f81301809837cbbc988b4de2b084d48db6f",
+    "/workspace/afkarena-simx/work/rust-reused-trace-prefix/observer.rs": "c58388b187a4c7283d5437ea012599fa9f193ed654b45deeb52bafc83e56aae3",
+    "/workspace/afkarena-simx/work/rust-reused-trace-prefix/observer.js": "7f42499d2fd384fa19045a7f158daeb2c7d827d3a051f649fb37b4b96d422dd0",
+    "/workspace/afkarena-simx/work/rust-reused-trace-prefix/prefix.rs": "db691a38b37e709d6903130ef9737d34f69930cf78ea2abc918a20c1381a66aa",
+    "/workspace/afkarena-simx/work/rust-reused-trace-prefix/program_host.rs": "8c7fbb1bb7f2351c5679e342b05ee7e96bdd20fd4eedb8bea7e58e81e453e104",
+    "/workspace/afkarena-simx/work/rust-reused-trace-prefix/oracle-manifest.json": "18e422efff7b12b58b93218f74cd56bfd011d50a5f01defabb2c7a1be545f8f6",
+    "/workspace/afkarena-simx/work/rust-reused-trace-prefix/unit-6-diagnostic.js": "643ded34e47507e26fbc93926b94ec424195015c8fdbf11a34ac15080fa48b5d",
+    "/workspace/afkarena-simx/tools/rust-port/run-reused-trace.mjs": "592c82328477419b03795aa6bbf5837324b76fea454fe8af5539d81e75f042fd",
+    "/workspace/afkarena-simx/tools/rust-port/check-program-trace.mjs": "ebdbae5ab5b96f569c7b2a395af8a926b663ab0a9475189cbb0cc1f3721aafc0",
+    "/workspace/afkarena-simx/tools/rust-port/one-battle-check-support.mjs": "bc034be517216d1803d1b79f1bd17f931bf401e6166ca123e9467e17f83db46a",
+    "/workspace/afkarena-simx/config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "/workspace/afkarena-simx/tools/rust-port/check-program-trace-prefix.mjs": "cd06a4c0f1ae16f30b7c030b48dbbf6edb22a67f43a9a5a04f8ced7ec3b12521"
+  },
+  "changedLibraries": []
+}
