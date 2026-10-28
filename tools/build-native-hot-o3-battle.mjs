@@ -1,0 +1,27 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {resolve,dirname} from 'node:path';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import {gunzipSync} from 'node:zlib';
+import assert from 'node:assert/strict';
+const root=resolve(import.meta.dirname,'..'),directory=resolve(root,'work/native-hot-o3-battle');
+const sha=b=>createHash('sha256').update(b).digest('hex'),hash=async p=>sha(await readFile(resolve(root,p)));
+const input='benchmarks/validation/native-unit-speeder-battle-build.json',inputBytes=await readFile(resolve(root,input)),base=JSON.parse(inputBytes);
+assert.equal(base.passed,true);for(const [f,s]of Object.entries(base.sources))assert.equal(await hash(f),s);assert.equal(await hash(base.patchedUnit.cFile),base.patchedUnit.cSha256);assert.equal(await hash(base.privateVM.output),base.privateVM.privateSha256);
+const mapper='benchmarks/validation/native-current-measured-js-symbol-map.json',mapped=JSON.parse(await readFile(resolve(root,mapper))),mapBytes=await readFile(resolve(root,mapped.mapping.file));assert.equal(sha(mapBytes),mapped.mapping.sha256);const mapping=JSON.parse(gunzipSync(mapBytes));
+const original=await readFile(base.patchedUnit.cFile,'utf8'),pool=dirname(base.patchedUnit.poolFiles[0].file),ascii=await readFile(resolve(pool,'s_ascii_pool.bin')),entries=await readFile(resolve(pool,'s_strings.bin'));
+const string=id=>{const offset=entries.readUInt32LE(id*12),length=entries.readUInt32LE(id*12+4);assert.equal(offset>>>31,0);return ascii.subarray(offset,offset+length).toString('utf8')};
+const table=/static SHNativeFuncInfo s_function_info_table\[\] = \{([\s\S]*?)\n\};/.exec(original);assert.ok(table);const rows=table[1].trim().split('\n');
+const targets=['_564_update_11_','_546_addBuff_1_','_534_resetBuffApply','_320_update_3_'],proofs=[];let candidate=original;
+for(const symbol of targets){const functions=mapping.functions.filter(f=>f.symbol===symbol);assert.equal(functions.length,1);const fn=functions[0],index=Number(/^_(\d+)_/.exec(symbol)[1]),sourceId=Number(/source_index_plus_one = (\d+)/.exec(rows[index])[1]);assert.ok(sourceId);const retained=string(sourceId-1);assert.equal(sha(retained),fn.sourceSha256,'Retained original source identity');const range=mapping.sourceRecords[fn.sourceSha256].ranges.find(r=>r.file==='src/srcmodule/game_battle.js');assert.ok(range);assert.equal((await readFile(resolve(root,range.file),'utf8')).slice(range.start,range.end),retained);
+ const signature='static SHLegacyValue '+symbol+'(SHRuntime *shr) {';const start=candidate.indexOf(signature);assert.ok(start>=0);assert.equal(candidate.indexOf(signature,start+1),-1);const end=candidate.indexOf('\n}\n',start)+2;assert.ok(end>start);const body=candidate.slice(start,end);
+ candidate=candidate.slice(0,start)+'#pragma GCC push_options\n#pragma GCC optimize ("O3")\n'+body+'\n#pragma GCC pop_options'+candidate.slice(end);
+ proofs.push({symbol,sourceSha256:fn.sourceSha256,sourceRange:range,functionCSha256:sha(body),compilerOptions:'O3 only; surrounding translation unit remains O1; no fast-math or floating-point reassociation/contraction flags'});
+}
+assert.equal(candidate.split('#pragma GCC optimize ("O3")').length,5);
+await mkdir(directory,{recursive:true});const cFile=resolve(directory,'partition_0.hot-o3.c'),object=resolve(directory,'partition_0.hot-o3.o');await writeFile(cFile,candidate);
+const args=[...base.patchedUnit.compileArgs];args[args.indexOf('-c')+1]=cFile;args[args.indexOf('-o')+1]=object;assert.ok(args.includes('-ffp-contract=off'));assert.ok(!args.some(a=>/fast-math|unsafe-math|Ofast/.test(a)));
+const started=performance.now(),compiled=spawnSync('cc',args,{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});await writeFile(resolve(directory,'compile.stderr'),compiled.stderr??'');assert.equal(compiled.status,0,compiled.stderr);
+const sources={...base.sources,'tools/build-native-hot-o3-battle.mjs':await hash('tools/build-native-hot-o3-battle.mjs')};for(const [f,s]of Object.entries(sources))assert.equal(await hash(f),s,'Input changed during compile '+f);
+const report={...base,scope:'BUILD ONLY: four exact original-source hot C functions compiled at GCC O3; strict floating-point options retained; six other objects and private Rust/cache VM unchanged. No battle parity or speedup claimed until separate runner.',sources,parentBuild:{file:input,sha256:sha(inputBytes)},compilerOptimization:{targets:proofs,compileWallMs:performance.now()-started,compilerVersion:spawnSync('cc',['--version'],{encoding:'utf8'}).stdout.split('\n')[0]},patchedUnit:{...base.patchedUnit,cFile,cSha256:sha(candidate),object,objectSha256:await hash(object),compileArgs:args,parentCSha256:base.patchedUnit.cSha256,parentObjectSha256:base.patchedUnit.objectSha256}};
+assert.equal(await hash(input),sha(inputBytes));const output='benchmarks/validation/native-hot-o3-battle-build.json';await writeFile(resolve(root,output),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({file:output,compileWallMs:report.compilerOptimization.compileWallMs,object}));
