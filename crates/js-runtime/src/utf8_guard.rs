@@ -21,18 +21,26 @@ impl Runtime{
   let length_key=PropertyKey(self.intern("length"));self.utf8_loader_guard=Some(Utf8LoaderGuard{bindings,properties,prototypes,uint8_prototype,length_key});
  }
  pub(crate) fn utf8_loader_intrinsics_intact(&self,bytes:Value,parent:EnvId)->bool{
-  let Some(guard)=&self.utf8_loader_guard else{return false};if parent!=self.global_env{return false}
-  let Some(env)=self.environments.get(parent.0)else{return false};
-  // A global lexical String/Error shadows the object even when the object's
-  // descriptors remain pristine. Reject rather than running any binding read.
-  for name in &guard.bindings{if let Some(&slot)=env.bindings.get(name){let Some(cell)=env.cells.get(slot)else{return false};if !cell.initialized||!cell.object_backed||!cell.alive{return false}}}
-  for &(object,key,expected)in &guard.properties{if !descriptor_same(self.objects[object.0].own(key),expected){return false}}
-  for &(object,expected)in &guard.prototypes{if self.objects[object.0].prototype!=expected{return false}}
-  for object in [self.array_prototype,self.object_prototype]{for(key,_)in self.objects[object.0].properties.iter().flatten(){let units=self.string_units(key.0);if !units.is_empty()&&(units.len()==1||units[0]!=48)&&units.iter().all(|u|(48..=57).contains(u)){return false}}}
-  let Value::Object(object)=bytes else{return false};let Some(record)=self.objects.get(object.0)else{return false};
-  if record.prototype!=Some(guard.uint8_prototype)||record.own(guard.length_key).is_some(){return false}
-  let ObjectKind::TypedArray{buffer,byte_offset,length,kind:crate::TypedArrayKind::Uint8}=record.kind else{return false};
-  let Some(buffer)=self.buffers.get(buffer.0)else{return false};!buffer.detached&&byte_offset.checked_add(length).is_some_and(|end|end<=buffer.bytes.len())
+  let failure=self.utf8_loader_guard_failure(bytes,parent);
+  if self.diagnostics.enabled{match &failure{Some(reason)=>eprintln!("rust_port_utf8_guard:rejected parent={} global={} reason={reason}",parent.0,self.global_env.0),None=>eprintln!("rust_port_utf8_guard:accepted parent={}",parent.0)}}
+  failure.is_none()
+ }
+ pub(crate) fn utf8_loader_guard_failure(&self,bytes:Value,parent:EnvId)->Option<String>{
+  let Some(guard)=&self.utf8_loader_guard else{return Some("missing intrinsic snapshot".into())};
+  if parent!=self.global_env{return Some(format!("parent environment {} is not global {}",parent.0,self.global_env.0))}
+  let Some(env)=self.environments.get(parent.0)else{return Some("invalid parent environment".into())};
+  for name in &guard.bindings{if let Some(&slot)=env.bindings.get(name){let Some(cell)=env.cells.get(slot)else{return Some("invalid binding slot".into())};if !cell.initialized||!cell.object_backed||!cell.alive{return Some(format!("binding {:?}: initialized={} object_backed={} alive={}",String::from_utf16_lossy(self.string_units(*name)),cell.initialized,cell.object_backed,cell.alive))}}}
+  for &(object,key,expected)in &guard.properties{let actual=self.objects[object.0].own(key);if !descriptor_same(actual,expected){return Some(format!("descriptor object#{} key={:?} expected={expected:?} actual={actual:?}",object.0,String::from_utf16_lossy(self.string_units(key.0))))}}
+  for &(object,expected)in &guard.prototypes{let actual=self.objects[object.0].prototype;if actual!=expected{return Some(format!("prototype object#{} expected={expected:?} actual={actual:?}",object.0))}}
+  for object in [self.array_prototype,self.object_prototype]{for(key,_)in self.objects[object.0].properties.iter().flatten(){let units=self.string_units(key.0);if !units.is_empty()&&(units.len()==1||units[0]!=48)&&units.iter().all(|u|(48..=57).contains(u)){return Some(format!("numeric prototype key object#{} key={:?}",object.0,String::from_utf16_lossy(units)))}}}
+  let Value::Object(object)=bytes else{return Some(format!("input is not an object: {bytes:?}"))};let Some(record)=self.objects.get(object.0)else{return Some("invalid input object".into())};
+  if record.prototype!=Some(guard.uint8_prototype){return Some(format!("input prototype expected={:?} actual={:?}",guard.uint8_prototype,record.prototype))}
+  if record.own(guard.length_key).is_some(){return Some("input has an own length descriptor".into())}
+  let ObjectKind::TypedArray{buffer,byte_offset,length,kind:crate::TypedArrayKind::Uint8}=record.kind else{return Some(format!("input kind is {:?}",record.kind))};
+  let Some(buffer)=self.buffers.get(buffer.0)else{return Some("invalid backing buffer".into())};
+  if buffer.detached{return Some("detached backing buffer".into())}
+  if byte_offset.checked_add(length).is_none_or(|end|end>buffer.bytes.len()){return Some("input exceeds backing buffer bounds".into())}
+  None
  }
 }
 #[cfg(test)]mod tests{
