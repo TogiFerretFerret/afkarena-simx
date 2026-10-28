@@ -67,10 +67,11 @@ function forStatement(ctx,node){
   declareLexicals(local,[node.init]);loopNames=node.init.declarations.flatMap(item=>boundNames(item.id));
  }
  if(node.init){if(node.init.type==='VariableDeclaration'){const value=emitStatement(node.init,local);propagate(local,value);}else local.expression(node.init);}
+ const bodyFast=local.sourceLoopBodyFastPath?.(node,local);if(bodyFast)local.emit(`if !(${bodyFast}) {`);
  const clone=()=>{if(loopNames.length)local.emit(`${local.env} = rt.clone_loop_env(${local.env}, &[${loopNames.map(quote).join(', ')}])?;`);};
  clone();local.emit('loop {');
  if(node.test){const condition=local.expression(node.test);local.emit(`if !rt.truthy(${condition}) { break; }`);}
- loopBody(local,node.body,()=>{local.battleLoopBackedge?.(node,local);clone();if(node.update)local.expression(node.update);});local.emit('}');if(fast)ctx.emit('}');normal(ctx);
+ loopBody(local,node.body,()=>{local.battleLoopBackedge?.(node,local);clone();if(node.update)local.expression(node.update);});local.emit('}');if(bodyFast)local.emit('}');if(fast)ctx.emit('}');normal(ctx);
 }
 function forInStatement(ctx,node){
  const fast=ctx.sourceLoopFastPath?.(node,ctx);if(fast)ctx.emit(`if !(${fast}) {`);

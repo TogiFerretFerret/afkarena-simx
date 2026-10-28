@@ -15,6 +15,7 @@ const NATIVE_UTF8_SOURCE_SHA256='5fe05bd8580b1b6d11ff573eab9df79cdb29df580fe1127
 const NATIVE_COPY_OBJ_SOURCE_SHA256='5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072';
 const NATIVE_CLASS_DISPATCH_SOURCE_SHA256='bdfc22c24f15a0a81d6a915b30bf762c93e8efb115c54ce60c9d7b505f74d425';
 const NATIVE_OVERRIDE_DISPATCH_SOURCE_SHA256='a071adecc9cc3cecd27b059f25a2a1eb1b26529e4a3fa15f8501e774dfa6b83f';
+const NATIVE_BUFF_PERCENT_SOURCE_SHA256='800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146';
 const NATIVE_BATTLE_RUN_SOURCE_SHA256='d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d';
 const PROTOTYPE_LITERAL_HINT_SOURCE_HASHES=new Set(['0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8','2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07']);
 const sha=text=>createHash('sha256').update(text).digest('hex');
@@ -216,6 +217,11 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
      if(gcCounter)local.emit('}');
      record.battleGcSafePoints.push({kind:'outer-battle-loop-backedge',start:loop.start,end:loop.end,environment:'function',cadence:nativeBattleGcCadence,sourceSha256:NATIVE_BATTLE_RUN_SOURCE_SHA256});
     };
+   }
+   if(sourceSpecializations&&!split&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_BUFF_PERCENT_SOURCE_SHA256){
+    const loop=body[0];if(body.length!==1||loop.type!=='ForStatement'||loop.init?.type!=='VariableDeclaration')ctx.unsupported(node,'Pinned Buff percent loop shape changed');
+    record.sourceSpecialization='native-buff-percent-loop-v1';
+    ctx.sourceLoopBodyFastPath=(candidate,local)=>{if(candidate!==loop)return null;const values=new Map(loop.init.declarations.map(d=>[d.id.name,local.expression(d.id)]));return 'rt.try_native_buff_percent_loop(this, '+['e','t','a','i','r','n'].map(n=>values.get(n)).join(', ')+', parent)';};
    }
    if(sourceSpecializations&&!split&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_EXPOSE_SOURCE_SHA256){
     const loops=body.filter(statement=>statement.type==='ForStatement');

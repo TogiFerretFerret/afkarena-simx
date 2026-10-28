@@ -55,3 +55,4 @@ pub mod dense_array_shift;
 mod dynamic_slots;
 
 mod stage_range_parser;
+mod buff_attribute_loop;
