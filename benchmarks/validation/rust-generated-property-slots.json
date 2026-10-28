@@ -22,7 +22,7 @@
     },
     {
       "file": "crates/js-runtime/src/battle_gc.rs",
-      "sha256": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3",
+      "sha256": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
       "matched": true
     },
     {
@@ -33,6 +33,11 @@
     {
       "file": "crates/js-runtime/src/builtins.rs",
       "sha256": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/class_dispatch.rs",
+      "sha256": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
       "matched": true
     },
     {
@@ -112,7 +117,7 @@
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "377bf568d7890218a97c6fadf25c0ba2b3592980e5e1dea71b3501c7dcd00cfe",
+      "sha256": "d3751c606dd595cc5dc342123430903a1ca69f28091a0a5f7a7ce9cd9b01adc7",
       "matched": true
     },
     {
@@ -137,12 +142,12 @@
     },
     {
       "file": "crates/js-runtime/src/property_slots.rs",
-      "sha256": "85a0cc8f1027097e08f84af852b0ea3ec025a4744ce801574539347f587bcba0",
+      "sha256": "14695c032e972b5c1ea9fdaca9d0cc6144b6982990183bee976c972c531a0a56",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/reachability.rs",
-      "sha256": "23422765d66b80d6435e324d14c837846c18906c6018b1132a9a4e1016863391",
+      "sha256": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
       "matched": true
     },
     {
@@ -1132,7 +1137,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "8bc16e914c32fe3700f0617707c8d76f1e38c6df11a55d756f3382de9e56bd90",
+      "sha256": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
       "matched": true
     },
     {
@@ -1176,23 +1181,23 @@
   },
   "generatedRustSha256": "e739583deafdad18810fff14784f019dabb0168407570097605ecfbd587266fd",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-port-property-slots/check",
-    "sha256": "93e0952bae715ec809d2d35cbc5481f8b75d5c72aec576c45ee9b73f4d9b97e5"
+    "file": "/workspace/afkarena-simx/work/rust-port-property-slots/check",
+    "sha256": "133884ace3924bef1bb19bdb27adc9905fc78a963d6d0c6282d259a912876f6a"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-integration-next/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-port-property-slots/main.rs",
+    "/workspace/afkarena-simx/work/rust-port-property-slots/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-integration-next/target/release/deps",
+    "dependency=/workspace/afkarena-simx/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-integration-next/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-port-property-slots/check"
+    "/workspace/afkarena-simx/work/rust-port-property-slots/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-property-slots.outputs.json.gz",

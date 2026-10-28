@@ -14,6 +14,13 @@ weak-map values with live keys, explicit host values, diagnostics and hidden
 intrinsic guard snapshots therefore preserve their StringIDs and payloads.
 Subthreshold payloads remain canonical even when unreachable.
 
+Hoisted environment-name IDs can remain in generated Rust locals across the
+verified root backedge. The collector requires the sole active exact root
+function, whose complete source is only 2,721 UTF16 units. Every identifier in
+that root is therefore below the 524,288-unit reclaim threshold. Other source
+frames have returned before collection. This bound protects stack-held IDs;
+widening string collection requires revisiting their explicit rooting.
+
 For each unreachable giant ID, reclamation removes its UTF16 and UTF8 interner
 entries, invalidates static literal and literal-property read-site entries,
 and prunes compiled-regex cache entries keyed by that ID before replacing the

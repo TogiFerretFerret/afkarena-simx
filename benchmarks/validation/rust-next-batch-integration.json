@@ -1,9 +1,9 @@
 {
   "version": 1,
   "passed": true,
-  "compilerSha256": "8bc16e914c32fe3700f0617707c8d76f1e38c6df11a55d756f3382de9e56bd90",
+  "compilerSha256": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
   "sources": {
-    "tools/rust-port/compile.mjs": "8bc16e914c32fe3700f0617707c8d76f1e38c6df11a55d756f3382de9e56bd90",
+    "tools/rust-port/compile.mjs": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
     "tools/rust-port/expressions.mjs": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
     "tools/rust-port/statements.mjs": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
@@ -12,98 +12,115 @@
     "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
     "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
     "crates/js-runtime/src/expose_scan.rs": "b5b771050b64fcbf14fa68ea4f4c2e5acfa8905a385623e8b43c6f648937cf9c",
-    "crates/js-runtime/src/battle_gc.rs": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3"
+    "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/reachability.rs": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
+    "crates/js-runtime/src/property_slots.rs": "14695c032e972b5c1ea9fdaca9d0cc6144b6982990183bee976c972c531a0a56"
   },
   "gates": [
     {
       "file": "benchmarks/validation/rust-generated-arguments-elision.json",
-      "sha256": "027141883c24ba63835c0c0108d7b5054b13339788e2d6314428b8b98729d446",
+      "sha256": "7c087e006b0f2daaba3dcb42505f98cd0473d8948e37cb34ff0f2fef62a0e317",
       "passed": true,
       "cases": 40,
       "compilerPinned": true
     },
     {
       "file": "benchmarks/validation/rust-generated-closures.json",
-      "sha256": "d489048689c1f82cc4ca13c77fab37e3e0e07b21dccbb058d2569a7956249e0d",
+      "sha256": "d20dc9324174c7c42823cc86c846c67a72bb0abdbd3a5f3fe13a00ee55e52a51",
       "passed": true,
       "cases": 47,
       "compilerPinned": true
     },
     {
       "file": "benchmarks/validation/rust-generated-control-flow.json",
-      "sha256": "b1ce95a012ad6d049a5f988621f302b45ba7efc56e2dd833409158bc9b85b817",
+      "sha256": "b30034b82e87ad4609b6b4dcbbf40f8dcb798b02828a55cf0bba392fd0268c2e",
       "passed": true,
       "cases": 40,
       "compilerPinned": true
     },
     {
       "file": "benchmarks/validation/rust-port-expressions.json",
-      "sha256": "b4cc695b553bc273ad7fdfbe7f005cc72647cdc4bba9812ef3633994099c125e",
+      "sha256": "9b64d84c46cb968a5d49975d2a7632bf290ad2506aa183b56ca4b5adacf98ebd",
       "passed": true,
       "cases": 80,
       "compilerPinned": true
     },
     {
       "file": "benchmarks/validation/rust-generated-env-name-keys.json",
-      "sha256": "4b5602417fcc0b21c6ffe7420470c7abaa981ff32630a7169312efbb58d6b470",
+      "sha256": "5967eb1328c44a00e1e9feb77e4a82227b3c3f123bbb1dca7bd2d0ead149e377",
       "passed": true,
       "cases": 63,
       "compilerPinned": true
     },
     {
       "file": "benchmarks/validation/rust-generated-expose-scan.json",
-      "sha256": "ec2eed15a225f7e74b764020b54039ae522ad265c3d40abc03246855b6fbfe61",
+      "sha256": "08ec4cbb97bd35244c54a5dbad2bbda2846088c82c85ffe7be56ddace0af6b65",
       "passed": true,
       "cases": 28,
       "compilerPinned": true
     },
     {
       "file": "benchmarks/validation/rust-generated-native-locals.json",
-      "sha256": "d381913d610572c7c74300fd8a06e862b0f7d0087e0e33e2f552faa3e94a3d03",
+      "sha256": "b86c4ca53423531efa13f48af0e6d1c55f6d8d245902dc32e62e7a66464e92c1",
       "passed": true,
       "cases": 38,
       "compilerPinned": true
     },
     {
       "file": "benchmarks/validation/rust-generated-property-slots.json",
-      "sha256": "b8faadd2daf3fc7217b5cfa0987d021a6779a5c5fd1d21fc3246da35ab3b2341",
+      "sha256": "ae3c299189d31ba26c751c2fee27949f7574345671ba3ad4eda3785470cca5e2",
       "passed": true,
       "cases": 19,
       "compilerPinned": true
     },
     {
       "file": "benchmarks/validation/rust-generated-native-parameters.json",
-      "sha256": "3e9f258cc630d990e7f149cc4ee8f33170f03185590c39365269398570ff723c",
+      "sha256": "d16557801b14422a90f8d046733e30e4036c569783cdd70ad4e3a032d56b66ca",
       "passed": true,
       "cases": 6,
       "compilerPinned": true
     },
     {
-      "file": "benchmarks/validation/rust-generated-battle-gc-cadence.json",
-      "sha256": "4f470be221440fb635095cf130fa8bf0dacfa45155eae6bad3e23db05799c969",
+      "file": "benchmarks/validation/rust-generated-class-dispatch.json",
+      "sha256": "98580ec1a426990b73c441872bd3fa22a83046c8dc32dcc65cbde81a5342d084",
+      "passed": true,
+      "cases": 56,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-battle-gc.json",
+      "sha256": "1d242de48103aa9761576aa73cc6ff62648ca8467308a3318727be3d3df562b1",
       "passed": true,
       "cases": null,
       "compilerPinned": true
     },
     {
-      "file": "benchmarks/validation/rust-gc-cadence-generator.json",
-      "sha256": "6d4ae4d4802c0fafc722006f53b1fdc847a7e098ca517b7cb0728eb0109d586c",
+      "file": "benchmarks/validation/rust-generated-battle-gc-cadence.json",
+      "sha256": "0ce395c48fe98dc6a8afe2d374dab5930204087f4f4b8c987ad872927c83e0ca",
+      "passed": true,
+      "cases": null,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-battle-gc-giant-strings.json",
+      "sha256": "36322da5184d21aeb2193618db1ffd16bb7fb302a900462c9343666a46bc165f",
       "passed": true,
       "cases": null,
       "compilerPinned": true
     }
   ],
   "rustTests": {
-    "library": 42,
+    "library": 46,
     "propertySlotsAndGcReuse": 4,
     "logs": [
       {
         "file": "benchmarks/validation/rust-next-batch-unit-tests.stdout",
-        "sha256": "d47d9aab4c958a543006601d1a3078ec3508e9ef0a60bfc950ce0128416585fa"
+        "sha256": "f3d42f6f1e36df24f980822a725cb3dd349eaa3c029a5e42203a2f7b84207baa"
       },
       {
         "file": "benchmarks/validation/rust-next-batch-unit-tests.stderr",
-        "sha256": "17eee5692a24b630a60c0496c667fab2a10699f5ffa4987797494d1958724949"
+        "sha256": "c46041d3478a05dcc76dc16c5184e3a4eed737c63817e8060f40ad66a891ec58"
       }
     ]
   },
@@ -116,5 +133,11 @@
   },
   "defaultGcCadence": 1,
   "qualifiesFor10000Target": false,
-  "scope": "Combined compiler/runtime source gates with stable hash-pinned inputs; no new full-battle build, source comparison or throughput qualification."
+  "scope": "Combined compiler/runtime source gates with stable hash-pinned inputs; no new full-battle build, source comparison or throughput qualification.",
+  "stackIdentifierSafety": {
+    "guardedRootUtf16Units": 2721,
+    "giantThresholdUtf16Units": 524288,
+    "sourceGuardRequiresSoleActiveRoot": true,
+    "reason": "Every root identifier is shorter than its complete exact source; other source frames have returned before collection."
+  }
 }

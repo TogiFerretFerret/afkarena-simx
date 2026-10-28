@@ -569,13 +569,14 @@
   "compilerInputs": {
     "tools/rust-port/expressions.mjs": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
     "tools/rust-port/statements.mjs": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
-    "tools/rust-port/compile.mjs": "8bc16e914c32fe3700f0617707c8d76f1e38c6df11a55d756f3382de9e56bd90",
+    "tools/rust-port/compile.mjs": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
     "tools/rust-port/tests/expressions.mjs": "6206d488c956b49d5153dfb7b23a0a04d2643996f99050f83fb908df9a28b1c1",
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
-    "crates/js-runtime/src/battle_gc.rs": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3",
+    "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
     "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
     "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
     "crates/js-runtime/src/copy_obj.rs": "9fd0cf451530b7349a77b5138722848e7570fca50aa6d1708b10d03d90d28067",
@@ -591,13 +592,13 @@
     "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
     "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
     "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
-    "crates/js-runtime/src/lib.rs": "377bf568d7890218a97c6fadf25c0ba2b3592980e5e1dea71b3501c7dcd00cfe",
+    "crates/js-runtime/src/lib.rs": "d3751c606dd595cc5dc342123430903a1ca69f28091a0a5f7a7ce9cd9b01adc7",
     "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
     "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
-    "crates/js-runtime/src/property_slots.rs": "85a0cc8f1027097e08f84af852b0ea3ec025a4744ce801574539347f587bcba0",
-    "crates/js-runtime/src/reachability.rs": "23422765d66b80d6435e324d14c837846c18906c6018b1132a9a4e1016863391",
+    "crates/js-runtime/src/property_slots.rs": "14695c032e972b5c1ea9fdaca9d0cc6144b6982990183bee976c972c531a0a56",
+    "crates/js-runtime/src/reachability.rs": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
     "crates/js-runtime/src/runtime.rs": "8ee228facdc62d1040d0ebcf58cd22ea83e913d23e9a755c9cb340ab617ab8e9",
@@ -610,14 +611,14 @@
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
   },
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-port-expression-tests/target/release/expression-tests",
-    "sha256": "26b3ac2a4a3d508bedede4b3316c69b2e0b52be2a37b2c4b58cd8c9af43c7218"
+    "file": "/workspace/afkarena-simx/work/rust-port-expression-tests/target/release/expression-tests",
+    "sha256": "e2d7538318040997101087842af35f201f144e09d8cc35ac0707eea4946226c5"
   },
   "buildArgs": [
     "build",
     "--release",
     "--manifest-path",
-    "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-port-expression-tests/Cargo.toml"
+    "/workspace/afkarena-simx/work/rust-port-expression-tests/Cargo.toml"
   ],
   "scope": "Actual generated Rust executed against source JS expression programs. Ordered observable effects and primitive results compare exactly; Number results use raw f64 bits and strings use UTF-16 units. This is a language-expression gate, not battle fidelity or throughput.",
   "qualifiesFor10000Target": false

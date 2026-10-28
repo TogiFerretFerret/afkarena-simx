@@ -2,7 +2,8 @@
 
 This isolated branch combines immutable native parameters/zero-cell activations,
 physical function tags, hoisted canonical environment-name IDs, the exact-source
-exposure scan helper and opt-in GC cadence. Existing native variables, operand
+exposure scan helper, exact Cocos constructor dispatch, giant-string reclamation
+and opt-in GC cadence. Existing native variables, operand
 snapshots, numeric guards, literal keys, property slots, source guards, mapped
 arguments and GC roots remain enabled. **Default GC cadence remains 1.**
 
@@ -25,10 +26,19 @@ Final stable-source gates pass: 40 arguments, 47 closures, 40 control-flow,
 28 exposure variants, 38 native-local/operand snapshots, 19 property slots and
 six directed native-parameter reflection cases. The GC cadence fixture matches
 all source report fields for disabled/1/4 cadence, with 69 frames and 120
-callbacks; collection counts are 0/23/6. Generator smoke tests preserve default
-1, accept 4 and reject five invalid values. All 42 Rust library and four slot/GC
+callbacks; collection counts are 0/23/6. Constructor dispatch passes 56 ON/OFF
+source cases; giant-string GC also matches the complete 23-round source report.
+Generator smoke tests preserve default
+1, accept 4 and reject five invalid values. All 46 Rust library and four slot/GC
 tests pass. Structural activation, argument-policy, exposure and cadence tests
 also pass.
+
+The giant-string collector reclaims only unreachable payloads of at least
+524,288 UTF16 units and invalidates their weak interning/lookup caches. The
+sole-frame guarded root source is 2,721 units total, so its hoisted identifier
+IDs cannot cross that threshold; source frames with other stack-held IDs have
+returned before the verified safepoint. The constructor helper adds no hidden
+GC fields or roots, and the exposure guard's hidden keys/values stay traced.
 
 See [the combined evidence index](validation/rust-next-batch-integration.json)
 and [retained split-mask failure](validation/rust-combined-env-name-keys-rejected-before-split-mask-fix.json).

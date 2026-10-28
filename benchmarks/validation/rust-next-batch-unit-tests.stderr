@@ -1,3 +1,5 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
 warning: use of deprecated constant `core::u8::MAX`: replaced by the `MAX` associated constant on this type
    --> third-party/memchr/src/arch/all/packedpair/mod.rs:179:41
     |
@@ -23,6 +25,15 @@ warning: value assigned to `vp` is never read
     = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
 
 warning: `ryu-js` (lib) generated 1 warning
+   Compiling js-runtime v0.1.0 (/workspace/afkarena-simx/crates/js-runtime)
+warning: unnecessary trailing semicolon
+  --> crates/js-runtime/src/utf8_guard.rs:54:181
+   |
+54 | ...crate::JsResult<Value>{panic!("guard ran getter")};let mut rt=Runtime::new();let value=bytes(&mut rt);let getter=rt.native_functi...
+   |                                                      ^ help: remove this semicolon
+   |
+   = note: `#[warn(redundant_semicolons)]` (part of `#[warn(unused)]`) on by default
+
 warning: function `flag_text` is never used
   --> crates/js-runtime/src/regex.rs:10:4
    |
@@ -32,15 +43,7 @@ warning: function `flag_text` is never used
    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
 
 warning: `js-runtime` (lib) generated 1 warning
-warning: unnecessary trailing semicolon
-  --> crates/js-runtime/src/utf8_guard.rs:54:181
-   |
-54 | ...crate::JsResult<Value>{panic!("guard ran getter")};let mut rt=Runtime::new();let value=bytes(&mut rt);let getter=rt.native_functi...
-   |                                                      ^ help: remove this semicolon
-   |
-   = note: `#[warn(redundant_semicolons)]` (part of `#[warn(unused)]`) on by default
-
 warning: `js-runtime` (lib test) generated 2 warnings (1 duplicate)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.66s
      Running unittests src/lib.rs (target/debug/deps/js_runtime-f844dddfc37ccc41)
      Running tests/property_slots.rs (target/debug/deps/property_slots-8f24e0c990c066c1)
