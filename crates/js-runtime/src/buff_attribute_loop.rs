@@ -30,10 +30,10 @@ impl Runtime {
    let Some(Value::String(coefficient_key))=self.buff_data(xmap,key,Some(target))else{return false};let Some(coefficient)=self.buff_data(info,PropertyKey(coefficient_key),Some(target))else{return false};if !self.truthy(coefficient){continue}let Value::Number(coefficient)=coefficient else{return false};if !coefficient.is_finite(){return false}
    let Some(Value::String(basis_key))=self.buff_data(amap,key,Some(target))else{return false};let Some(Value::String(basis_name))=self.buff_data(info,PropertyKey(basis_key),Some(target))else{return false};let Some(basis)=self.buff_data(caster,PropertyKey(basis_name),Some(target))else{return false};let basis=if !self.truthy(basis){0.0}else if let Value::Number(n)=basis{n}else{return false};if !basis.is_finite(){return false}
    let amount=add(0.0,mul(basis,coefficient));if !amount.is_finite(){return false}if amount==0.0{continue}if key!=keys[7]&&key!=keys[8]&&!((amount>0.0&&!self.truthy(i))||(amount<0.0&&!self.truthy(r))){continue}
-   let Some(&slot)=self.objects[target.0].property_index.get(&key)else{return false};let Some((actual,d))=self.objects[target.0].properties[slot]else{return false};if actual!=key{return false}let PropertyKind::Data{value:Value::Number(current),writable:true}=d.kind else{return false};if !current.is_finite(){return false}let value=add(current,amount);if !value.is_finite(){return false}plan[index]=Some((slot,value));
+   let Some(&slot)=self.objects[target.0].property_index.get(&key)else{return false};let Some(d)=self.objects[target.0].own_slot(slot,key)else{return false}let PropertyKind::Data{value:Value::Number(current),writable:true}=d.kind else{return false};if !current.is_finite(){return false}let value=add(current,amount);if !value.is_finite(){return false}plan[index]=Some((slot,key,value));
   }
   // No callback, allocation, type guard, or fallible operation follows a write.
-  for operation in plan.into_iter().flatten(){let(slot,value)=operation;let(_,d)=self.objects[target.0].properties[slot].as_mut().expect("validated own slot");if let PropertyKind::Data{value:current,..}=&mut d.kind{*current=Value::Number(value)}else{unreachable!("validated descriptor")}}
+  for operation in plan.into_iter().flatten(){let(slot,key,value)=operation;assert!(self.objects[target.0].set_existing_data_slot(slot,key,Value::Number(value)),"validated descriptor")}
   self.buff_percent_loop_hits=self.buff_percent_loop_hits.wrapping_add(1);true
  }
 }

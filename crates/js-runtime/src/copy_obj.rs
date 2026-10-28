@@ -33,14 +33,14 @@ impl Runtime{
   let guard=self.copy_obj_guard.as_ref().expect("checked guard");
   if !object.extensible||object.own(guard.constructor_key).is_some(){return Ok(None)}
   if let ObjectKind::Array{length:0,length_writable:true,..}=object.kind{
-   if object.prototype!=Some(self.array_prototype)||object.primary_numeric_mask()!=0||object.properties.iter().any(Option::is_some){return Ok(None)}
+   if object.prototype!=Some(self.array_prototype)||object.primary_numeric_mask()!=0||object.iter_properties().next().is_some(){return Ok(None)}
    return Ok(Some(self.array(&[])))
   }
   if !matches!(object.kind,ObjectKind::Ordinary)||object.prototype!=Some(self.object_prototype)||!object.arguments_map.is_empty(){return Ok(None)}
-  for (key,desc)in object.properties.iter().flatten(){
+  for (key,desc)in object.iter_properties(){
    if !desc.enumerable||!desc.configurable{return Ok(None)}
    let PropertyKind::Data{value:Value::Number(number),writable:true}=desc.kind else{return Ok(None)};
-   if !number.is_finite()||self.objects[self.object_prototype.0].own(*key).is_some(){return Ok(None)}
+   if !number.is_finite()||self.objects[self.object_prototype.0].own(key).is_some(){return Ok(None)}
   }
   // Standard descriptors and no inherited conflicts make each source write
   // an ordinary fresh own property. Numeric key ordering remains own_keys's
@@ -51,12 +51,12 @@ impl Runtime{
   let target=if reuse{
    let target=self.alloc_object(Some(self.object_prototype));
    let(source,destination)=if id.0<target.0{let(left,right)=self.objects.split_at_mut(target.0);(&left[id.0],&mut right[0])}else{let(left,right)=self.objects.split_at_mut(id.0);(&right[0],&mut left[target.0])};
-   destination.properties.clone_from(&source.properties);
+   destination.clone_property_storage_from(source);
    destination.property_index.clone_from(&source.property_index);
    target
   }else{
-   let properties=object.properties.clone();let property_index=object.property_index.clone();
-   let target=self.alloc_object(Some(self.object_prototype));self.objects[target.0].properties=properties;self.objects[target.0].property_index=property_index;target
+   let storage=object.clone_property_storage();let property_index=object.property_index.clone();
+   let target=self.alloc_object(Some(self.object_prototype));self.objects[target.0].replace_property_storage(storage);self.objects[target.0].property_index=property_index;target
   };
   Ok(Some(Value::Object(target)))
  }
@@ -86,8 +86,8 @@ impl Runtime {
   let object=&self.objects[target.0];if !matches!(object.kind,ObjectKind::Ordinary)||object.prototype!=Some(self.object_prototype)||!object.arguments_map.is_empty(){return Ok(false)}
   // An inherited enumerable entry or an own accessor can execute arbitrary
   // source work. Reject all such shapes before advancing the source loop.
-  if self.objects[self.object_prototype.0].properties.iter().flatten().any(|(_,d)|d.enumerable){return Ok(false)}
-  for(_,descriptor)in object.properties.iter().flatten(){if !descriptor.enumerable{continue}let PropertyKind::Data{value,..}=descriptor.kind else{return Ok(false)};if matches!(value,Value::Object(_)|Value::Function(_)){return Ok(false)}}
+  if self.objects[self.object_prototype.0].iter_properties().any(|(_,d)|d.enumerable){return Ok(false)}
+  for(_,descriptor)in object.iter_properties(){if !descriptor.enumerable{continue}let PropertyKind::Data{value,..}=descriptor.kind else{return Ok(false)};if matches!(value,Value::Object(_)|Value::Function(_)){return Ok(false)}}
   if let Some(last)=self.own_keys(Value::Object(target),true)?.last().copied(){self.assign_id(env,result_key,last,false)?;}
   Ok(true)
  }
@@ -110,7 +110,7 @@ impl Runtime {
   for round in 0..23{
    let output=rt.try_native_copy_obj(source,env)?.expect("flat finite numeric source");let id=rt.object_id(output)?;assert_ne!(id,source_id);if !seen.insert(id){reused+=1;}
    let input=&rt.objects[source_id.0];let output=&rt.objects[id.0];assert_eq!(input.property_index,output.property_index);assert_eq!(input.properties.len(),output.properties.len());
-   for(a,b)in input.properties.iter().zip(&output.properties){let(Some((ka,da)),Some((kb,db)))=(a,b)else{panic!()};assert_eq!(ka,kb);assert_eq!((da.enumerable,da.configurable),(db.enumerable,db.configurable));let(PropertyKind::Data{value:Value::Number(a),writable:wa},PropertyKind::Data{value:Value::Number(b),writable:wb})=(da.kind,db.kind)else{panic!()};assert_eq!(a.to_bits(),b.to_bits());assert_eq!(wa,wb);}
+   for((ka,da),(kb,db))in input.iter_properties().zip(output.iter_properties()){assert_eq!(ka,kb);assert_eq!((da.enumerable,da.configurable),(db.enumerable,db.configurable));let(PropertyKind::Data{value:Value::Number(a),writable:wa},PropertyKind::Data{value:Value::Number(b),writable:wb})=(da.kind,db.kind)else{panic!()};assert_eq!(a.to_bits(),b.to_bits());assert_eq!(wa,wb);}
    rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;
   }assert!(reused>=22,"copy destinations recycled: {reused}");Ok(Value::Number(reused as f64))
  }

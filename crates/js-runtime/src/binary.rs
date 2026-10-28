@@ -155,7 +155,7 @@ impl Runtime {
  pub fn typed_own_keys(&mut self,id:ObjectId,enumerable_only:bool)->JsResult<Option<Vec<Value>>>{
   let Some((buffer,_,length,_))=self.typed_parts(id)else{return Ok(None)};let length=if self.buffers[buffer.0].detached{0}else{length};if length>1_000_000{return Err(JsError::Unsupported("typed array own-key list exceeds supported resource bound".into()))}
   let mut keys=Vec::with_capacity(length+self.objects[id.0].properties.len());for index in 0..length{keys.push(self.string(&index.to_string()));}
-  keys.extend(self.objects[id.0].properties.iter().flatten().filter(|(_,d)|!enumerable_only||d.enumerable).map(|(key,_)|Value::String(key.0)));Ok(Some(keys))
+  keys.extend(self.objects[id.0].iter_properties().filter(|(_,d)|!enumerable_only||d.enumerable).map(|(key,_)|Value::String(key.0)));Ok(Some(keys))
  }
 }
 fn to_length(rt:&mut Runtime,value:Value)->JsResult<usize>{let n=rt.to_number(value)?;Ok(if n.is_nan()||n<=0.0{0}else if n>=9_007_199_254_740_991.0{9_007_199_254_740_991}else{n.floor()as usize})}
