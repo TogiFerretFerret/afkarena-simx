@@ -1147,7 +1147,7 @@
     },
     {
       "file": "tools/rust-port/check-parse-int-stack.mjs",
-      "sha256": "f16488c84d6ce879aed4d6238ae1f8d0c7f702e89f5392017ce5b8b082829b24",
+      "sha256": "97e613829db72cac03537ce3d09b182b7451c56858ad8d0998dc4ca98cbf4546",
       "matched": true
     }
   ],
@@ -1194,5 +1194,5 @@
     "sha256": "dbfb529ec461b377364e8b06d32328b1aac5877e80cb1acf4450fdb45dbea7c9"
   },
   "qualifiesFor10000Target": false,
-  "scope": "parseInt borrowed UTF16 and stack decimal conversion with dynamic global getters/deletion/prototypes, captured mutable cells, TDZ, const, typeof, sloppy/strict assignment, Unicode names, mapped/duplicate arguments, catch shadowing, loop closures and AnnexB. Short decimal conversion uses the same Rust f64 parser; long decimal and nondecimal behavior remain unchanged. This is an environment component gate, not battle qualification. This is not a complete battle or unrestricted ECMAScript qualification."
+  "scope": "parseInt host optimization compared to pinned source with raw returned f64 bits: coercion order and throws, radix callbacks allocating strings or mutating source state, whitespace and lone surrogates, signed zero, decimal boundary lengths and overflow, hex and wrapped/invalid radix. The 76 source cases execute three lowering forms (two ordinary repetitions and forced helper splitting); all use the optimized host implementation. Short decimal conversion uses the same Rust f64 parser; long decimal and nondecimal behavior remain unchanged. Component semantics only, not battle qualification."
 }
