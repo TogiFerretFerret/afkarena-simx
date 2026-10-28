@@ -18,7 +18,10 @@ The [latest native batch](../../benchmarks/validation/rust-program-own-primary-w
 passes every non-timing final-report field and host-input check for **20 battles
 after three warmups at 0.700574 battles/second**. The previous qualified batch
 measured 0.632731; this retained pair improves by 10.7%. This property/array
-wave uses GC cadence 2. Its component-flag and fork checks are pending. The earlier
+wave uses GC cadence 2. The current full-battle flag trials all match Node:
+all on 0.686706, primary off 0.690486, own-set off 0.614364, all new off
+0.651304; a separate own-read-off run measures 0.640151 battles/second.
+These are single trials, and primary storage is neutral here. The earlier
 [same-binary A/B](../../benchmarks/results/2026-10-28-allocation-wave-ab.json)
 measures 0.472224 reference versus 0.625076 optimized battles/second (1.324×),
 with every full report and host tape matching Node. Both keep stack number
@@ -34,6 +37,11 @@ measures 1.982040 aggregate battles/second: 80 battles over the measured 40.362-
 cohort window, with all four complete reports and host tapes matching Node.
 The strict four-worker overlap is 38.788 seconds. Peak parent-plus-workers PSS
 plus orchestrator RSS is 7.67 GiB; summed RSS includes shared pages.
+The [latest cohort](../../benchmarks/results/2026-10-28-own-primary-fork-four.json)
+passes all four full reports/tapes at 2.209977 aggregate battles/second, with
+9.62 GiB peak process PSS plus orchestrator RSS. This is 3.45% below the
+[prior cadence-2 cohort](../../benchmarks/results/2026-10-28-gc-cadence-two-fork-four-retry.json)
+at 2.288997; an aggregate improvement is not established.
 These measurements remain below the historical approximately 3 battles/second
 mixed backend and the 10,000 target. Cold, warm and aggregate rates have different
 measurement windows and must be kept separate.
