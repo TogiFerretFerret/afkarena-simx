@@ -16,14 +16,14 @@
       "collections": 23,
       "objectsFreed": 606,
       "functionsFreed": 158,
-      "environmentsFreed": 177
+      "environmentsFreed": 91
     },
     {
       "enabled": true,
       "collections": 6,
       "objectsFreed": 606,
       "functionsFreed": 158,
-      "environmentsFreed": 177
+      "environmentsFreed": 91
     }
   ],
   "orderedFixtureFrames": 69,
@@ -56,13 +56,14 @@
     "crates/js-runtime/src/battle_gc.rs": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3",
     "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
     "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
-    "crates/js-runtime/src/closures.rs": "e448c944b39ae4025e80c447c6da1120a587154b11e9f082d16edf73f71501cb",
+    "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
     "crates/js-runtime/src/copy_obj.rs": "9fd0cf451530b7349a77b5138722848e7570fca50aa6d1708b10d03d90d28067",
     "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
     "crates/js-runtime/src/diagnostics.rs": "0dc56a84e7b559e79dbe0c915a3fc56958baa688d8d61e7e4b5cfaee46e02034",
-    "crates/js-runtime/src/env.rs": "15bc6229afd44e5ccfdd29bff8a4eaa034712cc6660630a87172be9663fe7649",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
     "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/expose_scan.rs": "b5b771050b64fcbf14fa68ea4f4c2e5acfa8905a385623e8b43c6f648937cf9c",
     "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
     "crates/js-runtime/src/heap.rs": "ee453f2eeefb16b53de12c96752a4d18aab574904a6ea20c97ec396e78f506bb",
     "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
@@ -70,17 +71,18 @@
     "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
     "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
     "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
-    "crates/js-runtime/src/lib.rs": "7a68c3d61d422f906f77f4244a57e3e759c6cd6d43e97116e8e218816773547d",
-    "crates/js-runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+    "crates/js-runtime/src/lib.rs": "377bf568d7890218a97c6fadf25c0ba2b3592980e5e1dea71b3501c7dcd00cfe",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
     "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
     "crates/js-runtime/src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+    "crates/js-runtime/src/native_expose.js": "9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911",
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
     "crates/js-runtime/src/property_slots.rs": "85a0cc8f1027097e08f84af852b0ea3ec025a4744ce801574539347f587bcba0",
-    "crates/js-runtime/src/reachability.rs": "52173fb09c06399243fd8e19697602397edc1eee34c77550b6ee85e8c8a71b04",
+    "crates/js-runtime/src/reachability.rs": "23422765d66b80d6435e324d14c837846c18906c6018b1132a9a4e1016863391",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
-    "crates/js-runtime/src/runtime.rs": "6aa3ae58ebeedcfa1dfca2dbd5808cb2cb48a3aa36e1425056979e6dfd54efc1",
+    "crates/js-runtime/src/runtime.rs": "8ee228facdc62d1040d0ebcf58cd22ea83e913d23e9a755c9cb340ab617ab8e9",
     "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
     "crates/js-runtime/src/utf8_guard.rs": "7e7d6ab64be768e46f5b65e014192153649e351695bead9c0509812bb947e5f0",
     "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
@@ -273,17 +275,17 @@
     "third-party/ryu-js/tests/s2f_test.rs": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
     "third-party/ryu-js/tests/to_fixed.rs": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
     "tools/rust-port/check-battle-gc-cadence.mjs": "0cdcc60af52497a1b441177c3b7500d7b286e024862593e2bd712faeb6dbf884",
-    "tools/rust-port/compile.mjs": "a74efd68bb623259f2613fb602d8844d0c0fb1250de4a03844e0e37ed642beaf",
-    "tools/rust-port/expressions.mjs": "9336631cd9b90eeff21b1aeffb3fd46910172912a5761f6a9bb0137dc12347a1",
+    "tools/rust-port/compile.mjs": "8bc16e914c32fe3700f0617707c8d76f1e38c6df11a55d756f3382de9e56bd90",
+    "tools/rust-port/expressions.mjs": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
-    "tools/rust-port/statements.mjs": "f087b439cf03a88e89dcb38a4e25796aeba4c0e6a26dc4b0c78030fe5239c030",
+    "tools/rust-port/statements.mjs": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
     "Cargo.toml": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
     "Cargo.lock": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950"
   },
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-gc-cadence/work/rust-battle-gc-cadence-gate/check",
-    "sha256": "252196d31044b9b15662baba668fb0c4912990d99b0523bef771827054a53ad4"
+    "file": "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-battle-gc-cadence-gate/check",
+    "sha256": "bde7315cb3b0e9c73a71d11611d68dd0ffb7862aa4437e28c2d812eaec26167d"
   },
   "buildArgs": [
     "build",
@@ -294,13 +296,13 @@
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/candidate-gc-cadence/work/rust-battle-gc-cadence-gate/main.rs",
+    "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-battle-gc-cadence-gate/main.rs",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-gc-cadence/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-integration-next/target/release/libjs_runtime.rlib",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-gc-cadence/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-integration-next/target/release/deps",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-gc-cadence/work/rust-battle-gc-cadence-gate/check"
+    "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-battle-gc-cadence-gate/check"
   ],
   "artifacts": [
     {
@@ -312,14 +314,14 @@
     {
       "label": "generated",
       "file": "benchmarks/validation/rust-generated-battle-gc-cadence.generated.gz",
-      "sha256": "f92a61e83bb4ac9e21be72800f0c597dc2d8924a5cf1fda0a6dc4ab7007aadc8",
-      "uncompressedSha256": "e7a072ca3561c3384144c4042cf755b303205849bff310c007a8e476064bff04"
+      "sha256": "b3addf77237656eecbdb50c0e4825e5e048aeb1be83147e9a9903b85026e580c",
+      "uncompressedSha256": "a6d683ee72f113ead9439ad7a02e087cbf0ff7bc07c4a1e4eb05a3788994569c"
     },
     {
       "label": "generated4",
       "file": "benchmarks/validation/rust-generated-battle-gc-cadence.generated4.gz",
-      "sha256": "035572173a0ff89843bbaeca6f0b3009744281950d288e145038c793566a0004",
-      "uncompressedSha256": "8863fb0a2da518c506c51b49ee41c225d6be56d042b5935d03f4a912ebb15e1e"
+      "sha256": "59e846a21218b424b0f48fe60c57f78f35f87e375d9a99dc540e0be05f46cbab",
+      "uncompressedSha256": "9857612e2a46d0477e65cfe2bde178e9279799039bce80460687b57ab1fa21f2"
     },
     {
       "label": "harness",
@@ -330,8 +332,8 @@
     {
       "label": "actual",
       "file": "benchmarks/validation/rust-generated-battle-gc-cadence.actual.gz",
-      "sha256": "d20912ecb249467c69fd87b0536804d5bf3381d6119b1a9e7c6109b1c231ed67",
-      "uncompressedSha256": "a1f61b45dc8ffe7935e9a113c4d0722cfe150b02da3348efa92afc87baa4cfff"
+      "sha256": "57f1218928f0af047343654ead261053417c4906b9a44908c0df770d8b3cff74",
+      "uncompressedSha256": "570a8f3c108480506f37279fa8506f33d8c8ae52693d020c7e6f037285908565"
     },
     {
       "label": "expected",

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 24,
+  "cases": 28,
   "firstDifference": null,
   "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
   "sourceInputsAtFinish": [
@@ -27,7 +27,7 @@
     },
     {
       "file": "crates/js-runtime/src/battle_gc.rs",
-      "sha256": "d77d8c5596cee074ad9152be275e05900f665901bf891bf8029ac58f3be28ce4",
+      "sha256": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3",
       "matched": true
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "e448c944b39ae4025e80c447c6da1120a587154b11e9f082d16edf73f71501cb",
+      "sha256": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
       "matched": true
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "file": "crates/js-runtime/src/env.rs",
-      "sha256": "80809132329b25bc6481434d760905dcb73927d000469577ec7e0b1d74f8220a",
+      "sha256": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
       "matched": true
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "file": "crates/js-runtime/src/expose_scan.rs",
-      "sha256": "3fc78f11e16a38ba9061d176ffb6fd0689b04338d79c84e2c10c4eafb234097f",
+      "sha256": "b5b771050b64fcbf14fa68ea4f4c2e5acfa8905a385623e8b43c6f648937cf9c",
       "matched": true
     },
     {
@@ -87,7 +87,7 @@
     },
     {
       "file": "crates/js-runtime/src/heap.rs",
-      "sha256": "d4b93d482d46cb4e0e4b6983ec9004f8c3d4fa990e98cb6f75696d8a1dea45fa",
+      "sha256": "ee453f2eeefb16b53de12c96752a4d18aab574904a6ea20c97ec396e78f506bb",
       "matched": true
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "file": "crates/js-runtime/src/literal_pool.rs",
-      "sha256": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+      "sha256": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
       "matched": true
     },
     {
@@ -162,7 +162,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "979e5e7bebfd9a0093068077aa0608895e20ba83ad91d097af9b499ddc3672f8",
+      "sha256": "8ee228facdc62d1040d0ebcf58cd22ea83e913d23e9a755c9cb340ab617ab8e9",
       "matched": true
     },
     {
@@ -192,7 +192,7 @@
     },
     {
       "file": "crates/js-runtime/tests/property_slots.rs",
-      "sha256": "80871b696ddf1a19382314fd7b64726fc0f90d40d6aad6bc591fd8de06bedf81",
+      "sha256": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
       "matched": true
     },
     {
@@ -1137,12 +1137,12 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "ec9d8111a36c33f0ff0929999fa272fcf54b2f6a56ee8488809c55b4df9cd71d",
+      "sha256": "8bc16e914c32fe3700f0617707c8d76f1e38c6df11a55d756f3382de9e56bd90",
       "matched": true
     },
     {
       "file": "tools/rust-port/expressions.mjs",
-      "sha256": "9336631cd9b90eeff21b1aeffb3fd46910172912a5761f6a9bb0137dc12347a1",
+      "sha256": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
       "matched": true
     },
     {
@@ -1152,12 +1152,12 @@
     },
     {
       "file": "tools/rust-port/statements.mjs",
-      "sha256": "9fa70a94a4c485b2674d5e11f4524d596850cc6a78f5e93d034eac6c8bc7defd",
+      "sha256": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
       "matched": true
     },
     {
       "file": "tools/rust-port/check-expose-scan.mjs",
-      "sha256": "0c5190915de5b86c325c26cc750eccedd9d22fd3961fb11c2f04aa95d0a87de9",
+      "sha256": "4fca067363c2da2f11304d034a3b86adf79e34717e2c725aa44e5e98cdfe2c50",
       "matched": true
     },
     {
@@ -1184,29 +1184,29 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "c7c94d4a72293a05f7b0ec7a3082f864e8db98e1f6e2b7fac5a145de8f8c6aa4",
+  "generatedRustSha256": "7e3758c4da0c8f9de137627e204fa7ffae11043965ee9c2f2490135afbedf4ce",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-expose-index/work/rust-port-expose-scan/check",
-    "sha256": "49e5f5966a9a4bdba0421288607af1315c56828fea7e298d7abebd40da63f104"
+    "file": "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-port-expose-scan/check",
+    "sha256": "3c2d2f7c9dc48351a24f734a89ee992a3c72db21681b8d1b68c3cf18e5ad7297"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-expose-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-integration-next/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/candidate-expose-index/work/rust-port-expose-scan/main.rs",
+    "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-port-expose-scan/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-expose-index/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-integration-next/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-expose-index/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-integration-next/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-expose-index/work/rust-port-expose-scan/check"
+    "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-port-expose-scan/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-expose-scan.outputs.json.gz",
-    "sha256": "93511bb8c69f274d35c9884610c680cf219e6cbd87b3bcc7ec8385082f254c96"
+    "sha256": "a1381740a5d91afc69b23dcd9750f26188291d452fa0e8da2dcaecaa5ca25c38"
   },
   "qualifiesFor10000Target": false,
   "scope": "Exact-source name scan with unchanged recursive getter/factory machinery, ordering, name mutations, getter observations, poisoned String methods and source text. This is a loader component gate, not battle qualification. This is not a complete battle or unrestricted ECMAScript qualification."

@@ -1,0 +1,56 @@
+
+running 42 tests
+test battle_gc::tests::collection_ephemeron_chain_and_shared_buffer_views_stay_live ... ok
+test battle_gc::tests::mapped_arguments_keep_their_environment_and_live_parameter_cell ... ok
+test battle_gc::tests::original_call_arguments_are_roots_even_without_registered_parameter_metadata ... ok
+test battle_gc::tests::reused_objects_and_environments_retain_capacity_but_clear_every_logical_field ... ok
+test battle_gc::tests::roots_preserve_live_cycles_closure_cells_and_raw_bits_while_slots_reuse ... ok
+test battle_gc::tests::weak_object_and_function_keys_are_pruned_before_either_id_can_be_reused ... ok
+test battle_gc::tests::weak_set_dead_keys_and_replaced_intrinsic_snapshots_do_not_become_stale_aliases ... ok
+test binary::tests::integer_views_share_bytes_and_bounds_respect_view_window ... ok
+test binary::tests::numeric_typed_reads_preserve_bits_and_do_not_intern_byte_positions ... ok
+test binary::tests::data_view_hash_preserves_f64_payloads_and_both_endian_orders ... ok
+test battle_gc::tests::typed_views_keep_the_original_array_buffer_object_identity_and_properties ... ok
+test binary::tests::same_element_float_copy_preserves_signaling_nan_and_clamping_uses_even_ties ... ok
+test closures::function_identity_index_tests::all_creation_paths_keep_the_same_callable_object_identity ... ok
+test binary::tests::typed_arrays_share_bytes_and_reject_canonical_invalid_indices ... ok
+test binary::tests::typed_set_overlap_subarray_alias_and_slice_copy_are_distinct ... ok
+test closures::tests::mapped_arguments_follow_live_cells_and_detach_on_descriptor_change ... ok
+test closures::tests::bound_constructor_ignores_bound_this_and_uses_target_prototype ... ok
+test closures::function_identity_index_tests::ordinary_objects_remain_noncallable_even_when_inheriting_from_functions ... ok
+test closures::tests::new_target_tracks_constructor_frames_and_escapes_in_arrows ... ok
+test closures::tests::shared_capture_mutation_and_throw_prefix_survive_calls ... ok
+test closures::tests::source_metadata_and_function_prototype_are_actual_callable_objects ... ok
+test copy_obj::tests::empty_arrays_and_factory_parent_work_without_callbacks ... ok
+test closures::tests::static_little_endian_source_range_retains_utf16_units ... ok
+test closures::tests::strict_sloppy_arrow_and_bound_receivers_remain_distinct ... ok
+test copy_obj::tests::fresh_copy_preserves_order_descriptors_and_negative_zero ... ok
+test copy_obj::tests::unknown_shapes_and_observable_mutations_fall_back ... ok
+test env::tests::global_var_properties_remain_live_and_inherited_names_get_own_bindings ... ok
+test env::tests::references_resolve_before_rhs_and_loop_cells_are_fresh ... ok
+test env::tests::var_hoisting_does_not_reset_parameters_and_tdz_hides_parent ... ok
+test expose_scan::tests::raw_guard_hits_and_mutated_methods_fall_back ... ok
+test reachability::tests::cache_only_strings_are_distinguished_and_active_execution_is_rejected ... ok
+test reachability::tests::closure_cells_and_bound_arguments_survive_only_with_explicit_host_roots ... ok
+test reachability::tests::invalid_host_roots_are_rejected_and_explicit_environments_are_supported ... ok
+test reachability::tests::unreachable_cycles_and_live_accessors_are_traced_without_execution ... ok
+test reachability::tests::views_retain_shared_backing_buffer_and_iterators_retain_collections ... ok
+test reachability::tests::weak_map_ephemeron_fixpoint_does_not_turn_unrooted_cycles_into_roots ... ok
+test utf8_guard::tests::pristine_bytes_pass_but_raw_mutations_and_shadowing_fall_back ... ok
+test utf8_guard::tests::prototype_numeric_poison_is_rejected_without_getter_invocation ... ok
+test utf8_loader::tests::preserves_permissive_source_bit_operations ... ok
+test utf8_guard::tests::modified_intrinsics_force_original_source_without_observers ... ok
+test id_hash::tests::integer_lookup_matches_standard_table_after_replacements_and_deletes ... ok
+test battle_gc::tests::exact_safepoint_keeps_all_three_arenas_bounded_and_unknown_source_skips ... ok
+
+test result: ok. 42 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+
+
+running 4 tests
+test physical_function_alias_never_caches_legacy_null_slot ... ok
+test data_slot_value_is_live_and_delete_reinsert_does_not_reuse_tombstone ... ok
+test twenty_three_collections_recycle_slots_without_caching_values_or_function_aliases ... ok
+test sites_and_runtime_interners_remain_independent ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
