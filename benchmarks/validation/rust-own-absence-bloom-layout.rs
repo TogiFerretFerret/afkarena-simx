@@ -1,0 +1,3 @@
+use std::collections::HashMap;use js_runtime::{heap::{Object,ObjectKind,PropertyKey,Descriptor},value::ObjectId,env::BindingRef,id_hash::IdBuildHasher};
+#[allow(dead_code)]struct BaselineObject{prototype:Option<ObjectId>,extensible:bool,kind:ObjectKind,is_function:bool,numeric_elements:Option<Box<[u64;4]>>,properties:Vec<Option<(PropertyKey,Descriptor)>>,property_index:HashMap<PropertyKey,usize,IdBuildHasher>,arguments_map:HashMap<PropertyKey,BindingRef,IdBuildHasher>}
+fn main(){let before=std::mem::size_of::<BaselineObject>();let after=std::mem::size_of::<Object>();assert_eq!(before,after);println!("{{\"baselineObjectBytes\":{},\"bloomObjectBytes\":{},\"noObjectGrowth\":true}}",before,after);}

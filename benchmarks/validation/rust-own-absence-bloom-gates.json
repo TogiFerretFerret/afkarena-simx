@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "runtimeSourceCommit": "35dd10f",
+  "libraryTests": 61,
+  "bloomOffOnSourceCases": 23,
+  "copySpecializationSourceCases": 52,
+  "baselineObjectBytes": 152,
+  "bloomObjectBytes": 152,
+  "objectAlignmentBytes": 8,
+  "noObjectGrowth": true,
+  "layoutProbe": "benchmarks/validation/rust-own-absence-bloom-layout.rs",
+  "layoutProbeSha256": "7a8520dded98667c1027930da5e75f90541e23435f9961d868b7fd756a2d8999",
+  "layoutProbeBinarySha256": "12d05b9bbe6ca9c9e742937ef0b844e58b7deb36f77bef72b130d0cccd7fbd78",
+  "logs": {
+    "library": {
+      "file": "benchmarks/validation/rust-own-absence-bloom-library.log.gz",
+      "sha256": "aa90e7726d8a192e2f37b319a1e82b7dc193d03a55025be584a80728390d88f1",
+      "uncompressedSha256": "cff6a025c35b4e64671ce6b7779b196d3c26f33b8d443c874cf08a0983a9de72"
+    },
+    "source": {
+      "file": "benchmarks/validation/rust-own-absence-bloom-source.log.gz",
+      "sha256": "836c6b3f6dfb2dae7aa3e376ce9ff389ca9228d823a1a7bfdf3b4dbf2b0e469c",
+      "uncompressedSha256": "4490f8fa4480b51d5d921ac2594ecdff1cdc69f32e5f60211dbaf50839717b67"
+    },
+    "copy": {
+      "file": "benchmarks/validation/rust-own-absence-bloom-copy.log.gz",
+      "sha256": "af552f31e44fbfa0a59fbf6c611630f3f2ddaac3ebdee4c26b1c27d3bb8dd1fd",
+      "uncompressedSha256": "f0c56ab7dc7346aef1ebc0158ac666b03f0f5b3cf896a0e66da44a7e1e06f21d"
+    }
+  },
+  "mutationAudit": {
+    "file": "benchmarks/validation/rust-own-absence-bloom-mutation-audit.txt.gz",
+    "sha256": "7100d765264f2547e62929c59748d94797faa41bd5c1b227fe2fd1a53db00b39",
+    "result": "All new dictionary keys enter heap.dictionary_insert except copy_obj.rs raw dictionary clone; clone now copies source mask. Own-value replacements preserve key; remove never clears bits; allocator reset clears bits before reuse. Primary numeric values are checked before the dictionary filter."
+  },
+  "scope": "Candidate source/library qualification only, no complete battle qualification."
+}
