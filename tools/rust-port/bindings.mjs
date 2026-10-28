@@ -40,3 +40,27 @@ export function planLocalBindings(node,{parents,hoistedNames=[],parameterNames=[
   return scope===node;
  }};
 }
+
+// Only ordinary function-scoped var cells whose addresses cannot escape may
+// become Rust locals. A nested identifier with the same spelling is treated as
+// a possible capture even when it might be a nested shadow/property name. This
+// deliberately sacrifices coverage rather than guessing lexical resolution.
+export function planNativeLocals(node,{parents,hoistedNames=[],parameterNames=[]}={}){
+ const local=planLocalBindings(node,{parents,hoistedNames,parameterNames});
+ if(!functionTypes.has(node?.type))return{names:[],eligible:()=>false};
+ const forbidden=new Set([...parameterNames,'arguments',...(node.id?[node.id.name]:[])]);
+ let dynamic=false;
+ const children=current=>Object.entries(current).flatMap(([key,value])=>['loc','extra','comments','tokens'].includes(key)?[]:Array.isArray(value)?value.filter(x=>x&&typeof x.type==='string'):value&&typeof value.type==='string'?[value]:[]);
+ function walk(current,nested=false){
+  if(current.type==='WithStatement'||(['CallExpression','OptionalCallExpression'].includes(current.type)&&current.callee.type==='Identifier'&&current.callee.name==='eval'))dynamic=true;
+  if(current.type==='FunctionDeclaration'&&current.id)forbidden.add(current.id.name);
+  if(current.type==='VariableDeclaration'&&current.kind!=='var')for(const entry of current.declarations)patternNames(entry.id,forbidden);
+  if(current.type==='CatchClause')patternNames(current.param,forbidden);
+  if(current.type==='ClassDeclaration'&&current.id)forbidden.add(current.id.name);
+  if(nested&&current.type==='Identifier')forbidden.add(current.name);
+  for(const child of children(current))walk(child,nested||functionTypes.has(current.type));
+ }
+ for(const child of children(node))walk(child,false);
+ const names=dynamic?[]:hoistedNames.filter(name=>!forbidden.has(name)),selected=new Set(names);
+ return{names,eligible:(name,identifier)=>selected.has(name)&&local.eligible(name,identifier)};
+}
