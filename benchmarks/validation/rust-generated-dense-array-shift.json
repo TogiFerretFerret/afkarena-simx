@@ -11,6 +11,11 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/examples/number_string_alloc.rs",
+      "sha256": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/examples/value_check.rs",
       "sha256": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
       "matched": true
@@ -32,7 +37,7 @@
     },
     {
       "file": "crates/js-runtime/src/builtins.rs",
-      "sha256": "cb9749dd7313c2b5232e0277f82a9af52d761b381694868d0b78ce8b4a43ddff",
+      "sha256": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
       "matched": true
     },
     {
@@ -97,12 +102,17 @@
     },
     {
       "file": "crates/js-runtime/src/host.rs",
-      "sha256": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+      "sha256": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/id_hash.rs",
       "sha256": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/index_keys.rs",
+      "sha256": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
       "matched": true
     },
     {
@@ -122,7 +132,7 @@
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "03d0e56105c540f7f770c1cfc35419db66ef84539a41891e47819e100a9f4f34",
+      "sha256": "70eb7bcead02063934cbc76c6fd7880d54363cd3c3f76a2a63ea2a82ba52f2ce",
       "matched": true
     },
     {
@@ -157,7 +167,7 @@
     },
     {
       "file": "crates/js-runtime/src/property_slots.rs",
-      "sha256": "14695c032e972b5c1ea9fdaca9d0cc6144b6982990183bee976c972c531a0a56",
+      "sha256": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
       "matched": true
     },
     {
@@ -177,7 +187,12 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "f3d528baf047efce95b1a73328919d61ff68b63a71f5e5815c47858f2571086e",
+      "sha256": "a753e6680e86cec0c4857f8f1ffa6143d685eafbffe0d6c2f1e4e25b80f1eeeb",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/string_hash.rs",
+      "sha256": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
       "matched": true
     },
     {
@@ -197,7 +212,17 @@
     },
     {
       "file": "crates/js-runtime/src/value.rs",
-      "sha256": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+      "sha256": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/fast_length.rs",
+      "sha256": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/numeric_property_keys.rs",
+      "sha256": "7d729c37f9b4c77b67a98ab7e5dc9cc8260c8d9769d5c61880c2618df13adb21",
       "matched": true
     },
     {
@@ -1202,7 +1227,7 @@
   "generatedRustSha256": "e9b2301ee0fd55c0e1f0f96967c6a714c8aa619eebb5f0c6a7e5b46403050617",
   "binary": {
     "file": "/workspace/afkarena-simx/work/candidate-dense-array-shift/work/rust-port-dense-array-shift/check",
-    "sha256": "9893b3679ef720f43922d6c57b9f258b85dd90f50733fdff92b216bba148fd68"
+    "sha256": "065b0b190facc7916c4f26365452dc29ac67ad11140de94b798478f0eb387ed4"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/candidate-dense-array-shift/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
