@@ -2,8 +2,8 @@
   "version": 1,
   "passed": true,
   "complete": true,
-  "startedAt": "2026-10-28T23:04:36.197Z",
-  "scope": "Combined source-selected prototype reads, native createDataObj scan and interned FunctionRecord names on the current main primary-array/own-read/own-write runtime. This differential suite is not complete-battle or throughput qualification.",
+  "startedAt": "2026-10-28T23:15:15.562Z",
+  "scope": "Combined canonical FunctionRecord names, source-selected prototype reads, native createDataObj scan, copy capacity reuse, exact stage parser and atomic Buff percentage loop on the main primary-array/own-read/own-write runtime. This differential suite is not complete-battle or throughput qualification.",
   "gates": [
     {
       "name": "source-selective-prototype",
@@ -11,8 +11,8 @@
         "--jitless",
         "tools/rust-port/check-source-selective-prototype.mjs"
       ],
-      "startedAt": "2026-10-28T23:04:36.256Z",
-      "finishedAt": "2026-10-28T23:04:36.586Z",
+      "startedAt": "2026-10-28T23:15:16.241Z",
+      "finishedAt": "2026-10-28T23:15:16.660Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -30,13 +30,61 @@
       ]
     },
     {
+      "name": "stage-range-parser-specialization",
+      "args": [
+        "--jitless",
+        "tools/rust-port/check-stage-range-parser-specialization.mjs"
+      ],
+      "startedAt": "2026-10-28T23:15:16.661Z",
+      "finishedAt": "2026-10-28T23:15:30.786Z",
+      "status": 0,
+      "signal": null,
+      "passed": true,
+      "streams": [
+        {
+          "stream": "stdout",
+          "file": "benchmarks/validation/next-execution-wave/stage-range-parser-specialization.stdout.gz",
+          "sha256": "4d5b6a09024d3c49bece958ebc781d6c032b64e2c5ddfcdc0f4786a797a5f3f3"
+        },
+        {
+          "stream": "stderr",
+          "file": "benchmarks/validation/next-execution-wave/stage-range-parser-specialization.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ]
+    },
+    {
+      "name": "buff-percent-loop",
+      "args": [
+        "--jitless",
+        "tools/rust-port/check-buff-percent-loop.mjs"
+      ],
+      "startedAt": "2026-10-28T23:15:30.787Z",
+      "finishedAt": "2026-10-28T23:16:08.488Z",
+      "status": 0,
+      "signal": null,
+      "passed": true,
+      "streams": [
+        {
+          "stream": "stdout",
+          "file": "benchmarks/validation/next-execution-wave/buff-percent-loop.stdout.gz",
+          "sha256": "dd5b20d398784ef2752aa77f79a45688aa9ca9f7460bed5361bcd50ea49c7b2b"
+        },
+        {
+          "stream": "stderr",
+          "file": "benchmarks/validation/next-execution-wave/buff-percent-loop.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ]
+    },
+    {
       "name": "data-obj-specialization",
       "args": [
         "--jitless",
         "tools/rust-port/check-data-obj-specialization.mjs"
       ],
-      "startedAt": "2026-10-28T23:04:36.588Z",
-      "finishedAt": "2026-10-28T23:05:00.179Z",
+      "startedAt": "2026-10-28T23:16:08.490Z",
+      "finishedAt": "2026-10-28T23:16:19.105Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -59,8 +107,8 @@
         "--jitless",
         "tools/rust-port/check-one-hop-slots.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:00.180Z",
-      "finishedAt": "2026-10-28T23:05:01.852Z",
+      "startedAt": "2026-10-28T23:16:19.106Z",
+      "finishedAt": "2026-10-28T23:16:20.746Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -83,8 +131,8 @@
         "--jitless",
         "tools/rust-port/check-primary-numeric-arrays.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:01.853Z",
-      "finishedAt": "2026-10-28T23:05:27.677Z",
+      "startedAt": "2026-10-28T23:16:20.747Z",
+      "finishedAt": "2026-10-28T23:17:15.823Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -107,8 +155,8 @@
         "--jitless",
         "tools/rust-port/check-closures.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:27.678Z",
-      "finishedAt": "2026-10-28T23:05:29.495Z",
+      "startedAt": "2026-10-28T23:17:15.824Z",
+      "finishedAt": "2026-10-28T23:17:17.976Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -131,8 +179,8 @@
         "--jitless",
         "tools/rust-port/check-reflection-bootstrap.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:29.496Z",
-      "finishedAt": "2026-10-28T23:05:31.130Z",
+      "startedAt": "2026-10-28T23:17:17.977Z",
+      "finishedAt": "2026-10-28T23:17:19.927Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -155,8 +203,8 @@
         "--jitless",
         "tools/rust-port/check-arguments-elision.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:31.131Z",
-      "finishedAt": "2026-10-28T23:05:32.819Z",
+      "startedAt": "2026-10-28T23:17:19.928Z",
+      "finishedAt": "2026-10-28T23:17:21.905Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -179,8 +227,8 @@
         "--jitless",
         "tools/rust-port/check-diagnostics.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:32.819Z",
-      "finishedAt": "2026-10-28T23:05:33.309Z",
+      "startedAt": "2026-10-28T23:17:21.906Z",
+      "finishedAt": "2026-10-28T23:17:22.480Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -203,8 +251,8 @@
         "--jitless",
         "tools/rust-port/check-errors.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:33.310Z",
-      "finishedAt": "2026-10-28T23:05:35.058Z",
+      "startedAt": "2026-10-28T23:17:22.481Z",
+      "finishedAt": "2026-10-28T23:17:24.493Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -227,8 +275,8 @@
         "--jitless",
         "tools/rust-port/check-date.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:35.059Z",
-      "finishedAt": "2026-10-28T23:05:36.321Z",
+      "startedAt": "2026-10-28T23:17:24.494Z",
+      "finishedAt": "2026-10-28T23:17:26.005Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -251,8 +299,8 @@
         "--jitless",
         "tools/rust-port/check-arrays.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:36.322Z",
-      "finishedAt": "2026-10-28T23:05:38.100Z",
+      "startedAt": "2026-10-28T23:17:26.006Z",
+      "finishedAt": "2026-10-28T23:17:27.899Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -275,8 +323,8 @@
         "--jitless",
         "tools/rust-port/check-array-from.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:38.101Z",
-      "finishedAt": "2026-10-28T23:05:39.480Z",
+      "startedAt": "2026-10-28T23:17:27.899Z",
+      "finishedAt": "2026-10-28T23:17:29.352Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -299,8 +347,8 @@
         "--jitless",
         "tools/rust-port/check-array-constructor.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:39.480Z",
-      "finishedAt": "2026-10-28T23:05:40.525Z",
+      "startedAt": "2026-10-28T23:17:29.353Z",
+      "finishedAt": "2026-10-28T23:17:30.627Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -323,8 +371,8 @@
         "--jitless",
         "tools/rust-port/check-generated-typed-arrays.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:40.526Z",
-      "finishedAt": "2026-10-28T23:05:51.555Z",
+      "startedAt": "2026-10-28T23:17:30.627Z",
+      "finishedAt": "2026-10-28T23:17:42.033Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -347,8 +395,8 @@
         "--jitless",
         "tools/rust-port/check-json.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:51.556Z",
-      "finishedAt": "2026-10-28T23:05:52.874Z",
+      "startedAt": "2026-10-28T23:17:42.034Z",
+      "finishedAt": "2026-10-28T23:17:43.436Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -371,8 +419,8 @@
         "--jitless",
         "tools/rust-port/check-coercions.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:52.875Z",
-      "finishedAt": "2026-10-28T23:05:54.940Z",
+      "startedAt": "2026-10-28T23:17:43.437Z",
+      "finishedAt": "2026-10-28T23:17:45.310Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -395,8 +443,8 @@
         "--jitless",
         "tools/rust-port/check-control-flow.mjs"
       ],
-      "startedAt": "2026-10-28T23:05:54.941Z",
-      "finishedAt": "2026-10-28T23:05:56.711Z",
+      "startedAt": "2026-10-28T23:17:45.311Z",
+      "finishedAt": "2026-10-28T23:17:46.977Z",
       "status": 0,
       "signal": null,
       "passed": true,
@@ -418,33 +466,25 @@
       "args": [
         "--jitless",
         "tools/rust-port/check-values.mjs",
-        "target/release/examples/value_check"
+        "/workspace/afkarena-simx/work/candidate-next-execution-wave/target/release/examples/value_check"
       ],
+      "startedAt": "2026-10-28T23:17:46.978Z",
+      "finishedAt": "2026-10-28T23:17:47.925Z",
       "status": 0,
+      "signal": null,
       "passed": true,
-      "finishedAt": "2026-10-28T23:07:02.167Z",
-      "launchCorrection": "Initial invocation omitted required native binary argument. Built the current native value_check example, then reran only this gate; the prior 17 passing source gates and unchanged runtime/compiler inputs are retained.",
       "streams": [
         {
           "stream": "stdout",
-          "file": "benchmarks/validation/next-execution-wave/values-final.stdout.gz",
+          "file": "benchmarks/validation/next-execution-wave/values.stdout.gz",
           "sha256": "72f374025e4877945210d2e010067fad75e47891151c87ae67297007261df353"
         },
         {
           "stream": "stderr",
-          "file": "benchmarks/validation/next-execution-wave/values-final.stderr.gz",
-          "sha256": "79cc670d814e028913a04e82a30095d500c9a8ff19779a9f57da77b1d21afbfc"
+          "file": "benchmarks/validation/next-execution-wave/values.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
         }
-      ],
-      "cases": 79116,
-      "compared": 79026,
-      "unsupportedCount": 90,
-      "proof": "benchmarks/validation/rust-value-semantics.json",
-      "proofSha256": "1da2c632fabafe88c2f1aa6dccc7c2a63c4f39e89c37135203489b6b81d51437",
-      "binary": {
-        "file": "/workspace/afkarena-simx/work/candidate-next-execution-wave/target/release/examples/value_check",
-        "sha256": "f2cf06f9c8d82b078a72e4c5287e63cae3581ee3d98c78911cf998dbf840f3ca"
-      }
+      ]
     }
   ],
   "inputs": {
@@ -455,6 +495,7 @@
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
     "crates/js-runtime/src/battle_gc.rs": "96256aa10f57ee8d833f1bef99d7c1185d7205d2ae7519a7bfa573cdb8ae527f",
     "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/buff_attribute_loop.rs": "ad8fe069ffbc64eb69a7f9444fa31d3b13b65e9cb1ef9030f6b75eb78c848a44",
     "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
@@ -475,7 +516,7 @@
     "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
     "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
     "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
-    "crates/js-runtime/src/lib.rs": "1e1822fd5371c9928240e7af626bb6b20be377326f43e4f1da177e8e65b5b556",
+    "crates/js-runtime/src/lib.rs": "c5fde3761515e7b6c84110ccd7566d1946b91c47788f1fff974036d73626a9a5",
     "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
     "crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
     "crates/js-runtime/src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
@@ -483,10 +524,11 @@
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
     "crates/js-runtime/src/property_slots.rs": "c8796b4307180fda010476025fccc28462a39e2b108eb84651213cff96510d81",
-    "crates/js-runtime/src/reachability.rs": "9edd4aaba07905b4ac1bd1031bcfb1b96e27986509916e8c83e2cebb7f6f5e34",
+    "crates/js-runtime/src/reachability.rs": "f9b4c2f20df1d4bd24e9a881bf2f0eb9c39e24385c509035c705bc0f09830e6e",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
-    "crates/js-runtime/src/runtime.rs": "3b6e80fc9cb525468e0c815a7c0556e8b8e34465df0e782fa99eecda175880d4",
+    "crates/js-runtime/src/runtime.rs": "01c3725b1deb8fa3fd4cf905761a17d3e030452b14de37aaee5a8d3f5dbab38a",
+    "crates/js-runtime/src/stage_range_parser.rs": "e317b30859c021db215b23b1337a51fe190576c48b56d67a538be60b09e30089",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
     "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
     "crates/js-runtime/src/utf8_guard.rs": "f107d1d45c0541475f5df4bbc9092dbd351f36882090ef335c529060cd0612b3",
@@ -684,38 +726,18 @@
     "third-party/ryu-js/tests/to_fixed.rs": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
     "Cargo.toml": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
     "Cargo.lock": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
-    "tools/rust-port/compile.mjs": "ccdfdf7e0b75df310810ccab20d9c4ec0a84d6e4be8e43fc76a562ad0d0a755d",
+    "tools/rust-port/compile.mjs": "a4102abcde5532d5c90cad88192cff3d430487b10fe84bf8ac2a0d624d7bd6df",
     "tools/rust-port/expressions.mjs": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
-    "tools/rust-port/statements.mjs": "9be518cbe68a01a1a72e476c7faabc12bd39b73e802fc7b730d233d072b701da",
+    "tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c"
   },
   "changedInputs": [],
-  "finishedAt": "2026-10-28T23:08:12.283Z",
-  "previousAttempts": [
-    {
-      "name": "values",
-      "args": [
-        "--jitless",
-        "tools/rust-port/check-values.mjs"
-      ],
-      "startedAt": "2026-10-28T23:05:56.712Z",
-      "finishedAt": "2026-10-28T23:05:56.767Z",
-      "status": 1,
-      "signal": null,
-      "passed": false,
-      "streams": [
-        {
-          "stream": "stdout",
-          "file": "benchmarks/validation/next-execution-wave/values.stdout.gz",
-          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
-        },
-        {
-          "stream": "stderr",
-          "file": "benchmarks/validation/next-execution-wave/values.stderr.gz",
-          "sha256": "7f2685c9c96bd2270a13fe859a65a75b2b87dd17e9a889bf19f2ab26fdb71047"
-        }
-      ]
-    }
-  ],
-  "orchestratorSha256": "4a9b34d5c71d9cb3e887916e053e2e83757849430d9f14b3b8b66897f9475d8d"
+  "finishedAt": "2026-10-28T23:17:47.968Z",
+  "runtimeTests": {
+    "library": 74,
+    "integration": 26,
+    "passed": true,
+    "log": "benchmarks/validation/next-wave-parser-buff-library.log.gz",
+    "logSha256": "c85a2f408eaf818638c1833d3758fb0a1ef60bccbf6ab8855df1723202fd952b"
+  }
 }
