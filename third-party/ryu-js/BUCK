@@ -1,0 +1,10 @@
+load("@prelude//:rules.bzl", "rust_library")
+
+rust_library(
+    name = "ryu_js",
+    srcs = glob(["src/**/*.rs"]),
+    crate = "ryu_js",
+    crate_root = "src/lib.rs",
+    edition = "2018",
+    visibility = ["PUBLIC"],
+)
