@@ -12,70 +12,69 @@ rt.declare(env, "e", Value::Undefined)?;
 rt.assign(env, "e", args.get(0).copied().unwrap_or(Value::Undefined), false)?;
 rt.declare(env, "t", Value::Undefined)?;
 rt.assign(env, "t", args.get(1).copied().unwrap_or(Value::Undefined), false)?;
-let value_0 = rt.arguments_object(env, &["e","t"], args, false)?;
-rt.declare(env, "arguments", value_0)?;
-let value_1 = rt.resolve_binding(env, "e")?;
-let value_2 = rt.resolve_binding(env, "t")?;
+rt.register_lazy_arguments(env, &["e","t"], args, &[false,false])?;
+let value_0 = rt.resolve_binding(env, "e")?;
+let value_1 = rt.resolve_binding(env, "t")?;
+let statement_result_2: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_3: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_4: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_5 = rt.read_binding(value_1)?;
-let value_6 = rt.static_string("info");
-let value_7 = rt.get(this, value_6)?;
-let value_8 = rt.static_string("MP");
-let value_9 = rt.get(value_7, value_8)?;
-let value_10 = rt.binary(BinaryOp::Gt, value_5, value_9)?;
-let mut logical_11 = value_10;
-if rt.truthy(value_10) {
-let value_12 = rt.static_string("info");
-let value_13 = rt.get(this, value_12)?;
-let value_14 = rt.static_string("MP");
-let value_15 = rt.get(value_13, value_14)?;
-let value_16 = rt.write_binding(value_1, value_15, false)?;
-logical_11 = value_15;
+let value_4 = rt.read_binding(value_0)?;
+static LITERAL_READ_SITE_5: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("info");
+let value_6 = rt.get_literal_cached(this, &LITERAL_READ_SITE_5)?;
+static LITERAL_READ_SITE_7: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("MP");
+let value_8 = rt.get_literal_cached(value_6, &LITERAL_READ_SITE_7)?;
+let value_11 = match (value_4, value_8) { (Value::Number(numeric_left_9), Value::Number(numeric_right_10)) => Value::Bool(numeric_left_9 > numeric_right_10), _ => rt.binary(BinaryOp::Gt, value_4, value_8)? };
+let mut logical_12 = value_11;
+if rt.truthy(value_11) {
+static LITERAL_READ_SITE_13: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("info");
+let value_14 = rt.get_literal_cached(this, &LITERAL_READ_SITE_13)?;
+static LITERAL_READ_SITE_15: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("MP");
+let value_16 = rt.get_literal_cached(value_14, &LITERAL_READ_SITE_15)?;
+let value_17 = rt.write_binding(value_0, value_16, false)?;
+logical_12 = value_16;
 }
-let value_17 = rt.read_binding(value_1)?;
-let value_18 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_19 = rt.binary(BinaryOp::Lt, value_17, value_18)?;
-let mut logical_20 = value_19;
-if rt.truthy(value_19) {
-let value_21 = Value::Number(f64::from_bits(0x0000000000000000u64));
-let value_22 = rt.write_binding(value_1, value_21, false)?;
-logical_20 = value_21;
+let value_18 = rt.read_binding(value_0)?;
+let value_19 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_22 = match (value_18, value_19) { (Value::Number(numeric_left_20), Value::Number(numeric_right_21)) => Value::Bool(numeric_left_20 < numeric_right_21), _ => rt.binary(BinaryOp::Lt, value_18, value_19)? };
+let mut logical_23 = value_22;
+if rt.truthy(value_22) {
+let value_24 = Value::Number(f64::from_bits(0x0000000000000000u64));
+let value_25 = rt.write_binding(value_0, value_24, false)?;
+logical_23 = value_24;
 }
-let value_23 = rt.read_binding(value_1)?;
-let value_24 = rt.static_string("mp");
-let value_25 = rt.get(this, value_24)?;
-let value_26 = rt.binary(BinaryOp::Gt, value_23, value_25)?;
-let mut logical_27 = value_26;
-if rt.truthy(value_26) {
-let value_28 = rt.static_string("buff_effects");
-let value_29 = rt.get(this, value_28)?;
-let value_30 = rt.static_string("noAddMp");
-let value_31 = rt.get(value_29, value_30)?;
-logical_27 = value_31;
+let value_26 = rt.read_binding(value_0)?;
+static LITERAL_READ_SITE_27: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("mp");
+let value_28 = rt.get_literal_cached(this, &LITERAL_READ_SITE_27)?;
+let value_31 = match (value_26, value_28) { (Value::Number(numeric_left_29), Value::Number(numeric_right_30)) => Value::Bool(numeric_left_29 > numeric_right_30), _ => rt.binary(BinaryOp::Gt, value_26, value_28)? };
+let mut logical_32 = value_31;
+if rt.truthy(value_31) {
+static LITERAL_READ_SITE_33: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("buff_effects");
+let value_34 = rt.get_literal_cached(this, &LITERAL_READ_SITE_33)?;
+static LITERAL_READ_SITE_35: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("noAddMp");
+let value_36 = rt.get_literal_cached(value_34, &LITERAL_READ_SITE_35)?;
+logical_32 = value_36;
 }
-let mut logical_32 = logical_27;
-if !rt.truthy(logical_27) {
-let value_33 = rt.static_string("mp");
-let value_34 = rt.read_binding(value_1)?;
-let value_35 = rt.set(this, value_33, value_34, false)?;
-let value_36 = rt.resolve_binding(env, "ed")?;
-let value_37 = rt.read_binding(value_36)?;
-let value_38 = rt.static_string("btLog");
-let value_39 = rt.get(value_37, value_38)?;
-let value_40 = rt.static_string("setMP");
-let value_41 = rt.get(value_39, value_40)?;
-let value_42 = rt.call(value_41, value_39, &[this])?;
-logical_32 = value_42;
+let mut logical_37 = logical_32;
+if !rt.truthy(logical_32) {
+let value_38 = rt.read_binding(value_0)?;
+let value_39 = rt.static_string("mp");
+let value_40 = rt.set(this, value_39, value_38, false)?;
+let value_41 = rt.resolve_binding(env, "ed")?;
+let value_42 = rt.read_binding(value_41)?;
+static LITERAL_READ_SITE_43: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("btLog");
+let value_44 = rt.get_literal_cached(value_42, &LITERAL_READ_SITE_43)?;
+static LITERAL_READ_SITE_45: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("setMP");
+let value_46 = rt.get_literal_cached(value_44, &LITERAL_READ_SITE_45)?;
+let value_47 = rt.call(value_46, value_44, &[this])?;
+logical_37 = value_47;
 }
 Ok(Completion::Normal)
 })();
-let value_43 = statement_result_4?;
-if !matches!(value_43, Completion::Normal) { return Ok(value_43); }
+let value_48 = statement_result_3?;
+if !matches!(value_48, Completion::Normal) { return Ok(value_48); }
 Ok(Completion::Normal)
 })();
-let value_44 = statement_result_3?;
-match value_44 { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }
+let value_49 = statement_result_2?;
+match value_49 { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }
 }
 
 

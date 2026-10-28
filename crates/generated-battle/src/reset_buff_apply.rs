@@ -10,58 +10,57 @@ pub fn js_function_0(rt: &mut Runtime, this: Value, args: &[Value], parent: EnvI
 let env = rt.child_env(parent);
 rt.declare(env, "e", Value::Undefined)?;
 rt.assign(env, "e", args.get(0).copied().unwrap_or(Value::Undefined), false)?;
-let value_0 = rt.arguments_object(env, &["e"], args, false)?;
-rt.declare(env, "arguments", value_0)?;
-let value_1 = rt.resolve_binding(env, "e")?;
+rt.register_lazy_arguments(env, &["e"], args, &[false])?;
+let value_0 = rt.resolve_binding(env, "e")?;
+let statement_result_1: JsResult<Completion> = (|| -> JsResult<Completion> {
 let statement_result_2: JsResult<Completion> = (|| -> JsResult<Completion> {
-let statement_result_3: JsResult<Completion> = (|| -> JsResult<Completion> {
-let value_4 = rt.read_binding(value_1)?;
-let value_5 = rt.static_string("isImpactAttribs");
-let value_6 = rt.get(value_4, value_5)?;
-let value_7 = rt.call(value_6, value_4, &[])?;
-let mut logical_8 = value_7;
-if !rt.truthy(value_7) {
-let value_9 = rt.read_binding(value_1)?;
-let value_10 = rt.static_string("hasEffectOrNot");
-let value_11 = rt.get(value_9, value_10)?;
-let value_12 = rt.static_string("noAttrUp");
-let value_13 = rt.call(value_11, value_9, &[value_12])?;
-logical_8 = value_13;
+let value_3 = rt.read_binding(value_0)?;
+static LITERAL_READ_SITE_4: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("isImpactAttribs");
+let value_5 = rt.get_literal_cached(value_3, &LITERAL_READ_SITE_4)?;
+let value_6 = rt.call(value_5, value_3, &[])?;
+let mut logical_7 = value_6;
+if !rt.truthy(value_6) {
+let value_8 = rt.read_binding(value_0)?;
+static LITERAL_READ_SITE_9: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hasEffectOrNot");
+let value_10 = rt.get_literal_cached(value_8, &LITERAL_READ_SITE_9)?;
+let value_11 = rt.static_string("noAttrUp");
+let value_12 = rt.call(value_10, value_8, &[value_11])?;
+logical_7 = value_12;
 }
-let mut logical_14 = logical_8;
-if !rt.truthy(logical_8) {
-let value_15 = rt.read_binding(value_1)?;
-let value_16 = rt.static_string("hasEffectOrNot");
-let value_17 = rt.get(value_15, value_16)?;
-let value_18 = rt.static_string("noAttrDown");
-let value_19 = rt.call(value_17, value_15, &[value_18])?;
-logical_14 = value_19;
+let mut logical_13 = logical_7;
+if !rt.truthy(logical_7) {
+let value_14 = rt.read_binding(value_0)?;
+static LITERAL_READ_SITE_15: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("hasEffectOrNot");
+let value_16 = rt.get_literal_cached(value_14, &LITERAL_READ_SITE_15)?;
+let value_17 = rt.static_string("noAttrDown");
+let value_18 = rt.call(value_16, value_14, &[value_17])?;
+logical_13 = value_18;
 }
-let mut logical_20 = logical_14;
-if rt.truthy(logical_14) {
-let value_21 = rt.static_string("rebuild");
-let value_22 = rt.get(this, value_21)?;
-let value_23 = rt.call(value_22, this, &[])?;
-logical_20 = value_23;
+let mut logical_19 = logical_13;
+if rt.truthy(logical_13) {
+static LITERAL_READ_SITE_20: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("rebuild");
+let value_21 = rt.get_literal_cached(this, &LITERAL_READ_SITE_20)?;
+let value_22 = rt.call(value_21, this, &[])?;
+logical_19 = value_22;
 }
-let value_24 = rt.static_string("applyBuffEffects");
-let value_25 = rt.get(this, value_24)?;
-let value_26 = rt.call(value_25, this, &[])?;
-let value_27 = rt.static_string("judgeCurrentSkill");
-let value_28 = rt.get(this, value_27)?;
-let value_29 = rt.read_binding(value_1)?;
-let value_30 = rt.call(value_28, this, &[value_29])?;
-let value_31 = rt.static_string("recheckManualCast");
-let value_32 = rt.get(this, value_31)?;
-let value_33 = rt.call(value_32, this, &[])?;
+static LITERAL_READ_SITE_23: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("applyBuffEffects");
+let value_24 = rt.get_literal_cached(this, &LITERAL_READ_SITE_23)?;
+let value_25 = rt.call(value_24, this, &[])?;
+static LITERAL_READ_SITE_26: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("judgeCurrentSkill");
+let value_27 = rt.get_literal_cached(this, &LITERAL_READ_SITE_26)?;
+let value_28 = rt.read_binding(value_0)?;
+let value_29 = rt.call(value_27, this, &[value_28])?;
+static LITERAL_READ_SITE_30: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new("recheckManualCast");
+let value_31 = rt.get_literal_cached(this, &LITERAL_READ_SITE_30)?;
+let value_32 = rt.call(value_31, this, &[])?;
 Ok(Completion::Normal)
 })();
-let value_34 = statement_result_3?;
-if !matches!(value_34, Completion::Normal) { return Ok(value_34); }
+let value_33 = statement_result_2?;
+if !matches!(value_33, Completion::Normal) { return Ok(value_33); }
 Ok(Completion::Normal)
 })();
-let value_35 = statement_result_2?;
-match value_35 { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }
+let value_34 = statement_result_1?;
+match value_34 { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }
 }
 
 
