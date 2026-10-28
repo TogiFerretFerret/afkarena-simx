@@ -44,3 +44,6 @@ pub mod battle_gc;
 pub use battle_core::js_math as numeric_arithmetic;
 
 pub mod expose_scan;
+
+pub mod string_hash;
+pub use string_hash::StringHashMode;

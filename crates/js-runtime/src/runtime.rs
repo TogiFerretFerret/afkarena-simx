@@ -13,9 +13,9 @@ pub struct Runtime {
  pub(crate) copy_obj_guard:Option<crate::copy_obj::CopyObjGuard>,
  pub(crate) function_objects:HashMap<ObjectId,FunctionId,crate::id_hash::IdBuildHasher>,
  pub(crate) utf8_loader_guard:Option<crate::utf8_guard::Utf8LoaderGuard>,
- pub(crate) strings:Vec<Box<[u16]>>, pub(crate) string_index:HashMap<Vec<u16>,StringId>,
- pub(crate) string_utf8_index:HashMap<String,StringId>,
- pub(crate) static_literal_strings:HashMap<(u8,usize,usize),StringId>,
+ pub(crate) strings:Vec<Box<[u16]>>, pub(crate) string_index:HashMap<Vec<u16>,StringId,crate::string_hash::StringBuildHasher>,
+ pub(crate) string_utf8_index:HashMap<String,StringId,crate::string_hash::StringBuildHasher>,
+ pub(crate) static_literal_strings:HashMap<(u8,usize,usize),StringId,crate::string_hash::StringBuildHasher>,
  pub(crate) diagnostics:crate::diagnostics::Diagnostics,
  pub literal_property_slots_enabled:bool,pub(crate) literal_property_slots:Vec<crate::property_slots::CachedSlot>,
  pub(crate) throw_type_error:Option<Value>,
@@ -39,10 +39,11 @@ pub struct Runtime {
 }
 impl Default for Runtime {fn default()->Self{Self::new()}}
 impl Runtime {
- pub fn new()->Self{
+ pub fn new()->Self{Self::new_with_string_hash(crate::StringHashMode::Fx)}
+ pub fn new_with_string_hash(mode:crate::StringHashMode)->Self{
   let mut objects=vec![Object::new(None)];
   for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::new(),string_utf8_index:HashMap::new(),static_literal_strings:HashMap::new(),diagnostics:crate::diagnostics::Diagnostics::from_env(),literal_property_slots_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  let mut rt=Self{native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),string_utf8_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),static_literal_strings:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),diagnostics:crate::diagnostics::Diagnostics::from_env(),literal_property_slots_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
   rt.install_function_builtins().expect("fresh Function intrinsics");
