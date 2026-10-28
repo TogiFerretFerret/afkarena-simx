@@ -21,8 +21,8 @@ impl Runtime{
  fn diagnostic_value(&self,value:Value)->String{match value{
   Value::Number(number)=>format!("Number(0x{:016x}, {number:?})",number.to_bits()),
   Value::String(id)=>{let units=self.strings.get(id.0).map(|s|s.as_ref()).unwrap_or(&[]);let text=String::from_utf16_lossy(&units[..units.len().min(120)]);format!("String#{}({text:?}, units={})",id.0,units.len())},
-  Value::Object(id)=>{let kind=self.objects.get(id.0).map(|object|format!("{:?}",object.kind)).unwrap_or_else(||"invalid".into());let function=self.functions.iter().position(|f|f.object==id).map(|index|format!(", function_record=#{index}:{}",self.functions[index].name)).unwrap_or_default();format!("Object#{}({kind}{function})",id.0)},
-  Value::Function(id)=>format!("Function#{}({:?})",id.0,self.functions.get(id.0).map(|f|f.name.as_str())),
+  Value::Object(id)=>{let kind=self.objects.get(id.0).map(|object|format!("{:?}",object.kind)).unwrap_or_else(||"invalid".into());let function=self.functions.iter().position(|f|f.object==id).map(|index|format!(", function_record=#{index}:{}",self.string_text(self.functions[index].name))).unwrap_or_default();format!("Object#{}({kind}{function})",id.0)},
+  Value::Function(id)=>format!("Function#{}({:?})",id.0,self.functions.get(id.0).map(|f|self.string_text(f.name))),
   other=>format!("{other:?}"),
  }}
  fn diagnostic_key(&self,key:KeyInput)->String{match key{KeyInput::Value(value)=>self.diagnostic_value(value),KeyInput::Prepared(key)=>format!("Prepared({})",self.diagnostic_value(Value::String(key.0)))}}
@@ -35,7 +35,7 @@ impl Runtime{
    Some(FunctionSource::Owned(units))=>(format!("owned:{}",units.len()),units.iter().copied().take(180).collect::<Vec<_>>()),
    Some(FunctionSource::StaticUtf16Le{bytes,start,end})=>{let begin=start.saturating_mul(2);let stop=end.min(&(start.saturating_add(180))).saturating_mul(2);let units=bytes.get(begin..stop).unwrap_or(&[]).chunks_exact(2).map(|pair|u16::from_le_bytes([pair[0],pair[1]])).collect();(format!("utf16:{start}..{end}"),units)},
    None=>("native".into(),vec![]),
-  };eprintln!("rust_port_source_frame:{depth} function=#{} name={:?} source_range={range} source_prefix={:?}",id.0,function.name,String::from_utf16_lossy(&units));}
+  };eprintln!("rust_port_source_frame:{depth} function=#{} name={:?} source_range={range} source_prefix={:?}",id.0,self.string_text(function.name),String::from_utf16_lossy(&units));}
  }
 }
 

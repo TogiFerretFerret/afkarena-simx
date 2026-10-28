@@ -56,7 +56,7 @@ fn math_pow(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let 
 fn math_imul(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let a=rt.to_uint32(args.first().copied().unwrap_or(Value::Undefined))?;let b=rt.to_uint32(args.get(1).copied().unwrap_or(Value::Undefined))?;Ok(Value::Number((a.wrapping_mul(b)as i32)as f64))}
 fn math_clz32(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let n=rt.to_uint32(args.first().copied().unwrap_or(Value::Undefined))?;Ok(Value::Number(n.leading_zeros()as f64))}
 fn math_sign(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let n=first(rt,args)?;Ok(Value::Number(if n.is_nan()||n==0.0{n}else if n>0.0{1.0}else{-1.0}))}
-fn unsupported_math(rt:&mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{let name=rt.call_stack.last().and_then(|id|rt.functions.get(id.0)).map(|f|f.name.as_str()).unwrap_or("unknown");Err(JsError::Unsupported(format!("Math.{name} requires a pinned pure Rust implementation")))}
+fn unsupported_math(rt:&mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{let name=rt.call_stack.last().and_then(|id|rt.functions.get(id.0)).map(|f|rt.string_text(f.name)).unwrap_or_else(||"unknown".into());Err(JsError::Unsupported(format!("Math.{name} requires a pinned pure Rust implementation")))}
 
 fn math_atan(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(fdlibm::atan(first(rt,args)?)))}
 fn math_atan2(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let y=first(rt,args)?;let x=rt.to_number(args.get(1).copied().unwrap_or(Value::Undefined))?;Ok(Value::Number(fdlibm::atan2(y,x)))}
