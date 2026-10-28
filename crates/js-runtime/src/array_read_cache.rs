@@ -1,52 +1,16 @@
-//! Candidate only: bounded contiguous read cache for ordinary array data.
-//! Generic descriptors remain authoritative for writes, reflection and holes.
-use crate::{Runtime,Value,ObjectKind,ObjectId,Descriptor,PropertyKind};
-use crate::heap::Object;
-
-pub(crate) struct ArrayReadCache{
- pub(crate) length:u32,pub(crate) values:Option<Vec<Option<Value>>>,
- pub(crate) slots:Vec<Option<usize>>,
-}
-fn default_value(descriptor:Descriptor)->Option<Value>{if !descriptor.enumerable||!descriptor.configurable{return None}match descriptor.kind{PropertyKind::Data{value,writable:true}=>Some(value),_=>None}}
-impl Object{
- pub(crate) fn update_array_read_cache(&mut self,slot:Option<usize>,descriptor:Descriptor){
-  let Some(cache)=&mut self.array_read_cache else{return};
-  let(Some(slot),Some(value))=(slot,default_value(descriptor))else{self.array_read_cache=None;return};
-  if let Some(Some(index))=cache.slots.get(slot){if let Some(values)=&mut cache.values{values[*index]=Some(value);}}
- }
-}
+//! Candidate only: precomputed property keys for small numeric Array reads.
+//! Values and descriptors always use the complete ordinary property machinery.
+use crate::{Runtime,Value,ObjectKind,PropertyKey};
 impl Runtime{
- /// Candidate benchmark switch; source-visible behavior is identical.
- pub fn set_array_read_cache_enabled(&mut self,enabled:bool){self.array_read_cache_enabled=enabled;if !enabled{for object in &mut self.objects{object.array_read_cache=None;}}}
- pub(crate) fn array_cached_number(&mut self,receiver:Value,index:f64)->Option<Value>{
-  if !self.array_read_cache_enabled{return None}
-  let Value::Object(id)=receiver else{return None};
-  if !matches!(self.objects.get(id.0)?.kind,ObjectKind::Array{..})||!index.is_finite()||index<0.0||index.fract()!=0.0||index>=u32::MAX as f64{return None}
-  // Number(-0) becomes property string "0", unlike the literal string "-0".
-  self.array_cached_index(id,index as u32)
- }
- pub(crate) fn array_cached_index(&mut self,id:ObjectId,index:u32)->Option<Value>{
-  if !self.array_read_cache_enabled{return None}
-  let ObjectKind::Array{length,length_writable:true}=self.objects.get(id.0)?.kind else{return None};
-  if length>64||index>=length{return None}
-  if self.objects[id.0].array_read_cache.as_ref().is_some_and(|cache|cache.length!=length){self.objects[id.0].array_read_cache=None;}
-  if self.objects[id.0].array_read_cache.is_none(){
-   let object=&self.objects[id.0];let mut values=vec![None;length as usize];let mut eligible=object.properties.len()<=128;let mut slots=if eligible{vec![None;object.properties.len()]}else{vec![]};
-   if eligible{for(slot,(key,descriptor))in object.properties.iter().enumerate().filter_map(|(i,item)|item.map(|item|(i,item))){
-    let Some(value)=default_value(descriptor)else{eligible=false;break};
-    if let Some(index)=self.array_cache_property_index(key){if index>=length{eligible=false;break}values[index as usize]=Some(value);slots[slot]=Some(index as usize);}
-   }}
-   self.objects[id.0].array_read_cache=Some(Box::new(ArrayReadCache{length,values:if eligible{Some(values)}else{None},slots}));
-  }
-  // Missing own positions always take the full live prototype/getter path.
-  self.objects[id.0].array_read_cache.as_ref()?.values.as_ref()?.get(index as usize).copied().flatten()
- }
- fn array_cache_property_index(&self,key:crate::PropertyKey)->Option<u32>{
-  let units=self.string_units(key.0);if units.is_empty()||units.len()>10||(units.len()>1&&units[0]==48){return None}
-  let mut n=0u64;for unit in units{if !(48..=57).contains(unit){return None}n=n*10+u64::from(*unit-48);}if n<u32::MAX as u64{Some(n as u32)}else{None}
+ pub fn set_array_read_cache_enabled(&mut self,enabled:bool){self.array_read_cache_enabled=enabled;}
+ pub(crate) fn array_prepared_number_key(&self,receiver:Value,index:f64)->Option<PropertyKey>{
+  if !self.array_read_cache_enabled||!index.is_finite()||index<0.0||index>=64.0||index.fract()!=0.0{return None}
+  let Value::Object(id)=receiver else{return None};if !matches!(self.objects.get(id.0)?.kind,ObjectKind::Array{..}){return None}
+  // Abstract ToString(Number) is pure. For these exact integers it is the
+  // decimal key already interned at startup, including Number(-0) -> "0".
+  Some(PropertyKey(self.small_array_index_keys.as_ref()?[index as usize]))
  }
 }
-
 #[cfg(test)]mod tests{
  use super::*;
  fn key(rt:&mut Runtime,n:u32)->Value{rt.string(&n.to_string())}

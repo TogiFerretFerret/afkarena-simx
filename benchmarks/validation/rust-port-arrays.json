@@ -90,7 +90,7 @@
     "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
     "tools/rust-port/check-arrays.mjs": "8f09963e1978d9a8f5d8a0b91d944d9893b6ac43a1c02e0fdb55b735dae6ea51",
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
-    "crates/js-runtime/src/array_read_cache.rs": "7182486c1a203cb2b1a0b5574e3fa12d47376a94572a824497feb2802a88d101",
+    "crates/js-runtime/src/array_read_cache.rs": "17fc53e395b3b1d509fa7f31fb3c42d78dc8e9aa38f633ad655d4d1573f5e101",
     "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
     "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
     "crates/js-runtime/src/closures.rs": "b4755929c6c286c29096cfd512d1b510604b71d99e16c8d26d4782b79d0eba47",
@@ -101,7 +101,7 @@
     "crates/js-runtime/src/env.rs": "81bd3ad26c1c2560d8df63b1985aecf620fd56f3269fc60469ca57762b727043",
     "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
     "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
-    "crates/js-runtime/src/heap.rs": "5ce8f678ede0ef62f9e6e7380e29d4a38325cd9461813f68af349f2ff88dc8d1",
+    "crates/js-runtime/src/heap.rs": "901181256a48ad047045daf799eb843268c69e8ed09bdf6477358e4ff2be09fc",
     "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
     "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
     "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
@@ -112,7 +112,7 @@
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
-    "crates/js-runtime/src/runtime.rs": "3495ca8f4ef009f76e4514dbba31c15e85e8057953ec5de5901eea27e1ebe86b",
+    "crates/js-runtime/src/runtime.rs": "53a72376593526a56ecddd2f422c28f689630bccd23863415312a5d9c48f6d30",
     "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
     "crates/js-runtime/src/utf8_guard.rs": "b9bd175f82739fcbdfc794efc02da2fb9c24316bf9e905a61b65e05e6ed2bc07",
     "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
@@ -123,7 +123,7 @@
   },
   "binary": {
     "file": "/workspace/afkarena-simx/work/candidate-dense-arrays/work/rust-port-shared-target/release/arrays-tests",
-    "sha256": "223947653a557fbeae2690a2f567d3b73f0c2ed6c9c2fbb05ccf42f41d1c205d"
+    "sha256": "3a177fd95837c1adccd3e3074f11cc092e4ccfd486a19e9754d571e11b471193"
   },
   "buildArgs": [
     "build",
