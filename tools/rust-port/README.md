@@ -26,9 +26,10 @@ It intentionally stops before the unused original clock suffix is consumed.
 The [earlier four-process trial](../../benchmarks/results/2026-10-28T20-20-38.054Z-rust-parallel-four.json)
 measures 1.287522 aggregate battles/second with every worker report matching Node.
 The [new warm-state fork trial](../../benchmarks/results/2026-10-28-fork-four-next.json)
-measures 1.480826 aggregate battles/second: 80 battles over the common 54.024-second
+measures 1.480826 aggregate battles/second: 80 battles over the measured 54.024-second
 cohort window, with all four complete reports and host tapes matching Node.
-Peak parent-plus-workers PSS is 7.69 GiB; summed RSS includes shared pages.
+The strict four-worker overlap is 52.624 seconds. Peak parent-plus-workers PSS
+plus orchestrator RSS is 7.69 GiB; summed RSS includes shared pages.
 These measurements remain below the historical approximately 3 battles/second
 mixed backend and the 10,000 target. Cold, warm and aggregate rates have different
 measurement windows and must be kept separate.
@@ -42,6 +43,12 @@ records actual collection pauses and its raw-get diagnostic overhead. The
 4,660 samples with exact final-report and host-input parity; property access,
 key conversion, hash tables and GC remain the main costs. Profile timing is
 separate from the unprofiled throughput result.
+
+The [counted allocation diagnostic](../../benchmarks/results/2026-10-28T21-18-46.972Z-rust-measured-allocations.json)
+retains full report and host-input parity. Per measured battle it records
+4.289 million allocations requesting 110.3 MB, plus 185,910 reallocations
+with 84.1 MB of old and 168.5 MB of new requested sizes. These are traffic
+counts, not live or peak memory. Atomic accounting changes timing.
 
 Generated source gates separately verify operators, closures, control flow,
 collections, typed buffers and selected real mechanics. Their case counts are
