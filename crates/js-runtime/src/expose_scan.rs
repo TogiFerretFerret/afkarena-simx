@@ -19,6 +19,9 @@ impl Runtime{
   if array.prototype!=Some(self.array_prototype){return Ok(false)}
   // Validate every read before doing any work. A hole/accessor/prototype read
   // must fall back without invoking any getter or performing a source write.
+  // Sparse source arrays can have a huge logical length. Reject before sizing
+  // temporary storage: the original loop can throw at its first missing read.
+  if length as usize > array.properties.len(){return Ok(false)}
   let mut strings=Vec::with_capacity(length as usize);
   for index in 0..length{let Some(Some((key,desc)))=self.objects[names.0].properties.get(index as usize)else{return Ok(false)};let units=self.string_units(key.0);if units.is_empty()||(units.len()>1&&units[0]==48){return Ok(false)}let mut number=0u64;for &digit in units{if !(48..=57).contains(&digit){return Ok(false)}let Some(next)=number.checked_mul(10).and_then(|n|n.checked_add((digit-48)as u64))else{return Ok(false)};number=next;}if number!=index as u64{return Ok(false)}let PropertyKind::Data{value:Value::String(s),..}=desc.kind else{return Ok(false)};strings.push(s);}
   let mut needle=self.string_units(prefix).to_vec();needle.push(b'.' as u16);let offset=needle.len();let mut output=vec![];
