@@ -1,0 +1,20 @@
+{
+  "source": "src/srcmodule/game_ui_1.js",
+  "start": 4499814,
+  "end": 4500381,
+  "sha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+  "pureHelperSources": {
+    "getDataTable": {
+      "source": "crates/js-runtime/src/battle_mode_get_table_source.js",
+      "sha256": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5"
+    },
+    "getBattleId": {
+      "source": "crates/js-runtime/src/battle_mode_get_id_source.js",
+      "sha256": "f2e0d46920cd082b7cc953962ff4af2c57c95c9ff024ec16b657d3a604e70514"
+    },
+    "parser": {
+      "source": "crates/js-runtime/src/battle_mode_parser_source.js",
+      "sha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c"
+    }
+  }
+}

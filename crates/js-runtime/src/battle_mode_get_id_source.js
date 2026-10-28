@@ -1,0 +1,1 @@
+function(){return this.battle_id}

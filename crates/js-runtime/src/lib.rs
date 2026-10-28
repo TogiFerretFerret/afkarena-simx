@@ -56,3 +56,5 @@ mod dynamic_slots;
 
 mod stage_range_parser;
 mod buff_attribute_loop;
+
+mod battle_mode_limit;
