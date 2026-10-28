@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "passed": true,
+  "cases": 20000,
+  "eventCount": 143351,
+  "throwBoundaries": [
+    "append_log",
+    "check_push",
+    "deep_limit",
+    "end:defeat",
+    "end:timeout",
+    "end:victory",
+    "format_log",
+    "halloween_end",
+    "is_halloween",
+    "max_ticks",
+    "race_fix:0",
+    "restart",
+    "rt_limit",
+    "tick_operation",
+    "tick_rage_objects",
+    "update_entity:0",
+    "update_entity:1",
+    "uses_max_ticks",
+    "weather_update"
+  ],
+  "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+  "rawBitsExact": true,
+  "sources": {
+    "crates/battle-core/src/engine_runtime.rs": "28acf33600ef4c25d363e9faa0632c8861a69ea3e92d56c367dd87b6c94fec52",
+    "tools/check-engine-runtime.rs": "d5e4485216e976d9fee2beff4b9dc721458db4ade389d44b66b6ed5d0d4c98c2",
+    "tools/check-engine-runtime.mjs": "e81b17e1f6fef878e83897d44dd98eba42b135dd05db8df5927f181c7a559ebc"
+  },
+  "binarySha256": "f064b7f5ffdf83efd3387787cbf8e4139a723e389a0a7fe83aabb44d7b4afe1e",
+  "scope": "Fallible Rust source tick orchestration against unchanged original JS under explicit fixture mechanics, with exact selected state at every hook and sentinel exception prefix. Not complete hero battles or a throughput benchmark.",
+  "qualifiesFor10000Target": false
+}
