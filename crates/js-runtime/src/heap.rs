@@ -28,11 +28,11 @@ pub struct Object {
  pub(crate) numeric_elements:Option<Box<[u64;4]>>,
  pub properties:Vec<Option<(PropertyKey,Descriptor)>>,
  pub property_index:HashMap<PropertyKey,usize,IdBuildHasher>,
- pub arguments_map:HashMap<PropertyKey,BindingRef>,
+ pub arguments_map:HashMap<PropertyKey,BindingRef,IdBuildHasher>,
 }
 pub type HeapObject=Object;
 impl Object {
- pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,numeric_elements:None,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::new()}}
+ pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,numeric_elements:None,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::default()}}
  pub(crate) fn reset_for_reuse(&mut self,prototype:Option<ObjectId>){self.prototype=prototype;self.extensible=true;self.kind=ObjectKind::Ordinary;self.is_function=false;self.properties.clear();self.property_index.clear();self.arguments_map.clear();}
  /// Primary values have no duplicate dictionary descriptors. Masked-out bits
  /// (including all bits after reuse/deopt) are not source properties or GC roots.
