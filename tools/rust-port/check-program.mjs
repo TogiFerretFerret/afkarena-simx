@@ -4,6 +4,7 @@ import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 import vm from 'node:vm';
+import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {compareNativeReports,firstDifference} from '../native-report-compare.mjs';
 
@@ -18,7 +19,11 @@ if(args.includes('--oracle')){
  assert.equal(process.version,profile.node);
  assert.equal(process.versions.v8,profile.v8);
  assert.deepEqual(process.execArgv,profile.rawBitReferenceFlags);
- const context=vm.createContext({print:(...values)=>process.stdout.write(values.join(' ')+'\n')});
+ const context=vm.createContext({
+  print:(...values)=>process.stdout.write(values.join(' ')+'\n'),
+  hermescli:{loadFile:path=>new Uint8Array(readFileSync(path))},
+  __nativeDiagnosticDigest:text=>sha(text)
+ });
  for(const unit of manifest.units){
   const bytes=await readFile(unit.file);
   assert.equal(sha(bytes),unit.sourceSha256,'Frozen source changed');
