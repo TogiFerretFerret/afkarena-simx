@@ -1,0 +1,1183 @@
+{
+  "version": 1,
+  "passed": true,
+  "cases": 19,
+  "firstDifference": null,
+  "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
+  "sourceInputsAtFinish": [
+    {
+      "file": "crates/js-runtime/Cargo.toml",
+      "sha256": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/examples/value_check.rs",
+      "sha256": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/array_from.rs",
+      "sha256": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/binary.rs",
+      "sha256": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/builtins.rs",
+      "sha256": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/closures.rs",
+      "sha256": "049cce8cee14d239fc5ac05bc5db6761b45b30018af7474db5186c9d4539c47b",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/collections.rs",
+      "sha256": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/copy_obj.rs",
+      "sha256": "d0762d0a2eb22fcfe90be4428a28fa4a0eb6b6737ebd70dfeb1be55efd0fbee2",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/date.rs",
+      "sha256": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/diagnostics.rs",
+      "sha256": "7a22261fee149ee9776723b5cb9790bca62c45c4b29a7338d166e81a5490a898",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/env.rs",
+      "sha256": "81bd3ad26c1c2560d8df63b1985aecf620fd56f3269fc60469ca57762b727043",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/errors.rs",
+      "sha256": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/fdlibm.rs",
+      "sha256": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/heap.rs",
+      "sha256": "d4b93d482d46cb4e0e4b6983ec9004f8c3d4fa990e98cb6f75696d8a1dea45fa",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/host.rs",
+      "sha256": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/id_hash.rs",
+      "sha256": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/iterators.rs",
+      "sha256": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/json.rs",
+      "sha256": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/lazy_arguments.rs",
+      "sha256": "8635bf10297dfd4ea34ddfac0c02f4306e95f40875d4b1cc7cc8302a428f3117",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/lib.rs",
+      "sha256": "74b61b2cafdc472fdce16fe61aea599137b48a61339c8aa58b3b09dd3c30da4f",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/literal_pool.rs",
+      "sha256": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/math.rs",
+      "sha256": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/numeric_bootstrap.rs",
+      "sha256": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/property_slots.rs",
+      "sha256": "85a0cc8f1027097e08f84af852b0ea3ec025a4744ce801574539347f587bcba0",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/reflection_bootstrap.rs",
+      "sha256": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/regex.rs",
+      "sha256": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/runtime.rs",
+      "sha256": "5d32340450f07448eb376d3ec0b6cc85dc413ff8bf90c659c92b6e4a6f8a7564",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/strings.rs",
+      "sha256": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/utf8_guard.rs",
+      "sha256": "b9bd175f82739fcbdfc794efc02da2fb9c24316bf9e905a61b65e05e6ed2bc07",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/utf8_loader.rs",
+      "sha256": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/value.rs",
+      "sha256": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/ordinary_heap.rs",
+      "sha256": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/property_slots.rs",
+      "sha256": "80871b696ddf1a19382314fd7b64726fc0f90d40d6aad6bc591fd8de06bedf81",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/regexp_heap.rs",
+      "sha256": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/Cargo.toml",
+      "sha256": "2b11be627b089d4bc2eb94961e8b8e2c122fced7aad72eacccba6446066d547a",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/clock_check.rs",
+      "sha256": "3644748cb79d28e90dc2aa34f79f21257d154e379048b132d5b82bd4be8b7ab0",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/engine_check.rs",
+      "sha256": "481e02b682fd14041417d0d20e1dab54d7426d2d5988811e290da03d00358a35",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/engine_runtime_check.rs",
+      "sha256": "d5e4485216e976d9fee2beff4b9dc721458db4ade389d44b66b6ed5d0d4c98c2",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/engine_unit_runtime_check.rs",
+      "sha256": "7361b4ccc985b409da98ed3068c407ab5974506aff09a7992972b757894fe5b1",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/entity_check.rs",
+      "sha256": "5a8c4747cc2b845ecec1e1adc090f9f218d0ce80e7e804dbb040d0580dddb084",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/numeric_check.rs",
+      "sha256": "700f0118d9d18fbef5bc3c319387a2ca72b6dfbf88db394a168a2341b2889dd9",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/rng_check.rs",
+      "sha256": "fc2505690ad75d713f9c7773346025cf22af3c9b4e071e0de73d36b8943b974d",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/scheduler_check.rs",
+      "sha256": "fab294014bc5439b626231034be23a5bf5271e3d2649f0e74df2755279ec25cc",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/unit_skill_runtime_check.rs",
+      "sha256": "1b57dfa10f22fe6f63cb73fb1ded9f220f061bb387d8b03bfd38c7f8f4673303",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/ai.rs",
+      "sha256": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/buff.rs",
+      "sha256": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/clock.rs",
+      "sha256": "95a00c6a78a6a1c6d82e42f8c81da7e0e4c3d6512468925697045fe975798cba",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/config.rs",
+      "sha256": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/damage.rs",
+      "sha256": "8375af2f3c4d929bdef52fb86195357511f890a28c47d45ed6ed779e34641601",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/engine.rs",
+      "sha256": "1a7cd93944a3cc86b25cc39d19edc7bf9b73f213174487744e606aabcd889110",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/engine_runtime.rs",
+      "sha256": "e4d950171ce10100698a75511fc9a2992b4fee38716d96085adc28854598f28e",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/entity.rs",
+      "sha256": "6e5b05c246f3f0736e68e5f2b0abd11e831cff8d9d443b87fece5df17c65c8ac",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/ffi.rs",
+      "sha256": "62e5d0c44521e8bb824c180ebdab811897397ebe968d27a0df98587ae1e06eb6",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/js_math.rs",
+      "sha256": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/lib.rs",
+      "sha256": "d90b6af65542229452fd86e19a6d6616c5e4410f3f6714fa86728980d6878723",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/numeric.rs",
+      "sha256": "113358834ead99b82800e8fe23a1d9b98f70e547a003c3cc45f860b30b5dc080",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/rng.rs",
+      "sha256": "d343b560ebc3808ac57e8df064b63d5e4f75f6e9ed7bbefd0f2a20cae675d035",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/scheduler.rs",
+      "sha256": "944041e9fcbb66e2dfb7f67121798e45e8a4db336f724bd7b047fe23829fe152",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/skill.rs",
+      "sha256": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/unit.rs",
+      "sha256": "c097a9298d8e3cfeb11b9cbb3656e438b0c96d3b13526d4769eba7cd3a53809f",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/unit_resources.rs",
+      "sha256": "2f0e194badbaca8499189801115c7e6cf01575fc8157de7ec589100da89908fb",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/unit_skill_runtime.rs",
+      "sha256": "8684ac88baa412c51347f9fa9be2f2979c7711faad8c55cd42a3829de517d949",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/unit_speeder.rs",
+      "sha256": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/v8_small_sort.rs",
+      "sha256": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/v8_tim_sort.rs",
+      "sha256": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/tests/runtime_shared_state.rs",
+      "sha256": "b4c144507aac7fec4470c6f9cdd2d553b257d1d2a225ed5dae7c1ec84a02a147",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/Cargo.toml",
+      "sha256": "b919c7322ecc6da819546cb677da938730e5df32fdfe9ef5d7c2dc54cc768526",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/libc/Cargo.toml",
+      "sha256": "ac4fdbe46f57bde8415ca873eb3678e45ada680f8f4c2445ee20432314ebcbd2",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/libc/main.rs",
+      "sha256": "05030806ee81eb66183dc08f54a3067b6fb8a8d3e208664a39bf65ac802073dd",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-bytecount/Cargo.toml",
+      "sha256": "11bde46e8fab985a1c19480c07ed2a016d2f18c3ae05c315f1453ec0c928a2e3",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-bytecount/main.rs",
+      "sha256": "0f268fe499f0f94fdc41dd7520d50c197f171c5c7364b019f17b0e627472a527",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-jetscii/Cargo.toml",
+      "sha256": "98edfcf204bdb814db58101fd8dcb4fadf5f4e863d18589aedfc98238f5e4990",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-jetscii/main.rs",
+      "sha256": "86535af85e91e09e043a4a90c7e23715048300de300200eb5a1eef15b17ab201",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-memchr/Cargo.toml",
+      "sha256": "7f738933d4fdab59deef829083524056ad0bc2f37e1765bd17e9f7dab46acaf4",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-memchr/main.rs",
+      "sha256": "46a0a5b1012d7b6fff1a706f18116e229c886909f31b1194f6a9314f3aaf3ca0",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-memchrold/Cargo.toml",
+      "sha256": "09831788eb8326fe7beb14149ba043e2e0a03ccd241b2a68e047f5b382866c76",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-memchrold/main.rs",
+      "sha256": "1cdd96069a91468ccd3ac14673aa5542a208db42b7f778bd9c3b70b6593359d1",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-sliceslice/Cargo.toml",
+      "sha256": "273f686603e6d846daf5a001cbe76900fb3fbd05135ff4f378e087e5b06fed78",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-sliceslice/main.rs",
+      "sha256": "adf92459253fcff2861c416dcdb73cb27ef9e6ff6db1c7ddcf09c0f46d1175fc",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-std/Cargo.toml",
+      "sha256": "dd8a79cd663ecadd3289f3becd81a2b77a64c02ccf84d22cc00f82ebe6a11539",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-std/build.rs",
+      "sha256": "eade4efaf902d79c8d960c3cdbaa0d2d288593f24b2dad89cbf06210fa098f77",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/rust-std/main.rs",
+      "sha256": "e9022d4fe2f6387a10ca04340b84e1cedaef3754876f5210e4ebd2277c3f2a8c",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/stringzilla/Cargo.toml",
+      "sha256": "038c20353be0d2415c89f8b432823ea677d7265e6dab60adccda4b31252af0e2",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/engines/stringzilla/main.rs",
+      "sha256": "1793d166241b5a182d00723c1805215e22319cf6f58e2d2ccead1b3cdce90b5d",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/haystacks/code/rust-library.rs",
+      "sha256": "119a67c6bc375544621e6abb91e61c0d6db8e4d4c885c81d94b511eb0cad4d75",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/shared/Cargo.toml",
+      "sha256": "c40151776a623ca62d768b4f16761ff4e6609d87831b52eede6c12f717128f91",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/benchmarks/shared/lib.rs",
+      "sha256": "4543c8d56b50922ee912a92e9052d36c5db1f45c82e290266004303c937f8f34",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/fuzz/Cargo.toml",
+      "sha256": "2d16d8f01c6a91ab452b2e0b48f19e3ea44f107ed8234e05a6c2c2415f9c1c31",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/fuzz/fuzz_targets/memchr.rs",
+      "sha256": "2a6fabec4a55a5f54d29fa1981267c06c3b1d9e3a19416a4f31920c831b7dcf2",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/fuzz/fuzz_targets/memchr2.rs",
+      "sha256": "7caa6d326c6abdedccf166fa4586959ac522f8638ce2a85b205637e83e07b546",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/fuzz/fuzz_targets/memchr3.rs",
+      "sha256": "3f2c8fe0c932f3c8781715108396ebd73ba1be60fce576b30857ce5a0d49368f",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/fuzz/fuzz_targets/memmem.rs",
+      "sha256": "03c8a5ee971c4c717215bb05fec728c1536d6e4177cc5ac781208ce2a7404b52",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/fuzz/fuzz_targets/memrchr.rs",
+      "sha256": "80a8290e1618bde99741b1170854325a206ee1d7b6a45499bc405aa3ca476686",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/fuzz/fuzz_targets/memrchr2.rs",
+      "sha256": "7adefd7ae404050eae24e5658628ffc12c689632add230457c1adcd347c1655b",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/fuzz/fuzz_targets/memrchr3.rs",
+      "sha256": "7811dc886f5778a7fc4dd8d3d4e6e7fe51cfe75b7f8ce3dc827872efc77a51cd",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/fuzz/fuzz_targets/memrmem.rs",
+      "sha256": "ef352e9376264e497fdd4331ade37fb8a969d5eafcb545b609f24a811b64af6c",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/aarch64/memchr.rs",
+      "sha256": "5bb70f915084e629d940dbc322f5b9096b2e658cf63fea8a2f6e7550412e73a0",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/aarch64/mod.rs",
+      "sha256": "44cd1a614bd66f1e66fc86c541d3c3b8d3a14a644c13e8bf816df3f555eac2d4",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/aarch64/neon/memchr.rs",
+      "sha256": "e8c00b8fb2c7e2711832ae3cedefe59f32ebedd7dfa4d0ec6de2a566c979daea",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/aarch64/neon/mod.rs",
+      "sha256": "eab6d56c2b2354db4ee395f40282cd49f97e2ab853547be5de6e65fbe1b2f634",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/aarch64/neon/packedpair.rs",
+      "sha256": "32d3e4cd0dd9b6c8382e5308cbd896d20242c90b12862c44a5de6a8b4d6126df",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/all/memchr.rs",
+      "sha256": "b0b1214aa573ed5d02ae62a77c42c773065566b50274d4096e37817d65ab1594",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/all/mod.rs",
+      "sha256": "05f3fc2b069682eb1545fc6366d167bb620a454365dac8b8dd6cde6cd64de18a",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/all/packedpair/default_rank.rs",
+      "sha256": "abffd1b5b8b7a3be95c03dd1105b905c246a379854dc56f1e846ea7c4408f2c7",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/all/packedpair/mod.rs",
+      "sha256": "292b66042c5b5c78bba33db6526aeae6904db803d601fcdd29032b87b3eb3754",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/all/rabinkarp.rs",
+      "sha256": "236f69c04b90c14c253ae6c8d9b78150b4a56df75bb50af6d63b15145668b7cc",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/all/shiftor.rs",
+      "sha256": "0d79117f52a1e4795843603a3bb0b45397df4ad5e4184bbc923658dab9dc3b5f",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/all/twoway.rs",
+      "sha256": "47c97a265bfbafde90a618946643d3e97dfd9a85f01aa4ac758cd4c1573a450d",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/generic/memchr.rs",
+      "sha256": "cab4636bf8042c81ca1bcc49fe4214b362100992c0a850859ff445fa6a48f327",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/generic/mod.rs",
+      "sha256": "1dd75f61e0ea2563b8205a08aaa7b55500130aa331d18b9e9f995724b66c7a39",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/generic/packedpair.rs",
+      "sha256": "a4a6efb29877ced9cf4c4e5ae9f36a79f019a16b831f2b9424899a1513d458ad",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/mod.rs",
+      "sha256": "ca3960b7e2ed28d1b3c121710a870430531aad792f64d4dcb4ca4709d6cbda30",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/wasm32/memchr.rs",
+      "sha256": "d88ac79f891d8530f505f5035062d3da274a05d66c611480c75430d52709d052",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/wasm32/mod.rs",
+      "sha256": "a20377aa8fe07d68594879101dc73061e4f51d9c8d812b593b1f376e3c8add79",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/wasm32/simd128/memchr.rs",
+      "sha256": "bac2c4c43fe710c83a6f2b1118fede043be89dd821d4b532907f129f09fdb5cf",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/wasm32/simd128/mod.rs",
+      "sha256": "c157b373faedbfd65323be432e25bc411d97aa1b7bc58e76048614c7b2bf3bf6",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/wasm32/simd128/packedpair.rs",
+      "sha256": "288ba6e5eee6a7a8e5e45c64cff1aa5d72d996c2a6bc228be372c75789f08e45",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/x86_64/avx2/memchr.rs",
+      "sha256": "576ec0c30f49874f7fd9f6caeb490d56132c0fbbaa4d877b1aa532cafce19323",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/x86_64/avx2/mod.rs",
+      "sha256": "0033d1b712d0b10f0f273ef9aa8caa53e05e49f4c56a64f39af0b9df97eec584",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/x86_64/avx2/packedpair.rs",
+      "sha256": "87b69cb4301815906127db4f6370f572c7c5d5dad35c0946c00ad888dbcaec8c",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/x86_64/memchr.rs",
+      "sha256": "7426e27c39a334d500a6803acdfd97ffc05fbf2d70ba8e74492a8ad3f22d20da",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/x86_64/mod.rs",
+      "sha256": "61b2aa876942fd3e78714c2ae21e356c8634545c06995020f443fa50218df027",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/x86_64/sse2/memchr.rs",
+      "sha256": "0de0444e26d885eaf866220578752aac871e03bebee7b4f5de7fe8a35f5fa97f",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/x86_64/sse2/mod.rs",
+      "sha256": "38b70ae52a64ec974dbb91d04d6ca8013d9e06d1fe4af852206bbc2faf1c59aa",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/arch/x86_64/sse2/packedpair.rs",
+      "sha256": "241ea981d8eea6024769f1c9375f726a9bb9700160c5857781d4befd9f5ef55d",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/cow.rs",
+      "sha256": "34eddd02cb82cc2d5a2c640891d64efe332dabcc1eea5115764200d8f46b66f7",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/ext.rs",
+      "sha256": "210f89d1e32211bc64414cbd56e97b4f56ce8a8832d321d77a9fe519634e27ea",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/lib.rs",
+      "sha256": "614f778a41e88a29ea0ceb8e92c839dbb6b5a61c967f8bfd962975e18f932c71",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/macros.rs",
+      "sha256": "3e4b39252bfa471fad384160a43f113ebfec7bec46a85d16f006622881dd2081",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/memchr.rs",
+      "sha256": "6ae779ec5d00f443075316e0105edf30b489a38e2e96325bec14ccecd014145b",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/memmem/mod.rs",
+      "sha256": "1b0a9d6a681fd0887c677c4fc8d4c8f9719ddde250bdd5ea545365c1a7fb9094",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/memmem/searcher.rs",
+      "sha256": "7763472d43c66df596ca0697c07db0b4666d38a6a14f64f9f298aaf756c4a715",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/tests/memchr/mod.rs",
+      "sha256": "269f8e4b4f7f5ea458f27a3c174eb1020ffb2484eeba9464170beb51747df69b",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/tests/memchr/naive.rs",
+      "sha256": "6a0bee033e5edfb5b1d5769a5fa1c78388f7e9ff7bb91cb67f0ad029289e00e7",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/tests/memchr/prop.rs",
+      "sha256": "1854eea2338c405fe4635aac430f51e10d2069cd37a7489ddaff47da95f8720b",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/tests/mod.rs",
+      "sha256": "7cec8f809e279310a465c6a7725087970f219a676cc76c83de30c695bb490740",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/tests/packedpair.rs",
+      "sha256": "b02ec4fbb61a8653cb5f2268c31bc9168b8043347f2abdcc74081acf83b98e15",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/tests/substring/mod.rs",
+      "sha256": "c7660d10749363ac4687e7da2b5fda60768230425df8ba416c0c28b8d56a5c74",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/tests/substring/naive.rs",
+      "sha256": "df6f55d165382b8a53762ba4c324926cac13ebc62cde1805f4ce08740b326483",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/tests/substring/prop.rs",
+      "sha256": "38c15992609b5681a95d838ae6f2933e00a1219f2c971bfba245f96e0729fcdc",
+      "matched": true
+    },
+    {
+      "file": "third-party/memchr/src/vector.rs",
+      "sha256": "e787c4ed2f499802e90910f7aedc7ca41acea39c8ef416b19d6d572c1a540422",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/Cargo.toml",
+      "sha256": "000a3ee00203b52eafa057e7bbecea8c5414e3782b47145abbf04ce647730e1c",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/gen-unicode/Cargo.toml",
+      "sha256": "f7c0e89ee8459cf38651e9463cfdf2d1381332f81fdce3860e9065f2556547db",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/gen-unicode/src/binary_properties.rs",
+      "sha256": "e30d56f1f0f9f24c24a0b2302fd16da6faa6dd8f2d5a7d285255ef3c67d8e2ab",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/gen-unicode/src/case_folding.rs",
+      "sha256": "a215ba178add4073aa3cbbd34f524f4cd12054240f18353d8f87dd97da35b916",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/gen-unicode/src/general_category_values.rs",
+      "sha256": "1d7cb1934264ef21f3a7fe0971942c75126082d0df3698dff4845d1d8e8ad244",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/gen-unicode/src/main.rs",
+      "sha256": "0857b4bfed9ba50eae4ec5f9b419c2d03da52fd4a5e160f98c1eafad9fa566a7",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/gen-unicode/src/scripts.rs",
+      "sha256": "4116e79943da603cdb090483bf80fa868b32fb388d9f6cc23426f4f968738552",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/gen-unicode/src/string_properties.rs",
+      "sha256": "158676297d36b79e4e6458ed16105f1c70d8ae280bbf9f390f1e9e562b202fb1",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/gen-unicode/src/uppercase.rs",
+      "sha256": "8bf974d0ed6d9f9c3b15f0e33c39a9a99e64d4c0e872138d37a642d81a5f13ca",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/regress-tool/Cargo.toml",
+      "sha256": "4d11ba51a0cde7fa3c20832c36e191ad518835fef702d3f491ba968676a81b56",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/regress-tool/src/regress-tool.rs",
+      "sha256": "6b0f4a4ed44eb38a98792ad2fb7a5fb9c40894ae4b2a690be50ba36b8d4b1be2",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/api.rs",
+      "sha256": "92f739e4dfe08061897e2a78d8a2b949d73f0dbab8dbc60fe90151707789c591",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/bytesearch.rs",
+      "sha256": "c02f6ed127dc9922caeeb2ed1c2407f3d3b12856943d7867abdbc9202d1caee1",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/charclasses.rs",
+      "sha256": "d24c34f6e61339110b197701ebc453df86f327628838c5c8a30436da0e7cafa4",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/classicalbacktrack.rs",
+      "sha256": "9e59b64414f24b59941e4593c0404282bec114d44c843d42cfd2f71d2683cb2c",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/codepointset.rs",
+      "sha256": "9eb50732e6e28672829649fafa97bde8aa1ceef18b11e7804f2ca8b9f2f8be95",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/cursor.rs",
+      "sha256": "9d2a62814f2d8c6c5f0b68f5d1175dea2678f8259bf87c185c83b963bac1f0fd",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/emit.rs",
+      "sha256": "35e54c835a6815a312b97f89f1ba5b21ab0a2835fc70f14658da6b731dbcd6f6",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/exec.rs",
+      "sha256": "b75773db31eb8cdeda8e1bd030cc58a803ed592253d706e4e999a6cd1e7353d5",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/indexing.rs",
+      "sha256": "71aced2efce9aa57449e143445846c62fa13dcee9e088eafeb0950255962678c",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/insn.rs",
+      "sha256": "81a06fba7587db00406273be34c2d17950688ee77a88a82abb204f15443426f6",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/ir.rs",
+      "sha256": "ea704141a50e589308a0e090a58faa64be3f2d3a01833c196f12059037c06fda",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/lib.rs",
+      "sha256": "7adef6554dc12c22cf9cabc8691fc76b5db8170e98c2fb6352872566ac11174f",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/literal.rs",
+      "sha256": "541dbcc545d4cd96acb52bf05649f7c0384bc8c7bbe013a282fb94e6f079ec5b",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/matchers.rs",
+      "sha256": "f96a4c83a34e81da4c928ec1f7b78d71e1a16fb0bde83e33cdaf677f5f70d278",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/optimizer.rs",
+      "sha256": "23f18b7ea8af1e5bcd9e03c8ad947e659cb319d8f21595dec880a3c0ed975e0a",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/parse.rs",
+      "sha256": "eec93b59b7c3946d338b0603ab3b10200cbb86e803de2ffb43eaac995e231136",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/pikevm.rs",
+      "sha256": "c7d0b5f063805ca26c61bc4a6f208e1b6096a5cc4b5868758f422763eaa6d313",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/position.rs",
+      "sha256": "725f869a8de2ec1d6162afc720647f779dfcd996da1c85882521269af819fe16",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/scm.rs",
+      "sha256": "7f214ac019fe71ebd824ec02014da31139f4b64610059cfcce642cfd9db6c507",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/startpredicate.rs",
+      "sha256": "b0305887ea12442a96b2867a5c0c7d13e56ae42b80bf618ece61e7dd1bcc8e68",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/types.rs",
+      "sha256": "c8f4b70a2762fcf55843ce441f4c21b3f9691d9a5308a673c1139303966746bb",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/unicode.rs",
+      "sha256": "61cd57b07ef5823bfaea7b3f52a81d045173007fad71b8336a69ab2adacb215a",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/unicodetables.rs",
+      "sha256": "e4703653bdf6bbb725e3f2d3c53bae3f22780368c8cbfcad38d384dd0f17bc6e",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/src/util.rs",
+      "sha256": "925367315fc52634e3affa815bc561c82fa5c3c83a15aa0e3042ad937a464e74",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/anchored_optimization.rs",
+      "sha256": "8d9778dd61e5b3b3d5e1afc12c35d01801c6cd3ffeef5e2e4be8d7332947fd08",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/backtrack_budget.rs",
+      "sha256": "7341a404cf435fa989ba47f9194ebb6d8a73eb85b6693a457f6a45216d79429a",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/common/mod.rs",
+      "sha256": "60313f000cf883c0121e23ecfe0ec337ac658739133942b3da085e2019f9106f",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/escape_tests.rs",
+      "sha256": "f32c1dad22dcf31055e427f873684c910ddab0c063ff9b7334534b00839db3de",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/pattern_tests.rs",
+      "sha256": "ec3c8908c45f88e863f3cef48127f3868c27ea9fe8488ae65263d13d32ff0d30",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/pcre_tests.rs",
+      "sha256": "39a42cb8318d083b1a2594fcbc52f923be55c918e223eda82bcbd1e402add998",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/replacement_tests.rs",
+      "sha256": "e6ca395828542bdb1634e1cb70291572e11a4e42951d2478d797a734cde5488c",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/syntax_error_tests.rs",
+      "sha256": "fabc4547f68fcded182870b98fa819291d8b64cc1537f285caedb786a9f959b7",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/tests.rs",
+      "sha256": "f7405e3bf234084036a73d0e054d9ab71d5783495d41a17732891f67dd2fd260",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/unicode_property_escapes.rs",
+      "sha256": "b07c73fc9209c3c43c2265b55a2a5a865fbd71fed303c78581ae5c849692f2ac",
+      "matched": true
+    },
+    {
+      "file": "third-party/regress/tests/unicodesets.rs",
+      "sha256": "1b0a949777ded8e434a33c926f196d3edc73b1301aba8ea31dac13b6922e64d4",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/Cargo.toml",
+      "sha256": "70fc95979c55b69a6c44987953d5859c2a030ed301b6b5ec269437bbe0c61c6c",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/benches/bench.rs",
+      "sha256": "b570c357c457cf43c0d7d683e8c7e97e963844d866bc3df9299cab83c4230fb9",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/examples/upstream_benchmark.rs",
+      "sha256": "ae9f51d8ddd41a263f07bc2ed8503f04b6a1c8566f26bec7891f50d0deba0f34",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/buffer/mod.rs",
+      "sha256": "47b36d55d2e7f977893aefcf47e8eeacee65196e2282a1585067046e86a74cb8",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/common.rs",
+      "sha256": "cae347e97fc30c50a964f80425e8c3e69ece2b8ab81f9b81b9baa7fcec64a001",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/d2s.rs",
+      "sha256": "f2612785ebe510c935b979dc5f66f6b8c818ca8a4cf0364ce1fe1d41fea39592",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/d2s_full_table.rs",
+      "sha256": "9b0186acbc6d65dc55c17e16125be707a2bfb920d22b35d33234b4cc38566a36",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/d2s_intrinsics.rs",
+      "sha256": "bbf15472f4299942312e80a992cbc2f47f85f17ed193f24084534434dbfb26e7",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/d2s_small_table.rs",
+      "sha256": "db3bbe4002d816785b0ee233c330f19fa7002f31dab47dc6f67b266996fe3ae4",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/digit_table.rs",
+      "sha256": "02351ca54cb8cb3679f635115dd094f32fd91750e9f66103c1ee9ec3db507072",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/f2s.rs",
+      "sha256": "cb96f61d8c6c6c941803a7b629f2bf835e1a20ad9d3e5d3454a30ed3391c3515",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/f2s_intrinsics.rs",
+      "sha256": "4667c34aab7637f2330df7bbd4c178c0ba1dd5854ff15b9a36a96fd5f527fb66",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/lib.rs",
+      "sha256": "6f16729a39d8358cf11b8a024046bfd7b2c25ae9240403148a32379028455417",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/parse.rs",
+      "sha256": "7f8aa7e007caf5dcb03abdc4238157724bb742d0823a3b8a01646fa1f1129154",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/exponent.rs",
+      "sha256": "680135df359bf8a9b5236a6bd4fb29e90eec0612e351c15aaf5243cc4974ed32",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/mantissa.rs",
+      "sha256": "40cb00efe1c3fab559ab58389bd519d556548aa18fb261a90dd48138911d039b",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/mod.rs",
+      "sha256": "3d02810bb9bf62756591a46a1a0aef1729ff8d94443b268a147dcd65a5ca6b2b",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/to_fixed/d2fixed_full_table.rs",
+      "sha256": "fc506ea6d26dabdc92c16a14079a6054dd59ea64704c5def292508535ff248ad",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/to_fixed/mod.rs",
+      "sha256": "febcdeca16733977cd5aa94111852e7ea2f6dc5893026d0d557dcddc58a0968c",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/s2d.rs",
+      "sha256": "74864504532593e3bb70db70fd74e724405670f2f4103f679151db00962ec81c",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/s2f.rs",
+      "sha256": "f3f42063dc69540cbbfd81f9b2b8e25160a0808f66bcd05da5c06f88e02c2a1f",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/common_test.rs",
+      "sha256": "8a7d1a611944ff4540c1fd8c8f310a989c1e844a1c8f4be502882532e3cb7b89",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/d2s_intrinsics_test.rs",
+      "sha256": "15d11b70810bf04f33f8b185bf7f010a436a4edb47fa4648b1a036568c2c5d15",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/d2s_table_test.rs",
+      "sha256": "df5e2f2a0411a5f8506a06b579a2dda3ee85b5867d3a9fa06a6b3dcfa2b825e4",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/d2s_test.rs",
+      "sha256": "570a6bcfb6fe3a3c3593f6dbf6bd2e6240668141574f8f3d436d6dc595dc41b1",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/exhaustive.rs",
+      "sha256": "834a38c3a2daa66e3ae8f4196878757e5a3a1fff4cd3293227921e7b19caed11",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/f2s_test.rs",
+      "sha256": "0f1ab6f5d2cd9955c4765032c8ae6897ada203c9a3da93c74637a99099ced327",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/macros/mod.rs",
+      "sha256": "8e90a674b3960f9516cb38f4eea0e0981ff902c3b33572ebdb6c5528d3ffa72c",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/s2d_test.rs",
+      "sha256": "03213cc3f984f84be5e17f6bd86d431afaeb27eb2bfaf88f3bab1111dbbe2bc5",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/s2f_test.rs",
+      "sha256": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/to_fixed.rs",
+      "sha256": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
+      "matched": true
+    },
+    {
+      "file": "Cargo.toml",
+      "sha256": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
+      "matched": true
+    },
+    {
+      "file": "Cargo.lock",
+      "sha256": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
+      "matched": true
+    },
+    {
+      "file": "config/source-oracle-runtime.json",
+      "sha256": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+      "matched": true
+    },
+    {
+      "file": "tools/rust-port/compile.mjs",
+      "sha256": "b1c715bab999daa2f8f2a648e412006973ab3a7f0fcc0d15a7fdc0a4e186cd35",
+      "matched": true
+    },
+    {
+      "file": "tools/rust-port/expressions.mjs",
+      "sha256": "f76aa3241144ac33e031928493463c082bffec3f84dee8314f1e8e64a6751134",
+      "matched": true
+    },
+    {
+      "file": "tools/rust-port/bindings.mjs",
+      "sha256": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
+      "matched": true
+    },
+    {
+      "file": "tools/rust-port/statements.mjs",
+      "sha256": "c4a8b00c71751c7c5eeb1b83d9b5ac0dcee7ed821dc15f0e7d956bc5fddaf7da",
+      "matched": true
+    },
+    {
+      "file": "tools/rust-port/check-property-slots.mjs",
+      "sha256": "6efc9b13811bd959ac5e8ac1bb6e874fd1a4274425987705796d31baa892d2d0",
+      "matched": true
+    }
+  ],
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "generatedRustSha256": "e2ef311e7c6fabd0ab36d27f0221116211dc843c245adc84f6a79a3c946ed467",
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/candidate-property-slots/work/rust-port-property-slots/check",
+    "sha256": "62a8fb861865fd9ffbde8f35c1a8ba0c96dfa1e1e8ca8418cc5a7dafd45bc804"
+  },
+  "rustc": {
+    "file": "/workspace/afkarena-simx/work/candidate-property-slots/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
+  },
+  "compileArgs": [
+    "--edition=2024",
+    "-O",
+    "/workspace/afkarena-simx/work/candidate-property-slots/work/rust-port-property-slots/main.rs",
+    "-L",
+    "dependency=/workspace/afkarena-simx/work/candidate-property-slots/target/release/deps",
+    "--extern",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-property-slots/target/release/libjs_runtime.rlib",
+    "-o",
+    "/workspace/afkarena-simx/work/candidate-property-slots/work/rust-port-property-slots/check"
+  ],
+  "archive": {
+    "file": "benchmarks/validation/rust-generated-property-slots.outputs.json.gz",
+    "sha256": "cb47005ffc9e8eb5bb85fba2d54401169e30207f8e009666066437164641c9fa"
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "Same generated source entry runs with guarded own-data slot caching OFF and ON. Mutation, getters, prototypes, receiver identity, exotic objects and raw numeric bits compare to independent source JS. This is not a complete battle or unrestricted ECMAScript qualification."
+}

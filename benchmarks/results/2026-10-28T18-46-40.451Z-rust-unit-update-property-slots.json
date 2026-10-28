@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "passed": true,
+  "source": {
+    "version": 1,
+    "source": "src/srcmodule/game_battle.js",
+    "sourceName": "ed.Unit.update",
+    "start": 97200,
+    "end": 102984,
+    "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+    "status": "experimental_native_control_flow_requires_mechanics_hooks_and_differential_validation",
+    "formalProof": false,
+    "domain": [
+      "Number-valued numeric fields; missing optional numbers explicitly represented",
+      "Dense valid unit/skill/buff IDs with stable object identity and fixed source prototypes",
+      "Unit.isAlive is the original source implementation; overrides require a separate dispatch path",
+      "Effects use stable identities and predicate views that host buff mechanics must keep synchronized",
+      "Every required hook implements the corresponding source method; no silent defaults",
+      "Vector aliases and replacements are preserved through arena handles",
+      "Non-escaping fresh edpMult result uses an inline vector; global edpZero retains arena identity"
+    ],
+    "pending": [
+      "Full unit differential trace over all branches and callback mutations",
+      "Integration of skill/AI/buff/damage implementations into one world",
+      "Complete realistic 5v5 native battles; this module does not establish battles/second"
+    ]
+  },
+  "sourceUnitBodyUnchanged": true,
+  "updatesPerTrial": 3000,
+  "trialsPerVariant": 3,
+  "warmupUpdates": 5,
+  "rows": [
+    {
+      "label": "baseline",
+      "trial": 0,
+      "elapsedNs": "359345367",
+      "updates": 3000,
+      "updatesPerSecond": 8348.514480778042,
+      "events": 45068
+    },
+    {
+      "label": "cached",
+      "trial": 0,
+      "elapsedNs": "322091955",
+      "updates": 3000,
+      "updatesPerSecond": 9314.110313621462,
+      "events": 45068
+    },
+    {
+      "label": "cached",
+      "trial": 1,
+      "elapsedNs": "315201507",
+      "updates": 3000,
+      "updatesPerSecond": 9517.720992368226,
+      "events": 45068
+    },
+    {
+      "label": "baseline",
+      "trial": 1,
+      "elapsedNs": "365962201",
+      "updates": 3000,
+      "updatesPerSecond": 8197.567923141876,
+      "events": 45068
+    },
+    {
+      "label": "baseline",
+      "trial": 2,
+      "elapsedNs": "357459580",
+      "updates": 3000,
+      "updatesPerSecond": 8392.5572787838,
+      "events": 45068
+    },
+    {
+      "label": "cached",
+      "trial": 2,
+      "elapsedNs": "326181194",
+      "updates": 3000,
+      "updatesPerSecond": 9197.342014757602,
+      "events": 45068
+    }
+  ],
+  "totals": {
+    "baseline": {
+      "trials": 3,
+      "totalUpdates": 9000,
+      "totalElapsedNs": "1082767148",
+      "aggregateUpdatesPerSecond": 8312.036449040841
+    },
+    "cached": {
+      "trials": 3,
+      "totalUpdates": 9000,
+      "totalElapsedNs": "963474656",
+      "aggregateUpdatesPerSecond": 9341.190184871868
+    }
+  },
+  "observedThroughputRatio": 1.123814872822145,
+  "allOrderedEventsAndSelectedStateBitsMatched": true,
+  "eventCountPerTrial": 45068,
+  "oracle": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ]
+  },
+  "cacheLocalBindings": {
+    "baseline": true,
+    "cached": true
+  },
+  "staticLiteralStrings": {
+    "baseline": true,
+    "cached": true
+  },
+  "literalPropertySlots": {
+    "baseline": false,
+    "cached": true
+  },
+  "sameGeneratedSource": true,
+  "sameRuntime": true,
+  "inputs": {
+    "tools/rust-port/benchmark-unit-update-property-slots.mjs": "a746285bbdf4da7b5b17145d3b23ec982048f83888697971f305177fc28e994b",
+    "tools/rust-port/compile.mjs": "b1c715bab999daa2f8f2a648e412006973ab3a7f0fcc0d15a7fdc0a4e186cd35",
+    "tools/rust-port/expressions.mjs": "f76aa3241144ac33e031928493463c082bffec3f84dee8314f1e8e64a6751134",
+    "tools/rust-port/statements.mjs": "c4a8b00c71751c7c5eeb1b83d9b5ac0dcee7ed821dc15f0e7d956bc5fddaf7da",
+    "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
+    "tools/native-unit-speeder-cases.mjs": "e15a39d0908c1f673dc172a28855209343ab9d8128cd59703e3655d1a122ea0c",
+    "config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
+    "crates/js-runtime/src/closures.rs": "049cce8cee14d239fc5ac05bc5db6761b45b30018af7474db5186c9d4539c47b",
+    "crates/js-runtime/src/collections.rs": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
+    "crates/js-runtime/src/copy_obj.rs": "d0762d0a2eb22fcfe90be4428a28fa4a0eb6b6737ebd70dfeb1be55efd0fbee2",
+    "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+    "crates/js-runtime/src/diagnostics.rs": "7a22261fee149ee9776723b5cb9790bca62c45c4b29a7338d166e81a5490a898",
+    "crates/js-runtime/src/env.rs": "81bd3ad26c1c2560d8df63b1985aecf620fd56f3269fc60469ca57762b727043",
+    "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "d4b93d482d46cb4e0e4b6983ec9004f8c3d4fa990e98cb6f75696d8a1dea45fa",
+    "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "8635bf10297dfd4ea34ddfac0c02f4306e95f40875d4b1cc7cc8302a428f3117",
+    "crates/js-runtime/src/lib.rs": "74b61b2cafdc472fdce16fe61aea599137b48a61339c8aa58b3b09dd3c30da4f",
+    "crates/js-runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+    "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/property_slots.rs": "85a0cc8f1027097e08f84af852b0ea3ec025a4744ce801574539347f587bcba0",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "5d32340450f07448eb376d3ec0b6cc85dc413ff8bf90c659c92b6e4a6f8a7564",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "b9bd175f82739fcbdfc794efc02da2fb9c24316bf9e905a61b65e05e6ed2bc07",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7"
+  },
+  "binarySha256": "35a0169658931d5004eb3f053bf1b3fa33fa90d4f5d36bd6898507205b52d260",
+  "buildArgs": [
+    "build",
+    "--release",
+    "--manifest-path",
+    "/workspace/afkarena-simx/work/candidate-property-slots/work/rust-unit-update-property-slots/Cargo.toml"
+  ],
+  "executionWallMs": 3042.547812999999,
+  "artifacts": [
+    {
+      "label": "fixture-generated",
+      "file": "benchmarks/results/2026-10-28T18-46-40.451Z-rust-unit-update-property-slots.fixture-generated.gz",
+      "sha256": "fd3f08531f05aea1b973d4b73789816c7be287a6b55173d81981b3369758caa2",
+      "uncompressedSha256": "923bf5eb42ed3a137f337ffb0f9ec5f603d45686ea818b5640f6abd06b6d36cc",
+      "uncompressedBytes": 260669
+    },
+    {
+      "label": "fixture-manifest",
+      "file": "benchmarks/results/2026-10-28T18-46-40.451Z-rust-unit-update-property-slots.fixture-manifest.gz",
+      "sha256": "c58d034ae37a3965e16a53a5930d8350c4b7528fb28143e3e6791b66f210720d",
+      "uncompressedSha256": "76f9153b78c0db2a6e81a437735b099d6cb21273e70d1e0b2fe40af7adebe40b",
+      "uncompressedBytes": 11299
+    },
+    {
+      "label": "source",
+      "file": "benchmarks/results/2026-10-28T18-46-40.451Z-rust-unit-update-property-slots.source.gz",
+      "sha256": "87bf30d0c4991e656be1fe5e9aeb7e7f8a67cb863deff154ef2426df5c7d5996",
+      "uncompressedSha256": "20c5860ce0833f389d40a8a6bc4436fcf2a63c3979ef6728e620773b6f7e237d",
+      "uncompressedBytes": 10340
+    },
+    {
+      "label": "actual",
+      "file": "benchmarks/results/2026-10-28T18-46-40.451Z-rust-unit-update-property-slots.actual.gz",
+      "sha256": "b4cd5415897c192076b298dfdff4563e6cb057110e9d60cf3b5ab6e5a995d616",
+      "uncompressedSha256": "77c732214185073f9d28df5e9547c10aba5243e3b422829e0cb5c7c32dc3559c",
+      "uncompressedBytes": 7258980
+    },
+    {
+      "label": "expected",
+      "file": "benchmarks/results/2026-10-28T18-46-40.451Z-rust-unit-update-property-slots.expected.gz",
+      "sha256": "48d308e330172876c14b33a0934679a55e75496f5556de019895c31d260d1bc7",
+      "uncompressedSha256": "c44fa3dd5c768d44a961425533b52d49be21065415169471759d2152f8e59eef",
+      "uncompressedBytes": 1209809
+    }
+  ],
+  "qualifiesFor10000Target": false,
+  "scope": "Original source Unit.update compiled to pure Rust, compared against pinned jitless source with the same explicit component fixture callbacks. Timed windows include every callback and the unchanged raw-bit observer. A single generated entry executes with property-slot caching OFF and ON. This is original-controller updates/second, NOT battles/second or a complete mechanics backend. Startup, fixture construction, five warmup updates, reset and final JSON snapshot are excluded. Arena lifetime/GC and complete realistic battles remain unqualified."
+}
