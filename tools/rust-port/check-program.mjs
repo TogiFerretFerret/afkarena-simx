@@ -45,7 +45,7 @@ const binaryBefore=sha(await readFile(binary));
 for(const unit of manifest.units)assert.equal(sha(await readFile(unit.file)),unit.sourceSha256);
 const tracked=new Map([[manifestFile,sha(manifestBytes)]]);
 async function track(file){const absolute=resolve(root,file);tracked.set(absolute,sha(await readFile(absolute)));}
-async function trackTree(directory){for(const entry of await readdir(resolve(root,directory),{withFileTypes:true})){const file=directory+'/'+entry.name;if(entry.isDirectory())await trackTree(file);else if(entry.name.endsWith('.rs')||entry.name==='Cargo.toml')await track(file);}}
+async function trackTree(directory){for(const entry of await readdir(resolve(root,directory),{withFileTypes:true})){const file=directory+'/'+entry.name;if(entry.isDirectory())await trackTree(file);else if(entry.name.endsWith('.rs')||entry.name==='native_battle_run.js'||entry.name==='Cargo.toml')await track(file);}}
 for(const unit of manifest.units)await track(unit.file);
 // The fixed harness loads its immutable table bundle through this binding.
 // Extract its literal path without executing source or guessing a workspace path.
@@ -74,6 +74,7 @@ if(buildProofRequested){
  for(const [file,digest] of Object.entries(verification.inputs))if(!tracked.has(file))tracked.set(file,digest);
 }
 const timeout=Number(option('--timeout-ms','600000'));
+for(const file of Object.keys(manifest.sources??{}))await track(file);
 const run=(command,argv,env)=>{
  const begin=performance.now();
  const result=spawnSync(command,argv,{cwd:root,env,encoding:'utf8',timeout,maxBuffer:128*1024*1024});

@@ -26,7 +26,7 @@ async function track(file){const absolute=resolve(root,file);inputs.set(absolute
 async function tree(directory,generated=false){
  for(const entry of (await readdir(directory,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name))){
   if(entry.isDirectory()){if(entry.name!=='target'&&entry.name!=='.git')await tree(resolve(directory,entry.name),generated);}
-  else if(entry.name.endsWith('.rs')||entry.name.endsWith('.utf16le')||entry.name==='Cargo.toml'||entry.name==='Cargo.lock'||generated&&entry.name==='manifest.json')await track(resolve(directory,entry.name));
+  else if(entry.name.endsWith('.rs')||entry.name.endsWith('.utf16le')||entry.name==='native_battle_run.js'||entry.name==='Cargo.toml'||entry.name==='Cargo.lock'||generated&&entry.name==='manifest.json')await track(resolve(directory,entry.name));
  }
 }
 async function snapshot(){
@@ -36,6 +36,7 @@ async function snapshot(){
  for(const file of ['Cargo.toml','Cargo.lock','rust-toolchain.toml','package.json','package-lock.json','config/source-oracle-runtime.json','tools/rust-port/build-program.mjs','tools/rust-port/program-host.rs','tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])await track(file);
  for(const file of [cargo,rustc])await track(file);
  for(const unit of manifest.units)await track(unit.file);
+ for(const file of Object.keys(manifest.sources??{}))await track(file);
  for(const file of externalInputs)await track(file);
  return Object.fromEntries(inputs);
 }

@@ -2,7 +2,7 @@ load("@prelude//:rules.bzl", "rust_library")
 
 rust_library(
     name = "js_runtime",
-    srcs = glob(["src/**/*.rs"]),
+    srcs = glob(["src/**/*.rs", "src/native_battle_run.js"]),
     crate = "js_runtime",
     crate_root = "src/lib.rs",
     edition = "2024",
