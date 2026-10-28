@@ -81,6 +81,32 @@ function forInStatement(ctx,node){
  }else{const ref=emitReference(node.left,ctx);writeReference(ref,key,ctx);}
  loopBody(local,node.body);ctx.emit('}');normal(ctx);
 }
+function forOfStatement(ctx,node){
+ if(node.await)unsupported(node,'async iteration is not implemented');
+ if(node.left.type==='VariableDeclaration')declarationKind(node.left);
+ let head=ctx;
+ if(node.left.type==='VariableDeclaration'&&node.left.kind!=='var'){const env=ctx.temp(`rt.child_block_env(${ctx.env})`);head=child(ctx,{env});declareLexicals(head,[node.left]);}
+ const iterable=head.expression(node.right),iterator=ctx.fresh('for_of_iterator');ctx.emit(`let mut ${iterator} = rt.iterator(${iterable})?;`);
+ ctx.emit('loop {');const value=ctx.fresh('iteration_value');
+ // An abrupt next()/value read is NOT IteratorClosed by ForIn/OfBodyEvaluation.
+ ctx.emit(`let Some(${value}) = rt.iterator_next(&mut ${iterator})? else { break; };`);
+ const result=capture(ctx,()=>{
+  let local=ctx;
+  if(node.left.type==='VariableDeclaration'){
+   if(node.left.declarations.length!==1)unsupported(node.left,'for-of requires exactly one declaration');
+   const declaration=node.left.declarations[0];if(declaration.init)unsupported(declaration,'initialized for-of binding is invalid');
+   if(node.left.kind!=='var'){const env=ctx.temp(`rt.child_block_env(${ctx.env})`);local=child(ctx,{env});declareLexicals(local,[node.left]);}
+   bindPattern(local,declaration.id,value,node.left.kind);
+  }else{const reference=emitReference(node.left,ctx);writeReference(reference,value,ctx);}
+  const completion=emitStatement(node.body,child(local,{pendingLabels:[]}));ctx.emit(`Ok(${completion})`);
+ });
+ const target=ctx.fresh('continue_label');ctx.emit(`match ${result} {`);
+ ctx.emit('Ok(Completion::Normal) | Ok(Completion::Continue(None)) => {},');
+ ctx.emit(`Ok(Completion::Continue(${target})) if ${handlesLabel(ctx,target)} => {},`);
+ const abrupt=ctx.fresh('iterator_abrupt');ctx.emit(`${abrupt} => {`);
+ const closed=ctx.temp(`rt.iterator_close(&mut ${iterator}, ${abrupt})?`),label=ctx.fresh('break_label');ctx.emit(`match ${closed} {`);
+ ctx.emit('Completion::Break(None) => break,');ctx.emit(`Completion::Break(${label}) if ${handlesLabel(ctx,label)} => break,`);ctx.emit('other => return Ok(other),');ctx.emit('}');ctx.emit('}');ctx.emit('}');ctx.emit('}');normal(ctx);
+}
 function switchStatement(ctx,node){
  const discriminant=ctx.expression(node.discriminant),env=ctx.temp(`rt.child_block_env(${ctx.env})`),local=child(ctx,{env,pendingLabels:[]});
  const statements=node.cases.flatMap(entry=>entry.consequent);declareLexicals(local,statements);instantiateFunctions(ctx,local,statements,env);
@@ -115,7 +141,7 @@ export function emitStatement(node,ctx){
    case 'ExpressionStatement':ctx.expression(node.expression);normal(ctx);break;
    case 'BlockStatement':block(ctx,node);break;
    case 'VariableDeclaration':declaration(ctx,node);break;
-   case 'FunctionDeclaration':normal(ctx);break; // Instantiated by the lexical planner.
+   case 'FunctionDeclaration':{if(ctx.annexBDeclarations?.has(node)){const value=ctx.temp(`rt.lookup(${ctx.env}, ${quote(node.id.name)})?`);ctx.emit(`rt.assign(${ctx.functionEnv??ctx.env}, ${quote(node.id.name)}, ${value}, false)?;`);}normal(ctx);break;} // Lexical instantiation precedes execution; Annex B's outer alias does not.
    case 'ReturnStatement':{const value=node.argument?ctx.expression(node.argument):'Value::Undefined';ctx.emit(`Ok(Completion::Return(${value}))`);break;}
    case 'ThrowStatement':{const value=ctx.expression(node.argument);ctx.emit(`Err(JsError::Throw(${value}))`);break;}
    case 'BreakStatement':ctx.emit(`Ok(Completion::Break(${node.label?`Some(${quote(node.label.name)})`:'None'}))`);break;
@@ -125,7 +151,7 @@ export function emitStatement(node,ctx){
    case 'DoWhileStatement':ctx.emit('loop {');loopBody(ctx,node.body,()=>{const condition=ctx.expression(node.test);ctx.emit(`if !rt.truthy(${condition}) { break; }`);});ctx.emit('}');normal(ctx);break;
    case 'ForStatement':forStatement(ctx,node);break;
    case 'ForInStatement':forInStatement(ctx,node);break;
-   case 'ForOfStatement':unsupported(node,'iterator protocol and IteratorClose are not implemented');break;
+   case 'ForOfStatement':forOfStatement(ctx,node);break;
    case 'SwitchStatement':switchStatement(ctx,node);break;
    case 'TryStatement':tryStatement(ctx,node);break;
    case 'LabeledStatement':{if(node.body.type==='FunctionDeclaration')unsupported(node,'labeled function declaration requires Annex B instantiation');const label=node.label.name,completion=emitStatement(node.body,child(ctx,{pendingLabels:[...labels(ctx),label]}));ctx.emit(`match ${completion} { Completion::Break(Some(${quote(label)})) => Ok(Completion::Normal), other => Ok(other) }`);break;}

@@ -1,13 +1,13 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 28,
+  "cases": 40,
   "firstDifference": null,
   "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
   "sourceInputsAtFinish": [
     {
       "file": "crates/js-runtime/Cargo.toml",
-      "sha256": "dba12785d4d09b17f4142f7c1857fe29ae29c8955c7c1a11bfba2ef2e6c31d10",
+      "sha256": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
       "matched": true
     },
     {
@@ -17,12 +17,12 @@
     },
     {
       "file": "crates/js-runtime/src/builtins.rs",
-      "sha256": "26d6606da12c9e57b50d1a23cdacb9dcff2addf25158c3e29e5b2779e0b9d635",
+      "sha256": "c969dc1497e19cfdeb6fb167b6889751de1d5ea6eb5170790b0dab202e8e81ad",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "d2f522e4160b826a07811a0bc9305c38b3f72c1d0930406da6b262e707b51b06",
+      "sha256": "922229364f8687e6dec675dbf09a929dcc788fc009d578f82bf7dbbb02974136",
       "matched": true
     },
     {
@@ -32,32 +32,52 @@
     },
     {
       "file": "crates/js-runtime/src/heap.rs",
-      "sha256": "ea31816d97fcf6aea99d82e0b3195a1b85f9c4f37e20d5f60cd9e793f9f1df48",
+      "sha256": "20013b7cd2521e1644fcf7906421b5a52a5a0704fe9ec366fe37e23f689b5feb",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/iterators.rs",
+      "sha256": "94f2136f525bd49671c5ebc8ae42a68781dbb3c4e2ef331d3843301560404ea4",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/json.rs",
+      "sha256": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "dd44aaf6793d76814e34fdc18c77871fdaf169f9476ffa789a742b14a87b17f9",
+      "sha256": "ae0d11acddc2a4aba737b3e1ee782d83e5424952940f5dc56dd2e888764ff9eb",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/math.rs",
-      "sha256": "685dadef7ae94184088e00964c252659f17f461cae70ebf9f05501abc5630b35",
+      "sha256": "8c1f3c1c66ed45c44352207033f107f9c747747db7507e4f8066d854abea2781",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/regex.rs",
+      "sha256": "5f68065ce678c7c021800ddc8c2d117371379ce853088858f49270f964a695e9",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "9ad4e043ea78e16649994cc0738e6701b6d21746597de91724331f8401ec4085",
+      "sha256": "c1f24c79ae83c544b2fd8e19f3d763f327d45097f2823c6e21a023cea2899895",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/value.rs",
-      "sha256": "8014bdc99cee41920a4eeea63362d1ebb035231c8b88a65263b979cac2be653c",
+      "sha256": "7f6e0d0830fcedcc1036e3fcf598215ccd3b16dfc86404c5e56df46d5b5abbf0",
       "matched": true
     },
     {
       "file": "crates/js-runtime/tests/ordinary_heap.rs",
       "sha256": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/regexp_heap.rs",
+      "sha256": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
       "matched": true
     },
     {
@@ -377,12 +397,12 @@
     },
     {
       "file": "Cargo.toml",
-      "sha256": "962eb7445e8513103bae4fdec6e14a56bd31cc54773c4d54ced4e357993f011e",
+      "sha256": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
       "matched": true
     },
     {
       "file": "Cargo.lock",
-      "sha256": "659ea413256175053bbd84cd602a7dd588ccff49737ef24d080361f824011e0c",
+      "sha256": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
       "matched": true
     },
     {
@@ -392,22 +412,22 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "f3faf1f5418ac47ba48ecaca101c58008a8014af9c283d5886b0c59940c7fa6a",
+      "sha256": "d9f2d8b1b04e32a019109c215865e247b0952aa150352d4a8d09eab89f7883ca",
       "matched": true
     },
     {
       "file": "tools/rust-port/expressions.mjs",
-      "sha256": "3bc4cf1fea126a649bbf9995531a7dcc9b31c93bcd2c678180c1391982b321c9",
+      "sha256": "2b68a0ee1d2236e768c0ca99118e1c398213e647dd2d9105adc59154f5a1952e",
       "matched": true
     },
     {
       "file": "tools/rust-port/statements.mjs",
-      "sha256": "d7ef2e86f5583cb6bc0d4b981809da2d5146963e295ed8248c3a4c8536033212",
+      "sha256": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
       "matched": true
     },
     {
       "file": "tools/rust-port/check-control-flow.mjs",
-      "sha256": "ed9cb2ef6768a4b0d520015f85aa2f508a0cd9b58c3efd86bfcb7a8ad371c9e0",
+      "sha256": "bb202e7e1a9cd62a0f871b6cce856c5211fdad347753804853db3cadb6665dea",
       "matched": true
     }
   ],
@@ -429,10 +449,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "039d62134e4a96ae797d427de21f01162932fd32f6b73ba1ceee98d39c65d614",
+  "generatedRustSha256": "2c8101aa613732c947f2385f47dbf730588bef8177d647e06a216245052c7836",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-control/check",
-    "sha256": "18488792b0cdca9ec2b5844a0a8c3e694dd28fb8698a08ab89596a7f4083b30c"
+    "sha256": "2b193857ab0bc773e44ff57c0f6088307e0251528c17465498809a007b1f84eb"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
@@ -451,7 +471,7 @@
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-control-flow.outputs.json.gz",
-    "sha256": "8756f02653ce23f8006bc218e92c554fac78bb7b2b926873424ff9445ec65876"
+    "sha256": "1772db0aa58583b2e82ed16e542fe3665a7fa008f29d164e7db49b574aacc63e"
   },
   "qualifiesFor10000Target": false,
   "scope": "Directed statement completion, lexical environment, loop, switch, throw/catch/finally and closure-capture cases. This is not a complete battle or unrestricted ECMAScript qualification."

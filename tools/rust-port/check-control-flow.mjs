@@ -38,6 +38,19 @@ const cases=[
  ['object-binding-catch','function(){try{throw {a:{b:7}};}catch({a:{b}}){return b;}}'],
  ['object-binding-default-name','function(){var {foo=function(){}}={};return foo.name;}'],
  ['object-binding-computed-order','function(){var log="";var obj={get x(){log+="g";return 3;}};var {[(log+="k","x")]: value}=obj;return log+value;}'],
+ ['annex-b-textual-alias','function(){var f="old",outer=function(){return f;},before;{before=outer();function f(){return 2;}}return before+typeof f+f();}'],
+ ['annex-b-false-branch-hoist','function(){if(false){function f(){}}return f;}'],
+ ['annex-b-lexical-conflict','function(){let f=1;{function f(){return 2;}}return f;}'],
+ ['annex-b-last-duplicate','function(){var a;{a=f();function f(){return 1;}function f(){return 2;}}return a*10+f();}'],
+ ['strict-block-no-leak','function(){"use strict";{function f(){return 2;}}try{return f;}catch(e){return e.name;}}'],
+ ['for-of-array-continue','function(){var s=0;for(var x of [1,2,3]){if(x===2)continue;s+=x;}return s;}'],
+ ['for-of-live-array-length','function(){var a=[1,2],s=0;for(var x of a){s+=x;if(x===1)a[2]=3;}return s;}'],
+ ['for-of-string-code-points','function(){var s="";for(var x of "A😀B")s+=x.length;return s;}'],
+ ['for-of-let-captures','function(){var f0,f1,n=0;for(let x of ["a","b"]){if(n++===0)f0=function(){return x;};else f1=function(){return x;};}return f0()+f1();}'],
+ ['for-of-head-tdz','function(){let x=[1];try{for(let x of x){}}catch(e){return e.name;}return "miss";}'],
+ ['for-of-return-finally','function(){var s=0;for(var x of [1,2,3]){try{return x;}finally{s=x+3;return s;}}}'],
+ ['for-of-labeled-continue','function(){var s=0;outer:for(var i=0;i<3;i++){for(var x of [1,2]){s++;continue outer;}}return s;}'],
+
 
 ];
 const tracked=new Map();async function bind(file){const bytes=await readFile(resolve(root,file));tracked.set(file,sha(bytes));}
