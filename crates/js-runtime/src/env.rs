@@ -58,9 +58,11 @@ impl Runtime {
   let id=self.intern(name);
   loop{
    let e=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;
-   if let Some(binding)=e.bindings.get(name){return Ok(if binding.object_backed{BindingRef::Global{object:self.global_object,name:id}}else{BindingRef::Cell{env,name:id}})}
-   if let Some(parent)=e.parent{env=parent;continue}
-   if e.kind==EnvKind::Global&&self.has_property(Value::Object(self.global_object),Value::String(id))? {return Ok(BindingRef::Global{object:self.global_object,name:id})}
+   let binding=e.bindings.get(name).map(|b|b.object_backed);let parent=e.parent;let kind=e.kind;
+   if let Some(false)=binding{return Ok(BindingRef::Cell{env,name:id})}
+   if binding==Some(true)&&self.has_property(Value::Object(self.global_object),Value::String(id))?{return Ok(BindingRef::Global{object:self.global_object,name:id})}
+   if let Some(parent)=parent{env=parent;continue}
+   if kind==EnvKind::Global&&self.has_property(Value::Object(self.global_object),Value::String(id))? {return Ok(BindingRef::Global{object:self.global_object,name:id})}
    return Ok(BindingRef::Unresolvable{name:id})
   }
  }
@@ -71,7 +73,7 @@ impl Runtime {
  }}
  pub fn write_binding(&mut self,reference:BindingRef,value:Value,strict:bool)->JsResult<Value>{match reference{
   BindingRef::Cell{env,name}=>{let name=self.string_text(name);let b=self.environments.get_mut(env.0).and_then(|e|e.bindings.get_mut(&name)).ok_or_else(||JsError::ReferenceError(format!("{name} is not defined")))?;if !b.initialized{return Err(JsError::ReferenceError(format!("Cannot access '{name}' before initialization")))}if !b.mutable{if strict||b.strict_immutable{return Err(JsError::TypeError("Assignment to constant variable".into()))}return Ok(value)}b.value=value;Ok(value)},
-  BindingRef::Global{object,name}=>self.set_property(Value::Object(object),Value::String(name),value,strict),
+  BindingRef::Global{object,name}=>{if strict&&!self.has_property(Value::Object(object),Value::String(name))?{return Err(JsError::ReferenceError(format!("{} is not defined",self.string_text(name))))}self.set_property(Value::Object(object),Value::String(name),value,strict)},
   BindingRef::Unresolvable{name}=>{if strict{return Err(JsError::ReferenceError(format!("{} is not defined",self.string_text(name))))}self.set_property(Value::Object(self.global_object),Value::String(name),value,false)},
  }}
  pub fn lookup(&mut self,env:EnvId,name:&str)->JsResult<Value>{let reference=self.resolve_binding(env,name)?;self.read_binding(reference)}
@@ -94,5 +96,19 @@ impl Runtime {
  pub(crate) fn declare_function_name(&mut self,env:EnvId,name:&str,value:Value)->JsResult<()> {
   let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid function-name environment".into()))?;
   e.bindings.insert(name.into(),Binding{value,mutable:false,initialized:true,deletable:false,object_backed:false,strict_immutable:false});Ok(())
+ }
+}
+
+#[cfg(test)]
+mod tests {
+ use super::*;
+ #[test]fn var_hoisting_does_not_reset_parameters_and_tdz_hides_parent(){
+  let mut rt=Runtime::new();let env=rt.child_env(rt.global_env);rt.declare(env,"x",Value::Number(7.0)).unwrap();rt.declare_var(env,"x").unwrap();assert_eq!(rt.lookup(env,"x").unwrap(),Value::Number(7.0));let block=rt.child_block_env(env);rt.declare_lexical(block,"x",true).unwrap();assert!(matches!(rt.lookup(block,"x"),Err(JsError::ReferenceError(_))));rt.initialize(block,"x",Value::Number(9.0)).unwrap();assert_eq!(rt.lookup(block,"x").unwrap(),Value::Number(9.0));assert_eq!(rt.lookup(env,"x").unwrap(),Value::Number(7.0));
+ }
+ #[test]fn references_resolve_before_rhs_and_loop_cells_are_fresh(){
+  let mut rt=Runtime::new();let block=rt.child_block_env(rt.global_env);let reference=rt.resolve_binding(block,"late").unwrap();rt.declare_lexical(block,"late",true).unwrap();rt.initialize(block,"late",Value::Number(3.0)).unwrap();assert!(matches!(rt.write_binding(reference,Value::Number(5.0),true),Err(JsError::ReferenceError(_))));rt.write_binding(reference,Value::Number(5.0),false).unwrap();assert_eq!(rt.lookup(block,"late").unwrap(),Value::Number(3.0));let global=rt.global_env;assert_eq!(rt.lookup(global,"late").unwrap(),Value::Number(5.0));let iteration=rt.clone_loop_env(block,&["late"]).unwrap();rt.assign(iteration,"late",Value::Number(11.0),false).unwrap();assert_eq!(rt.lookup(block,"late").unwrap(),Value::Number(3.0));assert_eq!(rt.lookup(iteration,"late").unwrap(),Value::Number(11.0));
+ }
+ #[test]fn global_var_properties_remain_live_and_inherited_names_get_own_bindings(){
+  let mut rt=Runtime::new();let key=rt.string("inherited");rt.define_data(Value::Object(rt.object_prototype),key,Value::Number(3.0),true,true,true).unwrap();let global=rt.global_env;rt.declare(global,"inherited",Value::Undefined).unwrap();assert_eq!(rt.lookup(global,"inherited").unwrap(),Value::Undefined);rt.declare(global,"live",Value::Number(1.0)).unwrap();let live=rt.string("live");rt.set_property(Value::Object(rt.global_object),live,Value::Number(2.0),false).unwrap();assert_eq!(rt.lookup(global,"live").unwrap(),Value::Number(2.0));
  }
 }

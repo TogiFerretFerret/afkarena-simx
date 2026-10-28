@@ -27,8 +27,15 @@ impl Runtime {
  pub fn make_named_closure(&mut self,code:NativeFn,env:EnvId,arity:usize,name:&str,strict:bool)->Value{
   let inner=self.child_block_env(env);let value=self.make_closure_with_flags(code,inner,arity,name,strict,None);self.declare_function_name(inner,name,value).expect("fresh function-name environment");value
  }
- pub fn native_function(&mut self,name:&str,arity:usize,code:NativeFn)->JsResult<Value>{let value=self.make_closure_with_flags(code,self.global_env,arity,name,true,Some(Value::Undefined));Ok(value)}
- pub fn set_function_constructable(&mut self,value:Value,constructible:bool)->JsResult<()>{let Value::Function(id)=value else{return Err(JsError::TypeError("not a function".into()))};self.functions.get_mut(id.0).ok_or_else(||JsError::TypeError("invalid function".into()))?.constructible=constructible;Ok(())}
+ pub fn native_function(&mut self,name:&str,arity:usize,code:NativeFn)->JsResult<Value>{
+  let object=self.alloc_object(Some(self.function_prototype));let id=FunctionId(self.functions.len());
+  self.functions.push(FunctionRecord{kind:FunctionKind::Native{code,env:self.global_env,strict:true,arrow_this:None},object,prototype:None,name:name.into(),arity,source:None,constructible:false});
+  let value=Value::Function(id);let name_key=self.string("name");let name_value=self.string(name);self.define_data(value,name_key,name_value,false,false,true)?;let length_key=self.string("length");self.define_data(value,length_key,Value::Number(arity as f64),false,false,true)?;Ok(value)
+ }
+ pub fn set_function_constructable(&mut self,value:Value,constructible:bool)->JsResult<()>{
+  let Value::Function(id)=value else{return Err(JsError::TypeError("not a function".into()))};let record=self.functions.get_mut(id.0).ok_or_else(||JsError::TypeError("invalid function".into()))?;record.constructible=constructible;
+  if !constructible{let object=record.object;record.prototype=None;let key=PropertyKey(self.intern("prototype"));self.objects[object.0].remove(key);}Ok(())
+ }
  pub fn set_function_constructible(&mut self,value:Value,constructible:bool)->JsResult<()>{self.set_function_constructable(value,constructible)}
  pub fn set_function_source(&mut self,value:Value,source:&[u16])->JsResult<()>{let Value::Function(id)=value else{return Err(JsError::TypeError("not a function".into()))};self.functions.get_mut(id.0).ok_or_else(||JsError::TypeError("invalid function".into()))?.source=Some(source.to_vec());Ok(())}
 
@@ -43,7 +50,7 @@ impl Runtime {
   let Value::Function(id)=callee else{return Err(JsError::TypeError("value is not a constructor".into()))};let record=self.functions.get(id.0).cloned().ok_or_else(||JsError::TypeError("invalid constructor".into()))?;
   if !record.constructible{return Err(JsError::TypeError("function is not a constructor".into()))}
   if let FunctionKind::Bound{target,args:mut bound,..}=record.kind{bound.extend_from_slice(args);return self.construct(Value::Function(target),&bound)}
-  let key=self.string("prototype");let candidate=self.get_property(callee,key)?;let prototype=match candidate{Value::Object(_)|Value::Function(_)=>self.object_id(candidate)?,_=>self.object_prototype};let object=Value::Object(self.alloc_object(Some(prototype)));let result=self.call_value(callee,object,args)?;Ok(if matches!(result,Value::Object(_)|Value::Function(_)){result}else{object})
+  let key=self.string("prototype");let candidate=self.get_property(callee,key)?;let prototype=match candidate{Value::Object(_)|Value::Function(_)=>self.object_id(candidate)?,_=>self.object_prototype};let object=Value::Object(self.alloc_object(Some(prototype)));self.construct_stack.push((id,self.call_stack.len()));let result=self.call_value(callee,object,args);self.construct_stack.pop();let result=result?;Ok(if matches!(result,Value::Object(_)|Value::Function(_)){result}else{object})
  }
  pub fn bind_function(&mut self,target:Value,bound_this:Value,args:&[Value])->JsResult<Value>{
   let Value::Function(target_id)=target else{return Err(JsError::TypeError("bind target is not callable".into()))};let target_record=self.functions.get(target_id.0).cloned().ok_or_else(||JsError::TypeError("invalid bind target".into()))?;
@@ -52,6 +59,7 @@ impl Runtime {
   self.define_data(value,length_key,Value::Number(length),false,false,true)?;
   let name_key=self.string("name");let target_name=self.get_property(target,name_key)?;let mut name="bound ".encode_utf16().collect::<Vec<_>>();if let Value::String(s)=target_name{name.extend_from_slice(self.string_units(s));}let name_value=self.string_utf16(&name);self.functions[id.0].name=String::from_utf16_lossy(&name);self.define_data(value,name_key,name_value,false,false,true)?;Ok(value)
  }
+ pub fn is_construct_call(&self)->bool{let Some(id)=self.call_stack.last().copied()else{return false};self.construct_stack.last().copied()==Some((id,self.call_stack.len()-1))}
  pub fn value_for_object(&self,object:ObjectId)->Value{self.functions.iter().position(|f|f.object==object).map(|id|Value::Function(FunctionId(id))).unwrap_or(Value::Object(object))}
  pub fn instance_of(&mut self,left:Value,right:Value)->JsResult<bool>{
   let Value::Function(id)=right else{return Err(JsError::TypeError("right-hand side of instanceof is not callable".into()))};let record=self.functions.get(id.0).cloned().ok_or_else(||JsError::TypeError("invalid instanceof function".into()))?;if let FunctionKind::Bound{target,..}=record.kind{return self.instance_of(left,Value::Function(target))}
@@ -62,9 +70,10 @@ impl Runtime {
   let callee_key=self.string("callee");if strict{let poison=self.native_function("",0,throw_type_error)?;self.define_accessor(object,callee_key,Some(poison),Some(poison),false,false)?;}else{let callee=self.call_stack.last().copied().map(Value::Function).unwrap_or(Value::Undefined);self.define_data(object,callee_key,callee,true,false,true)?;let mut seen=std::collections::HashSet::new();for index in(0..parameters.len().min(args.len())).rev(){let name=parameters[index];if seen.insert(name){let binding=self.resolve_binding(env,name)?;let key=PropertyKey(self.intern(&index.to_string()));self.objects[id.0].arguments_map.insert(key,binding);}}}Ok(object)
  }
  pub fn install_function_builtins(&mut self)->JsResult<()>{
+  if self.functions.iter().any(|f|f.object==self.function_prototype){return Ok(())}
   let id=FunctionId(self.functions.len());self.functions.push(FunctionRecord{kind:FunctionKind::Native{code:empty_function,env:self.global_env,strict:true,arrow_this:None},object:self.function_prototype,prototype:None,name:String::new(),arity:0,source:None,constructible:false});let prototype=Value::Function(id);let name=self.string("name");let empty=self.string("");self.define_data(prototype,name,empty,false,false,true)?;let length=self.string("length");self.define_data(prototype,length,Value::Number(0.0),false,false,true)?;
   for(name,arity,code)in[("call",1,function_call as NativeFn),("apply",2,function_apply as NativeFn),("bind",1,function_bind as NativeFn),("toString",0,function_to_string as NativeFn)]{let method=self.native_function(name,arity,code)?;let key=self.string(name);self.define_data(prototype,key,method,true,false,true)?;}
-  let constructor=self.native_function("Function",1,dynamic_function)?;let key=self.string("prototype");self.define_data(constructor,key,prototype,false,false,false)?;let constructor_key=self.string("constructor");self.define_data(prototype,constructor_key,constructor,true,false,true)?;let global_key=self.string("Function");self.define_data(Value::Object(self.global_object),global_key,constructor,true,false,true)?;Ok(())
+  let constructor=self.native_function("Function",1,dynamic_function)?;self.set_function_constructable(constructor,true)?;let key=self.string("prototype");self.define_data(constructor,key,prototype,false,false,false)?;let constructor_key=self.string("constructor");self.define_data(prototype,constructor_key,constructor,true,false,true)?;let global_key=self.string("Function");self.define_data(Value::Object(self.global_object),global_key,constructor,true,false,true)?;Ok(())
  }
 }
 fn empty_function(_: &mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Undefined)}
@@ -74,3 +83,27 @@ fn function_call(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Val
 fn function_bind(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Value>{rt.bind_function(this,args.first().copied().unwrap_or(Value::Undefined),args.get(1..).unwrap_or(&[]))}
 fn function_apply(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Value>{if !matches!(this,Value::Function(_)){return Err(JsError::TypeError("apply target is not callable".into()))}let receiver=args.first().copied().unwrap_or(Value::Undefined);let array=args.get(1).copied().unwrap_or(Value::Undefined);if matches!(array,Value::Null|Value::Undefined){return rt.call_value(this,receiver,&[])}rt.object_id(array)?;let key=rt.string("length");let raw=rt.get_property(array,key)?;let n=rt.to_number(raw)?;let length=if n.is_nan()||n<=0.0{0}else if !n.is_finite()||n>1_000_000.0{return Err(JsError::Unsupported("apply argument list exceeds supported resource bound".into()))}else{n.floor()as usize};let mut values=Vec::with_capacity(length);for i in 0..length{let key=rt.string(&i.to_string());values.push(rt.get_property(array,key)?);}rt.call_value(this,receiver,&values)}
 fn function_to_string(rt:&mut Runtime,this:Value,_:&[Value],_:EnvId)->JsResult<Value>{let Value::Function(id)=this else{return Err(JsError::TypeError("Function.prototype.toString requires callable receiver".into()))};let record=rt.functions.get(id.0).cloned().ok_or_else(||JsError::TypeError("invalid function identity".into()))?;if let Some(source)=record.source{return Ok(rt.string_utf16(&source))}let text=if matches!(record.kind,FunctionKind::Bound{..}){"function () { [native code] }".into()}else{format!("function {}() {{ [native code] }}",record.name)};Ok(rt.string(&text))}
+
+#[cfg(test)]
+mod tests {
+ use super::*;
+ fn increment(rt:&mut Runtime,_:Value,_:&[Value],env:EnvId)->JsResult<Value>{let old=rt.lookup(env,"counter")?;let next=Value::Number(rt.to_number(old)?+1.0);rt.assign(env,"counter",next,false)}
+ fn identity_this(_: &mut Runtime,this:Value,_:&[Value],_:EnvId)->JsResult<Value>{Ok(this)}
+ fn throws_after_write(rt:&mut Runtime,_:Value,args:&[Value],env:EnvId)->JsResult<Value>{rt.assign(env,"counter",Value::Number(41.0),false)?;Err(JsError::Throw(args[0]))}
+ fn constructor(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Value>{let key=rt.string("x");rt.set_property(this,key,args[0],true)?;Ok(Value::Number(999.0))}
+ #[test]fn shared_capture_mutation_and_throw_prefix_survive_calls(){
+  let mut rt=Runtime::new();let env=rt.child_env(rt.global_env);rt.declare(env,"counter",Value::Number(0.0)).unwrap();let first=rt.make_closure(increment,env,0,"first");let second=rt.make_closure(increment,env,0,"second");assert_eq!(rt.call_value(first,Value::Undefined,&[]).unwrap(),Value::Number(1.0));assert_eq!(rt.call_value(second,Value::Undefined,&[]).unwrap(),Value::Number(2.0));let throwing=rt.make_closure(throws_after_write,env,1,"throwing");let sentinel=rt.object();assert!(matches!(rt.call_value(throwing,Value::Null,&[sentinel]),Err(JsError::Throw(value))if value==sentinel));assert_eq!(rt.lookup(env,"counter").unwrap(),Value::Number(41.0));assert!(rt.call_stack.is_empty());
+ }
+ #[test]fn strict_sloppy_arrow_and_bound_receivers_remain_distinct(){
+  let mut rt=Runtime::new();let global=rt.global_env;let strict=rt.make_closure_with_flags(identity_this,global,0,"strict",true,None);let sloppy=rt.make_closure(identity_this,global,0,"sloppy");let lexical=rt.object();let arrow=rt.make_closure_with_flags(identity_this,global,0,"arrow",false,Some(lexical));assert_eq!(rt.call_value(strict,Value::Undefined,&[]).unwrap(),Value::Undefined);assert_eq!(rt.call_value(sloppy,Value::Null,&[]).unwrap(),Value::Object(rt.global_object));let bound=rt.bind_function(arrow,Value::Null,&[]).unwrap();assert_eq!(rt.call_value(bound,Value::Undefined,&[]).unwrap(),lexical);assert!(matches!(rt.construct(arrow,&[]),Err(JsError::TypeError(_))));
+ }
+ #[test]fn bound_constructor_ignores_bound_this_and_uses_target_prototype(){
+  let mut rt=Runtime::new();let target=rt.make_closure(constructor,rt.global_env,1,"Ctor");let receiver=rt.object();let bound=rt.bind_function(target,receiver,&[Value::Number(17.0)]).unwrap();let instance=rt.construct(bound,&[]).unwrap();let x=rt.string("x");assert_eq!(rt.get_property(instance,x).unwrap(),Value::Number(17.0));assert_eq!(rt.get_property(receiver,x).unwrap(),Value::Undefined);assert!(rt.instance_of(instance,target).unwrap());assert!(rt.instance_of(instance,bound).unwrap());assert!(rt.construct_stack.is_empty());
+ }
+ #[test]fn mapped_arguments_follow_live_cells_and_detach_on_descriptor_change(){
+  let mut rt=Runtime::new();let env=rt.child_env(rt.global_env);rt.declare(env,"a",Value::Number(2.0)).unwrap();let arguments=rt.arguments_object(env,&["a","a"],&[Value::Number(1.0),Value::Number(2.0)],false).unwrap();let zero=rt.string("0");let one=rt.string("1");rt.set_property(arguments,zero,Value::Number(10.0),false).unwrap();assert_eq!(rt.lookup(env,"a").unwrap(),Value::Number(2.0));rt.assign(env,"a",Value::Number(4.0),false).unwrap();assert_eq!(rt.get_property(arguments,one).unwrap(),Value::Number(4.0));rt.define_data(arguments,one,Value::Number(4.0),false,true,true).unwrap();rt.assign(env,"a",Value::Number(8.0),false).unwrap();assert_eq!(rt.get_property(arguments,one).unwrap(),Value::Number(4.0));
+ }
+ #[test]fn source_metadata_and_function_prototype_are_actual_callable_objects(){
+  let mut rt=Runtime::new();let function=rt.make_closure(identity_this,rt.global_env,0,"f");let source=[102,117,110,99,116,105,111,110,32,102,40,41,123,47,42,0xd800,42,47,125];rt.set_function_source(function,&source).unwrap();let key=rt.string("toString");let to_string=rt.get_property(function,key).unwrap();let result=rt.call_value(to_string,function,&[]).unwrap();let Value::String(id)=result else{panic!("function source is a string")};assert_eq!(rt.string_units(id),source);let prototype=rt.value_for_object(rt.function_prototype);assert!(matches!(prototype,Value::Function(_)));assert_eq!(rt.call_value(prototype,Value::Undefined,&[]).unwrap(),Value::Undefined);
+ }
+}
