@@ -54,11 +54,17 @@ impl Object {
   }
  }
  fn dictionary_insert(&mut self,key:PropertyKey,descriptor:Descriptor){if let Some(index)=self.property_index.get(&key).copied(){let stored=self.store_descriptor(key,descriptor,Some(index));self.properties[index]=stored;}else{let stored=self.store_descriptor(key,descriptor,None);let index=self.properties.len();self.properties.push(stored);self.property_index.insert(key,index);}}
+ #[inline]
  pub fn property_at(&self,index:usize)->Option<(PropertyKey,Descriptor)>{let stored=self.properties.get(index)?;Some((stored.key()?,stored.descriptor(&self.accessor_slots)?))}
+ #[inline]
  pub fn slot(&self,index:usize)->Option<(PropertyKey,Descriptor)>{self.property_at(index)}
+ #[inline]
  pub fn own_slot(&self,index:usize,key:PropertyKey)->Option<Descriptor>{let stored=self.properties.get(index)?;if stored.key()!=Some(key){return None}stored.descriptor(&self.accessor_slots)}
+ #[inline]
  pub fn data_slot(&self,index:usize,key:PropertyKey)->Option<Value>{let stored=self.properties.get(index)?;if stored.key()!=Some(key){return None}stored.data_value()}
+ #[inline]
  pub fn set_existing_data_slot(&mut self,index:usize,key:PropertyKey,value:Value)->bool{let Some(stored)=self.properties.get_mut(index)else{return false};if stored.key()!=Some(key)||!stored.writable()||stored.data_value().is_none(){return false}stored.set_data_value(value);true}
+ #[inline]
  pub fn iter_properties(&self)->impl Iterator<Item=(PropertyKey,Descriptor)>+'_ {self.properties.iter().filter_map(|stored|Some((stored.key()?,stored.descriptor(&self.accessor_slots)?)))}
  pub fn clone_property_storage_from(&mut self,other:&Self){self.properties.clone_from(&other.properties);match(&mut self.accessor_slots,&other.accessor_slots){(Some(target),Some(source))=>target.clone_from(source),(None,Some(source))=>self.accessor_slots=Some(source.clone()),(Some(target),None)=>target.clear(),(None,None)=>{}}}
  pub fn copy_storage_from(&mut self,other:&Self){self.clone_property_storage_from(other)}
