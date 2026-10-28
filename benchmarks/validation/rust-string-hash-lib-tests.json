@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "passed": true,
+  "tests": 48,
+  "canonicalRandomUtf16Cases": 20000,
+  "deliberateFullHashCollisionRetainsDistinctIds": true,
+  "sourceHashes": {
+    "crates/js-runtime/src/lib.rs": "cf77952058d29134109326067933f95ad1f9909895c5932fad101f30b5b0c412",
+    "crates/js-runtime/src/runtime.rs": "130d2caca9a27160f90094a6ea587b5a825b1ebc907297d1844bc4c4f8367444",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3"
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/rust-string-hash-lib-tests.stdout.gz",
+      "sha256": "8ffe5aa23a6028d1d9ea2dc11f138fcbab67f6c27aa702d05a9e0573c4a44e01",
+      "uncompressedSha256": "2cea0558731da4e9e011e81bac3a07c2fda7895424941e6dba257e8e2e1016df",
+      "uncompressedBytes": 4678
+    },
+    {
+      "file": "benchmarks/validation/rust-string-hash-lib-tests.stderr.gz",
+      "sha256": "eaee13ec9cdfff79f48401bc6fd83a6c9697542fb728016c9ab867a4330e90e2",
+      "uncompressedSha256": "24b7ee726eb9cdd8d15ef902a18dea3d470464cf028e60e852687c17a1a5675b",
+      "uncompressedBytes": 1932
+    }
+  ],
+  "scope": "Native library tests including 20k exact canonical StringId sequences compared between Sip and Fx, arbitrary UTF16/lone surrogates/Unicode/NUL/static forms, a deliberately constructed complete 64-bit hash collision, and the existing giant-string GC/cache invalidation tests. Not battle qualification or throughput.",
+  "qualifiesFor10000Target": false
+}
