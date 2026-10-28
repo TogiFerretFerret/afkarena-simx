@@ -1,0 +1,6338 @@
+{
+  "version": 1,
+  "passed": true,
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "nodeOptions": "",
+  "toolSha256": "aef3567fc220eace9638a4d9660f93d06ef1d44084f25d2177f65cc7e4e32f29",
+  "strategies": 37,
+  "rawInputs": [
+    "0000000000000000",
+    "8000000000000000",
+    "3ff0000000000000",
+    "bff0000000000000",
+    "3ff8000000000000",
+    "0000000000000001",
+    "7fefffffffffffff",
+    "7ff0000000000000",
+    "fff0000000000000",
+    "7ff8000000000000",
+    "7ff8000000000001",
+    "7ff8000000001234",
+    "fff8000000000000",
+    "fff8000000001234",
+    "7ff0000000000001",
+    "7ff4000000000000",
+    "fff0000000001234",
+    "ffffffffffffffff"
+  ],
+  "rows": 2664,
+  "callsPerRow": 24,
+  "allInputBitsPreservedBeforeStorage": true,
+  "negativeZeroAlwaysPreserved": true,
+  "byOperation": [
+    {
+      "strategy": "literal",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "literalSmiPrefix",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "literalDoublePrefix",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "literalObjectPrefix",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "emptySet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "nanWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "finiteWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "objectWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "nanWarmup",
+          "outputBits": "ffffffffffffffff"
+        }
+      ]
+    },
+    {
+      "strategy": "smiSet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "nanWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "finiteWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "objectWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "nanWarmup",
+          "outputBits": "ffffffffffffffff"
+        }
+      ]
+    },
+    {
+      "strategy": "doubleSet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "objectSet",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "holeSet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "smiDeleteSet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "doubleDeleteSet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "objectDeleteSet",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "sparseSet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "nanWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "finiteWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "objectWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "nanWarmup",
+          "outputBits": "ffffffffffffffff"
+        }
+      ]
+    },
+    {
+      "strategy": "emptyPush",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "smiPush",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "doublePush",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "objectPush",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "holePush",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "sliceNumeric",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "sliceObject",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "sliceSmiThenSet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "nanWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "finiteWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "objectWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "nanWarmup",
+          "outputBits": "ffffffffffffffff"
+        }
+      ]
+    },
+    {
+      "strategy": "spreadNumeric",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "spreadObject",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "spreadSmiThenSet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "finiteWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "nanWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "finiteWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "nanWarmup",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "finiteWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "nanWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "finiteWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "objectWarmup",
+          "outputBits": "ffffffffffffffff"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "nanWarmup",
+          "outputBits": "ffffffffffffffff"
+        }
+      ]
+    },
+    {
+      "strategy": "concatScalar",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "concatSmiScalar",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "concatDoubleScalar",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "concatNumeric",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "concatObject",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "concatSmiThenSet",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ffc000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "fff8000000001234"
+        }
+      ],
+      "withinRowHistoryChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234",
+            "7ff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000",
+            "fff8000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001",
+            "7ff8000000000001"
+          ]
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "repeatedInput",
+          "outputs": [
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000",
+            "7ffc000000000000"
+          ]
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "repeatedInput",
+          "outputs": [
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234",
+            "fff8000000001234"
+          ]
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "repeatedInput",
+          "outputs": [
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "7ff8000000000000",
+            "7ff8000000000000",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff",
+            "ffffffffffffffff"
+          ]
+        }
+      ],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        }
+      ]
+    },
+    {
+      "strategy": "defineSmi",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": [
+        {
+          "inputBits": "7ff8000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000000001"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "7ff8000000001234"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff8000000001234"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "history": "objectWarmup",
+          "outputBits": "7ff0000000000001"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "history": "objectWarmup",
+          "outputBits": "7ff4000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "history": "objectWarmup",
+          "outputBits": "fff0000000001234"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "history": "objectWarmup",
+          "outputBits": "ffffffffffffffff"
+        }
+      ]
+    },
+    {
+      "strategy": "defineObject",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "fromArrayLike",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "fromMapper",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "arrayOf",
+      "coldAlteredInputs": [
+        {
+          "inputBits": "7ff8000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff8000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff0000000000001",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "7ff4000000000000",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "fff0000000001234",
+          "outputBits": "7ff8000000000000"
+        },
+        {
+          "inputBits": "ffffffffffffffff",
+          "outputBits": "7ff8000000000000"
+        }
+      ],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "objectControl",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    },
+    {
+      "strategy": "dataViewControl",
+      "coldAlteredInputs": [],
+      "withinRowHistoryChanges": [],
+      "prefixChanges": []
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/pinned-array-number-storage.outputs.json.gz",
+      "sha256": "52f15b1cec2fa601357d78191b7442e9c03dfa1001adaa4b047164cf12353990",
+      "uncompressedSha256": "773f1b7f2caa34fb5c23dc3e335d448a7320b261e19f79ba4bda5441540a4813"
+    }
+  ],
+  "scope": "Pinned jitless V8 observation of array Number storage, with fresh realms per operation/input/history and exact DataView input/output bits. Covers payload/sign/signaling NaNs, signed zero, literals, Smi/double/object initializers, holes, writes, push, slice, spread, concat and repeated-call history. Labels describe source initializers, not verified internal V8 elements kinds. This is source-engine evidence only; no native runtime changes or battle qualification.",
+  "qualifiesFor10000Target": false
+}
