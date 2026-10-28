@@ -70,15 +70,21 @@ function diagnostic(error,node,filename){return{filename,start:node.start??0,end
 
 /** Babel AST -> native Rust execution functions. Unsupported bodies are explicit
  * hard-failure stubs, listed in the manifest; no JavaScript backend is emitted. */
-export function compileSource(source,{filename='input.js',mode='script',moduleName='generated',allowUnsupported=true,emitRust=true,sourcePoolPath=null,largeBody=false,cacheLocalBindings=true,staticLiteralStrings=true,literalPropertySlots=true,numericLiteralKeys=true,nativeNumericOps=true,sourceSpecializations=true,nativeBattleGc=false,nativeLocalBindings=true}={}){
+export function compileSource(source,{filename='input.js',mode='script',moduleName='generated',allowUnsupported=true,emitRust=true,sourcePoolPath=null,largeBody=false,cacheLocalBindings=true,staticLiteralStrings=true,literalPropertySlots=true,numericLiteralKeys=true,nativeNumericOps=true,sourceSpecializations=true,nativeBattleGc=false,nativeLocalBindings=true,nativeParameters=true}={}){
  const root=mode==='function'?parseExpression(source,{sourceType:'script'}):parse(source,{sourceType:mode==='module'?'module':'script',allowReturnOutsideFunction:false}).program;
  if(mode==='function'&&!FUNCTION_TYPES.has(root.type))throw Error('--function input must be a function expression');
  // V8 legacy f.arguments snapshots current uncaptured formal cells, but raw
  // call slots for context-captured formals, implicit arguments use, or eval.
  // Resolve actual bindings rather than treating same-spelled shadows as captures.
- const parameterCaptures=new WeakMap(),implicitArgumentsUsed=new WeakSet(),directEvalContexts=new WeakSet();
+ const parameterCaptures=new WeakMap(),immutableParameters=new WeakMap(),implicitArgumentsUsed=new WeakSet(),directEvalContexts=new WeakSet();
  const scopeTree={type:'File',program:root.type==='Program'?root:{type:'Program',sourceType:'script',directives:[],body:[{type:'ExpressionStatement',expression:root}]}};
  traverse(scopeTree,{Function(path){
+  immutableParameters.set(path.node,(path.node.params??[]).filter(parameter=>{
+   if(parameter.type!=='Identifier'||parameter.name==='arguments')return false;
+   if(path.node.params.filter(item=>item.type==='Identifier'&&item.name===parameter.name).length!==1)return false;
+   const binding=path.scope.getBinding(parameter.name);
+   return binding?.kind==='param'&&binding.constant&&binding.constantViolations.length===0;
+  }).map(parameter=>parameter.name));
   parameterCaptures.set(path.node,(path.node.params??[]).map(parameter=>{
    if(parameter.type!=='Identifier')return false;
    const binding=path.scope.getBinding(parameter.name);
@@ -129,11 +135,11 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
  });}
  function chunks(items,weight,maxWeight,maxItems){const result=[];let current=[],size=0;for(const item of items){const next=weight(item);if(current.length&&(size+next>maxWeight||current.length>=maxItems)){result.push(current);current=[];size=0;}current.push(item);size+=next;}if(current.length)result.push(current);return result;}
  function instantiateGroups(node,ctx,declarations,params,body){const groups=[];
-  for(let index=0;index<params.length;index++){const name=rustString(params[index].name);groups.push(local=>{local.emit(`rt.declare(env, ${name}, Value::Undefined)?;`);local.emit(`rt.assign(env, ${name}, args.get(${index}).copied().unwrap_or(Value::Undefined), false)?;`);});}
+  for(let index=0;index<params.length;index++){const parameter=params[index],name=rustString(parameter.name);groups.push(local=>{const native=local.nativeParameterBindings?.get(parameter.name);if(native){local.emit(`${native} = args.get(${index}).copied().unwrap_or(Value::Undefined);`);return;}local.emit(`rt.declare(env, ${name}, Value::Undefined)?;`);local.emit(`rt.assign(env, ${name}, args.get(${index}).copied().unwrap_or(Value::Undefined), false)?;`);});}
   if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'){
    const parameterNames=params.map(p=>rustString(p.name)).join(',');
    if(!ctx.strict){
-    const rawSlots=(parameterCaptures.get(node)??[]).map(captured=>captured||implicitArgumentsUsed.has(node)||directEvalContexts.has(node));
+    const rawSlots=(parameterCaptures.get(node)??[]).map((captured,index)=>captured||implicitArgumentsUsed.has(node)||directEvalContexts.has(node)||ctx.nativeParameterBindings?.has(params[index].name));
     groups.push(local=>local.emit(`rt.register_lazy_arguments(env, &[${parameterNames}], args, &[${rawSlots.join(',')}])?;`));
    }
    if(!params.some(p=>p.name==='arguments')&&requiresImplicitArguments(node))groups.push(local=>{const argsValue=local.temp(`rt.arguments_object(env, &[${parameterNames}], args, ${local.strict})?`);local.emit(`rt.declare(env, "arguments", ${argsValue})?;`);});
@@ -168,6 +174,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
     record.sourceSpecialization='native-override-dispatch-v1';
     ctx.emit('if let Some(value) = rt.try_native_override_dispatch(this, args, parent)? { return Ok(value); }');
    }
+   const activationLine=lines.length;
    if(node.type==='Program')ctx.emit('let env = parent;');else ctx.emit('let env = rt.child_env(parent);');
    const body=directBody(node),declarations=hoists(node),params=node.params??[],annex=annexBPlan(record,parents);ctx.annexBDeclarations=annex.eligible;for(const name of annex.names)if(!declarations.names.includes(name))declarations.names.push(name);
    let groups=instantiateGroups(node,ctx,declarations,params,body);const ownNodes=body?body.reduce((sum,item)=>sum+ownWeight(item),0):ownWeight(node.body);
@@ -193,9 +200,25 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
     ctx.emit('Ok(Value::Undefined)');
    }else{
     const nativePlan=nativeLocalBindings&&!record.battleGcRoot?planNativeLocals(node,{parents,hoistedNames:declarations.names,parameterNames:params.map(parameter=>parameter.name)}):{names:[],eligible:()=>false},nativeBindings=new Map();
-    for(const name of nativePlan.names){const binding=ctx.fresh('native_local');nativeBindings.set(name,binding);ctx.emit(`let mut ${binding} = Value::Undefined;`);}
-    ctx.nativeBindingNames=new Set(nativePlan.names);record.nativeBindings=nativePlan.names;
-    ctx.nativeLocal=(name,identifier)=>nativePlan.eligible(name,identifier)?nativeBindings.get(name):undefined;
+    const parameterPlan=planLocalBindings(node,{parents,parameterNames:params.map(parameter=>parameter.name)});
+    const nativeParameterNames=nativeParameters&&nativeLocalBindings&&!record.battleGcRoot&&!implicitArgumentsUsed.has(node)&&!directEvalContexts.has(node)&&!requiresImplicitArguments(node)?(immutableParameters.get(node)??[]).filter(name=>!parameterCaptures.get(node)?.[params.findIndex(parameter=>parameter.name===name)]&&!declarations.functions.some(fn=>fn.id.name===name)):[];
+    const nativeNames=[...new Set([...nativePlan.names,...nativeParameterNames])];
+    for(const name of nativeNames){const binding=ctx.fresh('native_local');nativeBindings.set(name,binding);ctx.emit(`let mut ${binding} = Value::Undefined;`);}
+    ctx.nativeParameterBindings=new Map(nativeParameterNames.map(name=>[name,nativeBindings.get(name)]));
+    ctx.nativeBindingNames=new Set(nativeNames);record.nativeBindings=nativeNames;
+    ctx.nativeLocal=(name,identifier)=>(ctx.nativeParameterBindings.has(name)?parameterPlan.eligible(name,identifier):nativePlan.eligible(name,identifier))?nativeBindings.get(name):undefined;
+    // With no addressable cells or nested closures, an activation environment
+    // has no observable identity. Immutable native formals reflect raw slots;
+    // free names resolve from the same parent and blocks keep their own scopes.
+    let needsActivation=false;
+    function inspectActivation(current){
+     if(current!==node&&FUNCTION_TYPES.has(current.type)){needsActivation=true;return;}
+     if(current.type==='WithStatement'||current.type==='ClassDeclaration'||current.type==='ClassExpression'||current.type==='CatchClause'||(current.type==='VariableDeclaration'&&current.kind!=='var'))needsActivation=true;
+     for(const child of childNodes(current))inspectActivation(child);
+    }
+    inspectActivation(node);
+    record.nativeActivationElided=nativeParameters&&nativeLocalBindings&&emitRust&&node.type!=='Program'&&!node.id&&!record.battleGcRoot&&!needsActivation&&!requiresImplicitArguments(node)&&!directEvalContexts.has(node)&&params.every(parameter=>ctx.nativeParameterBindings.has(parameter.name))&&declarations.names.every(name=>ctx.nativeBindingNames.has(name))&&declarations.functions.length===0;
+    if(record.nativeActivationElided)lines[activationLine]='let env = parent;';
     groups=instantiateGroups(node,ctx,declarations,params,body);
     for(const emit of groups)emit(ctx);
     const localPlan=cacheLocalBindings?planLocalBindings(node,{parents,hoistedNames:declarations.names,parameterNames:params.map(parameter=>parameter.name)}):{names:[],eligible:()=>false},bindingRefs=new Map();record.cachedBindings=localPlan.names.filter(name=>!nativeBindings.has(name)).length;
@@ -211,7 +234,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
   if(emitRust)compiled.push(`pub fn js_function_${id}(rt: &mut Runtime, this: Value, args: &[Value], parent: EnvId) -> JsResult<Value> {\n${contents}\n}`);
  }
  const first=records[0],entry=!emitRust?'':mode==='function'?(()=>{const{ctx,lines}=context(first);ctx.env='parent';ctx.thisValue='Value::Undefined';const value=ctx.makeClosure(root);ctx.emit(`Ok(${value})`);return`pub fn create_function(rt: &mut Runtime, parent: EnvId) -> JsResult<Value> {\n${lines.join('\n')}\n}`;})():`pub fn run(rt: &mut Runtime, env: EnvId, this: Value) -> JsResult<Value> { js_function_0(rt, this, &[], env) }`;
- const diagnostics=records.flatMap(record=>record.diagnostics),manifest={version:1,moduleName,filename,mode,sourceSha256:sha(source),sourceUtf16Length:source.length,sourcePoolPath,emitsRust:emitRust,diagnosticsScope:'First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.',astNodes:Object.values(inventory).reduce((a,b)=>a+b,0),astNodeTypes:inventory,largeBody:splitOptions,cacheLocalBindings,staticLiteralStrings,literalPropertySlots,numericLiteralKeys,nativeNumericOps,sourceSpecializations,nativeBattleGc,nativeLocalBindings,functions:records.map(({node,id,strict,supported,diagnostics,split,estimatedOwnAstNodes,helpers,cachedBindings,sourceSpecialization,battleGcSafePoints,nativeBindings})=>({id,nativeBindings:nativeBindings??[],battleGcSafePoints:battleGcSafePoints??[],sourceSpecialization:sourceSpecialization??null,split,estimatedOwnAstNodes,helpers,cachedBindings:cachedBindings??0,name:node.id?.name??inferName(node),start:node.start,end:node.end,line:node.loc?.start.line,column:node.loc?.start.column,strict,supported,sourceSha256:sha(source.slice(node.start,node.end)),diagnostics})),compiledFunctions:records.filter(r=>r.supported).length,unsupportedFunctions:records.filter(r=>!r.supported).length,complete:diagnostics.length===0,diagnostics,semanticallyQualified:false,executionBackend:'Generated Rust with native js-runtime; no JS interpreter or engine fallback.',qualification:'Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately.'};
+ const diagnostics=records.flatMap(record=>record.diagnostics),manifest={version:1,moduleName,filename,mode,sourceSha256:sha(source),sourceUtf16Length:source.length,sourcePoolPath,emitsRust:emitRust,diagnosticsScope:'First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.',astNodes:Object.values(inventory).reduce((a,b)=>a+b,0),astNodeTypes:inventory,largeBody:splitOptions,cacheLocalBindings,staticLiteralStrings,literalPropertySlots,numericLiteralKeys,nativeNumericOps,sourceSpecializations,nativeBattleGc,nativeLocalBindings,nativeParameters,functions:records.map(({node,id,strict,supported,diagnostics,split,estimatedOwnAstNodes,helpers,cachedBindings,sourceSpecialization,battleGcSafePoints,nativeBindings,nativeActivationElided})=>({id,nativeActivationElided:nativeActivationElided??false,nativeBindings:nativeBindings??[],battleGcSafePoints:battleGcSafePoints??[],sourceSpecialization:sourceSpecialization??null,split,estimatedOwnAstNodes,helpers,cachedBindings:cachedBindings??0,name:node.id?.name??inferName(node),start:node.start,end:node.end,line:node.loc?.start.line,column:node.loc?.start.column,strict,supported,sourceSha256:sha(source.slice(node.start,node.end)),diagnostics})),compiledFunctions:records.filter(r=>r.supported).length,unsupportedFunctions:records.filter(r=>!r.supported).length,complete:diagnostics.length===0,diagnostics,semanticallyQualified:false,executionBackend:'Generated Rust with native js-runtime; no JS interpreter or engine fallback.',qualification:'Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately.'};
  if(!allowUnsupported&&!manifest.complete){const error=Error('Unsupported syntax: '+diagnostics.map(d=>`${d.filename}:${d.line}:${d.column}: ${d.reason}`).join('\n'));error.manifest=manifest;throw error;}
  const header=`// Generated by tools/rust-port/compile.mjs; source SHA-256 ${manifest.sourceSha256}
 #![allow(unused_imports,unused_variables,unused_mut,dead_code,unreachable_patterns,unused_assignments)]

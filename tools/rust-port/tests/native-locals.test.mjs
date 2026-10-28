@@ -3,6 +3,7 @@ import {compileSource} from '../compile.mjs';
 const manifest=(source,options={})=>compileSource(source,{mode:'function',allowUnsupported:false,...options}).manifest;
 assert.deepEqual(manifest('function(){var x;return typeof x;}').functions[0].nativeBindings,['x']);
 assert.deepEqual(manifest('function(x){var x,y=1;return x+y;}').functions[0].nativeBindings,['y']);
+assert.deepEqual(manifest('function(x){var y=1;return x+y;}').functions[0].nativeBindings,['y','x']);
 assert.deepEqual(manifest('function(){var x=1;return ()=>x;}').functions[0].nativeBindings,[]);
 assert.deepEqual(manifest('function(){var x=1;return function(){return x;};}').functions[0].nativeBindings,[]);
 assert.deepEqual(manifest('function(){var x=1;{let x=2;}return x;}').functions[0].nativeBindings,[]);
@@ -11,4 +12,4 @@ assert.deepEqual(manifest('function(){var x=1;if(false)eval("x");return x;}').fu
 assert.deepEqual(manifest('function(){var x=1;return x;}',{largeBody:{minimumNodes:1}}).functions[0].nativeBindings,[]);
 assert.deepEqual(manifest('function(){var x=1;return x;}',{nativeLocalBindings:false}).functions[0].nativeBindings,[]);
 assert.deepEqual(compileSource('var x=1;x++;',{allowUnsupported:false}).manifest.functions[0].nativeBindings,[]);
-console.log(JSON.stringify({passed:true,cases:10,scope:'Conservative native-local eligibility; execution is checked separately.'}));
+console.log(JSON.stringify({passed:true,cases:11,scope:'Conservative native-local eligibility; execution is checked separately.'}));

@@ -522,7 +522,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "998aa6f86a1d15dc9cc772cac2b5a2d5a75fecd19619c8e0c8d4461f9466eb74",
+      "sha256": "670866fd87af98f488065dc7406a61c0a78e62bac921ec8b3ea2fd230cdfb06c",
       "matched": true
     },
     {
@@ -559,25 +559,25 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "f2205eb203e65bcd6eaaf49d54897e9fa8f1f48acbe97e762fd4dd55d2482117",
+  "generatedRustSha256": "26bc25fc6ea4e94d030ab579b900ae21b273d5fb07002bfa383240ed5e98bdf0",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/rust-port-closures/check",
-    "sha256": "d3b143b2745cf8c0f54dca93a1e51e154644912d06d2af31d4609d70c387a6c9"
+    "file": "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/rust-port-closures/check",
+    "sha256": "3cd8d83ae89daba6a17c8c9a23e98ee4ca7b2ddece512fcdeb0c3d94e300e614"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/rust-port-closures/main.rs",
+    "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/rust-port-closures/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-immutable-parameters/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-immutable-parameters/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/rust-port-closures/check"
+    "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/rust-port-closures/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-closures.outputs.json.gz",

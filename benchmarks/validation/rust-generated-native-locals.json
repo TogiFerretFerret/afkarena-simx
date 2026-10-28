@@ -310,7 +310,7 @@
     },
     {
       "file": "crates/js-runtime/src/battle_gc.rs",
-      "sha256": "989258068fb30882571264e055d893e46c2975dbeb875c7e31f5bc7168ec2416",
+      "sha256": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3",
       "matched": true
     },
     {
@@ -350,7 +350,7 @@
     },
     {
       "file": "crates/js-runtime/src/env.rs",
-      "sha256": "80809132329b25bc6481434d760905dcb73927d000469577ec7e0b1d74f8220a",
+      "sha256": "15bc6229afd44e5ccfdd29bff8a4eaa034712cc6660630a87172be9663fe7649",
       "matched": true
     },
     {
@@ -365,7 +365,7 @@
     },
     {
       "file": "crates/js-runtime/src/heap.rs",
-      "sha256": "901181256a48ad047045daf799eb843268c69e8ed09bdf6477358e4ff2be09fc",
+      "sha256": "ee453f2eeefb16b53de12c96752a4d18aab574904a6ea20c97ec396e78f506bb",
       "matched": true
     },
     {
@@ -395,7 +395,7 @@
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "4294cac4f8968ab8b0b73f70b24c8aab9060aca4250bd3071fce49416cbe7af2",
+      "sha256": "7a68c3d61d422f906f77f4244a57e3e759c6cd6d43e97116e8e218816773547d",
       "matched": true
     },
     {
@@ -419,6 +419,11 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/src/property_slots.rs",
+      "sha256": "85a0cc8f1027097e08f84af852b0ea3ec025a4744ce801574539347f587bcba0",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/src/reachability.rs",
       "sha256": "52173fb09c06399243fd8e19697602397edc1eee34c77550b6ee85e8c8a71b04",
       "matched": true
@@ -435,7 +440,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "199321fcc5e6c6cdabb6e24af67f011aebafed6742cb19cb9ecfb756666c3221",
+      "sha256": "6aa3ae58ebeedcfa1dfca2dbd5808cb2cb48a3aa36e1425056979e6dfd54efc1",
       "matched": true
     },
     {
@@ -461,6 +466,11 @@
     {
       "file": "crates/js-runtime/tests/ordinary_heap.rs",
       "sha256": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/property_slots.rs",
+      "sha256": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
       "matched": true
     },
     {
@@ -1405,12 +1415,12 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "14feb820c7fd2e36482122e5937a7154a6f9ff167a6cfd57e4a6de3db35892b6",
+      "sha256": "670866fd87af98f488065dc7406a61c0a78e62bac921ec8b3ea2fd230cdfb06c",
       "matched": true
     },
     {
       "file": "tools/rust-port/expressions.mjs",
-      "sha256": "256d83ca53f1cff1ff5abe2afb49b0ed074a045f0edea325cdba732becdde95e",
+      "sha256": "9336631cd9b90eeff21b1aeffb3fd46910172912a5761f6a9bb0137dc12347a1",
       "matched": true
     },
     {
@@ -1447,25 +1457,25 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "73052ce551f72ad94707ce774b5923508beab8f252837a2cda74f33bbef2dae6",
+  "generatedRustSha256": "d829373646952badaab283e4259da8252c69188fcfe3fab0920db0c59cdcb2dd",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/rust-port-native-locals/check",
-    "sha256": "75bd6040c8b1b44ef29819fa6b864f5cd7ee1428d9b171fd8adfa28ed57641f4"
+    "file": "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/rust-port-native-locals/check",
+    "sha256": "78cd217d868d2ff1759ef0e219c93b5cf7aab54dc306219c7155cf4478ef90df"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/rust-port-native-locals/main.rs",
+    "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/rust-port-native-locals/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-immutable-parameters/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-immutable-parameters/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/rust-port-native-locals/check"
+    "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/rust-port-native-locals/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-native-locals.outputs.json.gz",
