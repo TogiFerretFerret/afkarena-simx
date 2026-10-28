@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "tests": 54,
+  "failures": 0,
+  "command": "CARGO_TARGET_DIR=work/packed-test-target cargo test -p js-runtime --lib",
+  "scope": "Library including native battle GC, object reuse, giant string cache invalidation and two-word slot sentinel tests. Not a complete battle qualification.",
+  "sourceCommit": "d4f588b",
+  "log": "benchmarks/validation/rust-packed-literal-slots-lib-tests.log.gz",
+  "logSha256": "c7473c4e63efe4cbd36bce0aa58655a30deb3eb6106ff4e2a8a3329eab9b6361",
+  "uncompressedSha256": "aa41614518ce1ff54b97354e7fc32e8270abf25ff1d1ed0eb76ba4e4dcd444e9"
+}
