@@ -2,8 +2,8 @@
   "version": 1,
   "passed": true,
   "cases": 79116,
-  "compared": 78852,
-  "unsupportedCount": 264,
+  "compared": 78844,
+  "unsupportedCount": 272,
   "unsupported": [
     {
       "index": 7789,
@@ -611,6 +611,11 @@
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
     },
     {
+      "index": 10039,
+      "input": "binary Pow d4045400000000000 dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
       "index": 10040,
       "input": "binary Pow d4045400000000000 d4045400000000000",
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
@@ -718,6 +723,11 @@
     {
       "index": 10251,
       "input": "binary Pow d0000000000000001 s0030006f003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 10259,
+      "input": "binary Pow d7fefffffffffffff dbff0000000000000",
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
     },
     {
@@ -886,6 +896,11 @@
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
     },
     {
+      "index": 10699,
+      "input": "binary Pow s003100650033 dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
       "index": 10700,
       "input": "binary Pow s003100650033 d4045400000000000",
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
@@ -938,6 +953,11 @@
     {
       "index": 10735,
       "input": "binary Pow s003100650033 s0030006f003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 10743,
+      "input": "binary Pow s0030007800310066 dbff0000000000000",
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
     },
     {
@@ -996,6 +1016,11 @@
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
     },
     {
+      "index": 10787,
+      "input": "binary Pow s00300062003100300031 dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
       "index": 10788,
       "input": "binary Pow s00300062003100300031 d4045400000000000",
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
@@ -1051,6 +1076,11 @@
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
     },
     {
+      "index": 10831,
+      "input": "binary Pow s0030006f00370037 dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
       "index": 10832,
       "input": "binary Pow s0030006f00370037 d4045400000000000",
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
@@ -1103,6 +1133,11 @@
     {
       "index": 10867,
       "input": "binary Pow s0030006f00370037 s0030006f003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 11271,
+      "input": "binary Pow s2009003400322009 dbff0000000000000",
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
     },
     {
@@ -1213,6 +1248,11 @@
     {
       "index": 11527,
       "input": "binary Pow s00300062003100300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300031 s0030006f003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037003700370037",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 11535,
+      "input": "binary Pow s003000620031003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000310031 dbff0000000000000",
       "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
     },
     {
@@ -1329,14 +1369,14 @@
   "failures": [],
   "sources": {
     "tools/rust-port/check-values.mjs": "69b8278dbe4a3c2204fea2304bafcebb6a672e038491c1782cc71497a44a453a",
-    "crates/js-runtime/examples/value_check.rs": "da51d91c0f7f2153b0b7f1e63961092db12bae0cdb1de32c3de855264a725309",
-    "crates/js-runtime/src/value.rs": "56a3ef0dd3ea953c346934893f81ca83aa364bd796b318757e0f6d8a89dbc67e",
+    "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "crates/js-runtime/src/value.rs": "8014bdc99cee41920a4eeea63362d1ebb035231c8b88a65263b979cac2be653c",
     "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
   },
   "binary": {
     "file": "/workspace/afkarena-simx/target/debug/examples/value_check",
-    "sha256": "b72ab04f78e7de77421b11f7d6f534c54882ce651a45d6be0f9947b740cd7870"
+    "sha256": "4a7e5e0611134470a637fa24340af32bbb42aab5dd321f3648f4f9838f1a5add"
   },
   "oracleProfile": {
     "version": 1,
@@ -1369,8 +1409,8 @@
     },
     {
       "file": "benchmarks/validation/rust-value-semantics.actual.gz",
-      "sha256": "0f9a20e26d8dd6920d7b3439cc7ba4bca0f757563d402f08fa1433a9e4c9856e",
-      "uncompressedSha256": "26a7edb073a6a53675b5827bbf3bbd274a3449f91c90973e95f66e1f24d17d6d"
+      "sha256": "556b712f6ec6a288425aae66ef4c7615998ada79a3db97328ffda90777081d0e",
+      "uncompressedSha256": "22ca9961db7c1873805d5ecdbff488620c8c4eb6282110c8ec6e7315b5339434"
     },
     {
       "file": "benchmarks/validation/rust-value-semantics.stderr.gz",

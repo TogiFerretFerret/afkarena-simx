@@ -28,7 +28,15 @@ fn unary(name:&str)->UnaryOp {match name {"Plus"=>UnaryOp::Plus,"Minus"=>UnaryOp
 fn main()->io::Result<()> {
     let input=io::stdin();let mut out=io::BufWriter::new(io::stdout().lock());let mut rt=Runtime::new();
     for line in input.lock().lines() {
-        let line=line?;let mut words=line.split_whitespace();let operation=words.next().unwrap();let name=words.next().unwrap();let a=decode(&mut rt,words.next().unwrap());
+        let line=line?;let mut words=line.split_whitespace();let operation=words.next().unwrap();let name=words.next().unwrap();
+        if operation=="math" {
+            let args=words.map(|text|decode(&mut rt,text)).collect::<Vec<_>>();
+            let key=rt.string("Math");let math=rt.get(Value::Object(rt.global_object),key).unwrap();
+            let key=rt.string(name);let function=rt.get(math,key).unwrap();let result=rt.call(function,math,&args);
+            let result=match result{Ok(value)=>encode(&rt,value),Err(JsError::Unsupported(reason))=>format!("unsupported:{reason}"),Err(error)=>format!("error:{error:?}")};
+            writeln!(out,"{result}")?;continue;
+        }
+        let a=decode(&mut rt,words.next().unwrap());
         let result=match operation {
             "binary"=>{let b=decode(&mut rt,words.next().unwrap());rt.binary(binary(name),a,b)},
             "unary"=>rt.unary(unary(name),a),

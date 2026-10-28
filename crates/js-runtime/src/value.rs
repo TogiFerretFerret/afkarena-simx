@@ -306,7 +306,14 @@ pub(crate) fn number_pow(base: f64, exponent: f64) -> JsResult<f64> {
     if base < 0.0 && exponent.fract() != 0.0 { return Ok(arithmetic::REFERENCE_NAN); }
     if exponent == 1.0 { return Ok(base); }
     if exponent == 2.0 { return Ok(arithmetic::mul(base, base)); }
-    if exponent == -1.0 { return Ok(arithmetic::div(1.0, base)); }
+    if exponent == -1.0 {
+        // V8's general pow is not interchangeable with correctly-rounded 1/x.
+        // Only exact binary powers of two admit that reduction.
+        let magnitude=base.to_bits()&0x7fff_ffff_ffff_ffff;
+        let fraction=magnitude&((1_u64<<52)-1);
+        let binary_power=if magnitude>>52!=0 {fraction==0}else{fraction.count_ones()==1};
+        if binary_power{return Ok(arithmetic::div(1.0, base));}
+    }
     if exponent == 0.5 && base > 0.0 { return Ok(base.sqrt()); }
     Err(JsError::Unsupported("finite general Number exponentiation requires a pinned V8-compatible pow implementation".into()))
 }

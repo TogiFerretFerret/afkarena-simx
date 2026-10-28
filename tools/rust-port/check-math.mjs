@@ -1,0 +1,27 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
+import assert from 'node:assert/strict';
+const root=resolve(import.meta.dirname,'../..'),profile=JSON.parse(await readFile(resolve(root,'config/source-oracle-runtime.json')));
+assert.equal(process.version,profile.node);assert.equal(process.versions.v8,profile.v8);
+if(JSON.stringify(process.execArgv)!==JSON.stringify(profile.rawBitReferenceFlags)){const p=spawnSync(process.execPath,[...profile.rawBitReferenceFlags,process.argv[1],...process.argv.slice(2)],{cwd:root,env:{...process.env,NODE_OPTIONS:''},stdio:'inherit'});process.exit(p.status??1);}
+assert.ok(process.argv[2],'Usage: node tools/rust-port/check-math.mjs VALUE_CHECK_BINARY');
+const sha=x=>createHash('sha256').update(x).digest('hex'),view=new DataView(new ArrayBuffer(8));
+function bits(n){view.setFloat64(0,n);return view.getBigUint64(0).toString(16).padStart(16,'0');}function fromBits(h){view.setBigUint64(0,BigInt('0x'+h));return view.getFloat64(0);}
+function encode(v){if(v===undefined)return'u';if(v===null)return'n';if(typeof v==='boolean')return'b'+Number(v);if(typeof v==='number')return'd'+bits(v);return's'+Array.from({length:v.length},(_,i)=>v.charCodeAt(i).toString(16).padStart(4,'0')).join('');}
+const values=[undefined,null,false,true,0,-0,0.5,-0.5,0.49999999999999994,-0.49999999999999994,-0.5000000000000001,1,-1,Infinity,-Infinity,NaN,Number.MIN_VALUE,-Number.MIN_VALUE,Number.MAX_VALUE,2**52,2**52-0.5,2**53,-(2**53),fromBits('7ff8123456789abc'),fromBits('fff8abcdef012345'),fromBits('7ff0123456789abc'),'',' 12.5 ','0x1f','bad','\ud800'];
+const names=['abs','floor','ceil','round','trunc','sqrt','sign','clz32'];const rows=[];
+function row(name,args){rows.push({input:['math',name,...args.map(encode)].join(' '),expected:encode(Math[name](...args)),kind:name});}
+for(const name of names){row(name,[]);for(const v of values)row(name,[v]);}
+for(const a of values)for(const b of values){row('min',[a,b]);row('max',[a,b]);row('imul',[a,b]);row('pow',[a,b]);}
+row('min',[]);row('max',[]);for(const vs of [[-0,0,-0],[0,-0,0],[NaN,1,2],[1,NaN,2],[1,2,NaN],[Infinity,-Infinity,0]]){row('min',vs);row('max',vs);}
+let state=0x4218deac;function next(){state^=state<<13;state^=state>>>17;state^=state<<5;return state>>>0;}
+for(let i=0;i<20000;i++){const a=fromBits(next().toString(16).padStart(8,'0')+next().toString(16).padStart(8,'0'));row(names[i%names.length],[a]);}
+const input=rows.map(r=>r.input).join('\n')+'\n',binary=resolve(process.argv[2]),run=spawnSync(binary,[],{input,cwd:root,encoding:'utf8',maxBuffer:64*1024*1024});assert.ifError(run.error);assert.equal(run.status,0,run.stderr);const actual=run.stdout.trimEnd().split('\n');assert.equal(actual.length,rows.length);const failures=[],unsupported=[];let compared=0;
+for(let i=0;i<rows.length;i++){if(actual[i].startsWith('unsupported:')){unsupported.push({index:i,input:rows[i].input,reason:actual[i]});continue;}compared++;if(actual[i]!==rows[i].expected&&failures.length<30)failures.push({index:i,...rows[i],actual:actual[i]});}
+const prefix='benchmarks/validation/rust-math-semantics';await mkdir(resolve(root,'benchmarks/validation'),{recursive:true});const artifacts=[];
+for(const[label,text]of[['input',input],['expected',rows.map(r=>r.expected).join('\n')+'\n'],['actual',run.stdout],['stderr',run.stderr]]){const file=prefix+'.'+label+'.gz';await writeFile(resolve(root,file),gzipSync(text));artifacts.push({file,sha256:sha(await readFile(resolve(root,file))),uncompressedSha256:sha(text)});}
+const sources={};for(const file of ['tools/rust-port/check-math.mjs','crates/js-runtime/examples/value_check.rs','crates/js-runtime/src/value.rs','crates/js-runtime/src/math.rs','crates/battle-core/src/js_math.rs','config/source-oracle-runtime.json'])sources[file]=sha(await readFile(resolve(root,file)));
+const report={version:1,passed:failures.length===0,cases:rows.length,compared,unsupportedCount:unsupported.length,unsupported,failures,sources,binary:{file:binary,sha256:sha(await readFile(binary))},oracleProfile:profile,artifacts,scope:'Actual pure Rust Math natives, primitive coercions, raw f64 bits and UTF-16 string arguments compared to pinned jitless V8. Unsupported generic power cases are retained, never counted as passes. Object coercion side effects and generated-program integration require separate gates; this is not battle qualification.',qualifiesFor10000Target:false};await writeFile(resolve(root,prefix+'.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:report.passed,cases:report.cases,compared,unsupportedCount:unsupported.length,failures}));if(!report.passed)process.exitCode=1;

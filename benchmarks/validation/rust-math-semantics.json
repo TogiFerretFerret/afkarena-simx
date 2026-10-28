@@ -1,0 +1,964 @@
+{
+  "version": 1,
+  "passed": true,
+  "cases": 24114,
+  "compared": 23934,
+  "unsupportedCount": 180,
+  "unsupported": [
+    {
+      "index": 659,
+      "input": "math pow b1 dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 663,
+      "input": "math pow b1 d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 667,
+      "input": "math pow b1 dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 671,
+      "input": "math pow b1 dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 695,
+      "input": "math pow b1 d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 699,
+      "input": "math pow b1 d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 703,
+      "input": "math pow b1 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 707,
+      "input": "math pow b1 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 711,
+      "input": "math pow b1 d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 715,
+      "input": "math pow b1 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 719,
+      "input": "math pow b1 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 739,
+      "input": "math pow b1 s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 743,
+      "input": "math pow b1 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1031,
+      "input": "math pow d3fe0000000000000 dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1035,
+      "input": "math pow d3fe0000000000000 d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1039,
+      "input": "math pow d3fe0000000000000 dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1043,
+      "input": "math pow d3fe0000000000000 dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1067,
+      "input": "math pow d3fe0000000000000 d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1071,
+      "input": "math pow d3fe0000000000000 d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1075,
+      "input": "math pow d3fe0000000000000 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1079,
+      "input": "math pow d3fe0000000000000 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1083,
+      "input": "math pow d3fe0000000000000 d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1087,
+      "input": "math pow d3fe0000000000000 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1091,
+      "input": "math pow d3fe0000000000000 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1111,
+      "input": "math pow d3fe0000000000000 s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1115,
+      "input": "math pow d3fe0000000000000 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1199,
+      "input": "math pow dbfe0000000000000 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1203,
+      "input": "math pow dbfe0000000000000 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1211,
+      "input": "math pow dbfe0000000000000 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1215,
+      "input": "math pow dbfe0000000000000 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1239,
+      "input": "math pow dbfe0000000000000 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1279,
+      "input": "math pow d3fdfffffffffffff dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1283,
+      "input": "math pow d3fdfffffffffffff d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1287,
+      "input": "math pow d3fdfffffffffffff dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1291,
+      "input": "math pow d3fdfffffffffffff dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1299,
+      "input": "math pow d3fdfffffffffffff dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1315,
+      "input": "math pow d3fdfffffffffffff d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1319,
+      "input": "math pow d3fdfffffffffffff d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1323,
+      "input": "math pow d3fdfffffffffffff d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1327,
+      "input": "math pow d3fdfffffffffffff d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1331,
+      "input": "math pow d3fdfffffffffffff d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1335,
+      "input": "math pow d3fdfffffffffffff d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1339,
+      "input": "math pow d3fdfffffffffffff dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1359,
+      "input": "math pow d3fdfffffffffffff s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1363,
+      "input": "math pow d3fdfffffffffffff s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1423,
+      "input": "math pow dbfdfffffffffffff dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1447,
+      "input": "math pow dbfdfffffffffffff d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1451,
+      "input": "math pow dbfdfffffffffffff d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1459,
+      "input": "math pow dbfdfffffffffffff d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1463,
+      "input": "math pow dbfdfffffffffffff dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1487,
+      "input": "math pow dbfdfffffffffffff s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1547,
+      "input": "math pow dbfe0000000000001 dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1571,
+      "input": "math pow dbfe0000000000001 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1575,
+      "input": "math pow dbfe0000000000001 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1583,
+      "input": "math pow dbfe0000000000001 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1587,
+      "input": "math pow dbfe0000000000001 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1611,
+      "input": "math pow dbfe0000000000001 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1651,
+      "input": "math pow d3ff0000000000000 dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1655,
+      "input": "math pow d3ff0000000000000 d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1659,
+      "input": "math pow d3ff0000000000000 dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1663,
+      "input": "math pow d3ff0000000000000 dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1687,
+      "input": "math pow d3ff0000000000000 d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1691,
+      "input": "math pow d3ff0000000000000 d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1695,
+      "input": "math pow d3ff0000000000000 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1699,
+      "input": "math pow d3ff0000000000000 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1703,
+      "input": "math pow d3ff0000000000000 d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1707,
+      "input": "math pow d3ff0000000000000 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1711,
+      "input": "math pow d3ff0000000000000 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1731,
+      "input": "math pow d3ff0000000000000 s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1735,
+      "input": "math pow d3ff0000000000000 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1819,
+      "input": "math pow dbff0000000000000 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1823,
+      "input": "math pow dbff0000000000000 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1831,
+      "input": "math pow dbff0000000000000 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1835,
+      "input": "math pow dbff0000000000000 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 1859,
+      "input": "math pow dbff0000000000000 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2271,
+      "input": "math pow d0000000000000001 dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2275,
+      "input": "math pow d0000000000000001 d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2279,
+      "input": "math pow d0000000000000001 dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2283,
+      "input": "math pow d0000000000000001 dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2307,
+      "input": "math pow d0000000000000001 d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2311,
+      "input": "math pow d0000000000000001 d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2315,
+      "input": "math pow d0000000000000001 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2319,
+      "input": "math pow d0000000000000001 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2323,
+      "input": "math pow d0000000000000001 d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2327,
+      "input": "math pow d0000000000000001 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2331,
+      "input": "math pow d0000000000000001 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2351,
+      "input": "math pow d0000000000000001 s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2355,
+      "input": "math pow d0000000000000001 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2439,
+      "input": "math pow d8000000000000001 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2443,
+      "input": "math pow d8000000000000001 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2451,
+      "input": "math pow d8000000000000001 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2455,
+      "input": "math pow d8000000000000001 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2479,
+      "input": "math pow d8000000000000001 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2519,
+      "input": "math pow d7fefffffffffffff dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2523,
+      "input": "math pow d7fefffffffffffff d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2527,
+      "input": "math pow d7fefffffffffffff dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2531,
+      "input": "math pow d7fefffffffffffff dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2539,
+      "input": "math pow d7fefffffffffffff dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2555,
+      "input": "math pow d7fefffffffffffff d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2559,
+      "input": "math pow d7fefffffffffffff d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2563,
+      "input": "math pow d7fefffffffffffff d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2567,
+      "input": "math pow d7fefffffffffffff d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2571,
+      "input": "math pow d7fefffffffffffff d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2575,
+      "input": "math pow d7fefffffffffffff d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2579,
+      "input": "math pow d7fefffffffffffff dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2599,
+      "input": "math pow d7fefffffffffffff s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2603,
+      "input": "math pow d7fefffffffffffff s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2643,
+      "input": "math pow d4330000000000000 dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2647,
+      "input": "math pow d4330000000000000 d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2651,
+      "input": "math pow d4330000000000000 dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2655,
+      "input": "math pow d4330000000000000 dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2679,
+      "input": "math pow d4330000000000000 d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2683,
+      "input": "math pow d4330000000000000 d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2687,
+      "input": "math pow d4330000000000000 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2691,
+      "input": "math pow d4330000000000000 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2695,
+      "input": "math pow d4330000000000000 d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2699,
+      "input": "math pow d4330000000000000 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2703,
+      "input": "math pow d4330000000000000 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2723,
+      "input": "math pow d4330000000000000 s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2727,
+      "input": "math pow d4330000000000000 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2767,
+      "input": "math pow d432fffffffffffff dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2771,
+      "input": "math pow d432fffffffffffff d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2775,
+      "input": "math pow d432fffffffffffff dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2779,
+      "input": "math pow d432fffffffffffff dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2787,
+      "input": "math pow d432fffffffffffff dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2803,
+      "input": "math pow d432fffffffffffff d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2807,
+      "input": "math pow d432fffffffffffff d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2811,
+      "input": "math pow d432fffffffffffff d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2815,
+      "input": "math pow d432fffffffffffff d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2819,
+      "input": "math pow d432fffffffffffff d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2823,
+      "input": "math pow d432fffffffffffff d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2827,
+      "input": "math pow d432fffffffffffff dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2847,
+      "input": "math pow d432fffffffffffff s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2851,
+      "input": "math pow d432fffffffffffff s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2891,
+      "input": "math pow d4340000000000000 dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2895,
+      "input": "math pow d4340000000000000 d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2899,
+      "input": "math pow d4340000000000000 dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2903,
+      "input": "math pow d4340000000000000 dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2927,
+      "input": "math pow d4340000000000000 d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2931,
+      "input": "math pow d4340000000000000 d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2935,
+      "input": "math pow d4340000000000000 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2939,
+      "input": "math pow d4340000000000000 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2943,
+      "input": "math pow d4340000000000000 d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2947,
+      "input": "math pow d4340000000000000 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2951,
+      "input": "math pow d4340000000000000 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2971,
+      "input": "math pow d4340000000000000 s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 2975,
+      "input": "math pow d4340000000000000 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3059,
+      "input": "math pow dc340000000000000 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3063,
+      "input": "math pow dc340000000000000 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3071,
+      "input": "math pow dc340000000000000 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3075,
+      "input": "math pow dc340000000000000 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3099,
+      "input": "math pow dc340000000000000 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3635,
+      "input": "math pow s002000310032002e00350020 dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3639,
+      "input": "math pow s002000310032002e00350020 d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3643,
+      "input": "math pow s002000310032002e00350020 dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3647,
+      "input": "math pow s002000310032002e00350020 dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3655,
+      "input": "math pow s002000310032002e00350020 dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3671,
+      "input": "math pow s002000310032002e00350020 d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3675,
+      "input": "math pow s002000310032002e00350020 d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3679,
+      "input": "math pow s002000310032002e00350020 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3683,
+      "input": "math pow s002000310032002e00350020 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3687,
+      "input": "math pow s002000310032002e00350020 d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3691,
+      "input": "math pow s002000310032002e00350020 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3695,
+      "input": "math pow s002000310032002e00350020 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3715,
+      "input": "math pow s002000310032002e00350020 s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3719,
+      "input": "math pow s002000310032002e00350020 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3759,
+      "input": "math pow s0030007800310066 dbfe0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3763,
+      "input": "math pow s0030007800310066 d3fdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3767,
+      "input": "math pow s0030007800310066 dbfdfffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3771,
+      "input": "math pow s0030007800310066 dbfe0000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3779,
+      "input": "math pow s0030007800310066 dbff0000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3795,
+      "input": "math pow s0030007800310066 d0000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3799,
+      "input": "math pow s0030007800310066 d8000000000000001",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3803,
+      "input": "math pow s0030007800310066 d7fefffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3807,
+      "input": "math pow s0030007800310066 d4330000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3811,
+      "input": "math pow s0030007800310066 d432fffffffffffff",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3815,
+      "input": "math pow s0030007800310066 d4340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3819,
+      "input": "math pow s0030007800310066 dc340000000000000",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3839,
+      "input": "math pow s0030007800310066 s002000310032002e00350020",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    },
+    {
+      "index": 3843,
+      "input": "math pow s0030007800310066 s0030007800310066",
+      "reason": "unsupported:finite general Number exponentiation requires a pinned V8-compatible pow implementation"
+    }
+  ],
+  "failures": [],
+  "sources": {
+    "tools/rust-port/check-math.mjs": "e1e96ff8bbd2759e022aba68383a3a4c2c34caba819b011ba3f83ec89e6e5894",
+    "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "crates/js-runtime/src/value.rs": "8014bdc99cee41920a4eeea63362d1ebb035231c8b88a65263b979cac2be653c",
+    "crates/js-runtime/src/math.rs": "685dadef7ae94184088e00964c252659f17f461cae70ebf9f05501abc5630b35",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/target/debug/examples/value_check",
+    "sha256": "4a7e5e0611134470a637fa24340af32bbb42aab5dd321f3648f4f9838f1a5add"
+  },
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/rust-math-semantics.input.gz",
+      "sha256": "f1383b311f86ac8771319803c228bf4e9cebe157ed850b531ce929af49317ace",
+      "uncompressedSha256": "70ac2932d08315ae8392eecdd3fff9068200270b1179e9282edf24afe8f6784e"
+    },
+    {
+      "file": "benchmarks/validation/rust-math-semantics.expected.gz",
+      "sha256": "4e7fab82ef34b60ded20bad0c6da58101c1021421cdd850c902202051ea56cf7",
+      "uncompressedSha256": "e7f5cc28813cfb21ac1abd2cc16cb2c874b571971b1073969e70c9bae6281f47"
+    },
+    {
+      "file": "benchmarks/validation/rust-math-semantics.actual.gz",
+      "sha256": "b9412869e26df5b8d233cdafd8a2c969b27afe4161cbd7a5e289bf4c1135ce3e",
+      "uncompressedSha256": "c0d6c26f0ab0d89218ac41e1010ab551ef9768df842278daaed9e085c103ff4d"
+    },
+    {
+      "file": "benchmarks/validation/rust-math-semantics.stderr.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Actual pure Rust Math natives, primitive coercions, raw f64 bits and UTF-16 string arguments compared to pinned jitless V8. Unsupported generic power cases are retained, never counted as passes. Object coercion side effects and generated-program integration require separate gates; this is not battle qualification.",
+  "qualifiesFor10000Target": false
+}
