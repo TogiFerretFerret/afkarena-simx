@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "checkpointOnly": true,
+  "qualifiesFor10000Target": false,
+  "at": "2026-10-28T22:48:28.075Z",
+  "label": "own-primary-wave",
+  "chainStage": "build",
+  "chainPassed": false,
+  "chainPid": 187550,
+  "compilingLines": 372,
+  "observedCargoErrors": [],
+  "releaseFinished": false,
+  "availableBytes": 3828281344,
+  "scope": "Immutable progress checkpoint of an active build. Does not assert successful compilation, battle parity, throughput or final source provenance.",
+  "artifacts": [
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-own-primary-wave-chain.json",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T22-48-28.060Z-own-primary-wave-checkpoint.chain.json.gz",
+      "observedBytes": 1047,
+      "sourceSha256": "486b426e17be43607475356a4ba8479fc9695cd9750d5348c78d55cec9e8b2e6",
+      "archiveSha256": "ec1ee5990c68763845a132f9d5829ca36072374d04d12430c6aa5aba512cb4e3",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    },
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-own-primary-wave-build.json",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T22-48-28.060Z-own-primary-wave-checkpoint.build.json.gz",
+      "observedBytes": 221576,
+      "sourceSha256": "fdec2e0c50566e67162ddb65162911284517151fb7c3e53b31dbb3453edcf70f",
+      "archiveSha256": "9ae7ef54e0d72bc0c17eeafb6c07eca9fe383b4e3fca4415a22310a9bc848db7",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    },
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-own-primary-wave-build.cargo.stdout",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T22-48-28.060Z-own-primary-wave-checkpoint.build.cargo.stdout.gz",
+      "observedBytes": 0,
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archiveSha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    },
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-own-primary-wave-build.cargo.stderr",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-28T22-48-28.060Z-own-primary-wave-checkpoint.build.cargo.stderr.gz",
+      "observedBytes": 44949,
+      "sourceSha256": "6aee3713ef9f029a2dfc1be2e164cfa2c32539349e1d45a8c7709829e6eeaa13",
+      "archiveSha256": "7d751d041368a480f090cacec7ecb5a47d83b0158a2cce99909f57d88114070c",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    }
+  ]
+}
