@@ -32,6 +32,13 @@ const cases=[
  ['throw-finally-normal','function(){try{throw 9;}finally{}}'],
  ['continue-finally-break-overrides','function(){var x=0;for(var i=0;i<4;i++){try{continue;}finally{x=i;break;}}return x;}'],
  ['return-after-var-no-reset','function(a){var a;return a===void 0;}'],
+ ['object-binding-bootstrap','function(){const runtime={ed:9};const {ed}=runtime;return ed;}'],
+ ['object-binding-get-default-order','function(){var log="";var obj={get a(){log+="a";return void 0;},get b(){log+="b";return 2;}};let {a=(log+="d",1),b}=obj;return log+a+b;}'],
+ ['object-binding-default-tdz','function(){try{let {a=b,b=1}={};return a;}catch(e){return e.name;}}'],
+ ['object-binding-catch','function(){try{throw {a:{b:7}};}catch({a:{b}}){return b;}}'],
+ ['object-binding-default-name','function(){var {foo=function(){}}={};return foo.name;}'],
+ ['object-binding-computed-order','function(){var log="";var obj={get x(){log+="g";return 3;}};var {[(log+="k","x")]: value}=obj;return log+value;}'],
+
 ];
 const tracked=new Map();async function bind(file){const bytes=await readFile(resolve(root,file));tracked.set(file,sha(bytes));}
 async function tree(directory){for(const entry of await readdir(resolve(root,directory),{withFileTypes:true})){const file=directory+'/'+entry.name;if(entry.isDirectory())await tree(file);else if(entry.name.endsWith('.rs')||entry.name==='Cargo.toml')await bind(file);}}

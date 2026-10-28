@@ -8,9 +8,17 @@ function child(ctx,overrides){if(typeof ctx.child!=='function')throw new Error('
 function capture(ctx,body){const name=ctx.fresh('statement_result');ctx.emit(`let ${name}: JsResult<Completion> = (|| -> JsResult<Completion> {`);body();ctx.emit('})();');return name;}
 function propagate(ctx,value){ctx.emit(`if !matches!(${value}, Completion::Normal) { return Ok(${value}); }`);}
 function normal(ctx){ctx.emit('Ok(Completion::Normal)');}
-function bindingName(pattern){if(pattern?.type!=='Identifier')unsupported(pattern,'binding destructuring is not implemented');return pattern.name;}
+function bindingName(pattern){if(pattern?.type!=='Identifier')unsupported(pattern,'expected an identifier binding');return pattern.name;}
+function boundNames(pattern){switch(pattern?.type){case 'Identifier':return[pattern.name];case 'AssignmentPattern':return boundNames(pattern.left);case 'ObjectPattern':return pattern.properties.flatMap(property=>boundNames(property.type==='RestElement'?property.argument:property.value));case 'RestElement':return boundNames(pattern.argument);default:unsupported(pattern,'binding pattern is not implemented');}}
+function string(ctx,value){const units=Array.from({length:String(value).length},(_,i)=>String(value).charCodeAt(i));return ctx.temp(`rt.string_utf16(&[${units.join(',')}])`);}
+function bindPattern(ctx,pattern,value,kind){
+ if(pattern.type==='Identifier'){ctx.emit(kind==='var'?`rt.assign(${ctx.env}, ${quote(pattern.name)}, ${value}, ${ctx.strict})?;`:`rt.initialize(${ctx.env}, ${quote(pattern.name)}, ${value})?;`);return;}
+ if(pattern.type==='AssignmentPattern'){const local=ctx.fresh('binding_default');ctx.emit(`let mut ${local} = ${value};`);ctx.emit(`if matches!(${local}, Value::Undefined) {`);const expression=pattern.right,defaultValue=['FunctionExpression','ArrowFunctionExpression'].includes(expression.type)&&!expression.id&&pattern.left.type==='Identifier'?ctx.makeClosure(expression,{inferredName:pattern.left.name}):ctx.expression(expression);ctx.emit(`${local} = ${defaultValue};`);ctx.emit('}');bindPattern(ctx,pattern.left,local,kind);return;}
+ if(pattern.type==='ObjectPattern'){ctx.emit(`rt.require_object_coercible(${value})?;`);for(const property of pattern.properties){if(property.type==='RestElement')unsupported(property,'object rest binding is not implemented');if(property.type!=='ObjectProperty')unsupported(property,'object binding property is not implemented');let key;if(property.computed){const raw=ctx.expression(property.key);key=ctx.temp(`rt.to_property_key(${raw})?`);}else key=string(ctx,property.key.type==='Identifier'?property.key.name:property.key.value);const member=ctx.temp(`rt.get(${value}, ${key})?`);bindPattern(ctx,property.value,member,kind);}return;}
+ unsupported(pattern,'binding pattern is not implemented');
+}
 function declarationKind(node){if(!['var','let','const'].includes(node.kind))unsupported(node,'resource-management declaration is not implemented');}
-function lexicalNames(statements){const result=[];for(const node of statements){if(node.type==='VariableDeclaration')declarationKind(node);if(node.type==='VariableDeclaration'&&node.kind!=='var')for(const declaration of node.declarations)result.push({name:bindingName(declaration.id),mutable:node.kind==='let'});else if(node.type==='ClassDeclaration')unsupported(node,'class declarations are not implemented');}return result;}
+function lexicalNames(statements){const result=[];for(const node of statements){if(node.type==='VariableDeclaration')declarationKind(node);if(node.type==='VariableDeclaration'&&node.kind!=='var')for(const declaration of node.declarations)result.push(...boundNames(declaration.id).map(name=>({name,mutable:node.kind==='let'})));else if(node.type==='ClassDeclaration')unsupported(node,'class declarations are not implemented');}return result;}
 function declareLexicals(ctx,statements){for(const item of lexicalNames(statements))ctx.emit(`rt.declare_lexical(${ctx.env}, ${quote(item.name)}, ${item.mutable})?;`);}
 function instantiateFunctions(ctx,local,statements,env){
  const functions=statements.filter(statement=>statement.type==='FunctionDeclaration');
@@ -31,8 +39,7 @@ function block(ctx,node){
 }
 function declaration(ctx,node){
  declarationKind(node);
- for(const item of node.declarations){const name=bindingName(item.id);if(node.kind==='var'){if(item.init){const value=ctx.expression(item.init);ctx.emit(`rt.assign(${ctx.env}, ${quote(name)}, ${value}, ${ctx.strict})?;`);}}
-  else {const value=item.init?ctx.expression(item.init):'Value::Undefined';ctx.emit(`rt.initialize(${ctx.env}, ${quote(name)}, ${value})?;`);}}
+ for(const item of node.declarations){if(node.kind==='var'&&!item.init)continue;const value=item.init?ctx.expression(item.init):'Value::Undefined';bindPattern(ctx,item.id,value,node.kind);}
  normal(ctx);
 }
 function labels(ctx){return ctx.pendingLabels??[];}
@@ -50,7 +57,7 @@ function forStatement(ctx,node){
  let local=ctx,loopNames=[];
  if(node.init?.type==='VariableDeclaration'&&node.init.kind!=='var'){
   const env=ctx.fresh('iteration_env');ctx.emit(`let mut ${env} = rt.child_block_env(${ctx.env});`);local=child(ctx,{env});
-  declareLexicals(local,[node.init]);loopNames=node.init.declarations.map(item=>bindingName(item.id));
+  declareLexicals(local,[node.init]);loopNames=node.init.declarations.flatMap(item=>boundNames(item.id));
  }
  if(node.init){if(node.init.type==='VariableDeclaration'){const value=emitStatement(node.init,local);propagate(local,value);}else local.expression(node.init);}
  const clone=()=>{if(loopNames.length)local.emit(`${local.env} = rt.clone_loop_env(${local.env}, &[${loopNames.map(quote).join(', ')}])?;`);};
@@ -67,10 +74,10 @@ function forInStatement(ctx,node){
  let local=ctx;
  if(node.left.type==='VariableDeclaration'){
   if(node.left.declarations.length!==1)unsupported(node.left,'for-in requires exactly one declaration');
-  const declaration=node.left.declarations[0],name=bindingName(declaration.id);
+  const declaration=node.left.declarations[0];
   if(declaration.init)unsupported(declaration,'legacy initialized for-in declaration is not implemented');
-  if(node.left.kind==='var')ctx.emit(`rt.assign(${ctx.env}, ${quote(name)}, ${key}, ${ctx.strict})?;`);
-  else {const env=ctx.temp(`rt.child_block_env(${ctx.env})`);local=child(ctx,{env});local.emit(`rt.declare_lexical(${env}, ${quote(name)}, ${node.left.kind==='let'})?;`);local.emit(`rt.initialize(${env}, ${quote(name)}, ${key})?;`);}
+  if(node.left.kind!=='var'){const env=ctx.temp(`rt.child_block_env(${ctx.env})`);local=child(ctx,{env});declareLexicals(local,[node.left]);}
+  bindPattern(local,declaration.id,key,node.left.kind);
  }else{const ref=emitReference(node.left,ctx);writeReference(ref,key,ctx);}
  loopBody(local,node.body);ctx.emit('}');normal(ctx);
 }
@@ -89,7 +96,7 @@ function tryStatement(ctx,node){
   const result=ctx.fresh('catch_result'),error=ctx.fresh('caught_error');ctx.emit(`let ${result}: JsResult<Completion> = match ${prior} { Ok(value) => Ok(value), Err(${error}) => {`);
   const caught=capture(ctx,()=>{
    const env=ctx.temp(`rt.child_block_env(${ctx.env})`),local=child(ctx,{env,pendingLabels:[]});
-   if(node.handler.param){const name=bindingName(node.handler.param),value=ctx.temp(`rt.error_value(${error})?`);ctx.emit(`rt.declare_lexical(${env}, ${quote(name)}, true)?;`);ctx.emit(`rt.initialize(${env}, ${quote(name)}, ${value})?;`);}else ctx.emit(`if matches!(${error}, JsError::Unsupported(_)) { return Err(${error}); }`);
+   if(node.handler.param){const value=ctx.temp(`rt.error_value(${error})?`);for(const name of boundNames(node.handler.param))ctx.emit(`rt.declare_lexical(${env}, ${quote(name)}, true)?;`);bindPattern(local,node.handler.param,value,'catch');}else ctx.emit(`if matches!(${error}, JsError::Unsupported(_)) { return Err(${error}); }`);
    const completion=emitStatement(node.handler.body,local);ctx.emit(`Ok(${completion})`);
   });ctx.emit(caught);ctx.emit('} };');prior=result;
  }
