@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "passed": true,
+  "rounds": 2,
+  "roundTotals": [
+    {
+      "round": 0,
+      "sipElapsedNs": 60357151,
+      "fxElapsedNs": 51053090,
+      "ratio": 1.1822428573863013
+    },
+    {
+      "round": 1,
+      "sipElapsedNs": 57702946,
+      "fxElapsedNs": 47942962,
+      "ratio": 1.2035749063647758
+    }
+  ],
+  "hostContention": {
+    "present": false,
+    "reason": "Reserved serial component timing slot; no full-battle throughput claim."
+  },
+  "source": {
+    "source": "src/srcmodule/game_battle.js",
+    "methods": {
+      "applyPercentValue": {
+        "start": 41723,
+        "end": 42574,
+        "sha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+        "text": "function(){for(var e=this.info,t=this.owner.attribs,a=ed.AttrDebugMgr&&ed.AttrDebugMgr.getDynamic(this.owner),i=this.owner.buff_effects.noAttrUp&&!this.owner.isAttrLockExemptedFor(\"noAttrUp\",e.ID),r=this.owner.buff_effects.noAttrDown&&!this.owner.isAttrLockExemptedFor(\"noAttrDown\",e.ID),n=this.attrib.length,l=0;l<n;l++){var o=this.attrib[l],f=0,s=a&&t[o],c=0,d=e[ed.attrib_names_x[o]];if(d){var u=ed.attrib_names_a[o];if(e.AddSource&&\"owner\"===e.AddSource&&this.owner){var _=e[u];a&&(c=this.owner.attribs[_]||0),f+=(this.owner.attribs[_]||0)*d}else{_=e[u];a&&(c=this.caster_attribs[_]||0),f+=(this.caster_attribs[_]||0)*d}}0!==f&&(\"HPR\"===o||\"MPR\"===o||f>0&&!i||f<0&&!r)&&(t[o]=t[o]+f),a&&d&&ed.AttrDebugMgr.recordBuffValue(a,this,o,s,t[o],f,{kind:\"percent\",basis:c,coefficient:d,basisAttr:e[ed.attrib_names_a[o]]},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}}"
+      },
+      "applyFixedValue": {
+        "start": 42591,
+        "end": 43256,
+        "sha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+        "text": "function(){for(var e=this.info,t=this.owner.attribs,a=ed.AttrDebugMgr&&ed.AttrDebugMgr.getDynamic(this.owner),i=this.owner.buff_effects.noAttrUp&&!this.owner.isAttrLockExemptedFor(\"noAttrUp\",e.ID),r=this.owner.buff_effects.noAttrDown&&!this.owner.isAttrLockExemptedFor(\"noAttrDown\",e.ID),n=this.attrib.length,l=0;l<n;l++){var o=this.attrib[l],f=e[o]||0,s=a&&t[o];0!==f&&(\"HPR\"===o&&(f<0&&this.owner.rageObject&&(f=this.owner.rageObject.processHPR(this.owner,f,this)),this.buffIncHPR=f),(\"HPR\"===o||\"MPR\"===o||f>0&&!i||f<0&&!r)&&(t[o]=t[o]+f)),a&&e[o]&&ed.AttrDebugMgr.recordBuffValue(a,this,o,s,t[o],f,{kind:\"fixed\",value:e[o]||0},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}}"
+      }
+    }
+  },
+  "sourceBuffMethodsUnchanged": true,
+  "updatesPerTrial": 3000,
+  "trialsPerVariant": 3,
+  "warmupUpdates": 5,
+  "rows": [
+    {
+      "label": "baseline",
+      "round": 0,
+      "trial": 0,
+      "elapsedNs": "21357076",
+      "updates": 3000,
+      "updatesPerSecond": 140468.66715275068,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 0,
+      "trial": 0,
+      "elapsedNs": "18448207",
+      "updates": 3000,
+      "updatesPerSecond": 162617.42943365715,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 0,
+      "trial": 1,
+      "elapsedNs": "16798042",
+      "updates": 3000,
+      "updatesPerSecond": 178592.243072139,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 0,
+      "trial": 1,
+      "elapsedNs": "19919536",
+      "updates": 3000,
+      "updatesPerSecond": 150605.9177282041,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 0,
+      "trial": 2,
+      "elapsedNs": "19080539",
+      "updates": 3000,
+      "updatesPerSecond": 157228.26278649675,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 0,
+      "trial": 2,
+      "elapsedNs": "15806841",
+      "updates": 3000,
+      "updatesPerSecond": 189791.242918177,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 1,
+      "trial": 0,
+      "elapsedNs": "18479242",
+      "updates": 3000,
+      "updatesPerSecond": 162344.3212659913,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 1,
+      "trial": 0,
+      "elapsedNs": "16006285",
+      "updates": 3000,
+      "updatesPerSecond": 187426.3765764511,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 1,
+      "trial": 1,
+      "elapsedNs": "16555074",
+      "updates": 3000,
+      "updatesPerSecond": 181213.32468824968,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 1,
+      "trial": 1,
+      "elapsedNs": "19452146",
+      "updates": 3000,
+      "updatesPerSecond": 154224.62899466208,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 1,
+      "trial": 2,
+      "elapsedNs": "19771558",
+      "updates": 3000,
+      "updatesPerSecond": 151733.11076446276,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 1,
+      "trial": 2,
+      "elapsedNs": "15381603",
+      "updates": 3000,
+      "updatesPerSecond": 195038.18945268576,
+      "events": 256
+    }
+  ],
+  "totals": {
+    "baseline": {
+      "trials": 6,
+      "totalUpdates": 18000,
+      "totalElapsedNs": "118060097",
+      "aggregateUpdatesPerSecond": 152464.72311470317
+    },
+    "cached": {
+      "trials": 6,
+      "totalUpdates": 18000,
+      "totalElapsedNs": "98996052",
+      "aggregateUpdatesPerSecond": 181825.43279604727
+    }
+  },
+  "observedThroughputRatio": 1.1925737907204625,
+  "allOrderedEventsAndSelectedStateBitsMatched": true,
+  "eventCountPerTrial": 256,
+  "oracle": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ]
+  },
+  "runtimeDynamicOwnSlots": {
+    "baseline": false,
+    "cached": true
+  },
+  "maxHintKeyIds": 65536,
+  "sameGeneratedEntry": true,
+  "cacheLocalBindings": {
+    "baseline": true,
+    "cached": true
+  },
+  "staticLiteralStrings": {
+    "baseline": true,
+    "cached": true
+  },
+  "sameRuntime": true,
+  "inputs": {
+    "tools/rust-port/benchmark-buff-dynamic-slots.mjs": "a9ffe86d700c029f1852758d29587fde3eb22fbdc69886eee50776b9805b5a3f",
+    "tools/rust-port/compile.mjs": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
+    "tools/rust-port/expressions.mjs": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
+    "tools/rust-port/statements.mjs": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/emit-native-oracle.mjs": "5308cd3bebe6b11459a9e67070b0049138f62aa3c6c528d1ebf56427e5f80c03",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "9fd0cf451530b7349a77b5138722848e7570fca50aa6d1708b10d03d90d28067",
+    "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+    "crates/js-runtime/src/dense_array_shift.rs": "90974353bcf13dbc33eec8d4bf1043bb2f07e4279a7207535e516ee800874b6c",
+    "crates/js-runtime/src/diagnostics.rs": "0dc56a84e7b559e79dbe0c915a3fc56958baa688d8d61e7e4b5cfaee46e02034",
+    "crates/js-runtime/src/dynamic_slots.rs": "f7731263433ec74752da8423fd84c0f2a68cb7c060b02f18c08d974453d035bf",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/expose_scan.rs": "b5b771050b64fcbf14fa68ea4f4c2e5acfa8905a385623e8b43c6f648937cf9c",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "ee453f2eeefb16b53de12c96752a4d18aab574904a6ea20c97ec396e78f506bb",
+    "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+    "crates/js-runtime/src/lib.rs": "1e1822fd5371c9928240e7af626bb6b20be377326f43e4f1da177e8e65b5b556",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/property_slots.rs": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
+    "crates/js-runtime/src/reachability.rs": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "4a4a610453879da04d22747c96dc413bb1f4f81f80f147b1a7a0cf863f8f8014",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "7e7d6ab64be768e46f5b65e014192153649e351695bead9c0509812bb947e5f0",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c"
+  },
+  "binarySha256": "62a851c9b59d1c2c71dafdf8b2c78675e3cb7126d8a89c03e3773207d85abe02",
+  "buildArgs": [
+    "build",
+    "--release",
+    "--manifest-path",
+    "/workspace/afkarena-simx/work/candidate-dynamic-own-slot/work/rust-buff-dynamic-slots/Cargo.toml",
+    "--target-dir",
+    "/workspace/afkarena-simx/work/candidate-dynamic-own-slot/target"
+  ],
+  "executionWallMs": 240.2997290000003,
+  "artifacts": [
+    {
+      "label": "shared-generated",
+      "file": "benchmarks/results/2026-10-28T22-00-08.314Z-rust-buff-dynamic-slots.shared-generated.gz",
+      "sha256": "839bd091b4a3daa3d2cbc4c5fce83cfc23d0a65456fc6d3ceb21f86b38c010f0",
+      "uncompressedSha256": "ca056eb16a0a9b0f1ff3a723159a288fb90b2a1decca0c1e2160100034e33c54",
+      "uncompressedBytes": 74695
+    },
+    {
+      "label": "shared-manifest",
+      "file": "benchmarks/results/2026-10-28T22-00-08.314Z-rust-buff-dynamic-slots.shared-manifest.gz",
+      "sha256": "7b62d7ae8ca65179e7d1ed5fae87904ce67d6fa7ab830eaba07d3e685e790cf5",
+      "uncompressedSha256": "3bfe7d7e2e90a6491944c2e7f1930c87c2d659b10498598829cd73c5161f80d3",
+      "uncompressedBytes": 5276
+    },
+    {
+      "label": "source",
+      "file": "benchmarks/results/2026-10-28T22-00-08.314Z-rust-buff-dynamic-slots.source.gz",
+      "sha256": "20600464c6acb03881879596c2051a02e960eb480b89be599f2c1dee36628797",
+      "uncompressedSha256": "fdb5fe02749d1f3d5ec6a525434d6f3de59af3b90b809929b925410be5a7a07b",
+      "uncompressedBytes": 2702
+    },
+    {
+      "label": "actual",
+      "file": "benchmarks/results/2026-10-28T22-00-08.314Z-rust-buff-dynamic-slots.actual.gz",
+      "sha256": "0a8cd174d7c768b6b7c7e6127eacd5507a1df8165c03d38b48b584e1f6069baa",
+      "uncompressedSha256": "0f96978c3e89d6cc768ce644acfb7b7155e813a0b5fadd68405902807a6a49c3",
+      "uncompressedBytes": 241044
+    },
+    {
+      "label": "expected",
+      "file": "benchmarks/results/2026-10-28T22-00-08.314Z-rust-buff-dynamic-slots.expected.gz",
+      "sha256": "d12c0f1165569c8511f4181ab25771004a56b9fd4a440b5f52673cf5c2d5e0a5",
+      "uncompressedSha256": "390f091d20b48f9d73b1e43ad6e04b8de289e2c7dc70b722b4d44eb11f7f2c4b",
+      "uncompressedBytes": 20067
+    }
+  ],
+  "qualifiesFor10000Target": false,
+  "scope": "Original source Buff.applyPercentValue/applyFixedValue compiled to pure Rust, compared against pinned jitless source with the same explicit component fixture callbacks. Timed windows include both unchanged source methods and raw-bit snapshots after each of the first128 method pairs. The full terminal attribute state is also compared; later intermediate states are unobserved. This is original-buff method pairs/second, NOT battles/second or a complete mechanics backend. Startup, fixture construction, five warmup updates, reset and final JSON snapshot are excluded. Arena lifetime/GC and complete realistic battles remain unqualified."
+}
