@@ -10,6 +10,9 @@ const root=resolve(import.meta.dirname,'../..'),sha=bytes=>createHash('sha256').
 assert.equal(process.version,profile.node);assert.equal(process.versions.v8,profile.v8);
 if(JSON.stringify(process.execArgv)!==JSON.stringify(profile.rawBitReferenceFlags)){const child=spawnSync(process.execPath,[...profile.rawBitReferenceFlags,process.argv[1]],{cwd:root,encoding:'utf8',env:{...process.env,NODE_OPTIONS:''}});process.stdout.write(child.stdout??'');process.stderr.write(child.stderr??'');process.exit(child.status??1);}
 const cases=[
+ ["apply-stack-and-heap-boundary", "function(){function f(){return arguments.length+\":\"+Array.prototype.join.call(arguments,\",\");}return [f.apply(null,[]),f.apply(null,[1]),f.apply(null,[1,2,3,4,5,6,7,8]),f.apply(null,[1,2,3,4,5,6,7,8,9])].join(\";\");}"],
+ ["apply-getter-order-and-reentrant-list", "function(){var log=\"\",o={length:3,1:2,2:3};function f(){log+=\"C\";return Array.prototype.join.call(arguments,\",\");}Object.defineProperty(o,\"0\",{get:function(){log+=\"G\";o.length=1;o[1]=7;delete o[2];return f.apply(null,[9]);}});var result=f.apply(null,o);return log+\":\"+result;}"],
+ ["apply-getter-throw-prevents-call", "function(){var log=\"\",o={length:2,0:1};Object.defineProperty(o,\"1\",{get:function(){log+=\"G\";throw 42;}});try{(function(){log+=\"C\";}).apply(null,o);}catch(e){log+=e;}return log;}"],
  [
   "shared-returned-cells",
   "function(){function make(){var n=0;return{inc:function(){return ++n;},read:function(){return n;}};}var a=make();return a.inc()*100+a.read();}"
