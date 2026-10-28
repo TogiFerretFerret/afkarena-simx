@@ -1,5 +1,7 @@
 {
   "version": 1,
+  "testOnlyForcedHintedSites": true,
+  "productionHintsRequireExactSourceAncestry": true,
   "passed": true,
   "cases": 24,
   "firstDifference": null,
@@ -167,7 +169,7 @@
     },
     {
       "file": "crates/js-runtime/src/property_slots.rs",
-      "sha256": "3af86245010bbec1c3ac5fa939512da15a4ba51ac87c323d1ed726a0bf3b3ef2",
+      "sha256": "860c51b25157168fb809e6f61a4f86b3860499e0d0e02398cbd1a0d1c6319531",
       "matched": true
     },
     {
@@ -1177,12 +1179,12 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
+      "sha256": "df9eeabaf0e1a30af8e4500171976551e1cc2aee6fd0cd5630d9dcacc68fa363",
       "matched": true
     },
     {
       "file": "tools/rust-port/expressions.mjs",
-      "sha256": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
+      "sha256": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
       "matched": true
     },
     {
@@ -1197,7 +1199,7 @@
     },
     {
       "file": "tools/rust-port/check-one-hop-slots.mjs",
-      "sha256": "b4e95848ec5780584f58f31a0d05c4dc349a2ef5655b2a92a1a2e86b5fb64b86",
+      "sha256": "eb8879c125bccc6ab451a258ef6328f3aaf78b99797cb7d2f3b852331d1a3d3e",
       "matched": true
     }
   ],
@@ -1219,25 +1221,25 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "9fe602e7ae7733e3aed680e7c9d0bb6066af8a69abdf0fa06549b128fec0202f",
+  "generatedRustSha256": "eb28401a24de9b9ca2b3c285385df50d731578b0721d842c337bf9bd63450650",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/work/rust-port-one-hop-slots/check",
-    "sha256": "191b932608b37fae0d30e3fe5e7cc29d4ccd453e137a4ec0dcc0edf661dac8f0"
+    "file": "/workspace/afkarena-simx/work/candidate-integration-metadata/work/rust-port-one-hop-slots/check",
+    "sha256": "169ab62c57b61df234e9606a47a8a368634ca82bc4defcfbb6c8ae6dd01b08af"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-integration-metadata/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/candidate-one-hop-slots/work/rust-port-one-hop-slots/main.rs",
+    "/workspace/afkarena-simx/work/candidate-integration-metadata/work/rust-port-one-hop-slots/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-integration-metadata/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-integration-metadata/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-one-hop-slots/work/rust-port-one-hop-slots/check"
+    "/workspace/afkarena-simx/work/candidate-integration-metadata/work/rust-port-one-hop-slots/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-one-hop-slots.outputs.json.gz",
