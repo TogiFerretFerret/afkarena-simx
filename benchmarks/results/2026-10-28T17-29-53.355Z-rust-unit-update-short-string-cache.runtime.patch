@@ -1,0 +1,11 @@
+--- /workspace/afkarena-simx/work/candidate-intern/work/rust-short-cache-controlled/before/runtime/src/runtime.rs	2026-10-28 17:26:35.256407512 +0000
++++ /workspace/afkarena-simx/work/candidate-intern/work/rust-short-cache-controlled/after/runtime/src/runtime.rs	2026-10-28 17:26:35.291486628 +0000
+@@ -58,7 +58,7 @@
+   rt
+  }
+  pub fn intern_utf16(&mut self,units:&[u16])->StringId{if let Some(id)=self.string_index.get(units){return *id}let id=StringId(self.strings.len());self.strings.push(units.into());self.string_index.insert(units.to_vec(),id);id}
+- pub fn intern(&mut self,text:&str)->StringId{if let Some(id)=self.string_utf8_index.get(text){return *id}let id=self.intern_utf16(&text.encode_utf16().collect::<Vec<_>>());self.string_utf8_index.insert(text.to_owned(),id);id}
++ pub fn intern(&mut self,text:&str)->StringId{if let Some(id)=self.short_strings.get(text){return id}let id=if let Some(id)=self.string_utf8_index.get(text){*id}else{let id=self.intern_utf16(&text.encode_utf16().collect::<Vec<_>>());self.string_utf8_index.insert(text.to_owned(),id);id};self.short_strings.remember(text,id);id}
+  pub fn string_units(&self,id:StringId)->&[u16]{&self.strings[id.0]}
+  pub fn string_text(&self,id:StringId)->String{String::from_utf16_lossy(self.string_units(id))}
+  pub fn string(&mut self,text:&str)->Value{Value::String(self.intern(text))}
