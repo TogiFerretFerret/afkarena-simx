@@ -8,13 +8,21 @@ import {proveBattleGcProfile} from './battle-gc-proof.mjs';
 const root=resolve(import.meta.dirname,'../..');
 const args=process.argv.slice(2);
 const option=(name,fallback)=>args.includes(name)?args[args.indexOf(name)+1]:fallback;
-const through=Number(option('--through','0'));
-const chunkSize=Number(option('--chunk-size','100'));
-const nativeBattleGcCadence=Number(option('--gc-cadence','1'));
+const output=resolve(root,option('--out','work/rust-battle-program'));
+const appOnly=args.includes('--app-only');
+const previousManifestBytes=appOnly?await readFile(resolve(output,'program-manifest.json')):null;
+const previousManifest=previousManifestBytes?JSON.parse(previousManifestBytes):null;
+const through=Number(option('--through',String(previousManifest?.through??0)));
+const chunkSize=Number(option('--chunk-size',String(previousManifest?.chunkSize??100)));
+const nativeBattleGcCadence=Number(option('--gc-cadence',String(previousManifest?.nativeBattleGcCadence??1)));
+let runtimeOptions,runtimeOptionAssignments='';
+if(args.includes('--runtime-options')||appOnly&&previousManifest?.runtimeOptions!==undefined){
+ const helper=await import('./runtime-options.mjs');runtimeOptions=args.includes('--runtime-options')?helper.runtimeOptionsArgument(args):helper.parseRuntimeOptions(JSON.stringify(previousManifest.runtimeOptions));runtimeOptionAssignments=helper.runtimeOptionSuffix(runtimeOptions);
+}
+
 assert.ok(Number.isSafeInteger(nativeBattleGcCadence)&&nativeBattleGcCadence>0,'--gc-cadence must be a positive safe integer');
 assert.ok(Number.isInteger(through)&&through>=0&&through<=6);
 assert.ok(Number.isInteger(chunkSize)&&chunkSize>0);
-const output=resolve(root,option('--out','work/rust-battle-program'));
 const coverage=JSON.parse(await readFile(resolve(root,'benchmarks/validation/rust-battle-compile-coverage.json')));
 const gcProof=through===6&&!args.includes('--no-battle-gc')
  ?proveBattleGcProfile(coverage,await Promise.all(coverage.units.map(unit=>readFile(unit.file))))
@@ -29,6 +37,13 @@ async function writeFile(file,contents){
 const runtimePath=relative(output,resolve(root,'crates/js-runtime')).replaceAll('\\','/');
 const members=['app'];
 const reports=[];
+if(appOnly){
+ assert.equal(previousManifest.prepared,true,'App-only generation needs a prepared manifest');assert.equal(previousManifest.through,through,'App-only cannot change --through');assert.equal(previousManifest.chunkSize,chunkSize,'App-only cannot change --chunk-size');assert.equal(previousManifest.nativeBattleGcCadence,nativeBattleGcCadence,'App-only cannot change --gc-cadence');assert.equal(previousManifest.nativeBattleGc,nativeBattleGc,'App-only cannot change native battle GC');assert.equal(previousManifest.units.length,through+1);assert.equal(previousManifest.runtimePath,runtimePath,'App-only runtime path changed');
+ for(const unit of previousManifest.units){assert.equal(sha(await readFile(unit.file)),unit.sourceSha256,'App-only frozen source changed');const expected=coverage.units.find(row=>row.index===unit.index);assert.equal(unit.sourceSha256,expected?.sha256,'App-only coverage source changed');}
+ for(const[file,digest]of Object.entries(previousManifest.sources)){if(file==='tools/rust-port/generate-program.mjs'||file==='tools/rust-port/runtime-options.mjs')continue;assert.equal(sha(await readFile(resolve(root,file))),digest,'App-only compiler input changed: '+file);}
+ reports.push(...previousManifest.units);
+}
+
 // Group strongly connected native helpers, then form small dependency-ordered
 // crates. Splitting files inside one crate does not bound rustc frontend memory.
 function partition(functions,maxCount,maxBytes=384*1024){
@@ -47,7 +62,7 @@ function partition(functions,maxCount,maxBytes=384*1024){
  const owner=new Map();groups.forEach((group,id)=>group.forEach(node=>owner.set(node.name,id)));
  return{groups,owner};
 }
-for(const unit of coverage.units.slice(0,through+1)){
+if(!appOnly)for(const unit of coverage.units.slice(0,through+1)){
  const sourceBytes=await readFile(unit.file);assert.equal(sha(sourceBytes),unit.sha256,'Frozen battle input changed');
  const name=`battle-unit-${unit.index}`,directory=resolve(output,name),src=resolve(directory,'src');
  await mkdir(src,{recursive:true});
@@ -87,7 +102,7 @@ fn print(rt:&mut Runtime,_this:Value,args:&[Value],_env:EnvId)->JsResult<Value>{
  println!("{}",parts.join(" "));Ok(Value::Undefined)
 }
 fn execute()->JsResult<Value>{
- let mut rt=Runtime::new();let env=rt.global_env;let global=Value::Object(rt.global_object);
+ let mut rt=Runtime::new();${runtimeOptionAssignments}let env=rt.global_env;let global=Value::Object(rt.global_object);
  ${nativeBattleGc?'rt.enable_native_battle_gc();':''}
  program_host::install(&mut rt)?;
  let printer=rt.make_closure_with_flags(print,env,0,"print",true,None);
@@ -97,8 +112,11 @@ fn execute()->JsResult<Value>{
 }
 fn main(){if let Err(error)=execute(){eprintln!("pure_rust_execution_error:{error:?}");std::process::exit(1);}}
 `);
-await writeFile(resolve(output,'Cargo.toml'),'[workspace]\nmembers = '+JSON.stringify(members)+'\nresolver = "2"\n[profile.dev]\ndebug = 0\ncodegen-units = 64\n[profile.release]\ncodegen-units = 64\nlto = false\n');
+if(!appOnly)await writeFile(resolve(output,'Cargo.toml'),'[workspace]\nmembers = '+JSON.stringify(members)+'\nresolver = "2"\n[profile.dev]\ndebug = 0\ncodegen-units = 64\n[profile.release]\ncodegen-units = 64\nlto = false\n');
 const sources={};for(const file of ['tools/rust-port/generate-program.mjs','tools/rust-port/battle-gc-proof.mjs','tools/rust-port/program-host.rs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])sources[file]=sha(await readFile(resolve(root,file)));
+if(runtimeOptions!==undefined)sources['tools/rust-port/runtime-options.mjs']=sha(await readFile(resolve(root,'tools/rust-port/runtime-options.mjs')));
 const manifest={version:1,prepared:true,executed:false,qualifiesFor10000Target:false,output,through,chunkSize,nativeBattleGc,nativeBattleGcCadence,gcProof,units:reports,sources,runtimePath,scope:'Actual frozen battle JavaScript modules lowered into native Rust functions with shared global environment and static UTF16 source pools. Preparation and compile coverage do not establish successful initialization, mechanics parity, or throughput.'};
+if(runtimeOptions!==undefined)manifest.runtimeOptions=runtimeOptions;
+if(appOnly)manifest.reusedUnitsFromManifestSha256=previousManifest.reusedUnitsFromManifestSha256??sha(previousManifestBytes);
 await writeFile(resolve(output,'program-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(JSON.stringify({output,units:reports.length,functions:reports.reduce((n,u)=>n+u.functions,0),unsupported:reports.reduce((n,u)=>n+u.unsupportedFunctions,0),next:`cargo run --manifest-path ${relative(root,resolve(output,'Cargo.toml'))} -p rust-battle-program -j 2`}));
