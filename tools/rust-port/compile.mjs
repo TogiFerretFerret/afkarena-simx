@@ -141,7 +141,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
   if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'){
    const parameterNames=params.map(p=>rustString(p.name)).join(',');
    if(!ctx.strict){
-    const rawSlots=(parameterCaptures.get(node)??[]).map((captured,index)=>captured||implicitArgumentsUsed.has(node)||directEvalContexts.has(node)||ctx.nativeParameterBindings?.has(params[index].name));
+    const rawSlots=(parameterCaptures.get(node)??[]).map((captured,index)=>captured||implicitArgumentsUsed.has(node)||directEvalContexts.has(node)||!!ctx.nativeParameterBindings?.has(params[index].name));
     groups.push(local=>local.emit(`rt.register_lazy_arguments(env, &[${parameterNames}], args, &[${rawSlots.join(',')}])?;`));
    }
    if(!params.some(p=>p.name==='arguments')&&requiresImplicitArguments(node))groups.push(local=>{const argsValue=local.temp(`rt.arguments_object(env, &[${parameterNames}], args, ${local.strict})?`);local.emit(`${local.envCall("declare","env","arguments",[argsValue])}?;`);});

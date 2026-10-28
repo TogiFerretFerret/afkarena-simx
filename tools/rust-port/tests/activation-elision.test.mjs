@@ -21,5 +21,6 @@ const cases=[
 for(const[source,expected]of cases)assert.equal(first(source).nativeActivationElided,expected,source);
 assert.equal(first('function(e){return e;}',{nativeLocalBindings:false}).nativeActivationElided,false);
 assert.equal(first('function(e){return e;}',{largeBody:{minimumNodes:1}}).nativeActivationElided,false);
+assert.match(compileSource('function(e){return e;}',{mode:'function',allowUnsupported:false,largeBody:{minimumNodes:1,maxInitGroups:1}}).rust,/register_lazy_arguments\(env, &\["e"\], args, &\[false\]\)/);
 assert.equal(compileSource('var e=1;e++;',{allowUnsupported:false}).manifest.functions[0].nativeActivationElided,false);
-console.log(JSON.stringify({passed:true,cases:cases.length+3,scope:'Independent zero-cell activation elision eligibility; execution parity is checked by arguments and closure gates.'}));
+console.log(JSON.stringify({passed:true,cases:cases.length+4,scope:'Independent zero-cell activation elision eligibility; execution parity is checked by arguments and closure gates.'}));
