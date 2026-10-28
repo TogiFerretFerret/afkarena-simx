@@ -1,0 +1,588 @@
+{
+  "version": 1,
+  "profileSucceeded": true,
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "scope": "whole",
+  "wallMs": 4171.229203,
+  "frequencyHz": 99,
+  "perf": {
+    "file": "work/downloads/perf/perf",
+    "sha256": "5261dcc63baf8f9d19e25161e9b5d6c074ed4fd9627e32a0483990f870ff5492"
+  },
+  "demangler": {
+    "file": "/usr/bin/c++filt",
+    "sha256": "7d54ea6797a5e8c69255f711b79577efd9934c3502c6edee4bc25b7dc7d97bd2"
+  },
+  "binary": {
+    "file": "work/rust-env-map-controlled/after/app/target/release/unit-update-benchmark",
+    "sha256": "8585070fd18849912f5af274f6623a5d48a50e4c2509e855a6632c509dd50061",
+    "unchanged": true
+  },
+  "recordArgs": [
+    "record",
+    "--clockid",
+    "mono",
+    "-e",
+    "cpu-clock:u",
+    "-F",
+    "99",
+    "--call-graph",
+    "dwarf,8192",
+    "-o",
+    "/workspace/afkarena-simx/work/rust-program-perf/2026-10-28T17-15-46.253Z.data",
+    "--",
+    "/workspace/afkarena-simx/work/rust-env-map-controlled/after/app/target/release/unit-update-benchmark"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/rust-program-perf/empty-home",
+    "LANG": "C",
+    "TZ": "UTC",
+    "RUST_PORT_TRACE": "0"
+  },
+  "markers": [],
+  "control": [],
+  "acknowledgments": [],
+  "acknowledgmentCount": 0,
+  "controlValid": true,
+  "dataBytes": 3442732,
+  "sampled": 395,
+  "lostSamples": "0",
+  "estimatedSampledUserCpuNs": "3989898950",
+  "selfGroups": [
+    {
+      "name": "Rust JavaScript semantics runtime",
+      "samples": 176,
+      "periodNs": "1777777760",
+      "percent": 44.55696202531646
+    },
+    {
+      "name": "Unresolved",
+      "samples": 95,
+      "periodNs": "959595950",
+      "percent": 24.050632911392405
+    },
+    {
+      "name": "Other Rust and system code",
+      "samples": 73,
+      "periodNs": "737373730",
+      "percent": 18.481012658227847
+    },
+    {
+      "name": "Allocation, collections and memory",
+      "samples": 51,
+      "periodNs": "515151510",
+      "percent": 12.91139240506329
+    }
+  ],
+  "topSelf": [
+    {
+      "symbol": "<core::hash::sip::Hasher<core::hash::sip::Sip13Rounds> as core::hash::Hasher>::write",
+      "dso": "unit-update-benchmark",
+      "samples": 35,
+      "periodNs": "353535350",
+      "rawSymbol": "_RNvXs3_NtNtCskADBYZwJmSU_4core4hash3sipINtB5_6HasherNtB5_11Sip13RoundsENtB7_6Hasher5writeCsirl1FRhnW6L_10js_runtime.llvm.7527088593695495585",
+      "percent": 8.860759493670885
+    },
+    {
+      "symbol": "<js_runtime::heap::Object>::own",
+      "dso": "unit-update-benchmark",
+      "samples": 32,
+      "periodNs": "323232320",
+      "rawSymbol": "_RNvMs2_NtCsirl1FRhnW6L_10js_runtime4heapNtB5_6Object3own",
+      "percent": 8.10126582278481
+    },
+    {
+      "symbol": "cfree",
+      "dso": "libc.so.6",
+      "samples": 24,
+      "periodNs": "242424240",
+      "rawSymbol": "cfree",
+      "percent": 6.075949367088608
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::intern",
+      "dso": "unit-update-benchmark",
+      "samples": 19,
+      "periodNs": "191919190",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime7runtimeNtB4_7Runtime6intern",
+      "percent": 4.810126582278481
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&str>",
+      "dso": "unit-update-benchmark",
+      "samples": 14,
+      "periodNs": "141414140",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneReECsirl1FRhnW6L_10js_runtime",
+      "percent": 3.5443037974683542
+    },
+    {
+      "symbol": "0x000000000009eb1b",
+      "dso": "libc.so.6",
+      "samples": 14,
+      "periodNs": "141414140",
+      "rawSymbol": "0x000000000009eb1b",
+      "percent": 3.5443037974683542
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::resolve_binding",
+      "dso": "unit-update-benchmark",
+      "samples": 11,
+      "periodNs": "111111110",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime3envNtNtB6_7runtime7Runtime15resolve_binding",
+      "percent": 2.7848101265822787
+    },
+    {
+      "symbol": "0x000000000009eb21",
+      "dso": "libc.so.6",
+      "samples": 11,
+      "periodNs": "111111110",
+      "rawSymbol": "0x000000000009eb21",
+      "percent": 2.7848101265822787
+    },
+    {
+      "symbol": "0x000000000017221a",
+      "dso": "libc.so.6",
+      "samples": 11,
+      "periodNs": "111111110",
+      "rawSymbol": "0x000000000017221a",
+      "percent": 2.7848101265822787
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "unit-update-benchmark",
+      "samples": 10,
+      "periodNs": "101010100",
+      "rawSymbol": "_RINvMs_NtCsirl1FRhnW6L_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECsd2FYZFZgfT7_21unit_update_benchmark",
+      "percent": 2.5316455696202533
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::typed_own_descriptor",
+      "dso": "unit-update-benchmark",
+      "samples": 10,
+      "periodNs": "101010100",
+      "rawSymbol": "_RNvMs0_NtCsirl1FRhnW6L_10js_runtime6binaryNtNtB7_7runtime7Runtime20typed_own_descriptor",
+      "percent": 2.5316455696202533
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_inner::<js_runtime::heap::KeyInput>",
+      "dso": "unit-update-benchmark",
+      "samples": 8,
+      "periodNs": "80808080",
+      "rawSymbol": "_RINvMs_NtCsirl1FRhnW6L_10js_runtime7runtimeNtB5_7Runtime9get_innerNtNtB7_4heap8KeyInputEB7_.llvm.15665364684709322185",
+      "percent": 2.0253164556962027
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::intern_utf16",
+      "dso": "unit-update-benchmark",
+      "samples": 7,
+      "periodNs": "70707070",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime7runtimeNtB4_7Runtime12intern_utf16",
+      "percent": 1.7721518987341771
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::static_string",
+      "dso": "unit-update-benchmark",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime12literal_poolNtNtB6_7runtime7Runtime13static_string",
+      "percent": 1.518987341772152
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::to_property_key",
+      "dso": "unit-update-benchmark",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime7runtimeNtB4_7Runtime15to_property_key",
+      "percent": 1.518987341772152
+    },
+    {
+      "symbol": "malloc",
+      "dso": "libc.so.6",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "malloc",
+      "percent": 1.518987341772152
+    },
+    {
+      "symbol": "<hashbrown::raw::RawTable<(js_runtime::heap::PropertyKey, usize)>>::reserve_rehash::<hashbrown::map::make_hasher<js_runtime::heap::PropertyKey, usize, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>::{closure#0}>",
+      "dso": "unit-update-benchmark",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RINvMs6_NtCs3BTM885nGDo_9hashbrown3rawINtB6_8RawTableTNtNtCsirl1FRhnW6L_10js_runtime4heap11PropertyKeyjEE14reserve_rehashNCINvNtB8_3map11make_hasherBQ_jINtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBU_7id_hash8IdHasherEE0EBU_",
+      "percent": 1.2658227848101267
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&[u16]>",
+      "dso": "unit-update-benchmark",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneRStECsirl1FRhnW6L_10js_runtime",
+      "percent": 1.2658227848101267
+    },
+    {
+      "symbol": "<js_runtime::heap::Object>::insert",
+      "dso": "unit-update-benchmark",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNvMs2_NtCsirl1FRhnW6L_10js_runtime4heapNtB5_6Object6insert",
+      "percent": 1.2658227848101267
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::own_descriptor",
+      "dso": "unit-update-benchmark",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime7runtimeNtB4_7Runtime14own_descriptor",
+      "percent": 1.2658227848101267
+    },
+    {
+      "symbol": "js_runtime::builtins::number_string",
+      "dso": "unit-update-benchmark",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNvNtCsirl1FRhnW6L_10js_runtime8builtins13number_string",
+      "percent": 1.2658227848101267
+    },
+    {
+      "symbol": "0x000000000009eda5",
+      "dso": "libc.so.6",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "0x000000000009eda5",
+      "percent": 1.2658227848101267
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&alloc::vec::Vec<u16>>",
+      "dso": "unit-update-benchmark",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneRINtNtCsgFX3jaOk65H_5alloc3vec3VectEECsirl1FRhnW6L_10js_runtime",
+      "percent": 1.0126582278481013
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&alloc::string::String>",
+      "dso": "unit-update-benchmark",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneRNtNtCsgFX3jaOk65H_5alloc6string6StringECsirl1FRhnW6L_10js_runtime",
+      "percent": 1.0126582278481013
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::object_id",
+      "dso": "unit-update-benchmark",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime7runtimeNtB4_7Runtime9object_id",
+      "percent": 1.0126582278481013
+    },
+    {
+      "symbol": "<alloc::raw_vec::RawVecInner<_>>::reserve::do_reserve_and_handle::<alloc::alloc::Global>",
+      "dso": "unit-update-benchmark",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RINvNvMs2_NtCsgFX3jaOk65H_5alloc7raw_vecINtB8_11RawVecInnerpE7reserve21do_reserve_and_handleNtNtBa_5alloc6GlobalECsirl1FRhnW6L_10js_runtime",
+      "percent": 0.759493670886076
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::declare",
+      "dso": "unit-update-benchmark",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime3envNtNtB6_7runtime7Runtime7declare",
+      "percent": 0.759493670886076
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::index",
+      "dso": "unit-update-benchmark",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime7runtimeNtB4_7Runtime5index",
+      "percent": 0.759493670886076
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::call_value",
+      "dso": "unit-update-benchmark",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvMs_NtCsirl1FRhnW6L_10js_runtime8closuresNtNtB6_7runtime7Runtime10call_value",
+      "percent": 0.759493670886076
+    },
+    {
+      "symbol": "0x000000000009ec83",
+      "dso": "libc.so.6",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "0x000000000009ec83",
+      "percent": 0.759493670886076
+    },
+    {
+      "symbol": "0x00000000000a145a",
+      "dso": "libc.so.6",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "0x00000000000a145a",
+      "percent": 0.759493670886076
+    },
+    {
+      "symbol": "0x000000000017b80f",
+      "dso": "libc.so.6",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "0x000000000017b80f",
+      "percent": 0.759493670886076
+    },
+    {
+      "symbol": "<hashbrown::raw::RawTable<(alloc::string::String, js_runtime::value::StringId)>>::reserve_rehash::<hashbrown::map::make_hasher<alloc::string::String, js_runtime::value::StringId, std::hash::random::RandomState>::{closure#0}>",
+      "dso": "unit-update-benchmark",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RINvMs6_NtCs3BTM885nGDo_9hashbrown3rawINtB6_8RawTableTNtNtCsgFX3jaOk65H_5alloc6string6StringNtNtCsirl1FRhnW6L_10js_runtime5value8StringIdEE14reserve_rehashNCINvNtB8_3map11make_hasherBQ_B1s_NtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateE0EB1w_",
+      "percent": 0.5063291139240507
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&&str>",
+      "dso": "unit-update-benchmark",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneRReECsirl1FRhnW6L_10js_runtime",
+      "percent": 0.5063291139240507
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&(u8, usize, usize)>",
+      "dso": "unit-update-benchmark",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneRThjjEECsirl1FRhnW6L_10js_runtime",
+      "percent": 0.5063291139240507
+    },
+    {
+      "symbol": "unit_update_benchmark::cached::js_function_1::{closure#0}",
+      "dso": "unit-update-benchmark",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNvNtCsd2FYZFZgfT7_21unit_update_benchmark6cached13js_function_10B5_",
+      "percent": 0.5063291139240507
+    },
+    {
+      "symbol": "__rustc::__rdl_alloc",
+      "dso": "unit-update-benchmark",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs5fGHjzWXRav_7___rustc11___rdl_alloc",
+      "percent": 0.5063291139240507
+    },
+    {
+      "symbol": "<hashbrown::map::HashMap<alloc::vec::Vec<u16>, js_runtime::value::StringId, std::hash::random::RandomState>>::insert",
+      "dso": "unit-update-benchmark",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvMs1_NtCs3BTM885nGDo_9hashbrown3mapINtB5_7HashMapINtNtCsgFX3jaOk65H_5alloc3vec3VectENtNtCsirl1FRhnW6L_10js_runtime5value8StringIdNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateE6insertB1q_",
+      "percent": 0.5063291139240507
+    },
+    {
+      "symbol": "<hashbrown::map::HashMap<alloc::string::String, js_runtime::value::StringId, std::hash::random::RandomState>>::insert",
+      "dso": "unit-update-benchmark",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvMs1_NtCs3BTM885nGDo_9hashbrown3mapINtB5_7HashMapNtNtCsgFX3jaOk65H_5alloc6string6StringNtNtCsirl1FRhnW6L_10js_runtime5value8StringIdNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateE6insertB1t_",
+      "percent": 0.5063291139240507
+    },
+    {
+      "symbol": "<hashbrown::map::HashMap<js_runtime::value::StringId, usize, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>>::insert",
+      "dso": "unit-update-benchmark",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvMs1_NtCs3BTM885nGDo_9hashbrown3mapINtB5_7HashMapNtNtCsirl1FRhnW6L_10js_runtime5value8StringIdjINtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBR_7id_hash8IdHasherEE6insertBR_",
+      "percent": 0.5063291139240507
+    }
+  ],
+  "sourceMapping": [],
+  "semanticReportMatched": null,
+  "firstDifference": null,
+  "reference": null,
+  "completed": null,
+  "totalCallbacks": null,
+  "reports": [
+    {
+      "label": "leaf",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "inclusive",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "stacks",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "buildids",
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "record-stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.record-stdout.000.gz",
+          "bytes": 325300,
+          "sha256": "45d63055863639f507b5ae4cf6ca77562f73f41a31bd935079037c8b422e96a2"
+        }
+      ],
+      "uncompressedBytes": 7258980,
+      "uncompressedSha256": "5b677577d2fa5854ae6c1c9e64e192fd2e2151cac0a5681dce2cdd3bebd54f84",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "record-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.record-stderr.000.gz",
+          "bytes": 167,
+          "sha256": "1171045131d329e243cc36740a1b2b979d679a2a073542d474bbe431facb747b"
+        }
+      ],
+      "uncompressedBytes": 186,
+      "uncompressedSha256": "aec3c8654c0399c490e58c00d3556d521dab8777d924521e13659f5c4a9978a0",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.leaf.000.gz",
+          "bytes": 2813,
+          "sha256": "fdaa686610d6dcfd0be08e39377b94981a1fb2d133637d7a4ad9af0cf7649a6f"
+        }
+      ],
+      "uncompressedBytes": 55028,
+      "uncompressedSha256": "68c4196c32943b76cc945e73a68be991e5b4193da2de41aa8c2193c2a43516a4",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.leaf-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.inclusive.000.gz",
+          "bytes": 43535,
+          "sha256": "39ebbf30901028814fe8d0c54037ee05b53f57918c64d4bd6ec5e8914155e09f"
+        }
+      ],
+      "uncompressedBytes": 1036463,
+      "uncompressedSha256": "bdd21283a86eb89d659d847aa2a45505d44cc3bcd5f25a3663636a351560e872",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.inclusive-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.stacks.000.gz",
+          "bytes": 46358,
+          "sha256": "8c71a61e33e70c6d8a271777ef849d0460a9efc76be5f0e117ada04a68e30175"
+        }
+      ],
+      "uncompressedBytes": 1403895,
+      "uncompressedSha256": "08ece4c118a33c04c9da460cfbb2eaadd33637a331ed31b6feed767c078da94b",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.stacks-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.buildids.000.gz",
+          "bytes": 218,
+          "sha256": "3b3f47b8d13c80f09dceeb431fb58f6709a66b3f32c84f407691c77c26c785ef"
+        }
+      ],
+      "uncompressedBytes": 267,
+      "uncompressedSha256": "407cfb3fc7526c02f0ba12fd4ae287ff29bd7b5e68f68ecd75cfa706f2e15356",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.buildids-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "data",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-15-46.253Z-rust-program-perf.data.000.gz",
+          "bytes": 311817,
+          "sha256": "14d060ed8c7f8e610bce0b7e187206d6e9fef266e79a72aa5c4b89c8a400824c"
+        }
+      ],
+      "uncompressedBytes": 3442732,
+      "uncompressedSha256": "f368f70a9512265f2b53cb30f6a9ec6ee12d83cf683f45bbfc42bcc789068e7b",
+      "compression": "Concatenate chunks, then gunzip"
+    }
+  ],
+  "producer": {
+    "file": "tools/rust-port/profile-program.mjs",
+    "sha256": "2e8c1c952449a2a94888fa0d91054536bc357effaf009cbc4e79dfc320e4a9e1"
+  },
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "Profile includes the entire process: source/table initialization, warmups, measured battles and final diagnostics.",
+    "Profiling changes execution time. No battles/sec or unprofiled millisecond inference is supported.",
+    "Self groups classify linked symbol names and are disjoint. Inlined code is attributed to its containing native symbol; unresolved samples are retained. Inclusive report rows overlap.",
+    "Source mappings refer to exact function ranges in the frozen source modules; anonymous functions are not assigned invented mechanic names.",
+    "A matching supplied final reference is a separate semantic report check, not broad corpus or full-scene qualification. Without --reference, semanticReportMatched stays null."
+  ]
+}

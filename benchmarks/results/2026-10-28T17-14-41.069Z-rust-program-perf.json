@@ -1,0 +1,289 @@
+{
+  "version": 1,
+  "profileSucceeded": false,
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "scope": "unit6",
+  "wallMs": 411.692083,
+  "frequencyHz": 99,
+  "perf": {
+    "file": "work/downloads/perf/perf",
+    "sha256": "5261dcc63baf8f9d19e25161e9b5d6c074ed4fd9627e32a0483990f870ff5492"
+  },
+  "binary": {
+    "file": "work/rust-program-perf-smoke/fixture",
+    "sha256": "495d0ae34afae9c7a4abff20020b457aa1d5a5a38bea100525115b5dbaf54532",
+    "unchanged": true
+  },
+  "recordArgs": [
+    "record",
+    "--clockid",
+    "mono",
+    "-e",
+    "cpu-clock:u",
+    "-F",
+    "99",
+    "--call-graph",
+    "dwarf,8192",
+    "-o",
+    "/workspace/afkarena-simx/work/rust-program-perf/2026-10-28T17-14-41.069Z.data",
+    "--delay=-1",
+    "--control",
+    "fd:3,4",
+    "--",
+    "/workspace/afkarena-simx/work/rust-program-perf-smoke/fixture"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/rust-program-perf/empty-home",
+    "LANG": "C",
+    "TZ": "UTC",
+    "RUST_PORT_TRACE": "0"
+  },
+  "markers": [
+    {
+      "line": "unit_start:0",
+      "observerElapsedMs": 39.926483000000005
+    },
+    {
+      "line": "unit_finished:0",
+      "observerElapsedMs": 153.734762
+    },
+    {
+      "line": "unit_start:6",
+      "observerElapsedMs": 153.74364500000001
+    },
+    {
+      "line": "unit_finished:6",
+      "observerElapsedMs": 392.51056900000003
+    }
+  ],
+  "control": [
+    {
+      "operation": "enable",
+      "observerElapsedMs": 153.755242
+    },
+    {
+      "operation": "disable",
+      "observerElapsedMs": 392.518721
+    },
+    {
+      "error": "read ECONNRESET"
+    }
+  ],
+  "acknowledgments": [
+    {
+      "text": "ack\n\u0000",
+      "observerElapsedMs": 158.24249400000002
+    }
+  ],
+  "controlValid": false,
+  "dataBytes": 205572,
+  "sampled": 23,
+  "lostSamples": "0",
+  "estimatedSampledUserCpuNs": "232323230",
+  "selfGroups": [
+    {
+      "name": "Other Rust and system code",
+      "samples": 23,
+      "periodNs": "232323230",
+      "percent": 100
+    }
+  ],
+  "topSelf": [
+    {
+      "symbol": "_RNvCslTDsPy7gp3C_15profile_fixture4main",
+      "dso": "fixture",
+      "samples": 23,
+      "periodNs": "232323230",
+      "percent": 100
+    }
+  ],
+  "sourceMapping": [],
+  "semanticReportMatched": null,
+  "firstDifference": null,
+  "reference": null,
+  "completed": null,
+  "totalCallbacks": null,
+  "reports": [
+    {
+      "label": "leaf",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "inclusive",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "stacks",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "buildids",
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "record-stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.record-stdout.000.gz",
+          "bytes": 44,
+          "sha256": "38a4a5147d288c816bc462d89ff0a581b4ecbe234fbd938b889ecd54f9d302f2"
+        }
+      ],
+      "uncompressedBytes": 24,
+      "uncompressedSha256": "1ef5cc47028fbabf561b7bfe7523ee96350a21383c482383c407ba0136855fa8",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "record-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.record-stderr.000.gz",
+          "bytes": 210,
+          "sha256": "762e4506053a7a917318fb4dc3ce3cfe725ca4cabe512a5a9d7ca00513c0b912"
+        }
+      ],
+      "uncompressedBytes": 273,
+      "uncompressedSha256": "0cba3b4baadfff59b51fe0456328af1142c708b687ca29c8b94fd71708d419b3",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.leaf.000.gz",
+          "bytes": 306,
+          "sha256": "55a34bd882f6256e82fe4a93f2a371f73d6c0f992cfa0c4f5baf1e756addff1b"
+        }
+      ],
+      "uncompressedBytes": 478,
+      "uncompressedSha256": "2b630c36029d6de3add3a3a5981c544b0620d7b2cd53f50682ab74b796ddeeb5",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.leaf-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.inclusive.000.gz",
+          "bytes": 1004,
+          "sha256": "64b0b704724a693ba57571c0dff26ca3b35df4c74f05c0fd2389eee4b38d42b2"
+        }
+      ],
+      "uncompressedBytes": 22236,
+      "uncompressedSha256": "e2135b78f952e5e674b7d7baac662953ceb13fe503228577b9c47a2c3c599ed8",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.inclusive-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.stacks.000.gz",
+          "bytes": 1231,
+          "sha256": "71c271c97abf1aa5536fe3ebffd0f2123a5c71278b66c6d6b4f3b6b82804f344"
+        }
+      ],
+      "uncompressedBytes": 53751,
+      "uncompressedSha256": "b4535d665efa438b18d51995bf4f4ceee8a0892bbffd357d8dc36adaab228bfa",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.stacks-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.buildids.000.gz",
+          "bytes": 143,
+          "sha256": "feccfb37894b27e025a11be28ea5ba060ac0121e10215dcdecf800d3a881722a"
+        }
+      ],
+      "uncompressedBytes": 151,
+      "uncompressedSha256": "38cbf287b66a562c19d776f6af1e07020c1f2a4adbc3b38feb3f5522042d15e6",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.buildids-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "data",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T17-14-41.069Z-rust-program-perf.data.000.gz",
+          "bytes": 4370,
+          "sha256": "168a43e1250cbed63564332825beeb09a728f3a1108398b5ebfd4d646ef051f2"
+        }
+      ],
+      "uncompressedBytes": 205572,
+      "uncompressedSha256": "72ad529f42f15967c0aad193fcda2935da762a75b83e8d334abda4f8e4698dd7",
+      "compression": "Concatenate chunks, then gunzip"
+    }
+  ],
+  "producer": {
+    "file": "tools/rust-port/profile-program.mjs",
+    "sha256": "5eb1f8c37c77f657987b60ab097c36132bf2e4b49418c5e51e92d24a3ff299a3"
+  },
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "Sampling is enabled after observing unit_start:6 and disabled after unit_finished:6, with asynchronous pipe/control acknowledgment latency. Units0–5 startup is approximately excluded. Unit6 setup, warmups and final diagnostics remain included; this is not an exact measured-battle window.",
+    "Profiling changes execution time. No battles/sec or unprofiled millisecond inference is supported.",
+    "Self groups classify linked symbol names and are disjoint. Inlined code is attributed to its containing native symbol; unresolved samples are retained. Inclusive report rows overlap.",
+    "Source mappings refer to exact function ranges in the frozen source modules; anonymous functions are not assigned invented mechanic names.",
+    "A matching supplied final reference is a separate semantic report check, not broad corpus or full-scene qualification. Without --reference, semanticReportMatched stays null."
+  ]
+}
