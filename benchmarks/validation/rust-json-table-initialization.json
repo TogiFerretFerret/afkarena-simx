@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Isolated native JSON parser initialization diagnostic on the actual external table bundle. This bypasses the generated UTF8 decoder solely to measure parser memory/time; it is not a battle run, fidelity qualification or battle-throughput result.",
+  "workload": {
+    "file": "work/native-oracle-warm23-current.js.tables.json",
+    "sha256": "91dba76e4f840237264b782855193a71fd2ce1b45f6bb328e5f37fb474f9c1c1",
+    "bytes": 101695086
+  },
+  "binary": {
+    "file": "target/release/rust-json-table-bench",
+    "sha256": "96a13044eeab50ee71e29b37832fdf8a93699b1b477dd577fdcd11df7e9d30ba"
+  },
+  "harnessSource": "use js_runtime::{Runtime,Value};\nfn mem(){let text=std::fs::read_to_string(\"/proc/self/status\").unwrap();for line in text.lines().filter(|line|line.starts_with(\"VmRSS:\")||line.starts_with(\"VmHWM:\")){eprintln!(\"{line}\")}}\nfn main(){let start=std::time::Instant::now();let bytes=std::fs::read(\"work/native-oracle-warm23-current.js.tables.json\").unwrap();let text=String::from_utf8(bytes).unwrap();let mut rt=Runtime::new();let input=rt.string(&text);eprintln!(\"input_ready_ms:{}\",start.elapsed().as_millis());mem();let parse=std::time::Instant::now();let output=rt.json_parse(input,Value::Undefined).unwrap();let key=rt.string(\"tables\");let tables=rt.get(output,key).unwrap();let table_count=rt.own_keys(tables,true).unwrap().len();eprintln!(\"parse_ms:{} objects:{} tables:{}\",parse.elapsed().as_millis(),rt.objects.len(),table_count);mem();}\n",
+  "parserSourceSha256": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+  "observations": {
+    "inputReadyMs": 592,
+    "parseMs": 2731,
+    "runtimeObjects": 1032950,
+    "tables": 203,
+    "peakRssKiB": 1726620,
+    "finalRssKiB": 1528600
+  },
+  "stderr": "input_ready_ms:592\nVmHWM:\t  697276 kB\nVmRSS:\t  598656 kB\nparse_ms:2731 objects:1032950 tables:203\nVmHWM:\t 1726620 kB\nVmRSS:\t 1528600 kB\n",
+  "sourceShape": {
+    "objects": 318397,
+    "arrays": 714207,
+    "properties": 5772261,
+    "arrayElements": 1555624,
+    "numbers": 4499383,
+    "strings": 1591242,
+    "stringCodeUnits": 13188162,
+    "maxArrayLength": 1541,
+    "uniquePropertyKeys": 122606
+  },
+  "layoutBytes": {
+    "Value": 16,
+    "Object": 160,
+    "Descriptor": 40,
+    "ObjectKind": 32,
+    "PropertyKey": 8
+  },
+  "limitation": "Runtime source changed afterward to add guarded source decoder acceleration; binary hash identifies the measured diagnostic artifact. Timing is provisional under concurrent builds. No claim is made about current whole-program peak RSS.",
+  "qualifiesFor10000Target": false
+}
