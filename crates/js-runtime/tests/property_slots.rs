@@ -65,3 +65,29 @@ fn twenty_three_collections_recycle_slots_without_caching_values_or_function_ali
     rt.set_function_source(function,&include_str!("../src/native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();
     rt.enable_native_battle_gc();assert_eq!(rt.call(function,Value::Undefined,&[]).unwrap(),Value::Number(23.0));
 }
+
+fn prepared_slot_gc_rounds(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{
+    let env=rt.child_env(parent);
+    for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}
+    let prepared=rt.prepare_literal_read(&X)?;let initial=rt.objects.len();let mut reclaimed_ids=std::collections::HashSet::new();let mut reused=0;
+    for round in 0..23 {
+        let object=rt.object();let id=rt.object_id(object)?;
+        if reclaimed_ids.contains(&id){reused+=1;}
+        let x=rt.intern("x");let y=rt.intern("y");
+        if round%2==1{rt.define_data(object,y,Value::Number(88.0),true,true,true)?;}
+        let bits=if round==0{0x8000000000000000}else{0x7ff0000000000042+round as u64};
+        rt.define_data(object,x,Value::Number(f64::from_bits(bits)),true,true,true)?;
+        let Value::Number(value)=rt.get_literal_prepared(object,prepared)?else{panic!("cached value must remain numeric")};assert_eq!(value.to_bits(),bits);
+        // Root neither the object nor its cyclic function/prototype records.
+        let dead=rt.make_closure(gc_noop,env,0,"dead");reclaimed_ids.insert(rt.object_id(dead)?);reclaimed_ids.insert(id);
+        let function=rt.make_closure(legacy,env,1,"reused");
+        assert_eq!(rt.call(function,Value::Undefined,&[Value::Number(round as f64)])?,Value::Bool(true));
+        rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;
+        rt.collect_native_battle_backedge(env,parent)?;
+    }
+    assert!(reused>0,"object IDs must actually recycle across collection rounds");
+    assert!(rt.objects.len()<initial+32,"cached locations must not retain whole receiver objects");
+    Ok(Value::Number(rt.native_battle_gc_stats().collections as f64))
+}
+#[test]
+fn prepared_sites_survive_twenty_three_gc_reuse_rounds(){let mut rt=Runtime::new();let function=rt.make_closure(prepared_slot_gc_rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(function,&include_str!("../src/native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();assert_eq!(rt.call(function,Value::Undefined,&[]).unwrap(),Value::Number(23.0));}

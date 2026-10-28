@@ -48,3 +48,44 @@ impl Runtime {
         result
     }
 }
+
+#[derive(Clone,Copy)]
+pub struct PreparedLiteralRead { id:usize,key:PropertyKey }
+impl Runtime {
+    /// Prepare once within a generated function activation. Like object/env
+    /// handles, this Copy token belongs to the Runtime that created it.
+    pub fn prepare_literal_read(&mut self,site:&'static LiteralReadSite)->JsResult<PreparedLiteralRead>{
+        let id=site.index()?;
+        if self.literal_property_slots.len()<=id{self.literal_property_slots.resize(id+1,CachedSlot::default());}
+        let key=match self.literal_property_slots[id].key{Some(key)=>key,None=>{let key=PropertyKey(self.intern(site.text));self.literal_property_slots[id].key=Some(key);key}};
+        Ok(PreparedLiteralRead{id,key})
+    }
+    #[inline]
+    pub fn get_literal_prepared(&mut self,receiver:Value,prepared:PreparedLiteralRead)->JsResult<Value>{
+        let PreparedLiteralRead{id,key}=prepared;
+        if !self.literal_property_slots_enabled{return self.get(receiver,Value::String(key.0))}
+        let entry=self.literal_property_slots[id];
+        if let Value::Object(object)=receiver {
+            if let Some(object)=self.objects.get(object.0){
+                if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary|ObjectKind::Array{..}){
+                    if let Some(index)=entry.index {
+                        if let Some(Some((actual,descriptor)))=object.properties.get(index){
+                            if *actual==key {if let PropertyKind::Data{value,..}=descriptor.kind{let result=Ok(value);self.record_get(receiver,KeyInput::Value(Value::String(key.0)),&result);return result}}
+                        }
+                    }
+                }
+            }
+        }
+        let result=self.get(receiver,Value::String(key.0));
+        // A callback on the slow path can mutate the object. Only the current
+        // physical own descriptor determines what may be cached for next time.
+        if let Value::Object(object)=receiver {
+            if let Some(object)=self.objects.get(object.0){
+                if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary|ObjectKind::Array{..}){
+                    if let Some(index)=object.property_index.get(&key).copied(){if matches!(object.properties.get(index),Some(Some((actual,crate::Descriptor{kind:PropertyKind::Data{..},..})))if *actual==key){self.literal_property_slots[id].index=Some(index);}}
+                }
+            }
+        }
+        result
+    }
+}

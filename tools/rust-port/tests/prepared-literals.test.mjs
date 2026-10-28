@@ -1,0 +1,5 @@
+import assert from'node:assert/strict';import{compileSource}from'../compile.mjs';
+const source='function f(o){o.before;for(var i=0;i<2;i++){o.loop;if(i)o.branch;function nested(){return o.nested;}}o.after;}',compile=options=>compileSource(source,{allowUnsupported:false,...options});
+const on=compile({preparedLoopLiterals:true}),off=compile();assert.equal(on.manifest.functions.find(f=>f.name==='f').preparedLoopLiteralSites,2);assert.equal(on.manifest.functions.find(f=>f.name==='nested').preparedLoopLiteralSites,0);assert.ok(on.rust.indexOf('prepare_literal_read')<on.rust.indexOf('rt.child_env'));assert.ok(!off.rust.includes('prepare_literal_read'));
+const split=compile({preparedLoopLiterals:true,largeBody:{minimumNodes:1,maxNodes:15,maxStatements:2,maxInitGroups:1}});assert.ok(!split.rust.includes('prepare_literal_read'));
+console.log(JSON.stringify({passed:true,cases:5,scope:'Only loop-body literal reads; no cold outside-loop or nested-function reads; function-entry Copy handles; default-off and helper-split exclusion.'}));
