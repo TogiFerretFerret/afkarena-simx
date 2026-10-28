@@ -21,7 +21,8 @@ if(args.includes('--oracle')){
  assert.equal(process.version,profile.node);
  assert.equal(process.versions.v8,profile.v8);
  assert.deepEqual(process.execArgv,profile.rawBitReferenceFlags);
- const context=vm.createContext({
+ const context=vm.createContext(vm.constants.DONT_CONTEXTIFY);
+ Object.assign(context,{
   print:(...values)=>process.stdout.write(values.join(' ')+'\n'),
   hermescli:{loadFile:path=>new Uint8Array(readFileSync(path))},
   __nativeDiagnosticDigest:text=>sha(text)
