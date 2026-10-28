@@ -28,3 +28,15 @@ The independent source oracle passes all 19 cache OFF/ON cases; see
 `benchmarks/validation/rust-packed-literal-slots-source.json`. An earlier checker
 attempt was rejected because its tracked source changed during the parallel
 baseline build; the sequential retry above is the qualifying run.
+
+Measured result: **neutral, no established speed improvement**. Three alternating
+10,000-update pairs produced 16,452.35 updates/sec for the baseline and 16,380.19
+for packed slots (0.995614x). Each of the six trials matched all 150,220 ordered
+events and the selected raw-bit state against Node. Pair ratios were 1.016x,
+1.014x and 0.958x. Do not present the memory reduction as a throughput win.
+
+Evidence: `benchmarks/results/2026-10-28T22-36-39.431Z-rust-packed-literal-slots.json`.
+Both complete runtime source alternatives, unchanged generated fixture, original
+source, harness, manifests, build timings and raw results are archived there.
+The packed build's wall time includes a deliberate SIGSTOP while other agents
+measured battles; it is not a clean compilation-speed measurement.
