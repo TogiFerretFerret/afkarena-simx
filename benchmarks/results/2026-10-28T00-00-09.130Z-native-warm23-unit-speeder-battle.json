@@ -1,0 +1,805 @@
+{
+  "version": 1,
+  "variant": "no-proxy-permanent-unit-speeder-battle",
+  "performanceOnly": true,
+  "instrumentationOff": true,
+  "semanticReportMatched": true,
+  "firstDifference": null,
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "completed": 20,
+  "measuredBattles": 20,
+  "warmupBattles": 3,
+  "elapsedMs": 7187,
+  "battlesPerSecond": 2.782802281897871,
+  "executionWallMs": 17339.187187,
+  "timingScope": "elapsedMs measures20original battles after3warmups, including scenario materialization and engine setup. Final capture/report hashing occurs after measured timer. Wall time includes VM/script/table cold initialization,3warmups,20battles and report. Their difference is combined overhead, not an isolated cold-init or warmup measurement.",
+  "machine": {
+    "version": 1,
+    "capturedAt": "2026-10-27T23:59:51.572Z",
+    "runtime": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "kernel": "6.18.55",
+    "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+    "logicalCpus": 5,
+    "availableParallelism": 4,
+    "cgroupV2": {
+      "cpuMax": "400000 100000",
+      "memoryMax": "17179869184",
+      "cpuQuotaCores": 4
+    },
+    "effectiveCpuCapacity": 4,
+    "scope": "Host resource snapshot. CPU affinity and cgroup quota are distinct; this file is not a throughput result."
+  },
+  "totalCallbacks": 309060,
+  "classManagerCounters": {
+    "nextClassId": 172,
+    "nextInstanceId": 56542,
+    "classCounterValue": 172,
+    "instanceCounterValue": 56542,
+    "lastClassId": 171,
+    "lastInstanceId": 56541,
+    "classCalls": 46,
+    "instanceCalls": 55848,
+    "classKnown": true,
+    "instanceKnown": true
+  },
+  "hostInputConsumption": {
+    "random": 2,
+    "clock": {
+      "version": 1,
+      "mode": "replay",
+      "attempts": 5980,
+      "consumed": 5980,
+      "total": 5980,
+      "remaining": 0,
+      "counts": {
+        "Date.now": 0,
+        "Date.construct": 5980,
+        "Date.call": 0
+      },
+      "finished": true,
+      "restored": false,
+      "failure": null
+    }
+  },
+  "comparedFields": [
+    "completed",
+    "capture",
+    "checksum",
+    "totalCallbacks",
+    "results",
+    "finalCapture",
+    "classManagerCounters"
+  ],
+  "globalSlotCache": {
+    "hits": 13206487,
+    "misses": 334,
+    "rejected": 333,
+    "capacityRejected": 0,
+    "notOwn": 0,
+    "configurable": 0,
+    "special": 333,
+    "noMap": 0,
+    "empty": 0,
+    "entries": 1,
+    "globalKind": 24,
+    "edSeen": true,
+    "edPresent": true,
+    "edFlags": 6,
+    "edSlot": 82
+  },
+  "globalSlotLifecycle": {
+    "created": 1,
+    "destroyed": 1
+  },
+  "prefilterActive": {
+    "runtimeKeyMatches": true,
+    "symbol": 19644,
+    "valid": 1
+  },
+  "prefilterCleared": {
+    "runtimeKeyCleared": true,
+    "symbol": 0,
+    "valid": 0
+  },
+  "fastPathHits": {
+    "unitSpeeder": 72677,
+    "copy": 416445,
+    "emptyCopy": 360624,
+    "numericCopy": 55821,
+    "entity": 230,
+    "sort": 10236,
+    "sortDefaultStrings": 142,
+    "sortUnsupportedFallbacks": 0
+  },
+  "baseline": {
+    "file": "benchmarks/results/2026-10-27T21-55-08.845Z-native-warm23-no-proxy.json",
+    "sha256": "277f66410e5b0971404ca70036d370e42c5b7ec6e143c6ec0a7bd1a99effb6c4"
+  },
+  "cacheBuild": {
+    "file": "benchmarks/validation/native-unit-speeder-battle-build.json",
+    "sha256": "6c15ca1bc89f2651e289bfff7ccea6261d30c6c435ff5fadb78223783fa01e31"
+  },
+  "cacheSemanticProof": {
+    "file": "benchmarks/validation/native-unit-speeder.json",
+    "sha256": "19cbbfc9994b0fc12d5a18038d94a4071534e4e67e71337833147d8197e3c8a2",
+    "unchangedThroughoutRun": true
+  },
+  "sourceManifest": {
+    "file": "work/native-warm23-no-proxy-partition/manifest.json",
+    "sha256": "ba4cb9bb93466b87828a1bce7e1346b4a3e681e013bbda9aad1db4325b5e2e9e"
+  },
+  "reference": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js.reference.json",
+    "sha256": "b321057928e5c84b4cc6c6f3c535ec93f493d3b3dec57401a16e075539c48093"
+  },
+  "hostInputs": {
+    "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js.host-inputs.json",
+    "sha256": "a408711a043b547179013ae58a046b7ba04365749df6c83120a20a41401c77b8",
+    "randomCount": 2,
+    "clockCount": 5980
+  },
+  "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+  "originalVMSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+  "privateVMSha256": "822526ce33c18b7f9ee0c794f76d0b8e6187a6fbadfb047f69fb28584d022180",
+  "output": "/workspace/afkarena-simx/work/native-no-proxy-unit-speeder-battle",
+  "outputSha256": "a8d173e624d4e37c25d0b0c5b148ef044c468920214325736c7f73b90b1e5ea2",
+  "wrapperSha256": "c356cdfb40dfc450538be6fab376ca1b837ba5d948c77e43d5be8152d1197724",
+  "linkArgs": [
+    "/workspace/afkarena-simx/work/native-no-proxy-unit-speeder-battle.main.c",
+    "/workspace/afkarena-simx/work/native-global-ed-prefilter/global-slot-wrap.o",
+    "-Wl,--wrap=_sh_ljs_get_by_id_rjs",
+    "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.o",
+    "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_2.o",
+    "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_3.o",
+    "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_4.o",
+    "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_5.o",
+    "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_6.o",
+    "/workspace/afkarena-simx/work/native-warm23-entity.units/runner.o",
+    "/workspace/afkarena-simx/work/native-entity-sort-host/libentity.a",
+    "/workspace/afkarena-simx/work/native-entity-sort-host/libsmall_sort.a",
+    "/workspace/afkarena-simx/work/native-unit-speeder/libunit_speeder.a",
+    "-O2",
+    "-g0",
+    "-DNDEBUG",
+    "-ffp-contract=off",
+    "-I/workspace/afkarena-simx/work/downloads/hermes-build/lib/config",
+    "-I/workspace/afkarena-simx/work/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+    "-L/workspace/afkarena-simx/work/native-unit-speeder-battle",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/native-unit-speeder-battle",
+    "-L/workspace/afkarena-simx/work/downloads/hermes-build/lib",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/lib",
+    "-L/workspace/afkarena-simx/work/downloads/hermes-build/jsi",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/jsi",
+    "-L/workspace/afkarena-simx/work/downloads/hermes-build/tools/shermes",
+    "-Wl,-rpath,/workspace/afkarena-simx/work/downloads/hermes-build/tools/shermes",
+    "-lshermes_console",
+    "-lm",
+    "-lhermesvm",
+    "-ldl",
+    "-lpthread",
+    "-o",
+    "/workspace/afkarena-simx/work/native-no-proxy-unit-speeder-battle"
+  ],
+  "units": [
+    {
+      "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
+      "bytes": 1778408,
+      "nativeName": "combined",
+      "unchangedFromBaseline": false,
+      "name": "partition_0",
+      "object": "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.o",
+      "objectSha256": "1cd4bf70e510b0c3c0abfd403a35ad83d51f1792ab95d0d1920239b957e08a43",
+      "reusedObject": false,
+      "compilation": {
+        "name": "partition_0",
+        "sourceSha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
+        "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+        "sourceArgs": [
+          "-O",
+          "-emit-c",
+          "-exported-unit=partition_0",
+          "-Wc,-O1,-g0,-ffp-contract=off",
+          "work/native-warm23-no-proxy-partition/combined.js",
+          "-o",
+          "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.original.c"
+        ],
+        "ccArgs": [
+          "-O1",
+          "-g0",
+          "-DNDEBUG",
+          "-fno-strict-aliasing",
+          "-fno-strict-overflow",
+          "-ffp-contract=off",
+          "-Iwork/downloads/hermes-build/lib/config",
+          "-Iwork/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+          "-c",
+          "work/native-warm23-no-proxy.units/partition_0.no-proxy.c",
+          "-o",
+          "work/native-warm23-no-proxy.units/partition_0.no-proxy.o"
+        ],
+        "objectSha256": "b55359c8611c5a3767ab98ed1a8bb5094bf19d0f94efed93b060168b8f992680",
+        "originalCSha256": "304f88c15922145f25ae2b8e966072ca646aa8134a204c853754822fabd7740a",
+        "patchedCSha256": "13bf026d5c67fc4338621d02b879bd2237837797d95bb8158c81795f3dc86b79"
+      },
+      "poolFiles": [
+        {
+          "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.string-pools/s_ascii_pool.bin",
+          "sha256": "b6a1bd6541852274ed8214633c9c255a3c51d1122135844b13b6743ad594d7f7",
+          "bytes": 1788892
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.string-pools/s_u16_pool.bin",
+          "sha256": "4f17e61346954c224cd6d4bc5da56ac0b4b4d268799f29a19b2910b00a7ea676",
+          "bytes": 330744
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.string-pools/s_strings.bin",
+          "sha256": "2e372904ed871192a876b11d4ccfa1ee530b823c4818f7d90c8fc336ecbfa5e7",
+          "bytes": 350616
+        }
+      ],
+      "originalObject": "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.no-proxy.o",
+      "originalObjectSha256": "b55359c8611c5a3767ab98ed1a8bb5094bf19d0f94efed93b060168b8f992680",
+      "cFile": "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.c",
+      "cSha256": "3aaf9041c17f1fd429e5ef0a058b53ee2aef1ccdd1d786809635118128646a77",
+      "compileArgs": [
+        "-O1",
+        "-g0",
+        "-DNDEBUG",
+        "-fno-strict-aliasing",
+        "-fno-strict-overflow",
+        "-ffp-contract=off",
+        "-Iwork/downloads/hermes-build/lib/config",
+        "-Iwork/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+        "-c",
+        "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.c",
+        "-o",
+        "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.o"
+      ],
+      "originalC": "work/native-warm23-no-proxy.units/partition_0.no-proxy.c",
+      "originalCSha256": "13bf026d5c67fc4338621d02b879bd2237837797d95bb8158c81795f3dc86b79",
+      "functionSha256": "697b4f1d174a7783a4ec774d62befe8e1b7c17432259d0ce1f0ce2973f47124c",
+      "regionSha256": "ef543bb104568554afccb9c237abdaff74f0e55aff39e894e37605a3f7d48778"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "bytes": 1214707,
+      "nativeName": "factories_2",
+      "unchangedFromBaseline": true,
+      "name": "factories_2",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_2.o",
+      "objectSha256": "341699026cd41aee0b64477fb333f28975d9c6714898fd5ab7180400b2f24ecb",
+      "reusedObject": true,
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_2",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_2.o"
+      ]
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "bytes": 1202106,
+      "nativeName": "factories_3",
+      "unchangedFromBaseline": true,
+      "name": "factories_3",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_3.o",
+      "objectSha256": "63b3553698c9f2ffb962d6818070dc5e22647bf4dc6687b2cf8951adbf2328ae",
+      "reusedObject": true,
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_3",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_3.o"
+      ]
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "bytes": 1219549,
+      "nativeName": "factories_4",
+      "unchangedFromBaseline": true,
+      "name": "factories_4",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_4.o",
+      "objectSha256": "b2a10b46e3e2a0b7d581d38386bd590663d3fa01726125cb41fce8e9c0718dfb",
+      "reusedObject": true,
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_4",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_4.o"
+      ]
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "bytes": 1213047,
+      "nativeName": "factories_5",
+      "unchangedFromBaseline": true,
+      "name": "factories_5",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_5.o",
+      "objectSha256": "6f1d94c0b91776304c8ebef6b2dc885574a429607b9b3468c4a1783f4ef1f92b",
+      "reusedObject": true,
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_5",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_5.o"
+      ]
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "bytes": 1223796,
+      "nativeName": "factories_6",
+      "unchangedFromBaseline": true,
+      "name": "factories_6",
+      "object": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_6.o",
+      "objectSha256": "f4f04385d99e56df0f8aaef1487b805af43e9b9fb65d3de89091e6998eed3c7e",
+      "reusedObject": true,
+      "compileArgs": [
+        "-O",
+        "-c",
+        "-exported-unit=factories_6",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_6.o"
+      ]
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sha256": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
+      "bytes": 1269675,
+      "nativeName": "runner",
+      "unchangedFromBaseline": true,
+      "name": "runner",
+      "object": "/workspace/afkarena-simx/work/native-warm23-entity.units/runner.o",
+      "objectSha256": "747f5241c8ac9c254cbe8bd06ad9ed63ccfe2b45f21d34b58f3f39a0bceb7c68",
+      "reusedObject": false,
+      "compilation": {
+        "name": "runner",
+        "sourceSha256": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
+        "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+        "sourceArgs": [
+          "-O",
+          "-c",
+          "-exported-unit=runner",
+          "-Wc,-O1,-g0,-ffp-contract=off",
+          "work/native-warm23-partition/runner.js",
+          "-o",
+          "/workspace/afkarena-simx/work/native-warm23-entity.units/runner.o"
+        ],
+        "ccArgs": null,
+        "objectSha256": "747f5241c8ac9c254cbe8bd06ad9ed63ccfe2b45f21d34b58f3f39a0bceb7c68",
+        "originalCSha256": null,
+        "patchedCSha256": null
+      },
+      "poolFiles": [
+        {
+          "file": "/workspace/afkarena-simx/work/native-warm23-entity.units/runner.string-pools/s_ascii_pool.bin",
+          "sha256": "4ae23fc0a4d1b7f3e488c2f63b6d644023b45d029ed8765d856a39bda3a2d5ec",
+          "bytes": 999309
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/native-warm23-entity.units/runner.string-pools/s_u16_pool.bin",
+          "sha256": "f3c3db4549ffa15a27051eb49a988dc41f0b9be14c4787af9c9d83b427c7fe2e",
+          "bytes": 4500
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/native-warm23-entity.units/runner.string-pools/s_strings.bin",
+          "sha256": "4587400e8987944057dfd63534be53d82198d88668af7979b614021ff64c8982",
+          "bytes": 88668
+        }
+      ]
+    }
+  ],
+  "allSevenObjectsReused": false,
+  "sixOtherObjectsReused": true,
+  "allOriginalGameFunctionsUnchanged": true,
+  "generatedCInteriorChanged": true,
+  "patchedUnit": {
+    "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+    "sha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
+    "bytes": 1778408,
+    "nativeName": "combined",
+    "unchangedFromBaseline": false,
+    "name": "partition_0",
+    "object": "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.o",
+    "objectSha256": "1cd4bf70e510b0c3c0abfd403a35ad83d51f1792ab95d0d1920239b957e08a43",
+    "reusedObject": false,
+    "compilation": {
+      "name": "partition_0",
+      "sourceSha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
+      "compilerSha256": "23827906a05bc43d27a888ad81f40d2e887d9df9c829f69c6ed5ec9529baf09d",
+      "sourceArgs": [
+        "-O",
+        "-emit-c",
+        "-exported-unit=partition_0",
+        "-Wc,-O1,-g0,-ffp-contract=off",
+        "work/native-warm23-no-proxy-partition/combined.js",
+        "-o",
+        "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.original.c"
+      ],
+      "ccArgs": [
+        "-O1",
+        "-g0",
+        "-DNDEBUG",
+        "-fno-strict-aliasing",
+        "-fno-strict-overflow",
+        "-ffp-contract=off",
+        "-Iwork/downloads/hermes-build/lib/config",
+        "-Iwork/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+        "-c",
+        "work/native-warm23-no-proxy.units/partition_0.no-proxy.c",
+        "-o",
+        "work/native-warm23-no-proxy.units/partition_0.no-proxy.o"
+      ],
+      "objectSha256": "b55359c8611c5a3767ab98ed1a8bb5094bf19d0f94efed93b060168b8f992680",
+      "originalCSha256": "304f88c15922145f25ae2b8e966072ca646aa8134a204c853754822fabd7740a",
+      "patchedCSha256": "13bf026d5c67fc4338621d02b879bd2237837797d95bb8158c81795f3dc86b79"
+    },
+    "poolFiles": [
+      {
+        "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.string-pools/s_ascii_pool.bin",
+        "sha256": "b6a1bd6541852274ed8214633c9c255a3c51d1122135844b13b6743ad594d7f7",
+        "bytes": 1788892
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.string-pools/s_u16_pool.bin",
+        "sha256": "4f17e61346954c224cd6d4bc5da56ac0b4b4d268799f29a19b2910b00a7ea676",
+        "bytes": 330744
+      },
+      {
+        "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.string-pools/s_strings.bin",
+        "sha256": "2e372904ed871192a876b11d4ccfa1ee530b823c4818f7d90c8fc336ecbfa5e7",
+        "bytes": 350616
+      }
+    ],
+    "originalObject": "/workspace/afkarena-simx/work/native-warm23-no-proxy.units/partition_0.no-proxy.o",
+    "originalObjectSha256": "b55359c8611c5a3767ab98ed1a8bb5094bf19d0f94efed93b060168b8f992680",
+    "cFile": "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.c",
+    "cSha256": "3aaf9041c17f1fd429e5ef0a058b53ee2aef1ccdd1d786809635118128646a77",
+    "compileArgs": [
+      "-O1",
+      "-g0",
+      "-DNDEBUG",
+      "-fno-strict-aliasing",
+      "-fno-strict-overflow",
+      "-ffp-contract=off",
+      "-Iwork/downloads/hermes-build/lib/config",
+      "-Iwork/downloads/hermes-4f1db42d71d0839254c7154fc8c282bcea466206/include",
+      "-c",
+      "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.c",
+      "-o",
+      "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.o"
+    ],
+    "originalC": "work/native-warm23-no-proxy.units/partition_0.no-proxy.c",
+    "originalCSha256": "13bf026d5c67fc4338621d02b879bd2237837797d95bb8158c81795f3dc86b79",
+    "functionSha256": "697b4f1d174a7783a4ec774d62befe8e1b7c17432259d0ce1f0ce2973f47124c",
+    "regionSha256": "ef543bb104568554afccb9c237abdaff74f0e55aff39e894e37605a3f7d48778"
+  },
+  "cacheProof": {
+    "file": "benchmarks/validation/native-global-ed-prefilter.json",
+    "sha256": "3abaad82a86b8026605195d79b70ccf19097d4c7e4f13f46e7e0e29ebc96d32b"
+  },
+  "dependenciesAtFinish": [
+    {
+      "file": "tools/emit-native-oracle.mjs",
+      "sha256": "5308cd3bebe6b11459a9e67070b0049138f62aa3c6c528d1ebf56427e5f80c03",
+      "matched": true
+    },
+    {
+      "file": "tools/native-oracle-trace.mjs",
+      "sha256": "856484545c543dd68e36e2b465843e21a08ba3301e54b0312ad47cb827218ce9",
+      "matched": true
+    },
+    {
+      "file": "tools/native-report-compare.mjs",
+      "sha256": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+      "matched": true
+    },
+    {
+      "file": "tools/battle-trace-portable.js",
+      "sha256": "9813a661d5969a20559a1784a6d0317c426b3553fcea8aabca7ad16a979f2f34",
+      "matched": true
+    },
+    {
+      "file": "tools/battle-trace-instrumentation.js",
+      "sha256": "2c0d632a7d527b48247718f9f65ff486bbb1824fbf237c62a172a09579c0b989",
+      "matched": true
+    },
+    {
+      "file": "tools/qualification-table-membrane.js",
+      "sha256": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+      "matched": true
+    },
+    {
+      "file": "tools/qualification-mutable-table-capsule.js",
+      "sha256": "3820aaa6fc9cde91b5063ded9e7fd72cd50265a94c70666306682d078c917c21",
+      "matched": true
+    },
+    {
+      "file": "tools/qualification-table-policy.js",
+      "sha256": "511f27e81ac760765300df2f690378bddf6958aba1f997808e181c5a15819a44",
+      "matched": true
+    },
+    {
+      "file": "tools/native-source-closure.mjs",
+      "sha256": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-runtime.mjs",
+      "sha256": "8e72cf52358c7cee53beb9063cdcc74f54bfe82496491f5e4b8ce2afb8eaf59f",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-records.mjs",
+      "sha256": "13d13e2ead5ad64af77bace24d91540045369483ff2327306ca5d2ce193c5741",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-records-extractor.mjs",
+      "sha256": "57aa817af90dda082b0bac89d03bfcde7f04d2b55f339c8ff9a2792cd21f231d",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-source.mjs",
+      "sha256": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-packed.mjs",
+      "sha256": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-realm.mjs",
+      "sha256": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-callbacks.mjs",
+      "sha256": "5ffd831f43c1ebb7eec5377e8462570dc66e94173139d3508fb3f73cf98e69ff",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-declarations.mjs",
+      "sha256": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-render-scene.mjs",
+      "sha256": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+      "matched": true
+    },
+    {
+      "file": "tools/scenario-factory.mjs",
+      "sha256": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-host.js",
+      "sha256": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+      "matched": true
+    },
+    {
+      "file": "tools/oracle-clock.js",
+      "sha256": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+      "matched": true
+    },
+    {
+      "file": "config/bootstrap-packed-config.json",
+      "sha256": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+      "matched": true
+    },
+    {
+      "file": "config/source-oracle-runtime.json",
+      "sha256": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+      "matched": true
+    },
+    {
+      "file": "tools/oracle-class-manager.js",
+      "sha256": "54022d5d5857e4f73b3518be0acfb642256948f6dffe7a7f3838c5a2900f5e3d",
+      "matched": true
+    },
+    {
+      "file": "config/oracle-class-manager.json",
+      "sha256": "94f4f9515c167489d014ea02c62a9da5f1c4062c630879cde4856b5a6c68a738",
+      "matched": true
+    },
+    {
+      "file": "config/qualification-mutable-table-capsule.json",
+      "sha256": "7ede868a426815489070f0525e9d8f028f0f8a43e7123debce8ac4d86d54a39a",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-realm-init.js",
+      "sha256": "1b7ae0bfe4cca713e51abfa81fed12b3f9b70e33e6af4301a722cfc32832d82c",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCClass.js",
+      "sha256": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-render-host.js",
+      "sha256": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCGeometry.js",
+      "sha256": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCPointExtension.js",
+      "sha256": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCAffineTransform.js",
+      "sha256": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCTypesPredicates.js",
+      "sha256": "54736c655de08ad96cec9f709f0984e8c3256a5abff980d0786472418d956458",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "sha256": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_1.js",
+      "sha256": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_2.js",
+      "sha256": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_3.js",
+      "sha256": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_4.js",
+      "sha256": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "sha256": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "sha256": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3",
+      "matched": true
+    },
+    {
+      "file": "work/native-warm23-no-proxy-partition/manifest.json",
+      "sha256": "ba4cb9bb93466b87828a1bce7e1346b4a3e681e013bbda9aad1db4325b5e2e9e",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js",
+      "sha256": "778276702ca46309423e28d2b594de6cf2d61a8a64f127bfd75f10ffff89d0fb",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js.metadata.json",
+      "sha256": "fb06d1a8ebe46f07b4184f2ffe4d1ca10cac070d3df1c94944dfcc8021e08e5d",
+      "matched": true
+    },
+    {
+      "file": "work/native-worker-strong-map/manifest.json",
+      "sha256": "c151d42077d0728e1cb94280faddc757722fde32eec5e461cd2d0ca4f0bfd500",
+      "matched": true
+    },
+    {
+      "file": "tools/prepare-uninstrumented-native-partition.mjs",
+      "sha256": "4201b524a44265ce40f919d59a37aee4cd250ec9a7eebbbbc6d4935caaacfceb",
+      "matched": true
+    }
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work",
+    "LANG": "C",
+    "LD_LIBRARY_PATH": "/workspace/afkarena-simx/work/native-unit-speeder-battle"
+  },
+  "runtimeArgs": [
+    "-Xhermes-internal-test-methods"
+  ],
+  "artifacts": [
+    {
+      "label": "actual",
+      "file": "benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.actual.gz",
+      "sha256": "daaf2549552c7e616c36d485fe588d85b92a5a9b0a5eeb10c331b36c878c283e",
+      "uncompressedSha256": "3b8fc550a9118070a53cd538f12609d74214629b81109cc8d9b59675aed689c6",
+      "uncompressedBytes": 687197
+    },
+    {
+      "label": "stderr",
+      "file": "benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.stderr.gz",
+      "sha256": "7a0fef5a955f3afb384c2fce7fa771179c2fd2ac02489d8a9dd7168b7ba0d93c",
+      "uncompressedSha256": "f3f507bd4f26d2dd0b6fab6049ffa96585e54e22ec0f65ff77c539a37538debe",
+      "uncompressedBytes": 589
+    },
+    {
+      "label": "reference",
+      "file": "benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.reference.gz",
+      "sha256": "45a8a7c433648b6f5a8ae5f86ebe053ae33319d69df460ab2827e50834baaa89",
+      "uncompressedSha256": "b321057928e5c84b4cc6c6f3c535ec93f493d3b3dec57401a16e075539c48093",
+      "uncompressedBytes": 686956
+    },
+    {
+      "label": "wrapper",
+      "file": "benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.wrapper.gz",
+      "sha256": "6756e6c592a63ef59b27c2540df1136285344725fef41367d2663db6ee18c551",
+      "uncompressedSha256": "c356cdfb40dfc450538be6fab376ca1b837ba5d948c77e43d5be8152d1197724",
+      "uncompressedBytes": 2486
+    },
+    {
+      "label": "ldd",
+      "file": "benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.ldd.gz",
+      "sha256": "d8356c40585fd2837ca831c5f0fee30fda95c279b0b889ef786080c3fdb27069",
+      "uncompressedSha256": "17d8dedcc4487cc5704e1c1db9670c0e20122cd75a2810b62ddf696e9793c4be",
+      "uncompressedBytes": 622
+    },
+    {
+      "label": "patched-c",
+      "file": "benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.patched-c.gz",
+      "sha256": "e37a52f092b904a322224b09f5861ae3d658d257496ca22500c2e7d1e6043106",
+      "uncompressedSha256": "3aaf9041c17f1fd429e5ef0a058b53ee2aef1ccdd1d786809635118128646a77",
+      "uncompressedBytes": 14522674
+    },
+    {
+      "label": "composed-host",
+      "file": "benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.composed-host.gz",
+      "sha256": "7c2ff9190bc94b4984a9af5f4daac9e1d3b5df75d40ecb4dd6fd4073f076cb22",
+      "uncompressedSha256": "76f46f841f62acd69d7cb46a0bef42cc3fe432484f8b59ad92fb7e81c83da8df",
+      "uncompressedBytes": 7267
+    }
+  ],
+  "producer": {
+    "file": "tools/run-native-unit-speeder-battle.mjs",
+    "sha256": "0ab8a1cbdb21802a22fb1ff6a65fe47b92e304e5ef12888d1614473a6e6ae1c2"
+  },
+  "qualifiesFor10000Target": false,
+  "qualification": "One fixed callback-only fixture, 20 measured battles after 3 warmups, all source report fields except timings compared. Actual Rust numeric Unit.update interior retains original prefix/continuation and guarded source fallback, plus established native Entity/clone/TimSort and global-slot cache. Full actor/effect/view lifecycle, broad random 5v5 corpus and this new candidate ordered state trace remain unqualified."
+}
