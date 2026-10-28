@@ -8,11 +8,13 @@ use crate::closures::FunctionRecord;
 #[derive(Clone,Debug)]
 pub enum Completion {Normal,Return(Value),Break(Option<&'static str>),Continue(Option<&'static str>)}
 pub struct Runtime {
+ pub(crate) function_objects:HashMap<ObjectId,FunctionId,crate::id_hash::IdBuildHasher>,
  pub(crate) utf8_loader_guard:Option<crate::utf8_guard::Utf8LoaderGuard>,
  pub(crate) strings:Vec<Box<[u16]>>, pub(crate) string_index:HashMap<Vec<u16>,StringId>,
  pub(crate) string_utf8_index:HashMap<String,StringId>,
  pub(crate) static_literal_strings:HashMap<(u8,usize,usize),StringId>,
  pub(crate) diagnostics:crate::diagnostics::Diagnostics,
+ pub(crate) throw_type_error:Option<Value>,
  pub objects:Vec<Object>,pub(crate) functions:Vec<FunctionRecord>,pub(crate) environments:Vec<Environment>,
  pub call_stack:Vec<FunctionId>,pub global_env:EnvId,pub global_object:ObjectId,
  pub construct_stack:Vec<(FunctionId,usize)>,
@@ -35,7 +37,7 @@ impl Runtime {
  pub fn new()->Self{
   let mut objects=vec![Object::new(None)];
   for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{utf8_loader_guard:None,strings:vec![],string_index:HashMap::new(),string_utf8_index:HashMap::new(),static_literal_strings:HashMap::new(),diagnostics:crate::diagnostics::Diagnostics::from_env(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  let mut rt=Self{function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::new(),string_utf8_index:HashMap::new(),static_literal_strings:HashMap::new(),diagnostics:crate::diagnostics::Diagnostics::from_env(),throw_type_error:None,objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
   rt.install_function_builtins().expect("fresh Function intrinsics");
@@ -98,7 +100,7 @@ impl Runtime {
  pub fn set<K:Into<KeyInput>>(&mut self,receiver:Value,key:K,value:Value,strict:bool)->JsResult<Value>{
   self.require_object_coercible(receiver)?;let key=self.key(key)?;if let Ok(id)=self.object_id(receiver){if let Some(value)=self.typed_set(id,key,value)?{return Ok(value)}}let mut current=Some(self.read_start(receiver)?);
   if let Value::String(id)=receiver{if self.is_length(key)||self.index(key).is_some_and(|i|(i as usize)<self.string_units(id).len()){return self.reject(strict,"string property is not writable",value)}}
-  while let Some(id)=current{if let Some(desc)=self.own_descriptor(id,key)?{match desc.kind{PropertyKind::Accessor{set:Some(set),..}=>{self.call_value(set,receiver,&[value])?;return Ok(value)},PropertyKind::Accessor{set:None,..}=>return self.reject(strict,"property has no setter",value),PropertyKind::Data{writable:false,..}=>return self.reject(strict,"property is not writable",value),PropertyKind::Data{..}=>break}}current=self.objects[id.0].prototype;}
+  while let Some(id)=current{if let Some(desc)=self.own_descriptor(id,key)?{if matches!(self.objects[id.0].kind,ObjectKind::Arguments)&&self.string_units(key.0)==[99,97,108,108,101,101]{if let PropertyKind::Accessor{get:Some(get),set:Some(set)}=desc.kind{if Some(get)==self.throw_type_error&&get==set{return self.reject(strict,"Cannot assign to read only property 'callee' of object '#<Object>'",value)}}}match desc.kind{PropertyKind::Accessor{set:Some(set),..}=>{self.call_value(set,receiver,&[value])?;return Ok(value)},PropertyKind::Accessor{set:None,..}=>return self.reject(strict,"property has no setter",value),PropertyKind::Data{writable:false,..}=>return self.reject(strict,"property is not writable",value),PropertyKind::Data{..}=>break}}current=self.objects[id.0].prototype;}
   let id=match self.object_id(receiver){Ok(id)=>id,Err(_)=>return self.reject(strict,"cannot create property on primitive",value)};
   let own=self.own_descriptor(id,key)?;let (enumerable,configurable)=own.map(|d|(d.enumerable,d.configurable)).unwrap_or((true,true));
   if own.is_none()&&!self.objects[id.0].extensible{return self.reject(strict,"object is not extensible",value)}
