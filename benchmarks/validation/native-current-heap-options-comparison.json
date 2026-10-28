@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "passed": true,
+  "timingClassification": "PROVISIONAL_CONTENDED",
+  "qualifiesFor10000Target": false,
+  "scope": "Fresh runtime-option trials on the identical native binary and private VM. Every trial passes raw source report, explicit host inputs, established fast paths, cache counters and runtime cleanup. The two heap variants intentionally ran concurrently with other speed experiments after the user prioritized experiment throughput over isolated timing. They cannot establish a heap-option speedup or regression.",
+  "baseline": {
+    "file": "benchmarks/results/2026-10-28T15-29-48.800Z-native-heap-default-current.json",
+    "sha256": "36ba74e55822529eb24818601b19ed41782d07fddc5a3c386935da77b3e4775c"
+  },
+  "runs": [
+    {
+      "file": "benchmarks/results/2026-10-28T15-29-48.800Z-native-heap-default-current.json",
+      "sha256": "36ba74e55822529eb24818601b19ed41782d07fddc5a3c386935da77b3e4775c",
+      "name": "default-current",
+      "runtimeArgs": [
+        "-Xhermes-internal-test-methods"
+      ],
+      "semanticReportMatched": true,
+      "elapsedMs": 9874,
+      "battlesPerSecond": 2.02552157180474,
+      "measuredBattles": 20,
+      "warmupBattles": 3,
+      "peakKernelHighWaterRSSKiB": 609440,
+      "executionWallMs": 25034.373125,
+      "timingClassification": "FRESH_SINGLE_PROCESS_BASELINE",
+      "observedRatioToBaseline": 1
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T15-32-36.303Z-native-heap-oldgen-2g-current.json",
+      "sha256": "1214df21d6541e69abe28933110f7e3d6b841e7042399033da41a07322772b01",
+      "name": "oldgen-2g-current",
+      "runtimeArgs": [
+        "-Xhermes-internal-test-methods",
+        "-gc-alloc-young=false",
+        "-gc-init-heap=2GiB",
+        "-gc-max-heap=4GiB"
+      ],
+      "semanticReportMatched": true,
+      "elapsedMs": 10487,
+      "battlesPerSecond": 1.9071231047964146,
+      "measuredBattles": 20,
+      "warmupBattles": 3,
+      "peakKernelHighWaterRSSKiB": 1996968,
+      "executionWallMs": 25344.370326,
+      "timingClassification": "PROVISIONAL_CONTENDED",
+      "observedRatioToBaseline": 0.9415466768379899
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T15-32-36.240Z-native-heap-young-2g-current.json",
+      "sha256": "9662390b053eee9695a731fb96370617401b42b94a580aab614ccc5d77ec4dd7",
+      "name": "young-2g-current",
+      "runtimeArgs": [
+        "-Xhermes-internal-test-methods",
+        "-gc-init-heap=2GiB",
+        "-gc-max-heap=4GiB"
+      ],
+      "semanticReportMatched": true,
+      "elapsedMs": 10355,
+      "battlesPerSecond": 1.931434089811685,
+      "measuredBattles": 20,
+      "warmupBattles": 3,
+      "peakKernelHighWaterRSSKiB": 1084020,
+      "executionWallMs": 24070.951319000003,
+      "timingClassification": "PROVISIONAL_CONTENDED",
+      "observedRatioToBaseline": 0.953549010140029
+    }
+  ],
+  "notes": [
+    "Only VM allocation policy and initial/maximum heap budgets differ; source, kernels, generated objects and binary bytes are identical.",
+    "The default trial is a fresh comparator; the old 7.187-second result is not treated as adjacent timing evidence.",
+    "The old-generation and young-generation 2 GiB variants overlap each other and the parallel-worker experiment. Their timings are intentionally provisional.",
+    "Larger budgets can postpone collections beyond 20 measured battles; no sustained-throughput or collection-cycle claim is made.",
+    "Negative or contended timings are retained rather than discarded. No heap variant is promoted on this evidence."
+  ],
+  "producer": {
+    "file": "tools/compare-native-heap-tuning.mjs",
+    "sha256": "2e29cb0e29e74b781c26f61307d9c72cc3898584a90ee90a6605d15523824daa"
+  }
+}

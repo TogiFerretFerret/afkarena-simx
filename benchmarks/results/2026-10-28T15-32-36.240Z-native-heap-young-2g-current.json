@@ -1,0 +1,662 @@
+{
+  "version": 1,
+  "name": "young-2g-current",
+  "semanticReportMatched": true,
+  "firstDifference": null,
+  "runtimeDifference": null,
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "runtimeArgs": [
+    "-Xhermes-internal-test-methods",
+    "-gc-init-heap=2GiB",
+    "-gc-max-heap=4GiB"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/native-heap-tuning",
+    "LANG": "C",
+    "LD_LIBRARY_PATH": "/workspace/afkarena-simx/work/native-unit-speeder-battle"
+  },
+  "sourceReport": {
+    "file": "benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.json",
+    "sha256": "0ab68573e07e7972aacb0f90965811f1185107e071144e973b5c3106d9dd957a"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/native-no-proxy-unit-speeder-battle",
+    "sha256": "a8d173e624d4e37c25d0b0c5b148ef044c468920214325736c7f73b90b1e5ea2"
+  },
+  "privateVM": {
+    "file": "/workspace/afkarena-simx/work/native-unit-speeder-battle/libhermesvm.so",
+    "sha256": "822526ce33c18b7f9ee0c794f76d0b8e6187a6fbadfb047f69fb28584d022180"
+  },
+  "machine": {
+    "version": 1,
+    "capturedAt": "2026-10-28T15:32:36.253Z",
+    "runtime": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "kernel": "6.18.55",
+    "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+    "logicalCpus": 5,
+    "availableParallelism": 4,
+    "cgroupV2": {
+      "cpuMax": "400000 100000",
+      "memoryMax": "17179869184",
+      "cpuQuotaCores": 4
+    },
+    "effectiveCpuCapacity": 4,
+    "scope": "Host resource snapshot. CPU affinity and cgroup quota are distinct; this file is not a throughput result."
+  },
+  "resourceSamplingPeriodMs": 100,
+  "resourceSamples": 240,
+  "peakSampledRSSKiB": 1084020,
+  "peakKernelHighWaterRSSKiB": 1084020,
+  "completed": 20,
+  "measuredBattles": 20,
+  "warmupBattles": 3,
+  "elapsedMs": 10355,
+  "battlesPerSecond": 1.931434089811685,
+  "executionWallMs": 24070.951319000003,
+  "totalCallbacks": 309060,
+  "hostInputConsumption": {
+    "random": 2,
+    "clock": {
+      "version": 1,
+      "mode": "replay",
+      "attempts": 5980,
+      "consumed": 5980,
+      "total": 5980,
+      "remaining": 0,
+      "counts": {
+        "Date.now": 0,
+        "Date.construct": 5980,
+        "Date.call": 0
+      },
+      "finished": true,
+      "restored": false,
+      "failure": null
+    }
+  },
+  "allEstablishedFastPathsMatched": true,
+  "inputsAtFinish": [
+    {
+      "file": "benchmarks/results/2026-10-28T00-00-09.130Z-native-warm23-unit-speeder-battle.json",
+      "sha256": "0ab68573e07e7972aacb0f90965811f1185107e071144e973b5c3106d9dd957a",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/native-unit-speeder-battle-build.json",
+      "sha256": "6c15ca1bc89f2651e289bfff7ccea6261d30c6c435ff5fadb78223783fa01e31",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/native-unit-speeder.json",
+      "sha256": "19cbbfc9994b0fc12d5a18038d94a4071534e4e67e71337833147d8197e3c8a2",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/native-global-ed-prefilter.json",
+      "sha256": "3abaad82a86b8026605195d79b70ccf19097d4c7e4f13f46e7e0e29ebc96d32b",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-no-proxy-unit-speeder-battle",
+      "sha256": "a8d173e624d4e37c25d0b0c5b148ef044c468920214325736c7f73b90b1e5ea2",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-unit-speeder-battle/libhermesvm.so",
+      "sha256": "822526ce33c18b7f9ee0c794f76d0b8e6187a6fbadfb047f69fb28584d022180",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js.reference.json",
+      "sha256": "b321057928e5c84b4cc6c6f3c535ec93f493d3b3dec57401a16e075539c48093",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js.host-inputs.json",
+      "sha256": "a408711a043b547179013ae58a046b7ba04365749df6c83120a20a41401c77b8",
+      "matched": true
+    },
+    {
+      "file": "tools/build-native-entity-sort-host.mjs",
+      "sha256": "c049573ed2b65d2bde76a4980e873d2591f9601b2fcb6141fc704140bf810fbe",
+      "matched": true
+    },
+    {
+      "file": "tools/native-private-vm.mjs",
+      "sha256": "47747b1921a23390805e60089f7dbf7cc750c1d1072d64ccd2ceda4344594f4b",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/entity-sort-host.inc",
+      "sha256": "ad40f07b690b7e54dc70dd63b29069eea95c2fd14da4039156c8125fd3dd173a",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/tim-sort-host.inc",
+      "sha256": "8267532890bf07c6f914d7a559a9251d50ef5c82bfe247173f02a469887b0be8",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/tim-sort.inc",
+      "sha256": "77153b5903fa2886b57d68de9b3ac0e92c4edf9aab9f469c24aeef39d58afb49",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/small-sort.inc",
+      "sha256": "dbf3373f28b1a00fb580f8ffe4b02695399a43b9a9fcff34b89e78c13ea46009",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/diagnostic-sha256-host.inc",
+      "sha256": "5f3836152d2c63f8169c75ebec8e1edd2388c15b902a601040802f21855c75f9",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/diagnostic-sha256.inc",
+      "sha256": "6578ad9a09dded407ac9050a567c6f06ae280d8240fd9df8982a3b8ace43fe1b",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/entity-update.inc",
+      "sha256": "a4a358159a5666b94353331dca21013968cc696be6580425a921d2d9e7f4d87b",
+      "matched": true
+    },
+    {
+      "file": "tools/native-entity-update.rs",
+      "sha256": "fb0e9f21bf14813f1e47a3572570a099ba553e31e3b36b174137fa791a28074c",
+      "matched": true
+    },
+    {
+      "file": "tools/native-small-sort.rs",
+      "sha256": "5a866da4f833ea5245e71c6bab4a7066159b4ebe64203273c5d56db186da3edd",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/v8_tim_sort.rs",
+      "sha256": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/js_math.rs",
+      "sha256": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+      "matched": true
+    },
+    {
+      "file": "tools/native-flat-copy-probe.mjs",
+      "sha256": "6b7985f2d819df79483badc3ba9486c7b9a12d02e4ce126f8f1d33003d9599ea",
+      "matched": true
+    },
+    {
+      "file": "tools/native-copy-bridge.mjs",
+      "sha256": "25ba85c6dd8ba2ae783ec14afd6dbdb0b8674d2c7a54c7b1c9a2f669e9b0b7db",
+      "matched": true
+    },
+    {
+      "file": "tools/native-rust-bridge.mjs",
+      "sha256": "02d100b9091cbe0b55f661fac0975e9c6f8427267676a8f8d87f3bcdc4f4de6d",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/entity-sort-copy-host.inc",
+      "sha256": "242b9d6d08000b3fe2d97284ee0a331748402c5c4ba9a853086c53681d318b3c",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/empty-array-copy.inc",
+      "sha256": "52607262f5e5552ae3e54e753f88e364660cff41852a7f7eb209538619455ff3",
+      "matched": true
+    },
+    {
+      "file": "tools/prepare-native-copy-host.mjs",
+      "sha256": "bd631ec2d6abf3c4cfa4c501cfa3bdf44d480f5b8d1eb74a6e276c1ef8e01c64",
+      "matched": true
+    },
+    {
+      "file": "tools/build-native-unit-speeder.mjs",
+      "sha256": "a960cc0eaa2d8e7dc15ec96bec47773ac1c8a146c01af8369fe9707bc855dbd4",
+      "matched": true
+    },
+    {
+      "file": "tools/native-unit-speeder.rs",
+      "sha256": "26a5d3b269ee3eeed657772ecbd51ce8ea64559f03c6a4170fd396380be8943a",
+      "matched": true
+    },
+    {
+      "file": "tools/native-unit-speeder-patch.mjs",
+      "sha256": "9ac1548ad28e5f5fdf61028899f9c407ee32422c8bc98a743e7ff5790af2b9af",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/unit-speeder-host.inc",
+      "sha256": "a4ee36ad82277b602302fe3dad5e8e397b7417c0960e6b55b4124dd5ef0e476a",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/unit_speeder.rs",
+      "sha256": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/permanent-global-ed-prefilter.h",
+      "sha256": "0c5d445fb18b3a6d6d68481d6b5fba327a28e013cedb62db46ddd2fe3ca55bf3",
+      "matched": true
+    },
+    {
+      "file": "tools/build-native-global-ed-prefilter.mjs",
+      "sha256": "4a9fb129b044248dcea19bc03e82212a57b52b9de5bc9580adfb39d156e17a91",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/permanent-global-ed-prefilter.inc",
+      "sha256": "5e5841c52116fd46ec5aa32e082a841cc97712eaf07f32c0619f268d28594e15",
+      "matched": true
+    },
+    {
+      "file": "tools/native-compiler-patches/permanent-global-ed-prefilter-wrap.c",
+      "sha256": "05ac2e6249395bc7a48f23da552a9b53e5044b4e79c983be17f7e3b03c31cc29",
+      "matched": true
+    },
+    {
+      "file": "tools/build-native-unit-speeder-battle.mjs",
+      "sha256": "7d41cb1554cc279b76acb2168fcaab0ab15f6f8138ede8b77c6c71922d4d71b6",
+      "matched": true
+    },
+    {
+      "file": "tools/audit-unit-speeder-liveness.mjs",
+      "sha256": "10f275a029298f7991e6ebfa23460b91280b03b46958b011a60869299f86396e",
+      "matched": true
+    },
+    {
+      "file": "config/unit-translation.json",
+      "sha256": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/results/2026-10-27T21-55-08.845Z-native-warm23-no-proxy.json",
+      "sha256": "277f66410e5b0971404ca70036d370e42c5b7ec6e143c6ec0a7bd1a99effb6c4",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/native-unit-speeder-build.json",
+      "sha256": "0a7d9dfeba4a5529c600a4395f4683aa0f360df98be50d7e8e2f75719affec16",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/native-global-ed-prefilter-build.json",
+      "sha256": "ad1c642580696c089d2e77f5350607911824d445177a80a17841036d5203b216",
+      "matched": true
+    },
+    {
+      "file": "benchmarks/validation/unit-speeder-liveness.json",
+      "sha256": "fa968aa022cbedd96cd8427449207fd2c169815ca17eb0b1afc5b93404f71698",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-entity-sort-host/libentity.a",
+      "sha256": "f47cfad7084955d1c6ca2dda4e69c58dfcac0a656824fdac4aa8680949c02ec8",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-entity-sort-host/libsmall_sort.a",
+      "sha256": "0d60cf98560b7440c6318bd0cd1501c3ab96dba45fccb134808dafc0cb4faa93",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-unit-speeder/libunit_speeder.a",
+      "sha256": "af2ed8ed0e9fea88159027ada1594b9b5e7ee76c96452ca75eaebbbeeed2ece7",
+      "matched": true
+    },
+    {
+      "file": "tools/emit-native-oracle.mjs",
+      "sha256": "5308cd3bebe6b11459a9e67070b0049138f62aa3c6c528d1ebf56427e5f80c03",
+      "matched": true
+    },
+    {
+      "file": "tools/native-oracle-trace.mjs",
+      "sha256": "856484545c543dd68e36e2b465843e21a08ba3301e54b0312ad47cb827218ce9",
+      "matched": true
+    },
+    {
+      "file": "tools/native-report-compare.mjs",
+      "sha256": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341",
+      "matched": true
+    },
+    {
+      "file": "tools/battle-trace-portable.js",
+      "sha256": "9813a661d5969a20559a1784a6d0317c426b3553fcea8aabca7ad16a979f2f34",
+      "matched": true
+    },
+    {
+      "file": "tools/battle-trace-instrumentation.js",
+      "sha256": "2c0d632a7d527b48247718f9f65ff486bbb1824fbf237c62a172a09579c0b989",
+      "matched": true
+    },
+    {
+      "file": "tools/qualification-table-membrane.js",
+      "sha256": "3978c3c7fbe7e770c3a76f40bff1d63158053e2f4abf9105b3138c38b5d8be41",
+      "matched": true
+    },
+    {
+      "file": "tools/qualification-mutable-table-capsule.js",
+      "sha256": "3820aaa6fc9cde91b5063ded9e7fd72cd50265a94c70666306682d078c917c21",
+      "matched": true
+    },
+    {
+      "file": "tools/qualification-table-policy.js",
+      "sha256": "511f27e81ac760765300df2f690378bddf6958aba1f997808e181c5a15819a44",
+      "matched": true
+    },
+    {
+      "file": "tools/native-source-closure.mjs",
+      "sha256": "86af63cf520632159fe837baeb87617658c51361432096fa32c83ff6a94a168a",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-runtime.mjs",
+      "sha256": "8e72cf52358c7cee53beb9063cdcc74f54bfe82496491f5e4b8ce2afb8eaf59f",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-records.mjs",
+      "sha256": "13d13e2ead5ad64af77bace24d91540045369483ff2327306ca5d2ce193c5741",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-records-extractor.mjs",
+      "sha256": "57aa817af90dda082b0bac89d03bfcde7f04d2b55f339c8ff9a2792cd21f231d",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-source.mjs",
+      "sha256": "f1ecb3e1113b8c140db2e64874af0283546f14f35ac9e1e7bb833ad5fe6fd607",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-packed.mjs",
+      "sha256": "bed42060c2c1180d8f636b9bd6c3540516814e035b3d332a3dabfe63ffdbf5db",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-realm.mjs",
+      "sha256": "ceeb5295a5f7cbb5831710e66e7f158cb01219504b18be788897967e6f5622fc",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-callbacks.mjs",
+      "sha256": "5ffd831f43c1ebb7eec5377e8462570dc66e94173139d3508fb3f73cf98e69ff",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-declarations.mjs",
+      "sha256": "27714098dab0643ef7628211eccd7374438b16ebaf29d22b1a5f837b83367c5e",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-render-scene.mjs",
+      "sha256": "98aff11e132dd0d87fd807bd60d260eb593d8e1a2c81aa7e7e2ba7642ac3cc60",
+      "matched": true
+    },
+    {
+      "file": "tools/scenario-factory.mjs",
+      "sha256": "0064e82508f8ad0409855ace1f181bbef61b3bfc061a04e57388ef89a4e6ec52",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-host.js",
+      "sha256": "ec989b640127e2687b198f9b802e485886359ae0edaafdaf1f2832fb59a2a598",
+      "matched": true
+    },
+    {
+      "file": "tools/oracle-clock.js",
+      "sha256": "3087150764731813aef602abcf16ae9ee625ebdee55a8552193a507c62ede516",
+      "matched": true
+    },
+    {
+      "file": "config/bootstrap-packed-config.json",
+      "sha256": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+      "matched": true
+    },
+    {
+      "file": "config/source-oracle-runtime.json",
+      "sha256": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+      "matched": true
+    },
+    {
+      "file": "tools/oracle-class-manager.js",
+      "sha256": "54022d5d5857e4f73b3518be0acfb642256948f6dffe7a7f3838c5a2900f5e3d",
+      "matched": true
+    },
+    {
+      "file": "config/oracle-class-manager.json",
+      "sha256": "94f4f9515c167489d014ea02c62a9da5f1c4062c630879cde4856b5a6c68a738",
+      "matched": true
+    },
+    {
+      "file": "config/qualification-mutable-table-capsule.json",
+      "sha256": "7ede868a426815489070f0525e9d8f028f0f8a43e7123debce8ac4d86d54a39a",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-realm-init.js",
+      "sha256": "1b7ae0bfe4cca713e51abfa81fed12b3f9b70e33e6af4301a722cfc32832d82c",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCClass.js",
+      "sha256": "20b648e79537a363a68b8a8640dfb25b419518387cab5459b1f7ae5ae6ead03d",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-render-host.js",
+      "sha256": "5d9e4dc6bb1a5ed2dcdd55ff07b0e198141b3141a8cca996fe7081601448365e",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCGeometry.js",
+      "sha256": "c7be54b71580a0c15d4562f924044a97ff284b19d2c1c3efa6e15c8c63ed7f1d",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCPointExtension.js",
+      "sha256": "b098d6e5ef1d26fa76ae848d2ad660cb589a77d7838b97578fc0d0b7e732a8f5",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCAffineTransform.js",
+      "sha256": "34898a7bc0f8c215f942e312b94b425713383af8f1c41d5ee74226e7d71d4696",
+      "matched": true
+    },
+    {
+      "file": "tools/bootstrap-vendor-CCTypesPredicates.js",
+      "sha256": "54736c655de08ad96cec9f709f0984e8c3256a5abff980d0786472418d956458",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_base.js",
+      "sha256": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_1.js",
+      "sha256": "ad6620187c63c6150192628d8cba63592634635379efe9a5959f9b0a6356752b",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_2.js",
+      "sha256": "9c5959017b325dd68be282744f81962c1ff987244b226136a37e0c58bb2ff7f2",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_3.js",
+      "sha256": "54cca4a8b895143716e1eaa530c634bc188bc49fbb8cb4863485adc9a27b6928",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_ui_4.js",
+      "sha256": "edaeec041728f17482e40cd7ede73a59e74c0bce9d7a08c28f745d5009b2e771",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_util.js",
+      "sha256": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/ui_war.js",
+      "sha256": "0852a4e2b8398c465f3a8e637d1ba62483c48a33b8d0480bbab56f98af2abed3",
+      "matched": true
+    },
+    {
+      "file": "work/native-warm23-no-proxy-partition/manifest.json",
+      "sha256": "ba4cb9bb93466b87828a1bce7e1346b4a3e681e013bbda9aad1db4325b5e2e9e",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js",
+      "sha256": "778276702ca46309423e28d2b594de6cf2d61a8a64f127bfd75f10ffff89d0fb",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-warm23-no-proxy.js.metadata.json",
+      "sha256": "fb06d1a8ebe46f07b4184f2ffe4d1ca10cac070d3df1c94944dfcc8021e08e5d",
+      "matched": true
+    },
+    {
+      "file": "work/native-worker-strong-map/manifest.json",
+      "sha256": "c151d42077d0728e1cb94280faddc757722fde32eec5e461cd2d0ca4f0bfd500",
+      "matched": true
+    },
+    {
+      "file": "tools/prepare-uninstrumented-native-partition.mjs",
+      "sha256": "4201b524a44265ce40f919d59a37aee4cd250ec9a7eebbbbc6d4935caaacfceb",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.o",
+      "sha256": "1cd4bf70e510b0c3c0abfd403a35ad83d51f1792ab95d0d1920239b957e08a43",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-unit-speeder-battle/partition_0.speeder.c",
+      "sha256": "3aaf9041c17f1fd429e5ef0a058b53ee2aef1ccdd1d786809635118128646a77",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_2.o",
+      "sha256": "341699026cd41aee0b64477fb333f28975d9c6714898fd5ab7180400b2f24ecb",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_3.o",
+      "sha256": "63b3553698c9f2ffb962d6818070dc5e22647bf4dc6687b2cf8951adbf2328ae",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_4.o",
+      "sha256": "b2a10b46e3e2a0b7d581d38386bd590663d3fa01726125cb41fce8e9c0718dfb",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_5.o",
+      "sha256": "6f1d94c0b91776304c8ebef6b2dc885574a429607b9b3468c4a1783f4ef1f92b",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-oracle-partition-o1.units/factories_6.o",
+      "sha256": "f4f04385d99e56df0f8aaef1487b805af43e9b9fb65d3de89091e6998eed3c7e",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-warm23-entity.units/runner.o",
+      "sha256": "747f5241c8ac9c254cbe8bd06ad9ed63ccfe2b45f21d34b58f3f39a0bceb7c68",
+      "matched": true
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sha256": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
+      "matched": true
+    },
+    {
+      "file": "tools/run-native-heap-tuning.mjs",
+      "sha256": "42390e13156858db7b365d6159411a8aa23cdbcb79674985c030dd77423f8b89",
+      "matched": true
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "actual",
+      "file": "benchmarks/results/2026-10-28T15-32-36.240Z-native-heap-young-2g-current.actual.gz",
+      "sha256": "b427d5dfbdab7453ef73a84d0e05d94cf7d6f9a8668de7ae719f39c65bfeefea",
+      "uncompressedSha256": "1ebb380b3083f60b6a39f25550741bf5d28d8198ebabe4c007aa8a19440bae88",
+      "uncompressedBytes": 687198
+    },
+    {
+      "label": "stderr",
+      "file": "benchmarks/results/2026-10-28T15-32-36.240Z-native-heap-young-2g-current.stderr.gz",
+      "sha256": "7a0fef5a955f3afb384c2fce7fa771179c2fd2ac02489d8a9dd7168b7ba0d93c",
+      "uncompressedSha256": "f3f507bd4f26d2dd0b6fab6049ffa96585e54e22ec0f65ff77c539a37538debe",
+      "uncompressedBytes": 589
+    },
+    {
+      "label": "reference",
+      "file": "benchmarks/results/2026-10-28T15-32-36.240Z-native-heap-young-2g-current.reference.gz",
+      "sha256": "45a8a7c433648b6f5a8ae5f86ebe053ae33319d69df460ab2827e50834baaa89",
+      "uncompressedSha256": "b321057928e5c84b4cc6c6f3c535ec93f493d3b3dec57401a16e075539c48093",
+      "uncompressedBytes": 686956
+    },
+    {
+      "label": "ldd",
+      "file": "benchmarks/results/2026-10-28T15-32-36.240Z-native-heap-young-2g-current.ldd.gz",
+      "sha256": "095e2c5ac3dd9def5afb97c7d7663c2e4fbdf3c565ff295b0a45d5a7949fc941",
+      "uncompressedSha256": "1c5edc6d68002be605e92817e12fcff423261d9b2c14f2cf4ee0772a6ba0a62f",
+      "uncompressedBytes": 622
+    }
+  ],
+  "producer": {
+    "file": "tools/run-native-heap-tuning.mjs",
+    "sha256": "42390e13156858db7b365d6159411a8aa23cdbcb79674985c030dd77423f8b89"
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "Runtime-options-only experiment on the unchanged Rust-integrated native core. One frozen callback-only fixture, 20 measured battles after three warmups. All raw source report fields except timings, explicit host clock/RNG consumption, fast-path counts, cache counters and lifecycle are required to match. Larger budgets may defer GC beyond this finite window; sustained throughput across GC cycles and full-scene/random corpus fidelity are not established."
+}
