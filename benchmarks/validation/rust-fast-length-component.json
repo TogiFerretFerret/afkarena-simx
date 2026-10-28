@@ -1,0 +1,364 @@
+{
+  "passed": true,
+  "scope": "Same-binary alternating virtual-length read component; not battle BPS. UTF16 and array values validated before timing.",
+  "summary": [
+    {
+      "kind": "array",
+      "baselineNs": 25376913,
+      "fastNs": 6896318,
+      "ratio": 3.67977709264567
+    },
+    {
+      "kind": "string",
+      "baselineNs": 16430728,
+      "fastNs": 7128600,
+      "ratio": 2.30490250540078
+    },
+    {
+      "kind": "boxed",
+      "baselineNs": 25738615,
+      "fastNs": 6977007,
+      "ratio": 3.6890625163483426
+    }
+  ],
+  "rows": [
+    {
+      "kind": "array",
+      "trial": 0,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 25842418
+    },
+    {
+      "kind": "array",
+      "trial": 0,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6896218
+    },
+    {
+      "kind": "array",
+      "trial": 1,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6902437
+    },
+    {
+      "kind": "array",
+      "trial": 1,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 24886572
+    },
+    {
+      "kind": "array",
+      "trial": 2,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 24898189
+    },
+    {
+      "kind": "array",
+      "trial": 2,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6932582
+    },
+    {
+      "kind": "array",
+      "trial": 3,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6899662
+    },
+    {
+      "kind": "array",
+      "trial": 3,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 26279181
+    },
+    {
+      "kind": "array",
+      "trial": 4,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 25376913
+    },
+    {
+      "kind": "array",
+      "trial": 4,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6874997
+    },
+    {
+      "kind": "array",
+      "trial": 5,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6890369
+    },
+    {
+      "kind": "array",
+      "trial": 5,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 24800525
+    },
+    {
+      "kind": "array",
+      "trial": 6,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 25649874
+    },
+    {
+      "kind": "array",
+      "trial": 6,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6896318
+    },
+    {
+      "kind": "string",
+      "trial": 0,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 16663842
+    },
+    {
+      "kind": "string",
+      "trial": 0,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 7671899
+    },
+    {
+      "kind": "string",
+      "trial": 1,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 7298601
+    },
+    {
+      "kind": "string",
+      "trial": 1,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 16415556
+    },
+    {
+      "kind": "string",
+      "trial": 2,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 16290221
+    },
+    {
+      "kind": "string",
+      "trial": 2,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 7081180
+    },
+    {
+      "kind": "string",
+      "trial": 3,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 7128600
+    },
+    {
+      "kind": "string",
+      "trial": 3,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 16367385
+    },
+    {
+      "kind": "string",
+      "trial": 4,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 16689079
+    },
+    {
+      "kind": "string",
+      "trial": 4,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6889428
+    },
+    {
+      "kind": "string",
+      "trial": 5,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6891681
+    },
+    {
+      "kind": "string",
+      "trial": 5,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 16965005
+    },
+    {
+      "kind": "string",
+      "trial": 6,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 16430728
+    },
+    {
+      "kind": "string",
+      "trial": 6,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 7172294
+    },
+    {
+      "kind": "boxed",
+      "trial": 0,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 25502337
+    },
+    {
+      "kind": "boxed",
+      "trial": 0,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 7286021
+    },
+    {
+      "kind": "boxed",
+      "trial": 1,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6987893
+    },
+    {
+      "kind": "boxed",
+      "trial": 1,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 25738615
+    },
+    {
+      "kind": "boxed",
+      "trial": 2,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 25310656
+    },
+    {
+      "kind": "boxed",
+      "trial": 2,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 7260033
+    },
+    {
+      "kind": "boxed",
+      "trial": 3,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6977007
+    },
+    {
+      "kind": "boxed",
+      "trial": 3,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 26690827
+    },
+    {
+      "kind": "boxed",
+      "trial": 4,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 26478344
+    },
+    {
+      "kind": "boxed",
+      "trial": 4,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6920864
+    },
+    {
+      "kind": "boxed",
+      "trial": 5,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6899713
+    },
+    {
+      "kind": "boxed",
+      "trial": 5,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 26542809
+    },
+    {
+      "kind": "boxed",
+      "trial": 6,
+      "enabled": false,
+      "reads": 500000,
+      "elapsedNs": 25656464
+    },
+    {
+      "kind": "boxed",
+      "trial": 6,
+      "enabled": true,
+      "reads": 500000,
+      "elapsedNs": 6893825
+    }
+  ],
+  "sourceInputsUnchanged": {
+    "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "9fd0cf451530b7349a77b5138722848e7570fca50aa6d1708b10d03d90d28067",
+    "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+    "crates/js-runtime/src/diagnostics.rs": "0dc56a84e7b559e79dbe0c915a3fc56958baa688d8d61e7e4b5cfaee46e02034",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/expose_scan.rs": "b5b771050b64fcbf14fa68ea4f4c2e5acfa8905a385623e8b43c6f648937cf9c",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "ee453f2eeefb16b53de12c96752a4d18aab574904a6ea20c97ec396e78f506bb",
+    "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+    "crates/js-runtime/src/lib.rs": "d3751c606dd595cc5dc342123430903a1ca69f28091a0a5f7a7ce9cd9b01adc7",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/property_slots.rs": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
+    "crates/js-runtime/src/reachability.rs": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "0d974c69870a65451f3d433a526c1ee4b4637a128f3b115268cde435d4655b09",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "7e7d6ab64be768e46f5b65e014192153649e351695bead9c0509812bb947e5f0",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+    "crates/js-runtime/tests/fast_length.rs": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+    "crates/js-runtime/tests/ordinary_heap.rs": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+    "crates/js-runtime/tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+    "crates/js-runtime/tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+    "tools/rust-port/bench-fast-length.rs": "2fc107711e4681710c491711d66968bec84c5a75e762a57c69f5314e51b4c108",
+    "tools/rust-port/benchmark-fast-length.mjs": "35b17ced5e8316b99df03ea5142fe812663475c7b726f1ff198222decd6ead6b"
+  },
+  "binarySha256": "83317be0e37fd1885ab0bba35411cc36595ab23096ac355481bd4d794e56b455"
+}

@@ -84,15 +84,40 @@
     "largeBody": null,
     "cacheLocalBindings": true,
     "staticLiteralStrings": true,
+    "staticEnvironmentNames": true,
+    "literalPropertySlots": true,
+    "numericLiteralKeys": true,
+    "nativeNumericOps": true,
     "sourceSpecializations": true,
+    "nativeBattleGc": false,
+    "nativeBattleGcCadence": 1,
+    "nativeLocalBindings": true,
+    "nativeParameters": true,
     "functions": [
       {
         "id": 0,
+        "staticEnvironmentKeys": 26,
+        "nativeActivationElided": false,
+        "nativeBindings": [
+          "buffer",
+          "error",
+          "ix",
+          "number",
+          "Ctors",
+          "Ctor",
+          "view",
+          "key",
+          "made",
+          "bytes",
+          "op",
+          "kind"
+        ],
+        "battleGcSafePoints": [],
         "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 311,
         "helpers": [],
-        "cachedBindings": 24,
+        "cachedBindings": 12,
         "name": "",
         "start": 0,
         "end": 1799,
@@ -105,11 +130,21 @@
       },
       {
         "id": 1,
+        "staticEnvironmentKeys": 2,
+        "nativeActivationElided": false,
+        "nativeBindings": [
+          "data",
+          "result",
+          "i",
+          "part",
+          "value"
+        ],
+        "battleGcSafePoints": [],
         "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 58,
         "helpers": [],
-        "cachedBindings": 5,
+        "cachedBindings": 0,
         "name": "__nativeBits",
         "start": 231,
         "end": 471,
@@ -122,11 +157,17 @@
       },
       {
         "id": 2,
+        "staticEnvironmentKeys": 1,
+        "nativeActivationElided": false,
+        "nativeBindings": [
+          "name"
+        ],
+        "battleGcSafePoints": [],
         "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 8,
         "helpers": [],
-        "cachedBindings": 1,
+        "cachedBindings": 0,
         "name": "log",
         "start": 473,
         "end": 520,
@@ -139,6 +180,10 @@
       },
       {
         "id": 3,
+        "staticEnvironmentKeys": 6,
+        "nativeActivationElided": true,
+        "nativeBindings": [],
+        "battleGcSafePoints": [],
         "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 23,
@@ -156,6 +201,10 @@
       },
       {
         "id": 4,
+        "staticEnvironmentKeys": 6,
+        "nativeActivationElided": true,
+        "nativeBindings": [],
+        "battleGcSafePoints": [],
         "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 23,
@@ -173,11 +222,19 @@
       },
       {
         "id": 5,
+        "staticEnvironmentKeys": 1,
+        "nativeActivationElided": false,
+        "nativeBindings": [
+          "out",
+          "j",
+          "array"
+        ],
+        "battleGcSafePoints": [],
         "sourceSpecialization": null,
         "split": false,
         "estimatedOwnAstNodes": 28,
         "helpers": [],
-        "cachedBindings": 3,
+        "cachedBindings": 0,
         "name": "values",
         "start": 916,
         "end": 1023,
@@ -351,29 +408,37 @@
     "third-party/ryu-js/tests/s2f_test.rs": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
     "third-party/ryu-js/tests/to_fixed.rs": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
     "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
-    "crates/js-runtime/src/builtins.rs": "bf3077e07472b9ef259a78dca61312b3f203b1572eda5adae4f8af398eca34b4",
-    "crates/js-runtime/src/closures.rs": "ffe747fcac1e0a9fac9b36b90f64a6a90ac70ddc559d2d5f2ccb772d80a047f7",
-    "crates/js-runtime/src/collections.rs": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
+    "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "9fd0cf451530b7349a77b5138722848e7570fca50aa6d1708b10d03d90d28067",
     "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
-    "crates/js-runtime/src/diagnostics.rs": "7a22261fee149ee9776723b5cb9790bca62c45c4b29a7338d166e81a5490a898",
-    "crates/js-runtime/src/env.rs": "81bd3ad26c1c2560d8df63b1985aecf620fd56f3269fc60469ca57762b727043",
+    "crates/js-runtime/src/diagnostics.rs": "0dc56a84e7b559e79dbe0c915a3fc56958baa688d8d61e7e4b5cfaee46e02034",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
     "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/expose_scan.rs": "b5b771050b64fcbf14fa68ea4f4c2e5acfa8905a385623e8b43c6f648937cf9c",
     "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
-    "crates/js-runtime/src/heap.rs": "901181256a48ad047045daf799eb843268c69e8ed09bdf6477358e4ff2be09fc",
+    "crates/js-runtime/src/heap.rs": "ee453f2eeefb16b53de12c96752a4d18aab574904a6ea20c97ec396e78f506bb",
     "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
     "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
     "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
     "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
-    "crates/js-runtime/src/lib.rs": "a1806767845af02d84eed017266cbd57137394fc4999bd29e19c2efa4de85ea4",
-    "crates/js-runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+    "crates/js-runtime/src/lib.rs": "d3751c606dd595cc5dc342123430903a1ca69f28091a0a5f7a7ce9cd9b01adc7",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
     "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/property_slots.rs": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
+    "crates/js-runtime/src/reachability.rs": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
-    "crates/js-runtime/src/runtime.rs": "7fa62da98e1c0066f788ce2ec945a79c296b45442b20f0f9ccf158d221047c76",
+    "crates/js-runtime/src/runtime.rs": "0d974c69870a65451f3d433a526c1ee4b4637a128f3b115268cde435d4655b09",
     "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
-    "crates/js-runtime/src/utf8_guard.rs": "f5859762a499fd23f992084477c8a0c799412eb6e050033980fbf69daaf4dc8e",
+    "crates/js-runtime/src/utf8_guard.rs": "7e7d6ab64be768e46f5b65e014192153649e351695bead9c0509812bb947e5f0",
     "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
     "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
     "crates/battle-core/src/ai.rs": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
@@ -397,10 +462,10 @@
     "crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
     "crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
     "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
-    "tools/rust-port/compile.mjs": "4d4cc501ade4f75d0c5ed35f57a018f4a8324a0a80ffeb971da8fcd4cdd4fd9b",
-    "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
-    "tools/rust-port/expressions.mjs": "9e336ef4eb2b3023988388bf170532d7aedba06edcd4a7725dc536084ae2823a",
-    "tools/rust-port/statements.mjs": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
+    "tools/rust-port/compile.mjs": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/rust-port/expressions.mjs": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
+    "tools/rust-port/statements.mjs": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
     "tools/rust-port/check-generated-typed-arrays.mjs": "71559d710c8d81b31bf6d828ea90065778a349871c16be8e4af64b0cda68664d",
     "Cargo.toml": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
     "Cargo.lock": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
@@ -428,22 +493,22 @@
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
   "rustc": {
-    "path": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "path": "/workspace/afkarena-simx/work/candidate-fast-length/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853",
     "args": [
       "--edition=2024",
       "-O",
-      "/workspace/afkarena-simx/work/rust-port-typed-arrays/main.rs",
+      "/workspace/afkarena-simx/work/candidate-fast-length/work/rust-port-typed-arrays/main.rs",
       "--extern",
-      "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+      "js_runtime=/workspace/afkarena-simx/work/candidate-fast-length/target/release/libjs_runtime.rlib",
       "-L",
-      "dependency=/workspace/afkarena-simx/target/release/deps",
+      "dependency=/workspace/afkarena-simx/work/candidate-fast-length/target/release/deps",
       "-o",
-      "/workspace/afkarena-simx/work/rust-port-typed-arrays/check"
+      "/workspace/afkarena-simx/work/candidate-fast-length/work/rust-port-typed-arrays/check"
     ]
   },
   "cargo": {
-    "path": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+    "path": "/workspace/afkarena-simx/work/candidate-fast-length/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
     "sha256": "a670e02cfa39ac2e53f77a2d911ca1fc9e2c479b0603ec956625be1daf24e3af",
     "args": [
       "build",
@@ -454,7 +519,7 @@
       "--offline"
     ]
   },
-  "binarySha256": "f118b03a3d9794e5501f5a6696118d686f874183871c6d98ba347fa494d5b614",
+  "binarySha256": "932b30407baf88ca2ce8b42e92df98052d8737a89c95449c57fb133a5fc29681",
   "artifacts": [
     {
       "file": "benchmarks/validation/generated-rust-typed-arrays.input.gz",
@@ -473,8 +538,8 @@
     },
     {
       "file": "benchmarks/validation/generated-rust-typed-arrays.generated.gz",
-      "sha256": "3dcf98905b12c5a513910ef4751f4265d45ff1902a300f814503700bf228ac02",
-      "uncompressedSha256": "d84de58076d6c259c61cfdf61f85904bba0f6c04a447e7db0ad5202923023265"
+      "sha256": "366aa0ad6fcf2b352475929432c4f7287025bde6dc2f2696c34dd1d34170eda6",
+      "uncompressedSha256": "838e042ca36741838b515e43c9ab49ca0ecaab94ef6a451b7dc6612d827923ea"
     },
     {
       "file": "benchmarks/validation/generated-rust-typed-arrays.source-pool.gz",
@@ -483,8 +548,8 @@
     },
     {
       "file": "benchmarks/validation/generated-rust-typed-arrays.harness.gz",
-      "sha256": "80b46f455ad0912a1ae1cd9209de64c428f62fd6fc79688742272af4ce93ee42",
-      "uncompressedSha256": "cca7d9946696d98188bd99e7960495794b925b0c319a3fc09ccc927a083cd5cf"
+      "sha256": "2e2af86c3c9323df29454bb64e5e8cfe5fb860728dcddab3048b0fffdbd33461",
+      "uncompressedSha256": "0e5dda768114dc9dc5c80af309a2994d887e772761b72fdbaa8b922b55414af9"
     },
     {
       "file": "benchmarks/validation/generated-rust-typed-arrays.source.gz",
@@ -493,8 +558,8 @@
     },
     {
       "file": "benchmarks/validation/generated-rust-typed-arrays.manifest.gz",
-      "sha256": "0650ef85b8fbcfa22be37fa120efc4c7686e82425089f2b97def7258e87d857b",
-      "uncompressedSha256": "3c9654cc7e72062fa59ad69d0f42519d169dd3a544600e3c8a6f9da58f21c447"
+      "sha256": "2393a27ce8a887ca400eb2faa49118561287078299b5768c446bc376eec3bc24",
+      "uncompressedSha256": "b19ad79f4a1e713952e7e84f72df4192162fc021793e9b796509caddebf02a6f"
     }
   ],
   "scope": "Actual copied oracle __nativeBits helper and source-generated typed-array fixtures compiled through Babel into Rust without a JS execution backend. Compares shared byte snapshots, exact hexadecimal float bits, canonical numeric indexed writes/definitions, coercion and exception prefixes, overlapping set, subarray aliases, slice copies, and typed-array construction. This is a binary-data component gate, not whole-battle or unrestricted JS qualification.",

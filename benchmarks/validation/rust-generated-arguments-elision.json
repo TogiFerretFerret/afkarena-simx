@@ -154,7 +154,7 @@
     },
     {
       "file": "crates/js-runtime/src/property_slots.rs",
-      "sha256": "14695c032e972b5c1ea9fdaca9d0cc6144b6982990183bee976c972c531a0a56",
+      "sha256": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
       "matched": true
     },
     {
@@ -174,7 +174,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "8ee228facdc62d1040d0ebcf58cd22ea83e913d23e9a755c9cb340ab617ab8e9",
+      "sha256": "0d974c69870a65451f3d433a526c1ee4b4637a128f3b115268cde435d4655b09",
       "matched": true
     },
     {
@@ -195,6 +195,11 @@
     {
       "file": "crates/js-runtime/src/value.rs",
       "sha256": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/fast_length.rs",
+      "sha256": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
       "matched": true
     },
     {
@@ -583,23 +588,23 @@
   },
   "generatedRustSha256": "c7d2bc5a92c81e5c92f505e3d0f2360ffb4e24064b30b5da16e02733e710ba04",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/rust-port-arguments-elision/check",
-    "sha256": "c1ca15057c630684427c68942c986a8a507d6f27f78df1f5f41fce2e08ebd168"
+    "file": "/workspace/afkarena-simx/work/candidate-fast-length/work/rust-port-arguments-elision/check",
+    "sha256": "e380b615378bcc05f135eb6df3dd999953fb992a646a09f9256dbdca96a781fe"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-fast-length/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/rust-port-arguments-elision/main.rs",
+    "/workspace/afkarena-simx/work/candidate-fast-length/work/rust-port-arguments-elision/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-fast-length/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-fast-length/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/rust-port-arguments-elision/check"
+    "/workspace/afkarena-simx/work/candidate-fast-length/work/rust-port-arguments-elision/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-arguments-elision.outputs.json.gz",
