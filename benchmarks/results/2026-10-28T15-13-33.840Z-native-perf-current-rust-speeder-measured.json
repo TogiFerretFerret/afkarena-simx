@@ -1,0 +1,366 @@
+{
+  "version": 1,
+  "candidateRuntimeGate": {
+    "passed": true,
+    "fastPathHits": {
+      "unitSpeeder": 72677,
+      "copy": 416445,
+      "emptyCopy": 360624,
+      "numericCopy": 55821,
+      "entity": 230,
+      "sort": 10236,
+      "sortDefaultStrings": 142,
+      "sortUnsupportedFallbacks": 0
+    },
+    "cache": {
+      "hits": 13206487,
+      "misses": 334,
+      "rejected": 333,
+      "capacityRejected": 0,
+      "notOwn": 0,
+      "configurable": 0,
+      "special": 333,
+      "noMap": 0,
+      "empty": 0,
+      "entries": 1,
+      "globalKind": 24,
+      "edSeen": true,
+      "edPresent": true,
+      "edFlags": 6,
+      "edSlot": 82
+    },
+    "lifecycle": {
+      "created": 1,
+      "destroyed": 1
+    },
+    "cleared": {
+      "runtimeKeyCleared": true,
+      "symbol": 0,
+      "valid": 0
+    },
+    "active": {
+      "runtimeKeyMatches": true,
+      "symbol": 19644,
+      "valid": 1
+    }
+  },
+  "markerGuardProof": {
+    "file": "benchmarks/validation/native-measured-clock.json",
+    "sha256": "9909630b6e8fd670df73519e5688dba86555d189370051a5e6de1bb489d7f48c",
+    "identicalClockBodyComposition": true,
+    "candidateHostBuild": {
+      "file": "benchmarks/validation/native-current-measured-profile-build.json",
+      "sha256": "1106a4bfb8c9aabaad26da4a8e86203439bfc9e10feb9e08dd5c830debfae1e1"
+    }
+  },
+  "markerClock": "CLOCK_MONOTONIC",
+  "perfClockId": "mono",
+  "measuredWindow": {
+    "startNs": "514765868869",
+    "endNs": "527145442667",
+    "calls": 2,
+    "valid": true
+  },
+  "profileSucceeded": true,
+  "sampleCount": 13102,
+  "dataBytes": 217952060,
+  "kind": "Native user CPU-clock sampling diagnostic",
+  "semanticReportMatched": true,
+  "firstDifference": null,
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "wallMs": 26756.935357000002,
+  "profileScope": "Exact measured-window marker boundaries are included; raw profile covers the whole process. Entire original process: cold VM/script/table initialization, three warmup battles, twenty measured battles, final capture and report. Sampling affects timing; no throughput or speedup claim.",
+  "sampleFrequencyHz": 499,
+  "callGraph": "DWARF,16384byte stack samples",
+  "sourceReport": {
+    "file": "benchmarks/validation/native-current-measured-profile-prepared.json",
+    "sha256": "d45d10775575c266b334712908dbda199e6e6a1fc19ce0ffeb00d315a45cbdcb"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+    "sha256": "9fc604dd5c88d9a005a314210cb4b7625d7553d1456b542558f5c11e617bec97"
+  },
+  "privateVM": {
+    "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+    "sha256": "f88198b333528e12aa7af8bcc930dc1c2a98da17f1b5632f7f3b0799febd3f90"
+  },
+  "bootstrap": {
+    "file": "benchmarks/validation/native-profiler-bootstrap.json",
+    "sha256": "5290830713a3cd0f1faf41e45505b8e09f344fc4edd237abc680ae33fd4a2542"
+  },
+  "perf": {
+    "file": "/workspace/afkarena-simx/work/downloads/perf/perf",
+    "wrapperSha256": "5261dcc63baf8f9d19e25161e9b5d6c074ed4fd9627e32a0483990f870ff5492",
+    "executableSha256": "0c4438084990cfc31a599a0b88a9ec024149a601bf5dcae9e265f9efdc31fb1f"
+  },
+  "environmentPolicy": "Only explicit environment below is passed to PERF and inherited by its native child; no parent process.env, credentials, proxy settings or tokens are passed.",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/native-perf/empty-home",
+    "LANG": "C",
+    "LD_LIBRARY_PATH": "/workspace/afkarena-simx/work/native-current-measured-profile"
+  },
+  "args": [
+    "record",
+    "--clockid",
+    "mono",
+    "-e",
+    "cpu-clock:u",
+    "-F",
+    "499",
+    "--call-graph",
+    "dwarf,16384",
+    "-o",
+    "/workspace/afkarena-simx/work/native-perf/2026-10-28T15-13-33.840Z.data",
+    "--",
+    "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+    "-Xhermes-internal-test-methods"
+  ],
+  "reports": [
+    {
+      "label": "leaf",
+      "args": [
+        "report",
+        "--stdio",
+        "--no-children",
+        "--sort",
+        "dso,symbol",
+        "--percent-limit",
+        "0.1",
+        "--call-graph",
+        "none",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-28T15-13-33.840Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "inclusive",
+      "args": [
+        "report",
+        "--stdio",
+        "--children",
+        "--sort",
+        "dso,symbol",
+        "--percent-limit",
+        "0.5",
+        "--call-graph",
+        "graph,0.5,caller",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-28T15-13-33.840Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "stacks",
+      "args": [
+        "script",
+        "--ns",
+        "--show-mmap-events",
+        "-F",
+        "comm,pid,tid,time,event,period,ip,sym,symoff,dso,dsoff",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-28T15-13-33.840Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "buildids",
+      "args": [
+        "buildid-list",
+        "-i",
+        "/workspace/afkarena-simx/work/native-perf/2026-10-28T15-13-33.840Z.data"
+      ],
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "machine": {
+    "version": 1,
+    "capturedAt": "2026-10-28T15:13:33.844Z",
+    "runtime": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "kernel": "6.18.55",
+    "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+    "logicalCpus": 5,
+    "availableParallelism": 4,
+    "cgroupV2": {
+      "cpuMax": "400000 100000",
+      "memoryMax": "17179869184",
+      "cpuQuotaCores": 4
+    },
+    "effectiveCpuCapacity": 4,
+    "scope": "Host resource snapshot. CPU affinity and cgroup quota are distinct; this file is not a throughput result."
+  },
+  "completed": 20,
+  "totalCallbacks": 309060,
+  "artifacts": [
+    {
+      "label": "record-stdout",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.record-stdout.gz",
+          "sha256": "6752b21e81f587abfdc384dead2df4185a115cead6299539b22d6379f5e42bda",
+          "bytes": 35223
+        }
+      ],
+      "compressedSha256": "6752b21e81f587abfdc384dead2df4185a115cead6299539b22d6379f5e42bda",
+      "uncompressedSha256": "bfcb0ea08186c8236e2476fd8e0a18ddcf705e029b4edf7d22ebb49a2831d79c",
+      "uncompressedBytes": 687210
+    },
+    {
+      "label": "record-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.record-stderr.gz",
+          "sha256": "6fd2a62a88af03dc9c9f77973abfd07b2d32a46eae328035d3f346aa9e4754dd",
+          "bytes": 523
+        }
+      ],
+      "compressedSha256": "6fd2a62a88af03dc9c9f77973abfd07b2d32a46eae328035d3f346aa9e4754dd",
+      "uncompressedSha256": "4b5e967f48887812629938543cc00f65abc520577046607e7d6229a6035296b3",
+      "uncompressedBytes": 842
+    },
+    {
+      "label": "leaf",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.leaf.gz",
+          "sha256": "5a5a2e24fe09191ce0ba5a5f6fbc2782e2ff2831b302659899e182f8a42f171e",
+          "bytes": 3461
+        }
+      ],
+      "compressedSha256": "5a5a2e24fe09191ce0ba5a5f6fbc2782e2ff2831b302659899e182f8a42f171e",
+      "uncompressedSha256": "a57cb9202130d19983bc91c223d35c415463fb62b6d683f8068db312ed6ce037",
+      "uncompressedBytes": 79366
+    },
+    {
+      "label": "leaf-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.leaf-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "inclusive",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.inclusive.gz",
+          "sha256": "52a524c83f0cab0e7a1bc6c927dfedfe1eb7430a62a3c7ea4eef95528c706ba6",
+          "bytes": 83169
+        }
+      ],
+      "compressedSha256": "52a524c83f0cab0e7a1bc6c927dfedfe1eb7430a62a3c7ea4eef95528c706ba6",
+      "uncompressedSha256": "6ae65c95d9bc6606e52e62bb5f4bc7ecde7c68505009844aa02ca7c7a63d8915",
+      "uncompressedBytes": 2007968
+    },
+    {
+      "label": "inclusive-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.inclusive-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "stacks",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.stacks.gz",
+          "sha256": "9476c3043ec99e8a8895aca941284e41c26ae003abbb0b8c5202537a9e5f2bed",
+          "bytes": 1836470
+        }
+      ],
+      "compressedSha256": "9476c3043ec99e8a8895aca941284e41c26ae003abbb0b8c5202537a9e5f2bed",
+      "uncompressedSha256": "11bf2b75e43b8863cb88f59a7ef3c86f20be5406bbae02b02e8ba6ad18036339",
+      "uncompressedBytes": 50764730
+    },
+    {
+      "label": "stacks-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.stacks-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "buildids",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.buildids.gz",
+          "sha256": "232531a6a165d5bb38308cebf7c574adfe1bd00f75a9bba4fa5420458a765eb6",
+          "bytes": 315
+        }
+      ],
+      "compressedSha256": "232531a6a165d5bb38308cebf7c574adfe1bd00f75a9bba4fa5420458a765eb6",
+      "uncompressedSha256": "197eef3748bb5246fa19ff1037ec3f091db560aee4cadbaf9694bb4faabd471f",
+      "uncompressedBytes": 528
+    },
+    {
+      "label": "buildids-stderr",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.buildids-stderr.gz",
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "bytes": 20
+        }
+      ],
+      "compressedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "label": "data",
+      "compression": "gzip; concatenate chunks before decompressing",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.data.gz",
+          "sha256": "eab78bed750e1bd82c1f9bf8163073942fdb463143066bfeff21926ae46c165d",
+          "bytes": 7522585
+        }
+      ],
+      "compressedSha256": "eab78bed750e1bd82c1f9bf8163073942fdb463143066bfeff21926ae46c165d",
+      "uncompressedSha256": "19b95d204902643e86fc870a36f1881014e71f9575371f886a3ec237bba719fe",
+      "uncompressedBytes": 217952060
+    }
+  ],
+  "producer": {
+    "file": "tools/profile-current-native-candidate.mjs",
+    "sha256": "9c3433214ab55a1ad5fab7f462ab0babc0c467003a54eb43614c720b6bc59d6d"
+  },
+  "qualifiesFor10000Target": false
+}

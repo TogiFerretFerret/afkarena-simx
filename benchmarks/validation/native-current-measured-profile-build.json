@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "passed": true,
+  "buildOnly": true,
+  "privateVM": {
+    "output": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+    "originalSha256": "6ca8ebe56dd6073306f017814e6ba998a46b3aaf62ea010dc3d893b376424f6a",
+    "privateSha256": "f88198b333528e12aa7af8bcc930dc1c2a98da17f1b5632f7f3b0799febd3f90",
+    "helperSha256": "cc178f1d11be4270de65fac778c98eb00d6f1854e2bedeeba87f18fc088c51e0"
+  },
+  "sources": {
+    "tools/build-native-entity-sort-host.mjs": "c049573ed2b65d2bde76a4980e873d2591f9601b2fcb6141fc704140bf810fbe",
+    "tools/native-private-vm.mjs": "47747b1921a23390805e60089f7dbf7cc750c1d1072d64ccd2ceda4344594f4b",
+    "tools/native-compiler-patches/entity-sort-host.inc": "ad40f07b690b7e54dc70dd63b29069eea95c2fd14da4039156c8125fd3dd173a",
+    "tools/native-compiler-patches/tim-sort-host.inc": "8267532890bf07c6f914d7a559a9251d50ef5c82bfe247173f02a469887b0be8",
+    "tools/native-compiler-patches/tim-sort.inc": "77153b5903fa2886b57d68de9b3ac0e92c4edf9aab9f469c24aeef39d58afb49",
+    "tools/native-compiler-patches/small-sort.inc": "dbf3373f28b1a00fb580f8ffe4b02695399a43b9a9fcff34b89e78c13ea46009",
+    "tools/native-compiler-patches/diagnostic-sha256-host.inc": "5f3836152d2c63f8169c75ebec8e1edd2388c15b902a601040802f21855c75f9",
+    "tools/native-compiler-patches/diagnostic-sha256.inc": "6578ad9a09dded407ac9050a567c6f06ae280d8240fd9df8982a3b8ace43fe1b",
+    "tools/native-compiler-patches/entity-update.inc": "a4a358159a5666b94353331dca21013968cc696be6580425a921d2d9e7f4d87b",
+    "tools/native-entity-update.rs": "fb0e9f21bf14813f1e47a3572570a099ba553e31e3b36b174137fa791a28074c",
+    "tools/native-small-sort.rs": "5a866da4f833ea5245e71c6bab4a7066159b4ebe64203273c5d56db186da3edd",
+    "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "tools/native-flat-copy-probe.mjs": "6b7985f2d819df79483badc3ba9486c7b9a12d02e4ce126f8f1d33003d9599ea",
+    "tools/native-copy-bridge.mjs": "25ba85c6dd8ba2ae783ec14afd6dbdb0b8674d2c7a54c7b1c9a2f669e9b0b7db",
+    "tools/native-rust-bridge.mjs": "02d100b9091cbe0b55f661fac0975e9c6f8427267676a8f8d87f3bcdc4f4de6d",
+    "tools/native-compiler-patches/entity-sort-copy-host.inc": "242b9d6d08000b3fe2d97284ee0a331748402c5c4ba9a853086c53681d318b3c",
+    "tools/native-compiler-patches/empty-array-copy.inc": "52607262f5e5552ae3e54e753f88e364660cff41852a7f7eb209538619455ff3",
+    "tools/prepare-native-copy-host.mjs": "bd631ec2d6abf3c4cfa4c501cfa3bdf44d480f5b8d1eb74a6e276c1ef8e01c64",
+    "tools/build-native-unit-speeder.mjs": "a960cc0eaa2d8e7dc15ec96bec47773ac1c8a146c01af8369fe9707bc855dbd4",
+    "tools/native-unit-speeder.rs": "26a5d3b269ee3eeed657772ecbd51ce8ea64559f03c6a4170fd396380be8943a",
+    "tools/native-unit-speeder-patch.mjs": "9ac1548ad28e5f5fdf61028899f9c407ee32422c8bc98a743e7ff5790af2b9af",
+    "tools/native-compiler-patches/unit-speeder-host.inc": "a4ee36ad82277b602302fe3dad5e8e397b7417c0960e6b55b4124dd5ef0e476a",
+    "crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
+    "tools/native-compiler-patches/permanent-global-ed-prefilter.h": "0c5d445fb18b3a6d6d68481d6b5fba327a28e013cedb62db46ddd2fe3ca55bf3",
+    "tools/build-native-global-ed-prefilter.mjs": "4a9fb129b044248dcea19bc03e82212a57b52b9de5bc9580adfb39d156e17a91",
+    "tools/native-compiler-patches/permanent-global-ed-prefilter.inc": "5e5841c52116fd46ec5aa32e082a841cc97712eaf07f32c0619f268d28594e15",
+    "tools/native-compiler-patches/permanent-global-ed-prefilter-wrap.c": "05ac2e6249395bc7a48f23da552a9b53e5044b4e79c983be17f7e3b03c31cc29",
+    "tools/build-native-unit-speeder-battle.mjs": "7d41cb1554cc279b76acb2168fcaab0ab15f6f8138ede8b77c6c71922d4d71b6",
+    "tools/audit-unit-speeder-liveness.mjs": "10f275a029298f7991e6ebfa23460b91280b03b46958b011a60869299f86396e",
+    "config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
+    "tools/native-compiler-patches/measured-clock-host.inc": "ad931d333ace09f5ed6ecde591bd606b43873df84198caeeb91b3af6f396ccbc",
+    "tools/prepare-current-native-profile.mjs": "c844c864e6064cba9691ef120a5872287728001f23375c4b80b6bc4588977137"
+  },
+  "libraries": {
+    "libentity.a": {
+      "path": "/workspace/afkarena-simx/work/native-entity-sort-host/libentity.a",
+      "sha256": "f47cfad7084955d1c6ca2dda4e69c58dfcac0a656824fdac4aa8680949c02ec8"
+    },
+    "libsmall_sort.a": {
+      "path": "/workspace/afkarena-simx/work/native-entity-sort-host/libsmall_sort.a",
+      "sha256": "0d60cf98560b7440c6318bd0cd1501c3ab96dba45fccb134808dafc0cb4faa93"
+    },
+    "unitSpeeder": {
+      "path": "/workspace/afkarena-simx/work/native-unit-speeder/libunit_speeder.a",
+      "sha256": "af2ed8ed0e9fea88159027ada1594b9b5e7ee76c96452ca75eaebbbeeed2ece7"
+    }
+  },
+  "helper": {
+    "file": "/workspace/afkarena-simx/work/native-current-measured-profile/candidate-clock-host.inc",
+    "sha256": "cc178f1d11be4270de65fac778c98eb00d6f1854e2bedeeba87f18fc088c51e0"
+  },
+  "candidateBuild": {
+    "file": "benchmarks/validation/native-unit-speeder-battle-build.json",
+    "sha256": "6c15ca1bc89f2651e289bfff7ccea6261d30c6c435ff5fadb78223783fa01e31"
+  },
+  "clockGuard": {
+    "file": "benchmarks/validation/native-measured-clock.json",
+    "sha256": "9909630b6e8fd670df73519e5688dba86555d189370051a5e6de1bb489d7f48c"
+  },
+  "clockBodyUnchanged": true,
+  "clockSourceSha256": "ad931d333ace09f5ed6ecde591bd606b43873df84198caeeb91b3af6f396ccbc",
+  "scope": "Build-only: unchanged candidate Entity/clone/TimSort/SHA/global-slot/Speeder helper plus byte-identical existing measured-clock body after removing duplicate include. Actual profiled battle parity is required. No throughput claim.",
+  "qualifiesFor10000Target": false
+}
