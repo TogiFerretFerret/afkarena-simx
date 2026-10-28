@@ -2,12 +2,12 @@
   "version": 1,
   "passed": true,
   "programDirectory": "work/rust-battle-full",
-  "programManifestSha256": "34a4d936fa6d824fef2ad91c676aa2e9f993bb5e9819a997d00923b6cc3114cc",
+  "programManifestSha256": "7c9932b2963274feece3d55267e0c4f1b05609d41892685dd854c176d3d47e60",
   "units": [
     {
       "index": 0,
       "file": "work/rust-battle-full/battle-unit-0/manifest.json",
-      "sha256": "d6080daea93c0816a4fb70997eec0a1adcf7b6430213abedb70d4143a73fca80",
+      "sha256": "6fba18a43948a9163fcd8175ac70e9d263b1a0d3f7c5103255e992d6bf69ced6",
       "functions": 3260,
       "flags": {
         "cacheLocalBindings": true,
@@ -24,7 +24,7 @@
     {
       "index": 1,
       "file": "work/rust-battle-full/battle-unit-1/manifest.json",
-      "sha256": "8997b20db48827ebaa2154484d89d433ca9dc99d5c0cbf67865c352e46127e23",
+      "sha256": "8a047c3344aa7761c26a486da12c50be5fa3f6ba015009671656c1318500ca6f",
       "functions": 3679,
       "flags": {
         "cacheLocalBindings": true,
@@ -41,7 +41,7 @@
     {
       "index": 2,
       "file": "work/rust-battle-full/battle-unit-2/manifest.json",
-      "sha256": "eb897d7caa930f027b5229b917421f48968f98379c5bb46a441c19dfecb0ebc9",
+      "sha256": "e7db87eca6980ce7b9358b8fab72a7c0c29006446c7ea264f3d621b4c7cca02f",
       "functions": 3237,
       "flags": {
         "cacheLocalBindings": true,
@@ -58,7 +58,7 @@
     {
       "index": 3,
       "file": "work/rust-battle-full/battle-unit-3/manifest.json",
-      "sha256": "ee8bb9ecd640b44c9bd5e58b20d1d7f28689d1aa410ee4f2d1e578683a88c671",
+      "sha256": "ba35cb0a9eb6fbb2174345079e97b3554750c221af83fd4af13119071d0d0ae9",
       "functions": 3371,
       "flags": {
         "cacheLocalBindings": true,
@@ -75,7 +75,7 @@
     {
       "index": 4,
       "file": "work/rust-battle-full/battle-unit-4/manifest.json",
-      "sha256": "d00790db36e4e97c7e15d4822b27097d84958673f15e8cd49e65352382eb0bd9",
+      "sha256": "1161328328788b2e81a20c896b46debf9c4abca9b963bce16b43cba0392474c9",
       "functions": 3348,
       "flags": {
         "cacheLocalBindings": true,
@@ -92,7 +92,7 @@
     {
       "index": 5,
       "file": "work/rust-battle-full/battle-unit-5/manifest.json",
-      "sha256": "52ba6d68aa0db8a9f6746b58bb7d2f3029cde17241c0ac5f165f226878ab3911",
+      "sha256": "d61c01164ffb6290f5f065ea7508cfa1e8af5cecedbe1ce9acd3f1ce20e3dab4",
       "functions": 2398,
       "flags": {
         "cacheLocalBindings": true,
@@ -109,7 +109,7 @@
     {
       "index": 6,
       "file": "work/rust-battle-full/battle-unit-6/manifest.json",
-      "sha256": "1df31ac14b79d76911d753b67cbc146ec2d883223fe0edcdeb902d6fd70a8b8c",
+      "sha256": "3e1443298865e9023e9c85fffd348efe67010f6921572ba67333c719759710e3",
       "functions": 3693,
       "flags": {
         "cacheLocalBindings": true,
@@ -169,7 +169,7 @@
     "U",
     "e"
   ],
-  "defaultGcCadence": 1,
+  "defaultGcCadence": 2,
   "classHooks": 1,
   "exposeHooks": 1,
   "gcRootEnvironmentBacked": true,
