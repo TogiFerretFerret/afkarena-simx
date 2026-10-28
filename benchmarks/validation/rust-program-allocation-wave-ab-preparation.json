@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "prepared": true,
+  "ranWorkload": false,
+  "baseline": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-allocation-wave-full.json",
+    "sha256": "b33cdd392c86a1a46cad2c5f3553030ed2e25d8b911cd81c63a8b1d434b457d8"
+  },
+  "baselineBuildProof": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-allocation-wave-build.json",
+    "sha256": "0fcbed2b0fed1d8c435a6c397f48341c1c85aef010ff6b38c39f2465a97b2fb6",
+    "valid": true,
+    "reasons": [],
+    "inputCount": 1424,
+    "changedInputs": [],
+    "buildProfile": "release"
+  },
+  "manifest": {
+    "file": "/workspace/afkarena-simx/work/rust-battle-full/program-manifest.json",
+    "sha256": "34a4d936fa6d824fef2ad91c676aa2e9f993bb5e9819a997d00923b6cc3114cc"
+  },
+  "sourceGuard": {
+    "runSourceSha256": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+    "wallNowCalls": 2,
+    "battles": 20,
+    "warmup": 3,
+    "capture": "final"
+  },
+  "libraries": [
+    {
+      "name": "js_runtime",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+      "mtimeMs": 1793223349636.121,
+      "sha256": "db9d30bd4ba8c8cf7783e9c76e6b0f6661fd6c2969981b47716500fe30bad152",
+      "candidateCount": 2
+    },
+    {
+      "name": "battle_unit_0",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+      "mtimeMs": 1793224024047.5627,
+      "sha256": "0d30659bdb67de1774692432895506a5fd9e608b1a2a643d443261bff3021c84",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_1",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+      "mtimeMs": 1793224023948.5586,
+      "sha256": "71955ba7ee26bc339f0c685c35912e76a5d997efce76322b07869e2213a0b35d",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_2",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+      "mtimeMs": 1793224023994.4546,
+      "sha256": "c11b683537ee4927eded89a68e5bbb24767eafa8fdc3e06a3e8d6935daffca7b",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_3",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+      "mtimeMs": 1793224024088.5571,
+      "sha256": "1e7e0fcb290142618cd16edca9bfc0dd43ae0ff009c4320aa34ed40f474c39fd",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_4",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+      "mtimeMs": 1793224023848.6086,
+      "sha256": "120df2f5a4ff8d452f3a5d90100b00fb06ac8f6f9b96e7342d00b9284e067ee5",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_5",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+      "mtimeMs": 1793224024087.0144,
+      "sha256": "b99dc4381607d71d2627ce9ae291b02a4ac96fe45f5e5b4ab184e6b2d060e5fc",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_6",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+      "mtimeMs": 1793224023886.0361,
+      "sha256": "bdf55a69a2214e29c8e70b49377bbe8bc9cdb4bf038f1adb2d496e6f22a59086",
+      "candidateCount": 4
+    }
+  ],
+  "rlibSelectionPolicy": "Newest mtime per top-level crate in the completed frozen target; selected hashes unchanged while linking. No core rebuild.",
+  "wrapper": {
+    "file": "/workspace/afkarena-simx/work/rust-program-ab/2026-10-28T21-48-15.617Z/main.rs",
+    "sha256": "00dc09737eeeb74fe9629b6596320906a18510b5b6c10d7d2730a72b4fc41008",
+    "originalFile": "tools/rust-port/program-parallel-benchmark.rs",
+    "originalSha256": "3d6b2ccdd31023286c444d6a472026287ff00f89f4e5d2fb5cf00e4df0297c4f",
+    "hostFile": "/workspace/afkarena-simx/work/rust-program-ab/2026-10-28T21-48-15.617Z/program_host.rs",
+    "hostSha256": "8c7fbb1bb7f2351c5679e342b05ee7e96bdd20fd4eedb8bea7e58e81e453e104"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/rust-program-ab/2026-10-28T21-48-15.617Z/wall-profile",
+    "sha256": "ce6ea43279c9888e402a351da94edd32b1685a18d04f5c9fbacfce83351de382"
+  },
+  "rustc": {
+    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
+  },
+  "command": [
+    "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "--edition=2024",
+    "-O",
+    "/workspace/afkarena-simx/work/rust-program-ab/2026-10-28T21-48-15.617Z/main.rs",
+    "-L",
+    "dependency=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps",
+    "--extern",
+    "js_runtime=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+    "--extern",
+    "battle_unit_0=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+    "--extern",
+    "battle_unit_1=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+    "--extern",
+    "battle_unit_2=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+    "--extern",
+    "battle_unit_3=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+    "--extern",
+    "battle_unit_4=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+    "--extern",
+    "battle_unit_5=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+    "--extern",
+    "battle_unit_6=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+    "-o",
+    "/workspace/afkarena-simx/work/rust-program-ab/2026-10-28T21-48-15.617Z/wall-profile"
+  ],
+  "requiredEnvironment": {
+    "RUST_PORT_TRACE": "0"
+  },
+  "markers": {
+    "trace": "PROFILE_TRACE:0",
+    "start": "PARALLEL_WALL_NOW:0:<UnixNs>",
+    "end": "PARALLEL_WALL_NOW:1:<UnixNs>",
+    "gc": "PARALLEL_GC_COLLECTIONS:23"
+  },
+  "scope": "Same binary, two separately initialized Runtime processes, source unchanged. Number stack conversion remains enabled in BOTH variants. Reference selects Sip and disables literal length, numeric key cache, index string and dense shift fast paths. One process only. Original20measured/3warmup source unchanged. Host wallNow wrapper delegates originalDate.now. Driver rejects any RUST_PORT_TRACE value other than0 before constructing Runtime. Prepared artifact only; perf owner executes and checks full report against baseline.referenceReport separately.",
+  "ab": {
+    "variants": [
+      "reference",
+      "optimized"
+    ],
+    "numberStack": "enabled in both",
+    "referenceFlags": {
+      "stringHash": "Sip",
+      "literal_length_fast_path_enabled": false,
+      "numeric_property_key_cache_enabled": false,
+      "index_string_fast_path_enabled": false,
+      "dense_array_shift_enabled": false
+    }
+  }
+}

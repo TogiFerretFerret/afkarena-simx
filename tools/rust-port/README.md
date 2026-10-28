@@ -14,22 +14,25 @@ JavaScript frame and environment; dependency groups become small Cargo crates
 to keep Rust compilation within memory limits. AST coverage does not establish
 complete runtime semantics.
 
-The [latest native batch](../../benchmarks/validation/rust-full-program-next.json)
+The [latest native batch](../../benchmarks/validation/rust-program-allocation-wave-full.json)
 passes every non-timing final-report field and host-input check for **20 battles
-after three warmups at 0.390778 battles/second**. Its observed high-water RSS is
-2.53 GiB. The previous qualified batch measured 0.384357; the single-pair change
-is only 1.7%, despite large component and cold-start improvements.
+after three warmups at 0.632731 battles/second**. The previous qualified batch
+measured 0.390778; this retained pair improves by 61.9%. The
+[same-binary A/B](../../benchmarks/results/2026-10-28-allocation-wave-ab.json)
+measures 0.472224 reference versus 0.625076 optimized battles/second (1.324×),
+with every full report and host tape matching Node. Both keep stack number
+conversion; the reference disables the other integrated fast paths.
 
 The [latest cold diagnostic](../../benchmarks/results/2026-10-28T20-56-07.133Z-rust-one-battle-check.json)
 matches the Node final report at 0.486381 battles/second and adds 386,457 objects.
 It intentionally stops before the unused original clock suffix is consumed.
 The [earlier four-process trial](../../benchmarks/results/2026-10-28T20-20-38.054Z-rust-parallel-four.json)
 measures 1.287522 aggregate battles/second with every worker report matching Node.
-The [new warm-state fork trial](../../benchmarks/results/2026-10-28-fork-four-next.json)
-measures 1.480826 aggregate battles/second: 80 battles over the measured 54.024-second
+The [new warm-state fork trial](../../benchmarks/results/2026-10-28-allocation-wave-fork-four.json)
+measures 1.982040 aggregate battles/second: 80 battles over the measured 40.362-second
 cohort window, with all four complete reports and host tapes matching Node.
-The strict four-worker overlap is 52.624 seconds. Peak parent-plus-workers PSS
-plus orchestrator RSS is 7.69 GiB; summed RSS includes shared pages.
+The strict four-worker overlap is 38.788 seconds. Peak parent-plus-workers PSS
+plus orchestrator RSS is 7.67 GiB; summed RSS includes shared pages.
 These measurements remain below the historical approximately 3 battles/second
 mixed backend and the 10,000 target. Cold, warm and aggregate rates have different
 measurement windows and must be kept separate.
@@ -56,7 +59,7 @@ allocation ordinals, 346 originate in builtin index-key formatting, 145 in
 primitive-to-string UTF-16 construction, and 56 in array index formatting.
 These are allocation samples, not CPU time percentages. The next integrated
 runtime includes stack formatting, integer-key reuse, string hashing, guarded
-length reads and dense callback shifts; its full-battle build/check is pending.
+length reads and dense callback shifts; its full-battle build/check now passes.
 
 Generated source gates separately verify operators, closures, control flow,
 collections, typed buffers and selected real mechanics. Their case counts are
