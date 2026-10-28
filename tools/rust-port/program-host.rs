@@ -19,9 +19,7 @@ fn load_file(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{
  // execution of this source fixture and must fail the entire native run.
  let bytes=std::fs::read(&path).map_err(|error|JsError::Unsupported(format!("oracle file IO {path:?}: {error}")))?;
  let global=Value::Object(rt.global_object);let key=rt.string("Uint8Array");let constructor=rt.get(global,key)?;
- let output=rt.construct(constructor,&[Value::Number(bytes.len()as f64)])?;
- for(index,byte)in bytes.into_iter().enumerate(){let key=rt.string(&index.to_string());rt.set(output,key,Value::Number(byte as f64),true)?;}
- Ok(output)
+ rt.uint8_array_from_bytes(constructor,bytes)
 }
 fn diagnostic_digest(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{
  let Some(Value::String(text))=args.first().copied()else{return Err(JsError::Unsupported("oracle diagnostic digest requires source-proven string text".into()))};
@@ -53,4 +51,6 @@ pub fn sha256_hex(input:&[u8])->String{
  #[test]fn sha256_known_vectors(){for(input,expected)in[("","e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),("abc","ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"),("abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq","248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1")]{assert_eq!(sha256_hex(input.as_bytes()),expected)}assert_eq!(sha256_hex(&vec![b'a';1_000_000]),"cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0");}
  #[test]fn loader_returns_real_unsigned_bytes(){let mut rt=Runtime::new();install(&mut rt).unwrap();let path=std::env::temp_dir().join(format!("simx-native-host-{}",std::process::id()));std::fs::write(&path,[0,127,128,255]).unwrap();let arg=rt.string(path.to_str().unwrap());let env=rt.global_env;let data=load_file(&mut rt,Value::Undefined,&[arg],env).unwrap();std::fs::remove_file(path).unwrap();for(i,expected)in[0,127,128,255].into_iter().enumerate(){let key=rt.string(&i.to_string());assert_eq!(rt.get(data,key).unwrap(),Value::Number(expected as f64));}let key=rt.string("length");assert_eq!(rt.get(data,key).unwrap(),Value::Number(4.0));}
  #[test]fn diagnostic_uses_node_utf8_replacement(){let mut rt=Runtime::new();let text=rt.string_utf16(&[0x61,0xd800,0x62,0xdc00]);let env=rt.global_env;let out=diagnostic_digest(&mut rt,Value::Undefined,&[text],env).unwrap();let Value::String(id)=out else{panic!()};assert_eq!(String::from_utf16_lossy(rt.string_units(id)),sha256_hex("a\u{fffd}b\u{fffd}".as_bytes()));}
+ #[test]fn bulk_bytes_support_source_table_size_without_index_interning(){let mut rt=Runtime::new();let global=Value::Object(rt.global_object);let key=rt.string("Uint8Array");let constructor=rt.get(global,key).unwrap();let length=97*1024*1024;let mut bytes=vec![0;length];bytes[length-1]=255;let output=rt.uint8_array_from_bytes(constructor,bytes).unwrap();let key=rt.string("length");assert_eq!(rt.get(output,key).unwrap(),Value::Number(length as f64));let key=rt.string(&(length-1).to_string());assert_eq!(rt.get(output,key).unwrap(),Value::Number(255.0));}
+
 }

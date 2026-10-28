@@ -12,7 +12,7 @@ impl TypedArrayKind {
 pub struct ArrayBufferData {pub bytes:Vec<u8>,pub detached:bool,pub object:ObjectId}
 use crate::ObjectKind;
 use crate::closures::NativeFn;
-const MAX_BUFFER_BYTES:usize=64*1024*1024;
+const MAX_BUFFER_BYTES:usize=256*1024*1024;
 const KINDS:[TypedArrayKind;9]=[TypedArrayKind::Int8,TypedArrayKind::Uint8,TypedArrayKind::Uint8Clamped,TypedArrayKind::Int16,TypedArrayKind::Uint16,TypedArrayKind::Int32,TypedArrayKind::Uint32,TypedArrayKind::Float32,TypedArrayKind::Float64];
 fn arg(args:&[Value],index:usize)->Value{args.get(index).copied().unwrap_or(Value::Undefined)}
 fn to_index(rt:&mut Runtime,value:Value)->JsResult<usize>{let n=rt.to_number(value)?;if n.is_nan()||n==0.0{return Ok(0)}let integer=n.trunc();if !integer.is_finite()||integer<0.0||integer>9_007_199_254_740_991.0{return Err(JsError::RangeError("index is outside the valid range".into()))}Ok(integer as usize)}
@@ -34,6 +34,19 @@ fn number_bits(n:f64,kind:TypedArrayKind)->u64{match kind{
 }}
 fn store_number(bytes:&mut[u8],number:f64,kind:TypedArrayKind,little:bool){let raw=number_bits(number,kind).to_le_bytes();let size=bytes.len();if little{bytes.copy_from_slice(&raw[..size])}else{for(i,dest)in bytes.iter_mut().enumerate(){*dest=raw[size-1-i]}}}
 impl Runtime {
+ /// Host file bytes have no JavaScript element getters or conversions. Build
+ /// their Uint8Array through the actual intrinsic constructor (including its
+ /// current prototype), then transfer raw storage without interning one key
+ /// for every byte of a potentially 100 MiB source table.
+ pub fn uint8_array_from_bytes(&mut self,constructor:Value,bytes:Vec<u8>)->JsResult<Value>{
+  if self.binary_constructors.get("Uint8Array").copied()!=Some(constructor){return Err(JsError::Unsupported("oracle file loader requires the original Uint8Array constructor".into()))}
+  let value=self.construct(constructor,&[Value::Number(bytes.len()as f64)])?;
+  let object=self.object_id(value)?;
+  if let ObjectKind::TypedArray{buffer,byte_offset:0,length,kind:TypedArrayKind::Uint8}=self.objects[object.0].kind{
+   if length==bytes.len(){self.buffers[buffer.0].bytes=bytes;return Ok(value)}
+  }
+  Err(JsError::Unsupported("intrinsic Uint8Array returned an unexpected host byte view".into()))
+ }
  fn binary_prototype(&self,name:&'static str)->JsResult<ObjectId>{self.binary_prototypes.get(name).copied().ok_or_else(||JsError::Unsupported(format!("missing {name} intrinsic prototype")))}
  fn binary_object(&mut self,name:&'static str)->JsResult<ObjectId>{let target=self.current_new_target();let key=self.string("prototype");let value=self.get_property(target,key)?;if matches!(value,Value::Object(_)|Value::Function(_)){self.object_id(value)}else{self.binary_prototype(name)}}
  fn allocate_buffer(&mut self,prototype:ObjectId,length:usize)->JsResult<Value>{if length>MAX_BUFFER_BYTES{return Err(JsError::Unsupported("ArrayBuffer allocation exceeds supported resource bound".into()))}let object=self.alloc_object(Some(prototype));let buffer=BufferId(self.buffers.len());self.buffers.push(ArrayBufferData{bytes:vec![0;length],detached:false,object});self.objects[object.0].kind=ObjectKind::ArrayBuffer{buffer};Ok(Value::Object(object))}
