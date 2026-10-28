@@ -1,0 +1,372 @@
+{
+  "version": 1,
+  "passed": true,
+  "baselineCommit": "5a961ad62083ebefe4a65780e731d9c0f6e39ba3",
+  "binaries": {
+    "before": {
+      "file": "work/rust-env-map-benchmark/baseline",
+      "sha256": "a45abbd8c3ef5130cff745a922363a534fcd41e5f88bb3ce9e105b9760c7554c"
+    },
+    "after": {
+      "file": "work/rust-env-map-benchmark/optimized",
+      "sha256": "21fcde930e6bd617651f394b2d27b96447faa78e82803e06ae33281a29725177"
+    }
+  },
+  "sourceReference": {
+    "file": "benchmarks/results/2026-10-28T16-51-16.199Z-rust-unit-update-bindings.json",
+    "sha256": "593dc7bc72fd5d31dc66d4ee3ccd37f9cc1c3614fde0ed9889104717092d2363"
+  },
+  "allOrderedEventsAndStateBitsMatch": true,
+  "rows": [
+    {
+      "variant": "before",
+      "pair": 0,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "1253039347",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 0,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "641082606",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 0,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "461551828",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 0,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "587064706",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 0,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "579032325",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 0,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "597312207",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 0,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "503487401",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 0,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "787921284",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 0,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "1446782495",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 0,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "579813193",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 0,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "494714028",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 0,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "510274609",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 1,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "566504679",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 1,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "435776570",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 1,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "442351555",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 1,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "421336121",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 1,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "419103039",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 1,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "418030578",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 1,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "485066713",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 1,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "477936105",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 1,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "465460352",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 1,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "576948890",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 1,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "541328182",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 1,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "435551505",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 2,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "579029990",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 2,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "475265756",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 2,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "478684531",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 2,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "482719362",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 2,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "502192072",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "before",
+      "pair": 2,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "553483034",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 2,
+      "compilerVariant": "baseline",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "729433480",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 2,
+      "compilerVariant": "cached",
+      "trial": 0,
+      "updates": 3000,
+      "elapsedNs": "635376109",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 2,
+      "compilerVariant": "cached",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "486956621",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 2,
+      "compilerVariant": "baseline",
+      "trial": 1,
+      "updates": 3000,
+      "elapsedNs": "548375398",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 2,
+      "compilerVariant": "baseline",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "546326482",
+      "orderedEvents": 45068
+    },
+    {
+      "variant": "after",
+      "pair": 2,
+      "compilerVariant": "cached",
+      "trial": 2,
+      "updates": 3000,
+      "elapsedNs": "484167065",
+      "orderedEvents": 45068
+    }
+  ],
+  "summaries": [
+    {
+      "compilerVariant": "baseline",
+      "updatesPerRuntime": 27000,
+      "beforeUpdatesPerSecond": 4833.147584641824,
+      "afterUpdatesPerSecond": 5614.363330176336,
+      "observedRatio": 1.161637055739196
+    },
+    {
+      "compilerVariant": "cached",
+      "updatesPerRuntime": 27000,
+      "beforeUpdatesPerSecond": 5887.062688803933,
+      "afterUpdatesPerSecond": 4780.760616343917,
+      "observedRatio": 0.8120791078776873
+    }
+  ],
+  "outputs": {
+    "file": "benchmarks/results/2026-10-28T17-06-26.452Z-rust-unit-update-env-map.outputs.json.gz",
+    "sha256": "61716f634c7403a9195dc81f5052b686bebb88b4c7938dd2a825368d7e402762"
+  },
+  "runtimePatch": {
+    "file": "benchmarks/results/2026-10-28T17-06-26.452Z-rust-unit-update-env-map.runtime.patch",
+    "sha256": "3fd25893457ae00c25a044b814fce488f7a3906c27b91e13242c8838b05c8bac"
+  },
+  "scope": "Original unchanged Unit.update component fixture. Each binary runs three 3000-update trials per compiler-cache variant. Three alternated process pairs, all callbacks and raw-bit observer formatting retained. Component updates/sec only, not battles/sec. Shared CPU contention remains possible; runtime patch discloses every source change between builds. Arena allocations persist for each finite trial.",
+  "qualifiesFor10000Target": false
+}

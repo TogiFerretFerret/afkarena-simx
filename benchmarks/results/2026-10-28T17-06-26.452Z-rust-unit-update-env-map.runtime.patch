@@ -1,0 +1,156 @@
+diff --git a/crates/js-runtime/src/binary.rs b/crates/js-runtime/src/binary.rs
+index 9853fb4..d95bbb3 100644
+--- a/crates/js-runtime/src/binary.rs
++++ b/crates/js-runtime/src/binary.rs
+@@ -12,7 +12,7 @@ impl TypedArrayKind {
+ pub struct ArrayBufferData {pub bytes:Vec<u8>,pub detached:bool,pub object:ObjectId}
+ use crate::ObjectKind;
+ use crate::closures::NativeFn;
+-const MAX_BUFFER_BYTES:usize=64*1024*1024;
++const MAX_BUFFER_BYTES:usize=256*1024*1024;
+ const KINDS:[TypedArrayKind;9]=[TypedArrayKind::Int8,TypedArrayKind::Uint8,TypedArrayKind::Uint8Clamped,TypedArrayKind::Int16,TypedArrayKind::Uint16,TypedArrayKind::Int32,TypedArrayKind::Uint32,TypedArrayKind::Float32,TypedArrayKind::Float64];
+ fn arg(args:&[Value],index:usize)->Value{args.get(index).copied().unwrap_or(Value::Undefined)}
+ fn to_index(rt:&mut Runtime,value:Value)->JsResult<usize>{let n=rt.to_number(value)?;if n.is_nan()||n==0.0{return Ok(0)}let integer=n.trunc();if !integer.is_finite()||integer<0.0||integer>9_007_199_254_740_991.0{return Err(JsError::RangeError("index is outside the valid range".into()))}Ok(integer as usize)}
+@@ -34,6 +34,19 @@ fn number_bits(n:f64,kind:TypedArrayKind)->u64{match kind{
+ }}
+ fn store_number(bytes:&mut[u8],number:f64,kind:TypedArrayKind,little:bool){let raw=number_bits(number,kind).to_le_bytes();let size=bytes.len();if little{bytes.copy_from_slice(&raw[..size])}else{for(i,dest)in bytes.iter_mut().enumerate(){*dest=raw[size-1-i]}}}
+ impl Runtime {
++ /// Host file bytes have no JavaScript element getters or conversions. Build
++ /// their Uint8Array through the actual intrinsic constructor (including its
++ /// current prototype), then transfer raw storage without interning one key
++ /// for every byte of a potentially 100 MiB source table.
++ pub fn uint8_array_from_bytes(&mut self,constructor:Value,bytes:Vec<u8>)->JsResult<Value>{
++  if self.binary_constructors.get("Uint8Array").copied()!=Some(constructor){return Err(JsError::Unsupported("oracle file loader requires the original Uint8Array constructor".into()))}
++  let value=self.construct(constructor,&[Value::Number(bytes.len()as f64)])?;
++  let object=self.object_id(value)?;
++  if let ObjectKind::TypedArray{buffer,byte_offset:0,length,kind:TypedArrayKind::Uint8}=self.objects[object.0].kind{
++   if length==bytes.len(){self.buffers[buffer.0].bytes=bytes;return Ok(value)}
++  }
++  Err(JsError::Unsupported("intrinsic Uint8Array returned an unexpected host byte view".into()))
++ }
+  fn binary_prototype(&self,name:&'static str)->JsResult<ObjectId>{self.binary_prototypes.get(name).copied().ok_or_else(||JsError::Unsupported(format!("missing {name} intrinsic prototype")))}
+  fn binary_object(&mut self,name:&'static str)->JsResult<ObjectId>{let target=self.current_new_target();let key=self.string("prototype");let value=self.get_property(target,key)?;if matches!(value,Value::Object(_)|Value::Function(_)){self.object_id(value)}else{self.binary_prototype(name)}}
+  fn allocate_buffer(&mut self,prototype:ObjectId,length:usize)->JsResult<Value>{if length>MAX_BUFFER_BYTES{return Err(JsError::Unsupported("ArrayBuffer allocation exceeds supported resource bound".into()))}let object=self.alloc_object(Some(prototype));let buffer=BufferId(self.buffers.len());self.buffers.push(ArrayBufferData{bytes:vec![0;length],detached:false,object});self.objects[object.0].kind=ObjectKind::ArrayBuffer{buffer};Ok(Value::Object(object))}
+diff --git a/crates/js-runtime/src/env.rs b/crates/js-runtime/src/env.rs
+index 6306eaf..0ab229f 100644
+--- a/crates/js-runtime/src/env.rs
++++ b/crates/js-runtime/src/env.rs
+@@ -1,6 +1,7 @@
+ //! Stable lexical cells. Captures retain EnvId identities and references retain
+ //! slot indices; reads and writes never decode names or search a map again.
+-use std::collections::BTreeMap;
++use std::collections::HashMap;
++use crate::id_hash::IdBuildHasher;
+ use crate::{Runtime,Value,JsError,JsResult};
+ use crate::value::{StringId,ObjectId};
+ #[derive(Clone,Copy,Debug,Eq,PartialEq,Hash)]
+@@ -15,12 +16,12 @@ pub struct Binding {
+ }
+ #[derive(Clone,Debug)]
+ pub struct Environment {
+- pub(crate) parent:Option<EnvId>,pub(crate) bindings:BTreeMap<String,usize>,
++ pub(crate) parent:Option<EnvId>,pub(crate) bindings:HashMap<StringId,usize,IdBuildHasher>,
+  pub(crate) cells:Vec<Binding>,pub(crate) kind:EnvKind,
+ }
+ impl Environment {
+- pub fn new(parent:Option<EnvId>,kind:EnvKind)->Self{Self{parent,bindings:BTreeMap::new(),cells:vec![],kind}}
+- fn insert(&mut self,name:&str,binding:Binding){let index=self.cells.len();self.cells.push(binding);self.bindings.insert(name.into(),index);}
++ pub fn new(parent:Option<EnvId>,kind:EnvKind)->Self{Self{parent,bindings:HashMap::default(),cells:vec![],kind}}
++ fn insert(&mut self,_name:&str,binding:Binding){let index=self.cells.len();let name=binding.name;self.cells.push(binding);self.bindings.insert(name,index);}
+ }
+ #[derive(Clone,Copy,Debug,Eq,PartialEq,Hash)]
+ pub enum BindingRef {
+@@ -33,29 +34,30 @@ impl Runtime {
+  fn variable_env(&self,mut env:EnvId)->JsResult<EnvId>{loop{let e=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;if e.kind!=EnvKind::Block{return Ok(env)}env=e.parent.ok_or_else(||JsError::Unsupported("block environment has no parent".into()))?;}}
+  /// Hoisting creates a cell only if absent; parameter values are not reset.
+  pub fn declare(&mut self,env:EnvId,name:&str,value:Value)->JsResult<()>{
+-  let env=self.variable_env(env)?;if self.environments[env.0].bindings.contains_key(name){return Ok(())}
+-  let global=self.environments[env.0].kind==EnvKind::Global;let name_id=self.intern(name);
++  let env=self.variable_env(env)?;let name_id=self.intern(name);if self.environments[env.0].bindings.contains_key(&name_id){return Ok(())}
++  let global=self.environments[env.0].kind==EnvKind::Global;
+   if global{let object=Value::Object(self.global_object);let key=Value::String(name_id);if !self.has_own_property(object,key)?{self.define_data_property(object,key,value,true,true,false)?;}}
+   self.environments[env.0].insert(name,Binding{name:name_id,value,mutable:true,initialized:true,deletable:false,object_backed:global,strict_immutable:false,alive:true});Ok(())
+  }
+  pub fn declare_var(&mut self,env:EnvId,name:&str)->JsResult<()>{self.declare(env,name,Value::Undefined)}
+  pub fn declare_lexical(&mut self,env:EnvId,name:&str,mutable:bool)->JsResult<()>{
+   let name_id=self.intern(name);let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;
+-  if e.bindings.contains_key(name){return Err(JsError::Unsupported(format!("duplicate lexical declaration {name}; compiler must reject it")))}
++  if e.bindings.contains_key(&name_id){return Err(JsError::Unsupported(format!("duplicate lexical declaration {name}; compiler must reject it")))}
+   e.insert(name,Binding{name:name_id,value:Value::Undefined,mutable,initialized:false,deletable:false,object_backed:false,strict_immutable:true,alive:true});Ok(())
+  }
+  pub fn initialize(&mut self,env:EnvId,name:&str,value:Value)->JsResult<Value>{
+-  let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;let index=*e.bindings.get(name).ok_or_else(||JsError::ReferenceError(format!("{name} is not defined")))?;let b=&mut e.cells[index];
++  let name_id=self.intern(name);let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;let index=*e.bindings.get(&name_id).ok_or_else(||JsError::ReferenceError(format!("{name} is not defined")))?;let b=&mut e.cells[index];
+   if b.initialized{return Err(JsError::TypeError(format!("binding {name} is already initialized")))}b.value=value;b.initialized=true;Ok(value)
+  }
+  pub fn resolve_binding(&mut self,mut env:EnvId,name:&str)->JsResult<BindingRef>{
++  let name_id=self.intern(name);
+   loop{
+    let e=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;
+-   let binding=e.bindings.get(name).map(|index|(*index,e.cells[*index].object_backed,e.cells[*index].name));let parent=e.parent;let kind=e.kind;
++   let binding=e.bindings.get(&name_id).map(|index|(*index,e.cells[*index].object_backed,e.cells[*index].name));let parent=e.parent;let kind=e.kind;
+    if let Some((index,false,_))=binding{return Ok(BindingRef::Cell{env,index})}
+    if let Some((_,true,name_id))=binding{if self.has_property(Value::Object(self.global_object),Value::String(name_id))?{return Ok(BindingRef::Global{object:self.global_object,name:name_id})}}
+    if let Some(parent)=parent{env=parent;continue}
+-   let id=self.intern(name);if kind==EnvKind::Global&&self.has_property(Value::Object(self.global_object),Value::String(id))?{return Ok(BindingRef::Global{object:self.global_object,name:id})}return Ok(BindingRef::Unresolvable{name:id})
++   if kind==EnvKind::Global&&self.has_property(Value::Object(self.global_object),Value::String(name_id))?{return Ok(BindingRef::Global{object:self.global_object,name:name_id})}return Ok(BindingRef::Unresolvable{name:name_id})
+   }
+  }
+  pub fn read_binding(&mut self,reference:BindingRef)->JsResult<Value>{match reference{
+@@ -82,11 +84,11 @@ impl Runtime {
+  pub fn typeof_name(&mut self,env:EnvId,name:&str)->JsResult<Value>{let reference=self.resolve_binding(env,name)?;if matches!(reference,BindingRef::Unresolvable{..}){return Ok(self.string("undefined"))}let value=self.read_binding(reference)?;Ok(self.string(match value{Value::Undefined=>"undefined",Value::Null|Value::Object(_)=>"object",Value::Bool(_)=>"boolean",Value::Number(_)=>"number",Value::String(_)=>"string",Value::Function(_)=>"function"}))}
+  pub fn delete_binding(&mut self,reference:BindingRef,strict:bool)->JsResult<bool>{match reference{
+   BindingRef::Unresolvable{..}=>Ok(true),BindingRef::Global{object,name}=>self.delete(Value::Object(object),Value::String(name),strict),
+-  BindingRef::Cell{env,index}=>{let b=self.environments.get(env.0).and_then(|e|e.cells.get(index)).ok_or_else(||JsError::Unsupported("invalid lexical cell handle".into()))?;if !b.deletable{if strict{return Err(JsError::TypeError(format!("Cannot delete binding {}",self.string_text(b.name))))}return Ok(false)}let name=b.name;let text=self.string_text(name);let e=&mut self.environments[env.0];e.cells[index].alive=false;e.bindings.remove(&text);Ok(true)},
++  BindingRef::Cell{env,index}=>{let b=self.environments.get(env.0).and_then(|e|e.cells.get(index)).ok_or_else(||JsError::Unsupported("invalid lexical cell handle".into()))?;if !b.deletable{if strict{return Err(JsError::TypeError(format!("Cannot delete binding {}",self.string_text(b.name))))}return Ok(false)}let name=b.name;let e=&mut self.environments[env.0];e.cells[index].alive=false;e.bindings.remove(&name);Ok(true)},
+  }}
+  pub fn clone_loop_env(&mut self,env:EnvId,names:&[&str])->JsResult<EnvId>{
+-  let old=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid loop environment".into()))?;let mut new=Environment::new(old.parent,old.kind);
+-  for name in names{let index=*old.bindings.get(*name).ok_or_else(||JsError::ReferenceError(format!("loop binding {name} is missing")))?;let binding=&old.cells[index];if binding.object_backed{return Err(JsError::Unsupported("global object binding cannot be a loop lexical cell".into()))}new.insert(name,binding.clone());}
++  let name_ids=names.iter().map(|name|self.intern(name)).collect::<Vec<_>>();let old=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid loop environment".into()))?;let mut new=Environment::new(old.parent,old.kind);
++  for (name,name_id) in names.iter().zip(name_ids){let index=*old.bindings.get(&name_id).ok_or_else(||JsError::ReferenceError(format!("loop binding {name} is missing")))?;let binding=&old.cells[index];if binding.object_backed{return Err(JsError::Unsupported("global object binding cannot be a loop lexical cell".into()))}new.insert(name,binding.clone());}
+   let id=EnvId(self.environments.len());self.environments.push(new);Ok(id)
+  }
+  pub(crate) fn declare_function_name(&mut self,env:EnvId,name:&str,value:Value)->JsResult<()>{
+diff --git a/crates/js-runtime/src/iterators.rs b/crates/js-runtime/src/iterators.rs
+index 7168350..cca4159 100644
+--- a/crates/js-runtime/src/iterators.rs
++++ b/crates/js-runtime/src/iterators.rs
+@@ -81,6 +81,10 @@ impl Runtime {
+   match close{Err(error)=>Err(error),Ok(None)=>pending,Ok(Some(value))if value.is_object()=>pending,Ok(Some(_))=>Err(JsError::TypeError("iterator return result is not an object".into()))}
+  }
+  pub fn argument_spread(&mut self,value:Value)->JsResult<Vec<Value>>{
+-  let mut iterator=self.iterator(value)?;let mut values=Vec::new();while let Some(value)=self.iterator_next(&mut iterator)?{values.push(value);}Ok(values)
++  let mut iterator=self.iterator(value)?;
++  // Reserve from intrinsic array metadata only; reading a source length getter
++  // here would change callback ordering. Iteration still rechecks live length.
++  let capacity=match &iterator.kind{IteratorKind::Array{object:Value::Object(id),..}=>match self.objects[id.0].kind{ObjectKind::Array{length,..}=>(length as usize).min(1024),_=>0},_=>0};
++  let mut values=Vec::with_capacity(capacity);while let Some(value)=self.iterator_next(&mut iterator)?{values.push(value);}Ok(values)
+  }
+ }
+diff --git a/crates/js-runtime/src/math.rs b/crates/js-runtime/src/math.rs
+index ee23ac4..324f717 100644
+--- a/crates/js-runtime/src/math.rs
++++ b/crates/js-runtime/src/math.rs
+@@ -34,7 +34,9 @@ impl Runtime {
+         Ok(())
+     }
+ }
+-fn first(rt:&mut Runtime,args:&[Value])->JsResult<f64>{rt.to_number(args.first().copied().unwrap_or(Value::Undefined))}
++#[inline]
++fn number(rt:&mut Runtime,value:Value)->JsResult<f64>{match value{Value::Number(n)=>Ok(n),other=>rt.to_number(other)}}
++fn first(rt:&mut Runtime,args:&[Value])->JsResult<f64>{number(rt,args.first().copied().unwrap_or(Value::Undefined))}
+ fn math_abs(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(f64::from_bits(first(rt,args)?.to_bits()&!(1_u64<<63))))}
+ fn math_floor(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let n=first(rt,args)?;Ok(Value::Number(if n.is_nan(){n}else{n.floor()}))}
+ fn math_ceil(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let n=first(rt,args)?;Ok(Value::Number(if n.is_nan(){n}else{n.ceil()}))}
+@@ -48,8 +50,8 @@ fn math_round(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{
+     Ok(Value::Number(result))
+ }
+ fn math_sqrt(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(first(rt,args)?.sqrt()))}
+-fn math_min(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let mut value=f64::INFINITY;for argument in args{let number=rt.to_number(*argument)?;value=js_math::min(value,number);}Ok(Value::Number(value))}
+-fn math_max(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let mut value=f64::NEG_INFINITY;for argument in args{let number=rt.to_number(*argument)?;value=js_math::max(value,number);}Ok(Value::Number(value))}
++fn math_min(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let mut value=f64::INFINITY;for argument in args{let number=number(rt,*argument)?;value=js_math::min(value,number);}Ok(Value::Number(value))}
++fn math_max(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let mut value=f64::NEG_INFINITY;for argument in args{let number=number(rt,*argument)?;value=js_math::max(value,number);}Ok(Value::Number(value))}
+ fn math_pow(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let a=first(rt,args)?;let b=rt.to_number(args.get(1).copied().unwrap_or(Value::Undefined))?;Ok(Value::Number(crate::value::number_pow(a,b)?))}
+ fn math_imul(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let a=rt.to_uint32(args.first().copied().unwrap_or(Value::Undefined))?;let b=rt.to_uint32(args.get(1).copied().unwrap_or(Value::Undefined))?;Ok(Value::Number((a.wrapping_mul(b)as i32)as f64))}
+ fn math_clz32(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let n=rt.to_uint32(args.first().copied().unwrap_or(Value::Undefined))?;Ok(Value::Number(n.leading_zeros()as f64))}
