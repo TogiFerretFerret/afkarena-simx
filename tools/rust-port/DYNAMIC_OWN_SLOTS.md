@@ -2,7 +2,9 @@
 
 The isolated candidate adds one bounded lookup table per Runtime, indexed by
 canonical StringId. An entry stores only a physical property slot, encoded as
-Option<NonZeroUsize>; 65,536 entries cost at most 512 KiB. Larger StringIds use
+Option<NonZeroUsize>; 65,536 live entries contain at most 512 KiB of hint payload. Vec may retain
+additional geometric spare capacity, so this is not a hard 512 KiB allocation
+cap. Larger StringIds use
 the original path. Objects gain no fields and hints hold no Values, object IDs,
 function identities or GC roots. Key IDs are append-only.
 
