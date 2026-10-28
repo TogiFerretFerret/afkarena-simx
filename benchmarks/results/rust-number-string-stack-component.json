@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Paired primitive NumberToString component only, warm canonical keys, same native binary and runtime default Fx string cache. Baseline is the exact former Ryu format plus UTF16 collect path; candidate invokes Runtime::to_string. Corpus18finite/edge numbers covers exponent formatting, signedzero, NaN, infinities, min/max and denormals. Alloc/realloc calls counted together; elapsed includes identical counter overhead. Not complete battles, original Unit.update or complete mechanics qualification.",
+  "rows": [
+    {
+      "round": 0,
+      "stack": false,
+      "calls": 1000000,
+      "elapsedNs": 68491813,
+      "allocations": 1666663,
+      "checksum": 280444696
+    },
+    {
+      "round": 0,
+      "stack": true,
+      "calls": 1000000,
+      "elapsedNs": 56795900,
+      "allocations": 0,
+      "checksum": 280444696
+    },
+    {
+      "round": 1,
+      "stack": true,
+      "calls": 1000000,
+      "elapsedNs": 53354935,
+      "allocations": 0,
+      "checksum": 280444696
+    },
+    {
+      "round": 1,
+      "stack": false,
+      "calls": 1000000,
+      "elapsedNs": 66510183,
+      "allocations": 1666663,
+      "checksum": 280444696
+    }
+  ],
+  "rounds": [
+    {
+      "round": 0,
+      "baselineToStackRatio": 1.2059288258483447,
+      "baselineAllocationCalls": 1666663,
+      "stackAllocationCalls": 0
+    },
+    {
+      "round": 1,
+      "baselineToStackRatio": 1.2465610350757619,
+      "baselineAllocationCalls": 1666663,
+      "stackAllocationCalls": 0
+    }
+  ],
+  "sameCanonicalStringIdChecksum": true,
+  "source": {
+    "crates/js-runtime/examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+    "crates/js-runtime/src/runtime.rs": "130d2caca9a27160f90094a6ea587b5a825b1ebc907297d1844bc4c4f8367444",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da"
+  },
+  "binary": {
+    "file": "target/release/examples/number_string_alloc",
+    "sha256": "8e432230f8964c8e628b33bf85df01ee4aac1dcec25789e7c47e5359f82ceaea"
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/results/rust-number-string-stack-component.stdout.gz",
+      "sha256": "fdb5f063de57f3437bd866ab8d9a02e0ec7ba59849685726830e97c30e1be37a",
+      "uncompressedSha256": "28eeaea695ef1fa6c6143e201c50fbe522d7f4bdb2af1dcc530a6f8177ab9f42"
+    }
+  ]
+}
