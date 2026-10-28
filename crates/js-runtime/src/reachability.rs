@@ -42,7 +42,11 @@ impl Runtime{
  }
  fn trace_roots(&self,explicit_roots:&[Value],explicit_env_roots:&[crate::EnvId],weak_edge_policy:WeakEdgePolicy,allow_active:bool)->JsResult<Trace<'_>>{
   if !allow_active&&(!self.call_stack.is_empty()||!self.construct_stack.is_empty()||!self.construct_new_targets.is_empty()||!self.join_stack.is_empty()){return Err(JsError::Unsupported("reachability inspection requires an empty generated/native execution stack".into()))}
-  let mut t=Trace::new(self);t.mark(Node::Env(self.global_env.0));for callee in &self.call_stack{t.mark(Node::Function(callee.0))}
+  let mut t=Trace::new(self);
+  // Generated helpers may hoist these IDs across the proven battle edge.
+  // Unlike weak lookup caches, static literal IDs are compiler-held roots.
+  for id in self.static_literal_strings.values(){t.value(Value::String(*id))}
+  t.mark(Node::Env(self.global_env.0));for callee in &self.call_stack{t.mark(Node::Function(callee.0))}
   for id in [self.global_object,self.object_prototype,self.function_prototype,self.array_prototype,self.string_prototype,self.number_prototype,self.boolean_prototype,self.regexp_prototype]{t.mark(Node::Object(id.0))}
   t.value(self.function_prototype_value);t.value(self.regexp_constructor);if let Some(value)=self.throw_type_error{t.value(value)}
   for frame in &self.active_argument_frames{let(callee,values,env)=frame.reachability_roots();t.mark(Node::Function(callee.0));for value in values{t.value(value)}if let Some(env)=env{t.mark(Node::Env(env.0))}}

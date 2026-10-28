@@ -46,7 +46,7 @@
     "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
     "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
-    "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
+    "crates/js-runtime/src/battle_gc.rs": "f152f4ef1b6656d1b5e5e4b25ede05dd48475c36330aa59dbfc1a78925a243d2",
     "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
     "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
     "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
@@ -72,7 +72,7 @@
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
     "crates/js-runtime/src/property_slots.rs": "14695c032e972b5c1ea9fdaca9d0cc6144b6982990183bee976c972c531a0a56",
-    "crates/js-runtime/src/reachability.rs": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
+    "crates/js-runtime/src/reachability.rs": "3ca74c571fa09d5be417916ac8b080dcd9b1ed8aa11a1ec01cdd720318e335ca",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
     "crates/js-runtime/src/runtime.rs": "8ee228facdc62d1040d0ebcf58cd22ea83e913d23e9a755c9cb340ab617ab8e9",
@@ -278,7 +278,7 @@
   },
   "binary": {
     "file": "/workspace/afkarena-simx/work/candidate-giant-string-gc/work/rust-battle-gc-gate/check",
-    "sha256": "7bea250e880c8cf392f35a0ae6bbb32692f039be01125a1b4548c0be139ba7b0"
+    "sha256": "56960283a9067493895e64c13e333f51c3b23e6d53ab880f35095930f98c3c6b"
   },
   "buildArgs": [
     "build",

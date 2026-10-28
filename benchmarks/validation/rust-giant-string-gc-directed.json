@@ -1,13 +1,14 @@
 {
   "passed": true,
-  "libraryTests": 46,
+  "libraryTests": 47,
   "command": "cargo test -p js-runtime --release --lib",
   "thresholdUtf16Bytes": 1048576,
   "idsReused": false,
   "scope": "Selective giant payload reclamation at the existing exact-source opt-in battle safepoint; not a full battle or RSS qualification.",
   "sourceSha256": {
-    "crates/js-runtime/src/battle_gc.rs": "311e44c393b6df38fc2cb3ce1c9529c057b38d52316bf6fe468fac78e5e7d6e3",
-    "crates/js-runtime/src/reachability.rs": "e9c7d801f91d17d0fddb63ce570257543712606e845cb478bc56eecf06912967",
+    "crates/js-runtime/src/battle_gc.rs": "f152f4ef1b6656d1b5e5e4b25ede05dd48475c36330aa59dbfc1a78925a243d2",
+    "crates/js-runtime/src/reachability.rs": "3ca74c571fa09d5be417916ac8b080dcd9b1ed8aa11a1ec01cdd720318e335ca",
     "crates/js-runtime/src/property_slots.rs": "14695c032e972b5c1ea9fdaca9d0cc6144b6982990183bee976c972c531a0a56"
-  }
+  },
+  "staticLiteralCachePolicy": "strong roots for hoisted generated StringId locals"
 }

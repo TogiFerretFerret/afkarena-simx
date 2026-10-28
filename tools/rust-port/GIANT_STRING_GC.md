@@ -12,10 +12,11 @@ The collector retains string marks from its existing graph traversal. Live
 property keys, values, boxed strings, environment names/cells, regex sources,
 weak-map values with live keys, explicit host values, diagnostics and hidden
 intrinsic guard snapshots therefore preserve their StringIDs and payloads.
-Subthreshold payloads remain canonical even when unreachable.
+Static literal cache IDs are strong roots because generated Rust may hoist them
+across the safepoint. Subthreshold payloads remain canonical even when unreachable.
 
 For each unreachable giant ID, reclamation removes its UTF16 and UTF8 interner
-entries, invalidates static literal and literal-property read-site entries,
+entries, invalidates literal-property read-site entries,
 and prunes compiled-regex cache entries keyed by that ID before replacing the
 payload with an empty boxed slice. IDs are append-only and never reused. A
 later intern of the same content receives a new ID; no live string loses its
@@ -27,9 +28,9 @@ The new stats count reclaimed strings and logical payload bytes released from
 the UTF16 arena, UTF16 interner keys and UTF8 interner keys. They do not claim
 an equal RSS reduction; allocator behavior requires a real-process measurement.
 
-Validation: all 46 library tests pass, including giant dead payloads, threshold
+Validation: all 47 library tests pass, including giant dead payloads, threshold
 behavior, no ID reuse, live giant property keys/values, actual giant regex
-sources, hidden diagnostic roots and all four weak cache families. The exact
+sources, hidden diagnostic roots and all three weak cache families and static-literal strong roots. The exact
 original __nativeRun source fixture matches pinned Node OFF/ON for its entire
 report, 69 ordered frame visits and 120 callbacks. It performs 23 collections
 and reclaims 23 distinct giant temporary strings (77,594,624 logical bytes).
