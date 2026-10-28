@@ -22,7 +22,7 @@
     },
     {
       "file": "crates/js-runtime/src/binary.rs",
-      "sha256": "2fad8e414a698fe9141aae4a7745dba2fa5430133acd50d24edd784941fafbc3",
+      "sha256": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
       "matched": true
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "61a281b88857dfa63f285117ddd06848fe8d0fa40a7cc5ef2b88478b7aae29fd",
+      "sha256": "a957d844192a005c1a2e135fcc8066f0745fbdbd15804d1b57037560c5243110",
       "matched": true
     },
     {
@@ -122,12 +122,27 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "c9877e312899f864c70b6ea25f9a9e8a8dca61a918902796f0a0f810fc074eb0",
+      "sha256": "f8f583787a9a8306851fa438cfbb9341561b984eafa09e02e8183814c7df94ad",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/short_strings.rs",
+      "sha256": "c9c0e98d29e8add1364507d87888177292bc1726966d3e5821e3bb4b514efdfd",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/strings.rs",
       "sha256": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/utf8_guard.rs",
+      "sha256": "f5859762a499fd23f992084477c8a0c799412eb6e050033980fbf69daaf4dc8e",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/utf8_loader.rs",
+      "sha256": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
       "matched": true
     },
     {
@@ -143,6 +158,11 @@
     {
       "file": "crates/js-runtime/tests/regexp_heap.rs",
       "sha256": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/string_intern.rs",
+      "sha256": "c9639abc54a20ba260a164f599a7d01367145c4abf60f15ec1b9dd9a67228ec1",
       "matched": true
     },
     {
@@ -477,7 +497,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "088c45933912ea22acf5e88a425a7c7f7140896ae825ba6b417a48b121ab01a1",
+      "sha256": "4d4cc501ade4f75d0c5ed35f57a018f4a8324a0a80ffeb971da8fcd4cdd4fd9b",
       "matched": true
     },
     {
@@ -516,23 +536,23 @@
   },
   "generatedRustSha256": "4da84bb873c9476f82772d64aeaa00c7e6a9f2505c178758b42571e6375f527b",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/rust-port-closures/check",
-    "sha256": "5d8cb201c2142c26d6b7c2c9b1a4b057f968b336c94ccb0c53cdbb18a9045131"
+    "file": "/workspace/afkarena-simx/work/candidate-intern/work/rust-port-closures/check",
+    "sha256": "10149e23873772255866b527baa3156bc0043bfbf3ac4087c306f352324a297d"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-intern/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/rust-port-closures/main.rs",
+    "/workspace/afkarena-simx/work/candidate-intern/work/rust-port-closures/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-intern/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-intern/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/rust-port-closures/check"
+    "/workspace/afkarena-simx/work/candidate-intern/work/rust-port-closures/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-closures.outputs.json.gz",

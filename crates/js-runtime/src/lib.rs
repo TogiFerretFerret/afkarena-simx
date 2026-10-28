@@ -2,6 +2,7 @@
 pub mod value;
 pub mod heap;
 pub mod id_hash;
+mod short_strings;
 pub mod runtime;
 pub mod env;
 pub mod closures;
