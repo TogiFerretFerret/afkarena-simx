@@ -15,6 +15,7 @@
     "transfer-disabled-does-not-read-related"
   ],
   "events": 42806,
+  "sourcesUnchangedThroughoutRun": true,
   "rawF64BitsMatched": true,
   "sourceFunctions": [
     {
@@ -48,8 +49,12 @@
     "crates/battle-core/src/unit_resources.rs": "2f0e194badbaca8499189801115c7e6cf01575fc8157de7ec589100da89908fb",
     "crates/battle-core/src/unit.rs": "c097a9298d8e3cfeb11b9cbb3656e438b0c96d3b13526d4769eba7cd3a53809f",
     "crates/battle-core/src/skill.rs": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742",
+    "crates/battle-core/src/entity.rs": "6e5b05c246f3f0736e68e5f2b0abd11e831cff8d9d443b87fece5df17c65c8ac",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
     "tools/check-unit-resources.rs": "a9cac60599b4b8e27f80e09ddf1fad9431eccbf777c729bedbac70e48a5a2025",
-    "tools/check-unit-resources.mjs": "c3a2dc4f50b04f345c5cec84f9131203d47123249a7e7e5bd454823ea96c7a48",
+    "tools/check-unit-resources.mjs": "22de3d799d63d0930d7e2b984e20654e9a0e7d9242def34810348227507f3b36",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
     "config/unit-resources-translation.json": "423f2108926ff78250bb3dabd5de2de04e0ed75e89c50f30e740e7a275624421"
   },
   "oracleProfile": {
