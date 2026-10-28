@@ -16,6 +16,8 @@ pub struct Runtime {
  pub(crate) strings:Vec<Box<[u16]>>, pub(crate) string_index:HashMap<Vec<u16>,StringId,crate::string_hash::StringBuildHasher>,
  pub(crate) string_utf8_index:HashMap<String,StringId,crate::string_hash::StringBuildHasher>,
  pub(crate) static_literal_strings:HashMap<(u8,usize,usize),StringId,crate::string_hash::StringBuildHasher>,
+ pub numeric_property_key_cache_enabled:bool,pub index_string_fast_path_enabled:bool,
+ pub(crate) numeric_property_keys:[Option<(u32,PropertyKey)>;256],
  pub(crate) diagnostics:crate::diagnostics::Diagnostics,
  pub literal_property_slots_enabled:bool,pub literal_length_fast_path_enabled:bool,pub(crate) literal_property_slots:Vec<crate::property_slots::CachedSlot>,
  pub(crate) throw_type_error:Option<Value>,
@@ -43,7 +45,7 @@ impl Runtime {
  pub fn new_with_string_hash(mode:crate::StringHashMode)->Self{
   let mut objects=vec![Object::new(None)];
   for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),string_utf8_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),static_literal_strings:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),diagnostics:crate::diagnostics::Diagnostics::from_env(),literal_property_slots_enabled:true,literal_length_fast_path_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  let mut rt=Self{native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),string_utf8_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),static_literal_strings:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),numeric_property_key_cache_enabled:true,index_string_fast_path_enabled:true,numeric_property_keys:[None;256],diagnostics:crate::diagnostics::Diagnostics::from_env(),literal_property_slots_enabled:true,literal_length_fast_path_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
   rt.install_function_builtins().expect("fresh Function intrinsics");
@@ -73,11 +75,31 @@ impl Runtime {
  pub fn string_utf16(&mut self,units:&[u16])->Value{Value::String(self.intern_utf16(units))}
  pub fn alloc_object(&mut self,prototype:Option<ObjectId>)->ObjectId{if let Some(slot)=self.native_battle_gc.free_objects.pop(){self.objects[slot].reset_for_reuse(prototype);ObjectId(slot)}else{let id=ObjectId(self.objects.len());self.objects.push(Object::new(prototype));id}}
  pub fn object(&mut self)->Value{Value::Object(self.alloc_object(Some(self.object_prototype)))}
- pub fn array(&mut self,items:&[Option<Value>])->Value{let id=self.alloc_object(Some(self.array_prototype));self.objects[id.0].kind=ObjectKind::Array{length:items.len() as u32,length_writable:true};for (index,item)in items.iter().enumerate(){if let Some(value)=item{let key=PropertyKey(self.intern(&index.to_string()));self.objects[id.0].insert(key,Descriptor::data(*value,true,true,true));}}Value::Object(id)}
+ pub fn array(&mut self,items:&[Option<Value>])->Value{let id=self.alloc_object(Some(self.array_prototype));self.objects[id.0].kind=ObjectKind::Array{length:items.len() as u32,length_writable:true};for (index,item)in items.iter().enumerate(){if let Some(value)=item{let key=if self.index_string_fast_path_enabled{self.index_property_key(index)}else{PropertyKey(self.intern(&index.to_string()))};self.objects[id.0].insert(key,Descriptor::data(*value,true,true,true));}}Value::Object(id)}
  pub fn object_id(&self,value:Value)->JsResult<ObjectId>{match value{Value::Object(id)if id.0<self.objects.len()=>Ok(id),Value::Function(id)=>self.functions.get(id.0).map(|f|f.object).ok_or_else(||JsError::TypeError("invalid function identity".into())),_=>Err(JsError::TypeError("value is not an object".into()))}}
  pub fn same_object(&self,a:Value,b:Value)->bool{matches!((self.object_id(a),self.object_id(b)),(Ok(a),Ok(b))if a==b)}
  pub fn require_object_coercible(&self,value:Value)->JsResult<()>{if matches!(value,Value::Null|Value::Undefined){Err(JsError::TypeError("cannot access null or undefined".into()))}else{Ok(())}}
- pub fn to_property_key(&mut self,value:Value)->JsResult<PropertyKey>{Ok(PropertyKey(self.to_string_value(value)?))}
+ pub fn index_property_key(&mut self,index:usize)->PropertyKey{
+  let eligible=self.numeric_property_key_cache_enabled&&index<u32::MAX as usize;
+  let slot=index&255;
+  if eligible{if let Some((actual,key))=self.numeric_property_keys[slot]{if actual as usize==index{return key}}}
+  // All eligible numbers have ordinary base-ten Number::toString spelling.
+  // The full-usize fallback also serves native array builtin index helpers.
+  let key=PropertyKey(if self.index_string_fast_path_enabled{self.intern_usize_decimal(index)}else{self.intern(&index.to_string())});
+  if eligible{self.numeric_property_keys[slot]=Some((index as u32,key));}key
+ }
+ pub fn to_property_key(&mut self,value:Value)->JsResult<PropertyKey>{
+  // Primitive strings already are canonical keys and have no coercion hooks.
+  if let Value::String(id)=value{return Ok(PropertyKey(id))}
+  if self.numeric_property_key_cache_enabled{if let Value::Number(number)=value{
+   // This domain includes -0 (whose key is "0"), but not fractional, negative,
+   // nonfinite, or non-array-index numbers. The fixed table bounds sparse keys.
+   if number>=0.0&&number<4294967295.0{let index=number as u32;if index as f64==number{
+    return Ok(self.index_property_key(index as usize))
+   }}
+  }}
+  Ok(PropertyKey(self.to_string_value(value)?))
+ }
  fn key<K:Into<KeyInput>>(&mut self,key:K)->JsResult<PropertyKey>{match key.into(){KeyInput::Prepared(k)=>Ok(k),KeyInput::Value(v)=>self.to_property_key(v)}}
  fn index(&self,key:PropertyKey)->Option<u32>{let units=self.string_units(key.0);if units.is_empty()||units.len()>10||(units.len()>1&&units[0]==48){return None}let mut n=0u64;for unit in units{if !(48..=57).contains(unit){return None}n=n*10+u64::from(*unit-48);}if n<u32::MAX as u64{Some(n as u32)}else{None}}
  fn is_length(&self,key:PropertyKey)->bool{self.string_units(key.0)==[108,101,110,103,116,104]}
