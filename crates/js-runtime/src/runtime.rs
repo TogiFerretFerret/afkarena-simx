@@ -16,7 +16,7 @@ pub struct Runtime {
  pub(crate) strings:Vec<Box<[u16]>>, pub(crate) string_index:HashMap<Vec<u16>,StringId,crate::string_hash::StringBuildHasher>,
  pub(crate) string_utf8_index:HashMap<String,StringId,crate::string_hash::StringBuildHasher>,
  pub(crate) static_literal_strings:HashMap<(u8,usize,usize),StringId,crate::string_hash::StringBuildHasher>,
- pub numeric_property_key_cache_enabled:bool,pub index_string_fast_path_enabled:bool,
+ pub direct_array_slot_reads_enabled:bool,pub numeric_property_key_cache_enabled:bool,pub index_string_fast_path_enabled:bool,
  pub(crate) numeric_property_keys:[Option<(u32,PropertyKey)>;256],
  pub(crate) diagnostics:crate::diagnostics::Diagnostics,
  pub dense_array_shift_enabled:bool,
@@ -46,7 +46,7 @@ impl Runtime {
  pub fn new_with_string_hash(mode:crate::StringHashMode)->Self{
   let mut objects=vec![Object::new(None)];
   for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),string_utf8_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),static_literal_strings:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),numeric_property_key_cache_enabled:true,index_string_fast_path_enabled:true,numeric_property_keys:[None;256],diagnostics:crate::diagnostics::Diagnostics::from_env(),literal_property_slots_enabled:true,dense_array_shift_enabled:true,literal_length_fast_path_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  let mut rt=Self{native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),string_utf8_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),static_literal_strings:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),direct_array_slot_reads_enabled:false,numeric_property_key_cache_enabled:true,index_string_fast_path_enabled:true,numeric_property_keys:[None;256],diagnostics:crate::diagnostics::Diagnostics::from_env(),literal_property_slots_enabled:true,dense_array_shift_enabled:true,literal_length_fast_path_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
   rt.install_function_builtins().expect("fresh Function intrinsics");
@@ -129,10 +129,20 @@ impl Runtime {
  }
  fn read_start(&self,value:Value)->JsResult<ObjectId>{match value{Value::String(_)=>Ok(self.string_prototype),Value::Number(_)=>Ok(self.number_prototype),Value::Bool(_)=>Ok(self.boolean_prototype),_=>self.object_id(value)}}
  pub fn get<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<Value>{let key=key.into();let result=self.get_inner(receiver,key);self.record_get(receiver,key,&result);result}
+ // Validate the authoritative physical slot on every read; no cache or write
+ // maintenance. Out-of-order insertion, holes and accessors use ordinary lookup.
+ fn array_number_slot_data(&self,receiver:Value,index:f64,key:PropertyKey)->Option<Value>{
+  let Value::Object(id)=receiver else{return None};let object=self.objects.get(id.0)?;
+  if !matches!(object.kind,ObjectKind::Array{..})||!(index>=0.0&&index<4294967295.0){return None}
+  let slot=index as u32;if slot as f64!=index{return None}
+  let (actual,descriptor)=object.properties.get(slot as usize).copied().flatten()?;
+  if actual!=key{return None}match descriptor.kind{PropertyKind::Data{value,..}=>Some(value),_=>None}
+ }
  fn get_inner<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<Value>{
   self.require_object_coercible(receiver)?;let key=key.into();
   if let KeyInput::Value(Value::Number(index))=key{if let Some(value)=self.binary_get_number(receiver,index){return Ok(value)}}
-  let key=self.key(key)?;
+  let original_key=key;let key=self.key(key)?;
+  if let KeyInput::Value(Value::Number(index))=original_key{if self.direct_array_slot_reads_enabled{if let Some(value)=self.array_number_slot_data(receiver,index,key){return Ok(value)}}}
   if let Value::String(id)=receiver{if self.is_length(key){return Ok(Value::Number(self.string_units(id).len()as f64))}if let Some(index)=self.index(key){if let Some(unit)=self.string_units(id).get(index as usize).copied(){return Ok(self.string_utf16(&[unit]))}}}
   let mut current=Some(self.read_start(receiver)?);while let Some(id)=current{if let Some(value)=self.typed_get(id,key)?{return Ok(value)}if let Some(d)=self.own_descriptor(id,key)?{return match d.kind{PropertyKind::Data{value,..}=>Ok(value),PropertyKind::Accessor{get:Some(get),..}=>self.call_value(get,receiver,&[]),PropertyKind::Accessor{get:None,..}=>Ok(Value::Undefined)}}current=self.objects[id.0].prototype;}Ok(Value::Undefined)
  }
@@ -195,3 +205,29 @@ impl Runtime {
 }
 fn same_value(a:Value,b:Value)->bool{match(a,b){(Value::Number(a),Value::Number(b))=>(a.is_nan()&&b.is_nan())||a.to_bits()==b.to_bits(),_=>a==b}}
 fn optional_same(a:Option<Value>,b:Option<Value>)->bool{match(a,b){(Some(a),Some(b))=>same_value(a,b),(None,None)=>true,_=>false}}
+
+#[cfg(test)]
+mod direct_array_slot_candidate_tests {
+ use super::*;
+ #[test]
+ fn direct_slots_read_current_data_and_preserve_raw_number_bits(){
+  let mut rt=Runtime::new();assert!(!rt.direct_array_slot_reads_enabled);
+  let array=rt.array(&[Some(Value::Number(f64::from_bits(0xfff0000000001234)))]);
+  let key=rt.index_property_key(0);
+  let Some(Value::Number(value))=rt.array_number_slot_data(array,-0.0,key)else{panic!("dense own data must qualify")};assert_eq!(value.to_bits(),0xfff0000000001234);
+  rt.direct_array_slot_reads_enabled=true;
+  let Value::Number(value)=rt.get(array,Value::Number(-0.0)).unwrap()else{panic!()};assert_eq!(value.to_bits(),0xfff0000000001234);
+  rt.define_data_property(array,Value::String(key.0),Value::Number(-0.0),false,false,true).unwrap();
+  let Some(Value::Number(value))=rt.array_number_slot_data(array,0.0,key)else{panic!()};assert_eq!(value.to_bits(),(-0.0f64).to_bits());
+  rt.delete(array,key,false).unwrap();assert!(rt.array_number_slot_data(array,0.0,key).is_none());
+  rt.define_data_property(array,Value::String(key.0),Value::Number(8.0),true,true,true).unwrap();
+  assert!(rt.array_number_slot_data(array,0.0,key).is_none(),"reinserted property lives in a new physical slot");
+  assert_eq!(rt.get(array,Value::Number(0.0)).unwrap(),Value::Number(8.0));
+ }
+ #[test]
+ fn direct_slots_reject_holes_and_mismatched_physical_keys(){
+  let mut rt=Runtime::new();let array=rt.array(&[None,Some(Value::Number(7.0))]);let zero=rt.index_property_key(0);let one=rt.index_property_key(1);
+  assert!(rt.array_number_slot_data(array,0.0,zero).is_none());assert!(rt.array_number_slot_data(array,1.0,one).is_none());
+  assert!(rt.array_number_slot_data(array,f64::INFINITY,one).is_none());assert!(rt.array_number_slot_data(array,0.5,one).is_none());
+ }
+}
