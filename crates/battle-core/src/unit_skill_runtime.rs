@@ -30,21 +30,42 @@ pub enum SkillCall<'a> {
  SetPetMp{unit:skill::UnitId,mp:f64}, SetMp{unit:skill::UnitId,mp:f64,source:skill::UnitId},
  SetPetCastSkill{value:bool}, Idle{unit:skill::UnitId}, FinishEvent{caster:skill::UnitId,skill:skill::SkillId},
 }
-pub enum Reply { Done, Bool(bool), Number(f64), Unit(usize), Buff(Option<usize>), Rect(unit::Rect), Vector(Vec2Id), Text(Option<String>), UseRustSkill }
+#[derive(Clone,Copy,Debug)]
+pub enum ResourceCall {
+ MaxMp{unit:usize},NoAddMp{unit:usize},LogMp{unit:usize},MaxHp{unit:usize},Ticks,
+ SetLastHpChangeTick{unit:usize,tick:f64},LogHp{unit:usize},TransferHealEnabled{unit:usize},
+ TransferHealTarget{unit:usize},TransferMpEnabled{unit:usize},TransferMpTarget{unit:usize},
+}
+pub enum Reply { Done, Bool(bool), Number(f64), Unit(usize), UnitReference(skill::Reference<usize>), Buff(Option<usize>), Rect(unit::Rect), Vector(Vec2Id), Text(Option<String>), UseRustSkill, UseRustResource }
 /// No mechanic has a default implementation. Returning the wrong reply fails at
 /// that source call boundary, after preserving mutations already performed.
 pub trait Hooks {
  fn unit(&mut self,context:&mut Context<'_>,call:UnitCall<'_>)->Result<Reply>;
  fn skill(&mut self,context:&mut Context<'_>,call:SkillCall<'_>)->Result<Reply>;
+ fn resource(&mut self,context:&mut Context<'_>,call:ResourceCall)->Result<Reply>;
 }
 
 pub struct Runtime { units:unit::World, timelines:skill::World, info_speeders:Vec<skill::Number> }
 /// Skill-only fields. Shared mp/global_cd/current_skill deliberately absent.
+#[derive(Clone,Copy,Debug)]
+pub struct SkillUnitRead {pub manually_casting:bool,pub pet_skill_casting:bool,pub morph:bool,pub actor:Option<usize>,pub pet_mp:f64}
 pub struct SkillUnitOnly<'a> { pub manually_casting:&'a mut bool,pub pet_skill_casting:&'a mut bool,pub morph:&'a mut bool,pub actor:&'a mut Option<usize>,pub pet_mp:&'a mut f64 }
 pub struct Context<'a> { units:&'a mut unit::World,timelines:&'a mut skill::World,info_speeders:&'a mut Vec<skill::Number> }
 impl Context<'_> {
- pub fn units(&self)->&unit::World {self.units}
- pub fn timelines(&self)->&skill::World {self.timelines}
+ /// A coherent diagnostic read of both controllers. Read-only borrows
+ /// cannot survive a later mutation through this context. Raw mirror worlds
+ /// are never separately exposed to host callbacks.
+ pub fn inspect<T>(&mut self,observer:impl FnOnce(&unit::World,&skill::World)->T)->Result<T>{import_units(self.units,self.timelines,self.info_speeders)?;Ok(observer(self.units,self.timelines))}
+ pub fn unit_records(&self)->&[unit::Unit]{&self.units.units}
+ pub fn freeze_level(&self)->f64{self.units.freeze_level}
+ pub fn mode(&self)->&str{&self.timelines.mode}
+ pub fn unit(&self,id:usize)->Result<&unit::Unit>{self.units.units.get(id).ok_or_else(||"missing unit".into())}
+ pub fn skill(&self,id:skill::SkillId)->Result<&skill::Skill>{self.timelines.skills.get(id.0).ok_or_else(||"missing skill".into())}
+ pub fn info(&self,id:skill::InfoId)->Result<&skill::Info>{self.timelines.infos.get(id.0).ok_or_else(||"missing info".into())}
+ pub fn info_speeder(&self,id:skill::InfoId)->Result<skill::Number>{self.info_speeders.get(id.0).copied().ok_or_else(||"missing info speed metadata".into())}
+ pub fn skill_unit(&self,id:skill::UnitId)->Result<SkillUnitRead>{let u=self.timelines.units.get(id.0).ok_or_else(||"missing skill unit".to_string())?;Ok(SkillUnitRead{manually_casting:u.manually_casting,pet_skill_casting:u.pet_skill_casting,morph:u.morph,actor:u.actor,pet_mp:u.pet_mp})}
+ pub fn queues(&self)->&[std::collections::VecDeque<skill::Callback>]{&self.timelines.callback_queues}
+ pub fn active_queue(&self)->usize{self.timelines.active_queue}
  pub fn unit_mut(&mut self,id:usize)->Result<&mut unit::Unit>{self.units.units.get_mut(id).ok_or_else(||"missing unit".into())}
  pub fn effects_mut(&mut self)->&mut Vec<unit::Effects>{&mut self.units.effects}
  pub fn vectors_mut(&mut self)->&mut Vec2Arena{&mut self.units.vectors}
@@ -61,12 +82,7 @@ impl Context<'_> {
  pub fn queues_mut(&mut self)->&mut Vec<std::collections::VecDeque<skill::Callback>>{&mut self.timelines.callback_queues}
  pub fn set_active_queue(&mut self,id:usize)->Result{if id>=self.timelines.callback_queues.len(){return Err("missing callback queue".into())}self.timelines.active_queue=id;Ok(())}
  pub fn set_mode(&mut self,mode:String){self.timelines.mode=mode}
- /// Run source-derived base resource methods on the canonical unit arena.
- /// Virtual method selection remains the caller's explicit responsibility.
- pub fn set_mp<H:crate::unit_resources::Hooks>(&mut self,id:usize,value:f64,host:&mut H)->Result{crate::unit_resources::set_mp(self.units,id,value,host)}
- pub fn set_hp<H:crate::unit_resources::Hooks>(&mut self,id:usize,value:f64,host:&mut H)->Result{crate::unit_resources::set_hp(self.units,id,value,host)}
- pub fn transfer_mp_target<H:crate::unit_resources::Hooks>(&mut self,id:usize,host:&mut H)->Result<skill::Reference<usize>>{crate::unit_resources::transfer_mp_target(self.units,id,host)}
- pub fn transfer_heal_target<H:crate::unit_resources::Hooks>(&mut self,id:usize,host:&mut H)->Result<skill::Reference<usize>>{crate::unit_resources::transfer_heal_target(self.units,id,host)}
+
 }
 fn check_layout(units:&unit::World,timelines:&skill::World,info_speeders:&[skill::Number])->Result{
  if units.units.len()!=timelines.units.len()||units.skills.len()!=timelines.skills.len()||units.buffs.len()!=timelines.buffs.len()||info_speeders.len()!=timelines.infos.len(){return Err("unaligned shared identity registries".into())}
@@ -122,6 +138,11 @@ fn number(reply:Reply)->Result<f64>{if let Reply::Number(v)=reply{Ok(v)}else{Err
 struct UnitAdapter<'a,H>{timelines:&'a mut skill::World,speeders:&'a mut Vec<skill::Number>,host:&'a mut H}
 impl<H:Hooks> UnitAdapter<'_,H>{
  fn call(&mut self,w:&mut unit::World,event:UnitCall<'_>)->Result<Reply>{import_units(w,self.timelines,self.speeders)?;let result=self.host.unit(&mut Context{units:w,timelines:self.timelines,info_speeders:self.speeders},event);let sync=import_units(w,self.timelines,self.speeders);match result{Ok(v)=>sync.map(|_|v),Err(e)=>{let _=sync;Err(e)}}}
+ fn resource<F,T>(&mut self,w:&mut unit::World,f:F)->Result<T> where F:FnOnce(&mut unit::World,&mut ResourceAdapter<'_,H>)->Result<T>{
+  import_units(w,self.timelines,self.speeders)?;
+  let result=f(w,&mut ResourceAdapter{timelines:self.timelines,speeders:self.speeders,host:self.host});
+  let sync=import_units(w,self.timelines,self.speeders);match result{Ok(v)=>sync.map(|_|v),Err(e)=>{let _=sync;Err(e)}}
+ }
  fn rust_skill<F>(&mut self,w:&mut unit::World,f:F)->Result where F:FnOnce(&mut skill::World,&mut SkillAdapter<'_,H>)->skill::Result{import_units(w,self.timelines,self.speeders)?;let result=f(self.timelines,&mut SkillAdapter{units:w,speeders:self.speeders,host:self.host}).map_err(skill_error);let sync=export_units(w,self.timelines,self.speeders);result.and(sync)}
 }
 impl<H:Hooks> unit::Hooks for UnitAdapter<'_,H>{
@@ -141,11 +162,11 @@ impl<H:Hooks> unit::Hooks for UnitAdapter<'_,H>{
  fn recheck_manual(&mut self,w:&mut unit::World,id:usize)->Result{done(self.call(w,UnitCall::RecheckManual{unit:id})?)}
  fn buff_has_effect(&mut self,w:&mut unit::World,buff:usize,effect:&str)->Result<bool>{boolean(self.call(w,UnitCall::BuffHasEffect{buff,effect})?)}
  fn update_buff(&mut self,w:&mut unit::World,buff:usize,dt:f64)->Result{done(self.call(w,UnitCall::UpdateBuff{buff,dt})?)}
- fn transfer_mp_target(&mut self,w:&mut unit::World,id:usize)->Result<usize>{if let Reply::Unit(v)=self.call(w,UnitCall::TransferMpTarget{unit:id})?{Ok(v)}else{Err("host reply must be Unit".into())}}
- fn set_mp(&mut self,w:&mut unit::World,id:usize,value:f64,source:usize)->Result{done(self.call(w,UnitCall::SetMp{unit:id,value,source})?)}
+ fn transfer_mp_target(&mut self,w:&mut unit::World,id:usize)->Result<usize>{match self.call(w,UnitCall::TransferMpTarget{unit:id})?{Reply::Unit(v)=>Ok(v),Reply::UseRustResource=>self.resource(w,|w,h|crate::unit_resources::transfer_mp_target(w,id,h))?.value().ok_or_else(||"source transferred MP target is null/undefined".into()),_=>Err("host reply must be Unit or UseRustResource".into())}}
+ fn set_mp(&mut self,w:&mut unit::World,id:usize,value:f64,source:usize)->Result{match self.call(w,UnitCall::SetMp{unit:id,value,source})?{Reply::UseRustResource=>self.resource(w,|w,h|crate::unit_resources::set_mp(w,id,value,h)),other=>done(other)}}
  fn buff_hpr_damage(&mut self,w:&mut unit::World,buff:usize,dt:f64)->Result{done(self.call(w,UnitCall::BuffHprDamage{buff,dt})?)}
- fn transfer_hp_target(&mut self,w:&mut unit::World,id:usize)->Result<usize>{if let Reply::Unit(v)=self.call(w,UnitCall::TransferHpTarget{unit:id})?{Ok(v)}else{Err("host reply must be Unit".into())}}
- fn set_hp(&mut self,w:&mut unit::World,id:usize,value:f64)->Result{done(self.call(w,UnitCall::SetHp{unit:id,value})?)}
+ fn transfer_hp_target(&mut self,w:&mut unit::World,id:usize)->Result<usize>{match self.call(w,UnitCall::TransferHpTarget{unit:id})?{Reply::Unit(v)=>Ok(v),Reply::UseRustResource=>self.resource(w,|w,h|crate::unit_resources::transfer_heal_target(w,id,h))?.value().ok_or_else(||"source transferred heal target is null/undefined".into()),_=>Err("host reply must be Unit or UseRustResource".into())}}
+ fn set_hp(&mut self,w:&mut unit::World,id:usize,value:f64)->Result{match self.call(w,UnitCall::SetHp{unit:id,value})?{Reply::UseRustResource=>self.resource(w,|w,h|crate::unit_resources::set_hp(w,id,value,h)),other=>done(other)}}
  fn add_restore(&mut self,w:&mut unit::World,id:usize,value:f64)->Result{done(self.call(w,UnitCall::AddRestore{unit:id,value})?)}
  fn fix_position(&mut self,w:&mut unit::World,position:Vec2Id)->Result<Vec2Id>{if let Reply::Vector(v)=self.call(w,UnitCall::FixPosition{position})?{Ok(v)}else{Err("host reply must be Vector".into())}}
 }
@@ -172,8 +193,29 @@ impl<H:Hooks> skill::Hooks for SkillAdapter<'_,H>{
  fn skill_start_event(&mut self,w:&mut skill::World,caster:skill::UnitId,skill:skill::SkillId)->skill::Result{self.done(w,SkillCall::StartEvent{caster,skill})}
  fn is_pet(&mut self,w:&mut skill::World,unit:skill::UnitId)->skill::Result<bool>{boolean(self.call(w,SkillCall::IsPet{unit})?).map_err(skill::Error::Host)}
  fn set_pet_mp(&mut self,w:&mut skill::World,unit:skill::UnitId,mp:f64)->skill::Result{self.done(w,SkillCall::SetPetMp{unit,mp})}
- fn set_mp(&mut self,w:&mut skill::World,unit:skill::UnitId,mp:f64,source:skill::UnitId)->skill::Result{self.done(w,SkillCall::SetMp{unit,mp,source})}
+ fn set_mp(&mut self,w:&mut skill::World,unit:skill::UnitId,mp:f64,source:skill::UnitId)->skill::Result{match self.call(w,SkillCall::SetMp{unit,mp,source})?{Reply::UseRustResource=>{
+   let result=crate::unit_resources::set_mp(self.units,unit.0,mp,&mut ResourceAdapter{timelines:w,speeders:self.speeders,host:self.host});
+   let sync=import_units(self.units,w,self.speeders);result.and(sync).map_err(skill::Error::Host)
+  },other=>done(other).map_err(skill::Error::Host)}}
  fn set_pet_cast_skill(&mut self,w:&mut skill::World,value:bool)->skill::Result{self.done(w,SkillCall::SetPetCastSkill{value})}
  fn idle(&mut self,w:&mut skill::World,unit:skill::UnitId)->skill::Result{self.done(w,SkillCall::Idle{unit})}
  fn skill_finish_event(&mut self,w:&mut skill::World,caster:skill::UnitId,skill:skill::SkillId)->skill::Result{self.done(w,SkillCall::FinishEvent{caster,skill})}
+}
+
+struct ResourceAdapter<'a,H>{timelines:&'a mut skill::World,speeders:&'a mut Vec<skill::Number>,host:&'a mut H}
+impl<H:Hooks> ResourceAdapter<'_,H>{
+ fn call(&mut self,w:&mut unit::World,event:ResourceCall)->Result<Reply>{import_units(w,self.timelines,self.speeders)?;let result=self.host.resource(&mut Context{units:w,timelines:self.timelines,info_speeders:self.speeders},event);let sync=import_units(w,self.timelines,self.speeders);match result{Ok(v)=>sync.map(|_|v),Err(e)=>{let _=sync;Err(e)}}}
+}
+impl<H:Hooks> crate::unit_resources::Hooks for ResourceAdapter<'_,H>{
+ fn max_mp(&mut self,w:&mut unit::World,unit:usize)->Result<f64>{number(self.call(w,ResourceCall::MaxMp{unit})?)}
+ fn no_add_mp(&mut self,w:&mut unit::World,unit:usize)->Result<bool>{boolean(self.call(w,ResourceCall::NoAddMp{unit})?)}
+ fn log_mp(&mut self,w:&mut unit::World,unit:usize)->Result{done(self.call(w,ResourceCall::LogMp{unit})?)}
+ fn max_hp(&mut self,w:&mut unit::World,unit:usize)->Result<f64>{number(self.call(w,ResourceCall::MaxHp{unit})?)}
+ fn ticks(&mut self,w:&mut unit::World)->Result<f64>{number(self.call(w,ResourceCall::Ticks)?)}
+ fn set_last_hp_change_tick(&mut self,w:&mut unit::World,unit:usize,tick:f64)->Result{done(self.call(w,ResourceCall::SetLastHpChangeTick{unit,tick})?)}
+ fn log_hp(&mut self,w:&mut unit::World,unit:usize)->Result{done(self.call(w,ResourceCall::LogHp{unit})?)}
+ fn transfer_heal_enabled(&mut self,w:&mut unit::World,unit:usize)->Result<bool>{boolean(self.call(w,ResourceCall::TransferHealEnabled{unit})?)}
+ fn transfer_heal_target(&mut self,w:&mut unit::World,unit:usize)->Result<skill::Reference<usize>>{if let Reply::UnitReference(v)=self.call(w,ResourceCall::TransferHealTarget{unit})?{Ok(v)}else{Err("host reply must be UnitReference".into())}}
+ fn transfer_mp_enabled(&mut self,w:&mut unit::World,unit:usize)->Result<bool>{boolean(self.call(w,ResourceCall::TransferMpEnabled{unit})?)}
+ fn transfer_mp_target(&mut self,w:&mut unit::World,unit:usize)->Result<skill::Reference<usize>>{if let Reply::UnitReference(v)=self.call(w,ResourceCall::TransferMpTarget{unit})?{Ok(v)}else{Err("host reply must be UnitReference".into())}}
 }
