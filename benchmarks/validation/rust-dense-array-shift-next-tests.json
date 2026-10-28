@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "defaultEnabled": true,
+  "base": "ada30eb",
+  "command": "cargo test -p js-runtime --lib dense_array_shift",
+  "stdout": "\nrunning 3 tests\ntest dense_array_shift::tests::accepts_dense_callbacks_preserves_destination_flags_and_aliases ... ok\ntest dense_array_shift::tests::rejects_poison_holes_readonly_lengths_and_numeric_history_without_mutation ... ok\ntest dense_array_shift::tests::repeated_dense_queues_survive_twenty_three_actual_collections_and_id_reuse ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 50 filtered out; finished in 0.01s\n\n",
+  "sourceInputs": {
+    "crates/js-runtime/src/dense_array_shift.rs": "90974353bcf13dbc33eec8d4bf1043bb2f07e4279a7207535e516ee800874b6c",
+    "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "crates/js-runtime/src/runtime.rs": "a753e6680e86cec0c4857f8f1ffa6143d685eafbffe0d6c2f1e4e25b80f1eeeb",
+    "crates/js-runtime/src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d"
+  },
+  "scope": "Combined Fx/numberstack/keycache defaults. Dense callbacks/raw guard and23actualcollections with reused IDs; no full battle qualification."
+}
