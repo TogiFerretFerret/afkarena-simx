@@ -1,0 +1,4 @@
+import assert from 'node:assert/strict';
+import{componentGcExpectation}from'./component-ab-support.mjs';
+export function profileGcExpectation(preparation,manifest){const derived=componentGcExpectation(manifest);assert.equal(preparation.prepared,true);assert.equal(preparation.ranWorkload,false);assert.equal(preparation.requiredEnvironment?.RUST_PORT_TRACE,'0');assert.equal(preparation.markers?.gc,'PARALLEL_GC_COLLECTIONS:'+derived.expectedCollections);if(preparation.gcExpectation)assert.deepEqual(preparation.gcExpectation,derived);return derived;}
+export function validateProfileGc(stderr,expected){const collections=[...stderr.matchAll(/^PARALLEL_GC_COLLECTIONS:(\d+)$/gm)].map(x=>Number(x[1])),traces=[...stderr.matchAll(/^PROFILE_TRACE:(.+)$/gm)].map(x=>x[1]);return{expectedCollections:expected.expectedCollections,collections,traceMarkers:traces,valid:collections.length===1&&collections[0]===expected.expectedCollections&&traces.length===1&&traces[0]==='0'};}
