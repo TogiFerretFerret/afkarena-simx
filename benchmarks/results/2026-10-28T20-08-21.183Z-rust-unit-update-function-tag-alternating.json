@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "passed": true,
+  "sourceReport": "benchmarks/results/2026-10-28T20-07-00.523Z-rust-unit-update-function-tag.json",
+  "sourceReportSha256": "52a89d1fe652eedbc1dabcd425b8721f503a024037f28ab94b25ddff4fed6763",
+  "binaries": [
+    {
+      "variant": "baseline",
+      "file": "/workspace/afkarena-simx/work/candidate-function-tag/work/rust-function-tag-benchmark/baseline/target/release/function-tag-benchmark",
+      "sha256": "7a37b48d2592dcec4786e2a2536447c57ac98194cb18ad2389c7e3d0e73b31d7"
+    },
+    {
+      "variant": "native",
+      "file": "/workspace/afkarena-simx/work/candidate-function-tag/work/rust-function-tag-benchmark/native/target/release/function-tag-benchmark",
+      "sha256": "a958079cfa861aaed93ecd9f8738ebf20ff77f036a0b4e671d4312dfa5df21de"
+    }
+  ],
+  "rows": [
+    {
+      "pair": 0,
+      "variant": "baseline",
+      "generatedEntry": "baseline",
+      "trial": 0,
+      "elapsedNs": 1624320967,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "baseline",
+      "generatedEntry": "native",
+      "trial": 0,
+      "elapsedNs": 789677636,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "baseline",
+      "generatedEntry": "native",
+      "trial": 1,
+      "elapsedNs": 631847098,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "baseline",
+      "generatedEntry": "baseline",
+      "trial": 1,
+      "elapsedNs": 769457350,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "baseline",
+      "generatedEntry": "baseline",
+      "trial": 2,
+      "elapsedNs": 820726591,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "baseline",
+      "generatedEntry": "native",
+      "trial": 2,
+      "elapsedNs": 1301443777,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "native",
+      "generatedEntry": "baseline",
+      "trial": 0,
+      "elapsedNs": 660447427,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "native",
+      "generatedEntry": "native",
+      "trial": 0,
+      "elapsedNs": 352193164,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "native",
+      "generatedEntry": "native",
+      "trial": 1,
+      "elapsedNs": 398691141,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "native",
+      "generatedEntry": "baseline",
+      "trial": 1,
+      "elapsedNs": 421223347,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "native",
+      "generatedEntry": "baseline",
+      "trial": 2,
+      "elapsedNs": 473778321,
+      "updates": 3000
+    },
+    {
+      "pair": 0,
+      "variant": "native",
+      "generatedEntry": "native",
+      "trial": 2,
+      "elapsedNs": 327139573,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "native",
+      "generatedEntry": "baseline",
+      "trial": 0,
+      "elapsedNs": 827879692,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "native",
+      "generatedEntry": "native",
+      "trial": 0,
+      "elapsedNs": 668112741,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "native",
+      "generatedEntry": "native",
+      "trial": 1,
+      "elapsedNs": 751395547,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "native",
+      "generatedEntry": "baseline",
+      "trial": 1,
+      "elapsedNs": 809728696,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "native",
+      "generatedEntry": "baseline",
+      "trial": 2,
+      "elapsedNs": 414406486,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "native",
+      "generatedEntry": "native",
+      "trial": 2,
+      "elapsedNs": 445754652,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "generatedEntry": "baseline",
+      "trial": 0,
+      "elapsedNs": 439614449,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "generatedEntry": "native",
+      "trial": 0,
+      "elapsedNs": 512616381,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "generatedEntry": "native",
+      "trial": 1,
+      "elapsedNs": 924975418,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "generatedEntry": "baseline",
+      "trial": 1,
+      "elapsedNs": 672165354,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "generatedEntry": "baseline",
+      "trial": 2,
+      "elapsedNs": 414042389,
+      "updates": 3000
+    },
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "generatedEntry": "native",
+      "trial": 2,
+      "elapsedNs": 322850463,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "generatedEntry": "baseline",
+      "trial": 0,
+      "elapsedNs": 506505790,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "generatedEntry": "native",
+      "trial": 0,
+      "elapsedNs": 368825213,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "generatedEntry": "native",
+      "trial": 1,
+      "elapsedNs": 402773957,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "generatedEntry": "baseline",
+      "trial": 1,
+      "elapsedNs": 322135744,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "generatedEntry": "baseline",
+      "trial": 2,
+      "elapsedNs": 462990490,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "generatedEntry": "native",
+      "trial": 2,
+      "elapsedNs": 684891643,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "native",
+      "generatedEntry": "baseline",
+      "trial": 0,
+      "elapsedNs": 565363036,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "native",
+      "generatedEntry": "native",
+      "trial": 0,
+      "elapsedNs": 346598509,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "native",
+      "generatedEntry": "native",
+      "trial": 1,
+      "elapsedNs": 375609187,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "native",
+      "generatedEntry": "baseline",
+      "trial": 1,
+      "elapsedNs": 399456302,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "native",
+      "generatedEntry": "baseline",
+      "trial": 2,
+      "elapsedNs": 349997782,
+      "updates": 3000
+    },
+    {
+      "pair": 2,
+      "variant": "native",
+      "generatedEntry": "native",
+      "trial": 2,
+      "elapsedNs": 426768088,
+      "updates": 3000
+    }
+  ],
+  "totals": {
+    "baseline": {
+      "updates": 54000,
+      "elapsedNs": 11971860710,
+      "updatesPerSecond": 4510.577036274255
+    },
+    "native": {
+      "updates": 54000,
+      "elapsedNs": 9014543691,
+      "updatesPerSecond": 5990.319848792
+    }
+  },
+  "observedThroughputRatio": 1.3280606451497423,
+  "allOrderedEventsAndSelectedStateBitsMatched": true,
+  "eventsPerTrial": 45068,
+  "qualifiesFor10000Target": false,
+  "scope": "Same previously qualified generated Unit.update fixture and exact binaries. Alternating baseline/native process order across three pairs; each process executes six fresh-runtime trials. Shared-host contention remains uncontrolled. Component updates, not battles/sec."
+}

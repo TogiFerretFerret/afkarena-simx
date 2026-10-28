@@ -37,7 +37,7 @@
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "e448c944b39ae4025e80c447c6da1120a587154b11e9f082d16edf73f71501cb",
+      "sha256": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
       "matched": true
     },
     {
@@ -152,7 +152,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "6aa3ae58ebeedcfa1dfca2dbd5808cb2cb48a3aa36e1425056979e6dfd54efc1",
+      "sha256": "8851bc4f75097fb9d1a575676c478804ee422c4bad3421f32bfd784650e28467",
       "matched": true
     },
     {
@@ -561,23 +561,23 @@
   },
   "generatedRustSha256": "f2205eb203e65bcd6eaaf49d54897e9fa8f1f48acbe97e762fd4dd55d2482117",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/rust-port-closures/check",
-    "sha256": "d3b143b2745cf8c0f54dca93a1e51e154644912d06d2af31d4609d70c387a6c9"
+    "file": "/workspace/afkarena-simx/work/candidate-function-tag/work/rust-port-closures/check",
+    "sha256": "91b7d7c8d1748f3cb4a5f69e7977d1f75dcdb5adb60d2faae711a6db777d4593"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-function-tag/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/rust-port-closures/main.rs",
+    "/workspace/afkarena-simx/work/candidate-function-tag/work/rust-port-closures/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-function-tag/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-function-tag/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/rust-port-closures/check"
+    "/workspace/afkarena-simx/work/candidate-function-tag/work/rust-port-closures/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-closures.outputs.json.gz",
