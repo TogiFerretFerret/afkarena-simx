@@ -38,7 +38,7 @@ impl Object {
  /// (including all bits after reuse/deopt) are not source properties or GC roots.
  pub(crate) fn primary_numeric_mask(&self)->u8{match self.kind{ObjectKind::Array{primary_numeric:true,numeric_presence,..}=>numeric_presence&15,_=>0}}
  pub(crate) fn primary_numeric_properties(&self)->impl Iterator<Item=(PropertyKey,Descriptor)>+'_ {
-  let mask=self.primary_numeric_mask();(0..4).filter_map(move |index|{if mask&(1<<index)==0{return None}let bits=self.numeric_elements.as_ref()?[index];Some((PropertyKey(StringId(index)),Descriptor::data(Value::Number(f64::from_bits(bits)),true,true,true)))})
+  let mask=self.primary_numeric_mask();let limit=if mask==0{0}else{4};(0..limit).filter_map(move |index|{if mask&(1<<index)==0{return None}let bits=self.numeric_elements.as_ref()?[index];Some((PropertyKey(StringId(index)),Descriptor::data(Value::Number(f64::from_bits(bits)),true,true,true)))})
  }
  pub fn own(&self,key:PropertyKey)->Option<Descriptor>{
   let index=key.0.0;if index<4&&self.primary_numeric_mask()&(1<<index)!=0{if let Some(bits)=&self.numeric_elements{return Some(Descriptor::data(Value::Number(f64::from_bits(bits[index])),true,true,true))}}
@@ -83,4 +83,17 @@ mod primary_numeric_tests {
  #[test]fn primary_numbers_are_authoritative_and_bit_exact(){let mut o=array();for(index,value)in[0x8000000000000000,0x7ff0000000000001,0xfff0000000001234,0x7ff8000000001234].into_iter().enumerate(){o.insert(key(index),number(value));assert_eq!(bits(&o,index),value)}assert_eq!(o.primary_numeric_mask(),15);assert!(o.properties.is_empty());assert!(o.property_index.is_empty());assert_eq!(o.primary_numeric_properties().count(),4);o.remove(key(1));assert!(o.own(key(1)).is_none());assert_eq!(o.primary_numeric_mask(),13);o.insert(key(1),number(7));assert_eq!(bits(&o,1),7);}
  #[test]fn nonnumber_and_nondefault_descriptors_materialize(){for mode in 0..5{let mut o=array();o.insert(key(0),number(0xfff0000000001234));o.insert(key(1),number(0x8000000000000000));let d=match mode{0=>Descriptor::data(Value::Null,true,true,true),1=>Descriptor::data(Value::Number(8.0),false,true,true),2=>Descriptor::data(Value::Number(8.0),true,false,true),3=>Descriptor::data(Value::Number(8.0),true,true,false),_=>Descriptor{kind:PropertyKind::Accessor{get:None,set:None},enumerable:true,configurable:true}};o.insert(key(2),d);assert_eq!(o.primary_numeric_mask(),0);assert!(matches!(o.kind,ObjectKind::Array{primary_numeric:false,..}));assert_eq!(bits(&o,0),0xfff0000000001234);assert_eq!(bits(&o,1),0x8000000000000000);assert!(o.own(key(2)).is_some());assert_eq!(o.property_index.len(),3);assert!(o.numeric_elements.is_some());}}
  #[test]fn out_of_domain_key_deopts_and_reset_retains_storage(){let mut o=array();o.insert(key(0),number(0x8000000000000000));let pointer=o.numeric_elements.as_ref().unwrap().as_ptr();o.insert(key(4),number(3));assert_eq!(o.primary_numeric_mask(),0);assert_eq!(bits(&o,0),0x8000000000000000);assert_eq!(bits(&o,4),3);o.reset_for_reuse(None);assert!(o.own(key(0)).is_none());assert_eq!(o.primary_numeric_mask(),0);assert_eq!(o.numeric_elements.as_ref().unwrap().as_ptr(),pointer);o.kind=ObjectKind::Array{length:2,length_writable:true,primary_numeric:true,numeric_presence:0};o.insert(key(1),number(9));assert_eq!(o.numeric_elements.as_ref().unwrap().as_ptr(),pointer);assert!(o.own(key(0)).is_none());assert_eq!(bits(&o,1),9);}
+
+ fn primary_gc_rounds(rt:&mut crate::Runtime,_:Value,_:&[Value],parent:crate::EnvId)->crate::JsResult<Value>{
+  let env=rt.child_env(parent);for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}
+  let kept=rt.array(&[Some(Value::Number(f64::from_bits(0x7ff0000000000042))),Some(Value::Number(-0.0))]);rt.declare(env,"kept",kept)?;
+  let zero=PropertyKey(rt.intern("0"));let one=PropertyKey(rt.intern("1"));let mut dead=std::collections::HashSet::new();let mut reused=0;
+  for round in 0..23{
+   let transient=rt.array(&[Some(Value::Number(round as f64)),None,Some(Value::Number(-0.0))]);let id=rt.object_id(transient)?;if dead.contains(&id){reused+=1}assert_eq!(rt.objects[id.0].primary_numeric_mask(),5);assert!(rt.objects[id.0].properties.is_empty());dead.insert(id);
+   rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;
+   let Value::Number(a)=rt.get(kept,zero)?else{panic!()};let Value::Number(b)=rt.get(kept,one)?else{panic!()};assert_eq!(a.to_bits(),0x7ff0000000000042);assert_eq!(b.to_bits(),0x8000000000000000);
+   assert_eq!(rt.objects[id.0].primary_numeric_mask(),0);assert!(rt.objects[id.0].own(zero).is_none());assert!(rt.objects[id.0].numeric_elements.is_some());
+  }assert!(reused>0);Ok(Value::Number(rt.native_battle_gc_stats().collections as f64))
+ }
+ #[test]fn runtime_primary_arrays_survive_actual_source_safepoints_and_reuse(){let mut rt=crate::Runtime::new();rt.primary_numeric_arrays_enabled=true;let f=rt.make_closure(primary_gc_rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(f,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();assert_eq!(rt.call(f,Value::Undefined,&[]).unwrap(),Value::Number(23.0));}
 }
