@@ -87,7 +87,7 @@ fn execute()->JsResult<Value>{
 fn main(){if let Err(error)=execute(){eprintln!("pure_rust_execution_error:{error:?}");std::process::exit(1);}}
 `);
 await writeFile(resolve(output,'Cargo.toml'),'[workspace]\nmembers = '+JSON.stringify(members)+'\nresolver = "2"\n[profile.dev]\ndebug = 0\ncodegen-units = 64\n[profile.release]\ncodegen-units = 64\nlto = false\n');
-const sources={};for(const file of ['tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs'])sources[file]=sha(await readFile(resolve(root,file)));
+const sources={};for(const file of ['tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])sources[file]=sha(await readFile(resolve(root,file)));
 const manifest={version:1,prepared:true,executed:false,qualifiesFor10000Target:false,output,through,chunkSize,units:reports,sources,runtimePath,scope:'Actual frozen battle JavaScript modules lowered into native Rust functions with shared global environment and static UTF16 source pools. Preparation and compile coverage do not establish successful initialization, mechanics parity, or throughput.'};
 await writeFile(resolve(output,'program-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(JSON.stringify({output,units:reports.length,functions:reports.reduce((n,u)=>n+u.functions,0),unsupported:reports.reduce((n,u)=>n+u.unsupportedFunctions,0),next:`cargo run --manifest-path ${relative(root,resolve(output,'Cargo.toml'))} -p rust-battle-program -j 2`}));
