@@ -19,7 +19,7 @@ impl Descriptor {
  pub fn data(value:Value,writable:bool,enumerable:bool,configurable:bool)->Self{Self{kind:PropertyKind::Data{value,writable},enumerable,configurable}}
 }
 #[derive(Clone,Copy,Debug)]
-pub enum ObjectKind { Ordinary, Array{length:u32,length_writable:bool}, BoxedString(StringId), BoxedNumber(f64), BoxedBoolean(bool) }
+pub enum ObjectKind { Ordinary, Arguments, Math, Array{length:u32,length_writable:bool}, BoxedString(StringId), BoxedNumber(f64), BoxedBoolean(bool) }
 pub struct Object {
  pub prototype:Option<ObjectId>, pub extensible:bool, pub kind:ObjectKind,
  pub properties:Vec<Option<(PropertyKey,Descriptor)>>,
