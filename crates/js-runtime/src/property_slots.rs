@@ -4,9 +4,10 @@
 use std::sync::atomic::{AtomicUsize,Ordering};
 use crate::{Runtime,Value,JsResult,JsError,ObjectKind,ObjectId,PropertyKey,PropertyKind,KeyInput};
 static NEXT_SITE:AtomicUsize=AtomicUsize::new(1);
-pub struct LiteralReadSite { ticket:AtomicUsize,text:&'static str,is_length:bool }
+pub struct LiteralReadSite { ticket:AtomicUsize,text:&'static str,is_length:bool,prototype_hint:bool }
 impl LiteralReadSite {
-    pub const fn new(text:&'static str)->Self{Self{ticket:AtomicUsize::new(0),text,is_length:text.len()==6&&text.as_bytes()[0]==b'l'&&text.as_bytes()[1]==b'e'&&text.as_bytes()[2]==b'n'&&text.as_bytes()[3]==b'g'&&text.as_bytes()[4]==b't'&&text.as_bytes()[5]==b'h'}}
+    pub const fn new(text:&'static str)->Self{Self{ticket:AtomicUsize::new(0),text,prototype_hint:false,is_length:text.len()==6&&text.as_bytes()[0]==b'l'&&text.as_bytes()[1]==b'e'&&text.as_bytes()[2]==b'n'&&text.as_bytes()[3]==b'g'&&text.as_bytes()[4]==b't'&&text.as_bytes()[5]==b'h'}}
+    pub const fn new_with_prototype_hint(text:&'static str,hint:bool)->Self{let mut site=Self::new(text);site.prototype_hint=hint;site}
     #[inline]
     fn index(&self)->JsResult<usize>{
         let mut id=self.ticket.load(Ordering::Relaxed);
@@ -27,7 +28,11 @@ impl Runtime {
  pub(crate) fn invalidate_reclaimed_literal_string_keys(&mut self,reclaimed:&[bool]){for entry in &mut self.literal_property_slots{if entry.key().is_some_and(|key|reclaimed.get(key.0.0).copied().unwrap_or(false)){*entry=CachedSlot::default();}}}
 
     #[inline]
-    pub fn get_literal_cached(&mut self,receiver:Value,site:&'static LiteralReadSite)->JsResult<Value>{
+    pub fn get_literal_cached(&mut self,receiver:Value,site:&'static LiteralReadSite)->JsResult<Value>{self.get_literal_cached_impl::<false>(receiver,site)}
+    #[inline]
+    pub fn get_literal_cached_with_prototype_hint(&mut self,receiver:Value,site:&'static LiteralReadSite)->JsResult<Value>{debug_assert!(site.prototype_hint);self.get_literal_cached_impl::<true>(receiver,site)}
+    #[inline]
+    fn get_literal_cached_impl<const PROTOTYPE:bool>(&mut self,receiver:Value,site:&'static LiteralReadSite)->JsResult<Value>{
         if !self.literal_property_slots_enabled{let key=self.static_string(site.text);return self.get(receiver,key)}
         // These nonconfigurable own virtual descriptors precede every raw
         // property/prototype lookup and cannot invoke a source callback.
@@ -54,7 +59,7 @@ impl Runtime {
                 }
             }
         }
-        if self.one_hop_literal_slots_enabled{
+        if PROTOTYPE&&self.one_hop_literal_slots_enabled{
             if let (Value::Object(receiver_id),Some(owner_id),Some(index))=(receiver,entry.owner(),entry.index()){
                 if let Some(object)=self.objects.get(receiver_id.0){
                     if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary|ObjectKind::Array{..})
@@ -85,7 +90,7 @@ impl Runtime {
         // only the CURRENT one-hop data layout; preserve its actual result.
         // Missing optional fields are common: do not add two fresh hashes just
         // to discover their absence again. Undefined/throw results may stay cold.
-        if self.one_hop_literal_slots_enabled&&!matches!(result,Ok(Value::Undefined)|Err(_)){
+        if PROTOTYPE&&self.one_hop_literal_slots_enabled&&!matches!(result,Ok(Value::Undefined)|Err(_)){
             if let Value::Object(receiver_id)=receiver{
                 if let Some(object)=self.objects.get(receiver_id.0){
                     if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary|ObjectKind::Array{..})
@@ -110,9 +115,9 @@ impl Runtime {
 }
 
 #[cfg(test)]mod one_hop_tests{
- use super::*;use crate::EnvId;static X:LiteralReadSite=LiteralReadSite::new("x");static LENGTH:LiteralReadSite=LiteralReadSite::new("length");
- #[test]fn metadata_only_layout_and_live_owner_values(){if cfg!(target_pointer_width="64"){assert_eq!(std::mem::size_of::<crate::heap::Object>(),160);assert_eq!(std::mem::size_of::<CachedSlot>(),24);}let mut rt=Runtime::new();rt.one_hop_literal_slots_enabled=true;let owner=rt.object();let receiver=rt.object();rt.set_prototype(receiver,owner).unwrap();let key=rt.string("x");rt.define_data(owner,key,Value::Number(-0.0),true,true,true).unwrap();for bits in[0x8000000000000000,0x7ff0000000000042]{rt.define_data(owner,key,Value::Number(f64::from_bits(bits)),true,true,true).unwrap();for _ in 0..2{let Value::Number(n)=rt.get_literal_cached(receiver,&X).unwrap()else{panic!()};assert_eq!(n.to_bits(),bits);}}let slot=X.index().unwrap();assert_eq!(rt.literal_property_slots[slot].owner(),Some(rt.object_id(owner).unwrap()));}
- #[test]fn array_length_virtual_descriptor_beats_cached_parent_even_when_length_fast_disabled(){let mut rt=Runtime::new();rt.one_hop_literal_slots_enabled=true;rt.literal_length_fast_path_enabled=false;let owner=rt.object();let key=rt.string("length");rt.define_data(owner,key,Value::Number(999.0),true,true,true).unwrap();let object=rt.object();rt.set_prototype(object,owner).unwrap();assert_eq!(rt.get_literal_cached(object,&LENGTH).unwrap(),Value::Number(999.0));let array=rt.array(&[]);rt.set_prototype(array,owner).unwrap();for _ in 0..2{let Value::Number(n)=rt.get_literal_cached(array,&LENGTH).unwrap()else{panic!()};assert_eq!(n.to_bits(),0);}}
- fn rounds(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{let env=rt.child_env(parent);for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}let keep=rt.string("x");rt.declare(env,"keepKey",keep)?;let mut freed=std::collections::HashSet::new();let mut reused=0;let mut weak_hint_reused=0;let initial=rt.objects.len();for round in 0..23{let owner=rt.object();let owner_id=rt.object_id(owner)?;if freed.contains(&owner_id){reused+=1}if rt.literal_property_slots.get(X.index()?).is_some_and(|entry|entry.owner()==Some(owner_id)){weak_hint_reused+=1}if round%2==1{let y=rt.string("y");rt.define_data(owner,y,Value::Null,true,true,true)?;}let key=rt.string("x");let bits=if round==0{0x8000000000000000}else{0x7ff0000000000042+round};rt.define_data(owner,key,Value::Number(f64::from_bits(bits)),true,true,true)?;let receiver=rt.object();rt.set_prototype(receiver,owner)?;for _ in 0..2{let Value::Number(value)=rt.get_literal_cached(receiver,&X)?else{panic!()};assert_eq!(value.to_bits(),bits);}rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;assert!(rt.native_battle_gc.free_objects.contains(&owner_id.0),"cache must not strongly retain prototype owner");freed.insert(owner_id);}assert!(reused>0);assert!(weak_hint_reused>0,"weak cached owner ID must actually be recycled");assert!(rt.objects.len()<initial+16);Ok(Value::Number(rt.native_battle_gc_stats().collections as f64))}
+ use super::*;use crate::EnvId;static X:LiteralReadSite=LiteralReadSite::new_with_prototype_hint("x",true);static LENGTH:LiteralReadSite=LiteralReadSite::new_with_prototype_hint("length",true);
+ #[test]fn metadata_only_layout_and_live_owner_values(){if cfg!(target_pointer_width="64"){assert_eq!(std::mem::size_of::<crate::heap::Object>(),160);assert_eq!(std::mem::size_of::<CachedSlot>(),24);}let mut rt=Runtime::new();rt.one_hop_literal_slots_enabled=true;let owner=rt.object();let receiver=rt.object();rt.set_prototype(receiver,owner).unwrap();let key=rt.string("x");rt.define_data(owner,key,Value::Number(-0.0),true,true,true).unwrap();for bits in[0x8000000000000000,0x7ff0000000000042]{rt.define_data(owner,key,Value::Number(f64::from_bits(bits)),true,true,true).unwrap();for _ in 0..2{let Value::Number(n)=rt.get_literal_cached_with_prototype_hint(receiver,&X).unwrap()else{panic!()};assert_eq!(n.to_bits(),bits);}}let slot=X.index().unwrap();assert_eq!(rt.literal_property_slots[slot].owner(),Some(rt.object_id(owner).unwrap()));}
+ #[test]fn array_length_virtual_descriptor_beats_cached_parent_even_when_length_fast_disabled(){let mut rt=Runtime::new();rt.one_hop_literal_slots_enabled=true;rt.literal_length_fast_path_enabled=false;let owner=rt.object();let key=rt.string("length");rt.define_data(owner,key,Value::Number(999.0),true,true,true).unwrap();let object=rt.object();rt.set_prototype(object,owner).unwrap();assert_eq!(rt.get_literal_cached_with_prototype_hint(object,&LENGTH).unwrap(),Value::Number(999.0));let array=rt.array(&[]);rt.set_prototype(array,owner).unwrap();for _ in 0..2{let Value::Number(n)=rt.get_literal_cached_with_prototype_hint(array,&LENGTH).unwrap()else{panic!()};assert_eq!(n.to_bits(),0);}}
+ fn rounds(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{let env=rt.child_env(parent);for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}let keep=rt.string("x");rt.declare(env,"keepKey",keep)?;let mut freed=std::collections::HashSet::new();let mut reused=0;let mut weak_hint_reused=0;let initial=rt.objects.len();for round in 0..23{let owner=rt.object();let owner_id=rt.object_id(owner)?;if freed.contains(&owner_id){reused+=1}if rt.literal_property_slots.get(X.index()?).is_some_and(|entry|entry.owner()==Some(owner_id)){weak_hint_reused+=1}if round%2==1{let y=rt.string("y");rt.define_data(owner,y,Value::Null,true,true,true)?;}let key=rt.string("x");let bits=if round==0{0x8000000000000000}else{0x7ff0000000000042+round};rt.define_data(owner,key,Value::Number(f64::from_bits(bits)),true,true,true)?;let receiver=rt.object();rt.set_prototype(receiver,owner)?;for _ in 0..2{let Value::Number(value)=rt.get_literal_cached_with_prototype_hint(receiver,&X)?else{panic!()};assert_eq!(value.to_bits(),bits);}rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;assert!(rt.native_battle_gc.free_objects.contains(&owner_id.0),"cache must not strongly retain prototype owner");freed.insert(owner_id);}assert!(reused>0);assert!(weak_hint_reused>0,"weak cached owner ID must actually be recycled");assert!(rt.objects.len()<initial+16);Ok(Value::Number(rt.native_battle_gc_stats().collections as f64))}
  #[test]fn weak_owner_ids_survive_twenty_three_collections_and_reuse(){let mut rt=Runtime::new();rt.one_hop_literal_slots_enabled=true;rt.diagnostics.enabled=false;let f=rt.make_closure(rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(f,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();assert_eq!(rt.call(f,Value::Undefined,&[]).unwrap(),Value::Number(23.0));}
 }
