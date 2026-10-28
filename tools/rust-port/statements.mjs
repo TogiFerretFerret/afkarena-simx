@@ -2,7 +2,7 @@
 // delimit exception propagation, so a generated `?` never skips a source catch.
 import {emitReference,writeReference} from './expressions.mjs';
 
-function unsupported(node,reason){const where=node?.loc?.start;throw new Error(`Unsupported ${node?.type??'statement'}${where?` at ${where.line}:${where.column}`:''}: ${reason}`);}
+function unsupported(node,reason){const where=node?.loc?.start,error=new Error(`Unsupported ${node?.type??'statement'}${where?` at ${where.line}:${where.column}`:''}: ${reason}`);error.node=node;throw error;}
 const quote=value=>JSON.stringify(value);
 function child(ctx,overrides){if(typeof ctx.child!=='function')throw new Error('Statement context requires child(overrides)');return ctx.child(overrides);}
 function capture(ctx,body){const name=ctx.fresh('statement_result');ctx.emit(`let ${name}: JsResult<Completion> = (|| -> JsResult<Completion> {`);body();ctx.emit('})();');return name;}
@@ -60,7 +60,9 @@ function forStatement(ctx,node){
 }
 function forInStatement(ctx,node){
  if(node.left.type==='VariableDeclaration')declarationKind(node.left);
- const value=ctx.expression(node.right),iterator=ctx.fresh('for_in_iterator');ctx.emit(`let mut ${iterator} = rt.for_in_iter(${value})?;`);
+ let head=ctx;
+ if(node.left.type==='VariableDeclaration'&&node.left.kind!=='var'){const env=ctx.temp(`rt.child_block_env(${ctx.env})`);head=child(ctx,{env});declareLexicals(head,[node.left]);}
+ const value=head.expression(node.right),iterator=ctx.fresh('for_in_iterator');ctx.emit(`let mut ${iterator} = rt.for_in_iter(${value})?;`);
  const key=ctx.fresh('for_in_key');ctx.emit(`while let Some(${key}) = rt.for_in_next(&mut ${iterator})? {`);
  let local=ctx;
  if(node.left.type==='VariableDeclaration'){
