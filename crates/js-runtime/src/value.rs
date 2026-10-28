@@ -96,7 +96,7 @@ impl Runtime {
             Value::Number(number) => {
                 let mut buffer = ryu_js::Buffer::new();
                 let text = buffer.format(number);
-                return Ok(self.intern_utf16(&text.encode_utf16().collect::<Vec<_>>()));
+                return Ok(self.intern_primitive_text(text));
             }
             Value::String(id) => return Ok(id),
             Value::Object(_) | Value::Function(_) => {
@@ -104,7 +104,16 @@ impl Runtime {
                 return self.to_string(primitive);
             }
         };
-        Ok(self.intern_utf16(&text.encode_utf16().collect::<Vec<_>>()))
+        Ok(self.intern_primitive_text(text))
+    }
+    // Ryu NumberToString and the primitive keywords emit ASCII. The fallback
+    // keeps this helper exact if its callers ever supply a longer/Unicode text.
+    fn intern_primitive_text(&mut self,text:&str)->StringId {
+        let mut units=[0u16;32];
+        if text.len()<=units.len() && text.is_ascii() {
+            for (slot,byte) in units.iter_mut().zip(text.bytes()) {*slot=u16::from(byte);}
+            self.intern_utf16(&units[..text.len()])
+        } else {self.intern_utf16(&text.encode_utf16().collect::<Vec<_>>())}
     }
     pub fn to_string_value(&mut self, value: Value) -> JsResult<StringId> { self.to_string(value) }
     pub fn to_uint32(&mut self, value: Value) -> JsResult<u32> { Ok(number_to_uint32(self.to_number(value)?)) }
