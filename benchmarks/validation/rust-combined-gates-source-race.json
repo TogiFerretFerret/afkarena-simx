@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "outcome": "rejected-source-input-race",
+  "semanticQualification": false,
+  "scope": "First combined validation attempts after numeric literal keys, guarded numeric operations, native locals, property slots and arena pooling were integrated. Three attempts correctly rejected input changes during their build/run window. No passing semantic qualification was emitted for those attempts.",
+  "attempts": [
+    {
+      "command": "node tools/rust-port/check-numeric-ops.mjs",
+      "error": "AssertionError: source changed during gate",
+      "exitCode": 1
+    },
+    {
+      "command": "node tools/rust-port/check-closures.mjs",
+      "error": "AssertionError: Control-flow source inputs changed during build/run",
+      "exitCode": 1
+    },
+    {
+      "command": "node tools/rust-port/check-control-flow.mjs",
+      "error": "AssertionError: Control-flow source inputs changed during build/run",
+      "exitCode": 1
+    }
+  ],
+  "followup": "After all contributors confirmed every Rust/compiler source file was frozen, only rejected gates were rerun. Their separate final reports record the matching source digests and semantic results.",
+  "passingFirstAttempts": [
+    "rust-generated-numeric-literal-keys.json",
+    "rust-generated-arguments-elision.json",
+    "rust-port-expressions.json"
+  ],
+  "qualifiesFor10000Target": false
+}
