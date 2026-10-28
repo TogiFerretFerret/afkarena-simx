@@ -13,8 +13,13 @@ impl Diagnostics{
  pub fn from_env()->Self{let enabled=std::env::var_os("RUST_PORT_TRACE").is_some_and(|value|value!="0"&&value!="");Self{enabled,recent:if enabled{VecDeque::with_capacity(8)}else{VecDeque::new()}}}
 }
 impl Runtime{
+ #[inline]
  pub fn record_get(&mut self,receiver:Value,key:KeyInput,result:&JsResult<Value>){
-  if !self.diagnostics.enabled{return}
+  if self.diagnostics.enabled{self.record_get_enabled(receiver,key,result)}
+ }
+ #[cold]
+ #[inline(never)]
+ fn record_get_enabled(&mut self,receiver:Value,key:KeyInput,result:&JsResult<Value>){
   let outcome=match result{Ok(value)=>GetOutcome::Value(*value),Err(JsError::Throw(value))=>GetOutcome::Throw(*value),Err(error)=>GetOutcome::Error(match error{JsError::TypeError(_)=>"TypeError",JsError::ReferenceError(_)=>"ReferenceError",JsError::RangeError(_)=>"RangeError",JsError::SyntaxError(_)=>"SyntaxError",JsError::Unsupported(_)=>"Unsupported",_=>"Error"})};
   if self.diagnostics.recent.len()==8{self.diagnostics.recent.pop_front();}self.diagnostics.recent.push_back(GetRecord{receiver,key,outcome});
  }
@@ -27,8 +32,13 @@ impl Runtime{
  }}
  fn diagnostic_key(&self,key:KeyInput)->String{match key{KeyInput::Value(value)=>self.diagnostic_value(value),KeyInput::Prepared(key)=>format!("Prepared({})",self.diagnostic_value(Value::String(key.0)))}}
  /// Called while the source caller's native frame is still on call_stack.
+ #[inline]
  pub fn report_noncallable(&self,callee:Value){
-  if !self.diagnostics.enabled{return}
+  if self.diagnostics.enabled{self.report_noncallable_enabled(callee)}
+ }
+ #[cold]
+ #[inline(never)]
+ fn report_noncallable_enabled(&self,callee:Value){
   eprintln!("rust_port_noncallable:{}",self.diagnostic_value(callee));
   for(index,record)in self.diagnostics.recent.iter().enumerate(){let result=match record.outcome{GetOutcome::Value(value)=>self.diagnostic_value(value),GetOutcome::Throw(value)=>format!("Throw({})",self.diagnostic_value(value)),GetOutcome::Error(kind)=>format!("Error({kind})")};eprintln!("rust_port_recent_get:{index} receiver={} key={} result={result}",self.diagnostic_value(record.receiver),self.diagnostic_key(record.key));}
   for(depth,id)in self.call_stack.iter().rev().take(12).enumerate(){let Some(function)=self.functions.get(id.0)else{continue};let(range,units)=match function.source.as_ref(){
