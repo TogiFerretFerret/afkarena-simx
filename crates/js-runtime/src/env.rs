@@ -21,6 +21,8 @@ pub struct Environment {
 }
 impl Environment {
  pub fn new(parent:Option<EnvId>,kind:EnvKind)->Self{Self{parent,bindings:HashMap::default(),cells:vec![],kind}}
+ pub(crate) fn reset_for_reuse(&mut self,parent:Option<EnvId>,kind:EnvKind){self.parent=parent;self.kind=kind;self.bindings.clear();self.cells.clear();}
+ pub(crate) fn reuse_record(&mut self,mut record:Self){self.reset_for_reuse(record.parent,record.kind);self.bindings.extend(record.bindings.drain());self.cells.append(&mut record.cells);}
  fn insert(&mut self,_name:&str,binding:Binding){let index=self.cells.len();let name=binding.name;self.cells.push(binding);self.bindings.insert(name,index);}
 }
 #[derive(Clone,Copy,Debug,Eq,PartialEq,Hash)]

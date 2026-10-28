@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "scope": "Dead object/environment allocation storage reuse; not a battles-per-second claim",
+  "libraryTests": {
+    "passed": 41,
+    "failed": 0,
+    "command": "cargo test -p js-runtime --lib"
+  },
+  "assertions": [
+    "Object property vector, property index and arguments map retain capacities after sweep",
+    "Environment cells and binding index retain capacities after sweep",
+    "Reused objects clear callable flag, kind, prototype, extensibility, old keys and argument aliases",
+    "Fresh property insertion order and descriptor attributes are preserved",
+    "Reused environments clear old names and cells and install fresh parent/kind"
+  ],
+  "sourceSha256": {
+    "crates/js-runtime/src/battle_gc.rs": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3",
+    "crates/js-runtime/src/env.rs": "15bc6229afd44e5ccfdd29bff8a4eaa034712cc6660630a87172be9663fe7649",
+    "crates/js-runtime/src/heap.rs": "ee453f2eeefb16b53de12c96752a4d18aab574904a6ea20c97ec396e78f506bb",
+    "crates/js-runtime/src/runtime.rs": "6aa3ae58ebeedcfa1dfca2dbd5808cb2cb48a3aa36e1425056979e6dfd54efc1"
+  }
+}

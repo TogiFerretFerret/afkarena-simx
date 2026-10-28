@@ -69,7 +69,7 @@ impl Runtime {
  pub fn string_text(&self,id:StringId)->String{String::from_utf16_lossy(self.string_units(id))}
  pub fn string(&mut self,text:&str)->Value{Value::String(self.intern(text))}
  pub fn string_utf16(&mut self,units:&[u16])->Value{Value::String(self.intern_utf16(units))}
- pub fn alloc_object(&mut self,prototype:Option<ObjectId>)->ObjectId{if let Some(slot)=self.native_battle_gc.free_objects.pop(){self.objects[slot]=Object::new(prototype);ObjectId(slot)}else{let id=ObjectId(self.objects.len());self.objects.push(Object::new(prototype));id}}
+ pub fn alloc_object(&mut self,prototype:Option<ObjectId>)->ObjectId{if let Some(slot)=self.native_battle_gc.free_objects.pop(){self.objects[slot].reset_for_reuse(prototype);ObjectId(slot)}else{let id=ObjectId(self.objects.len());self.objects.push(Object::new(prototype));id}}
  pub fn object(&mut self)->Value{Value::Object(self.alloc_object(Some(self.object_prototype)))}
  pub fn array(&mut self,items:&[Option<Value>])->Value{let id=self.alloc_object(Some(self.array_prototype));self.objects[id.0].kind=ObjectKind::Array{length:items.len() as u32,length_writable:true};for (index,item)in items.iter().enumerate(){if let Some(value)=item{let key=PropertyKey(self.intern(&index.to_string()));self.objects[id.0].insert(key,Descriptor::data(*value,true,true,true));}}Value::Object(id)}
  pub fn object_id(&self,value:Value)->JsResult<ObjectId>{match value{Value::Object(id)if id.0<self.objects.len()=>Ok(id),Value::Function(id)=>self.functions.get(id.0).map(|f|f.object).ok_or_else(||JsError::TypeError("invalid function identity".into())),_=>Err(JsError::TypeError("value is not an object".into()))}}
