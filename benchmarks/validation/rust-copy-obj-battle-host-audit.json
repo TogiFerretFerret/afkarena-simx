@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Additional archived host-prefix audit only; no simulation rerun. Original clock tape remains unfinished by the explicit diagnostic stop.",
+  "diagnostic": {
+    "file": "benchmarks/results/2026-10-28T19-18-00.655Z-rust-copy-obj-battle.json",
+    "sha256": "d90867f5a64613c1bda7172c4765a4ef3c14cdc4c57aed8ee59387b937addb40"
+  },
+  "baseline": {
+    "file": "/workspace/afkarena-simx/benchmarks/results/2026-10-28T18-40-55.250Z-rust-one-battle-check.json",
+    "sha256": "85c556bebfdef4d87e273a617b41ebe9619a9734b965994ce0bc66f952224886"
+  },
+  "stdoutArtifact": {
+    "label": "native-stdout",
+    "file": "benchmarks/results/2026-10-28T19-18-00.655Z-rust-copy-obj-battle.native-stdout.gz",
+    "sha256": "af90a70b60d0ffa7c653c98b90d8109e0b91bf129faa7f97c60bc411d534309f",
+    "uncompressedSha256": "8b8bca3acb1f2d68825664876c6ca4c231dd7adbfa7069d255b308e22beb38f1"
+  },
+  "actual": {
+    "random": 2,
+    "clock": {
+      "version": 1,
+      "mode": "replay",
+      "attempts": 260,
+      "consumed": 260,
+      "total": 5980,
+      "remaining": 5720,
+      "counts": {
+        "Date.now": 0,
+        "Date.construct": 260,
+        "Date.call": 0
+      },
+      "finished": false,
+      "restored": false,
+      "failure": null
+    }
+  },
+  "expected": {
+    "random": 2,
+    "clock": {
+      "version": 1,
+      "mode": "replay",
+      "attempts": 260,
+      "consumed": 260,
+      "total": 5980,
+      "remaining": 5720,
+      "counts": {
+        "Date.now": 0,
+        "Date.construct": 260,
+        "Date.call": 0
+      },
+      "finished": false,
+      "restored": false,
+      "failure": null
+    }
+  },
+  "difference": null
+}
