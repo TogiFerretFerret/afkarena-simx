@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "sourceCommit": "f3618a8",
+  "libraryTests": 70,
+  "suites": [
+    {
+      "suite": "reflection",
+      "cases": 24,
+      "passed": true,
+      "report": "benchmarks/validation/rust-property-entry-reflection.json",
+      "log": "benchmarks/validation/rust-property-entry-reflection.log.gz",
+      "logSha256": "0d78490762d39fd851be3b6a3d46156ec5a7a8cbfa03771cb63c9f69a7dcb2a1"
+    },
+    {
+      "suite": "arguments",
+      "cases": 40,
+      "passed": true,
+      "report": "benchmarks/validation/rust-property-entry-arguments.json",
+      "log": "benchmarks/validation/rust-property-entry-arguments.log.gz",
+      "logSha256": "3c01964cfe06c1bb3edbe1de93a529a107b05f3bc9e9ece6a4948c95924c86c3"
+    },
+    {
+      "suite": "arrays",
+      "cases": 11,
+      "passed": true,
+      "report": "benchmarks/validation/rust-property-entry-arrays.json",
+      "log": "benchmarks/validation/rust-property-entry-arrays.log.gz",
+      "logSha256": "be9d100e8aca8a6e459b4e5fb406dba107b4ab9224d4624e7c3ccaf8f3e93013"
+    },
+    {
+      "suite": "primary-arrays",
+      "cases": 70,
+      "passed": true,
+      "report": "benchmarks/validation/rust-property-entry-primary-arrays.json",
+      "log": "benchmarks/validation/rust-property-entry-primary-arrays.log.gz",
+      "logSha256": "5c9397efb8cf08a728fcd924d463f43e206fce8d6caebf86c7f6b8d62e3d2bf8"
+    },
+    {
+      "suite": "closures",
+      "cases": 47,
+      "passed": true,
+      "report": "benchmarks/validation/rust-property-entry-closures.json",
+      "log": "benchmarks/validation/rust-property-entry-closures.log.gz",
+      "logSha256": "21b63ef87399bb2ac3a474a367ba26a2294c19876a7fcfa6c6dca0a4a5a2be08"
+    }
+  ],
+  "knownUnsupported": "Two existing Symbol-related arguments observations remain explicitly unsupported; this change does not qualify Symbol semantics.",
+  "scope": "Ordered property mutation, mapped arguments, reflection, arrays/materialization, closures/bound calls and actual native GC/reuse. No full-battle qualification."
+}

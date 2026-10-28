@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "tests": 70,
+  "sourceCommit": "f3618a8",
+  "log": "benchmarks/validation/rust-property-entry-library.log.gz",
+  "sha256": "327fe70cefbdba8f9142ebade2e93f2e083e0f8c3b168c6dd6bbe2a47c8ada0e",
+  "command": "CARGO_TARGET_DIR=work/entry-tests-target cargo test -p js-runtime --lib"
+}

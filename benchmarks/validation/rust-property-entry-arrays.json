@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "passed": true,
+  "cacheLocalBindings": true,
+  "cachedBindingDeclarations": 0,
+  "cases": 11,
+  "results": [
+    {
+      "name": "includes-holes",
+      "source": "var result=JSON.stringify([[,].includes(void 0),[,].indexOf(void 0),[NaN].includes(NaN),[-0].includes(0),[1,2,3].includes(1,-3)]);",
+      "expected": "s:005b0074007200750065002c002d0031002c0074007200750065002c0074007200750065002c0074007200750065005d",
+      "actual": "s:005b0074007200750065002c002d0031002c0074007200750065002c0074007200750065002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "find-holes",
+      "source": "var log='';var out=[,2].find(function(v,i,a){log+=i+':'+v+';';return i===1});var result=log+':'+out;",
+      "expected": "s:0030003a0075006e0064006500660069006e00650064003b0031003a0032003b003a0032",
+      "actual": "s:0030003a0075006e0064006500660069006e00650064003b0031003a0032003b003a0032",
+      "passed": true
+    },
+    {
+      "name": "findIndex-receiver",
+      "source": "var o={x:9},a=[1,2];var result=a.findIndex(function(v,i,b){return this===o&&b===a&&v===2},o);",
+      "expected": "d:3ff0000000000000",
+      "actual": "d:3ff0000000000000",
+      "passed": true
+    },
+    {
+      "name": "reduce-holes",
+      "source": "var a=[,2,,3];var result=JSON.stringify([a.reduce(function(a,b){return a+b}),a.reduce(function(a,b){return a+b},10),a.reduceRight(function(a,b){return a-b})]);",
+      "expected": "s:005b0035002c00310035002c0031005d",
+      "actual": "s:005b0035002c00310035002c0031005d",
+      "passed": true
+    },
+    {
+      "name": "reduce-callback-order",
+      "source": "var log='',a=[1,2,3];var out=a.reduce(function(p,v,i,b){log+=i+':'+v+':'+(b===a)+';';if(i===0){delete a[1];a.push(99)}return p+v},0);var result=log+':'+out;",
+      "expected": "s:0030003a0031003a0074007200750065003b0032003a0033003a0074007200750065003b003a0034",
+      "actual": "s:0030003a0031003a0074007200750065003b0032003a0033003a0074007200750065003b003a0034",
+      "passed": true
+    },
+    {
+      "name": "reduce-empty",
+      "source": "var result='';try{[,].reduce(function(){})}catch(e){result=e.name}result+=':'+[].reduce(function(){},void 0);",
+      "expected": "s:0054007900700065004500720072006f0072003a0075006e0064006500660069006e00650064",
+      "actual": "s:0054007900700065004500720072006f0072003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "concat-holes",
+      "source": "var a=[,2],b=a.concat([3,,4],5);var result=JSON.stringify([b,b.length,0 in b,3 in b,a.length]);",
+      "expected": "s:005b005b006e0075006c006c002c0032002c0033002c006e0075006c006c002c0034002c0035005d002c0036002c00660061006c00730065002c00660061006c00730065002c0032005d",
+      "actual": "s:005b005b006e0075006c006c002c0032002c0033002c006e0075006c006c002c0034002c0035005d002c0036002c00660061006c00730065002c00660061006c00730065002c0032005d",
+      "passed": true
+    },
+    {
+      "name": "concat-prototype-index",
+      "source": "var a=[,2];Object.defineProperty(Array.prototype,'0',{get:function(){return 9},configurable:true});var b=a.concat([]);delete Array.prototype[0];var result=JSON.stringify(b);",
+      "expected": "s:005b0039002c0032005d",
+      "actual": "s:005b0039002c0032005d",
+      "passed": true
+    },
+    {
+      "name": "iterate-no-result",
+      "source": "var log='',a=[1,2,3];var r=a.forEach(function(v,i){log+=v;if(i===0)delete a[1]});var result=log+':'+r;",
+      "expected": "s:00310033003a0075006e0064006500660069006e00650064",
+      "actual": "s:00310033003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "map-holes",
+      "source": "var a=[,2],b=a.map(function(v){return v+1});var result=JSON.stringify([b.length,0 in b,b[1]]);",
+      "expected": "s:005b0032002c00660061006c00730065002c0033005d",
+      "actual": "s:005b0032002c00660061006c00730065002c0033005d",
+      "passed": true
+    },
+    {
+      "name": "reduceRight-order",
+      "source": "var log='';var out=[1,2,3].reduceRight(function(p,v,i){log+=i;return p-v},10);var result=log+':'+out;",
+      "expected": "s:003200310030003a0034",
+      "actual": "s:003200310030003a0034",
+      "passed": true
+    }
+  ],
+  "compilerInputs": {
+    "tools/rust-port/expressions.mjs": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
+    "tools/rust-port/statements.mjs": "9be518cbe68a01a1a72e476c7faabc12bd39b73e802fc7b730d233d072b701da",
+    "tools/rust-port/compile.mjs": "ccdfdf7e0b75df310810ccab20d9c4ec0a84d6e4be8e43fc76a562ad0d0a755d",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/rust-port/check-arrays.mjs": "8f09963e1978d9a8f5d8a0b91d944d9893b6ac43a1c02e0fdb55b735dae6ea51",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "96256aa10f57ee8d833f1bef99d7c1185d7205d2ae7519a7bfa573cdb8ae527f",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/closures.rs": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "f5377814218c6b657983dc2738d772fd3485b0a1aac89a6198638a491080a14d",
+    "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+    "crates/js-runtime/src/dense_array_shift.rs": "f4a866084d5f2a700afaae853815afd2e2d2c3e854397139ade8789a2c5f94a3",
+    "crates/js-runtime/src/diagnostics.rs": "9018f7593d765ba4debf4f75355f1ddd676aa60c79a93b183db89086590e2434",
+    "crates/js-runtime/src/dynamic_slots.rs": "f7731263433ec74752da8423fd84c0f2a68cb7c060b02f18c08d974453d035bf",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+    "crates/js-runtime/src/expose_scan.rs": "06733c148aab5757260fb180e8361ea38f6dc16ea39ed8091ef2215e81c37110",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "23c716c30393bcafebacf5b432d0b02903a328ad38a82a7565ae9a7475c538d6",
+    "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+    "crates/js-runtime/src/lib.rs": "1e1822fd5371c9928240e7af626bb6b20be377326f43e4f1da177e8e65b5b556",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/property_slots.rs": "c8796b4307180fda010476025fccc28462a39e2b108eb84651213cff96510d81",
+    "crates/js-runtime/src/reachability.rs": "9edd4aaba07905b4ac1bd1031bcfb1b96e27986509916e8c83e2cebb7f6f5e34",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "3b6e80fc9cb525468e0c815a7c0556e8b8e34465df0e782fa99eecda175880d4",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "f107d1d45c0541475f5df4bbc9092dbd351f36882090ef335c529060cd0612b3",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/candidate-property-entry/work/rust-port-shared-target/release/arrays-tests",
+    "sha256": "969fbceb1082adb48f8d3f2c053639e55bb004ebcad1b07b8896ee3df682526b"
+  },
+  "buildArgs": [
+    "build",
+    "--release",
+    "--manifest-path",
+    "/workspace/afkarena-simx/work/candidate-property-entry/work/rust-port-arrays-tests/Cargo.toml"
+  ],
+  "scope": "Actual generated Rust executed against source JS Array programs. Ordered observable effects and primitive results compare exactly; Number results use raw f64 bits and arrays use UTF-16 units. This is a language-Array gate, not battle fidelity or throughput.",
+  "qualifiesFor10000Target": false
+}
