@@ -3,10 +3,10 @@
 The public `Descriptor` / `PropertyKind` / `Value` APIs remain Copy and retain
 their existing types. Object dictionaries instead hold a physical vector of
 24-byte `StoredProperty` entries: canonical key, a 64-bit payload, and flags.
-The original optional key/descriptor entry occupies 56 bytes on this host.
-This reduces entry bytes by 57.1%, while an optional per-object accessor arena
-adds eight bytes to Object (expected 152 to 160 bytes; paired executable layout
-measurements are retained with the component result).
+The original optional key/descriptor entry occupies 48 bytes on this host.
+This reduces entry bytes by 50%, while an optional per-object accessor arena
+adds eight bytes to Object (152 to 160 bytes, measured in both prepared
+executables).
 
 The tag is independent of the payload: Undefined, Null, Bool, Number, String,
 Object, Function or Accessor. Number payloads use `to_bits` / `from_bits` with no
@@ -51,3 +51,17 @@ raw-bit state. Copy trials retain every fresh source-visible output and run 23
 exact-source GC safepoints, checking ordered final raw bits and destination ID
 reuse. All frozen runtime sources, generated code and expected/actual payloads
 are archived with hashes. Copy intermediate outcomes are not traced.
+
+Untuned paired results pass all original Unit callbacks/selected raw-bit state
+and copy snapshots across 414 actual GC collections. The 180,000 Unit updates
+run at 16,214/sec versus 16,044/sec (0.9895x, neutral). The 414,000 copy calls run
+at 1.868M/sec versus 1.721M/sec (0.9213x); including GC the ratio is 0.9237x.
+Thus the storage reduction has not yet established a speed improvement. Keep
+this untuned candidate isolated. Evidence and complete zero-exit native footer:
+`benchmarks/results/2026-10-28T23-44-11.718Z-rust-compact-properties.json` and
+its `.native-run-audit.json` companion.
+
+A separate frozen-runtime variant adds ordinary `#[inline]` hints to pure tag,
+value, flag and physical-slot helpers. It does not force inlining, change their
+bodies, or modify the tested shared candidate. Its three-way component result
+is recorded separately after measurement.
