@@ -32,12 +32,17 @@
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "b4755929c6c286c29096cfd512d1b510604b71d99e16c8d26d4782b79d0eba47",
+      "sha256": "f3492c996faa47117dff91ecd97f1adcdf9d92a640903e52262dbc1251f8c0c8",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/collections.rs",
       "sha256": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/copy_obj.rs",
+      "sha256": "d0762d0a2eb22fcfe90be4428a28fa4a0eb6b6737ebd70dfeb1be55efd0fbee2",
       "matched": true
     },
     {
@@ -91,8 +96,13 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/src/lazy_arguments.rs",
+      "sha256": "8635bf10297dfd4ea34ddfac0c02f4306e95f40875d4b1cc7cc8302a428f3117",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "a1806767845af02d84eed017266cbd57137394fc4999bd29e19c2efa4de85ea4",
+      "sha256": "3a9cd0b7c1af37933b5e63553aa42d919d31e861bed8f533e0263930bf471f0e",
       "matched": true
     },
     {
@@ -122,7 +132,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "008b4a8f5fa0414fc2c4562067af2c89ad0fb3438727c1212ea3e8a736d9b183",
+      "sha256": "2acf0c285495969c588345ab692144e2321799da9378aa361b828c78e0458bc5",
       "matched": true
     },
     {
@@ -1092,7 +1102,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "a6ff43cf2e4c0f20e5580520654a237206af85fbda14acd91ee62f7e335f3b06",
+      "sha256": "7b31396748997250cea0fb3188c0b12e59ec6978b314b1dec5b4e2f2e296e258",
       "matched": true
     },
     {
@@ -1134,10 +1144,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "e8e3b1b3272ab966c3703d959081584de591a87bc0e0003d67304eb9e530e945",
+  "generatedRustSha256": "6e521bd56acbe0c2e3bdcf737702a94e9ba4444f28e3ea1249478b3aed252acd",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-control/check",
-    "sha256": "526f5eebcc0077e3a062ce5b1400674c490630c3a09b2eb05d22698d3b1199a9"
+    "sha256": "128fd0dbb29b27a97a0f24bbd13618b741114e530705e764fc65958c0578b55c"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",

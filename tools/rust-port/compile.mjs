@@ -2,6 +2,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
 import {createHash} from 'node:crypto';
 import {parse,parseExpression} from '@babel/parser';
+import traverse from '@babel/traverse';
 import {emitExpression} from './expressions.mjs';
 import {emitStatements} from './statements.mjs';
 import {planLocalBindings} from './bindings.mjs';
@@ -31,7 +32,12 @@ function requiresImplicitArguments(node){
    if(current.computed&&current.key)walk(current.key,ownsArguments);
    ownsArguments=false;
   }
-  for(const child of childNodes(current))walk(child,ownsArguments);
+  for(const child of childNodes(current)){
+   if((current.type==='MemberExpression'||current.type==='OptionalMemberExpression')&&!current.computed&&child===current.property)continue;
+   if(['ObjectProperty','ObjectMethod','ClassMethod','ClassPrivateMethod'].includes(current.type)&&!current.computed&&child===current.key)continue;
+   if(['LabeledStatement','BreakStatement','ContinueStatement'].includes(current.type)&&child===current.label)continue;
+   walk(child,ownsArguments);
+  }
  }
  for(const parameter of node.params??[])walk(parameter,true);
  walk(node.body,true);return used||evalReference;
@@ -65,6 +71,32 @@ function diagnostic(error,node,filename){return{filename,start:node.start??0,end
 export function compileSource(source,{filename='input.js',mode='script',moduleName='generated',allowUnsupported=true,emitRust=true,sourcePoolPath=null,largeBody=false,cacheLocalBindings=true,staticLiteralStrings=true,sourceSpecializations=true}={}){
  const root=mode==='function'?parseExpression(source,{sourceType:'script'}):parse(source,{sourceType:mode==='module'?'module':'script',allowReturnOutsideFunction:false}).program;
  if(mode==='function'&&!FUNCTION_TYPES.has(root.type))throw Error('--function input must be a function expression');
+ // V8 legacy f.arguments snapshots current uncaptured formal cells, but raw
+ // call slots for context-captured formals, implicit arguments use, or eval.
+ // Resolve actual bindings rather than treating same-spelled shadows as captures.
+ const parameterCaptures=new WeakMap(),implicitArgumentsUsed=new WeakSet(),directEvalContexts=new WeakSet();
+ const scopeTree={type:'File',program:root.type==='Program'?root:{type:'Program',sourceType:'script',directives:[],body:[{type:'ExpressionStatement',expression:root}]}};
+ traverse(scopeTree,{Function(path){
+  parameterCaptures.set(path.node,(path.node.params??[]).map(parameter=>{
+   if(parameter.type!=='Identifier')return false;
+   const binding=path.scope.getBinding(parameter.name);
+   if(!binding)return false;
+   return [...binding.referencePaths,...binding.constantViolations].some(reference=>(reference.isFunctionDeclaration()?reference.parentPath.scope:reference.scope).getFunctionParent()?.path.node!==path.node);
+  }));
+ },Identifier(path){
+  if(path.node.name!=='arguments')return;
+  const parent=path.parent;
+  const write=(parent.type==='AssignmentExpression'&&parent.left===path.node)||(parent.type==='UpdateExpression'&&parent.argument===path.node)||(parent.type==='VariableDeclarator'&&parent.id===path.node&&parent.init);
+  if(!path.isReferencedIdentifier()&&!write)return;
+  let owner=path.scope.getFunctionParent();
+  while(owner?.path.node.type==='ArrowFunctionExpression')owner=owner.parent?.getFunctionParent();
+  if(!owner)return;
+  const binding=path.scope.getBinding('arguments');
+  if(!binding||(binding.kind==='var'&&binding.scope===owner))implicitArgumentsUsed.add(owner.path.node);
+ },CallExpression(path){
+  if(path.node.callee.type!=='Identifier'||path.node.callee.name!=='eval')return;
+  let owner=path.scope.getFunctionParent();while(owner){directEvalContexts.add(owner.path.node);owner=owner.parent?.getFunctionParent();}
+ }});
  const parents=new WeakMap(),records=[],recordByNode=new WeakMap(),inventory={};
  function collect(node,parent,inheritedStrict){parents.set(node,parent);inventory[node.type]=(inventory[node.type]??0)+1;const isFunction=FUNCTION_TYPES.has(node.type);let strict=inheritedStrict;
   if(node.type==='Program'||isFunction){strict=inheritedStrict||strictDirective(node)||node.type==='ClassMethod'||node.type==='ClassPrivateMethod';const record={node,id:records.length,strict,diagnostics:[]};records.push(record);recordByNode.set(node,record);}
@@ -96,7 +128,14 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
  function chunks(items,weight,maxWeight,maxItems){const result=[];let current=[],size=0;for(const item of items){const next=weight(item);if(current.length&&(size+next>maxWeight||current.length>=maxItems)){result.push(current);current=[];size=0;}current.push(item);size+=next;}if(current.length)result.push(current);return result;}
  function instantiateGroups(node,ctx,declarations,params,body){const groups=[];
   for(let index=0;index<params.length;index++){const name=rustString(params[index].name);groups.push(local=>{local.emit(`rt.declare(env, ${name}, Value::Undefined)?;`);local.emit(`rt.assign(env, ${name}, args.get(${index}).copied().unwrap_or(Value::Undefined), false)?;`);});}
-  if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'&&!params.some(p=>p.name==='arguments')&&(!ctx.strict||requiresImplicitArguments(node)))groups.push(local=>{const argsValue=local.temp(`rt.arguments_object(env, &[${params.map(p=>rustString(p.name)).join(',')}], args, ${local.strict})?`);local.emit(`rt.declare(env, "arguments", ${argsValue})?;`);});
+  if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'){
+   const parameterNames=params.map(p=>rustString(p.name)).join(',');
+   if(!ctx.strict){
+    const rawSlots=(parameterCaptures.get(node)??[]).map(captured=>captured||implicitArgumentsUsed.has(node)||directEvalContexts.has(node));
+    groups.push(local=>local.emit(`rt.register_lazy_arguments(env, &[${parameterNames}], args, &[${rawSlots.join(',')}])?;`));
+   }
+   if(!params.some(p=>p.name==='arguments')&&requiresImplicitArguments(node))groups.push(local=>{const argsValue=local.temp(`rt.arguments_object(env, &[${parameterNames}], args, ${local.strict})?`);local.emit(`rt.declare(env, "arguments", ${argsValue})?;`);});
+  }
   for(const name of declarations.names)groups.push(local=>local.emit(`rt.declare(env, ${rustString(name)}, Value::Undefined)?;`));
   for(const binding of lexicalDeclarations(body??[]))groups.push(local=>local.emit(`rt.declare_lexical(env, ${rustString(binding.name)}, ${binding.mutable})?;`));
   for(const fn of declarations.functions)groups.push(local=>{const value=local.makeClosure(fn);local.emit(`rt.assign(env, ${rustString(fn.id.name)}, ${value}, false)?;`);});

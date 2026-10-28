@@ -1,7 +1,19 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 11,
+  "cases": 40,
+  "knownUnsupported": [
+    {
+      "name": "sloppy-lazy-legacy-iterator",
+      "source": "function(){function f(a){return f.arguments[Symbol.iterator]===Array.prototype.values;}return f(1);}",
+      "reason": "Native Symbol identities/keys and the arguments Symbol.iterator property remain unsupported, as for existing eager arguments objects. This gate does not qualify those semantics."
+    },
+    {
+      "name": "sloppy-lazy-legacy-ownkeys",
+      "source": "function(){function f(a){return Reflect.ownKeys(f.arguments).map(String).join(\"|\");}return f(1);}",
+      "reason": "Native Symbol identities/keys and the arguments Symbol.iterator property remain unsupported, as for existing eager arguments objects. This gate does not qualify those semantics."
+    }
+  ],
   "firstDifference": null,
   "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
   "sourceInputsAtFinish": [
@@ -32,12 +44,17 @@
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "b4755929c6c286c29096cfd512d1b510604b71d99e16c8d26d4782b79d0eba47",
+      "sha256": "f3492c996faa47117dff91ecd97f1adcdf9d92a640903e52262dbc1251f8c0c8",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/collections.rs",
       "sha256": "1b1e98bf9efcf7c69ee714d3416522dc77ce9d8750322be4f3e8758768559a51",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/copy_obj.rs",
+      "sha256": "d0762d0a2eb22fcfe90be4428a28fa4a0eb6b6737ebd70dfeb1be55efd0fbee2",
       "matched": true
     },
     {
@@ -91,8 +108,13 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/src/lazy_arguments.rs",
+      "sha256": "8635bf10297dfd4ea34ddfac0c02f4306e95f40875d4b1cc7cc8302a428f3117",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "a1806767845af02d84eed017266cbd57137394fc4999bd29e19c2efa4de85ea4",
+      "sha256": "3a9cd0b7c1af37933b5e63553aa42d919d31e861bed8f533e0263930bf471f0e",
       "matched": true
     },
     {
@@ -122,7 +144,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "008b4a8f5fa0414fc2c4562067af2c89ad0fb3438727c1212ea3e8a736d9b183",
+      "sha256": "2acf0c285495969c588345ab692144e2321799da9378aa361b828c78e0458bc5",
       "matched": true
     },
     {
@@ -487,7 +509,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "a6ff43cf2e4c0f20e5580520654a237206af85fbda14acd91ee62f7e335f3b06",
+      "sha256": "7b31396748997250cea0fb3188c0b12e59ec6978b314b1dec5b4e2f2e296e258",
       "matched": true
     },
     {
@@ -502,7 +524,7 @@
     },
     {
       "file": "tools/rust-port/check-arguments-elision.mjs",
-      "sha256": "088ffa8b98c9bb68ffffd248cc35e641eaeed231059fa8f6e845a0a0f864f1ac",
+      "sha256": "a13c9db4d61a1bf212a11c991224e3adf2df94bfb25ad583171eaa42d05f18ad",
       "matched": true
     }
   ],
@@ -524,10 +546,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "41ae6fb9f7e09524265d28468858cd980f8f22b5425a1fe841a6799305f5e17e",
+  "generatedRustSha256": "fd136f7cc98a2a0c953fe57a79441403662cb4f4aba0927b555ab2cf60b798ea",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-arguments-elision/check",
-    "sha256": "079635f8b676fbec45dfd2cdbf7875e0273db4d1d9735a1968363eec2d530c2d"
+    "sha256": "7eefa037beae6c819577ffa065b21d9bfbdef0994583b446b5630f8273f639d2"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
@@ -546,7 +568,7 @@
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-arguments-elision.outputs.json.gz",
-    "sha256": "5f4c7f13b053ea58f5a3856a8d6592d892b8c55c9b2edaeba3a0ff13ba6efe50"
+    "sha256": "24722761b3c044b020833f1177d685d9a3db50ff5ebe4aa855635dcbb5d4cf40"
   },
   "qualifiesFor10000Target": false,
   "scope": "Strict unused arguments elision, retained nested-arrow captures, ordinary nested arguments, source metadata, and restricted reflection cases. This is not a complete battle or unrestricted ECMAScript qualification."

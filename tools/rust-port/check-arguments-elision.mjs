@@ -53,8 +53,125 @@ const cases=[
  [
   "strict-computed-method-key",
   "function(){\"use strict\";function f(a){return ({[arguments[0]](){return 7;}})[a]();}return f(\"x\");}"
+ ],
+ [
+  "sloppy-lazy-active-reflection",
+  "function(){function read(f){return f.arguments[0];}function f(a){return read(f);}return f(17);}"
+ ],
+ [
+  "sloppy-lazy-modified-parameter",
+  "function(){function read(f){return f.arguments[0];}function f(a){a=23;return read(f);}return f(17);}"
+ ],
+ [
+  "sloppy-lazy-reflection-outside",
+  "function(){function f(a){return a+1;}f(17);return f.arguments===null;}"
+ ],
+ [
+  "sloppy-lazy-snapshot-identity",
+  "function(){function read(f){var a=f.arguments,b=f.arguments;return a===b;}function f(a){return read(f);}return f(17);}"
+ ],
+ [
+  "sloppy-lazy-snapshot-mutation",
+  "function(){function read(f){f.arguments[0]=99;return f.arguments[0];}function f(a){return read(f)*100+a;}return f(17);}"
+ ],
+ [
+  "sloppy-lazy-recursion",
+  "function(){function read(f){return f.arguments[0];}function f(a){if(a>0)return f(a-1)*10+read(f);return read(f);}return f(3);}"
+ ],
+ [
+  "sloppy-lazy-bound-reflection",
+  "function(){function read(f){return f.arguments[0];}function f(a){return read(f);}return f.bind(null,31)();}"
+ ],
+ [
+  "sloppy-lazy-reflection-throw-cleanup",
+  "function(){function f(a){throw a;}try{f(17);}catch(e){}return f.arguments===null;}"
+ ],
+ [
+  "sloppy-lazy-direct-property-reflection",
+  "function(){function f(a){a=2;return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-duplicate-parameters",
+  "function(){function f(a,a){a=9;return f.arguments[0]*100+f.arguments[1];}return f(1,2);}"
+ ],
+ [
+  "sloppy-eager-legacy-original-snapshot",
+  "function(){function f(a){arguments[0]=3;return f.arguments[0]*100+a;}return f(1);}"
+ ],
+ [
+  "sloppy-eager-duplicate-snapshot",
+  "function(){function f(a,a){arguments[1]=9;return f.arguments[0]*100+f.arguments[1];}return f(1,2);}"
+ ],
+ [
+  "sloppy-lazy-captured-parameter",
+  "function(){function f(a,b){a=2;b=3;var g=()=>a;return f.arguments[0]*100+f.arguments[1];}return f(1,4);}"
+ ],
+ [
+  "sloppy-lazy-nested-shadow",
+  "function(){function f(a){a=2;var g=function(a){return a;};return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-catch-shadow",
+  "function(){function f(a){a=2;try{throw 7;}catch(a){var g=()=>a;}return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-loop-shadow",
+  "function(){function f(a){a=2;for(let a=0;a<1;a++){var g=()=>a;}return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-nested-write-capture",
+  "function(){function f(a){a=2;var g=function(){a=7;};return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-computed-key-not-capture",
+  "function(){function f(a){a=2;var o={[a](){return 1;}};return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-method-body-capture",
+  "function(){function f(a){a=2;var o={m(){return a;}};return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-hoisted-parameter-function",
+  "function(){function f(a){function a(){return 1;}return f.arguments[0]===a;}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-named-expression-shadow",
+  "function(){function f(a){a=2;var g=function a(){return a;};return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-eval-reference-bailout-snapshot",
+  "function(){function f(a,eval){var g=eval;a=2;return f.arguments[0];}return f(1,function(){});}"
+ ],
+ [
+  "sloppy-nested-direct-eval-forces-context",
+  "function(){function f(a){function g(){eval(\"\");}a=2;return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-shadowed-eval-call-context",
+  "function(){function f(a,eval){eval();a=2;return f.arguments[0];}return f(1,function(){});}"
+ ],
+ [
+  "sloppy-parameter-named-arguments",
+  "function(){function f(arguments){arguments=2;return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-var-arguments-initializer",
+  "function(){function f(a){var arguments=0;a=2;return f.arguments[0];}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-own-descriptor-value",
+  "function(){function f(a){a=2;return Object.getOwnPropertyDescriptor(f,\"arguments\").value[0];}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-legacy-descriptor-shape",
+  "function(){function f(a){var d=Object.getOwnPropertyDescriptor(f.arguments,\"callee\");return [d.value===f,d.writable,d.enumerable,d.configurable].join(\"|\");}return f(1);}"
+ ],
+ [
+  "sloppy-lazy-legacy-string-ownkeys",
+  "function(){function f(a){return Object.getOwnPropertyNames(f.arguments).join(\"|\");}return f(1);}"
  ]
 ];
+const knownUnsupported=[{"name": "sloppy-lazy-legacy-iterator", "source": "function(){function f(a){return f.arguments[Symbol.iterator]===Array.prototype.values;}return f(1);}", "reason": "Native Symbol identities/keys and the arguments Symbol.iterator property remain unsupported, as for existing eager arguments objects. This gate does not qualify those semantics."}, {"name": "sloppy-lazy-legacy-ownkeys", "source": "function(){function f(a){return Reflect.ownKeys(f.arguments).map(String).join(\"|\");}return f(1);}", "reason": "Native Symbol identities/keys and the arguments Symbol.iterator property remain unsupported, as for existing eager arguments objects. This gate does not qualify those semantics."}];
 const tracked=new Map();async function bind(file){const bytes=await readFile(resolve(root,file));tracked.set(file,sha(bytes));}
 async function tree(directory){for(const entry of await readdir(resolve(root,directory),{withFileTypes:true})){const file=directory+'/'+entry.name;if(entry.isDirectory())await tree(file);else if(entry.name.endsWith('.rs')||entry.name==='Cargo.toml')await bind(file);}}
 for(const dir of ['crates/js-runtime','crates/battle-core','third-party/ryu-js'])await tree(dir);
@@ -74,4 +191,4 @@ const view=new DataView(new ArrayBuffer(8));function encodeValue(value){if(value
 const observations=[];for(let index=0;index<cases.length;index++){const[name,source]=cases[index],realm=createContext(constants.DONT_CONTEXTIFY);let expected;try{expected='ok:'+encodeValue(runInContext('('+source+')',realm)());}catch(error){expected='throw:'+encodeValue(error);}observations.push({name,source,expected,actual:actual[index],matched:expected===actual[index]});}
 const inputsAtFinish=[];for(const[file,digest]of tracked){const actualDigest=sha(await readFile(resolve(root,file)));inputsAtFinish.push({file,sha256:digest,matched:actualDigest===digest});}assert.ok(inputsAtFinish.every(row=>row.matched),'Control-flow source inputs changed during build/run');
 const passed=observations.every(row=>row.matched),archive='benchmarks/validation/rust-generated-arguments-elision.outputs.json.gz';await writeFile(resolve(root,archive),gzipSync(Buffer.from(JSON.stringify(observations))));
-const report={version:1,passed,cases:cases.length,firstDifference:observations.find(row=>!row.matched)??null,backend:'Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.',sourceInputsAtFinish:inputsAtFinish,oracleProfile:profile,generatedRustSha256:sha(rust),binary:{file:binary,sha256:sha(await readFile(binary))},rustc:{file:rustc,sha256:sha(await readFile(rustc))},compileArgs,archive:{file:archive,sha256:sha(await readFile(resolve(root,archive)))},qualifiesFor10000Target:false,scope:'Strict unused arguments elision, retained nested-arrow captures, ordinary nested arguments, source metadata, and restricted reflection cases. This is not a complete battle or unrestricted ECMAScript qualification.'};await writeFile(resolve(root,'benchmarks/validation/rust-generated-arguments-elision.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed,cases:cases.length,firstDifference:report.firstDifference}));if(!passed)process.exitCode=1;
+const report={version:1,passed,cases:cases.length,knownUnsupported,firstDifference:observations.find(row=>!row.matched)??null,backend:'Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.',sourceInputsAtFinish:inputsAtFinish,oracleProfile:profile,generatedRustSha256:sha(rust),binary:{file:binary,sha256:sha(await readFile(binary))},rustc:{file:rustc,sha256:sha(await readFile(rustc))},compileArgs,archive:{file:archive,sha256:sha(await readFile(resolve(root,archive)))},qualifiesFor10000Target:false,scope:'Strict unused arguments elision, retained nested-arrow captures, ordinary nested arguments, source metadata, and restricted reflection cases. This is not a complete battle or unrestricted ECMAScript qualification.'};await writeFile(resolve(root,'benchmarks/validation/rust-generated-arguments-elision.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed,cases:cases.length,firstDifference:report.firstDifference}));if(!passed)process.exitCode=1;
