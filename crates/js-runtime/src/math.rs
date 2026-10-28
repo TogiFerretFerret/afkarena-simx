@@ -10,7 +10,7 @@ impl Runtime {
         let object=self.object();
         let id=self.object_id(object)?;self.objects[id.0].kind=ObjectKind::Math;
         for (name,arity,code) in [
-            ("abs",1,math_abs as NativeFn),("atan",1,math_atan as NativeFn),("atan2",2,math_atan2 as NativeFn),("floor",1,math_floor as NativeFn),
+            ("abs",1,math_abs as NativeFn),("atan",1,math_atan as NativeFn),("atan2",2,math_atan2 as NativeFn),("sin",1,math_sin as NativeFn),("cos",1,math_cos as NativeFn),("tan",1,math_tan as NativeFn),("floor",1,math_floor as NativeFn),
             ("ceil",1,math_ceil as NativeFn),("round",1,math_round as NativeFn),
             ("trunc",1,math_trunc as NativeFn),("sqrt",1,math_sqrt as NativeFn),
             ("min",2,math_min as NativeFn),("max",2,math_max as NativeFn),
@@ -20,7 +20,7 @@ impl Runtime {
             let value=self.native_function(name,arity,code)?;let key=self.string(name);
             self.define_data(object,key,value,true,false,true)?;
         }
-        for name in ["acos","acosh","asin","asinh","atanh","cbrt","cos","cosh","exp","expm1","fround","hypot","log","log10","log1p","log2","random","sin","sinh","tan","tanh"] {
+        for name in ["acos","acosh","asin","asinh","atanh","cbrt","cosh","exp","expm1","fround","hypot","log","log10","log1p","log2","random","sinh","tanh"] {
             let arity=if name=="random"{0}else if matches!(name,"atan2"|"hypot"){2}else{1};
             let value=self.native_function(name,arity,unsupported_math)?;let key=self.string(name);
             self.define_data(object,key,value,true,false,true)?;
@@ -58,3 +58,7 @@ fn unsupported_math(rt:&mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>
 
 fn math_atan(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(fdlibm::atan(first(rt,args)?)))}
 fn math_atan2(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let y=first(rt,args)?;let x=rt.to_number(args.get(1).copied().unwrap_or(Value::Undefined))?;Ok(Value::Number(fdlibm::atan2(y,x)))}
+
+fn math_sin(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(fdlibm::sin(first(rt,args)?)))}
+fn math_cos(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(fdlibm::cos(first(rt,args)?)))}
+fn math_tan(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(fdlibm::tan(first(rt,args)?)))}
