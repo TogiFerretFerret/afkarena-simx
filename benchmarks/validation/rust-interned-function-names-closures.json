@@ -1,0 +1,638 @@
+{
+  "version": 1,
+  "passed": true,
+  "cases": 47,
+  "firstDifference": null,
+  "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
+  "sourceInputsAtFinish": [
+    {
+      "file": "crates/js-runtime/Cargo.toml",
+      "sha256": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/examples/number_string_alloc.rs",
+      "sha256": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/examples/value_check.rs",
+      "sha256": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/array_from.rs",
+      "sha256": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/battle_gc.rs",
+      "sha256": "96256aa10f57ee8d833f1bef99d7c1185d7205d2ae7519a7bfa573cdb8ae527f",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/binary.rs",
+      "sha256": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/builtins.rs",
+      "sha256": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/class_dispatch.rs",
+      "sha256": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/closures.rs",
+      "sha256": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/collections.rs",
+      "sha256": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/copy_obj.rs",
+      "sha256": "28cf58913ef7e407748beb4ac982c94cd589b76b07d114efcf7c46ce900af96b",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/date.rs",
+      "sha256": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/dense_array_shift.rs",
+      "sha256": "f4a866084d5f2a700afaae853815afd2e2d2c3e854397139ade8789a2c5f94a3",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/diagnostics.rs",
+      "sha256": "9018f7593d765ba4debf4f75355f1ddd676aa60c79a93b183db89086590e2434",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/dynamic_slots.rs",
+      "sha256": "f7731263433ec74752da8423fd84c0f2a68cb7c060b02f18c08d974453d035bf",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/env.rs",
+      "sha256": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/errors.rs",
+      "sha256": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/expose_scan.rs",
+      "sha256": "06733c148aab5757260fb180e8361ea38f6dc16ea39ed8091ef2215e81c37110",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/fdlibm.rs",
+      "sha256": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/heap.rs",
+      "sha256": "0d8b7a1094792303a3dba0c2f3d8b102a2d9682b300d45b175dabdaa9d678104",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/host.rs",
+      "sha256": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/id_hash.rs",
+      "sha256": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/index_keys.rs",
+      "sha256": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/iterators.rs",
+      "sha256": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/json.rs",
+      "sha256": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/lazy_arguments.rs",
+      "sha256": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/lib.rs",
+      "sha256": "1e1822fd5371c9928240e7af626bb6b20be377326f43e4f1da177e8e65b5b556",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/literal_pool.rs",
+      "sha256": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/math.rs",
+      "sha256": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/numeric_bootstrap.rs",
+      "sha256": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/override_dispatch.rs",
+      "sha256": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/property_slots.rs",
+      "sha256": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/reachability.rs",
+      "sha256": "9edd4aaba07905b4ac1bd1031bcfb1b96e27986509916e8c83e2cebb7f6f5e34",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/reflection_bootstrap.rs",
+      "sha256": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/regex.rs",
+      "sha256": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/runtime.rs",
+      "sha256": "26d62549f46cbb90317e65cbaa2eaf612fd6e8564d08da765f82f239133e3bd9",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/string_hash.rs",
+      "sha256": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/strings.rs",
+      "sha256": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/utf8_guard.rs",
+      "sha256": "f107d1d45c0541475f5df4bbc9092dbd351f36882090ef335c529060cd0612b3",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/utf8_loader.rs",
+      "sha256": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/value.rs",
+      "sha256": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/fast_length.rs",
+      "sha256": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/numeric_property_keys.rs",
+      "sha256": "7d729c37f9b4c77b67a98ab7e5dc9cc8260c8d9769d5c61880c2618df13adb21",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/ordinary_heap.rs",
+      "sha256": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/ordinary_set.rs",
+      "sha256": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/property_slots.rs",
+      "sha256": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/tests/regexp_heap.rs",
+      "sha256": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/Cargo.toml",
+      "sha256": "2b11be627b089d4bc2eb94961e8b8e2c122fced7aad72eacccba6446066d547a",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/clock_check.rs",
+      "sha256": "3644748cb79d28e90dc2aa34f79f21257d154e379048b132d5b82bd4be8b7ab0",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/engine_check.rs",
+      "sha256": "481e02b682fd14041417d0d20e1dab54d7426d2d5988811e290da03d00358a35",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/engine_runtime_check.rs",
+      "sha256": "d5e4485216e976d9fee2beff4b9dc721458db4ade389d44b66b6ed5d0d4c98c2",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/engine_unit_runtime_check.rs",
+      "sha256": "7361b4ccc985b409da98ed3068c407ab5974506aff09a7992972b757894fe5b1",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/entity_check.rs",
+      "sha256": "5a8c4747cc2b845ecec1e1adc090f9f218d0ce80e7e804dbb040d0580dddb084",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/numeric_check.rs",
+      "sha256": "700f0118d9d18fbef5bc3c319387a2ca72b6dfbf88db394a168a2341b2889dd9",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/rng_check.rs",
+      "sha256": "fc2505690ad75d713f9c7773346025cf22af3c9b4e071e0de73d36b8943b974d",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/scheduler_check.rs",
+      "sha256": "fab294014bc5439b626231034be23a5bf5271e3d2649f0e74df2755279ec25cc",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/examples/unit_skill_runtime_check.rs",
+      "sha256": "1b57dfa10f22fe6f63cb73fb1ded9f220f061bb387d8b03bfd38c7f8f4673303",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/ai.rs",
+      "sha256": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/buff.rs",
+      "sha256": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/clock.rs",
+      "sha256": "95a00c6a78a6a1c6d82e42f8c81da7e0e4c3d6512468925697045fe975798cba",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/config.rs",
+      "sha256": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/damage.rs",
+      "sha256": "8375af2f3c4d929bdef52fb86195357511f890a28c47d45ed6ed779e34641601",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/engine.rs",
+      "sha256": "1a7cd93944a3cc86b25cc39d19edc7bf9b73f213174487744e606aabcd889110",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/engine_runtime.rs",
+      "sha256": "e4d950171ce10100698a75511fc9a2992b4fee38716d96085adc28854598f28e",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/entity.rs",
+      "sha256": "6e5b05c246f3f0736e68e5f2b0abd11e831cff8d9d443b87fece5df17c65c8ac",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/ffi.rs",
+      "sha256": "62e5d0c44521e8bb824c180ebdab811897397ebe968d27a0df98587ae1e06eb6",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/js_math.rs",
+      "sha256": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/lib.rs",
+      "sha256": "d90b6af65542229452fd86e19a6d6616c5e4410f3f6714fa86728980d6878723",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/numeric.rs",
+      "sha256": "113358834ead99b82800e8fe23a1d9b98f70e547a003c3cc45f860b30b5dc080",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/rng.rs",
+      "sha256": "d343b560ebc3808ac57e8df064b63d5e4f75f6e9ed7bbefd0f2a20cae675d035",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/scheduler.rs",
+      "sha256": "944041e9fcbb66e2dfb7f67121798e45e8a4db336f724bd7b047fe23829fe152",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/skill.rs",
+      "sha256": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/unit.rs",
+      "sha256": "c097a9298d8e3cfeb11b9cbb3656e438b0c96d3b13526d4769eba7cd3a53809f",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/unit_resources.rs",
+      "sha256": "2f0e194badbaca8499189801115c7e6cf01575fc8157de7ec589100da89908fb",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/unit_skill_runtime.rs",
+      "sha256": "8684ac88baa412c51347f9fa9be2f2979c7711faad8c55cd42a3829de517d949",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/unit_speeder.rs",
+      "sha256": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/v8_small_sort.rs",
+      "sha256": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/src/v8_tim_sort.rs",
+      "sha256": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+      "matched": true
+    },
+    {
+      "file": "crates/battle-core/tests/runtime_shared_state.rs",
+      "sha256": "b4c144507aac7fec4470c6f9cdd2d553b257d1d2a225ed5dae7c1ec84a02a147",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/Cargo.toml",
+      "sha256": "70fc95979c55b69a6c44987953d5859c2a030ed301b6b5ec269437bbe0c61c6c",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/benches/bench.rs",
+      "sha256": "b570c357c457cf43c0d7d683e8c7e97e963844d866bc3df9299cab83c4230fb9",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/examples/upstream_benchmark.rs",
+      "sha256": "ae9f51d8ddd41a263f07bc2ed8503f04b6a1c8566f26bec7891f50d0deba0f34",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/buffer/mod.rs",
+      "sha256": "47b36d55d2e7f977893aefcf47e8eeacee65196e2282a1585067046e86a74cb8",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/common.rs",
+      "sha256": "cae347e97fc30c50a964f80425e8c3e69ece2b8ab81f9b81b9baa7fcec64a001",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/d2s.rs",
+      "sha256": "f2612785ebe510c935b979dc5f66f6b8c818ca8a4cf0364ce1fe1d41fea39592",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/d2s_full_table.rs",
+      "sha256": "9b0186acbc6d65dc55c17e16125be707a2bfb920d22b35d33234b4cc38566a36",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/d2s_intrinsics.rs",
+      "sha256": "bbf15472f4299942312e80a992cbc2f47f85f17ed193f24084534434dbfb26e7",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/d2s_small_table.rs",
+      "sha256": "db3bbe4002d816785b0ee233c330f19fa7002f31dab47dc6f67b266996fe3ae4",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/digit_table.rs",
+      "sha256": "02351ca54cb8cb3679f635115dd094f32fd91750e9f66103c1ee9ec3db507072",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/f2s.rs",
+      "sha256": "cb96f61d8c6c6c941803a7b629f2bf835e1a20ad9d3e5d3454a30ed3391c3515",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/f2s_intrinsics.rs",
+      "sha256": "4667c34aab7637f2330df7bbd4c178c0ba1dd5854ff15b9a36a96fd5f527fb66",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/lib.rs",
+      "sha256": "6f16729a39d8358cf11b8a024046bfd7b2c25ae9240403148a32379028455417",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/parse.rs",
+      "sha256": "7f8aa7e007caf5dcb03abdc4238157724bb742d0823a3b8a01646fa1f1129154",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/exponent.rs",
+      "sha256": "680135df359bf8a9b5236a6bd4fb29e90eec0612e351c15aaf5243cc4974ed32",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/mantissa.rs",
+      "sha256": "40cb00efe1c3fab559ab58389bd519d556548aa18fb261a90dd48138911d039b",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/mod.rs",
+      "sha256": "3d02810bb9bf62756591a46a1a0aef1729ff8d94443b268a147dcd65a5ca6b2b",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/to_fixed/d2fixed_full_table.rs",
+      "sha256": "fc506ea6d26dabdc92c16a14079a6054dd59ea64704c5def292508535ff248ad",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/pretty/to_fixed/mod.rs",
+      "sha256": "febcdeca16733977cd5aa94111852e7ea2f6dc5893026d0d557dcddc58a0968c",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/s2d.rs",
+      "sha256": "74864504532593e3bb70db70fd74e724405670f2f4103f679151db00962ec81c",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/src/s2f.rs",
+      "sha256": "f3f42063dc69540cbbfd81f9b2b8e25160a0808f66bcd05da5c06f88e02c2a1f",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/common_test.rs",
+      "sha256": "8a7d1a611944ff4540c1fd8c8f310a989c1e844a1c8f4be502882532e3cb7b89",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/d2s_intrinsics_test.rs",
+      "sha256": "15d11b70810bf04f33f8b185bf7f010a436a4edb47fa4648b1a036568c2c5d15",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/d2s_table_test.rs",
+      "sha256": "df5e2f2a0411a5f8506a06b579a2dda3ee85b5867d3a9fa06a6b3dcfa2b825e4",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/d2s_test.rs",
+      "sha256": "570a6bcfb6fe3a3c3593f6dbf6bd2e6240668141574f8f3d436d6dc595dc41b1",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/exhaustive.rs",
+      "sha256": "834a38c3a2daa66e3ae8f4196878757e5a3a1fff4cd3293227921e7b19caed11",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/f2s_test.rs",
+      "sha256": "0f1ab6f5d2cd9955c4765032c8ae6897ada203c9a3da93c74637a99099ced327",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/macros/mod.rs",
+      "sha256": "8e90a674b3960f9516cb38f4eea0e0981ff902c3b33572ebdb6c5528d3ffa72c",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/s2d_test.rs",
+      "sha256": "03213cc3f984f84be5e17f6bd86d431afaeb27eb2bfaf88f3bab1111dbbe2bc5",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/s2f_test.rs",
+      "sha256": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
+      "matched": true
+    },
+    {
+      "file": "third-party/ryu-js/tests/to_fixed.rs",
+      "sha256": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
+      "matched": true
+    },
+    {
+      "file": "Cargo.toml",
+      "sha256": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
+      "matched": true
+    },
+    {
+      "file": "Cargo.lock",
+      "sha256": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
+      "matched": true
+    },
+    {
+      "file": "config/source-oracle-runtime.json",
+      "sha256": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+      "matched": true
+    },
+    {
+      "file": "tools/rust-port/compile.mjs",
+      "sha256": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
+      "matched": true
+    },
+    {
+      "file": "tools/rust-port/expressions.mjs",
+      "sha256": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
+      "matched": true
+    },
+    {
+      "file": "tools/rust-port/statements.mjs",
+      "sha256": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
+      "matched": true
+    },
+    {
+      "file": "tools/rust-port/check-closures.mjs",
+      "sha256": "4b42d431a4124c150a68f8a1bdddf99a2dc839d3c4a822f62c48f1572a5dfb2d",
+      "matched": true
+    }
+  ],
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "generatedRustSha256": "1ccc3a93ab53e7362902243b80ee73fc3966bb202d4bbd2e6fdbf8caefbfd11a",
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/rust-port-closures/check",
+    "sha256": "e72484e5dd940ee159db2db41882e8a3afe13512b53acc7c07f6534880bfb06d"
+  },
+  "rustc": {
+    "file": "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
+  },
+  "compileArgs": [
+    "--edition=2024",
+    "-O",
+    "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/rust-port-closures/main.rs",
+    "-L",
+    "dependency=/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/deps",
+    "--extern",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/libjs_runtime.rlib",
+    "-o",
+    "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/rust-port-closures/check"
+  ],
+  "archive": {
+    "file": "benchmarks/validation/rust-interned-function-names.closures-outputs.gz",
+    "sha256": "abd5a9f81482ac341f63e1213e5646755b91929352cc26dd361074cbd4717bd7"
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "Directed pure Rust generated closure, receiver, bind/construct, source-metadata, mapped-argument, hoisting and lexical-cell cases. This is not a complete battle or unrestricted ECMAScript qualification."
+}

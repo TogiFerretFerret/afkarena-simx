@@ -1,0 +1,319 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Captured internal function name storage only. All JS name descriptors, source metadata, binding callbacks and invocation paths retained. Allocation-count diagnostics are fixed warmed native factory components, not battle throughput.",
+  "libraryTests": 61,
+  "integrationTests": 26,
+  "gates": [
+    {
+      "file": "benchmarks/validation/rust-interned-function-names-closures.json",
+      "sha256": "4d98c69bdaef5b18c58c7343da69088a4f03482a6246917875dc6fb4234c66e3",
+      "cases": 47,
+      "passed": true
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names-reflection.json",
+      "sha256": "8fcf8e98b05591ab541671e83c24e3b324309596cba4967e43ea0a7367d7c499",
+      "cases": 24,
+      "passed": true
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names-date.json",
+      "sha256": "8973dbdc3081cd51aba1fe7889b10dfac09a6c5cfc49151774568b62b0bb3940",
+      "cases": 36,
+      "passed": true
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names-errors.json",
+      "sha256": "3f8bf79be371e0dc221d69ff4927afccd9e6fdedd866d90f7a05aa092fd45490",
+      "cases": 40,
+      "passed": true
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names-diagnostics.json",
+      "sha256": "f149d5f6ce164ce73ba37c75ff3d56950c7c07f34b0914624dd9d2ef2eb40954",
+      "passed": true
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names-arguments-elision.json",
+      "sha256": "b4b1dc46f69308534b33b4454f2f9c28451da93ad7c85107de5969290b588049",
+      "cases": 40,
+      "passed": true
+    }
+  ],
+  "counts": [
+    {
+      "variant": "baseline",
+      "mode": "native",
+      "functions": 10000,
+      "functionRecordBytes": 176,
+      "allocations": {
+        "allocations": 30005,
+        "allocatedBytes": 3379728,
+        "deallocations": 5,
+        "deallocatedBytes": 269904,
+        "reallocations": 10,
+        "reallocatedOldBytes": 5206016,
+        "reallocatedNewBytes": 10412032
+      }
+    },
+    {
+      "variant": "baseline",
+      "mode": "bound",
+      "functions": 10000,
+      "functionRecordBytes": 176,
+      "allocations": {
+        "allocations": 40005,
+        "allocatedBytes": 3459728,
+        "deallocations": 10005,
+        "deallocatedBytes": 589904,
+        "reallocations": 30010,
+        "reallocatedOldBytes": 5526016,
+        "reallocatedNewBytes": 11052032
+      }
+    },
+    {
+      "variant": "candidate",
+      "mode": "native",
+      "functions": 10000,
+      "functionRecordBytes": 160,
+      "allocations": {
+        "allocations": 20005,
+        "allocatedBytes": 3299728,
+        "deallocations": 5,
+        "deallocatedBytes": 269904,
+        "reallocations": 10,
+        "reallocatedOldBytes": 4952064,
+        "reallocatedNewBytes": 9904128
+      }
+    },
+    {
+      "variant": "candidate",
+      "mode": "bound",
+      "functions": 10000,
+      "functionRecordBytes": 160,
+      "allocations": {
+        "allocations": 30005,
+        "allocatedBytes": 3379728,
+        "deallocations": 10005,
+        "deallocatedBytes": 589904,
+        "reallocations": 20010,
+        "reallocatedOldBytes": 5192064,
+        "reallocatedNewBytes": 10384128
+      }
+    }
+  ],
+  "binaries": [
+    {
+      "file": "work/interned-function-names/baseline-count",
+      "sha256": "4373f7380aaefd73664e8f4e50f6363ef0b8f4359e7277e3f5c40669c03aad8d"
+    },
+    {
+      "file": "work/interned-function-names/candidate-count",
+      "sha256": "2770c5886a1e7ffd06843f3c92298c9074bba86950b8bb5f4def9dc703236ce3"
+    }
+  ],
+  "libraries": {
+    "baseline:work/interned-function-names/baseline-deps/libbattle_core-cbae6d4f8d37de4a.rlib": "aa44622b052ef6ea19e2e4570c989d20f20887b53734240b12dabc3c2ece9bb9",
+    "baseline:work/interned-function-names/baseline-deps/libjs_runtime-0251dbe754fe7b05.rlib": "6d031e6bd9be91860aa9fd50d1204b4bf3ef5d8d7f12a35d619b95ab12ae1c4b",
+    "baseline:work/interned-function-names/baseline-deps/libjs_runtime.rlib": "6d031e6bd9be91860aa9fd50d1204b4bf3ef5d8d7f12a35d619b95ab12ae1c4b",
+    "baseline:work/interned-function-names/baseline-deps/libmemchr-78b772ea9bbe2a30.rlib": "3c3ec3225c6c8f264774c81cf3b9036112b890fc3f0f10f0341625c77915e70c",
+    "baseline:work/interned-function-names/baseline-deps/libregress-82dd4bbdf19ad1cc.rlib": "62ea3f36c4940e52db1047adf134d88462036f2a3c8dd9aa23c5bff1227be70b",
+    "baseline:work/interned-function-names/baseline-deps/libryu_js-561ffce7286f1eac.rlib": "85d754f47ca0d15e45f7cd270a3b51cbf866d8fbd4a199555f4c68470e8f67b9",
+    "candidate:target/release/deps/libbattle_core-cbae6d4f8d37de4a.rlib": "aa44622b052ef6ea19e2e4570c989d20f20887b53734240b12dabc3c2ece9bb9",
+    "candidate:target/release/deps/libjs_runtime-0251dbe754fe7b05.rlib": "88bfe62a29abf73e3d4cdc6be61cebb9a372e64cc92c0f20946edca41be9bbb7",
+    "candidate:target/release/deps/libmemchr-78b772ea9bbe2a30.rlib": "3c3ec3225c6c8f264774c81cf3b9036112b890fc3f0f10f0341625c77915e70c",
+    "candidate:target/release/deps/libregress-82dd4bbdf19ad1cc.rlib": "62ea3f36c4940e52db1047adf134d88462036f2a3c8dd9aa23c5bff1227be70b",
+    "candidate:target/release/deps/libryu_js-561ffce7286f1eac.rlib": "85d754f47ca0d15e45f7cd270a3b51cbf866d8fbd4a199555f4c68470e8f67b9"
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.closures-outputs.gz",
+      "sha256": "4cba1e836e130d4018e0d2f59daf313a916e3e8bbd62f3f2da7840fba26aded1",
+      "uncompressedSha256": "abd5a9f81482ac341f63e1213e5646755b91929352cc26dd361074cbd4717bd7"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.reflection-outputs.gz",
+      "sha256": "6db0c6b183202290ee2aaa276b0f26b1a2abbd3cf8733a62ded4bd731212a06f",
+      "uncompressedSha256": "498fdc3732a1ceac3f5cff3876602a369381a4da2c4e7c20b796d85e499730f2"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.date-outputs.gz",
+      "sha256": "62578ae5b3e3d2f1fcd0b36a1fd99336e3b720a4f001f7839514092f994a35cf",
+      "uncompressedSha256": "17b4ea19fb2b9ef22187647991696d9b9008d5f2a99afb17d11dbffaaaacc215"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.errors-outputs.gz",
+      "sha256": "0a7dec4dac38993f0595305089691860df64ee22d7a8481f4528e63f010a1de9",
+      "uncompressedSha256": "c40dc92443f289c665199e230b28aecb6ca431079ae2fca8d517a6358b2a4ed0"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.diagnostics-outputs.gz",
+      "sha256": "7c3384021277a4ccdb3fb80087e98588d5902153406b7d9cc85ed4b59153d47d",
+      "uncompressedSha256": "d93104c840235ba7a4e8f02309f660aa71dca48327c70efa05647497e2913301"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.arguments-elision-outputs.gz",
+      "sha256": "a0a92e84856779a9c462535ad4f5dce24e262f9cee0af8fa3920c4bfdb9cd515",
+      "uncompressedSha256": "24722761b3c044b020833f1177d685d9a3db50ff5ebe4aa855635dcbb5d4cf40"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.interned-function-names-final-tests.log.gz",
+      "sha256": "952ae2187fcfe6cf11b7f81d4db3afc17ef9f124de70efbd938b03d1a20bb797",
+      "uncompressedSha256": "7ed702165f5560bd51e98cc088e47e55c2276834e6e137919a1cfd5047f1da6f"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.interned-function-names-tests.log.gz",
+      "sha256": "a9a073a51c5b58e30044deaef62913dc7b1bcf15eb941c249c337c9a2e657ab5",
+      "uncompressedSha256": "b9e1b546be1654f6ef96a5d58bce3d490a7dfa5e13c58ef91e949c60d87a7381"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.interned-function-names-diagnostics.log.gz",
+      "sha256": "b2912b84e132f702084a9c27b571cb7cbcb836b7f39eb67293633c80e3658bb2",
+      "uncompressedSha256": "735112d40e3cf62ec975ef5711283c969a33aefc3cc6d48b2965ad7082cc2fa1"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.baseline-runtime-sources.json.gz",
+      "sha256": "7ca19a40ee87272aa427062aa449eed3aab3ec84266bebf83ba4272cb22e2d14",
+      "uncompressedSha256": "932d578c34b172d4f906b87598f9b4e56277098c789c948635389768f67cfd37"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.candidate-runtime-sources.json.gz",
+      "sha256": "b853f10d60b64566b932017d96533e8519b08598a5fb925933b980b60f59eb25",
+      "uncompressedSha256": "12e89997a40162a7020e3a023f1a9ecdff30f3706729a02a77f3b42672a49d23"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.baseline-native-stdout.gz",
+      "sha256": "120f1ce3bdcb566eda2701084d969c65a12c676240f2dafff8970cff077bc0eb",
+      "uncompressedSha256": "fd6f2f74bbbde130f8047c75c4e1d7209b3edab4147517b1c9fd7a1ee517d387"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.baseline-native-stderr.gz",
+      "sha256": "6b1d699d73fc8aa8fd8ec1798ababb1647bdd4f9982431df63c82d441b611fce",
+      "uncompressedSha256": "42fbffdfe890001b733bdc64a487f052f9b6adea80998ecf886c8852033c9883"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.baseline-bound-stdout.gz",
+      "sha256": "b7cdbc32ca6706fc972f9c9a4da5427cd317c22578652caa9fd5ca6a912e98c0",
+      "uncompressedSha256": "70cc9a8fad66a00866ac1be19d8b57205896dfa9823c56a652a296562343d99f"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.baseline-bound-stderr.gz",
+      "sha256": "49cbd5d8e8a186f49f24fa1d384077c1cd9290343f0ebdc0922cd923b70a51a1",
+      "uncompressedSha256": "998908bd38bcd95550ee140cf812cd0e97928d67ec1b33496eeadd00a93f3ab0"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.candidate-native-stdout.gz",
+      "sha256": "5ea338fbc6433a1ba80b7d410386a57ba1403dc9c835ac61040d08e522f34d76",
+      "uncompressedSha256": "8bfd57133b31bdbb0863b5986885d6e104365af44db2a784114e1a2fee9ebbb6"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.candidate-native-stderr.gz",
+      "sha256": "97f6ecf41478282a720adfdd06e39115d334d682c8db48b0632d93711a1ad215",
+      "uncompressedSha256": "868a230c4a7d71f5e5e030488061e653b128445c2e796b6f0a0086c449e2e17d"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.candidate-bound-stdout.gz",
+      "sha256": "6ac9e4028a4fd9d1547a4c81c0db253b7603a171685fc1b2dc3f3616e0cc510d",
+      "uncompressedSha256": "9917666e6794da115520dedc93eb3b7da7452d730a7b67cb93fb43717f3c2c7b"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.candidate-bound-stderr.gz",
+      "sha256": "b0201e367f8357fc57e040051cc3e9a98a77f92f5a1ad1486104f6f58b4fa695",
+      "uncompressedSha256": "78c9b1801bc48c25eabc9794df38755fea9dbf537ed9abfcb19c567abb8a9190"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.allocation-driver.rs.gz",
+      "sha256": "50c39e154faed7eb2da0a6c006c81bf5a00a0935a2f7d63c0159b71d6de3abc0",
+      "uncompressedSha256": "c1e179e2c1a24a40a4ad40e1bf41b0736d9d4942857354f489b57988283293f8"
+    },
+    {
+      "file": "benchmarks/validation/rust-interned-function-names.allocator.rs.gz",
+      "sha256": "65e2b7d44923c140ce2b14f723616ba40a1e08a61bffe058645a2c1a642691f6",
+      "uncompressedSha256": "ea89d9e79d0a094ba1c368f596ec6f5499310b1419caed29167d2d2caa5aff1e"
+    }
+  ],
+  "baselineRevision": "8e9f1b0",
+  "candidateRevision": "5109f04",
+  "candidateInputs": {
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/js-runtime/examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+    "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "96256aa10f57ee8d833f1bef99d7c1185d7205d2ae7519a7bfa573cdb8ae527f",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/closures.rs": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "28cf58913ef7e407748beb4ac982c94cd589b76b07d114efcf7c46ce900af96b",
+    "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+    "crates/js-runtime/src/dense_array_shift.rs": "f4a866084d5f2a700afaae853815afd2e2d2c3e854397139ade8789a2c5f94a3",
+    "crates/js-runtime/src/diagnostics.rs": "9018f7593d765ba4debf4f75355f1ddd676aa60c79a93b183db89086590e2434",
+    "crates/js-runtime/src/dynamic_slots.rs": "f7731263433ec74752da8423fd84c0f2a68cb7c060b02f18c08d974453d035bf",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+    "crates/js-runtime/src/expose_scan.rs": "06733c148aab5757260fb180e8361ea38f6dc16ea39ed8091ef2215e81c37110",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "0d8b7a1094792303a3dba0c2f3d8b102a2d9682b300d45b175dabdaa9d678104",
+    "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+    "crates/js-runtime/src/lib.rs": "1e1822fd5371c9928240e7af626bb6b20be377326f43e4f1da177e8e65b5b556",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/property_slots.rs": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
+    "crates/js-runtime/src/reachability.rs": "9edd4aaba07905b4ac1bd1031bcfb1b96e27986509916e8c83e2cebb7f6f5e34",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "26d62549f46cbb90317e65cbaa2eaf612fd6e8564d08da765f82f239133e3bd9",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "f107d1d45c0541475f5df4bbc9092dbd351f36882090ef335c529060cd0612b3",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+    "crates/js-runtime/tests/fast_length.rs": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+    "crates/js-runtime/tests/numeric_property_keys.rs": "7d729c37f9b4c77b67a98ab7e5dc9cc8260c8d9769d5c61880c2618df13adb21",
+    "crates/js-runtime/tests/ordinary_heap.rs": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+    "crates/js-runtime/tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
+    "crates/js-runtime/tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+    "crates/js-runtime/tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+    "crates/battle-core/Cargo.toml": "2b11be627b089d4bc2eb94961e8b8e2c122fced7aad72eacccba6446066d547a",
+    "crates/battle-core/examples/clock_check.rs": "3644748cb79d28e90dc2aa34f79f21257d154e379048b132d5b82bd4be8b7ab0",
+    "crates/battle-core/examples/engine_check.rs": "481e02b682fd14041417d0d20e1dab54d7426d2d5988811e290da03d00358a35",
+    "crates/battle-core/examples/engine_runtime_check.rs": "d5e4485216e976d9fee2beff4b9dc721458db4ade389d44b66b6ed5d0d4c98c2",
+    "crates/battle-core/examples/engine_unit_runtime_check.rs": "7361b4ccc985b409da98ed3068c407ab5974506aff09a7992972b757894fe5b1",
+    "crates/battle-core/examples/entity_check.rs": "5a8c4747cc2b845ecec1e1adc090f9f218d0ce80e7e804dbb040d0580dddb084",
+    "crates/battle-core/examples/numeric_check.rs": "700f0118d9d18fbef5bc3c319387a2ca72b6dfbf88db394a168a2341b2889dd9",
+    "crates/battle-core/examples/rng_check.rs": "fc2505690ad75d713f9c7773346025cf22af3c9b4e071e0de73d36b8943b974d",
+    "crates/battle-core/examples/scheduler_check.rs": "fab294014bc5439b626231034be23a5bf5271e3d2649f0e74df2755279ec25cc",
+    "crates/battle-core/examples/unit_skill_runtime_check.rs": "1b57dfa10f22fe6f63cb73fb1ded9f220f061bb387d8b03bfd38c7f8f4673303",
+    "crates/battle-core/src/ai.rs": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
+    "crates/battle-core/src/buff.rs": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145",
+    "crates/battle-core/src/clock.rs": "95a00c6a78a6a1c6d82e42f8c81da7e0e4c3d6512468925697045fe975798cba",
+    "crates/battle-core/src/config.rs": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36",
+    "crates/battle-core/src/damage.rs": "8375af2f3c4d929bdef52fb86195357511f890a28c47d45ed6ed779e34641601",
+    "crates/battle-core/src/engine.rs": "1a7cd93944a3cc86b25cc39d19edc7bf9b73f213174487744e606aabcd889110",
+    "crates/battle-core/src/engine_runtime.rs": "e4d950171ce10100698a75511fc9a2992b4fee38716d96085adc28854598f28e",
+    "crates/battle-core/src/entity.rs": "6e5b05c246f3f0736e68e5f2b0abd11e831cff8d9d443b87fece5df17c65c8ac",
+    "crates/battle-core/src/ffi.rs": "62e5d0c44521e8bb824c180ebdab811897397ebe968d27a0df98587ae1e06eb6",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "crates/battle-core/src/lib.rs": "d90b6af65542229452fd86e19a6d6616c5e4410f3f6714fa86728980d6878723",
+    "crates/battle-core/src/numeric.rs": "113358834ead99b82800e8fe23a1d9b98f70e547a003c3cc45f860b30b5dc080",
+    "crates/battle-core/src/rng.rs": "d343b560ebc3808ac57e8df064b63d5e4f75f6e9ed7bbefd0f2a20cae675d035",
+    "crates/battle-core/src/scheduler.rs": "944041e9fcbb66e2dfb7f67121798e45e8a4db336f724bd7b047fe23829fe152",
+    "crates/battle-core/src/skill.rs": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742",
+    "crates/battle-core/src/unit.rs": "c097a9298d8e3cfeb11b9cbb3656e438b0c96d3b13526d4769eba7cd3a53809f",
+    "crates/battle-core/src/unit_resources.rs": "2f0e194badbaca8499189801115c7e6cf01575fc8157de7ec589100da89908fb",
+    "crates/battle-core/src/unit_skill_runtime.rs": "8684ac88baa412c51347f9fa9be2f2979c7711faad8c55cd42a3829de517d949",
+    "crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
+    "crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
+    "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+    "crates/battle-core/tests/runtime_shared_state.rs": "b4c144507aac7fec4470c6f9cdd2d553b257d1d2a225ed5dae7c1ec84a02a147"
+  }
+}
