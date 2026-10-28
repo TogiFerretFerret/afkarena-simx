@@ -2,11 +2,11 @@
   "passed": true,
   "preparedNativeBinary": false,
   "ranBattleWorkload": false,
-  "tests": 8,
+  "tests": 10,
   "toolInputs": {
-    "tools/rust-port/benchmark-program-new-helpers.mjs": "f42a9b0a867715dd070fbd306f3a97c5a4e217f9ae19eb373a6ea0d29be404e2",
-    "tools/rust-port/helper-component-ab-support.mjs": "a667f113b53df8bdb8179c722a1fa24c83e7fb82e0f13f185b06ece2919ca3ac",
-    "tools/rust-port/tests/helper-component-ab.test.mjs": "2a2b304ebbd8d41dcc33cda68eafa63e7aae30fc2bcb0484d91dda809484ee5e",
+    "tools/rust-port/benchmark-program-new-helpers.mjs": "994c38cfef561b0ff2192527422dfc1fc04ae1c5f132162cf82ad99b082e4943",
+    "tools/rust-port/helper-component-ab-support.mjs": "ffccb15ec2f239c60cb988d1bd01078cfec798936b93299a304562793eed236d",
+    "tools/rust-port/tests/helper-component-ab.test.mjs": "495a737f93519a951b139e36c4df3c051e0ab66941f996e65514620a1cf57f1e",
     "tools/rust-port/component-ab-support.mjs": "ef3f24f03c942ce02eff4d51be1d262d5eeceff0fab60034cf1475f4c7111713"
   },
   "verifiedRuntimeFlags": {
@@ -21,7 +21,7 @@
   },
   "log": {
     "file": "benchmarks/validation/new-helper-component-tooling.tests.log.gz",
-    "sha256": "0578b3354e1fb044a930d9c8545602875d97d0e52e8fd58dcaa20f1c92dcdfe2"
+    "sha256": "96aeb395c5f539d665c2c58be0c25a3f3e204910bdd1ff1fe516519e565348ef"
   },
   "qualifiesFor10000Target": false,
   "scope": "Tool configuration, helper allowlist, fixed older flags, post-run admission marker order and manifest GC checks. Native compilation and execution are deliberately deferred until the NEXT full frozen build and Node battle baseline pass."
