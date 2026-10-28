@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "passed": true,
+  "result": {
+    "file": "benchmarks/results/2026-10-28T16-51-16.199Z-rust-unit-update-bindings.json",
+    "sha256": "593dc7bc72fd5d31dc66d4ee3ccd37f9cc1c3614fde0ed9889104717092d2363"
+  },
+  "originalUnitBodyUnchanged": true,
+  "pureRustExecution": true,
+  "fullFixtureCallbacksAndRawBitObserversRetained": true,
+  "allSourceOrderedEventsAndStateBitsMatched": true,
+  "orderedEventsPerTrial": 45068,
+  "updatesPerVariant": 9000,
+  "observedAggregateRatio": 1.1587485554226737,
+  "observedAggregatePercentChange": 15.874855542267374,
+  "pairs": [
+    {
+      "trial": 0,
+      "baselineUpdatesPerSecond": 5035.212989979429,
+      "cachedUpdatesPerSecond": 6781.678079582847,
+      "observedRatio": 1.3468502907581181
+    },
+    {
+      "trial": 1,
+      "baselineUpdatesPerSecond": 5260.2561159788,
+      "cachedUpdatesPerSecond": 5860.34784063353,
+      "observedRatio": 1.1140803244982431
+    },
+    {
+      "trial": 2,
+      "baselineUpdatesPerSecond": 5965.7035995369215,
+      "cachedUpdatesPerSecond": 6172.109685952011,
+      "observedRatio": 1.034598783357442
+    }
+  ],
+  "establishesBattleSpeedup": false,
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "These are original Unit.update controller updates per second, not battles per second.",
+    "The explicit component fixture has callback implementations; it is not a complete hero/skill/buff backend.",
+    "Every callback and raw-bit formatting observer executes in the timed window, so diagnostic cost is included.",
+    "Three alternated, contended trials on the shared four-core environment show substantial variance; no confidence interval or isolated/sustained speedup is established.",
+    "Rust arenas retain allocations for each finite trial; complete-battle, GC-lifetime and broad random-corpus qualification remain outstanding."
+  ]
+}
