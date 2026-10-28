@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "passed": true,
+  "compilerSha256": "8bc16e914c32fe3700f0617707c8d76f1e38c6df11a55d756f3382de9e56bd90",
+  "sources": {
+    "tools/rust-port/compile.mjs": "8bc16e914c32fe3700f0617707c8d76f1e38c6df11a55d756f3382de9e56bd90",
+    "tools/rust-port/expressions.mjs": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
+    "tools/rust-port/statements.mjs": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/rust-port/generate-program.mjs": "b9681f25d4471e564a48f1b47476bddb859d6a42b7dd6cadc6a9d00a466a52e2",
+    "crates/js-runtime/src/runtime.rs": "8ee228facdc62d1040d0ebcf58cd22ea83e913d23e9a755c9cb340ab617ab8e9",
+    "crates/js-runtime/src/closures.rs": "7539e7bda37e99b03c26caec754de99e9e1c305f7d5be172e8aa35be0d425c25",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/expose_scan.rs": "b5b771050b64fcbf14fa68ea4f4c2e5acfa8905a385623e8b43c6f648937cf9c",
+    "crates/js-runtime/src/battle_gc.rs": "c3fcc629a7b3804bea97a73d31e6f3f15fc50a168416d5d71b1eaf20abbeefc3"
+  },
+  "gates": [
+    {
+      "file": "benchmarks/validation/rust-generated-arguments-elision.json",
+      "sha256": "027141883c24ba63835c0c0108d7b5054b13339788e2d6314428b8b98729d446",
+      "passed": true,
+      "cases": 40,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-closures.json",
+      "sha256": "d489048689c1f82cc4ca13c77fab37e3e0e07b21dccbb058d2569a7956249e0d",
+      "passed": true,
+      "cases": 47,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-control-flow.json",
+      "sha256": "b1ce95a012ad6d049a5f988621f302b45ba7efc56e2dd833409158bc9b85b817",
+      "passed": true,
+      "cases": 40,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-port-expressions.json",
+      "sha256": "b4cc695b553bc273ad7fdfbe7f005cc72647cdc4bba9812ef3633994099c125e",
+      "passed": true,
+      "cases": 80,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-env-name-keys.json",
+      "sha256": "4b5602417fcc0b21c6ffe7420470c7abaa981ff32630a7169312efbb58d6b470",
+      "passed": true,
+      "cases": 63,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-expose-scan.json",
+      "sha256": "ec2eed15a225f7e74b764020b54039ae522ad265c3d40abc03246855b6fbfe61",
+      "passed": true,
+      "cases": 28,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-native-locals.json",
+      "sha256": "d381913d610572c7c74300fd8a06e862b0f7d0087e0e33e2f552faa3e94a3d03",
+      "passed": true,
+      "cases": 38,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-property-slots.json",
+      "sha256": "b8faadd2daf3fc7217b5cfa0987d021a6779a5c5fd1d21fc3246da35ab3b2341",
+      "passed": true,
+      "cases": 19,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-native-parameters.json",
+      "sha256": "3e9f258cc630d990e7f149cc4ee8f33170f03185590c39365269398570ff723c",
+      "passed": true,
+      "cases": 6,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-generated-battle-gc-cadence.json",
+      "sha256": "4f470be221440fb635095cf130fa8bf0dacfa45155eae6bad3e23db05799c969",
+      "passed": true,
+      "cases": null,
+      "compilerPinned": true
+    },
+    {
+      "file": "benchmarks/validation/rust-gc-cadence-generator.json",
+      "sha256": "6d4ae4d4802c0fafc722006f53b1fdc847a7e098ca517b7cb0728eb0109d586c",
+      "passed": true,
+      "cases": null,
+      "compilerPinned": true
+    }
+  ],
+  "rustTests": {
+    "library": 42,
+    "propertySlotsAndGcReuse": 4,
+    "logs": [
+      {
+        "file": "benchmarks/validation/rust-next-batch-unit-tests.stdout",
+        "sha256": "d47d9aab4c958a543006601d1a3078ec3508e9ef0a60bfc950ce0128416585fa"
+      },
+      {
+        "file": "benchmarks/validation/rust-next-batch-unit-tests.stderr",
+        "sha256": "17eee5692a24b630a60c0496c667fab2a10699f5ffa4987797494d1958724949"
+      }
+    ]
+  },
+  "structuralCases": {
+    "nativeLocals": 11,
+    "argumentPolicy": 5,
+    "activationElision": 19,
+    "exposureSourceGuards": 5,
+    "battleGcCadence": 13
+  },
+  "defaultGcCadence": 1,
+  "qualifiesFor10000Target": false,
+  "scope": "Combined compiler/runtime source gates with stable hash-pinned inputs; no new full-battle build, source comparison or throughput qualification."
+}

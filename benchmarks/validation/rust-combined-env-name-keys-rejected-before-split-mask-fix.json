@@ -1202,9 +1202,13 @@
     "/workspace/afkarena-simx/work/candidate-integration-next/work/rust-port-env-name-keys/check"
   ],
   "archive": {
-    "file": "benchmarks/validation/rust-generated-env-name-keys.outputs.json.gz",
+    "file": "benchmarks/validation/rust-combined-env-name-keys-rejected-before-split-mask-fix.outputs.json.gz",
     "sha256": "8150bd1119b978075770eeccdca55f16059826b0f09ce82647b260ac814ca0d8"
   },
   "qualifiesFor10000Target": false,
-  "scope": "Static environment name IDs ON/OFF with dynamic global getters/deletion/prototypes, captured mutable cells, TDZ, const, typeof, sloppy/strict assignment, Unicode names, mapped/duplicate arguments, catch shadowing, loop closures and AnnexB. Name caching does not cache binding values or remove source resolution. This is an environment component gate, not battle qualification. This is not a complete battle or unrestricted ECMAScript qualification."
+  "scope": "Static environment name IDs ON/OFF with dynamic global getters/deletion/prototypes, captured mutable cells, TDZ, const, typeof, sloppy/strict assignment, Unicode names, mapped/duplicate arguments, catch shadowing, loop closures and AnnexB. Name caching does not cache binding values or remove source resolution. This is an environment component gate, not battle qualification. This is not a complete battle or unrestricted ECMAScript qualification.",
+  "retainedFailure": {
+    "reason": "Combined forced-split gate exposed undefined rather than false raw argument masks in split initialization helpers; fixed in793780e.",
+    "originalArchiveFile": "benchmarks/validation/rust-generated-env-name-keys.outputs.json.gz"
+  }
 }
