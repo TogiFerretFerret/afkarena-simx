@@ -1,0 +1,79 @@
+--- /workspace/afkarena-simx/work/rust-env-map-controlled/before/runtime/src/env.rs	2026-10-28 17:07:40.217154664 +0000
++++ /workspace/afkarena-simx/work/rust-env-map-controlled/after/runtime/src/env.rs	2026-10-28 17:07:40.242063928 +0000
+@@ -1,6 +1,7 @@
+ //! Stable lexical cells. Captures retain EnvId identities and references retain
+ //! slot indices; reads and writes never decode names or search a map again.
+-use std::collections::BTreeMap;
++use std::collections::HashMap;
++use crate::id_hash::IdBuildHasher;
+ use crate::{Runtime,Value,JsError,JsResult};
+ use crate::value::{StringId,ObjectId};
+ #[derive(Clone,Copy,Debug,Eq,PartialEq,Hash)]
+@@ -15,12 +16,12 @@
+ }
+ #[derive(Clone,Debug)]
+ pub struct Environment {
+- pub(crate) parent:Option<EnvId>,pub(crate) bindings:BTreeMap<String,usize>,
++ pub(crate) parent:Option<EnvId>,pub(crate) bindings:HashMap<StringId,usize,IdBuildHasher>,
+  pub(crate) cells:Vec<Binding>,pub(crate) kind:EnvKind,
+ }
+ impl Environment {
+- pub fn new(parent:Option<EnvId>,kind:EnvKind)->Self{Self{parent,bindings:BTreeMap::new(),cells:vec![],kind}}
+- fn insert(&mut self,name:&str,binding:Binding){let index=self.cells.len();self.cells.push(binding);self.bindings.insert(name.into(),index);}
++ pub fn new(parent:Option<EnvId>,kind:EnvKind)->Self{Self{parent,bindings:HashMap::default(),cells:vec![],kind}}
++ fn insert(&mut self,_name:&str,binding:Binding){let index=self.cells.len();let name=binding.name;self.cells.push(binding);self.bindings.insert(name,index);}
+ }
+ #[derive(Clone,Copy,Debug,Eq,PartialEq,Hash)]
+ pub enum BindingRef {
+@@ -33,29 +34,30 @@
+  fn variable_env(&self,mut env:EnvId)->JsResult<EnvId>{loop{let e=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;if e.kind!=EnvKind::Block{return Ok(env)}env=e.parent.ok_or_else(||JsError::Unsupported("block environment has no parent".into()))?;}}
+  /// Hoisting creates a cell only if absent; parameter values are not reset.
+  pub fn declare(&mut self,env:EnvId,name:&str,value:Value)->JsResult<()>{
+-  let env=self.variable_env(env)?;if self.environments[env.0].bindings.contains_key(name){return Ok(())}
+-  let global=self.environments[env.0].kind==EnvKind::Global;let name_id=self.intern(name);
++  let env=self.variable_env(env)?;let name_id=self.intern(name);if self.environments[env.0].bindings.contains_key(&name_id){return Ok(())}
++  let global=self.environments[env.0].kind==EnvKind::Global;
+   if global{let object=Value::Object(self.global_object);let key=Value::String(name_id);if !self.has_own_property(object,key)?{self.define_data_property(object,key,value,true,true,false)?;}}
+   self.environments[env.0].insert(name,Binding{name:name_id,value,mutable:true,initialized:true,deletable:false,object_backed:global,strict_immutable:false,alive:true});Ok(())
+  }
+  pub fn declare_var(&mut self,env:EnvId,name:&str)->JsResult<()>{self.declare(env,name,Value::Undefined)}
+  pub fn declare_lexical(&mut self,env:EnvId,name:&str,mutable:bool)->JsResult<()>{
+   let name_id=self.intern(name);let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;
+-  if e.bindings.contains_key(name){return Err(JsError::Unsupported(format!("duplicate lexical declaration {name}; compiler must reject it")))}
++  if e.bindings.contains_key(&name_id){return Err(JsError::Unsupported(format!("duplicate lexical declaration {name}; compiler must reject it")))}
+   e.insert(name,Binding{name:name_id,value:Value::Undefined,mutable,initialized:false,deletable:false,object_backed:false,strict_immutable:true,alive:true});Ok(())
+  }
+  pub fn initialize(&mut self,env:EnvId,name:&str,value:Value)->JsResult<Value>{
+-  let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;let index=*e.bindings.get(name).ok_or_else(||JsError::ReferenceError(format!("{name} is not defined")))?;let b=&mut e.cells[index];
++  let name_id=self.intern(name);let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;let index=*e.bindings.get(&name_id).ok_or_else(||JsError::ReferenceError(format!("{name} is not defined")))?;let b=&mut e.cells[index];
+   if b.initialized{return Err(JsError::TypeError(format!("binding {name} is already initialized")))}b.value=value;b.initialized=true;Ok(value)
+  }
+  pub fn resolve_binding(&mut self,mut env:EnvId,name:&str)->JsResult<BindingRef>{
++  let name_id=self.intern(name);
+   loop{
+    let e=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;
+-   let binding=e.bindings.get(name).map(|index|(*index,e.cells[*index].object_backed,e.cells[*index].name));let parent=e.parent;let kind=e.kind;
++   let binding=e.bindings.get(&name_id).map(|index|(*index,e.cells[*index].object_backed,e.cells[*index].name));let parent=e.parent;let kind=e.kind;
+    if let Some((index,false,_))=binding{return Ok(BindingRef::Cell{env,index})}
+    if let Some((_,true,name_id))=binding{if self.has_property(Value::Object(self.global_object),Value::String(name_id))?{return Ok(BindingRef::Global{object:self.global_object,name:name_id})}}
+    if let Some(parent)=parent{env=parent;continue}
+-   let id=self.intern(name);if kind==EnvKind::Global&&self.has_property(Value::Object(self.global_object),Value::String(id))?{return Ok(BindingRef::Global{object:self.global_object,name:id})}return Ok(BindingRef::Unresolvable{name:id})
++   if kind==EnvKind::Global&&self.has_property(Value::Object(self.global_object),Value::String(name_id))?{return Ok(BindingRef::Global{object:self.global_object,name:name_id})}return Ok(BindingRef::Unresolvable{name:name_id})
+   }
+  }
+  pub fn read_binding(&mut self,reference:BindingRef)->JsResult<Value>{match reference{
+@@ -82,11 +84,11 @@
+  pub fn typeof_name(&mut self,env:EnvId,name:&str)->JsResult<Value>{let reference=self.resolve_binding(env,name)?;if matches!(reference,BindingRef::Unresolvable{..}){return Ok(self.string("undefined"))}let value=self.read_binding(reference)?;Ok(self.string(match value{Value::Undefined=>"undefined",Value::Null|Value::Object(_)=>"object",Value::Bool(_)=>"boolean",Value::Number(_)=>"number",Value::String(_)=>"string",Value::Function(_)=>"function"}))}
+  pub fn delete_binding(&mut self,reference:BindingRef,strict:bool)->JsResult<bool>{match reference{
+   BindingRef::Unresolvable{..}=>Ok(true),BindingRef::Global{object,name}=>self.delete(Value::Object(object),Value::String(name),strict),
+-  BindingRef::Cell{env,index}=>{let b=self.environments.get(env.0).and_then(|e|e.cells.get(index)).ok_or_else(||JsError::Unsupported("invalid lexical cell handle".into()))?;if !b.deletable{if strict{return Err(JsError::TypeError(format!("Cannot delete binding {}",self.string_text(b.name))))}return Ok(false)}let name=b.name;let text=self.string_text(name);let e=&mut self.environments[env.0];e.cells[index].alive=false;e.bindings.remove(&text);Ok(true)},
++  BindingRef::Cell{env,index}=>{let b=self.environments.get(env.0).and_then(|e|e.cells.get(index)).ok_or_else(||JsError::Unsupported("invalid lexical cell handle".into()))?;if !b.deletable{if strict{return Err(JsError::TypeError(format!("Cannot delete binding {}",self.string_text(b.name))))}return Ok(false)}let name=b.name;let e=&mut self.environments[env.0];e.cells[index].alive=false;e.bindings.remove(&name);Ok(true)},
+  }}
+  pub fn clone_loop_env(&mut self,env:EnvId,names:&[&str])->JsResult<EnvId>{
+-  let old=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid loop environment".into()))?;let mut new=Environment::new(old.parent,old.kind);
+-  for name in names{let index=*old.bindings.get(*name).ok_or_else(||JsError::ReferenceError(format!("loop binding {name} is missing")))?;let binding=&old.cells[index];if binding.object_backed{return Err(JsError::Unsupported("global object binding cannot be a loop lexical cell".into()))}new.insert(name,binding.clone());}
++  let name_ids=names.iter().map(|name|self.intern(name)).collect::<Vec<_>>();let old=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid loop environment".into()))?;let mut new=Environment::new(old.parent,old.kind);
++  for (name,name_id) in names.iter().zip(name_ids){let index=*old.bindings.get(&name_id).ok_or_else(||JsError::ReferenceError(format!("loop binding {name} is missing")))?;let binding=&old.cells[index];if binding.object_backed{return Err(JsError::Unsupported("global object binding cannot be a loop lexical cell".into()))}new.insert(name,binding.clone());}
+   let id=EnvId(self.environments.len());self.environments.push(new);Ok(id)
+  }
+  pub(crate) fn declare_function_name(&mut self,env:EnvId,name:&str,value:Value)->JsResult<()>{
