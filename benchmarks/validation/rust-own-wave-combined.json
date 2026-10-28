@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "scope": "Combined guarded dynamic own-read slots and writable ordinary own-data Set; component and ECMAScript source comparisons only, full battles pending.",
+  "gates": [
+    {
+      "file": "benchmarks/validation/rust-own-wave-combined-dynamic-slots.json",
+      "sha256": "402cbbb50dfbaeb46ebfc8b1b24a45310f2eb325c59fc2f73d1972b132e85126",
+      "passed": true
+    },
+    {
+      "file": "benchmarks/validation/rust-own-wave-combined-coercions.json",
+      "sha256": "369661f6a7b3613e53e46e50426e606182d2e2400b3369cffd0e12c283c08dcb",
+      "passed": true
+    },
+    {
+      "file": "benchmarks/validation/rust-own-wave-combined-reflection.json",
+      "sha256": "bfb479718d795bbbbec675330fe51d8d8aeb6926183d4b420f38ec4f802f5809",
+      "passed": true
+    },
+    {
+      "file": "benchmarks/validation/rust-own-wave-combined-arguments-elision.json",
+      "sha256": "1933580359e27411530303d4c5f418dd6119eda38c5a150b5d86f27a68680c2d",
+      "passed": true
+    }
+  ],
+  "libraryTests": 55,
+  "integrationTests": 26,
+  "tests": {
+    "file": "benchmarks/validation/rust-own-wave-combined-tests.log.gz",
+    "sha256": "5adac4136ca23edf0785e080ec567bcb364e332383a32f8bfcaaa803d813fa87"
+  }
+}
