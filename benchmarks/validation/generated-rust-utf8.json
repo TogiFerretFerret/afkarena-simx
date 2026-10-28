@@ -1,8 +1,9 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 1000,
+  "cases": 20000,
   "splitNativeBodies": false,
+  "sourceSpecializations": true,
   "originalSourceFunctions": [
     {
       "name": "__nativeDecodeUTF8",
@@ -15,18 +16,18 @@
     "version": 1,
     "moduleName": "generated",
     "filename": "source-utf8-fixture.js",
-    "mode": "function",
-    "sourceSha256": "e90322b2beaeaf712919ad8a175953a902a2572244c454222990eefef31f9f6c",
-    "sourceUtf16Length": 920,
+    "mode": "script",
+    "sourceSha256": "3abf2cbccad21bc2e2b1f45c71ba09f5d57b7eb6d89bcf44c7e94f974410b608",
+    "sourceUtf16Length": 929,
     "sourcePoolPath": "source.utf16le",
     "emitsRust": true,
     "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
-    "astNodes": 257,
+    "astNodes": 259,
     "astNodeTypes": {
-      "FunctionExpression": 1,
-      "Identifier": 84,
+      "Program": 1,
+      "FunctionDeclaration": 2,
+      "Identifier": 85,
       "BlockStatement": 9,
-      "FunctionDeclaration": 1,
       "VariableDeclaration": 2,
       "VariableDeclarator": 5,
       "ArrayExpression": 5,
@@ -52,41 +53,61 @@
     "largeBody": null,
     "cacheLocalBindings": true,
     "staticLiteralStrings": true,
+    "sourceSpecializations": true,
     "functions": [
       {
         "id": 0,
+        "sourceSpecialization": null,
         "split": false,
-        "estimatedOwnAstNodes": 21,
+        "estimatedOwnAstNodes": 2,
         "helpers": [],
-        "cachedBindings": 2,
+        "cachedBindings": 0,
         "name": "",
         "start": 0,
-        "end": 920,
+        "end": 929,
         "line": 1,
         "column": 0,
         "strict": false,
         "supported": true,
-        "sourceSha256": "e90322b2beaeaf712919ad8a175953a902a2572244c454222990eefef31f9f6c",
+        "sourceSha256": "3abf2cbccad21bc2e2b1f45c71ba09f5d57b7eb6d89bcf44c7e94f974410b608",
         "diagnostics": []
       },
       {
         "id": 1,
+        "sourceSpecialization": "native-utf8-loader-v1",
         "split": false,
         "estimatedOwnAstNodes": 230,
         "helpers": [],
         "cachedBindings": 6,
         "name": "__nativeDecodeUTF8",
-        "start": 16,
-        "end": 822,
+        "start": 0,
+        "end": 806,
         "line": 1,
-        "column": 16,
+        "column": 0,
         "strict": false,
         "supported": true,
         "sourceSha256": "5fe05bd8580b1b6d11ff573eab9df79cdb29df580fe1127d1f43afaab2c6fae1",
         "diagnostics": []
+      },
+      {
+        "id": 2,
+        "sourceSpecialization": null,
+        "split": false,
+        "estimatedOwnAstNodes": 20,
+        "helpers": [],
+        "cachedBindings": 1,
+        "name": "fixture",
+        "start": 807,
+        "end": 929,
+        "line": 12,
+        "column": 0,
+        "strict": false,
+        "supported": true,
+        "sourceSha256": "0d58b4535a2d2538524a7fe68162bac41936ee42cf128fd3d1b66c516c36492d",
+        "diagnostics": []
       }
     ],
-    "compiledFunctions": 2,
+    "compiledFunctions": 3,
     "unsupportedFunctions": 0,
     "complete": true,
     "diagnostics": [],
@@ -262,14 +283,16 @@
     "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
     "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
     "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
-    "crates/js-runtime/src/lib.rs": "61a281b88857dfa63f285117ddd06848fe8d0fa40a7cc5ef2b88478b7aae29fd",
+    "crates/js-runtime/src/lib.rs": "a1806767845af02d84eed017266cbd57137394fc4999bd29e19c2efa4de85ea4",
     "crates/js-runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
     "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
-    "crates/js-runtime/src/runtime.rs": "9e67c85a03aba7433a47a7050ef756e4f426981dedf2e0b64b1b7d0995ea9a5c",
+    "crates/js-runtime/src/runtime.rs": "7fa62da98e1c0066f788ce2ec945a79c296b45442b20f0f9ccf158d221047c76",
     "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "f5859762a499fd23f992084477c8a0c799412eb6e050033980fbf69daaf4dc8e",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
     "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
     "crates/battle-core/src/ai.rs": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
     "crates/battle-core/src/buff.rs": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145",
@@ -292,11 +315,11 @@
     "crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
     "crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
     "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
-    "tools/rust-port/compile.mjs": "088c45933912ea22acf5e88a425a7c7f7140896ae825ba6b417a48b121ab01a1",
+    "tools/rust-port/compile.mjs": "4d4cc501ade4f75d0c5ed35f57a018f4a8324a0a80ffeb971da8fcd4cdd4fd9b",
     "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
     "tools/rust-port/expressions.mjs": "9e336ef4eb2b3023988388bf170532d7aedba06edcd4a7725dc536084ae2823a",
     "tools/rust-port/statements.mjs": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
-    "tools/rust-port/check-generated-utf8.mjs": "57f2a3e8b3bfd04efee1de42742f93ca4763797b1b655918dd2d9dec2a909f40",
+    "tools/rust-port/check-generated-utf8.mjs": "24f3089eb504d3b9474de210f789526fbe1bf0377e2ae5ede0065caadd937712",
     "Cargo.toml": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
     "Cargo.lock": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
     "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
@@ -349,47 +372,47 @@
       "--offline"
     ]
   },
-  "binarySha256": "c48e06d46ad21ffcc3644204d06f6e12c577cb0807f4800229818664af2c627d",
+  "binarySha256": "7c13b718e54100020e5a3409f0dad13baf777ce2ad9272a55299b109fafbbe45",
   "artifacts": [
     {
       "file": "benchmarks/validation/generated-rust-utf8.input.gz",
-      "sha256": "5a4b74dddf0644db504ff8dcdece55086c00602a2ca511b3bf2c04288added14",
-      "uncompressedSha256": "21c31bc787c4117062c0927a236b1b101645f45394844f7d4fb567f22f3548a6"
+      "sha256": "7c65183b833d026d7aa15960d94542bc5900e412e42e2bc016fda87880dc1d58",
+      "uncompressedSha256": "e2ef7f26870f083d427b93ebea0b07bc5c975ec771f5081657d97ec6ee8a2e1c"
     },
     {
       "file": "benchmarks/validation/generated-rust-utf8.actual.gz",
-      "sha256": "f6fd997f675a2220c8a9db64a60aa56fedd5477646e15bc5e3df0d1525dc22c3",
-      "uncompressedSha256": "89061bafaaf51d98a3e412c56be8366b180587abb400786fd8c3816708446e99"
+      "sha256": "9027f651a57d6bdda538d87105211c7e21bf621461819d5a1196725778bb1ce9",
+      "uncompressedSha256": "c1164e9dc4dfbfb6006524ebe0de7400c6507368e6a35dfe5f2a3a169534cd20"
     },
     {
       "file": "benchmarks/validation/generated-rust-utf8.expected.gz",
-      "sha256": "f6fd997f675a2220c8a9db64a60aa56fedd5477646e15bc5e3df0d1525dc22c3",
-      "uncompressedSha256": "89061bafaaf51d98a3e412c56be8366b180587abb400786fd8c3816708446e99"
+      "sha256": "9027f651a57d6bdda538d87105211c7e21bf621461819d5a1196725778bb1ce9",
+      "uncompressedSha256": "c1164e9dc4dfbfb6006524ebe0de7400c6507368e6a35dfe5f2a3a169534cd20"
     },
     {
       "file": "benchmarks/validation/generated-rust-utf8.generated.gz",
-      "sha256": "a84a9cb864a4d7ccd42c1441a7332a6ea40c19df0b7f023a7f8284524c7dc4d8",
-      "uncompressedSha256": "789a3b9ffab00024f92ac4d65d328231b0b377b4e2abd8dcfed586f9e2af4a3b"
+      "sha256": "56f743529b456f2b0eb56865812d887f006f958568eda285ee95cae9c8a88f56",
+      "uncompressedSha256": "5d07ec7fd0b7deca05487dbf2358ef53a0996d10c7b53a91d4627b831f934041"
     },
     {
       "file": "benchmarks/validation/generated-rust-utf8.source-pool.gz",
-      "sha256": "fef492b0da644bb15f682dfcf196a7502dd7bea70e5ccf97bde2ef988616c85c",
-      "uncompressedSha256": "5c33ba5aa22e45a5dbcbbbad385ce5595c2c14e8e415b6f805b61c847406a9c0"
+      "sha256": "b70db1b4aff0298fbb17c4df4551d1b8eba13ac935cb59c400a0f5d18ace1f04",
+      "uncompressedSha256": "7d42e3d17c23f2b934637b5b46456fd93808081da551ddc4473549b3ef5fc44b"
     },
     {
       "file": "benchmarks/validation/generated-rust-utf8.harness.gz",
-      "sha256": "4473b40ad9b48515f19eeda56e18b8dc1ca8539487cc3c863d9d44ea5e5e6a13",
-      "uncompressedSha256": "5761f4332623ea65bd41528325d3a009e6c45b3e2212b52fead1452266b0b8ea"
+      "sha256": "14896e745e8c15742fa3f4b12edc299af4d1c2ea304ab5d6a2c91f8229a133ed",
+      "uncompressedSha256": "bad00ae23ce56b26d7d856c62fa970b88c23aecb58a55dac24d0f869b66278e0"
     },
     {
       "file": "benchmarks/validation/generated-rust-utf8.source.gz",
-      "sha256": "c652c6f4c77bb64ae777fc432d721c6ac9c1bb9eff8e4024d10507b056e46f37",
-      "uncompressedSha256": "e90322b2beaeaf712919ad8a175953a902a2572244c454222990eefef31f9f6c"
+      "sha256": "dbea3da1ca91ddf3b2996e2d0088c99a01dce33dc95e7e34468c00bff8cff508",
+      "uncompressedSha256": "3abf2cbccad21bc2e2b1f45c71ba09f5d57b7eb6d89bcf44c7e94f974410b608"
     },
     {
       "file": "benchmarks/validation/generated-rust-utf8.manifest.gz",
-      "sha256": "5c012fbeb48c5eb67cd1ba6185d70f9995c2fd9ee7566e3b344558d1fb854ca2",
-      "uncompressedSha256": "7920c46dc71c32b6e53876d9a3fb7773b05cdc09b1eac595d1967a9ced3edd8c"
+      "sha256": "d6a6a519d20be48e3ee989bfa7ea3dbc12dfa5746ae0c77c0a0b2ae6e0d885ee",
+      "uncompressedSha256": "651e3074e4e7c941b7f94ad684de893ba6b861aba2d013465db866c3ceeadac5"
     }
   ],
   "scope": "Actual copied __nativeDecodeUTF8 table-loader helper compiled through Babel into Rust and fed Uint8Array data, matching exact UTF16 output and truncated-input error names/messages against the pinned JS source. Covers non-ASCII, astral, NUL, chunk boundaries and permissive malformed-byte source behavior. This is a table-loader component gate, not whole-battle or unrestricted JS qualification.",
