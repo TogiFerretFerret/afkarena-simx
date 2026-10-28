@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "passed": true,
+  "cacheLocalBindings": true,
+  "cachedBindingDeclarations": 22,
+  "cases": 11,
+  "results": [
+    {
+      "name": "includes-holes",
+      "source": "var result=JSON.stringify([[,].includes(void 0),[,].indexOf(void 0),[NaN].includes(NaN),[-0].includes(0),[1,2,3].includes(1,-3)]);",
+      "expected": "s:005b0074007200750065002c002d0031002c0074007200750065002c0074007200750065002c0074007200750065005d",
+      "actual": "s:005b0074007200750065002c002d0031002c0074007200750065002c0074007200750065002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "find-holes",
+      "source": "var log='';var out=[,2].find(function(v,i,a){log+=i+':'+v+';';return i===1});var result=log+':'+out;",
+      "expected": "s:0030003a0075006e0064006500660069006e00650064003b0031003a0032003b003a0032",
+      "actual": "s:0030003a0075006e0064006500660069006e00650064003b0031003a0032003b003a0032",
+      "passed": true
+    },
+    {
+      "name": "findIndex-receiver",
+      "source": "var o={x:9},a=[1,2];var result=a.findIndex(function(v,i,b){return this===o&&b===a&&v===2},o);",
+      "expected": "d:3ff0000000000000",
+      "actual": "d:3ff0000000000000",
+      "passed": true
+    },
+    {
+      "name": "reduce-holes",
+      "source": "var a=[,2,,3];var result=JSON.stringify([a.reduce(function(a,b){return a+b}),a.reduce(function(a,b){return a+b},10),a.reduceRight(function(a,b){return a-b})]);",
+      "expected": "s:005b0035002c00310035002c0031005d",
+      "actual": "s:005b0035002c00310035002c0031005d",
+      "passed": true
+    },
+    {
+      "name": "reduce-callback-order",
+      "source": "var log='',a=[1,2,3];var out=a.reduce(function(p,v,i,b){log+=i+':'+v+':'+(b===a)+';';if(i===0){delete a[1];a.push(99)}return p+v},0);var result=log+':'+out;",
+      "expected": "s:0030003a0031003a0074007200750065003b0032003a0033003a0074007200750065003b003a0034",
+      "actual": "s:0030003a0031003a0074007200750065003b0032003a0033003a0074007200750065003b003a0034",
+      "passed": true
+    },
+    {
+      "name": "reduce-empty",
+      "source": "var result='';try{[,].reduce(function(){})}catch(e){result=e.name}result+=':'+[].reduce(function(){},void 0);",
+      "expected": "s:0054007900700065004500720072006f0072003a0075006e0064006500660069006e00650064",
+      "actual": "s:0054007900700065004500720072006f0072003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "concat-holes",
+      "source": "var a=[,2],b=a.concat([3,,4],5);var result=JSON.stringify([b,b.length,0 in b,3 in b,a.length]);",
+      "expected": "s:005b005b006e0075006c006c002c0032002c0033002c006e0075006c006c002c0034002c0035005d002c0036002c00660061006c00730065002c00660061006c00730065002c0032005d",
+      "actual": "s:005b005b006e0075006c006c002c0032002c0033002c006e0075006c006c002c0034002c0035005d002c0036002c00660061006c00730065002c00660061006c00730065002c0032005d",
+      "passed": true
+    },
+    {
+      "name": "concat-prototype-index",
+      "source": "var a=[,2];Object.defineProperty(Array.prototype,'0',{get:function(){return 9},configurable:true});var b=a.concat([]);delete Array.prototype[0];var result=JSON.stringify(b);",
+      "expected": "s:005b0039002c0032005d",
+      "actual": "s:005b0039002c0032005d",
+      "passed": true
+    },
+    {
+      "name": "iterate-no-result",
+      "source": "var log='',a=[1,2,3];var r=a.forEach(function(v,i){log+=v;if(i===0)delete a[1]});var result=log+':'+r;",
+      "expected": "s:00310033003a0075006e0064006500660069006e00650064",
+      "actual": "s:00310033003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "map-holes",
+      "source": "var a=[,2],b=a.map(function(v){return v+1});var result=JSON.stringify([b.length,0 in b,b[1]]);",
+      "expected": "s:005b0032002c00660061006c00730065002c0033005d",
+      "actual": "s:005b0032002c00660061006c00730065002c0033005d",
+      "passed": true
+    },
+    {
+      "name": "reduceRight-order",
+      "source": "var log='';var out=[1,2,3].reduceRight(function(p,v,i){log+=i;return p-v},10);var result=log+':'+out;",
+      "expected": "s:003200310030003a0034",
+      "actual": "s:003200310030003a0034",
+      "passed": true
+    }
+  ],
+  "compilerInputs": {
+    "tools/rust-port/expressions.mjs": "9e336ef4eb2b3023988388bf170532d7aedba06edcd4a7725dc536084ae2823a",
+    "tools/rust-port/statements.mjs": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
+    "tools/rust-port/compile.mjs": "088c45933912ea22acf5e88a425a7c7f7140896ae825ba6b417a48b121ab01a1",
+    "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
+    "tools/rust-port/check-arrays.mjs": "8f09963e1978d9a8f5d8a0b91d944d9893b6ac43a1c02e0fdb55b735dae6ea51",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/binary.rs": "3a1701c1070d04b809750b63cd8514e5236df3b2de6b84b78a9ce52fb641b884",
+    "crates/js-runtime/src/builtins.rs": "bf3077e07472b9ef259a78dca61312b3f203b1572eda5adae4f8af398eca34b4",
+    "crates/js-runtime/src/closures.rs": "ffe747fcac1e0a9fac9b36b90f64a6a90ac70ddc559d2d5f2ccb772d80a047f7",
+    "crates/js-runtime/src/collections.rs": "bdc533e3d02302a89f3ef3bee9450e9724f63fbcd994d965f912ebc995f3f666",
+    "crates/js-runtime/src/date.rs": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
+    "crates/js-runtime/src/diagnostics.rs": "7a22261fee149ee9776723b5cb9790bca62c45c4b29a7338d166e81a5490a898",
+    "crates/js-runtime/src/env.rs": "9abb8c38b70ce333144da35e734446b449c77bf2bdbc6daf407856540b2c9557",
+    "crates/js-runtime/src/errors.rs": "0cd2c65e02a934e83a8870bd7de157bb782d0983fe0b4b8654fba061802c35de",
+    "crates/js-runtime/src/fdlibm.rs": "766dbf40c4356d3701729ed3e2fdaee459bf045e80b7db1b5a569aca23eeecab",
+    "crates/js-runtime/src/heap.rs": "901181256a48ad047045daf799eb843268c69e8ed09bdf6477358e4ff2be09fc",
+    "crates/js-runtime/src/host.rs": "72e0d402eccc23aae2bccf3e6d23cca478f6cadf2f1d4c1b51f2565efbe5af28",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/iterators.rs": "cba5a0b38a54193a0f60afe2a8a81172a6ab5914a425ff640575ed76ab67e198",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lib.rs": "61a281b88857dfa63f285117ddd06848fe8d0fa40a7cc5ef2b88478b7aae29fd",
+    "crates/js-runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+    "crates/js-runtime/src/math.rs": "edfc28d37d56bdf831c26fab7e9438985259164bdf25ab7788da55cd320f9b3f",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "c9877e312899f864c70b6ea25f9a9e8a8dca61a918902796f0a0f810fc074eb0",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/value.rs": "356e2ebf2d499cb574be4db5f2c1d05028957344646509378b17ceefb7ecdfb7",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/arrays-tests",
+    "sha256": "e81b87b1ad026d98d49487ce826f3d331f9ca79cdd9676188f29ce429ca90dd8"
+  },
+  "buildArgs": [
+    "build",
+    "--release",
+    "--manifest-path",
+    "/workspace/afkarena-simx/work/rust-port-arrays-tests/Cargo.toml"
+  ],
+  "scope": "Actual generated Rust executed against source JS Array programs. Ordered observable effects and primitive results compare exactly; Number results use raw f64 bits and arrays use UTF-16 units. This is a language-Array gate, not battle fidelity or throughput.",
+  "qualifiesFor10000Target": false
+}
