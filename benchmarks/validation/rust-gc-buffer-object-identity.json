@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "passed": true,
+  "tests": 1,
+  "sourceInputs": {
+    "crates/js-runtime/src/battle_gc.rs": "989258068fb30882571264e055d893e46c2975dbeb875c7e31f5bc7168ec2416",
+    "crates/js-runtime/src/reachability.rs": "52173fb09c06399243fd8e19697602397edc1eee34c77550b6ee85e8c8a71b04"
+  },
+  "command": "cargo test -p js-runtime --lib typed_views_keep_the_original_array_buffer_object_identity_and_properties",
+  "stdout": "\nrunning 1 test\ntest battle_gc::tests::typed_views_keep_the_original_array_buffer_object_identity_and_properties ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 39 filtered out; finished in 0.00s\n\n",
+  "scope": "Explicit GC backing-object identity test. Only DataView and Uint8Array are host roots; the original ArrayBuffer and its custom marker object must survive collection and free-slot reuse with identical object identities and shared bytes. Existing collector owner edge is unchanged.",
+  "qualifiesFor10000Target": false
+}
