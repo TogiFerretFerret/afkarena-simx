@@ -29,3 +29,12 @@ Validation:
   opt-level 3, 64 codegen units and no LTO, matching the full build profile.
 
 These are component measurements. Full battle qualification remains pending.
+
+A longer follow-up used three alternating pairs of 10,000 updates. All 150,220
+ordered events and selected state per trial still match, but throughput was
+15,563 baseline versus 15,270 enabled updates/sec (0.981x). Trial timings vary
+substantially, and the earlier gain depended on the first baseline trial. These
+runs establish correctness for the fixture, not a repeatable performance gain.
+The switch remains available for full-workload A/B testing.
+
+Follow-up evidence: `benchmarks/results/2026-10-28T22-26-10.482Z-rust-unit-update-fast-own-set.json`.
