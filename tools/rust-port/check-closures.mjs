@@ -157,6 +157,46 @@ const cases=[
  [
   "arguments-var-hoist-preserves-object",
   "function(){function f(a){var arguments;return arguments[0];}return f(9);}"
+ ],
+ [
+  "missing-later-duplicate-param-unmaps-earlier",
+  "function(){function f(a,a){a=2;return arguments[0];}return f(1);}"
+ ],
+ [
+  "ordinary-own-function-key-order",
+  "function(){function f(){}return Object.getOwnPropertyNames(f).join(\",\");}"
+ ],
+ [
+  "strict-own-function-key-order",
+  "function(){function f(){\"use strict\";}return Object.getOwnPropertyNames(f).join(\",\");}"
+ ],
+ [
+  "method-own-function-key-order",
+  "function(){var o={m(){}};return Object.getOwnPropertyNames(o.m).join(\",\");}"
+ ],
+ [
+  "arguments-object-tag",
+  "function(){return Object.prototype.toString.call(arguments);}"
+ ],
+ [
+  "constructor-new-target",
+  "function(){function F(){this.target=new.target;}return(new F).target===F;}"
+ ],
+ [
+  "ordinary-new-target-not-inherited",
+  "function(){var seen;function f(){seen=new.target;}function F(){f();}new F;return seen===void 0;}"
+ ],
+ [
+  "arrow-escapes-with-lexical-new-target",
+  "function(){function F(){return()=>new.target;}return(new F)()===F;}"
+ ],
+ [
+  "bound-constructor-new-target-remapped",
+  "function(){function F(){this.target=new.target;}var B=F.bind(null);return(new B).target===F;}"
+ ],
+ [
+  "nested-native-call-keeps-receiver",
+  "function(){return Function.prototype.call.call(function(){\"use strict\";return this;},3)===3;}"
  ]
 ];
 const tracked=new Map();async function bind(file){const bytes=await readFile(resolve(root,file));tracked.set(file,sha(bytes));}
