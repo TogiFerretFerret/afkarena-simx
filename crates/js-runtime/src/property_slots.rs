@@ -14,10 +14,13 @@ impl LiteralReadSite {
         Ok(id)
     }
 }
-#[derive(Clone,Copy,Default)]
-pub(crate) struct CachedSlot { key:Option<PropertyKey>,index:Option<usize> }
+// Canonical string IDs and physical property indices originate from non-ZST
+// Vecs, whose valid indices cannot reach usize::MAX. No Values are cached.
+#[derive(Clone,Copy)]
+pub(crate) struct CachedSlot { key:usize,index:usize }
+impl Default for CachedSlot{fn default()->Self{Self{key:usize::MAX,index:usize::MAX}}}
 impl Runtime {
- pub(crate) fn invalidate_reclaimed_literal_string_keys(&mut self,reclaimed:&[bool]){for entry in &mut self.literal_property_slots{if entry.key.is_some_and(|key|reclaimed.get(key.0.0).copied().unwrap_or(false)){*entry=CachedSlot::default();}}}
+ pub(crate) fn invalidate_reclaimed_literal_string_keys(&mut self,reclaimed:&[bool]){for entry in &mut self.literal_property_slots{if reclaimed.get(entry.key).copied().unwrap_or(false){*entry=CachedSlot::default();}}}
 
     #[inline]
     pub fn get_literal_cached(&mut self,receiver:Value,site:&'static LiteralReadSite)->JsResult<Value>{
@@ -35,15 +38,13 @@ impl Runtime {
         let id=site.index()?;
         if self.literal_property_slots.len()<=id{self.literal_property_slots.resize(id+1,CachedSlot::default());}
         let entry=self.literal_property_slots[id];
-        let key=match entry.key{Some(key)=>key,None=>{let key=PropertyKey(self.intern(site.text));self.literal_property_slots[id].key=Some(key);key}};
+        let key=if entry.key!=usize::MAX{PropertyKey(crate::StringId(entry.key))}else{let key=PropertyKey(self.intern(site.text));self.literal_property_slots[id].key=key.0.0;key};
         if let Value::Object(object)=receiver {
             if let Some(object)=self.objects.get(object.0){
                 if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary|ObjectKind::Array{..}){
-                    if let Some(index)=entry.index {
-                        if let Some(Some((actual,descriptor)))=object.properties.get(index){
+                        if let Some(Some((actual,descriptor)))=object.properties.get(entry.index){
                             if *actual==key {if let PropertyKind::Data{value,..}=descriptor.kind{let result=Ok(value);self.record_get(receiver,KeyInput::Value(Value::String(key.0)),&result);return result}}
                         }
-                    }
                 }
             }
         }
@@ -53,7 +54,7 @@ impl Runtime {
         if let Value::Object(object)=receiver {
             if let Some(object)=self.objects.get(object.0){
                 if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary|ObjectKind::Array{..}){
-                    if let Some(index)=object.property_index.get(&key).copied(){if matches!(object.properties.get(index),Some(Some((actual,crate::Descriptor{kind:PropertyKind::Data{..},..})))if *actual==key){self.literal_property_slots[id].index=Some(index);}}
+                    if let Some(index)=object.property_index.get(&key).copied(){if matches!(object.properties.get(index),Some(Some((actual,crate::Descriptor{kind:PropertyKind::Data{..},..})))if *actual==key){self.literal_property_slots[id].index=index;}}
                 }
             }
         }
@@ -63,4 +64,17 @@ impl Runtime {
 
 #[cfg(test)]mod length_tests{use super::*;static LENGTH:LiteralReadSite=LiteralReadSite::new("length");
 #[test]fn fast_length_records_exactly_one_get_and_zero_has_positive_zero_bits(){let mut rt=Runtime::new();rt.diagnostics=crate::diagnostics::Diagnostics::from_env();rt.diagnostics.enabled=true;let array=rt.array(&[]);let before=rt.diagnostics.reachability_roots().len();let Value::Number(n)=rt.get_literal_cached(array,&LENGTH).unwrap()else{panic!()};assert_eq!(n.to_bits(),0);let after=rt.diagnostics.reachability_roots().len();assert_eq!(after,before+3);}
+}
+
+#[cfg(test)]mod packed_slot_tests{
+ use super::*;
+ #[test]fn empty_sentinels_and_reclaimed_keys_clear_physical_hints(){
+  assert_eq!(std::mem::size_of::<CachedSlot>(),2*std::mem::size_of::<usize>());
+  let mut rt=Runtime::new();let key=rt.intern("packed-key");
+  rt.literal_property_slots=vec![CachedSlot::default(),CachedSlot{key:key.0,index:7}];
+  let mut reclaimed=vec![false;key.0+1];rt.invalidate_reclaimed_literal_string_keys(&reclaimed);
+  assert_eq!(rt.literal_property_slots[0].key,usize::MAX);assert_eq!(rt.literal_property_slots[1].index,7);
+  reclaimed[key.0]=true;rt.invalidate_reclaimed_literal_string_keys(&reclaimed);
+  assert_eq!(rt.literal_property_slots[1].key,usize::MAX);assert_eq!(rt.literal_property_slots[1].index,usize::MAX);
+ }
 }
