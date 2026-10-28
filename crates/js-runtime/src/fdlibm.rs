@@ -201,3 +201,45 @@ fn kernel_tan(mut x:f64,mut y:f64,iy:i32)->f64{
 pub fn sin(x:f64)->f64{let ix=(x.to_bits()>>32)as u32&0x7fffffff;if ix<=0x3fe921fb{return kernel_sin(x,0.0,0)}if ix>=0x7ff00000{return sub(x,x)}let(n,[a,b])=rem_pio2(x);match n&3{0=>kernel_sin(a,b,1),1=>kernel_cos(a,b),2=>neg(kernel_sin(a,b,1)),_=>neg(kernel_cos(a,b))}}
 pub fn cos(x:f64)->f64{let ix=(x.to_bits()>>32)as u32&0x7fffffff;if ix<=0x3fe921fb{return kernel_cos(x,0.0)}if ix>=0x7ff00000{return sub(x,x)}let(n,[a,b])=rem_pio2(x);match n&3{0=>kernel_cos(a,b),1=>neg(kernel_sin(a,b,1)),2=>neg(kernel_cos(a,b)),_=>kernel_sin(a,b,1)}}
 pub fn tan(x:f64)->f64{let ix=(x.to_bits()>>32)as u32&0x7fffffff;if ix<=0x3fe921fb{return kernel_tan(x,0.0,1)}if ix>=0x7ff00000{return sub(x,x)}let(n,[a,b])=rem_pio2(x);kernel_tan(a,b,1-((n&1)<<1))}
+
+/// V8 deliberately uses signaling_NaN for these invalid-domain branches.
+const SIGNALING_NAN:f64=f64::from_bits(0x7ff4_0000_0000_0000);
+pub fn log(mut x:f64)->f64{
+ const LN2_HI:f64=6.93147180369123816490e-1;const LN2_LO:f64=1.90821492927058770002e-10;
+ const LG:[f64;7]=[6.666666666666735130e-1,3.999999999940941908e-1,2.857142874366239149e-1,2.222219843214978396e-1,1.818357216161805012e-1,1.531383769920937332e-1,1.479819860511658591e-1];
+ let mut hx=(x.to_bits()>>32)as i32;let lx=x.to_bits()as u32;let mut k=0;
+ if hx<0x00100000{if(hx as u32&0x7fffffff|lx)==0{return f64::NEG_INFINITY}if hx<0{return SIGNALING_NAN}k-=54;x=mul(x,1.8014398509481984e16);hx=(x.to_bits()>>32)as i32;}
+ if hx>=0x7ff00000{return add(x,x)}
+ k+=(hx>>20)-1023;hx&=0x000fffff;let mut i=(hx+0x95f64)&0x100000;
+ x=f64::from_bits(((hx|(i^0x3ff00000))as u64)<<32|(x.to_bits()&0xffffffff));k+=i>>20;
+ let f=sub(x,1.0);
+ if(0x000fffff&(2+hx))<3 {
+  if f==0.0{if k==0{return 0.0}else{let dk=k as f64;return add(mul(dk,LN2_HI),mul(dk,LN2_LO))}}
+  let r=mul(mul(f,f),sub(0.5,mul(0.33333333333333333,f)));
+  if k==0{return sub(f,r)}else{let dk=k as f64;return sub(mul(dk,LN2_HI),sub(sub(r,mul(dk,LN2_LO)),f))}
+ }
+ let s=div(f,add(2.0,f));let dk=k as f64;let z=mul(s,s);i=hx-0x6147a;let w=mul(z,z);let j=0x6b851-hx;
+ let t1=mul(w,add(LG[1],mul(w,add(LG[3],mul(w,LG[5])))));
+ let t2=mul(z,add(LG[0],mul(w,add(LG[2],mul(w,add(LG[4],mul(w,LG[6])))))));
+ i|=j;let r=add(t2,t1);
+ if i>0{let hfsq=mul(mul(0.5,f),f);if k==0{sub(f,sub(hfsq,mul(s,add(hfsq,r))))}else{sub(mul(dk,LN2_HI),sub(sub(hfsq,add(mul(s,add(hfsq,r)),mul(dk,LN2_LO))),f))}}
+ else if k==0{sub(f,mul(s,sub(f,r)))}else{sub(mul(dk,LN2_HI),sub(sub(mul(s,sub(f,r)),mul(dk,LN2_LO)),f))}
+}
+fn asin_ratio(t:f64)->(f64,f64){
+ const P:[f64;6]=[1.66666666666666657415e-1,-3.25565818622400915405e-1,2.01212532134862925881e-1,-4.00555345006794114027e-2,7.91534994289814532176e-4,3.47933107596021167570e-5];
+ const Q:[f64;4]=[-2.40339491173441421878,2.02094576023350569471,-6.88283971605453293030e-1,7.70381505559019352791e-2];
+ (mul(t,add(P[0],mul(t,add(P[1],mul(t,add(P[2],mul(t,add(P[3],mul(t,add(P[4],mul(t,P[5]))))))))))),add(1.0,mul(t,add(Q[0],mul(t,add(Q[1],mul(t,add(Q[2],mul(t,Q[3])))))))))
+}
+pub fn asin(x:f64)->f64{
+ let pio2_hi=f64::from_bits(0x3ff921fb54442d18);let pio2_lo=f64::from_bits(0x3c91a62633145c07);let pio4_hi=f64::from_bits(0x3fe921fb54442d18);
+ let hx=(x.to_bits()>>32)as i32;let ix=hx&0x7fffffff;
+ if ix>=0x3ff00000{let lx=x.to_bits()as u32;if((ix-0x3ff00000)as u32|lx)==0{return add(mul(x,pio2_hi),mul(x,pio2_lo))}return SIGNALING_NAN}
+ if ix<0x3fe00000 {
+  let t=if ix<0x3e400000{if add(1.0e300,x)>1.0{return x}0.0}else{mul(x,x)};
+  let(p,q)=asin_ratio(t);let w=div(p,q);return add(x,mul(x,w));
+ }
+ let w=sub(1.0,abs(x));let mut t=mul(w,0.5);let(p,q)=asin_ratio(t);let s=t.sqrt();
+ if ix>=0x3fef3333{let w=div(p,q);t=sub(pio2_hi,sub(mul(2.0,add(s,mul(s,w))),pio2_lo));}
+ else{let w=low_zero(s);let c=div(sub(t,mul(w,w)),add(s,w));let r=div(p,q);let p=sub(mul(mul(2.0,s),r),sub(pio2_lo,mul(2.0,c)));let q=sub(pio4_hi,mul(2.0,w));t=sub(pio4_hi,sub(p,q));}
+ if hx>0{t}else{neg(t)}
+}

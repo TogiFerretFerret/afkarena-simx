@@ -129,6 +129,46 @@ const cases=[
   [
     "atan-negative-zero-raw-bits",
     "function(){return Math.atan(-0);}"
+  ],
+  [
+    "sin-object-coercion",
+    "function(){var e=\"\",o={valueOf:function(){e+=\"v\";return 1;}};var r=Math.sin(o);return e+\";\"+r;}"
+  ],
+  [
+    "cos-throw-identity",
+    "function(){var e=\"\",s={},o={valueOf:function(){e+=\"v\";throw s;}};try{Math.cos(o);}catch(x){return e+\";\"+(x===s);}return \"bad\";}"
+  ],
+  [
+    "tan-negative-zero-raw-bits",
+    "function(){return Math.tan(-0);}"
+  ],
+  [
+    "sin-large-argument-raw-bits",
+    "function(){return Math.sin(1e300);}"
+  ],
+  [
+    "cos-near-half-pi-raw-bits",
+    "function(){return Math.cos(Math.PI/2);}"
+  ],
+  [
+    "tan-near-half-pi-raw-bits",
+    "function(){return Math.tan(Math.PI/2);}"
+  ],
+  [
+    "log-negative-signaling-nan",
+    "function(){return Math.log(-1);}"
+  ],
+  [
+    "asin-nan-signaling-result",
+    "function(){return Math.asin(NaN);}"
+  ],
+  [
+    "log-object-coercion",
+    "function(){var e=\"\",o={valueOf:function(){e+=\"v\";return 1;}};return Math.log(o)+\";\"+e;}"
+  ],
+  [
+    "asin-throw-prefix-identity",
+    "function(){var e=\"\",s={},o={valueOf:function(){e+=\"v\";throw s;}};try{Math.asin(o);}catch(x){return e+\";\"+(x===s);}return \"bad\";}"
   ]
 ];
 const tracked=new Map();async function bind(file){const bytes=await readFile(resolve(root,file));tracked.set(file,sha(bytes));}
