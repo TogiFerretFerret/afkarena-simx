@@ -1,0 +1,238 @@
+{
+  "version": 1,
+  "kind": "one-battle diagnostic with exact terminal report comparison",
+  "passed": true,
+  "completed": 1,
+  "warmups": 0,
+  "sourceGameFunctionsUnchanged": true,
+  "harnessOverride": {
+    "originalBattles": 20,
+    "originalWarmups": 3,
+    "battles": 1,
+    "warmups": 0,
+    "termination": "Intentional internal Unsupported after report, before original clock.finish; supplied 5980-clock tape is not fully consumed."
+  },
+  "fidelity": {
+    "equal": true,
+    "diffs": [],
+    "ignoredTimingFields": [
+      "elapsedMs",
+      "battlesPerSecond"
+    ],
+    "checksum": 1453036098,
+    "totalCallbacks": 15453,
+    "scope": "All result fields, full terminal serialized battle/stateBits, ordered finalCapture hostEvents, audioState and ClassManager counters. No full intermediate state trace, 20k battles or random full-scene qualification."
+  },
+  "timing": {
+    "nativeExternalBattleMs": 8744.175059,
+    "nativeReportElapsedMs": 8677,
+    "nativeReportBattlesPerSecond": 0.11524720525527256,
+    "oracleExternalBattleMs": 845.4582009999995,
+    "oracleReportElapsedMs": 832,
+    "oracleReportBattlesPerSecond": 1.2019230769230769,
+    "scope": "One cold fixed-fixture battle with concurrent development work. Table initialization excluded from the battle timer. Generic pure Rust is slower here; no speed improvement claimed."
+  },
+  "memory": {
+    "code": 1,
+    "signal": null,
+    "peakRssKiB": 3235260,
+    "wallMs": 13826,
+    "diagnosticStopped": false,
+    "objectsBefore": 1190405,
+    "objectsAfter": 2689264,
+    "objectsAdded": 1498859
+  },
+  "initializationDiagnostics": {
+    "utf8ActualHostBytesGuardAccepted": true,
+    "utf8DecodeMs": 594.2163409999999,
+    "utf8ObjectsBeforeAndAfter": 157491,
+    "jsonParseUtf16Units": 101411478,
+    "jsonParseMs": 2902.846653,
+    "jsonParseObjectsBefore": 157491,
+    "jsonParseObjectsAfter": 1190095,
+    "jsonParseMonitor": {
+      "code": 1,
+      "signal": null,
+      "peakRssKiB": 1842184,
+      "wallMs": 4476,
+      "diagnosticStopped": false
+    },
+    "conclusion": "UTF8 and first table JSON parse complete; the original23-battle run memory growth is after table initialization."
+  },
+  "binary": {
+    "file": "work/utf8-context-probe/battle-probe",
+    "sha256": "c550354392d34dea180d09ca6ad181e7cf68e450a33798d8b6778d3f64e062ca"
+  },
+  "linkedDependencies": [
+    {
+      "name": "js_runtime",
+      "file": "work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+      "sha256": "eca60139148e04ae84b5b9a5d36f95003e58bf171b97d5c60055b6014e7ccec9"
+    },
+    {
+      "name": "battle_unit_0",
+      "file": "work/rust-port-shared-target/release/deps/libbattle_unit_0-817148696cf8b0b1.rlib",
+      "sha256": "b288bd2339232b84197de69d44481de50516d1fee0ec13df9f4eeb96f5d55385"
+    },
+    {
+      "name": "battle_unit_1",
+      "file": "work/rust-port-shared-target/release/deps/libbattle_unit_1-06e35ad413013751.rlib",
+      "sha256": "f6e7467bf52008a960566f550a4fe853b201ae12735a37dc4f4808d1b51aa319"
+    },
+    {
+      "name": "battle_unit_2",
+      "file": "work/rust-port-shared-target/release/deps/libbattle_unit_2-dca31432bf65eabd.rlib",
+      "sha256": "de39abbff74b1cae558b66ecc7b74e6c974d0de23b684feb2f545adb1a38859c"
+    },
+    {
+      "name": "battle_unit_3",
+      "file": "work/rust-port-shared-target/release/deps/libbattle_unit_3-5afefad4864330c1.rlib",
+      "sha256": "a61fb8dd5f267f50dc398e7c7a03bccbc4f7aab3e89e3fd85903f0e4ae91820b"
+    },
+    {
+      "name": "battle_unit_4",
+      "file": "work/rust-port-shared-target/release/deps/libbattle_unit_4-129eb8f66a4bbbe0.rlib",
+      "sha256": "a86523c8eb78cd81f4369e9a97a186a696df8c33fb7a896b26b937a60e1d3f7e"
+    },
+    {
+      "name": "battle_unit_5",
+      "file": "work/rust-port-shared-target/release/deps/libbattle_unit_5-444af86f3fc91597.rlib",
+      "sha256": "772eb6287f8c8aefe87282e41020a2dcedf522dea87bd44d512f6a3a4b285e40"
+    },
+    {
+      "name": "battle_unit_6",
+      "file": "work/rust-port-shared-target/release/deps/libbattle_unit_6-e219b44dd5b3271b.rlib",
+      "sha256": "45b7e489d9b9d46c4f4e2f99a675b8720a9210c57e059a77ec89135cb59263b2"
+    }
+  ],
+  "sourceUnits": [
+    {
+      "index": 0,
+      "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5"
+    },
+    {
+      "index": 1,
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb"
+    },
+    {
+      "index": 2,
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b"
+    },
+    {
+      "index": 3,
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
+      "sourceSha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163"
+    },
+    {
+      "index": 4,
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sourceSha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9"
+    },
+    {
+      "index": 5,
+      "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3"
+    },
+    {
+      "index": 6,
+      "file": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sourceSha256": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634"
+    }
+  ],
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "artifacts": [
+    {
+      "name": "nativeReport",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.nativeReport.gz",
+      "sha256": "e226d3378d54edc483ef32d8a067bbc1ef18c7c467545c44e9796f72cfd6daa3",
+      "uncompressedSha256": "67ae9b77d21943460adae7dad9eef720b1aff25e43742a94477c4a51fe1f67ae"
+    },
+    {
+      "name": "oracleReport",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.oracleReport.gz",
+      "sha256": "e8c1b69e27de3c11b607671ad967b2936c5e599474cd1a7be263796a5e0d4b87",
+      "uncompressedSha256": "21071839a2cb1fefe7723602d9200eae83f2b6178de9dbdde905b47dfc624b1f"
+    },
+    {
+      "name": "nativeStdout",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.nativeStdout.gz",
+      "sha256": "5e055490088be7c4f30a35ea77e10743aee6505c23467c31951edcf589297962",
+      "uncompressedSha256": "09e8d9ea99e33a5b2213d89969a7c0af327bc9f776078bdbc01ca1854850abcb"
+    },
+    {
+      "name": "nativeStderr",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.nativeStderr.gz",
+      "sha256": "8d54242d080222a42bf2d5f47690cf2252bde902fb06b9c63070a7ea11b88822",
+      "uncompressedSha256": "36cfdd6751e8577619d9fea33e6561f88a8a57bb509bbfe5249fbc97f0828053"
+    },
+    {
+      "name": "nativeHarness",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.nativeHarness.gz",
+      "sha256": "86a3c1998a6dea7840bffc9542bc6b52e461904a3fbff7c9a068add4a4afa85d",
+      "uncompressedSha256": "007648424d1a7b27e8bc312de0d842e2cc616a88677681e91cfd6169645c61cc"
+    },
+    {
+      "name": "compileArgs",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.compileArgs.gz",
+      "sha256": "df162d856c2c47ba4edb872bdca941b0b64f1cee149b981529d2fc6de277c237",
+      "uncompressedSha256": "b82b8a3a94bb20de18f4495c69246e4f90a9a3bf5dce67b159b364b5252eb1a4"
+    },
+    {
+      "name": "loadProbe",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.loadProbe.gz",
+      "sha256": "b46985ccd4f52bab3357b9464735121f34b692e6a3d3141066699e878f7eb8a1",
+      "uncompressedSha256": "a19bff9a62852c7389f6dbd9f5988aed2540da3ecf369e8d384b985538d13b12"
+    },
+    {
+      "name": "loadProbeStderr",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.loadProbeStderr.gz",
+      "sha256": "5b98bbebab3a5cd25ed446e60188b3a9d5503033ebf22c021e8e11a4032b1001",
+      "uncompressedSha256": "4fc096cba61bff9b379c9065c0d2293da9fd2cd5fee558fc858337f7477f15ea"
+    },
+    {
+      "name": "parseProbe",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.parseProbe.gz",
+      "sha256": "d87dae866f31241abaaaffbf6c2b72aa62e6cd184949924bbd1b23b520273778",
+      "uncompressedSha256": "7f25061d105f9b06342690d05cf94778513e8fae028db96f9a86a7bc44f11d2f"
+    },
+    {
+      "name": "parseProbeStderr",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.parseProbeStderr.gz",
+      "sha256": "4581d019c7f711b4923482023a61ef6481646016a289e004236eacb72ee09d0a",
+      "uncompressedSha256": "dc3cee300afc7afd40513fccfc31dea967768774dcd8954e7e4522c1e97caf95"
+    },
+    {
+      "name": "entryProbe",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.entryProbe.gz",
+      "sha256": "b76c210ecdd34ea8397a92fb8b9f27b8e3043181ff7b116175382df35d255d66",
+      "uncompressedSha256": "0cb0ae7b47f8654e5aaf9775b8d9334fd9eb8ed133afb4d201825c258614d3e1"
+    },
+    {
+      "name": "entryProbeStderr",
+      "file": "benchmarks/results/2026-10-28T17-46-01.273Z-rust-one-battle-diagnostic.entryProbeStderr.gz",
+      "sha256": "e26d093c2aaaffd4aec75bfea9872c0a2ccee625304fdfc96e1270499960b124",
+      "uncompressedSha256": "d4eef51cf21999b1526f1a1e2b7ef16c9a4d2f4c30e1be405dc7da0f8215c877"
+    }
+  ],
+  "qualifiesFor10000Target": false
+}
