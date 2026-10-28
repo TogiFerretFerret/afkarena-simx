@@ -47,3 +47,5 @@ pub mod expose_scan;
 
 pub mod string_hash;
 pub use string_hash::StringHashMode;
+
+pub mod index_keys;

@@ -6,7 +6,7 @@ use crate::value::number_to_uint32;
 fn arg(args:&[Value],index:usize)->Value{args.get(index).copied().unwrap_or(Value::Undefined)}
 fn integer(rt:&mut Runtime,value:Value)->JsResult<f64>{let n=rt.to_number(value)?;Ok(if n.is_nan()||n==0.0{0.0}else{n.trunc()})}
 fn length(rt:&mut Runtime,object:Value)->JsResult<usize>{let key=rt.string("length");let value=rt.get(object,key)?;let n=integer(rt,value)?;if n>1_000_000.0{return Err(JsError::Unsupported("array-like length exceeds current resource bound".into()))}Ok(n.max(0.0)as usize)}
-fn key(rt:&mut Runtime,index:usize)->Value{rt.string(&index.to_string())}
+fn key(rt:&mut Runtime,index:usize)->Value{if rt.index_string_fast_path_enabled{Value::String(rt.index_property_key(index).0)}else{rt.string(&index.to_string())}}
 fn get_index(rt:&mut Runtime,object:Value,index:usize)->JsResult<Value>{let k=key(rt,index);rt.get(object,k)}
 fn set_index(rt:&mut Runtime,object:Value,index:usize,value:Value)->JsResult<Value>{let k=key(rt,index);rt.set(object,k,value,true)}
 fn has_index(rt:&mut Runtime,object:Value,index:usize)->JsResult<bool>{let k=key(rt,index);rt.has_property(object,k)}
