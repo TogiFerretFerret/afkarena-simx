@@ -36,10 +36,24 @@ export function unsupportedExpression(node,reason){const loc=node?.loc?.start;co
 export function rustString(text){let out='"';for(const character of String(text)){const cp=character.codePointAt(0);if(character==='"')out+='\\"';else if(character==='\\')out+='\\\\';else if(character==='\n')out+='\\n';else if(character==='\r')out+='\\r';else if(character==='\t')out+='\\t';else if(cp<32||cp===127)out+='\\u{'+cp.toString(16)+'}';else if(cp>=0xd800&&cp<=0xdfff)throw Error('A Rust UTF-8 metadata string cannot contain a lone surrogate');else out+=character;}return out+'"';}
 const quote=(ctx,text)=>ctx.rustString?ctx.rustString(text):rustString(text);
 function stringValue(ctx,text){const s=String(text);for(let i=0;i<s.length;i++){const n=s.charCodeAt(i);if(n>=0xd800&&n<=0xdfff){if(n<=0xdbff&&i+1<s.length&&s.charCodeAt(i+1)>=0xdc00&&s.charCodeAt(i+1)<=0xdfff){i++;continue;}return ctx.temp(`rt.${ctx.staticLiteralStrings===false?'string_utf16':'static_string_utf16'}(&[${Array.from({length:s.length},(_,j)=>s.charCodeAt(j)+'u16').join(',')}])`);}}return ctx.temp(`rt.${ctx.staticLiteralStrings===false?'string':'static_string'}(${rustString(s)})`);}
+// Abstract ToPropertyKey on an actual numeric literal is pure; Number.prototype
+// hooks are never consulted. Keep all dynamic expressions on the ordinary path.
+let numericKeyProfileChecked=false;
+function computedMemberKey(node,ctx){
+ const literal=unwrap(node);let number;
+ if(literal?.type==='NumericLiteral')number=literal.value;
+ else if(literal?.type==='UnaryExpression'&&['+','-'].includes(literal.operator)&&unwrap(literal.argument)?.type==='NumericLiteral'){
+  number=unwrap(literal.argument).value;if(literal.operator==='-')number=-number;
+ }else return emitExpression(node,ctx);
+ if(ctx.numericLiteralKeys===false)return emitExpression(node,ctx);
+ if(!numericKeyProfileChecked){const profile=JSON.parse(readFileSync(new URL('../../config/source-oracle-runtime.json',import.meta.url),'utf8'));
+ if(process.version!==profile.node||process.versions.v8!==profile.v8)throw Error('Numeric literal keys require the pinned Node/V8 compiler host');numericKeyProfileChecked=true;}
+ return stringValue(ctx,String(number));
+}
 function numberValue(ctx,value){const b=new ArrayBuffer(8),v=new DataView(b);v.setFloat64(0,value,false);return ctx.temp(`Value::Number(f64::from_bits(0x${v.getBigUint64(0,false).toString(16).padStart(16,'0')}u64))`);}
 function unwrap(node){while(node?.type==='ParenthesizedExpression')node=node.expression;return node;}
 function isReference(node){node=unwrap(node);return node?.type==='Identifier'||node?.type==='MemberExpression';}
-export function emitReference(node,ctx){node=unwrap(node);if(node?.type==='Identifier'){const local=typeof ctx.nativeLocal==='function'?ctx.nativeLocal(node.name,node):null;if(local)return{kind:'binding',local,name:node.name};const known=typeof ctx.knownBinding==='function'?ctx.knownBinding(node.name,node):null;return{kind:'binding',binding:known??ctx.temp(`rt.resolve_binding(${ctx.env}, ${quote(ctx,node.name)})?`),name:node.name};}if(node?.type==='MemberExpression'){if(node.object.type==='Super'||node.property.type==='PrivateName')unsupportedExpression(node,'super/private references are not implemented');const base=emitExpression(node.object,ctx),key=node.computed?emitExpression(node.property,ctx):stringValue(ctx,node.property.name);return{kind:'property',base,key};}unsupportedExpression(node,'expression is not an assignable Reference');}
+export function emitReference(node,ctx){node=unwrap(node);if(node?.type==='Identifier'){const local=typeof ctx.nativeLocal==='function'?ctx.nativeLocal(node.name,node):null;if(local)return{kind:'binding',local,name:node.name};const known=typeof ctx.knownBinding==='function'?ctx.knownBinding(node.name,node):null;return{kind:'binding',binding:known??ctx.temp(`rt.resolve_binding(${ctx.env}, ${quote(ctx,node.name)})?`),name:node.name};}if(node?.type==='MemberExpression'){if(node.object.type==='Super'||node.property.type==='PrivateName')unsupportedExpression(node,'super/private references are not implemented');const base=emitExpression(node.object,ctx),key=node.computed?computedMemberKey(node.property,ctx):stringValue(ctx,node.property.name);return{kind:'property',base,key};}unsupportedExpression(node,'expression is not an assignable Reference');}
 export function readReference(ref,ctx){if(ref.local)return ctx.temp(ref.local);if(ref.kind==='binding')return ctx.temp(`rt.read_binding(${ref.binding})?`);if(ref.kind==='property')return ctx.temp(`rt.get(${ref.base}, ${ref.key})?`);throw Error('Unknown Reference kind');}
 export function writeReference(ref,value,ctx){if(ref.local){ctx.emit(`${ref.local} = ${value};`);return ctx.temp(ref.local);}if(ref.kind==='binding')return ctx.temp(`rt.write_binding(${ref.binding}, ${value}, ${ctx.strict?'true':'false'})?`);if(ref.kind==='property')return ctx.temp(`rt.set(${ref.base}, ${ref.key}, ${value}, ${ctx.strict?'true':'false'})?`);throw Error('Unknown Reference kind');}
 function closure(node,ctx,inferredName){if(typeof ctx.makeClosure!=='function')throw Error('Expression context requires makeClosure');return ctx.makeClosure(node,inferredName===undefined?{}:{inferredName});}
@@ -58,7 +72,7 @@ function optionalResult(node,ctx,{deleteLast=false}={}){
   const object=optionalNode(node.object)&&!chainBoundary(node.object)?optionalResult(node.object,ctx):{value:emitExpression(node.object,ctx),short:'false'};
   const value=ctx.fresh('optional_value'),receiver=ctx.fresh('optional_receiver'),short=ctx.fresh('optional_short');ctx.emit(`let mut ${value} = ${deleteLast?'Value::Bool(true)':'Value::Undefined'};`);ctx.emit(`let mut ${receiver} = Value::Undefined;`);ctx.emit(`let mut ${short} = ${object.short};`);ctx.emit(`if !${short} {`);
   if(node.optional){ctx.emit(`if matches!(${object.value}, Value::Null | Value::Undefined) { ${short} = true; } else {`);}
-  const key=node.computed?emitExpression(node.property,ctx):stringValue(ctx,node.property.name);
+  const key=node.computed?computedMemberKey(node.property,ctx):stringValue(ctx,node.property.name);
   if(deleteLast){const deleted=ctx.temp(`rt.delete(${object.value}, ${key}, ${ctx.strict?'true':'false'})?`);ctx.emit(`${value} = Value::Bool(${deleted});`);}else{const read=ctx.temp(`rt.get(${object.value}, ${key})?`);ctx.emit(`${value} = ${read};`);ctx.emit(`${receiver} = ${object.value};`);}
   if(node.optional)ctx.emit('}');ctx.emit('}');return{value,receiver,short};
  }
