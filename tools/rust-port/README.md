@@ -102,6 +102,23 @@ both executions. Omitting the option permits semantic debugging but leaves
 `binaryBoundToManifest` false. An invalid supplied proof fails the check while
 retaining execution diagnostics.
 
+After the main release build finishes, the prepared one-battle checker can link
+a small diagnostic app against the newest release libraries without rebuilding
+the generated modules:
+
+```sh
+node tools/rust-port/check-one-battle.mjs
+```
+
+It hashes every dependency library before and after, retains its wrapper and
+compiler arguments, and limits the child to 8 GiB observed RSS and 120 seconds.
+It compares every final-report field except the two timing fields against the
+committed pinned-Node single-battle reference. An intentional internal stop after
+the report leaves the original clock tape unfinished; that stop and the exact
+consumed prefix must be present. This remains a cold diagnostic, not a successful
+batch or intermediate-state trace. The tool itself does not establish that the
+selected library bytes were built from the currently checked-out Rust source.
+
 For the smaller committed battle-method crate:
 
 ```sh
