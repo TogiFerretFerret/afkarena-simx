@@ -59,7 +59,7 @@ impl Runtime{
   if t.invalid_edges!=0{return Err(JsError::Unsupported(format!("reachability graph contains {} invalid handles",t.invalid_edges)))}
   Ok(t)
  }
- pub(crate) fn native_battle_gc_marks(&self,env:crate::EnvId,host_roots:&[Value])->JsResult<GcMarks>{let t=self.trace_roots(host_roots,&[env],WeakEdgePolicy::Ephemeron,true)?;Ok(GcMarks{objects:t.objects,functions:t.functions,envs:t.envs,buffers:t.buffers,collections:t.collections})}
+ pub(crate) fn native_battle_gc_marks(&self,env:crate::EnvId,host_roots:&[Value])->JsResult<GcMarks>{let t=self.trace_roots(host_roots,&[env],WeakEdgePolicy::Ephemeron,true)?;Ok(GcMarks{objects:t.objects,functions:t.functions,envs:t.envs,buffers:t.buffers,collections:t.collections,strings:t.strings})}
 
 }
 
@@ -79,4 +79,4 @@ impl Runtime{
 
 }
 
-pub(crate) struct GcMarks{pub objects:Vec<bool>,pub functions:Vec<bool>,pub envs:Vec<bool>,pub buffers:Vec<bool>,pub collections:Vec<bool>}
+pub(crate) struct GcMarks{pub objects:Vec<bool>,pub functions:Vec<bool>,pub envs:Vec<bool>,pub buffers:Vec<bool>,pub collections:Vec<bool>,pub strings:Vec<bool>}
