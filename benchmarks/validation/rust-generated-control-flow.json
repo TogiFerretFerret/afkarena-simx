@@ -41,6 +41,11 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/src/copy_obj.rs",
+      "sha256": "d0762d0a2eb22fcfe90be4428a28fa4a0eb6b6737ebd70dfeb1be55efd0fbee2",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/src/date.rs",
       "sha256": "a155289b5e690dfeb69c31e2d4fe5544d572411df70d47b6936e6ef3211d1a80",
       "matched": true
@@ -92,7 +97,7 @@
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "a1806767845af02d84eed017266cbd57137394fc4999bd29e19c2efa4de85ea4",
+      "sha256": "136945bbb888d414a8c654afaebf81d19ef506ae06cd4cf1bbf73bca96111f82",
       "matched": true
     },
     {
@@ -122,7 +127,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "008b4a8f5fa0414fc2c4562067af2c89ad0fb3438727c1212ea3e8a736d9b183",
+      "sha256": "8d094ee72bf445d2e536a7e8d0e53e08ba002fe5f1ba489fb684f4ef36178e0f",
       "matched": true
     },
     {
@@ -1092,22 +1097,22 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "a6ff43cf2e4c0f20e5580520654a237206af85fbda14acd91ee62f7e335f3b06",
+      "sha256": "1969253a0f882e5c48958fb79267fb8ed98e911f86a8f3718506576c04341d09",
       "matched": true
     },
     {
       "file": "tools/rust-port/expressions.mjs",
-      "sha256": "9e336ef4eb2b3023988388bf170532d7aedba06edcd4a7725dc536084ae2823a",
+      "sha256": "256d83ca53f1cff1ff5abe2afb49b0ed074a045f0edea325cdba732becdde95e",
       "matched": true
     },
     {
       "file": "tools/rust-port/bindings.mjs",
-      "sha256": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
+      "sha256": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
       "matched": true
     },
     {
       "file": "tools/rust-port/statements.mjs",
-      "sha256": "c4a8b00c71751c7c5eeb1b83d9b5ac0dcee7ed821dc15f0e7d956bc5fddaf7da",
+      "sha256": "dbc5e403d79d34084d06077e0beea8340d47a1f63853aa33c6f9ea06a5f3886a",
       "matched": true
     },
     {
@@ -1134,25 +1139,25 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "e8e3b1b3272ab966c3703d959081584de591a87bc0e0003d67304eb9e530e945",
+  "generatedRustSha256": "d43be72b7311619c8a6c4003d09e72749fc679dd1e7d497177bda5c4c52e6ece",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/rust-port-control/check",
-    "sha256": "526f5eebcc0077e3a062ce5b1400674c490630c3a09b2eb05d22698d3b1199a9"
+    "file": "/workspace/afkarena-simx/work/candidate-stack-locals/work/rust-port-control/check",
+    "sha256": "d2ec58aac4b38e4525a3ed78cab194d4c8ff2eb009f95bf9ad3307334629df29"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-stack-locals/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/rust-port-control/main.rs",
+    "/workspace/afkarena-simx/work/candidate-stack-locals/work/rust-port-control/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-stack-locals/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-stack-locals/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/rust-port-control/check"
+    "/workspace/afkarena-simx/work/candidate-stack-locals/work/rust-port-control/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-control-flow.outputs.json.gz",
