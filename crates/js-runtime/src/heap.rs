@@ -24,6 +24,8 @@ pub enum ObjectKind { Ordinary, Arguments, Math, Json, Error, Date(f64), RegExp(
 pub struct Object {
  pub prototype:Option<ObjectId>, pub extensible:bool, pub kind:ObjectKind,
  pub(crate) is_function:bool,
+ // Monotone dictionary-key membership; deletions may leave false positives.
+ pub(crate) own_key_bloom:u32,
  // Authoritative Number bits for active small arrays; retained on deopt/reuse.
  pub(crate) numeric_elements:Option<Box<[u64;4]>>,
  pub properties:Vec<Option<(PropertyKey,Descriptor)>>,
@@ -32,8 +34,8 @@ pub struct Object {
 }
 pub type HeapObject=Object;
 impl Object {
- pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,numeric_elements:None,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::default()}}
- pub(crate) fn reset_for_reuse(&mut self,prototype:Option<ObjectId>){self.prototype=prototype;self.extensible=true;self.kind=ObjectKind::Ordinary;self.is_function=false;self.properties.clear();self.property_index.clear();self.arguments_map.clear();}
+ pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,own_key_bloom:0,numeric_elements:None,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::default()}}
+ pub(crate) fn reset_for_reuse(&mut self,prototype:Option<ObjectId>){self.prototype=prototype;self.extensible=true;self.kind=ObjectKind::Ordinary;self.is_function=false;self.own_key_bloom=0;self.properties.clear();self.property_index.clear();self.arguments_map.clear();}
  /// Primary values have no duplicate dictionary descriptors. Masked-out bits
  /// (including all bits after reuse/deopt) are not source properties or GC roots.
  pub(crate) fn primary_numeric_mask(&self)->u8{match self.kind{ObjectKind::Array{primary_numeric:true,numeric_presence,..}=>numeric_presence&15,_=>0}}
@@ -42,9 +44,10 @@ impl Object {
  }
  pub fn own(&self,key:PropertyKey)->Option<Descriptor>{
   let index=key.0.0;if index<4&&self.primary_numeric_mask()&(1<<index)!=0{if let Some(bits)=&self.numeric_elements{return Some(Descriptor::data(Value::Number(f64::from_bits(bits[index])),true,true,true))}}
+  if self.own_key_bloom&(1u32<<((key.0.0&31)as u32))==0{return None}
   self.property_index.get(&key).and_then(|i|self.properties[*i].map(|(_,d)|d))
  }
- fn dictionary_insert(&mut self,key:PropertyKey,descriptor:Descriptor){if let Some(i)=self.property_index.get(&key).copied(){self.properties[i]=Some((key,descriptor))}else{let i=self.properties.len();self.properties.push(Some((key,descriptor)));self.property_index.insert(key,i);}}
+ fn dictionary_insert(&mut self,key:PropertyKey,descriptor:Descriptor){self.own_key_bloom|=1u32<<((key.0.0&31)as u32);if let Some(i)=self.property_index.get(&key).copied(){self.properties[i]=Some((key,descriptor))}else{let i=self.properties.len();self.properties.push(Some((key,descriptor)));self.property_index.insert(key,i);}}
  /// General descriptors, other value types and keys leave the primary domain.
  /// Materialization changes locations only; key order and Number bits survive.
  pub(crate) fn materialize_primary_numeric(&mut self){
@@ -96,4 +99,22 @@ mod primary_numeric_tests {
   }assert!(reused>0);Ok(Value::Number(rt.native_battle_gc_stats().collections as f64))
  }
  #[test]fn runtime_primary_arrays_survive_actual_source_safepoints_and_reuse(){let mut rt=crate::Runtime::new();rt.primary_numeric_arrays_enabled=true;let f=rt.make_closure(primary_gc_rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(f,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();assert_eq!(rt.call(f,Value::Undefined,&[]).unwrap(),Value::Number(23.0));}
+}
+
+#[cfg(test)]mod absence_bloom_tests{
+ use super::*;
+ #[test]fn dictionary_membership_collision_deletion_and_reset(){
+  eprintln!("Object size={} alignment={}",std::mem::size_of::<Object>(),std::mem::align_of::<Object>());
+  let mut object=Object::new(None);let key=PropertyKey(StringId(7));let collision=PropertyKey(StringId(39));let absent=PropertyKey(StringId(8));
+  assert_eq!(object.own_key_bloom,0);object.insert(key,Descriptor::data(Value::Number(-0.0),true,true,true));
+  assert!(object.own(collision).is_none());assert!(object.own(absent).is_none());
+  let Some(Descriptor{kind:PropertyKind::Data{value:Value::Number(n),..},..})=object.own(key)else{panic!()};assert_eq!(n.to_bits(),(-0.0f64).to_bits());
+  object.remove(key);assert!(object.own(key).is_none());assert_ne!(object.own_key_bloom,0);
+  object.insert(collision,Descriptor::data(Value::Bool(true),false,false,false));assert!(object.own(collision).is_some());
+  object.reset_for_reuse(None);assert_eq!(object.own_key_bloom,0);assert!(object.own(collision).is_none());
+ }
+ #[test]fn toggle_existing_future_and_recycled_objects(){
+  let mut rt=crate::Runtime::new();let value=rt.object();let id=rt.object_id(value).unwrap();let key=PropertyKey(rt.intern("live"));rt.objects[id.0].insert(key,Descriptor::data(Value::Bool(true),true,true,true));
+  for enabled in[false,true,false,true]{rt.set_own_absence_bloom_enabled(enabled);assert!(rt.objects[id.0].own(key).is_some());let fresh=rt.alloc_object(None);assert_eq!(rt.objects[fresh.0].own_key_bloom,if enabled{0}else{u32::MAX});rt.native_battle_gc.free_objects.push(fresh.0);let reused=rt.alloc_object(None);assert_eq!(fresh,reused);assert_eq!(rt.objects[reused.0].own_key_bloom,if enabled{0}else{u32::MAX});}
+ }
 }
