@@ -52,11 +52,10 @@ npm run verify
 npm run verify:components
 ```
 
-The connected Rust unit/skill fixture has its own executable and source comparison:
+The connected Rust unit/skill fixture has its own executable and source comparison. In the prepared workspace, the checker snapshots its inputs, builds the pinned Buck2 target, and rejects source changes during the run:
 
 ```sh
-cargo build --release --example unit_skill_runtime_check
-node --jitless tools/check-unit-skill-runtime.mjs target/release/examples/unit_skill_runtime_check
+node --jitless tools/check-unit-skill-runtime.mjs --cases 20000
 ```
 
 That checker exercises a composed controller fixture, not complete battles. Its source oracle uses `--jitless` because JIT tiers can change NaN bits; see [oracle runtime notes](benchmarks/validation/ORACLE-RUNTIME.md). Keep `NODE_OPTIONS` empty for reference runs.
