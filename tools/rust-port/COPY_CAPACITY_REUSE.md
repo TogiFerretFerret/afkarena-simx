@@ -44,3 +44,19 @@ Rust native-hook boolean. Each trial retains every source call and fresh-output
 identity check, runs 23 exact-source GC safepoints, and reports copy/GC timings
 separately. Final ordered raw-bit output is checked against pinned jitless Node.
 This component's clones/sec do not qualify as battles/sec.
+
+The prepared quiet component run passes all six trials: 138,000 original source
+calls, 138 original-source-qualified collections and 132,000 recycled output
+IDs. Each final 47-key ordered raw-bit snapshot matches Node. Copy throughput
+improved **1.175x** (1.729M to 2.032M clones/sec); including measured GC time it
+improved **1.126x** (1.644M to 1.851M clones/sec). Individual copy pair ratios are
+1.221x, 1.109x and 1.196x. This is one short component cohort; GC has a visible
+outlier in the second reuse trial. It establishes a component improvement, not a
+full-battle speedup or a complete event-trace qualification. Identity-set host
+observation remains in both timed paths.
+
+Evidence: `benchmarks/results/2026-10-28T23-04-19.305Z-rust-copy-capacity-reuse.json`.
+Generated Rust alternatives, unchanged JS source, harness, manifest, native
+stdout and expected Node output are archived with hashes. The native binary ran
+while the integration agent's compiler was paused; oracle analysis followed
+from retained output (`recordedNativeRun: true`).
