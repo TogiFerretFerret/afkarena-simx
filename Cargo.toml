@@ -1,6 +1,6 @@
 [workspace]
 members = ["crates/battle-core", "crates/js-runtime", "crates/generated-battle"]
-exclude = ["third-party/ryu-js"]
+exclude = ["third-party/ryu-js", "third-party/regress", "third-party/memchr"]
 resolver = "2"
 
 [profile.release]

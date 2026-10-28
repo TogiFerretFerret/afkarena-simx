@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/ridiculousfish/regress",
+  "commit": "851f87b73a05c7b9807f8f82db17fd7cf765263d",
+  "version": "0.12.0",
+  "archiveSha256": "41fc507d48d78826bcc6632d3a1840397d708d3542aefa485d8843eb9c11ed44",
+  "license": "MIT OR Apache-2.0",
+  "changes": "Build rules and provenance added. Cargo manifest uses vendored memchr, removes upstream tool workspace and unused optional hashbrown. Only std+backend-pikevm+utf16 is supported; upstream manifest retained separately. Rust implementation source unchanged."
+}

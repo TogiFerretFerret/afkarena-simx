@@ -18,7 +18,19 @@ name = "js-runtime"
 version = "0.1.0"
 dependencies = [
  "battle-core",
+ "regress",
  "ryu-js",
+]
+
+[[package]]
+name = "memchr"
+version = "2.7.6"
+
+[[package]]
+name = "regress"
+version = "0.12.0"
+dependencies = [
+ "memchr",
 ]
 
 [[package]]

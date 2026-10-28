@@ -1,0 +1,11 @@
+load("@prelude//:rules.bzl", "rust_library")
+
+rust_library(
+    name = "memchr",
+    srcs = glob(["src/**/*.rs"]),
+    crate = "memchr",
+    crate_root = "src/lib.rs",
+    edition = "2021",
+    features = ["std", "alloc"],
+    visibility = ["PUBLIC"],
+)

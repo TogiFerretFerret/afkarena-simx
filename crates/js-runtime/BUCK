@@ -9,6 +9,7 @@ rust_library(
     deps = [
         "//crates/battle-core:battle_core",
         "//third-party/ryu-js:ryu_js",
+        "//third-party/regress:regress",
     ],
     visibility = ["PUBLIC"],
 )

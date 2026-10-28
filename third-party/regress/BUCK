@@ -1,0 +1,12 @@
+load("@prelude//:rules.bzl", "rust_library")
+
+rust_library(
+    name = "regress",
+    srcs = glob(["src/**/*.rs"]),
+    crate = "regress",
+    crate_root = "src/lib.rs",
+    edition = "2024",
+    features = ["std", "backend-pikevm", "utf16"],
+    deps = ["//third-party/memchr:memchr"],
+    visibility = ["PUBLIC"],
+)
