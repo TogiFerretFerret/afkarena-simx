@@ -1,7 +1,7 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 18,
+  "cases": 22,
   "firstDifference": null,
   "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
   "sourceInputsAtFinish": [
@@ -27,7 +27,7 @@
     },
     {
       "file": "crates/js-runtime/src/builtins.rs",
-      "sha256": "f1e9e8bd3b08c915eafffe7c46d39ac34672203c277cb73d76d04013ce91bcf3",
+      "sha256": "bf3077e07472b9ef259a78dca61312b3f203b1572eda5adae4f8af398eca34b4",
       "matched": true
     },
     {
@@ -1102,7 +1102,7 @@
     },
     {
       "file": "tools/rust-port/check-array-from.mjs",
-      "sha256": "2e650a36f302834066bdade45005de89563062cc74bcd2e5a91005abcab0dc76",
+      "sha256": "7751d760baf44a9b2e1a990d8a43f985516aa3db762333f8d04e2ad135cf300f",
       "matched": true
     }
   ],
@@ -1124,10 +1124,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "0f04a1b7dc0e73685c2b8a142536e679f5f337259e5b0b9268e5aa0d4d7d50c1",
+  "generatedRustSha256": "d28950e3235899b1dd1d9f4b630817980841f7370100b2e9cd6f9d47df349598",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-array-from/check",
-    "sha256": "b91b8f529d20c863d9bb9c5e42a83667186053516712a93e59a15e7feb23530d"
+    "sha256": "e61e04e55acd3862ae40949e2b5d57eb78ecf6f78c431494a6fa421147006a75"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
@@ -1146,7 +1146,7 @@
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-array-from.outputs.json.gz",
-    "sha256": "d33ec49ef51bbb07d975c322cf24a2526bc3b965365c75341e031b23d1bd9833"
+    "sha256": "fb26cab9375fd886b7527c856938598b13333820ce41cfe6760079564c302fe1"
   },
   "qualifiesFor10000Target": false,
   "scope": "Source-required Array.from over supported intrinsic iterable and array-like domain; constructor, mapper, getter, write and throw ordering. Custom Symbol iterators remain unsupported. This is not a complete battle or unrestricted ECMAScript qualification."

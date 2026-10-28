@@ -81,6 +81,22 @@ const cases=[
   [
     "arraylike-getter-order",
     "function(){var s=\"\";var a={get length(){s+=\"L\";return {valueOf:function(){s+=\"V\";return 1;}};},get 0(){s+=\"G\";return 8;}};Array.from(a,function(v){s+=\"M\";return v;});return s;}"
+  ],
+  [
+    "mapper-closes-iterator",
+    "function(){var s=\"\",e={},i=new Set([1,2]).values();i.return=function(){s+=\"R\";return {};};try{Array.from(i,function(v){s+=v;throw e;});}catch(x){return s+\":\"+(x===e);}}"
+  ],
+  [
+    "mapper-error-beats-close-throw",
+    "function(){var s=\"\",e={},f={},i=new Set([1]).values();Object.defineProperty(i,\"return\",{get:function(){s+=\"R\";throw f;}});try{Array.from(i,function(){throw e;});}catch(x){return s+\":\"+(x===e);}}"
+  ],
+  [
+    "next-error-does-not-close",
+    "function(){var s=\"\",e={},i=new Set([1]).values();i.next=function(){s+=\"N\";throw e;};i.return=function(){s+=\"R\";return {};};try{Array.from(i);}catch(x){return s+\":\"+(x===e);}}"
+  ],
+  [
+    "define-failure-closes",
+    "function(){var s=\"\",i=new Set([1]).values();i.return=function(){s+=\"R\";return {};};function C(){Object.preventExtensions(this);}try{Array.from.call(C,i);}catch(x){return s+\":\"+x.name;}}"
   ]
 ];
 const tracked=new Map();async function bind(file){const bytes=await readFile(resolve(root,file));tracked.set(file,sha(bytes));}
