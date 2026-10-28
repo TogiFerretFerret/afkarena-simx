@@ -65,3 +65,34 @@ A separate frozen-runtime variant adds ordinary `#[inline]` hints to pure tag,
 value, flag and physical-slot helpers. It does not force inlining, change their
 bodies, or modify the tested shared candidate. Its three-way component result
 is recorded separately after measurement.
+
+The three-way pure-inline cohort passes all 54 trials and 18 complete native
+processes. All 270,000 Unit updates retain their complete ordered event/selected
+state-bit observations; all 621,000 source copy calls retain fresh outputs and
+621 exact-source collections. Source/binary hashes match before and after.
+
+| Variant | Object bytes | Property bytes | Unit updates/sec | Copy calls/sec |
+| --- | ---: | ---: | ---: | ---: |
+| Original | 152 | 48 | 14,658 | 1.888M |
+| Compact, untuned | 160 | 24 | 14,828 | 1.964M |
+| Compact, inline hints | 160 | 24 | 16,405 | 1.861M |
+
+Inline Unit throughput improves **1.1192x** over original and **1.1063x** over
+untuned compact. Every Unit process-pair ratio is positive: 1.0503x, 1.1661x and
+1.1421x against original. Copy is approximately neutral at 0.9857x (0.9866x
+including GC), with visible variance between the short copy trials. The Unit
+improvement and halved property bytes justify a complete-battle trial; they do
+not themselves establish battle throughput.
+
+Evidence: `benchmarks/results/2026-10-28T23-54-12.959Z-rust-compact-properties-inline.json`.
+It archives the complete three runtime snapshots and native completion audit.
+Only ordinary inline hints change Rust bodies' compilation boundaries; no
+`inline(always)`, unsafe operations or NaN boxing are introduced. The frozen
+inline crate also declares its own Cargo workspace for standalone tests; all
+component binaries still use the identical opt3/CGU64/LTO-off app profile.
+
+The hints were promoted to the shared candidate as `baf3abc` after exact oracle
+validation. This changes its source hashes from the archived untuned `bd1d14c`;
+replay the frozen runtime snapshots to reproduce the historical three-way run.
+The integration agent refreshes 80 library, 26 integration and 20 independent
+source-gate proofs against the promoted source before full-battle qualification.
