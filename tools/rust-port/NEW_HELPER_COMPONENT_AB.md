@@ -27,5 +27,5 @@ Only after the original run returns, stderr records
 including initialization and warmups; they are not measured-window-only counts.
 The tool verifies one marker after the measurement end, exact safe integer
 counts, hits <= attempts and zero counters for buff-off. Source reports and
-callback counters remain unchanged. Eight configuration and rejection tests pass
+callback counters remain unchanged. Ten configuration and rejection tests pass
 with `node --test tools/rust-port/tests/helper-component-ab.test.mjs`.
