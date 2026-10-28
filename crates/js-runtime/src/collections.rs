@@ -3,7 +3,7 @@
 //! Weak operations use live stable object handles in this no-GC runtime; this
 //! module does not claim weak-reference collection/finalization semantics.
 use std::collections::HashMap;
-use crate::{Runtime,Value,ObjectId,ObjectKind,JsError,JsResult,EnvId,Completion};
+use crate::{Runtime,Value,ObjectId,ObjectKind,JsError,JsResult,EnvId};
 use crate::closures::NativeFn;
 
 #[derive(Clone,Copy,Debug,Eq,PartialEq)]
@@ -26,9 +26,12 @@ impl Runtime {
  fn collection_store(&mut self,id:usize,key:Value,value:Value)->JsResult<Value>{
   if self.collection_records[id].kind.weak()&&!key.is_object(){return Err(JsError::TypeError("invalid weak collection key".into()))}
   let hash=self.collection_key(key)?;let key=if matches!(key,Value::Number(n)if n==0.0){Value::Number(0.0)}else{key};
-  let value=if self.collection_records[id].kind.map(){value}else{key};
-  if let Some(index)=self.collection_records[id].index.get(&hash).copied(){if self.collection_records[id].kind.map(){if let Some(entry)=self.collection_records[id].slots[index].as_mut(){entry.1=value;}}}
-  else {let index=self.collection_records[id].slots.len();self.collection_records[id].slots.push(Some((key,value)));self.collection_records[id].index.insert(hash,index);}
+  let record=&mut self.collection_records[id];let is_map=record.kind.map();
+  let value=if is_map{value}else{key};
+  match record.index.entry(hash){
+   std::collections::hash_map::Entry::Occupied(entry)=>{if is_map{if let Some(slot)=record.slots[*entry.get()].as_mut(){slot.1=value;}}},
+   std::collections::hash_map::Entry::Vacant(entry)=>{let index=record.slots.len();record.slots.push(Some((key,value)));entry.insert(index);},
+  }
   Ok(key)
  }
  fn collection_find(&self,id:usize,key:Value)->JsResult<Option<(Value,Value)>>{if self.collection_records[id].kind.weak()&&!key.is_object(){return Ok(None)}let hash=self.collection_key(key)?;Ok(self.collection_records[id].index.get(&hash).and_then(|index|self.collection_records[id].slots[*index]))}
@@ -80,7 +83,13 @@ impl Runtime {
    if let Some((key,value))=entry{return Ok(Some(match self.collection_iterators[id].iteration{CollectionIteration::Keys=>key,CollectionIteration::Values=>value,CollectionIteration::Entries=>self.array(&[Some(key),Some(value)])}))}
   }
  }
- pub fn collection_to_string_tag(&self,value:Value)->Option<&'static str>{let mut cursor=self.object_id(value).ok();let mut seen=std::collections::HashSet::new();while let Some(id)=cursor{if !seen.insert(id){return None}for(name,tag)in[("Map","Map"),("Set","Set"),("WeakMap","WeakMap"),("WeakSet","WeakSet"),("@MapIterator","Map Iterator"),("@SetIterator","Set Iterator")]{if self.collection_prototypes.get(name)==Some(&id){return Some(tag)}}cursor=self.objects[id.0].prototype;}None}
+ pub fn collection_to_string_tag(&self,value:Value)->Option<&'static str>{
+  let mut cursor=self.object_id(value).ok();let mut remaining=self.objects.len();
+  // Prototype inspection invokes no source hooks. Bound the traversal by the
+  // heap size to reject cycles without allocating on every Object#toString.
+  let tags=[("Map","Map"),("Set","Set"),("WeakMap","WeakMap"),("WeakSet","WeakSet"),("@MapIterator","Map Iterator"),("@SetIterator","Set Iterator")].map(|(name,tag)|(self.collection_prototypes.get(name).copied(),tag));
+  while let Some(id)=cursor{if remaining==0{return None}remaining-=1;for(prototype,tag)in tags{if prototype==Some(id){return Some(tag)}}cursor=self.objects[id.0].prototype;}None
+ }
 }
 fn argument(args:&[Value],index:usize)->Value{args.get(index).copied().unwrap_or(Value::Undefined)}
 fn constructor(rt:&mut Runtime,this:Value,args:&[Value],kind:CollectionKind)->JsResult<Value>{
