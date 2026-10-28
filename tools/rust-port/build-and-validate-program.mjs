@@ -7,6 +7,7 @@ import assert from 'node:assert/strict';
 const root=resolve(import.meta.dirname,'../..'),args=process.argv.slice(2);
 const opt=(name,fallback)=>args.includes(name)?args[args.indexOf(name)+1]:fallback;
 const label=opt('--label','allocation-wave');assert.match(label,/^[a-z0-9-]+$/);
+const cadence=opt('--expected-gc-cadence','1');assert.match(cadence,/^[1-9][0-9]*$/);
 const jobs=opt('--jobs','4');assert.match(jobs,/^[1-9][0-9]*$/);
 const prefix=resolve(root,`benchmarks/validation/rust-program-${label}`);
 const reportFile=prefix+'-chain.json',buildFile=prefix+'-build.json',fullFile=prefix+'-full.json';
@@ -24,7 +25,7 @@ async function run(name,script,parameters){
   assert.equal(execution.status,0,`Failed ${name}: ${await readFile(stderrFile,'utf8')}`);
 }
 try{
-  await run('features','tools/rust-port/check-program-features.mjs',[]);
+  await run('features','tools/rust-port/check-program-features.mjs',['--expected-gc-cadence',cadence]);
   await run('build','tools/rust-port/build-program.mjs',['--profile','release','--jobs',jobs,'--output',buildFile]);
   const build=JSON.parse(await readFile(buildFile));assert.equal(build.passed,true);assert.equal(build.changedInputs.length,0);report.build={file:buildFile,binary:build.binary,wallMs:build.wallMs};
   await run('full','tools/rust-port/check-program.mjs',['--profile','release','--binary',build.binary.file,'--build-proof',buildFile,'--output',fullFile]);
