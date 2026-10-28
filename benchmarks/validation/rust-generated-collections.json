@@ -27,7 +27,7 @@
     },
     {
       "file": "crates/js-runtime/src/binary.rs",
-      "sha256": "4afef0152e201220e2da9078bc57cc7f93d34fa4d59a99dcbb007a5eed71b91c",
+      "sha256": "3a1701c1070d04b809750b63cd8514e5236df3b2de6b84b78a9ce52fb641b884",
       "matched": true
     },
     {
@@ -81,8 +81,13 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/src/id_hash.rs",
+      "sha256": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/src/iterators.rs",
-      "sha256": "5d9f8545e1c5e6b4a456b77d2a31cd888e0303c8243e73bce78174f68b7983d8",
+      "sha256": "cba5a0b38a54193a0f60afe2a8a81172a6ab5914a425ff640575ed76ab67e198",
       "matched": true
     },
     {
@@ -1127,7 +1132,7 @@
   "generatedRustSha256": "067b4eb9153209fa641d270912b7e84dd8704f946a366f43fe5ad509a14cdda0",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-collections/check",
-    "sha256": "3af7c9f827421a9adf6a645f43f568b26229e16c418a618fccdb97a252fbe68a"
+    "sha256": "1bb66b6fd2a98631c51853dc73031458be81f2fe4d87cbd6a00c59e5891fba2c"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",

@@ -16,8 +16,10 @@ impl Runtime {
   if matches!(value,Value::String(_)){return Ok(true)}
   let id=match value{Value::Number(_)=>self.number_prototype,Value::Bool(_)=>self.boolean_prototype,Value::Null|Value::Undefined=>return Ok(false),_=>self.object_id(value)?};
   if matches!(self.objects[id.0].kind,ObjectKind::Arguments){return Ok(true)}
-  let mut cursor=Some(id);let mut seen=std::collections::HashSet::new();
-  while let Some(object)=cursor{if !seen.insert(object){return Err(JsError::Unsupported("cyclic iterator prototype chain".into()))}
+  // Prototype traversal itself invokes no source code. An acyclic chain cannot
+  // contain more nodes than the heap, so count hops instead of allocating a set.
+  let mut cursor=Some(id);let mut remaining=self.objects.len();
+  while let Some(object)=cursor{if remaining==0{return Err(JsError::Unsupported("cyclic iterator prototype chain".into()))}remaining-=1;
    if object==self.array_prototype||object==self.string_prototype||self.binary_is_typed_array_prototype(object)||self.collection_prototypes.get("Map")==Some(&object)||self.collection_prototypes.get("Set")==Some(&object)||self.collection_is_iterator_prototype(object){return Ok(true)}
    cursor=self.objects[object.0].prototype;
   }Ok(false)
@@ -27,9 +29,9 @@ impl Runtime {
   if matches!(value,Value::Undefined|Value::Null){return Err(JsError::TypeError("value is not iterable".into()))}
   let boxed=if value.is_object(){value}else{self.to_object(value)?};let id=self.object_id(boxed)?;
   if matches!(self.objects[id.0].kind,ObjectKind::Arguments){return Ok(IteratorRecord{kind:IteratorKind::Array{object:value,index:0},done:false})}
-  let mut cursor=Some(id);let mut seen=std::collections::HashSet::new();
+  let mut cursor=Some(id);let mut remaining=self.objects.len();
   while let Some(object)=cursor{
-   if !seen.insert(object){return Err(JsError::Unsupported("cyclic iterator prototype chain".into()))}
+   if remaining==0{return Err(JsError::Unsupported("cyclic iterator prototype chain".into()))}remaining-=1;
    if object==self.array_prototype{return Ok(IteratorRecord{kind:IteratorKind::Array{object:boxed,index:0},done:false})}
    if self.binary_is_typed_array_prototype(object){if self.typed_array_length(value)?.is_none(){return Err(JsError::TypeError("typed array iterator has an incompatible receiver".into()))}return Ok(IteratorRecord{kind:IteratorKind::Array{object:value,index:0},done:false})}
    if object==self.string_prototype{let string=self.to_string_value(value)?;return Ok(IteratorRecord{kind:IteratorKind::String{string,index:0},done:false})}
