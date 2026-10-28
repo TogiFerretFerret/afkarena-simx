@@ -1,0 +1,4427 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Exact measured-battle CPU sampling window: only samples at or after CLOCK_MONOTONIC start and strictly before end are included. Three warmups, VM/table initialization and final report lie outside the two source-backed benchmark timer markers. MMAP and ELF/NFI addresses determine function ownership.",
+  "qualifiesFor10000Target": false,
+  "profile": {
+    "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.json",
+    "sha256": "c40bcbb49e950bf5c101c08c124d13caf0f7ab0dbf3a83516c38f7f56ab685c9"
+  },
+  "mapping": {
+    "file": "benchmarks/validation/native-current-measured-js-symbol-map.json",
+    "sha256": "ac73d59c6106e11da88495dc504304046f36a27cceef2dc4eb24a55e1e23beda",
+    "compressedMapSha256": "0f5d9c3e7b975fb01664237b747e3432bcd60b77fc2e7cdd7cf24c297ebbc5b7"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+    "sha256": "9fc604dd5c88d9a005a314210cb4b7625d7553d1456b542558f5c11e617bec97"
+  },
+  "toolSha256": "dd54c6f0e28e54bb4fcd530760eb31ac7c5acb7c4513e43fdb9d0524bf4fbcf9",
+  "windowHelper": {
+    "file": "tools/native-perf-window.mjs",
+    "sha256": "8e17b39327ff7d1e5aa4e03ab8fbc55f738d0a3731a5caf248bb81df806cabf7"
+  },
+  "privateVM": {
+    "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+    "sha256": "f88198b333528e12aa7af8bcc930dc1c2a98da17f1b5632f7f3b0799febd3f90"
+  },
+  "samples": 6182,
+  "recordedSampleCount": 13102,
+  "mmapEvents": 249,
+  "markerWindow": {
+    "clock": "CLOCK_MONOTONIC",
+    "startNs": "514765868869",
+    "endNs": "527145442667",
+    "durationNs": "12379573798"
+  },
+  "firstSampleNs": "514767575149",
+  "lastSampleNs": "527144260249",
+  "wholeProcessSamples": 13102,
+  "excludedBefore": 6882,
+  "excludedAtOrAfterEnd": 38,
+  "unresolvedTargetFrames": {
+    "ELF address has no mapped NFI JS function (native C/Rust wrapper or other code)": 15259
+  },
+  "leaf": [
+    {
+      "samples": 25,
+      "percentOfAllSamples": 0.4043998705920414,
+      "unit": "partition_0",
+      "symbol": "_383_applyEffects",
+      "address": "0x2639cc",
+      "name": "applyEffects",
+      "sourceSha256": "638b3a54abee7fa12543b60786d2ae9dd737808baba83a0b2017468965e9e939",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 43270,
+          "end": 43377,
+          "contextBefore": "alue(a,this,o,s,t[o],f,{kind:\"fixed\",value:e[o]||0},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}},applyEffects:"
+        }
+      ]
+    },
+    {
+      "samples": 22,
+      "percentOfAllSamples": 0.3558718861209964,
+      "unit": "partition_0",
+      "symbol": "_564_update_11_",
+      "address": "0x39edb3",
+      "name": "update",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 97200,
+          "end": 102984,
+          "contextBefore": "te_Dead&&this.state!==ed.emUnitState_Dying},checkFakeDead:function(){return this.isFakeDead},update:"
+        }
+      ]
+    },
+    {
+      "samples": 20,
+      "percentOfAllSamples": 0.3235198964736331,
+      "unit": "partition_0",
+      "symbol": "_1881__781_",
+      "address": "0x35cdfb",
+      "name": "",
+      "sourceSha256": "5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 285586,
+          "end": 285750,
+          "contextBefore": "e,t){var r=ed.getNodeSize(e),i=e.convertToNodeSpace(t);return cc.rectContainsPoint(r,i)},ed.copyObj="
+        }
+      ]
+    },
+    {
+      "samples": 18,
+      "percentOfAllSamples": 0.29116790682626986,
+      "unit": "partition_0",
+      "symbol": "_381_applyPercentValue",
+      "address": "0x4a0e74",
+      "name": "applyPercentValue",
+      "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 41723,
+          "end": 42574,
+          "contextBefore": "alBearDamage(a,this.caster,this.owner)),this.owner.battledata.addBearDamage(a))}},applyPercentValue:"
+        }
+      ]
+    },
+    {
+      "samples": 14,
+      "percentOfAllSamples": 0.2264639275315432,
+      "unit": "partition_0",
+      "symbol": "_750__140_",
+      "address": "0x10932b",
+      "name": "",
+      "sourceSha256": "8881f6a19ba8e7a9c13c25ef6eb831bd1c8dba3b479456a9e03ecb8b74e3bf35",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 192868,
+          "end": 193318,
+          "contextBefore": ".attribs[l],ed.AttrDebugSourceData.BATTLE_MODIFY_TYPE.ENEMY_AURA)}}}},ed.Unit.prototype.buffAttribs="
+        }
+      ]
+    },
+    {
+      "samples": 13,
+      "percentOfAllSamples": 0.21028793270786153,
+      "unit": "partition_0",
+      "symbol": "_386_isCrlEftConflictWithUncontrollable",
+      "address": "0x20bd42",
+      "name": "isCrlEftConflictWithUncontrollable",
+      "sourceSha256": "a299bc01e318ed638dbab2a87b2105c58414126c46ad4e223bc8723deb4d4902",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 43741,
+          "end": 43877,
+          "contextBefore": " e=!1,t=this.info;return(t.ShieldType||t.ShieldValue)&&(e=!0),e},isCrlEftConflictWithUncontrollable:"
+        }
+      ]
+    },
+    {
+      "samples": 13,
+      "percentOfAllSamples": 0.21028793270786153,
+      "unit": "partition_0",
+      "symbol": "_752__142_",
+      "address": "0x3a687c",
+      "name": "",
+      "sourceSha256": "437bbf55675c42151ac7122d324de4df0d8260bdc58ce83517e8d6882a54b853",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 193755,
+          "end": 193884,
+          "contextBefore": "ttribs,this.config),this.hp>this.attribs.HP&&(this.hp=this.attribs.HP)},ed.Unit.prototype.gsAttribs="
+        }
+      ]
+    },
+    {
+      "samples": 12,
+      "percentOfAllSamples": 0.19411193788417988,
+      "unit": "partition_0",
+      "symbol": "_755__145_",
+      "address": "0x360922",
+      "name": "",
+      "sourceSha256": "1b37ca9d351890144d4f25c3c9affc375d4303643e455cfa6f2923c795f88107",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 194994,
+          "end": 195703,
+          "contextBefore": ";_<d.length;_++){if(d[_]===e)if(s>=(u[_]||0))return!0}return!1},ed.Unit.prototype.judgeCurrentSkill="
+        }
+      ]
+    },
+    {
+      "samples": 12,
+      "percentOfAllSamples": 0.19411193788417988,
+      "unit": "partition_0",
+      "symbol": "_562_isAlive",
+      "address": "0x1ac952",
+      "name": "isAlive",
+      "sourceSha256": "81181e756d656bea3abf2d996e1dbdedb235413ccbe3f21a9a88fc1bd06127bd",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 97057,
+          "end": 97143,
+          "contextBefore": "nction(e){e>this.info.MP&&(e=this.info.MP),e<0&&(e=0),this.petmp=e,ed.btLog.setPetMp(this)},isAlive:"
+        }
+      ]
+    },
+    {
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982,
+      "unit": "partition_0",
+      "symbol": "_379_update_4_",
+      "address": "0x20e75a",
+      "name": "update",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 40434,
+          "end": 41296,
+          "contextBefore": "ield&&(t.lastHpChangeTick=ed.battleEngine.ticks),this.ignoreHideSet=!1,this.isUpdated_TB=!1},update:"
+        }
+      ]
+    },
+    {
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982,
+      "unit": "partition_0",
+      "symbol": "_382_applyFixedValue",
+      "address": "0x141529",
+      "name": "applyFixedValue",
+      "sourceSha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 42591,
+          "end": 43256,
+          "contextBefore": "coefficient:d,basisAttr:e[ed.attrib_names_a[o]]},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}},applyFixedValue:"
+        }
+      ]
+    },
+    {
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982,
+      "unit": "partition_0",
+      "symbol": "_389_applyEffect",
+      "address": "0x4c0b78",
+      "name": "applyEffect",
+      "sourceSha256": "bad5d925e501d191a071af0e0966156f2013230f5a49eaa4d4fe85810776d540",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 44234,
+          "end": 44940,
+          "contextBefore": "ts.length,i=0;i<a;i++){if(\"uncontrollable\"===t.ControlEffects[i]){e=!0;break}}return e},applyEffect:"
+        }
+      ]
+    },
+    {
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982,
+      "unit": "partition_0",
+      "symbol": "_2892__1089_",
+      "address": "0xf53fc",
+      "name": "",
+      "sourceSha256": "a071adecc9cc3cecd27b059f25a2a1eb1b26529e4a3fa15f8501e774dfa6b83f",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 288409,
+          "end": 288708,
+          "contextBefore": "}catch(a){for(var t=[],r=0,i=e.length;r<i;r++)t[r]=e[r];return t}},ed.override=function(e,t){return "
+        }
+      ]
+    },
+    {
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982,
+      "unit": "partition_0",
+      "symbol": "_546_addBuff_1_",
+      "address": "0x1eb07f",
+      "name": "addBuff",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 90693,
+          "end": 92695,
+          "contextBefore": "+){if(t[i].info.ForceOrder.endsWith(\"defer\"))break}return t.splice(i,0,e)}return t.push(e)},addBuff:"
+        }
+      ]
+    },
+    {
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982,
+      "unit": "partition_0",
+      "symbol": "_2315__829_",
+      "address": "0x4c18c0",
+      "name": "",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "start": 4499814,
+          "end": 4500381,
+          "contextBefore": "eOutline&&h.enableOutline(cc.color(\"#422618\"),2),l.addChild(h)}return l},ed.getNeedReadSkillCacheTb="
+        }
+      ]
+    },
+    {
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982,
+      "unit": "partition_0",
+      "symbol": "_529_applyBuffEffects",
+      "address": "0x49726e",
+      "name": "applyBuffEffects",
+      "sourceSha256": "eb93e3b227fe9bad3e7037af3d3dab69ea7d8907725c0b88fd602b96c894ed25",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 85454,
+          "end": 86137,
+          "contextBefore": "his.actor.hpbarHeight+8);this.actor.addEffect(a,1,{sx:1,sy:1,y:i})}}}.bind(this))},applyBuffEffects:"
+        }
+      ]
+    },
+    {
+      "samples": 10,
+      "percentOfAllSamples": 0.16175994823681655,
+      "unit": "partition_0",
+      "symbol": "_423_setAttribute",
+      "address": "0x40c5d4",
+      "name": "setAttribute",
+      "sourceSha256": "c48098fb65fac2bd28f017351cb0c750848432cef089b4efbbdc3658b7a760cd",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 52987,
+          "end": 53300,
+          "contextBefore": "n(e){for(var t=this.attrib.length,a=0;a<t;a++)if(this.attrib[a]===e)return!0;return!1},setAttribute:"
+        }
+      ]
+    },
+    {
+      "samples": 10,
+      "percentOfAllSamples": 0.16175994823681655,
+      "unit": "partition_0",
+      "symbol": "_320_update_3_",
+      "address": "0x47e20b",
+      "name": "update",
+      "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 18788,
+          "end": 20141,
+          "contextBefore": "s.attack_counter=0},pause:function(){this.is_update=!1},resume:function(){this.is_update=!0},update:"
+        }
+      ]
+    },
+    {
+      "samples": 9,
+      "percentOfAllSamples": 0.14558395341313493,
+      "unit": "partition_0",
+      "symbol": "_2209_getDynamic",
+      "address": "0x3293e5",
+      "name": "getDynamic",
+      "sourceSha256": "5fd8fd921c57af52374f2b7a3f9b57d341f262b33adbc410b071d361e68f72f8",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 768239,
+          "end": 768331,
+          "contextBefore": "e.config,\"战斗当前属性\"));return i.initial=ed.AttrDebugTraceData.copy(e.attribs),t.active=i,i},getDynamic:"
+        }
+      ]
+    },
+    {
+      "samples": 9,
+      "percentOfAllSamples": 0.14558395341313493,
+      "unit": "partition_0",
+      "symbol": "_2199_isEnabled",
+      "address": "0x3de8f5",
+      "name": "isEnabled",
+      "sourceSha256": "f7eb473fd0b56b032c971b6f59b2ceedcc18127f542272f32b5bbb985c30e05a",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 766245,
+          "end": 766295,
+          "contextBefore": "owRefresh:0,isAllowed:function(){return!(!ed.bugReportLog||!ed.bugReportLog.isEnabled())},isEnabled:"
+        }
+      ]
+    },
+    {
+      "samples": 8,
+      "percentOfAllSamples": 0.12940795858945325,
+      "unit": "partition_0",
+      "symbol": "_717__finalCalculateAttribs",
+      "address": "0x1b8237",
+      "name": "_finalCalculateAttribs",
+      "sourceSha256": "eab447a495ec54e60eccfdad4081d7a6038ff2169a9f05fea43d34cd5723c2d5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 154650,
+          "end": 155568,
+          "contextBefore": "sPvpEnvEnableAttrib:function(e){return[\"HP\",\"ATK\",\"ARM\",\"MR\"].indexOf(e)>-1},_finalCalculateAttribs:"
+        }
+      ]
+    },
+    {
+      "samples": 8,
+      "percentOfAllSamples": 0.12940795858945325,
+      "unit": "partition_0",
+      "symbol": "_390_getBuffTrueEffects",
+      "address": "0x4d605b",
+      "name": "getBuffTrueEffects",
+      "sourceSha256": "8aba21bd39d2d80711a27db005d18b1558411b968708676c48d506175e75fc3f",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 44960,
+          "end": 45166,
+          "contextBefore": "ar n=Object.keys(this.negative_effects);for(i=-1;++i<n.length;){t[n[i]]=null}}}},getBuffTrueEffects:"
+        }
+      ]
+    },
+    {
+      "samples": 8,
+      "percentOfAllSamples": 0.12940795858945325,
+      "unit": "factories_3",
+      "symbol": "_2363__2362_",
+      "address": "0xfa1a88",
+      "name": "",
+      "sourceSha256": "4880d82363748a7456ed7a5da3c043740fb48c355c5f982bc5976b99fda9383e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2942147,
+          "end": 2942905,
+          "contextBefore": "empBuff.timer=-1,t.birthFinish=!0)},SBD.ult_finish=function(e,t){e.call(t)},SBD.atk4_resetBuffApply="
+        }
+      ]
+    },
+    {
+      "samples": 8,
+      "percentOfAllSamples": 0.12940795858945325,
+      "unit": "runner",
+      "symbol": "_3381__3288_",
+      "address": "0x27f5166",
+      "name": "",
+      "sourceSha256": "c0e7b95d7e41b2283fb8417b41dca3d6f10e7c4cf574ffcc7b68d1939ef2ed85",
+      "sourceRangeCount": 3,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "start": 4337876,
+          "end": 4337915,
+          "contextBefore": "10),this._effect=i,i},update:function(e){this._effect.update(e)}}),ed.clientCall_list=[],clientCall="
+        },
+        {
+          "file": "tools/emit-native-oracle.mjs",
+          "start": 15236,
+          "end": 15275,
+          "contextBefore": "=uiSource.slice(4342606,4343218),onUpdate=uiSource.slice(4343228,4343636);\nassert.equal(clientCall,'"
+        },
+        {
+          "file": "tools/bootstrap-callbacks.mjs",
+          "start": 866,
+          "end": 905,
+          "contextBefore": ",file),'utf8');\n  const body=name=>source.slice(...spans[name]);\n  assert.equal(body('clientCall'),'"
+        }
+      ]
+    },
+    {
+      "samples": 8,
+      "percentOfAllSamples": 0.12940795858945325,
+      "unit": "partition_0",
+      "symbol": "_877_checkPush_1_",
+      "address": "0xe02bc",
+      "name": "checkPush",
+      "sourceSha256": "9d16d41d1f86405d50c7f717b33d822d88c6d0367eeea21f784e15546977a76d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 235289,
+          "end": 235517,
+          "contextBefore": "ck+=this.tick_interval},forceTimeOut:function(){this.time_limit=-1,this.time_skill_add=0},checkPush:"
+        }
+      ]
+    },
+    {
+      "samples": 7,
+      "percentOfAllSamples": 0.1132319637657716,
+      "unit": "partition_0",
+      "symbol": "_2316__830_",
+      "address": "0x14ce53",
+      "name": "",
+      "sourceSha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "start": 4500415,
+          "end": 4501076,
+          "contextBefore": "==u){n=!0;break}return t=e.camp===ed.battle_camp.enemy,i&&a&&n&&t},ed.parseUseSkillCacheStageBattle="
+        }
+      ]
+    },
+    {
+      "samples": 7,
+      "percentOfAllSamples": 0.1132319637657716,
+      "unit": "partition_0",
+      "symbol": "_655_checkHasBuff",
+      "address": "0x232d2b",
+      "name": "checkHasBuff",
+      "sourceSha256": "f6d42e4368c88943ef6a3d2395a2cc26b882befa0306c09affc9384398a0b136",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 133388,
+          "end": 133495,
+          "contextBefore": "tag_bonusDmg=t))},checkIsLaunch:function(){return!!(this.height>50&&this.knock_state)},checkHasBuff:"
+        }
+      ]
+    },
+    {
+      "samples": 7,
+      "percentOfAllSamples": 0.1132319637657716,
+      "unit": "partition_0",
+      "symbol": "_543_removeBuffsConlictWithUncontrol",
+      "address": "0x26198b",
+      "name": "removeBuffsConlictWithUncontrol",
+      "sourceSha256": "0168edf31ec38285b40ef2bb434571c7cd84318fca5df6b89667a5c57dbabf7e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 88737,
+          "end": 89146,
+          "contextBefore": ".length;){var r=a[i];if(this.buff_effects[r]){e=!0;break}}return e},removeBuffsConlictWithUncontrol:"
+        }
+      ]
+    },
+    {
+      "samples": 7,
+      "percentOfAllSamples": 0.1132319637657716,
+      "unit": "runner",
+      "symbol": "_3384_snapshot",
+      "address": "0x280178c",
+      "name": "snapshot",
+      "sourceSha256": "37bb397c11cca8ef67f579afb2d53b6858487f20b3f3174d887f4bc890c90063",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/emit-native-oracle.mjs",
+          "start": 24769,
+          "end": 24853,
+          "contextBefore": " put('var __nativeSourceSnapshot=('+snapshot+');var __nativeSnapshots=0;var __nativeScene={snapshot:"
+        }
+      ]
+    },
+    {
+      "samples": 6,
+      "percentOfAllSamples": 0.09705596894208994,
+      "unit": "partition_0",
+      "symbol": "_572_pushVelocityApply",
+      "address": "0xe7c49",
+      "name": "pushVelocityApply",
+      "sourceSha256": "1b0f3233211b3260df76e5d23251426bc4842df210c98d41e243fc9fecebf576",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 106276,
+          "end": 106820,
+          "contextBefore": "unction(e){return ed.edpDistanceSQ(this.position,e)<this.radius*this.radius/4.84},pushVelocityApply:"
+        }
+      ]
+    },
+    {
+      "samples": 6,
+      "percentOfAllSamples": 0.09705596894208994,
+      "unit": "partition_0",
+      "symbol": "_1010_get",
+      "address": "0x150377",
+      "name": "get",
+      "sourceSha256": "93ba986430208c8a8258a1ec7345d52d877345ddada92b898f2b39d7baa6cca9",
+      "sourceRangeCount": 2,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 267552,
+          "end": 267674,
+          "contextBefore": "*ed.deepProjectionX;return[i=480*i/615,a=480*a/307.5]},Object.defineProperty(ed,\"battleEngine\",{get:"
+        },
+        {
+          "file": "tools/battle-trace-instrumentation.js",
+          "start": 4248,
+          "end": 4370,
+          "contextBefore": "r(ed,'battleEngine');\n   if(!d)return undefined;\n   if('value'in d)return d.value;\n   var expected='"
+        }
+      ]
+    },
+    {
+      "samples": 6,
+      "percentOfAllSamples": 0.09705596894208994,
+      "unit": "partition_0",
+      "symbol": "_751__141_",
+      "address": "0x48c73",
+      "name": "",
+      "sourceSha256": "4532bf7234d75a20ced7344f20d735c57b1ac5b4ecd5abe85825b7457a9df08f",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 193351,
+          "end": 193726,
+          "contextBefore": "_FIXED);a.applyFixedValue(),i&&ed.AttrDebugMgr.finishBuff(this,i)}},ed.Unit.prototype.configAttribs="
+        }
+      ]
+    },
+    {
+      "samples": 6,
+      "percentOfAllSamples": 0.09705596894208994,
+      "unit": "partition_0",
+      "symbol": "_3074_assertIntact",
+      "address": "0x3c7e87",
+      "name": "assertIntact",
+      "sourceSha256": "1c991319d319ccfab6abf923cff0e22399ad8b39f1fa0975ccbe493f99994e7c",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/oracle-class-manager.js",
+          "start": 1749,
+          "end": 2324,
+          "contextBefore": "| !managerDescriptor || !constructorDescriptor) fail(\"original manager/constructor proof\");\n        "
+        }
+      ]
+    },
+    {
+      "samples": 5,
+      "percentOfAllSamples": 0.08087997411840828,
+      "unit": "partition_0",
+      "symbol": "_540_isHasUncontrolBuffEffect",
+      "address": "0xca031",
+      "name": "isHasUncontrolBuffEffect",
+      "sourceSha256": "d613e38cdfe79c1e35b3164764e0a137d5f993233823657313a0c44d9ef29cd6",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 88270,
+          "end": 88340,
+          "contextBefore": "this.config.isPet||\"Pet\"!==this.info.UnitType)},battleSupply:function(e){},isHasUncontrolBuffEffect:"
+        }
+      ]
+    },
+    {
+      "samples": 5,
+      "percentOfAllSamples": 0.08087997411840828,
+      "unit": "partition_0",
+      "symbol": "_747__137_",
+      "address": "0x4a649b",
+      "name": "",
+      "sourceSha256": "7b6c81af8706c58598faf1c0c3c101dbd9d354ad5ae4c739a141ec04fcfb7540",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 191068,
+          "end": 191430,
+          "contextBefore": "etAttributes(l,!0))&&t.push(\"{0} +{1}%\".format(n,r))}}return t},ed.Unit.prototype.rebuildIdleAttrbs="
+        }
+      ]
+    },
+    {
+      "samples": 5,
+      "percentOfAllSamples": 0.08087997411840828,
+      "unit": "partition_0",
+      "symbol": "_749__139_",
+      "address": "0x34947d",
+      "name": "",
+      "sourceSha256": "b556cef471599c2d604cf34fc6e518f4853a5e68b1e2a7d77e9b969a8969bb76",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 191906,
+          "end": 192837,
+          "contextBefore": "attribs[a],ed.AttrDebugSourceData.BATTLE_MODIFY_TYPE.PASSIVE_SKILL)}},ed.Unit.prototype.auraAttribs="
+        }
+      ]
+    },
+    {
+      "samples": 5,
+      "percentOfAllSamples": 0.08087997411840828,
+      "unit": "partition_0",
+      "symbol": "_422_containAttribute",
+      "address": "0x1bd73e",
+      "name": "containAttribute",
+      "sourceSha256": "16375f29478a11552b288fb74052075a5773c056bf18ce1b307079685098c2da",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 52880,
+          "end": 52973,
+          "contextBefore": "essMakeDamage:function(e,t,a,i,r,n){},onFinalDamaged:function(e,t,a,i,r){return e},containAttribute:"
+        }
+      ]
+    },
+    {
+      "samples": 5,
+      "percentOfAllSamples": 0.08087997411840828,
+      "unit": "partition_0",
+      "symbol": "_558_setHp",
+      "address": "0x3cf06e",
+      "name": "setHp",
+      "sourceSha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 96538,
+          "end": 96698,
+          "contextBefore": "ataTable(\"UnitPuppet\",\"Resource\",t)+\".cha\",ed.lookupDataTable(\"AnimDuration\",\"Duration\",t,e)},setHp:"
+        }
+      ]
+    },
+    {
+      "samples": 5,
+      "percentOfAllSamples": 0.08087997411840828,
+      "unit": "partition_0",
+      "symbol": "_255__104_",
+      "address": "0x6d242",
+      "name": "",
+      "sourceSha256": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/emit-native-oracle.mjs",
+          "start": 23537,
+          "end": 24327,
+          "contextBefore": "});var __nativeWrappedTables=Object.create(null);');\n  put(`var __nativeTables=null;ed.getDataTable="
+        }
+      ]
+    },
+    {
+      "samples": 5,
+      "percentOfAllSamples": 0.08087997411840828,
+      "unit": "partition_0",
+      "symbol": "_616_takeDamage",
+      "address": "0x47f398",
+      "name": "takeDamage",
+      "sourceSha256": "191f70d183a3198c24cd20a123abf43ed98a8788f57fbd0906ea9d3a3f11cec5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 119422,
+          "end": 125022,
+          "contextBefore": "rn!1;var a=Math.max(0,this.attribs.MDODG-e.attribs.MHIT),i=a/(100+a);return ed.rand()<i},takeDamage:"
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_335_targetInRange",
+      "address": "0xa0fc9",
+      "name": "targetInRange",
+      "sourceSha256": "c15f7221332e529eed9f2073f05602297af55e7557b8c4978f525d207090c80f",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 22994,
+          "end": 23381,
+          "contextBefore": "tmp-t.CostMP):i.setMp(i.mp-t.CostMP,i),this.launcheffectdelay=t.LaunchEffectDelay||0},targetInRange:"
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_920_addBuffEventToAll",
+      "address": "0xb740e",
+      "name": "addBuffEventToAll",
+      "sourceSha256": "c3ddbaabcfe747cf413b2e3c3bff64bd9713fb72322daf34c6c3cf7901b9fe15",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 248301,
+          "end": 248512,
+          "contextBefore": "otherStateFall(e)}for(t=this.pet_list,a=0;a<t.length;){t[a++].otherStateFall(e)}},addBuffEventToAll:"
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_878_tick",
+      "address": "0x44dd38",
+      "name": "tick",
+      "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 235523,
+          "end": 237381,
+          "contextBefore": "ength;++n)if(a!==n){var l=i.checkPush(e,t[n]);r[0]+=l[0],r[1]+=l[1]}i.pushVelocityApply(e,r)}},tick:"
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_3072_Class",
+      "address": "0x3f3e73",
+      "name": "Class",
+      "sourceSha256": "bdfc22c24f15a0a81d6a915b30bf762c93e8efb115c54ce60c9d7b505f74d425",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/bootstrap-vendor-CCClass.js",
+          "start": 8535,
+          "end": 9211,
+          "contextBefore": "ructor += \"})\";\n            Class = eval(constructor);\n        }\n        else {\n            Class = "
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_3161_wrapper",
+      "address": "0x4ff71",
+      "name": "wrapper",
+      "sourceSha256": "d8eb0c52ebf2d0993083ba12bb0e26e41961e754c878f28492ef7d4fe080eac0",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/oracle-class-manager.js",
+          "start": 3788,
+          "end": 4527,
+          "contextBefore": "unterValue: null, nextReturned: null };\n            states[name] = state;\n            var wrapper = "
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_534_resetBuffApply",
+      "address": "0x293700",
+      "name": "resetBuffApply",
+      "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 87423,
+          "end": 87610,
+          "contextBefore": "s.rebuild(\"rebuild\"),this.addInitBuff(),this.applyBuffEffects(),this.initHpInfo(!0)},resetBuffApply:"
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_1915__815_",
+      "address": "0x226b28",
+      "name": "",
+      "sourceSha256": "6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 640811,
+          "end": 641356,
+          "contextBefore": "stack[r];if(i.l)return;for(var a in i.p)this[a]=i.p[a];this.wrap_stack.pop()}}},t}:ed.createDataObj="
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_439__115_",
+      "address": "0xacec9",
+      "name": "",
+      "sourceSha256": "44bd18d973d135a985e6c5bef6121a304458c11bfdaca61cd05b6aa697c0eafd",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 56644,
+          "end": 56691,
+          "contextBefore": "Buff=function(e,t){return!(!t||!e)},ed.Buff.attribCache={},ed.Buff.noAttribs={},ed.Buff.getDuration="
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_838_getMode",
+      "address": "0x88e66",
+      "name": "getMode",
+      "sourceSha256": "4f78303c39bb5ef524d4ff7b2fd57c261cafa0c1b635989b169d9c21c38748fc",
+      "sourceRangeCount": 4,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 221947,
+          "end": 221975,
+          "contextBefore": "=[],this.alive_units[ed.battle_camp.both]=[]},getBattleId:function(){return this.battle_id},getMode:"
+        },
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "start": 5172696,
+          "end": 5172724,
+          "contextBefore": "this.curState=e},getState:function(){return this.curState},setMode:function(e){this.mode=e},getMode:"
+        },
+        {
+          "file": "src/srcmodule/game_ui_3.js",
+          "start": 2599985,
+          "end": 2600013,
+          "contextBefore": "&&e==t.id},checkIsSPHero:function(e){return e==ed.spBossMgr.getBossParam(\"SpHeroID\")},getLineupType:"
+        },
+        {
+          "file": "src/srcmodule/game_ui_3.js",
+          "start": 4140986,
+          "end": 4141014,
+          "contextBefore": "r t=this.getStartLevel();return this.getCurrentLevel(e)-t},setMode:function(e){this.mode=e},getMode:"
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_1173_isLogBattle",
+      "address": "0x109db3",
+      "name": "isLogBattle",
+      "sourceSha256": "65fc1ed7312815b9e73dafc6614c7aacbe8ae3f7aad6b2259893a5409e7c4a0c",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 300396,
+          "end": 300463,
+          "contextBefore": "=cc.game.region&&this.num%50==0))))))))},isLogUnlock:function(){return this.log_unlock},isLogBattle:"
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_917_skillStartEventToAll",
+      "address": "0xb83a2",
+      "name": "skillStartEventToAll",
+      "sourceSha256": "473ac9a6893bdb801bce947183da3b562e2106b65f85c253c877040c1c33c320",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 247586,
+          "end": 247806,
+          "contextBefore": ".otherUnitAdd(e)}for(t=this.pet_list,a=0;a<t.length;){t[a++].otherUnitAdd(e)}},skillStartEventToAll:"
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "factories_2",
+      "symbol": "_1015__1014_",
+      "address": "0x97904d",
+      "name": "",
+      "sourceSha256": "ec426dcd33b301113f5f674ff399c7e6e2eedecd479bced6fb9c11a484db0637",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 968231,
+          "end": 968880,
+          "contextBefore": "B.name+\"_atk3\"];l&&(l.info.wrapTable({BuffID:6212},!0),l.refreshBuffInfo())}},TwinsB.sp_buff_update="
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "partition_0",
+      "symbol": "_280_searchTarget",
+      "address": "0x3c5592",
+      "name": "searchTarget",
+      "sourceSha256": "0b81cb69622de9daafa321321d72eb53fd6817bca12594c22ace56a18d57f185",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 4512,
+          "end": 5369,
+          "contextBefore": "!e)return!1;var t=e.info;return{shape:t.RangeShape,arg1:t.RangeArg1,arg2:t.RangeArg2}},searchTarget:"
+        }
+      ]
+    },
+    {
+      "samples": 4,
+      "percentOfAllSamples": 0.06470397929472663,
+      "unit": "runner",
+      "symbol": "_3383___nativeSourceSnapshot",
+      "address": "0x2ad4c59",
+      "name": "__nativeSourceSnapshot",
+      "sourceSha256": "3e143dc33efc9f3575a3f6982a3fe3a04f0ad7dbadcb6d039493f6074e3495a5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "start": 4342606,
+          "end": 4343218,
+          "contextBefore": "ld(this.background,-1e3),this.createSpine())},createSpine:function(){},initUI:function(){},snapshot:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_433_isMode_TB_2_",
+      "address": "0x1e4413",
+      "name": "isMode_TB",
+      "sourceSha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c",
+      "sourceRangeCount": 4,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 7618,
+          "end": 7729,
+          "contextBefore": "w(t.attack_range,2)&&(l=!0),l&&!t.isOutOfStage())return void t.idle();t.walkTowards(e)}}},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 35546,
+          "end": 35657,
+          "contextBefore": " d=i[0].target,u=i[0].dir;if(d instanceof ed.Unit&&d.isAlive())return{target:d,dir:u}}}}},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 55399,
+          "end": 55510,
+          "contextBefore": "=n&&\"number\"==typeof this.info[n]&&(i=e?this.info[n]>0:this.info[n]<0))return!0}return i},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 135752,
+          "end": 135863,
+          "contextBefore": "es[t]&&e.skin_res[t][a]||(e.skin_res[e.default_skin]?e.skin_res[e.default_skin][a]:null)},isMode_TB:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_378_ctor_4_",
+      "address": "0x24d9cd",
+      "name": "ctor",
+      "sourceSha256": "3ca99406ed04bd3655bb5bb11c776e1286bd122d21e218003629e6d3d83144b6",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 38986,
+          "end": 40426,
+          "contextBefore": ",motionless:!0,unmanual:!0,noaddmp:!0,noshield:!0,unheal:!0},hpBarHeightAdaptOffSet:{1128:-60},ctor:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_1894__794_",
+      "address": "0xcecae",
+      "name": "",
+      "sourceSha256": "6376c279abd7f5365ce6df12b4d4b94c57589a9c116af32d1cb7e11696be07b7",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 520177,
+          "end": 520273,
+          "contextBefore": ".max(e,t)),i=Math.ceil(Math.min(e,t));return i+Math.floor(ed.rand()*(r-i+1))},ed.searchValueInArray="
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "factories_5",
+      "symbol": "_2041__2040_",
+      "address": "0x21232e5",
+      "name": "",
+      "sourceSha256": "23c81e3b14c249c4dc22c0565b28d7e8949ab567495a2682ab73024134c9ea3a",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 5159608,
+          "end": 5160701,
+          "contextBefore": "ber\"==typeof t.OrcEfreetKnockTimes&&t.OrcEfreetKnockTimes<=0&&(t.timer=-1),f},OrcEfreet.atk3_update="
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_380_updateHPRDamage",
+      "address": "0x1ecbaa",
+      "name": "updateHPRDamage",
+      "sourceSha256": "a24eeaf3080157c38734a07cef3b5fc836728ee961e30797b6ae3f74f66520bc",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 41313,
+          "end": 41704,
+          "contextBefore": "merCoef(this.owner,this.caster,this):e,this.timer<0&&this.owner.removeBuff(this)}}},updateHPRDamage:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_361_checkLevel",
+      "address": "0x261765",
+      "name": "checkLevel",
+      "sourceSha256": "b30d06126a0158186cd6ef55252493e4c3eefa2e422eafd51c70e7f30784c8b0",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 32505,
+          "end": 32550,
+          "contextBefore": "d.battleEngine.getCurrentWeather();return e&&e.skill===this},whenWeatherEnd:function(){},checkLevel:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_2895__1092_",
+      "address": "0x47058c",
+      "name": "",
+      "sourceSha256": "4948ed12a5575d3d15c717d544a4f4af4a926d9b043f0847e3aea5dc7341a28f",
+      "sourceRangeCount": 2,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 640398,
+          "end": 640567,
+          "contextBefore": "blish?ed.createDataObj=function(e){var t=ed.swallowCopyObject(e);return t.wrap_stack=[],t.wrapTable="
+        },
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 640961,
+          "end": 641130,
+          "contextBefore": "r in t)t[r]instanceof Array&&(t[r].__proto__=readonlyArrayProto);return t.wrap_stack=[],t.wrapTable="
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_311_targetSelector",
+      "address": "0x132dc9",
+      "name": "targetSelector",
+      "sourceSha256": "5fba00cd134448f151e0662740c588816f344bf6fdea391828b0607afc2508ce",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 17592,
+          "end": 17654,
+          "contextBefore": "ar h={action_name:r,duration:i,event_list:u,sound_list:k};this.phase_list.push(h)}}},targetSelector:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_1882__782_",
+      "address": "0xeefe5",
+      "name": "",
+      "sourceSha256": "af5e8fd7b84f54efba9b66fc0c515b67cee6196d5a16a5b5d5c4b43ada4a7a4a",
+      "sourceRangeCount": 2,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 285895,
+          "end": 285928,
+          "contextBefore": "Obj(e),i=Object.keys(t),a=i.length,n=0;n<a;n++){var o=i[n];r[o]=t[o]}return r},ed.swallowCopyObject="
+        },
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 285949,
+          "end": 285982,
+          "contextBefore": "i[n];r[o]=t[o]}return r},ed.swallowCopyObject=function(e){return ed.copyObj(e)},ed.swallowCopyArray="
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_440__116_",
+      "address": "0x120d4a",
+      "name": "",
+      "sourceSha256": "4d2b00243ff25da5cf7f44209e3c8cd4f0822ae7303b8f0913b4399e2bed12c5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 56707,
+          "end": 56749,
+          "contextBefore": "uff.noAttribs={},ed.Buff.getDuration=function(e,t,a){var i=e.Time;return i>0?i:null},ed.Buff.create="
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_260_isOutOfStage",
+      "address": "0x313f71",
+      "name": "isOutOfStage",
+      "sourceSha256": "e81a89684e6ca7191b86ef1dd1101012621a248062400f888b399691a8f284d5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 392,
+          "end": 516,
+          "contextBefore": "ity;t[0]+=a[0]*e,t[1]+=a[1]*e,a[0]*this.direction<0&&(this.direction=-this.direction)},isOutOfStage:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_740_getHeroAttribsAddByPetTalent",
+      "address": "0x47c54c",
+      "name": "getHeroAttribsAddByPetTalent",
+      "sourceSha256": "c387a1e0b7f67cda5936bcc678a73081743693be6770b8a9af6d23438fc3eba4",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 184863,
+          "end": 185962,
+          "contextBefore": "TER_COEFS].push(l),r[ed.GET_UNIT_ATTR_TYPE.FINAL_MULTIPLIER].push(o)}},getHeroAttribsAddByPetTalent:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_277_update_1_",
+      "address": "0x9ddfe",
+      "name": "update",
+      "sourceSha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 3665,
+          "end": 4257,
+          "contextBefore": "eate=ed.Entity.create,ed.Ai=cc.Class.extend({ctor:function(e){this.owner=e,this.target=null},update:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_2703__907_",
+      "address": "0x327f41",
+      "name": "",
+      "sourceSha256": "19714802133af51a8e5a75cac0ac1e52254e93bbbcc8375ab745e4e3389f7b58",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 85715,
+          "end": 86124,
+          "contextBefore": "[t].applyEffects()}this.buff_effects.immoblilize&&\"Move\"===this.action_name&&this.idle(),clientCall("
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_3064_Date",
+      "address": "0x1dff38",
+      "name": "Date",
+      "sourceSha256": "f22aec8691d9b336d9459abf89baaf44d063b147b4c00d81177a353336790a4e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/oracle-clock.js",
+          "start": 5043,
+          "end": 5837,
+          "contextBefore": ";\n            return kind === \"Date.call\" ? entry.value : bitsNumber(entry.bits);\n        }\n        "
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_261_collideWith",
+      "address": "0x23c739",
+      "name": "collideWith",
+      "sourceSha256": "ead95c8b47ebf309fcf8de9c6dc9a4ce55dbccf1b03acd7616631eccab242e9d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 529,
+          "end": 671,
+          "contextBefore": "attleEngine.getStageRect(),a=e[0],i=e[1];return a<t.minX||a>t.maxX||i<t.minY||i>t.maxY},collideWith:"
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_1899__799_",
+      "address": "0x17553d",
+      "name": "",
+      "sourceSha256": "012bd46a8feb0b0d209f595fee96701949ec30dfa80dde59b863dbd8337be936",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 521726,
+          "end": 521806,
+          "contextBefore": " i;var a=1*(e.attribs.IPOS||0);return a<-50&&(a=-50),a>100&&(a=100),i=1/(1+a/100)},ed.getStageFixLv="
+        }
+      ]
+    },
+    {
+      "samples": 3,
+      "percentOfAllSamples": 0.04852798447104497,
+      "unit": "partition_0",
+      "symbol": "_371_isMode_TB_1_",
+      "address": "0x1e47e0",
+      "name": "isMode_TB",
+      "sourceSha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c",
+      "sourceRangeCount": 4,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 7618,
+          "end": 7729,
+          "contextBefore": "w(t.attack_range,2)&&(l=!0),l&&!t.isOutOfStage())return void t.idle();t.walkTowards(e)}}},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 35546,
+          "end": 35657,
+          "contextBefore": " d=i[0].target,u=i[0].dir;if(d instanceof ed.Unit&&d.isAlive())return{target:d,dir:u}}}}},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 55399,
+          "end": 55510,
+          "contextBefore": "=n&&\"number\"==typeof this.info[n]&&(i=e?this.info[n]>0:this.info[n]<0))return!0}return i},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 135752,
+          "end": 135863,
+          "contextBefore": "es[t]&&e.skin_res[t][a]||(e.skin_res[e.default_skin]?e.skin_res[e.default_skin][a]:null)},isMode_TB:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_317_reset",
+      "address": "0x2e9ed6",
+      "name": "reset",
+      "sourceSha256": "3f216794d9cca7db66f21eb782cde704d20f1092e3f627182d0206580d93255c",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 18399,
+          "end": 18707,
+          "contextBefore": ";return\"target\"===e.TargetType&&(t=-1),\"self\"===e.TargetType&&(t=1),this.caster.foecamp*t*-1},reset:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_1910__810_",
+      "address": "0x2c575",
+      "name": "",
+      "sourceSha256": "2c6a18411d11be16eae9d8659081594c850c37f3612c4635df5d41f86b82c1f4",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 638314,
+          "end": 638371,
+          "contextBefore": "eturn[e[0]*t,e[1]*t]},ed.edpLengthSQ=function(e){var t=e[0],r=e[1];return t*t+r*r},ed.edpDistanceSQ="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_391_hasEffectOrNot",
+      "address": "0x163bbe",
+      "name": "hasEffectOrNot",
+      "sourceSha256": "da7cacdad30022abe9f7223ab7afdca156be68b58a08f46c5ab5098d8a8c0b36",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 45182,
+          "end": 45260,
+          "contextBefore": "his.effect_inclusions[r]||[],l=n.length,o=0;o<l;o++){var f=n[o];t.push(f)}}return t},hasEffectOrNot:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_325_checkRegion",
+      "address": "0x1305df",
+      "name": "checkRegion",
+      "sourceSha256": "fa29f99eec0ea95e5581a9804e89581105364133b4c2ec9af839153e9cfd8a36",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 20674,
+          "end": 21189,
+          "contextBefore": "ion:this.regionPosOrUnit instanceof Array&&(e=this.regionPosOrUnit)),[e[0]||0,e[1]||0]},checkRegion:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_748__138_",
+      "address": "0x3cbad9",
+      "name": "",
+      "sourceSha256": "ef9e5ced2963de571f1f05a0ade151b2b95a3ecf1e163665d130ecb974cdb50f",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 191464,
+          "end": 191875,
+          "contextBefore": "tribs(),this.gsAttribs(),t&&ed.AttrDebugMgr.finishDynamic(this,t)},ed.Unit.prototype.passiveAttribs="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_924_mpChangeEventToAll",
+      "address": "0x35658e",
+      "name": "mpChangeEventToAll",
+      "sourceSha256": "9368e160f2b1ab85d3842680f9d1dce2edf79c88adb29f8bd1209983d00287f7",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 249334,
+          "end": 249598,
+          "contextBefore": "t,a,i,r)}for(n=this.pet_list,l=0;l<n.length;){n[l++].otherTakeHeal(e,t,a,i,r)}}},mpChangeEventToAll:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "factories_2",
+      "symbol": "_1212__1211_",
+      "address": "0xbb0249",
+      "name": "",
+      "sourceSha256": "8d29d0a53abf8756393e1379440619b23c029b19d1a94b7907d5063282f23aa5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 1056815,
+          "end": 1057570,
+          "contextBefore": "ull),t.effectBg&&(ed.callViewMessage(\"removeEffect\",t.effectBg),t.effectBg=null)}))},DT.atk4_update="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_282_findSkillToCast",
+      "address": "0x226f74",
+      "name": "findSkillToCast",
+      "sourceSha256": "1369e82a60fa02e4cc51dc2a204549619e82144de7e27a816fe0503b87268075",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 5706,
+          "end": 6144,
+          "contextBefore": "}else\"trigger\"===e.can_cast_manual&&(e.can_cast_manual=null,e.will_cast_manual=!1)},findSkillToCast:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_2472_getIsWarBattleMode",
+      "address": "0x3d61b",
+      "name": "getIsWarBattleMode",
+      "sourceSha256": "4c20f79f7025decaf616bd2b684893e7a0908fcc952b0f9a1eb4a5ba8c3d914e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/ui_war.js",
+          "start": 1102661,
+          "end": 1102819,
+          "contextBefore": "l_heroes){var i=ed.heroData.cloneFormObj(this.all_heroes[t]);e.push(i)}return e},getIsWarBattleMode:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_350_collectAoeTarget",
+      "address": "0x47be12",
+      "name": "collectAoeTarget",
+      "sourceSha256": "ff5b8664f6e9affdabbde05e9b8e9b65431596c105acb07e606e07e397d6eecb",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 28499,
+          "end": 28769,
+          "contextBefore": "ShapeArg3,s=ed.edpSub(e.position,t);return s[0]*=a,ed.testPointInShape(s,n,l,o,f)},collectAoeTarget:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_148___nativeDrain",
+      "address": "0x4048f5",
+      "name": "__nativeDrain",
+      "sourceSha256": "edf1988ae041ddda3f8c1e40496e28beb96b91e861765c5721f6c4d658ec9a29",
+      "sourceRangeCount": 0,
+      "ranges": []
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_1898__798_",
+      "address": "0x2fb0c",
+      "name": "",
+      "sourceSha256": "2e4ce6ac1b75f765811bc326f710e3ad4ab48be8989860a52eb35a01b0b3a904",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 521586,
+          "end": 521708,
+          "contextBefore": "tenDebuffIdx);var n=1*a;return n<-50&&(n=-50),n>100&&(n=100),i=1/(1+n/100)},ed.calcPosBuffTimerCoef="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_392_isImpactAttribs",
+      "address": "0xe0afc",
+      "name": "isImpactAttribs",
+      "sourceSha256": "9c7341159609b96ece0eff8a9b258759c5b2110ba7f042882e6c8074a3626a35",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 45277,
+          "end": 45316,
+          "contextBefore": "rNot:function(e){var t=this.getBuffTrueEffects();return ed.searchValueInArray(t,e)},isImpactAttribs:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_627_recheckManualCast",
+      "address": "0x1d1de0",
+      "name": "recheckManualCast",
+      "sourceSha256": "e7e756babb8558e17940f1406d1b8c0160b7aec772072b820d7e93cebcabd03d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 128279,
+          "end": 128524,
+          "contextBefore": ".unlaunch;i||l||this.launch(e)}},launch:function(e){this.zSpeed=e*-ed.gravity*.5},recheckManualCast:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_599_otherAddBuff",
+      "address": "0x1d7a4",
+      "name": "otherAddBuff",
+      "sourceSha256": "894dd0af68bb8d4134c741cfe1d91abc28ba5ce00c54d4d77d3d12e71507e8af",
+      "sourceRangeCount": 135,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 41133,
+          "end": 41148,
+          "contextBefore": "s._onEvent(e,t)},setSpineEvent:function(e){this._onEvent=e},interruptSound:function(){},addComponet:"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 41191,
+          "end": 41206,
+          "contextBefore": "},interruptSound:function(){},addComponet:function(e,t){},getComponet:function(e){},changeComponent:"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 41220,
+          "end": 41235,
+          "contextBefore": ",addComponet:function(e,t){},getComponet:function(e){},changeComponent:function(e,t){},setComponent:"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 275325,
+          "end": 275340,
+          "contextBefore": ".EventListener.TOUCH_ONE_BY_ONE,swallowTouches:!1,onTouchBegan:function(e,t){return!0},onTouchMoved:"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 275557,
+          "end": 275572,
+          "contextBefore": ".EventListener.TOUCH_ONE_BY_ONE,swallowTouches:!1,onTouchBegan:function(e,t){return!0},onTouchMoved:"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 400882,
+          "end": 400897,
+          "contextBefore": "etCascadeOpacityEnabled(!0),this.root.setOpacity(e)},runAction:function(e){},stopAllActionsAndReset:"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 401184,
+          "end": 401199,
+          "contextBefore": "derSprite()},setSpriteGray:function(e){this.isSetGray=e,this.createRenderSprite()},setSubTagVisible:"
+        },
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 457452,
+          "end": 457467,
+          "contextBefore": "Root().y=n-a.y*s.height,t.cmpt=i,this._itemsActive.push(t)}else this._itemsFreed.push(t)},insetItem:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_1897__797_",
+      "address": "0x521ee",
+      "name": "",
+      "sourceSha256": "7da29b9231ae74bbbd6aba3d17eb5e2954a2f0dc30cdbacb87fd1c5af531c73e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 521340,
+          "end": 521561,
+          "contextBefore": "=e.attribs.CRITPLU/100||0,i=Math.max(i,1.1),r=Math.min(i,Math.max(1.1,r))},ed.calcCtrlBuffTimerCoef="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "factories_6",
+      "symbol": "_623__622_",
+      "address": "0x22ce37b",
+      "name": "",
+      "sourceSha256": "98e2f78ca3519da0722783e397c69ac7370822bced34154cc2d25379d4c8a69e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 5708749,
+          "end": 5711521,
+          "contextBefore": ",i.velocity=[0,0]),t.setLockSpeeder(!0),t.setLockDirection(!1)}e.call(t,a)},Puppeteer.Puppet_update="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_560_setMp",
+      "address": "0x27abc9",
+      "name": "setMp",
+      "sourceSha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 96816,
+          "end": 96945,
+          "contextBefore": "tion(){var e=this.hp,t=this.attribs.HP,a=1;return this.isAlive()&&0!=t&&(a=e/t),a>1&&(a=1),a},setMp:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "factories_5",
+      "symbol": "_2044__2043_",
+      "address": "0x1f23c26",
+      "name": "",
+      "sourceSha256": "ff3a92018c7e2090e9d002dbad1b5c9c975b3ee7aacc9b7291d83410cc3e48a1",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 5161232,
+          "end": 5161929,
+          "contextBefore": "(ed.battleEngine.getMode())&&(t.position[1]=(a.maxY+a.minY)/2,t.destination[1]=0)},OrcEfreet.update="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "factories_2",
+      "symbol": "_395__394_",
+      "address": "0x962420",
+      "name": "",
+      "sourceSha256": "91c6504e22b1012b0f5d816493b3ae4d3539d88a55976cc8955914d24290aece",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 708049,
+          "end": 708924,
+          "contextBefore": "i,r){var n=e.call(t,a,i,r);return t.reduceDmgCoef>0&&n>0&&(n*=1-(t.reduceDmgCoef||0)),n},Mag.update="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_875_updateLocalBattleEngine",
+      "address": "0x31d925",
+      "name": "updateLocalBattleEngine",
+      "sourceSha256": "2742c2b3f22131136a9b70f248c805b54bf8ece70eabc8192b2a7913de68020d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 235091,
+          "end": 235212,
+          "contextBefore": "this.ticks,this.net_ticks)),this.tick(),this.next_tick=this.tick_interval}},updateLocalBattleEngine:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "factories_2",
+      "symbol": "_1250__1249_",
+      "address": "0xa6dd0a",
+      "name": "",
+      "sourceSha256": "6c1a4653c7b1b5c074220698be86602f96fca4f476ab040fd46f1e35829b2da7",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 1071683,
+          "end": 1072153,
+          "contextBefore": "veAllBuffs=function(e,t){e.call(t),t.skills[TimeG.name+\"_atk2\"]&&(t.atk2_buffList=[])},TimeG.update="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "factories_2",
+      "symbol": "_1185__1184_",
+      "address": "0xc2f320",
+      "name": "",
+      "sourceSha256": "f49b6201d56ec95f304f826f4998adf787e0b33fa10e8849ce0a3fa242551414",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 1045350,
+          "end": 1045532,
+          "contextBefore": "live()&&!s.buff_effects.invulnerable?e.call(s,a,i,r,n,l,o,f):e.call(t,a,i,r,n,l,o,f)},DT.atk2_setHp="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_347_takeEffectAt",
+      "address": "0x1f773a",
+      "name": "takeEffectAt",
+      "sourceSha256": "6f2eac21c9f97e1545c2ea1a71747781ec2deb3befd8bd1a60c730bbfdf49e9a",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 27416,
+          "end": 28015,
+          "contextBefore": "=this.current_phase_idx;e===this.phase_list.length?this.finish():this.startPhase(e+1)},takeEffectAt:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "factories_3",
+      "symbol": "_2367__2366_",
+      "address": "0xe20c12",
+      "name": "",
+      "sourceSha256": "275cf2da16e2451fd7d9698bf06080e0367217525f718cddb1c642a36451f843",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2944188,
+          "end": 2944625,
+          "contextBefore": "iginBuffSelf&&t.originBuffSelf.timer>0&&(t.timer=t.originBuffSelf.timer))},SBD.perfectClone_addBuff="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "factories_2",
+      "symbol": "_1241__1240_",
+      "address": "0x877ece",
+      "name": "",
+      "sourceSha256": "e71f990d7b5169d30e1e9fabeb497827a46f66d64dcd2bb931d4a978f945c78c",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 1068622,
+          "end": 1069110,
+          "contextBefore": "ull),e.shakeNode2&&(ed.shakeNode.shakeEnd(e.shakeNode2),e.shakeNode2=null)}))},TimeG.ult_startPhase="
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "partition_0",
+      "symbol": "_2211_beginBuff",
+      "address": "0x199a34",
+      "name": "beginBuff",
+      "sourceSha256": "551b914ae6ec4af134ff63e41da4814fc1bb860ca36fec4e3061c04c5bc2a460",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_base.js",
+          "start": 768592,
+          "end": 768772,
+          "contextBefore": "ial,t.operations,e.attribs),result:ed.AttrDebugTraceData.copy(e.attribs)},i.active=null)},beginBuff:"
+        }
+      ]
+    },
+    {
+      "samples": 2,
+      "percentOfAllSamples": 0.03235198964736331,
+      "unit": "factories_3",
+      "symbol": "_2390__2389_",
+      "address": "0x1258757",
+      "name": "",
+      "sourceSha256": "79ae50a94dc3fe23b69e897fe39d226e23256f12864422c86934b16ff247c781",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2953911,
+          "end": 2954351,
+          "contextBefore": "}t.originHp=t.attribs.HP,t.battleModeLimit=SBD.func_battleModeLimit(t),t.atk3LostHpCD=0},SBD.update="
+        }
+      ]
+    }
+  ],
+  "inclusive": [
+    {
+      "samples": 6103,
+      "percentOfAllSamples": 98.72209640892915,
+      "unit": "partition_0",
+      "symbol": "_154___nativeRun",
+      "address": "0x1578c8",
+      "name": "__nativeRun",
+      "sourceSha256": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/emit-native-oracle.mjs",
+          "start": 8250,
+          "end": 10971,
+          "contextBefore": "   buffs:(unit.buff_list||[]).map(function(buff){return{fields:__nativePrimitiveState(buff)};})};\n}\n"
+        }
+      ]
+    },
+    {
+      "samples": 6103,
+      "percentOfAllSamples": 98.72209640892915,
+      "unit": "runner",
+      "symbol": "_0_global",
+      "address": "0x2699c4c",
+      "name": "global",
+      "sourceSha256": null,
+      "ranges": []
+    },
+    {
+      "samples": 5690,
+      "percentOfAllSamples": 92.04141054674862,
+      "unit": "runner",
+      "symbol": "_3385_updateFrame",
+      "address": "0x295a3c9",
+      "name": "updateFrame",
+      "sourceSha256": "183ac0418f221ae024c67c30302b6e3398eebaf14326d55c54bb63e40b16f289",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/emit-native-oracle.mjs",
+          "start": 24951,
+          "end": 25171,
+          "contextBefore": ";}};');\n  put('function __nativeDrain(){'+drainBody+'}');\n  put('var __nativeCallbacks={updateFrame:"
+        }
+      ]
+    },
+    {
+      "samples": 5317,
+      "percentOfAllSamples": 86.00776447751537,
+      "unit": "partition_0",
+      "symbol": "_873_update_13_",
+      "address": "0x378c31",
+      "name": "update",
+      "sourceSha256": "58e0187d35d693cfc0aec6f7fb871ffec8a2319bdf028115a3cccfa0ec34d17d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 234358,
+          "end": 234473,
+          "contextBefore": "his.fieldNpc_list.length;e<t;e++){var a=this.fieldNpc_list[e];if(2007===a.info.ID)return a}},update:"
+        }
+      ]
+    },
+    {
+      "samples": 5315,
+      "percentOfAllSamples": 85.97541248786801,
+      "unit": "partition_0",
+      "symbol": "_875_updateLocalBattleEngine",
+      "address": "0x31d925",
+      "name": "updateLocalBattleEngine",
+      "sourceSha256": "2742c2b3f22131136a9b70f248c805b54bf8ece70eabc8192b2a7913de68020d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 235091,
+          "end": 235212,
+          "contextBefore": "this.ticks,this.net_ticks)),this.tick(),this.next_tick=this.tick_interval}},updateLocalBattleEngine:"
+        }
+      ]
+    },
+    {
+      "samples": 5310,
+      "percentOfAllSamples": 85.8945325137496,
+      "unit": "partition_0",
+      "symbol": "_878_tick",
+      "address": "0x44dd38",
+      "name": "tick",
+      "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 235523,
+          "end": 237381,
+          "contextBefore": "ength;++n)if(a!==n){var l=i.checkPush(e,t[n]);r[0]+=l[0],r[1]+=l[1]}i.pushVelocityApply(e,r)}},tick:"
+        }
+      ]
+    },
+    {
+      "samples": 5237,
+      "percentOfAllSamples": 84.71368489162083,
+      "unit": "partition_0",
+      "symbol": "_2892__1089_",
+      "address": "0xf53fc",
+      "name": "",
+      "sourceSha256": "a071adecc9cc3cecd27b059f25a2a1eb1b26529e4a3fa15f8501e774dfa6b83f",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 288409,
+          "end": 288708,
+          "contextBefore": "}catch(a){for(var t=[],r=0,i=e.length;r<i;r++)t[r]=e[r];return t}},ed.override=function(e,t){return "
+        }
+      ]
+    },
+    {
+      "samples": 3318,
+      "percentOfAllSamples": 53.67195082497573,
+      "unit": "partition_0",
+      "symbol": "_564_update_11_",
+      "address": "0x39edb3",
+      "name": "update",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 97200,
+          "end": 102984,
+          "contextBefore": "te_Dead&&this.state!==ed.emUnitState_Dying},checkFakeDead:function(){return this.isFakeDead},update:"
+        }
+      ]
+    },
+    {
+      "samples": 2444,
+      "percentOfAllSamples": 39.53413134907797,
+      "unit": "partition_0",
+      "symbol": "_546_addBuff_1_",
+      "address": "0x1eb07f",
+      "name": "addBuff",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 90693,
+          "end": 92695,
+          "contextBefore": "+){if(t[i].info.ForceOrder.endsWith(\"defer\"))break}return t.splice(i,0,e)}return t.push(e)},addBuff:"
+        }
+      ]
+    },
+    {
+      "samples": 1714,
+      "percentOfAllSamples": 27.72565512779036,
+      "unit": "factories_6",
+      "symbol": "_623__622_",
+      "address": "0x22ce37b",
+      "name": "",
+      "sourceSha256": "98e2f78ca3519da0722783e397c69ac7370822bced34154cc2d25379d4c8a69e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 5708749,
+          "end": 5711521,
+          "contextBefore": ",i.velocity=[0,0]),t.setLockSpeeder(!0),t.setLockDirection(!1)}e.call(t,a)},Puppeteer.Puppet_update="
+        }
+      ]
+    },
+    {
+      "samples": 1523,
+      "percentOfAllSamples": 24.63604011646716,
+      "unit": "partition_0",
+      "symbol": "_3072_Class",
+      "address": "0x3f3e73",
+      "name": "Class",
+      "sourceSha256": "bdfc22c24f15a0a81d6a915b30bf762c93e8efb115c54ce60c9d7b505f74d425",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/bootstrap-vendor-CCClass.js",
+          "start": 8535,
+          "end": 9211,
+          "contextBefore": "ructor += \"})\";\n            Class = eval(constructor);\n        }\n        else {\n            Class = "
+        }
+      ]
+    },
+    {
+      "samples": 1307,
+      "percentOfAllSamples": 21.142025234551927,
+      "unit": "factories_2",
+      "symbol": "_1048__1047_",
+      "address": "0xc125d4",
+      "name": "",
+      "sourceSha256": "13d06cc838a56f9780e70045829ae09c480519cd84b16ddbba4de76c5991a2e0",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 981471,
+          "end": 982353,
+          "contextBefore": "(r){var n=r.skills[TwinsB.cpname+\"_atk2\"];n&&n.info.wrapTable({FirstPriority:a},!0)}},TwinsB.update="
+        }
+      ]
+    },
+    {
+      "samples": 1278,
+      "percentOfAllSamples": 20.67292138466516,
+      "unit": "partition_0",
+      "symbol": "_534_resetBuffApply",
+      "address": "0x293700",
+      "name": "resetBuffApply",
+      "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 87423,
+          "end": 87610,
+          "contextBefore": "s.rebuild(\"rebuild\"),this.addInitBuff(),this.applyBuffEffects(),this.initHpInfo(!0)},resetBuffApply:"
+        }
+      ]
+    },
+    {
+      "samples": 1143,
+      "percentOfAllSamples": 18.489162083468134,
+      "unit": "factories_3",
+      "symbol": "_2363__2362_",
+      "address": "0xfa1a88",
+      "name": "",
+      "sourceSha256": "4880d82363748a7456ed7a5da3c043740fb48c355c5f982bc5976b99fda9383e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2942147,
+          "end": 2942905,
+          "contextBefore": "empBuff.timer=-1,t.birthFinish=!0)},SBD.ult_finish=function(e,t){e.call(t)},SBD.atk4_resetBuffApply="
+        }
+      ]
+    },
+    {
+      "samples": 1127,
+      "percentOfAllSamples": 18.230346166289227,
+      "unit": "partition_0",
+      "symbol": "_747__137_",
+      "address": "0x4a649b",
+      "name": "",
+      "sourceSha256": "7b6c81af8706c58598faf1c0c3c101dbd9d354ad5ae4c739a141ec04fcfb7540",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 191068,
+          "end": 191430,
+          "contextBefore": "etAttributes(l,!0))&&t.push(\"{0} +{1}%\".format(n,r))}}return t},ed.Unit.prototype.rebuildIdleAttrbs="
+        }
+      ]
+    },
+    {
+      "samples": 1079,
+      "percentOfAllSamples": 17.45389841475251,
+      "unit": "partition_0",
+      "symbol": "_440__116_",
+      "address": "0x120d4a",
+      "name": "",
+      "sourceSha256": "4d2b00243ff25da5cf7f44209e3c8cd4f0822ae7303b8f0913b4399e2bed12c5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 56707,
+          "end": 56749,
+          "contextBefore": "uff.noAttribs={},ed.Buff.getDuration=function(e,t,a){var i=e.Time;return i>0?i:null},ed.Buff.create="
+        }
+      ]
+    },
+    {
+      "samples": 989,
+      "percentOfAllSamples": 15.998058880621159,
+      "unit": "partition_0",
+      "symbol": "_378_ctor_4_",
+      "address": "0x24d9cd",
+      "name": "ctor",
+      "sourceSha256": "3ca99406ed04bd3655bb5bb11c776e1286bd122d21e218003629e6d3d83144b6",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 38986,
+          "end": 40426,
+          "contextBefore": ",motionless:!0,unmanual:!0,noaddmp:!0,noshield:!0,unheal:!0},hpBarHeightAdaptOffSet:{1128:-60},ctor:"
+        }
+      ]
+    },
+    {
+      "samples": 987,
+      "percentOfAllSamples": 15.965706890973793,
+      "unit": "factories_2",
+      "symbol": "_1032__1031_",
+      "address": "0x610d29",
+      "name": "",
+      "sourceSha256": "879014964613835cba072de8cabca3808235b4c682ee3ecb34b7ef01f1adea7e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 975867,
+          "end": 976996,
+          "contextBefore": "tensibleChainEff.setTerminated(!0),e.extensibleChainEff=null)}))},TwinsB.atk4_func_refreshAttribute="
+        }
+      ]
+    },
+    {
+      "samples": 987,
+      "percentOfAllSamples": 15.965706890973793,
+      "unit": "factories_2",
+      "symbol": "_1030__1029_",
+      "address": "0x88f0fc",
+      "name": "",
+      "sourceSha256": "171306bceef92faf8e4d6df73acda4abdc952648f84763080e05688a4b3c33e3",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 974957,
+          "end": 975049,
+          "contextBefore": "t.recalculateCd-r:1,t.recalculateCd<=0&&TwinsB.atk4_func_refresh(t,!1,!0)},TwinsB.atk4_func_refresh="
+        }
+      ]
+    },
+    {
+      "samples": 978,
+      "percentOfAllSamples": 15.82012293756066,
+      "unit": "factories_2",
+      "symbol": "_1029__1028_",
+      "address": "0x6b3e1d",
+      "name": "",
+      "sourceSha256": "e6dcd1e1b748e3b481132d16e713d44553d5364159a442cf25f98ca5f3048113",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 974772,
+          "end": 974931,
+          "contextBefore": "ientCall((function(){a&&a.actor&&a.actor.addEffect(n,1,{sx:1,sy:1})}))}return r},TwinsB.atk4_update="
+        }
+      ]
+    },
+    {
+      "samples": 940,
+      "percentOfAllSamples": 15.205435134260755,
+      "unit": "partition_0",
+      "symbol": "_1915__815_",
+      "address": "0x226b28",
+      "name": "",
+      "sourceSha256": "6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 640811,
+          "end": 641356,
+          "contextBefore": "stack[r];if(i.l)return;for(var a in i.p)this[a]=i.p[a];this.wrap_stack.pop()}}},t}:ed.createDataObj="
+        }
+      ]
+    },
+    {
+      "samples": 805,
+      "percentOfAllSamples": 13.021675833063734,
+      "unit": "factories_3",
+      "symbol": "_2367__2366_",
+      "address": "0xe20c12",
+      "name": "",
+      "sourceSha256": "275cf2da16e2451fd7d9698bf06080e0367217525f718cddb1c642a36451f843",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2944188,
+          "end": 2944625,
+          "contextBefore": "iginBuffSelf&&t.originBuffSelf.timer>0&&(t.timer=t.originBuffSelf.timer))},SBD.perfectClone_addBuff="
+        }
+      ]
+    },
+    {
+      "samples": 753,
+      "percentOfAllSamples": 12.180524102232287,
+      "unit": "partition_0",
+      "symbol": "_320_update_3_",
+      "address": "0x47e20b",
+      "name": "update",
+      "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 18788,
+          "end": 20141,
+          "contextBefore": "s.attack_counter=0},pause:function(){this.is_update=!1},resume:function(){this.is_update=!0},update:"
+        }
+      ]
+    },
+    {
+      "samples": 624,
+      "percentOfAllSamples": 10.093820769977354,
+      "unit": "partition_0",
+      "symbol": "_1882__782_",
+      "address": "0xeefe5",
+      "name": "",
+      "sourceSha256": "af5e8fd7b84f54efba9b66fc0c515b67cee6196d5a16a5b5d5c4b43ada4a7a4a",
+      "sourceRangeCount": 2,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 285895,
+          "end": 285928,
+          "contextBefore": "Obj(e),i=Object.keys(t),a=i.length,n=0;n<a;n++){var o=i[n];r[o]=t[o]}return r},ed.swallowCopyObject="
+        },
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 285949,
+          "end": 285982,
+          "contextBefore": "i[n];r[o]=t[o]}return r},ed.swallowCopyObject=function(e){return ed.copyObj(e)},ed.swallowCopyArray="
+        }
+      ]
+    },
+    {
+      "samples": 620,
+      "percentOfAllSamples": 10.029116790682627,
+      "unit": "partition_0",
+      "symbol": "_1881__781_",
+      "address": "0x35cdfb",
+      "name": "",
+      "sourceSha256": "5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 285586,
+          "end": 285750,
+          "contextBefore": "e,t){var r=ed.getNodeSize(e),i=e.convertToNodeSpace(t);return cc.rectContainsPoint(r,i)},ed.copyObj="
+        }
+      ]
+    },
+    {
+      "samples": 505,
+      "percentOfAllSamples": 8.168877385959236,
+      "unit": "partition_0",
+      "symbol": "_2315__829_",
+      "address": "0x4c18c0",
+      "name": "",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "start": 4499814,
+          "end": 4500381,
+          "contextBefore": "eOutline&&h.enableOutline(cc.color(\"#422618\"),2),l.addChild(h)}return l},ed.getNeedReadSkillCacheTb="
+        }
+      ]
+    },
+    {
+      "samples": 462,
+      "percentOfAllSamples": 7.473309608540925,
+      "unit": "partition_0",
+      "symbol": "_750__140_",
+      "address": "0x10932b",
+      "name": "",
+      "sourceSha256": "8881f6a19ba8e7a9c13c25ef6eb831bd1c8dba3b479456a9e03ecb8b74e3bf35",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 192868,
+          "end": 193318,
+          "contextBefore": ".attribs[l],ed.AttrDebugSourceData.BATTLE_MODIFY_TYPE.ENEMY_AURA)}}}},ed.Unit.prototype.buffAttribs="
+        }
+      ]
+    },
+    {
+      "samples": 453,
+      "percentOfAllSamples": 7.327725655127789,
+      "unit": "partition_0",
+      "symbol": "_3160__1267_",
+      "address": "0x1aa9c5",
+      "name": "",
+      "sourceSha256": "797bbccc1eadad8f44ebb7d84f8e54f9979c5dfc25ba40f6a5945b5bed5f930f",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/bootstrap-vendor-CCClass.js",
+          "start": 10238,
+          "end": 10825,
+          "contextBefore": "SuperCall) {\n                    desc.value = (function (name, fn) {\n                        return "
+        }
+      ]
+    },
+    {
+      "samples": 443,
+      "percentOfAllSamples": 7.165965706890974,
+      "unit": "partition_0",
+      "symbol": "_706__133_",
+      "address": "0x120aad",
+      "name": "",
+      "sourceSha256": "2e62c1abee1383b9f52ceb605e7b4c662461035db2291f8c3209c7e994abedee",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 146466,
+          "end": 146508,
+          "contextBefore": "t.hp,action_name:t.action_name,posx:t.position[0],posy:t.position[1],rank:t.rank}))},ed.Unit.create="
+        }
+      ]
+    },
+    {
+      "samples": 439,
+      "percentOfAllSamples": 7.101261727596247,
+      "unit": "partition_0",
+      "symbol": "_506_ctor_12_",
+      "address": "0x364228",
+      "name": "ctor",
+      "sourceSha256": "027f91d981b0a19116825ed68815a6b02294f746d3061861611ade0f05521f65",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 74088,
+          "end": 78579,
+          "contextBefore": "tion(e,t,a,i){return new ed.Scale3Chain2(e,t,a,i)},ed.Unit=ed.Entity.extend({_className:\"Unit\",ctor:"
+        }
+      ]
+    },
+    {
+      "samples": 398,
+      "percentOfAllSamples": 6.438045939825299,
+      "unit": "partition_0",
+      "symbol": "_841_enterBattle",
+      "address": "0x18c5e4",
+      "name": "enterBattle",
+      "sourceSha256": "2368255fd93aa73a6edb9ff0cebcb9e906ea6ff3e4560379a88c4f2153903bad",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 223337,
+          "end": 224808,
+          "contextBefore": ")}else this.initPos=r.getInitPosByBattleMode(e),this.desPos=r.getDesPosByBattleMode(e)},enterBattle:"
+        }
+      ]
+    },
+    {
+      "samples": 388,
+      "percentOfAllSamples": 6.276285991588483,
+      "unit": "partition_0",
+      "symbol": "_543_removeBuffsConlictWithUncontrol",
+      "address": "0x26198b",
+      "name": "removeBuffsConlictWithUncontrol",
+      "sourceSha256": "0168edf31ec38285b40ef2bb434571c7cd84318fca5df6b89667a5c57dbabf7e",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 88737,
+          "end": 89146,
+          "contextBefore": ".length;){var r=a[i];if(this.buff_effects[r]){e=!0;break}}return e},removeBuffsConlictWithUncontrol:"
+        }
+      ]
+    },
+    {
+      "samples": 371,
+      "percentOfAllSamples": 6.001294079585894,
+      "unit": "partition_0",
+      "symbol": "_148___nativeDrain",
+      "address": "0x4048f5",
+      "name": "__nativeDrain",
+      "sourceSha256": "edf1988ae041ddda3f8c1e40496e28beb96b91e861765c5721f6c4d658ec9a29",
+      "sourceRangeCount": 0,
+      "ranges": []
+    },
+    {
+      "samples": 361,
+      "percentOfAllSamples": 5.839534131349078,
+      "unit": "partition_0",
+      "symbol": "_711_getAttribsByUnit",
+      "address": "0x213316",
+      "name": "getAttribsByUnit",
+      "sourceSha256": "bce514b19b8f8e8db4e56110deae012ea74c09a2796c7957eb5103c2388e8174",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 150959,
+          "end": 153968,
+          "contextBefore": ",s),this.calculateConfigAttribs(a,t,s),s&&ed.AttrDebugMgr.finishHeroStatic(s,a),a},getAttribsByUnit:"
+        }
+      ]
+    },
+    {
+      "samples": 355,
+      "percentOfAllSamples": 5.742478162406988,
+      "unit": "factories_3",
+      "symbol": "_2365__2364_",
+      "address": "0xe759ff",
+      "name": "",
+      "sourceSha256": "fe24746f1d7d3713dd52441a910b567bb3311b68ac8963a161d9e067f0ea3aea",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2943410,
+          "end": 2943912,
+          "contextBefore": "_healShieldCoef]||0;f.changeShieldValue(s),l.perfectClone.resetBuffApply(f)}}}return r},SBD.addBuff="
+        }
+      ]
+    },
+    {
+      "samples": 330,
+      "percentOfAllSamples": 5.338078291814947,
+      "unit": "partition_0",
+      "symbol": "_529_applyBuffEffects",
+      "address": "0x49726e",
+      "name": "applyBuffEffects",
+      "sourceSha256": "eb93e3b227fe9bad3e7037af3d3dab69ea7d8907725c0b88fd602b96c894ed25",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 85454,
+          "end": 86137,
+          "contextBefore": "his.actor.hpbarHeight+8);this.actor.addEffect(a,1,{sx:1,sy:1,y:i})}}}.bind(this))},applyBuffEffects:"
+        }
+      ]
+    },
+    {
+      "samples": 327,
+      "percentOfAllSamples": 5.289550307343902,
+      "unit": "partition_0",
+      "symbol": "_341_onAttackFrame",
+      "address": "0x2f3c56",
+      "name": "onAttackFrame",
+      "sourceSha256": "d813d068b10a200277f1c87b4429909dc6f96e7aef74c505e7f28ff473785854",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 25705,
+          "end": 26760,
+          "contextBefore": "on(e+\"down\")){i=e;e+=\"down\",this.changeAction(a,i,e)}}this.caster.setAction(e,!1,!0)},onAttackFrame:"
+        }
+      ]
+    },
+    {
+      "samples": 318,
+      "percentOfAllSamples": 5.143966353930766,
+      "unit": "partition_0",
+      "symbol": "_347_takeEffectAt",
+      "address": "0x1f773a",
+      "name": "takeEffectAt",
+      "sourceSha256": "6f2eac21c9f97e1545c2ea1a71747781ec2deb3befd8bd1a60c730bbfdf49e9a",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 27416,
+          "end": 28015,
+          "contextBefore": "=this.current_phase_idx;e===this.phase_list.length?this.finish():this.startPhase(e+1)},takeEffectAt:"
+        }
+      ]
+    },
+    {
+      "samples": 283,
+      "percentOfAllSamples": 4.577806535101909,
+      "unit": "partition_0",
+      "symbol": "_2316__830_",
+      "address": "0x14ce53",
+      "name": "",
+      "sourceSha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_ui_1.js",
+          "start": 4500415,
+          "end": 4501076,
+          "contextBefore": "==u){n=!0;break}return t=e.camp===ed.battle_camp.enemy,i&&a&&n&&t},ed.parseUseSkillCacheStageBattle="
+        }
+      ]
+    },
+    {
+      "samples": 277,
+      "percentOfAllSamples": 4.480750566159819,
+      "unit": "partition_0",
+      "symbol": "_379_update_4_",
+      "address": "0x20e75a",
+      "name": "update",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 40434,
+          "end": 41296,
+          "contextBefore": "ield&&(t.lastHpChangeTick=ed.battleEngine.ticks),this.ignoreHideSet=!1,this.isUpdated_TB=!1},update:"
+        }
+      ]
+    },
+    {
+      "samples": 275,
+      "percentOfAllSamples": 4.448398576512456,
+      "unit": "factories_2",
+      "symbol": "_1250__1249_",
+      "address": "0xa6dd0a",
+      "name": "",
+      "sourceSha256": "6c1a4653c7b1b5c074220698be86602f96fca4f476ab040fd46f1e35829b2da7",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 1071683,
+          "end": 1072153,
+          "contextBefore": "veAllBuffs=function(e,t){e.call(t),t.skills[TimeG.name+\"_atk2\"]&&(t.atk2_buffList=[])},TimeG.update="
+        }
+      ]
+    },
+    {
+      "samples": 263,
+      "percentOfAllSamples": 4.254286638628275,
+      "unit": "partition_0",
+      "symbol": "_848_initHeroInfo",
+      "address": "0x1efe2e",
+      "name": "initHeroInfo",
+      "sourceSha256": "d1b031737520552af94aa637c3a71e1ba991df5853650cf94203992d9bf9bbed",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 226418,
+          "end": 227261,
+          "contextBefore": "age_list.length>0)for(var t=0;t<this.rage_list.length;t++)this.rage_list[t].update(e)},initHeroInfo:"
+        }
+      ]
+    },
+    {
+      "samples": 262,
+      "percentOfAllSamples": 4.238110643804594,
+      "unit": "partition_0",
+      "symbol": "_354_takeEffectOn",
+      "address": "0x42a4a6",
+      "name": "takeEffectOn",
+      "sourceSha256": "54db930a455a6085707f0fc9bcdccc56e32078f7c2f03014b0e7cf0875a304fa",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 29355,
+          "end": 31578,
+          "contextBefore": ",i,r,n,l):e.takeDamage(t,a,i,r,n,l)},checkDodge:function(e){return e.checkDodge(this)},takeEffectOn:"
+        }
+      ]
+    },
+    {
+      "samples": 256,
+      "percentOfAllSamples": 4.141054674862504,
+      "unit": "factories_2",
+      "symbol": "_1205__1204_",
+      "address": "0x90cbb0",
+      "name": "",
+      "sourceSha256": "213ecf44dfdd08f007be614249373995650e0087caf9945455c7d128793d3246",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 1052217,
+          "end": 1053427,
+          "contextBefore": ".sp_addDmgCoef]||.1,_.onMakeDamage=ed.override(_.onMakeDamage,DT.sp_buff_onMakeDamage))}},DT.update="
+        }
+      ]
+    },
+    {
+      "samples": 227,
+      "percentOfAllSamples": 3.671950824975736,
+      "unit": "partition_0",
+      "symbol": "_383_applyEffects",
+      "address": "0x2639cc",
+      "name": "applyEffects",
+      "sourceSha256": "638b3a54abee7fa12543b60786d2ae9dd737808baba83a0b2017468965e9e939",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 43270,
+          "end": 43377,
+          "contextBefore": "alue(a,this,o,s,t[o],f,{kind:\"fixed\",value:e[o]||0},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}},applyEffects:"
+        }
+      ]
+    },
+    {
+      "samples": 222,
+      "percentOfAllSamples": 3.591070850857328,
+      "unit": "partition_0",
+      "symbol": "_277_update_1_",
+      "address": "0x9ddfe",
+      "name": "update",
+      "sourceSha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 3665,
+          "end": 4257,
+          "contextBefore": "eate=ed.Entity.create,ed.Ai=cc.Class.extend({ctor:function(e){this.owner=e,this.target=null},update:"
+        }
+      ]
+    },
+    {
+      "samples": 219,
+      "percentOfAllSamples": 3.542542866386283,
+      "unit": "partition_0",
+      "symbol": "_381_applyPercentValue",
+      "address": "0x4a0e74",
+      "name": "applyPercentValue",
+      "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 41723,
+          "end": 42574,
+          "contextBefore": "alBearDamage(a,this.caster,this.owner)),this.owner.battledata.addBearDamage(a))}},applyPercentValue:"
+        }
+      ]
+    },
+    {
+      "samples": 203,
+      "percentOfAllSamples": 3.2837269492073764,
+      "unit": "factories_3",
+      "symbol": "_2390__2389_",
+      "address": "0x1258757",
+      "name": "",
+      "sourceSha256": "79ae50a94dc3fe23b69e897fe39d226e23256f12864422c86934b16ff247c781",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2953911,
+          "end": 2954351,
+          "contextBefore": "}t.originHp=t.attribs.HP,t.battleModeLimit=SBD.func_battleModeLimit(t),t.atk3LostHpCD=0},SBD.update="
+        }
+      ]
+    },
+    {
+      "samples": 194,
+      "percentOfAllSamples": 3.1381429957942415,
+      "unit": "partition_0",
+      "symbol": "_719_getBaseAttribsByHero",
+      "address": "0x121d7b",
+      "name": "getBaseAttribsByHero",
+      "sourceSha256": "5d498b8029b6c8d0223c5edd5fbd104f8bbb8bd3d73694cf90a0ce78aea610aa",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 155787,
+          "end": 157314,
+          "contextBefore": "ARM*=t.def_mod||1,e.MR*=t.def_mod||1,a&&ed.AttrDebugMgr.recordConfig(a,i,e,t)},getBaseAttribsByHero:"
+        }
+      ]
+    },
+    {
+      "samples": 191,
+      "percentOfAllSamples": 3.0896150113231964,
+      "unit": "factories_2",
+      "symbol": "_395__394_",
+      "address": "0x962420",
+      "name": "",
+      "sourceSha256": "91c6504e22b1012b0f5d816493b3ae4d3539d88a55976cc8955914d24290aece",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 708049,
+          "end": 708924,
+          "contextBefore": "i,r){var n=e.call(t,a,i,r);return t.reduceDmgCoef>0&&n>0&&(n*=1-(t.reduceDmgCoef||0)),n},Mag.update="
+        }
+      ]
+    },
+    {
+      "samples": 190,
+      "percentOfAllSamples": 3.0734390164995147,
+      "unit": "partition_0",
+      "symbol": "_616_takeDamage",
+      "address": "0x47f398",
+      "name": "takeDamage",
+      "sourceSha256": "191f70d183a3198c24cd20a123abf43ed98a8788f57fbd0906ea9d3a3f11cec5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 119422,
+          "end": 125022,
+          "contextBefore": "rn!1;var a=Math.max(0,this.attribs.MDODG-e.attribs.MHIT),i=a/(100+a);return ed.rand()<i},takeDamage:"
+        }
+      ]
+    },
+    {
+      "samples": 173,
+      "percentOfAllSamples": 2.7984471044969266,
+      "unit": "factories_2",
+      "symbol": "_3__2_",
+      "address": "0xb55ae9",
+      "name": "",
+      "sourceSha256": "c2f66b6f02073349c4f8f4e9e09a7ac683628bd6964fff6f7ee9c735630cd554",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 542112,
+          "end": 542321,
+          "contextBefore": "Rect(),a=(t.maxX+t.minX)/2+10;return e.camp>0?e.position[0]-a>=0:e.position[0]-a<0},LionJugg.update="
+        }
+      ]
+    },
+    {
+      "samples": 165,
+      "percentOfAllSamples": 2.6690391459074734,
+      "unit": "factories_3",
+      "symbol": "_776__775_",
+      "address": "0xd6a691",
+      "name": "",
+      "sourceSha256": "6022541e73677e61ab9252c805c06e996c389ff0ccbbb40c873935678be18bc0",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2124239,
+          "end": 2124440,
+          "contextBefore": "nix.func_isRebornPeriod=function(e){return e.currentPeriod===SPhoenix.rebornPeriod},SPhoenix.update="
+        }
+      ]
+    },
+    {
+      "samples": 162,
+      "percentOfAllSamples": 2.6205111614364283,
+      "unit": "partition_0",
+      "symbol": "_389_applyEffect",
+      "address": "0x4c0b78",
+      "name": "applyEffect",
+      "sourceSha256": "bad5d925e501d191a071af0e0966156f2013230f5a49eaa4d4fe85810776d540",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 44234,
+          "end": 44940,
+          "contextBefore": "ts.length,i=0;i<a;i++){if(\"uncontrollable\"===t.ControlEffects[i]){e=!0;break}}return e},applyEffect:"
+        }
+      ]
+    },
+    {
+      "samples": 155,
+      "percentOfAllSamples": 2.5072791976706568,
+      "unit": "partition_0",
+      "symbol": "_530_setConstGS",
+      "address": "0x9ce7c",
+      "name": "setConstGS",
+      "sourceSha256": "31d6c40c0be6358bf90e34c96e3146a36e12e2f0bb3f29463601ee4d6c8abeaa",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 86149,
+          "end": 86780,
+          "contextBefore": "or.addEffect(\"eff_buff_Common_stun.cha\",0,n);this.actor.buffEffects[a]=l}}}.bind(this))},setConstGS:"
+        }
+      ]
+    },
+    {
+      "samples": 155,
+      "percentOfAllSamples": 2.5072791976706568,
+      "unit": "partition_0",
+      "symbol": "_163__5_",
+      "address": "0x7f207",
+      "name": "",
+      "sourceSha256": "69d50166bd10dbe12c097c22d9c43060b31cd3cf6e01af5628b2b0c80b51d978",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 290834,
+          "end": 291103,
+          "contextBefore": "ototype.replaceAll=function(e,t){return this.replace(new RegExp(e,\"gm\"),t)},String.prototype.format="
+        }
+      ]
+    },
+    {
+      "samples": 148,
+      "percentOfAllSamples": 2.3940472339048853,
+      "unit": "factories_2",
+      "symbol": "_1015__1014_",
+      "address": "0x97904d",
+      "name": "",
+      "sourceSha256": "ec426dcd33b301113f5f674ff399c7e6e2eedecd479bced6fb9c11a484db0637",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 968231,
+          "end": 968880,
+          "contextBefore": "B.name+\"_atk3\"];l&&(l.info.wrapTable({BuffID:6212},!0),l.refreshBuffInfo())}},TwinsB.sp_buff_update="
+        }
+      ]
+    },
+    {
+      "samples": 144,
+      "percentOfAllSamples": 2.329343254610159,
+      "unit": "factories_6",
+      "symbol": "_634__633_",
+      "address": "0x23f4953",
+      "name": "",
+      "sourceSha256": "c545df94fdab42d28de22a78ba5ea5b576f5f7ca368867896f13b723353c8408",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 5714749,
+          "end": 5715378,
+          "contextBefore": ".call(t,a,i,r,n,l);return o>0&&t.owner&&t.owner.isAlive()&&o>=t.owner.hp&&(o=0),o},Puppeteer.update="
+        }
+      ]
+    },
+    {
+      "samples": 144,
+      "percentOfAllSamples": 2.329343254610159,
+      "unit": "factories_5",
+      "symbol": "_2044__2043_",
+      "address": "0x1f23c26",
+      "name": "",
+      "sourceSha256": "ff3a92018c7e2090e9d002dbad1b5c9c975b3ee7aacc9b7291d83410cc3e48a1",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 5161232,
+          "end": 5161929,
+          "contextBefore": "(ed.battleEngine.getMode())&&(t.position[1]=(a.maxY+a.minY)/2,t.destination[1]=0)},OrcEfreet.update="
+        }
+      ]
+    },
+    {
+      "samples": 139,
+      "percentOfAllSamples": 2.2484632804917504,
+      "unit": "partition_0",
+      "symbol": "_352_getDamage",
+      "address": "0x1d5b44",
+      "name": "getDamage",
+      "sourceSha256": "ed9e38a8d570bca4642939bf6b2bbeaa17d581e120383650ce5400421430c7e8",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 29157,
+          "end": 29291,
+          "contextBefore": "is.caster.buff_list.length;f++)l=this.caster.buff_list[f].onCalcuPower(l,e,t);return l*o},getDamage:"
+        }
+      ]
+    },
+    {
+      "samples": 133,
+      "percentOfAllSamples": 2.15140731154966,
+      "unit": "partition_0",
+      "symbol": "_382_applyFixedValue",
+      "address": "0x141529",
+      "name": "applyFixedValue",
+      "sourceSha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 42591,
+          "end": 43256,
+          "contextBefore": "coefficient:d,basisAttr:e[ed.attrib_names_a[o]]},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}},applyFixedValue:"
+        }
+      ]
+    },
+    {
+      "samples": 133,
+      "percentOfAllSamples": 2.15140731154966,
+      "unit": "partition_0",
+      "symbol": "_755__145_",
+      "address": "0x360922",
+      "name": "",
+      "sourceSha256": "1b37ca9d351890144d4f25c3c9affc375d4303643e455cfa6f2923c795f88107",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 194994,
+          "end": 195703,
+          "contextBefore": ";_<d.length;_++){if(d[_]===e)if(s>=(u[_]||0))return!0}return!1},ed.Unit.prototype.judgeCurrentSkill="
+        }
+      ]
+    },
+    {
+      "samples": 129,
+      "percentOfAllSamples": 2.0867033322549338,
+      "unit": "partition_0",
+      "symbol": "_423_setAttribute",
+      "address": "0x40c5d4",
+      "name": "setAttribute",
+      "sourceSha256": "c48098fb65fac2bd28f017351cb0c750848432cef089b4efbbdc3658b7a760cd",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 52987,
+          "end": 53300,
+          "contextBefore": "n(e){for(var t=this.attrib.length,a=0;a<t;a++)if(this.attrib[a]===e)return!0;return!1},setAttribute:"
+        }
+      ]
+    },
+    {
+      "samples": 127,
+      "percentOfAllSamples": 2.0543513426075704,
+      "unit": "factories_3",
+      "symbol": "_639__638_",
+      "address": "0x11f717a",
+      "name": "",
+      "sourceSha256": "499d335bab757619cc8200ccbdaa933ae5afb8b183a2031a1045c76eee6e8835",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2058349,
+          "end": 2059158,
+          "contextBefore": "];var a=t.skills[BDruid.name+\"_ult\"];a&&a.info.wrapTable({IgnoreControllable:!0},!0)},BDruid.update="
+        }
+      ]
+    },
+    {
+      "samples": 120,
+      "percentOfAllSamples": 1.9411193788417986,
+      "unit": "partition_0",
+      "symbol": "_533_reset_1_",
+      "address": "0xb1735",
+      "name": "reset",
+      "sourceSha256": "85e7f44104052bee5c429e604e47e9b969223021b512303ebd17d7aba263e67d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 87010,
+          "end": 87407,
+          "contextBefore": "s.HP*a,this.mp=this.attribs.MP*i,this.petmp=0,e&&(this.hpInited=!0)}},onHitMiss:function(e){},reset:"
+        }
+      ]
+    },
+    {
+      "samples": 119,
+      "percentOfAllSamples": 1.9249433840181172,
+      "unit": "factories_2",
+      "symbol": "_992__991_",
+      "address": "0xa5e0bf",
+      "name": "",
+      "sourceSha256": "a95f7741c9350ae1c438e0ba03e5d3f55dcf9a8cb8438d3394580bb278e4ee0f",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 959178,
+          "end": 959456,
+          "contextBefore": "cp;return!(!t||t.getSkinId()!==TwinsR.cp_skin)},TwinsR.reset=function(e,t){e.call(t)},TwinsR.update="
+        }
+      ]
+    },
+    {
+      "samples": 116,
+      "percentOfAllSamples": 1.8764153995470723,
+      "unit": "partition_0",
+      "symbol": "_162__4_",
+      "address": "0x1125ff",
+      "name": "",
+      "sourceSha256": "12999ac2ffc4d0ada66d448ecdbd388e78d37ec6fd6cd0d4b856d2567ec98d17",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 290753,
+          "end": 290809,
+          "contextBefore": "cp(i/2,a/2),t||{x:0,y:0})}console.error(\"getCenterPos : invalid node\")},String.prototype.replaceAll="
+        }
+      ]
+    },
+    {
+      "samples": 115,
+      "percentOfAllSamples": 1.8602394047233906,
+      "unit": "partition_0",
+      "symbol": "_752__142_",
+      "address": "0x3a687c",
+      "name": "",
+      "sourceSha256": "437bbf55675c42151ac7122d324de4df0d8260bdc58ce83517e8d6882a54b853",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 193755,
+          "end": 193884,
+          "contextBefore": "ttribs,this.config),this.hp>this.attribs.HP&&(this.hp=this.attribs.HP)},ed.Unit.prototype.gsAttribs="
+        }
+      ]
+    },
+    {
+      "samples": 111,
+      "percentOfAllSamples": 1.795535425428664,
+      "unit": "partition_0",
+      "symbol": "_325_checkRegion",
+      "address": "0x1305df",
+      "name": "checkRegion",
+      "sourceSha256": "fa29f99eec0ea95e5581a9804e89581105364133b4c2ec9af839153e9cfd8a36",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 20674,
+          "end": 21189,
+          "contextBefore": "ion:this.regionPosOrUnit instanceof Array&&(e=this.regionPosOrUnit)),[e[0]||0,e[1]||0]},checkRegion:"
+        }
+      ]
+    },
+    {
+      "samples": 110,
+      "percentOfAllSamples": 1.7793594306049825,
+      "unit": "partition_0",
+      "symbol": "_877_checkPush_1_",
+      "address": "0xe02bc",
+      "name": "checkPush",
+      "sourceSha256": "9d16d41d1f86405d50c7f717b33d822d88c6d0367eeea21f784e15546977a76d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 235289,
+          "end": 235517,
+          "contextBefore": "ck+=this.tick_interval},forceTimeOut:function(){this.time_limit=-1,this.time_skill_add=0},checkPush:"
+        }
+      ]
+    },
+    {
+      "samples": 108,
+      "percentOfAllSamples": 1.7470074409576188,
+      "unit": "factories_3",
+      "symbol": "_2380__2379_",
+      "address": "0x11b342c",
+      "name": "",
+      "sourceSha256": "b36154efd61f2efe60dd69211bfccb6e030da5e7249486d479834c8d5df7317b",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2948980,
+          "end": 2950032,
+          "contextBefore": "t||9e9;i=Math.min(i,f)}a.lostHp(i,t,!0,!1)}}},SBD.atk3_finish=function(e,t){e.call(t)},SBD.takeHeal="
+        }
+      ]
+    },
+    {
+      "samples": 104,
+      "percentOfAllSamples": 1.6823034616628922,
+      "unit": "partition_0",
+      "symbol": "_521_initSkill",
+      "address": "0x4181bf",
+      "name": "initSkill",
+      "sourceSha256": "de42021f7b85c7d94d49ca95528b481040eb4770d67a6c4f40bba37f5dfd42e7",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 80731,
+          "end": 83551,
+          "contextBefore": "g()};return this.isPet()&&(e.petmp=this.petmp),JSON.stringify(e)},initEquips:function(){},initSkill:"
+        }
+      ]
+    },
+    {
+      "samples": 98,
+      "percentOfAllSamples": 1.5852474927208025,
+      "unit": "factories_5",
+      "symbol": "_1970__1969_",
+      "address": "0x1f274ca",
+      "name": "",
+      "sourceSha256": "f43f3bb8ebf72943f3ae5aed6bf407ab19d8d001a3eec69d9de074eb1fbed5e3",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 5122026,
+          "end": 5122733,
+          "contextBefore": "d.battleEngine.getMode())&&(t.position[1]=(a.maxY+a.minY)/2,t.destination[1]=0)},UndeadPLion.update="
+        }
+      ]
+    },
+    {
+      "samples": 96,
+      "percentOfAllSamples": 1.552895503073439,
+      "unit": "factories_3",
+      "symbol": "_2361__2360_",
+      "address": "0x12d5089",
+      "name": "",
+      "sourceSha256": "14e221cdbea35021afa3df5c8fef458cde0a9c3bc422f8335bd3c194dd71345b",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2941788,
+          "end": 2942082,
+          "contextBefore": "i,r,n),o=t.relatedSkill;return l>0&&o&&(l*=1-o.info[SBD.atk4_dmgDownCoef]),l},SBD.ult_summon_update="
+        }
+      ]
+    },
+    {
+      "samples": 92,
+      "percentOfAllSamples": 1.4881915237787124,
+      "unit": "partition_0",
+      "symbol": "_852_resetUnit",
+      "address": "0x30966b",
+      "name": "resetUnit",
+      "sourceSha256": "60862335614d2268f1c55c0772b360bbccb4d61b23c705025fca24860157e351",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 229327,
+          "end": 229572,
+          "contextBefore": "ist:function(){for(var e=0;e<this.unit_list.length;e++)this.resetUnit(this.unit_list[e])},resetUnit:"
+        }
+      ]
+    },
+    {
+      "samples": 92,
+      "percentOfAllSamples": 1.4881915237787124,
+      "unit": "partition_0",
+      "symbol": "_851_resetUnitList",
+      "address": "0x2fbb1f",
+      "name": "resetUnitList",
+      "sourceSha256": "fac562f21f710fa2946a5cd64f60fd6322ef7cc9efc45239de62ef77a34a46e0",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 229231,
+          "end": 229316,
+          "contextBefore": "dps_mod||(t.dps_mod=1),a.hpmod&&(t.hp_mod*=a.hpmod),a.dpsmod&&(t.dps_mod*=a.dpsmod))},resetUnitList:"
+        }
+      ]
+    },
+    {
+      "samples": 84,
+      "percentOfAllSamples": 1.3587835651892592,
+      "unit": "factories_2",
+      "symbol": "_416__415_",
+      "address": "0x7ffaaf",
+      "name": "",
+      "sourceSha256": "587763f483a9f791203ef452cedc727518343fbe97eb7d0d9cbc06b65d062e8a",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 715374,
+          "end": 715688,
+          "contextBefore": "ockBack}));var l=e.call(t,a,i);return\"number\"==typeof r&&r>=0&&t.info.recover(r),l},Mag.atk4_update="
+        }
+      ]
+    },
+    {
+      "samples": 82,
+      "percentOfAllSamples": 1.3264315755418958,
+      "unit": "partition_0",
+      "symbol": "_577_castSkill",
+      "address": "0x35925e",
+      "name": "castSkill",
+      "sourceSha256": "ee040bd96736c13b24ee0bddd6dcb950c30cd1967abab221155bbcf54882e377",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 108409,
+          "end": 108747,
+          "contextBefore": "tion);0===a[0]&&0===a[1]?this.walk_v=[0,0]:this.walk_v=ed.edpMult(ed.edpNormalize(a),t)}},castSkill:"
+        }
+      ]
+    },
+    {
+      "samples": 82,
+      "percentOfAllSamples": 1.3264315755418958,
+      "unit": "partition_0",
+      "symbol": "_371_isMode_TB_1_",
+      "address": "0x1e47e0",
+      "name": "isMode_TB",
+      "sourceSha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c",
+      "sourceRangeCount": 4,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 7618,
+          "end": 7729,
+          "contextBefore": "w(t.attack_range,2)&&(l=!0),l&&!t.isOutOfStage())return void t.idle();t.walkTowards(e)}}},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 35546,
+          "end": 35657,
+          "contextBefore": " d=i[0].target,u=i[0].dir;if(d instanceof ed.Unit&&d.isAlive())return{target:d,dir:u}}}}},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 55399,
+          "end": 55510,
+          "contextBefore": "=n&&\"number\"==typeof this.info[n]&&(i=e?this.info[n]>0:this.info[n]<0))return!0}return i},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 135752,
+          "end": 135863,
+          "contextBefore": "es[t]&&e.skin_res[t][a]||(e.skin_res[e.default_skin]?e.skin_res[e.default_skin][a]:null)},isMode_TB:"
+        }
+      ]
+    },
+    {
+      "samples": 82,
+      "percentOfAllSamples": 1.3264315755418958,
+      "unit": "partition_0",
+      "symbol": "_550_removeBuff",
+      "address": "0x47b69a",
+      "name": "removeBuff",
+      "sourceSha256": "06fbba7ea8d4937e5c7c6c042f5094cac479a02a7aaafe0ca5bff751c2994440",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 94132,
+          "end": 94349,
+          "contextBefore": ";return!e||\"tank\"!==e&&\"soldier\"!==e?!e||\"archer\"!==e&&\"assassin\"!==e?\"INT\":\"AGI\":\"STR\"},removeBuff:"
+        }
+      ]
+    },
+    {
+      "samples": 81,
+      "percentOfAllSamples": 1.3102555807182141,
+      "unit": "factories_5",
+      "symbol": "_2041__2040_",
+      "address": "0x21232e5",
+      "name": "",
+      "sourceSha256": "23c81e3b14c249c4dc22c0565b28d7e8949ab567495a2682ab73024134c9ea3a",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 5159608,
+          "end": 5160701,
+          "contextBefore": "ber\"==typeof t.OrcEfreetKnockTimes&&t.OrcEfreetKnockTimes<=0&&(t.timer=-1),f},OrcEfreet.atk3_update="
+        }
+      ]
+    },
+    {
+      "samples": 77,
+      "percentOfAllSamples": 1.2455516014234875,
+      "unit": "partition_0",
+      "symbol": "_717__finalCalculateAttribs",
+      "address": "0x1b8237",
+      "name": "_finalCalculateAttribs",
+      "sourceSha256": "eab447a495ec54e60eccfdad4081d7a6038ff2169a9f05fea43d34cd5723c2d5",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 154650,
+          "end": 155568,
+          "contextBefore": "sPvpEnvEnableAttrib:function(e){return[\"HP\",\"ATK\",\"ARM\",\"MR\"].indexOf(e)>-1},_finalCalculateAttribs:"
+        }
+      ]
+    },
+    {
+      "samples": 76,
+      "percentOfAllSamples": 1.2293756065998058,
+      "unit": "factories_2",
+      "symbol": "_1229__1228_",
+      "address": "0xbf1a04",
+      "name": "",
+      "sourceSha256": "8aafc63f4692bdce69c3820ba745c56adc2252e9cbc109bbd23dd2d880715d60",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 1063104,
+          "end": 1064153,
+          "contextBefore": ".edpDistanceSQ(t.position,a);return i<1?1:r<1?-1:i>r?1:-1})),r=r.slice(0,n)},TimeG.atk4_buff_update="
+        }
+      ]
+    },
+    {
+      "samples": 75,
+      "percentOfAllSamples": 1.2131996117761243,
+      "unit": "partition_0",
+      "symbol": "_749__139_",
+      "address": "0x34947d",
+      "name": "",
+      "sourceSha256": "b556cef471599c2d604cf34fc6e518f4853a5e68b1e2a7d77e9b969a8969bb76",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 191906,
+          "end": 192837,
+          "contextBefore": "attribs[a],ed.AttrDebugSourceData.BATTLE_MODIFY_TYPE.PASSIVE_SKILL)}},ed.Unit.prototype.auraAttribs="
+        }
+      ]
+    },
+    {
+      "samples": 72,
+      "percentOfAllSamples": 1.1646716273050794,
+      "unit": "partition_0",
+      "symbol": "_376__111_",
+      "address": "0x212b06",
+      "name": "",
+      "sourceSha256": "0332f76215d1d53dd076bcffe02a599a61d6b1ae3c31eaf7e9125e1f1edbcc95",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 37586,
+          "end": 37723,
+          "contextBefore": "turn!1;var a=e.TargetType;return!a||(a===t.info.HeroJob||a===t.info.HeroTag)},ed.Skill.getSkillInfo="
+        }
+      ]
+    },
+    {
+      "samples": 72,
+      "percentOfAllSamples": 1.1646716273050794,
+      "unit": "partition_0",
+      "symbol": "_3161_wrapper",
+      "address": "0x4ff71",
+      "name": "wrapper",
+      "sourceSha256": "d8eb0c52ebf2d0993083ba12bb0e26e41961e754c878f28492ef7d4fe080eac0",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/oracle-class-manager.js",
+          "start": 3788,
+          "end": 4527,
+          "contextBefore": "unterValue: null, nextReturned: null };\n            states[name] = state;\n            var wrapper = "
+        }
+      ]
+    },
+    {
+      "samples": 70,
+      "percentOfAllSamples": 1.1323196376577158,
+      "unit": "factories_2",
+      "symbol": "_1202__1201_",
+      "address": "0xba3403",
+      "name": "",
+      "sourceSha256": "10c7ed29c8712e8b4f68fb00dda9d1eb999f337c22c46421bc7fae2df833cef9",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 1049838,
+          "end": 1050644,
+          "contextBefore": ")return e.call(t,2);if(3===i.evolveLevel)return e.call(t,3)}return e.call(t,a)},DT.atk3_buff_update="
+        }
+      ]
+    },
+    {
+      "samples": 69,
+      "percentOfAllSamples": 1.1161436428340343,
+      "unit": "runner",
+      "symbol": "_3384_snapshot",
+      "address": "0x280178c",
+      "name": "snapshot",
+      "sourceSha256": "37bb397c11cca8ef67f579afb2d53b6858487f20b3f3174d887f4bc890c90063",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "tools/emit-native-oracle.mjs",
+          "start": 24769,
+          "end": 24853,
+          "contextBefore": " put('var __nativeSourceSnapshot=('+snapshot+');var __nativeSnapshots=0;var __nativeScene={snapshot:"
+        }
+      ]
+    },
+    {
+      "samples": 67,
+      "percentOfAllSamples": 1.083791653186671,
+      "unit": "factories_3",
+      "symbol": "_648__647_",
+      "address": "0x1050538",
+      "name": "",
+      "sourceSha256": "03ceaca5046d4e44c7841437d4b8a48aad5da814859031e58c4c80d9bc7d0466",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2063274,
+          "end": 2063370,
+          "contextBefore": "uid.atk2_biteBuff_onDamaged),l.biteBuffAlreadyOverride=!0),t.hasBiteBuff=!0)}}}},BDruid.wolf_update="
+        }
+      ]
+    },
+    {
+      "samples": 65,
+      "percentOfAllSamples": 1.0514396635393077,
+      "unit": "partition_0",
+      "symbol": "_280_searchTarget",
+      "address": "0x3c5592",
+      "name": "searchTarget",
+      "sourceSha256": "0b81cb69622de9daafa321321d72eb53fd6817bca12594c22ace56a18d57f185",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 4512,
+          "end": 5369,
+          "contextBefore": "!e)return!1;var t=e.info;return{shape:t.RangeShape,arg1:t.RangeArg1,arg2:t.RangeArg2}},searchTarget:"
+        }
+      ]
+    },
+    {
+      "samples": 64,
+      "percentOfAllSamples": 1.035263668715626,
+      "unit": "factories_3",
+      "symbol": "_2372__2371_",
+      "address": "0xffaaec",
+      "name": "",
+      "sourceSha256": "54c1850e48be46e9cc2a9078aed7dae9b099fda1d6c8bc968f21726ccdb34639",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2945830,
+          "end": 2946183,
+          "contextBefore": "ride=!0,u.onDamaged=ed.override(u.onDamaged,SBD.atk2_buff_onDamaged)))}}}}},SBD.atk2_buff_onDamaged="
+        }
+      ]
+    },
+    {
+      "samples": 62,
+      "percentOfAllSamples": 1.0029116790682626,
+      "unit": "factories_2",
+      "symbol": "_412__411_",
+      "address": "0xc272b3",
+      "name": "",
+      "sourceSha256": "af3b00081b5c43ad9052829132980e197a303d5902766cfe79457ad6c0f63bbe",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 713928,
+          "end": 714575,
+          "contextBefore": "Mag.atk3_maxDefDistance,t.defCoefMax,Mag.atk3_minDefDistance,s)}return f},Mag.atk4_func_summonCrash="
+        }
+      ]
+    },
+    {
+      "samples": 62,
+      "percentOfAllSamples": 1.0029116790682626,
+      "unit": "partition_0",
+      "symbol": "_356_addBuff",
+      "address": "0x297d44",
+      "name": "addBuff",
+      "sourceSha256": "2bb963d9151b8cd4a5d4246eb94df8b261d8a854a5a3a6e97bd2f3ffb638eb81",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 31924,
+          "end": 32216,
+          "contextBefore": "d.edpCompMult([1,0],ed.edpSub(e.position,f.position))),e.knockUp(a,ed.edpMult(o,i),r,n,l)}},addBuff:"
+        }
+      ]
+    },
+    {
+      "samples": 58,
+      "percentOfAllSamples": 0.9382076997735361,
+      "unit": "partition_0",
+      "symbol": "_433_isMode_TB_2_",
+      "address": "0x1e4413",
+      "name": "isMode_TB",
+      "sourceSha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c",
+      "sourceRangeCount": 4,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 7618,
+          "end": 7729,
+          "contextBefore": "w(t.attack_range,2)&&(l=!0),l&&!t.isOutOfStage())return void t.idle();t.walkTowards(e)}}},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 35546,
+          "end": 35657,
+          "contextBefore": " d=i[0].target,u=i[0].dir;if(d instanceof ed.Unit&&d.isAlive())return{target:d,dir:u}}}}},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 55399,
+          "end": 55510,
+          "contextBefore": "=n&&\"number\"==typeof this.info[n]&&(i=e?this.info[n]>0:this.info[n]<0))return!0}return i},isMode_TB:"
+        },
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 135752,
+          "end": 135863,
+          "contextBefore": "es[t]&&e.skin_res[t][a]||(e.skin_res[e.default_skin]?e.skin_res[e.default_skin][a]:null)},isMode_TB:"
+        }
+      ]
+    },
+    {
+      "samples": 57,
+      "percentOfAllSamples": 0.9220317049498544,
+      "unit": "factories_2",
+      "symbol": "_1245__1244_",
+      "address": "0x8e9e35",
+      "name": "",
+      "sourceSha256": "7b869b70d49949717b168aa992ad2f94a8d37d91cfa45fcc9212930ea7f872eb",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 1070209,
+          "end": 1070943,
+          "contextBefore": "),TimeG.ult_func_timeStopEnd(t)}else t.attack_counter++,t.finishTakeEffectTimes++},TimeG.ult_update="
+        }
+      ]
+    },
+    {
+      "samples": 57,
+      "percentOfAllSamples": 0.9220317049498544,
+      "unit": "factories_3",
+      "symbol": "_533__532_",
+      "address": "0xe196c3",
+      "name": "",
+      "sourceSha256": "59b4c5e4aa44985de440e8f34128ed66c31ab3b9470bc5085d57c0ae02ef8289",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2014533,
+          "end": 2014870,
+          "contextBefore": ".setAttribute(\"DCRIT\",a.info[LazyD.sp_dcritIncreaseBuffEffect]),t.resetBuffApply(i))}},LazyD.update="
+        }
+      ]
+    },
+    {
+      "samples": 55,
+      "percentOfAllSamples": 0.8896797153024912,
+      "unit": "partition_0",
+      "symbol": "_569_checkPush",
+      "address": "0x40b0b3",
+      "name": "checkPush",
+      "sourceSha256": "ac7c86e75e1ea32085532169355530ce4facae3183613818c47098fbd935ad8d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 105502,
+          "end": 105831,
+          "contextBefore": "point.png\");e[t]=i,ed.getBtScene().addNode(i,5)}e[t].setPosition(ed.toViewPosition(a,0))},checkPush:"
+        }
+      ]
+    },
+    {
+      "samples": 55,
+      "percentOfAllSamples": 0.8896797153024912,
+      "unit": "factories_3",
+      "symbol": "_805__804_",
+      "address": "0x1324413",
+      "name": "",
+      "sourceSha256": "9fe83761a1f47dab3cafd6ccc07d460f2df89db85048b5def14539270b21bf7d",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2135627,
+          "end": 2135849,
+          "contextBefore": "override(d.update,SPhoenix.atk4effBuff_update)))}n.lostHp(l,a,!0,!1,!0)}}},SPhoenix.atk4buff_update="
+        }
+      ]
+    },
+    {
+      "samples": 52,
+      "percentOfAllSamples": 0.8411517308314461,
+      "unit": "partition_0",
+      "symbol": "_1913__813_",
+      "address": "0x11873e",
+      "name": "",
+      "sourceSha256": "ee1e9efd9b80f498e8556d7aeda5714386b3001cc0687260d401318558257846",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_util.js",
+          "start": 639459,
+          "end": 639793,
+          "contextBefore": "og(r+\"\\t\"+a+\" = \"),ed.printTable(n,t+1)):cc.log(r+\"\\t\"+a+\" = \"+n)}cc.log(r+\"}\")},ed.lookupDataTable="
+        }
+      ]
+    },
+    {
+      "samples": 52,
+      "percentOfAllSamples": 0.8411517308314461,
+      "unit": "factories_3",
+      "symbol": "_640__639_",
+      "address": "0x1173b1e",
+      "name": "",
+      "sourceSha256": "151c70875296abd515290f7c30c73be84c70ae31a7d0db8d3a33e7238a59de1a",
+      "sourceRangeCount": 1,
+      "ranges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 2059182,
+          "end": 2060703,
+          "contextBefore": "wolfB\")||4029;BDruid.func_summonWolf(t,l,f),BDruid.func_summonWolf(t,o,s)}}},BDruid.func_summonWolf="
+        }
+      ]
+    }
+  ],
+  "dsoLeaf": [
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_get_by_id_rjs",
+      "samples": 968,
+      "percentOfAllSamples": 15.658362989323843
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getComputedPrimitiveDescriptor(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::MutableHandle<hermes::vm::JSObject>, hermes::vm::ComputedPropertyDescWithSymStorage&)",
+      "samples": 361,
+      "percentOfAllSamples": 5.839534131349078
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "_sh_ljs_get_by_id_rjs_inline",
+      "samples": 288,
+      "percentOfAllSamples": 4.658686509220318
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HiddenClass::findProperty(hermes::vm::PseudoHandle<hermes::vm::HiddenClass>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor&)",
+      "samples": 167,
+      "percentOfAllSamples": 2.701391135554837
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getNamedDescriptorUnsafe(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor&)",
+      "samples": 166,
+      "percentOfAllSamples": 2.685215140731155
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_get_by_val_with_receiver_rjs",
+      "samples": 162,
+      "percentOfAllSamples": 2.6205111614364283
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_call",
+      "samples": 161,
+      "percentOfAllSamples": 2.604335166612747
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getComputedWithReceiver_RJS(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::Handle<hermes::vm::HermesValue>)",
+      "samples": 143,
+      "percentOfAllSamples": 2.3131672597864767
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "unsigned long hermes::vm::HadesGC::youngGenEvacuateImpl<false>(bool)",
+      "samples": 133,
+      "percentOfAllSamples": 2.15140731154966
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "unsigned int hermes::vm::detail::IdentifierHashTable::lookupString<char>(llvh::ArrayRef<char>, unsigned int, bool) const",
+      "samples": 107,
+      "percentOfAllSamples": 1.7308314461339371
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_try_get_by_id_rjs",
+      "samples": 95,
+      "percentOfAllSamples": 1.5367195082497573
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_to_boolean",
+      "samples": 84,
+      "percentOfAllSamples": 1.3587835651892592
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_put_by_id_loose_rjs",
+      "samples": 80,
+      "percentOfAllSamples": 1.2940795858945324
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getNamedWithReceiver_RJS(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::PropOpFlags, hermes::vm::ReadPropertyCacheEntry*)",
+      "samples": 80,
+      "percentOfAllSamples": 1.2940795858945324
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::arrayPrototypeShift(void*, hermes::vm::Runtime&)",
+      "samples": 79,
+      "percentOfAllSamples": 1.2779035910708507
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HiddenClass::addProperty(hermes::vm::Handle<hermes::vm::HiddenClass>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::PropertyFlags)",
+      "samples": 76,
+      "percentOfAllSamples": 1.2293756065998058
+    },
+    {
+      "file": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "symbol": "[unknown]",
+      "samples": 74,
+      "percentOfAllSamples": 1.1970236169524426
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "__wrap__sh_ljs_get_by_id_rjs",
+      "samples": 74,
+      "percentOfAllSamples": 1.1970236169524426
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "simx_try_permanent_global_slot",
+      "samples": 73,
+      "percentOfAllSamples": 1.180847622128761
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSArray::createNoAllocPropStorage(hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Handle<hermes::vm::HiddenClass>, unsigned int, unsigned int)",
+      "samples": 69,
+      "percentOfAllSamples": 1.1161436428340343
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::putComputedWithReceiver_RJS(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::PropOpFlags)",
+      "samples": 69,
+      "percentOfAllSamples": 1.1161436428340343
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::ArrayImpl::_setOwnIndexedImpl(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, unsigned int, hermes::vm::Handle<hermes::vm::HermesValue>)",
+      "samples": 68,
+      "percentOfAllSamples": 1.0999676480103526
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::simxGlobalState(hermes::vm::Runtime&)",
+      "samples": 66,
+      "percentOfAllSamples": 1.0676156583629894
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::IdentifierTable::getSymbolHandleFromPrimitive(hermes::vm::Runtime&, hermes::vm::PseudoHandle<hermes::vm::StringPrimitive>)",
+      "samples": 65,
+      "percentOfAllSamples": 1.0514396635393077
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getOwnPropertyKeys(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::OwnKeysFlags)",
+      "samples": 63,
+      "percentOfAllSamples": 1.0190876738919443
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::addOwnProperty(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::DefinePropertyFlags, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::PropOpFlags, hermes::vm::RuntimeModule*, SHUnit*, hermes::vm::WritePropertyCacheEntry*)",
+      "samples": 62,
+      "percentOfAllSamples": 1.0029116790682626
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HadesGC::incrementalMark(unsigned long)",
+      "samples": 50,
+      "percentOfAllSamples": 0.8087997411840828
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_get_next_pname_rjs",
+      "samples": 46,
+      "percentOfAllSamples": 0.7440957618893562
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::(anonymous namespace)::appendAllPropertyKeys(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::MutableHandle<hermes::vm::ArrayStorageBase<hermes::vm::SmallHermesValueAdaptor> >, unsigned int, hermes::vm::OwnKeysFlags)",
+      "samples": 45,
+      "percentOfAllSamples": 0.7279197670656745
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::StringPrimitive::createStringViewMustBeFlat(hermes::vm::Handle<hermes::vm::StringPrimitive>)",
+      "samples": 41,
+      "percentOfAllSamples": 0.6632157877709479
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::NativeFunction::_callImpl(hermes::vm::Handle<hermes::vm::Callable>, hermes::vm::Runtime&)",
+      "samples": 39,
+      "percentOfAllSamples": 0.6308637981235846
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::DictPropertyMap::findOrAdd(hermes::vm::MutableHandle<hermes::vm::DictPropertyMap>, hermes::vm::Runtime&, hermes::vm::SymbolID)",
+      "samples": 36,
+      "percentOfAllSamples": 0.5823358136525397
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HiddenClass::tryFindPropertyFast(hermes::vm::HiddenClass const*, SHRuntime&, hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor&) [clone .isra.0]",
+      "samples": 33,
+      "percentOfAllSamples": 0.5338078291814947
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_get_by_index_rjs",
+      "samples": 32,
+      "percentOfAllSamples": 0.517631834357813
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::allocateNewSlotStorage(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, unsigned int, hermes::vm::Handle<hermes::vm::HermesValue>)",
+      "samples": 30,
+      "percentOfAllSamples": 0.48527984471044966
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_strict_equal",
+      "samples": 27,
+      "percentOfAllSamples": 0.4367518602394047
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_383_applyEffects",
+      "samples": 25,
+      "percentOfAllSamples": 0.4043998705920414
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_put_by_val_loose_rjs",
+      "samples": 25,
+      "percentOfAllSamples": 0.4043998705920414
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::IdentifierTable::getStringView(hermes::vm::Runtime&, hermes::vm::SymbolID) const",
+      "samples": 25,
+      "percentOfAllSamples": 0.4043998705920414
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::toString_RJS(hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>)",
+      "samples": 24,
+      "percentOfAllSamples": 0.38822387576835976
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::ArrayImpl::setStorageEndIndex(hermes::vm::Handle<hermes::vm::ArrayImpl>, hermes::vm::Runtime&, unsigned int)",
+      "samples": 24,
+      "percentOfAllSamples": 0.38822387576835976
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "void hermes::vm::SlotVisitor::visit<hermes::vm::HadesGC::EvacAcceptor<false> >(hermes::vm::HadesGC::EvacAcceptor<false>&, hermes::vm::GCCell*, hermes::vm::Metadata::SlotOffsets const&)",
+      "samples": 23,
+      "percentOfAllSamples": 0.3720478809446781
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::IdentifierTable::getStringPrim(hermes::vm::Runtime&, hermes::vm::SymbolID)",
+      "samples": 22,
+      "percentOfAllSamples": 0.3558718861209964
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_564_update_11_",
+      "samples": 22,
+      "percentOfAllSamples": 0.3558718861209964
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::DictPropertyMap::grow(hermes::vm::MutableHandle<hermes::vm::DictPropertyMap>, hermes::vm::Runtime&, unsigned int)",
+      "samples": 21,
+      "percentOfAllSamples": 0.3396958912973148
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::ArrayStorageBase<hermes::vm::SmallHermesValueAdaptor>::resizeWithinCapacity(hermes::vm::ArrayStorageBase<hermes::vm::SmallHermesValueAdaptor>*, hermes::vm::HadesGC&, unsigned int)",
+      "samples": 21,
+      "percentOfAllSamples": 0.3396958912973148
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_1881__781_",
+      "samples": 20,
+      "percentOfAllSamples": 0.3235198964736331
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "std::_Function_handler<void (hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor), simx_flat_numeric_copy::{lambda(hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor)#1}>::_M_invoke(std::_Any_data const&, hermes::vm::SymbolID&&, hermes::vm::NamedPropertyDescriptor&&)",
+      "samples": 19,
+      "percentOfAllSamples": 0.30734390164995146
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "_sh_ljs_strict_equal_inline",
+      "samples": 19,
+      "percentOfAllSamples": 0.30734390164995146
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_check_native_stack_overflow",
+      "samples": 19,
+      "percentOfAllSamples": 0.30734390164995146
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::parseInt(void*, hermes::vm::Runtime&)",
+      "samples": 19,
+      "percentOfAllSamples": 0.30734390164995146
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::valueToSymbolID(hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>)",
+      "samples": 18,
+      "percentOfAllSamples": 0.29116790682626986
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_381_applyPercentValue",
+      "samples": 18,
+      "percentOfAllSamples": 0.29116790682626986
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::StringView::equals(hermes::vm::StringView const&) const",
+      "samples": 18,
+      "percentOfAllSamples": 0.29116790682626986
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::OptValue<double> hermes::parseIntWithRadix<false, hermes::vm::StringView>(hermes::vm::StringView, int)",
+      "samples": 18,
+      "percentOfAllSamples": 0.29116790682626986
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_new_array_with_buffer",
+      "samples": 17,
+      "percentOfAllSamples": 0.27499191200258816
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getOwnComputedPrimitiveDescriptor(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::JSObject::IgnoreProxy, hermes::vm::ComputedPropertyDescriptor&)",
+      "samples": 17,
+      "percentOfAllSamples": 0.27499191200258816
+    },
+    {
+      "file": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "symbol": "malloc",
+      "samples": 16,
+      "percentOfAllSamples": 0.2588159171789065
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "simx_unit_speeder::{lambda(hermes::vm::HermesValue, unsigned int, hermes::vm::PinnedHermesValue&)#1}::operator()(hermes::vm::HermesValue, unsigned int, hermes::vm::PinnedHermesValue&) const [clone .isra.0]",
+      "samples": 16,
+      "percentOfAllSamples": 0.2588159171789065
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::putNamedWithReceiver_RJS(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::PropOpFlags, hermes::vm::RuntimeModule*, SHUnit*, hermes::vm::WritePropertyCacheEntry*)",
+      "samples": 16,
+      "percentOfAllSamples": 0.2588159171789065
+    },
+    {
+      "file": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "symbol": "cfree",
+      "samples": 15,
+      "percentOfAllSamples": 0.24263992235522483
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::stringToNumber(hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::StringPrimitive>)",
+      "samples": 15,
+      "percentOfAllSamples": 0.24263992235522483
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "llvh::SmallDenseMap<unsigned int, llvh::detail::DenseSetEmpty, 8u, llvh::DenseMapInfo<unsigned int>, llvh::detail::DenseSetPair<unsigned int> >::grow(unsigned int)",
+      "samples": 15,
+      "percentOfAllSamples": 0.24263992235522483
+    },
+    {
+      "file": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "symbol": "__tls_get_addr",
+      "samples": 15,
+      "percentOfAllSamples": 0.24263992235522483
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::arrayPrototypePush(void*, hermes::vm::Runtime&)",
+      "samples": 15,
+      "percentOfAllSamples": 0.24263992235522483
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::StringView::const_iterator std::__find_if<hermes::vm::StringView::const_iterator, __gnu_cxx::__ops::_Iter_equals_iter<hermes::vm::StringView::const_iterator> >(hermes::vm::StringView::const_iterator, hermes::vm::StringView::const_iterator, __gnu_cxx::__ops::_Iter_equals_iter<hermes::vm::StringView::const_iterator>, std::random_access_iterator_tag) [clone .isra.0]",
+      "samples": 14,
+      "percentOfAllSamples": 0.2264639275315432
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_750__140_",
+      "samples": 14,
+      "percentOfAllSamples": 0.2264639275315432
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::DictPropertyMap::create(hermes::vm::Runtime&, unsigned int)",
+      "samples": 14,
+      "percentOfAllSamples": 0.2264639275315432
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::defineNewOwnProperty(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::PropertyFlags, hermes::vm::Handle<hermes::vm::HermesValue>)",
+      "samples": 14,
+      "percentOfAllSamples": 0.2264639275315432
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "void hermes::vm::SlotVisitor::detail::visitArray<hermes::vm::HadesGC::MarkAcceptor, false>(hermes::vm::HadesGC::MarkAcceptor&, char*, hermes::vm::Metadata::ArrayData const&)",
+      "samples": 14,
+      "percentOfAllSamples": 0.2264639275315432
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HadesGC::OldGen::sweepNext(bool)",
+      "samples": 14,
+      "percentOfAllSamples": 0.2264639275315432
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::Callable::executeCall0(hermes::vm::Handle<hermes::vm::Callable>, hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>, bool)",
+      "samples": 13,
+      "percentOfAllSamples": 0.21028793270786153
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_386_isCrlEftConflictWithUncontrollable",
+      "samples": 13,
+      "percentOfAllSamples": 0.21028793270786153
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_752__142_",
+      "samples": 13,
+      "percentOfAllSamples": 0.21028793270786153
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HiddenClass::addToPropertyMap(hermes::vm::Handle<hermes::vm::HiddenClass>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor)",
+      "samples": 13,
+      "percentOfAllSamples": 0.21028793270786153
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::splitMatch(hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::StringPrimitive>, unsigned int, hermes::vm::Handle<hermes::vm::StringPrimitive>)",
+      "samples": 13,
+      "percentOfAllSamples": 0.21028793270786153
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HiddenClass::findPropertyNoMap(hermes::vm::PseudoHandle<hermes::vm::HiddenClass>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor&)",
+      "samples": 13,
+      "percentOfAllSamples": 0.21028793270786153
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::StringPrimitive::slice(hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::StringPrimitive>, unsigned long, unsigned long)",
+      "samples": 13,
+      "percentOfAllSamples": 0.21028793270786153
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::defineOwnPropertyInternal(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::DefinePropertyFlags, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::PropOpFlags)",
+      "samples": 12,
+      "percentOfAllSamples": 0.19411193788417988
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_755__145_",
+      "samples": 12,
+      "percentOfAllSamples": 0.19411193788417988
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::StringPrimitive::equals(hermes::vm::StringView const&) const",
+      "samples": 12,
+      "percentOfAllSamples": 0.19411193788417988
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::ArrayImpl::_getOwnIndexedImpl(hermes::vm::PseudoHandle<hermes::vm::JSObject>, hermes::vm::Runtime&, unsigned int)",
+      "samples": 12,
+      "percentOfAllSamples": 0.19411193788417988
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_562_isAlive",
+      "samples": 12,
+      "percentOfAllSamples": 0.19411193788417988
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::OptValue<unsigned int> hermes::toArrayIndex<char const*>(char const*, char const*)",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "non-virtual thunk to hermes::vm::HadesGC::EvacAcceptor<false>::acceptWeak(hermes::vm::WeakRootBase&)",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::NativeJSFunction::_callImpl(hermes::vm::Handle<hermes::vm::Callable>, hermes::vm::Runtime&)",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_379_update_4_",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_382_applyFixedValue",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::stringPrototypeSplit(void*, hermes::vm::Runtime&)",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_389_applyEffect",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::getOwnPropertyKeysAsStrings(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::OwnKeysFlags)",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::StringPrimitive::createStringView(hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::StringPrimitive>)",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "std::_Function_handler<void (hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor), simx_flat_numeric_copy::{lambda(hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor)#2}>::_M_invoke(std::_Any_data const&, hermes::vm::SymbolID&&, hermes::vm::NamedPropertyDescriptor&&)",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::ArrayImpl::_getOwnIndexedPropertyFlagsImpl(hermes::vm::JSObject*, hermes::vm::Runtime&, unsigned int)",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_2892__1089_",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_546_addBuff_1_",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_2315__829_",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "partition_0:_529_applyBuffEffects",
+      "samples": 11,
+      "percentOfAllSamples": 0.1779359430604982
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::create(hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Handle<hermes::vm::HiddenClass>, unsigned int)",
+      "samples": 10,
+      "percentOfAllSamples": 0.16175994823681655
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HiddenClass::stealPropertyMapFromParent(hermes::vm::Handle<hermes::vm::HiddenClass>, hermes::vm::Runtime&)",
+      "samples": 10,
+      "percentOfAllSamples": 0.16175994823681655
+    }
+  ],
+  "timeBins": [
+    {
+      "startSeconds": 0,
+      "endSeconds": 10,
+      "samples": 5011,
+      "mappedJSLeafSamples": 522,
+      "hadesGCLeafSamples": 242,
+      "hadesWeakGCLeafSamples": 17,
+      "coveredStartNs": "514765868869",
+      "coveredEndNs": "524765868869",
+      "hadesGCLeafPercent": 4.829375374176811
+    },
+    {
+      "startSeconds": 10,
+      "endSeconds": 20,
+      "samples": 1171,
+      "mappedJSLeafSamples": 122,
+      "hadesGCLeafSamples": 31,
+      "hadesWeakGCLeafSamples": 3,
+      "coveredStartNs": "524765868869",
+      "coveredEndNs": "527145442667",
+      "hadesGCLeafPercent": 2.6473099914602902
+    }
+  ],
+  "notes": [
+    "Inclusive counts deduplicate recursive occurrences of each exact native function per sample.",
+    "Duplicate static symbol names are resolved by translated IP and owning unit; name-only attribution is never used.",
+    "Unmapped NFI functions may be generated native C/Rust code. No semantic owner is invented.",
+    "Samples are diagnostic observations, not a throughput or speedup measurement."
+  ]
+}

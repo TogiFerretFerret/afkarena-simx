@@ -1,0 +1,609 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Period-weighted user-CPU sampling of 20 measured battles in one fixed callback-only fixture. Startup, three warmups and final report are excluded by exact CLOCK_MONOTONIC markers. Sampling changes execution cost; this is a hotspot diagnostic, not a throughput measurement or whole-game qualification.",
+  "qualifiesFor10000Target": false,
+  "profile": {
+    "file": "benchmarks/results/2026-10-28T15-13-33.840Z-native-perf-current-rust-speeder-measured.json",
+    "sha256": "c40bcbb49e950bf5c101c08c124d13caf0f7ab0dbf3a83516c38f7f56ab685c9"
+  },
+  "mapped": {
+    "file": "benchmarks/validation/native-current-measured-perf-source.json",
+    "sha256": "1b4ff0e779e53eacb2553ffe04595d909ecad29bb043df24b7c6f5ed5c29b761"
+  },
+  "symbolMap": {
+    "file": "benchmarks/validation/native-current-measured-js-symbol-map.json",
+    "sha256": "ac73d59c6106e11da88495dc504304046f36a27cceef2dc4eb24a55e1e23beda"
+  },
+  "producer": {
+    "file": "tools/analyze-current-native-timing.mjs",
+    "sha256": "dbaab378c1c38b45e083ced67c90a62f3f3d3949cc1900eca8c2219d07835b66"
+  },
+  "completed": 20,
+  "callbacks": 309060,
+  "lostRecords": 0,
+  "wholeProcessSamples": 13102,
+  "measuredSamples": 6182,
+  "excludedSamples": 6920,
+  "samplingFrequencyHz": 499,
+  "markerWallMs": 12379.573798,
+  "periodWeights": {
+    "unit": "ns of sampled cpu-clock:u event period",
+    "totalNs": "12388777456",
+    "totalMs": 12388.777456,
+    "minNs": "2004008",
+    "maxNs": "2004008",
+    "policy": "Each sample contributes its recorded CPU-clock event period, not elapsed wall time. Values are statistical estimates; window edges, sampling skid and profiler overhead prevent treating their sum as exact task-clock accounting."
+  },
+  "selfGroups": [
+    {
+      "name": "Property reads, lookup and key hashing",
+      "samples": 2672,
+      "sampledUserCpuNs": "5354709376",
+      "sampledUserCpuMs": 5354.709376,
+      "percentOfSampledUserCpu": 43.22225816887739,
+      "sampledUserCpuMsPerBattle": 267.7354688
+    },
+    {
+      "name": "Other VM operations",
+      "samples": 1669,
+      "sampledUserCpuNs": "3344689352",
+      "sampledUserCpuMs": 3344.689352,
+      "percentOfSampledUserCpu": 26.997735360724683,
+      "sampledUserCpuMsPerBattle": 167.2344676
+    },
+    {
+      "name": "Other compiled application code",
+      "samples": 652,
+      "sampledUserCpuNs": "1306613216",
+      "sampledUserCpuMs": 1306.613216,
+      "percentOfSampledUserCpu": 10.54674862504044,
+      "sampledUserCpuMsPerBattle": 65.3306608
+    },
+    {
+      "name": "Other native/system code",
+      "samples": 313,
+      "sampledUserCpuNs": "627254504",
+      "sampledUserCpuMs": 627.254504,
+      "percentOfSampledUserCpu": 5.063086379812359,
+      "sampledUserCpuMsPerBattle": 31.3627252
+    },
+    {
+      "name": "Property writes and shape changes",
+      "samples": 308,
+      "sampledUserCpuNs": "617234464",
+      "sampledUserCpuMs": 617.234464,
+      "percentOfSampledUserCpu": 4.98220640569395,
+      "sampledUserCpuMsPerBattle": 30.8617232
+    },
+    {
+      "name": "Garbage collector",
+      "samples": 307,
+      "sampledUserCpuNs": "615230456",
+      "sampledUserCpuMs": 615.230456,
+      "percentOfSampledUserCpu": 4.966030410870268,
+      "sampledUserCpuMsPerBattle": 30.7615228
+    },
+    {
+      "name": "Call dispatch and function construction",
+      "samples": 208,
+      "sampledUserCpuNs": "416833664",
+      "sampledUserCpuMs": 416.833664,
+      "percentOfSampledUserCpu": 3.3646069233257845,
+      "sampledUserCpuMsPerBattle": 20.8416832
+    },
+    {
+      "name": "Allocation and memory primitives",
+      "samples": 53,
+      "sampledUserCpuNs": "106212424",
+      "sampledUserCpuMs": 106.212424,
+      "percentOfSampledUserCpu": 0.8573277256551277,
+      "sampledUserCpuMsPerBattle": 5.3106212
+    }
+  ],
+  "topSelf": [
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_get_by_id_rjs",
+      "samples": 968,
+      "sampledUserCpuNs": "1939879744",
+      "sampledUserCpuMs": 1939.879744,
+      "percentOfSampledUserCpu": 15.658362989323843,
+      "sampledUserCpuMsPerBattle": 96.9939872
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getComputedPrimitiveDescriptor(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::MutableHandle<hermes::vm::JSObject>, hermes::vm::ComputedPropertyDescWithSymStorage&)",
+      "samples": 361,
+      "sampledUserCpuNs": "723446888",
+      "sampledUserCpuMs": 723.446888,
+      "percentOfSampledUserCpu": 5.839534131349078,
+      "sampledUserCpuMsPerBattle": 36.1723444
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "_sh_ljs_get_by_id_rjs_inline",
+      "samples": 288,
+      "sampledUserCpuNs": "577154304",
+      "sampledUserCpuMs": 577.154304,
+      "percentOfSampledUserCpu": 4.658686509220318,
+      "sampledUserCpuMsPerBattle": 28.8577152
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HiddenClass::findProperty(hermes::vm::PseudoHandle<hermes::vm::HiddenClass>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor&)",
+      "samples": 167,
+      "sampledUserCpuNs": "334669336",
+      "sampledUserCpuMs": 334.669336,
+      "percentOfSampledUserCpu": 2.701391135554837,
+      "sampledUserCpuMsPerBattle": 16.7334668
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getNamedDescriptorUnsafe(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::NamedPropertyDescriptor&)",
+      "samples": 166,
+      "sampledUserCpuNs": "332665328",
+      "sampledUserCpuMs": 332.665328,
+      "percentOfSampledUserCpu": 2.685215140731155,
+      "sampledUserCpuMsPerBattle": 16.6332664
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_get_by_val_with_receiver_rjs",
+      "samples": 162,
+      "sampledUserCpuNs": "324649296",
+      "sampledUserCpuMs": 324.649296,
+      "percentOfSampledUserCpu": 2.6205111614364283,
+      "sampledUserCpuMsPerBattle": 16.2324648
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_call",
+      "samples": 161,
+      "sampledUserCpuNs": "322645288",
+      "sampledUserCpuMs": 322.645288,
+      "percentOfSampledUserCpu": 2.604335166612747,
+      "sampledUserCpuMsPerBattle": 16.1322644
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getComputedWithReceiver_RJS(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::Handle<hermes::vm::HermesValue>)",
+      "samples": 143,
+      "sampledUserCpuNs": "286573144",
+      "sampledUserCpuMs": 286.573144,
+      "percentOfSampledUserCpu": 2.3131672597864767,
+      "sampledUserCpuMsPerBattle": 14.3286572
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "unsigned long hermes::vm::HadesGC::youngGenEvacuateImpl<false>(bool)",
+      "samples": 133,
+      "sampledUserCpuNs": "266533064",
+      "sampledUserCpuMs": 266.533064,
+      "percentOfSampledUserCpu": 2.15140731154966,
+      "sampledUserCpuMsPerBattle": 13.3266532
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "unsigned int hermes::vm::detail::IdentifierHashTable::lookupString<char>(llvh::ArrayRef<char>, unsigned int, bool) const",
+      "samples": 107,
+      "sampledUserCpuNs": "214428856",
+      "sampledUserCpuMs": 214.428856,
+      "percentOfSampledUserCpu": 1.7308314461339371,
+      "sampledUserCpuMsPerBattle": 10.7214428
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_try_get_by_id_rjs",
+      "samples": 95,
+      "sampledUserCpuNs": "190380760",
+      "sampledUserCpuMs": 190.38076,
+      "percentOfSampledUserCpu": 1.5367195082497573,
+      "sampledUserCpuMsPerBattle": 9.519038
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_to_boolean",
+      "samples": 84,
+      "sampledUserCpuNs": "168336672",
+      "sampledUserCpuMs": 168.336672,
+      "percentOfSampledUserCpu": 1.3587835651892592,
+      "sampledUserCpuMsPerBattle": 8.4168336
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_put_by_id_loose_rjs",
+      "samples": 80,
+      "sampledUserCpuNs": "160320640",
+      "sampledUserCpuMs": 160.32064,
+      "percentOfSampledUserCpu": 1.2940795858945324,
+      "sampledUserCpuMsPerBattle": 8.016032
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getNamedWithReceiver_RJS(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::PropOpFlags, hermes::vm::ReadPropertyCacheEntry*)",
+      "samples": 80,
+      "sampledUserCpuNs": "160320640",
+      "sampledUserCpuMs": 160.32064,
+      "percentOfSampledUserCpu": 1.2940795858945324,
+      "sampledUserCpuMsPerBattle": 8.016032
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::arrayPrototypeShift(void*, hermes::vm::Runtime&)",
+      "samples": 79,
+      "sampledUserCpuNs": "158316632",
+      "sampledUserCpuMs": 158.316632,
+      "percentOfSampledUserCpu": 1.2779035910708507,
+      "sampledUserCpuMsPerBattle": 7.9158316
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HiddenClass::addProperty(hermes::vm::Handle<hermes::vm::HiddenClass>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::PropertyFlags)",
+      "samples": 76,
+      "sampledUserCpuNs": "152304608",
+      "sampledUserCpuMs": 152.304608,
+      "percentOfSampledUserCpu": 1.2293756065998058,
+      "sampledUserCpuMsPerBattle": 7.6152304
+    },
+    {
+      "file": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "symbol": "[unknown]",
+      "samples": 74,
+      "sampledUserCpuNs": "148296592",
+      "sampledUserCpuMs": 148.296592,
+      "percentOfSampledUserCpu": 1.1970236169524426,
+      "sampledUserCpuMsPerBattle": 7.4148296
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/battle",
+      "symbol": "__wrap__sh_ljs_get_by_id_rjs",
+      "samples": 74,
+      "sampledUserCpuNs": "148296592",
+      "sampledUserCpuMs": 148.296592,
+      "percentOfSampledUserCpu": 1.1970236169524426,
+      "sampledUserCpuMsPerBattle": 7.4148296
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "simx_try_permanent_global_slot",
+      "samples": 73,
+      "sampledUserCpuNs": "146292584",
+      "sampledUserCpuMs": 146.292584,
+      "percentOfSampledUserCpu": 1.180847622128761,
+      "sampledUserCpuMsPerBattle": 7.314629200000001
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSArray::createNoAllocPropStorage(hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Handle<hermes::vm::HiddenClass>, unsigned int, unsigned int)",
+      "samples": 69,
+      "sampledUserCpuNs": "138276552",
+      "sampledUserCpuMs": 138.276552,
+      "percentOfSampledUserCpu": 1.1161436428340343,
+      "sampledUserCpuMsPerBattle": 6.9138276
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::putComputedWithReceiver_RJS(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::PropOpFlags)",
+      "samples": 69,
+      "sampledUserCpuNs": "138276552",
+      "sampledUserCpuMs": 138.276552,
+      "percentOfSampledUserCpu": 1.1161436428340343,
+      "sampledUserCpuMsPerBattle": 6.9138276
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::ArrayImpl::_setOwnIndexedImpl(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, unsigned int, hermes::vm::Handle<hermes::vm::HermesValue>)",
+      "samples": 68,
+      "sampledUserCpuNs": "136272544",
+      "sampledUserCpuMs": 136.272544,
+      "percentOfSampledUserCpu": 1.0999676480103526,
+      "sampledUserCpuMsPerBattle": 6.813627200000001
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::simxGlobalState(hermes::vm::Runtime&)",
+      "samples": 66,
+      "sampledUserCpuNs": "132264528",
+      "sampledUserCpuMs": 132.264528,
+      "percentOfSampledUserCpu": 1.0676156583629894,
+      "sampledUserCpuMsPerBattle": 6.6132264
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::IdentifierTable::getSymbolHandleFromPrimitive(hermes::vm::Runtime&, hermes::vm::PseudoHandle<hermes::vm::StringPrimitive>)",
+      "samples": 65,
+      "sampledUserCpuNs": "130260520",
+      "sampledUserCpuMs": 130.26052,
+      "percentOfSampledUserCpu": 1.0514396635393077,
+      "sampledUserCpuMsPerBattle": 6.513026000000001
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::getOwnPropertyKeys(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::OwnKeysFlags)",
+      "samples": 63,
+      "sampledUserCpuNs": "126252504",
+      "sampledUserCpuMs": 126.252504,
+      "percentOfSampledUserCpu": 1.0190876738919443,
+      "sampledUserCpuMsPerBattle": 6.3126252
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::JSObject::addOwnProperty(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::SymbolID, hermes::vm::DefinePropertyFlags, hermes::vm::Handle<hermes::vm::HermesValue>, hermes::vm::PropOpFlags, hermes::vm::RuntimeModule*, SHUnit*, hermes::vm::WritePropertyCacheEntry*)",
+      "samples": 62,
+      "sampledUserCpuNs": "124248496",
+      "sampledUserCpuMs": 124.248496,
+      "percentOfSampledUserCpu": 1.0029116790682626,
+      "sampledUserCpuMsPerBattle": 6.2124248
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::HadesGC::incrementalMark(unsigned long)",
+      "samples": 50,
+      "sampledUserCpuNs": "100200400",
+      "sampledUserCpuMs": 100.2004,
+      "percentOfSampledUserCpu": 0.8087997411840828,
+      "sampledUserCpuMsPerBattle": 5.01002
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "_sh_ljs_get_next_pname_rjs",
+      "samples": 46,
+      "sampledUserCpuNs": "92184368",
+      "sampledUserCpuMs": 92.184368,
+      "percentOfSampledUserCpu": 0.7440957618893562,
+      "sampledUserCpuMsPerBattle": 4.6092184000000005
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::(anonymous namespace)::appendAllPropertyKeys(hermes::vm::Handle<hermes::vm::JSObject>, hermes::vm::Runtime&, hermes::vm::MutableHandle<hermes::vm::ArrayStorageBase<hermes::vm::SmallHermesValueAdaptor> >, unsigned int, hermes::vm::OwnKeysFlags)",
+      "samples": 45,
+      "sampledUserCpuNs": "90180360",
+      "sampledUserCpuMs": 90.18036,
+      "percentOfSampledUserCpu": 0.7279197670656745,
+      "sampledUserCpuMsPerBattle": 4.509017999999999
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/native-current-measured-profile/libhermesvm.so",
+      "symbol": "hermes::vm::StringPrimitive::createStringViewMustBeFlat(hermes::vm::Handle<hermes::vm::StringPrimitive>)",
+      "samples": 41,
+      "sampledUserCpuNs": "82164328",
+      "sampledUserCpuMs": 82.164328,
+      "percentOfSampledUserCpu": 0.6632157877709479,
+      "sampledUserCpuMsPerBattle": 4.1082164
+    }
+  ],
+  "mechanics": [
+    {
+      "name": "BattleEngine.tick",
+      "symbol": "_878_tick",
+      "unit": "partition_0",
+      "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 235523,
+          "end": 237381,
+          "contextBefore": "ength;++n)if(a!==n){var l=i.checkPush(e,t[n]);r[0]+=l[0],r[1]+=l[1]}i.pushVelocityApply(e,r)}},tick:"
+        }
+      ],
+      "inclusive": {
+        "samples": 5310,
+        "sampledUserCpuNs": "10641282480",
+        "sampledUserCpuMs": 10641.28248,
+        "percentOfSampledUserCpu": 85.8945325137496,
+        "sampledUserCpuMsPerBattle": 532.064124
+      },
+      "self": {
+        "samples": 4,
+        "sampledUserCpuNs": "8016032",
+        "sampledUserCpuMs": 8.016032,
+        "percentOfSampledUserCpu": 0.06470397929472663,
+        "sampledUserCpuMsPerBattle": 0.4008016
+      }
+    },
+    {
+      "name": "Unit.update",
+      "symbol": "_564_update_11_",
+      "unit": "partition_0",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 97200,
+          "end": 102984,
+          "contextBefore": "te_Dead&&this.state!==ed.emUnitState_Dying},checkFakeDead:function(){return this.isFakeDead},update:"
+        }
+      ],
+      "inclusive": {
+        "samples": 3318,
+        "sampledUserCpuNs": "6649298544",
+        "sampledUserCpuMs": 6649.298544,
+        "percentOfSampledUserCpu": 53.67195082497573,
+        "sampledUserCpuMsPerBattle": 332.46492720000003
+      },
+      "self": {
+        "samples": 22,
+        "sampledUserCpuNs": "44088176",
+        "sampledUserCpuMs": 44.088176,
+        "percentOfSampledUserCpu": 0.3558718861209964,
+        "sampledUserCpuMsPerBattle": 2.2044088
+      }
+    },
+    {
+      "name": "Unit.addBuff",
+      "symbol": "_546_addBuff_1_",
+      "unit": "partition_0",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 90693,
+          "end": 92695,
+          "contextBefore": "+){if(t[i].info.ForceOrder.endsWith(\"defer\"))break}return t.splice(i,0,e)}return t.push(e)},addBuff:"
+        }
+      ],
+      "inclusive": {
+        "samples": 2444,
+        "sampledUserCpuNs": "4897795552",
+        "sampledUserCpuMs": 4897.795552,
+        "percentOfSampledUserCpu": 39.53413134907797,
+        "sampledUserCpuMsPerBattle": 244.88977759999997
+      },
+      "self": {
+        "samples": 11,
+        "sampledUserCpuNs": "22044088",
+        "sampledUserCpuMs": 22.044088,
+        "percentOfSampledUserCpu": 0.1779359430604982,
+        "sampledUserCpuMsPerBattle": 1.1022044
+      }
+    },
+    {
+      "name": "Unit.resetBuffApply",
+      "symbol": "_534_resetBuffApply",
+      "unit": "partition_0",
+      "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 87423,
+          "end": 87610,
+          "contextBefore": "s.rebuild(\"rebuild\"),this.addInitBuff(),this.applyBuffEffects(),this.initHpInfo(!0)},resetBuffApply:"
+        }
+      ],
+      "inclusive": {
+        "samples": 1278,
+        "sampledUserCpuNs": "2561122224",
+        "sampledUserCpuMs": 2561.122224,
+        "percentOfSampledUserCpu": 20.67292138466516,
+        "sampledUserCpuMsPerBattle": 128.0561112
+      },
+      "self": {
+        "samples": 4,
+        "sampledUserCpuNs": "8016032",
+        "sampledUserCpuMs": 8.016032,
+        "percentOfSampledUserCpu": 0.06470397929472663,
+        "sampledUserCpuMsPerBattle": 0.4008016
+      }
+    },
+    {
+      "name": "Skill.update",
+      "symbol": "_320_update_3_",
+      "unit": "partition_0",
+      "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 18788,
+          "end": 20141,
+          "contextBefore": "s.attack_counter=0},pause:function(){this.is_update=!1},resume:function(){this.is_update=!0},update:"
+        }
+      ],
+      "inclusive": {
+        "samples": 753,
+        "sampledUserCpuNs": "1509018024",
+        "sampledUserCpuMs": 1509.018024,
+        "percentOfSampledUserCpu": 12.180524102232287,
+        "sampledUserCpuMsPerBattle": 75.4509012
+      },
+      "self": {
+        "samples": 10,
+        "sampledUserCpuNs": "20040080",
+        "sampledUserCpuMs": 20.04008,
+        "percentOfSampledUserCpu": 0.16175994823681655,
+        "sampledUserCpuMsPerBattle": 1.002004
+      }
+    },
+    {
+      "name": "Buff.update",
+      "symbol": "_379_update_4_",
+      "unit": "partition_0",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 40434,
+          "end": 41296,
+          "contextBefore": "ield&&(t.lastHpChangeTick=ed.battleEngine.ticks),this.ignoreHideSet=!1,this.isUpdated_TB=!1},update:"
+        }
+      ],
+      "inclusive": {
+        "samples": 277,
+        "sampledUserCpuNs": "555110216",
+        "sampledUserCpuMs": 555.110216,
+        "percentOfSampledUserCpu": 4.480750566159819,
+        "sampledUserCpuMsPerBattle": 27.755510800000003
+      },
+      "self": {
+        "samples": 11,
+        "sampledUserCpuNs": "22044088",
+        "sampledUserCpuMs": 22.044088,
+        "percentOfSampledUserCpu": 0.1779359430604982,
+        "sampledUserCpuMsPerBattle": 1.1022044
+      }
+    },
+    {
+      "name": "Ai.update",
+      "symbol": "_277_update_1_",
+      "unit": "partition_0",
+      "sourceSha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c",
+      "sourceRanges": [
+        {
+          "file": "src/srcmodule/game_battle.js",
+          "start": 3665,
+          "end": 4257,
+          "contextBefore": "eate=ed.Entity.create,ed.Ai=cc.Class.extend({ctor:function(e){this.owner=e,this.target=null},update:"
+        }
+      ],
+      "inclusive": {
+        "samples": 222,
+        "sampledUserCpuNs": "444889776",
+        "sampledUserCpuMs": 444.889776,
+        "percentOfSampledUserCpu": 3.591070850857328,
+        "sampledUserCpuMsPerBattle": 22.2444888
+      },
+      "self": {
+        "samples": 3,
+        "sampledUserCpuNs": "6012024",
+        "sampledUserCpuMs": 6.012024,
+        "percentOfSampledUserCpu": 0.04852798447104497,
+        "sampledUserCpuMsPerBattle": 0.3006012
+      }
+    },
+    {
+      "name": "Callback queue drain",
+      "symbol": "_148___nativeDrain",
+      "unit": "partition_0",
+      "sourceSha256": "edf1988ae041ddda3f8c1e40496e28beb96b91e861765c5721f6c4d658ec9a29",
+      "sourceRanges": [],
+      "inclusive": {
+        "samples": 371,
+        "sampledUserCpuNs": "743486968",
+        "sampledUserCpuMs": 743.486968,
+        "percentOfSampledUserCpu": 6.001294079585894,
+        "sampledUserCpuMsPerBattle": 37.1743484
+      },
+      "self": {
+        "samples": 2,
+        "sampledUserCpuNs": "4008016",
+        "sampledUserCpuMs": 4.008016,
+        "percentOfSampledUserCpu": 0.03235198964736331,
+        "sampledUserCpuMsPerBattle": 0.2004008
+      }
+    }
+  ],
+  "speederGuardAndRustSelf": {
+    "samples": 22,
+    "sampledUserCpuNs": "44088176",
+    "sampledUserCpuMs": 44.088176,
+    "percentOfSampledUserCpu": 0.3558718861209964,
+    "sampledUserCpuMsPerBattle": 2.2044088
+  },
+  "limits": [
+    "Self groups are disjoint top-frame buckets; classification regexes are in the SHA-bound producer.",
+    "Inclusive mechanic rows include all descendants and overlap; never sum their percentages.",
+    "Mechanic selection requires unique exact linked symbols and SHA-bound retained source. Other generated functions are not assigned guessed owners.",
+    "Profiled marker window is approximately 12.38 seconds versus the separate unprofiled candidate trial 7.187 seconds; do not transfer sampled milliseconds to unprofiled performance or claim a new battles/second result.",
+    "One frozen callback-only fixture does not qualify full-scene mechanics, broad random battles or the 10,000 faithful battles/second target."
+  ]
+}
