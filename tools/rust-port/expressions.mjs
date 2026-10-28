@@ -39,21 +39,23 @@ function stringValue(ctx,text){const s=String(text);for(let i=0;i<s.length;i++){
 // Abstract ToPropertyKey on an actual numeric literal is pure; Number.prototype
 // hooks are never consulted. Keep all dynamic expressions on the ordinary path.
 let numericKeyProfileChecked=false;
-function computedMemberKey(node,ctx){
+function numericLiteralPropertyText(node,ctx){
  const literal=unwrap(node);let number;
  if(literal?.type==='NumericLiteral')number=literal.value;
  else if(literal?.type==='UnaryExpression'&&['+','-'].includes(literal.operator)&&unwrap(literal.argument)?.type==='NumericLiteral'){
   number=unwrap(literal.argument).value;if(literal.operator==='-')number=-number;
- }else return emitExpression(node,ctx);
- if(ctx.numericLiteralKeys===false)return emitExpression(node,ctx);
+ }else return null;
+ if(ctx.numericLiteralKeys===false)return null;
  if(!numericKeyProfileChecked){const profile=JSON.parse(readFileSync(new URL('../../config/source-oracle-runtime.json',import.meta.url),'utf8'));
  if(process.version!==profile.node||process.versions.v8!==profile.v8)throw Error('Numeric literal keys require the pinned Node/V8 compiler host');numericKeyProfileChecked=true;}
- return stringValue(ctx,String(number));
+ return String(number);
 }
+function computedMemberKey(node,ctx){const text=numericLiteralPropertyText(node,ctx);return text===null?emitExpression(node,ctx):stringValue(ctx,text);}
+
 function numberValue(ctx,value){const b=new ArrayBuffer(8),v=new DataView(b);v.setFloat64(0,value,false);return ctx.temp(`Value::Number(f64::from_bits(0x${v.getBigUint64(0,false).toString(16).padStart(16,'0')}u64))`);}
 function unwrap(node){while(node?.type==='ParenthesizedExpression')node=node.expression;return node;}
 function isReference(node){node=unwrap(node);return node?.type==='Identifier'||node?.type==='MemberExpression';}
-export function emitReference(node,ctx){node=unwrap(node);if(node?.type==='Identifier'){const local=typeof ctx.nativeLocal==='function'?ctx.nativeLocal(node.name,node):null;if(local)return{kind:'binding',local,name:node.name};const known=typeof ctx.knownBinding==='function'?ctx.knownBinding(node.name,node):null;return{kind:'binding',binding:known??ctx.temp(`${typeof ctx.envCall==='function'?ctx.envCall("resolve_binding",ctx.env,node.name):`rt.resolve_binding(${ctx.env}, ${quote(ctx,node.name)})`}?`),name:node.name};}if(node?.type==='MemberExpression'){if(node.object.type==='Super'||node.property.type==='PrivateName')unsupportedExpression(node,'super/private references are not implemented');const base=emitExpression(node.object,ctx);if(!node.computed&&ctx.literalPropertySlots)return{kind:'property',base,key:null,literalKey:node.property.name};const key=node.computed?computedMemberKey(node.property,ctx):stringValue(ctx,node.property.name);return{kind:'property',base,key};}unsupportedExpression(node,'expression is not an assignable Reference');}
+export function emitReference(node,ctx){node=unwrap(node);if(node?.type==='Identifier'){const local=typeof ctx.nativeLocal==='function'?ctx.nativeLocal(node.name,node):null;if(local)return{kind:'binding',local,name:node.name};const known=typeof ctx.knownBinding==='function'?ctx.knownBinding(node.name,node):null;return{kind:'binding',binding:known??ctx.temp(`${typeof ctx.envCall==='function'?ctx.envCall("resolve_binding",ctx.env,node.name):`rt.resolve_binding(${ctx.env}, ${quote(ctx,node.name)})`}?`),name:node.name};}if(node?.type==='MemberExpression'){if(node.object.type==='Super'||node.property.type==='PrivateName')unsupportedExpression(node,'super/private references are not implemented');const base=emitExpression(node.object,ctx);if(!node.computed&&ctx.literalPropertySlots)return{kind:'property',base,key:null,literalKey:node.property.name};if(node.computed&&ctx.literalPropertySlots&&ctx.numericLiteralReadSlots){const text=numericLiteralPropertyText(node.property,ctx);if(text!==null)return{kind:'property',base,key:null,literalKey:text};}const key=node.computed?computedMemberKey(node.property,ctx):stringValue(ctx,node.property.name);return{kind:'property',base,key};}unsupportedExpression(node,'expression is not an assignable Reference');}
 function referenceKey(ref,ctx){if(ref.key===null)ref.key=stringValue(ctx,ref.literalKey);return ref.key;}
 export function readReference(ref,ctx){if(ref.local)return ctx.temp(ref.local);if(ref.kind==='binding')return ctx.temp(`rt.read_binding(${ref.binding})?`);if(ref.kind==='property'){if(ref.literalKey!==undefined){const site=ctx.fresh('LITERAL_READ_SITE').toUpperCase();ctx.emit(`static ${site}: js_runtime::property_slots::LiteralReadSite = js_runtime::property_slots::LiteralReadSite::new(${rustString(ref.literalKey)});`);return ctx.temp(`rt.get_literal_cached(${ref.base}, &${site})?`);}return ctx.temp(`rt.get(${ref.base}, ${ref.key})?`);}throw Error('Unknown Reference kind');}
 export function writeReference(ref,value,ctx){if(ref.local){ctx.emit(`${ref.local} = ${value};`);return ctx.temp(ref.local);}if(ref.kind==='binding')return ctx.temp(`rt.write_binding(${ref.binding}, ${value}, ${ctx.strict?'true':'false'})?`);if(ref.kind==='property')return ctx.temp(`rt.set(${ref.base}, ${referenceKey(ref,ctx)}, ${value}, ${ctx.strict?'true':'false'})?`);throw Error('Unknown Reference kind');}
