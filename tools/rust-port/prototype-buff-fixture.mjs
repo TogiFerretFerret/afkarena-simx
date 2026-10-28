@@ -1,0 +1,18 @@
+import{readFileSync}from'node:fs';import{createHash}from'node:crypto';
+const pin=JSON.parse(readFileSync(new URL('../../config/generated-battle-source.json',import.meta.url))),game=readFileSync(new URL('../../'+pin.source,import.meta.url),'utf8'),get=name=>{const f=pin.functions.find(f=>f.name===name),s=game.slice(f.start,f.end);if(createHash('sha256').update(s).digest('hex')!==f.sha256)throw Error('Buff source pin changed');return s;};
+export const resetBuffApplySource=get('ed.Unit.resetBuffApply'),addBuffSource=get('ed.Unit.addBuff');
+export const prototypeBuffFixture=`var events=[],queue=[];
+function Buff(){this.info={ID:7,StackandRefresh:false,ControlEffects:["stun","other"],EffectPos:[0,0],EffectScale:[1,1]};this.impact=true;this.noUp=false;this.noDown=false;this.caster=null;this.effect_id=7;this.ignoreHideSet=false;}
+Buff.prototype.isImpactAttribs=function(){events.push("impact");return this.impact;};Buff.prototype.hasEffectOrNot=function(name){events.push("effect:"+name);return name==="noAttrUp"?this.noUp:this.noDown;};
+Buff.prototype.isCrlEftConflictWithUncontrollable=function(){events.push("conflict");return false;};Buff.prototype.isHasUnControllableEffect=function(){events.push("uncontrollable");return false;};Buff.prototype.onAddedLogic=function(){events.push("added");};
+function Unit(){this.rebuildCount=0;this.applied=0;this.checked=0;this.hurt=0;this.buff_effects={noShield:false};this.buff_list=[];this.buffEffectVisible=false;this.actor={puppet:puppet};}
+Unit.prototype.rebuild=function(){events.push("rebuild");this.rebuildCount++;};Unit.prototype.applyBuffEffects=function(){events.push("apply");this.applied++;};Unit.prototype.judgeCurrentSkill=function(buff){events.push("judge:"+buff.info.ID);};Unit.prototype.recheckManualCast=function(){events.push("manual");this.checked++;};
+Unit.prototype.isAlive=function(){events.push("alive");return true;};Unit.prototype.isPet=function(){events.push("pet");return false;};Unit.prototype.isMode_TB=function(){events.push("tb");return false;};Unit.prototype.isHasUncontrolBuffEffect=function(){events.push("hasControl");return false;};Unit.prototype.pushBuffToList=function(buff){events.push("push");this.buff_list.push(buff);};Unit.prototype.heavyHurt=function(){events.push("hurt");this.hurt++;};
+Unit.prototype.resetBuffApply=${resetBuffApplySource};Unit.prototype.addBuff=${addBuffSource};
+var effectProto={setVisible:function(v){events.push("visible:"+v);},setInheritComponentVisible:function(v){events.push("inheritVisible:"+v);}},effect=Object.create(effectProto),puppet=Object.create({getEffectById:function(id){events.push("getEffect:"+id);return effect;}});
+var ed={Buff:Buff,getNeedReadSkillCacheTb:function(){events.push("cache");return false;},battleEngine:{addBuffEventToAll:function(unit,buff){events.push("battle:"+buff.info.ID);}},callViewMessage:function(name,buff,pos){events.push("view:"+name+":"+buff.info.ID+":"+pos.x+":"+pos.y+":"+pos.sx+":"+pos.sy);}};
+function clientCall(fn){events.push("queued");queue.push(fn);}
+var unit,buff;function resetBench(){events=[];queue=[];unit=new Unit();buff=new Buff();buff.caster=unit;}
+function benchmarkReset(n){for(var i=0;i<n;i++){buff.impact=i%3===0;buff.noUp=i%3===1;buff.noDown=true;unit.resetBuffApply(buff);}}
+function benchmarkAdd(n){for(var i=0;i<n;i++){unit.buff_list=[];var result=unit.addBuff(buff);if(result!==buff)throw new Error("wrong return");while(queue.length){var callback=queue.shift();callback();}}}
+function snapshotBench(){return JSON.stringify({events:events,rebuild:unit.rebuildCount,applied:unit.applied,checked:unit.checked,hurt:unit.hurt,pending:queue.length,buffs:unit.buff_list.length});}resetBench();`;
