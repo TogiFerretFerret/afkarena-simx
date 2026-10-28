@@ -62,6 +62,8 @@ these commands are not a fresh-checkout bootstrap.
 ```sh
 node tools/rust-port/generate-program.mjs --through 6 --out work/rust-battle-full
 
+cargo generate-lockfile --offline --manifest-path work/rust-battle-full/Cargo.toml
+
 node tools/rust-port/build-program.mjs \
   --manifest work/rust-battle-full/program-manifest.json \
   --profile release --jobs 2 \
@@ -76,6 +78,9 @@ node tools/rust-port/check-program.mjs \
 ```
 
 Generation writes Rust and UTF-16 source pools only when their bytes change.
+Changed crate partitions can require a new standalone workspace lockfile. Run
+the offline lockfile step after generation and before the build wrapper; the
+wrapper snapshots the lockfile and uses Cargo `--locked`.
 The build wrapper runs Cargo with a shared target directory, archives its output,
 and fingerprints the generated workspace, source pools, runtime, compiler, host
 adapter, frozen source, external tables and toolchain. It records source changes

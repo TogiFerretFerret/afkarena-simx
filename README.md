@@ -68,6 +68,7 @@ The active pure Rust pipeline uses prepared frozen source modules and the extern
 
 ```sh
 node tools/rust-port/generate-program.mjs --through 6 --out work/rust-battle-full
+cargo generate-lockfile --offline --manifest-path work/rust-battle-full/Cargo.toml
 node tools/rust-port/build-program.mjs --profile release --jobs 2 \
   --output benchmarks/validation/rust-program-release-build.json
 node tools/rust-port/check-program.mjs --profile release \
@@ -76,7 +77,7 @@ node tools/rust-port/check-program.mjs --profile release \
   --output benchmarks/validation/rust-full-program-release.json
 ```
 
-The current retained batch failed for memory; these commands are the validation workflow, not a claim that it already passes. [Pipeline details](tools/rust-port/README.md) cover prerequisites and smaller diagnostic workloads. [Ordered trace instructions](tools/rust-port/TRACE_GATE.md) describe the prepared one-battle Node event/state reference and streamed archive checker; no generated Rust ordered-trace candidate has passed yet.
+Regeneration can change generated crate partitions, so refresh the standalone workspace lockfile before the build wrapper snapshots inputs and invokes Cargo with `--locked`. The current retained batch failed for memory; these commands are the validation workflow, not a claim that it already passes. [Pipeline details](tools/rust-port/README.md) cover prerequisites and smaller diagnostic workloads. [Ordered trace instructions](tools/rust-port/TRACE_GATE.md) describe the prepared one-battle Node event/state reference and streamed archive checker; no generated Rust ordered-trace candidate has passed yet.
 
 The older mixed-backend experiment can be rerun in a workspace containing its SHA-bound compiler, private VM and seven-unit build prerequisites:
 
