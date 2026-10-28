@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {parse,parseExpression} from '@babel/parser';
 import {emitExpression} from './expressions.mjs';
 import {emitStatements} from './statements.mjs';
+import {planLocalBindings} from './bindings.mjs';
 
 const FUNCTION_TYPES=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression','ObjectMethod','ClassMethod','ClassPrivateMethod']);
 const sha=text=>createHash('sha256').update(text).digest('hex');
@@ -39,7 +40,7 @@ function diagnostic(error,node,filename){return{filename,start:node.start??0,end
 
 /** Babel AST -> native Rust execution functions. Unsupported bodies are explicit
  * hard-failure stubs, listed in the manifest; no JavaScript backend is emitted. */
-export function compileSource(source,{filename='input.js',mode='script',moduleName='generated',allowUnsupported=true,emitRust=true,sourcePoolPath=null}={}){
+export function compileSource(source,{filename='input.js',mode='script',moduleName='generated',allowUnsupported=true,emitRust=true,sourcePoolPath=null,largeBody=false,cacheLocalBindings=true}={}){
  const root=mode==='function'?parseExpression(source,{sourceType:'script'}):parse(source,{sourceType:mode==='module'?'module':'script',allowReturnOutsideFunction:false}).program;
  if(mode==='function'&&!FUNCTION_TYPES.has(root.type))throw Error('--function input must be a function expression');
  const parents=new WeakMap(),records=[],recordByNode=new WeakMap(),inventory={};
@@ -48,10 +49,10 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
   for(const child of childNodes(node))collect(child,node,strict);
  }
  collect(root,null,mode==='module');
- const compiled=[];
+ const compiled=[],helperFunctions=[];
  const inferName=node=>{if(node.id)return node.id.name;const parent=parents.get(node);if(parent?.type==='VariableDeclarator'&&parent.init===node&&parent.id.type==='Identifier')return parent.id.name;if(parent?.type==='AssignmentExpression'&&parent.right===node&&parent.left.type==='Identifier')return parent.left.name;return'';};
  function closure(node,ctx,options={}){
-  const record=recordByNode.get(node);if(!record)throw Error('Internal missing function registry for '+node.type);
+  const record=recordByNode.get(node);ctx.functionDependencies.add(`js_function_${record?.id}`);if(!record)throw Error('Internal missing function registry for '+node.type);
   const name=node.id?.name??options.inferredName??inferName(node),arity=node.params.length;
   let rhs;
   if(node.type==='FunctionExpression'&&node.id)rhs=`rt.make_named_closure(js_function_${record.id}, ${ctx.env}, ${arity}, ${rustString(name)}, ${record.strict})`;
@@ -59,39 +60,66 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
   const value=ctx.temp(rhs);if(!emitRust)return value;if(node.type==='ObjectMethod')ctx.emit(`rt.set_function_constructable(${value}, false)?;`);if(sourcePoolPath)ctx.emit(`rt.set_function_source_range(${value}, __JS_SOURCE_POOL, ${node.start}, ${node.end})?;`);else ctx.emit(`rt.set_function_source(${value}, &[${utf16(source.slice(node.start,node.end)).join(',')}])?;`);return value;
  }
  function context(record){const lines=[],state={counter:0};
-  const ctx={env:'env',functionEnv:'env',thisValue:'this',strict:record.strict,pendingLabels:[],annexBDeclarations:new WeakSet(),emit(line){if(emitRust)lines.push(line);},fresh(prefix='temporary'){return prefix.replace(/[^A-Za-z0-9_]/g,'_')+'_'+state.counter++;},temp(rhs){const name=this.fresh('value');this.emit(`let ${name} = ${rhs};`);return name;},expression(node){return emitExpression(node,this);},makeClosure(node,options){return closure(node,this,options);},child(overrides={}){return Object.assign(Object.create(this),overrides);},rustString,instantiateBlockFunctions(functions,local){const unique=new Map();for(const fn of functions)unique.set(fn.id.name,fn);for(const name of unique.keys())local.emit(`rt.declare_lexical(${local.env}, ${rustString(name)}, true)?;`);for(const[name,fn]of unique){const value=local.makeClosure(fn);local.emit(`rt.initialize(${local.env}, ${rustString(name)}, ${value})?;`);}},unsupported(node,reason){const error=Error(reason);error.node=node;throw error;}};
+  const ctx={env:'env',functionEnv:'env',thisValue:'this',strict:record.strict,pendingLabels:[],functionDependencies:new Set(),annexBDeclarations:new WeakSet(),emit(line){if(emitRust)lines.push(line);},fresh(prefix='temporary'){return prefix.replace(/[^A-Za-z0-9_]/g,'_')+'_'+state.counter++;},temp(rhs){const name=this.fresh('value');this.emit(`let ${name} = ${rhs};`);return name;},expression(node){return emitExpression(node,this);},makeClosure(node,options){return closure(node,this,options);},child(overrides={}){return Object.assign(Object.create(this),overrides);},rustString,instantiateBlockFunctions(functions,local){const unique=new Map();for(const fn of functions)unique.set(fn.id.name,fn);for(const name of unique.keys())local.emit(`rt.declare_lexical(${local.env}, ${rustString(name)}, true)?;`);for(const[name,fn]of unique){const value=local.makeClosure(fn);local.emit(`rt.initialize(${local.env}, ${rustString(name)}, ${value})?;`);}},unsupported(node,reason){const error=Error(reason);error.node=node;throw error;}};
   return{ctx,lines};
  }
- for(const record of records){const{node,id,strict}=record,{ctx,lines}=context(record);let supported=true;
+ function ownWeight(node){if(!node)return 0;if(FUNCTION_TYPES.has(node.type))return 1;return 1+childNodes(node).reduce((sum,child)=>sum+ownWeight(child),0);}
+ function sequenceLeaves(expression){return expression.type==='SequenceExpression'?expression.expressions.flatMap(sequenceLeaves):[expression];}
+ function flattenStatements(body){return body.flatMap(statement=>{
+  if(statement.type==='ExpressionStatement'&&statement.expression.type==='SequenceExpression')return sequenceLeaves(statement.expression).map(expression=>({...statement,expression}));
+  if(statement.type==='VariableDeclaration'&&statement.declarations.length>1)return statement.declarations.map(declaration=>({...statement,declarations:[declaration]}));
+  if(statement.type==='ReturnStatement'&&statement.argument?.type==='SequenceExpression'){const values=sequenceLeaves(statement.argument);return[...values.slice(0,-1).map(expression=>({type:'ExpressionStatement',expression,start:expression.start,end:expression.end,loc:expression.loc})),{...statement,argument:values.at(-1)}];}
+  return[statement];
+ });}
+ function chunks(items,weight,maxWeight,maxItems){const result=[];let current=[],size=0;for(const item of items){const next=weight(item);if(current.length&&(size+next>maxWeight||current.length>=maxItems)){result.push(current);current=[];size=0;}current.push(item);size+=next;}if(current.length)result.push(current);return result;}
+ function instantiateGroups(node,ctx,declarations,params,body){const groups=[];
+  for(let index=0;index<params.length;index++){const name=rustString(params[index].name);groups.push(local=>{local.emit(`rt.declare(env, ${name}, Value::Undefined)?;`);local.emit(`rt.assign(env, ${name}, args.get(${index}).copied().unwrap_or(Value::Undefined), false)?;`);});}
+  if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'&&!params.some(p=>p.name==='arguments'))groups.push(local=>{const argsValue=local.temp(`rt.arguments_object(env, &[${params.map(p=>rustString(p.name)).join(',')}], args, ${local.strict})?`);local.emit(`rt.declare(env, "arguments", ${argsValue})?;`);});
+  for(const name of declarations.names)groups.push(local=>local.emit(`rt.declare(env, ${rustString(name)}, Value::Undefined)?;`));
+  for(const binding of lexicalDeclarations(body??[]))groups.push(local=>local.emit(`rt.declare_lexical(env, ${rustString(binding.name)}, ${binding.mutable})?;`));
+  for(const fn of declarations.functions)groups.push(local=>{const value=local.makeClosure(fn);local.emit(`rt.assign(env, ${rustString(fn.id.name)}, ${value}, false)?;`);});
+  return groups;
+ }
+ const splitOptions=largeBody?{minimumNodes:3000,maxNodes:500,maxStatements:24,maxInitGroups:32,...(typeof largeBody==='object'?largeBody:{})}:null;
+ for(const record of records){const{node,id}=record,{ctx,lines}=context(record);let supported=true;const localHelpers=[];
   try{
    if(node.async||node.generator)ctx.unsupported(node,'Async/generator execution is not implemented');
    if(node.type==='ClassMethod'||node.type==='ClassPrivateMethod')ctx.unsupported(node,'Class home-object/super semantics are not implemented');
    for(const parameter of node.params??[])if(parameter.type!=='Identifier')ctx.unsupported(parameter,'Non-simple parameter initialization and TDZ are not implemented');
    if(node.type==='Program')ctx.emit('let env = parent;');else ctx.emit('let env = rt.child_env(parent);');
    const body=directBody(node),declarations=hoists(node),params=node.params??[],annex=annexBPlan(record,parents);ctx.annexBDeclarations=annex.eligible;for(const name of annex.names)if(!declarations.names.includes(name))declarations.names.push(name);
-   for(let index=0;index<params.length;index++){const name=rustString(params[index].name);ctx.emit(`rt.declare(env, ${name}, Value::Undefined)?;`);ctx.emit(`rt.assign(env, ${name}, args.get(${index}).copied().unwrap_or(Value::Undefined), false)?;`);}
-   if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'&&!params.some(p=>p.name==='arguments')){const argsValue=ctx.temp(`rt.arguments_object(env, &[${params.map(p=>rustString(p.name)).join(',')}], args, ${strict})?`);ctx.emit(`rt.declare(env, "arguments", ${argsValue})?;`);}
-   for(const name of declarations.names)ctx.emit(`rt.declare(env, ${rustString(name)}, Value::Undefined)?;`);
-   if(body){for(const binding of lexicalDeclarations(body))ctx.emit(`rt.declare_lexical(env, ${rustString(binding.name)}, ${binding.mutable})?;`);
-    for(const fn of declarations.functions){const value=ctx.makeClosure(fn);ctx.emit(`rt.assign(env, ${rustString(fn.id.name)}, ${value}, false)?;`);}
-    const completion=emitStatements(body,ctx);ctx.emit(`match ${completion} { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }`);
-   }else{const value=ctx.expression(node.body);ctx.emit(`Ok(${value})`);}
+   const groups=instantiateGroups(node,ctx,declarations,params,body),ownNodes=body?body.reduce((sum,item)=>sum+ownWeight(item),0):ownWeight(node.body);
+   const split=!!splitOptions&&!!body&&(ownNodes>=splitOptions.minimumNodes||groups.length>splitOptions.maxInitGroups*4);record.split=split;record.estimatedOwnAstNodes=ownNodes;
+   if(split){
+    const makePart=(kind,index,build,estimatedNodes)=>{const name=`js_part_${id}_${kind}_${index}`,part=context(record);part.ctx.annexBDeclarations=annex.eligible;build(part.ctx);const rust=`pub fn ${name}(rt: &mut Runtime, this: Value, args: &[Value], env: EnvId) -> JsResult<Completion> {\n${part.lines.join('\n')}\n}`;localHelpers.push({name,ownerId:id,kind,rust,estimatedNodes,dependencies:[...part.ctx.functionDependencies]});ctx.functionDependencies.add(name);const result=ctx.temp(`${name}(rt, this, args, env)?`);ctx.emit(`match ${result} { Completion::Normal => {}, Completion::Return(value) => return Ok(value), _ => unreachable!("Invalid completion escaping a source function body") }`);};
+    chunks(groups,()=>1,splitOptions.maxInitGroups,splitOptions.maxInitGroups).forEach((group,index)=>makePart('init',index,local=>{for(const emit of group)emit(local);local.emit('Ok(Completion::Normal)');},group.length));
+    chunks(flattenStatements(body),ownWeight,splitOptions.maxNodes,splitOptions.maxStatements).forEach((group,index)=>makePart('body',index,local=>{const completion=emitStatements(group,local);local.emit(`Ok(${completion})`);},group.reduce((sum,item)=>sum+ownWeight(item),0)));
+    ctx.emit('Ok(Value::Undefined)');
+   }else{
+    for(const emit of groups)emit(ctx);
+    const localPlan=cacheLocalBindings?planLocalBindings(node,{parents,hoistedNames:declarations.names,parameterNames:params.map(parameter=>parameter.name)}):{names:[],eligible:()=>false},bindingRefs=new Map();record.cachedBindings=localPlan.names.length;
+    for(const name of localPlan.names)bindingRefs.set(name,ctx.temp(`rt.resolve_binding(env, ${rustString(name)})?`));
+    ctx.knownBinding=(name,identifier)=>localPlan.eligible(name,identifier)?bindingRefs.get(name):undefined;
+    if(body){const completion=emitStatements(body,ctx);ctx.emit(`match ${completion} { Completion::Normal => Ok(Value::Undefined), Completion::Return(value) => Ok(value), _ => unreachable!("Babel accepted an invalid function completion") }`);}
+    else{const value=ctx.expression(node.body);ctx.emit(`Ok(${value})`);}
+   }
   }catch(error){supported=false;record.diagnostics.push(diagnostic(error,error.node??node,filename));}
-  record.supported=supported;
+  record.supported=supported;record.dependencies=supported?[...ctx.functionDependencies]:[];record.helpers=supported?localHelpers.map(part=>part.name):[];
+  if(supported&&emitRust)helperFunctions.push(...localHelpers);
   const contents=supported?lines.join('\n'): `Err(JsError::Unsupported(${rustString(record.diagnostics[0].reason)}.into()))`;
   if(emitRust)compiled.push(`pub fn js_function_${id}(rt: &mut Runtime, this: Value, args: &[Value], parent: EnvId) -> JsResult<Value> {\n${contents}\n}`);
  }
  const first=records[0],entry=!emitRust?'':mode==='function'?(()=>{const{ctx,lines}=context(first);ctx.env='parent';ctx.thisValue='Value::Undefined';const value=ctx.makeClosure(root);ctx.emit(`Ok(${value})`);return`pub fn create_function(rt: &mut Runtime, parent: EnvId) -> JsResult<Value> {\n${lines.join('\n')}\n}`;})():`pub fn run(rt: &mut Runtime, env: EnvId, this: Value) -> JsResult<Value> { js_function_0(rt, this, &[], env) }`;
- const diagnostics=records.flatMap(record=>record.diagnostics),manifest={version:1,moduleName,filename,mode,sourceSha256:sha(source),sourceUtf16Length:source.length,sourcePoolPath,emitsRust:emitRust,diagnosticsScope:'First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.',astNodes:Object.values(inventory).reduce((a,b)=>a+b,0),astNodeTypes:inventory,functions:records.map(({node,id,strict,supported,diagnostics})=>({id,name:node.id?.name??inferName(node),start:node.start,end:node.end,line:node.loc?.start.line,column:node.loc?.start.column,strict,supported,sourceSha256:sha(source.slice(node.start,node.end)),diagnostics})),compiledFunctions:records.filter(r=>r.supported).length,unsupportedFunctions:records.filter(r=>!r.supported).length,complete:diagnostics.length===0,diagnostics,semanticallyQualified:false,executionBackend:'Generated Rust with native js-runtime; no JS interpreter or engine fallback.',qualification:'Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately.'};
+ const diagnostics=records.flatMap(record=>record.diagnostics),manifest={version:1,moduleName,filename,mode,sourceSha256:sha(source),sourceUtf16Length:source.length,sourcePoolPath,emitsRust:emitRust,diagnosticsScope:'First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.',astNodes:Object.values(inventory).reduce((a,b)=>a+b,0),astNodeTypes:inventory,largeBody:splitOptions,cacheLocalBindings,functions:records.map(({node,id,strict,supported,diagnostics,split,estimatedOwnAstNodes,helpers,cachedBindings})=>({id,split,estimatedOwnAstNodes,helpers,cachedBindings:cachedBindings??0,name:node.id?.name??inferName(node),start:node.start,end:node.end,line:node.loc?.start.line,column:node.loc?.start.column,strict,supported,sourceSha256:sha(source.slice(node.start,node.end)),diagnostics})),compiledFunctions:records.filter(r=>r.supported).length,unsupportedFunctions:records.filter(r=>!r.supported).length,complete:diagnostics.length===0,diagnostics,semanticallyQualified:false,executionBackend:'Generated Rust with native js-runtime; no JS interpreter or engine fallback.',qualification:'Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately.'};
  if(!allowUnsupported&&!manifest.complete){const error=Error('Unsupported syntax: '+diagnostics.map(d=>`${d.filename}:${d.line}:${d.column}: ${d.reason}`).join('\n'));error.manifest=manifest;throw error;}
  const header=`// Generated by tools/rust-port/compile.mjs; source SHA-256 ${manifest.sourceSha256}
-#![allow(unused_imports,unused_variables,unused_mut,dead_code,unreachable_patterns)]
+#![allow(unused_imports,unused_variables,unused_mut,dead_code,unreachable_patterns,unused_assignments)]
 use js_runtime::{Runtime,Value,EnvId,JsResult,JsError,Completion,BinaryOp,UnaryOp};
 ${sourcePoolPath?`pub static __JS_SOURCE_POOL: &[u8] = include_bytes!(${rustString(sourcePoolPath)});`:''}
 `;
- const rust=emitRust?`${header}\n${compiled.join('\n\n')}\n\n${entry}\n`:null;
+ const rust=emitRust?`${header}\n${compiled.join('\n\n')}\n\n${helperFunctions.map(part=>part.rust).join('\n\n')}\n\n${entry}\n`:null;
  let sourcePool=null;if(emitRust&&sourcePoolPath){sourcePool=Buffer.allocUnsafe(source.length*2);for(let index=0;index<source.length;index++)sourcePool.writeUInt16LE(source.charCodeAt(index),index*2);}
- return{rust,manifest,header,entry,functions:compiled.map((rust,id)=>({id,rust,supported:records[id].supported})),sourcePool};
+ return{rust,manifest,header,entry,functions:compiled.map((rust,id)=>({id,name:`js_function_${id}`,rust,supported:records[id].supported,dependencies:records[id].dependencies})),helpers:helperFunctions,sourcePool};
 }
 
 async function main(){const input=process.argv[2];if(!input||input.startsWith('--'))throw Error('Usage: node tools/rust-port/compile.mjs INPUT.js --out OUTPUT.rs [--function] [--reject-unsupported]');const at=process.argv.indexOf('--out');if(at<0)throw Error('--out is required');const output=resolve(process.argv[at+1]),source=await readFile(resolve(input),'utf8'),result=compileSource(source,{filename:input,mode:process.argv.includes('--function')?'function':'script'});await mkdir(dirname(output),{recursive:true});await writeFile(output,result.rust);await writeFile(output+'.manifest.json',JSON.stringify(result.manifest,null,2)+'\n');console.log(JSON.stringify({output,compiledFunctions:result.manifest.compiledFunctions,unsupportedFunctions:result.manifest.unsupportedFunctions,complete:result.manifest.complete}));if(process.argv.includes('--reject-unsupported')&&!result.manifest.complete)process.exitCode=1;}
