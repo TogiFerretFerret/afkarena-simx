@@ -13,6 +13,58 @@ const cases=[
   [
     "array-constructor-inherited-index-setter",
     "function(){var count=0;Object.defineProperty(Array.prototype,\"0\",{set:function(v){count++;},configurable:true});var a=Array(7,8);delete Array.prototype[0];return count+\":\"+Object.hasOwn(a,\"0\")+\":\"+a[0]+\":\"+a.length;}"
+  ],
+  [
+    "new-array-inherited-setter",
+    "function(){var count=0;Object.defineProperty(Array.prototype,\"0\",{set:function(){count++;},configurable:true});var a=new Array(7,8);delete Array.prototype[0];return count+\":\"+a[0]+\":\"+Object.hasOwn(a,\"0\");}"
+  ],
+  [
+    "inherited-readonly-index",
+    "function(){Object.defineProperty(Array.prototype,\"0\",{value:42,writable:false,configurable:true});var a=Array(7,8);delete Array.prototype[0];return a[0]+\":\"+Object.hasOwn(a,\"0\");}"
+  ],
+  [
+    "own-index-descriptor-flags",
+    "function(){var a=Array(7,8),d=Object.getOwnPropertyDescriptor(a,\"0\");return d.value+\":\"+d.writable+\":\"+d.enumerable+\":\"+d.configurable;}"
+  ],
+  [
+    "single-length-keeps-hole",
+    "function(){var count=0;Object.defineProperty(Array.prototype,\"0\",{set:function(){count++;},configurable:true});var a=Array(3);delete Array.prototype[0];return count+\":\"+a.length+\":\"+Object.hasOwn(a,\"0\");}"
+  ],
+  [
+    "single-nonnumeric-value",
+    "function(){var count=0,o={};Object.defineProperty(Array.prototype,\"0\",{set:function(){count++;},configurable:true});var a=Array(o);delete Array.prototype[0];return count+\":\"+a.length+\":\"+(a[0]===o)+\":\"+Object.hasOwn(a,\"0\");}"
+  ],
+  [
+    "call-ignores-receiver",
+    "function(){var o={},a=Array.call(o,7,8);return Array.isArray(a)+\":\"+(a!==o)+\":\"+a[0]+\":\"+a.length;}"
+  ],
+  [
+    "reflect-alternate-prototype-setter",
+    "function(){var count=0;function C(){}C.prototype=Object.create(Array.prototype);Object.defineProperty(C.prototype,\"0\",{set:function(){count++;},configurable:true});var a=Reflect.construct(Array,[7,8],C);return count+\":\"+(Object.getPrototypeOf(a)===C.prototype)+\":\"+a[0]+\":\"+a.length+\":\"+Object.hasOwn(a,\"0\");}"
+  ],
+  [
+    "reflect-prototype-getter-order",
+    "function(){var s=\"\",C=function(){}.bind(null),p={};Object.defineProperty(C,\"prototype\",{get:function(){s+=\"P\";return p;}});var a=Reflect.construct(Array,[7,8],C);return s+\":\"+(Object.getPrototypeOf(a)===p)+\":\"+a[0]+\":\"+a.length;}"
+  ],
+  [
+    "zero-and-negative-zero-length",
+    "function(){var a=Array(0),b=new Array(-0);return a.length+\":\"+b.length+\":\"+Object.hasOwn(a,\"0\")+\":\"+Object.hasOwn(b,\"0\");}"
+  ],
+  [
+    "invalid-length-range-error",
+    "function(){try{Array(1.5);}catch(e){return e.name;}}"
+  ],
+  [
+    "empty-constructor",
+    "function(){var a=Array();return Array.isArray(a)+\":\"+a.length+\":\"+Object.getOwnPropertyNames(a).join(\",\");}"
+  ],
+  [
+    "explicit-undefined-is-element",
+    "function(){var a=Array(void 0);return a.length+\":\"+Object.hasOwn(a,\"0\")+\":\"+a[0];}"
+  ],
+  [
+    "first-two-indices-prototype-getter",
+    "function(){Object.defineProperty(Array.prototype,\"0\",{get:function(){throw 17;},configurable:true});Object.defineProperty(Array.prototype,\"1\",{value:99,writable:false,configurable:true});var a=Array(7,8);delete Array.prototype[0];delete Array.prototype[1];return a[0]+\":\"+a[1]+\":\"+Object.keys(a).join(\",\");}"
   ]
 ];
 const tracked=new Map();async function bind(file){const bytes=await readFile(resolve(root,file));tracked.set(file,sha(bytes));}
@@ -34,4 +86,4 @@ const view=new DataView(new ArrayBuffer(8));function encodeValue(value){if(value
 const observations=[];for(let index=0;index<cases.length;index++){const[name,source]=cases[index],realm=createContext(constants.DONT_CONTEXTIFY);let expected;try{expected='ok:'+encodeValue(runInContext('('+source+')',realm)());}catch(error){expected='throw:'+encodeValue(error);}const text=value=>value.startsWith("ok:string:")?String.fromCharCode(...value.slice(10).match(/.{4}/g).map(x=>parseInt(x,16))):null;observations.push({name,source,expected,actual:actual[index],expectedText:text(expected),actualText:text(actual[index]),matched:expected===actual[index]});}
 const inputsAtFinish=[];for(const[file,digest]of tracked){const actualDigest=sha(await readFile(resolve(root,file)));inputsAtFinish.push({file,sha256:digest,matched:actualDigest===digest});}assert.ok(inputsAtFinish.every(row=>row.matched),'Array constructor source inputs changed during build/run');
 const passed=observations.every(row=>row.matched),archive='benchmarks/validation/rust-generated-array-constructor.outputs.json.gz';await writeFile(resolve(root,archive),gzipSync(Buffer.from(JSON.stringify(observations))));
-const report={version:1,passed,knownGap:'Array constructor incorrectly invokes inherited indexed setters through Set instead of CreateDataProperty',expectedFailure:!passed,cases:cases.length,firstDifference:observations.find(row=>!row.matched)??null,backend:'Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.',sourceInputsAtFinish:inputsAtFinish,oracleProfile:profile,generatedRustSha256:sha(rust),binary:{file:binary,sha256:sha(await readFile(binary))},rustc:{file:rustc,sha256:sha(await readFile(rustc))},compileArgs,archive:{file:archive,sha256:sha(await readFile(resolve(root,archive)))},qualifiesFor10000Target:false,scope:'Known failing source regression: Array constructor must create own data elements without calling inherited indexed setters. No battle reachability or speed qualification claimed. This is not a complete battle or unrestricted ECMAScript qualification.'};await writeFile(resolve(root,'benchmarks/validation/rust-generated-array-constructor.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed,cases:cases.length,firstDifference:report.firstDifference}));if(!passed)process.exitCode=1;
+const report={version:1,passed,regression:'Array constructor must create own data elements without invoking inherited indexed setters',expectedFailure:!passed,cases:cases.length,firstDifference:observations.find(row=>!row.matched)??null,backend:'Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.',sourceInputsAtFinish:inputsAtFinish,oracleProfile:profile,generatedRustSha256:sha(rust),binary:{file:binary,sha256:sha(await readFile(binary))},rustc:{file:rustc,sha256:sha(await readFile(rustc))},compileArgs,archive:{file:archive,sha256:sha(await readFile(resolve(root,archive)))},qualifiesFor10000Target:false,scope:'Source regression: Array constructor must create own data elements without calling inherited indexed setters. No battle reachability or speed qualification claimed. This is not a complete battle or unrestricted ECMAScript qualification.'};await writeFile(resolve(root,'benchmarks/validation/rust-generated-array-constructor.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed,cases:cases.length,firstDifference:report.firstDifference}));if(!passed)process.exitCode=1;

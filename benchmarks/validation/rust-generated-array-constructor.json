@@ -1,18 +1,10 @@
 {
   "version": 1,
-  "passed": false,
-  "knownGap": "Array constructor incorrectly invokes inherited indexed setters through Set instead of CreateDataProperty",
-  "expectedFailure": true,
-  "cases": 1,
-  "firstDifference": {
-    "name": "array-constructor-inherited-index-setter",
-    "source": "function(){var count=0;Object.defineProperty(Array.prototype,\"0\",{set:function(v){count++;},configurable:true});var a=Array(7,8);delete Array.prototype[0];return count+\":\"+Object.hasOwn(a,\"0\")+\":\"+a[0]+\":\"+a.length;}",
-    "expected": "ok:string:0030003a0074007200750065003a0037003a0032",
-    "actual": "ok:string:0031003a00660061006c00730065003a0075006e0064006500660069006e00650064003a0032",
-    "expectedText": "0:true:7:2",
-    "actualText": "1:false:undefined:2",
-    "matched": false
-  },
+  "passed": true,
+  "regression": "Array constructor must create own data elements without invoking inherited indexed setters",
+  "expectedFailure": false,
+  "cases": 14,
+  "firstDifference": null,
   "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
   "sourceInputsAtFinish": [
     {
@@ -37,7 +29,7 @@
     },
     {
       "file": "crates/js-runtime/src/builtins.rs",
-      "sha256": "bf3077e07472b9ef259a78dca61312b3f203b1572eda5adae4f8af398eca34b4",
+      "sha256": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
       "matched": true
     },
     {
@@ -1122,7 +1114,7 @@
     },
     {
       "file": "tools/rust-port/check-array-constructor.mjs",
-      "sha256": "cdaff51af4ec763a41ae1a7cc1b14ba53b056eb4a7ea000498822753ad988e7e",
+      "sha256": "f1b904409de548d56ae62ba36a6a308060bad7bd948fe76f1507d54a6aebf3fd",
       "matched": true
     }
   ],
@@ -1144,30 +1136,30 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "f652b5b566707b02dabdacc45606cdab82ed7ab3576c51221331759de5690ed4",
+  "generatedRustSha256": "f43bcfd34462ee69af1a5ffb065d91e54aebb5a4a4a34847ae9aa5d63b7850db",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/rust-port-array-constructor/check",
-    "sha256": "cdbcb893046c4be86cfbb2e95a8f698f6aeefab3996e0fb135ee756cd777009f"
+    "file": "/workspace/afkarena-simx/work/candidate-array-constructor/work/rust-port-array-constructor/check",
+    "sha256": "92afa29ba679ba5e227158719fefa3302c9fd01c558027b0ba5fec1aa0013f69"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-array-constructor/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/rust-port-array-constructor/main.rs",
+    "/workspace/afkarena-simx/work/candidate-array-constructor/work/rust-port-array-constructor/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-array-constructor/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-array-constructor/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/rust-port-array-constructor/check"
+    "/workspace/afkarena-simx/work/candidate-array-constructor/work/rust-port-array-constructor/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-array-constructor.outputs.json.gz",
-    "sha256": "7c1c0b5293353a8fbe78e67e821279b1622ac51938c87c0cdb26946c37f2d259"
+    "sha256": "a19f4868aecfc6d2a6cafb36b5dcb8a80fc17684961788b04d1a3c8ec536400b"
   },
   "qualifiesFor10000Target": false,
-  "scope": "Known failing source regression: Array constructor must create own data elements without calling inherited indexed setters. No battle reachability or speed qualification claimed. This is not a complete battle or unrestricted ECMAScript qualification."
+  "scope": "Source regression: Array constructor must create own data elements without calling inherited indexed setters. No battle reachability or speed qualification claimed. This is not a complete battle or unrestricted ECMAScript qualification."
 }
