@@ -8,6 +8,7 @@ import {emitStatements} from './statements.mjs';
 import {planLocalBindings,planNativeLocals} from './bindings.mjs';
 
 const FUNCTION_TYPES=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression','ObjectMethod','ClassMethod','ClassPrivateMethod']);
+const NATIVE_DATA_OBJ_SOURCE_SHA256='6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9';
 const NATIVE_EXPOSE_SOURCE_SHA256='9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911';
 const NATIVE_UTF8_SOURCE_SHA256='5fe05bd8580b1b6d11ff573eab9df79cdb29df580fe1127d1f43afaab2c6fae1';
 const NATIVE_COPY_OBJ_SOURCE_SHA256='5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072';
@@ -215,13 +216,19 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
     record.sourceSpecialization='native-expose-scan-v1';record.nativeExposeRoot=true;
     ctx.sourceLoopFastPath=(candidate,local)=>candidate===loops[0]?'rt.try_native_expose_scan('+local.functionEnv+', parent)?':null;
    }
+   if(sourceSpecializations&&!split&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_DATA_OBJ_SOURCE_SHA256){
+    const loops=body.filter(statement=>statement.type==='ForInStatement');
+    if(loops.length!==1)ctx.unsupported(node,'Pinned createDataObj for-in shape changed');
+    record.sourceSpecialization='native-data-obj-scan-v1';record.nativeDataObjectRoot=true;
+    ctx.sourceLoopFastPath=(candidate,local)=>candidate===loops[0]?'rt.try_native_data_obj_scan('+local.functionEnv+', parent)?':null;
+   }
    if(split){
     const makePart=(kind,index,build,estimatedNodes)=>{const name=`js_part_${id}_${kind}_${index}`,part=context(record);part.ctx.annexBDeclarations=annex.eligible;build(part.ctx);const rust=`pub fn ${name}(rt: &mut Runtime, this: Value, args: &[Value], env: EnvId) -> JsResult<Completion> {\n${[...part.nameLines,...part.lines].join('\n')}\n}`;localHelpers.push({name,ownerId:id,kind,rust,estimatedNodes,dependencies:[...part.ctx.functionDependencies]});ctx.functionDependencies.add(name);const result=ctx.temp(`${name}(rt, this, args, env)?`);ctx.emit(`match ${result} { Completion::Normal => {}, Completion::Return(value) => return Ok(value), _ => unreachable!("Invalid completion escaping a source function body") }`);};
     chunks(groups,()=>1,splitOptions.maxInitGroups,splitOptions.maxInitGroups).forEach((group,index)=>makePart('init',index,local=>{for(const emit of group)emit(local);local.emit('Ok(Completion::Normal)');},group.length));
     chunks(flattenStatements(body),ownWeight,splitOptions.maxNodes,splitOptions.maxStatements).forEach((group,index)=>makePart('body',index,local=>{const completion=emitStatements(group,local);local.emit(`Ok(${completion})`);},group.reduce((sum,item)=>sum+ownWeight(item),0)));
     ctx.emit('Ok(Value::Undefined)');
    }else{
-    const nativePlan=nativeLocalBindings&&!record.battleGcRoot&&!record.nativeExposeRoot?planNativeLocals(node,{parents,hoistedNames:declarations.names,parameterNames:params.map(parameter=>parameter.name)}):{names:[],eligible:()=>false},nativeBindings=new Map();
+    const nativePlan=nativeLocalBindings&&!record.battleGcRoot&&!record.nativeExposeRoot&&!record.nativeDataObjectRoot?planNativeLocals(node,{parents,hoistedNames:declarations.names,parameterNames:params.map(parameter=>parameter.name)}):{names:[],eligible:()=>false},nativeBindings=new Map();
     const parameterPlan=planLocalBindings(node,{parents,parameterNames:params.map(parameter=>parameter.name)});
     const nativeParameterNames=nativeParameters&&nativeLocalBindings&&!record.battleGcRoot&&!record.nativeExposeRoot&&!implicitArgumentsUsed.has(node)&&!directEvalContexts.has(node)&&!requiresImplicitArguments(node)?(immutableParameters.get(node)??[]).filter(name=>!parameterCaptures.get(node)?.[params.findIndex(parameter=>parameter.name===name)]&&!declarations.functions.some(fn=>fn.id.name===name)):[];
     const nativeNames=[...new Set([...nativePlan.names,...nativeParameterNames])];
