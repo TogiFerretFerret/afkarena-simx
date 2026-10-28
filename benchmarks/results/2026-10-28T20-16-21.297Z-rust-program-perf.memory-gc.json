@@ -1,0 +1,910 @@
+{
+  "version": 1,
+  "profile": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.json",
+  "stderrSha256": "55ecaa10ab90ffeff266b915b77c40a363fd345340c8bb15f8f61623a6379f79",
+  "collections": [
+    {
+      "collection": 1,
+      "objectsFreed": 338754,
+      "functionsFreed": 33698,
+      "environmentsFreed": 604083,
+      "pauseNs": 213985620
+    },
+    {
+      "collection": 2,
+      "objectsFreed": 313882,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598093,
+      "pauseNs": 210872931
+    },
+    {
+      "collection": 3,
+      "objectsFreed": 313882,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598093,
+      "pauseNs": 219591896
+    },
+    {
+      "collection": 4,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 218444585
+    },
+    {
+      "collection": 5,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 232510403
+    },
+    {
+      "collection": 6,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 220282165
+    },
+    {
+      "collection": 7,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 220001963
+    },
+    {
+      "collection": 8,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 222191059
+    },
+    {
+      "collection": 9,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 214886260
+    },
+    {
+      "collection": 10,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 221435662
+    },
+    {
+      "collection": 11,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 239621812
+    },
+    {
+      "collection": 12,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 261706627
+    },
+    {
+      "collection": 13,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 280021177
+    },
+    {
+      "collection": 14,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 261475720
+    },
+    {
+      "collection": 15,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 238060495
+    },
+    {
+      "collection": 16,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 225788973
+    },
+    {
+      "collection": 17,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 211090905
+    },
+    {
+      "collection": 18,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 256371083
+    },
+    {
+      "collection": 19,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 248706519
+    },
+    {
+      "collection": 20,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 273778645
+    },
+    {
+      "collection": 21,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 253123461
+    },
+    {
+      "collection": 22,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 283221908
+    },
+    {
+      "collection": 23,
+      "objectsFreed": 313883,
+      "functionsFreed": 39371,
+      "environmentsFreed": 598095,
+      "pauseNs": 248461929
+    }
+  ],
+  "totalPauseNs": 5475631798,
+  "measuredCollections": 20,
+  "measuredPauseNs": 4831181351,
+  "memory": {
+    "pid": 104847,
+    "intervalMs": 100,
+    "scope": "External process status observer attached mid-run; VmHWM retains lifetime high water. /proc task children unavailable, so profiler auto-discovery did not work.",
+    "samples": [
+      {
+        "at": "2026-10-28T20:17:21.408Z",
+        "rssKiB": 3204016,
+        "hwmKiB": 3204016
+      },
+      {
+        "at": "2026-10-28T20:17:21.508Z",
+        "rssKiB": 3205620,
+        "hwmKiB": 3205620
+      },
+      {
+        "at": "2026-10-28T20:17:21.608Z",
+        "rssKiB": 3207452,
+        "hwmKiB": 3207452
+      },
+      {
+        "at": "2026-10-28T20:17:21.709Z",
+        "rssKiB": 3217544,
+        "hwmKiB": 3217544
+      },
+      {
+        "at": "2026-10-28T20:17:21.809Z",
+        "rssKiB": 3218160,
+        "hwmKiB": 3218160
+      },
+      {
+        "at": "2026-10-28T20:17:21.909Z",
+        "rssKiB": 3218192,
+        "hwmKiB": 3218192
+      },
+      {
+        "at": "2026-10-28T20:17:22.009Z",
+        "rssKiB": 3218332,
+        "hwmKiB": 3218332
+      },
+      {
+        "at": "2026-10-28T20:17:22.109Z",
+        "rssKiB": 3218356,
+        "hwmKiB": 3218356
+      },
+      {
+        "at": "2026-10-28T20:17:22.209Z",
+        "rssKiB": 3219308,
+        "hwmKiB": 3219308
+      },
+      {
+        "at": "2026-10-28T20:17:22.309Z",
+        "rssKiB": 3221052,
+        "hwmKiB": 3221052
+      },
+      {
+        "at": "2026-10-28T20:17:22.409Z",
+        "rssKiB": 3222632,
+        "hwmKiB": 3222632
+      },
+      {
+        "at": "2026-10-28T20:17:22.509Z",
+        "rssKiB": 3224036,
+        "hwmKiB": 3224036
+      },
+      {
+        "at": "2026-10-28T20:17:22.608Z",
+        "rssKiB": 3225508,
+        "hwmKiB": 3225508
+      },
+      {
+        "at": "2026-10-28T20:17:22.708Z",
+        "rssKiB": 3226792,
+        "hwmKiB": 3226792
+      },
+      {
+        "at": "2026-10-28T20:17:22.808Z",
+        "rssKiB": 3228212,
+        "hwmKiB": 3228212
+      },
+      {
+        "at": "2026-10-28T20:17:22.909Z",
+        "rssKiB": 3229524,
+        "hwmKiB": 3229524
+      },
+      {
+        "at": "2026-10-28T20:17:23.009Z",
+        "rssKiB": 3230916,
+        "hwmKiB": 3230916
+      },
+      {
+        "at": "2026-10-28T20:17:23.110Z",
+        "rssKiB": 3232476,
+        "hwmKiB": 3232476
+      },
+      {
+        "at": "2026-10-28T20:17:23.211Z",
+        "rssKiB": 3233840,
+        "hwmKiB": 3233840
+      },
+      {
+        "at": "2026-10-28T20:17:23.311Z",
+        "rssKiB": 3234620,
+        "hwmKiB": 3234620
+      },
+      {
+        "at": "2026-10-28T20:17:23.412Z",
+        "rssKiB": 3234632,
+        "hwmKiB": 3234632
+      },
+      {
+        "at": "2026-10-28T20:17:23.513Z",
+        "rssKiB": 3234648,
+        "hwmKiB": 3234648
+      },
+      {
+        "at": "2026-10-28T20:17:23.612Z",
+        "rssKiB": 3234712,
+        "hwmKiB": 3234712
+      },
+      {
+        "at": "2026-10-28T20:17:23.712Z",
+        "rssKiB": 3234748,
+        "hwmKiB": 3234748
+      },
+      {
+        "at": "2026-10-28T20:17:23.812Z",
+        "rssKiB": 3234752,
+        "hwmKiB": 3234752
+      },
+      {
+        "at": "2026-10-28T20:17:23.913Z",
+        "rssKiB": 3235488,
+        "hwmKiB": 3235488
+      },
+      {
+        "at": "2026-10-28T20:17:24.013Z",
+        "rssKiB": 3235644,
+        "hwmKiB": 3235644
+      },
+      {
+        "at": "2026-10-28T20:17:24.114Z",
+        "rssKiB": 3236700,
+        "hwmKiB": 3236700
+      },
+      {
+        "at": "2026-10-28T20:17:24.215Z",
+        "rssKiB": 3237524,
+        "hwmKiB": 3237524
+      },
+      {
+        "at": "2026-10-28T20:17:24.314Z",
+        "rssKiB": 3238796,
+        "hwmKiB": 3238796
+      },
+      {
+        "at": "2026-10-28T20:17:24.414Z",
+        "rssKiB": 3240160,
+        "hwmKiB": 3240160
+      },
+      {
+        "at": "2026-10-28T20:17:24.515Z",
+        "rssKiB": 3241868,
+        "hwmKiB": 3241868
+      },
+      {
+        "at": "2026-10-28T20:17:24.615Z",
+        "rssKiB": 3243132,
+        "hwmKiB": 3243132
+      },
+      {
+        "at": "2026-10-28T20:17:24.715Z",
+        "rssKiB": 3244704,
+        "hwmKiB": 3244704
+      },
+      {
+        "at": "2026-10-28T20:17:24.815Z",
+        "rssKiB": 3246020,
+        "hwmKiB": 3246020
+      },
+      {
+        "at": "2026-10-28T20:17:24.916Z",
+        "rssKiB": 3255908,
+        "hwmKiB": 3255908
+      },
+      {
+        "at": "2026-10-28T20:17:25.015Z",
+        "rssKiB": 3256868,
+        "hwmKiB": 3256868
+      },
+      {
+        "at": "2026-10-28T20:17:25.116Z",
+        "rssKiB": 3256944,
+        "hwmKiB": 3256944
+      },
+      {
+        "at": "2026-10-28T20:17:25.218Z",
+        "rssKiB": 3257052,
+        "hwmKiB": 3257052
+      },
+      {
+        "at": "2026-10-28T20:17:25.317Z",
+        "rssKiB": 3257080,
+        "hwmKiB": 3257080
+      },
+      {
+        "at": "2026-10-28T20:17:25.418Z",
+        "rssKiB": 3257376,
+        "hwmKiB": 3257376
+      },
+      {
+        "at": "2026-10-28T20:17:25.518Z",
+        "rssKiB": 3258968,
+        "hwmKiB": 3258968
+      },
+      {
+        "at": "2026-10-28T20:17:25.618Z",
+        "rssKiB": 3260440,
+        "hwmKiB": 3260440
+      },
+      {
+        "at": "2026-10-28T20:17:25.717Z",
+        "rssKiB": 3261608,
+        "hwmKiB": 3261608
+      },
+      {
+        "at": "2026-10-28T20:17:25.817Z",
+        "rssKiB": 3262852,
+        "hwmKiB": 3262852
+      },
+      {
+        "at": "2026-10-28T20:17:25.918Z",
+        "rssKiB": 3264144,
+        "hwmKiB": 3264144
+      },
+      {
+        "at": "2026-10-28T20:17:26.019Z",
+        "rssKiB": 3265500,
+        "hwmKiB": 3265500
+      },
+      {
+        "at": "2026-10-28T20:17:26.119Z",
+        "rssKiB": 3266912,
+        "hwmKiB": 3266912
+      },
+      {
+        "at": "2026-10-28T20:17:26.219Z",
+        "rssKiB": 3268124,
+        "hwmKiB": 3268124
+      },
+      {
+        "at": "2026-10-28T20:17:26.318Z",
+        "rssKiB": 3269248,
+        "hwmKiB": 3269248
+      },
+      {
+        "at": "2026-10-28T20:17:26.418Z",
+        "rssKiB": 3270824,
+        "hwmKiB": 3270824
+      },
+      {
+        "at": "2026-10-28T20:17:26.519Z",
+        "rssKiB": 3272008,
+        "hwmKiB": 3272008
+      },
+      {
+        "at": "2026-10-28T20:17:26.619Z",
+        "rssKiB": 3273140,
+        "hwmKiB": 3273140
+      },
+      {
+        "at": "2026-10-28T20:17:26.719Z",
+        "rssKiB": 3273332,
+        "hwmKiB": 3273332
+      },
+      {
+        "at": "2026-10-28T20:17:26.819Z",
+        "rssKiB": 3273344,
+        "hwmKiB": 3273344
+      },
+      {
+        "at": "2026-10-28T20:17:26.918Z",
+        "rssKiB": 3273388,
+        "hwmKiB": 3273388
+      },
+      {
+        "at": "2026-10-28T20:17:27.019Z",
+        "rssKiB": 3273424,
+        "hwmKiB": 3273424
+      },
+      {
+        "at": "2026-10-28T20:17:27.120Z",
+        "rssKiB": 3273468,
+        "hwmKiB": 3273468
+      },
+      {
+        "at": "2026-10-28T20:17:27.219Z",
+        "rssKiB": 3273468,
+        "hwmKiB": 3273468
+      },
+      {
+        "at": "2026-10-28T20:17:27.320Z",
+        "rssKiB": 3273812,
+        "hwmKiB": 3273812
+      },
+      {
+        "at": "2026-10-28T20:17:27.421Z",
+        "rssKiB": 3274344,
+        "hwmKiB": 3274344
+      },
+      {
+        "at": "2026-10-28T20:17:27.521Z",
+        "rssKiB": 3275164,
+        "hwmKiB": 3275164
+      },
+      {
+        "at": "2026-10-28T20:17:27.621Z",
+        "rssKiB": 3276096,
+        "hwmKiB": 3276096
+      },
+      {
+        "at": "2026-10-28T20:17:27.721Z",
+        "rssKiB": 3277376,
+        "hwmKiB": 3277376
+      },
+      {
+        "at": "2026-10-28T20:17:27.820Z",
+        "rssKiB": 3278760,
+        "hwmKiB": 3278760
+      },
+      {
+        "at": "2026-10-28T20:17:27.922Z",
+        "rssKiB": 3280152,
+        "hwmKiB": 3280152
+      },
+      {
+        "at": "2026-10-28T20:17:28.021Z",
+        "rssKiB": 3281420,
+        "hwmKiB": 3281420
+      },
+      {
+        "at": "2026-10-28T20:17:28.121Z",
+        "rssKiB": 3282864,
+        "hwmKiB": 3282864
+      },
+      {
+        "at": "2026-10-28T20:17:28.221Z",
+        "rssKiB": 3293308,
+        "hwmKiB": 3293308
+      },
+      {
+        "at": "2026-10-28T20:17:28.320Z",
+        "rssKiB": 3294292,
+        "hwmKiB": 3294292
+      },
+      {
+        "at": "2026-10-28T20:17:28.420Z",
+        "rssKiB": 3294576,
+        "hwmKiB": 3294576
+      },
+      {
+        "at": "2026-10-28T20:17:28.521Z",
+        "rssKiB": 3294668,
+        "hwmKiB": 3294668
+      },
+      {
+        "at": "2026-10-28T20:17:28.621Z",
+        "rssKiB": 3295356,
+        "hwmKiB": 3295356
+      },
+      {
+        "at": "2026-10-28T20:17:28.720Z",
+        "rssKiB": 3295368,
+        "hwmKiB": 3295368
+      },
+      {
+        "at": "2026-10-28T20:17:28.820Z",
+        "rssKiB": 3296708,
+        "hwmKiB": 3296708
+      },
+      {
+        "at": "2026-10-28T20:17:28.920Z",
+        "rssKiB": 3298332,
+        "hwmKiB": 3298332
+      },
+      {
+        "at": "2026-10-28T20:17:29.020Z",
+        "rssKiB": 3299720,
+        "hwmKiB": 3299720
+      },
+      {
+        "at": "2026-10-28T20:17:29.121Z",
+        "rssKiB": 3301188,
+        "hwmKiB": 3301188
+      },
+      {
+        "at": "2026-10-28T20:17:29.222Z",
+        "rssKiB": 3302536,
+        "hwmKiB": 3302536
+      },
+      {
+        "at": "2026-10-28T20:17:29.322Z",
+        "rssKiB": 3303948,
+        "hwmKiB": 3303948
+      },
+      {
+        "at": "2026-10-28T20:17:29.421Z",
+        "rssKiB": 3305388,
+        "hwmKiB": 3305388
+      },
+      {
+        "at": "2026-10-28T20:17:29.521Z",
+        "rssKiB": 3306900,
+        "hwmKiB": 3306900
+      },
+      {
+        "at": "2026-10-28T20:17:29.621Z",
+        "rssKiB": 3308460,
+        "hwmKiB": 3308460
+      },
+      {
+        "at": "2026-10-28T20:17:29.721Z",
+        "rssKiB": 3309416,
+        "hwmKiB": 3309416
+      },
+      {
+        "at": "2026-10-28T20:17:29.822Z",
+        "rssKiB": 3309444,
+        "hwmKiB": 3309444
+      },
+      {
+        "at": "2026-10-28T20:17:29.923Z",
+        "rssKiB": 3309480,
+        "hwmKiB": 3309480
+      },
+      {
+        "at": "2026-10-28T20:17:30.023Z",
+        "rssKiB": 3309520,
+        "hwmKiB": 3309520
+      },
+      {
+        "at": "2026-10-28T20:17:30.122Z",
+        "rssKiB": 3309544,
+        "hwmKiB": 3309544
+      },
+      {
+        "at": "2026-10-28T20:17:30.222Z",
+        "rssKiB": 3309572,
+        "hwmKiB": 3309572
+      },
+      {
+        "at": "2026-10-28T20:17:30.323Z",
+        "rssKiB": 3310068,
+        "hwmKiB": 3310068
+      },
+      {
+        "at": "2026-10-28T20:17:30.423Z",
+        "rssKiB": 3310464,
+        "hwmKiB": 3310464
+      },
+      {
+        "at": "2026-10-28T20:17:30.524Z",
+        "rssKiB": 3311012,
+        "hwmKiB": 3311012
+      },
+      {
+        "at": "2026-10-28T20:17:30.624Z",
+        "rssKiB": 3312052,
+        "hwmKiB": 3312052
+      },
+      {
+        "at": "2026-10-28T20:17:30.724Z",
+        "rssKiB": 3313488,
+        "hwmKiB": 3313488
+      },
+      {
+        "at": "2026-10-28T20:17:30.825Z",
+        "rssKiB": 3314736,
+        "hwmKiB": 3314736
+      },
+      {
+        "at": "2026-10-28T20:17:30.926Z",
+        "rssKiB": 3315920,
+        "hwmKiB": 3315920
+      },
+      {
+        "at": "2026-10-28T20:17:31.027Z",
+        "rssKiB": 3316852,
+        "hwmKiB": 3316852
+      },
+      {
+        "at": "2026-10-28T20:17:31.126Z",
+        "rssKiB": 3317940,
+        "hwmKiB": 3317940
+      },
+      {
+        "at": "2026-10-28T20:17:31.227Z",
+        "rssKiB": 3319128,
+        "hwmKiB": 3319128
+      },
+      {
+        "at": "2026-10-28T20:17:31.327Z",
+        "rssKiB": 3320788,
+        "hwmKiB": 3320788
+      },
+      {
+        "at": "2026-10-28T20:17:31.427Z",
+        "rssKiB": 3330516,
+        "hwmKiB": 3330516
+      },
+      {
+        "at": "2026-10-28T20:17:31.526Z",
+        "rssKiB": 3331460,
+        "hwmKiB": 3331460
+      },
+      {
+        "at": "2026-10-28T20:17:31.627Z",
+        "rssKiB": 3331544,
+        "hwmKiB": 3331544
+      },
+      {
+        "at": "2026-10-28T20:17:31.728Z",
+        "rssKiB": 3331620,
+        "hwmKiB": 3331620
+      },
+      {
+        "at": "2026-10-28T20:17:31.828Z",
+        "rssKiB": 3331648,
+        "hwmKiB": 3331648
+      },
+      {
+        "at": "2026-10-28T20:17:31.929Z",
+        "rssKiB": 3331664,
+        "hwmKiB": 3331664
+      },
+      {
+        "at": "2026-10-28T20:17:32.030Z",
+        "rssKiB": 3332832,
+        "hwmKiB": 3332832
+      },
+      {
+        "at": "2026-10-28T20:17:32.130Z",
+        "rssKiB": 3334244,
+        "hwmKiB": 3334244
+      },
+      {
+        "at": "2026-10-28T20:17:32.231Z",
+        "rssKiB": 3335604,
+        "hwmKiB": 3335604
+      },
+      {
+        "at": "2026-10-28T20:17:32.330Z",
+        "rssKiB": 3336792,
+        "hwmKiB": 3336792
+      },
+      {
+        "at": "2026-10-28T20:17:32.430Z",
+        "rssKiB": 3337900,
+        "hwmKiB": 3337900
+      },
+      {
+        "at": "2026-10-28T20:17:32.530Z",
+        "rssKiB": 3338920,
+        "hwmKiB": 3338920
+      },
+      {
+        "at": "2026-10-28T20:17:32.631Z",
+        "rssKiB": 3340000,
+        "hwmKiB": 3340000
+      },
+      {
+        "at": "2026-10-28T20:17:32.732Z",
+        "rssKiB": 3341292,
+        "hwmKiB": 3341292
+      },
+      {
+        "at": "2026-10-28T20:17:32.833Z",
+        "rssKiB": 3342392,
+        "hwmKiB": 3342392
+      },
+      {
+        "at": "2026-10-28T20:17:32.932Z",
+        "rssKiB": 3343640,
+        "hwmKiB": 3343640
+      },
+      {
+        "at": "2026-10-28T20:17:33.032Z",
+        "rssKiB": 3344956,
+        "hwmKiB": 3344956
+      },
+      {
+        "at": "2026-10-28T20:17:33.132Z",
+        "rssKiB": 3346024,
+        "hwmKiB": 3346024
+      },
+      {
+        "at": "2026-10-28T20:17:33.232Z",
+        "rssKiB": 3347336,
+        "hwmKiB": 3347336
+      },
+      {
+        "at": "2026-10-28T20:17:33.332Z",
+        "rssKiB": 3347872,
+        "hwmKiB": 3347872
+      },
+      {
+        "at": "2026-10-28T20:17:33.433Z",
+        "rssKiB": 3347904,
+        "hwmKiB": 3347904
+      },
+      {
+        "at": "2026-10-28T20:17:33.534Z",
+        "rssKiB": 3347968,
+        "hwmKiB": 3347968
+      },
+      {
+        "at": "2026-10-28T20:17:33.633Z",
+        "rssKiB": 3348024,
+        "hwmKiB": 3348024
+      },
+      {
+        "at": "2026-10-28T20:17:33.733Z",
+        "rssKiB": 3348056,
+        "hwmKiB": 3348056
+      },
+      {
+        "at": "2026-10-28T20:17:33.833Z",
+        "rssKiB": 3348076,
+        "hwmKiB": 3348076
+      },
+      {
+        "at": "2026-10-28T20:17:33.933Z",
+        "rssKiB": 3348076,
+        "hwmKiB": 3348076
+      },
+      {
+        "at": "2026-10-28T20:17:34.033Z",
+        "rssKiB": 3348960,
+        "hwmKiB": 3348960
+      },
+      {
+        "at": "2026-10-28T20:17:34.133Z",
+        "rssKiB": 3349056,
+        "hwmKiB": 3349056
+      },
+      {
+        "at": "2026-10-28T20:17:34.234Z",
+        "rssKiB": 3350260,
+        "hwmKiB": 3350260
+      },
+      {
+        "at": "2026-10-28T20:17:34.335Z",
+        "rssKiB": 3351668,
+        "hwmKiB": 3351668
+      },
+      {
+        "at": "2026-10-28T20:17:34.435Z",
+        "rssKiB": 3352972,
+        "hwmKiB": 3352972
+      },
+      {
+        "at": "2026-10-28T20:17:34.535Z",
+        "rssKiB": 3358404,
+        "hwmKiB": 3358404
+      },
+      {
+        "at": "2026-10-28T20:17:34.636Z",
+        "rssKiB": 3358416,
+        "hwmKiB": 3358416
+      },
+      {
+        "at": "2026-10-28T20:17:34.736Z",
+        "rssKiB": 3368040,
+        "hwmKiB": 3368040
+      },
+      {
+        "at": "2026-10-28T20:17:34.836Z",
+        "rssKiB": 3369084,
+        "hwmKiB": 3369084
+      },
+      {
+        "at": "2026-10-28T20:17:34.936Z",
+        "rssKiB": 3369332,
+        "hwmKiB": 3369332
+      },
+      {
+        "at": "2026-10-28T20:17:35.036Z",
+        "rssKiB": 3372076,
+        "hwmKiB": 3372076
+      },
+      {
+        "at": "2026-10-28T20:17:35.137Z",
+        "rssKiB": 3179008,
+        "hwmKiB": 3377548
+      },
+      {
+        "at": "2026-10-28T20:17:35.238Z",
+        "rssKiB": 2963428,
+        "hwmKiB": 3377548
+      },
+      {
+        "at": "2026-10-28T20:17:35.338Z",
+        "rssKiB": 2962612,
+        "hwmKiB": 3377548
+      },
+      {
+        "at": "2026-10-28T20:17:35.439Z",
+        "rssKiB": 2962612,
+        "hwmKiB": 3377548
+      },
+      {
+        "at": "2026-10-28T20:17:35.540Z",
+        "rssKiB": 2962612,
+        "hwmKiB": 3377548
+      },
+      {
+        "at": "2026-10-28T20:17:35.639Z",
+        "rssKiB": 2707864,
+        "hwmKiB": 3377548
+      },
+      {
+        "at": "2026-10-28T20:17:35.739Z",
+        "rssKiB": 2707864,
+        "hwmKiB": 3377548
+      },
+      {
+        "at": "2026-10-28T20:17:35.839Z",
+        "rssKiB": 0,
+        "hwmKiB": 0
+      }
+    ],
+    "peakRssKiB": 3372076,
+    "peakHwmKiB": 3377548
+  },
+  "limitations": [
+    "RSS observer attached mid-run because /proc/PID/task/PID/children is unavailable. VmHWM retains lifetime high water; sampled RSS does not cover initial warmups.",
+    "Profiler internal observedMemory has zero samples; use this explicit external observer evidence.",
+    "Profile/trace timings do not establish unprofiled battles/sec."
+  ]
+}

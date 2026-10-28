@@ -1,0 +1,4298 @@
+{
+  "version": 1,
+  "profileSucceeded": true,
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "expectedExit": 0,
+  "scope": "markers",
+  "startMarker": "rust_port_battle_gc:collections=3 ",
+  "endMarker": "rust_port_battle_gc:collections=23 ",
+  "stackBytes": 32768,
+  "reportPrefix": "",
+  "wallMs": 74608.85181,
+  "frequencyHz": 99,
+  "perf": {
+    "file": "work/downloads/perf/perf",
+    "sha256": "5261dcc63baf8f9d19e25161e9b5d6c074ed4fd9627e32a0483990f870ff5492"
+  },
+  "demangler": {
+    "file": "/usr/bin/c++filt",
+    "sha256": "7d54ea6797a5e8c69255f711b79577efd9934c3502c6edee4bc25b7dc7d97bd2"
+  },
+  "binary": {
+    "file": "work/rust-port-shared-target/release/rust-battle-program",
+    "sha256": "aab4fcc546bed336fb46e3d682df9f45e8406aa1a48c97d5f82ce281524310ed",
+    "unchanged": true
+  },
+  "recordArgs": [
+    "record",
+    "--clockid",
+    "mono",
+    "-e",
+    "cpu-clock:u",
+    "-F",
+    "99",
+    "--call-graph",
+    "dwarf,32768",
+    "-o",
+    "/workspace/afkarena-simx/work/rust-program-perf/2026-10-28T20-16-21.297Z.data",
+    "--delay=-1",
+    "--control",
+    "fd:3,4",
+    "--",
+    "/workspace/afkarena-simx/work/rust-port-shared-target/release/rust-battle-program"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/rust-program-perf/empty-home",
+    "LANG": "C",
+    "TZ": "UTC",
+    "RUST_PORT_TRACE": "1"
+  },
+  "observedMemory": {
+    "intervalMs": 100,
+    "samples": 0,
+    "peakChildRssKiB": 0,
+    "peakChildHwmKiB": 0
+  },
+  "markers": [
+    {
+      "line": "unit_start:0",
+      "kind": null,
+      "observerElapsedMs": 52.42885000000001
+    },
+    {
+      "line": "unit_finished:0",
+      "kind": null,
+      "observerElapsedMs": 319.951442
+    },
+    {
+      "line": "unit_start:1",
+      "kind": null,
+      "observerElapsedMs": 319.962598
+    },
+    {
+      "line": "unit_finished:1",
+      "kind": null,
+      "observerElapsedMs": 333.11652799999996
+    },
+    {
+      "line": "unit_start:2",
+      "kind": null,
+      "observerElapsedMs": 333.123408
+    },
+    {
+      "line": "unit_finished:2",
+      "kind": null,
+      "observerElapsedMs": 346.13762
+    },
+    {
+      "line": "unit_start:3",
+      "kind": null,
+      "observerElapsedMs": 346.15279300000003
+    },
+    {
+      "line": "unit_finished:3",
+      "kind": null,
+      "observerElapsedMs": 361.792485
+    },
+    {
+      "line": "unit_start:4",
+      "kind": null,
+      "observerElapsedMs": 361.81015099999996
+    },
+    {
+      "line": "unit_finished:4",
+      "kind": null,
+      "observerElapsedMs": 371.708912
+    },
+    {
+      "line": "unit_start:5",
+      "kind": null,
+      "observerElapsedMs": 371.71270699999997
+    },
+    {
+      "line": "unit_finished:5",
+      "kind": null,
+      "observerElapsedMs": 390.212836
+    },
+    {
+      "line": "unit_start:6",
+      "kind": null,
+      "observerElapsedMs": 390.21727200000004
+    },
+    {
+      "line": "rust_port_battle_gc:collections=3 objects_freed=313882 functions_freed=39371 envs_freed=598093 pause_ns=219591896",
+      "kind": "start",
+      "observerElapsedMs": 13296.268978
+    },
+    {
+      "line": "rust_port_battle_gc:collections=23 objects_freed=313883 functions_freed=39371 envs_freed=598095 pause_ns=248461929",
+      "kind": "end",
+      "observerElapsedMs": 73646.18402999999
+    },
+    {
+      "line": "unit_finished:6",
+      "kind": null,
+      "observerElapsedMs": 73777.86113399999
+    }
+  ],
+  "control": [
+    {
+      "operation": "enable",
+      "observerElapsedMs": 13296.300776
+    },
+    {
+      "operation": "disable",
+      "observerElapsedMs": 73646.217108
+    }
+  ],
+  "acknowledgments": [
+    {
+      "text": "ack\n\u0000",
+      "observerElapsedMs": 13299.707229
+    },
+    {
+      "text": "ack\n\u0000",
+      "observerElapsedMs": 73647.70399499999
+    }
+  ],
+  "acknowledgmentCount": 2,
+  "controlValid": true,
+  "dataBytes": 196149120,
+  "sampled": 5896,
+  "lostSamples": "0",
+  "estimatedSampledUserCpuNs": "59555554960",
+  "selfGroups": [
+    {
+      "name": "Rust JavaScript semantics runtime",
+      "samples": 4494,
+      "periodNs": "45393938940",
+      "percent": 76.22116689280868
+    },
+    {
+      "name": "Other Rust and system code",
+      "samples": 511,
+      "periodNs": "5161616110",
+      "percent": 8.666892808683853
+    },
+    {
+      "name": "Unresolved",
+      "samples": 377,
+      "periodNs": "3808080770",
+      "percent": 6.3941655359565805
+    },
+    {
+      "name": "Generated source execution",
+      "samples": 373,
+      "periodNs": "3767676730",
+      "percent": 6.326322930800543
+    },
+    {
+      "name": "Allocation, collections and memory",
+      "samples": 141,
+      "periodNs": "1424242410",
+      "percent": 2.3914518317503393
+    }
+  ],
+  "topSelf": [
+    {
+      "symbol": "<js_runtime::heap::Object>::own",
+      "dso": "rust-battle-program",
+      "samples": 459,
+      "periodNs": "4636363590",
+      "rawSymbol": "_RNvMs2_NtCsddBioDaU7Da_10js_runtime4heapNtB5_6Object3own",
+      "percent": 7.784938941655359
+    },
+    {
+      "symbol": "<js_runtime::reachability::Trace>::drain",
+      "dso": "rust-battle-program",
+      "samples": 317,
+      "periodNs": "3202020170",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime12reachabilityNtB4_5Trace5drain",
+      "percent": 5.376526458616011
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::intern",
+      "dso": "rust-battle-program",
+      "samples": 267,
+      "periodNs": "2696969670",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime6intern",
+      "percent": 4.528493894165536
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::resolve_binding",
+      "dso": "rust-battle-program",
+      "samples": 213,
+      "periodNs": "2151515130",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime15resolve_binding",
+      "percent": 3.612618724559023
+    },
+    {
+      "symbol": "<core::hash::sip::Hasher<core::hash::sip::Sip13Rounds> as core::hash::Hasher>::write",
+      "dso": "rust-battle-program",
+      "samples": 182,
+      "periodNs": "1838383820",
+      "rawSymbol": "_RNvXs3_NtNtCskADBYZwJmSU_4core4hash3sipINtB5_6HasherNtB5_11Sip13RoundsENtB7_6Hasher5writeCsddBioDaU7Da_10js_runtime.llvm.1846183036149152450",
+      "percent": 3.0868385345997287
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&str>",
+      "dso": "rust-battle-program",
+      "samples": 166,
+      "periodNs": "1676767660",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneReECsddBioDaU7Da_10js_runtime",
+      "percent": 2.8154681139755766
+    },
+    {
+      "symbol": "<hashbrown::map::HashMap<js_runtime::value::StringId, usize, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>>::insert",
+      "dso": "rust-battle-program",
+      "samples": 156,
+      "periodNs": "1575757560",
+      "rawSymbol": "_RNvMs1_NtCs3BTM885nGDo_9hashbrown3mapINtB5_7HashMapNtNtCsddBioDaU7Da_10js_runtime5value8StringIdjINtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBR_7id_hash8IdHasherEE6insertBR_",
+      "percent": 2.645861601085482
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_inner::<js_runtime::heap::KeyInput>",
+      "dso": "rust-battle-program",
+      "samples": 152,
+      "periodNs": "1535353520",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime9get_innerNtNtB7_4heap8KeyInputEB7_.llvm.7590835307644946571",
+      "percent": 2.5780189959294435
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::own_descriptor",
+      "dso": "rust-battle-program",
+      "samples": 145,
+      "periodNs": "1464646450",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime14own_descriptor",
+      "percent": 2.459294436906377
+    },
+    {
+      "symbol": "<hashbrown::map::HashMap<js_runtime::heap::PropertyKey, usize, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>>::insert",
+      "dso": "rust-battle-program",
+      "samples": 132,
+      "periodNs": "1333333320",
+      "rawSymbol": "_RNvMs1_NtCs3BTM885nGDo_9hashbrown3mapINtB5_7HashMapNtNtCsddBioDaU7Da_10js_runtime4heap11PropertyKeyjINtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBR_7id_hash8IdHasherEE6insertBR_",
+      "percent": 2.2388059701492535
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::to_property_key",
+      "dso": "rust-battle-program",
+      "samples": 131,
+      "periodNs": "1323232310",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime15to_property_key",
+      "percent": 2.221845318860244
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::record_get",
+      "dso": "rust-battle-program",
+      "samples": 129,
+      "periodNs": "1303030290",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime11diagnosticsNtNtB6_7runtime7Runtime10record_get",
+      "percent": 2.187924016282225
+    },
+    {
+      "symbol": "0x000000000017221a",
+      "dso": "libc.so.6",
+      "samples": 115,
+      "periodNs": "1161616150",
+      "rawSymbol": "0x000000000017221a",
+      "percent": 1.9504748982360922
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::static_string",
+      "dso": "rust-battle-program",
+      "samples": 114,
+      "periodNs": "1151515140",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime12literal_poolNtNtB6_7runtime7Runtime13static_string",
+      "percent": 1.9335142469470827
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::call_value",
+      "dso": "rust-battle-program",
+      "samples": 99,
+      "periodNs": "999999990",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime8closuresNtNtB6_7runtime7Runtime10call_value",
+      "percent": 1.6791044776119404
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::typed_own_descriptor",
+      "dso": "rust-battle-program",
+      "samples": 97,
+      "periodNs": "979797970",
+      "rawSymbol": "_RNvMs0_NtCsddBioDaU7Da_10js_runtime6binaryNtNtB7_7runtime7Runtime20typed_own_descriptor",
+      "percent": 1.6451831750339212
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::intern_utf16",
+      "dso": "rust-battle-program",
+      "samples": 84,
+      "periodNs": "848484840",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime12intern_utf16",
+      "percent": 1.4246947082767978
+    },
+    {
+      "symbol": "<js_runtime::heap::Object>::insert",
+      "dso": "rust-battle-program",
+      "samples": 75,
+      "periodNs": "757575750",
+      "rawSymbol": "_RNvMs2_NtCsddBioDaU7Da_10js_runtime4heapNtB5_6Object6insert",
+      "percent": 1.2720488466757123
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached",
+      "dso": "rust-battle-program",
+      "samples": 75,
+      "periodNs": "757575750",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB6_7runtime7Runtime18get_literal_cached",
+      "percent": 1.2720488466757123
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::typed_get",
+      "dso": "rust-battle-program",
+      "samples": 69,
+      "periodNs": "696969690",
+      "rawSymbol": "_RNvMs0_NtCsddBioDaU7Da_10js_runtime6binaryNtNtB7_7runtime7Runtime9typed_get",
+      "percent": 1.1702849389416554
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::child_env",
+      "dso": "rust-battle-program",
+      "samples": 64,
+      "periodNs": "646464640",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime9child_env",
+      "percent": 1.0854816824966078
+    },
+    {
+      "symbol": "ryu_js::d2s::d2d",
+      "dso": "rust-battle-program",
+      "samples": 64,
+      "periodNs": "646464640",
+      "rawSymbol": "_RNvNtCsjij2NuT51gt_6ryu_js3d2s3d2d",
+      "percent": 1.0854816824966078
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::to_string",
+      "dso": "rust-battle-program",
+      "samples": 60,
+      "periodNs": "606060600",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime5valueNtNtB6_7runtime7Runtime9to_string",
+      "percent": 1.01763907734057
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached",
+      "dso": "rust-battle-program",
+      "samples": 57,
+      "periodNs": "575757570",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB6_7runtime7Runtime18get_literal_cached",
+      "percent": 0.9667571234735414
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::collect_native_battle_arenas",
+      "dso": "rust-battle-program",
+      "samples": 56,
+      "periodNs": "565656560",
+      "rawSymbol": "_RNvMNtCsddBioDaU7Da_10js_runtime9battle_gcNtNtB4_7runtime7Runtime28collect_native_battle_arenas",
+      "percent": 0.9497964721845319
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::alloc_object",
+      "dso": "rust-battle-program",
+      "samples": 52,
+      "periodNs": "525252520",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime12alloc_object",
+      "percent": 0.8819538670284939
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::object_id",
+      "dso": "rust-battle-program",
+      "samples": 50,
+      "periodNs": "505050500",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime9object_id",
+      "percent": 0.8480325644504749
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached",
+      "dso": "rust-battle-program",
+      "samples": 48,
+      "periodNs": "484848480",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB6_7runtime7Runtime18get_literal_cached",
+      "percent": 0.8141112618724559
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::read_binding",
+      "dso": "rust-battle-program",
+      "samples": 46,
+      "periodNs": "464646460",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime12read_binding",
+      "percent": 0.7801899592944369
+    },
+    {
+      "symbol": "<js_runtime::env::Environment>::reuse_record",
+      "dso": "rust-battle-program",
+      "samples": 45,
+      "periodNs": "454545450",
+      "rawSymbol": "_RNvMNtCsddBioDaU7Da_10js_runtime3envNtB2_11Environment12reuse_record",
+      "percent": 0.7632293080054274
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached",
+      "dso": "rust-battle-program",
+      "samples": 44,
+      "periodNs": "444444440",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB6_7runtime7Runtime18get_literal_cached",
+      "percent": 0.746268656716418
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::set::<js_runtime::value::Value>",
+      "dso": "rust-battle-program",
+      "samples": 43,
+      "periodNs": "434343430",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3setNtNtB7_5value5ValueEB7_",
+      "percent": 0.7293080054274084
+    },
+    {
+      "symbol": "0x000000000017c069",
+      "dso": "libc.so.6",
+      "samples": 43,
+      "periodNs": "434343430",
+      "rawSymbol": "0x000000000017c069",
+      "percent": 0.7293080054274084
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "rust-battle-program",
+      "samples": 38,
+      "periodNs": "383838380",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECs1ygXBa4tZu9_23battle_unit_0_part_0027",
+      "percent": 0.6445047489823609
+    },
+    {
+      "symbol": "malloc",
+      "dso": "libc.so.6",
+      "samples": 37,
+      "periodNs": "373737370",
+      "rawSymbol": "malloc",
+      "percent": 0.6275440976933514
+    },
+    {
+      "symbol": "<alloc::vec::Vec<u16> as alloc::vec::spec_from_iter_nested::SpecFromIterNested<u16, core::str::iter::EncodeUtf16>>::from_iter",
+      "dso": "rust-battle-program",
+      "samples": 36,
+      "periodNs": "363636360",
+      "rawSymbol": "_RNvXNtNtCsgFX3jaOk65H_5alloc3vec21spec_from_iter_nestedINtB4_3VectEINtB2_18SpecFromIterNestedtNtNtNtCskADBYZwJmSU_4core3str4iter11EncodeUtf16E9from_iterCsddBioDaU7Da_10js_runtime",
+      "percent": 0.6105834464043419
+    },
+    {
+      "symbol": "cfree",
+      "dso": "libc.so.6",
+      "samples": 36,
+      "periodNs": "363636360",
+      "rawSymbol": "cfree",
+      "percent": 0.6105834464043419
+    },
+    {
+      "symbol": "0x00000000000a145a",
+      "dso": "libc.so.6",
+      "samples": 36,
+      "periodNs": "363636360",
+      "rawSymbol": "0x00000000000a145a",
+      "percent": 0.6105834464043419
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached",
+      "dso": "rust-battle-program",
+      "samples": 35,
+      "periodNs": "353535350",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB6_7runtime7Runtime18get_literal_cached",
+      "percent": 0.5936227951153324
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::assign",
+      "dso": "rust-battle-program",
+      "samples": 35,
+      "periodNs": "353535350",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime6assign",
+      "percent": 0.5936227951153324
+    }
+  ],
+  "sourceMapping": [
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#23}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sl_000s_000s0_0Bt_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#23}::{closure#0}::{closure#0}::{closure#1}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sl_000s_00Bp_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#23}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sl_000s0_0Bn_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1457::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#2}::{closure#1}::{closure#1}::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_14570s_0s_00s0_0s_0s_00s1_0Bj_",
+      "unit": 0,
+      "functionId": 1457,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dd97b8fc214dcdb6c206c7a8d8a621d88de540a4d9c841564fff467a093dcab7",
+      "utf16Start": 1237425,
+      "utf16End": 1238211,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1611::{closure#0}::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_161100s_0s_00s0_000s0_0Bj_",
+      "unit": 0,
+      "functionId": 1611,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "utf16Start": 1271038,
+      "utf16End": 1271900,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1611::{closure#0}::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_161100s_0s_00s0_000s1_0Bj_",
+      "unit": 0,
+      "functionId": 1611,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "utf16Start": 1271038,
+      "utf16End": 1271900,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0036::js_function_2017::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#4}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNvCs9FnYxXFH35N_23battle_unit_0_part_003616js_function_20170s0_000s0_000s2_00Bj_",
+      "unit": 0,
+      "functionId": 2017,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "178aa5b3ada2f0385916087024ff2dfdb057055c6dbc974ef95a552050032ab2",
+      "utf16Start": 1395780,
+      "utf16End": 1397885,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#7}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000s5_00Bj_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1795::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#5}::{closure#0}::{closure#0}::{closure#7}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17950000s3_000s5_0Bh_",
+      "unit": 0,
+      "functionId": 1795,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "utf16Start": 1321297,
+      "utf16End": 1323299,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_792::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7920s_0s_00s_000s0_0Bh_",
+      "unit": 0,
+      "functionId": 792,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+      "utf16Start": 130685,
+      "utf16End": 131346,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_792::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7920s_0s_00s_000s1_0Bh_",
+      "unit": 0,
+      "functionId": 792,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+      "utf16Start": 130685,
+      "utf16End": 131346,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_792::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#4}",
+      "dso": "rust-battle-program",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7920s_0s_00s_000s2_0Bh_",
+      "unit": 0,
+      "functionId": 792,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+      "utf16Start": 130685,
+      "utf16End": 131346,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000s1_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#8}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000s6_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#12}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sa_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#16}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000se_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#17}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sf_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#18}",
+      "dso": "rust-battle-program",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sg_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#22}",
+      "dso": "rust-battle-program",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sk_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1663::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNCNCNCNCNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1663000000Bd_",
+      "unit": 0,
+      "functionId": 1663,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c48098fb65fac2bd28f017351cb0c750848432cef089b4efbbdc3658b7a760cd",
+      "utf16Start": 1283591,
+      "utf16End": 1283904,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1611::{closure#0}::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNCNCNCNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_161100s_0s_00s0_0Bd_",
+      "unit": 0,
+      "functionId": 1611,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "utf16Start": 1271038,
+      "utf16End": 1271900,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1795::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#3}::{closure#1}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17950000s1_0s_0Bd_",
+      "unit": 0,
+      "functionId": 1795,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "utf16Start": 1321297,
+      "utf16End": 1323299,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1795::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#5}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNCNCNCNCNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17950000s3_00Bd_",
+      "unit": 0,
+      "functionId": 1795,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "utf16Start": 1321297,
+      "utf16End": 1323299,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1107::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11070s_0000s1_0Bd_",
+      "unit": 0,
+      "functionId": 1107,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "bdfc22c24f15a0a81d6a915b30bf762c93e8efb115c54ce60c9d7b505f74d425",
+      "utf16Start": 588090,
+      "utf16End": 588766,
+      "name": "Class",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0032::js_function_1886::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCs1Nfh03XUZYa_23battle_unit_0_part_003216js_function_18860000s0_0Bb_",
+      "unit": 0,
+      "functionId": 1886,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5674e51badb0b41abc912a50e69f8019479696039ff1115dcdfffd17b4871b58",
+      "utf16Start": 1347739,
+      "utf16End": 1349579,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1621::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 8,
+      "periodNs": "80808080",
+      "rawSymbol": "_RNCNCNCNCNCNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_16210s_000s0_0Bb_",
+      "unit": 0,
+      "functionId": 1621,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "bad5d925e501d191a071af0e0966156f2013230f5a49eaa4d4fe85810776d540",
+      "utf16Start": 1274838,
+      "utf16End": 1275544,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0041::js_function_2180::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCs3tul3joJPem_23battle_unit_0_part_004116js_function_21800000s1_0Bb_",
+      "unit": 0,
+      "functionId": 2180,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+      "utf16Start": 1466132,
+      "utf16End": 1467990,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1449::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_14490000s1_0Bb_",
+      "unit": 0,
+      "functionId": 1449,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c",
+      "utf16Start": 1234269,
+      "utf16End": 1234861,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1613::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_161300s_00s0_0Bb_",
+      "unit": 0,
+      "functionId": 1613,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+      "utf16Start": 1272327,
+      "utf16End": 1273178,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0038::js_function_2042::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCs8uraaW9zCLY_23battle_unit_0_part_003816js_function_20420s_000s0_0Bb_",
+      "unit": 0,
+      "functionId": 2042,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "b556cef471599c2d604cf34fc6e518f4853a5e68b1e2a7d77e9b969a8969bb76",
+      "utf16Start": 1422515,
+      "utf16End": 1423446,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1795::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#4}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17950000s2_0Bb_",
+      "unit": 0,
+      "functionId": 1795,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "utf16Start": 1321297,
+      "utf16End": 1323299,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#4}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s2_0Bb_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#8}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s6_0Bb_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1830::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_18300s_000s0_0Bb_",
+      "unit": 0,
+      "functionId": 1830,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1b0f3233211b3260df76e5d23251426bc4842df210c98d41e243fc9fecebf576",
+      "utf16Start": 1336880,
+      "utf16End": 1337424,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1449::{closure#0}::{closure#0}::{closure#1}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_144900s_00B9_",
+      "unit": 0,
+      "functionId": 1449,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c",
+      "utf16Start": 1234269,
+      "utf16End": 1234861,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_132::{closure#0}::{closure#0}::{closure#0}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_1320000B9_",
+      "unit": 0,
+      "functionId": 132,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6376c279abd7f5365ce6df12b4d4b94c57589a9c116af32d1cb7e11696be07b7",
+      "utf16Start": 21374,
+      "utf16End": 21470,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1449::{closure#0}::{closure#0}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_1449000B7_",
+      "unit": 0,
+      "functionId": 1449,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c",
+      "utf16Start": 1234269,
+      "utf16End": 1234861,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1610::{closure#0}::{closure#2}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_16100s0_00B7_",
+      "unit": 0,
+      "functionId": 1610,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "3ca99406ed04bd3655bb5bb11c776e1286bd122d21e218003629e6d3d83144b6",
+      "utf16Start": 1269590,
+      "utf16End": 1271030,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0038::js_function_2042::{closure#0}::{closure#1}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNCNvCs8uraaW9zCLY_23battle_unit_0_part_003816js_function_20420s_00B7_",
+      "unit": 0,
+      "functionId": 2042,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "b556cef471599c2d604cf34fc6e518f4853a5e68b1e2a7d77e9b969a8969bb76",
+      "utf16Start": 1422515,
+      "utf16End": 1423446,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1808::{closure#0}::{closure#0}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1808000B7_",
+      "unit": 0,
+      "functionId": 1808,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "de7aeadf7944ca3a331e3f65ec7aef3a5d81de43e9a0da38810b9a2db239d7ca",
+      "utf16Start": 1326137,
+      "utf16End": 1326881,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0035::js_function_2009::{closure#0}::{closure#1}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNCNCNCNvCsiRSH6kkZuGK_23battle_unit_0_part_003516js_function_20090s_00B7_",
+      "unit": 0,
+      "functionId": 2009,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2f0bebd5580b6249ec97cb008b64282452fc24245e101be486489bbb81e486f4",
+      "utf16Start": 1385307,
+      "utf16End": 1385419,
+      "name": "r",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_0B7_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0033::js_function_1891::{closure#0}::{closure#5}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs2rdatRzbAyx_23battle_unit_0_part_003316js_function_18910s3_0B5_",
+      "unit": 0,
+      "functionId": 1891,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "191f70d183a3198c24cd20a123abf43ed98a8788f57fbd0906ea9d3a3f11cec5",
+      "utf16Start": 1350026,
+      "utf16End": 1355626,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0033::js_function_1891::{closure#0}::{closure#21}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs2rdatRzbAyx_23battle_unit_0_part_003316js_function_18910sj_0B5_",
+      "unit": 0,
+      "functionId": 1891,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "191f70d183a3198c24cd20a123abf43ed98a8788f57fbd0906ea9d3a3f11cec5",
+      "utf16Start": 1350026,
+      "utf16End": 1355626,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0033::js_function_1896::{closure#0}::{closure#4}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs2rdatRzbAyx_23battle_unit_0_part_003316js_function_18960s2_0B5_",
+      "unit": 0,
+      "functionId": 1896,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "8d8dbdf0011cd2ecaf21d54c1d5e6a99be2aee1a5ec77eb6975ae6a231fd18fc",
+      "utf16Start": 1355763,
+      "utf16End": 1356363,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1515::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_15150s0_0B5_",
+      "unit": 0,
+      "functionId": 1515,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "02ef1f2fbe959aa1739732dd236fa8e185d644fff0b906e18adde8ed4e899da8",
+      "utf16Start": 1245504,
+      "utf16End": 1245785,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1574::{closure#0}::{closure#4}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_15740s2_0B5_",
+      "unit": 0,
+      "functionId": 1574,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "54db930a455a6085707f0fc9bcdccc56e32078f7c2f03014b0e7cf0875a304fa",
+      "utf16Start": 1259959,
+      "utf16End": 1262182,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1610::{closure#0}::{closure#4}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_16100s2_0B5_",
+      "unit": 0,
+      "functionId": 1610,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "3ca99406ed04bd3655bb5bb11c776e1286bd122d21e218003629e6d3d83144b6",
+      "utf16Start": 1269590,
+      "utf16End": 1271030,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0038::js_function_2040::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs8uraaW9zCLY_23battle_unit_0_part_003816js_function_20400s0_0B5_",
+      "unit": 0,
+      "functionId": 2040,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "7b6c81af8706c58598faf1c0c3c101dbd9d354ad5ae4c739a141ec04fcfb7540",
+      "utf16Start": 1421677,
+      "utf16End": 1422039,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0038::js_function_2048::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs8uraaW9zCLY_23battle_unit_0_part_003816js_function_20480s0_0B5_",
+      "unit": 0,
+      "functionId": 2048,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1b37ca9d351890144d4f25c3c9affc375d4303643e455cfa6f2923c795f88107",
+      "utf16Start": 1425603,
+      "utf16End": 1426312,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0038::js_function_2048::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNCNCNvCs8uraaW9zCLY_23battle_unit_0_part_003816js_function_20480s1_0B5_",
+      "unit": 0,
+      "functionId": 2048,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1b37ca9d351890144d4f25c3c9affc375d4303643e455cfa6f2923c795f88107",
+      "utf16Start": 1425603,
+      "utf16End": 1426312,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0042::js_function_2231::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCs95odbVzHfSw_23battle_unit_0_part_004216js_function_22310s0_0B5_",
+      "unit": 0,
+      "functionId": 2231,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c3ddbaabcfe747cf413b2e3c3bff64bd9713fb72322daf34c6c3cf7901b9fe15",
+      "utf16Start": 1478910,
+      "utf16End": 1479121,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1775::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17750s0_0B5_",
+      "unit": 0,
+      "functionId": 1775,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "eb93e3b227fe9bad3e7037af3d3dab69ea7d8907725c0b88fd602b96c894ed25",
+      "utf16Start": 1316058,
+      "utf16End": 1316741,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1790::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17900s1_0B5_",
+      "unit": 0,
+      "functionId": 1790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0168edf31ec38285b40ef2bb434571c7cd84318fca5df6b89667a5c57dbabf7e",
+      "utf16Start": 1319341,
+      "utf16End": 1319750,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1115::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11150s0_0B5_",
+      "unit": 0,
+      "functionId": 1115,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1c991319d319ccfab6abf923cff0e22399ad8b39f1fa0975ccbe493f99994e7c",
+      "utf16Start": 593872,
+      "utf16End": 594447,
+      "name": "assertIntact",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1118::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11180s1_0B5_",
+      "unit": 0,
+      "functionId": 1118,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "d8eb0c52ebf2d0993083ba12bb0e26e41961e754c878f28492ef7d4fe080eac0",
+      "utf16Start": 595911,
+      "utf16End": 596650,
+      "name": "wrapper",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1118::{closure#0}::{closure#4}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11180s2_0B5_",
+      "unit": 0,
+      "functionId": 1118,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "d8eb0c52ebf2d0993083ba12bb0e26e41961e754c878f28492ef7d4fe080eac0",
+      "utf16Start": 595911,
+      "utf16End": 596650,
+      "name": "wrapper",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_172::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1720s1_0B5_",
+      "unit": 0,
+      "functionId": 172,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ee1e9efd9b80f498e8556d7aeda5714386b3001cc0687260d401318558257846",
+      "utf16Start": 24962,
+      "utf16End": 25296,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_172::{closure#0}::{closure#4}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1720s2_0B5_",
+      "unit": 0,
+      "functionId": 172,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ee1e9efd9b80f498e8556d7aeda5714386b3001cc0687260d401318558257846",
+      "utf16Start": 24962,
+      "utf16End": 25296,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_172::{closure#0}::{closure#5}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1720s3_0B5_",
+      "unit": 0,
+      "functionId": 172,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ee1e9efd9b80f498e8556d7aeda5714386b3001cc0687260d401318558257846",
+      "utf16Start": 24962,
+      "utf16End": 25296,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1566::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15660s1_0B5_",
+      "unit": 0,
+      "functionId": 1566,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6f2eac21c9f97e1545c2ea1a71747781ec2deb3befd8bd1a60c730bbfdf49e9a",
+      "utf16Start": 1258020,
+      "utf16End": 1258619,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1569::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15690s1_0B5_",
+      "unit": 0,
+      "functionId": 1569,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "37f444f1576011044d783df3a6b45a3d362eea2b92a7346d9e81d484076d04f8",
+      "utf16Start": 1258875,
+      "utf16End": 1259085,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_790::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7900s0_0B5_",
+      "unit": 0,
+      "functionId": 790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "utf16Start": 130077,
+      "utf16End": 130644,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_790::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7900s1_0B5_",
+      "unit": 0,
+      "functionId": 790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "utf16Start": 130077,
+      "utf16End": 130644,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_790::{closure#0}::{closure#4}",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7900s2_0B5_",
+      "unit": 0,
+      "functionId": 790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "utf16Start": 130077,
+      "utf16End": 130644,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0035::js_function_2011::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsiRSH6kkZuGK_23battle_unit_0_part_003516js_function_20110s1_0B5_",
+      "unit": 0,
+      "functionId": 2011,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5d498b8029b6c8d0223c5edd5fbd104f8bbb8bd3d73694cf90a0ce78aea610aa",
+      "utf16Start": 1386391,
+      "utf16End": 1387918,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1827::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_18270s0_0B5_",
+      "unit": 0,
+      "functionId": 1827,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ac7c86e75e1ea32085532169355530ce4facae3183613818c47098fbd935ad8d",
+      "utf16Start": 1336106,
+      "utf16End": 1336435,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1827::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_18270s1_0B5_",
+      "unit": 0,
+      "functionId": 1827,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ac7c86e75e1ea32085532169355530ce4facae3183613818c47098fbd935ad8d",
+      "utf16Start": 1336106,
+      "utf16End": 1336435,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0040::js_function_2148::{closure#0}::{closure#5}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCslHBQ0oD1fLM_23battle_unit_0_part_004016js_function_21480s3_0B5_",
+      "unit": 0,
+      "functionId": 2148,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "d1b031737520552af94aa637c3a71e1ba991df5853650cf94203992d9bf9bbed",
+      "utf16Start": 1457027,
+      "utf16End": 1457870,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_138::{closure#0}::{closure#5}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_1380s3_0B5_",
+      "unit": 0,
+      "functionId": 138,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "7da29b9231ae74bbbd6aba3d17eb5e2954a2f0dc30cdbacb87fd1c5af531c73e",
+      "utf16Start": 21961,
+      "utf16End": 22182,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0032::js_function_1890::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs1Nfh03XUZYa_23battle_unit_0_part_003216js_function_18900B3_",
+      "unit": 0,
+      "functionId": 1890,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "4fb39dda659813ab16c80d3108f2021e321556c78e23eb00cc3269c134619d5a",
+      "utf16Start": 1349880,
+      "utf16End": 1350014,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1621::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_16210B3_",
+      "unit": 0,
+      "functionId": 1621,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "bad5d925e501d191a071af0e0966156f2013230f5a49eaa4d4fe85810776d540",
+      "utf16Start": 1274838,
+      "utf16End": 1275544,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1662::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 11,
+      "periodNs": "111111110",
+      "rawSymbol": "_RNCNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_16620B3_",
+      "unit": 0,
+      "functionId": 1662,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "16375f29478a11552b288fb74052075a5773c056bf18ce1b307079685098c2da",
+      "utf16Start": 1283484,
+      "utf16End": 1283577,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0033::js_function_1891::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs2rdatRzbAyx_23battle_unit_0_part_003316js_function_18910B3_",
+      "unit": 0,
+      "functionId": 1891,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "191f70d183a3198c24cd20a123abf43ed98a8788f57fbd0906ea9d3a3f11cec5",
+      "utf16Start": 1350026,
+      "utf16End": 1355626,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0041::js_function_2179::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNvCs3tul3joJPem_23battle_unit_0_part_004116js_function_21790B3_",
+      "unit": 0,
+      "functionId": 2179,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "9d16d41d1f86405d50c7f717b33d822d88c6d0367eeea21f784e15546977a76d",
+      "utf16Start": 1465898,
+      "utf16End": 1466126,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0007::js_function_574::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs41rTo9OG3ka_23battle_unit_0_part_000715js_function_5740B3_",
+      "unit": 0,
+      "functionId": 574,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "e9f647348c32fbd306f0ab0c7fdd4fbc7848eeda6a0bb6a503a1562a6e2bb758",
+      "utf16Start": 85089,
+      "utf16End": 85335,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0007::js_function_575::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNvCs41rTo9OG3ka_23battle_unit_0_part_000715js_function_5750B3_",
+      "unit": 0,
+      "functionId": 575,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5fd8fd921c57af52374f2b7a3f9b57d341f262b33adbc410b071d361e68f72f8",
+      "utf16Start": 85347,
+      "utf16End": 85439,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0007::js_function_577::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs41rTo9OG3ka_23battle_unit_0_part_000715js_function_5770B3_",
+      "unit": 0,
+      "functionId": 577,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "551b914ae6ec4af134ff63e41da4814fc1bb860ca36fec4e3061c04c5bc2a460",
+      "utf16Start": 85700,
+      "utf16End": 85880,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1437::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_14370B3_",
+      "unit": 0,
+      "functionId": 1437,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0b59f0cd13378b03f57af19f7a09e71c3d7ee4c704e01ffaba9564635aabac3b",
+      "utf16Start": 1232752,
+      "utf16End": 1233157,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1449::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_14490B3_",
+      "unit": 0,
+      "functionId": 1449,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c",
+      "utf16Start": 1234269,
+      "utf16End": 1234861,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1450::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_14500B3_",
+      "unit": 0,
+      "functionId": 1450,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "65de074f090d551ea4856b3570d010e50df4db59aac32b142f5b643a687820ae",
+      "utf16Start": 1234881,
+      "utf16End": 1234954,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1611::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_16110B3_",
+      "unit": 0,
+      "functionId": 1611,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "utf16Start": 1271038,
+      "utf16End": 1271900,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0042::js_function_2231::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "_RNCNvCs95odbVzHfSw_23battle_unit_0_part_004216js_function_22310B3_",
+      "unit": 0,
+      "functionId": 2231,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c3ddbaabcfe747cf413b2e3c3bff64bd9713fb72322daf34c6c3cf7901b9fe15",
+      "utf16Start": 1478910,
+      "utf16End": 1479121,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0042::js_function_2235::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs95odbVzHfSw_23battle_unit_0_part_004216js_function_22350B3_",
+      "unit": 0,
+      "functionId": 2235,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "9368e160f2b1ab85d3842680f9d1dce2edf79c88adb29f8bd1209983d00287f7",
+      "utf16Start": 1479943,
+      "utf16End": 1480207,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1775::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17750B3_",
+      "unit": 0,
+      "functionId": 1775,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "eb93e3b227fe9bad3e7037af3d3dab69ea7d8907725c0b88fd602b96c894ed25",
+      "utf16Start": 1316058,
+      "utf16End": 1316741,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1781::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17810B3_",
+      "unit": 0,
+      "functionId": 1781,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+      "utf16Start": 1318027,
+      "utf16End": 1318214,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1795::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17950B3_",
+      "unit": 0,
+      "functionId": 1795,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "utf16Start": 1321297,
+      "utf16End": 1323299,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1803::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_18030B3_",
+      "unit": 0,
+      "functionId": 1803,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "06fbba7ea8d4937e5c7c6c042f5094cac479a02a7aaafe0ca5bff751c2994440",
+      "utf16Start": 1324736,
+      "utf16End": 1324953,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1811::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_18110B3_",
+      "unit": 0,
+      "functionId": 1811,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "3d7aec77d6dd32b1ca94cc7e54069ed225cde2957b96c36dd44e08e2b6fe0da6",
+      "utf16Start": 1326959,
+      "utf16End": 1327135,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1814::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_18140B3_",
+      "unit": 0,
+      "functionId": 1814,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c",
+      "utf16Start": 1327420,
+      "utf16End": 1327549,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0012::js_function_967::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs9aL5dRTmgN5_23battle_unit_0_part_001215js_function_9670B3_",
+      "unit": 0,
+      "functionId": 967,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "91e9faa3bda806040af76eb05d5fe79ef12b3e8799f7778f6afb6a35bead3043",
+      "utf16Start": 163819,
+      "utf16End": 163914,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1416::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNvCsbbKK7iuo5Pu_23battle_unit_0_part_002316js_function_14160B3_",
+      "unit": 0,
+      "functionId": 1416,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5",
+      "utf16Start": 1229194,
+      "utf16End": 1229984,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1107::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11070B3_",
+      "unit": 0,
+      "functionId": 1107,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "bdfc22c24f15a0a81d6a915b30bf762c93e8efb115c54ce60c9d7b505f74d425",
+      "utf16Start": 588090,
+      "utf16End": 588766,
+      "name": "Class",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1114::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11140B3_",
+      "unit": 0,
+      "functionId": 1114,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0b5506e809f796564f42a01cdfc8990680ee5f9dba46c29cde996e943035a3de",
+      "utf16Start": 593271,
+      "utf16End": 593594,
+      "name": "dataDescriptorSame",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_161::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1610B3_",
+      "unit": 0,
+      "functionId": 161,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "db312ebbb374bc1417e3fb1582d25c98b921a94b5b373564159fd76e87d7d740",
+      "utf16Start": 24440,
+      "utf16End": 24476,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_178::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 7,
+      "periodNs": "70707070",
+      "rawSymbol": "_RNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1780B3_",
+      "unit": 0,
+      "functionId": 178,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9",
+      "utf16Start": 25850,
+      "utf16End": 26395,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1535::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15350B3_",
+      "unit": 0,
+      "functionId": 1535,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
+      "utf16Start": 1249392,
+      "utf16End": 1250745,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1566::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15660B3_",
+      "unit": 0,
+      "functionId": 1566,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6f2eac21c9f97e1545c2ea1a71747781ec2deb3befd8bd1a60c730bbfdf49e9a",
+      "utf16Start": 1258020,
+      "utf16End": 1258619,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1569::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15690B3_",
+      "unit": 0,
+      "functionId": 1569,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "37f444f1576011044d783df3a6b45a3d362eea2b92a7346d9e81d484076d04f8",
+      "utf16Start": 1258875,
+      "utf16End": 1259085,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1570::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15700B3_",
+      "unit": 0,
+      "functionId": 1570,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ff5b8664f6e9affdabbde05e9b8e9b65431596c105acb07e606e07e397d6eecb",
+      "utf16Start": 1259103,
+      "utf16End": 1259373,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_792::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 13,
+      "periodNs": "131313130",
+      "rawSymbol": "_RNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7920B3_",
+      "unit": 0,
+      "functionId": 792,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+      "utf16Start": 130685,
+      "utf16End": 131346,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0035::js_function_2008::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsiRSH6kkZuGK_23battle_unit_0_part_003516js_function_20080B3_",
+      "unit": 0,
+      "functionId": 2008,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "eab447a495ec54e60eccfdad4081d7a6038ff2169a9f05fea43d34cd5723c2d5",
+      "utf16Start": 1385254,
+      "utf16End": 1386172,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0035::js_function_2009::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsiRSH6kkZuGK_23battle_unit_0_part_003516js_function_20090B3_",
+      "unit": 0,
+      "functionId": 2009,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2f0bebd5580b6249ec97cb008b64282452fc24245e101be486489bbb81e486f4",
+      "utf16Start": 1385307,
+      "utf16End": 1385419,
+      "name": "r",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0034::js_function_1939::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsjheoT4UAXYA_23battle_unit_0_part_003416js_function_19390B3_",
+      "unit": 0,
+      "functionId": 1939,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "f6d42e4368c88943ef6a3d2395a2cc26b882befa0306c09affc9384398a0b136",
+      "utf16Start": 1363992,
+      "utf16End": 1364099,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_68::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCslp9slkui7Px_23battle_unit_0_part_000114js_function_680B3_",
+      "unit": 0,
+      "functionId": 68,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "769c84094e80685311755fd923af61f7ce6e5ae26907da16c45bcb6245dd1797",
+      "utf16Start": 13674,
+      "utf16End": 13897,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_72::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCslp9slkui7Px_23battle_unit_0_part_000114js_function_720B3_",
+      "unit": 0,
+      "functionId": 72,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "16b33e925ddae07097f48ec131db77d06455e7b6857362b4e19fb8a8751c8212",
+      "utf16Start": 14384,
+      "utf16End": 14771,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_75::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCslp9slkui7Px_23battle_unit_0_part_000114js_function_750B3_",
+      "unit": 0,
+      "functionId": 75,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0817ad4d5493905fd2d682c95a595a509219fea8db33876b9514d17b19c24f23",
+      "utf16Start": 14811,
+      "utf16End": 15033,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_104::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 21,
+      "periodNs": "212121210",
+      "rawSymbol": "_RNCNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_1040B3_",
+      "unit": 0,
+      "functionId": 104,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072",
+      "utf16Start": 17962,
+      "utf16End": 18126,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_124::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_1240B3_",
+      "unit": 0,
+      "functionId": 124,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "f4c993abd0f8602753da07a423689a489c0eb3294239624dd31929d2a42fa482",
+      "utf16Start": 20255,
+      "utf16End": 20910,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0032::js_function_1881",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs1Nfh03XUZYa_23battle_unit_0_part_003216js_function_1881",
+      "unit": 0,
+      "functionId": 1881,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "f633f4c3fd042891c360e89e1cde61b64566547461cd59c5f416ef154c3f48e5",
+      "utf16Start": 1347014,
+      "utf16End": 1347045,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0032::js_function_1885",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs1Nfh03XUZYa_23battle_unit_0_part_003216js_function_1885",
+      "unit": 0,
+      "functionId": 1885,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "abec750622954c5b5e4dc5f9a362f739644b475fa0f33d0dbe7d77a0e50aebfa",
+      "utf16Start": 1347593,
+      "utf16End": 1347729,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1614",
+      "dso": "rust-battle-program",
+      "samples": 9,
+      "periodNs": "90909090",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1614",
+      "unit": 0,
+      "functionId": 1614,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+      "utf16Start": 1273195,
+      "utf16End": 1273860,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1615",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1615",
+      "unit": 0,
+      "functionId": 1615,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "638b3a54abee7fa12543b60786d2ae9dd737808baba83a0b2017468965e9e939",
+      "utf16Start": 1273874,
+      "utf16End": 1273981,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1616",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1616",
+      "unit": 0,
+      "functionId": 1616,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1b4d6b74f03e870b41704de93d4c07ad449b4d82b9fd554a1a8e68fed293593e",
+      "utf16Start": 1274013,
+      "utf16End": 1274207,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1621",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1621",
+      "unit": 0,
+      "functionId": 1621,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "bad5d925e501d191a071af0e0966156f2013230f5a49eaa4d4fe85810776d540",
+      "utf16Start": 1274838,
+      "utf16End": 1275544,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1622",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1622",
+      "unit": 0,
+      "functionId": 1622,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "8aba21bd39d2d80711a27db005d18b1558411b968708676c48d506175e75fc3f",
+      "utf16Start": 1275564,
+      "utf16End": 1275770,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1623",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1623",
+      "unit": 0,
+      "functionId": 1623,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "da7cacdad30022abe9f7223ab7afdca156be68b58a08f46c5ab5098d8a8c0b36",
+      "utf16Start": 1275786,
+      "utf16End": 1275864,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1624",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1624",
+      "unit": 0,
+      "functionId": 1624,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "9c7341159609b96ece0eff8a9b258759c5b2110ba7f042882e6c8074a3626a35",
+      "utf16Start": 1275881,
+      "utf16End": 1275920,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1641",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1641",
+      "unit": 0,
+      "functionId": 1641,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c066d87bb108de4d56eda1c7fa8e58665c467627afbcf6f1a65c6d7434065002",
+      "utf16Start": 1280518,
+      "utf16End": 1280862,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1663",
+      "dso": "rust-battle-program",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1663",
+      "unit": 0,
+      "functionId": 1663,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c48098fb65fac2bd28f017351cb0c750848432cef089b4efbbdc3658b7a760cd",
+      "utf16Start": 1283591,
+      "utf16End": 1283904,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1675",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1675",
+      "unit": 0,
+      "functionId": 1675,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c",
+      "utf16Start": 1286003,
+      "utf16End": 1286114,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0028::js_function_1682",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs2t53426HDHe_23battle_unit_0_part_002816js_function_1682",
+      "unit": 0,
+      "functionId": 1682,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "4d2b00243ff25da5cf7f44209e3c8cd4f0822ae7303b8f0913b4399e2bed12c5",
+      "utf16Start": 1287311,
+      "utf16End": 1287353,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0041::js_function_2180",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs3tul3joJPem_23battle_unit_0_part_004116js_function_2180",
+      "unit": 0,
+      "functionId": 2180,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+      "utf16Start": 1466132,
+      "utf16End": 1467990,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0041::js_function_2226",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs3tul3joJPem_23battle_unit_0_part_004116js_function_2226",
+      "unit": 0,
+      "functionId": 2226,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "938325f847411e32d835ffcca5f1a1e9a2ed1ca9b34faf5d57f5d63ae873486f",
+      "utf16Start": 1477734,
+      "utf16End": 1477945,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0007::js_function_563",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs41rTo9OG3ka_23battle_unit_0_part_000715js_function_563",
+      "unit": 0,
+      "functionId": 563,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "f7eb473fd0b56b032c971b6f59b2ceedcc18127f542272f32b5bbb985c30e05a",
+      "utf16Start": 83353,
+      "utf16End": 83403,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0007::js_function_575",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs41rTo9OG3ka_23battle_unit_0_part_000715js_function_575",
+      "unit": 0,
+      "functionId": 575,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5fd8fd921c57af52374f2b7a3f9b57d341f262b33adbc410b071d361e68f72f8",
+      "utf16Start": 85347,
+      "utf16End": 85439,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0007::js_function_577",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs41rTo9OG3ka_23battle_unit_0_part_000715js_function_577",
+      "unit": 0,
+      "functionId": 577,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "551b914ae6ec4af134ff63e41da4814fc1bb860ca36fec4e3061c04c5bc2a460",
+      "utf16Start": 85700,
+      "utf16End": 85880,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0015::js_function_1093",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs4Avxx1esU2E_23battle_unit_0_part_001516js_function_1093",
+      "unit": 0,
+      "functionId": 1093,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "12999ac2ffc4d0ada66d448ecdbd388e78d37ec6fd6cd0d4b856d2567ec98d17",
+      "utf16Start": 579387,
+      "utf16End": 579443,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0015::js_function_1094",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs4Avxx1esU2E_23battle_unit_0_part_001516js_function_1094",
+      "unit": 0,
+      "functionId": 1094,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "69d50166bd10dbe12c097c22d9c43060b31cd3cf6e01af5628b2b0c80b51d978",
+      "utf16Start": 579469,
+      "utf16End": 579738,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1452",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_1452",
+      "unit": 0,
+      "functionId": 1452,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0b81cb69622de9daafa321321d72eb53fd6817bca12594c22ace56a18d57f185",
+      "utf16Start": 1235116,
+      "utf16End": 1235973,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1454",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_1454",
+      "unit": 0,
+      "functionId": 1454,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1369e82a60fa02e4cc51dc2a204549619e82144de7e27a816fe0503b87268075",
+      "utf16Start": 1236310,
+      "utf16End": 1236748,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0043::js_function_2334",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs67bHrm2R3M8_23battle_unit_0_part_004316js_function_2334",
+      "unit": 0,
+      "functionId": 2334,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "93ba986430208c8a8258a1ec7345d52d877345ddada92b898f2b39d7baa6cca9",
+      "utf16Start": 1498161,
+      "utf16End": 1498283,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0013::js_function_1022",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs7cvVwy9MU3T_23battle_unit_0_part_001316js_function_1022",
+      "unit": 0,
+      "functionId": 1022,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "edf1988ae041ddda3f8c1e40496e28beb96b91e861765c5721f6c4d658ec9a29",
+      "utf16Start": 200261,
+      "utf16End": 200427,
+      "name": "__nativeDrain",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1600",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_1600",
+      "unit": 0,
+      "functionId": 1600,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c",
+      "utf16Start": 1266150,
+      "utf16End": 1266261,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1612",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_1612",
+      "unit": 0,
+      "functionId": 1612,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a24eeaf3080157c38734a07cef3b5fc836728ee961e30797b6ae3f74f66520bc",
+      "utf16Start": 1271917,
+      "utf16End": 1272308,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1613",
+      "dso": "rust-battle-program",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_1613",
+      "unit": 0,
+      "functionId": 1613,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+      "utf16Start": 1272327,
+      "utf16End": 1273178,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0038::js_function_2043",
+      "dso": "rust-battle-program",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNvCs8uraaW9zCLY_23battle_unit_0_part_003816js_function_2043",
+      "unit": 0,
+      "functionId": 2043,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "8881f6a19ba8e7a9c13c25ef6eb831bd1c8dba3b479456a9e03ecb8b74e3bf35",
+      "utf16Start": 1423477,
+      "utf16End": 1423927,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0038::js_function_2044",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs8uraaW9zCLY_23battle_unit_0_part_003816js_function_2044",
+      "unit": 0,
+      "functionId": 2044,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "4532bf7234d75a20ced7344f20d735c57b1ac5b4ecd5abe85825b7457a9df08f",
+      "utf16Start": 1423960,
+      "utf16End": 1424335,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0038::js_function_2045",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs8uraaW9zCLY_23battle_unit_0_part_003816js_function_2045",
+      "unit": 0,
+      "functionId": 2045,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "437bbf55675c42151ac7122d324de4df0d8260bdc58ce83517e8d6882a54b853",
+      "utf16Start": 1424364,
+      "utf16End": 1424493,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0038::js_function_2048",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs8uraaW9zCLY_23battle_unit_0_part_003816js_function_2048",
+      "unit": 0,
+      "functionId": 2048,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1b37ca9d351890144d4f25c3c9affc375d4303643e455cfa6f2923c795f88107",
+      "utf16Start": 1425603,
+      "utf16End": 1426312,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1775",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1775",
+      "unit": 0,
+      "functionId": 1775,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "eb93e3b227fe9bad3e7037af3d3dab69ea7d8907725c0b88fd602b96c894ed25",
+      "utf16Start": 1316058,
+      "utf16End": 1316741,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1781",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1781",
+      "unit": 0,
+      "functionId": 1781,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+      "utf16Start": 1318027,
+      "utf16End": 1318214,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1790",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1790",
+      "unit": 0,
+      "functionId": 1790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0168edf31ec38285b40ef2bb434571c7cd84318fca5df6b89667a5c57dbabf7e",
+      "utf16Start": 1319341,
+      "utf16End": 1319750,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1812",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1812",
+      "unit": 0,
+      "functionId": 1812,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b",
+      "utf16Start": 1327142,
+      "utf16End": 1327302,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1816",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1816",
+      "unit": 0,
+      "functionId": 1816,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "81181e756d656bea3abf2d996e1dbdedb235413ccbe3f21a9a88fc1bd06127bd",
+      "utf16Start": 1327661,
+      "utf16End": 1327747,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0046::js_function_2499",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsbldBMcejxqK_23battle_unit_0_part_004616js_function_2499",
+      "unit": 0,
+      "functionId": 2499,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "65fc1ed7312815b9e73dafc6614c7aacbe8ae3f7aad6b2259893a5409e7c4a0c",
+      "utf16Start": 1531007,
+      "utf16End": 1531074,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1114",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_1114",
+      "unit": 0,
+      "functionId": 1114,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0b5506e809f796564f42a01cdfc8990680ee5f9dba46c29cde996e943035a3de",
+      "utf16Start": 593271,
+      "utf16End": 593594,
+      "name": "dataDescriptorSame",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1115",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_1115",
+      "unit": 0,
+      "functionId": 1115,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1c991319d319ccfab6abf923cff0e22399ad8b39f1fa0975ccbe493f99994e7c",
+      "utf16Start": 593872,
+      "utf16End": 594447,
+      "name": "assertIntact",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1118",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_1118",
+      "unit": 0,
+      "functionId": 1118,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "d8eb0c52ebf2d0993083ba12bb0e26e41961e754c878f28492ef7d4fe080eac0",
+      "utf16Start": 595911,
+      "utf16End": 596650,
+      "name": "wrapper",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_159",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_159",
+      "unit": 0,
+      "functionId": 159,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "81200e82e77ece4a7c919c18427814519ea31d547222e2eff061380302e46f80",
+      "utf16Start": 24357,
+      "utf16End": 24399,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_161",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_161",
+      "unit": 0,
+      "functionId": 161,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "db312ebbb374bc1417e3fb1582d25c98b921a94b5b373564159fd76e87d7d740",
+      "utf16Start": 24440,
+      "utf16End": 24476,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_178",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_178",
+      "unit": 0,
+      "functionId": 178,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9",
+      "utf16Start": 25850,
+      "utf16End": 26395,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_179",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_179",
+      "unit": 0,
+      "functionId": 179,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "4948ed12a5575d3d15c717d544a4f4af4a926d9b043f0847e3aea5dc7341a28f",
+      "utf16Start": 26000,
+      "utf16End": 26169,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1535",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_1535",
+      "unit": 0,
+      "functionId": 1535,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
+      "utf16Start": 1249392,
+      "utf16End": 1250745,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1538",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_1538",
+      "unit": 0,
+      "functionId": 1538,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6c9eb96919e61442e51b85270b8c94eaae556ac727c19b2be18a20ac21e05cdd",
+      "utf16Start": 1250544,
+      "utf16End": 1250731,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1561",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_1561",
+      "unit": 0,
+      "functionId": 1561,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1e86d8f34e10090edb0f92a04beebc5fea84a14fb12e7d9ef0a4bfa1a5a513c3",
+      "utf16Start": 1257378,
+      "utf16End": 1257693,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_1818",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_104",
+      "dso": "rust-battle-program",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_104",
+      "unit": 0,
+      "functionId": 104,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072",
+      "utf16Start": 17962,
+      "utf16End": 18126,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_106",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_106",
+      "unit": 0,
+      "functionId": 106,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "af5e8fd7b84f54efba9b66fc0c515b67cee6196d5a16a5b5d5c4b43ada4a7a4a",
+      "utf16Start": 18167,
+      "utf16End": 18200,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_120",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_120",
+      "unit": 0,
+      "functionId": 120,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a071adecc9cc3cecd27b059f25a2a1eb1b26529e4a3fa15f8501e774dfa6b83f",
+      "utf16Start": 19044,
+      "utf16End": 19343,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_124",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_124",
+      "unit": 0,
+      "functionId": 124,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "f4c993abd0f8602753da07a423689a489c0eb3294239624dd31929d2a42fa482",
+      "utf16Start": 20255,
+      "utf16End": 20910,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_136",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_136",
+      "unit": 0,
+      "functionId": 136,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "246b4b24de5ff26677ff9b575f3d78ba426b7b1fbcfa4527cd86dfb0eaf4f8bb",
+      "utf16Start": 21762,
+      "utf16End": 21920,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "3db3630c60ec8df0499085030dbe2bb3546fa32ef83ffa114c6e9d0735786adc"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0031::js_function_1283::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNvCsfW1On27xyoO_23battle_unit_1_part_003116js_function_12830000s_000s_000s1_0Bn_",
+      "unit": 1,
+      "functionId": 1283,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "879014964613835cba072de8cabca3808235b4c682ee3ecb34b7ef01f1adea7e",
+      "utf16Start": 435704,
+      "utf16End": 436833,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0037::js_function_1521::{closure#0}::{closure#4}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCs7dfDxrvWQwg_23battle_unit_1_part_003716js_function_15210s2_000s0_0Bb_",
+      "unit": 1,
+      "functionId": 1521,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "8aafc63f4692bdce69c3820ba745c56adc2252e9cbc109bbd23dd2d880715d60",
+      "utf16Start": 522983,
+      "utf16End": 524032,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0012::js_function_520::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs54WwCXS2732_23battle_unit_1_part_001215js_function_5200s0_0B5_",
+      "unit": 1,
+      "functionId": 520,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "587763f483a9f791203ef452cedc727518343fbe97eb7d0d9cbc06b65d062e8a",
+      "utf16Start": 175022,
+      "utf16End": 175336,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0036::js_function_1486::{closure#0}::{closure#5}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsbFECyer62wo_23battle_unit_1_part_003616js_function_14860s3_0B5_",
+      "unit": 1,
+      "functionId": 1486,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "10c7ed29c8712e8b4f68fb00dda9d1eb999f337c22c46421bc7fae2df833cef9",
+      "utf16Start": 509710,
+      "utf16End": 510516,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0036::js_function_1489::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCsbFECyer62wo_23battle_unit_1_part_003616js_function_14890s0_0B5_",
+      "unit": 1,
+      "functionId": 1489,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "213ecf44dfdd08f007be614249373995650e0087caf9945455c7d128793d3246",
+      "utf16Start": 512089,
+      "utf16End": 513299,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0036::js_function_1500::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsbFECyer62wo_23battle_unit_1_part_003616js_function_15000s1_0B5_",
+      "unit": 1,
+      "functionId": 1500,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "8d29d0a53abf8756393e1379440619b23c029b19d1a94b7907d5063282f23aa5",
+      "utf16Start": 516687,
+      "utf16End": 517442,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0012::js_function_493::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs54WwCXS2732_23battle_unit_1_part_001215js_function_4930B3_",
+      "unit": 1,
+      "functionId": 493,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "91c6504e22b1012b0f5d816493b3ae4d3539d88a55976cc8955914d24290aece",
+      "utf16Start": 167697,
+      "utf16End": 168572,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0012::js_function_513::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs54WwCXS2732_23battle_unit_1_part_001215js_function_5130B3_",
+      "unit": 1,
+      "functionId": 513,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "2964492b2f3d6eb19169c7cbce00c5c4c7f3af3963777336583f6f58909b745f",
+      "utf16Start": 172297,
+      "utf16End": 172700,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0036::js_function_1470::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsbFECyer62wo_23battle_unit_1_part_003616js_function_14700B3_",
+      "unit": 1,
+      "functionId": 1470,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "0cd019bc8302e5dc67ce2daf827893053631c7aac07789d8368afb14aaf60cb0",
+      "utf16Start": 505419,
+      "utf16End": 505656,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0036::js_function_1471::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsbFECyer62wo_23battle_unit_1_part_003616js_function_14710B3_",
+      "unit": 1,
+      "functionId": 1471,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "d3424916524d4ffa030ec57cd64c63b2c32512b762bf5087fea9670c8c82d37a",
+      "utf16Start": 505675,
+      "utf16End": 505764,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0031::js_function_1270::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsfW1On27xyoO_23battle_unit_1_part_003116js_function_12700B3_",
+      "unit": 1,
+      "functionId": 1270,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "624e688d2032e5fc6c77adb4cb2ed36b2fbfda9c2e98550266de1701dd8ba70e",
+      "utf16Start": 433536,
+      "utf16End": 433664,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0012::js_function_493",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs54WwCXS2732_23battle_unit_1_part_001215js_function_493",
+      "unit": 1,
+      "functionId": 493,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "91c6504e22b1012b0f5d816493b3ae4d3539d88a55976cc8955914d24290aece",
+      "utf16Start": 167697,
+      "utf16End": 168572,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0012::js_function_505",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs54WwCXS2732_23battle_unit_1_part_001215js_function_505",
+      "unit": 1,
+      "functionId": 505,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "aca4fd30b7f3862041a89beba6bd5c8b5a43da41052dcaf6b52fa4ea71b457c8",
+      "utf16Start": 170854,
+      "utf16End": 170906,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0037::js_function_1522",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7dfDxrvWQwg_23battle_unit_1_part_003716js_function_1522",
+      "unit": 1,
+      "functionId": 1522,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "1a7b851d3c166f87761c142e46e435791bad5ac7014b1228ef96ad137bee4351",
+      "utf16Start": 523464,
+      "utf16End": 523589,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0037::js_function_1548",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7dfDxrvWQwg_23battle_unit_1_part_003716js_function_1548",
+      "unit": 1,
+      "functionId": 1548,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "7b869b70d49949717b168aa992ad2f94a8d37d91cfa45fcc9212930ea7f872eb",
+      "utf16Start": 530088,
+      "utf16End": 530822,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0030::js_function_1258",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs8xbQVmKsWfD_23battle_unit_1_part_003016js_function_1258",
+      "unit": 1,
+      "functionId": 1258,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "ec426dcd33b301113f5f674ff399c7e6e2eedecd479bced6fb9c11a484db0637",
+      "utf16Start": 428068,
+      "utf16End": 428717,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0031::js_function_1283",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsfW1On27xyoO_23battle_unit_1_part_003116js_function_1283",
+      "unit": 1,
+      "functionId": 1283,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "879014964613835cba072de8cabca3808235b4c682ee3ecb34b7ef01f1adea7e",
+      "utf16Start": 435704,
+      "utf16End": 436833,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "2f46350595698c67023eabe8988e054b2d77255d9b70bde88c57b24f97fe20b4"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0083::js_function_3195::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNvCserjT4KfSmmk_23battle_unit_2_part_008316js_function_31950000s_000s_000s_0s_00s_000s_000s0_0BF_",
+      "unit": 2,
+      "functionId": 3195,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "4880d82363748a7456ed7a5da3c043740fb48c355c5f982bc5976b99fda9383e",
+      "utf16Start": 1188148,
+      "utf16End": 1188906,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "da5249a26b11ae88ea7feb8eec5dd4e00197d4a64b8706f48564dd0281092cbc"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0083::js_function_3195::{closure#0}::{closure#0}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 7,
+      "periodNs": "70707070",
+      "rawSymbol": "_RNCNCNCNvCserjT4KfSmmk_23battle_unit_2_part_008316js_function_3195000B7_",
+      "unit": 2,
+      "functionId": 3195,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "4880d82363748a7456ed7a5da3c043740fb48c355c5f982bc5976b99fda9383e",
+      "utf16Start": 1188148,
+      "utf16End": 1188906,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "da5249a26b11ae88ea7feb8eec5dd4e00197d4a64b8706f48564dd0281092cbc"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0026::js_function_1028::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsaS6i5rsmG6S_23battle_unit_2_part_002616js_function_10280B3_",
+      "unit": 2,
+      "functionId": 1028,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "65c77f94d405b225f56e604f3024b76b5da0ef1ecb36af21d26d16eb7534a980",
+      "utf16Start": 373673,
+      "utf16End": 374134,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "da5249a26b11ae88ea7feb8eec5dd4e00197d4a64b8706f48564dd0281092cbc"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0083::js_function_3195::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCserjT4KfSmmk_23battle_unit_2_part_008316js_function_31950B3_",
+      "unit": 2,
+      "functionId": 3195,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "4880d82363748a7456ed7a5da3c043740fb48c355c5f982bc5976b99fda9383e",
+      "utf16Start": 1188148,
+      "utf16End": 1188906,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "da5249a26b11ae88ea7feb8eec5dd4e00197d4a64b8706f48564dd0281092cbc"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0026::js_function_1047",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsaS6i5rsmG6S_23battle_unit_2_part_002616js_function_1047",
+      "unit": 2,
+      "functionId": 1047,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "3ca2d9de879b11e18785661b957f841de21a3f64c07748f20286c9e85f3e0a8d",
+      "utf16Start": 379529,
+      "utf16End": 380024,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "da5249a26b11ae88ea7feb8eec5dd4e00197d4a64b8706f48564dd0281092cbc"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0084::js_function_3234",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsfuwfmJ75igd_23battle_unit_2_part_008416js_function_3234",
+      "unit": 2,
+      "functionId": 3234,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "79ae50a94dc3fe23b69e897fe39d226e23256f12864422c86934b16ff247c781",
+      "utf16Start": 1199912,
+      "utf16End": 1200352,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "da5249a26b11ae88ea7feb8eec5dd4e00197d4a64b8706f48564dd0281092cbc"
+      }
+    },
+    {
+      "symbol": "battle_unit_4_part_0066::js_function_2799::{closure#0}::{closure#2}::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNvCsgofIWV3UCDp_23battle_unit_4_part_006616js_function_27990s0_00B7_",
+      "unit": 4,
+      "functionId": 2799,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sourceSha256": "23c81e3b14c249c4dc22c0565b28d7e8949ab567495a2682ab73024134c9ea3a",
+      "utf16Start": 985248,
+      "utf16End": 986341,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-4/manifest.json",
+        "sha256": "9a075d0671b4894f35b1aee9eee5a458c7f8d42c0cb06a6d171910264d275f9f"
+      }
+    },
+    {
+      "symbol": "battle_unit_4_part_0066::js_function_2799::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsgofIWV3UCDp_23battle_unit_4_part_006616js_function_27990s0_0B5_",
+      "unit": 4,
+      "functionId": 2799,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sourceSha256": "23c81e3b14c249c4dc22c0565b28d7e8949ab567495a2682ab73024134c9ea3a",
+      "utf16Start": 985248,
+      "utf16End": 986341,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-4/manifest.json",
+        "sha256": "9a075d0671b4894f35b1aee9eee5a458c7f8d42c0cb06a6d171910264d275f9f"
+      }
+    },
+    {
+      "symbol": "battle_unit_4_part_0066::js_function_2802::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsgofIWV3UCDp_23battle_unit_4_part_006616js_function_28020B3_",
+      "unit": 4,
+      "functionId": 2802,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sourceSha256": "ff3a92018c7e2090e9d002dbad1b5c9c975b3ee7aacc9b7291d83410cc3e48a1",
+      "utf16Start": 986872,
+      "utf16End": 987569,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-4/manifest.json",
+        "sha256": "9a075d0671b4894f35b1aee9eee5a458c7f8d42c0cb06a6d171910264d275f9f"
+      }
+    },
+    {
+      "symbol": "battle_unit_4_part_0063::js_function_2707",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsbysH3NgK1FS_23battle_unit_4_part_006316js_function_2707",
+      "unit": 4,
+      "functionId": 2707,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sourceSha256": "f43f3bb8ebf72943f3ae5aed6bf407ab19d8d001a3eec69d9de074eb1fbed5e3",
+      "utf16Start": 947638,
+      "utf16End": 948345,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-4/manifest.json",
+        "sha256": "9a075d0671b4894f35b1aee9eee5a458c7f8d42c0cb06a6d171910264d275f9f"
+      }
+    },
+    {
+      "symbol": "battle_unit_5_part_0020::js_function_785::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#3}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "rust-battle-program",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNvCsj2zefnSch3P_23battle_unit_5_part_002015js_function_7850s0_000s_000s1_000s1_0Bn_",
+      "unit": 5,
+      "functionId": 785,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "98e2f78ca3519da0722783e397c69ac7370822bced34154cc2d25379d4c8a69e",
+      "utf16Start": 321653,
+      "utf16End": 324425,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-5/manifest.json",
+        "sha256": "441651b7caa6808957cf0e531d57524c760adde2ac65d5ae9d189b3fecd9b08b"
+      }
+    },
+    {
+      "symbol": "battle_unit_5_part_0020::js_function_785::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCsj2zefnSch3P_23battle_unit_5_part_002015js_function_7850s0_000s_000s0_0Bh_",
+      "unit": 5,
+      "functionId": 785,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "98e2f78ca3519da0722783e397c69ac7370822bced34154cc2d25379d4c8a69e",
+      "utf16Start": 321653,
+      "utf16End": 324425,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-5/manifest.json",
+        "sha256": "441651b7caa6808957cf0e531d57524c760adde2ac65d5ae9d189b3fecd9b08b"
+      }
+    },
+    {
+      "symbol": "battle_unit_5_part_0019::js_function_739::{closure#0}::{closure#2}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs4eFaOlNQvON_23battle_unit_5_part_001915js_function_7390s0_0B5_",
+      "unit": 5,
+      "functionId": 739,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "e709a08df3525384b5a2b8badf53a83ee3b1b8fc7e5993f2e62af58e1fa2a390",
+      "utf16Start": 304401,
+      "utf16End": 304696,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-5/manifest.json",
+        "sha256": "441651b7caa6808957cf0e531d57524c760adde2ac65d5ae9d189b3fecd9b08b"
+      }
+    },
+    {
+      "symbol": "battle_unit_5_part_0019::js_function_739",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs4eFaOlNQvON_23battle_unit_5_part_001915js_function_739",
+      "unit": 5,
+      "functionId": 739,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "e709a08df3525384b5a2b8badf53a83ee3b1b8fc7e5993f2e62af58e1fa2a390",
+      "utf16Start": 304401,
+      "utf16End": 304696,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-5/manifest.json",
+        "sha256": "441651b7caa6808957cf0e531d57524c760adde2ac65d5ae9d189b3fecd9b08b"
+      }
+    },
+    {
+      "symbol": "battle_unit_6_part_0080::js_function_3692::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs58s4krsu38x_23battle_unit_6_part_008016js_function_36920B3_",
+      "unit": 6,
+      "functionId": 3692,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sourceSha256": "b2ed2b7cbf9264e6983c09a7db9bd36e8b0e53b4d0b3373be81f9205959a3324",
+      "utf16Start": 1246852,
+      "utf16End": 1247661,
+      "name": "copy",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-6/manifest.json",
+        "sha256": "577e16dd3bb020acf5e43fe533e58ac8f19ceddb7c3d4197c70b6c189cf7665a"
+      }
+    },
+    {
+      "symbol": "battle_unit_6_part_0079::js_function_3686::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsc5sFdS8Rzfz_23battle_unit_6_part_007916js_function_36860B3_",
+      "unit": 6,
+      "functionId": 3686,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sourceSha256": "c0e7b95d7e41b2283fb8417b41dca3d6f10e7c4cf574ffcc7b68d1939ef2ed85",
+      "utf16Start": 1245324,
+      "utf16End": 1245363,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-6/manifest.json",
+        "sha256": "577e16dd3bb020acf5e43fe533e58ac8f19ceddb7c3d4197c70b6c189cf7665a"
+      }
+    },
+    {
+      "symbol": "battle_unit_6_part_0079::js_function_3688::{closure#0}",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsc5sFdS8Rzfz_23battle_unit_6_part_007916js_function_36880B3_",
+      "unit": 6,
+      "functionId": 3688,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sourceSha256": "3e143dc33efc9f3575a3f6982a3fe3a04f0ad7dbadcb6d039493f6074e3495a5",
+      "utf16Start": 1245460,
+      "utf16End": 1246072,
+      "name": "__nativeSourceSnapshot",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-6/manifest.json",
+        "sha256": "577e16dd3bb020acf5e43fe533e58ac8f19ceddb7c3d4197c70b6c189cf7665a"
+      }
+    },
+    {
+      "symbol": "battle_unit_6_part_0079::js_function_3686",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsc5sFdS8Rzfz_23battle_unit_6_part_007916js_function_3686",
+      "unit": 6,
+      "functionId": 3686,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sourceSha256": "c0e7b95d7e41b2283fb8417b41dca3d6f10e7c4cf574ffcc7b68d1939ef2ed85",
+      "utf16Start": 1245324,
+      "utf16End": 1245363,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-6/manifest.json",
+        "sha256": "577e16dd3bb020acf5e43fe533e58ac8f19ceddb7c3d4197c70b6c189cf7665a"
+      }
+    },
+    {
+      "symbol": "battle_unit_6_part_0079::js_function_3688",
+      "dso": "rust-battle-program",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsc5sFdS8Rzfz_23battle_unit_6_part_007916js_function_3688",
+      "unit": 6,
+      "functionId": 3688,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sourceSha256": "3e143dc33efc9f3575a3f6982a3fe3a04f0ad7dbadcb6d039493f6074e3495a5",
+      "utf16Start": 1245460,
+      "utf16End": 1246072,
+      "name": "__nativeSourceSnapshot",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-6/manifest.json",
+        "sha256": "577e16dd3bb020acf5e43fe533e58ac8f19ceddb7c3d4197c70b6c189cf7665a"
+      }
+    },
+    {
+      "symbol": "battle_unit_6_part_0079::js_function_3689",
+      "dso": "rust-battle-program",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "_RNvCsc5sFdS8Rzfz_23battle_unit_6_part_007916js_function_3689",
+      "unit": 6,
+      "functionId": 3689,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sourceSha256": "37bb397c11cca8ef67f579afb2d53b6858487f20b3f3174d887f4bc890c90063",
+      "utf16Start": 1246137,
+      "utf16End": 1246221,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-6/manifest.json",
+        "sha256": "577e16dd3bb020acf5e43fe533e58ac8f19ceddb7c3d4197c70b6c189cf7665a"
+      }
+    }
+  ],
+  "semanticReportMatched": true,
+  "firstDifference": null,
+  "reference": {
+    "file": "work/rust-warm-profile-reference.json",
+    "sha256": "48dbb73557f8a43c1d1367534f24176cadecd8965cf5d7d67b9391faa60cb9e8"
+  },
+  "completed": 20,
+  "totalCallbacks": 309060,
+  "reports": [
+    {
+      "label": "leaf",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "inclusive",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "stacks",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "buildids",
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "record-stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.record-stdout.000.gz",
+          "bytes": 46255,
+          "sha256": "3593397183db7c88c430bb5ba96a2c1db895adee3b1470fa3bab730be291c4e2"
+        }
+      ],
+      "uncompressedBytes": 687198,
+      "uncompressedSha256": "6317cc059f8ea9b2e885fc1c5712128a27f178e7ef0826c377c8952d9708f566",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "record-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.record-stderr.000.gz",
+          "bytes": 658,
+          "sha256": "80e1371cb112017fca55638e6ad77f5ef832742868584327e45c3a1d5f0f6939"
+        }
+      ],
+      "uncompressedBytes": 3324,
+      "uncompressedSha256": "55ecaa10ab90ffeff266b915b77c40a363fd345340c8bb15f8f61623a6379f79",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.leaf.000.gz",
+          "bytes": 9681,
+          "sha256": "a01cec30a73e05410f7ac578f064a8942e874fcf5582e2f5cfbebbc977b4a72b"
+        }
+      ],
+      "uncompressedBytes": 246858,
+      "uncompressedSha256": "d6fcf0849036dc2ddb70882d9deb67ba37d177acbddd158db21e279017d59689",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.leaf-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.inclusive.000.gz",
+          "bytes": 277660,
+          "sha256": "c1781f95cfdf1c1bbb2ae6fd003f4d2907bae05c34c9e1e1e2dc1e158ffa245e"
+        }
+      ],
+      "uncompressedBytes": 7675510,
+      "uncompressedSha256": "521c9a8fc7dd46ac74a37230cfba85fcfaa276df3c43e6fd902459bd63cc8f0c",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.inclusive-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.stacks.000.gz",
+          "bytes": 1895863,
+          "sha256": "ced5509a6d09114c494b3456555f30c73a137b7a6625ab5c3bd463847040e64c"
+        }
+      ],
+      "uncompressedBytes": 52858532,
+      "uncompressedSha256": "5dc2a1bff9ce01273cb3e8d4dcf67cbaa25d969d7a251a05a2867c03e2bdcfb0",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.stacks-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.buildids.000.gz",
+          "bytes": 204,
+          "sha256": "a066f8feb3f891b120c515c7efdc01b40459b89bb4bce62cb8f064820e834140"
+        }
+      ],
+      "uncompressedBytes": 248,
+      "uncompressedSha256": "5c1778f01a0165f286c9404024f5973ee2a0c647c9470416c575c1878b773f59",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.buildids-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "data",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.data.000.gz",
+          "bytes": 25165824,
+          "sha256": "f2d762fb2bc926e9d7511a14744330af858e129c57c48423b6d93a1574a9393f"
+        },
+        {
+          "file": "benchmarks/results/2026-10-28T20-16-21.297Z-rust-program-perf.data.001.gz",
+          "bytes": 7668622,
+          "sha256": "bf43c24df9f7da2645fe3047a5eb0d8054e4e841bde41b929452aa3a3bf348da"
+        }
+      ],
+      "uncompressedBytes": 196149120,
+      "uncompressedSha256": "c8425e60ecd5d3afae02571a5832e33d84d3de58005ee34ade6ed54bc3cbcf3d",
+      "compression": "Concatenate chunks, then gunzip"
+    }
+  ],
+  "producer": {
+    "file": "tools/rust-port/profile-program.mjs",
+    "sha256": "6ed415cb7cb6a2c3ede08e4b99ebe1d8afe27fe438071f745a5fcb863e14177c"
+  },
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "Sampling is externally enabled/disabled after observing the requested marker prefixes. Both control acknowledgments are required. Pipe/control latency and sample skid mean this approximates the wrapper interval rather than an exact source-clock boundary. Startup before start marker and external serialization after end marker are excluded; work inside the wrapper interval remains included.",
+    "Profiling changes execution time. No battles/sec or unprofiled millisecond inference is supported. A configured expected nonzero exit is diagnostic-only and never qualifies a complete normal workload.",
+    "Self groups classify linked symbol names and are disjoint. Inlined code is attributed to its containing native symbol; unresolved samples are retained. Inclusive report rows overlap.",
+    "Source mappings refer to exact function ranges in the frozen source modules; anonymous functions are not assigned invented mechanic names.",
+    "A matching supplied final reference is a separate semantic report check, not broad corpus or full-scene qualification. Without --reference, semanticReportMatched stays null."
+  ]
+}
