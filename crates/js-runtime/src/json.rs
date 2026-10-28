@@ -7,6 +7,7 @@ use crate::env::EnvId;
 impl Runtime {
     pub fn install_json_builtins(&mut self)->JsResult<()> {
         let object=self.object();
+        let id=self.object_id(object)?;self.objects[id.0].kind=ObjectKind::Json;
         for(name,arity,code)in[("parse",2,json_parse as NativeFn),("stringify",3,json_stringify as NativeFn)] {
             let function=self.native_function(name,arity,code)?;let key=self.string(name);
             self.define_data(object,key,function,true,false,true)?;

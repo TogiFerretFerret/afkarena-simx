@@ -62,7 +62,8 @@ impl Runtime {
         if value.is_primitive() { return Ok(value); }
         // Symbol.toPrimitive is not silently ignored: Symbol creation/property
         // keys are outside this runtime's currently supported value domain.
-        let names = if hint == Hint::String { ["toString", "valueOf"] } else { ["valueOf", "toString"] };
+        let date_default=hint==Hint::Default && self.object_id(value).is_ok_and(|id|matches!(self.objects[id.0].kind,crate::heap::ObjectKind::Date(_)));
+        let names = if hint == Hint::String || date_default { ["toString", "valueOf"] } else { ["valueOf", "toString"] };
         for name in names {
             let key = self.string(name);
             let method = self.get_property(value, key)?;

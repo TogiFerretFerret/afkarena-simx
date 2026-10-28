@@ -1,11 +1,12 @@
 //! Pure Rust Math builtins with source-ordered coercion and pinned f64 behavior.
-use crate::{Runtime,Value,JsResult,JsError};
+use crate::{Runtime,Value,JsResult,JsError,ObjectKind};
 use crate::env::EnvId;
 use crate::closures::NativeFn;
 use battle_core::js_math;
 impl Runtime {
     pub fn install_math_builtins(&mut self)->JsResult<()> {
         let object=self.object();
+        let id=self.object_id(object)?;self.objects[id.0].kind=ObjectKind::Math;
         for (name,arity,code) in [
             ("abs",1,math_abs as NativeFn),("floor",1,math_floor as NativeFn),
             ("ceil",1,math_ceil as NativeFn),("round",1,math_round as NativeFn),
