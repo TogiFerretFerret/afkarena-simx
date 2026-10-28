@@ -14,11 +14,12 @@ JavaScript frame and environment; dependency groups become small Cargo crates
 to keep Rust compilation within memory limits. AST coverage does not establish
 complete runtime semantics.
 
-The [latest native batch](../../benchmarks/validation/rust-program-own-primary-wave-full.json)
+The [latest native batch](../../benchmarks/validation/rust-program-next-execution-wave-full.json)
 passes every non-timing final-report field and host-input check for **20 battles
-after three warmups at 0.700574 battles/second**. The previous qualified batch
-measured 0.632731; this retained pair improves by 10.7%. This property/array
-wave uses GC cadence 2. The current full-battle flag trials all match Node:
+after three warmups at 0.711035 battles/second**. The previous qualified batch
+measured 0.700574; this retained pair differs by only 1.49%. Both use GC
+cadence 2. New helper A/B and fork checks are pending. The earlier property/array
+full-battle flag trials all match Node:
 all on 0.686706, primary off 0.690486, own-set off 0.614364, all new off
 0.651304; a separate own-read-off run measures 0.640151 battles/second.
 These are single trials, and primary storage is neutral here. The earlier
