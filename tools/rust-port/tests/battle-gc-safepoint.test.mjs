@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {compileSource} from '../compile.mjs';
+const source=await readFile(new URL('../../../crates/js-runtime/src/native_battle_run.js',import.meta.url),'utf8');
+assert.equal(createHash('sha256').update(source).digest('hex'),'d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d');
+const hook='rt.collect_native_battle_backedge(env, parent)?;';
+const compile=options=>compileSource(source,{mode:'function',allowUnsupported:false,...options});
+assert.ok(!compile({}).rust.includes(hook));
+const enabled=compile({nativeBattleGc:true});
+assert.equal(enabled.rust.split(hook).length-1,1);
+assert.equal(enabled.manifest.functions[0].battleGcSafePoints.length,1);
+assert.equal(enabled.manifest.functions.slice(1).flatMap(f=>f.battleGcSafePoints).length,0);
+const position=enabled.functions[0].rust.indexOf(hook);
+const before=enabled.functions[0].rust.slice(0,position),after=enabled.functions[0].rust.slice(position+hook.length);
+assert.ok(before.endsWith('other => return Ok(other),\n}\n'));
+assert.ok(before.includes('Completion::Break(None) => break,'));
+assert.ok(after.indexOf('rt.to_number(')<after.indexOf('rt.write_binding(')); // The source index update follows the safepoint.
+assert.ok(!compile({nativeBattleGc:true,largeBody:{minimumNodes:1}}).rust.includes(hook));
+assert.ok(!compileSource(source.replace('battleIndex++','battleIndex+=1'),{mode:'function',nativeBattleGc:true,allowUnsupported:false}).rust.includes(hook));
+assert.ok(!compileSource('function __nativeRun(){for(var battleIndex=0;battleIndex<23;battleIndex++){}}',{mode:'function',nativeBattleGc:true,allowUnsupported:false}).rust.includes(hook));
+const pool=compileSource(source,{mode:'function',nativeBattleGc:true,sourcePoolPath:'source.utf16le',allowUnsupported:false});
+assert.equal(pool.sourcePool.toString('utf16le'),source);
+console.log(JSON.stringify({passed:true,cases:8,scope:'Exact-source/default-off backedge emission contract; collector and full-battle behavior are tested separately.'}));

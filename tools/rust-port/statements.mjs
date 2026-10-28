@@ -68,7 +68,7 @@ function forStatement(ctx,node){
  const clone=()=>{if(loopNames.length)local.emit(`${local.env} = rt.clone_loop_env(${local.env}, &[${loopNames.map(quote).join(', ')}])?;`);};
  clone();local.emit('loop {');
  if(node.test){const condition=local.expression(node.test);local.emit(`if !rt.truthy(${condition}) { break; }`);}
- loopBody(local,node.body,()=>{clone();if(node.update)local.expression(node.update);});local.emit('}');normal(ctx);
+ loopBody(local,node.body,()=>{local.battleLoopBackedge?.(node,local);clone();if(node.update)local.expression(node.update);});local.emit('}');normal(ctx);
 }
 function forInStatement(ctx,node){
  if(node.left.type==='VariableDeclaration')declarationKind(node.left);
