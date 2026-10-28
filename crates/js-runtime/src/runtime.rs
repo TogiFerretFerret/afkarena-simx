@@ -10,6 +10,8 @@ pub enum Completion {Normal,Return(Value),Break(Option<&'static str>),Continue(O
 pub struct Runtime {
  pub(crate) strings:Vec<Box<[u16]>>, pub(crate) string_index:HashMap<Vec<u16>,StringId>,
  pub(crate) string_utf8_index:HashMap<String,StringId>,
+ pub(crate) static_literal_strings:HashMap<(u8,usize,usize),StringId>,
+ pub(crate) diagnostics:crate::diagnostics::Diagnostics,
  pub objects:Vec<Object>,pub(crate) functions:Vec<FunctionRecord>,pub(crate) environments:Vec<Environment>,
  pub call_stack:Vec<FunctionId>,pub global_env:EnvId,pub global_object:ObjectId,
  pub construct_stack:Vec<(FunctionId,usize)>,
@@ -18,6 +20,9 @@ pub struct Runtime {
  pub(crate) error_prototypes:HashMap<&'static str,ObjectId>,
  pub(crate) error_stack_overrides:HashMap<ObjectId,Value>,
  pub console_output:Vec<(&'static str,Vec<Value>)>,
+ pub(crate) buffers:Vec<crate::binary::ArrayBufferData>,pub(crate) binary_prototypes:HashMap<&'static str,ObjectId>,
+ pub(crate) binary_constructors:HashMap<&'static str,Value>,
+ pub(crate) collection_records:Vec<crate::collections::CollectionRecord>,pub(crate) collection_iterators:Vec<crate::collections::CollectionIterator>,pub(crate) collection_prototypes:HashMap<&'static str,ObjectId>,
  pub(crate) regex_records:Vec<crate::regex::RegexRecord>,pub(crate) regex_cache:HashMap<(StringId,u16),std::sync::Arc<regress::Regex>>,
  pub regexp_prototype:ObjectId,pub(crate) regexp_constructor:Value,
  pub object_prototype:ObjectId,pub function_prototype:ObjectId,pub array_prototype:ObjectId,
@@ -29,7 +34,7 @@ impl Runtime {
  pub fn new()->Self{
   let mut objects=vec![Object::new(None)];
   for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{strings:vec![],string_index:HashMap::new(),string_utf8_index:HashMap::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  let mut rt=Self{strings:vec![],string_index:HashMap::new(),string_utf8_index:HashMap::new(),static_literal_strings:HashMap::new(),diagnostics:crate::diagnostics::Diagnostics::from_env(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
   rt.install_function_builtins().expect("fresh Function intrinsics");
@@ -40,6 +45,12 @@ impl Runtime {
   rt.install_regexp_builtins().expect("fresh RegExp intrinsics");
   rt.install_date_builtins().expect("fresh Date intrinsics");
   rt.install_host_builtins().expect("fresh host intrinsics");
+  rt.install_error_builtins().expect("fresh Error intrinsics");
+  rt.install_binary_builtins().expect("fresh binary intrinsics");
+  rt.install_collection_builtins().expect("fresh collection intrinsics");
+  rt.install_reflection_builtins().expect("fresh reflection intrinsics");
+  rt.install_numeric_bootstrap().expect("fresh Number intrinsics");
+  rt.install_string_builtins().expect("fresh String intrinsics");
   rt
  }
  pub fn intern_utf16(&mut self,units:&[u16])->StringId{if let Some(id)=self.string_index.get(units){return *id}let id=StringId(self.strings.len());self.strings.push(units.into());self.string_index.insert(units.to_vec(),id);id}
@@ -59,6 +70,7 @@ impl Runtime {
  fn index(&self,key:PropertyKey)->Option<u32>{let units=self.string_units(key.0);if units.is_empty()||units.len()>10||(units.len()>1&&units[0]==48){return None}let mut n=0u64;for unit in units{if !(48..=57).contains(unit){return None}n=n*10+u64::from(*unit-48);}if n<u32::MAX as u64{Some(n as u32)}else{None}}
  fn is_length(&self,key:PropertyKey)->bool{self.string_units(key.0)==[108,101,110,103,116,104]}
  pub(crate) fn own_descriptor(&mut self,id:ObjectId,key:PropertyKey)->JsResult<Option<Descriptor>>{
+  if let Some(value)=self.typed_own_descriptor(id,key)?{return Ok(value)}
   let object=self.objects.get(id.0).ok_or_else(||JsError::TypeError("invalid object identity".into()))?;
   if let Some(binding)=object.arguments_map.get(&key).copied(){let mut desc=object.own(key);if let Some(ref mut d)=desc{if let PropertyKind::Data{ref mut value,..}=d.kind{*value=self.read_binding(binding)?;}}return Ok(desc)}
   match object.kind{
@@ -68,17 +80,18 @@ impl Runtime {
   Ok(self.objects[id.0].own(key))
  }
  fn read_start(&self,value:Value)->JsResult<ObjectId>{match value{Value::String(_)=>Ok(self.string_prototype),Value::Number(_)=>Ok(self.number_prototype),Value::Bool(_)=>Ok(self.boolean_prototype),_=>self.object_id(value)}}
- pub fn get<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<Value>{
+ pub fn get<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<Value>{let key=key.into();let result=self.get_inner(receiver,key);self.record_get(receiver,key,&result);result}
+ fn get_inner<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<Value>{
   self.require_object_coercible(receiver)?;let key=self.key(key)?;
   if let Value::String(id)=receiver{if self.is_length(key){return Ok(Value::Number(self.string_units(id).len()as f64))}if let Some(index)=self.index(key){if let Some(unit)=self.string_units(id).get(index as usize).copied(){return Ok(self.string_utf16(&[unit]))}}}
-  let mut current=Some(self.read_start(receiver)?);while let Some(id)=current{if let Some(d)=self.own_descriptor(id,key)?{return match d.kind{PropertyKind::Data{value,..}=>Ok(value),PropertyKind::Accessor{get:Some(get),..}=>self.call_value(get,receiver,&[]),PropertyKind::Accessor{get:None,..}=>Ok(Value::Undefined)}}current=self.objects[id.0].prototype;}Ok(Value::Undefined)
+  let mut current=Some(self.read_start(receiver)?);while let Some(id)=current{if let Some(value)=self.typed_get(id,key)?{return Ok(value)}if let Some(d)=self.own_descriptor(id,key)?{return match d.kind{PropertyKind::Data{value,..}=>Ok(value),PropertyKind::Accessor{get:Some(get),..}=>self.call_value(get,receiver,&[]),PropertyKind::Accessor{get:None,..}=>Ok(Value::Undefined)}}current=self.objects[id.0].prototype;}Ok(Value::Undefined)
  }
  pub fn get_property(&mut self,receiver:Value,key:Value)->JsResult<Value>{self.get(receiver,key)}
- pub fn has_property<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<bool>{let id=self.object_id(receiver)?;let key=self.key(key)?;let mut current=Some(id);while let Some(id)=current{if self.own_descriptor(id,key)?.is_some(){return Ok(true)}current=self.objects[id.0].prototype;}Ok(false)}
+ pub fn has_property<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<bool>{let id=self.object_id(receiver)?;let key=self.key(key)?;let mut current=Some(id);while let Some(id)=current{if let Some(value)=self.typed_has(id,key)?{return Ok(value)}if self.own_descriptor(id,key)?.is_some(){return Ok(true)}current=self.objects[id.0].prototype;}Ok(false)}
  pub fn has_own_property<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<bool>{self.require_object_coercible(receiver)?;let object=self.to_object(receiver)?;let id=self.object_id(object)?;let key=self.key(key)?;Ok(self.own_descriptor(id,key)?.is_some())}
  fn reject(&self,strict:bool,message:&str,value:Value)->JsResult<Value>{if strict{Err(JsError::TypeError(message.into()))}else{Ok(value)}}
  pub fn set<K:Into<KeyInput>>(&mut self,receiver:Value,key:K,value:Value,strict:bool)->JsResult<Value>{
-  self.require_object_coercible(receiver)?;let key=self.key(key)?;let mut current=Some(self.read_start(receiver)?);
+  self.require_object_coercible(receiver)?;let key=self.key(key)?;if let Ok(id)=self.object_id(receiver){if let Some(value)=self.typed_set(id,key,value)?{return Ok(value)}}let mut current=Some(self.read_start(receiver)?);
   if let Value::String(id)=receiver{if self.is_length(key)||self.index(key).is_some_and(|i|(i as usize)<self.string_units(id).len()){return self.reject(strict,"string property is not writable",value)}}
   while let Some(id)=current{if let Some(desc)=self.own_descriptor(id,key)?{match desc.kind{PropertyKind::Accessor{set:Some(set),..}=>{self.call_value(set,receiver,&[value])?;return Ok(value)},PropertyKind::Accessor{set:None,..}=>return self.reject(strict,"property has no setter",value),PropertyKind::Data{writable:false,..}=>return self.reject(strict,"property is not writable",value),PropertyKind::Data{..}=>break}}current=self.objects[id.0].prototype;}
   let id=match self.object_id(receiver){Ok(id)=>id,Err(_)=>return self.reject(strict,"cannot create property on primitive",value)};
@@ -88,13 +101,13 @@ impl Runtime {
   self.define_data(receiver,key,value,true,enumerable,configurable)?;Ok(value)
  }
  pub fn set_property(&mut self,receiver:Value,key:Value,value:Value,strict:bool)->JsResult<Value>{self.set(receiver,key,value,strict)}
- pub fn delete<K:Into<KeyInput>>(&mut self,receiver:Value,key:K,strict:bool)->JsResult<bool>{self.require_object_coercible(receiver)?;let key=self.key(key)?;let receiver=self.to_object(receiver)?;let id=self.object_id(receiver)?;if let Some(d)=self.own_descriptor(id,key)?{if !d.configurable{if strict{return Err(JsError::TypeError("cannot delete non-configurable property".into()))}return Ok(false)}self.objects[id.0].remove(key);}Ok(true)}
+ pub fn delete<K:Into<KeyInput>>(&mut self,receiver:Value,key:K,strict:bool)->JsResult<bool>{self.require_object_coercible(receiver)?;let key=self.key(key)?;let receiver=self.to_object(receiver)?;let id=self.object_id(receiver)?;if let Some(deleted)=self.typed_delete(id,key)?{if !deleted&&strict{return Err(JsError::TypeError("cannot delete typed array element".into()))}return Ok(deleted)}if let Some(d)=self.own_descriptor(id,key)?{if !d.configurable{if strict{return Err(JsError::TypeError("cannot delete non-configurable property".into()))}return Ok(false)}self.objects[id.0].remove(key);}Ok(true)}
  fn compatible(&self,old:Descriptor,new:Descriptor)->bool{
   if old.configurable{return true}if new.configurable||old.enumerable!=new.enumerable{return false}
   match(old.kind,new.kind){(PropertyKind::Data{value:a,writable:false},PropertyKind::Data{value:b,writable})=>!writable&&same_value(a,b),(PropertyKind::Data{..},PropertyKind::Data{..})=>true,(PropertyKind::Accessor{get:a,set:b},PropertyKind::Accessor{get:c,set:d})=>optional_same(a,c)&&optional_same(b,d),_=>false}
  }
  fn define<K:Into<KeyInput>>(&mut self,receiver:Value,key:K,descriptor:Descriptor)->JsResult<Value>{
-  let id=self.object_id(receiver)?;let key=self.key(key)?;
+  let id=self.object_id(receiver)?;let key=self.key(key)?;if let Some(value)=self.typed_define(id,key,descriptor)?{return Ok(value)}
   if matches!(self.objects[id.0].kind,ObjectKind::Array{..})&&self.is_length(key){if let PropertyKind::Data{value,writable}=descriptor.kind{return self.array_set_length_checked(id,value,writable,true,!descriptor.enumerable&&!descriptor.configurable)}}
   let old=self.own_descriptor(id,key)?;
   if let Some(old)=old{if !self.compatible(old,descriptor){return Err(JsError::TypeError("incompatible property descriptor".into()))}}else if !self.objects[id.0].extensible{return Err(JsError::TypeError("object is not extensible".into()))}
@@ -123,12 +136,12 @@ impl Runtime {
   self.objects[id.0].kind=ObjectKind::Array{length:new,length_writable:writable};Ok(Value::Object(id))
  }
  pub fn set_prototype(&mut self,object:Value,prototype:Value)->JsResult<Value>{let id=self.object_id(object)?;let prototype=if matches!(prototype,Value::Null){None}else{Some(self.object_id(prototype)?)};if self.objects[id.0].prototype==prototype{return Ok(object)}if !self.objects[id.0].extensible{return Err(JsError::TypeError("object is not extensible".into()))}let mut parent=prototype;while let Some(p)=parent{if p==id{return Err(JsError::TypeError("cyclic prototype".into()))}parent=self.objects[p.0].prototype;}self.objects[id.0].prototype=prototype;Ok(object)}
- pub fn own_keys(&mut self,object:Value,enumerable_only:bool)->JsResult<Vec<Value>>{let id=self.object_id(object)?;let mut keys=Vec::new();match self.objects[id.0].kind{ObjectKind::Array{length,length_writable}=>{let key=PropertyKey(self.intern("length"));keys.push((key,Descriptor::data(Value::Number(length as f64),length_writable,false,false)));},ObjectKind::BoxedString(string)=>{let units=self.string_units(string).to_vec();for(i,u)in units.iter().enumerate(){let k=PropertyKey(self.intern(&i.to_string()));let v=self.string_utf16(&[*u]);keys.push((k,Descriptor::data(v,false,true,false)));}let k=PropertyKey(self.intern("length"));keys.push((k,Descriptor::data(Value::Number(units.len()as f64),false,false,false)));},_=>{}}keys.extend(self.objects[id.0].properties.iter().flatten().map(|(k,d)|(*k,*d)));keys.sort_by_key(|(k,_)|self.index(*k).map(|n|(0,n)).unwrap_or((1,0)));Ok(keys.into_iter().filter(|(_,d)|!enumerable_only||d.enumerable).map(|(k,_)|Value::String(k.0)).collect())}
+ pub fn own_keys(&mut self,object:Value,enumerable_only:bool)->JsResult<Vec<Value>>{let id=self.object_id(object)?;if let Some(keys)=self.typed_own_keys(id,enumerable_only)?{return Ok(keys)}let mut keys=Vec::new();match self.objects[id.0].kind{ObjectKind::Array{length,length_writable}=>{let key=PropertyKey(self.intern("length"));keys.push((key,Descriptor::data(Value::Number(length as f64),length_writable,false,false)));},ObjectKind::BoxedString(string)=>{let units=self.string_units(string).to_vec();for(i,u)in units.iter().enumerate(){let k=PropertyKey(self.intern(&i.to_string()));let v=self.string_utf16(&[*u]);keys.push((k,Descriptor::data(v,false,true,false)));}let k=PropertyKey(self.intern("length"));keys.push((k,Descriptor::data(Value::Number(units.len()as f64),false,false,false)));},_=>{}}keys.extend(self.objects[id.0].properties.iter().flatten().map(|(k,d)|(*k,*d)));keys.sort_by_key(|(k,_)|self.index(*k).map(|n|(0,n)).unwrap_or((1,0)));Ok(keys.into_iter().filter(|(_,d)|!enumerable_only||d.enumerable).map(|(k,_)|Value::String(k.0)).collect())}
  pub fn for_in_iter(&mut self,value:Value)->JsResult<ForInIterator>{let object=if matches!(value,Value::Null|Value::Undefined){None}else{let boxed=self.to_object(value)?;Some(self.object_id(boxed)?)};Ok(ForInIterator{object,keys:vec![],cursor:0,visited:HashSet::new(),prepared:false})}
  pub fn for_in_next(&mut self,iter:&mut ForInIterator)->JsResult<Option<Value>>{loop{let Some(id)=iter.object else{return Ok(None)};if !iter.prepared{iter.keys=self.own_keys(Value::Object(id),false)?.into_iter().map(|v|if let Value::String(id)=v{PropertyKey(id)}else{unreachable!()}).collect();iter.cursor=0;iter.prepared=true;}while let Some(key)=iter.keys.get(iter.cursor).copied(){iter.cursor+=1;if iter.visited.contains(&key){continue}if let Some(d)=self.own_descriptor(id,key)?{iter.visited.insert(key);if d.enumerable{return Ok(Some(Value::String(key.0)))}}}iter.object=self.objects[id.0].prototype;iter.prepared=false;}}
  pub fn to_object(&mut self,value:Value)->JsResult<Value>{match value{Value::Object(_)|Value::Function(_)=>Ok(value),Value::Null|Value::Undefined=>Err(JsError::TypeError("cannot box null or undefined".into())),Value::String(v)=>{let id=self.alloc_object(Some(self.string_prototype));self.objects[id.0].kind=ObjectKind::BoxedString(v);Ok(Value::Object(id))},Value::Number(v)=>{let id=self.alloc_object(Some(self.number_prototype));self.objects[id.0].kind=ObjectKind::BoxedNumber(v);Ok(Value::Object(id))},Value::Bool(v)=>{let id=self.alloc_object(Some(self.boolean_prototype));self.objects[id.0].kind=ObjectKind::BoxedBoolean(v);Ok(Value::Object(id))}}}
  pub fn call(&mut self,callee:Value,this:Value,args:&[Value])->JsResult<Value>{self.call_value(callee,this,args)}
- pub fn error_value(&mut self,error:JsError)->JsResult<Value>{let(name,message)=match error{JsError::Throw(v)=>return Ok(v),JsError::Unsupported(s)=>return Err(JsError::Unsupported(s)),JsError::TypeError(s)=>("TypeError",s),JsError::ReferenceError(s)=>("ReferenceError",s),JsError::RangeError(s)=>("RangeError",s),JsError::SyntaxError(s)=>("SyntaxError",s)};let object=self.object();let key=self.string("name");let value=self.string(name);self.define_data(object,key,value,true,false,true)?;let key=self.string("message");let value=self.string(&message);self.define_data(object,key,value,true,false,true)?;Ok(object)}
+ pub fn error_value(&mut self,error:JsError)->JsResult<Value>{self.materialize_error(error)}
 }
 fn same_value(a:Value,b:Value)->bool{match(a,b){(Value::Number(a),Value::Number(b))=>(a.is_nan()&&b.is_nan())||a.to_bits()==b.to_bits(),_=>a==b}}
 fn optional_same(a:Option<Value>,b:Option<Value>)->bool{match(a,b){(Some(a),Some(b))=>same_value(a,b),(None,None)=>true,_=>false}}
