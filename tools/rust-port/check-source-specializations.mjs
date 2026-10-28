@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {compileSource} from './compile.mjs';
+import {sourceCopyFunction} from '../flat-numeric-copy.mjs';
 const emitter=await readFile(new URL('../emit-native-oracle.mjs',import.meta.url),'utf8');
 const start=emitter.indexOf('function __nativeDecodeUTF8('),end=emitter.indexOf('\n  }`);',start)+4;
 assert.ok(start>=0&&end>start);
@@ -26,4 +27,15 @@ const pooled=compileSource(source,{sourcePoolPath:'source.utf16le',allowUnsuppor
 assert.equal(pooled.sourcePool.toString('utf16le'),source);
 assert.ok(pooled.rust.includes(`rt.set_function_source_range(`));
 assert.ok(pooled.rust.includes(`, 0, ${source.length})?;`));
-console.log(JSON.stringify({passed:true,exactSourceSha256:digest,cases:9,scope:'Compiler recognition and fallback contract only; runtime behavior is qualified separately.'}));
+const copyDigest=createHash('sha256').update(sourceCopyFunction).digest('hex');
+assert.equal(copyDigest,'5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072');
+const copyHook='rt.try_native_copy_obj(args.first().copied().unwrap_or(Value::Undefined), parent)?';
+for(const enabled of [true,false]){
+ const compiled=compileSource(sourceCopyFunction,{mode:'function',sourceSpecializations:enabled,allowUnsupported:false});
+ assert.equal(compiled.rust.includes(copyHook),enabled);
+ assert.equal(compiled.manifest.functions[0].sourceSpecialization,enabled?'native-copy-obj-v1':null);
+}
+assert.ok(!compileSource(sourceCopyFunction.replace('var t=','var t ='),{mode:'function',allowUnsupported:false}).rust.includes(copyHook));
+const copyPool=compileSource(sourceCopyFunction,{mode:'function',sourcePoolPath:'source.utf16le',allowUnsupported:false});
+assert.equal(copyPool.sourcePool.toString('utf16le'),sourceCopyFunction);
+console.log(JSON.stringify({passed:true,exactSourceSha256:digest,copyExactSourceSha256:copyDigest,cases:13,scope:'Compiler recognition and fallback contract only; runtime behavior is qualified separately.'}));

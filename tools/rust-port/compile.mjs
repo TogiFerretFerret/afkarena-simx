@@ -8,6 +8,7 @@ import {planLocalBindings} from './bindings.mjs';
 
 const FUNCTION_TYPES=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression','ObjectMethod','ClassMethod','ClassPrivateMethod']);
 const NATIVE_UTF8_SOURCE_SHA256='5fe05bd8580b1b6d11ff573eab9df79cdb29df580fe1127d1f43afaab2c6fae1';
+const NATIVE_COPY_OBJ_SOURCE_SHA256='5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072';
 const sha=text=>createHash('sha256').update(text).digest('hex');
 export function rustString(text){let result='"';for(const character of text){const code=character.codePointAt(0);if(character==='"')result+='\\"';else if(character==='\\')result+='\\\\';else if(code>=32&&code<127)result+=character;else if(code<0xd800||code>0xdfff)result+='\\u{'+code.toString(16)+'}';else throw Error('A Rust identifier/metadata string cannot contain an unpaired surrogate');}return result+'"';}
 const utf16=text=>Array.from({length:text.length},(_,i)=>text.charCodeAt(i));
@@ -114,6 +115,13 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
    if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_UTF8_SOURCE_SHA256){
     record.sourceSpecialization='native-utf8-loader-v1';
     ctx.emit('if let Some(value) = rt.try_native_decode_utf8(args.first().copied().unwrap_or(Value::Undefined), parent)? { return Ok(value); }');
+   }
+   // Only the exact original ed.copyObj body is eligible. The native helper
+   // guards the captured binding chain and flat object descriptors before doing
+   // any source-visible work; every miss executes the unchanged body below.
+   if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_COPY_OBJ_SOURCE_SHA256){
+    record.sourceSpecialization='native-copy-obj-v1';
+    ctx.emit('if let Some(value) = rt.try_native_copy_obj(args.first().copied().unwrap_or(Value::Undefined), parent)? { return Ok(value); }');
    }
    if(node.type==='Program')ctx.emit('let env = parent;');else ctx.emit('let env = rt.child_env(parent);');
    const body=directBody(node),declarations=hoists(node),params=node.params??[],annex=annexBPlan(record,parents);ctx.annexBDeclarations=annex.eligible;for(const name of annex.names)if(!declarations.names.includes(name))declarations.names.push(name);
