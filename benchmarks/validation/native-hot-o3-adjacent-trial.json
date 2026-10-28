@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "passed": true,
+  "baseline": {
+    "file": "benchmarks/results/2026-10-28T15-29-48.800Z-native-heap-default-current.json",
+    "sha256": "36ba74e55822529eb24818601b19ed41782d07fddc5a3c386935da77b3e4775c",
+    "elapsedMs": 9874,
+    "battlesPerSecond": 2.02552157180474
+  },
+  "candidate": {
+    "file": "benchmarks/results/2026-10-28T15-31-21.072Z-native-warm23-hot-o3-battle.json",
+    "sha256": "8fc613dcb3796bdf6f752493ff4780ca1550b9c2cc0d9260bbff4c3f032a890f",
+    "elapsedMs": 9451,
+    "battlesPerSecond": 2.1161781822029413
+  },
+  "sameSourceReportAndHostInputs": true,
+  "allRawSemanticFieldsMatched": true,
+  "allFastPathCountsMatched": true,
+  "privateVMUnchanged": true,
+  "sixOtherObjectsReused": true,
+  "measuredBattlesPerTrial": 20,
+  "warmupBattlesPerTrial": 3,
+  "observedThroughputRatio": 1.0447571685535921,
+  "observedPercentChange": 4.475716855359213,
+  "establishesSpeedup": false,
+  "qualifiesFor10000Target": false,
+  "producer": {
+    "file": "tools/compare-native-hot-o3-trial.mjs",
+    "sha256": "99f6ca4a624070b95e24aa6359d55f301e20500d086f1cde46e0b51ad7188639"
+  },
+  "limitations": [
+    "One adjacent default-baseline then O3-candidate pair; no confidence interval or established speedup.",
+    "Default baseline external observer samples RSS every 100 ms; O3 runner lacks that parent observer. Both native executables use the same runtime flags and frozen workload.",
+    "Host drift is visible versus historical timings; compare this adjacent pair, not the prior-day result.",
+    "Four generated C functions differ only by strict O3 compile options; the rest of the translated battle still uses dynamic JS runtime mechanics.",
+    "One frozen callback-only battle fixture does not qualify full-scene/random battle fidelity or 10,000 battles/second."
+  ]
+}
