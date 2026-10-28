@@ -2,7 +2,7 @@
   "version": 1,
   "passed": true,
   "cacheLocalBindings": true,
-  "cachedBindingDeclarations": 22,
+  "cachedBindingDeclarations": 9,
   "cases": 80,
   "results": [
     {
@@ -569,7 +569,7 @@
   "compilerInputs": {
     "tools/rust-port/expressions.mjs": "9336631cd9b90eeff21b1aeffb3fd46910172912a5761f6a9bb0137dc12347a1",
     "tools/rust-port/statements.mjs": "f087b439cf03a88e89dcb38a4e25796aeba4c0e6a26dc4b0c78030fe5239c030",
-    "tools/rust-port/compile.mjs": "998aa6f86a1d15dc9cc772cac2b5a2d5a75fecd19619c8e0c8d4461f9466eb74",
+    "tools/rust-port/compile.mjs": "670866fd87af98f488065dc7406a61c0a78e62bac921ec8b3ea2fd230cdfb06c",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
     "tools/rust-port/tests/expressions.mjs": "6206d488c956b49d5153dfb7b23a0a04d2643996f99050f83fb908df9a28b1c1",
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
@@ -609,14 +609,14 @@
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
   },
   "binary": {
-    "file": "/workspace/afkarena-simx/work/rust-port-expression-tests/target/release/expression-tests",
-    "sha256": "2843156623af4ce4b82460b232510c8e7842fbd2f143f2f8c942dda331fe7250"
+    "file": "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/rust-port-expression-tests/target/release/expression-tests",
+    "sha256": "3e6f531f42c0c2920fe35bbaee1bdf03e5078fbac2bb22583c250c912a9b9f46"
   },
   "buildArgs": [
     "build",
     "--release",
     "--manifest-path",
-    "/workspace/afkarena-simx/work/rust-port-expression-tests/Cargo.toml"
+    "/workspace/afkarena-simx/work/candidate-immutable-parameters/work/rust-port-expression-tests/Cargo.toml"
   ],
   "scope": "Actual generated Rust executed against source JS expression programs. Ordered observable effects and primitive results compare exactly; Number results use raw f64 bits and strings use UTF-16 units. This is a language-expression gate, not battle fidelity or throughput.",
   "qualifiesFor10000Target": false

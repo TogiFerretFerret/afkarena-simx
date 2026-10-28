@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {compileSource} from '../compile.mjs';
-const compile=source=>compileSource(source,{mode:'function',allowUnsupported:false});
+// Isolate the original eager/lazy and context-mask policy from the additional
+// immutable-parameter lowering, which has its own execution/eligibility gate.
+const compile=source=>compileSource(source,{mode:'function',allowUnsupported:false,nativeParameters:false});
 const count=source=>(compile(source).rust.match(/rt\.arguments_object\(/g)??[]).length;
 test('only strict unused implicit arguments may be omitted',()=>{
  assert.equal(count('function(a){"use strict";return a+1;}'),0);
