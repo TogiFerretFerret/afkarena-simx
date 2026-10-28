@@ -1,4 +1,4 @@
-import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {readFile,writeFile as rawWriteFile,mkdir} from 'node:fs/promises';
 import {resolve,relative,dirname} from 'node:path';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -14,6 +14,11 @@ assert.ok(Number.isInteger(chunkSize)&&chunkSize>0);
 const output=resolve(root,option('--out','work/rust-battle-program'));
 const coverage=JSON.parse(await readFile(resolve(root,'benchmarks/validation/rust-battle-compile-coverage.json')));
 const sha=b=>createHash('sha256').update(b).digest('hex');
+async function writeFile(file,contents){
+ const bytes=Buffer.isBuffer(contents)?contents:Buffer.from(contents);
+ try{if((await readFile(file)).equals(bytes))return;}catch(error){if(error.code!=='ENOENT')throw error;}
+ await rawWriteFile(file,bytes);
+}
 const runtimePath=relative(output,resolve(root,'crates/js-runtime')).replaceAll('\\','/');
 const members=['app'];
 const reports=[];
@@ -69,7 +74,7 @@ await writeFile(resolve(app,'Cargo.toml'),'[package]\nname = "rust-battle-progra
 const calls=reports.map(r=>`eprintln!("unit_start:${r.index}");\n battle_unit_${r.index}::run(&mut rt, env, global)?;\n eprintln!("unit_finished:${r.index}");`).join('\n');
 await writeFile(resolve(app,'src/main.rs'),`use js_runtime::{Runtime,Value,EnvId,JsResult};
 fn print(rt:&mut Runtime,_this:Value,args:&[Value],_env:EnvId)->JsResult<Value>{
- let mut parts=Vec::new();for &arg in args{let value=rt.to_string(arg)?;let Value::String(id)=value else{unreachable!()};parts.push(String::from_utf16_lossy(rt.string_units(id)));}
+ let mut parts=Vec::new();for &arg in args{let id=rt.to_string(arg)?;parts.push(String::from_utf16_lossy(rt.string_units(id)));}
  println!("{}",parts.join(" "));Ok(Value::Undefined)
 }
 fn execute()->JsResult<Value>{
