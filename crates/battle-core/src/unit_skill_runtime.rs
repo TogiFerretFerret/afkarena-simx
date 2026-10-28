@@ -112,8 +112,16 @@ fn export_units(units:&mut unit::World,timelines:&skill::World,speeders:&[skill:
 }
 impl Runtime {
  pub fn new(mut units:unit::World,mut timelines:skill::World,info_speeders:Vec<skill::Number>)->Result<Self>{import_units(&mut units,&mut timelines,&info_speeders)?;Ok(Self{units,timelines,info_speeders})}
- pub fn units(&self)->&unit::World{&self.units}
- pub fn timelines(&self)->&skill::World{&self.timelines}
+ /// Refresh shared controller projections before lending an immutable view.
+ /// Returning separately borrowed raw worlds would leak stale mirrors after
+ /// mutations through `context`, so all full-state observations use this API.
+ pub fn inspect<T>(&mut self,observer:impl FnOnce(&unit::World,&skill::World)->T)->Result<T>{self.context().inspect(observer)}
+ pub fn unit_records(&self)->&[unit::Unit]{&self.units.units}
+ pub fn unit(&self,id:usize)->Result<&unit::Unit>{self.units.units.get(id).ok_or_else(||"missing unit".into())}
+ pub fn skill(&self,id:skill::SkillId)->Result<&skill::Skill>{self.timelines.skills.get(id.0).ok_or_else(||"missing skill".into())}
+ pub fn skill_unit(&self,id:skill::UnitId)->Result<SkillUnitRead>{let u=self.timelines.units.get(id.0).ok_or_else(||"missing skill unit".to_string())?;Ok(SkillUnitRead{manually_casting:u.manually_casting,pet_skill_casting:u.pet_skill_casting,morph:u.morph,actor:u.actor,pet_mp:u.pet_mp})}
+ pub fn freeze_level(&self)->f64{self.units.freeze_level}
+ pub fn mode(&self)->&str{&self.timelines.mode}
  pub fn context(&mut self)->Context<'_>{Context{units:&mut self.units,timelines:&mut self.timelines,info_speeders:&mut self.info_speeders}}
  pub fn update_unit<H:Hooks>(&mut self,id:usize,dt:f64,host:&mut H)->Result{
   if id>=self.units.units.len(){return Err("missing unit".into())}
