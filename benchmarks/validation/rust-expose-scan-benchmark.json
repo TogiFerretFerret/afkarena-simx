@@ -1,0 +1,258 @@
+{
+  "passed": true,
+  "sourceInputs": {
+    "tools/rust-port/benchmark-expose-scan.mjs": "f5f902e1ec0b2f4876d47aa6b9afebf1ce6592864518ec7fd587ff48b6af2019",
+    "tools/rust-port/compile.mjs": "ec9d8111a36c33f0ff0929999fa272fcf54b2f6a56ee8488809c55b4df9cd71d",
+    "tools/rust-port/expressions.mjs": "9336631cd9b90eeff21b1aeffb3fd46910172912a5761f6a9bb0137dc12347a1",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/rust-port/statements.mjs": "9fa70a94a4c485b2674d5e11f4524d596850cc6a78f5e93d034eac6c8bc7defd",
+    "tools/rust-port/source-expose-scan.mjs": "b646000d30aadac23b9db44774c2a5f1d0e81f73fe6c27a906845ea65f624765",
+    "crates/js-runtime/src/native_expose.js": "9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911",
+    "crates/js-runtime/src/expose_scan.rs": "3fc78f11e16a38ba9061d176ffb6fd0689b04338d79c84e2c10c4eafb234097f",
+    "crates/js-runtime/src/runtime.rs": "979e5e7bebfd9a0093068077aa0608895e20ba83ad91d097af9b499ddc3672f8",
+    "crates/js-runtime/src/heap.rs": "d4b93d482d46cb4e0e4b6983ec9004f8c3d4fa990e98cb6f75696d8a1dea45fa",
+    "crates/js-runtime/src/reachability.rs": "23422765d66b80d6435e324d14c837846c18906c6018b1132a9a4e1016863391",
+    "Cargo.toml": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
+    "Cargo.lock": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950"
+  },
+  "sourceSha256": "00d56d398eccb48fcd8a62b6cc357d1fd3e64eaf6c6ae9938c8d05b28b9c9a1c",
+  "generatedRustSha256": "d309af7eb340b27637e8b32e0384098fafba0f2c8530d38f7073e8cbb620edba",
+  "binarySha256": "17e26d3e74090bdabcabf1cdc5d5e0caaa8addafdaafc31e0253bbbcef3f85bd",
+  "names": 22986,
+  "keys": 100,
+  "trials": 5,
+  "comparisons": [
+    {
+      "round": 0,
+      "genericSeconds": 0.052410962,
+      "specializedSeconds": 0.001450802,
+      "speedup": 36.12550989039166
+    },
+    {
+      "round": 1,
+      "genericSeconds": 0.049764823,
+      "specializedSeconds": 0.001539212,
+      "speedup": 32.33136371078188
+    },
+    {
+      "round": 2,
+      "genericSeconds": 0.035459571,
+      "specializedSeconds": 0.001510109,
+      "speedup": 23.48146458302017
+    }
+  ],
+  "rows": [
+    {
+      "trial": 0,
+      "enabled": false,
+      "round": 0,
+      "seconds": 0.093341592,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 0,
+      "enabled": false,
+      "round": 1,
+      "seconds": 0.072663966,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 0,
+      "enabled": false,
+      "round": 2,
+      "seconds": 0.086200709,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 0,
+      "enabled": true,
+      "round": 0,
+      "seconds": 0.006183787,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 0,
+      "enabled": true,
+      "round": 1,
+      "seconds": 0.001669243,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 0,
+      "enabled": true,
+      "round": 2,
+      "seconds": 0.005584927,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 1,
+      "enabled": false,
+      "round": 0,
+      "seconds": 0.088319613,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 1,
+      "enabled": false,
+      "round": 1,
+      "seconds": 0.030046876,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 1,
+      "enabled": false,
+      "round": 2,
+      "seconds": 0.024954353,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 1,
+      "enabled": true,
+      "round": 0,
+      "seconds": 0.001418505,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 1,
+      "enabled": true,
+      "round": 1,
+      "seconds": 0.001106445,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 1,
+      "enabled": true,
+      "round": 2,
+      "seconds": 0.001704825,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 2,
+      "enabled": false,
+      "round": 0,
+      "seconds": 0.030281552,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 2,
+      "enabled": false,
+      "round": 1,
+      "seconds": 0.049764823,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 2,
+      "enabled": false,
+      "round": 2,
+      "seconds": 0.035902392,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 2,
+      "enabled": true,
+      "round": 0,
+      "seconds": 0.001296215,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 2,
+      "enabled": true,
+      "round": 1,
+      "seconds": 0.001004176,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 2,
+      "enabled": true,
+      "round": 2,
+      "seconds": 0.000996485,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 3,
+      "enabled": false,
+      "round": 0,
+      "seconds": 0.052410962,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 3,
+      "enabled": false,
+      "round": 1,
+      "seconds": 0.031036585,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 3,
+      "enabled": false,
+      "round": 2,
+      "seconds": 0.035459571,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 3,
+      "enabled": true,
+      "round": 0,
+      "seconds": 0.001865081,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 3,
+      "enabled": true,
+      "round": 1,
+      "seconds": 0.001539212,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 3,
+      "enabled": true,
+      "round": 2,
+      "seconds": 0.001510109,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 4,
+      "enabled": false,
+      "round": 0,
+      "seconds": 0.034679525,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 4,
+      "enabled": false,
+      "round": 1,
+      "seconds": 0.060111018,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 4,
+      "enabled": false,
+      "round": 2,
+      "seconds": 0.035100122,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 4,
+      "enabled": true,
+      "round": 0,
+      "seconds": 0.001450802,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 4,
+      "enabled": true,
+      "round": 1,
+      "seconds": 0.002105064,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    },
+    {
+      "trial": 4,
+      "enabled": true,
+      "round": 2,
+      "seconds": 0.00101383,
+      "keys": "item0,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18,item19,item20,item21,item22,item23,item24,item25,item26,item27,item28,item29,item30,item31,item32,item33,item34,item35,item36,item37,item38,item39,item40,item41,item42,item43,item44,item45,item46,item47,item48,item49,item50,item51,item52,item53,item54,item55,item56,item57,item58,item59,item60,item61,item62,item63,item64,item65,item66,item67,item68,item69,item70,item71,item72,item73,item74,item75,item76,item77,item78,item79,item80,item81,item82,item83,item84,item85,item86,item87,item88,item89,item90,item91,item92,item93,item94,item95,item96,item97,item98,item99"
+    }
+  ],
+  "scope": "Same compiled binary/runtime; exact original __nativeExpose source. Synthetic 22986 ordered definition names. Cold round0 and later repeated calls all install100 original lazy getters in original order. No factory dereference occurs in this component benchmark; factory/getter effects are separately source-gated. Not battles/sec; no full battle speed claim.",
+  "qualifiesFor10000Target": false
+}

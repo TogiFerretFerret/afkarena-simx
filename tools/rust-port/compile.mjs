@@ -8,6 +8,7 @@ import {emitStatements} from './statements.mjs';
 import {planLocalBindings,planNativeLocals} from './bindings.mjs';
 
 const FUNCTION_TYPES=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression','ObjectMethod','ClassMethod','ClassPrivateMethod']);
+const NATIVE_EXPOSE_SOURCE_SHA256='9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911';
 const NATIVE_UTF8_SOURCE_SHA256='5fe05bd8580b1b6d11ff573eab9df79cdb29df580fe1127d1f43afaab2c6fae1';
 const NATIVE_COPY_OBJ_SOURCE_SHA256='5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072';
 const NATIVE_OVERRIDE_DISPATCH_SOURCE_SHA256='a071adecc9cc3cecd27b059f25a2a1eb1b26529e4a3fa15f8501e774dfa6b83f';
@@ -186,13 +187,19 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
      record.battleGcSafePoints.push({kind:'outer-battle-loop-backedge',start:loop.start,end:loop.end,environment:'function',sourceSha256:NATIVE_BATTLE_RUN_SOURCE_SHA256});
     };
    }
+   if(sourceSpecializations&&!split&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_EXPOSE_SOURCE_SHA256){
+    const loops=body.filter(statement=>statement.type==='ForStatement');
+    if(loops.length!==1)ctx.unsupported(node,'Pinned expose scan loop shape changed');
+    record.sourceSpecialization='native-expose-scan-v1';record.nativeExposeRoot=true;
+    ctx.sourceLoopFastPath=(candidate,local)=>candidate===loops[0]?'rt.try_native_expose_scan('+local.functionEnv+', parent)?':null;
+   }
    if(split){
     const makePart=(kind,index,build,estimatedNodes)=>{const name=`js_part_${id}_${kind}_${index}`,part=context(record);part.ctx.annexBDeclarations=annex.eligible;build(part.ctx);const rust=`pub fn ${name}(rt: &mut Runtime, this: Value, args: &[Value], env: EnvId) -> JsResult<Completion> {\n${part.lines.join('\n')}\n}`;localHelpers.push({name,ownerId:id,kind,rust,estimatedNodes,dependencies:[...part.ctx.functionDependencies]});ctx.functionDependencies.add(name);const result=ctx.temp(`${name}(rt, this, args, env)?`);ctx.emit(`match ${result} { Completion::Normal => {}, Completion::Return(value) => return Ok(value), _ => unreachable!("Invalid completion escaping a source function body") }`);};
     chunks(groups,()=>1,splitOptions.maxInitGroups,splitOptions.maxInitGroups).forEach((group,index)=>makePart('init',index,local=>{for(const emit of group)emit(local);local.emit('Ok(Completion::Normal)');},group.length));
     chunks(flattenStatements(body),ownWeight,splitOptions.maxNodes,splitOptions.maxStatements).forEach((group,index)=>makePart('body',index,local=>{const completion=emitStatements(group,local);local.emit(`Ok(${completion})`);},group.reduce((sum,item)=>sum+ownWeight(item),0)));
     ctx.emit('Ok(Value::Undefined)');
    }else{
-    const nativePlan=nativeLocalBindings&&!record.battleGcRoot?planNativeLocals(node,{parents,hoistedNames:declarations.names,parameterNames:params.map(parameter=>parameter.name)}):{names:[],eligible:()=>false},nativeBindings=new Map();
+    const nativePlan=nativeLocalBindings&&!record.battleGcRoot&&!record.nativeExposeRoot?planNativeLocals(node,{parents,hoistedNames:declarations.names,parameterNames:params.map(parameter=>parameter.name)}):{names:[],eligible:()=>false},nativeBindings=new Map();
     for(const name of nativePlan.names){const binding=ctx.fresh('native_local');nativeBindings.set(name,binding);ctx.emit(`let mut ${binding} = Value::Undefined;`);}
     ctx.nativeBindingNames=new Set(nativePlan.names);record.nativeBindings=nativePlan.names;
     ctx.nativeLocal=(name,identifier)=>nativePlan.eligible(name,identifier)?nativeBindings.get(name):undefined;
