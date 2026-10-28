@@ -10,6 +10,7 @@ assert.ok(!compile({}).rust.includes(hook));
 const enabled=compile({nativeBattleGc:true});
 assert.equal(enabled.rust.split(hook).length-1,1);
 assert.equal(enabled.manifest.functions[0].battleGcSafePoints.length,1);
+assert.deepEqual(enabled.manifest.functions[0].nativeBindings,[]);
 assert.equal(enabled.manifest.functions.slice(1).flatMap(f=>f.battleGcSafePoints).length,0);
 const position=enabled.functions[0].rust.indexOf(hook);
 const before=enabled.functions[0].rust.slice(0,position),after=enabled.functions[0].rust.slice(position+hook.length);

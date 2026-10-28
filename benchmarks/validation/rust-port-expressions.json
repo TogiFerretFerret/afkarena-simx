@@ -2,7 +2,7 @@
   "version": 1,
   "passed": true,
   "cacheLocalBindings": true,
-  "cachedBindingDeclarations": 32,
+  "cachedBindingDeclarations": 22,
   "cases": 80,
   "results": [
     {
@@ -567,13 +567,13 @@
     }
   ],
   "compilerInputs": {
-    "tools/rust-port/expressions.mjs": "9e336ef4eb2b3023988388bf170532d7aedba06edcd4a7725dc536084ae2823a",
-    "tools/rust-port/statements.mjs": "db8397d9e99eea9bbb180f9f826744a938787e9f1ef982429efe9d7359a23663",
-    "tools/rust-port/compile.mjs": "b770804fa833780614500042834d167a113cbc3608d7e581b0911153c026099e",
-    "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
+    "tools/rust-port/expressions.mjs": "256d83ca53f1cff1ff5abe2afb49b0ed074a045f0edea325cdba732becdde95e",
+    "tools/rust-port/statements.mjs": "f087b439cf03a88e89dcb38a4e25796aeba4c0e6a26dc4b0c78030fe5239c030",
+    "tools/rust-port/compile.mjs": "14feb820c7fd2e36482122e5937a7154a6f9ff167a6cfd57e4a6de3db35892b6",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
     "tools/rust-port/tests/expressions.mjs": "6206d488c956b49d5153dfb7b23a0a04d2643996f99050f83fb908df9a28b1c1",
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
-    "crates/js-runtime/src/battle_gc.rs": "a6b132b68e0f694fdbbfbf51db90e1196f0e334b12371e3bc2b51af01b61ac8b",
+    "crates/js-runtime/src/battle_gc.rs": "989258068fb30882571264e055d893e46c2975dbeb875c7e31f5bc7168ec2416",
     "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
     "crates/js-runtime/src/builtins.rs": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
     "crates/js-runtime/src/closures.rs": "e448c944b39ae4025e80c447c6da1120a587154b11e9f082d16edf73f71501cb",
@@ -590,11 +590,12 @@
     "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
     "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
     "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
-    "crates/js-runtime/src/lib.rs": "1d5e567b56c246c8a86d01363514df91aba8202e61e46cb3c0649703c524fb42",
+    "crates/js-runtime/src/lib.rs": "4294cac4f8968ab8b0b73f70b24c8aab9060aca4250bd3071fce49416cbe7af2",
     "crates/js-runtime/src/literal_pool.rs": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
     "crates/js-runtime/src/math.rs": "813b3aa0b6f806fb7cac743a7b4b48a532da9979c2b687c53d50ca7f097f1bd0",
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
-    "crates/js-runtime/src/reachability.rs": "ac6659d61fd437a96b367f6575af8f625e5899bf1e11d228c829a8c18a2686ba",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/reachability.rs": "52173fb09c06399243fd8e19697602397edc1eee34c77550b6ee85e8c8a71b04",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
     "crates/js-runtime/src/runtime.rs": "199321fcc5e6c6cdabb6e24af67f011aebafed6742cb19cb9ecfb756666c3221",
@@ -608,7 +609,7 @@
   },
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-expression-tests/target/release/expression-tests",
-    "sha256": "f65c1511cfb5e515c62ae1670a4744fe3a7fbca77c7d17a767e957676af64e17"
+    "sha256": "5e80d23c2e140a3db5f0c8a7c5d9a226cee9f1540f72ea082080a880bff274d1"
   },
   "buildArgs": [
     "build",

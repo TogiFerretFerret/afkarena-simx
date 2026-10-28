@@ -10,6 +10,8 @@ possible closure captures and lexical/catch shadowing. A matching identifier in 
 nested function conservatively counts as a possible capture, including property
 or declaration names that could be proven unrelated with further analysis.
 Remaining references also pass the existing local-binding eligibility check.
+The exact `__nativeRun` GC root remains entirely environment-backed whenever
+`nativeBattleGc` is enabled, preserving the proven collection root contract.
 
 Each promoted variable starts as `Undefined` at function entry. Reads snapshot
 its copied `Value`; assignments and updates store the same value as the cell
@@ -17,6 +19,12 @@ path. `typeof` and sloppy `delete` retain their binding behavior. Statement
 closures borrow these Rust locals, so catch/finally and loop completions preserve
 the source order. Parameters and captured variables keep their environment cells
 and mapped-arguments behavior.
+
+The restricted collector runs only at the exact outer `__nativeRun` backedge
+with one active JS frame. That function retains its environment bindings, and
+other function locals are dead at this point. Any future collector allowed at
+other points must include live generated Rust local Values in its root set;
+marking only environment cells would miss those references.
 
 Validation commands:
 

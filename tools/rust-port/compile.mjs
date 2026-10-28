@@ -10,6 +10,7 @@ import {planLocalBindings,planNativeLocals} from './bindings.mjs';
 const FUNCTION_TYPES=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression','ObjectMethod','ClassMethod','ClassPrivateMethod']);
 const NATIVE_UTF8_SOURCE_SHA256='5fe05bd8580b1b6d11ff573eab9df79cdb29df580fe1127d1f43afaab2c6fae1';
 const NATIVE_COPY_OBJ_SOURCE_SHA256='5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072';
+const NATIVE_OVERRIDE_DISPATCH_SOURCE_SHA256='a071adecc9cc3cecd27b059f25a2a1eb1b26529e4a3fa15f8501e774dfa6b83f';
 const NATIVE_BATTLE_RUN_SOURCE_SHA256='d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d';
 const sha=text=>createHash('sha256').update(text).digest('hex');
 export function rustString(text){let result='"';for(const character of text){const code=character.codePointAt(0);if(character==='"')result+='\\"';else if(character==='\\')result+='\\\\';else if(code>=32&&code<127)result+=character;else if(code<0xd800||code>0xdfff)result+='\\u{'+code.toString(16)+'}';else throw Error('A Rust identifier/metadata string cannot contain an unpaired surrogate');}return result+'"';}
@@ -162,6 +163,10 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
    if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_COPY_OBJ_SOURCE_SHA256){
     record.sourceSpecialization='native-copy-obj-v1';
     ctx.emit('if let Some(value) = rt.try_native_copy_obj(args.first().copied().unwrap_or(Value::Undefined), parent)? { return Ok(value); }');
+   }
+   if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_OVERRIDE_DISPATCH_SOURCE_SHA256){
+    record.sourceSpecialization='native-override-dispatch-v1';
+    ctx.emit('if let Some(value) = rt.try_native_override_dispatch(this, args, parent)? { return Ok(value); }');
    }
    if(node.type==='Program')ctx.emit('let env = parent;');else ctx.emit('let env = rt.child_env(parent);');
    const body=directBody(node),declarations=hoists(node),params=node.params??[],annex=annexBPlan(record,parents);ctx.annexBDeclarations=annex.eligible;for(const name of annex.names)if(!declarations.names.includes(name))declarations.names.push(name);

@@ -73,6 +73,18 @@ const cases=[
   [
     "returned-captured-closure",
     "function(){function f(){var x=7,y=9;return function(){return ++x+y;};}var g=f();return g()+\":\"+g();}"
+  ],
+  [
+    "binary-left-snapshot",
+    "function(){var x=1,y=x+(x=2);return y+\":\"+x;}"
+  ],
+  [
+    "compound-old-snapshot",
+    "function(){var x=1;x+=(x=2);return x;}"
+  ],
+  [
+    "update-and-assignment-snapshot",
+    "function(){var x=1,y=x+++(x=7);x=x++ + x;return y+\":\"+x;}"
   ]
 ].flatMap(([name,source])=>[[name+":native",source],[name+":cells",source]]);
 const tracked=new Map();async function bind(file){const bytes=await readFile(resolve(root,file));tracked.set(file,sha(bytes));}
