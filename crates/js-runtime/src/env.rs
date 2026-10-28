@@ -51,8 +51,8 @@ impl Runtime {
   let name_id=self.intern(name);let e=self.environments.get_mut(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;let index=*e.bindings.get(&name_id).ok_or_else(||JsError::ReferenceError(format!("{name} is not defined")))?;let b=&mut e.cells[index];
   if b.initialized{return Err(JsError::TypeError(format!("binding {name} is already initialized")))}b.value=value;b.initialized=true;Ok(value)
  }
- pub fn resolve_binding(&mut self,mut env:EnvId,name:&str)->JsResult<BindingRef>{
-  let name_id=self.intern(name);
+ pub fn resolve_binding(&mut self,env:EnvId,name:&str)->JsResult<BindingRef>{let name_id=self.intern(name);self.resolve_binding_id(env,name_id)}
+ pub fn resolve_binding_id(&mut self,mut env:EnvId,name_id:StringId)->JsResult<BindingRef>{
   loop{
    let e=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;
    let binding=e.bindings.get(&name_id).map(|index|(*index,e.cells[*index].object_backed,e.cells[*index].name));let parent=e.parent;let kind=e.kind;
@@ -61,6 +61,22 @@ impl Runtime {
    if let Some(parent)=parent{env=parent;continue}
    if kind==EnvKind::Global&&self.has_property(Value::Object(self.global_object),Value::String(name_id))?{return Ok(BindingRef::Global{object:self.global_object,name:name_id})}return Ok(BindingRef::Unresolvable{name:name_id})
   }
+ }
+ /// ID entry points preserve all live environment/global descriptor resolution.
+ pub fn lookup_id(&mut self,env:EnvId,name:StringId)->JsResult<Value>{let reference=self.resolve_binding_id(env,name)?;self.read_binding(reference)}
+ pub fn assign_id(&mut self,env:EnvId,name:StringId,value:Value,strict:bool)->JsResult<Value>{let reference=self.resolve_binding_id(env,name)?;self.write_binding(reference,value,strict)}
+ pub fn typeof_name_id(&mut self,env:EnvId,name:StringId)->JsResult<Value>{let reference=self.resolve_binding_id(env,name)?;if matches!(reference,BindingRef::Unresolvable{..}){return Ok(self.string("undefined"))}let value=self.read_binding(reference)?;Ok(self.string(match value{Value::Undefined=>"undefined",Value::Null|Value::Object(_)=>"object",Value::Bool(_)=>"boolean",Value::Number(_)=>"number",Value::String(_)=>"string",Value::Function(_)=>"function"}))}
+ pub fn declare_id(&mut self,env:EnvId,name_id:StringId,value:Value)->JsResult<()>{
+  let env=self.variable_env(env)?;if self.environments[env.0].bindings.contains_key(&name_id){return Ok(())}let global=self.environments[env.0].kind==EnvKind::Global;
+  if global{let object=Value::Object(self.global_object);let key=Value::String(name_id);if !self.has_own_property(object,key)?{self.define_data_property(object,key,value,true,true,false)?;}}
+  self.environments[env.0].insert("",Binding{name:name_id,value,mutable:true,initialized:true,deletable:false,object_backed:global,strict_immutable:false,alive:true});Ok(())
+ }
+ pub fn declare_lexical_id(&mut self,env:EnvId,name_id:StringId,mutable:bool)->JsResult<()>{
+  let Some(record)=self.environments.get(env.0)else{return Err(JsError::Unsupported("invalid environment handle".into()))};if record.bindings.contains_key(&name_id){return Err(JsError::Unsupported(format!("duplicate lexical declaration {}; compiler must reject it",self.string_text(name_id))))}
+  self.environments[env.0].insert("",Binding{name:name_id,value:Value::Undefined,mutable,initialized:false,deletable:false,object_backed:false,strict_immutable:true,alive:true});Ok(())
+ }
+ pub fn initialize_id(&mut self,env:EnvId,name_id:StringId,value:Value)->JsResult<Value>{
+  let record=self.environments.get(env.0).ok_or_else(||JsError::Unsupported("invalid environment handle".into()))?;let Some(index)=record.bindings.get(&name_id).copied()else{return Err(JsError::ReferenceError(format!("{} is not defined",self.string_text(name_id))))};if record.cells[index].initialized{return Err(JsError::TypeError(format!("binding {} is already initialized",self.string_text(name_id))))}let binding=&mut self.environments[env.0].cells[index];binding.value=value;binding.initialized=true;Ok(value)
  }
  pub fn read_binding(&mut self,reference:BindingRef)->JsResult<Value>{match reference{
   BindingRef::Cell{env,index}=>{
