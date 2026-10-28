@@ -10,8 +10,8 @@ An earlier four-process run completed **80 battles at 1.288 aggregate battles/se
 
 | Evidence | Result | Coverage |
 | --- | --- | --- |
-| [Latest pure Rust batch](benchmarks/validation/rust-program-allocation-wave-full.json) | 20 measured after 3 warmups; **0.632731 battles/sec** | Every non-timing final-report field and full host consumption match pinned Node; build provenance passes |
-| [Prior pure Rust batch](benchmarks/validation/rust-full-program-next.json) | Same 20/3 workload; **0.390778 battles/sec** | Exact report/host parity; earlier runtime |
+| [Latest pure Rust batch](benchmarks/validation/rust-program-own-primary-wave-full.json) | 20 measured after 3 warmups; **0.700574 battles/sec** | Every non-timing final-report field and full host consumption match pinned Node; build provenance passes |
+| [Prior pure Rust batch](benchmarks/validation/rust-program-allocation-wave-full.json) | Same 20/3 workload; **0.632731 battles/sec** | Exact report/host parity; earlier runtime |
 | [Four forked warm Rust workers](benchmarks/results/2026-10-28-allocation-wave-fork-four.json) | **1.982040 aggregate battles/sec**, 80 battles over 40.362 s | Shared original three-warmup state; each full report/tape matches Node, overlapping measured windows; peak process PSS plus orchestrator RSS 7.67 GiB |
 | [Same-binary runtime A/B](benchmarks/results/2026-10-28-allocation-wave-ab.json) | **0.472224 reference → 0.625076 optimized battles/sec**, 1.324× | Each complete report/tape matches Node; reference disables hashing/key/length/shift fast paths, stack number conversion remains enabled in both |
 | [Four independent Rust processes](benchmarks/results/2026-10-28T20-20-38.054Z-rust-parallel-four.json) | **1.287522 aggregate battles/sec**, 80 battles over 62.135 s | Earlier qualified runtime; all four measured windows overlap, each full report/host tape matches Node; not a sum of isolated rates |
@@ -30,7 +30,7 @@ The [GC cadence experiment](benchmarks/RUST_GC_CADENCE.md) also matches all full
 
 The [counted allocation diagnostic](benchmarks/results/2026-10-28T21-18-46.972Z-rust-measured-allocations.json) also matches the full report and host tape. Each measured battle requests about **4.289 million allocations / 110.3 MB**, plus **185,910 reallocations** with 84.1 MB of old and 168.5 MB of new requested sizes. These are allocation traffic counts, not live bytes or peak memory; instrumented timing is not throughput evidence.
 
-Environment/arguments elision, callable-identity indexing, clone specialization and giant-string collection have passed component gates and the retained battle checks. The latest integrated wave raises the retained single-process rate by 61.9% over 0.390778; same-binary flags isolate a 32.4% gain with stack number conversion enabled in both paths. The 3 and 10,000 battles/second goals remain unmet. The [real clone diagnostic](benchmarks/RUST_COPY_OBJ_DIAGNOSTIC.md) shows that targeted numeric objects and empty arrays already have the likely native-copy allocation signature. The [earlier Hermes profile](benchmarks/CURRENT_TIMING.md) describes a different backend.
+Environment/arguments elision, callable-identity indexing, clone specialization and giant-string collection have passed component gates and the retained battle checks. The latest integrated property/array wave with GC cadence 2 raises the retained single-process rate by 10.7% over 0.632731. Its component-flag comparison and new fork cohort are pending; the A/B and aggregate results above describe the earlier allocation wave. The 3 and 10,000 battles/second goals remain unmet. The [real clone diagnostic](benchmarks/RUST_COPY_OBJ_DIAGNOSTIC.md) shows that targeted numeric objects and empty arrays already have the likely native-copy allocation signature. The [earlier Hermes profile](benchmarks/CURRENT_TIMING.md) describes a different backend.
 
 ## Where the Rust work lives
 
