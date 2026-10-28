@@ -20,6 +20,7 @@ pub struct Runtime {
  pub(crate) numeric_property_keys:[Option<(u32,PropertyKey)>;256],
  pub(crate) diagnostics:crate::diagnostics::Diagnostics,
  pub dense_array_shift_enabled:bool,
+ pub ordinary_set_fast_path_enabled:bool,
  pub literal_property_slots_enabled:bool,pub literal_length_fast_path_enabled:bool,pub(crate) literal_property_slots:Vec<crate::property_slots::CachedSlot>,
  pub(crate) throw_type_error:Option<Value>,
  pub(crate) active_argument_frames:Vec<crate::lazy_arguments::ActiveArgumentsFrame>,
@@ -46,7 +47,7 @@ impl Runtime {
  pub fn new_with_string_hash(mode:crate::StringHashMode)->Self{
   let mut objects=vec![Object::new(None)];
   for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),string_utf8_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),static_literal_strings:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),numeric_property_key_cache_enabled:true,index_string_fast_path_enabled:true,numeric_property_keys:[None;256],diagnostics:crate::diagnostics::Diagnostics::from_env(),literal_property_slots_enabled:true,dense_array_shift_enabled:true,literal_length_fast_path_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  let mut rt=Self{native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),string_utf8_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),static_literal_strings:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),numeric_property_key_cache_enabled:true,index_string_fast_path_enabled:true,numeric_property_keys:[None;256],diagnostics:crate::diagnostics::Diagnostics::from_env(),ordinary_set_fast_path_enabled:true,literal_property_slots_enabled:true,dense_array_shift_enabled:true,literal_length_fast_path_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
   rt.install_function_builtins().expect("fresh Function intrinsics");
@@ -141,7 +142,22 @@ impl Runtime {
  pub fn has_own_property<K:Into<KeyInput>>(&mut self,receiver:Value,key:K)->JsResult<bool>{self.require_object_coercible(receiver)?;let object=self.to_object(receiver)?;let id=self.object_id(object)?;let key=self.key(key)?;Ok(self.own_descriptor(id,key)?.is_some())}
  fn reject(&self,strict:bool,message:&str,value:Value)->JsResult<Value>{if strict{Err(JsError::TypeError(message.into()))}else{Ok(value)}}
  pub fn set<K:Into<KeyInput>>(&mut self,receiver:Value,key:K,value:Value,strict:bool)->JsResult<Value>{
-  self.require_object_coercible(receiver)?;let key=self.key(key)?;if let Ok(id)=self.object_id(receiver){if let Some(value)=self.typed_set(id,key,value)?{return Ok(value)}}let mut current=Some(self.read_start(receiver)?);
+  self.require_object_coercible(receiver)?;let key=self.key(key)?;
+  // A writable own ordinary data property has no setter, inherited trap,
+  // value coercion, allocation or descriptor transition. Inspect it only AFTER
+  // original key coercion, which may itself mutate this receiver.
+  if self.ordinary_set_fast_path_enabled{if let Value::Object(id)=receiver{
+   if let Some(object)=self.objects.get_mut(id.0){
+    if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary)&&object.arguments_map.is_empty(){
+     if let Some(index)=object.property_index.get(&key).copied(){
+      if let Some(Some((actual,descriptor)))=object.properties.get_mut(index){
+       if *actual==key{if let PropertyKind::Data{value:stored,writable:true}=&mut descriptor.kind{*stored=value;return Ok(value)}}
+      }
+     }
+    }
+   }
+  }}
+  if let Ok(id)=self.object_id(receiver){if let Some(value)=self.typed_set(id,key,value)?{return Ok(value)}}let mut current=Some(self.read_start(receiver)?);
   if let Value::String(id)=receiver{if self.is_length(key)||self.index(key).is_some_and(|i|(i as usize)<self.string_units(id).len()){return self.reject(strict,"string property is not writable",value)}}
   while let Some(id)=current{if let Some(desc)=self.own_descriptor(id,key)?{if matches!(self.objects[id.0].kind,ObjectKind::Arguments)&&self.string_units(key.0)==[99,97,108,108,101,101]{if let PropertyKind::Accessor{get:Some(get),set:Some(set)}=desc.kind{if Some(get)==self.throw_type_error&&get==set{return self.reject(strict,"Cannot assign to read only property 'callee' of object '#<Object>'",value)}}}match desc.kind{PropertyKind::Accessor{set:Some(set),..}=>{self.call_value(set,receiver,&[value])?;return Ok(value)},PropertyKind::Accessor{set:None,..}=>return self.reject(strict,"property has no setter",value),PropertyKind::Data{writable:false,..}=>return self.reject(strict,"property is not writable",value),PropertyKind::Data{..}=>break}}current=self.objects[id.0].prototype;}
   let id=match self.object_id(receiver){Ok(id)=>id,Err(_)=>return self.reject(strict,"cannot create property on primitive",value)};

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "passed": true,
+  "experimental": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Isolated ordinary writable own Data Set fast path; 53 existing Rust library tests and four additional directed tests pass with default fast mode, and directed cases also run disabled. Tests preserve raw NaN/signed-zero bits and descriptor flags, inherited setter exclusion, post-key-coercion mutation, readonly semantics, array virtual length and mapped argument cells. Source Unit.update A/B evidence separately retained; not complete battle qualification.",
+  "sourceInputs": {
+    "crates/js-runtime/src/runtime.rs": "fe5485dfc8988216582cec2f22b3226d611bff42bc512ab2c2b2b552068f3601",
+    "crates/js-runtime/tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59"
+  },
+  "libraryTests": 53,
+  "directedTests": 4,
+  "binaries": [
+    {
+      "file": "target/debug/deps/js_runtime-f844dddfc37ccc41",
+      "sha256": "6bb714bb030f77d2b2004733adeefab3c981597a5733187af0a6fba61599ac00"
+    },
+    {
+      "file": "target/debug/deps/ordinary_set-d9b5005e2a19d790",
+      "sha256": "a525e092f6cfe3089e6697ba29f01cebccfcf35fa72667fd0b2ffa5004d5a2d7"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.ordinary-set-tests.stdout.gz",
+      "sha256": "648eb763864e55d4eae5a6f3578fe04a6aeba13494f6c0cff630ed73d5a4bdc1",
+      "uncompressedSha256": "4897e090b65ec1f4c0b00e23870a8c390e828a017f0f302e214ecff11777c369"
+    },
+    {
+      "file": "benchmarks/validation/rust-fast-own-set.ordinary-set-tests.stderr.gz",
+      "sha256": "bea9fb7e1c47656b9aca847cfc57a4ddd83aee4fe97d64cd0cc4500ed6b3de64",
+      "uncompressedSha256": "c047f4ffbdd1dd73a9259f4b3b90e762ccf95b04c5f1523e87bae4feb28cd1a8"
+    }
+  ],
+  "command": "cargo test -p js-runtime --lib --test ordinary_set --offline",
+  "buildProfile": "debug",
+  "cleanup": "Completed debug target may be removed to reclaim disk; source, logs and executable digests retained."
+}
