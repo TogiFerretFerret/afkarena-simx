@@ -60,7 +60,7 @@ impl Runtime {
  }
  pub fn new_target(&self)->Value{self.current_new_target()}
  pub fn call_value(&mut self,callee:Value,this:Value,args:&[Value])->JsResult<Value>{
-  let Value::Function(id)=callee else{return Err(JsError::TypeError("value is not callable".into()))};let kind=self.functions.get(id.0).map(|f|f.kind.clone()).ok_or_else(||JsError::TypeError("invalid function".into()))?;
+  let Value::Function(id)=callee else{self.report_noncallable(callee);return Err(JsError::TypeError("value is not callable".into()))};let kind=self.functions.get(id.0).map(|f|f.kind.clone()).ok_or_else(||JsError::TypeError("invalid function".into()))?;
   match kind{
    FunctionKind::Bound{target,bound_this,args:mut bound}=>{bound.extend_from_slice(args);self.call_value(Value::Function(target),bound_this,&bound)},
    FunctionKind::Native{code,env,strict,arrow_this}=>{let receiver=if let Some(this)=arrow_this{this}else if strict{this}else{match this{Value::Null|Value::Undefined=>Value::Object(self.global_object),Value::Object(_)|Value::Function(_)=>this,_=>self.to_object(this)?}};self.call_stack.push(id);let result=code(self,receiver,args,env);self.call_stack.pop();result},
