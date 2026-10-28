@@ -1,14 +1,23 @@
 import { createContext,runInContext } from 'node:vm';
 import { spawnSync } from 'node:child_process';
-import { mkdir,writeFile,readFile } from 'node:fs/promises';
+import { mkdir,writeFile,readFile,readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import { loadTickSource } from './check-scheduler.mjs';
 import { bits } from './rng-trace.mjs';
 const root=resolve(import.meta.dirname,'..');
-if(!process.argv[2])throw new Error('Usage: node tools/check-engine.mjs BINARY');
 const {source,metadata}=await loadTickSource();
+const profile=JSON.parse(await readFile(resolve(root,'config/source-oracle-runtime.json')));assert.equal(process.version,profile.node);assert.equal(process.versions.v8,profile.v8);assert.deepEqual(process.execArgv,profile.rawBitReferenceFlags,'Use pinned raw-bit oracle flags');
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const files=['tools/check-engine-runtime.mjs','crates/battle-core/examples/engine_runtime_check.rs','tools/check-scheduler.mjs','tools/rng-trace.mjs','config/scheduler-translation.json','config/source-oracle-runtime.json',metadata.source,'Cargo.toml','Cargo.lock','crates/battle-core/Cargo.toml','crates/battle-core/BUCK','toolchains/BUCK','.buckconfig','rust-toolchain.toml','config/toolchains.json'];
+for(const file of await readdir(resolve(root,'crates/battle-core/src')))if(file.endsWith('.rs'))files.push('crates/battle-core/src/'+file);
+const sources={};for(const file of files)sources[file]=sha(await readFile(resolve(root,file)));
+const toolchain=JSON.parse(await readFile(resolve(root,'config/toolchains.json'))),buck=resolve(root,'work/buck2'),rustBin=resolve(root,'work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin'),rustc=resolve(rustBin,'rustc');assert.equal(sha(await readFile(buck)),toolchain.buck2LinuxX86_64Sha256);
+const compilerSha256=sha(await readFile(rustc)),rustVersion=spawnSync(rustc,['--version'],{cwd:root,encoding:'utf8'});assert.equal(rustVersion.status,0);assert.ok(rustVersion.stdout.startsWith('rustc '+toolchain.rust+' '));
+const target='root//crates/battle-core:engine_runtime_check',buildArgs=['build',target,'--show-full-output'],build=spawnSync(buck,buildArgs,{cwd:root,env:{...process.env,PATH:rustBin+':'+process.env.PATH},encoding:'utf8',maxBuffer:16*1024*1024});assert.equal(build.status,0,build.stderr);
+for(const [file,expected]of Object.entries(sources))assert.equal(sha(await readFile(resolve(root,file))),expected,'Changed during build: '+file);
+const outputs=build.stdout.trim().split('\n').filter(line=>line.startsWith(target+' '));assert.equal(outputs.length,1);const binary=resolve(root,outputs[0].slice((target+' ').length).trim()),binarySha256=sha(await readFile(binary));
 const modes=['stage','rt_pvp','deep_stage','halloween','race_dream','none'];
 const failures=['none','weather_update','tick_operation','tick_rage_objects','update_entity:0','update_entity:1','race_fix:0','check_push','restart','rt_limit','deep_limit','is_halloween','halloween_end','uses_max_ticks','max_ticks','end:victory','end:defeat','end:timeout','format_log','append_log'];
 const sentinel={source:'exact-source-sentinel'};
@@ -42,7 +51,7 @@ let state=0x5783421;function next(n){state^=state<<13;state^=state>>>17;state^=s
 const numbers=[0,-0,1,-1,.125,.1,90,4800,NaN,Infinity,-Infinity,Number.MIN_VALUE,Number.MAX_VALUE];
 const pick=()=>numbers[next(numbers.length)];
 const cases=Array.from({length:20000},()=>({failure:next(failures.length),running:next(10)!==0,mode:next(6),configMode:next(6),freeze:pick(),ignore:pick(),time:pick(),skill:pick(),specialPresent:next(2)===1,special:pick(),interval:pick(),ticks:pick(),restart:next(2)===1,limitPresent:next(2)===1,limit:pick(),enemyDead:pick(),playerDead:pick(),aliveEnemy:pick(),alivePlayer:pick(),rt:pick(),deep:pick(),max:next(2)===1,maxValue:pick(),weatherPresent:next(2)===1,weatherInterval:pick(),restartMode:next(7),stop:next(4)===0,entities:Array.from({length:next(5)},()=>({frozen:next(4)===0,terminated:next(4)===0,action:next(8)}))}));
-const result=spawnSync(resolve(process.argv[2]),[],{input:cases.map(serialize).join('\n')+'\n',encoding:'utf8',maxBuffer:256*1024*1024});if(result.error)throw result.error;assert.equal(result.status,0,result.stderr);
+const result=spawnSync(binary,[],{input:cases.map(serialize).join('\n')+'\n',encoding:'utf8',maxBuffer:256*1024*1024});if(result.error)throw result.error;assert.equal(result.status,0,result.stderr);
 const lines=result.stdout.trim().split('\n');assert.equal(lines.length,cases.length);let eventCount=0;const reached=new Set();
 await mkdir(resolve(root,'work'),{recursive:true});
 for(let i=0;i<cases.length;i++){
@@ -51,6 +60,6 @@ for(let i=0;i<cases.length;i++){
  eventCount+=expected.events.length;if(expected.error)reached.add(failures[cases[i].failure]);
 }
 assert.deepEqual([...reached].sort(),failures.slice(1).sort(),'Every required call boundary must be reached with an exact source sentinel throw');
-const sha=b=>createHash('sha256').update(b).digest('hex'),sources={};for(const file of ['crates/battle-core/src/engine_runtime.rs','tools/check-engine-runtime.rs','tools/check-engine-runtime.mjs'])sources[file]=sha(await readFile(resolve(root,file)));
-const summary={version:1,passed:true,cases:cases.length,eventCount,throwBoundaries:[...reached].sort(),sourceSha256:metadata.sha256,rawBitsExact:true,sources,binarySha256:sha(await readFile(resolve(process.argv[2]))),scope:'Fallible Rust source tick orchestration against unchanged original JS under explicit fixture mechanics, with exact selected state at every hook and sentinel exception prefix. Not complete hero battles or a throughput benchmark.',qualifiesFor10000Target:false};
+for(const [file,expected]of Object.entries(sources))assert.equal(sha(await readFile(resolve(root,file))),expected,'Changed during execution: '+file);assert.equal(sha(await readFile(binary)),binarySha256);assert.equal(sha(await readFile(rustc)),compilerSha256);
+const summary={version:1,passed:true,cases:cases.length,eventCount,throwBoundaries:[...reached].sort(),sourceSha256:metadata.sha256,rawBitsExact:true,sources,binarySha256,sourcesUnchangedAcrossBuildAndExecution:true,oracleProfile:profile,build:{tool:buck,toolSha256:toolchain.buck2LinuxX86_64Sha256,rustc,compilerSha256,rustVersion:rustVersion.stdout.trim(),args:buildArgs,exitCode:build.status,stdoutSha256:sha(build.stdout),stderrSha256:sha(build.stderr)},scope:'Fallible Rust source tick orchestration against unchanged original JS under explicit fixture mechanics, with exact selected state at every hook and sentinel exception prefix. Not complete hero battles or a throughput benchmark.',qualifiesFor10000Target:false};
 await writeFile(resolve(root,'benchmarks/validation/engine-runtime.json'),JSON.stringify(summary,null,2)+'\n');console.log(JSON.stringify(summary));
