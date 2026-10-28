@@ -62,7 +62,7 @@
     },
     {
       "file": "crates/js-runtime/src/env.rs",
-      "sha256": "15bc6229afd44e5ccfdd29bff8a4eaa034712cc6660630a87172be9663fe7649",
+      "sha256": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
       "matched": true
     },
     {
@@ -112,7 +112,7 @@
     },
     {
       "file": "crates/js-runtime/src/literal_pool.rs",
-      "sha256": "f1f83cb20b4b5568794899edf0d6fa2b0cfdce75d34dae716d6bd64162f5dadd",
+      "sha256": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
       "matched": true
     },
     {
@@ -1127,12 +1127,12 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "998aa6f86a1d15dc9cc772cac2b5a2d5a75fecd19619c8e0c8d4461f9466eb74",
+      "sha256": "877a3e2577da732da1ac6205a15b3be8cba9e947ccb2c76ac5a1946126fed2a0",
       "matched": true
     },
     {
       "file": "tools/rust-port/expressions.mjs",
-      "sha256": "9336631cd9b90eeff21b1aeffb3fd46910172912a5761f6a9bb0137dc12347a1",
+      "sha256": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
       "matched": true
     },
     {
@@ -1142,7 +1142,7 @@
     },
     {
       "file": "tools/rust-port/statements.mjs",
-      "sha256": "f087b439cf03a88e89dcb38a4e25796aeba4c0e6a26dc4b0c78030fe5239c030",
+      "sha256": "e467386246e3fdc299f99f3e5532c0bfdeba059a76dfe8849b8089ff8a66342c",
       "matched": true
     },
     {
@@ -1169,25 +1169,25 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "bc251739af99ffd5133dae9313d8d9adc36b8046a704ddb5563ba1ca4dc7e035",
+  "generatedRustSha256": "99a6634c9c876d9de7aa2019352b962ecc72d988bc943a2ce5873748ca40d055",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/rust-port-control/check",
-    "sha256": "d7887b6824f96fbb645b215a25d3eaab0c04e1ecc7baf09c3643987c6a56f8f2"
+    "file": "/workspace/afkarena-simx/work/candidate-env-name-keys/work/rust-port-control/check",
+    "sha256": "aa5f36f15ff09dbfe9e27dd6775b26685809741eec272358b9d556565f25dcc0"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-env-name-keys/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/rust-port-control/main.rs",
+    "/workspace/afkarena-simx/work/candidate-env-name-keys/work/rust-port-control/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-env-name-keys/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-env-name-keys/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/rust-port-control/check"
+    "/workspace/afkarena-simx/work/candidate-env-name-keys/work/rust-port-control/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-control-flow.outputs.json.gz",

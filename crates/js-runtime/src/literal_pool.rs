@@ -29,6 +29,7 @@ impl Runtime {
     /// The address is only a lookup hint for a `'static` literal. The stored ID
     /// always comes from the canonical content interner on its first encounter.
     /// Encoding tags prevent UTF-8 and UTF-16 constants from sharing a key.
+    pub fn static_identifier_id(&mut self,text:&'static str)->crate::StringId{match self.static_string(text){Value::String(id)=>id,_=>unreachable!("static literals are strings")}}
     pub fn static_string(&mut self, text: &'static str) -> Value {
         let key = (0, text.as_ptr() as usize, text.len());
         let id = match self.static_literal_strings.get(&key).copied() {

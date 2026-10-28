@@ -2,6 +2,7 @@
 // delimit exception propagation, so a generated `?` never skips a source catch.
 import {emitReference,writeReference} from './expressions.mjs';
 
+function envCall(ctx,method,environment,name,args=[]){return typeof ctx.envCall==='function'?ctx.envCall(method,environment,name,args):`rt.${method}(${environment}, ${quote(name)}${args.length?', '+args.join(', '):''})`;}
 function unsupported(node,reason){const where=node?.loc?.start,error=new Error(`Unsupported ${node?.type??'statement'}${where?` at ${where.line}:${where.column}`:''}: ${reason}`);error.node=node;throw error;}
 const quote=value=>JSON.stringify(value);
 function child(ctx,overrides){if(typeof ctx.child!=='function')throw new Error('Statement context requires child(overrides)');return ctx.child(overrides);}
@@ -12,22 +13,22 @@ function bindingName(pattern){if(pattern?.type!=='Identifier')unsupported(patter
 function boundNames(pattern){switch(pattern?.type){case 'Identifier':return[pattern.name];case 'AssignmentPattern':return boundNames(pattern.left);case 'ObjectPattern':return pattern.properties.flatMap(property=>boundNames(property.type==='RestElement'?property.argument:property.value));case 'RestElement':return boundNames(pattern.argument);default:unsupported(pattern,'binding pattern is not implemented');}}
 function string(ctx,value){const units=Array.from({length:String(value).length},(_,i)=>String(value).charCodeAt(i));return ctx.temp(`rt.string_utf16(&[${units.join(',')}])`);}
 function bindPattern(ctx,pattern,value,kind){
- if(pattern.type==='Identifier'){const native=kind==='var'&&typeof ctx.nativeLocal==='function'?ctx.nativeLocal(pattern.name,pattern):null;if(native){ctx.emit(`${native} = ${value};`);return;}ctx.emit(kind==='var'?`rt.assign(${ctx.env}, ${quote(pattern.name)}, ${value}, ${ctx.strict})?;`:`rt.initialize(${ctx.env}, ${quote(pattern.name)}, ${value})?;`);return;}
+ if(pattern.type==='Identifier'){const native=kind==='var'&&typeof ctx.nativeLocal==='function'?ctx.nativeLocal(pattern.name,pattern):null;if(native){ctx.emit(`${native} = ${value};`);return;}ctx.emit(kind==='var'?`${envCall(ctx,"assign",ctx.env,pattern.name,[value,String(ctx.strict)])}?;`:`${envCall(ctx,"initialize",ctx.env,pattern.name,[value])}?;`);return;}
  if(pattern.type==='AssignmentPattern'){const local=ctx.fresh('binding_default');ctx.emit(`let mut ${local} = ${value};`);ctx.emit(`if matches!(${local}, Value::Undefined) {`);const expression=pattern.right,defaultValue=['FunctionExpression','ArrowFunctionExpression'].includes(expression.type)&&!expression.id&&pattern.left.type==='Identifier'?ctx.makeClosure(expression,{inferredName:pattern.left.name}):ctx.expression(expression);ctx.emit(`${local} = ${defaultValue};`);ctx.emit('}');bindPattern(ctx,pattern.left,local,kind);return;}
  if(pattern.type==='ObjectPattern'){ctx.emit(`rt.require_object_coercible(${value})?;`);for(const property of pattern.properties){if(property.type==='RestElement')unsupported(property,'object rest binding is not implemented');if(property.type!=='ObjectProperty')unsupported(property,'object binding property is not implemented');let key;if(property.computed){const raw=ctx.expression(property.key);key=ctx.temp(`rt.to_property_key(${raw})?`);}else key=string(ctx,property.key.type==='Identifier'?property.key.name:property.key.value);const member=ctx.temp(`rt.get(${value}, ${key})?`);bindPattern(ctx,property.value,member,kind);}return;}
  unsupported(pattern,'binding pattern is not implemented');
 }
 function declarationKind(node){if(!['var','let','const'].includes(node.kind))unsupported(node,'resource-management declaration is not implemented');}
 function lexicalNames(statements){const result=[];for(const node of statements){if(node.type==='VariableDeclaration')declarationKind(node);if(node.type==='VariableDeclaration'&&node.kind!=='var')for(const declaration of node.declarations)result.push(...boundNames(declaration.id).map(name=>({name,mutable:node.kind==='let'})));else if(node.type==='ClassDeclaration')unsupported(node,'class declarations are not implemented');}return result;}
-function declareLexicals(ctx,statements){for(const item of lexicalNames(statements))ctx.emit(`rt.declare_lexical(${ctx.env}, ${quote(item.name)}, ${item.mutable})?;`);}
+function declareLexicals(ctx,statements){for(const item of lexicalNames(statements))ctx.emit(`${envCall(ctx,"declare_lexical",ctx.env,item.name,[String(item.mutable)])}?;`);}
 function instantiateFunctions(ctx,local,statements,env){
  const functions=statements.filter(statement=>statement.type==='FunctionDeclaration');
  if(functions.length){
   if(typeof ctx.instantiateBlockFunctions==='function')ctx.instantiateBlockFunctions(functions,local);
   else {
    if(!ctx.strict)unsupported(functions[0],'non-strict block function requires Annex B instantiation');
-   for(const fn of functions)local.emit(`rt.declare_lexical(${env}, ${quote(fn.id.name)}, true)?;`);
-   for(const fn of functions){const closure=local.makeClosure(fn);local.emit(`rt.initialize(${env}, ${quote(fn.id.name)}, ${closure})?;`);}
+   for(const fn of functions)local.emit(`${envCall(local,"declare_lexical",env,fn.id.name,["true"])}?;`);
+   for(const fn of functions){const closure=local.makeClosure(fn);local.emit(`${envCall(local,"initialize",env,fn.id.name,[closure])}?;`);}
   }
  }
 }
@@ -127,7 +128,7 @@ function tryStatement(ctx,node){
   const result=ctx.fresh('catch_result'),error=ctx.fresh('caught_error');ctx.emit(`let ${result}: JsResult<Completion> = match ${prior} { Ok(value) => Ok(value), Err(${error}) => {`);
   const caught=capture(ctx,()=>{
    const env=ctx.temp(`rt.child_block_env(${ctx.env})`),local=child(ctx,{env,pendingLabels:[]});
-   if(node.handler.param){const value=ctx.temp(`rt.error_value(${error})?`);for(const name of boundNames(node.handler.param))ctx.emit(`rt.declare_lexical(${env}, ${quote(name)}, true)?;`);bindPattern(local,node.handler.param,value,'catch');}else ctx.emit(`if matches!(${error}, JsError::Unsupported(_)) { return Err(${error}); }`);
+   if(node.handler.param){const value=ctx.temp(`rt.error_value(${error})?`);for(const name of boundNames(node.handler.param))ctx.emit(`${envCall(ctx,"declare_lexical",env,name,["true"])}?;`);bindPattern(local,node.handler.param,value,'catch');}else ctx.emit(`if matches!(${error}, JsError::Unsupported(_)) { return Err(${error}); }`);
    const completion=emitStatement(node.handler.body,local);ctx.emit(`Ok(${completion})`);
   });ctx.emit(caught);ctx.emit('} };');prior=result;
  }
@@ -146,7 +147,7 @@ export function emitStatement(node,ctx){
    case 'ExpressionStatement':ctx.expression(node.expression);normal(ctx);break;
    case 'BlockStatement':block(ctx,node);break;
    case 'VariableDeclaration':declaration(ctx,node);break;
-   case 'FunctionDeclaration':{if(ctx.annexBDeclarations?.has(node)){const value=ctx.temp(`rt.lookup(${ctx.env}, ${quote(node.id.name)})?`);ctx.emit(`rt.assign(${ctx.functionEnv??ctx.env}, ${quote(node.id.name)}, ${value}, false)?;`);}normal(ctx);break;} // Lexical instantiation precedes execution; Annex B's outer alias does not.
+   case 'FunctionDeclaration':{if(ctx.annexBDeclarations?.has(node)){const value=ctx.temp(`${envCall(ctx,"lookup",ctx.env,node.id.name)}?`);ctx.emit(`${envCall(ctx,"assign",ctx.functionEnv??ctx.env,node.id.name,[value,"false"])}?;`);}normal(ctx);break;} // Lexical instantiation precedes execution; Annex B's outer alias does not.
    case 'ReturnStatement':{const value=node.argument?ctx.expression(node.argument):'Value::Undefined';ctx.emit(`Ok(Completion::Return(${value}))`);break;}
    case 'ThrowStatement':{const value=ctx.expression(node.argument);ctx.emit(`Err(JsError::Throw(${value}))`);break;}
    case 'BreakStatement':ctx.emit(`Ok(Completion::Break(${node.label?`Some(${quote(node.label.name)})`:'None'}))`);break;
