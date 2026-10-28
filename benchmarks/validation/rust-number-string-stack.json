@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Primitive ToString temporary UTF16 allocation removal only.48 runtime library tests and79026 raw/value/String comparisons pass;90 preexisting tagged-number remainder cases explicitly unsupported. Performance and full battle qualification separate.",
+  "implementationCommit": "e2e7036",
+  "files": {
+    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+    "crates/js-runtime/src/runtime.rs": "130d2caca9a27160f90094a6ea587b5a825b1ebc907297d1844bc4c4f8367444",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da"
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/rust-number-string-stack.tests.stdout.gz",
+      "sha256": "2d6d30b9029213d8d1dbcadae1466b1605bb6cd227c631475ebae2c96f44991a",
+      "uncompressedSha256": "16db641d2cf9180c5a42420e7921a52b0f9fb60291b4366d1f7ece116f6fd6f1"
+    },
+    {
+      "file": "benchmarks/validation/rust-number-string-stack.tests.stderr.gz",
+      "sha256": "b807b48c2dc406f22621b8618e60da9e2812319d0305ea0bbc5cb04be20b07b2",
+      "uncompressedSha256": "4061593156f47035c37730fe05a8cd9e1bef5b8f799f929af74097a8551933c0"
+    },
+    {
+      "file": "benchmarks/validation/rust-number-string-stack.build.stdout.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-number-string-stack.build.stderr.gz",
+      "sha256": "831908b23992ad193a18e45abb8654cd26c1b3e21ffa85f5cd29129abc67f234",
+      "uncompressedSha256": "f16b4fd13bf5366645798a43ec1c729270304a9db389990a650fa7f366038572"
+    },
+    {
+      "file": "benchmarks/validation/rust-number-string-stack.values.stdout.gz",
+      "sha256": "e4ddeffb1ed4bf54f601cbf87e4d7ed20768416ec048f4012a1c50ecad49e5b7",
+      "uncompressedSha256": "32934631983e353b4a7e9cc52a260167ea0874e4c585325a2e740d0accd95fff"
+    },
+    {
+      "file": "benchmarks/validation/rust-number-string-stack.values.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-number-string-stack.component-build.stdout.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/rust-number-string-stack.component-build.stderr.gz",
+      "sha256": "c6c7a4b3635fb42a5b18080725c116dc518689fbea13539443d524716f4c804d",
+      "uncompressedSha256": "8821f0c45d97d1a3410659ac487154ebb696c9b3481fb8b2bf363bd749afb98c"
+    }
+  ],
+  "valueComparisonReport": "benchmarks/validation/rust-value-semantics.json"
+}
