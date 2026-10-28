@@ -1,5 +1,5 @@
 //! Ordinary object/property execution. IDs remain stable across allocations.
-use std::collections::{HashMap,HashSet,BTreeMap};
+use std::collections::{HashMap,HashSet};
 use crate::value::{Value,StringId,ObjectId,FunctionId,JsError,JsResult};
 use crate::heap::*;
 use crate::env::{EnvId,Environment,EnvKind};
@@ -9,10 +9,15 @@ use crate::closures::FunctionRecord;
 pub enum Completion {Normal,Return(Value),Break(Option<&'static str>),Continue(Option<&'static str>)}
 pub struct Runtime {
  pub(crate) strings:Vec<Box<[u16]>>, pub(crate) string_index:HashMap<Vec<u16>,StringId>,
+ pub(crate) string_utf8_index:HashMap<String,StringId>,
  pub objects:Vec<Object>,pub(crate) functions:Vec<FunctionRecord>,pub(crate) environments:Vec<Environment>,
  pub call_stack:Vec<FunctionId>,pub global_env:EnvId,pub global_object:ObjectId,
  pub construct_stack:Vec<(FunctionId,usize)>,
+ pub construct_new_targets:Vec<Value>,
  pub(crate) join_stack:Vec<ObjectId>,
+ pub(crate) error_prototypes:HashMap<&'static str,ObjectId>,
+ pub(crate) error_stack_overrides:HashMap<ObjectId,Value>,
+ pub console_output:Vec<(&'static str,Vec<Value>)>,
  pub(crate) regex_records:Vec<crate::regex::RegexRecord>,pub(crate) regex_cache:HashMap<(StringId,u16),std::sync::Arc<regress::Regex>>,
  pub regexp_prototype:ObjectId,pub(crate) regexp_constructor:Value,
  pub object_prototype:ObjectId,pub function_prototype:ObjectId,pub array_prototype:ObjectId,
@@ -24,7 +29,7 @@ impl Runtime {
  pub fn new()->Self{
   let mut objects=vec![Object::new(None)];
   for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{strings:vec![],string_index:HashMap::new(),objects,functions:vec![],environments:vec![Environment{parent:None,bindings:BTreeMap::new(),kind:EnvKind::Global}],call_stack:vec![],construct_stack:vec![],join_stack:vec![],regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  let mut rt=Self{strings:vec![],string_index:HashMap::new(),string_utf8_index:HashMap::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
   rt.install_function_builtins().expect("fresh Function intrinsics");
@@ -33,10 +38,12 @@ impl Runtime {
   rt.install_math_builtins().expect("fresh Math intrinsics");
   rt.install_json_builtins().expect("fresh JSON intrinsics");
   rt.install_regexp_builtins().expect("fresh RegExp intrinsics");
+  rt.install_date_builtins().expect("fresh Date intrinsics");
+  rt.install_host_builtins().expect("fresh host intrinsics");
   rt
  }
  pub fn intern_utf16(&mut self,units:&[u16])->StringId{if let Some(id)=self.string_index.get(units){return *id}let id=StringId(self.strings.len());self.strings.push(units.into());self.string_index.insert(units.to_vec(),id);id}
- pub fn intern(&mut self,text:&str)->StringId{self.intern_utf16(&text.encode_utf16().collect::<Vec<_>>())}
+ pub fn intern(&mut self,text:&str)->StringId{if let Some(id)=self.string_utf8_index.get(text){return *id}let id=self.intern_utf16(&text.encode_utf16().collect::<Vec<_>>());self.string_utf8_index.insert(text.to_owned(),id);id}
  pub fn string_units(&self,id:StringId)->&[u16]{&self.strings[id.0]}
  pub fn string_text(&self,id:StringId)->String{String::from_utf16_lossy(self.string_units(id))}
  pub fn string(&mut self,text:&str)->Value{Value::String(self.intern(text))}

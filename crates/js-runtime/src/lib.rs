@@ -10,6 +10,8 @@ pub mod builtins;
 pub mod math;
 pub mod json;
 pub mod regex;
+pub mod date;
+pub mod host;
 pub use value::{Value,StringId,ObjectId,FunctionId,JsError,JsResult,BinaryOp,UnaryOp};
 pub use heap::{PropertyKey,KeyInput,Descriptor,PropertyKind,ObjectKind,ForInIterator};
 pub use env::{EnvId,BindingRef};
