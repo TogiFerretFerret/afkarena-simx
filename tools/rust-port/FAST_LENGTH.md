@@ -18,8 +18,10 @@ or intern the key only when tracing is enabled.
 focused tests cover current growth/shrink/max lengths, surrogate UTF16 lengths,
 positive zero bits, ordinary negative-zero fallback and23 collection/ID-reuse
 rounds.27 generated source OFF/ON cases pass pinned Node, including readonly
-length and prototype getter poison. Further broad gates are queued behind the
-active real fork benchmark; no main changes or full-battle claim are made.
+length and prototype getter poison. The final eight gates pass:27 fast-path A/B cases,15 string cases,11 array
+cases,47 closure cases,40 argument cases,40 control-flow cases,24 reflection
+cases and20,000 typed-array cases. All source hashes stayed fixed. No main
+changes or full-battle claim are made.
 
 The same-binary original Unit.update benchmark runs3 alternating paired trials
 of10,000 updates per mode. Every mode matches150,220 ordered events and full
@@ -29,3 +31,8 @@ paired improvements are about1.7%,23.1% and1.3%. Treat the stable observed gain
 as modest and require additional evidence before projecting real battle speed.
 The earlier regression report is retained: it motivated precomputing the site
 classification rather than comparing text on every enabled read.
+
+The final same-binary alternating component (seven paired trials,500,000 reads
+each) measured median gains of3.68x for arrays,2.30x for primitive strings and
+3.69x for boxed strings. These isolate virtual length reads; they do not predict
+battle throughput.
