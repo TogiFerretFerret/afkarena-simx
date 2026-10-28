@@ -18,6 +18,10 @@ closures borrow these Rust locals, so catch/finally and loop completions preserv
 the source order. Parameters and captured variables keep their environment cells
 and mapped-arguments behavior.
 
+The current arena retains all heap IDs and has no tracing collector. A future
+collector must include live generated Rust local Values in its root set; marking
+only environment cells would miss those live references.
+
 Validation commands:
 
 ```sh
