@@ -1,0 +1,1384 @@
+{
+  "version": 1,
+  "profileSucceeded": true,
+  "execution": {
+    "code": 1,
+    "signal": null
+  },
+  "expectedExit": 1,
+  "scope": "markers",
+  "startMarker": "one_battle_start:",
+  "endMarker": "one_battle_complete:",
+  "stackBytes": 32768,
+  "reportPrefix": "ONE_BATTLE_REPORT:",
+  "wallMs": 9121.309207,
+  "frequencyHz": 199,
+  "perf": {
+    "file": "work/downloads/perf/perf",
+    "sha256": "5261dcc63baf8f9d19e25161e9b5d6c074ed4fd9627e32a0483990f870ff5492"
+  },
+  "demangler": {
+    "file": "/usr/bin/c++filt",
+    "sha256": "7d54ea6797a5e8c69255f711b79577efd9934c3502c6edee4bc25b7dc7d97bd2"
+  },
+  "binary": {
+    "file": "work/rust-one-battle-check/2026-10-28T18-40-55.250Z/one-battle",
+    "sha256": "fee009869b16df3bf1d2854bd3a914c6f34ee524ce10460e8f68bc4a199bade1",
+    "unchanged": true
+  },
+  "recordArgs": [
+    "record",
+    "--clockid",
+    "mono",
+    "-e",
+    "cpu-clock:u",
+    "-F",
+    "199",
+    "--call-graph",
+    "dwarf,32768",
+    "-o",
+    "/workspace/afkarena-simx/work/rust-program-perf/2026-10-28T19-28-18.217Z.data",
+    "--delay=-1",
+    "--control",
+    "fd:3,4",
+    "--",
+    "/workspace/afkarena-simx/work/rust-one-battle-check/2026-10-28T18-40-55.250Z/one-battle"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/rust-program-perf/empty-home",
+    "LANG": "C",
+    "TZ": "UTC",
+    "RUST_PORT_TRACE": "0"
+  },
+  "markers": [
+    {
+      "line": "unit_start:0",
+      "kind": null,
+      "observerElapsedMs": 34.93787100000003
+    },
+    {
+      "line": "unit_finished:0",
+      "kind": null,
+      "observerElapsedMs": 299.32342
+    },
+    {
+      "line": "unit_start:1",
+      "kind": null,
+      "observerElapsedMs": 299.32943900000004
+    },
+    {
+      "line": "unit_finished:1",
+      "kind": null,
+      "observerElapsedMs": 308.95892900000007
+    },
+    {
+      "line": "unit_start:2",
+      "kind": null,
+      "observerElapsedMs": 308.96790200000004
+    },
+    {
+      "line": "unit_finished:2",
+      "kind": null,
+      "observerElapsedMs": 317.74918099999996
+    },
+    {
+      "line": "unit_start:3",
+      "kind": null,
+      "observerElapsedMs": 317.756903
+    },
+    {
+      "line": "unit_finished:3",
+      "kind": null,
+      "observerElapsedMs": 331.173738
+    },
+    {
+      "line": "unit_start:4",
+      "kind": null,
+      "observerElapsedMs": 331.23213400000003
+    },
+    {
+      "line": "unit_finished:4",
+      "kind": null,
+      "observerElapsedMs": 341.19704900000005
+    },
+    {
+      "line": "unit_start:5",
+      "kind": null,
+      "observerElapsedMs": 341.20204600000005
+    },
+    {
+      "line": "unit_finished:5",
+      "kind": null,
+      "observerElapsedMs": 358.780869
+    },
+    {
+      "line": "unit_start:6",
+      "kind": null,
+      "observerElapsedMs": 358.784774
+    },
+    {
+      "line": "one_battle_start:objects:1168507",
+      "kind": "start",
+      "observerElapsedMs": 3142.619381
+    },
+    {
+      "line": "one_battle_complete:elapsed_ms:5292.772945000001:objects:1570942",
+      "kind": "end",
+      "observerElapsedMs": 8435.357485
+    }
+  ],
+  "control": [
+    {
+      "operation": "enable",
+      "observerElapsedMs": 3142.675293
+    },
+    {
+      "operation": "disable",
+      "observerElapsedMs": 8435.389422
+    }
+  ],
+  "acknowledgments": [
+    {
+      "text": "ack\n\u0000",
+      "observerElapsedMs": 3147.049303
+    },
+    {
+      "text": "ack\n\u0000",
+      "observerElapsedMs": 8438.925018
+    }
+  ],
+  "acknowledgmentCount": 2,
+  "controlValid": true,
+  "dataBytes": 34086520,
+  "sampled": 1001,
+  "lostSamples": "0",
+  "estimatedSampledUserCpuNs": "5030150125",
+  "selfGroups": [
+    {
+      "name": "Rust JavaScript semantics runtime",
+      "samples": 690,
+      "periodNs": "3467336250",
+      "percent": 68.93106893106894
+    },
+    {
+      "name": "Other Rust and system code",
+      "samples": 111,
+      "periodNs": "557788875",
+      "percent": 11.08891108891109
+    },
+    {
+      "name": "Unresolved",
+      "samples": 85,
+      "periodNs": "427135625",
+      "percent": 8.491508491508492
+    },
+    {
+      "name": "Generated source execution",
+      "samples": 65,
+      "periodNs": "326633125",
+      "percent": 6.4935064935064934
+    },
+    {
+      "name": "Allocation, collections and memory",
+      "samples": 50,
+      "periodNs": "251256250",
+      "percent": 4.995004995004995
+    }
+  ],
+  "topSelf": [
+    {
+      "symbol": "<js_runtime::heap::Object>::own",
+      "dso": "one-battle",
+      "samples": 110,
+      "periodNs": "552763750",
+      "rawSymbol": "_RNvMs2_NtCsddBioDaU7Da_10js_runtime4heapNtB5_6Object3own",
+      "percent": 10.989010989010989
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::intern_utf16",
+      "dso": "one-battle",
+      "samples": 77,
+      "periodNs": "386934625",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime12intern_utf16",
+      "percent": 7.6923076923076925
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::static_string",
+      "dso": "one-battle",
+      "samples": 47,
+      "periodNs": "236180875",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime12literal_poolNtNtB6_7runtime7Runtime13static_string",
+      "percent": 4.695304695304696
+    },
+    {
+      "symbol": "<core::hash::sip::Hasher<core::hash::sip::Sip13Rounds> as core::hash::Hasher>::write",
+      "dso": "one-battle",
+      "samples": 41,
+      "periodNs": "206030125",
+      "rawSymbol": "_RNvXs3_NtNtCskADBYZwJmSU_4core4hash3sipINtB5_6HasherNtB5_11Sip13RoundsENtB7_6Hasher5writeCsddBioDaU7Da_10js_runtime.llvm.17533478849139948811",
+      "percent": 4.095904095904096
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::intern",
+      "dso": "one-battle",
+      "samples": 40,
+      "periodNs": "201005000",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime6intern",
+      "percent": 3.996003996003996
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::resolve_binding",
+      "dso": "one-battle",
+      "samples": 37,
+      "periodNs": "185929625",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime15resolve_binding",
+      "percent": 3.6963036963036964
+    },
+    {
+      "symbol": "0x000000000017221a",
+      "dso": "libc.so.6",
+      "samples": 36,
+      "periodNs": "180904500",
+      "rawSymbol": "0x000000000017221a",
+      "percent": 3.5964035964035963
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_inner::<js_runtime::heap::KeyInput>",
+      "dso": "one-battle",
+      "samples": 32,
+      "periodNs": "160804000",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime9get_innerNtNtB7_4heap8KeyInputEB7_.llvm.1063182952148535991",
+      "percent": 3.196803196803197
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&str>",
+      "dso": "one-battle",
+      "samples": 22,
+      "periodNs": "110552750",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneReECsddBioDaU7Da_10js_runtime",
+      "percent": 2.197802197802198
+    },
+    {
+      "symbol": "battle_unit_0_part_0011::js_function_1017::{closure#0}",
+      "dso": "one-battle",
+      "samples": 20,
+      "periodNs": "100502500",
+      "rawSymbol": "_RNCNvCs1sA1d2Pj5rg_23battle_unit_0_part_001116js_function_10170B3_",
+      "percent": 1.998001998001998
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::typed_own_descriptor",
+      "dso": "one-battle",
+      "samples": 19,
+      "periodNs": "95477375",
+      "rawSymbol": "_RNvMs0_NtCsddBioDaU7Da_10js_runtime6binaryNtNtB7_7runtime7Runtime20typed_own_descriptor",
+      "percent": 1.898101898101898
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::own_descriptor",
+      "dso": "one-battle",
+      "samples": 19,
+      "periodNs": "95477375",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime14own_descriptor",
+      "percent": 1.898101898101898
+    },
+    {
+      "symbol": "ryu_js::d2s::d2d",
+      "dso": "one-battle",
+      "samples": 19,
+      "periodNs": "95477375",
+      "rawSymbol": "_RNvNtCsjij2NuT51gt_6ryu_js3d2s3d2d",
+      "percent": 1.898101898101898
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "one-battle",
+      "samples": 18,
+      "periodNs": "90452250",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECs1sA1d2Pj5rg_23battle_unit_0_part_0011",
+      "percent": 1.7982017982017982
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::read_binding",
+      "dso": "one-battle",
+      "samples": 16,
+      "periodNs": "80402000",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime12read_binding",
+      "percent": 1.5984015984015985
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::call_value",
+      "dso": "one-battle",
+      "samples": 16,
+      "periodNs": "80402000",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime8closuresNtNtB6_7runtime7Runtime10call_value",
+      "percent": 1.5984015984015985
+    },
+    {
+      "symbol": "malloc",
+      "dso": "libc.so.6",
+      "samples": 16,
+      "periodNs": "80402000",
+      "rawSymbol": "malloc",
+      "percent": 1.5984015984015985
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::to_property_key",
+      "dso": "one-battle",
+      "samples": 15,
+      "periodNs": "75376875",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime15to_property_key",
+      "percent": 1.4985014985014986
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::binary",
+      "dso": "one-battle",
+      "samples": 14,
+      "periodNs": "70351750",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime5valueNtNtB6_7runtime7Runtime6binary",
+      "percent": 1.3986013986013985
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&(u8, usize, usize)>",
+      "dso": "one-battle",
+      "samples": 13,
+      "periodNs": "65326625",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneRThjjEECsddBioDaU7Da_10js_runtime",
+      "percent": 1.2987012987012987
+    },
+    {
+      "symbol": "<hashbrown::raw::RawTable<(js_runtime::value::ObjectId, js_runtime::value::FunctionId)>>::reserve_rehash::<hashbrown::map::make_hasher<js_runtime::value::ObjectId, js_runtime::value::FunctionId, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>::{closure#0}>",
+      "dso": "one-battle",
+      "samples": 12,
+      "periodNs": "60301500",
+      "rawSymbol": "_RINvMs6_NtCs3BTM885nGDo_9hashbrown3rawINtB6_8RawTableTNtNtCsddBioDaU7Da_10js_runtime5value8ObjectIdNtBS_10FunctionIdEE14reserve_rehashNCINvNtB8_3map11make_hasherBQ_B1z_INtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBU_7id_hash8IdHasherEE0EBU_",
+      "percent": 1.1988011988011988
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::to_string",
+      "dso": "one-battle",
+      "samples": 12,
+      "periodNs": "60301500",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime5valueNtNtB6_7runtime7Runtime9to_string",
+      "percent": 1.1988011988011988
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::typed_get",
+      "dso": "one-battle",
+      "samples": 11,
+      "periodNs": "55276375",
+      "rawSymbol": "_RNvMs0_NtCsddBioDaU7Da_10js_runtime6binaryNtNtB7_7runtime7Runtime9typed_get",
+      "percent": 1.098901098901099
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::assign",
+      "dso": "one-battle",
+      "samples": 11,
+      "periodNs": "55276375",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime6assign",
+      "percent": 1.098901098901099
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "one-battle",
+      "samples": 10,
+      "periodNs": "50251250",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECs6YrzbFTgCmU_23battle_unit_0_part_0023",
+      "percent": 0.999000999000999
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::write_binding",
+      "dso": "one-battle",
+      "samples": 10,
+      "periodNs": "50251250",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime13write_binding",
+      "percent": 0.999000999000999
+    },
+    {
+      "symbol": "cfree",
+      "dso": "libc.so.6",
+      "samples": 10,
+      "periodNs": "50251250",
+      "rawSymbol": "cfree",
+      "percent": 0.999000999000999
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::declare",
+      "dso": "one-battle",
+      "samples": 9,
+      "periodNs": "45226125",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime7declare",
+      "percent": 0.8991008991008991
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::object_id",
+      "dso": "one-battle",
+      "samples": 9,
+      "periodNs": "45226125",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime9object_id",
+      "percent": 0.8991008991008991
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&[u16]>",
+      "dso": "one-battle",
+      "samples": 8,
+      "periodNs": "40201000",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneRStECsddBioDaU7Da_10js_runtime",
+      "percent": 0.7992007992007992
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::child_env",
+      "dso": "one-battle",
+      "samples": 8,
+      "periodNs": "40201000",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime9child_env",
+      "percent": 0.7992007992007992
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::has_property::<js_runtime::value::Value>",
+      "dso": "one-battle",
+      "samples": 7,
+      "periodNs": "35175875",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime12has_propertyNtNtB7_5value5ValueEB7_",
+      "percent": 0.6993006993006993
+    },
+    {
+      "symbol": "<hashbrown::map::HashMap<js_runtime::value::StringId, usize, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>>::insert",
+      "dso": "one-battle",
+      "samples": 7,
+      "periodNs": "35175875",
+      "rawSymbol": "_RNvMs1_NtCs3BTM885nGDo_9hashbrown3mapINtB5_7HashMapNtNtCsddBioDaU7Da_10js_runtime5value8StringIdjINtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBR_7id_hash8IdHasherEE6insertBR_",
+      "percent": 0.6993006993006993
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "one-battle",
+      "samples": 6,
+      "periodNs": "30150750",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECs1ygXBa4tZu9_23battle_unit_0_part_0027",
+      "percent": 0.5994005994005994
+    },
+    {
+      "symbol": "<alloc::vec::Vec<u16> as alloc::vec::spec_from_iter_nested::SpecFromIterNested<u16, core::str::iter::EncodeUtf16>>::from_iter",
+      "dso": "one-battle",
+      "samples": 6,
+      "periodNs": "30150750",
+      "rawSymbol": "_RNvXNtNtCsgFX3jaOk65H_5alloc3vec21spec_from_iter_nestedINtB4_3VectEINtB2_18SpecFromIterNestedtNtNtNtCskADBYZwJmSU_4core3str4iter11EncodeUtf16E9from_iterCsddBioDaU7Da_10js_runtime",
+      "percent": 0.5994005994005994
+    },
+    {
+      "symbol": "0x0000000000172221",
+      "dso": "libc.so.6",
+      "samples": 6,
+      "periodNs": "30150750",
+      "rawSymbol": "0x0000000000172221",
+      "percent": 0.5994005994005994
+    },
+    {
+      "symbol": "0x0000000000172227",
+      "dso": "libc.so.6",
+      "samples": 6,
+      "periodNs": "30150750",
+      "rawSymbol": "0x0000000000172227",
+      "percent": 0.5994005994005994
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "one-battle",
+      "samples": 5,
+      "periodNs": "25125625",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECsf6ZG9qo85I5_23battle_unit_0_part_0032",
+      "percent": 0.4995004995004995
+    },
+    {
+      "symbol": "<alloc::vec::Vec<u16>>::extend_desugared::<core::str::iter::EncodeUtf16>",
+      "dso": "one-battle",
+      "samples": 5,
+      "periodNs": "25125625",
+      "rawSymbol": "_RINvMsk_NtCsgFX3jaOk65H_5alloc3vecINtB6_3VectE16extend_desugaredNtNtNtCskADBYZwJmSU_4core3str4iter11EncodeUtf16ECsddBioDaU7Da_10js_runtime",
+      "percent": 0.4995004995004995
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&js_runtime::heap::PropertyKey>",
+      "dso": "one-battle",
+      "samples": 5,
+      "periodNs": "25125625",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneRNtNtCsddBioDaU7Da_10js_runtime4heap11PropertyKeyEB1J_",
+      "percent": 0.4995004995004995
+    }
+  ],
+  "sourceMapping": [
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1611::{closure#0}::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNvCs6YrzbFTgCmU_23battle_unit_0_part_002316js_function_161100s_0s_00s0_000s0_0Bj_",
+      "unit": 0,
+      "functionId": 1611,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "utf16Start": 1271038,
+      "utf16End": 1271900,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#13}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_181800s_00s8_000sb_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#22}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_181800s_00s8_000sk_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0009::js_function_792::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#1}::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNCNCNCNCNvCsfW6BMGpTIM0_23battle_unit_0_part_000915js_function_7920s_0s_00s_00Bd_",
+      "unit": 0,
+      "functionId": 792,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+      "utf16Start": 130685,
+      "utf16End": 131346,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1613::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#2}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNCNCNCNvCs6YrzbFTgCmU_23battle_unit_0_part_002316js_function_161300s_00s0_0Bb_",
+      "unit": 0,
+      "functionId": 1613,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+      "utf16Start": 1272327,
+      "utf16End": 1273178,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_2009::{closure#0}::{closure#1}::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_20090s_00B7_",
+      "unit": 0,
+      "functionId": 2009,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2f0bebd5580b6249ec97cb008b64282452fc24245e101be486489bbb81e486f4",
+      "utf16Start": 1385307,
+      "utf16End": 1385419,
+      "name": "r",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0011::js_function_1030::{closure#0}::{closure#3}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNvCs1sA1d2Pj5rg_23battle_unit_0_part_001116js_function_10300s1_0B5_",
+      "unit": 0,
+      "functionId": 1030,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "f9fff46f451d0d0505e14461bec15a1bccaea75c2646c2d4a174f1f2bbeb7653",
+      "utf16Start": 201289,
+      "utf16End": 201529,
+      "name": "__nativeBits",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1613::{closure#0}::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNvCs6YrzbFTgCmU_23battle_unit_0_part_002316js_function_161300B5_",
+      "unit": 0,
+      "functionId": 1613,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+      "utf16Start": 1272327,
+      "utf16End": 1273178,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1614::{closure#0}::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNvCs6YrzbFTgCmU_23battle_unit_0_part_002316js_function_161400B5_",
+      "unit": 0,
+      "functionId": 1614,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+      "utf16Start": 1273195,
+      "utf16End": 1273860,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0022::js_function_1547::{closure#0}::{closure#3}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNvCsazXP0tu9qPk_23battle_unit_0_part_002216js_function_15470s1_0B5_",
+      "unit": 0,
+      "functionId": 1547,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5e90f7af880bdcd544dc5e32311822cb1dd8412b31f4ed735cbc2fb2f1e23367",
+      "utf16Start": 1251969,
+      "utf16End": 1252909,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0009::js_function_790::{closure#0}::{closure#4}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNvCsfW6BMGpTIM0_23battle_unit_0_part_000915js_function_7900s2_0B5_",
+      "unit": 0,
+      "functionId": 790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "utf16Start": 130077,
+      "utf16End": 130644,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0011::js_function_1017::{closure#0}",
+      "dso": "one-battle",
+      "samples": 20,
+      "periodNs": "100502500",
+      "rawSymbol": "_RNCNvCs1sA1d2Pj5rg_23battle_unit_0_part_001116js_function_10170B3_",
+      "unit": 0,
+      "functionId": 1017,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911",
+      "utf16Start": 169662,
+      "utf16End": 171201,
+      "name": "__nativeExpose",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1611::{closure#0}",
+      "dso": "one-battle",
+      "samples": 2,
+      "periodNs": "10050250",
+      "rawSymbol": "_RNCNvCs6YrzbFTgCmU_23battle_unit_0_part_002316js_function_16110B3_",
+      "unit": 0,
+      "functionId": 1611,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "utf16Start": 1271038,
+      "utf16End": 1271900,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0013::js_function_1094::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNvCs8zDLZ4BWS6t_23battle_unit_0_part_001316js_function_10940B3_",
+      "unit": 0,
+      "functionId": 1094,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "69d50166bd10dbe12c097c22d9c43060b31cd3cf6e01af5628b2b0c80b51d978",
+      "utf16Start": 579469,
+      "utf16End": 579738,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0029::js_function_1949::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNvCs99UnJg0n1Np_23battle_unit_0_part_002916js_function_19490B3_",
+      "unit": 0,
+      "functionId": 1949,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "af83cd1388f16244f134b79c3b18d8faf083cfd7a62713d0e55e5da3f9c975ec",
+      "utf16Start": 1366153,
+      "utf16End": 1366345,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_178::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1780B3_",
+      "unit": 0,
+      "functionId": 178,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9",
+      "utf16Start": 25850,
+      "utf16End": 26395,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1775::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNvCsfGWaUnMaqwR_23battle_unit_0_part_002616js_function_17750B3_",
+      "unit": 0,
+      "functionId": 1775,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "eb93e3b227fe9bad3e7037af3d3dab69ea7d8907725c0b88fd602b96c894ed25",
+      "utf16Start": 1316058,
+      "utf16End": 1316741,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0009::js_function_792::{closure#0}",
+      "dso": "one-battle",
+      "samples": 3,
+      "periodNs": "15075375",
+      "rawSymbol": "_RNCNvCsfW6BMGpTIM0_23battle_unit_0_part_000915js_function_7920B3_",
+      "unit": 0,
+      "functionId": 792,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+      "utf16Start": 130685,
+      "utf16End": 131346,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0021::js_function_1423::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNvCsgAm2sbtOSPv_23battle_unit_0_part_002116js_function_14230B3_",
+      "unit": 0,
+      "functionId": 1423,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ead95c8b47ebf309fcf8de9c6dc9a4ce55dbccf1b03acd7616631eccab242e9d",
+      "utf16Start": 1231133,
+      "utf16End": 1231275,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1663::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNvCskCMAmDWzX0F_23battle_unit_0_part_002416js_function_16630B3_",
+      "unit": 0,
+      "functionId": 1663,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c48098fb65fac2bd28f017351cb0c750848432cef089b4efbbdc3658b7a760cd",
+      "utf16Start": 1283591,
+      "utf16End": 1283904,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_104::{closure#0}",
+      "dso": "one-battle",
+      "samples": 2,
+      "periodNs": "10050250",
+      "rawSymbol": "_RNCNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_1040B3_",
+      "unit": 0,
+      "functionId": 104,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072",
+      "utf16Start": 17962,
+      "utf16End": 18126,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1827",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1827",
+      "unit": 0,
+      "functionId": 1827,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ac7c86e75e1ea32085532169355530ce4facae3183613818c47098fbd935ad8d",
+      "utf16Start": 1336106,
+      "utf16End": 1336435,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0006::js_function_575",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCs2kaCZmuFbXG_23battle_unit_0_part_000615js_function_575",
+      "unit": 0,
+      "functionId": 575,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5fd8fd921c57af52374f2b7a3f9b57d341f262b33adbc410b071d361e68f72f8",
+      "utf16Start": 85347,
+      "utf16End": 85439,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0036::js_function_2312",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCs4izFzIYLAxO_23battle_unit_0_part_003616js_function_2312",
+      "unit": 0,
+      "functionId": 2312,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "72e67e74ee892035a3b85eac0180affa794b4f9e199346a3b09eb9f7a7db4fa6",
+      "utf16Start": 1496162,
+      "utf16End": 1496195,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1600",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCs6YrzbFTgCmU_23battle_unit_0_part_002316js_function_1600",
+      "unit": 0,
+      "functionId": 1600,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c",
+      "utf16Start": 1266150,
+      "utf16End": 1266261,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1615",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCs6YrzbFTgCmU_23battle_unit_0_part_002316js_function_1615",
+      "unit": 0,
+      "functionId": 1615,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "638b3a54abee7fa12543b60786d2ae9dd737808baba83a0b2017468965e9e939",
+      "utf16Start": 1273874,
+      "utf16End": 1273981,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0029::js_function_1950",
+      "dso": "one-battle",
+      "samples": 2,
+      "periodNs": "10050250",
+      "rawSymbol": "_RNvCs99UnJg0n1Np_23battle_unit_0_part_002916js_function_1950",
+      "unit": 0,
+      "functionId": 1950,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c",
+      "utf16Start": 1366356,
+      "utf16End": 1366467,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_2009",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_2009",
+      "unit": 0,
+      "functionId": 2009,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2f0bebd5580b6249ec97cb008b64282452fc24245e101be486489bbb81e486f4",
+      "utf16Start": 1385307,
+      "utf16End": 1385419,
+      "name": "r",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0022::js_function_1543",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCsazXP0tu9qPk_23battle_unit_0_part_002216js_function_1543",
+      "unit": 0,
+      "functionId": 1543,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "fa29f99eec0ea95e5581a9804e89581105364133b4c2ec9af839153e9cfd8a36",
+      "utf16Start": 1251278,
+      "utf16End": 1251793,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0032::js_function_2040",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCsf6ZG9qo85I5_23battle_unit_0_part_003216js_function_2040",
+      "unit": 0,
+      "functionId": 2040,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "7b6c81af8706c58598faf1c0c3c101dbd9d354ad5ae4c739a141ec04fcfb7540",
+      "utf16Start": 1421677,
+      "utf16End": 1422039,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1775",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCsfGWaUnMaqwR_23battle_unit_0_part_002616js_function_1775",
+      "unit": 0,
+      "functionId": 1775,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "eb93e3b227fe9bad3e7037af3d3dab69ea7d8907725c0b88fd602b96c894ed25",
+      "utf16Start": 1316058,
+      "utf16End": 1316741,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1816",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCsfGWaUnMaqwR_23battle_unit_0_part_002616js_function_1816",
+      "unit": 0,
+      "functionId": 1816,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "81181e756d656bea3abf2d996e1dbdedb235413ccbe3f21a9a88fc1bd06127bd",
+      "utf16Start": 1327661,
+      "utf16End": 1327747,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1623",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCskCMAmDWzX0F_23battle_unit_0_part_002416js_function_1623",
+      "unit": 0,
+      "functionId": 1623,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "da7cacdad30022abe9f7223ab7afdca156be68b58a08f46c5ab5098d8a8c0b36",
+      "utf16Start": 1275786,
+      "utf16End": 1275864,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "f8f1d9f310772674a2be514932fee43bf3bf3df8b4e59eee6671faed371b9906"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0029::js_function_1521::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNvCsaRni6znFsMn_23battle_unit_1_part_002916js_function_15210B3_",
+      "unit": 1,
+      "functionId": 1521,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "8aafc63f4692bdce69c3820ba745c56adc2252e9cbc109bbd23dd2d880715d60",
+      "utf16Start": 522983,
+      "utf16End": 524032,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "6f1570408e33264056bdb6c92849b4a7dbbfbe0d59fb0cb40d8d8a94a9a532d5"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0000::js_function_3",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCs2gLyQP3hpAe_23battle_unit_1_part_000013js_function_3",
+      "unit": 1,
+      "functionId": 3,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "c2f66b6f02073349c4f8f4e9e09a7ac683628bd6964fff6f7ee9c735630cd554",
+      "utf16Start": 1606,
+      "utf16End": 1815,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "6f1570408e33264056bdb6c92849b4a7dbbfbe0d59fb0cb40d8d8a94a9a532d5"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0066::js_function_3195::{closure#0}::{closure#0}::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNCNCNvCs8UPVxLxqQW8_23battle_unit_2_part_006616js_function_3195000B7_",
+      "unit": 2,
+      "functionId": 3195,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "4880d82363748a7456ed7a5da3c043740fb48c355c5f982bc5976b99fda9383e",
+      "utf16Start": 1188148,
+      "utf16End": 1188906,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "44beb7016ea9a1a1114cbe92750f193a980d61d06ca13e39f47571633994d72f"
+      }
+    },
+    {
+      "symbol": "battle_unit_5_part_0016::js_function_760::{closure#0}",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNCNvCs2Utf3ponj9h_23battle_unit_5_part_001615js_function_7600B3_",
+      "unit": 5,
+      "functionId": 760,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "1992f6b1955d7fcedec1f9cdc4b1cfba669828ac790e1b434c2ddfa04749e647",
+      "utf16Start": 313235,
+      "utf16End": 314160,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-5/manifest.json",
+        "sha256": "afdf4cb644289c66e9a4609b8525f0ed29464d47a20d2e94977dd21571cc2e6b"
+      }
+    },
+    {
+      "symbol": "battle_unit_5_part_0016::js_function_785",
+      "dso": "one-battle",
+      "samples": 1,
+      "periodNs": "5025125",
+      "rawSymbol": "_RNvCs2Utf3ponj9h_23battle_unit_5_part_001615js_function_785",
+      "unit": 5,
+      "functionId": 785,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "98e2f78ca3519da0722783e397c69ac7370822bced34154cc2d25379d4c8a69e",
+      "utf16Start": 321653,
+      "utf16End": 324425,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-5/manifest.json",
+        "sha256": "afdf4cb644289c66e9a4609b8525f0ed29464d47a20d2e94977dd21571cc2e6b"
+      }
+    }
+  ],
+  "semanticReportMatched": true,
+  "firstDifference": null,
+  "reference": {
+    "file": "work/rust-new-battle-profile/oracle.json",
+    "sha256": "21071839a2cb1fefe7723602d9200eae83f2b6178de9dbdde905b47dfc624b1f"
+  },
+  "completed": 1,
+  "totalCallbacks": 15453,
+  "reports": [
+    {
+      "label": "leaf",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "inclusive",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "stacks",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "buildids",
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "record-stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.record-stdout.000.gz",
+          "bytes": 15867,
+          "sha256": "3c5eb5fbca74f753bbeeb4b2c22a9b5e6095f1a397e88e272cdc142e2ebb1757"
+        }
+      ],
+      "uncompressedBytes": 224856,
+      "uncompressedSha256": "b990dbdb086f3d8a89a6c927a29d64ecf9bd35909ea50dbd2a9f3d69c9553784",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "record-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.record-stderr.000.gz",
+          "bytes": 357,
+          "sha256": "5e03363ea22933a77eea4c3590c3071558f81fe3be19a9713796b768a7ecd3dc"
+        }
+      ],
+      "uncompressedBytes": 627,
+      "uncompressedSha256": "80b246dbbe30df7449ecd3a81846692d1ce3714698f73c19437f85405855e6ea",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.leaf.000.gz",
+          "bytes": 3975,
+          "sha256": "524d6738042d67efbdfbcd7d53a25088e3079234ed931c0d23124e1bd94614b6"
+        }
+      ],
+      "uncompressedBytes": 57272,
+      "uncompressedSha256": "483553c3acae20fcf53182c5b4a6f0d85ea60afa4854c67fda0a26ae09c5af5c",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.leaf-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.inclusive.000.gz",
+          "bytes": 234819,
+          "sha256": "f31dec99005e5c640271d7ce5a5014162d4be3daafb6858054b165f9568c857b"
+        }
+      ],
+      "uncompressedBytes": 5510589,
+      "uncompressedSha256": "b2542be15e7dabc6b8314c990329c8c47bff5abbb48f99d2789cd93a7ab24b4c",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.inclusive-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.stacks.000.gz",
+          "bytes": 331324,
+          "sha256": "14c458e6359eb1979db3e60da3825987c1b16291637fabedf5886ab198bd6f5c"
+        }
+      ],
+      "uncompressedBytes": 9915138,
+      "uncompressedSha256": "86cf9da7a1c670005318c0525fa17b69865204af267e32978256afe7177ada63",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.stacks-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.buildids.000.gz",
+          "bytes": 208,
+          "sha256": "d8cf31c4bc86bc3ffae0d4977d710287e0b675adfe2312ca27300879ff9fa42f"
+        }
+      ],
+      "uncompressedBytes": 254,
+      "uncompressedSha256": "909f9a1090ab461dffabc6fb6db0414b9312dcbee736ee555943e559bd20f992",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.buildids-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "data",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-28T19-28-18.217Z-rust-program-perf.data.000.gz",
+          "bytes": 6445975,
+          "sha256": "a23539535c26bb2347e7cd1f85e1310f5fed78fdbae8052e27e4a7b6764248f7"
+        }
+      ],
+      "uncompressedBytes": 34086520,
+      "uncompressedSha256": "ebb95b382f8b1a727d541ed0ca1e837dd01e8728cd6d6120bd7fb9d8ae3e68db",
+      "compression": "Concatenate chunks, then gunzip"
+    }
+  ],
+  "producer": {
+    "file": "tools/rust-port/profile-program.mjs",
+    "sha256": "8beacfc55954a388129641f017980f139e2f01406e6d614a704feff9cbc0df5d"
+  },
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "Sampling is externally enabled/disabled after observing the requested marker prefixes. Both control acknowledgments are required. Pipe/control latency and sample skid mean this approximates the wrapper interval rather than an exact source-clock boundary. Startup before start marker and external serialization after end marker are excluded; work inside the wrapper interval remains included.",
+    "Profiling changes execution time. No battles/sec or unprofiled millisecond inference is supported. A configured expected nonzero exit is diagnostic-only and never qualifies a complete normal workload.",
+    "Self groups classify linked symbol names and are disjoint. Inlined code is attributed to its containing native symbol; unresolved samples are retained. Inclusive report rows overlap.",
+    "Source mappings refer to exact function ranges in the frozen source modules; anonymous functions are not assigned invented mechanic names.",
+    "A matching supplied final reference is a separate semantic report check, not broad corpus or full-scene qualification. Without --reference, semanticReportMatched stays null."
+  ]
+}
