@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "passed": true,
+  "scope": "Fixed-period allocation stack samples from the exact full native battle diagnostic. Groups use the first stack frame mentioning js_runtime or battle_unit; generic container frames may therefore be grouped ahead of their caller. These are allocation-count samples, not CPU percentages, allocated-byte percentages or unbiased probability estimates. Observer allocations are excluded. Full report and host-input checks passed separately in the linked diagnostic.",
+  "diagnostic": {
+    "file": "/workspace/afkarena-simx/benchmarks/results/2026-10-28T21-22-31.989Z-rust-measured-allocations.json",
+    "sha256": "e5557c031f834b2a9012e08b00e09e1f091d88e92cf2d3c24c421af90271de5e"
+  },
+  "stderr": {
+    "file": "/workspace/afkarena-simx/benchmarks/results/2026-10-28T21-22-31.989Z-rust-measured-allocations.stderr.gz",
+    "sha256": "553a2c2f042c93f04a1e536fb1c8160bc75babb48382f785ba4a1ebe7bf10414",
+    "uncompressedSha256": "cf08e5c93fc738a03049530a1010efc071ea99b87122fd46098a9fd825a678c0"
+  },
+  "sampling": {
+    "file": "/workspace/afkarena-simx/tools/rust-port/allocation-stack-samples.rs",
+    "sha256": "69bf12db9290a438b7390b87ba8b67ddb7ff5680e0e4a4af02de6d0ff18825b1",
+    "everySuccessfulAllocation": 131072,
+    "scope": "Diagnostic backtraces sampled at fixed successful-allocation ordinals; observer allocations excluded by thread-local reentrancy guard. Fixed-period samples are indicative, not unbiased allocation attribution."
+  },
+  "samples": 654,
+  "totalSuccessfulAllocations": 85777099,
+  "groups": [
+    {
+      "frame": "js_runtime::builtins::key",
+      "samples": 346,
+      "percent": 52.90519877675841
+    },
+    {
+      "frame": "<js_runtime::runtime::Runtime>::to_string",
+      "samples": 145,
+      "percent": 22.171253822629968
+    },
+    {
+      "frame": "<js_runtime::runtime::Runtime>::array",
+      "samples": 56,
+      "percent": 8.562691131498472
+    },
+    {
+      "frame": "js_runtime::host::parse_int",
+      "samples": 35,
+      "percent": 5.351681957186544
+    },
+    {
+      "frame": "<alloc::vec::Vec<u8> as alloc::vec::spec_from_iter_nested::SpecFromIterNested<u8, core::iter::adapters::map::Map<core::slice::iter::Iter<u16>, js_runtime::value::string_to_number::{closure#3}>>>::from_iter",
+      "samples": 12,
+      "percent": 1.834862385321101
+    },
+    {
+      "frame": "<js_runtime::runtime::Runtime>::own_keys",
+      "samples": 9,
+      "percent": 1.3761467889908257
+    },
+    {
+      "frame": "<hashbrown::raw::RawTable<(js_runtime::heap::PropertyKey, ())>>::reserve_rehash::<hashbrown::map::make_hasher<js_runtime::heap::PropertyKey, (), std::hash::random::RandomState>::{closure#0}>",
+      "samples": 9,
+      "percent": 1.3761467889908257
+    },
+    {
+      "frame": "js_runtime::closures::function_apply",
+      "samples": 6,
+      "percent": 0.9174311926605505
+    },
+    {
+      "frame": "<js_runtime::runtime::Runtime>::arguments_object",
+      "samples": 5,
+      "percent": 0.764525993883792
+    },
+    {
+      "frame": "<alloc::raw_vec::RawVec<(js_runtime::value::FunctionId, usize)>>::grow_one",
+      "samples": 4,
+      "percent": 0.6116207951070336
+    },
+    {
+      "frame": "<hashbrown::raw::RawTable<(js_runtime::heap::PropertyKey, usize)>>::reserve_rehash::<hashbrown::map::make_hasher<js_runtime::heap::PropertyKey, usize, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>::{closure#0}>",
+      "samples": 4,
+      "percent": 0.6116207951070336
+    },
+    {
+      "frame": "<alloc::raw_vec::RawVec<core::option::Option<(js_runtime::heap::PropertyKey, js_runtime::heap::Descriptor)>>>::grow_one",
+      "samples": 4,
+      "percent": 0.6116207951070336
+    },
+    {
+      "frame": "js_runtime::regex::string_split",
+      "samples": 3,
+      "percent": 0.45871559633027525
+    },
+    {
+      "frame": "js_runtime::regex::string_replace",
+      "samples": 3,
+      "percent": 0.45871559633027525
+    },
+    {
+      "frame": "<js_runtime::runtime::Runtime>::binary",
+      "samples": 3,
+      "percent": 0.45871559633027525
+    },
+    {
+      "frame": "<js_runtime::lazy_arguments::ActiveArgumentsFrame>::new",
+      "samples": 3,
+      "percent": 0.45871559633027525
+    },
+    {
+      "frame": "<js_runtime::runtime::Runtime>::regex_builtin_exec",
+      "samples": 2,
+      "percent": 0.3058103975535168
+    },
+    {
+      "frame": "<js_runtime::runtime::Runtime>::set_function_name",
+      "samples": 2,
+      "percent": 0.3058103975535168
+    },
+    {
+      "frame": "<js_runtime::runtime::Runtime>::make_closure_with_flags",
+      "samples": 1,
+      "percent": 0.1529051987767584
+    },
+    {
+      "frame": "<js_runtime::runtime::Runtime>::bind_function",
+      "samples": 1,
+      "percent": 0.1529051987767584
+    },
+    {
+      "frame": "js_runtime::strings::source",
+      "samples": 1,
+      "percent": 0.1529051987767584
+    }
+  ]
+}

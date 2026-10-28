@@ -1,0 +1,14 @@
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `ordinal`
+  --> /workspace/afkarena-simx/work/rust-wall-profile/2026-10-28T21-21-32.483Z/main.rs:68:19
+   |
+68 |             DElet ordinal = ALLOCS.fetch_add(1, Ordering::Relaxed) + 1; sample_allocation(ordinal);
+   |                   ^^^^^^^ expected one of 8 possible tokens
+
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `ordinal`
+  --> /workspace/afkarena-simx/work/rust-wall-profile/2026-10-28T21-21-32.483Z/main.rs:76:19
+   |
+76 |             RElet ordinal = ALLOCS.fetch_add(1, Ordering::Relaxed) + 1; sample_allocation(ordinal);
+   |                   ^^^^^^^ expected one of 8 possible tokens
+
+error: aborting due to 2 previous errors
+

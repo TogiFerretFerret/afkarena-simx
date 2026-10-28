@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "prepared": true,
+  "ranWorkload": false,
+  "baseline": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-full-program-next.json",
+    "sha256": "d750820c48ef5a7ce4d059b072113fa0723d19a2f8bb2bc12b74d81c39bf1d63"
+  },
+  "baselineBuildProof": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-next-build.json",
+    "sha256": "048e960f49cfbf8e28d770f63169aaae89dca392e625dfc766eb3263ce3c3afd",
+    "valid": true,
+    "reasons": [],
+    "inputCount": 1418,
+    "changedInputs": [],
+    "buildProfile": "release"
+  },
+  "manifest": {
+    "file": "/workspace/afkarena-simx/work/rust-battle-full/program-manifest.json",
+    "sha256": "34a4d936fa6d824fef2ad91c676aa2e9f993bb5e9819a997d00923b6cc3114cc"
+  },
+  "sourceGuard": {
+    "runSourceSha256": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+    "wallNowCalls": 2,
+    "battles": 20,
+    "warmup": 3,
+    "capture": "final"
+  },
+  "libraries": [
+    {
+      "name": "js_runtime",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+      "mtimeMs": 1793220222083.5388,
+      "sha256": "c1b37e121caf3a3bd12a9f3343805e6c77677a178ebd9e5d5f2115bd06888932",
+      "candidateCount": 2
+    },
+    {
+      "name": "battle_unit_0",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+      "mtimeMs": 1793220961791.4185,
+      "sha256": "b93f8e9eb04134c56c369321182239a03587aa6f96019f3fc574f011ed5189ce",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_1",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+      "mtimeMs": 1793220961706.3223,
+      "sha256": "21e38b7e949432a7a8c3ed0951e9597d71c2ad80bf223f6124b04a641c420098",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_2",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+      "mtimeMs": 1793220961751.4548,
+      "sha256": "89662fd4e9effd17dfc3cc60fe49d804d0241e315a42c35584c59f199820b6be",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_3",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+      "mtimeMs": 1793220961830.9048,
+      "sha256": "066c6cecfa5a0f50afd01637e70dc8b7f79de02e9b5362d140d576eaf2149370",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_4",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+      "mtimeMs": 1793220961619.0186,
+      "sha256": "10bf282583ae62630e23dbee5a496d85b018257e34beeafde0deb70ad61c63da",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_5",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+      "mtimeMs": 1793220961881.7876,
+      "sha256": "20d34e72cbc2b9aceefd0a3276641e46c91a5c5f63de92c9e8ce16a4af2b3d59",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_6",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+      "mtimeMs": 1793220961668.805,
+      "sha256": "dce403217446098c90a24c18bcec6649a35a760ed2c006645fddf4bbfa0a730c",
+      "candidateCount": 4
+    }
+  ],
+  "rlibSelectionPolicy": "Newest mtime per top-level crate in the completed frozen target; selected hashes unchanged while linking. No core rebuild.",
+  "wrapper": {
+    "file": "/workspace/afkarena-simx/work/rust-wall-profile/2026-10-28T21-21-44.722Z/main.rs",
+    "sha256": "4287e42b4f074d575a1314de405f0f1a54a0663f49d3358fa3e107c0cca19468",
+    "originalFile": "tools/rust-port/program-parallel-benchmark.rs",
+    "originalSha256": "3d6b2ccdd31023286c444d6a472026287ff00f89f4e5d2fb5cf00e4df0297c4f",
+    "hostFile": "/workspace/afkarena-simx/work/rust-wall-profile/2026-10-28T21-21-44.722Z/program_host.rs",
+    "hostSha256": "8c7fbb1bb7f2351c5679e342b05ee7e96bdd20fd4eedb8bea7e58e81e453e104"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/rust-wall-profile/2026-10-28T21-21-44.722Z/wall-profile",
+    "sha256": "68e28291acbe0fecb96701c7b7668d6005766ea0f1269c756150a85bd1aa9fdc"
+  },
+  "rustc": {
+    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
+  },
+  "command": [
+    "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "--edition=2024",
+    "-O",
+    "/workspace/afkarena-simx/work/rust-wall-profile/2026-10-28T21-21-44.722Z/main.rs",
+    "-L",
+    "dependency=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps",
+    "--extern",
+    "js_runtime=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+    "--extern",
+    "battle_unit_0=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+    "--extern",
+    "battle_unit_1=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+    "--extern",
+    "battle_unit_2=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+    "--extern",
+    "battle_unit_3=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+    "--extern",
+    "battle_unit_4=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+    "--extern",
+    "battle_unit_5=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+    "--extern",
+    "battle_unit_6=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+    "-o",
+    "/workspace/afkarena-simx/work/rust-wall-profile/2026-10-28T21-21-44.722Z/wall-profile"
+  ],
+  "requiredEnvironment": {
+    "RUST_PORT_TRACE": "0"
+  },
+  "markers": {
+    "trace": "PROFILE_TRACE:0",
+    "start": "PARALLEL_WALL_NOW:0:<UnixNs>",
+    "end": "PARALLEL_WALL_NOW:1:<UnixNs>",
+    "gc": "PARALLEL_GC_COLLECTIONS:23"
+  },
+  "scope": "One process only. Original20measured/3warmup source unchanged. Host wallNow wrapper delegates originalDate.now. Driver rejects any RUST_PORT_TRACE value other than0 before constructing Runtime. Prepared artifact only; perf owner executes and checks full report against baseline.referenceReport separately. Instrumented allocator diagnostic only; validate full output against baseline reference before using counts.",
+  "basePreparation": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-allocation-profile-2026-10-28T21-21-44.676Z.base.json",
+    "sha256": "999ea57a43e8c578b3f5615e68f38a4dc48167a65e9b8490dc38b346a1210f1e"
+  },
+  "allocationCounter": {
+    "file": "/workspace/afkarena-simx/tools/rust-port/measured-allocator.rs",
+    "sha256": "ea89d9e79d0a094ba1c368f596ec6f5499310b1419caed29167d2d2caa5aff1e",
+    "marker": "MEASURED_ALLOCATIONS:",
+    "window": "Twenty original measured battles only, after three original warmups. First wallNow bookkeeping excluded; second callback entry disables counter.",
+    "counts": "Successful alloc/alloc_zeroed calls and requested bytes; dealloc calls and layout bytes; successful realloc calls and old/new requested bytes separately. Includes original source GC within measured loop. Not live/peak memory, not an uninstrumented speed result."
+  },
+  "allocationSampling": {
+    "file": "/workspace/afkarena-simx/tools/rust-port/allocation-stack-samples.rs",
+    "sha256": "69bf12db9290a438b7390b87ba8b67ddb7ff5680e0e4a4af02de6d0ff18825b1",
+    "everySuccessfulAllocation": 131072,
+    "scope": "Diagnostic backtraces sampled at fixed successful-allocation ordinals; observer allocations excluded by thread-local reentrancy guard. Fixed-period samples are indicative, not unbiased allocation attribution."
+  }
+}

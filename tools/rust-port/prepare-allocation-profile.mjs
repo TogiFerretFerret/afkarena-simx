@@ -15,7 +15,18 @@ assert.equal(prepared.status,0,prepared.stderr);
 const proof=JSON.parse(await readFile(preparation));
 const original=await readFile(proof.wrapper.file,'utf8');
 const allocatorFile=resolve(root,'tools/rust-port/measured-allocator.rs');
-const allocator=await readFile(allocatorFile,'utf8');
+let allocator=await readFile(allocatorFile,'utf8');
+const sampled=process.argv.includes('--sample-stacks');
+let sampling=null;
+if(sampled){
+  const file=resolve(root,'tools/rust-port/allocation-stack-samples.rs');
+  const bytes=await readFile(file,'utf8');
+  sampling={file,sha256:sha(bytes),everySuccessfulAllocation:131072,scope:'Diagnostic backtraces sampled at fixed successful-allocation ordinals; observer allocations excluded by thread-local reentrancy guard. Fixed-period samples are indicative, not unbiased allocation attribution.'};
+  allocator=allocator.replaceAll('COUNTING.load(Ordering::Relaxed)','COUNTING.load(Ordering::Relaxed) && !observer_active()');
+  allocator=allocator.replaceAll('            ALLOCS.fetch_add(1, Ordering::Relaxed);','            let ordinal = ALLOCS.fetch_add(1, Ordering::Relaxed) + 1; sample_allocation(ordinal);');
+  allocator=allocator.replace('COUNTING.store(false, Ordering::Relaxed);','COUNTING.store(false, Ordering::Relaxed); dump_allocation_samples();');
+  allocator+='\n'+bytes;
+}
 const before=' let original=rt.lookup(env,"parallelOriginalWallNow")?;';
 assert.equal(original.split(before).length,2);
 // Disable before any work in the second wallNow callback. Enable after all
@@ -34,7 +45,8 @@ for(const row of proof.libraries)assert.equal(sha(await readFile(row.file)),row.
 proof.basePreparation={file:preparation,sha256:sha(await readFile(preparation))};
 proof.wrapper.sha256=sha(wrapper);
 proof.binary.sha256=sha(await readFile(proof.binary.file));
-proof.allocationCounter={file:allocatorFile,sha256:sha(allocator),marker:'MEASURED_ALLOCATIONS:',window:'Twenty original measured battles only, after three original warmups. First wallNow bookkeeping excluded; second callback entry disables counter.',counts:'Successful alloc/alloc_zeroed calls and requested bytes; dealloc calls and layout bytes; successful realloc calls and old/new requested bytes separately. Includes original source GC within measured loop. Not live/peak memory, not an uninstrumented speed result.'};
+proof.allocationCounter={file:allocatorFile,sha256:sha(await readFile(allocatorFile)),marker:'MEASURED_ALLOCATIONS:',window:'Twenty original measured battles only, after three original warmups. First wallNow bookkeeping excluded; second callback entry disables counter.',counts:'Successful alloc/alloc_zeroed calls and requested bytes; dealloc calls and layout bytes; successful realloc calls and old/new requested bytes separately. Includes original source GC within measured loop. Not live/peak memory, not an uninstrumented speed result.'};
+proof.allocationSampling=sampling;
 proof.scope+=' Instrumented allocator diagnostic only; validate full output against baseline reference before using counts.';
 await writeFile(output,JSON.stringify(proof,null,2)+'\n');
 console.log(JSON.stringify({output,binary:proof.binary,requiredEnvironment:proof.requiredEnvironment}));

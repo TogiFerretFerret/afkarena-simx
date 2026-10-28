@@ -16,7 +16,7 @@ const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const proofBytes=await readFile(proofFile),proof=JSON.parse(proofBytes);
 const baseline=JSON.parse(await readFile(proof.baseline.file));
 assert.equal(baseline.passed,true);
-const inputs=[proof.binary,proof.wrapper,...proof.libraries,proof.allocationCounter];
+const inputs=[proof.binary,proof.wrapper,...proof.libraries,proof.allocationCounter,...(proof.allocationSampling?[proof.allocationSampling]:[])];
 for(const row of inputs)assert.equal(sha(await readFile(row.file)),row.sha256,'Changed input '+row.file);
 const stdoutFile=prefix+'.stdout',stderrFile=prefix+'.stderr';
 const execution=await runMonitored([proof.binary.file],{cwd:root,env:{...process.env,RUST_PORT_TRACE:'0'},stdoutFile,stderrFile,maxRssKiB:8*1024*1024,timeoutMs:180000});
