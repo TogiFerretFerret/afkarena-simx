@@ -62,3 +62,30 @@ rust_binary(
     edition = "2024",
     deps = [":battle_core"],
 )
+
+rust_binary(
+    name = "unit_skill_runtime_check",
+    srcs = ["examples/unit_skill_runtime_check.rs"],
+    crate_root = "examples/unit_skill_runtime_check.rs",
+    edition = "2024",
+    deps = [":battle_core"],
+)
+
+rust_binary(
+    name = "engine_unit_runtime_check",
+    srcs = [
+        "examples/engine_unit_runtime_check.rs",
+        "examples/unit_skill_runtime_check.rs",
+    ],
+    crate_root = "examples/engine_unit_runtime_check.rs",
+    edition = "2024",
+    deps = [":battle_core"],
+)
+
+rust_binary(
+    name = "engine_runtime_check",
+    srcs = ["examples/engine_runtime_check.rs"],
+    crate_root = "examples/engine_runtime_check.rs",
+    edition = "2024",
+    deps = [":battle_core"],
+)
