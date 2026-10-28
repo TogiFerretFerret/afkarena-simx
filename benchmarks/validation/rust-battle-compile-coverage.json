@@ -1,16 +1,16 @@
 {
   "version": 1,
   "passed": true,
-  "complete": false,
+  "complete": true,
   "fixture": {
     "file": "benchmarks/results/2026-10-27T21-55-08.845Z-native-warm23-no-proxy.json",
     "sha256": "277f66410e5b0971404ca70036d370e42c5b7ec6e143c6ec0a7bd1a99effb6c4"
   },
   "sources": {
-    "tools/rust-port/audit-battle-coverage.mjs": "a6e34774b485c3f0e848565c651c35f6baf081c277f57065ac12fb1db1df01f6",
-    "tools/rust-port/compile.mjs": "a6feea53f1892f330c9ae9f5252f909412d8234ddd2c567525ec0c663e33dc12",
-    "tools/rust-port/expressions.mjs": "7044df8862a14e8910bf3fdd4393b9201c47f8a6e0d4eb2422ebafc95aad43ae",
-    "tools/rust-port/statements.mjs": "4572c7fd6b722f3049637083918abc79365528b0d2b026708674081302c8b857"
+    "tools/rust-port/audit-battle-coverage.mjs": "48e48a3a402c4602763b659a18a1bd8851d8c312564ac5b810a7cb149929afc4",
+    "tools/rust-port/compile.mjs": "d9f2d8b1b04e32a019109c215865e247b0952aa150352d4a8d09eab89f7883ca",
+    "tools/rust-port/expressions.mjs": "2b68a0ee1d2236e768c0ca99118e1c398213e647dd2d9105adc59154f5a1952e",
+    "tools/rust-port/statements.mjs": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08"
   },
   "units": [
     {
@@ -18,13 +18,14 @@
       "file": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
       "sha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
       "sourceBytes": 1778408,
-      "elapsedMs": 1109.0314290000001,
+      "elapsedMs": 1185.400753,
       "version": 1,
       "moduleName": "generated",
       "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
       "mode": "script",
       "sourceSha256": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
       "sourceUtf16Length": 1771582,
+      "sourcePoolPath": null,
       "emitsRust": false,
       "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
       "astNodes": 245779,
@@ -5791,19 +5792,9 @@
           "line": 102,
           "column": 7876,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "8ef5d8a359dfeda93009d158c270f2a6848a8c79ad7fae153f5a2b9219c7ce20",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 61372,
-              "end": 61379,
-              "line": 102,
-              "column": 7922,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 102:7922: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 476,
@@ -5897,19 +5888,9 @@
           "line": 102,
           "column": 8621,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "ac95d2f463efeb94774401943b76adcd1bcc2e21f57cd736aa81aa4cd95600c6",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 62114,
-              "end": 62121,
-              "line": 102,
-              "column": 8664,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 102:8664: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 484,
@@ -6315,19 +6296,9 @@
           "line": 103,
           "column": 3155,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "95eef6adeb2056b772e605d7d1498bbec551e9f729e1f8894e1da1bfc413a846",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 70931,
-              "end": 70951,
-              "line": 103,
-              "column": 3179,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 103:3179: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 518,
@@ -6373,19 +6344,9 @@
           "line": 103,
           "column": 4360,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "6242fcfe36f8013903384ecf524e56ac0e0d35beef3aa76759dbd93636981e20",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 72136,
-              "end": 72282,
-              "line": 103,
-              "column": 4384,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 103:4384: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 522,
@@ -6395,19 +6356,9 @@
           "line": 103,
           "column": 5110,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "380d6c15749e100a0fe6ce1af359dcc28b0bc8dc2d4b65ffeb5f4ad408b4e556",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 72986,
-              "end": 73003,
-              "line": 103,
-              "column": 5234,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 103:5234: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 523,
@@ -8541,19 +8492,9 @@
           "line": 104,
           "column": 28029,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "288de6cfc607636afa949f97e7437e8e102293fe21b4e98bae549e56a16107e1",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 111133,
-              "end": 111194,
-              "line": 104,
-              "column": 28113,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 104:28113: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 701,
@@ -9343,19 +9284,9 @@
           "line": 105,
           "column": 4363,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "f6141f837713b14916bd79330f5b624953025885b60f9e4d0203d0ffb070ca53",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 126659,
-              "end": 126672,
-              "line": 105,
-              "column": 4380,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 105:4380: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 767,
@@ -10853,19 +10784,9 @@
           "line": 121,
           "column": 12142,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "eb118181a8ab5f781921c8c43fcca70357d92c3b986cb3b4e8ccd40aad43e30f",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 151125,
-              "end": 151140,
-              "line": 121,
-              "column": 12283,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 121:12283: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 892,
@@ -10887,19 +10808,9 @@
           "line": 121,
           "column": 12529,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "521264a242d6fdeade46ce2ba921f596651fd7d95dca88dc038aa643d5018ab2",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 151402,
-              "end": 151417,
-              "line": 121,
-              "column": 12560,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 121:12560: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 894,
@@ -12469,19 +12380,9 @@
           "line": 1550,
           "column": 0,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "18fda724a0be28c036f1cf4d1c8179833e564c32b91b8a8272eb79b4a1e5cdb5",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 200628,
-              "end": 200632,
-              "line": 1551,
-              "column": 8,
-              "nodeType": "ObjectPattern",
-              "reason": "Unsupported ObjectPattern at 1551:8: binding destructuring is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1025,
@@ -12779,19 +12680,9 @@
           "line": 1657,
           "column": 30,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "7ecde19f6df9afdf9d69de2173c2f98ac2cb550fb7a8048d3e2701d1a6cc69e6",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 570991,
-              "end": 571211,
-              "line": 1738,
-              "column": 8,
-              "nodeType": "ForOfStatement",
-              "reason": "Unsupported ForOfStatement at 1738:8: iterator protocol and IteratorClose are not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1050,
@@ -12801,19 +12692,9 @@
           "line": 1667,
           "column": 57,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "883b3da46dfda533927e9c2903b5bf026e87a77db1aeeecb17a672a608f815cf",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 567295,
-              "end": 567311,
-              "line": 1674,
-              "column": 51,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 1674:51: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1051,
@@ -12883,19 +12764,9 @@
           "line": 1719,
           "column": 8,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "f22aec8691d9b336d9459abf89baaf44d063b147b4c00d81177a353336790a4e",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 569975,
-              "end": 569985,
-              "line": 1720,
-              "column": 16,
-              "nodeType": "MetaProperty",
-              "reason": "Unsupported MetaProperty at 1720:16: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1057,
@@ -13361,19 +13232,9 @@
           "line": 1887,
           "column": 32,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "d9f706d59cc1095a55c60421143123083108c9ff9bc198c6bce96afaf4b68ad9",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 579803,
-              "end": 579808,
-              "line": 1887,
-              "column": 63,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 1887:63: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1096,
@@ -13479,19 +13340,9 @@
           "line": 1995,
           "column": 1,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "ea43a4dfae434ad5c7c25e41f489f53e3e62413427dbbd2291cfa615aacc366e",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 585974,
-              "end": 585986,
-              "line": 1996,
-              "column": 17,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 1996:17: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1105,
@@ -13633,19 +13484,9 @@
           "line": 2171,
           "column": 8,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "d8266a13be3b14be259b33d783cd9ffd536c69b3b2a776b005b440abec1a542a",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 594508,
-              "end": 594586,
-              "line": 2172,
-              "column": 23,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 2172:23: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1117,
@@ -14699,19 +14540,9 @@
           "line": 2364,
           "column": 16,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "9f0a40dca1014816ac2a24bff1cea95f2c599476cc389950a473fa88ca3432fe",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 614573,
-              "end": 614589,
-              "line": 2373,
-              "column": 332,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 2373:332: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1205,
@@ -15909,19 +15740,9 @@
           "line": 2999,
           "column": 1,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "4806a51817f33a5b8cc6b662402cb52fe704ab507e06719883c0f6b3bf60fae0",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1172767,
-              "end": 1172809,
-              "line": 3020,
-              "column": 26,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3020:26: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1305,
@@ -16039,19 +15860,9 @@
           "line": 3087,
           "column": 8,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "d8da87026d619453af948e63d3a8988bcd0cfb8236eeb648466c756519baf8ec",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1178608,
-              "end": 1178635,
-              "line": 3093,
-              "column": 20,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3093:20: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1315,
@@ -16097,19 +15908,9 @@
           "line": 3125,
           "column": 8,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "982e05d47b4a5c16e496dd15a13c11244b3add7d0d780b754e1c5865e98fe1df",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1190594,
-              "end": 1190700,
-              "line": 3238,
-              "column": 61,
-              "nodeType": "ForOfStatement",
-              "reason": "Unsupported ForOfStatement at 3238:61: iterator protocol and IteratorClose are not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1319,
@@ -16131,19 +15932,9 @@
           "line": 3128,
           "column": 12,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "38c937d506d48aa261639c9324b4253742803b542b94a25d602a665bd08639df",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1181550,
-              "end": 1181566,
-              "line": 3141,
-              "column": 29,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3141:29: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1321,
@@ -16225,19 +16016,9 @@
           "line": 3320,
           "column": 40,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "de14514fe1d56c08887f4fc82f9213590ed6a5eb7f3a6d67c4dd69b34f1ca1a5",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1205328,
-              "end": 1205358,
-              "line": 3452,
-              "column": 5,
-              "nodeType": "OptionalMemberExpression",
-              "reason": "Unsupported OptionalMemberExpression at 3452:5: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1328,
@@ -16331,19 +16112,9 @@
           "line": 3380,
           "column": 2,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "0c6bbce227b6f50eb8802bad183ed177dc4312d3b5c728209e5d3122cff4f66c",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1201050,
-              "end": 1201105,
-              "line": 3382,
-              "column": 15,
-              "nodeType": "OptionalMemberExpression",
-              "reason": "Unsupported OptionalMemberExpression at 3382:15: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1336,
@@ -16353,19 +16124,9 @@
           "line": 3397,
           "column": 2,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "319107efa0dcca21c094ce12ca8b10a1d3c50cc92ccdf4674542b8f892354f27",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1202628,
-              "end": 1202678,
-              "line": 3412,
-              "column": 14,
-              "nodeType": "OptionalMemberExpression",
-              "reason": "Unsupported OptionalMemberExpression at 3412:14: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1337,
@@ -16687,19 +16448,9 @@
           "line": 3516,
           "column": 0,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "6319f5178033827e29554dddab94c69fef8ce74a9cd631fbabbc81e36fea07bf",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1213932,
-              "end": 1213948,
-              "line": 3560,
-              "column": 40,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3560:40: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1364,
@@ -16709,19 +16460,9 @@
           "line": 3529,
           "column": 12,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "cd6c220becad20a16386d7ac3b557f316749e1db943af01423ce7b4a39f0db88",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1213346,
-              "end": 1213365,
-              "line": 3553,
-              "column": 51,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3553:51: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1365,
@@ -16995,19 +16736,9 @@
           "line": 3621,
           "column": 2,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "d562e37543cf5d0031d0504c9da3801f662cbde39b2266b801a6473a81334670",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1219372,
-              "end": 1219388,
-              "line": 3629,
-              "column": 31,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3629:31: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1388,
@@ -17065,19 +16796,9 @@
           "line": 3649,
           "column": 3,
           "strict": true,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "468c4619201e07252202a6258ce99c20a18cd2e37e29e97a3689a63344b0bbef",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1221927,
-              "end": 1221946,
-              "line": 3661,
-              "column": 26,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3661:26: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1393,
@@ -20819,19 +20540,9 @@
           "line": 3772,
           "column": 62402,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "9189b095981156b11bf4770e2bba0d6bf8f50bab789b29b0e0522c8d844cc5fc",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1293348,
-              "end": 1293360,
-              "line": 3772,
-              "column": 62744,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3772:62744: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1705,
@@ -20997,19 +20708,9 @@
           "line": 3772,
           "column": 65880,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "ca0436d08eb2ac99cdc49f2e3f41fe693f72636c92fecd8b4925b3bd1204aca8",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1296537,
-              "end": 1296556,
-              "line": 3772,
-              "column": 65933,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3772:65933: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1719,
@@ -25399,19 +25100,9 @@
           "line": 3774,
           "column": 16903,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "c5a2b3dc0ccc23d3bd7b5647176c9eb55a2825c0e2053b489370daf868e9cf6e",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1438291,
-              "end": 1438303,
-              "line": 3774,
-              "column": 17031,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3774:17031: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2085,
@@ -25817,19 +25508,9 @@
           "line": 3774,
           "column": 24675,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "8db4bc4280985a114deb3ed30fe5f2ec0a11c9f83536e543bf610551bd0a469e",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1446125,
-              "end": 1446137,
-              "line": 3774,
-              "column": 24865,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3774:24865: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2119,
@@ -31107,19 +30788,9 @@
           "line": 3778,
           "column": 248,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "c27bb607f8a05bdf6a322944a9452851ef05c21b8db4271a0ee7b94b94b0c124",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1545744,
-              "end": 1545748,
-              "line": 3778,
-              "column": 378,
-              "nodeType": "SpreadElement",
-              "reason": "Unsupported SpreadElement at 3778:378: argument iterator spread is not yet implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2559,
@@ -31189,19 +30860,9 @@
           "line": 3778,
           "column": 1750,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "5ebbf5cdca542f07dc262e623b9f5d339d10efc52e8e951a1e1b16113dfb09d9",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1547432,
-              "end": 1547436,
-              "line": 3778,
-              "column": 2066,
-              "nodeType": "SpreadElement",
-              "reason": "Unsupported SpreadElement at 3778:2066: argument iterator spread is not yet implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2565,
@@ -32435,19 +32096,9 @@
           "line": 3804,
           "column": 1306,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "698172af7bc808e57b239b19498ba55ae6a78d36d930ffc9e87c1686e48ab9f1",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1585589,
-              "end": 1585630,
-              "line": 3804,
-              "column": 1586,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 3804:1586: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2668,
@@ -33525,19 +33176,9 @@
           "line": 3816,
           "column": 2682,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "10287a128e77434db5a871b757493dbef82a27d13d89800ffbecb92b0346d389",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1615043,
-              "end": 1615084,
-              "line": 3816,
-              "column": 2822,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 3816:2822: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2758,
@@ -37399,19 +37040,9 @@
           "line": 3872,
           "column": 1561,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "eb3faa6637b3634bdd69dee51b5e1775a4a2299ff7e76ce2c45231e3362e4e55",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-              "start": 1724471,
-              "end": 1724476,
-              "line": 3872,
-              "column": 1944,
-              "nodeType": "RegExpLiteral",
-              "reason": "Unsupported RegExpLiteral at 3872:1944: expression lowering is not implemented"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 3080,
@@ -39574,344 +39205,10 @@
           "diagnostics": []
         }
       ],
-      "compiledFunctions": 3223,
-      "unsupportedFunctions": 37,
-      "complete": false,
-      "diagnostics": [
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 61372,
-          "end": 61379,
-          "line": 102,
-          "column": 7922,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 102:7922: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 62114,
-          "end": 62121,
-          "line": 102,
-          "column": 8664,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 102:8664: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 70931,
-          "end": 70951,
-          "line": 103,
-          "column": 3179,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 103:3179: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 72136,
-          "end": 72282,
-          "line": 103,
-          "column": 4384,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 103:4384: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 72986,
-          "end": 73003,
-          "line": 103,
-          "column": 5234,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 103:5234: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 111133,
-          "end": 111194,
-          "line": 104,
-          "column": 28113,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 104:28113: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 126659,
-          "end": 126672,
-          "line": 105,
-          "column": 4380,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 105:4380: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 151125,
-          "end": 151140,
-          "line": 121,
-          "column": 12283,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 121:12283: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 151402,
-          "end": 151417,
-          "line": 121,
-          "column": 12560,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 121:12560: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 200628,
-          "end": 200632,
-          "line": 1551,
-          "column": 8,
-          "nodeType": "ObjectPattern",
-          "reason": "Unsupported ObjectPattern at 1551:8: binding destructuring is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 570991,
-          "end": 571211,
-          "line": 1738,
-          "column": 8,
-          "nodeType": "ForOfStatement",
-          "reason": "Unsupported ForOfStatement at 1738:8: iterator protocol and IteratorClose are not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 567295,
-          "end": 567311,
-          "line": 1674,
-          "column": 51,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 1674:51: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 569975,
-          "end": 569985,
-          "line": 1720,
-          "column": 16,
-          "nodeType": "MetaProperty",
-          "reason": "Unsupported MetaProperty at 1720:16: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 579803,
-          "end": 579808,
-          "line": 1887,
-          "column": 63,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 1887:63: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 585974,
-          "end": 585986,
-          "line": 1996,
-          "column": 17,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 1996:17: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 594508,
-          "end": 594586,
-          "line": 2172,
-          "column": 23,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 2172:23: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 614573,
-          "end": 614589,
-          "line": 2373,
-          "column": 332,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 2373:332: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1172767,
-          "end": 1172809,
-          "line": 3020,
-          "column": 26,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3020:26: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1178608,
-          "end": 1178635,
-          "line": 3093,
-          "column": 20,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3093:20: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1190594,
-          "end": 1190700,
-          "line": 3238,
-          "column": 61,
-          "nodeType": "ForOfStatement",
-          "reason": "Unsupported ForOfStatement at 3238:61: iterator protocol and IteratorClose are not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1181550,
-          "end": 1181566,
-          "line": 3141,
-          "column": 29,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3141:29: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1205328,
-          "end": 1205358,
-          "line": 3452,
-          "column": 5,
-          "nodeType": "OptionalMemberExpression",
-          "reason": "Unsupported OptionalMemberExpression at 3452:5: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1201050,
-          "end": 1201105,
-          "line": 3382,
-          "column": 15,
-          "nodeType": "OptionalMemberExpression",
-          "reason": "Unsupported OptionalMemberExpression at 3382:15: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1202628,
-          "end": 1202678,
-          "line": 3412,
-          "column": 14,
-          "nodeType": "OptionalMemberExpression",
-          "reason": "Unsupported OptionalMemberExpression at 3412:14: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1213932,
-          "end": 1213948,
-          "line": 3560,
-          "column": 40,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3560:40: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1213346,
-          "end": 1213365,
-          "line": 3553,
-          "column": 51,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3553:51: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1219372,
-          "end": 1219388,
-          "line": 3629,
-          "column": 31,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3629:31: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1221927,
-          "end": 1221946,
-          "line": 3661,
-          "column": 26,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3661:26: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1293348,
-          "end": 1293360,
-          "line": 3772,
-          "column": 62744,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3772:62744: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1296537,
-          "end": 1296556,
-          "line": 3772,
-          "column": 65933,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3772:65933: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1438291,
-          "end": 1438303,
-          "line": 3774,
-          "column": 17031,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3774:17031: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1446125,
-          "end": 1446137,
-          "line": 3774,
-          "column": 24865,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3774:24865: expression lowering is not implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1545744,
-          "end": 1545748,
-          "line": 3778,
-          "column": 378,
-          "nodeType": "SpreadElement",
-          "reason": "Unsupported SpreadElement at 3778:378: argument iterator spread is not yet implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1547432,
-          "end": 1547436,
-          "line": 3778,
-          "column": 2066,
-          "nodeType": "SpreadElement",
-          "reason": "Unsupported SpreadElement at 3778:2066: argument iterator spread is not yet implemented"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1585589,
-          "end": 1585630,
-          "line": 3804,
-          "column": 1586,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 3804:1586: non-strict block function requires Annex B instantiation"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1615043,
-          "end": 1615084,
-          "line": 3816,
-          "column": 2822,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 3816:2822: non-strict block function requires Annex B instantiation"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
-          "start": 1724471,
-          "end": 1724476,
-          "line": 3872,
-          "column": 1944,
-          "nodeType": "RegExpLiteral",
-          "reason": "Unsupported RegExpLiteral at 3872:1944: expression lowering is not implemented"
-        }
-      ],
+      "compiledFunctions": 3260,
+      "unsupportedFunctions": 0,
+      "complete": true,
+      "diagnostics": [],
       "semanticallyQualified": false,
       "executionBackend": "Generated Rust with native js-runtime; no JS interpreter or engine fallback.",
       "qualification": "Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately."
@@ -39921,13 +39218,14 @@
       "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
       "sha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
       "sourceBytes": 1214707,
-      "elapsedMs": 1011.818831,
+      "elapsedMs": 1284.6637809999997,
       "version": 1,
       "moduleName": "generated",
       "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
       "mode": "script",
       "sourceSha256": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
       "sourceUtf16Length": 1214707,
+      "sourcePoolPath": null,
       "emitsRust": false,
       "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
       "astNodes": 348778,
@@ -42307,19 +41605,9 @@
           "line": 29,
           "column": 5806,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "869f4ff7b2b71da523e33a492bbed6af961d6c474f55d2bd84113d42e9bbc4d8",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-              "start": 60605,
-              "end": 60646,
-              "line": 29,
-              "column": 6003,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 29:6003: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 195,
@@ -43265,19 +42553,9 @@
           "line": 33,
           "column": 8142,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "ce2d94d8ee2b965b19b735bcf84c3502b5a0e426e2fd181a166c947da3b9fdd2",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-              "start": 90131,
-              "end": 90172,
-              "line": 33,
-              "column": 8379,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 33:8379: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 274,
@@ -46731,19 +46009,9 @@
           "line": 57,
           "column": 804,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "96f54d6b6268c7bc5f139b1410bab7722b82cc5e0056af50d4f6f6ddcaf758f7",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-              "start": 188546,
-              "end": 188587,
-              "line": 57,
-              "column": 910,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 57:910: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 562,
@@ -54289,19 +53557,9 @@
           "line": 97,
           "column": 2006,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "5f47f64402351c195adeccc1b9b1dd6388625de5172ada592a7e919a27baa066",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-              "start": 407110,
-              "end": 407151,
-              "line": 97,
-              "column": 2432,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 97:2432: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 1191,
@@ -77663,19 +76921,9 @@
           "line": 185,
           "column": 1499,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "f272fa0b848edf519b2879835aa6d04dabaa69bc3780d88c898c4a8a03e91596",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-              "start": 1037642,
-              "end": 1037683,
-              "line": 185,
-              "column": 1703,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 185:1703: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 3138,
@@ -84170,56 +83418,10 @@
           "diagnostics": []
         }
       ],
-      "compiledFunctions": 3674,
-      "unsupportedFunctions": 5,
-      "complete": false,
-      "diagnostics": [
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-          "start": 60605,
-          "end": 60646,
-          "line": 29,
-          "column": 6003,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 29:6003: non-strict block function requires Annex B instantiation"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-          "start": 90131,
-          "end": 90172,
-          "line": 33,
-          "column": 8379,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 33:8379: non-strict block function requires Annex B instantiation"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-          "start": 188546,
-          "end": 188587,
-          "line": 57,
-          "column": 910,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 57:910: non-strict block function requires Annex B instantiation"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-          "start": 407110,
-          "end": 407151,
-          "line": 97,
-          "column": 2432,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 97:2432: non-strict block function requires Annex B instantiation"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
-          "start": 1037642,
-          "end": 1037683,
-          "line": 185,
-          "column": 1703,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 185:1703: non-strict block function requires Annex B instantiation"
-        }
-      ],
+      "compiledFunctions": 3679,
+      "unsupportedFunctions": 0,
+      "complete": true,
+      "diagnostics": [],
       "semanticallyQualified": false,
       "executionBackend": "Generated Rust with native js-runtime; no JS interpreter or engine fallback.",
       "qualification": "Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately."
@@ -84229,13 +83431,14 @@
       "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
       "sha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
       "sourceBytes": 1202106,
-      "elapsedMs": 1096.24752,
+      "elapsedMs": 1218.9363310000003,
       "version": 1,
       "moduleName": "generated",
       "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
       "mode": "script",
       "sourceSha256": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
       "sourceUtf16Length": 1202106,
+      "sourcePoolPath": null,
       "emitsRust": false,
       "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
       "astNodes": 341410,
@@ -108884,19 +108087,9 @@
           "line": 83,
           "column": 2246,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "d62cf2eab1fb6993715f99cbe93109232a6e9864dcb32723bced8e44cb176093",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
-              "start": 756854,
-              "end": 756899,
-              "line": 83,
-              "column": 2298,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 83:2298: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2051,
@@ -108918,19 +108111,9 @@
           "line": 83,
           "column": 3032,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "89e208cb9a17ebed37cf58a44e40026027061af6aa450ca8b3e205750fddf75c",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
-              "start": 757729,
-              "end": 757774,
-              "line": 83,
-              "column": 3173,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 83:3173: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2053,
@@ -123141,29 +122324,10 @@
           "diagnostics": []
         }
       ],
-      "compiledFunctions": 3235,
-      "unsupportedFunctions": 2,
-      "complete": false,
-      "diagnostics": [
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
-          "start": 756854,
-          "end": 756899,
-          "line": 83,
-          "column": 2298,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 83:2298: non-strict block function requires Annex B instantiation"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
-          "start": 757729,
-          "end": 757774,
-          "line": 83,
-          "column": 3173,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 83:3173: non-strict block function requires Annex B instantiation"
-        }
-      ],
+      "compiledFunctions": 3237,
+      "unsupportedFunctions": 0,
+      "complete": true,
+      "diagnostics": [],
       "semanticallyQualified": false,
       "executionBackend": "Generated Rust with native js-runtime; no JS interpreter or engine fallback.",
       "qualification": "Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately."
@@ -123173,13 +122337,14 @@
       "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
       "sha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
       "sourceBytes": 1219549,
-      "elapsedMs": 1045.814131,
+      "elapsedMs": 1522.9976759999995,
       "version": 1,
       "moduleName": "generated",
       "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
       "mode": "script",
       "sourceSha256": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
       "sourceUtf16Length": 1219549,
+      "sourcePoolPath": null,
       "emitsRust": false,
       "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
       "astNodes": 344595,
@@ -150397,19 +149562,9 @@
           "line": 109,
           "column": 5847,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "c83ddb3285282d773800f85a9dcd86e6472d6bdd2529283e0eae891a5b859bb6",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
-              "start": 866224,
-              "end": 866265,
-              "line": 109,
-              "column": 6044,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 109:6044: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2265,
@@ -158015,19 +157170,9 @@
           "line": 151,
           "column": 1574,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "9119746aff446a4068ec2ef52fd102348eec5067b17ee2377c52fc71a213140a",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
-              "start": 1072070,
-              "end": 1072111,
-              "line": 151,
-              "column": 2051,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 151:2051: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 2899,
@@ -163694,29 +162839,10 @@
           "diagnostics": []
         }
       ],
-      "compiledFunctions": 3369,
-      "unsupportedFunctions": 2,
-      "complete": false,
-      "diagnostics": [
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
-          "start": 866224,
-          "end": 866265,
-          "line": 109,
-          "column": 6044,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 109:6044: non-strict block function requires Annex B instantiation"
-        },
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js",
-          "start": 1072070,
-          "end": 1072111,
-          "line": 151,
-          "column": 2051,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 151:2051: non-strict block function requires Annex B instantiation"
-        }
-      ],
+      "compiledFunctions": 3371,
+      "unsupportedFunctions": 0,
+      "complete": true,
+      "diagnostics": [],
       "semanticallyQualified": false,
       "executionBackend": "Generated Rust with native js-runtime; no JS interpreter or engine fallback.",
       "qualification": "Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately."
@@ -163726,13 +162852,14 @@
       "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
       "sha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
       "sourceBytes": 1213047,
-      "elapsedMs": 983.3803909999997,
+      "elapsedMs": 1275.5274950000003,
       "version": 1,
       "moduleName": "generated",
       "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
       "mode": "script",
       "sourceSha256": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
       "sourceUtf16Length": 1213047,
+      "sourcePoolPath": null,
       "emitsRust": false,
       "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
       "astNodes": 327592,
@@ -203323,19 +202450,9 @@
           "line": 195,
           "column": 3611,
           "strict": false,
-          "supported": false,
+          "supported": true,
           "sourceSha256": "cf18e0ee699c57754afe3e5b013900aeddc2ac6e48eca942d01bead1fdc932ef",
-          "diagnostics": [
-            {
-              "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
-              "start": 1194991,
-              "end": 1195032,
-              "line": 195,
-              "column": 4939,
-              "nodeType": "FunctionDeclaration",
-              "reason": "Unsupported FunctionDeclaration at 195:4939: non-strict block function requires Annex B instantiation"
-            }
-          ]
+          "diagnostics": []
         },
         {
           "id": 3296,
@@ -203962,20 +203079,10 @@
           "diagnostics": []
         }
       ],
-      "compiledFunctions": 3347,
-      "unsupportedFunctions": 1,
-      "complete": false,
-      "diagnostics": [
-        {
-          "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
-          "start": 1194991,
-          "end": 1195032,
-          "line": 195,
-          "column": 4939,
-          "nodeType": "FunctionDeclaration",
-          "reason": "Unsupported FunctionDeclaration at 195:4939: non-strict block function requires Annex B instantiation"
-        }
-      ],
+      "compiledFunctions": 3348,
+      "unsupportedFunctions": 0,
+      "complete": true,
+      "diagnostics": [],
       "semanticallyQualified": false,
       "executionBackend": "Generated Rust with native js-runtime; no JS interpreter or engine fallback.",
       "qualification": "Compile coverage is not semantic qualification. Unsupported bodies raise uncatchable internal Unsupported errors. Differential evidence must be recorded separately."
@@ -203985,13 +203092,14 @@
       "file": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
       "sha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
       "sourceBytes": 1223796,
-      "elapsedMs": 900.7533080000003,
+      "elapsedMs": 1163.2679129999997,
       "version": 1,
       "moduleName": "generated",
       "filename": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
       "mode": "script",
       "sourceSha256": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
       "sourceUtf16Length": 1223796,
+      "sourcePoolPath": null,
       "emitsRust": false,
       "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
       "astNodes": 313020,
@@ -232822,13 +231930,14 @@
       "file": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
       "sha256": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
       "sourceBytes": 1269675,
-      "elapsedMs": 1108.552076,
+      "elapsedMs": 1241.044010999999,
       "version": 1,
       "moduleName": "generated",
       "filename": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
       "mode": "script",
       "sourceSha256": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
       "sourceUtf16Length": 1269367,
+      "sourcePoolPath": null,
       "emitsRust": false,
       "diagnosticsScope": "First lowering failure for each complete function body; every AST node and function is inventoried. A failed function body is an explicit Unsupported stub, never partially emitted.",
       "astNodes": 310595,
@@ -277201,198 +276310,9 @@
     }
   ],
   "totalFunctions": 22986,
-  "compiledFunctions": 22939,
-  "unsupportedFunctions": 47,
-  "blockers": [
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 102:7922: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 102:8664: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 103:3179: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 103:4384: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 103:5234: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 104:28113: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 105:4380: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 121:12283: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 121:12560: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "ObjectPattern | Unsupported ObjectPattern at 1551:8: binding destructuring is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "ForOfStatement | Unsupported ForOfStatement at 1738:8: iterator protocol and IteratorClose are not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 1674:51: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "MetaProperty | Unsupported MetaProperty at 1720:16: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 1887:63: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 1996:17: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 2172:23: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 2373:332: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3020:26: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3093:20: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "ForOfStatement | Unsupported ForOfStatement at 3238:61: iterator protocol and IteratorClose are not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3141:29: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "OptionalMemberExpression | Unsupported OptionalMemberExpression at 3452:5: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "OptionalMemberExpression | Unsupported OptionalMemberExpression at 3382:15: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "OptionalMemberExpression | Unsupported OptionalMemberExpression at 3412:14: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3560:40: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3553:51: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3629:31: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3661:26: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3772:62744: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3772:65933: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3774:17031: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3774:24865: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "SpreadElement | Unsupported SpreadElement at 3778:378: argument iterator spread is not yet implemented",
-      "count": 1
-    },
-    {
-      "reason": "SpreadElement | Unsupported SpreadElement at 3778:2066: argument iterator spread is not yet implemented",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 3804:1586: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 3816:2822: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "RegExpLiteral | Unsupported RegExpLiteral at 3872:1944: expression lowering is not implemented",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 29:6003: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 33:8379: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 57:910: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 97:2432: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 185:1703: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 83:2298: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 83:3173: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 109:6044: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 151:2051: non-strict block function requires Annex B instantiation",
-      "count": 1
-    },
-    {
-      "reason": "FunctionDeclaration | Unsupported FunctionDeclaration at 195:4939: non-strict block function requires Annex B instantiation",
-      "count": 1
-    }
-  ],
+  "compiledFunctions": 22986,
+  "unsupportedFunctions": 0,
+  "blockers": [],
   "scope": "Lowering coverage for every function in all seven frozen JS modules of the previously faithful 20-after-3 callback battle. No Rust code is emitted or executed by this audit. First lowering failure per complete function body is recorded with exact AST location; all AST nodes and function bodies are inventoried. This is not semantic or battle qualification.",
   "qualifiesFor10000Target": false
 }
