@@ -31,6 +31,7 @@ pub enum JsError {
     TypeError(String),
     ReferenceError(String),
     RangeError(String),
+    SyntaxError(String),
     Unsupported(String),
 }
 pub type JsResult<T = Value> = Result<T, JsError>;
