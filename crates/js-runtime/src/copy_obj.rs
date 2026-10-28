@@ -25,7 +25,9 @@ impl Runtime{
   for &(object,key,expected)in &guard.properties{let Some(actual)=self.objects[object.0].own(key)else{return false};if !same(actual,expected){return false}}
   self.objects[self.object_prototype.0].prototype.is_none()&&self.objects[self.array_prototype.0].prototype==Some(self.object_prototype)
  }
- pub fn try_native_copy_obj(&mut self,input:Value,parent:EnvId)->JsResult<Option<Value>>{
+ pub fn try_native_copy_obj(&mut self,input:Value,parent:EnvId)->JsResult<Option<Value>>{self.try_native_copy_obj_with_capacity_reuse(input,parent,true)}
+ /// The false branch retains the original allocation strategy for diagnostics.
+ pub fn try_native_copy_obj_with_capacity_reuse(&mut self,input:Value,parent:EnvId,reuse:bool)->JsResult<Option<Value>>{
   if !self.copy_obj_intrinsics_intact(parent){return Ok(None)}
   let Value::Object(id)=input else{return Ok(None)};let Some(object)=self.objects.get(id.0)else{return Ok(None)};
   let guard=self.copy_obj_guard.as_ref().expect("checked guard");
@@ -43,8 +45,19 @@ impl Runtime{
   // Standard descriptors and no inherited conflicts make each source write
   // an ordinary fresh own property. Numeric key ordering remains own_keys's
   // responsibility, just as for the original source-created object.
-  let properties=object.properties.clone();let property_index=object.property_index.clone();
-  let target=self.alloc_object(Some(self.object_prototype));self.objects[target.0].properties=properties;self.objects[target.0].property_index=property_index;
+  // A valid live source cannot also be an unused heap slot. Reject defensively
+  // before allocation rather than aliasing the source and destination borrows.
+  if self.native_battle_gc.free_objects.last().copied()==Some(id.0){return Ok(None)}
+  let target=if reuse{
+   let target=self.alloc_object(Some(self.object_prototype));
+   let(source,destination)=if id.0<target.0{let(left,right)=self.objects.split_at_mut(target.0);(&left[id.0],&mut right[0])}else{let(left,right)=self.objects.split_at_mut(id.0);(&right[0],&mut left[target.0])};
+   destination.properties.clone_from(&source.properties);
+   destination.property_index.clone_from(&source.property_index);
+   target
+  }else{
+   let properties=object.properties.clone();let property_index=object.property_index.clone();
+   let target=self.alloc_object(Some(self.object_prototype));self.objects[target.0].properties=properties;self.objects[target.0].property_index=property_index;target
+  };
   Ok(Some(Value::Object(target)))
  }
 }
@@ -87,4 +100,20 @@ impl Runtime {
  #[test]fn primary_scan_hits_preserves_raw_values_and_final_ordered_binding(){let(mut rt,env,target)=fixture();assert!(rt.try_native_data_obj_scan(env,rt.global_env).unwrap());let last=rt.string("a");assert_eq!(rt.lookup(env,"r").unwrap(),last);let key=rt.string("9");let Value::Number(n)=rt.get(target,key).unwrap()else{panic!()};assert_eq!(n.to_bits(),0x7ff0000000000042);let key=rt.string("2");let Value::Number(n)=rt.get(target,key).unwrap()else{panic!()};assert_eq!(n.to_bits(),0x8000000000000000);}
  #[test]fn scans_reject_source_observers_before_any_binding_write(){for mode in 0..5{let(mut rt,env,target)=fixture();match mode{0=>{let key=rt.string("x");let object=rt.object();rt.define_data(target,key,object,true,true,true).unwrap();},1=>{let key=rt.string("extra");rt.define_data(Value::Object(rt.object_prototype),key,Value::Number(4.0),true,true,true).unwrap();},2=>{rt.declare(env,"Array",Value::Undefined).unwrap();},3=>{rt.native_data_obj_scan_enabled=false;},_=>{let key=rt.string("x");rt.define_accessor(target,key,None,None,true,true).unwrap();}}assert!(!rt.try_native_data_obj_scan(env,rt.global_env).unwrap());assert_eq!(rt.lookup(env,"r").unwrap(),Value::Undefined);}}
  #[test]fn empty_scan_leaves_original_r_untouched(){let(mut rt,env,_)=fixture();let empty=rt.object();rt.assign(env,"t",empty,false).unwrap();rt.assign(env,"r",Value::Number(7.0),false).unwrap();assert!(rt.try_native_data_obj_scan(env,rt.global_env).unwrap());assert_eq!(rt.lookup(env,"r").unwrap(),Value::Number(7.0));}
+}
+#[cfg(test)]mod capacity_reuse_tests{
+ use super::*;
+ fn rounds(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{
+  let env=rt.child_env(parent);for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}
+  let source=rt.object();for(index,bits)in[0x8000000000000000u64,1,0x7fefffffffffffff,0x0010000000000000].into_iter().cycle().take(47).enumerate(){let key=rt.string(&format!("k{index}"));rt.define_data(source,key,Value::Number(f64::from_bits(bits)),true,true,true)?;}rt.declare(env,"keptSource",source)?;
+  let source_id=rt.object_id(source)?;let mut seen=std::collections::HashSet::new();let mut reused=0;
+  for round in 0..23{
+   let output=rt.try_native_copy_obj(source,env)?.expect("flat finite numeric source");let id=rt.object_id(output)?;assert_ne!(id,source_id);if !seen.insert(id){reused+=1;}
+   let input=&rt.objects[source_id.0];let output=&rt.objects[id.0];assert_eq!(input.property_index,output.property_index);assert_eq!(input.properties.len(),output.properties.len());
+   for(a,b)in input.properties.iter().zip(&output.properties){let(Some((ka,da)),Some((kb,db)))=(a,b)else{panic!()};assert_eq!(ka,kb);assert_eq!((da.enumerable,da.configurable),(db.enumerable,db.configurable));let(PropertyKind::Data{value:Value::Number(a),writable:wa},PropertyKind::Data{value:Value::Number(b),writable:wb})=(da.kind,db.kind)else{panic!()};assert_eq!(a.to_bits(),b.to_bits());assert_eq!(wa,wb);}
+   rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;
+  }assert!(reused>=22,"copy destinations recycled: {reused}");Ok(Value::Number(reused as f64))
+ }
+ #[test]fn exact_source_23_safepoints_recycle_numeric_copy_capacity(){let mut rt=Runtime::new();let function=rt.make_closure(rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(function,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();assert_eq!(rt.call(function,Value::Undefined,&[]).unwrap(),Value::Number(22.0));assert_eq!(rt.native_battle_gc_stats().collections,23);}
+ #[test]fn corrupt_free_source_is_rejected_before_allocation(){let mut rt=Runtime::new();let source=rt.object();let key=rt.string("x");rt.define_data(source,key,Value::Number(-0.0),true,true,true).unwrap();let id=rt.object_id(source).unwrap();rt.native_battle_gc.free_objects.push(id.0);let length=rt.objects.len();assert!(rt.try_native_copy_obj(source,rt.global_env).unwrap().is_none());assert_eq!(rt.objects.len(),length);let key=crate::PropertyKey(rt.intern("x"));assert!(rt.objects[id.0].own(key).is_some());}
 }
