@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "passed": false,
+  "qualifiesFor10000Target": false,
+  "scope": "Archived NDJSON comparison only. Every ordered selected-state event JSON and exact-bit snapshot pool matches the selected passed trace reference. Candidate exit code is caller-supplied, not independently witnessed by this checker. Does not establish executable provenance, full-program graph coverage or throughput.",
+  "candidate": {
+    "file": "/workspace/afkarena-simx/work/rust-reused-trace/derived-source.stdout",
+    "sha256": "aae45b6c634506e269f908795e6a4ae39843da7ff5f0a4575e35f6e536691063",
+    "unchanged": true,
+    "callerReportedExitCode": -1
+  },
+  "reference": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.json",
+    "label": "oracle-stdout",
+    "sha256": "35601d20e746b4fc6bc87698da359a59e2b631664b9437fbd7e41c36a884ad4e",
+    "unchanged": true
+  },
+  "producerInputs": {
+    "/workspace/afkarena-simx/tools/rust-port/check-program-trace.mjs": "ebdbae5ab5b96f569c7b2a395af8a926b663ab0a9475189cbb0cc1f3721aafc0",
+    "/workspace/afkarena-simx/tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341"
+  },
+  "changedProducerInputs": [],
+  "archiveInputs": [],
+  "changedArchiveInputs": [],
+  "comparison": null,
+  "error": "AssertionError [ERR_ASSERTION]: Candidate execution must finish successfully\n\n-1 !== 0\n\n    at file:///workspace/afkarena-simx/tools/rust-port/check-program-trace.mjs:39:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+}
