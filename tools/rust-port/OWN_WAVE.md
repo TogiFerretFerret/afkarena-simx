@@ -20,3 +20,8 @@ ID hashing for mapped argument bindings. With all three candidate switches on,
 safepoints with raw numeric bits and dead object-ID reuse. The generated Array
 gate passes 70 OFF/ON observations, and 40 argument source cases pass.
 See `rust-own-primary-combined*.json` for exact runtime hashes and reports.
+
+Broader source gates on that same frozen runtime also pass: 20,000 typed-array
+cases, 40 coercion, 24 reflection, 14 Array constructor, 22 Array.from and 34 JSON
+cases. `rust-own-primary-broad*.json` retains reports with separate immutable
+output, input and harness archives, verified against their hashes.
