@@ -40,6 +40,13 @@ fn run()->JsResult<()>{
  eprintln!("unit_start:5");battle_unit_5::run(&mut rt,env,global)?;eprintln!("unit_finished:5");
  let original=rt.lookup(env,"__nativeRun")?;let capture=rt.child_env(env);rt.declare(capture,"originalRun",original)?;
  let wrapper=rt.make_closure_with_flags(one_battle,capture,6,"one_battle_diagnostic",true,None);rt.assign(env,"__nativeRun",wrapper,true)?;
- eprintln!("unit_start:6");battle_unit_6::run(&mut rt,env,global)?;Ok(())
+ eprintln!("unit_start:6");let result=battle_unit_6::run(&mut rt,env,global);
+ // Inspect only after every generated/native call has unwound. This optional
+ // host diagnostic is outside the battle timer and invokes no source code.
+ if std::env::var_os("RUST_PORT_REACHABILITY").is_some_and(|value|value=="1"){
+  let roots=rt.host_boundary_reachability(&[],js_runtime::reachability::WeakEdgePolicy::Ephemeron)?;
+  eprintln!("ONE_BATTLE_REACHABILITY:{roots:?}");
+ }
+ result?;Ok(())
 }
 fn main(){if let Err(error)=run(){eprintln!("one_battle_error:{error:?}");std::process::exit(1);}}

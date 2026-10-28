@@ -54,6 +54,14 @@ try{
  report.binary={file:binary,sha256:await hashFile(binary),bytes:(await stat(binary)).size};
  const stdoutFile=resolve(work,'native.stdout'),stderrFile=resolve(work,'native.stderr');report.execution=await runMonitored([binary],{cwd:root,env,stdoutFile,stderrFile,maxRssKiB,timeoutMs});
  const stdout=await readFile(stdoutFile,'utf8'),stderr=await readFile(stderrFile,'utf8');await archive('native-stdout',stdout);await archive('native-stderr',stderr);
+ if(env.RUST_PORT_REACHABILITY==='1'){
+  const rows=stderr.split('\n').filter(line=>line.startsWith('ONE_BATTLE_REACHABILITY:'));
+  assert.equal(rows.length,1,'Expected the requested post-unwind reachability diagnostic');
+  const fields={};for(const name of ['buffer_bytes_total','buffer_bytes_reachable','string_utf16_bytes_total','string_utf16_bytes_reachable']){
+   const match=rows[0].match(new RegExp('\\b'+name+': (\\d+)'));assert.ok(match,'Missing reachability field '+name);fields[name]=Number(match[1]);
+  }
+  report.reachability={...fields,raw:rows[0].slice('ONE_BATTLE_REACHABILITY:'.length),scope:'Read-only graph inspection after the intentional one-battle stop and complete stack unwind. Outside battle timing; globals are roots. Retained arenas have not been collected.'};
+ }
  const reports=stdout.split('\n').filter(line=>line.startsWith('ONE_BATTLE_REPORT:')),hostRows=stdout.split('\n').filter(line=>line.startsWith('ONE_BATTLE_HOST_INPUTS:'));
  assert.equal(reports.length,1,'Expected one complete battle report');actual=JSON.parse(reports[0].slice('ONE_BATTLE_REPORT:'.length));await archive('native-report',JSON.stringify(actual));
  assert.equal(hostRows.length,1,'Expected host-prefix diagnostic');hostInputs=JSON.parse(hostRows[0].slice('ONE_BATTLE_HOST_INPUTS:'.length));report.hostInputConsumption=hostInputs;
