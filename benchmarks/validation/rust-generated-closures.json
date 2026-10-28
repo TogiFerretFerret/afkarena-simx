@@ -27,12 +27,12 @@
     },
     {
       "file": "crates/js-runtime/src/builtins.rs",
-      "sha256": "bf3077e07472b9ef259a78dca61312b3f203b1572eda5adae4f8af398eca34b4",
+      "sha256": "fee45601a13bd66bd34525d68646da0ab07c4e5102ba0fb9340c48937e93cca8",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "ffe747fcac1e0a9fac9b36b90f64a6a90ac70ddc559d2d5f2ccb772d80a047f7",
+      "sha256": "b4755929c6c286c29096cfd512d1b510604b71d99e16c8d26d4782b79d0eba47",
       "matched": true
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "7fa62da98e1c0066f788ce2ec945a79c296b45442b20f0f9ccf158d221047c76",
+      "sha256": "008b4a8f5fa0414fc2c4562067af2c89ad0fb3438727c1212ea3e8a736d9b183",
       "matched": true
     },
     {
@@ -487,7 +487,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "4d4cc501ade4f75d0c5ed35f57a018f4a8324a0a80ffeb971da8fcd4cdd4fd9b",
+      "sha256": "a6ff43cf2e4c0f20e5580520654a237206af85fbda14acd91ee62f7e335f3b06",
       "matched": true
     },
     {
@@ -524,10 +524,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "18282c630d379e3919c8e4e9e35a4c06afed19862fff26a75e7d449ccf73edc8",
+  "generatedRustSha256": "763b633144380261e289db24a245ce6308fa4003250c171992ea603bd7d31237",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-closures/check",
-    "sha256": "835b23c349b6929142fd5a492c32cae6c05189ce8599658dac9c5c802e158bdf"
+    "sha256": "275c6c4f10625f843cbe8c70dd1cc46fd853b0845db17fa0e599bdef37f1d82c"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",

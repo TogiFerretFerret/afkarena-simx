@@ -15,6 +15,26 @@ const childNodes=node=>Object.entries(node).flatMap(([key,value])=>key==='loc'||
 function bindings(pattern){if(pattern.type==='Identifier')return[pattern.name];if(pattern.type==='RestElement')return bindings(pattern.argument);if(pattern.type==='AssignmentPattern')return bindings(pattern.left);if(pattern.type==='ArrayPattern')return pattern.elements.flatMap(x=>x?bindings(x):[]);if(pattern.type==='ObjectPattern')return pattern.properties.flatMap(x=>bindings(x.type==='RestElement'?x.argument:x.value));throw Error('Unsupported binding pattern '+pattern.type);}
 function directBody(node){if(node.type==='Program')return node.body;if(node.body.type==='BlockStatement')return node.body.body;return null;}
 function strictDirective(node){return(node.directives??node.body?.directives??[]).some(row=>row.value.value==='use strict');}
+// Strict functions cannot expose the implicit binding through legacy caller or
+// arguments reflection. Keep it whenever a source reference could reach it.
+// A nested ordinary function owns arguments; arrows retain their outer scope.
+function requiresImplicitArguments(node){
+ let used=false,evalReference=false;
+ function walk(current,ownsArguments){
+  if(current.type==='Identifier'){
+   if(current.name==='eval')evalReference=true;
+   if(ownsArguments&&current.name==='arguments')used=true;
+  }
+  if(current!==node&&FUNCTION_TYPES.has(current.type)&&current.type!=='ArrowFunctionExpression'){
+   // Computed method names are evaluated in the enclosing scope, unlike bodies.
+   if(current.computed&&current.key)walk(current.key,ownsArguments);
+   ownsArguments=false;
+  }
+  for(const child of childNodes(current))walk(child,ownsArguments);
+ }
+ for(const parameter of node.params??[])walk(parameter,true);
+ walk(node.body,true);return used||evalReference;
+}
 function lexicalDeclarations(body){return body.flatMap(node=>node.type==='VariableDeclaration'&&node.kind!=='var'?node.declarations.flatMap(d=>bindings(d.id).map(name=>({name,mutable:node.kind==='let'}))):[]);}
 function hoists(node){const names=new Set(),functions=[];const body=directBody(node)??[];for(const entry of body)if(entry.type==='FunctionDeclaration'){if(!entry.id)throw Error('Anonymous function declaration');names.add(entry.id.name);functions.push(entry);}
  const walk=current=>{if(FUNCTION_TYPES.has(current.type))return;if(current.type==='VariableDeclaration'&&current.kind==='var')for(const declaration of current.declarations)for(const name of bindings(declaration.id))names.add(name);for(const child of childNodes(current))walk(child);};for(const entry of body)walk(entry);return{names:[...names],functions};}
@@ -75,7 +95,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
  function chunks(items,weight,maxWeight,maxItems){const result=[];let current=[],size=0;for(const item of items){const next=weight(item);if(current.length&&(size+next>maxWeight||current.length>=maxItems)){result.push(current);current=[];size=0;}current.push(item);size+=next;}if(current.length)result.push(current);return result;}
  function instantiateGroups(node,ctx,declarations,params,body){const groups=[];
   for(let index=0;index<params.length;index++){const name=rustString(params[index].name);groups.push(local=>{local.emit(`rt.declare(env, ${name}, Value::Undefined)?;`);local.emit(`rt.assign(env, ${name}, args.get(${index}).copied().unwrap_or(Value::Undefined), false)?;`);});}
-  if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'&&!params.some(p=>p.name==='arguments'))groups.push(local=>{const argsValue=local.temp(`rt.arguments_object(env, &[${params.map(p=>rustString(p.name)).join(',')}], args, ${local.strict})?`);local.emit(`rt.declare(env, "arguments", ${argsValue})?;`);});
+  if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'&&!params.some(p=>p.name==='arguments')&&(!ctx.strict||requiresImplicitArguments(node)))groups.push(local=>{const argsValue=local.temp(`rt.arguments_object(env, &[${params.map(p=>rustString(p.name)).join(',')}], args, ${local.strict})?`);local.emit(`rt.declare(env, "arguments", ${argsValue})?;`);});
   for(const name of declarations.names)groups.push(local=>local.emit(`rt.declare(env, ${rustString(name)}, Value::Undefined)?;`));
   for(const binding of lexicalDeclarations(body??[]))groups.push(local=>local.emit(`rt.declare_lexical(env, ${rustString(binding.name)}, ${binding.mutable})?;`));
   for(const fn of declarations.functions)groups.push(local=>{const value=local.makeClosure(fn);local.emit(`rt.assign(env, ${rustString(fn.id.name)}, ${value}, false)?;`);});
