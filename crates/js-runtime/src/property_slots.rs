@@ -2,7 +2,7 @@
 //! Each generated read site owns a distinct mutable static ticket, so separate
 //! modules and compileSource invocations cannot collide on local ordinals.
 use std::sync::atomic::{AtomicUsize,Ordering};
-use crate::{Runtime,Value,JsResult,JsError,ObjectKind,ObjectId,PropertyKey,PropertyKind,KeyInput};
+use crate::{Runtime,Value,JsResult,JsError,ObjectKind,ObjectId,PropertyKey,KeyInput};
 static NEXT_SITE:AtomicUsize=AtomicUsize::new(1);
 pub struct LiteralReadSite { ticket:AtomicUsize,text:&'static str,is_length:bool,prototype_hint:bool }
 impl LiteralReadSite {

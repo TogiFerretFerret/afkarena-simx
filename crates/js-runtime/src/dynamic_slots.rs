@@ -1,5 +1,5 @@
 //! Runtime-wide canonical-key to physical-slot hints, never cached values.
-use crate::{Runtime,Value,PropertyKey,ObjectKind,PropertyKind};
+use crate::{Runtime,Value,PropertyKey,ObjectKind};
 const MAX_KEYS:usize=65_536;
 impl Runtime {
  fn dynamic_slot_object(&self,receiver:Value,key:PropertyKey)->Option<&crate::heap::Object>{
