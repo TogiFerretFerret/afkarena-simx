@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
+import {parse as parseSource} from '@babel/parser';
 import assert from 'node:assert/strict';
 import {compareNativeReports,firstDifference} from '../native-report-compare.mjs';
 
@@ -43,6 +44,21 @@ const tracked=new Map([[manifestFile,sha(manifestBytes)]]);
 async function track(file){const absolute=resolve(root,file);tracked.set(absolute,sha(await readFile(absolute)));}
 async function trackTree(directory){for(const entry of await readdir(resolve(root,directory),{withFileTypes:true})){const file=directory+'/'+entry.name;if(entry.isDirectory())await trackTree(file);else if(entry.name.endsWith('.rs')||entry.name==='Cargo.toml')await track(file);}}
 for(const unit of manifest.units)await track(unit.file);
+// The fixed harness loads its immutable table bundle through this binding.
+// Extract its literal path without executing source or guessing a workspace path.
+const externalInputs=new Set();
+const sourceTree=parseSource((await readFile(manifest.units[0].file)).toString('utf8'),{sourceType:'script'});
+const pending=[sourceTree];
+while(pending.length){const node=pending.pop();
+ if(node.type==='AssignmentExpression'&&node.left?.type==='Identifier'&&node.left.name==='__nativeTablePath'){
+  assert.equal(node.operator,'=','External table path must be a simple literal assignment');
+  assert.equal(node.right?.type,'StringLiteral','External table path must remain literal');
+  externalInputs.add(resolve(root,node.right.value));
+ }
+ for(const [key,value] of Object.entries(node)){if(key==='loc'||key==='extra'||key==='comments'||key==='tokens')continue;if(Array.isArray(value)){for(const child of value)if(child&&typeof child.type==='string')pending.push(child);}else if(value&&typeof value.type==='string')pending.push(value);}
+}
+assert.equal(externalInputs.size,1,'The fixed harness must have exactly one external table bundle');
+for(const file of externalInputs)await track(file);
 for(const directory of ['crates/js-runtime','crates/battle-core','third-party'])await trackTree(directory);
 for(const file of ['Cargo.toml','Cargo.lock','config/source-oracle-runtime.json','tools/rust-port/check-program.mjs','tools/native-report-compare.mjs','tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])await track(file);
 const timeout=Number(option('--timeout-ms','600000'));
@@ -79,7 +95,7 @@ const report={version:1,passed,qualifiesFor10000Target:false,
  buildProfile:option('--profile','debug'),traceEnabled:false,
  manifest:{file:manifestFile,sha256:sha(manifestBytes)},
  binary:{file:binary,sha256:binaryBefore,unchanged:binaryUnchanged},
- provenance:{inputs:Object.fromEntries(tracked),unchanged:changedInputs.length===0,changedInputs,binaryBoundToManifest:false},
+ provenance:{inputs:Object.fromEntries(tracked),externalInputs:[...externalInputs],unchanged:changedInputs.length===0,changedInputs,binaryBoundToManifest:false},
  expectedBattles,completedWorkload,validTiming,
  producer:{file:'tools/rust-port/check-program.mjs',sha256:sha(await readFile(import.meta.filename))},
  oracle:compact(oracle),native:compact(native),firstDifference:difference,hostDifference,
