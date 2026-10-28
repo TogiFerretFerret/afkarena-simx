@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "sourceReport": {
+    "file": "benchmarks/results/2026-10-28-next-execution-fork-four.json",
+    "sha256": "2e21f3365f0f2fd1999031e7437fcdec5132222fe6d516b95a9b26e86ebd8604"
+  },
+  "scope": "Post-execution preservation of partial child logs from the monitor-aborted fork; no battle completion or semantic qualification claim.",
+  "artifacts": [
+    {
+      "source": "/workspace/afkarena-simx/work/rust-fork-four/2026-10-28T23-41-35.970Z/process0.stdout",
+      "archive": "benchmarks/results/2026-10-28-next-execution-fork-four.failed-process0-stdout.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "source": "/workspace/afkarena-simx/work/rust-fork-four/2026-10-28T23-41-35.970Z/process0.stderr",
+      "archive": "benchmarks/results/2026-10-28-next-execution-fork-four.failed-process0-stderr.gz",
+      "sha256": "0e322e38e6b59868616715d099fbedd095f0ca5fb3d6960b48672fa9150011eb",
+      "uncompressedSha256": "efe443d1dac8cee2fb3df5662093a1a5e015a45b9eaa1f05c1ac818356c0613a",
+      "uncompressedBytes": 60
+    },
+    {
+      "source": "/workspace/afkarena-simx/work/rust-fork-four/2026-10-28T23-41-35.970Z/process1.stdout",
+      "archive": "benchmarks/results/2026-10-28-next-execution-fork-four.failed-process1-stdout.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "source": "/workspace/afkarena-simx/work/rust-fork-four/2026-10-28T23-41-35.970Z/process1.stderr",
+      "archive": "benchmarks/results/2026-10-28-next-execution-fork-four.failed-process1-stderr.gz",
+      "sha256": "896aad80820b4b0caac69ccda7f7ca9245a687cead53c0b0a4d296496e885d7f",
+      "uncompressedSha256": "eaa711fb107217cdf463eb38ef093e71b2246ecbbca3a2006fbbace28bc6f5a4",
+      "uncompressedBytes": 60
+    },
+    {
+      "source": "/workspace/afkarena-simx/work/rust-fork-four/2026-10-28T23-41-35.970Z/process2.stdout",
+      "archive": "benchmarks/results/2026-10-28-next-execution-fork-four.failed-process2-stdout.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "source": "/workspace/afkarena-simx/work/rust-fork-four/2026-10-28T23-41-35.970Z/process2.stderr",
+      "archive": "benchmarks/results/2026-10-28-next-execution-fork-four.failed-process2-stderr.gz",
+      "sha256": "8c8a315c1d8203a38706c18d04e623918af91e707ed4d07ed635d84acfe838b3",
+      "uncompressedSha256": "18b641b95da6d1454fa6f4c794a3265f1d10d60e99f726bb43dd3816ade8f20d",
+      "uncompressedBytes": 60
+    },
+    {
+      "source": "/workspace/afkarena-simx/work/rust-fork-four/2026-10-28T23-41-35.970Z/process3.stdout",
+      "archive": "benchmarks/results/2026-10-28-next-execution-fork-four.failed-process3-stdout.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressedBytes": 0
+    },
+    {
+      "source": "/workspace/afkarena-simx/work/rust-fork-four/2026-10-28T23-41-35.970Z/process3.stderr",
+      "archive": "benchmarks/results/2026-10-28-next-execution-fork-four.failed-process3-stderr.gz",
+      "sha256": "aadedbad086c75a28e85624b1fb4b2d1e608d2cc5d98d3e57aa3f79aeac133a4",
+      "uncompressedSha256": "696477c0c9601226e553529a3d3cb1b422dce155dfcdd0e1986dbe3b0bb281bf",
+      "uncompressedBytes": 60
+    }
+  ]
+}

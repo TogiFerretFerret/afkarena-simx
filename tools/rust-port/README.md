@@ -18,7 +18,8 @@ The [latest native batch](../../benchmarks/validation/rust-program-next-executio
 passes every non-timing final-report field and host-input check for **20 battles
 after three warmups at 0.711035 battles/second**. The previous qualified batch
 measured 0.700574; this retained pair differs by only 1.49%. Both use GC
-cadence 2. New helper A/B and fork checks are pending. The earlier property/array
+cadence 2. New helper A/B checks pass exactly: all on 0.747668 versus all four off
+0.707572 battles/second (1.057×), with individual-off trials also matching Node. The earlier property/array
 full-battle flag trials all match Node:
 all on 0.686706, primary off 0.690486, own-set off 0.614364, all new off
 0.651304; a separate own-read-off run measures 0.640151 battles/second.
@@ -38,11 +39,14 @@ measures 1.982040 aggregate battles/second: 80 battles over the measured 40.362-
 cohort window, with all four complete reports and host tapes matching Node.
 The strict four-worker overlap is 38.788 seconds. Peak parent-plus-workers PSS
 plus orchestrator RSS is 7.67 GiB; summed RSS includes shared pages.
-The [latest cohort](../../benchmarks/results/2026-10-28-own-primary-fork-four.json)
-passes all four full reports/tapes at 2.209977 aggregate battles/second, with
-9.62 GiB peak process PSS plus orchestrator RSS. This is 3.45% below the
+The [latest cohort](../../benchmarks/results/2026-10-28-next-execution-fork-four-retry.json)
+passes all four full reports/tapes at 2.051487 aggregate battles/second, with
+9.68 GiB peak process PSS plus orchestrator RSS. This is 10.38% below the
 [prior cadence-2 cohort](../../benchmarks/results/2026-10-28-gc-cadence-two-fork-four-retry.json)
-at 2.288997; an aggregate improvement is not established.
+at 2.288997; it is also 7.17% below the preceding 2.209977 cohort. An
+aggregate improvement is not established. The first latest-wave attempt was
+aborted by an overly broad memory guard that included reclaimable file cache;
+both the failure and successful corrected-monitor retry are archived.
 These measurements remain below the historical approximately 3 battles/second
 mixed backend and the 10,000 target. Cold, warm and aggregate rates have different
 measurement windows and must be kept separate.
