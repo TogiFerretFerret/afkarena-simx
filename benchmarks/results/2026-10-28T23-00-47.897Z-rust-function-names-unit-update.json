@@ -1,0 +1,253 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "preparation": {
+    "prepared": true,
+    "source": {
+      "version": 1,
+      "source": "src/srcmodule/game_battle.js",
+      "sourceName": "ed.Unit.update",
+      "start": 97200,
+      "end": 102984,
+      "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "status": "experimental_native_control_flow_requires_mechanics_hooks_and_differential_validation",
+      "formalProof": false,
+      "domain": [
+        "Number-valued numeric fields; missing optional numbers explicitly represented",
+        "Dense valid unit/skill/buff IDs with stable object identity and fixed source prototypes",
+        "Unit.isAlive is the original source implementation; overrides require a separate dispatch path",
+        "Effects use stable identities and predicate views that host buff mechanics must keep synchronized",
+        "Every required hook implements the corresponding source method; no silent defaults",
+        "Vector aliases and replacements are preserved through arena handles",
+        "Non-escaping fresh edpMult result uses an inline vector; global edpZero retains arena identity"
+      ],
+      "pending": [
+        "Full unit differential trace over all branches and callback mutations",
+        "Integration of skill/AI/buff/damage implementations into one world",
+        "Complete realistic 5v5 native battles; this module does not establish battles/second"
+      ]
+    },
+    "sourceBodyUnchanged": true,
+    "sourceSha256": "20c5860ce0833f389d40a8a6bc4436fcf2a63c3979ef6728e620773b6f7e237d",
+    "driverSha256": "09ebd744ac9df08bd24ec596eb5e1b402c95aff550a8c85fad76426848fb7e28",
+    "binaries": {
+      "baseline": {
+        "file": "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/unit-update/baseline",
+        "sha256": "ebab5595ddcd8171eac815ef9ee993d1ed53ba283b81f2bd1dd2f9659c4edcef",
+        "runtime": "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/baseline-deps/libjs_runtime.rlib",
+        "command": [
+          "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+          "--edition=2024",
+          "-O",
+          "-C",
+          "codegen-units=64",
+          "-C",
+          "lto=false",
+          "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/unit-update/main.rs",
+          "-L",
+          "dependency=/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/baseline-deps",
+          "--extern",
+          "js_runtime=/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/baseline-deps/libjs_runtime.rlib",
+          "-o",
+          "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/unit-update/baseline"
+        ]
+      },
+      "candidate": {
+        "file": "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/unit-update/candidate",
+        "sha256": "93794e72d3f2f5b137313dc084fb0081a134aed73ae6dee944bbeabae413bdf9",
+        "runtime": "/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/libjs_runtime.rlib",
+        "command": [
+          "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+          "--edition=2024",
+          "-O",
+          "-C",
+          "codegen-units=64",
+          "-C",
+          "lto=false",
+          "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/unit-update/main.rs",
+          "-L",
+          "dependency=/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/deps",
+          "--extern",
+          "js_runtime=/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/libjs_runtime.rlib",
+          "-o",
+          "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/unit-update/candidate"
+        ]
+      }
+    },
+    "inputs": {
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/battle_gc.rs": "96256aa10f57ee8d833f1bef99d7c1185d7205d2ae7519a7bfa573cdb8ae527f",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/closures.rs": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/copy_obj.rs": "28cf58913ef7e407748beb4ac982c94cd589b76b07d114efcf7c46ce900af96b",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/dense_array_shift.rs": "f4a866084d5f2a700afaae853815afd2e2d2c3e854397139ade8789a2c5f94a3",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/diagnostics.rs": "9018f7593d765ba4debf4f75355f1ddd676aa60c79a93b183db89086590e2434",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/dynamic_slots.rs": "f7731263433ec74752da8423fd84c0f2a68cb7c060b02f18c08d974453d035bf",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/expose_scan.rs": "06733c148aab5757260fb180e8361ea38f6dc16ea39ed8091ef2215e81c37110",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/heap.rs": "0d8b7a1094792303a3dba0c2f3d8b102a2d9682b300d45b175dabdaa9d678104",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/lib.rs": "1e1822fd5371c9928240e7af626bb6b20be377326f43e4f1da177e8e65b5b556",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/property_slots.rs": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/reachability.rs": "9edd4aaba07905b4ac1bd1031bcfb1b96e27986509916e8c83e2cebb7f6f5e34",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/runtime.rs": "26d62549f46cbb90317e65cbaa2eaf612fd6e8564d08da765f82f239133e3bd9",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/utf8_guard.rs": "f107d1d45c0541475f5df4bbc9092dbd351f36882090ef335c529060cd0612b3",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/tools/rust-port/benchmark-unit-update-function-names.mjs": "5caa213404712eef3106815cde7f7939ce945b9be561003748f7bd9b06ff8e1a",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/tools/rust-port/compile.mjs": "dffe6b0b41758647adde8cc9566840df96003d2c2fe0b48e3351100726a84727",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/tools/rust-port/expressions.mjs": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/tools/rust-port/statements.mjs": "914bff51256410fc3bc5b1ca06984f3381125278bef86ba12d155768cb8d7dfa",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/tools/native-unit-speeder-cases.mjs": "e15a39d0908c1f673dc172a28855209343ab9d8128cd59703e3655d1a122ea0c",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/baseline-deps/libbattle_core-cbae6d4f8d37de4a.rlib": "aa44622b052ef6ea19e2e4570c989d20f20887b53734240b12dabc3c2ece9bb9",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/baseline-deps/libjs_runtime-0251dbe754fe7b05.rlib": "6d031e6bd9be91860aa9fd50d1204b4bf3ef5d8d7f12a35d619b95ab12ae1c4b",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/baseline-deps/libjs_runtime.rlib": "6d031e6bd9be91860aa9fd50d1204b4bf3ef5d8d7f12a35d619b95ab12ae1c4b",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/baseline-deps/libmemchr-78b772ea9bbe2a30.rlib": "3c3ec3225c6c8f264774c81cf3b9036112b890fc3f0f10f0341625c77915e70c",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/baseline-deps/libregress-82dd4bbdf19ad1cc.rlib": "62ea3f36c4940e52db1047adf134d88462036f2a3c8dd9aa23c5bff1227be70b",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/work/interned-function-names/baseline-deps/libryu_js-561ffce7286f1eac.rlib": "85d754f47ca0d15e45f7cd270a3b51cbf866d8fbd4a199555f4c68470e8f67b9",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/deps/libbattle_core-cbae6d4f8d37de4a.rlib": "aa44622b052ef6ea19e2e4570c989d20f20887b53734240b12dabc3c2ece9bb9",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/deps/libjs_runtime-0251dbe754fe7b05.rlib": "88bfe62a29abf73e3d4cdc6be61cebb9a372e64cc92c0f20946edca41be9bbb7",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/deps/libmemchr-78b772ea9bbe2a30.rlib": "3c3ec3225c6c8f264774c81cf3b9036112b890fc3f0f10f0341625c77915e70c",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/deps/libregress-82dd4bbdf19ad1cc.rlib": "62ea3f36c4940e52db1047adf134d88462036f2a3c8dd9aa23c5bff1227be70b",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/deps/libryu_js-561ffce7286f1eac.rlib": "85d754f47ca0d15e45f7cd270a3b51cbf866d8fbd4a199555f4c68470e8f67b9",
+      "/workspace/afkarena-simx/work/candidate-integration-own-wave/target/release/libjs_runtime.rlib": "88bfe62a29abf73e3d4cdc6be61cebb9a372e64cc92c0f20946edca41be9bbb7"
+    },
+    "updates": 10000,
+    "warmup": 5,
+    "trials": 3,
+    "scope": "Identical original Unit.update fixture compiled against separately preserved baseline String-name and candidate StringId-name native runtime libraries. Both retain all other candidate flags. Component experiment; no full-battle claim."
+  },
+  "rows": [
+    {
+      "label": "baseline",
+      "trial": 0,
+      "elapsedNs": "639879347",
+      "updates": 10000,
+      "updatesPerSecond": 15627.946185298584,
+      "events": 150220
+    },
+    {
+      "label": "candidate",
+      "trial": 0,
+      "elapsedNs": "580829180",
+      "updates": 10000,
+      "updatesPerSecond": 17216.765865654343,
+      "events": 150220
+    },
+    {
+      "label": "candidate",
+      "trial": 1,
+      "elapsedNs": "630589720",
+      "updates": 10000,
+      "updatesPerSecond": 15858.17161751384,
+      "events": 150220
+    },
+    {
+      "label": "baseline",
+      "trial": 1,
+      "elapsedNs": "654508086",
+      "updates": 10000,
+      "updatesPerSecond": 15278.650048641264,
+      "events": 150220
+    },
+    {
+      "label": "baseline",
+      "trial": 2,
+      "elapsedNs": "718508413",
+      "updates": 10000,
+      "updatesPerSecond": 13917.721517340118,
+      "events": 150220
+    },
+    {
+      "label": "candidate",
+      "trial": 2,
+      "elapsedNs": "816796614",
+      "updates": 10000,
+      "updatesPerSecond": 12242.949870994446,
+      "events": 150220
+    }
+  ],
+  "rates": {
+    "baseline": 14903.900795272444,
+    "candidate": 14791.32754528373
+  },
+  "ratio": 0.9924467257575665,
+  "sourceCallbacksAndStateExact": true,
+  "eventCountPerTrial": 150220,
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.baseline-0.gz",
+      "sha256": "68c9afebcdade5a0dab63aefb862e48b794c087d4e7dd5fdc9a7bc25bf36b9f5",
+      "uncompressedSha256": "1c831019f4860acc679ed1eecd41ec74f229e1f984c6d84049227543d83d94a4"
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.candidate-0.gz",
+      "sha256": "99bd5b175072089c4d4b8eeb6fb83b8bf02adab1ca4902180c3c5c6eeefff300",
+      "uncompressedSha256": "809c5794899bb6325094eb87114d0ebe761b17ef9f4d1784c2294a8c72b24416"
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.candidate-1.gz",
+      "sha256": "8696666e2a6bcca4100a17c44b659d188a8f58a027d2ce4c40f30b315be4d792",
+      "uncompressedSha256": "eff965dd307e102a79b78bdd2e7cfce160afc7bce25946c744c09a370c758d05"
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.baseline-1.gz",
+      "sha256": "16f47ab6c7e5b66cd390e3c81d4dd197e48f3edf39cf8a470ef9ea47d1a130d7",
+      "uncompressedSha256": "f2c9380c0d76b1fa18da25dec2b34a3ead7c119bffb23062b34bf3e6d918808b"
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.baseline-2.gz",
+      "sha256": "7d5587b71437ccb2faaa145dece79472b4cf8576aa6ee8ad1a6d4d4669055774",
+      "uncompressedSha256": "a85422f5bd0ec00f7921e742a33492073498fe2962c5c55fc452dc4f04a8f36c"
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.candidate-2.gz",
+      "sha256": "0ad5a283889938a21f3dfa546ff9c3a317142c79ab88753ade7079232baae409",
+      "uncompressedSha256": "e824eb7ae6c108e9bc8f742e966253dbee3f19adf59181b4bc33a5e475e53664"
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.source.gz",
+      "sha256": "72b08061b5e14da3c7ea9898e45e4321c3a8d33ac59d9e06c9804b89e1bb2176",
+      "uncompressedSha256": "20c5860ce0833f389d40a8a6bc4436fcf2a63c3979ef6728e620773b6f7e237d"
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.expected.gz",
+      "sha256": "29351735fde35784f1a0a1737473814bc188cdf4cbb74ed22be5b1b83ef917c0",
+      "uncompressedSha256": "925a54269c4fd534a8946319b43e3aa04fbe59f0d29e21755e5a9e32f51fa812"
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.driver.gz",
+      "sha256": "d5d064d61af771de12a1be9a854616c0defb9aca5f7007548f7f8877715c4080",
+      "uncompressedSha256": "09ebd744ac9df08bd24ec596eb5e1b402c95aff550a8c85fad76426848fb7e28"
+    },
+    {
+      "file": "benchmarks/results/2026-10-28T23-00-47.897Z-rust-function-names-unit-update.preparation.gz",
+      "sha256": "3bb8db79ef5fef5b4654da1ae539c022dadeb65c2c974e23c2e712c0c97df676",
+      "uncompressedSha256": "e6cec3f143486a71cdebbc131da73fcbaebfe0170f769bca3939740239d063ef"
+    }
+  ],
+  "scope": "Identical original Unit.update fixture compiled against separately preserved baseline String-name and candidate StringId-name native runtime libraries. Both retain all other candidate flags. Component experiment; no full-battle claim."
+}

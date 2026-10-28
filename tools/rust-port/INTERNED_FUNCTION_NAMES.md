@@ -30,3 +30,9 @@ only until a quiet measurement slot is released.
 
 Evidence: `benchmarks/validation/rust-interned-function-names*.json` and unique
 compressed reports, allocation logs, drivers and both complete runtime sources.
+
+The quiet three-pair original Unit.update run passes all 150,220 ordered events
+and selected state per trial. Throughput is 14,903.9 versus 14,791.3 updates/sec,
+a 0.99245x ratio: no CPU improvement is established in this fixture. The
+allocation and record-size reductions above remain measured independently.
+Evidence: `2026-10-28T23-00-47.897Z-rust-function-names-unit-update.json`.
