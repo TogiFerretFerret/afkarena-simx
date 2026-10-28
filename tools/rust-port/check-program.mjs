@@ -1,4 +1,4 @@
-import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -12,7 +12,8 @@ const root=resolve(import.meta.dirname,'../..');
 const args=process.argv.slice(2);
 const option=(key,fallback)=>args.includes(key)?args[args.indexOf(key)+1]:fallback;
 const manifestFile=resolve(root,option('--manifest','work/rust-battle-full/program-manifest.json'));
-const manifest=JSON.parse(await readFile(manifestFile));
+const manifestBytes=await readFile(manifestFile);
+const manifest=JSON.parse(manifestBytes);
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const profile=JSON.parse(await readFile(resolve(root,'config/source-oracle-runtime.json')));
 if(args.includes('--oracle')){
@@ -38,6 +39,12 @@ await mkdir(dirname(output),{recursive:true});
 const artifactPrefix=output.replace(/\.json$/,'');
 const binaryBefore=sha(await readFile(binary));
 for(const unit of manifest.units)assert.equal(sha(await readFile(unit.file)),unit.sourceSha256);
+const tracked=new Map([[manifestFile,sha(manifestBytes)]]);
+async function track(file){const absolute=resolve(root,file);tracked.set(absolute,sha(await readFile(absolute)));}
+async function trackTree(directory){for(const entry of await readdir(resolve(root,directory),{withFileTypes:true})){const file=directory+'/'+entry.name;if(entry.isDirectory())await trackTree(file);else if(entry.name.endsWith('.rs')||entry.name==='Cargo.toml')await track(file);}}
+for(const unit of manifest.units)await track(unit.file);
+for(const directory of ['crates/js-runtime','crates/battle-core','third-party'])await trackTree(directory);
+for(const file of ['Cargo.toml','Cargo.lock','config/source-oracle-runtime.json','tools/rust-port/check-program.mjs','tools/native-report-compare.mjs','tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])await track(file);
 const timeout=Number(option('--timeout-ms','600000'));
 const run=(command,argv,env)=>{
  const begin=performance.now();
@@ -61,13 +68,19 @@ const expected=parse(oracle.stdout),actual=parse(native.stdout);
 const difference=expected&&actual?compareNativeReports(actual,expected):{reason:'Missing complete battle report'};
 const hostDifference=expected&&actual?firstDifference(actual.hostInputConsumption,expected.hostInputConsumption,'$.hostInputConsumption'):null;
 const binaryUnchanged=sha(await readFile(binary))===binaryBefore;
-const passed=oracle.status===0&&native.status===0&&!!actual&&!!expected&&!difference&&!hostDifference&&binaryUnchanged;
+const changedInputs=[];for(const [file,before] of tracked){let after=null;try{after=sha(await readFile(file));}catch{}if(after!==before)changedInputs.push({file,before,after});}
+const expectedBattles=20;
+const completedWorkload=expected?.completed===expectedBattles&&actual?.completed===expectedBattles&&expected.results?.length===expectedBattles&&actual.results?.length===expectedBattles;
+const validTiming=[expected,actual].every(report=>Number.isFinite(report?.elapsedMs)&&report.elapsedMs>0&&Number.isFinite(report?.battlesPerSecond)&&report.battlesPerSecond>0);
+const passed=oracle.status===0&&native.status===0&&!!actual&&!!expected&&!difference&&!hostDifference&&binaryUnchanged&&changedInputs.length===0&&completedWorkload&&validTiming;
 const compact=result=>({status:result.status,signal:result.signal,error:result.error,wallMs:result.wallMs});
 const report={version:1,passed,qualifiesFor10000Target:false,
  scope:'Seven frozen source modules executed as generated native Rust and pinned Node. Exact non-timing report and host consumption comparison. This fixed callback fixture does not qualify full-scene random battles or 20k battle coverage.',
  buildProfile:option('--profile','debug'),traceEnabled:false,
- manifest:{file:manifestFile,sha256:sha(await readFile(manifestFile))},
+ manifest:{file:manifestFile,sha256:sha(manifestBytes)},
  binary:{file:binary,sha256:binaryBefore,unchanged:binaryUnchanged},
+ provenance:{inputs:Object.fromEntries(tracked),unchanged:changedInputs.length===0,changedInputs,binaryBoundToManifest:false},
+ expectedBattles,completedWorkload,validTiming,
  producer:{file:'tools/rust-port/check-program.mjs',sha256:sha(await readFile(import.meta.filename))},
  oracle:compact(oracle),native:compact(native),firstDifference:difference,hostDifference,
  completed:actual?.completed??0,battlesPerSecond:passed?actual.battlesPerSecond:null,
