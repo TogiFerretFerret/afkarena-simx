@@ -16,7 +16,7 @@ const selected=[
 ];
 const inputs=new Map();
 async function input(file){const bytes=await readFile(resolve(root,file));const digest=sha(bytes);if(inputs.has(file)&&inputs.get(file)!==digest)throw Error('Source changed during generation: '+file);inputs.set(file,digest);return bytes;}
-for(const file of ['tools/rust-port/generate-battle.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/CONTRACT.md'])await input(file);
+for(const file of ['tools/rust-port/generate-battle.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/bindings.mjs','tools/rust-port/statements.mjs','tools/rust-port/CONTRACT.md'])await input(file);
 const files=new Map(),modules=[];
 for(const item of selected){
  const config=JSON.parse(await input(item.config));

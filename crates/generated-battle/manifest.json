@@ -14,8 +14,8 @@
         "end": 102984,
         "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e"
       },
-      "generatedSha256": "18d91c98f9f0b6dfca06488dfc1bac2b1f881f4a681ef78e541d1b3073266f8a",
-      "rustLines": 2828,
+      "generatedSha256": "2b481de4a90a4fdbc24e5f2300539f0f0a99a289f747f311bfff1ea21e5c2e2d",
+      "rustLines": 2670,
       "coverage": {
         "version": 1,
         "moduleName": "unit_update",
@@ -52,9 +52,16 @@
           "UpdateExpression": 7,
           "BreakStatement": 2
         },
+        "largeBody": null,
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
         "functions": [
           {
             "id": 0,
+            "split": false,
+            "estimatedOwnAstNodes": 1843,
+            "helpers": [],
+            "cachedBindings": 41,
             "name": "",
             "start": 0,
             "end": 5784,
@@ -86,8 +93,8 @@
         "end": 20141,
         "sha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838"
       },
-      "generatedSha256": "456b9affb2d1df7933832606a091ad16d888b2029b45916597174082d9dc3813",
-      "rustLines": 602,
+      "generatedSha256": "5d6fdc6d09d4198adfd8af043da49c43eb2c0848fce098ea0cfffbb0270fcfca",
+      "rustLines": 592,
       "coverage": {
         "version": 1,
         "moduleName": "skill_update",
@@ -123,9 +130,16 @@
           "ObjectProperty": 2,
           "UpdateExpression": 1
         },
+        "largeBody": null,
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
         "functions": [
           {
             "id": 0,
+            "split": false,
+            "estimatedOwnAstNodes": 272,
+            "helpers": [],
+            "cachedBindings": 11,
             "name": "",
             "start": 0,
             "end": 1353,
@@ -138,6 +152,10 @@
           },
           {
             "id": 1,
+            "split": false,
+            "estimatedOwnAstNodes": 18,
+            "helpers": [],
+            "cachedBindings": 0,
             "name": "",
             "start": 926,
             "end": 991,
@@ -150,6 +168,10 @@
           },
           {
             "id": 2,
+            "split": false,
+            "estimatedOwnAstNodes": 12,
+            "helpers": [],
+            "cachedBindings": 0,
             "name": "",
             "start": 1074,
             "end": 1127,
@@ -162,6 +184,10 @@
           },
           {
             "id": 3,
+            "split": false,
+            "estimatedOwnAstNodes": 44,
+            "helpers": [],
+            "cachedBindings": 1,
             "name": "",
             "start": 1152,
             "end": 1339,
@@ -193,8 +219,8 @@
         "end": 237381,
         "sha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609"
       },
-      "generatedSha256": "df33c3ea6989fb770027392d92b7534ef5453cede7ed5bb1c417e8b4330e05d1",
-      "rustLines": 750,
+      "generatedSha256": "94091dadbd899abcc45a145373c44ae1458efad928c06fc6b2558b5e79e8ecf4",
+      "rustLines": 722,
       "coverage": {
         "version": 1,
         "moduleName": "engine_tick",
@@ -230,9 +256,16 @@
           "ConditionalExpression": 6,
           "ReturnStatement": 1
         },
+        "largeBody": null,
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
         "functions": [
           {
             "id": 0,
+            "split": false,
+            "estimatedOwnAstNodes": 452,
+            "helpers": [],
+            "cachedBindings": 13,
             "name": "",
             "start": 0,
             "end": 1858,
@@ -264,8 +297,8 @@
         "end": 41296,
         "sha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8"
       },
-      "generatedSha256": "6666e61a801553d7e85808b5128f6273a3bb7fba473fb8a6210dbdea630bb1b6",
-      "rustLines": 414,
+      "generatedSha256": "079867c6b3e3ea9c8bbc6f0d8468bdf512d8e4e62d3de861b2dc5045bc7e8cdc",
+      "rustLines": 405,
       "coverage": {
         "version": 1,
         "moduleName": "buff_update",
@@ -298,9 +331,16 @@
           "UnaryExpression": 1,
           "ConditionalExpression": 2
         },
+        "largeBody": null,
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
         "functions": [
           {
             "id": 0,
+            "split": false,
+            "estimatedOwnAstNodes": 254,
+            "helpers": [],
+            "cachedBindings": 6,
             "name": "",
             "start": 0,
             "end": 862,
@@ -332,8 +372,8 @@
         "end": 96698,
         "sha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b"
       },
-      "generatedSha256": "332fbca23881426a5809ff47b40b671946075c1976c84a5b0ece93a762ad31ee",
-      "rustLines": 102,
+      "generatedSha256": "80dfb0ada4b1d4a7fd2ee40b7505b8cf8e141d8e11df2fac8232760449ec5fe3",
+      "rustLines": 99,
       "coverage": {
         "version": 1,
         "moduleName": "set_hp",
@@ -361,9 +401,16 @@
           "VariableDeclarator": 1,
           "CallExpression": 1
         },
+        "largeBody": null,
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
         "functions": [
           {
             "id": 0,
+            "split": false,
+            "estimatedOwnAstNodes": 57,
+            "helpers": [],
+            "cachedBindings": 2,
             "name": "",
             "start": 0,
             "end": 160,
@@ -395,8 +442,8 @@
         "end": 96945,
         "sha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c"
       },
-      "generatedSha256": "72c2d45e0bcb560d0e18693752b53333ab86b4dfbc9dddcb82ccfba6ed0b9467",
-      "rustLines": 90,
+      "generatedSha256": "a997072b38c013f672e1440cf9458b25488208e4f85a371f8d4bcfa8f0f0fdeb",
+      "rustLines": 88,
       "coverage": {
         "version": 1,
         "moduleName": "set_mp",
@@ -422,9 +469,16 @@
           "NumericLiteral": 2,
           "CallExpression": 1
         },
+        "largeBody": null,
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
         "functions": [
           {
             "id": 0,
+            "split": false,
+            "estimatedOwnAstNodes": 49,
+            "helpers": [],
+            "cachedBindings": 2,
             "name": "",
             "start": 0,
             "end": 129,
@@ -456,8 +510,8 @@
         "end": 92695,
         "sha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07"
       },
-      "generatedSha256": "cc3c0e0f7434c8d3d432d530dc53199045d11dc61eb4414e41b9cd2d86bb80b7",
-      "rustLines": 1170,
+      "generatedSha256": "154c47f17ce0a5822a60526b2503a96f63b2323852ab1464b182ecc2d7e9f8d7",
+      "rustLines": 1109,
       "coverage": {
         "version": 1,
         "moduleName": "unit_add_buff",
@@ -496,9 +550,16 @@
           "ObjectExpression": 4,
           "ObjectProperty": 8
         },
+        "largeBody": null,
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
         "functions": [
           {
             "id": 0,
+            "split": false,
+            "estimatedOwnAstNodes": 423,
+            "helpers": [],
+            "cachedBindings": 15,
             "name": "",
             "start": 0,
             "end": 2002,
@@ -511,6 +572,10 @@
           },
           {
             "id": 1,
+            "split": false,
+            "estimatedOwnAstNodes": 79,
+            "helpers": [],
+            "cachedBindings": 2,
             "name": "",
             "start": 1336,
             "end": 1509,
@@ -523,6 +588,10 @@
           },
           {
             "id": 2,
+            "split": false,
+            "estimatedOwnAstNodes": 66,
+            "helpers": [],
+            "cachedBindings": 3,
             "name": "",
             "start": 1687,
             "end": 1940,
@@ -554,8 +623,8 @@
         "end": 87610,
         "sha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8"
       },
-      "generatedSha256": "9a53cebc48bb110206256d5d071eaf6aa8a806db34d143c9b651592947ba41c3",
-      "rustLines": 75,
+      "generatedSha256": "de035e4105a1e6b7a96a432e6a1bc583d8442d517f53eb487d6a7ee9c8e84d94",
+      "rustLines": 74,
       "coverage": {
         "version": 1,
         "moduleName": "reset_buff_apply",
@@ -579,9 +648,16 @@
           "StringLiteral": 2,
           "ThisExpression": 4
         },
+        "largeBody": null,
+        "cacheLocalBindings": true,
+        "staticLiteralStrings": true,
         "functions": [
           {
             "id": 0,
+            "split": false,
+            "estimatedOwnAstNodes": 36,
+            "helpers": [],
+            "cachedBindings": 1,
             "name": "",
             "start": 0,
             "end": 187,
@@ -604,9 +680,10 @@
     }
   ],
   "sourceInputs": {
-    "tools/rust-port/generate-battle.mjs": "42c1a92ddfd0def34f530ea71bb181d0d32d33b876b5b19c58d896e8203f854e",
-    "tools/rust-port/compile.mjs": "d9f2d8b1b04e32a019109c215865e247b0952aa150352d4a8d09eab89f7883ca",
-    "tools/rust-port/expressions.mjs": "2b68a0ee1d2236e768c0ca99118e1c398213e647dd2d9105adc59154f5a1952e",
+    "tools/rust-port/generate-battle.mjs": "fd517127b738180096cb2db2c272dd7003a4c694007de586de8fb906934e6f0e",
+    "tools/rust-port/compile.mjs": "088c45933912ea22acf5e88a425a7c7f7140896ae825ba6b417a48b121ab01a1",
+    "tools/rust-port/expressions.mjs": "9e336ef4eb2b3023988388bf170532d7aedba06edcd4a7725dc536084ae2823a",
+    "tools/rust-port/bindings.mjs": "7f56400e87c25b9d1233f1284b68ea46f1fa6c255dfea8a2135dcd09bed24023",
     "tools/rust-port/statements.mjs": "69bdacf78f13f2fc99b6e58e1a264749911ede1cb222f6bcc43d0394f9bcea08",
     "tools/rust-port/CONTRACT.md": "a0b80d83e836c917906747c10f8e46464bf24bdf6ef7cc9c69b6acfda47917cc",
     "config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
