@@ -122,5 +122,12 @@ impl Runtime{
   assert!(reused>0,"collected accessor function IDs must actually recycle");Ok(Value::Number(23.0))
  }
  #[test]fn discarded_accessor_storage_does_not_root_weak_keys_across_23_actual_gc_safepoints(){let mut rt=Runtime::new();rt.diagnostics.enabled=false;rt.enable_native_battle_gc();let entry=rt.make_closure_with_flags(compact_accessor_entry,rt.global_env,0,"__nativeRun",false,None);rt.set_function_source(entry,&RUN_SOURCE.encode_utf16().collect::<Vec<_>>()).unwrap();assert_eq!(rt.call(entry,Value::Undefined,&[]).unwrap(),Value::Number(23.0));assert_eq!(rt.native_battle_gc_stats().collections,23);}
+ fn shared_utf16_gc_entry(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{
+  let env=rt.child_env(parent);for(name,n)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(n))?;}
+  let live=rt.intern_utf16(&vec![0xd800;524_288]);rt.declare(env,"live",Value::String(live))?;let kept=rt.owned_shared_units(live);let mut previous=0;
+  for round in 0..23{let mut units=vec![0xdc00;524_288];units[0]=round as u16;let dead=rt.intern_utf16(&units);assert!(dead.0>previous);previous=dead.0;let held=rt.owned_shared_units(dead);rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;assert_eq!(&*held,units);assert_eq!(std::sync::Arc::strong_count(&held),1);assert!(rt.string_units(dead).is_empty());assert!(!rt.string_index.contains_key(units.as_slice()));assert_eq!(rt.string_units(live),&*kept);assert!(std::sync::Arc::ptr_eq(&kept,&rt.strings[live.0]));}
+  assert_eq!(rt.native_battle_gc_stats().giant_strings_freed,23);assert_eq!(rt.native_battle_gc_stats().giant_string_bytes_freed,23*1_048_576);Ok(Value::Number(23.0))
+ }
+ #[test]fn shared_utf16_snapshots_stay_owned_through_23_gc_tombstones_without_id_reuse(){let mut rt=Runtime::new();rt.diagnostics.enabled=false;rt.enable_native_battle_gc();let entry=rt.make_closure_with_flags(shared_utf16_gc_entry,rt.global_env,0,"__nativeRun",false,None);rt.set_function_source(entry,&RUN_SOURCE.encode_utf16().collect::<Vec<_>>()).unwrap();assert_eq!(rt.call(entry,Value::Undefined,&[]).unwrap(),Value::Number(23.0));assert_eq!(rt.native_battle_gc_stats().collections,23);}
 
 }
