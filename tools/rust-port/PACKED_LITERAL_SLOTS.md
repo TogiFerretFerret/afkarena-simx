@@ -36,7 +36,7 @@ events and the selected raw-bit state against Node. Pair ratios were 1.016x,
 1.014x and 0.958x. Do not present the memory reduction as a throughput win.
 
 Evidence: `benchmarks/results/2026-10-28T22-36-39.431Z-rust-packed-literal-slots.json`.
-Both complete runtime source alternatives, unchanged generated fixture, original
+Both property-slot source alternatives, unchanged generated fixture, original
 source, harness, manifests, build timings and raw results are archived there.
 The packed build's wall time includes a deliberate SIGSTOP while other agents
 measured battles; it is not a clean compilation-speed measurement.
