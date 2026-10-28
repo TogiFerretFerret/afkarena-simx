@@ -30,8 +30,8 @@ impl Runtime{
   let Value::Object(id)=input else{return Ok(None)};let Some(object)=self.objects.get(id.0)else{return Ok(None)};
   let guard=self.copy_obj_guard.as_ref().expect("checked guard");
   if !object.extensible||object.own(guard.constructor_key).is_some(){return Ok(None)}
-  if let ObjectKind::Array{length:0,length_writable:true}=object.kind{
-   if object.prototype!=Some(self.array_prototype)||object.properties.iter().any(Option::is_some){return Ok(None)}
+  if let ObjectKind::Array{length:0,length_writable:true,..}=object.kind{
+   if object.prototype!=Some(self.array_prototype)||object.primary_numeric_mask()!=0||object.properties.iter().any(Option::is_some){return Ok(None)}
    return Ok(Some(self.array(&[])))
   }
   if !matches!(object.kind,ObjectKind::Ordinary)||object.prototype!=Some(self.object_prototype)||!object.arguments_map.is_empty(){return Ok(None)}

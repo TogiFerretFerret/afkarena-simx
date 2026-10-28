@@ -16,7 +16,7 @@ impl Runtime{
   let target=&self.objects[keys.0];if !matches!(target.kind,ObjectKind::Ordinary)||target.prototype.is_some()||!target.extensible||target.properties.iter().any(Option::is_some){return Ok(false)}
   let Some(Value::Object(names))=self.expose_raw_binding(env,"__nativeDefinitionNames")else{return Ok(false)};
   let array=&self.objects[names.0];let ObjectKind::Array{length,..}=array.kind else{return Ok(false)};
-  if array.prototype!=Some(self.array_prototype){return Ok(false)}
+  if array.primary_numeric_mask()!=0||array.prototype!=Some(self.array_prototype){return Ok(false)}
   // Validate every read before doing any work. A hole/accessor/prototype read
   // must fall back without invoking any getter or performing a source write.
   // Sparse source arrays can have a huge logical length. Reject before sizing
