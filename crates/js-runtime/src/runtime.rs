@@ -8,9 +8,11 @@ use crate::closures::FunctionRecord;
 #[derive(Clone,Debug)]
 pub enum Completion {Normal,Return(Value),Break(Option<&'static str>),Continue(Option<&'static str>)}
 pub struct Runtime {
- pub dynamic_own_slots_enabled:bool,pub(crate) dynamic_own_slots:Vec<Option<std::num::NonZeroUsize>>,
+ pub buff_percent_loop_attempts:u64,pub buff_percent_loop_hits:u64,pub buff_attribute_loop_enabled:bool,pub dynamic_own_slots_enabled:bool,pub(crate) dynamic_own_slots:Vec<Option<std::num::NonZeroUsize>>,
  pub(crate) native_battle_gc:crate::battle_gc::NativeBattleGc,
  pub(crate) expose_scan_guard:Option<crate::expose_scan::ExposeScanGuard>,
+ pub native_stage_range_parser_enabled:bool,
+ pub(crate) stage_range_guard:Option<crate::stage_range_parser::StageRangeGuard>,pub(crate) stage_range_plan:Option<crate::stage_range_parser::StageRangePlan>,
  pub(crate) copy_obj_guard:Option<crate::copy_obj::CopyObjGuard>,
  pub(crate) function_objects:HashMap<ObjectId,FunctionId,crate::id_hash::IdBuildHasher>,
  pub(crate) utf8_loader_guard:Option<crate::utf8_guard::Utf8LoaderGuard>,
@@ -49,7 +51,7 @@ impl Runtime {
  pub fn new_with_string_hash(mode:crate::StringHashMode)->Self{
   let mut objects=vec![Object::new(None)];
   for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{dynamic_own_slots_enabled:true,dynamic_own_slots:Vec::new(),native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),string_utf8_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),static_literal_strings:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),native_data_obj_scan_enabled:true,numeric_property_key_cache_enabled:true,index_string_fast_path_enabled:true,primary_numeric_arrays_enabled:true,numeric_property_keys:[None;256],diagnostics:crate::diagnostics::Diagnostics::from_env(),ordinary_set_fast_path_enabled:true,literal_property_slots_enabled:true,dense_array_shift_enabled:true,one_hop_literal_slots_enabled:true,literal_length_fast_path_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  let mut rt=Self{buff_percent_loop_attempts:0,buff_percent_loop_hits:0,buff_attribute_loop_enabled:true,native_stage_range_parser_enabled:true,stage_range_guard:None,stage_range_plan:None,dynamic_own_slots_enabled:true,dynamic_own_slots:Vec::new(),native_battle_gc:crate::battle_gc::NativeBattleGc::default(),copy_obj_guard:None,expose_scan_guard:None,function_objects:HashMap::default(),utf8_loader_guard:None,strings:vec![],string_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),string_utf8_index:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),static_literal_strings:HashMap::with_hasher(crate::string_hash::StringBuildHasher::new(mode)),native_data_obj_scan_enabled:true,numeric_property_key_cache_enabled:true,index_string_fast_path_enabled:true,primary_numeric_arrays_enabled:true,numeric_property_keys:[None;256],diagnostics:crate::diagnostics::Diagnostics::from_env(),ordinary_set_fast_path_enabled:true,literal_property_slots_enabled:true,dense_array_shift_enabled:true,one_hop_literal_slots_enabled:true,literal_length_fast_path_enabled:true,literal_property_slots:Vec::new(),throw_type_error:None,active_argument_frames:Vec::new(),objects,functions:vec![],environments:vec![Environment::new(None,EnvKind::Global)],call_stack:vec![],construct_stack:vec![],construct_new_targets:vec![],join_stack:vec![],error_prototypes:HashMap::new(),error_stack_overrides:HashMap::new(),console_output:vec![],buffers:vec![],binary_prototypes:HashMap::new(),binary_constructors:HashMap::new(),collection_records:vec![],collection_iterators:vec![],collection_prototypes:HashMap::new(),regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   for name in ["0","1","2","3"]{rt.intern(name);}
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true,primary_numeric:false,numeric_presence:0};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
@@ -69,7 +71,7 @@ impl Runtime {
   rt.install_numeric_bootstrap().expect("fresh Number intrinsics");
   rt.install_string_builtins().expect("fresh String intrinsics");
   rt.capture_utf8_loader_guard();
-  rt.capture_copy_obj_guard();rt.capture_expose_scan_guard();
+  rt.capture_stage_range_guard();rt.capture_copy_obj_guard();rt.capture_expose_scan_guard();
   rt
  }
  pub fn intern_utf16(&mut self,units:&[u16])->StringId{if let Some(id)=self.string_index.get(units){return *id}let id=StringId(self.strings.len());self.strings.push(units.into());self.string_index.insert(units.to_vec(),id);id}

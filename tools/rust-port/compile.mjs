@@ -9,11 +9,13 @@ import {planLocalBindings,planNativeLocals} from './bindings.mjs';
 
 const FUNCTION_TYPES=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression','ObjectMethod','ClassMethod','ClassPrivateMethod']);
 const NATIVE_DATA_OBJ_SOURCE_SHA256='6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9';
+const NATIVE_STAGE_RANGE_SOURCE_SHA256='6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c';
 const NATIVE_EXPOSE_SOURCE_SHA256='9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911';
 const NATIVE_UTF8_SOURCE_SHA256='5fe05bd8580b1b6d11ff573eab9df79cdb29df580fe1127d1f43afaab2c6fae1';
 const NATIVE_COPY_OBJ_SOURCE_SHA256='5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072';
 const NATIVE_CLASS_DISPATCH_SOURCE_SHA256='bdfc22c24f15a0a81d6a915b30bf762c93e8efb115c54ce60c9d7b505f74d425';
 const NATIVE_OVERRIDE_DISPATCH_SOURCE_SHA256='a071adecc9cc3cecd27b059f25a2a1eb1b26529e4a3fa15f8501e774dfa6b83f';
+const NATIVE_BUFF_PERCENT_SOURCE_SHA256='800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146';
 const NATIVE_BATTLE_RUN_SOURCE_SHA256='d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d';
 const PROTOTYPE_LITERAL_HINT_SOURCE_HASHES=new Set(['0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8','2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07']);
 const sha=text=>createHash('sha256').update(text).digest('hex');
@@ -184,6 +186,10 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
     record.sourceSpecialization='native-class-dispatch-v1';
     ctx.emit(`if let Some(value) = rt.try_native_class_dispatch(this, args, parent, ${ctx.strict})? { return Ok(value); }`);
    }
+   if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_STAGE_RANGE_SOURCE_SHA256){
+    record.sourceSpecialization='native-stage-range-parser-v1';
+    ctx.emit('if let Some(value) = rt.try_native_stage_range_parser(args.first().copied().unwrap_or(Value::Undefined), parent)? { return Ok(value); }');
+   }
    const activationLine=lines.length;
    if(node.type==='Program')ctx.emit('let env = parent;');else ctx.emit('let env = rt.child_env(parent);');
    const body=directBody(node),declarations=hoists(node),params=node.params??[],annex=annexBPlan(record,parents);ctx.annexBDeclarations=annex.eligible;for(const name of annex.names)if(!declarations.names.includes(name))declarations.names.push(name);
@@ -211,6 +217,11 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
      if(gcCounter)local.emit('}');
      record.battleGcSafePoints.push({kind:'outer-battle-loop-backedge',start:loop.start,end:loop.end,environment:'function',cadence:nativeBattleGcCadence,sourceSha256:NATIVE_BATTLE_RUN_SOURCE_SHA256});
     };
+   }
+   if(sourceSpecializations&&!split&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_BUFF_PERCENT_SOURCE_SHA256){
+    const loop=body[0];if(body.length!==1||loop.type!=='ForStatement'||loop.init?.type!=='VariableDeclaration')ctx.unsupported(node,'Pinned Buff percent loop shape changed');
+    record.sourceSpecialization='native-buff-percent-loop-v1';
+    ctx.sourceLoopBodyFastPath=(candidate,local)=>{if(candidate!==loop)return null;const values=new Map(loop.init.declarations.map(d=>[d.id.name,local.expression(d.id)]));return 'rt.try_native_buff_percent_loop(this, '+['e','t','a','i','r','n'].map(n=>values.get(n)).join(', ')+', parent)';};
    }
    if(sourceSpecializations&&!split&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_EXPOSE_SOURCE_SHA256){
     const loops=body.filter(statement=>statement.type==='ForStatement');

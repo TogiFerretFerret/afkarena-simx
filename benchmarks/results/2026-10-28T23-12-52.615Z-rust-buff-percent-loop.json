@@ -1,0 +1,311 @@
+{
+  "version": 1,
+  "passed": true,
+  "rounds": 2,
+  "roundTotals": [
+    {
+      "round": 0,
+      "sipElapsedNs": 128714112,
+      "fxElapsedNs": 102005294,
+      "ratio": 1.2618375669796118
+    },
+    {
+      "round": 1,
+      "sipElapsedNs": 120345138,
+      "fxElapsedNs": 97765078,
+      "ratio": 1.2309624301634579
+    }
+  ],
+  "hostContention": {
+    "present": false,
+    "reason": "Reserved serial component timing slot; no full-battle throughput claim."
+  },
+  "source": {
+    "source": "src/srcmodule/game_battle.js",
+    "methods": {
+      "applyPercentValue": {
+        "start": 41723,
+        "end": 42574,
+        "sha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+        "text": "function(){for(var e=this.info,t=this.owner.attribs,a=ed.AttrDebugMgr&&ed.AttrDebugMgr.getDynamic(this.owner),i=this.owner.buff_effects.noAttrUp&&!this.owner.isAttrLockExemptedFor(\"noAttrUp\",e.ID),r=this.owner.buff_effects.noAttrDown&&!this.owner.isAttrLockExemptedFor(\"noAttrDown\",e.ID),n=this.attrib.length,l=0;l<n;l++){var o=this.attrib[l],f=0,s=a&&t[o],c=0,d=e[ed.attrib_names_x[o]];if(d){var u=ed.attrib_names_a[o];if(e.AddSource&&\"owner\"===e.AddSource&&this.owner){var _=e[u];a&&(c=this.owner.attribs[_]||0),f+=(this.owner.attribs[_]||0)*d}else{_=e[u];a&&(c=this.caster_attribs[_]||0),f+=(this.caster_attribs[_]||0)*d}}0!==f&&(\"HPR\"===o||\"MPR\"===o||f>0&&!i||f<0&&!r)&&(t[o]=t[o]+f),a&&d&&ed.AttrDebugMgr.recordBuffValue(a,this,o,s,t[o],f,{kind:\"percent\",basis:c,coefficient:d,basisAttr:e[ed.attrib_names_a[o]]},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}}"
+      },
+      "applyFixedValue": {
+        "start": 42591,
+        "end": 43256,
+        "sha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+        "text": "function(){for(var e=this.info,t=this.owner.attribs,a=ed.AttrDebugMgr&&ed.AttrDebugMgr.getDynamic(this.owner),i=this.owner.buff_effects.noAttrUp&&!this.owner.isAttrLockExemptedFor(\"noAttrUp\",e.ID),r=this.owner.buff_effects.noAttrDown&&!this.owner.isAttrLockExemptedFor(\"noAttrDown\",e.ID),n=this.attrib.length,l=0;l<n;l++){var o=this.attrib[l],f=e[o]||0,s=a&&t[o];0!==f&&(\"HPR\"===o&&(f<0&&this.owner.rageObject&&(f=this.owner.rageObject.processHPR(this.owner,f,this)),this.buffIncHPR=f),(\"HPR\"===o||\"MPR\"===o||f>0&&!i||f<0&&!r)&&(t[o]=t[o]+f)),a&&e[o]&&ed.AttrDebugMgr.recordBuffValue(a,this,o,s,t[o],f,{kind:\"fixed\",value:e[o]||0},\"HPR\"!==o&&\"MPR\"!==o&&(f>0?i:r))}}"
+      }
+    }
+  },
+  "sourceBuffMethodsUnchanged": true,
+  "updatesPerTrial": 10000,
+  "trialsPerVariant": 3,
+  "warmupUpdates": 5,
+  "rows": [
+    {
+      "label": "baseline",
+      "round": 0,
+      "trial": 0,
+      "elapsedNs": "44092092",
+      "updates": 10000,
+      "updatesPerSecond": 226798.0389771481,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 0,
+      "trial": 0,
+      "elapsedNs": "35837937",
+      "updates": 10000,
+      "updatesPerSecond": 279033.91872138175,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 0,
+      "trial": 1,
+      "elapsedNs": "32883809",
+      "updates": 10000,
+      "updatesPerSecond": 304101.02430652117,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 0,
+      "trial": 1,
+      "elapsedNs": "41295426",
+      "updates": 10000,
+      "updatesPerSecond": 242157.56970275592,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 0,
+      "trial": 2,
+      "elapsedNs": "43326594",
+      "updates": 10000,
+      "updatesPerSecond": 230805.1262926414,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 0,
+      "trial": 2,
+      "elapsedNs": "33283548",
+      "updates": 10000,
+      "updatesPerSecond": 300448.738217452,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 1,
+      "trial": 0,
+      "elapsedNs": "40975395",
+      "updates": 10000,
+      "updatesPerSecond": 244048.8981253262,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 1,
+      "trial": 0,
+      "elapsedNs": "31762945",
+      "updates": 10000,
+      "updatesPerSecond": 314832.2675998715,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 1,
+      "trial": 1,
+      "elapsedNs": "33336667",
+      "updates": 10000,
+      "updatesPerSecond": 299970.00000029994,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 1,
+      "trial": 1,
+      "elapsedNs": "39212885",
+      "updates": 10000,
+      "updatesPerSecond": 255018.21658875645,
+      "events": 256
+    },
+    {
+      "label": "baseline",
+      "round": 1,
+      "trial": 2,
+      "elapsedNs": "40156858",
+      "updates": 10000,
+      "updatesPerSecond": 249023.46692562453,
+      "events": 256
+    },
+    {
+      "label": "cached",
+      "round": 1,
+      "trial": 2,
+      "elapsedNs": "32665466",
+      "updates": 10000,
+      "updatesPerSecond": 306133.7009550086,
+      "events": 256
+    }
+  ],
+  "totals": {
+    "baseline": {
+      "trials": 6,
+      "totalUpdates": 60000,
+      "totalElapsedNs": "249059250",
+      "aggregateUpdatesPerSecond": 240906.53127719607
+    },
+    "cached": {
+      "trials": 6,
+      "totalUpdates": 60000,
+      "totalElapsedNs": "199770372",
+      "aggregateUpdatesPerSecond": 300344.837922212
+    }
+  },
+  "observedThroughputRatio": 1.2467276679046282,
+  "allOrderedEventsAndSelectedStateBitsMatched": true,
+  "debugPrefixCallbacksPreserved": true,
+  "sourceDebugGetDynamicSha256": "5fd8fd921c57af52374f2b7a3f9b57d341f262b33adbc410b071d361e68f72f8",
+  "sourceDebugIsEnabledSha256": "f7eb473fd0b56b032c971b6f59b2ceedcc18127f542272f32b5bbb985c30e05a",
+  "nativeLoopHits": [
+    "BUFF_PERCENT_HITS:baseline:0:0",
+    "BUFF_PERCENT_HITS:cached:10005:10005",
+    "BUFF_PERCENT_HITS:cached:10005:10005",
+    "BUFF_PERCENT_HITS:baseline:0:0",
+    "BUFF_PERCENT_HITS:baseline:0:0",
+    "BUFF_PERCENT_HITS:cached:10005:10005",
+    "BUFF_PERCENT_HITS:baseline:0:0",
+    "BUFF_PERCENT_HITS:cached:10005:10005",
+    "BUFF_PERCENT_HITS:cached:10005:10005",
+    "BUFF_PERCENT_HITS:baseline:0:0",
+    "BUFF_PERCENT_HITS:baseline:0:0",
+    "BUFF_PERCENT_HITS:cached:10005:10005"
+  ],
+  "eventCountPerTrial": 256,
+  "oracle": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ]
+  },
+  "runtimeBuffPercentLoop": {
+    "baseline": false,
+    "cached": true
+  },
+  "maxHintKeyIds": 65536,
+  "sameGeneratedEntry": true,
+  "cacheLocalBindings": {
+    "baseline": true,
+    "cached": true
+  },
+  "staticLiteralStrings": {
+    "baseline": true,
+    "cached": true
+  },
+  "sameRuntime": true,
+  "inputs": {
+    "tools/rust-port/benchmark-buff-percent-loop.mjs": "cef9a7510d1143edeb80873d97e9c47035e97ef512467948b1233cb1409453fa",
+    "tools/rust-port/compile.mjs": "2c58468434633b5f7f10dcb913cceb350003d637d7d42934f800b6e1ad3ee0fa",
+    "tools/rust-port/expressions.mjs": "6ef9e595b1bcc18710552c959f16e2395010a46f6c7d4e63caaf98862d7c9009",
+    "tools/rust-port/statements.mjs": "ba1a844d47933d17384895a50ea10a59658c5c027d52e7dfc1f1b43430117b5f",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/emit-native-oracle.mjs": "5308cd3bebe6b11459a9e67070b0049138f62aa3c6c528d1ebf56427e5f80c03",
+    "src/srcmodule/game_base.js": "0dd5b437964ec44177656ff15f6817c875fd4c5498c9d0bfaa0dfbfb856bf0cc",
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "96256aa10f57ee8d833f1bef99d7c1185d7205d2ae7519a7bfa573cdb8ae527f",
+    "crates/js-runtime/src/binary.rs": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+    "crates/js-runtime/src/buff_attribute_loop.rs": "ad8fe069ffbc64eb69a7f9444fa31d3b13b65e9cb1ef9030f6b75eb78c848a44",
+    "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/closures.rs": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "28cf58913ef7e407748beb4ac982c94cd589b76b07d114efcf7c46ce900af96b",
+    "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+    "crates/js-runtime/src/dense_array_shift.rs": "f4a866084d5f2a700afaae853815afd2e2d2c3e854397139ade8789a2c5f94a3",
+    "crates/js-runtime/src/diagnostics.rs": "9018f7593d765ba4debf4f75355f1ddd676aa60c79a93b183db89086590e2434",
+    "crates/js-runtime/src/dynamic_slots.rs": "f7731263433ec74752da8423fd84c0f2a68cb7c060b02f18c08d974453d035bf",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+    "crates/js-runtime/src/expose_scan.rs": "06733c148aab5757260fb180e8361ea38f6dc16ea39ed8091ef2215e81c37110",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "0d8b7a1094792303a3dba0c2f3d8b102a2d9682b300d45b175dabdaa9d678104",
+    "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+    "crates/js-runtime/src/lib.rs": "b93b9c299cca7378d727cc8a48343a4bcd43c6ca10a416624d8d351406083cb8",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/property_slots.rs": "57e6cedcc83d17dcce4789f8846f8796419d5e94c45f02bd568b574d4cf0afa3",
+    "crates/js-runtime/src/reachability.rs": "9edd4aaba07905b4ac1bd1031bcfb1b96e27986509916e8c83e2cebb7f6f5e34",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+    "crates/js-runtime/src/runtime.rs": "415696f3fdbe32921111f629dabd8021f30c960e24054b7a9d652fa06aab58d4",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "f107d1d45c0541475f5df4bbc9092dbd351f36882090ef335c529060cd0612b3",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c"
+  },
+  "binarySha256": "dad840b45923db1591c44a21678ce8b436f7e7364d43e715ffaa96f1e7af4917",
+  "buildArgs": [
+    "build",
+    "--release",
+    "--manifest-path",
+    "/workspace/afkarena-simx/work/candidate-buff-attribute-loop/work/rust-buff-percent-loop/Cargo.toml",
+    "--target-dir",
+    "/workspace/afkarena-simx/work/candidate-buff-attribute-loop/target"
+  ],
+  "executionWallMs": 476.4307369999999,
+  "artifacts": [
+    {
+      "label": "shared-generated",
+      "file": "benchmarks/results/2026-10-28T23-12-52.615Z-rust-buff-percent-loop.shared-generated.gz",
+      "sha256": "f60654660a6256c075ee8e49ef3c695e774521b27f64463744ca76288bbb9dc7",
+      "uncompressedSha256": "94cbb01891b12894acdfd2b0c2fc7d74a4a9efd76291b549e10fadd288300d04",
+      "uncompressedBytes": 79666
+    },
+    {
+      "label": "shared-manifest",
+      "file": "benchmarks/results/2026-10-28T23-12-52.615Z-rust-buff-percent-loop.shared-manifest.gz",
+      "sha256": "a8032242a9bd25b9c1d440b0789ae503ca103fec598498edc1402d4fb985ee9a",
+      "uncompressedSha256": "c73e3742c5a06988b43838cb7cdb83d027893b62a7fadad126b9b4a304f8e24e",
+      "uncompressedBytes": 6096
+    },
+    {
+      "label": "source",
+      "file": "benchmarks/results/2026-10-28T23-12-52.615Z-rust-buff-percent-loop.source.gz",
+      "sha256": "bb08f9bbb03ce49a93888458b8724b6907040ddcb8d47d5ebaea0cbc4b626e0c",
+      "uncompressedSha256": "b6d0351e57ad1c1cacff0a14b374aa58fcb1a213a88ccc3f984c47bdbaae24e1",
+      "uncompressedBytes": 2879
+    },
+    {
+      "label": "actual",
+      "file": "benchmarks/results/2026-10-28T23-12-52.615Z-rust-buff-percent-loop.actual.gz",
+      "sha256": "eab8f4b20cdd71fa39df8e92f1c34fc0b9f3dfdaa0d6e50880eecdb351a0e3df",
+      "uncompressedSha256": "412356d5eb533b4783d45858384b432bc0a358704ff5e2bb438a851c43d67102",
+      "uncompressedBytes": 241044
+    },
+    {
+      "label": "expected",
+      "file": "benchmarks/results/2026-10-28T23-12-52.615Z-rust-buff-percent-loop.expected.gz",
+      "sha256": "adad870f3579579540a14995e4c2522ced79fd405eec04557eb10f0e4d3569ee",
+      "uncompressedSha256": "662ec778141cf152502c6c981d236215cff41320443a9ddad2a75d632ff0098b",
+      "uncompressedBytes": 20067
+    }
+  ],
+  "qualifiesFor10000Target": false,
+  "scope": "Original source Buff.applyPercentValue/applyFixedValue compiled to pure Rust, compared against pinned jitless source with the same explicit component fixture callbacks. Timed windows include both unchanged source methods and raw-bit snapshots after each of the first128 method pairs. The full terminal attribute state is also compared; later intermediate states are unobserved. This is original-buff method pairs/second, NOT battles/second or a complete mechanics backend. Startup, fixture construction, five warmup updates, reset and final JSON snapshot are excluded. Arena lifetime/GC and complete realistic battles remain unqualified."
+}
