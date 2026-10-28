@@ -1,0 +1,14 @@
+load("@prelude//:rules.bzl", "rust_library")
+
+rust_library(
+    name = "js_runtime",
+    srcs = glob(["src/**/*.rs"]),
+    crate = "js_runtime",
+    crate_root = "src/lib.rs",
+    edition = "2024",
+    deps = [
+        "//crates/battle-core:battle_core",
+        "//third-party/ryu-js:ryu_js",
+    ],
+    visibility = ["PUBLIC"],
+)

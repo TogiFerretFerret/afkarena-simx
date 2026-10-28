@@ -1,0 +1,12 @@
+[package]
+name = "js-runtime"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+battle-core = { path = "../battle-core" }
+ryu-js = { version = "=1.0.2", path = "../../third-party/ryu-js" }

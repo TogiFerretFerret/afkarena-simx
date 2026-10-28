@@ -5,3 +5,15 @@ version = 4
 [[package]]
 name = "battle-core"
 version = "0.1.0"
+
+[[package]]
+name = "js-runtime"
+version = "0.1.0"
+dependencies = [
+ "battle-core",
+ "ryu-js",
+]
+
+[[package]]
+name = "ryu-js"
+version = "1.0.2"
