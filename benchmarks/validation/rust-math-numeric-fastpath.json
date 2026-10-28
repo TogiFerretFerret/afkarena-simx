@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "scope": "Microbenchmark only; not battle throughput or qualification. Ten million cached native calls per function; operands binary64 numbers; full call_value dispatch retained. Shared cloud-host timing is noisy; sqrt has no demonstrated improvement.",
+  "baselineCommit": "e6f6bc9",
+  "benchmarkRustSource": "use js_runtime::{Runtime,Value};use std::{hint::black_box,time::Instant};\nfn main(){let mut rt=Runtime::new();let global=Value::Object(rt.global_object);let k=rt.string(\"Math\");let math=rt.get(global,k).unwrap();for name in[\"sqrt\",\"min\",\"max\"]{let k=rt.string(name);let f=rt.get(math,k).unwrap();let args=[Value::Number(1.23456789),Value::Number(-0.0)];let start=Instant::now();for _ in 0..10000000{black_box(rt.call_value(black_box(f),math,black_box(&args)).unwrap());}println!(\"{} {}\",name,start.elapsed().as_nanos());}}\n",
+  "binarySha256": {
+    "before": "6114e90f54ff084fc05a95a180412104db939b701c8b17e94d1f7727b8241822",
+    "after": "143e7fabe2395b237a9ccb0b4655686b2c5777b243d646b2c9590469b6e39454"
+  },
+  "baselineNs": [
+    {
+      "sqrt": 148719381,
+      "min": 231233865,
+      "max": 204988681
+    },
+    {
+      "sqrt": 160958521,
+      "min": 183558120,
+      "max": 183259831
+    },
+    {
+      "sqrt": 135185990,
+      "min": 211693729,
+      "max": 197817463
+    },
+    {
+      "sqrt": 170879561,
+      "min": 212037253,
+      "max": 217094071
+    }
+  ],
+  "candidateNs": [
+    {
+      "sqrt": 152350179,
+      "min": 128307011,
+      "max": 127300572
+    },
+    {
+      "sqrt": 133065766,
+      "min": 136594489,
+      "max": 138292022
+    },
+    {
+      "sqrt": 173812999,
+      "min": 151089135,
+      "max": 160221846
+    },
+    {
+      "sqrt": 386584658,
+      "min": 178963115,
+      "max": 171880477
+    }
+  ],
+  "invariants": [
+    "Only Value::Number bypasses generic ToNumber; every other value executes unchanged conversion.",
+    "Argument traversal and conversion remain left-to-right, including all arguments after NaN.",
+    "Same js_math min/max operations retain signed zero and NaN payload policy.",
+    "Writable Math properties still resolve and dispatch normally; no compiler intrinsic substitution."
+  ],
+  "differentialGate": {
+    "file": "benchmarks/validation/rust-math-semantics.json",
+    "cases": 255190,
+    "passed": true,
+    "differences": 0,
+    "unsupported": 0
+  },
+  "qualifiesFor10000Target": false
+}

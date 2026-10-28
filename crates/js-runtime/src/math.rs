@@ -34,7 +34,9 @@ impl Runtime {
         Ok(())
     }
 }
-fn first(rt:&mut Runtime,args:&[Value])->JsResult<f64>{rt.to_number(args.first().copied().unwrap_or(Value::Undefined))}
+#[inline]
+fn number(rt:&mut Runtime,value:Value)->JsResult<f64>{match value{Value::Number(n)=>Ok(n),other=>rt.to_number(other)}}
+fn first(rt:&mut Runtime,args:&[Value])->JsResult<f64>{number(rt,args.first().copied().unwrap_or(Value::Undefined))}
 fn math_abs(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(f64::from_bits(first(rt,args)?.to_bits()&!(1_u64<<63))))}
 fn math_floor(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let n=first(rt,args)?;Ok(Value::Number(if n.is_nan(){n}else{n.floor()}))}
 fn math_ceil(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let n=first(rt,args)?;Ok(Value::Number(if n.is_nan(){n}else{n.ceil()}))}
@@ -48,8 +50,8 @@ fn math_round(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{
     Ok(Value::Number(result))
 }
 fn math_sqrt(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(first(rt,args)?.sqrt()))}
-fn math_min(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let mut value=f64::INFINITY;for argument in args{let number=rt.to_number(*argument)?;value=js_math::min(value,number);}Ok(Value::Number(value))}
-fn math_max(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let mut value=f64::NEG_INFINITY;for argument in args{let number=rt.to_number(*argument)?;value=js_math::max(value,number);}Ok(Value::Number(value))}
+fn math_min(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let mut value=f64::INFINITY;for argument in args{let number=number(rt,*argument)?;value=js_math::min(value,number);}Ok(Value::Number(value))}
+fn math_max(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let mut value=f64::NEG_INFINITY;for argument in args{let number=number(rt,*argument)?;value=js_math::max(value,number);}Ok(Value::Number(value))}
 fn math_pow(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let a=first(rt,args)?;let b=rt.to_number(args.get(1).copied().unwrap_or(Value::Undefined))?;Ok(Value::Number(crate::value::number_pow(a,b)?))}
 fn math_imul(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let a=rt.to_uint32(args.first().copied().unwrap_or(Value::Undefined))?;let b=rt.to_uint32(args.get(1).copied().unwrap_or(Value::Undefined))?;Ok(Value::Number((a.wrapping_mul(b)as i32)as f64))}
 fn math_clz32(rt:&mut Runtime,_:Value,args:&[Value],_:EnvId)->JsResult<Value>{let n=rt.to_uint32(args.first().copied().unwrap_or(Value::Undefined))?;Ok(Value::Number(n.leading_zeros()as f64))}
