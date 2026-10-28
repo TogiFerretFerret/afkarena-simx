@@ -1,7 +1,7 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 34,
+  "cases": 52,
   "results": [
     {
       "name": "computed-simple-rhs-before-coercion",
@@ -240,15 +240,141 @@
       "expected": "s:00410042",
       "actual": "s:00410042",
       "passed": true
+    },
+    {
+      "name": "optional-member-skips-computed-chain",
+      "source": "var n=0,a=null;var v=a?.[n++].x;var result=n+\":\"+typeof v;",
+      "expected": "s:0030003a0075006e0064006500660069006e00650064",
+      "actual": "s:0030003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "optional-call-skips-arguments",
+      "source": "var log=\"\",a=null;a?.m((log+=\"A\",2));var result=log;",
+      "expected": "s:",
+      "actual": "s:",
+      "passed": true
+    },
+    {
+      "name": "grouped-optional-callee-evaluates-arguments",
+      "source": "var log=\"\",a=null;try{(a?.m)((log+=\"A\",2))}catch(e){log+=\"T\"}var result=log;",
+      "expected": "s:00410054",
+      "actual": "s:00410054",
+      "passed": true
+    },
+    {
+      "name": "grouped-optional-member-breaks-chain",
+      "source": "var log=\"\",a=null;try{(a?.b)[(log+=\"K\",\"c\")]}catch(e){log+=\"T\"}var result=log;",
+      "expected": "s:004b0054",
+      "actual": "s:004b0054",
+      "passed": true
+    },
+    {
+      "name": "optional-delete-does-not-read-getter",
+      "source": "var log=\"\",o={get x(){log+=\"G\";return 2}};var r=delete o?.x;var result=log+\":\"+r+\":\"+(\"x\" in o);",
+      "expected": "s:003a0074007200750065003a00660061006c00730065",
+      "actual": "s:003a0074007200750065003a00660061006c00730065",
+      "passed": true
+    },
+    {
+      "name": "optional-delete-chain-shortcircuits",
+      "source": "var o=null;var result=delete o?.x.y;",
+      "expected": "b:true",
+      "actual": "b:true",
+      "passed": true
+    },
+    {
+      "name": "optional-method-receiver-captured",
+      "source": "var o={x:3,m(v){return this.x+v}};var result=o?.m((o={x:100},2));",
+      "expected": "d:4014000000000000",
+      "actual": "d:4014000000000000",
+      "passed": true
+    },
+    {
+      "name": "optional-null-method-getter-prefix",
+      "source": "var log=\"\",o={get m(){log+=\"G\";return null}};o.m?.((log+=\"A\",2));var result=log;",
+      "expected": "s:0047",
+      "actual": "s:0047",
+      "passed": true
+    },
+    {
+      "name": "new-target-constructor",
+      "source": "function F(){this.x=new.target===F}var o=new F;var result=o.x;",
+      "expected": "b:true",
+      "actual": "b:true",
+      "passed": true
+    },
+    {
+      "name": "new-target-nested-ordinary-function",
+      "source": "var log=\"\";function F(){log=(function(){return new.target===void 0})()+\":\"+(new.target===F)}new F;var result=log;",
+      "expected": "s:0074007200750065003a0074007200750065",
+      "actual": "s:0074007200750065003a0074007200750065",
+      "passed": true
+    },
+    {
+      "name": "new-target-arrow-capture",
+      "source": "function F(){this.test=()=>new.target===F}var o=new F;var result=o.test();",
+      "expected": "b:true",
+      "actual": "b:true",
+      "passed": true
+    },
+    {
+      "name": "new-target-arrow-ordinary-call",
+      "source": "function f(){return ()=>new.target}var g=f();var result=g()===void 0;",
+      "expected": "b:true",
+      "actual": "b:true",
+      "passed": true
+    },
+    {
+      "name": "array-length-object-coerces-twice",
+      "source": "var n=0,a=[],v={valueOf:function(){n++;return 2}};a.length=v;var result=n*10+a.length;",
+      "expected": "d:4036000000000000",
+      "actual": "d:4036000000000000",
+      "passed": true
+    },
+    {
+      "name": "array-shrink-nonconfig-retains-prefix",
+      "source": "var a=[0,1,2,3];Object.defineProperty(a,\"2\",{configurable:false});a.length=0;var result=a.length*10+(\"3\" in a?1:0);",
+      "expected": "d:403e000000000000",
+      "actual": "d:403e000000000000",
+      "passed": true
+    },
+    {
+      "name": "object-keys-boxes-string",
+      "source": "var result=Object.keys(\"ab\").length;",
+      "expected": "d:4000000000000000",
+      "actual": "d:4000000000000000",
+      "passed": true
+    },
+    {
+      "name": "array-own-names-holes",
+      "source": "var result=Object.getOwnPropertyNames([,1]).join(\",\");",
+      "expected": "s:0031002c006c0065006e006700740068",
+      "actual": "s:0031002c006c0065006e006700740068",
+      "passed": true
+    },
+    {
+      "name": "array-cyclic-join",
+      "source": "var a=[];a[0]=a;var result=a.join(\",\");",
+      "expected": "s:",
+      "actual": "s:",
+      "passed": true
+    },
+    {
+      "name": "array-sort-holes-and-undefined",
+      "source": "var a=[3,,void 0,1];a.sort();var result=a.join(\",\")+\":\"+(\"2\" in a)+\":\"+(\"3\" in a);",
+      "expected": "s:0031002c0033002c002c003a0074007200750065003a00660061006c00730065",
+      "actual": "s:0031002c0033002c002c003a0074007200750065003a00660061006c00730065",
+      "passed": true
     }
   ],
   "compilerInputs": {
-    "tools/rust-port/expressions.mjs": "7044df8862a14e8910bf3fdd4393b9201c47f8a6e0d4eb2422ebafc95aad43ae",
-    "tools/rust-port/statements.mjs": "4572c7fd6b722f3049637083918abc79365528b0d2b026708674081302c8b857",
-    "tools/rust-port/compile.mjs": "a6feea53f1892f330c9ae9f5252f909412d8234ddd2c567525ec0c663e33dc12",
-    "tools/rust-port/tests/expressions.mjs": "9c0f47b5df890d3812900965a4c68be697cdddb587d317b2943ebe5100d30dcf",
+    "tools/rust-port/expressions.mjs": "3bc4cf1fea126a649bbf9995531a7dcc9b31c93bcd2c678180c1391982b321c9",
+    "tools/rust-port/statements.mjs": "d7ef2e86f5583cb6bc0d4b981809da2d5146963e295ed8248c3a4c8536033212",
+    "tools/rust-port/compile.mjs": "f3faf1f5418ac47ba48ecaca101c58008a8014af9c283d5886b0c59940c7fa6a",
+    "tools/rust-port/tests/expressions.mjs": "8b5653067c1de9c9c8b37690bff866b4f51903e2cd4f7ebe8972d7ce3768d809",
     "crates/js-runtime/src/builtins.rs": "26d6606da12c9e57b50d1a23cdacb9dcff2addf25158c3e29e5b2779e0b9d635",
-    "crates/js-runtime/src/closures.rs": "11864c8e83bc68329f614ab151707f5bbb451c4223072f28f95afddc913b1f7a",
+    "crates/js-runtime/src/closures.rs": "d2f522e4160b826a07811a0bc9305c38b3f72c1d0930406da6b262e707b51b06",
     "crates/js-runtime/src/env.rs": "66f56718bbc5abfcad6267cc763a9548f40f18d26aefaaf6c5aeaeda9b3bbac4",
     "crates/js-runtime/src/heap.rs": "ea31816d97fcf6aea99d82e0b3195a1b85f9c4f37e20d5f60cd9e793f9f1df48",
     "crates/js-runtime/src/lib.rs": "dd44aaf6793d76814e34fdc18c77871fdaf169f9476ffa789a742b14a87b17f9",
@@ -261,7 +387,7 @@
   },
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-expression-tests/target/release/expression-tests",
-    "sha256": "0c19cabbe83b7a785135561ec7671121f01f0f8917b387b531c13162b9c5eaaa"
+    "sha256": "083813790f9c6410d4cfb29bba1339c6194590da405e9e346ad805e29eb2690c"
   },
   "buildArgs": [
     "build",

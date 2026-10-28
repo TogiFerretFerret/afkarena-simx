@@ -41,6 +41,25 @@ const cases=[
  ['literal-overflow','var result=1e308*1e308;'],
  ['strict-literal-fold','"use strict";var result=(0/0)+1;'],
  ['sequence-order','var log="";var result=(log+="A",log+="B",log);'],
+ ['optional-member-skips-computed-chain','var n=0,a=null;var v=a?.[n++].x;var result=n+":"+typeof v;'],
+ ['optional-call-skips-arguments','var log="",a=null;a?.m((log+="A",2));var result=log;'],
+ ['grouped-optional-callee-evaluates-arguments','var log="",a=null;try{(a?.m)((log+="A",2))}catch(e){log+="T"}var result=log;'],
+ ['grouped-optional-member-breaks-chain','var log="",a=null;try{(a?.b)[(log+="K","c")]}catch(e){log+="T"}var result=log;'],
+ ['optional-delete-does-not-read-getter','var log="",o={get x(){log+="G";return 2}};var r=delete o?.x;var result=log+":"+r+":"+("x" in o);'],
+ ['optional-delete-chain-shortcircuits','var o=null;var result=delete o?.x.y;'],
+ ['optional-method-receiver-captured','var o={x:3,m(v){return this.x+v}};var result=o?.m((o={x:100},2));'],
+ ['optional-null-method-getter-prefix','var log="",o={get m(){log+="G";return null}};o.m?.((log+="A",2));var result=log;'],
+ ['new-target-constructor','function F(){this.x=new.target===F}var o=new F;var result=o.x;'],
+ ['new-target-nested-ordinary-function','var log="";function F(){log=(function(){return new.target===void 0})()+":"+(new.target===F)}new F;var result=log;'],
+ ['new-target-arrow-capture','function F(){this.test=()=>new.target===F}var o=new F;var result=o.test();'],
+ ['new-target-arrow-ordinary-call','function f(){return ()=>new.target}var g=f();var result=g()===void 0;'],
+ ['array-length-object-coerces-twice','var n=0,a=[],v={valueOf:function(){n++;return 2}};a.length=v;var result=n*10+a.length;'],
+ ['array-shrink-nonconfig-retains-prefix','var a=[0,1,2,3];Object.defineProperty(a,"2",{configurable:false});a.length=0;var result=a.length*10+("3" in a?1:0);'],
+ ['object-keys-boxes-string','var result=Object.keys("ab").length;'],
+ ['array-own-names-holes','var result=Object.getOwnPropertyNames([,1]).join(",");'],
+ ['array-cyclic-join','var a=[];a[0]=a;var result=a.join(",");'],
+ ['array-sort-holes-and-undefined','var a=[3,,void 0,1];a.sort();var result=a.join(",")+":"+("2" in a)+":"+("3" in a);'],
+
 ];
 await mkdir(work,{recursive:true});
 const files=['tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/compile.mjs','tools/rust-port/tests/expressions.mjs'];
