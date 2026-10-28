@@ -16,7 +16,7 @@ pub struct Runtime {
  pub(crate) copy_obj_guard:Option<crate::copy_obj::CopyObjGuard>,
  pub(crate) function_objects:HashMap<ObjectId,FunctionId,crate::id_hash::IdBuildHasher>,
  pub(crate) utf8_loader_guard:Option<crate::utf8_guard::Utf8LoaderGuard>,
- pub(crate) strings:Vec<Box<[u16]>>, pub(crate) string_index:HashMap<Vec<u16>,StringId,crate::string_hash::StringBuildHasher>,
+ pub(crate) strings:Vec<std::sync::Arc<[u16]>>, pub(crate) string_index:HashMap<std::sync::Arc<[u16]>,StringId,crate::string_hash::StringBuildHasher>,
  pub(crate) string_utf8_index:HashMap<String,StringId,crate::string_hash::StringBuildHasher>,
  pub(crate) static_literal_strings:HashMap<(u8,usize,usize),StringId,crate::string_hash::StringBuildHasher>,
  pub native_data_obj_scan_enabled:bool,pub numeric_property_key_cache_enabled:bool,pub index_string_fast_path_enabled:bool,pub primary_numeric_arrays_enabled:bool,
@@ -74,9 +74,10 @@ impl Runtime {
   rt.capture_stage_range_guard();rt.capture_copy_obj_guard();rt.capture_expose_scan_guard();
   rt
  }
- pub fn intern_utf16(&mut self,units:&[u16])->StringId{if let Some(id)=self.string_index.get(units){return *id}let id=StringId(self.strings.len());self.strings.push(units.into());self.string_index.insert(units.to_vec(),id);id}
+ pub fn intern_utf16(&mut self,units:&[u16])->StringId{if let Some(id)=self.string_index.get(units){return *id}let id=StringId(self.strings.len());let shared:std::sync::Arc<[u16]>=units.into();self.strings.push(shared.clone());self.string_index.insert(shared,id);id}
  pub fn intern(&mut self,text:&str)->StringId{if let Some(id)=self.string_utf8_index.get(text){return *id}let id=self.intern_utf16(&text.encode_utf16().collect::<Vec<_>>());self.string_utf8_index.insert(text.to_owned(),id);id}
  pub fn string_units(&self,id:StringId)->&[u16]{&self.strings[id.0]}
+ pub(crate) fn owned_shared_units(&self,id:StringId)->std::sync::Arc<[u16]>{self.strings[id.0].clone()}
  pub fn string_text(&self,id:StringId)->String{String::from_utf16_lossy(self.string_units(id))}
  pub fn string(&mut self,text:&str)->Value{Value::String(self.intern(text))}
  pub fn string_utf16(&mut self,units:&[u16])->Value{Value::String(self.intern_utf16(units))}
