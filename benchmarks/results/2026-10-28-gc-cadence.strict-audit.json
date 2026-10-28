@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "passed": true,
+  "result": {
+    "file": "benchmarks/results/2026-10-28-gc-cadence.json",
+    "sha256": "aa746992c386007f9c81d67767edae76ac1511220bb38632d9e885b5420d8f7b"
+  },
+  "auditor": {
+    "file": "/workspace/afkarena-simx/tools/rust-port/audit-gc-cadence.mjs",
+    "sha256": "9cd850df1a93fb4bb3666dcf310dc271f95d7564aca234714249f32a684dad7f"
+  },
+  "scope": "Post-execution anchored collection-count audit; original report carries full report/host and source/build checks.",
+  "runs": [
+    {
+      "cadence": 1,
+      "collections": 23,
+      "expectedCollections": 23,
+      "stderrFile": "benchmarks/results/2026-10-28-gc-cadence.1.stderr.gz",
+      "stderrSha256": "d7b8fcde66ad767c87845993343aadb871ec533e497f3c7b6ea79f5d3cdf9f61",
+      "battlesPerSecond": 0.5827535880746813,
+      "peakHwmKiB": 2658536
+    },
+    {
+      "cadence": 2,
+      "collections": 12,
+      "expectedCollections": 12,
+      "stderrFile": "benchmarks/results/2026-10-28-gc-cadence.2.stderr.gz",
+      "stderrSha256": "1837930351d4c61254420d1f6e84bf74173ba38a7b3eba7bceab7310bf9080a4",
+      "battlesPerSecond": 0.6569690979623944,
+      "peakHwmKiB": 3154960
+    },
+    {
+      "cadence": 4,
+      "collections": 6,
+      "expectedCollections": 6,
+      "stderrFile": "benchmarks/results/2026-10-28-gc-cadence.4.stderr.gz",
+      "stderrSha256": "768b26b5112fa3baa055811106348744c85c98f202603b0d62a22c29d32008eb",
+      "battlesPerSecond": 0.6617624998970595,
+      "peakHwmKiB": 3834072
+    },
+    {
+      "cadence": 8,
+      "collections": 3,
+      "expectedCollections": 3,
+      "stderrFile": "benchmarks/results/2026-10-28-gc-cadence.8.stderr.gz",
+      "stderrSha256": "2ae45c289a84133b64c7ec9dfaa04dac5d06912261fc7d35e27f4f9fe0573f9f",
+      "battlesPerSecond": 0.7084503611799173,
+      "peakHwmKiB": 4860860
+    }
+  ]
+}

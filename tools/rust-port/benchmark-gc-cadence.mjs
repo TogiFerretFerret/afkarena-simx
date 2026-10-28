@@ -52,7 +52,7 @@ if(args.includes('--run')){
    assert.equal(row.difference,null);assert.equal(row.hostDifference,null);assert.equal(row.report.results.length,20);
    const markers=[...text.matchAll(/^PARALLEL_WALL_NOW:(\d+):(\d+)$/gm)];assert.deepEqual(markers.map(x=>+x[1]),[0,1]);
    const elapsed=BigInt(markers[1][2])-BigInt(markers[0][2]);assert.ok(elapsed>0n);row.measuredSeconds=Number(elapsed)/1e9;row.battlesPerSecond=20/row.measuredSeconds;
-   assert.ok(text.includes('PARALLEL_GC_COLLECTIONS:'+Math.ceil(23/variant)));
+   const collections=[...text.matchAll(/^PARALLEL_GC_COLLECTIONS:(\d+)$/gm)].map(x=>Number(x[1]));assert.deepEqual(collections,[Math.ceil(23/variant)]);row.collections=collections[0];
   }
   for(const row of tracked)assert.equal(await hash(row.file),row.sha256,'Changed AB input '+row.file);
   for(const unit of manifest.units)assert.equal(await hash(unit.file),unit.sourceSha256);
