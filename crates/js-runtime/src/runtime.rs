@@ -13,6 +13,8 @@ pub struct Runtime {
  pub call_stack:Vec<FunctionId>,pub global_env:EnvId,pub global_object:ObjectId,
  pub construct_stack:Vec<(FunctionId,usize)>,
  pub(crate) join_stack:Vec<ObjectId>,
+ pub(crate) regex_records:Vec<crate::regex::RegexRecord>,pub(crate) regex_cache:HashMap<(StringId,u16),std::sync::Arc<regress::Regex>>,
+ pub regexp_prototype:ObjectId,pub(crate) regexp_constructor:Value,
  pub object_prototype:ObjectId,pub function_prototype:ObjectId,pub array_prototype:ObjectId,
  pub string_prototype:ObjectId,pub number_prototype:ObjectId,pub boolean_prototype:ObjectId,
  pub function_prototype_value:Value,
@@ -21,14 +23,16 @@ impl Default for Runtime {fn default()->Self{Self::new()}}
 impl Runtime {
  pub fn new()->Self{
   let mut objects=vec![Object::new(None)];
-  for _ in 0..6{objects.push(Object::new(Some(ObjectId(0))))}
-  let mut rt=Self{strings:vec![],string_index:HashMap::new(),objects,functions:vec![],environments:vec![Environment{parent:None,bindings:BTreeMap::new(),kind:EnvKind::Global}],call_stack:vec![],construct_stack:vec![],join_stack:vec![],global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
+  for _ in 0..7{objects.push(Object::new(Some(ObjectId(0))))}
+  let mut rt=Self{strings:vec![],string_index:HashMap::new(),objects,functions:vec![],environments:vec![Environment{parent:None,bindings:BTreeMap::new(),kind:EnvKind::Global}],call_stack:vec![],construct_stack:vec![],join_stack:vec![],regex_records:vec![],regex_cache:HashMap::new(),regexp_prototype:ObjectId(7),regexp_constructor:Value::Undefined,global_env:EnvId(0),global_object:ObjectId(1),object_prototype:ObjectId(0),function_prototype:ObjectId(2),array_prototype:ObjectId(3),string_prototype:ObjectId(4),number_prototype:ObjectId(5),boolean_prototype:ObjectId(6),function_prototype_value:Value::Undefined};
   rt.objects[3].kind=ObjectKind::Array{length:0,length_writable:true};
   let empty=rt.intern("");rt.objects[4].kind=ObjectKind::BoxedString(empty);rt.objects[5].kind=ObjectKind::BoxedNumber(0.0);rt.objects[6].kind=ObjectKind::BoxedBoolean(false);
   rt.install_function_builtins().expect("fresh Function intrinsics");
   rt.function_prototype_value=rt.value_for_object(rt.function_prototype);
   rt.install_basic_builtins().expect("fresh Object and Array intrinsics");
   rt.install_math_builtins().expect("fresh Math intrinsics");
+  rt.install_json_builtins().expect("fresh JSON intrinsics");
+  rt.install_regexp_builtins().expect("fresh RegExp intrinsics");
   rt
  }
  pub fn intern_utf16(&mut self,units:&[u16])->StringId{if let Some(id)=self.string_index.get(units){return *id}let id=StringId(self.strings.len());self.strings.push(units.into());self.string_index.insert(units.to_vec(),id);id}
@@ -117,7 +121,7 @@ impl Runtime {
  pub fn for_in_next(&mut self,iter:&mut ForInIterator)->JsResult<Option<Value>>{loop{let Some(id)=iter.object else{return Ok(None)};if !iter.prepared{iter.keys=self.own_keys(Value::Object(id),false)?.into_iter().map(|v|if let Value::String(id)=v{PropertyKey(id)}else{unreachable!()}).collect();iter.cursor=0;iter.prepared=true;}while let Some(key)=iter.keys.get(iter.cursor).copied(){iter.cursor+=1;if iter.visited.contains(&key){continue}if let Some(d)=self.own_descriptor(id,key)?{iter.visited.insert(key);if d.enumerable{return Ok(Some(Value::String(key.0)))}}}iter.object=self.objects[id.0].prototype;iter.prepared=false;}}
  pub fn to_object(&mut self,value:Value)->JsResult<Value>{match value{Value::Object(_)|Value::Function(_)=>Ok(value),Value::Null|Value::Undefined=>Err(JsError::TypeError("cannot box null or undefined".into())),Value::String(v)=>{let id=self.alloc_object(Some(self.string_prototype));self.objects[id.0].kind=ObjectKind::BoxedString(v);Ok(Value::Object(id))},Value::Number(v)=>{let id=self.alloc_object(Some(self.number_prototype));self.objects[id.0].kind=ObjectKind::BoxedNumber(v);Ok(Value::Object(id))},Value::Bool(v)=>{let id=self.alloc_object(Some(self.boolean_prototype));self.objects[id.0].kind=ObjectKind::BoxedBoolean(v);Ok(Value::Object(id))}}}
  pub fn call(&mut self,callee:Value,this:Value,args:&[Value])->JsResult<Value>{self.call_value(callee,this,args)}
- pub fn error_value(&mut self,error:JsError)->JsResult<Value>{let(name,message)=match error{JsError::Throw(v)=>return Ok(v),JsError::Unsupported(s)=>return Err(JsError::Unsupported(s)),JsError::TypeError(s)=>("TypeError",s),JsError::ReferenceError(s)=>("ReferenceError",s),JsError::RangeError(s)=>("RangeError",s)};let object=self.object();let key=self.string("name");let value=self.string(name);self.define_data(object,key,value,true,false,true)?;let key=self.string("message");let value=self.string(&message);self.define_data(object,key,value,true,false,true)?;Ok(object)}
+ pub fn error_value(&mut self,error:JsError)->JsResult<Value>{let(name,message)=match error{JsError::Throw(v)=>return Ok(v),JsError::Unsupported(s)=>return Err(JsError::Unsupported(s)),JsError::TypeError(s)=>("TypeError",s),JsError::ReferenceError(s)=>("ReferenceError",s),JsError::RangeError(s)=>("RangeError",s),JsError::SyntaxError(s)=>("SyntaxError",s)};let object=self.object();let key=self.string("name");let value=self.string(name);self.define_data(object,key,value,true,false,true)?;let key=self.string("message");let value=self.string(&message);self.define_data(object,key,value,true,false,true)?;Ok(object)}
 }
 fn same_value(a:Value,b:Value)->bool{match(a,b){(Value::Number(a),Value::Number(b))=>(a.is_nan()&&b.is_nan())||a.to_bits()==b.to_bits(),_=>a==b}}
 fn optional_same(a:Option<Value>,b:Option<Value>)->bool{match(a,b){(Some(a),Some(b))=>same_value(a,b),(None,None)=>true,_=>false}}
