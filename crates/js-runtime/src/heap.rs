@@ -22,6 +22,7 @@ impl Descriptor {
 #[derive(Clone,Copy,Debug)]
 pub enum ObjectKind { Ordinary, Arguments, Math, Json, Error, Date(f64), RegExp(usize), Collection(usize),CollectionIterator(usize), ArrayBuffer{buffer:crate::binary::BufferId}, DataView{buffer:crate::binary::BufferId,byte_offset:usize,byte_length:usize}, TypedArray{buffer:crate::binary::BufferId,byte_offset:usize,length:usize,kind:crate::binary::TypedArrayKind}, Array{length:u32,length_writable:bool}, BoxedString(StringId), BoxedNumber(f64), BoxedBoolean(bool) }
 pub struct Object {
+ pub(crate) array_read_cache:Option<Box<crate::array_read_cache::ArrayReadCache>>,
  pub prototype:Option<ObjectId>, pub extensible:bool, pub kind:ObjectKind,
  pub properties:Vec<Option<(PropertyKey,Descriptor)>>,
  pub property_index:HashMap<PropertyKey,usize,IdBuildHasher>,
@@ -29,10 +30,10 @@ pub struct Object {
 }
 pub type HeapObject=Object;
 impl Object {
- pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::new()}}
+ pub fn new(prototype:Option<ObjectId>)->Self{Self{array_read_cache:None,prototype,extensible:true,kind:ObjectKind::Ordinary,properties:vec![],property_index:HashMap::default(),arguments_map:HashMap::new()}}
  pub fn own(&self,key:PropertyKey)->Option<Descriptor>{self.property_index.get(&key).and_then(|i|self.properties[*i].map(|(_,d)|d))}
- pub fn insert(&mut self,key:PropertyKey,descriptor:Descriptor){if let Some(i)=self.property_index.get(&key).copied(){self.properties[i]=Some((key,descriptor))}else{let i=self.properties.len();self.properties.push(Some((key,descriptor)));self.property_index.insert(key,i);}}
- pub fn remove(&mut self,key:PropertyKey){if let Some(i)=self.property_index.remove(&key){self.properties[i]=None;}self.arguments_map.remove(&key);}
+ pub fn insert(&mut self,key:PropertyKey,descriptor:Descriptor){let existing=self.property_index.get(&key).copied();self.update_array_read_cache(existing,descriptor);if let Some(i)=existing{self.properties[i]=Some((key,descriptor))}else{let i=self.properties.len();self.properties.push(Some((key,descriptor)));self.property_index.insert(key,i);}}
+ pub fn remove(&mut self,key:PropertyKey){if let Some(i)=self.property_index.remove(&key){if let Some(cache)=&mut self.array_read_cache{if let Some(Some(index))=cache.slots.get(i){if let Some(values)=&mut cache.values{values[*index]=None;}}}self.properties[i]=None;}self.arguments_map.remove(&key);}
 }
 
 /// For-in caches each object's own keys when reached, but checks its current

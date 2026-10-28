@@ -31,3 +31,4 @@ pub use runtime::{Runtime,Completion};
 pub mod utf8_guard;
 pub mod utf8_loader;
 pub mod copy_obj;
+mod array_read_cache;
