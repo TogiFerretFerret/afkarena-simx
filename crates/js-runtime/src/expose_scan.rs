@@ -13,7 +13,7 @@ impl Runtime{
   for &(key,expected)in &guard.methods{let Some(actual)=self.objects[self.string_prototype.0].own(key)else{return Ok(false)};if !equal(actual,expected){return Ok(false)}}
   let Some(Value::String(prefix))=self.expose_raw_binding(env,"prefix")else{return Ok(false)};
   let Some(Value::Object(keys))=self.expose_raw_binding(env,"keys")else{return Ok(false)};
-  let target=&self.objects[keys.0];if !matches!(target.kind,ObjectKind::Ordinary)||target.prototype.is_some()||!target.extensible||target.properties.iter().any(Option::is_some){return Ok(false)}
+  let target=&self.objects[keys.0];if !matches!(target.kind,ObjectKind::Ordinary)||target.prototype.is_some()||!target.extensible||target.iter_properties().next().is_some(){return Ok(false)}
   let Some(Value::Object(names))=self.expose_raw_binding(env,"__nativeDefinitionNames")else{return Ok(false)};
   let array=&self.objects[names.0];let ObjectKind::Array{length,..}=array.kind else{return Ok(false)};
   if array.primary_numeric_mask()!=0||array.prototype!=Some(self.array_prototype){return Ok(false)}
@@ -23,7 +23,7 @@ impl Runtime{
   // temporary storage: the original loop can throw at its first missing read.
   if length as usize > array.properties.len(){return Ok(false)}
   let mut strings=Vec::with_capacity(length as usize);
-  for index in 0..length{let Some(Some((key,desc)))=self.objects[names.0].properties.get(index as usize)else{return Ok(false)};let units=self.string_units(key.0);if units.is_empty()||(units.len()>1&&units[0]==48){return Ok(false)}let mut number=0u64;for &digit in units{if !(48..=57).contains(&digit){return Ok(false)}let Some(next)=number.checked_mul(10).and_then(|n|n.checked_add((digit-48)as u64))else{return Ok(false)};number=next;}if number!=index as u64{return Ok(false)}let PropertyKind::Data{value:Value::String(s),..}=desc.kind else{return Ok(false)};strings.push(s);}
+  for index in 0..length{let Some((key,desc))=self.objects[names.0].slot(index as usize)else{return Ok(false)};let units=self.string_units(key.0);if units.is_empty()||(units.len()>1&&units[0]==48){return Ok(false)}let mut number=0u64;for &digit in units{if !(48..=57).contains(&digit){return Ok(false)}let Some(next)=number.checked_mul(10).and_then(|n|n.checked_add((digit-48)as u64))else{return Ok(false)};number=next;}if number!=index as u64{return Ok(false)}let PropertyKind::Data{value:Value::String(s),..}=desc.kind else{return Ok(false)};strings.push(s);}
   let mut needle=self.string_units(prefix).to_vec();needle.push(b'.' as u16);let offset=needle.len();let mut output=vec![];
   for &name in &strings{let full=self.string_units(name);if full.starts_with(&needle){let tail=&full[offset..];let end=tail.iter().position(|&x|x==b'.' as u16).unwrap_or(tail.len());output.push(tail[..end].to_vec());}}
   for units in output{let key=Value::String(self.intern_utf16(&units));self.define_data(Value::Object(keys),key,Value::Bool(true),true,true,true)?;}

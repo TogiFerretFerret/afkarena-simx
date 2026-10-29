@@ -101,4 +101,26 @@ impl Runtime{
  }
  #[test]fn internal_function_names_survive_deleted_properties_and_23_actual_gc_safepoints(){let mut rt=Runtime::new();rt.diagnostics.enabled=false;rt.enable_native_battle_gc();let entry=rt.make_closure_with_flags(name_root_entry,rt.global_env,0,"__nativeRun",false,None);rt.set_function_source(entry,&RUN_SOURCE.encode_utf16().collect::<Vec<_>>()).unwrap();assert_eq!(rt.call(entry,Value::Undefined,&[]).unwrap(),Value::Number(23.0));assert_eq!(rt.native_battle_gc_stats().collections,23);}
 
+ fn compact_accessor_entry(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{
+  let env=rt.child_env(parent);for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}
+  let owner=rt.object();let weak=collection(rt,"WeakMap");rt.declare(env,"keptOwner",owner)?;rt.declare(env,"keptWeak",weak)?;
+  let live_getter=rt.make_closure(noop,parent,0,"live getter");let live_value=rt.object();let live_key=rt.object_id(live_getter)?;let live=rt.string("live");rt.define_accessor(owner,live,Some(live_getter),None,true,true)?;method(rt,weak,"set",&[live_getter,live_value]);
+  let replace=rt.string("replace");let remove=rt.string("remove");let mut seen=std::collections::HashSet::new();let mut reused=0;
+  for round in 0..23{
+   let dead_getter=rt.make_closure(noop,parent,0,"dead getter");let dead_setter=rt.make_closure(noop,parent,1,"dead setter");let dead_value=rt.object();let getter_object=rt.object_id(dead_getter)?;let setter_object=rt.object_id(dead_setter)?;let dead_value_id=rt.object_id(dead_value)?;let Value::Function(getter_id)=dead_getter else{unreachable!()};let Value::Function(setter_id)=dead_setter else{unreachable!()};if !seen.insert(getter_id){reused+=1;}
+   method(rt,weak,"set",&[dead_getter,dead_value]);method(rt,weak,"set",&[dead_setter,dead_value]);
+   rt.define_accessor(owner,replace,Some(dead_getter),Some(dead_setter),true,true)?;rt.define_data(owner,replace,Value::Number(-0.0),true,true,true)?;
+   rt.define_accessor(owner,remove,Some(dead_getter),Some(dead_setter),true,true)?;rt.delete(owner,remove,true)?;
+   // Deliberately retain stale handles in an UNREFERENCED physical arena slot:
+   // only live stored descriptors may define GC edges, never spare arena data.
+   let owner_id=rt.object_id(owner)?;rt.objects[owner_id.0].accessor_slots.as_mut().unwrap().push(Some((Some(dead_getter),Some(dead_setter))));
+   rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;
+   assert!(rt.native_battle_gc.free_functions.contains(&getter_id.0)&&rt.native_battle_gc.free_functions.contains(&setter_id.0),"discarded accessor handles must not stay rooted");assert!(rt.native_battle_gc.free_objects.contains(&dead_value_id.0),"weak value must die with discarded accessors");
+   assert_eq!(method(rt,weak,"has",&[Value::Object(getter_object)]),Value::Bool(false));assert_eq!(method(rt,weak,"has",&[Value::Object(setter_object)]),Value::Bool(false));assert_eq!(method(rt,weak,"get",&[Value::Object(live_key)]),live_value);
+   let Value::Number(n)=rt.get(owner,replace)?else{unreachable!()};assert_eq!(n.to_bits(),(-0.0f64).to_bits());assert_eq!(rt.get(owner,live)?,Value::Undefined);
+  }
+  assert!(reused>0,"collected accessor function IDs must actually recycle");Ok(Value::Number(23.0))
+ }
+ #[test]fn discarded_accessor_storage_does_not_root_weak_keys_across_23_actual_gc_safepoints(){let mut rt=Runtime::new();rt.diagnostics.enabled=false;rt.enable_native_battle_gc();let entry=rt.make_closure_with_flags(compact_accessor_entry,rt.global_env,0,"__nativeRun",false,None);rt.set_function_source(entry,&RUN_SOURCE.encode_utf16().collect::<Vec<_>>()).unwrap();assert_eq!(rt.call(entry,Value::Undefined,&[]).unwrap(),Value::Number(23.0));assert_eq!(rt.native_battle_gc_stats().collections,23);}
+
 }

@@ -18,7 +18,7 @@ impl Runtime {
   let Some(guard)=&self.stage_range_guard else{return false};for &(name,value)in &guard.bindings{if self.stage_range_raw_binding(parent,name)!=Some(value){return false}}
   for &(object,key,expected)in &guard.properties{let Some(actual)=self.objects[object.0].own(key)else{return false};if !same(actual,expected){return false}}
   if self.objects[self.object_prototype.0].prototype.is_some()||self.objects[self.array_prototype.0].prototype!=Some(self.object_prototype){return false}
-  for id in [self.object_prototype,self.array_prototype]{if self.objects[id.0].primary_numeric_mask()!=0{return false}for(key,_)in self.objects[id.0].properties.iter().flatten(){let u=self.string_units(key.0);if !u.is_empty()&&u.iter().all(|c|(48..=57).contains(c)){return false}}}true
+  for id in [self.object_prototype,self.array_prototype]{if self.objects[id.0].primary_numeric_mask()!=0{return false}for(key,_)in self.objects[id.0].iter_properties(){let u=self.string_units(key.0);if !u.is_empty()&&u.iter().all(|c|(48..=57).contains(c)){return false}}}true
  }
  pub fn try_native_stage_range_parser(&mut self,input:Value,parent:EnvId)->JsResult<Option<Value>>{
   if !self.native_stage_range_parser_enabled||!self.stage_range_intrinsics_intact(parent){return Ok(None)}

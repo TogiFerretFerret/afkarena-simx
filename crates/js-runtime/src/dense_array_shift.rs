@@ -12,17 +12,17 @@ impl Runtime{
   // Validate ALL source reads/writes/deletes before making any change. Physical
   // dense-prefix restriction is conservative: non-prefix layouts fall back.
   for index in 0..length{
-   let Some(Some((key,descriptor)))=object.properties.get(index)else{return Ok(None)};
-   if object.property_index.get(key).copied()!=Some(index)||canonical_index(self.string_units(key.0))!=Some(index as u32)||!descriptor.configurable{return Ok(None)}
+   let Some((key,descriptor))=object.slot(index)else{return Ok(None)};
+   if object.property_index.get(&key).copied()!=Some(index)||canonical_index(self.string_units(key.0))!=Some(index as u32)||!descriptor.configurable{return Ok(None)}
    let PropertyKind::Data{value:Value::Object(_)|Value::Function(_),writable:true}=descriptor.kind else{return Ok(None)};
   }
   // Extra ordinary names are untouched. Reject any additional numeric slots;
   // they could require source array-length deletion handling in a raw host.
-  for (key,_)in object.properties[length..].iter().flatten(){if canonical_index(self.string_units(key.0)).is_some(){return Ok(None)}}
-  let first=match object.properties[0].as_ref().unwrap().1.kind{PropertyKind::Data{value,..}=>value,_=>unreachable!()};
-  let last=object.properties[length-1].as_ref().unwrap().0;
+  for (key,_)in (length..object.properties.len()).filter_map(|index|object.slot(index)){if canonical_index(self.string_units(key.0)).is_some(){return Ok(None)}}
+  let first=match object.slot(0).unwrap().1.kind{PropertyKind::Data{value,..}=>value,_=>unreachable!()};
+  let last=object.slot(length-1).unwrap().0;
   let object=&mut self.objects[id.0];
-  for index in 0..length-1{let value=match object.properties[index+1].as_ref().unwrap().1.kind{PropertyKind::Data{value,..}=>value,_=>unreachable!()};object.properties[index].as_mut().unwrap().1.kind=PropertyKind::Data{value,writable:true};}
+  for index in 0..length-1{let value=match object.slot(index+1).unwrap().1.kind{PropertyKind::Data{value,..}=>value,_=>unreachable!()};let key=object.slot(index).unwrap().0;assert!(object.set_existing_data_slot(index,key,value));}
   object.remove(last);object.kind=ObjectKind::Array{length:(length-1)as u32,length_writable:true,primary_numeric:false,numeric_presence:0};
   Ok(Some(first))
  }

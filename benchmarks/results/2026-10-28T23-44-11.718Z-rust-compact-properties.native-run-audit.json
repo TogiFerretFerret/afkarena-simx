@@ -1,0 +1,143 @@
+{
+  "passed": true,
+  "complete": true,
+  "startedAt": "2026-10-28T23:43:29.521Z",
+  "rows": [
+    {
+      "variant": "baseline",
+      "mode": "unit",
+      "pair": 0,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3188.518087,
+      "stdoutSha256": "7de2367f70ed7874d5dde28cb35737b5bb862fe4d1182366250deda892abb77a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "compact",
+      "mode": "unit",
+      "pair": 0,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3275.663788,
+      "stdoutSha256": "f6663398c451a4581a5fef6a483379bddf31e09d692108dcde57e52fcb181f90",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "compact",
+      "mode": "unit",
+      "pair": 1,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3338.7637350000005,
+      "stdoutSha256": "92371812647701c1162600e1e7054dbe2fc5d9df7da501cb7b5dede597679450",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "baseline",
+      "mode": "unit",
+      "pair": 1,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3391.9498219999987,
+      "stdoutSha256": "4e20963d92fd65fa28a81c4da2d4b571d2dab87e9d000d6cb53dbf78053975ed",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "baseline",
+      "mode": "unit",
+      "pair": 2,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3364.6108879999992,
+      "stdoutSha256": "dbb5a32676277e02851b6611ae6bcb2cdd890121b5e7b5aa31f12c5ee334f07f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "compact",
+      "mode": "unit",
+      "pair": 2,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3153.1753590000008,
+      "stdoutSha256": "b53c00c1a2ced7664d8cc8c9ae184f005378174c8f40ff1d3a838fc5f1c41ee5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "baseline",
+      "mode": "copy",
+      "pair": 0,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 49.80909999999858,
+      "stdoutSha256": "ded4322b9174d468960106fa68c964106e5fdcfe41549bdc2b1f2fbc5df2f259",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "compact",
+      "mode": "copy",
+      "pair": 0,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 57.36018299999705,
+      "stdoutSha256": "3e8e52bb57594100b566661504832c209ed32be40f6c54e1bf57fd39710e9407",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "compact",
+      "mode": "copy",
+      "pair": 1,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 55.196984000001976,
+      "stdoutSha256": "ff02ca06e68dc36e78e5f9d329ea486959b812ab49ab7be38a04d4b556c9528f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "baseline",
+      "mode": "copy",
+      "pair": 1,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 51.904758999997284,
+      "stdoutSha256": "b04b1f55eebc47bf0e895bdcad8617be2967cf9518d90bd560e96bf604abb3e6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "baseline",
+      "mode": "copy",
+      "pair": 2,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 50.19175499999983,
+      "stdoutSha256": "238df33a00b71bf8b2ccd6e7957bb570debdc1de3ca1b034f41e5ff3e5c081bf",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "compact",
+      "mode": "copy",
+      "pair": 2,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 49.570528000000195,
+      "stdoutSha256": "0f2eafb7713af01950c28b53a92eb1e1e6a5a70eb9f7d1a549222b789bafd262",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    }
+  ],
+  "finishedAt": "2026-10-28T23:43:49.767Z",
+  "sourceInputsUnchanged": true,
+  "binariesUnchanged": true,
+  "allNativeExitedZero": true
+}

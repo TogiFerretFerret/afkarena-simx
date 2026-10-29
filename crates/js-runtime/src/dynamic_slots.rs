@@ -1,5 +1,5 @@
 //! Runtime-wide canonical-key to physical-slot hints, never cached values.
-use crate::{Runtime,Value,PropertyKey,ObjectKind,PropertyKind};
+use crate::{Runtime,Value,PropertyKey,ObjectKind};
 const MAX_KEYS:usize=65_536;
 impl Runtime {
  fn dynamic_slot_object(&self,receiver:Value,key:PropertyKey)->Option<&crate::heap::Object>{
@@ -9,11 +9,11 @@ impl Runtime {
  }
  pub(crate) fn dynamic_slot_get(&self,receiver:Value,key:PropertyKey)->Option<Value>{
   if !self.dynamic_own_slots_enabled{return None}let index=self.dynamic_own_slots.get(key.0.0).copied().flatten()?.get()-1;let object=self.dynamic_slot_object(receiver,key)?;
-  match object.properties.get(index){Some(Some((actual,crate::Descriptor{kind:PropertyKind::Data{value,..},..})))if *actual==key=>Some(*value),_=>None}
+  object.data_slot(index,key)
  }
  pub(crate) fn dynamic_slot_learn(&mut self,receiver:Value,key:PropertyKey){
   if !self.dynamic_own_slots_enabled||key.0.0>=MAX_KEYS{return}let Some(object)=self.dynamic_slot_object(receiver,key)else{return};let Some(index)=object.property_index.get(&key).copied()else{return};
-  if !matches!(object.properties.get(index),Some(Some((actual,crate::Descriptor{kind:PropertyKind::Data{..},..})))if *actual==key){return}
+  if object.data_slot(index,key).is_none(){return}
   if self.dynamic_own_slots.len()<=key.0.0{self.dynamic_own_slots.resize(key.0.0+1,None)}self.dynamic_own_slots[key.0.0]=index.checked_add(1).and_then(std::num::NonZeroUsize::new);
  }
 }
