@@ -9,6 +9,7 @@ import {planLocalBindings,planNativeLocals} from './bindings.mjs';
 
 const FUNCTION_TYPES=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression','ObjectMethod','ClassMethod','ClassPrivateMethod']);
 const NATIVE_DATA_OBJ_SOURCE_SHA256='6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9';
+const SOURCE_BUFF_CTOR_RESERVE_SHA256='3ca99406ed04bd3655bb5bb11c776e1286bd122d21e218003629e6d3d83144b6';
 const NATIVE_STAGE_RANGE_SOURCE_SHA256='6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c';
 const NATIVE_BATTLE_MODE_LIMIT_SOURCE_SHA256='27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec';
 const NATIVE_EXPOSE_SOURCE_SHA256='9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911';
@@ -195,6 +196,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
     record.sourceSpecialization='native-battle-mode-limit-v1';
     ctx.emit('if let Some(value) = rt.try_native_battle_mode_limit(args.first().copied().unwrap_or(Value::Undefined), parent)? { return Ok(value); }');
    }
+   if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===SOURCE_BUFF_CTOR_RESERVE_SHA256){record.sourceSpecialization='source-buff-ctor-capacity-reservation-v1';ctx.emit('rt.reserve_source_constructor_capacity(this, 27);');}
    const activationLine=lines.length;
    if(node.type==='Program')ctx.emit('let env = parent;');else ctx.emit('let env = rt.child_env(parent);');
    const body=directBody(node),declarations=hoists(node),params=node.params??[],annex=annexBPlan(record,parents);ctx.annexBDeclarations=annex.eligible;for(const name of annex.names)if(!declarations.names.includes(name))declarations.names.push(name);
