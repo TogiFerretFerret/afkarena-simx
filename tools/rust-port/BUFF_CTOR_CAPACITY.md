@@ -1,0 +1,9 @@
+# Buff constructor capacity candidate
+
+The warm source profile attributes 13.23% inclusive time to TwinsB's attribute refresh, but that controller invokes observable setAttribute/resetBuffApply callbacks. Its leaf containAttribute accounts for only 0.31% inclusive, setAttribute 2.29%, and wrapTable 1.30%. These percentages overlap and cannot be subtracted as disjoint costs. The actual fixed-value loop is 1.54%; no appendFixedAttr symbol exists in the supplied source. These facts do not support claiming a large callback-free numeric-loop win.
+
+The current isolated candidate instead reserves physical property storage for the exact original Buff constructor SHA. That constructor has 27 distinct literal this-property assignments. The helper reserves Vec/HashMap capacity only when insufficient; it adds no properties and retains every original read, write, getter, setter, callback and source function. Existing GC-pool capacities remain usable. The runtime switch defaults to false. There are no new Object fields.
+
+Source preparation includes the original constructor, original createDataObj/getDuration bodies, explicit copy/array/shield dependency fixtures, all ordered dependency/getter/setter/throw logs, descriptor/key order, 128 prefix shapes, final raw-number bits and source text. Six edge scenarios and three alternating 2,000-constructor timing pairs are generated. A separate optional allocation-count build uses the existing System-allocator diagnostic; its timings are not uninstrumented throughput.
+
+Only source generation and independent Node observations have run. Rust compilation and timing are intentionally held until the main four-CPU build/full-validation window releases. There is no allocation or speed claim yet. Fresh-object component results will not establish steady-state GC-pool or full-battle gains; those must be measured separately before promotion.
