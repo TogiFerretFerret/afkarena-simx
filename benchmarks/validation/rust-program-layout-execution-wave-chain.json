@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "startedAt": "2026-10-29T00:13:27.399Z",
+  "pid": 273696,
+  "stage": "passed",
+  "steps": [
+    {
+      "name": "features",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/workspace/afkarena-simx/tools/rust-port/check-program-features.mjs",
+        "--expected-gc-cadence",
+        "2"
+      ],
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 273707,
+        "wallMs": 113.60413600000001
+      },
+      "stdoutFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-features.stdout",
+      "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-features.stderr"
+    },
+    {
+      "name": "build",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/workspace/afkarena-simx/tools/rust-port/build-program.mjs",
+        "--profile",
+        "release",
+        "--jobs",
+        "4",
+        "--output",
+        "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.json"
+      ],
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 273718,
+        "wallMs": 666321.119452
+      },
+      "stdoutFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.stdout",
+      "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.stderr"
+    },
+    {
+      "name": "full",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/workspace/afkarena-simx/tools/rust-port/check-program.mjs",
+        "--profile",
+        "release",
+        "--binary",
+        "/workspace/afkarena-simx/work/rust-port-shared-target/release/rust-battle-program",
+        "--build-proof",
+        "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.json",
+        "--output",
+        "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-full.json"
+      ],
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 292047,
+        "wallMs": 52084.18589099997
+      },
+      "stdoutFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-full.stdout",
+      "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-full.stderr"
+    }
+  ],
+  "scope": "Sequential frozen native build proof followed by original twenty measured/three warmup full-report and host-input comparison against pinned JS. This fixed fixture is not random20k-battle qualification.",
+  "build": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.json",
+    "binary": {
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/rust-battle-program",
+      "sha256": "5fb6b039e181c00f56e33d491647fbba3cd5149d913d34bc4612d854b795b003"
+    },
+    "wallMs": 665011.79876
+  },
+  "full": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-full.json",
+    "completed": 20,
+    "performance": null,
+    "battlesPerSecond": 0.750891683874601
+  },
+  "finishedAt": "2026-10-29T00:25:25.940Z"
+}

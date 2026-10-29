@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Original fixed20 measured/3warmup source workload, not random20k battles or full-scene qualification. Serial and fork reports match pinned Node including host tape and raw terminal number bits. The outer specialization remains disabled by its constructor default; zero admission is not evidence that the source function was unused.",
+  "sourceValidation": {
+    "nativeAndIntegration": true,
+    "sourceGates": 23,
+    "changedInputs": []
+  },
+  "generated": {
+    "functions": 22986,
+    "unsupportedFunctions": 0,
+    "gcCadence": 2
+  },
+  "build": {
+    "file": "benchmarks/validation/rust-program-layout-execution-wave-build.json",
+    "passed": true,
+    "inputCount": 1435,
+    "changedInputs": [],
+    "binary": {
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/rust-battle-program",
+      "sha256": "5fb6b039e181c00f56e33d491647fbba3cd5149d913d34bc4612d854b795b003"
+    },
+    "wallMs": 665011.79876
+  },
+  "serial": {
+    "file": "benchmarks/validation/rust-program-layout-execution-wave-full.json",
+    "battlesPerSecond": 0.750891683874601,
+    "completed": 20,
+    "callbacks": 309060,
+    "firstDifference": null,
+    "hostDifference": null,
+    "binaryBound": true,
+    "sourceInputsUnchanged": true
+  },
+  "runtimeOptions": {
+    "native_battle_mode_limit_enabled": false
+  },
+  "admission": {
+    "raw": "native_fastpath_admission:battle_mode_limit:0:0:buff_percent:332787:280784",
+    "battleModeLimit": {
+      "attempts": 0,
+      "hits": 0
+    },
+    "buffPercent": {
+      "attempts": 332787,
+      "hits": 280784
+    }
+  },
+  "fork": {
+    "file": "benchmarks/results/2026-10-29-layout-execution-wave-fork-four.json",
+    "battlesPerSecond": 2.191375798874519,
+    "completed": 80,
+    "elapsedSeconds": 36.506746146,
+    "peakPssKiB": 7500036,
+    "peakSummedRssKiB": 10487956,
+    "pssSamplingMs": 5000,
+    "observerCpu": {
+      "userMicroseconds": 573051,
+      "systemMicroseconds": 1041602,
+      "totalMicroseconds": 1614653,
+      "wallMs": 43609.904018,
+      "cpuSeconds": 1.614653,
+      "averageCpuCores": 0.03702491524249977,
+      "scope": "Orchestrator process CPU only during the native fork run; includes PSS/RSS/cgroup reads, not child CPU or prior hashing/linking."
+    },
+    "peakEstimatedWorkingBytes": "9134055424",
+    "collections": [
+      12,
+      12,
+      12,
+      12
+    ],
+    "changedInputs": [],
+    "changedLibraries": []
+  },
+  "goalReached": false
+}
