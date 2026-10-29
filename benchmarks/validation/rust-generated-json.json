@@ -32,7 +32,7 @@
     },
     {
       "file": "crates/js-runtime/src/battle_gc.rs",
-      "sha256": "96256aa10f57ee8d833f1bef99d7c1185d7205d2ae7519a7bfa573cdb8ae527f",
+      "sha256": "faf4fac8b18b735ab7eb91005a8cd9b57c76ed2c7d7802f71679df33b220af16",
       "matched": true
     },
     {
@@ -187,12 +187,12 @@
     },
     {
       "file": "crates/js-runtime/src/regex.rs",
-      "sha256": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+      "sha256": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "01c3725b1deb8fa3fd4cf905761a17d3e030452b14de37aaee5a8d3f5dbab38a",
+      "sha256": "a60bb69804ab8daa0d0992c0b099323eb3c94bcc5afe286da66ac7b4396d1288",
       "matched": true
     },
     {
@@ -626,23 +626,23 @@
   },
   "generatedRustSha256": "57177204dd5c4d91a5cb3161a719d1c5f4433aba119277736efcc307da0b9585",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-next-execution-wave/work/rust-port-json/check",
-    "sha256": "be7acba0732a3f00dedcd5e184496f5904e054b9c9ba9736c58c45cacd3119cd"
+    "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/work/rust-port-json/check",
+    "sha256": "5501dbf3f928008decb94485d6819bc3853de7d9b074ef10ab50e6c12341b188"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-next-execution-wave/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-shared-utf16/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/candidate-next-execution-wave/work/rust-port-json/main.rs",
+    "/workspace/afkarena-simx/work/candidate-shared-utf16/work/rust-port-json/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-next-execution-wave/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-shared-utf16/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-next-execution-wave/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-shared-utf16/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-next-execution-wave/work/rust-port-json/check"
+    "/workspace/afkarena-simx/work/candidate-shared-utf16/work/rust-port-json/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-json.outputs.json.gz",
