@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "libraryTests": 77,
+  "integrationTests": 26,
+  "dynamicToggleTests": 3,
+  "libraryProof": {
+    "file": "benchmarks/validation/diagnostic-guard-libraries.json",
+    "sha256": "71e4f11f970648645f358a26db79d1c1e532c20c740bae1b88037cb6d14276aa"
+  },
+  "sourceObserver": {
+    "file": "benchmarks/validation/diagnostic-fast-guard-source-observer.json",
+    "sha256": "fc38a3bbe2f4a2a560e370704df65f2119457296b4f412928842c8f33824d33a"
+  },
+  "benchmark": {
+    "file": "benchmarks/results/2026-10-29T00-05-12.128Z-diagnostic-fast-guard.json",
+    "sha256": "aef66b84dde23b94cad4f217b1f901651d6e45a668ae5aeb078f960745cb7357",
+    "trace1SelectedObserversByteIdentical": true
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/diagnostic-fast-guard.library-tests.gz",
+      "sha256": "e4b514877da56f8a7fc083c0937ed71a9363352f6b277e7eeb34f8a37c335aa2",
+      "uncompressedSha256": "86aaa0ea2add4ec5103faae61b57e184d638744fac3469ed3c2fa3018957adc3"
+    },
+    {
+      "file": "benchmarks/validation/diagnostic-fast-guard.prepare.gz",
+      "sha256": "53c1b2d2113a0df5794534edcdab138cf8a15a319380f88d29acac91d292d2e5",
+      "uncompressedSha256": "cd7c11a866c6594e3b7c1bed57089f7ec3a8e52fbc014f2dbffa559433cabf4b"
+    },
+    {
+      "file": "benchmarks/validation/diagnostic-fast-guard.benchmark.gz",
+      "sha256": "059ed8cfa587a4b6646337e86707217e53f16b45b5f6f2570e4654d77cf3904a",
+      "uncompressedSha256": "809ef592fc0109d6fcc83f375b76f962623757f837385ee8277fe4cc86d7ba3e"
+    },
+    {
+      "file": "benchmarks/validation/diagnostic-fast-guard.baseline-cargo.gz",
+      "sha256": "fc628ea182e33cbc7bb51c373b994010dcb896ddacc46494493b70ceee245be5",
+      "uncompressedSha256": "008947de3a6060b6ddc10065030850fcfdaf37de41dce97cba48be7fd91afd10"
+    },
+    {
+      "file": "benchmarks/validation/diagnostic-fast-guard.candidate-cargo.gz",
+      "sha256": "0ee6f4397eaaa5d279950e8797325856497dbfa40557a41db9f6b66e5bdd4f87",
+      "uncompressedSha256": "a3191642be9fed9c2009305a713ec1fc3142efc07af81d4871fda4ff0abb51d4"
+    }
+  ],
+  "scope": "Disabled diagnostic recording is an inline bool guard at the original call point; enabled bodies and ring/root order unchanged. Source components only; no full-battle throughput qualification."
+}
