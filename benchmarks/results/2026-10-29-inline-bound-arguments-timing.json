@@ -1,0 +1,304 @@
+{
+  "version": 1,
+  "passed": true,
+  "source": {
+    "file": "/workspace/afkarena-simx/work/candidate-stack-apply/tools/rust-port/inline-bound-arguments-benchmark.rs",
+    "sha256": "23b1a452ee6adc34e96d1fe6e74e0940d5edcfbbd6fffc3d305c137e3e756407"
+  },
+  "compiler": {
+    "file": "/workspace/afkarena-simx/work/candidate-stack-apply/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
+  },
+  "libraries": [
+    {
+      "variant": "baseline",
+      "file": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/libjs_runtime_baseline.rlib",
+      "sha256": "23df87a43c39b525dde389bb5c9a018ffbc834667ddcaa2a3dec4b1736dcd4b4"
+    },
+    {
+      "variant": "candidate",
+      "file": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/libjs_runtime_candidate.rlib",
+      "sha256": "fc46c25f1b0ce8101816db835876a24e49ee396a19e7bc4de88174417baabb9e"
+    }
+  ],
+  "runs": [
+    {
+      "trial": 0,
+      "variant": "baseline",
+      "binary": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/baseline-timing",
+      "binarySha256": "e891196a3696717b41ae65ef18c1bd3a7d9df61a93102cdf62b6bb3f97adc285",
+      "rows": [
+        [
+          "0",
+          "1",
+          "5592685",
+          "7ff8000000000042"
+        ],
+        [
+          "1",
+          "1",
+          "9590424",
+          "7ff8000000000042"
+        ],
+        [
+          "4",
+          "4",
+          "13644247",
+          "7ff8000000000045"
+        ],
+        [
+          "8",
+          "0",
+          "5828295",
+          "8000000000000007"
+        ],
+        [
+          "8",
+          "1",
+          "15820303",
+          "7ff8000000000042"
+        ]
+      ],
+      "status": 0,
+      "stderr": ""
+    },
+    {
+      "trial": 0,
+      "variant": "candidate",
+      "binary": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/candidate-timing",
+      "binarySha256": "15555b895e8c8f7d94632714da5a496024f3916ae6a3ca54cfe0e4556c1e8c4b",
+      "rows": [
+        [
+          "0",
+          "1",
+          "5802395",
+          "7ff8000000000042"
+        ],
+        [
+          "1",
+          "1",
+          "5636810",
+          "7ff8000000000042"
+        ],
+        [
+          "4",
+          "4",
+          "6015101",
+          "7ff8000000000045"
+        ],
+        [
+          "8",
+          "0",
+          "6164964",
+          "8000000000000007"
+        ],
+        [
+          "8",
+          "1",
+          "14853620",
+          "7ff8000000000042"
+        ]
+      ],
+      "status": 0,
+      "stderr": ""
+    },
+    {
+      "trial": 1,
+      "variant": "candidate",
+      "binary": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/candidate-timing",
+      "binarySha256": "15555b895e8c8f7d94632714da5a496024f3916ae6a3ca54cfe0e4556c1e8c4b",
+      "rows": [
+        [
+          "0",
+          "1",
+          "5677751",
+          "7ff8000000000042"
+        ],
+        [
+          "1",
+          "1",
+          "5510142",
+          "7ff8000000000042"
+        ],
+        [
+          "4",
+          "4",
+          "5993050",
+          "7ff8000000000045"
+        ],
+        [
+          "8",
+          "0",
+          "5805841",
+          "8000000000000007"
+        ],
+        [
+          "8",
+          "1",
+          "14598942",
+          "7ff8000000000042"
+        ]
+      ],
+      "status": 0,
+      "stderr": ""
+    },
+    {
+      "trial": 1,
+      "variant": "baseline",
+      "binary": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/baseline-timing",
+      "binarySha256": "e891196a3696717b41ae65ef18c1bd3a7d9df61a93102cdf62b6bb3f97adc285",
+      "rows": [
+        [
+          "0",
+          "1",
+          "12918500",
+          "7ff8000000000042"
+        ],
+        [
+          "1",
+          "1",
+          "14461199",
+          "7ff8000000000042"
+        ],
+        [
+          "4",
+          "4",
+          "14490753",
+          "7ff8000000000045"
+        ],
+        [
+          "8",
+          "0",
+          "5995412",
+          "8000000000000007"
+        ],
+        [
+          "8",
+          "1",
+          "15395614",
+          "7ff8000000000042"
+        ]
+      ],
+      "status": 0,
+      "stderr": ""
+    },
+    {
+      "trial": 2,
+      "variant": "baseline",
+      "binary": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/baseline-timing",
+      "binarySha256": "e891196a3696717b41ae65ef18c1bd3a7d9df61a93102cdf62b6bb3f97adc285",
+      "rows": [
+        [
+          "0",
+          "1",
+          "8008458",
+          "7ff8000000000042"
+        ],
+        [
+          "1",
+          "1",
+          "9871651",
+          "7ff8000000000042"
+        ],
+        [
+          "4",
+          "4",
+          "14093843",
+          "7ff8000000000045"
+        ],
+        [
+          "8",
+          "0",
+          "5770498",
+          "8000000000000007"
+        ],
+        [
+          "8",
+          "1",
+          "17926328",
+          "7ff8000000000042"
+        ]
+      ],
+      "status": 0,
+      "stderr": ""
+    },
+    {
+      "trial": 2,
+      "variant": "candidate",
+      "binary": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/candidate-timing",
+      "binarySha256": "15555b895e8c8f7d94632714da5a496024f3916ae6a3ca54cfe0e4556c1e8c4b",
+      "rows": [
+        [
+          "0",
+          "1",
+          "6106026",
+          "7ff8000000000042"
+        ],
+        [
+          "1",
+          "1",
+          "5916705",
+          "7ff8000000000042"
+        ],
+        [
+          "4",
+          "4",
+          "10564399",
+          "7ff8000000000045"
+        ],
+        [
+          "8",
+          "0",
+          "7884804",
+          "8000000000000007"
+        ],
+        [
+          "8",
+          "1",
+          "14645161",
+          "7ff8000000000042"
+        ]
+      ],
+      "status": 0,
+      "stderr": ""
+    }
+  ],
+  "scope": "Three alternating independent-process native bound-call timing pairs; raw results equal with no argument allocator instrumentation. This is a directed synthetic call workload, not a battle benchmark or Node-generated source workload.",
+  "ratios": [
+    {
+      "pre": 0,
+      "extra": 1,
+      "baselineNs": 26519643,
+      "candidateNs": 17586172,
+      "speedup": 1.5079826923107542
+    },
+    {
+      "pre": 1,
+      "extra": 1,
+      "baselineNs": 33923274,
+      "candidateNs": 17063657,
+      "speedup": 1.988042422559244
+    },
+    {
+      "pre": 4,
+      "extra": 4,
+      "baselineNs": 42228843,
+      "candidateNs": 22572550,
+      "speedup": 1.8708051593639177
+    },
+    {
+      "pre": 8,
+      "extra": 0,
+      "baselineNs": 17594205,
+      "candidateNs": 19855609,
+      "speedup": 0.886107547746332
+    },
+    {
+      "pre": 8,
+      "extra": 1,
+      "baselineNs": 49142245,
+      "candidateNs": 44097723,
+      "speedup": 1.1143941604422523
+    }
+  ]
+}
