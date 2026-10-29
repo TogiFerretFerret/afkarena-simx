@@ -1,0 +1,213 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "ranTrace0Timing": true,
+  "trace1SelectedObserverMatched": true,
+  "summaries": [
+    {
+      "scenario": "unit",
+      "unitsPerTrial": 10000,
+      "trials": 3,
+      "baselineUnitsPerSecond": 14464.435019541801,
+      "candidateUnitsPerSecond": 16300.428317226651,
+      "ratio": 1.1269315597328469,
+      "kind": "original Unit.update calls"
+    },
+    {
+      "scenario": "drain",
+      "unitsPerTrial": 12800,
+      "trials": 3,
+      "baselineUnitsPerSecond": 110055.59768048198,
+      "candidateUnitsPerSecond": 122868.22863392938,
+      "ratio": 1.1164196208415091,
+      "kind": "original __nativeDrain callbacks"
+    }
+  ],
+  "rows": [
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "647413951",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "619164553",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "599546626",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "645748470",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "780890244",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "621731257",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "119506165",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "102807912",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "101475916",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "115595471",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "113812920",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "108246111",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "597846654",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "648351141",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "184910973",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "195080113",
+      "events": 38400,
+      "snapshots": 25600
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-29T00-05-12.128Z-diagnostic-fast-guard.outputs.json.gz",
+      "sha256": "56e221b0c0a3cc32a6bef9927a60265e1ecf47d5baca3bfe3c382b39dffc197a",
+      "uncompressedSha256": "f6cff1cef39f1864e08a4a0d7d158917798fba22101e72cb1d50a92022b99b10"
+    },
+    {
+      "file": "benchmarks/results/2026-10-29T00-05-12.128Z-diagnostic-fast-guard.expected.json.gz",
+      "sha256": "8e41645978d30e5c296c7ac2e877a447f4a6c05726af8ff1aaeebe9dac616ec9",
+      "uncompressedSha256": "8b9be086eaf4ecab7c6a7a91f40b19e7aa1d5afcec5fec0a5094dde2fbdeeec9"
+    },
+    {
+      "file": "benchmarks/results/2026-10-29T00-05-12.128Z-diagnostic-fast-guard.preparation.json.gz",
+      "sha256": "66fc5885a089475648a1b020870b535669a928247e76ed2e914a86b6ed0529b9",
+      "uncompressedSha256": "3167b84462b0f07a924b48794347231eb6491cbcb4666ba567503a8a157d0366"
+    }
+  ],
+  "scope": "Same original source fixtures in frozen baseline and diagnostic inline-guard runtime libraries. Original Unit update and callback drain retain every source callback/event and snapshots. Component rates only; no battle qualification.",
+  "hostContention": {
+    "possibleInitialPairOverlap": true,
+    "otherCompileFinishedUnixUtc": "2026-10-29T00:05:06.072691260Z",
+    "detail": "A previously running library test compile ended during initial pause handshake; first Unit pair may overlap roughly one second. All three Unit and all three drain pairs show a positive observed ratio. No confidence interval or isolated aggregate claim."
+  },
+  "pairRatios": [
+    {
+      "scenario": "unit",
+      "ratios": [
+        1.045625024661255,
+        1.077061302651714,
+        1.2559932208780682
+      ]
+    },
+    {
+      "scenario": "drain",
+      "ratios": [
+        1.1624218669084536,
+        1.1391419319634424,
+        1.0514273348813428
+      ]
+    }
+  ]
+}
