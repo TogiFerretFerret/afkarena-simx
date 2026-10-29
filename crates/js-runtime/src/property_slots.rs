@@ -9,11 +9,11 @@ impl LiteralReadSite {
     pub const fn new(text:&'static str)->Self{Self{ticket:AtomicUsize::new(0),text,prototype_hint:false,is_length:text.len()==6&&text.as_bytes()[0]==b'l'&&text.as_bytes()[1]==b'e'&&text.as_bytes()[2]==b'n'&&text.as_bytes()[3]==b'g'&&text.as_bytes()[4]==b't'&&text.as_bytes()[5]==b'h'}}
     pub const fn new_with_prototype_hint(text:&'static str,hint:bool)->Self{let mut site=Self::new(text);site.prototype_hint=hint;site}
     #[inline]
-    fn index(&self)->JsResult<usize>{
-        let mut id=self.ticket.load(Ordering::Relaxed);
-        if id==0{let next=NEXT_SITE.fetch_add(1,Ordering::Relaxed);if next==0||next==usize::MAX{return Err(JsError::Unsupported("literal read site space exhausted".into()))}id=match self.ticket.compare_exchange(0,next,Ordering::Relaxed,Ordering::Relaxed){Ok(_)=>next,Err(actual)=>actual};}
-        Ok(id)
-    }
+    fn index(&self)->JsResult<usize>{let id=self.ticket.load(Ordering::Relaxed);if id==0{self.initialize_index()}else{Ok(id)}}
+    #[cold]
+    #[inline(never)]
+    fn initialize_index(&self)->JsResult<usize>{let next=NEXT_SITE.fetch_add(1,Ordering::Relaxed);if next==0||next==usize::MAX{return Err(JsError::Unsupported("literal read site space exhausted".into()))}Ok(match self.ticket.compare_exchange(0,next,Ordering::Relaxed,Ordering::Relaxed){Ok(_)=>next,Err(actual)=>actual})}
+
 }
 // Non-ZST Vec indices cannot reach usize::MAX; sentinel slots carry no Values.
 #[derive(Clone,Copy)]
@@ -45,9 +45,8 @@ impl Runtime {
             if let Some(length)=length{let result=Ok(Value::Number(length as f64));if self.diagnostics.enabled{let key=self.static_string(site.text);self.record_get(receiver,KeyInput::Value(key),&result);}return result}
         }
         let id=site.index()?;
-        if self.literal_property_slots.len()<=id{self.literal_property_slots.resize(id+1,CachedSlot::default());}
-        let entry=self.literal_property_slots[id];
-        let key=match entry.key(){Some(key)=>key,None=>{let key=PropertyKey(self.intern(site.text));self.literal_property_slots[id].key=key.0.0;key}};
+        let entry=if self.literal_property_slots.len()<=id{self.grow_literal_cache(id)}else{self.literal_property_slots[id]};
+        let key=match entry.key(){Some(key)=>key,None=>self.intern_literal_cache_key(id,site)};
         if let Value::Object(object)=receiver {
             if let Some(object)=self.objects.get(object.0){
                 if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary|ObjectKind::Array{..}){
@@ -72,6 +71,17 @@ impl Runtime {
                 }
             }
         }
+        self.get_literal_cached_slow::<PROTOTYPE>(receiver,site,id,key)
+    }
+    #[cold]
+    #[inline(never)]
+    fn grow_literal_cache(&mut self,id:usize)->CachedSlot{self.literal_property_slots.resize(id+1,CachedSlot::default());self.literal_property_slots[id]}
+    #[cold]
+    #[inline(never)]
+    fn intern_literal_cache_key(&mut self,id:usize,site:&'static LiteralReadSite)->PropertyKey{let key=PropertyKey(self.intern(site.text));self.literal_property_slots[id].key=key.0.0;key}
+    #[cold]
+    #[inline(never)]
+    fn get_literal_cached_slow<const PROTOTYPE:bool>(&mut self,receiver:Value,site:&'static LiteralReadSite,id:usize,key:PropertyKey)->JsResult<Value>{
         let result=self.get(receiver,Value::String(key.0));
         // A callback on the slow path can mutate the object. Only the current
         // physical own descriptor determines what may be cached for next time.
