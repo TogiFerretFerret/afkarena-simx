@@ -58,7 +58,9 @@ impl Runtime {
  }
  pub fn new_target(&self)->Value{self.current_new_target()}
  pub fn call_value(&mut self,callee:Value,this:Value,args:&[Value])->JsResult<Value>{
-  let Value::Function(id)=callee else{self.report_noncallable(callee);return Err(JsError::TypeError("value is not callable".into()))};let kind=self.functions.get(id.0).map(|f|f.kind.clone()).ok_or_else(||JsError::TypeError("invalid function".into()))?;
+  let Value::Function(id)=callee else{self.report_noncallable(callee);return Err(JsError::TypeError("value is not callable".into()))};let record=self.functions.get(id.0).ok_or_else(||JsError::TypeError("invalid function".into()))?;
+  if let FunctionKind::Bound{target,bound_this,args:bound}=&record.kind{if let Some(length)=bound.len().checked_add(args.len()).filter(|n|*n<=8){let mut values=[Value::Undefined;8];values[..bound.len()].copy_from_slice(bound);values[bound.len()..length].copy_from_slice(args);let target=*target;let receiver=*bound_this;return self.call_value(Value::Function(target),receiver,&values[..length])}}
+  let kind=record.kind.clone();
   match kind{
    FunctionKind::Bound{target,bound_this,args:mut bound}=>{bound.extend_from_slice(args);self.call_value(Value::Function(target),bound_this,&bound)},
    FunctionKind::Native{code,env,strict,arrow_this}=>{let receiver=if let Some(this)=arrow_this{this}else if strict{this}else{match this{Value::Null|Value::Undefined=>Value::Object(self.global_object),Value::Object(_)|Value::Function(_)=>this,_=>self.to_object(this)?}};let track_arguments=!strict&&arrow_this.is_none();if track_arguments{self.active_argument_frames.push(crate::lazy_arguments::ActiveArgumentsFrame::new(id,args));}self.call_stack.push(id);let result=code(self,receiver,args,env);self.call_stack.pop();if track_arguments{self.active_argument_frames.pop();}result},
