@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "sourceCommit": "3fe5e22",
+  "libraryTests": 76,
+  "suites": [
+    {
+      "suite": "reflection",
+      "passed": true,
+      "cases": 24,
+      "report": "benchmarks/validation/rust-fibonacci-id-hash-reflection.json"
+    },
+    {
+      "suite": "arguments",
+      "passed": true,
+      "cases": 40,
+      "report": "benchmarks/validation/rust-fibonacci-id-hash-arguments.json"
+    },
+    {
+      "suite": "closures",
+      "passed": true,
+      "cases": 47,
+      "report": "benchmarks/validation/rust-fibonacci-id-hash-closures.json"
+    }
+  ],
+  "knownUnsupported": "Two pre-existing Symbol-related argument cases remain explicitly unsupported.",
+  "idHasherConsumers": [
+    "Object.property_index",
+    "Object.arguments_map",
+    "Environment.bindings",
+    "Runtime.function_objects"
+  ],
+  "sourceIterationOrder": "Object enumeration uses the ordered property vector; lexical cells and GC live sets do not expose internal hash-table iteration.",
+  "scope": "Lookup/equality correctness plus reflection, mapped arguments and closure source fidelity. No complete battle qualification."
+}

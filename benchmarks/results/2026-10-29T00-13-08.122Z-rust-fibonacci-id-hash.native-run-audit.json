@@ -1,0 +1,143 @@
+{
+  "passed": true,
+  "complete": true,
+  "startedAt": "2026-10-29T00:11:59.593Z",
+  "rows": [
+    {
+      "variant": "baseline",
+      "mode": "unit",
+      "pair": 0,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3271.074795,
+      "stdoutSha256": "478627ab867b1617d0a8a3950796d73d12c2be15d9face46a06f3007af15d971",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "fibonacci",
+      "mode": "unit",
+      "pair": 0,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3426.556931,
+      "stdoutSha256": "556adbb5df095702f8863c650b2d36036229e499e62e9fcbacd6941b63c9a3b7",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "fibonacci",
+      "mode": "unit",
+      "pair": 1,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3232.7656229999993,
+      "stdoutSha256": "5f86d2d9a072c15635edf4e4906df2da2ae6cb1a7e3dfad710ac43c7bb767670",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "baseline",
+      "mode": "unit",
+      "pair": 1,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3515.7090070000013,
+      "stdoutSha256": "36599a4805d8eea8e027dd65ef507f811f3de7b2f5f26cc5b0dbd96f9c3d2de3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "baseline",
+      "mode": "unit",
+      "pair": 2,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3096.879465,
+      "stdoutSha256": "524d120b4a3d92077be58c304d680bcc196ad11d198ffaa9f46bf6bab2f43e1d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "fibonacci",
+      "mode": "unit",
+      "pair": 2,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 3312.564219,
+      "stdoutSha256": "184aeb494ecd4b626041714d58ee96a0a3984459e193f627cf7d7ccbeed51125",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 4
+    },
+    {
+      "variant": "baseline",
+      "mode": "copy",
+      "pair": 0,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 49.335227999999915,
+      "stdoutSha256": "c2e7efb479fefd7c39a90d94e63ff1b6f190c3b8a4d18bb5ce1486cd85a0b894",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "fibonacci",
+      "mode": "copy",
+      "pair": 0,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 45.60500200000024,
+      "stdoutSha256": "280b66a1379aed6134442c88f44045dcb4c02350c88be43ddb8164237c483971",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "fibonacci",
+      "mode": "copy",
+      "pair": 1,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 43.137071000001015,
+      "stdoutSha256": "87dc9a944a65f6c3f20056babcd5bf01c663eb2c7cc80a74261125917996bc6b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "baseline",
+      "mode": "copy",
+      "pair": 1,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 53.8576970000031,
+      "stdoutSha256": "8a945bdfe9275087ddc3bc43ba3dc6472bbf48533ca2733d9122387c3048ecdb",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "baseline",
+      "mode": "copy",
+      "pair": 2,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 46.13400399999955,
+      "stdoutSha256": "18402cca9aeef59cdc0a4085fc45d88befc5ad729c63d4a0318d6cc84210a267",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    },
+    {
+      "variant": "fibonacci",
+      "mode": "copy",
+      "pair": 2,
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 44.64252399999896,
+      "stdoutSha256": "ed10c2494ee076c1ede770f17dad06e8b3bbcfa3ca1882ddceb71e6857486b62",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 10
+    }
+  ],
+  "finishedAt": "2026-10-29T00:12:19.949Z",
+  "sourceInputsUnchanged": true,
+  "binariesUnchanged": true,
+  "allNativeExitedZero": true
+}
