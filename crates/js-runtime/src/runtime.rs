@@ -77,6 +77,7 @@ impl Runtime {
  }
  pub fn intern_utf16(&mut self,units:&[u16])->StringId{if let Some(id)=self.string_index.get(units){return *id}let id=StringId(self.strings.len());let shared:std::sync::Arc<[u16]>=units.into();self.strings.push(shared.clone());self.string_index.insert(shared,id);id}
  pub fn intern(&mut self,text:&str)->StringId{if let Some(id)=self.string_utf8_index.get(text){return *id}let id=self.intern_utf16(&text.encode_utf16().collect::<Vec<_>>());self.string_utf8_index.insert(text.to_owned(),id);id}
+ #[inline]
  pub fn string_units(&self,id:StringId)->&[u16]{&self.strings[id.0]}
  pub(crate) fn owned_shared_units(&self,id:StringId)->std::sync::Arc<[u16]>{self.strings[id.0].clone()}
  pub fn string_text(&self,id:StringId)->String{String::from_utf16_lossy(self.string_units(id))}
@@ -85,7 +86,11 @@ impl Runtime {
  pub fn alloc_object(&mut self,prototype:Option<ObjectId>)->ObjectId{if let Some(slot)=self.native_battle_gc.free_objects.pop(){self.objects[slot].reset_for_reuse(prototype);ObjectId(slot)}else{let id=ObjectId(self.objects.len());self.objects.push(Object::new(prototype));id}}
  pub fn object(&mut self)->Value{Value::Object(self.alloc_object(Some(self.object_prototype)))}
  pub fn array(&mut self,items:&[Option<Value>])->Value{let id=self.alloc_object(Some(self.array_prototype));self.objects[id.0].kind=ObjectKind::Array{length:items.len() as u32,length_writable:true,primary_numeric:self.primary_numeric_arrays_enabled&&items.len()<=4,numeric_presence:0};for (index,item)in items.iter().enumerate(){if let Some(value)=item{let key=if self.index_string_fast_path_enabled{self.index_property_key(index)}else{PropertyKey(self.intern(&index.to_string()))};self.objects[id.0].insert(key,Descriptor::data(*value,true,true,true));}}Value::Object(id)}
- pub fn object_id(&self,value:Value)->JsResult<ObjectId>{match value{Value::Object(id)if id.0<self.objects.len()=>Ok(id),Value::Function(id)=>self.functions.get(id.0).map(|f|f.object).ok_or_else(||JsError::TypeError("invalid function identity".into())),_=>Err(JsError::TypeError("value is not an object".into()))}}
+ #[inline]
+ pub fn object_id(&self,value:Value)->JsResult<ObjectId>{match value{Value::Object(id)if id.0<self.objects.len()=>Ok(id),Value::Function(id)=>match self.functions.get(id.0){Some(f)=>Ok(f.object),None=>Self::object_id_failure(true)},_=>Self::object_id_failure(false)}}
+ #[cold]
+ #[inline(never)]
+ fn object_id_failure(function:bool)->JsResult<ObjectId>{Err(JsError::TypeError(if function{"invalid function identity"}else{"value is not an object"}.into()))}
  pub fn same_object(&self,a:Value,b:Value)->bool{matches!((self.object_id(a),self.object_id(b)),(Ok(a),Ok(b))if a==b)}
  pub fn require_object_coercible(&self,value:Value)->JsResult<()>{if matches!(value,Value::Null|Value::Undefined){Err(JsError::TypeError("cannot access null or undefined".into()))}else{Ok(())}}
  pub fn index_property_key(&mut self,index:usize)->PropertyKey{
@@ -111,6 +116,7 @@ impl Runtime {
  }
  fn key<K:Into<KeyInput>>(&mut self,key:K)->JsResult<PropertyKey>{match key.into(){KeyInput::Prepared(k)=>Ok(k),KeyInput::Value(v)=>self.to_property_key(v)}}
  fn index(&self,key:PropertyKey)->Option<u32>{let units=self.string_units(key.0);if units.is_empty()||units.len()>10||(units.len()>1&&units[0]==48){return None}let mut n=0u64;for unit in units{if !(48..=57).contains(unit){return None}n=n*10+u64::from(*unit-48);}if n<u32::MAX as u64{Some(n as u32)}else{None}}
+ #[inline]
  fn is_length(&self,key:PropertyKey)->bool{self.string_units(key.0)==[108,101,110,103,116,104]}
  pub(crate) fn own_descriptor(&mut self,id:ObjectId,key:PropertyKey)->JsResult<Option<Descriptor>>{
   if let Some(value)=self.typed_own_descriptor(id,key)?{return Ok(value)}
