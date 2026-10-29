@@ -93,6 +93,7 @@ fn execute()->JsResult<Value>{
  let printer=rt.make_closure_with_flags(print,env,0,"print",true,None);
  rt.declare(env,"print",printer)?;
  ${calls}
+ eprintln!("native_fastpath_admission:battle_mode_limit:{}:{}:buff_percent:{}:{}",rt.battle_mode_limit_attempts,rt.battle_mode_limit_hits,rt.buff_percent_loop_attempts,rt.buff_percent_loop_hits);
  Ok(Value::Undefined)
 }
 fn main(){if let Err(error)=execute(){eprintln!("pure_rust_execution_error:{error:?}");std::process::exit(1);}}
