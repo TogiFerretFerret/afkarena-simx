@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "scope": "Only owner-completed raw profile outputs; exact committed gzip archives are authoritative and restore identical bytes. Native binary, preparation, sources, libraries and profile/source-attribution reports retained.",
+  "freedBytes": 115798397,
+  "files": [
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.record.stdout",
+      "bytes": 687199,
+      "sha256": "0217981389775986385c622baa5072aeb4207a5beeba9dcccc80469336a1b828",
+      "archivedLabel": "record-stdout",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.record.stderr",
+      "bytes": 359,
+      "sha256": "2faf94483d4f2c20ad7aa995a3b3e36a73efa3ce86791c57e497321d028e8a8e",
+      "archivedLabel": "record-stderr",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.leaf.stdout",
+      "bytes": 168549,
+      "sha256": "94b814e79b9a2d816ac11b2b25446f1a0ff8d0b8884f1ee2bee31aac87bfd05f",
+      "archivedLabel": "leaf",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.leaf.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedLabel": "leaf-stderr",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.inclusive.stdout",
+      "bytes": 4325401,
+      "sha256": "da4823bb49d69e10849e448803428b0e80b887841df68f8c290bf4a4f06320c7",
+      "archivedLabel": "inclusive",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.inclusive.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedLabel": "inclusive-stderr",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.stacks.stdout",
+      "bytes": 21378621,
+      "sha256": "9ca9def10d5492e0e288202280a9ebe813d245532944a418fab52665b3da350c",
+      "archivedLabel": "stacks",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.stacks.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedLabel": "stacks-stderr",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.buildids.stdout",
+      "bytes": 252,
+      "sha256": "6f7fef8465e8b69a5ae4949d9579f7c4c85bc6c4b153cd74a27dc29bc251f7df",
+      "archivedLabel": "buildids",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.buildids.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedLabel": "buildids-stderr",
+      "archiveVerifiedBeforeUnlink": true
+    },
+    {
+      "file": "work/rust-program-perf/2026-10-29T00-36-36.007Z.data",
+      "bytes": 89238016,
+      "sha256": "ce38d4786e733c7fa5ef00745717854c1bb0f4ed15e227fbc68a7645c891fe44",
+      "archivedLabel": "data",
+      "archiveVerifiedBeforeUnlink": true
+    }
+  ]
+}

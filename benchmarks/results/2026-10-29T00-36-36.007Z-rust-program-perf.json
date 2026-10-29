@@ -1,0 +1,2894 @@
+{
+  "version": 1,
+  "profileSucceeded": true,
+  "preparationGuard": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-wall-profile-layout-execution-wave.json",
+    "sha256": "3e5ad23b2d4b9718646cd44e340724d05f0ae8acac41c13b9ffc595c9bc5764c",
+    "gcExpectation": {
+      "cadence": 2,
+      "totalBattles": 23,
+      "expectedCollections": 12
+    },
+    "buildProofBefore": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.json",
+      "sha256": "16be984fee61d9d751caa4502a2174fc7f0b5841b7457c7957b4d0471adc6648",
+      "valid": true,
+      "reasons": [],
+      "inputCount": 1435,
+      "changedInputs": [],
+      "buildProfile": "release"
+    },
+    "changedInputs": [],
+    "observedGc": {
+      "expectedCollections": 12,
+      "collections": [
+        12
+      ],
+      "traceMarkers": [
+        "0"
+      ],
+      "valid": true
+    },
+    "buildProofAfter": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.json",
+      "sha256": "16be984fee61d9d751caa4502a2174fc7f0b5841b7457c7957b4d0471adc6648",
+      "valid": true,
+      "reasons": [],
+      "inputCount": 1435,
+      "changedInputs": [],
+      "buildProfile": "release"
+    },
+    "valid": true
+  },
+  "execution": {
+    "code": 0,
+    "signal": null
+  },
+  "expectedExit": 0,
+  "scope": "markers",
+  "startMarker": "PARALLEL_WALL_NOW:0:",
+  "endMarker": "PARALLEL_WALL_NOW:1:",
+  "stackBytes": 32768,
+  "reportPrefix": "",
+  "wallMs": 34108.593172,
+  "frequencyHz": 99,
+  "perf": {
+    "file": "work/downloads/perf/perf",
+    "sha256": "5261dcc63baf8f9d19e25161e9b5d6c074ed4fd9627e32a0483990f870ff5492"
+  },
+  "demangler": {
+    "file": "/usr/bin/c++filt",
+    "sha256": "7d54ea6797a5e8c69255f711b79577efd9934c3502c6edee4bc25b7dc7d97bd2"
+  },
+  "binary": {
+    "file": "work/rust-wall-profile/2026-10-29T00-34-24.790Z/wall-profile",
+    "sha256": "75349631e222c88d92d6b41971832570e636b8eecdaa3ec7baff5e5d5853fe60",
+    "unchanged": true
+  },
+  "recordArgs": [
+    "record",
+    "--clockid",
+    "mono",
+    "-e",
+    "cpu-clock:u",
+    "-F",
+    "99",
+    "--call-graph",
+    "dwarf,32768",
+    "-o",
+    "/workspace/afkarena-simx/work/rust-program-perf/2026-10-29T00-36-36.007Z.data",
+    "--delay=-1",
+    "--control",
+    "fd:3,4",
+    "--",
+    "/workspace/afkarena-simx/work/rust-wall-profile/2026-10-29T00-34-24.790Z/wall-profile"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/workspace/afkarena-simx/work/rust-program-perf/empty-home",
+    "LANG": "C",
+    "TZ": "UTC",
+    "RUST_PORT_TRACE": "0"
+  },
+  "observedMemory": {
+    "intervalMs": 100,
+    "samples": 0,
+    "peakChildRssKiB": 0,
+    "peakChildHwmKiB": 0
+  },
+  "markers": [
+    {
+      "line": "PARALLEL_WALL_NOW:0:1793234202911595632",
+      "kind": "start",
+      "observerElapsedMs": 6124.158017000001
+    },
+    {
+      "line": "PARALLEL_WALL_NOW:1:1793234230057952747",
+      "kind": "end",
+      "observerElapsedMs": 33270.590688000004
+    }
+  ],
+  "control": [
+    {
+      "operation": "enable",
+      "observerElapsedMs": 6124.173179
+    },
+    {
+      "operation": "disable",
+      "observerElapsedMs": 33270.596837000005
+    }
+  ],
+  "acknowledgments": [
+    {
+      "text": "ack\n\u0000",
+      "observerElapsedMs": 6127.1102710000005
+    },
+    {
+      "text": "ack\n\u0000",
+      "observerElapsedMs": 33271.285232
+    }
+  ],
+  "acknowledgmentCount": 2,
+  "controlValid": true,
+  "dataBytes": 89238016,
+  "sampled": 2663,
+  "lostSamples": "0",
+  "estimatedSampledUserCpuNs": "26898989630",
+  "selfGroups": [
+    {
+      "name": "Rust JavaScript semantics runtime",
+      "samples": 2208,
+      "periodNs": "22303030080",
+      "percent": 82.91400675929403
+    },
+    {
+      "name": "Generated source execution",
+      "samples": 260,
+      "periodNs": "2626262600",
+      "percent": 9.76342470897484
+    },
+    {
+      "name": "Unresolved",
+      "samples": 154,
+      "periodNs": "1555555540",
+      "percent": 5.78295155839279
+    },
+    {
+      "name": "Allocation, collections and memory",
+      "samples": 27,
+      "periodNs": "272727270",
+      "percent": 1.0138941043935412
+    },
+    {
+      "name": "Other Rust and system code",
+      "samples": 14,
+      "periodNs": "141414140",
+      "percent": 0.5257228689447991
+    }
+  ],
+  "topSelf": [
+    {
+      "symbol": "<js_runtime::heap::Object>::own",
+      "dso": "wall-profile",
+      "samples": 208,
+      "periodNs": "2101010080",
+      "rawSymbol": "_RNvMs2_NtCsddBioDaU7Da_10js_runtime4heapNtB5_6Object3own",
+      "percent": 7.810739767179872
+    },
+    {
+      "symbol": "<js_runtime::reachability::Trace>::drain",
+      "dso": "wall-profile",
+      "samples": 158,
+      "periodNs": "1595959580",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime12reachabilityNtB4_5Trace5drain",
+      "percent": 5.933158092377019
+    },
+    {
+      "symbol": "<hashbrown::map::HashMap<js_runtime::heap::PropertyKey, usize, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>>::insert",
+      "dso": "wall-profile",
+      "samples": 94,
+      "periodNs": "949494940",
+      "rawSymbol": "_RNvMs1_NtCs3BTM885nGDo_9hashbrown3mapINtB5_7HashMapNtNtCsddBioDaU7Da_10js_runtime4heap11PropertyKeyjINtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBR_7id_hash8IdHasherEE6insertBR_",
+      "percent": 3.529853548629365
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::call_value",
+      "dso": "wall-profile",
+      "samples": 89,
+      "periodNs": "898989890",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime8closuresNtNtB6_7runtime7Runtime10call_value",
+      "percent": 3.34209538114908
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::resolve_binding_id",
+      "dso": "wall-profile",
+      "samples": 84,
+      "periodNs": "848484840",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime18resolve_binding_id",
+      "percent": 3.1543372136687946
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::dynamic_slot_get",
+      "dso": "wall-profile",
+      "samples": 78,
+      "periodNs": "787878780",
+      "rawSymbol": "_RNvMNtCsddBioDaU7Da_10js_runtime13dynamic_slotsNtNtB4_7runtime7Runtime16dynamic_slot_get",
+      "percent": 2.9290274126924523
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::static_string",
+      "dso": "wall-profile",
+      "samples": 75,
+      "periodNs": "757575750",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime12literal_poolNtNtB6_7runtime7Runtime13static_string",
+      "percent": 2.816372512204281
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::own_descriptor",
+      "dso": "wall-profile",
+      "samples": 74,
+      "periodNs": "747474740",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime14own_descriptor",
+      "percent": 2.778820878708224
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::alloc_object",
+      "dso": "wall-profile",
+      "samples": 53,
+      "periodNs": "535353530",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime12alloc_object",
+      "percent": 1.9902365752910252
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::typed_own_descriptor",
+      "dso": "wall-profile",
+      "samples": 52,
+      "periodNs": "525252520",
+      "rawSymbol": "_RNvMs0_NtCsddBioDaU7Da_10js_runtime6binaryNtNtB7_7runtime7Runtime20typed_own_descriptor",
+      "percent": 1.952684941794968
+    },
+    {
+      "symbol": "<js_runtime::heap::Object>::dictionary_insert",
+      "dso": "wall-profile",
+      "samples": 50,
+      "periodNs": "505050500",
+      "rawSymbol": "_RNvMs2_NtCsddBioDaU7Da_10js_runtime4heapNtB5_6Object17dictionary_insert.llvm.7286974632216940153",
+      "percent": 1.877581674802854
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached_impl::<false: bool>",
+      "dso": "wall-profile",
+      "samples": 41,
+      "periodNs": "414141410",
+      "rawSymbol": "_RINvMs1_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB8_7runtime7Runtime23get_literal_cached_implKb0_ECs1ygXBa4tZu9_23battle_unit_0_part_0027",
+      "percent": 1.5396169733383402
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_inner::<js_runtime::heap::KeyInput>",
+      "dso": "wall-profile",
+      "samples": 38,
+      "periodNs": "383838380",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime9get_innerNtNtB7_4heap8KeyInputEB7_.llvm.2813405205121917882",
+      "percent": 1.426962072850169
+    },
+    {
+      "symbol": "0x000000000017221a",
+      "dso": "libc.so.6",
+      "samples": 32,
+      "periodNs": "323232320",
+      "rawSymbol": "0x000000000017221a",
+      "percent": 1.2016522718738265
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached_impl::<false: bool>",
+      "dso": "wall-profile",
+      "samples": 29,
+      "periodNs": "292929290",
+      "rawSymbol": "_RINvMs1_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB8_7runtime7Runtime23get_literal_cached_implKb0_ECskSIBlgV5NYG_23battle_unit_0_part_0031",
+      "percent": 1.0889973713856553
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached_impl::<false: bool>",
+      "dso": "wall-profile",
+      "samples": 26,
+      "periodNs": "262626260",
+      "rawSymbol": "_RINvMs1_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB8_7runtime7Runtime23get_literal_cached_implKb0_ECs5odRrJ24GT_23battle_unit_0_part_0038",
+      "percent": 0.976342470897484
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached_impl::<false: bool>",
+      "dso": "wall-profile",
+      "samples": 25,
+      "periodNs": "252525250",
+      "rawSymbol": "_RINvMs1_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB8_7runtime7Runtime23get_literal_cached_implKb0_ECs7mU306dJGoq_23battle_unit_0_part_0026",
+      "percent": 0.938790837401427
+    },
+    {
+      "symbol": "<hashbrown::raw::RawTable<(js_runtime::value::ObjectId, js_runtime::value::FunctionId)>>::reserve_rehash::<hashbrown::map::make_hasher<js_runtime::value::ObjectId, js_runtime::value::FunctionId, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>::{closure#0}>",
+      "dso": "wall-profile",
+      "samples": 24,
+      "periodNs": "242424240",
+      "rawSymbol": "_RINvMs6_NtCs3BTM885nGDo_9hashbrown3rawINtB6_8RawTableTNtNtCsddBioDaU7Da_10js_runtime5value8ObjectIdNtBS_10FunctionIdEE14reserve_rehashNCINvNtB8_3map11make_hasherBQ_B1z_INtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBU_7id_hash8IdHasherEE0EBU_",
+      "percent": 0.9012392039053699
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "wall-profile",
+      "samples": 24,
+      "periodNs": "242424240",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECs1ygXBa4tZu9_23battle_unit_0_part_0027",
+      "percent": 0.9012392039053699
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::read_binding",
+      "dso": "wall-profile",
+      "samples": 24,
+      "periodNs": "242424240",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime3envNtNtB6_7runtime7Runtime12read_binding",
+      "percent": 0.9012392039053699
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::intern_utf16",
+      "dso": "wall-profile",
+      "samples": 24,
+      "periodNs": "242424240",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime12intern_utf16",
+      "percent": 0.9012392039053699
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::collect_native_battle_arenas",
+      "dso": "wall-profile",
+      "samples": 23,
+      "periodNs": "232323230",
+      "rawSymbol": "_RNvMNtCsddBioDaU7Da_10js_runtime9battle_gcNtNtB4_7runtime7Runtime28collect_native_battle_arenas",
+      "percent": 0.8636875704093128
+    },
+    {
+      "symbol": "<hashbrown::map::HashMap<js_runtime::value::StringId, usize, core::hash::BuildHasherDefault<js_runtime::id_hash::IdHasher>>>::insert",
+      "dso": "wall-profile",
+      "samples": 23,
+      "periodNs": "232323230",
+      "rawSymbol": "_RNvMs1_NtCs3BTM885nGDo_9hashbrown3mapINtB5_7HashMapNtNtCsddBioDaU7Da_10js_runtime5value8StringIdjINtNtCskADBYZwJmSU_4core4hash18BuildHasherDefaultNtNtBR_7id_hash8IdHasherEE6insertBR_",
+      "percent": 0.8636875704093128
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_104",
+      "dso": "wall-profile",
+      "samples": 22,
+      "periodNs": "222222220",
+      "rawSymbol": "_RNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_104",
+      "percent": 0.8261359369132557
+    },
+    {
+      "symbol": "<js_runtime::reachability::Trace>::new",
+      "dso": "wall-profile",
+      "samples": 22,
+      "periodNs": "222222220",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime12reachabilityNtB4_5Trace3new",
+      "percent": 0.8261359369132557
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "wall-profile",
+      "samples": 21,
+      "periodNs": "212121210",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECs5odRrJ24GT_23battle_unit_0_part_0038",
+      "percent": 0.7885843034171987
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::intern",
+      "dso": "wall-profile",
+      "samples": 21,
+      "periodNs": "212121210",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime6intern",
+      "percent": 0.7885843034171987
+    },
+    {
+      "symbol": "0x000000000017c069",
+      "dso": "libc.so.6",
+      "samples": 21,
+      "periodNs": "212121210",
+      "rawSymbol": "0x000000000017c069",
+      "percent": 0.7885843034171987
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "wall-profile",
+      "samples": 20,
+      "periodNs": "202020200",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECskSIBlgV5NYG_23battle_unit_0_part_0031",
+      "percent": 0.7510326699211416
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::typed_get",
+      "dso": "wall-profile",
+      "samples": 19,
+      "periodNs": "191919190",
+      "rawSymbol": "_RNvMs0_NtCsddBioDaU7Da_10js_runtime6binaryNtNtB7_7runtime7Runtime9typed_get",
+      "percent": 0.7134810364250845
+    },
+    {
+      "symbol": "<js_runtime::lazy_arguments::ActiveArgumentsFrame>::new",
+      "dso": "wall-profile",
+      "samples": 19,
+      "periodNs": "191919190",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime14lazy_argumentsNtB4_20ActiveArgumentsFrame3new",
+      "percent": 0.7134810364250845
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::object_id",
+      "dso": "wall-profile",
+      "samples": 19,
+      "periodNs": "191919190",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime9object_id",
+      "percent": 0.7134810364250845
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get::<js_runtime::value::Value>",
+      "dso": "wall-profile",
+      "samples": 18,
+      "periodNs": "181818180",
+      "rawSymbol": "_RINvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB5_7Runtime3getNtNtB7_5value5ValueECse4meN5zlPnt_23battle_unit_0_part_0002",
+      "percent": 0.6759294029290274
+    },
+    {
+      "symbol": "<std::hash::random::RandomState as core::hash::BuildHasher>::hash_one::<&js_runtime::heap::PropertyKey>",
+      "dso": "wall-profile",
+      "samples": 18,
+      "periodNs": "181818180",
+      "rawSymbol": "_RINvYNtNtNtCs8ZKwes1zzDd_3std4hash6random11RandomStateNtNtCskADBYZwJmSU_4core4hash11BuildHasher8hash_oneRNtNtCsddBioDaU7Da_10js_runtime4heap11PropertyKeyEB1J_",
+      "percent": 0.6759294029290274
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::try_dense_array_shift",
+      "dso": "wall-profile",
+      "samples": 18,
+      "periodNs": "181818180",
+      "rawSymbol": "_RNvMNtCsddBioDaU7Da_10js_runtime17dense_array_shiftNtNtB4_7runtime7Runtime21try_dense_array_shift",
+      "percent": 0.6759294029290274
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::index",
+      "dso": "wall-profile",
+      "samples": 18,
+      "periodNs": "181818180",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime5index",
+      "percent": 0.6759294029290274
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::get_literal_cached_impl::<false: bool>",
+      "dso": "wall-profile",
+      "samples": 17,
+      "periodNs": "171717170",
+      "rawSymbol": "_RINvMs1_NtCsddBioDaU7Da_10js_runtime14property_slotsNtNtB8_7runtime7Runtime23get_literal_cached_implKb0_ECs9Wp7OqSpYhJ_23battle_unit_0_part_0030",
+      "percent": 0.6383777694329703
+    },
+    {
+      "symbol": "<alloc::vec::Vec<(js_runtime::heap::PropertyKey, js_runtime::heap::Descriptor)>>::extend_desugared::<core::iter::adapters::filter_map::FilterMap<core::slice::iter::Iter<js_runtime::stored_property::StoredProperty>, <js_runtime::heap::Object>::iter_properties::{closure#0}>>",
+      "dso": "wall-profile",
+      "samples": 17,
+      "periodNs": "171717170",
+      "rawSymbol": "_RINvMsk_NtCsgFX3jaOk65H_5alloc3vecINtB6_3VecTNtNtCsddBioDaU7Da_10js_runtime4heap11PropertyKeyNtBJ_10DescriptorEE16extend_desugaredINtNtNtNtCskADBYZwJmSU_4core4iter8adapters10filter_map9FilterMapINtNtNtB2d_5slice4iter4IterNtNtBL_15stored_property14StoredPropertyENCNvMs2_BJ_NtBJ_6Object15iter_properties0EEBL_",
+      "percent": 0.6383777694329703
+    },
+    {
+      "symbol": "<js_runtime::runtime::Runtime>::to_property_key",
+      "dso": "wall-profile",
+      "samples": 17,
+      "periodNs": "171717170",
+      "rawSymbol": "_RNvMs_NtCsddBioDaU7Da_10js_runtime7runtimeNtB4_7Runtime15to_property_key",
+      "percent": 0.6383777694329703
+    },
+    {
+      "symbol": "0x00000000000a145a",
+      "dso": "libc.so.6",
+      "samples": 16,
+      "periodNs": "161616160",
+      "rawSymbol": "0x00000000000a145a",
+      "percent": 0.6008261359369133
+    }
+  ],
+  "sourceMapping": [
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#23}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sl_000s_000s0_0Bt_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#23}::{closure#0}::{closure#0}::{closure#1}::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sl_000s_00Bp_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#23}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sl_000s0_0Bn_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1611::{closure#0}::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_161100s_0s_00s0_000s0_0Bj_",
+      "unit": 0,
+      "functionId": 1611,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "utf16Start": 1271038,
+      "utf16End": 1271900,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1611::{closure#0}::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_161100s_0s_00s0_000s1_0Bj_",
+      "unit": 0,
+      "functionId": 1611,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "utf16Start": 1271038,
+      "utf16End": 1271900,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0036::js_function_2017::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#4}::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNvCs9FnYxXFH35N_23battle_unit_0_part_003616js_function_20170s0_000s0_000s2_00Bj_",
+      "unit": 0,
+      "functionId": 2017,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "178aa5b3ada2f0385916087024ff2dfdb057055c6dbc974ef95a552050032ab2",
+      "utf16Start": 1395780,
+      "utf16End": 1397885,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1452::{closure#0}::{closure#2}::{closure#1}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#4}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_14520s0_0s_00s_000s2_0Bh_",
+      "unit": 0,
+      "functionId": 1452,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0b81cb69622de9daafa321321d72eb53fd6817bca12594c22ace56a18d57f185",
+      "utf16Start": 1235116,
+      "utf16End": 1235973,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0036::js_function_2017::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCs9FnYxXFH35N_23battle_unit_0_part_003616js_function_20170s0_000s0_000s1_0Bh_",
+      "unit": 0,
+      "functionId": 2017,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "178aa5b3ada2f0385916087024ff2dfdb057055c6dbc974ef95a552050032ab2",
+      "utf16Start": 1395780,
+      "utf16End": 1397885,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1795::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#5}::{closure#0}::{closure#0}::{closure#7}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17950000s3_000s5_0Bh_",
+      "unit": 0,
+      "functionId": 1795,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "utf16Start": 1321297,
+      "utf16End": 1323299,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1523::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#7}::{closure#0}::{closure#0}::{closure#6}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15230s_0s_00s5_000s4_0Bh_",
+      "unit": 0,
+      "functionId": 1523,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "acca318aa5e1164a6caa69557787390c0ecb69e8b0a227b12944a01536532843",
+      "utf16Start": 1247427,
+      "utf16End": 1248180,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000s0_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000s1_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#5}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000s3_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#7}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000s5_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#10}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000s8_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#15}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sd_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#18}",
+      "dso": "wall-profile",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sg_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#22}",
+      "dso": "wall-profile",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sk_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}::{closure#0}::{closure#0}::{closure#23}",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_000sl_0Bh_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_72::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#1}::{closure#1}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNvCslp9slkui7Px_23battle_unit_0_part_000114js_function_720s0_000s_0s_0Bd_",
+      "unit": 0,
+      "functionId": 72,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "16b33e925ddae07097f48ec131db77d06455e7b6857362b4e19fb8a8751c8212",
+      "utf16Start": 14384,
+      "utf16End": 14771,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1621::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_16210s_000s0_0Bb_",
+      "unit": 0,
+      "functionId": 1621,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "bad5d925e501d191a071af0e0966156f2013230f5a49eaa4d4fe85810776d540",
+      "utf16Start": 1274838,
+      "utf16End": 1275544,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1457::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_14570s_0s_00s0_0Bb_",
+      "unit": 0,
+      "functionId": 1457,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dd97b8fc214dcdb6c206c7a8d8a621d88de540a4d9c841564fff467a093dcab7",
+      "utf16Start": 1237425,
+      "utf16End": 1238211,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0037::js_function_2033::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCsep1F1UPe20b_23battle_unit_0_part_003716js_function_20330000s0_0Bb_",
+      "unit": 0,
+      "functionId": 2033,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c387a1e0b7f67cda5936bcc678a73081743693be6770b8a9af6d23438fc3eba4",
+      "utf16Start": 1415467,
+      "utf16End": 1416566,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#4}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s2_0Bb_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#10}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_00s8_0Bb_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1830::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_18300s_000s0_0Bb_",
+      "unit": 0,
+      "functionId": 1830,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1b0f3233211b3260df76e5d23251426bc4842df210c98d41e243fc9fecebf576",
+      "utf16Start": 1336880,
+      "utf16End": 1337424,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1535::{closure#0}::{closure#0}::{closure#1}::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_153500s_00B9_",
+      "unit": 0,
+      "functionId": 1535,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
+      "utf16Start": 1249392,
+      "utf16End": 1250745,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1808::{closure#0}::{closure#0}::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1808000B7_",
+      "unit": 0,
+      "functionId": 1808,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "de7aeadf7944ca3a331e3f65ec7aef3a5d81de43e9a0da38810b9a2db239d7ca",
+      "utf16Start": 1326137,
+      "utf16End": 1326881,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0035::js_function_2009::{closure#0}::{closure#1}::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNCNCNCNvCsiRSH6kkZuGK_23battle_unit_0_part_003516js_function_20090s_00B7_",
+      "unit": 0,
+      "functionId": 2009,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2f0bebd5580b6249ec97cb008b64282452fc24245e101be486489bbb81e486f4",
+      "utf16Start": 1385307,
+      "utf16End": 1385419,
+      "name": "r",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818::{closure#0}::{closure#0}::{closure#1}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_181800s_0B7_",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0015::js_function_1094::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs4Avxx1esU2E_23battle_unit_0_part_001516js_function_10940s1_0B5_",
+      "unit": 0,
+      "functionId": 1094,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "69d50166bd10dbe12c097c22d9c43060b31cd3cf6e01af5628b2b0c80b51d978",
+      "utf16Start": 579469,
+      "utf16End": 579738,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1451::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_14510s1_0B5_",
+      "unit": 0,
+      "functionId": 1451,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0924262373ac436da942e07bcf0217c931b7a243bb585bb61294965be9c1d37f",
+      "utf16Start": 1234973,
+      "utf16End": 1235102,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1775::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17750s0_0B5_",
+      "unit": 0,
+      "functionId": 1775,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "eb93e3b227fe9bad3e7037af3d3dab69ea7d8907725c0b88fd602b96c894ed25",
+      "utf16Start": 1316058,
+      "utf16End": 1316741,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1416::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsbbKK7iuo5Pu_23battle_unit_0_part_002316js_function_14160s1_0B5_",
+      "unit": 0,
+      "functionId": 1416,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5",
+      "utf16Start": 1229194,
+      "utf16End": 1229984,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0040::js_function_2149::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsdApOI2HdKdo_23battle_unit_0_part_004016js_function_21490s1_0B5_",
+      "unit": 0,
+      "functionId": 2149,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "94b1e8e4ffce3c1e30ada6eefcbe66ee05ef2f187c087b8217e0ca9e16267869",
+      "utf16Start": 1457884,
+      "utf16End": 1459247,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1115::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11150s0_0B5_",
+      "unit": 0,
+      "functionId": 1115,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1c991319d319ccfab6abf923cff0e22399ad8b39f1fa0975ccbe493f99994e7c",
+      "utf16Start": 593872,
+      "utf16End": 594447,
+      "name": "assertIntact",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1118::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11180s1_0B5_",
+      "unit": 0,
+      "functionId": 1118,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "d8eb0c52ebf2d0993083ba12bb0e26e41961e754c878f28492ef7d4fe080eac0",
+      "utf16Start": 595911,
+      "utf16End": 596650,
+      "name": "wrapper",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1118::{closure#0}::{closure#4}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11180s2_0B5_",
+      "unit": 0,
+      "functionId": 1118,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "d8eb0c52ebf2d0993083ba12bb0e26e41961e754c878f28492ef7d4fe080eac0",
+      "utf16Start": 595911,
+      "utf16End": 596650,
+      "name": "wrapper",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1118::{closure#0}::{closure#7}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_11180s5_0B5_",
+      "unit": 0,
+      "functionId": 1118,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "d8eb0c52ebf2d0993083ba12bb0e26e41961e754c878f28492ef7d4fe080eac0",
+      "utf16Start": 595911,
+      "utf16End": 596650,
+      "name": "wrapper",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_172::{closure#0}::{closure#4}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1720s2_0B5_",
+      "unit": 0,
+      "functionId": 172,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ee1e9efd9b80f498e8556d7aeda5714386b3001cc0687260d401318558257846",
+      "utf16Start": 24962,
+      "utf16End": 25296,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_172::{closure#0}::{closure#5}",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1720s3_0B5_",
+      "unit": 0,
+      "functionId": 172,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ee1e9efd9b80f498e8556d7aeda5714386b3001cc0687260d401318558257846",
+      "utf16Start": 24962,
+      "utf16End": 25296,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_178::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1780s0_0B5_",
+      "unit": 0,
+      "functionId": 178,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9",
+      "utf16Start": 25850,
+      "utf16End": 26395,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1547::{closure#0}::{closure#7}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15470s5_0B5_",
+      "unit": 0,
+      "functionId": 1547,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5e90f7af880bdcd544dc5e32311822cb1dd8412b31f4ed735cbc2fb2f1e23367",
+      "utf16Start": 1251969,
+      "utf16End": 1252909,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1571::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15710s0_0B5_",
+      "unit": 0,
+      "functionId": 1571,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "4d96902d24c7d7478a50a92b7b27252a3941037e275e6b5817d7461400bfea94",
+      "utf16Start": 1259380,
+      "utf16End": 1259750,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_790::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7900s0_0B5_",
+      "unit": 0,
+      "functionId": 790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "utf16Start": 130077,
+      "utf16End": 130644,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_790::{closure#0}::{closure#4}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7900s2_0B5_",
+      "unit": 0,
+      "functionId": 790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "utf16Start": 130077,
+      "utf16End": 130644,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_790::{closure#0}::{closure#5}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_7900s3_0B5_",
+      "unit": 0,
+      "functionId": 790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "utf16Start": 130077,
+      "utf16End": 130644,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0033::js_function_1891::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsiICBx4wo5f1_23battle_unit_0_part_003316js_function_18910s1_0B5_",
+      "unit": 0,
+      "functionId": 1891,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "191f70d183a3198c24cd20a123abf43ed98a8788f57fbd0906ea9d3a3f11cec5",
+      "utf16Start": 1350026,
+      "utf16End": 1355626,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0033::js_function_1891::{closure#0}::{closure#22}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsiICBx4wo5f1_23battle_unit_0_part_003316js_function_18910sk_0B5_",
+      "unit": 0,
+      "functionId": 1891,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "191f70d183a3198c24cd20a123abf43ed98a8788f57fbd0906ea9d3a3f11cec5",
+      "utf16Start": 1350026,
+      "utf16End": 1355626,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1827::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNCNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_18270s0_0B5_",
+      "unit": 0,
+      "functionId": 1827,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ac7c86e75e1ea32085532169355530ce4facae3183613818c47098fbd935ad8d",
+      "utf16Start": 1336106,
+      "utf16End": 1336435,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0041::js_function_2223::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs3tul3joJPem_23battle_unit_0_part_004116js_function_22230B3_",
+      "unit": 0,
+      "functionId": 2223,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0f545f4f434e1f998b87b01af9f29f09407468febfcee6891dd9d2996937e13a",
+      "utf16Start": 1476612,
+      "utf16End": 1477709,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1610::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNCNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_16100B3_",
+      "unit": 0,
+      "functionId": 1610,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "3ca99406ed04bd3655bb5bb11c776e1286bd122d21e218003629e6d3d83144b6",
+      "utf16Start": 1269590,
+      "utf16End": 1271030,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1775::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17750B3_",
+      "unit": 0,
+      "functionId": 1775,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "eb93e3b227fe9bad3e7037af3d3dab69ea7d8907725c0b88fd602b96c894ed25",
+      "utf16Start": 1316058,
+      "utf16End": 1316741,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1795::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_17950B3_",
+      "unit": 0,
+      "functionId": 1795,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2563fb0b928bffc3b064a7350b35564abe6ad492f8c4e86292ec7cf7a70dfa07",
+      "utf16Start": 1321297,
+      "utf16End": 1323299,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1812::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_18120B3_",
+      "unit": 0,
+      "functionId": 1812,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "b46e1eeafa8dd63503dd5639775c9daf39cf3624b49038f11d93f4d85509fc1b",
+      "utf16Start": 1327142,
+      "utf16End": 1327302,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1814::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_18140B3_",
+      "unit": 0,
+      "functionId": 1814,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c",
+      "utf16Start": 1327420,
+      "utf16End": 1327549,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_178::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "_RNCNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_1780B3_",
+      "unit": 0,
+      "functionId": 178,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6e9371f9d49f506415da636fdb1dab818203a7bbc658ef76a66f2d7954f3a2c9",
+      "utf16Start": 25850,
+      "utf16End": 26395,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1535::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15350B3_",
+      "unit": 0,
+      "functionId": 1535,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
+      "utf16Start": 1249392,
+      "utf16End": 1250745,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1566::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_15660B3_",
+      "unit": 0,
+      "functionId": 1566,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6f2eac21c9f97e1545c2ea1a71747781ec2deb3befd8bd1a60c730bbfdf49e9a",
+      "utf16Start": 1258020,
+      "utf16End": 1258619,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1614",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1614",
+      "unit": 0,
+      "functionId": 1614,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "9517299f90254001260761b219d537f0d6dd8086212cbff676fbfb0bbeb7aada",
+      "utf16Start": 1273195,
+      "utf16End": 1273860,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1615",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1615",
+      "unit": 0,
+      "functionId": 1615,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "638b3a54abee7fa12543b60786d2ae9dd737808baba83a0b2017468965e9e939",
+      "utf16Start": 1273874,
+      "utf16End": 1273981,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1616",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1616",
+      "unit": 0,
+      "functionId": 1616,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1b4d6b74f03e870b41704de93d4c07ad449b4d82b9fd554a1a8e68fed293593e",
+      "utf16Start": 1274013,
+      "utf16End": 1274207,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1621",
+      "dso": "wall-profile",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1621",
+      "unit": 0,
+      "functionId": 1621,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "bad5d925e501d191a071af0e0966156f2013230f5a49eaa4d4fe85810776d540",
+      "utf16Start": 1274838,
+      "utf16End": 1275544,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1662",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1662",
+      "unit": 0,
+      "functionId": 1662,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "16375f29478a11552b288fb74052075a5773c056bf18ce1b307079685098c2da",
+      "utf16Start": 1283484,
+      "utf16End": 1283577,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0027::js_function_1663",
+      "dso": "wall-profile",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNvCs1ygXBa4tZu9_23battle_unit_0_part_002716js_function_1663",
+      "unit": 0,
+      "functionId": 1663,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c48098fb65fac2bd28f017351cb0c750848432cef089b4efbbdc3658b7a760cd",
+      "utf16Start": 1283591,
+      "utf16End": 1283904,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0044::js_function_2389",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs32WPYTRSCbO_23battle_unit_0_part_004416js_function_2389",
+      "unit": 0,
+      "functionId": 2389,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "957e27903ce625a0db1ad4b8182224013a1261c08e2978f870c9af5b62e6a4c2",
+      "utf16Start": 1509283,
+      "utf16End": 1509835,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0044::js_function_2393",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs32WPYTRSCbO_23battle_unit_0_part_004416js_function_2393",
+      "unit": 0,
+      "functionId": 2393,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1efd8a6cdcf052bca7e47885cf055474701270c1dbf22b05120c301473c1dd2d",
+      "utf16Start": 1509966,
+      "utf16End": 1509994,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0046::js_function_2499",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs3mKSzQPPgQV_23battle_unit_0_part_004616js_function_2499",
+      "unit": 0,
+      "functionId": 2499,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "65fc1ed7312815b9e73dafc6614c7aacbe8ae3f7aad6b2259893a5409e7c4a0c",
+      "utf16Start": 1531007,
+      "utf16End": 1531074,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0041::js_function_2179",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs3tul3joJPem_23battle_unit_0_part_004116js_function_2179",
+      "unit": 0,
+      "functionId": 2179,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "9d16d41d1f86405d50c7f717b33d822d88c6d0367eeea21f784e15546977a76d",
+      "utf16Start": 1465898,
+      "utf16End": 1466126,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0041::js_function_2180",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs3tul3joJPem_23battle_unit_0_part_004116js_function_2180",
+      "unit": 0,
+      "functionId": 2180,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "054e1e4aaef876dd03b76245f7573ff927e51d94ca526d465875416a0fb9f609",
+      "utf16Start": 1466132,
+      "utf16End": 1467990,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0007::js_function_575",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs41rTo9OG3ka_23battle_unit_0_part_000715js_function_575",
+      "unit": 0,
+      "functionId": 575,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5fd8fd921c57af52374f2b7a3f9b57d341f262b33adbc410b071d361e68f72f8",
+      "utf16Start": 85347,
+      "utf16End": 85439,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0007::js_function_577",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs41rTo9OG3ka_23battle_unit_0_part_000715js_function_577",
+      "unit": 0,
+      "functionId": 577,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "551b914ae6ec4af134ff63e41da4814fc1bb860ca36fec4e3061c04c5bc2a460",
+      "utf16Start": 85700,
+      "utf16End": 85880,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1449",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_1449",
+      "unit": 0,
+      "functionId": 1449,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "1f0e7b59d630d832f20ca1ec5d3af7074e99a885c425ee0a317b27386ef2fa3c",
+      "utf16Start": 1234269,
+      "utf16End": 1234861,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0024::js_function_1452",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs5ffiaSmSPT4_23battle_unit_0_part_002416js_function_1452",
+      "unit": 0,
+      "functionId": 1452,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0b81cb69622de9daafa321321d72eb53fd6817bca12594c22ace56a18d57f185",
+      "utf16Start": 1235116,
+      "utf16End": 1235973,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0013::js_function_1022",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7cvVwy9MU3T_23battle_unit_0_part_001316js_function_1022",
+      "unit": 0,
+      "functionId": 1022,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "edf1988ae041ddda3f8c1e40496e28beb96b91e861765c5721f6c4d658ec9a29",
+      "utf16Start": 200261,
+      "utf16End": 200427,
+      "name": "__nativeDrain",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1587",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_1587",
+      "unit": 0,
+      "functionId": 1587,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "b30d06126a0158186cd6ef55252493e4c3eefa2e422eafd51c70e7f30784c8b0",
+      "utf16Start": 1263109,
+      "utf16End": 1263154,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1600",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_1600",
+      "unit": 0,
+      "functionId": 1600,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "906b8a21dc7b24ea4d6ad33cc402cb3fe6f05a5b2bbbb57b0df15682f9695f7c",
+      "utf16Start": 1266150,
+      "utf16End": 1266261,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1611",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_1611",
+      "unit": 0,
+      "functionId": 1611,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "dbca6fb212b710a5cbd88ac886bc5ab2f4b1a8eede2b379b55756b909612d9c8",
+      "utf16Start": 1271038,
+      "utf16End": 1271900,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1612",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_1612",
+      "unit": 0,
+      "functionId": 1612,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a24eeaf3080157c38734a07cef3b5fc836728ee961e30797b6ae3f74f66520bc",
+      "utf16Start": 1271917,
+      "utf16End": 1272308,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0026::js_function_1613",
+      "dso": "wall-profile",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNvCs7mU306dJGoq_23battle_unit_0_part_002616js_function_1613",
+      "unit": 0,
+      "functionId": 1613,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
+      "utf16Start": 1272327,
+      "utf16End": 1273178,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0042::js_function_2231",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs95odbVzHfSw_23battle_unit_0_part_004216js_function_2231",
+      "unit": 0,
+      "functionId": 2231,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c3ddbaabcfe747cf413b2e3c3bff64bd9713fb72322daf34c6c3cf7901b9fe15",
+      "utf16Start": 1478910,
+      "utf16End": 1479121,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1781",
+      "dso": "wall-profile",
+      "samples": 4,
+      "periodNs": "40404040",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1781",
+      "unit": 0,
+      "functionId": 1781,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0789510259869455ed4fe05037fd692e5915feea09beb43a290cea2fdd84caf8",
+      "utf16Start": 1318027,
+      "utf16End": 1318214,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1787",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1787",
+      "unit": 0,
+      "functionId": 1787,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "d613e38cdfe79c1e35b3164764e0a137d5f993233823657313a0c44d9ef29cd6",
+      "utf16Start": 1318874,
+      "utf16End": 1318944,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1790",
+      "dso": "wall-profile",
+      "samples": 5,
+      "periodNs": "50505050",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1790",
+      "unit": 0,
+      "functionId": 1790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0168edf31ec38285b40ef2bb434571c7cd84318fca5df6b89667a5c57dbabf7e",
+      "utf16Start": 1319341,
+      "utf16End": 1319750,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1814",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1814",
+      "unit": 0,
+      "functionId": 1814,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "49cbc12167fe0f4636fc89eb55c12227629ddd740a20fd34555be14dcaeae16c",
+      "utf16Start": 1327420,
+      "utf16End": 1327549,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0030::js_function_1816",
+      "dso": "wall-profile",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "_RNvCs9Wp7OqSpYhJ_23battle_unit_0_part_003016js_function_1816",
+      "unit": 0,
+      "functionId": 1816,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "81181e756d656bea3abf2d996e1dbdedb235413ccbe3f21a9a88fc1bd06127bd",
+      "utf16Start": 1327661,
+      "utf16End": 1327747,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0012::js_function_967",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs9aL5dRTmgN5_23battle_unit_0_part_001215js_function_967",
+      "unit": 0,
+      "functionId": 967,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "91e9faa3bda806040af76eb05d5fe79ef12b3e8799f7778f6afb6a35bead3043",
+      "utf16Start": 163819,
+      "utf16End": 163914,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1416",
+      "dso": "wall-profile",
+      "samples": 7,
+      "periodNs": "70707070",
+      "rawSymbol": "_RNvCsbbKK7iuo5Pu_23battle_unit_0_part_002316js_function_1416",
+      "unit": 0,
+      "functionId": 1416,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5",
+      "utf16Start": 1229194,
+      "utf16End": 1229984,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0023::js_function_1423",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsbbKK7iuo5Pu_23battle_unit_0_part_002316js_function_1423",
+      "unit": 0,
+      "functionId": 1423,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ead95c8b47ebf309fcf8de9c6dc9a4ce55dbccf1b03acd7616631eccab242e9d",
+      "utf16Start": 1231133,
+      "utf16End": 1231275,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0017::js_function_1114",
+      "dso": "wall-profile",
+      "samples": 6,
+      "periodNs": "60606060",
+      "rawSymbol": "_RNvCsdQ2iGN0Vgvw_23battle_unit_0_part_001716js_function_1114",
+      "unit": 0,
+      "functionId": 1114,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "0b5506e809f796564f42a01cdfc8990680ee5f9dba46c29cde996e943035a3de",
+      "utf16Start": 593271,
+      "utf16End": 593594,
+      "name": "dataDescriptorSame",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_132",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_132",
+      "unit": 0,
+      "functionId": 132,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6376c279abd7f5365ce6df12b4d4b94c57589a9c116af32d1cb7e11696be07b7",
+      "utf16Start": 21374,
+      "utf16End": 21470,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_140",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_140",
+      "unit": 0,
+      "functionId": 140,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2e4ce6ac1b75f765811bc326f710e3ad4ab48be8989860a52eb35a01b0b3a904",
+      "utf16Start": 22223,
+      "utf16End": 22345,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_144",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_144",
+      "unit": 0,
+      "functionId": 144,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "3bf5dcc7f8fedef7264987441292f70781ea735444ebf2913cfa0230b75c341f",
+      "utf16Start": 22507,
+      "utf16End": 22815,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_157",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_157",
+      "unit": 0,
+      "functionId": 157,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "81200e82e77ece4a7c919c18427814519ea31d547222e2eff061380302e46f80",
+      "utf16Start": 24274,
+      "utf16End": 24316,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0002::js_function_165",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCse4meN5zlPnt_23battle_unit_0_part_000215js_function_165",
+      "unit": 0,
+      "functionId": 165,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2c6a18411d11be16eae9d8659081594c850c37f3612c4635df5d41f86b82c1f4",
+      "utf16Start": 24603,
+      "utf16End": 24660,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1535",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_1535",
+      "unit": 0,
+      "functionId": 1535,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "6400654dd3b91505f1b4f4d7cbc5bf910eef89d007b5e87d6fd71f1afc900838",
+      "utf16Start": 1249392,
+      "utf16End": 1250745,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1543",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_1543",
+      "unit": 0,
+      "functionId": 1543,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "fa29f99eec0ea95e5581a9804e89581105364133b4c2ec9af839153e9cfd8a36",
+      "utf16Start": 1251278,
+      "utf16End": 1251793,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1553",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_1553",
+      "unit": 0,
+      "functionId": 1553,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "c15f7221332e529eed9f2073f05602297af55e7557b8c4978f525d207090c80f",
+      "utf16Start": 1253598,
+      "utf16End": 1253985,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0025::js_function_1570",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsgaloQTdHPQw_23battle_unit_0_part_002516js_function_1570",
+      "unit": 0,
+      "functionId": 1570,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "ff5b8664f6e9affdabbde05e9b8e9b65431596c105acb07e606e07e397d6eecb",
+      "utf16Start": 1259103,
+      "utf16End": 1259373,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0010::js_function_790",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsgy6w6Jh1kBW_23battle_unit_0_part_001015js_function_790",
+      "unit": 0,
+      "functionId": 790,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "27bf6b5b1423d49a2659d96bab8419c32b45f211c028b98d3ab69154fa699dec",
+      "utf16Start": 130077,
+      "utf16End": 130644,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0033::js_function_1906",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsiICBx4wo5f1_23battle_unit_0_part_003316js_function_1906",
+      "unit": 0,
+      "functionId": 1906,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "e7e756babb8558e17940f1406d1b8c0160b7aec772072b820d7e93cebcabd03d",
+      "utf16Start": 1358883,
+      "utf16End": 1359128,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0035::js_function_2009",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCsiRSH6kkZuGK_23battle_unit_0_part_003516js_function_2009",
+      "unit": 0,
+      "functionId": 2009,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "2f0bebd5580b6249ec97cb008b64282452fc24245e101be486489bbb81e486f4",
+      "utf16Start": 1385307,
+      "utf16End": 1385419,
+      "name": "r",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0031::js_function_1818",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCskSIBlgV5NYG_23battle_unit_0_part_003116js_function_1818",
+      "unit": 0,
+      "functionId": 1818,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+      "utf16Start": 1327804,
+      "utf16End": 1333588,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_0_part_0001::js_function_104",
+      "dso": "wall-profile",
+      "samples": 22,
+      "periodNs": "222222220",
+      "rawSymbol": "_RNvCslp9slkui7Px_23battle_unit_0_part_000115js_function_104",
+      "unit": 0,
+      "functionId": 104,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js",
+      "sourceSha256": "5d22d4de7adf8237ead58c7a757ed09163f7ee646a22b44a10f12171889d2072",
+      "utf16Start": 17962,
+      "utf16End": 18126,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-0/manifest.json",
+        "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0036::js_function_1521::{closure#0}::{closure#4}::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNvCs1vGavJ7kYpl_23battle_unit_1_part_003616js_function_15210s2_00B7_",
+      "unit": 1,
+      "functionId": 1521,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "8aafc63f4692bdce69c3820ba745c56adc2252e9cbc109bbd23dd2d880715d60",
+      "utf16Start": 522983,
+      "utf16End": 524032,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "13c5f1a4b11dd9a97bee80b0ae1ffc3070168569f0d7cb9074714c0baeac7bbd"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0011::js_function_493::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs3tewrOzQCJl_23battle_unit_1_part_001115js_function_4930s1_0B5_",
+      "unit": 1,
+      "functionId": 493,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "91c6504e22b1012b0f5d816493b3ae4d3539d88a55976cc8955914d24290aece",
+      "utf16Start": 167697,
+      "utf16End": 168572,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "13c5f1a4b11dd9a97bee80b0ae1ffc3070168569f0d7cb9074714c0baeac7bbd"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0035::js_function_1486::{closure#0}::{closure#7}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCslAmfzkjpPib_23battle_unit_1_part_003516js_function_14860s5_0B5_",
+      "unit": 1,
+      "functionId": 1486,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "10c7ed29c8712e8b4f68fb00dda9d1eb999f337c22c46421bc7fae2df833cef9",
+      "utf16Start": 509710,
+      "utf16End": 510516,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "13c5f1a4b11dd9a97bee80b0ae1ffc3070168569f0d7cb9074714c0baeac7bbd"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0011::js_function_493",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs3tewrOzQCJl_23battle_unit_1_part_001115js_function_493",
+      "unit": 1,
+      "functionId": 493,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "91c6504e22b1012b0f5d816493b3ae4d3539d88a55976cc8955914d24290aece",
+      "utf16Start": 167697,
+      "utf16End": 168572,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "13c5f1a4b11dd9a97bee80b0ae1ffc3070168569f0d7cb9074714c0baeac7bbd"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0037::js_function_1525",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7oqywko9RMb_23battle_unit_1_part_003716js_function_1525",
+      "unit": 1,
+      "functionId": 1525,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "f4e381666328931f068efe1e7d3274cf0fc7fc0d0046714868733e4db1d42cb6",
+      "utf16Start": 524768,
+      "utf16End": 525083,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "13c5f1a4b11dd9a97bee80b0ae1ffc3070168569f0d7cb9074714c0baeac7bbd"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0037::js_function_1538",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs7oqywko9RMb_23battle_unit_1_part_003716js_function_1538",
+      "unit": 1,
+      "functionId": 1538,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "60d2c7616a06bd1fa507f21529e31422aba2f3e84664763882e5ca6bfd448fe5",
+      "utf16Start": 528061,
+      "utf16End": 528276,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "13c5f1a4b11dd9a97bee80b0ae1ffc3070168569f0d7cb9074714c0baeac7bbd"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0030::js_function_1269",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs9MnZMF9nuQY_23battle_unit_1_part_003016js_function_1269",
+      "unit": 1,
+      "functionId": 1269,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "f8b8e1a25c2e90f017dc79020e6aef4d9905fcf7e16b41cd093f08b17940ee2c",
+      "utf16Start": 432952,
+      "utf16End": 433516,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "13c5f1a4b11dd9a97bee80b0ae1ffc3070168569f0d7cb9074714c0baeac7bbd"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0030::js_function_1270",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCs9MnZMF9nuQY_23battle_unit_1_part_003016js_function_1270",
+      "unit": 1,
+      "functionId": 1270,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "624e688d2032e5fc6c77adb4cb2ed36b2fbfda9c2e98550266de1701dd8ba70e",
+      "utf16Start": 433536,
+      "utf16End": 433664,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "13c5f1a4b11dd9a97bee80b0ae1ffc3070168569f0d7cb9074714c0baeac7bbd"
+      }
+    },
+    {
+      "symbol": "battle_unit_1_part_0035::js_function_1486",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCslAmfzkjpPib_23battle_unit_1_part_003516js_function_1486",
+      "unit": 1,
+      "functionId": 1486,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js",
+      "sourceSha256": "10c7ed29c8712e8b4f68fb00dda9d1eb999f337c22c46421bc7fae2df833cef9",
+      "utf16Start": 509710,
+      "utf16End": 510516,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-1/manifest.json",
+        "sha256": "13c5f1a4b11dd9a97bee80b0ae1ffc3070168569f0d7cb9074714c0baeac7bbd"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0083::js_function_3195::{closure#0}::{closure#0}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#1}::{closure#1}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNvCshxj3socH0nd_23battle_unit_2_part_008316js_function_31950000s_000s_000s_0s_00s_000s_000s0_0BF_",
+      "unit": 2,
+      "functionId": 3195,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "4880d82363748a7456ed7a5da3c043740fb48c355c5f982bc5976b99fda9383e",
+      "utf16Start": 1188148,
+      "utf16End": 1188906,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "c5f51c78f79f1b3b133b80ba414a3064d0123870c021f6c169c0f9395843924f"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0084::js_function_3234::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCsfhYOvIUFxLs_23battle_unit_2_part_008416js_function_32340s0_0B5_",
+      "unit": 2,
+      "functionId": 3234,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "79ae50a94dc3fe23b69e897fe39d226e23256f12864422c86934b16ff247c781",
+      "utf16Start": 1199912,
+      "utf16End": 1200352,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "c5f51c78f79f1b3b133b80ba414a3064d0123870c021f6c169c0f9395843924f"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0083::js_function_3192",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNvCshxj3socH0nd_23battle_unit_2_part_008316js_function_3192",
+      "unit": 2,
+      "functionId": 3192,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "14e221cdbea35021afa3df5c8fef458cde0a9c3bc422f8335bd3c194dd71345b",
+      "utf16Start": 1187789,
+      "utf16End": 1188083,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "c5f51c78f79f1b3b133b80ba414a3064d0123870c021f6c169c0f9395843924f"
+      }
+    },
+    {
+      "symbol": "battle_unit_2_part_0083::js_function_3195",
+      "dso": "wall-profile",
+      "samples": 2,
+      "periodNs": "20202020",
+      "rawSymbol": "_RNvCshxj3socH0nd_23battle_unit_2_part_008316js_function_3195",
+      "unit": 2,
+      "functionId": 3195,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js",
+      "sourceSha256": "4880d82363748a7456ed7a5da3c043740fb48c355c5f982bc5976b99fda9383e",
+      "utf16Start": 1188148,
+      "utf16End": 1188906,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-2/manifest.json",
+        "sha256": "c5f51c78f79f1b3b133b80ba414a3064d0123870c021f6c169c0f9395843924f"
+      }
+    },
+    {
+      "symbol": "battle_unit_4_part_0063::js_function_2707::{closure#0}::{closure#5}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNvCs9bxP3vamSan_23battle_unit_4_part_006316js_function_27070s3_0B5_",
+      "unit": 4,
+      "functionId": 2707,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sourceSha256": "f43f3bb8ebf72943f3ae5aed6bf407ab19d8d001a3eec69d9de074eb1fbed5e3",
+      "utf16Start": 947638,
+      "utf16End": 948345,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-4/manifest.json",
+        "sha256": "f04590d84f4bd3e05833459a57f38ed91bd239f9518acbf988f6a0e2c0d26460"
+      }
+    },
+    {
+      "symbol": "battle_unit_4_part_0063::js_function_2707::{closure#0}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNvCs9bxP3vamSan_23battle_unit_4_part_006316js_function_27070B3_",
+      "unit": 4,
+      "functionId": 2707,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js",
+      "sourceSha256": "f43f3bb8ebf72943f3ae5aed6bf407ab19d8d001a3eec69d9de074eb1fbed5e3",
+      "utf16Start": 947638,
+      "utf16End": 948345,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-4/manifest.json",
+        "sha256": "f04590d84f4bd3e05833459a57f38ed91bd239f9518acbf988f6a0e2c0d26460"
+      }
+    },
+    {
+      "symbol": "battle_unit_5_part_0020::js_function_785::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#3}::{closure#0}::{closure#0}::{closure#3}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNCNCNCNvCscSkDDgDsSoo_23battle_unit_5_part_002015js_function_7850s0_000s_000s1_000s1_0Bn_",
+      "unit": 5,
+      "functionId": 785,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "98e2f78ca3519da0722783e397c69ac7370822bced34154cc2d25379d4c8a69e",
+      "utf16Start": 321653,
+      "utf16End": 324425,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-5/manifest.json",
+        "sha256": "b3d12409a1a5d9c2a6edb9c39217aa301b8ecc958e9c5f5ed992432a268bd187"
+      }
+    },
+    {
+      "symbol": "battle_unit_5_part_0020::js_function_785::{closure#0}::{closure#2}::{closure#0}::{closure#0}::{closure#1}::{closure#0}::{closure#0}::{closure#2}",
+      "dso": "wall-profile",
+      "samples": 1,
+      "periodNs": "10101010",
+      "rawSymbol": "_RNCNCNCNCNCNCNCNCNvCscSkDDgDsSoo_23battle_unit_5_part_002015js_function_7850s0_000s_000s0_0Bh_",
+      "unit": 5,
+      "functionId": 785,
+      "sourceFile": "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js",
+      "sourceSha256": "98e2f78ca3519da0722783e397c69ac7370822bced34154cc2d25379d4c8a69e",
+      "utf16Start": 321653,
+      "utf16End": 324425,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-5/manifest.json",
+        "sha256": "b3d12409a1a5d9c2a6edb9c39217aa301b8ecc958e9c5f5ed992432a268bd187"
+      }
+    },
+    {
+      "symbol": "battle_unit_6_part_0078::js_function_3688",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs804SvRNjY1h_23battle_unit_6_part_007816js_function_3688",
+      "unit": 6,
+      "functionId": 3688,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sourceSha256": "3e143dc33efc9f3575a3f6982a3fe3a04f0ad7dbadcb6d039493f6074e3495a5",
+      "utf16Start": 1245460,
+      "utf16End": 1246072,
+      "name": "__nativeSourceSnapshot",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-6/manifest.json",
+        "sha256": "391ded893d6f6d5509212c3702160b4dd60a34fa1a9d1b30f2f0ffd552556cc1"
+      }
+    },
+    {
+      "symbol": "battle_unit_6_part_0078::js_function_3689",
+      "dso": "wall-profile",
+      "samples": 3,
+      "periodNs": "30303030",
+      "rawSymbol": "_RNvCs804SvRNjY1h_23battle_unit_6_part_007816js_function_3689",
+      "unit": 6,
+      "functionId": 3689,
+      "sourceFile": "/workspace/afkarena-simx/work/native-warm23-partition/runner.js",
+      "sourceSha256": "37bb397c11cca8ef67f579afb2d53b6858487f20b3f3174d887f4bc890c90063",
+      "utf16Start": 1246137,
+      "utf16End": 1246221,
+      "name": "",
+      "manifest": {
+        "file": "work/rust-battle-full/battle-unit-6/manifest.json",
+        "sha256": "391ded893d6f6d5509212c3702160b4dd60a34fa1a9d1b30f2f0ffd552556cc1"
+      }
+    }
+  ],
+  "semanticReportMatched": true,
+  "firstDifference": null,
+  "reference": {
+    "file": "benchmarks/validation/rust-wall-profile-layout-execution-wave-reference.json",
+    "sha256": "b496f2c682fcd147a34b9ffb3fc0203d0c081206975e6da6e153e7298d39efcf"
+  },
+  "completed": 20,
+  "totalCallbacks": 309060,
+  "reports": [
+    {
+      "label": "leaf",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "inclusive",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "stacks",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "label": "buildids",
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "record-stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.record-stdout.000.gz",
+          "bytes": 46254,
+          "sha256": "c4f4f3bf129cafdb0d8a7df3665377583261d3c1b4b5f8b0f76ba45f576dcc33"
+        }
+      ],
+      "uncompressedBytes": 687199,
+      "uncompressedSha256": "0217981389775986385c622baa5072aeb4207a5beeba9dcccc80469336a1b828",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "record-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.record-stderr.000.gz",
+          "bytes": 272,
+          "sha256": "cba8c3709de24e45398028030da2ec53d7b2a3563e486ab277cc8b3d20f9f983"
+        }
+      ],
+      "uncompressedBytes": 359,
+      "uncompressedSha256": "2faf94483d4f2c20ad7aa995a3b3e36a73efa3ce86791c57e497321d028e8a8e",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.leaf.000.gz",
+          "bytes": 8176,
+          "sha256": "9c6bea287a1ce0d5bd22a0da01df1952f692030f6580a27322fe32371dccffa8"
+        }
+      ],
+      "uncompressedBytes": 168549,
+      "uncompressedSha256": "94b814e79b9a2d816ac11b2b25446f1a0ff8d0b8884f1ee2bee31aac87bfd05f",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "leaf-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.leaf-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.inclusive.000.gz",
+          "bytes": 175537,
+          "sha256": "b4c874410b111a94f550e13d5dd2a871fee2f2c7ddbbab78a59f9b6be0c9aa2e"
+        }
+      ],
+      "uncompressedBytes": 4325401,
+      "uncompressedSha256": "da4823bb49d69e10849e448803428b0e80b887841df68f8c290bf4a4f06320c7",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "inclusive-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.inclusive-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.stacks.000.gz",
+          "bytes": 785078,
+          "sha256": "4763b861bb46006605d2ee8eb56e961f14cb5dfa24f0f6f00c72d42638b441cc"
+        }
+      ],
+      "uncompressedBytes": 21378621,
+      "uncompressedSha256": "9ca9def10d5492e0e288202280a9ebe813d245532944a418fab52665b3da350c",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "stacks-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.stacks-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.buildids.000.gz",
+          "bytes": 208,
+          "sha256": "2e55e91d52295dd57ada54ab36baa43b07a9ca6d7bd64955d27b8fc0d5aac7e8"
+        }
+      ],
+      "uncompressedBytes": 252,
+      "uncompressedSha256": "6f7fef8465e8b69a5ae4949d9579f7c4c85bc6c4b153cd74a27dc29bc251f7df",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "buildids-stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.buildids-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "Concatenate chunks, then gunzip"
+    },
+    {
+      "label": "data",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.data.000.gz",
+          "bytes": 15970972,
+          "sha256": "ca8f3194e8aba662c3e69ee9f092712c85e0ad4d2485a5c1907ef5c949f6f3c6"
+        }
+      ],
+      "uncompressedBytes": 89238016,
+      "uncompressedSha256": "ce38d4786e733c7fa5ef00745717854c1bb0f4ed15e227fbc68a7645c891fe44",
+      "compression": "Concatenate chunks, then gunzip"
+    }
+  ],
+  "producer": {
+    "file": "tools/rust-port/profile-program.mjs",
+    "sha256": "710219ac7f7b38b99a35da0f41426fd6ab3801198a7629aa60c2b7588be67e99"
+  },
+  "qualifiesFor10000Target": false,
+  "limitations": [
+    "Sampling is externally enabled/disabled after observing the requested marker prefixes. Both control acknowledgments are required. Pipe/control latency and sample skid mean this approximates the wrapper interval rather than an exact source-clock boundary. Startup before start marker and external serialization after end marker are excluded; work inside the wrapper interval remains included.",
+    "Profiling changes execution time. No battles/sec or unprofiled millisecond inference is supported. A configured expected nonzero exit is diagnostic-only and never qualifies a complete normal workload.",
+    "Self groups classify linked symbol names and are disjoint. Inlined code is attributed to its containing native symbol; unresolved samples are retained. Inclusive report rows overlap.",
+    "Source mappings refer to exact function ranges in the frozen source modules; anonymous functions are not assigned invented mechanic names.",
+    "A matching supplied final reference is a separate semantic report check, not broad corpus or full-scene qualification. Without --reference, semanticReportMatched stays null."
+  ]
+}
