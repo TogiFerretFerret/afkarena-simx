@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "passed": true,
+  "libraryTests": 92,
+  "integrationTests": 26,
+  "sourceCommit": "2332f0d",
+  "baseCommit": "6369efc",
+  "testedStrides": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8
+  ],
+  "actualRequestsPerCase": 12,
+  "fullBattleQualified": false,
+  "throughputMeasured": false,
+  "logs": [
+    {
+      "file": "benchmarks/validation/runtime-gc-stride/native-tests.stdout.gz",
+      "sha256": "a621222b2b4e31e333d1e77236d7a051d574e03e620284b2673fda34f9c44930",
+      "rawSha256": "fd7c5626120aaded32d24004b769456c88b80deb828802d48b734a0e16bba2d1"
+    },
+    {
+      "file": "benchmarks/validation/runtime-gc-stride/native-tests.stderr.gz",
+      "sha256": "d1a680b151152ad6a6dc80832e424625e6b4345e9806a57abd3dfe1833bb2100",
+      "rawSha256": "962583e4c0977f9eb356f04c7556df6d87e6f6e10c3c4cbc52181f08c9c6daec"
+    }
+  ],
+  "source": {
+    "file": "crates/js-runtime/src/battle_gc.rs",
+    "sha256": "c7d2e7f39b8fe4b112fccb47f0d0f77e51d7b4b4c90dbf3daf7efa8367c1ccfb"
+  },
+  "executableDigests": [
+    {
+      "file": "target/debug/deps/js_runtime-f844dddfc37ccc41",
+      "sha256": "96acf106222446d6e634f421d68cc51a3ae27695a5de6d808e20558f5a9ef39e"
+    }
+  ]
+}
