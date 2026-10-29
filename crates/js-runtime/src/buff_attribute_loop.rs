@@ -10,7 +10,11 @@ impl Runtime {
  /// `e,t,a,i,r,n` are source locals after the unchanged for initializer.
  /// A miss does no source-visible work, and continues at the original loop.
  pub fn try_native_buff_percent_loop(&mut self,this:Value,e:Value,t:Value,a:Value,i:Value,r:Value,n:Value,parent:EnvId)->bool{
-  if !self.buff_attribute_loop_enabled{return false}self.buff_percent_loop_attempts=self.buff_percent_loop_attempts.wrapping_add(1);if self.truthy(a){return false}
+  if !self.buff_attribute_loop_enabled{return false}self.buff_percent_loop_attempts=self.buff_percent_loop_attempts.wrapping_add(1);
+  // The original initializer (including all callbacks) already completed.
+  // With l=+0 and Number n, this failed first test executes no body reads.
+  if matches!(n,Value::Number(length)if !(0.0<length)){self.buff_percent_loop_hits=self.buff_percent_loop_hits.wrapping_add(1);return true}
+  if self.truthy(a){return false}
   let(Value::Object(receiver),Value::Object(info),Value::Object(target),Value::Number(length))=(this,e,t,n)else{return false};
   if !length.is_finite()||length<0.0||length>64.0||length.fract()!=0.0||!self.buff_plain(target)||receiver==target||info==target{return false}
   let names=["ed","attrib","attrib_names_x","attrib_names_a","caster_attribs","AddSource","owner","HPR","MPR"];let keys=names.map(|s|PropertyKey(self.intern(s)));
