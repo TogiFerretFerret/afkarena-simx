@@ -430,7 +430,7 @@
     "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
     "crates/js-runtime/src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
     "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
-    "crates/js-runtime/src/heap.rs": "7353e86af403b88bb75b6d4da1bf207c4b9a1094d2686ef68430dd7d9cd95292",
+    "crates/js-runtime/src/heap.rs": "f8e4a5bb731e8eac10527576df4d8f62e19da09b8547ccb329289ed729b0ac5e",
     "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
     "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
     "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
@@ -448,7 +448,7 @@
     "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
     "crates/js-runtime/src/runtime.rs": "c6ce5a64df6809a4c06ba0028bc34ad4ac308dea21a4e84436f7f9e825ebfbea",
     "crates/js-runtime/src/stage_range_parser.rs": "943e3f3480ac888543bb6db0f12df3da559bbcc97bbc8e634839a31529ec22ba",
-    "crates/js-runtime/src/stored_property.rs": "1b960b3f7c5963ce1a83379c598989b498029700b78100033d907a995d1732c1",
+    "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
     "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
     "crates/js-runtime/src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
@@ -532,7 +532,7 @@
       "--offline"
     ]
   },
-  "binarySha256": "4a5a79a9f7f785a00c4c762453ff326139fe515d5db63a9f820a02e64b33d52e",
+  "binarySha256": "25b6f587d29498105471bb87b3b17e5b7dae263367f904fa13458bab31460561",
   "artifacts": [
     {
       "file": "benchmarks/validation/generated-rust-typed-arrays.input.gz",
