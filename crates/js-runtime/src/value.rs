@@ -49,6 +49,7 @@ pub enum BinaryOp {
 pub const CONVERSION_NAN: f64 = f64::from_bits(0x7ff8_0000_0000_0000);
 
 impl Runtime {
+    #[inline]
     pub fn truthy(&self, value: Value) -> bool {
         match value {
             Value::Undefined | Value::Null => false,
@@ -74,7 +75,14 @@ impl Runtime {
         }
         Err(JsError::TypeError("Cannot convert object to primitive value".into()))
     }
+    #[inline]
     pub fn to_number(&mut self, value: Value) -> JsResult<f64> {
+        if let Value::Number(number)=value{return Ok(number)}
+        self.to_number_slow(value)
+    }
+    #[cold]
+    #[inline(never)]
+    fn to_number_slow(&mut self, value: Value) -> JsResult<f64> {
         match value {
             Value::Undefined => Ok(CONVERSION_NAN),
             Value::Null => Ok(0.0),
