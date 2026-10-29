@@ -144,3 +144,36 @@ export function validateBattleBoundarySchema(trace){
   return{passed:true,events:events.length,snapshotNodes:nodes.size,frames:frame+1,scope:'Supplemental JSON schema and integrity for typed-entry boundary traces; own enumerable string-keyed data fields only. No whole-program or battle semantic qualification.',qualifiesFor10000Target:false};
  }catch(error){return{passed:false,reason:error.message,qualifiesFor10000Target:false};}
 }
+
+/** Incremental counterpart for the same selected-state contract. Snapshot
+ * children must precede their parents, as emitted by the observer's intern().
+ * lookup retains only validated {type, hash, dependencies}, never node values.
+ */
+export function createBattleBoundaryStreamValidator(lookup){
+ let frame=-1,openFrame=false,entered=0,events=0,lastKind=null;const stack=[];
+ let dependencies=new Set(),references=0,numberBits=0;
+ function reference(value,type,path){keys(value,['$boundaryNode'],path);const hash=value.$boundaryNode;if(typeof hash!=='string'||!HASH.test(hash))bad(path+': invalid snapshot reference');const node=lookup(hash);if(!node)bad(path+': missing/forward snapshot reference '+hash);if(node.type!==type)bad(path+': wrong snapshot node type');dependencies.add(node.hash);references++;}
+ function fields(value,path){keys(value,['kind','entries'],path);if(value.kind!=='primitive-fields')bad(path+': expected fields');let previous=null;for(const pair of array(value.entries,path+'.entries')){if(!Array.isArray(pair)||pair.length!==2||typeof pair[0]!=='string')bad(path+': malformed field');const[key,child]=pair;if(previous!==null&&previous>=key)bad(path+': duplicate/unsorted field');previous=key;if(child?.kind==='numeric-vector'){keys(child,['kind','values'],path);for(const item of array(child.values,path)){if(item?.kind==='hole')marker(item,'hole',path);else numberTag(item,path);}}else atom(child,path);}}
+ function ordered(value,visitor,path){if(!Array.isArray(value)){marker(value,'absent-list',path);return}for(const[i,item]of value.entries()){if(item?.kind==='hole'||item?.kind==='accessor')marker(item,item.kind,path);else visitor(item,path+'['+i+']');}}
+ function unit(value,path){keys(value,UNIT,path);atom(value.identity,path+'.identity',true);for(const key of['fields','attributes','buffEffects'])reference(value[key],'fields',path+'.'+key);ordered(value.skills,(skill,p)=>{keys(skill,['identity','fields','name'],p);atom(skill.identity,p,true);reference(skill.fields,'fields',p);atom(skill.name,p,true);},path+'.skills');ordered(value.buffs,(buff,p)=>{keys(buff,['identity','fields'],p);atom(buff.identity,p,true);reference(buff.fields,'fields',p);},path+'.buffs');}
+ function state(value,path){keys(value,['engine','lists','battleRng','initialBattleSeed','pendingCallbacks','clientCallCount','classManagerCounters'],path);reference(value.engine,'fields',path+'.engine');keys(value.lists,LISTS,path+'.lists');for(const name of LISTS)ordered(value.lists[name],(item,p)=>reference(item,'unit',p),path+'.lists.'+name);for(const key of['battleRng','initialBattleSeed','clientCallCount'])atom(value[key],path+'.'+key);ordered(value.pendingCallbacks,(item,p)=>atom(item,p,true),path+'.pendingCallbacks');if(value.classManagerCounters!==null)reference(value.classManagerCounters,'fields',path+'.classManagerCounters');}
+ function countBits(value){const pending=[value];while(pending.length){const v=pending.pop();if(v&&typeof v==='object'){if(Object.hasOwn(v,'bits')&&Object.keys(v).length===1){numberTag(v,'bits');numberBits++;}for(const child of Object.values(v))pending.push(child);}}}
+ return{
+  snapshot(hash,value){if(lookup(hash))bad('Duplicate snapshot '+hash);dependencies=new Set();const type=value?.kind==='primitive-fields'?'fields':'unit';if(type==='fields')fields(value,'snapshot:'+hash);else unit(value,'snapshot:'+hash);countBits(value);return{hash,type,dependencies:[...dependencies]};},
+  event(event){const path='event:'+events;keys(event,['sequence','kind','frame','payload','state','stateHash'],path);if(event.sequence!==events)bad(path+': sequence mismatch');integer(event.frame,-1,path);if(typeof event.stateHash!=='string'||!HASH.test(event.stateHash)||event.stateHash!==sha(event.state))bad(path+': invalid state hash');dependencies=new Set();state(event.state,path+'.state');payloadGraph(event.payload,path+'.payload');countBits(event.state);countBits(event.payload);const kind=event.kind;if(typeof kind!=='string')bad(path+': invalid kind');const wrapped=/^(rng:(draw|seed|host)|mechanic:(setHp|setMp|castSkill|onDied|terminate)):(before|after|throw)$/.exec(kind);
+   if(wrapped){const phase=wrapped[4],base=wrapped[1],data=payloadFields(event.payload,phase==='before'?['receiver','args']:phase==='after'?['result']:['error','name','message'],path);if(phase==='before'){atomPayload(data.get('receiver'),path);argumentPayload(data.get('args'),path);stack.push(base);}else{for(const key of phase==='after'?['result']:['error','name','message'])atomPayload(data.get(key),path);if(stack.pop()!==base)bad(path+': unmatched return/throw');}}
+   else if(kind==='frame:before'){if(openFrame||entered!==1||event.frame!==frame+1||event.payload!==null)bad(path+': invalid frame entry');frame++;openFrame=true;}
+   else if(kind==='frame:after'){if(!openFrame||event.payload!==null)bad(path+': invalid frame exit');openFrame=false;}
+   else if(kind==='battle:entered'){payloadFields(event.payload,[],path);if(++entered!==1||frame!==-1||openFrame)bad(path+': duplicate/late entry');}
+   else if(kind==='battle:completed'){const data=payloadFields(event.payload,['status','running','ticks','result'],path);if(entered!==1||openFrame||stack.length||data.get('status')!=='completed'||data.get('running')!==false||typeof data.get('result')!=='string')bad(path+': invalid completion');ordinal(data.get('ticks'),path);}
+   else if(kind==='callback:before'){if(event.payload!==null)bad(path+': invalid callback payload');}
+   else if(kind==='callback:enqueue'||kind==='callback:after'){const data=payloadFields(event.payload,['callback'],path);atomPayload(data.get('callback'),path);}
+   else if(kind==='host:random'){const data=payloadFields(event.payload,['ordinal','value'],path);ordinal(data.get('ordinal'),path);numberTag(data.get('value'),path);}
+   else if(kind==='host:clock'){const data=payloadFields(event.payload,['ordinal','entry'],path);ordinal(data.get('ordinal'),path);}
+   else if(kind==='device:output'){const data=payloadFields(event.payload,['ordinal','event'],path);ordinal(data.get('ordinal'),path);}
+   else bad(path+': unsupported event discriminant '+kind);
+   if(lastKind==='battle:completed')bad(path+': event after completion');if(event.frame!==frame)bad(path+': frame mismatch');events++;lastKind=kind;return[...dependencies];
+  },
+  finish({prefix=false}={}){if(!events)bad('Empty event sequence');if(!prefix&&(lastKind!=='battle:completed'||openFrame||stack.length||entered!==1))bad('Missing full completion');return{events,frames:frame+1,lastKind,references,numberBitAtoms:numberBits,openWrappedFrames:stack.length,openFrame,selectedStateOnly:true};}
+ };
+}
