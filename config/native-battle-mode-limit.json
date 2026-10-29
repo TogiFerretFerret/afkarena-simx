@@ -15,6 +15,13 @@
     "parser": {
       "source": "crates/js-runtime/src/battle_mode_parser_source.js",
       "sha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c"
+    },
+    "engineGetter": {
+      "source": "crates/js-runtime/src/battle_mode_engine_getter_source.js",
+      "sha256": "93ba986430208c8a8258a1ec7345d52d877345ddada92b898f2b39d7baa6cca9",
+      "originalSource": "src/srcmodule/game_battle.js",
+      "start": 267552,
+      "end": 267674
     }
   }
 }

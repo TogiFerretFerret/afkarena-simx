@@ -1,0 +1,1 @@
+function(){return this._battleEngineInstance||(this._battleEngineInstance=new ed.BattleEngine),this._battleEngineInstance}
