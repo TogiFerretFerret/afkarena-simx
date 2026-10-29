@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "checkpointOnly": true,
+  "qualifiesFor10000Target": false,
+  "at": "2026-10-29T00:15:45.086Z",
+  "label": "layout-execution-wave",
+  "chainStage": "build",
+  "chainPassed": false,
+  "chainPid": 273696,
+  "compilingLines": 105,
+  "observedCargoErrors": [],
+  "releaseFinished": false,
+  "availableBytes": 2771988480,
+  "scope": "Immutable progress checkpoint of an active build. Does not assert successful compilation, battle parity, throughput or final source provenance.",
+  "artifacts": [
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-chain.json",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-29T00-15-45.064Z-layout-execution-wave-checkpoint.chain.json.gz",
+      "observedBytes": 1057,
+      "sourceSha256": "3e7b14317d67879ad9e3a68ec9edfa5620e78a7374b0546c4a94df2561abbff0",
+      "archiveSha256": "92276416a1307c24ae6d12aca33c18f7b1aba512bf69c89846638089918050cd",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    },
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.json",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-29T00-15-45.064Z-layout-execution-wave-checkpoint.build.json.gz",
+      "observedBytes": 223014,
+      "sourceSha256": "0e9f2b45cdf4b119a086f25036c7096d9079283abdb14ef6241b798512a5f329",
+      "archiveSha256": "28e1540a3744058df87d67b9ae10077d322fe838fe6405e2f6b6b34db7aad174",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    },
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.cargo.stdout",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-29T00-15-45.064Z-layout-execution-wave-checkpoint.build.cargo.stdout.gz",
+      "observedBytes": 0,
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archiveSha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    },
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-layout-execution-wave-build.cargo.stderr",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-29T00-15-45.064Z-layout-execution-wave-checkpoint.build.cargo.stderr.gz",
+      "observedBytes": 13751,
+      "sourceSha256": "730b6eeead23961339e53dfa13809e83808c080ac3dad42bcae44ed2e5fbee20",
+      "archiveSha256": "1afdd4dd275d578c18259ce7658fc90b71c850fc5147514fae50ac9d97eae522",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    }
+  ]
+}
