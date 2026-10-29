@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "ranTrace0Timing": false,
+  "trace1SelectedObserverMatched": true,
+  "summaries": [],
+  "rows": [
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "759523524",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "831452801",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "212551638",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "193090375",
+      "events": 38400,
+      "snapshots": 25600
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/2026-10-29T00-19-16.083Z-hot-value-guards.outputs.json.gz",
+      "sha256": "1acf9202c3f83ce6c12d26fb383bbc0ab4225f4aa55037e19ee8e16d07fdc3e9",
+      "uncompressedSha256": "558bc3158ad26a837ae432e137c175ece14be34ec40d1c10e57cf7ac98927885"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-29T00-19-16.083Z-hot-value-guards.expected.json.gz",
+      "sha256": "8e41645978d30e5c296c7ac2e877a447f4a6c05726af8ff1aaeebe9dac616ec9",
+      "uncompressedSha256": "8b9be086eaf4ecab7c6a7a91f40b19e7aa1d5afcec5fec0a5094dde2fbdeeec9"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-29T00-19-16.083Z-hot-value-guards.preparation.json.gz",
+      "sha256": "db6227104616120658e257fdc55f055f93136b194b5f6eaf77c72e69d4a29437",
+      "uncompressedSha256": "8972e20de134cbf8747f37d6307575cb7731bfd93f55bea26dbc9f10054253cd"
+    }
+  ],
+  "scope": "Same original source fixtures in frozen baseline and slot/primitive inline-guard runtime libraries. Original Unit update and callback drain retain every source callback/event and snapshots. Component rates only; no battle qualification."
+}

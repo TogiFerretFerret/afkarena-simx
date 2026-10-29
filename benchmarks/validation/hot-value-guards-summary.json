@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "libraryTests": 90,
+  "integrationTests": 26,
+  "libraryProof": {
+    "file": "benchmarks/validation/hot-value-guard-libraries.json",
+    "sha256": "ada763310b7b92958a21af5446d0d071f2362e5cc711ddfbae44836dcc1a2356"
+  },
+  "gates": [
+    {
+      "file": "benchmarks/validation/hot-value-guards-dynamic-slots.json",
+      "sha256": "c39852945412893ce988e2204319514c3d7d6f738938647572c77748976f6afe",
+      "passed": true,
+      "cases": 36
+    },
+    {
+      "file": "benchmarks/validation/hot-value-guards-coercions.json",
+      "sha256": "4402720878a5201d6eea576fcdc266274a8f265edf960a748fc550874e3c792b",
+      "passed": true,
+      "cases": 40
+    },
+    {
+      "file": "benchmarks/validation/hot-value-guards-reflection.json",
+      "sha256": "d08103231a2ba724ee0d7f25dbebe15a04f210722adfada6a9182d7b40fd3986",
+      "passed": true,
+      "cases": 24
+    },
+    {
+      "file": "benchmarks/validation/hot-value-guards-diagnostics.json",
+      "sha256": "2f2ec606f16651ad4ff22a8991148f9e08f6e9a8ac50c5b5dc8cdb540addf668",
+      "passed": true,
+      "cases": null
+    }
+  ],
+  "rawValues": [
+    {
+      "variant": "baseline",
+      "file": "benchmarks/validation/hot-value-baseline-semantics.json",
+      "sha256": "fb444758c3632e640f1e2066640efb43d786e013d52164c28217b06eb0e42f68",
+      "passed": true,
+      "compared": 79026,
+      "unsupportedCount": 90
+    },
+    {
+      "variant": "candidate",
+      "file": "benchmarks/validation/hot-value-candidate-semantics.json",
+      "sha256": "b67470c461a1b4d667f7ffea7cf9f279e2a557aad4336e2200d728b41c3c7583",
+      "passed": true,
+      "compared": 79026,
+      "unsupportedCount": 90
+    }
+  ],
+  "trace1": {
+    "file": "benchmarks/validation/2026-10-29T00-19-16.083Z-hot-value-guards.json",
+    "sha256": "505d348df218758e719dc1bd06bf9c636df9e0723a85ff24e21d8c671892c2c7",
+    "selectedObserversByteIdentical": true
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/hot-value-guards.library-tests.gz",
+      "sha256": "b1b7dbae22100b6f520cdc5b1383df86334fcfde34b85ac9bedd8dd3016703ae",
+      "uncompressedSha256": "e44b88c49523f81030832cda733d7678bd3246b81ca2a2e425e433da4d184407"
+    },
+    {
+      "file": "benchmarks/validation/hot-value-guards.initial-prepare-launch.gz",
+      "sha256": "fd17e60e9931eaab5f3b8e47b32d8b99a0b3e0801d9bdc184da41529cf3822fa",
+      "uncompressedSha256": "a8a4e196da11db89fa0a2d75280eed9f12df76cd44d5e5794bf226232d4736ef"
+    },
+    {
+      "file": "benchmarks/validation/hot-value-guards.baseline-cargo.gz",
+      "sha256": "4565c705ee4fa3977d578e4917b30291ec2ed4ba992cd4b5c8bd633784218eee",
+      "uncompressedSha256": "0a4ab81efbb2150d370c57943283061d0d9eb6fce0a7f269c4a43a1aaaf4789c"
+    },
+    {
+      "file": "benchmarks/validation/hot-value-guards.candidate-cargo.gz",
+      "sha256": "e3ef42055c7e78645eb3f2b2bf448ddea567173d4968e8dff2284f64241d720d",
+      "uncompressedSha256": "f67395ea21d142ab8dca4e67901a2164b82396550bd20bf28aa7f5a40cb34250"
+    },
+    {
+      "file": "benchmarks/validation/hot-value-guards.trace1.gz",
+      "sha256": "7dd0a3539f7e8bf12d76794bc9ca5f6583d215ecb7f15e6bcd2b1a0d6ce2f827",
+      "uncompressedSha256": "89cec5b9ca2af88741215ac02c30a7223056edf49723e51c2197a194631b9326"
+    }
+  ],
+  "scope": "Small dynamic slot and primitive wrappers only; no Runtime fields. Complete source callbacks and conversion order retained. TRACE1 selected observer parity and raw scalar bits pass; TRACE0 timing remains pending."
+}

@@ -1,0 +1,527 @@
+{
+  "version": 1,
+  "passed": true,
+  "cases": 79116,
+  "compared": 79026,
+  "unsupportedCount": 90,
+  "unsupported": [
+    {
+      "index": 7789,
+      "input": "binary Rem n n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7790,
+      "input": "binary Rem n b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7792,
+      "input": "binary Rem n d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7805,
+      "input": "binary Rem n s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7806,
+      "input": "binary Rem n s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7807,
+      "input": "binary Rem n s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7833,
+      "input": "binary Rem b0 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7834,
+      "input": "binary Rem b0 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7836,
+      "input": "binary Rem b0 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7849,
+      "input": "binary Rem b0 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7850,
+      "input": "binary Rem b0 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7851,
+      "input": "binary Rem b0 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7877,
+      "input": "binary Rem b1 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7878,
+      "input": "binary Rem b1 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7880,
+      "input": "binary Rem b1 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7893,
+      "input": "binary Rem b1 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7894,
+      "input": "binary Rem b1 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7895,
+      "input": "binary Rem b1 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7921,
+      "input": "binary Rem d0000000000000000 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7922,
+      "input": "binary Rem d0000000000000000 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7924,
+      "input": "binary Rem d0000000000000000 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7937,
+      "input": "binary Rem d0000000000000000 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7938,
+      "input": "binary Rem d0000000000000000 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 7939,
+      "input": "binary Rem d0000000000000000 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8009,
+      "input": "binary Rem d3ff0000000000000 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8010,
+      "input": "binary Rem d3ff0000000000000 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8012,
+      "input": "binary Rem d3ff0000000000000 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8025,
+      "input": "binary Rem d3ff0000000000000 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8026,
+      "input": "binary Rem d3ff0000000000000 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8027,
+      "input": "binary Rem d3ff0000000000000 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8053,
+      "input": "binary Rem dbff0000000000000 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8054,
+      "input": "binary Rem dbff0000000000000 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8056,
+      "input": "binary Rem dbff0000000000000 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8069,
+      "input": "binary Rem dbff0000000000000 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8070,
+      "input": "binary Rem dbff0000000000000 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8071,
+      "input": "binary Rem dbff0000000000000 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8493,
+      "input": "binary Rem s n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8494,
+      "input": "binary Rem s b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8496,
+      "input": "binary Rem s d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8509,
+      "input": "binary Rem s s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8510,
+      "input": "binary Rem s s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8511,
+      "input": "binary Rem s s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8537,
+      "input": "binary Rem s0020 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8538,
+      "input": "binary Rem s0020 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8540,
+      "input": "binary Rem s0020 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8553,
+      "input": "binary Rem s0020 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8554,
+      "input": "binary Rem s0020 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8555,
+      "input": "binary Rem s0020 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8581,
+      "input": "binary Rem s0030 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8582,
+      "input": "binary Rem s0030 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8584,
+      "input": "binary Rem s0030 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8597,
+      "input": "binary Rem s0030 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8598,
+      "input": "binary Rem s0030 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8599,
+      "input": "binary Rem s0030 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8713,
+      "input": "binary Rem s0031002e n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8714,
+      "input": "binary Rem s0031002e b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8716,
+      "input": "binary Rem s0031002e d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8729,
+      "input": "binary Rem s0031002e s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8730,
+      "input": "binary Rem s0031002e s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8731,
+      "input": "binary Rem s0031002e s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8757,
+      "input": "binary Rem s003100650033 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8758,
+      "input": "binary Rem s003100650033 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8760,
+      "input": "binary Rem s003100650033 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8773,
+      "input": "binary Rem s003100650033 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8774,
+      "input": "binary Rem s003100650033 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8775,
+      "input": "binary Rem s003100650033 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8801,
+      "input": "binary Rem s0030007800310066 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8802,
+      "input": "binary Rem s0030007800310066 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8804,
+      "input": "binary Rem s0030007800310066 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8817,
+      "input": "binary Rem s0030007800310066 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8818,
+      "input": "binary Rem s0030007800310066 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8819,
+      "input": "binary Rem s0030007800310066 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8845,
+      "input": "binary Rem s00300062003100300031 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8846,
+      "input": "binary Rem s00300062003100300031 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8848,
+      "input": "binary Rem s00300062003100300031 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8861,
+      "input": "binary Rem s00300062003100300031 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8862,
+      "input": "binary Rem s00300062003100300031 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8863,
+      "input": "binary Rem s00300062003100300031 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8889,
+      "input": "binary Rem s0030006f00370037 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8890,
+      "input": "binary Rem s0030006f00370037 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8892,
+      "input": "binary Rem s0030006f00370037 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8905,
+      "input": "binary Rem s0030006f00370037 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8906,
+      "input": "binary Rem s0030006f00370037 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 8907,
+      "input": "binary Rem s0030006f00370037 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 9329,
+      "input": "binary Rem s2009003400322009 n",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 9330,
+      "input": "binary Rem s2009003400322009 b0",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 9332,
+      "input": "binary Rem s2009003400322009 d0000000000000000",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 9345,
+      "input": "binary Rem s2009003400322009 s",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 9346,
+      "input": "binary Rem s2009003400322009 s0020",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    },
+    {
+      "index": 9347,
+      "input": "binary Rem s2009003400322009 s0030",
+      "reason": "unsupported:integer remainder with positive-zero divisor requires pinned V8 tagged-number provenance"
+    }
+  ],
+  "failures": [],
+  "sources": {
+    "tools/rust-port/check-values.mjs": "f285111eb9be8760815e46a0a9efd52803c3d86264eb2c45e82b712ed4399576",
+    "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "crates/js-runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+    "crates/js-runtime/src/runtime.rs": "d3ec1bce44689f01dbfe66361a91016072db3064455a6a23e3f661575478f3eb",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/battle_gc.rs": "c9280c2873dfd17d41b20db9768b08e22e034a25af0aba0c9c6c20d7a859d2e1",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/candidate-hot-value-guards/work/hot-value-guards/candidate-values",
+    "sha256": "d84f30eb32be87d2df4636c62e6e200c507f4ba75799fd5c82f4a0217f43ecdc"
+  },
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/hot-value-candidate-semantics.input.gz",
+      "sha256": "70a547074f950d52e250113c610177836da1e3eb69047f1c47d232a4adc59bc6",
+      "uncompressedSha256": "dd9a1c6818c5cfb00b967459fa3a1e9237e30f943a05fde06932e895f2515ba6"
+    },
+    {
+      "file": "benchmarks/validation/hot-value-candidate-semantics.expected.gz",
+      "sha256": "deebbd4ff3fc3b02e22bd3eb8aaa5a0d98206a1031d7ac6d1bb8e4563db24c8b",
+      "uncompressedSha256": "27c3d79938a476b72775c84495cfb2b4368747d3ae7f881fda208d8ff7e2aeaf"
+    },
+    {
+      "file": "benchmarks/validation/hot-value-candidate-semantics.actual.gz",
+      "sha256": "ad0659abff54051d3a47b2aeb8744d0a53edf457d74a6274eea9e8382130b930",
+      "uncompressedSha256": "f093cb0af3c93c75cfc339b4112e9ea35e7b6e02d04c5b294c5140d34ce0e343"
+    },
+    {
+      "file": "benchmarks/validation/hot-value-candidate-semantics.stderr.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Pure Rust primitive values, source-order operator helpers and UTF-16 StringNumericLiteral/Number string formatting compared to pinned jitless V8. Raw f64 payload bits retained. Ambiguous tagged-number remainder domains remain explicit and are not counted as passes. This is not an object-coercion, generated-program or battle qualification.",
+  "qualifiesFor10000Target": false,
+  "frozenRuntime": {
+    "libraryProof": "benchmarks/validation/hot-value-guard-libraries.json",
+    "variant": "candidate",
+    "librarySha256": "dcec0f240f642056c8699eeb7ef0bed37dae4588ba5599f02ece5ae02c67351c",
+    "sourceArchive": {
+      "file": "benchmarks/validation/hot-value-guard-candidate-runtime.json.gz",
+      "sha256": "c7d1a4d0632167b3d091b37418dee92f6fcf6a20625756f5051d15d3b8dbf9ce"
+    },
+    "scope": "Current harness source hashes are recorded separately; this executable is linked to the specified immutable variant library and its frozen complete runtime sources."
+  }
+}
