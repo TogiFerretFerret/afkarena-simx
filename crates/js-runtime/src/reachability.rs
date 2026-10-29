@@ -45,7 +45,7 @@ impl Runtime{
   let mut t=Trace::new(self);t.mark(Node::Env(self.global_env.0));for callee in &self.call_stack{t.mark(Node::Function(callee.0))}
   for id in [self.global_object,self.object_prototype,self.function_prototype,self.array_prototype,self.string_prototype,self.number_prototype,self.boolean_prototype,self.regexp_prototype]{t.mark(Node::Object(id.0))}
   t.value(self.function_prototype_value);t.value(self.regexp_constructor);if let Some(value)=self.throw_type_error{t.value(value)}
-  for frame in &self.active_argument_frames{let(callee,values,env)=frame.reachability_roots();t.mark(Node::Function(callee.0));for value in values{t.value(value)}if let Some(env)=env{t.mark(Node::Env(env.0))}}
+  for frame in &self.active_argument_frames{let(callee,values,env)=frame.reachability_roots(&self.original_argument_values);t.mark(Node::Function(callee.0));for &value in values{t.value(value)}if let Some(env)=env{t.mark(Node::Env(env.0))}}
   if let Some(guard)=&self.expose_scan_guard{for value in guard.reachability_roots(){t.value(value)}}
   if let Some(guard)=&self.battle_mode_guard{for value in guard.reachability_roots(){t.value(value)}}
   if let Some(plan)=&self.battle_mode_plan{for value in plan.reachability_roots(){t.value(value)}}
