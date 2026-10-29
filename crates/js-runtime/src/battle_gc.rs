@@ -6,7 +6,7 @@ use crate::env::{Environment,EnvKind};
 use crate::closures::{FunctionRecord,FunctionKind,FunctionSource};
 const RUN_SOURCE:&str=include_str!("native_battle_run.js");
 #[derive(Clone,Debug,Default)]pub struct NativeBattleGcStats{pub collections:usize,pub objects_freed:usize,pub functions_freed:usize,pub environments_freed:usize,pub buffer_bytes_freed:usize,pub giant_strings_freed:usize,pub giant_string_bytes_freed:usize,pub pause_ns:u128}
-#[derive(Default)]pub(crate) struct NativeBattleGc{enabled:bool,host_roots:Vec<Value>,pub(crate) free_objects:Vec<usize>,pub(crate) free_functions:Vec<usize>,pub(crate) free_envs:Vec<usize>,stats:NativeBattleGcStats}
+#[derive(Default)]pub(crate) struct NativeBattleGc{enabled:bool,request_stride:usize,requests_seen:usize,host_roots:Vec<Value>,pub(crate) free_objects:Vec<usize>,pub(crate) free_functions:Vec<usize>,pub(crate) free_envs:Vec<usize>,stats:NativeBattleGcStats}
 fn dead_function(_: &mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{Err(JsError::Unsupported("reclaimed function handle escaped the proven battle safepoint".into()))}
 fn tombstone(global:EnvId,prototype:ObjectId,empty_name:crate::StringId)->FunctionRecord{FunctionRecord{kind:FunctionKind::Native{code:dead_function,env:global,strict:true,arrow_this:None},object:ObjectId(usize::MAX),prototype:None,name:empty_name,arity:0,source:None,lexical_new_target:Value::Undefined,constructor_default_prototype:prototype,native_construct_allocates_object:false,constructible:false}}
 fn source_matches(source:Option<&FunctionSource>)->bool{match source{Some(FunctionSource::Owned(units))=>units.iter().copied().eq(RUN_SOURCE.encode_utf16()),Some(FunctionSource::StaticUtf16Le{bytes,start,end})=>bytes.get(start.saturating_mul(2)..end.saturating_mul(2)).is_some_and(|bytes|bytes.chunks_exact(2).map(|p|u16::from_le_bytes([p[0],p[1]])).eq(RUN_SOURCE.encode_utf16())),None=>false}}
@@ -16,9 +16,16 @@ impl Runtime{
  pub fn enable_native_battle_gc(&mut self){self.enable_native_battle_gc_with_roots(&[])}
  pub fn enable_native_battle_gc_with_roots(&mut self,host_roots:&[Value]){self.native_battle_gc.enabled=true;self.native_battle_gc.host_roots=host_roots.to_vec();}
  pub fn native_battle_gc_stats(&self)->&NativeBattleGcStats{&self.native_battle_gc.stats}
+ /// Host-only policy: skip some already-proven safepoints, retaining the final one.
+ /// Configure once before source execution. Default one preserves every request.
+ pub fn configure_native_battle_gc_request_stride(&mut self,stride:usize)->JsResult<()>{
+  if !(1..=8).contains(&stride)||self.native_battle_gc.requests_seen!=0||!self.call_stack.is_empty(){return Err(JsError::Unsupported("GC request stride must be 1..=8 and configured before execution".into()))}
+  self.native_battle_gc.request_stride=stride;Ok(())
+ }
+ pub fn native_battle_gc_request_count(&self)->usize{self.native_battle_gc.requests_seen}
  pub(crate) fn allocate_function_record(&mut self,record:FunctionRecord)->FunctionId{let object=record.object;self.objects[object.0].is_function=true;let id=if let Some(slot)=self.native_battle_gc.free_functions.pop(){self.functions[slot]=record;FunctionId(slot)}else{let id=FunctionId(self.functions.len());self.functions.push(record);id};self.function_objects.insert(object,id);id}
  pub(crate) fn allocate_environment_record(&mut self,record:Environment)->EnvId{if let Some(slot)=self.native_battle_gc.free_envs.pop(){self.environments[slot].reuse_record(record);EnvId(slot)}else{let id=EnvId(self.environments.len());self.environments.push(record);id}}
- fn raw_numeric_gc_binding(&self,mut env:EnvId,name:&str)->bool{let units=name.encode_utf16().collect::<Vec<_>>();let Some(name)=self.string_index.get(units.as_slice())else{return false};let mut remaining=self.environments.len();loop{if remaining==0{return false}remaining-=1;let Some(record)=self.environments.get(env.0)else{return false};if let Some(slot)=record.bindings.get(name){let Some(cell)=record.cells.get(*slot)else{return false};return cell.alive&&cell.initialized&&!cell.object_backed&&matches!(cell.value,Value::Number(n)if n.is_finite()&&n.fract()==0.0)}let Some(parent)=record.parent else{return false};env=parent}}
+ fn raw_numeric_gc_value(&self,mut env:EnvId,name:&str)->Option<f64>{let units=name.encode_utf16().collect::<Vec<_>>();let Some(name)=self.string_index.get(units.as_slice())else{return None};let mut remaining=self.environments.len();loop{if remaining==0{return None}remaining-=1;let Some(record)=self.environments.get(env.0)else{return None};if let Some(slot)=record.bindings.get(name){let Some(cell)=record.cells.get(*slot)else{return None};return if cell.alive&&cell.initialized&&!cell.object_backed{match cell.value{Value::Number(n)if n.is_finite()&&n.fract()==0.0=>Some(n),_=>None}}else{None}}let Some(parent)=record.parent else{return None};env=parent}}
  /// Called only after the exact loop body's Normal completion has dropped all
  /// body SSA temporaries. Wrappers and unknown call contexts skip collection.
  pub fn collect_native_battle_backedge(&mut self,env:EnvId,parent:EnvId)->JsResult<()>{
@@ -26,7 +33,13 @@ impl Runtime{
   if parent!=self.global_env||self.call_stack.len()!=1||!self.construct_stack.is_empty()||!self.construct_new_targets.is_empty()||!self.join_stack.is_empty(){return Ok(())}
   let callee=self.call_stack[0];let Some(function)=self.functions.get(callee.0)else{return Ok(())};
   if !self.string_units(function.name).iter().copied().eq("__nativeRun".encode_utf16())||!source_matches(function.source.as_ref()){return Ok(())}
-  if !["battles","warmup","battleIndex"].iter().all(|name|self.raw_numeric_gc_binding(env,name)){return Ok(())}
+  let (Some(total),Some(_warmup),Some(index))=(self.raw_numeric_gc_value(env,"battles"),self.raw_numeric_gc_value(env,"warmup"),self.raw_numeric_gc_value(env,"battleIndex"))else{return Ok(())};
+  self.native_battle_gc.requests_seen=self.native_battle_gc.requests_seen.wrapping_add(1);
+  let stride=self.native_battle_gc.request_stride.max(1);
+  // The original compiler keeps this same final-battle condition. Delaying
+  // collection cannot expose weak handles: no finalizers/WeakRef are supported,
+  // and IDs are reused only after an actual mark/sweep at this exact boundary.
+  if self.native_battle_gc.requests_seen%stride!=0&&battle_core::js_math::add(index,1.0)<total{return Ok(())}
   self.collect_native_battle_arenas(env)
  }
  fn collect_native_battle_arenas(&mut self,env:EnvId)->JsResult<()>{
