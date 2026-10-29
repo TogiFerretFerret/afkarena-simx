@@ -1,0 +1,312 @@
+{
+  "version": 1,
+  "passed": true,
+  "source": {
+    "file": "/workspace/afkarena-simx/work/candidate-stack-apply/tools/rust-port/inline-bound-arguments-benchmark.rs",
+    "sha256": "23b1a452ee6adc34e96d1fe6e74e0940d5edcfbbd6fffc3d305c137e3e756407"
+  },
+  "compiler": {
+    "file": "/workspace/afkarena-simx/work/candidate-stack-apply/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
+  },
+  "libraries": [
+    {
+      "variant": "baseline",
+      "file": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/libjs_runtime_baseline.rlib",
+      "sha256": "23df87a43c39b525dde389bb5c9a018ffbc834667ddcaa2a3dec4b1736dcd4b4"
+    },
+    {
+      "variant": "candidate",
+      "file": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/libjs_runtime_candidate.rlib",
+      "sha256": "fc46c25f1b0ce8101816db835876a24e49ee396a19e7bc4de88174417baabb9e"
+    }
+  ],
+  "runs": [
+    {
+      "variant": "baseline",
+      "binary": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/baseline-alloc",
+      "binarySha256": "9836179975ee3f52e71e9a9c964b4884852bf7a003584b744c54267bbf6de06c",
+      "status": 0,
+      "rows": [
+        [
+          "0",
+          "1",
+          "14439896",
+          "7ff8000000000042"
+        ],
+        [
+          "1",
+          "1",
+          "18108256",
+          "7ff8000000000042"
+        ],
+        [
+          "4",
+          "4",
+          "51865081",
+          "7ff8000000000045"
+        ],
+        [
+          "8",
+          "0",
+          "14632640",
+          "8000000000000007"
+        ],
+        [
+          "8",
+          "1",
+          "32177285",
+          "7ff8000000000042"
+        ]
+      ],
+      "counts": [
+        {
+          "allocations": 200000,
+          "allocatedBytes": 12800000,
+          "deallocations": 200000,
+          "deallocatedBytes": 12800000,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 200000,
+          "allocatedBytes": 3200000,
+          "deallocations": 200000,
+          "deallocatedBytes": 12800000,
+          "reallocations": 200000,
+          "reallocatedOldBytes": 3200000,
+          "reallocatedNewBytes": 12800000
+        },
+        {
+          "allocations": 200000,
+          "allocatedBytes": 12800000,
+          "deallocations": 200000,
+          "deallocatedBytes": 25600000,
+          "reallocations": 200000,
+          "reallocatedOldBytes": 12800000,
+          "reallocatedNewBytes": 25600000
+        },
+        {
+          "allocations": 200000,
+          "allocatedBytes": 25600000,
+          "deallocations": 200000,
+          "deallocatedBytes": 25600000,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 200000,
+          "allocatedBytes": 25600000,
+          "deallocations": 200000,
+          "deallocatedBytes": 51200000,
+          "reallocations": 200000,
+          "reallocatedOldBytes": 25600000,
+          "reallocatedNewBytes": 51200000
+        }
+      ],
+      "cumulativeCounts": [
+        {
+          "allocations": 200000,
+          "allocatedBytes": 12800000,
+          "deallocations": 200000,
+          "deallocatedBytes": 12800000,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 400000,
+          "allocatedBytes": 16000000,
+          "deallocations": 400000,
+          "deallocatedBytes": 25600000,
+          "reallocations": 200000,
+          "reallocatedOldBytes": 3200000,
+          "reallocatedNewBytes": 12800000
+        },
+        {
+          "allocations": 600000,
+          "allocatedBytes": 28800000,
+          "deallocations": 600000,
+          "deallocatedBytes": 51200000,
+          "reallocations": 400000,
+          "reallocatedOldBytes": 16000000,
+          "reallocatedNewBytes": 38400000
+        },
+        {
+          "allocations": 800000,
+          "allocatedBytes": 54400000,
+          "deallocations": 800000,
+          "deallocatedBytes": 76800000,
+          "reallocations": 400000,
+          "reallocatedOldBytes": 16000000,
+          "reallocatedNewBytes": 38400000
+        },
+        {
+          "allocations": 1000000,
+          "allocatedBytes": 80000000,
+          "deallocations": 1000000,
+          "deallocatedBytes": 128000000,
+          "reallocations": 600000,
+          "reallocatedOldBytes": 41600000,
+          "reallocatedNewBytes": 89600000
+        }
+      ],
+      "stdout": "0\t1\t14439896\t7ff8000000000042\n1\t1\t18108256\t7ff8000000000042\n4\t4\t51865081\t7ff8000000000045\n8\t0\t14632640\t8000000000000007\n8\t1\t32177285\t7ff8000000000042\n",
+      "stderr": "MEASURED_ALLOCATIONS:{\"allocations\":200000,\"allocatedBytes\":12800000,\"deallocations\":200000,\"deallocatedBytes\":12800000,\"reallocations\":0,\"reallocatedOldBytes\":0,\"reallocatedNewBytes\":0}\nMEASURED_ALLOCATIONS:{\"allocations\":400000,\"allocatedBytes\":16000000,\"deallocations\":400000,\"deallocatedBytes\":25600000,\"reallocations\":200000,\"reallocatedOldBytes\":3200000,\"reallocatedNewBytes\":12800000}\nMEASURED_ALLOCATIONS:{\"allocations\":600000,\"allocatedBytes\":28800000,\"deallocations\":600000,\"deallocatedBytes\":51200000,\"reallocations\":400000,\"reallocatedOldBytes\":16000000,\"reallocatedNewBytes\":38400000}\nMEASURED_ALLOCATIONS:{\"allocations\":800000,\"allocatedBytes\":54400000,\"deallocations\":800000,\"deallocatedBytes\":76800000,\"reallocations\":400000,\"reallocatedOldBytes\":16000000,\"reallocatedNewBytes\":38400000}\nMEASURED_ALLOCATIONS:{\"allocations\":1000000,\"allocatedBytes\":80000000,\"deallocations\":1000000,\"deallocatedBytes\":128000000,\"reallocations\":600000,\"reallocatedOldBytes\":41600000,\"reallocatedNewBytes\":89600000}\n"
+    },
+    {
+      "variant": "candidate",
+      "binary": "/workspace/afkarena-simx/work/candidate-stack-apply/work/inline-bound-arguments/candidate-alloc",
+      "binarySha256": "b8e4812ab1729f68051eb10b351fbaeec5f17d8ddd60d320499f7af7b366c5e2",
+      "status": 0,
+      "rows": [
+        [
+          "0",
+          "1",
+          "9365362",
+          "7ff8000000000042"
+        ],
+        [
+          "1",
+          "1",
+          "13559227",
+          "7ff8000000000042"
+        ],
+        [
+          "4",
+          "4",
+          "9761156",
+          "7ff8000000000045"
+        ],
+        [
+          "8",
+          "0",
+          "10106214",
+          "8000000000000007"
+        ],
+        [
+          "8",
+          "1",
+          "48898335",
+          "7ff8000000000042"
+        ]
+      ],
+      "counts": [
+        {
+          "allocations": 0,
+          "allocatedBytes": 0,
+          "deallocations": 0,
+          "deallocatedBytes": 0,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 0,
+          "allocatedBytes": 0,
+          "deallocations": 0,
+          "deallocatedBytes": 0,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 0,
+          "allocatedBytes": 0,
+          "deallocations": 0,
+          "deallocatedBytes": 0,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 0,
+          "allocatedBytes": 0,
+          "deallocations": 0,
+          "deallocatedBytes": 0,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 200000,
+          "allocatedBytes": 25600000,
+          "deallocations": 200000,
+          "deallocatedBytes": 51200000,
+          "reallocations": 200000,
+          "reallocatedOldBytes": 25600000,
+          "reallocatedNewBytes": 51200000
+        }
+      ],
+      "cumulativeCounts": [
+        {
+          "allocations": 0,
+          "allocatedBytes": 0,
+          "deallocations": 0,
+          "deallocatedBytes": 0,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 0,
+          "allocatedBytes": 0,
+          "deallocations": 0,
+          "deallocatedBytes": 0,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 0,
+          "allocatedBytes": 0,
+          "deallocations": 0,
+          "deallocatedBytes": 0,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 0,
+          "allocatedBytes": 0,
+          "deallocations": 0,
+          "deallocatedBytes": 0,
+          "reallocations": 0,
+          "reallocatedOldBytes": 0,
+          "reallocatedNewBytes": 0
+        },
+        {
+          "allocations": 200000,
+          "allocatedBytes": 25600000,
+          "deallocations": 200000,
+          "deallocatedBytes": 51200000,
+          "reallocations": 200000,
+          "reallocatedOldBytes": 25600000,
+          "reallocatedNewBytes": 51200000
+        }
+      ],
+      "stdout": "0\t1\t9365362\t7ff8000000000042\n1\t1\t13559227\t7ff8000000000042\n4\t4\t9761156\t7ff8000000000045\n8\t0\t10106214\t8000000000000007\n8\t1\t48898335\t7ff8000000000042\n",
+      "stderr": "MEASURED_ALLOCATIONS:{\"allocations\":0,\"allocatedBytes\":0,\"deallocations\":0,\"deallocatedBytes\":0,\"reallocations\":0,\"reallocatedOldBytes\":0,\"reallocatedNewBytes\":0}\nMEASURED_ALLOCATIONS:{\"allocations\":0,\"allocatedBytes\":0,\"deallocations\":0,\"deallocatedBytes\":0,\"reallocations\":0,\"reallocatedOldBytes\":0,\"reallocatedNewBytes\":0}\nMEASURED_ALLOCATIONS:{\"allocations\":0,\"allocatedBytes\":0,\"deallocations\":0,\"deallocatedBytes\":0,\"reallocations\":0,\"reallocatedOldBytes\":0,\"reallocatedNewBytes\":0}\nMEASURED_ALLOCATIONS:{\"allocations\":0,\"allocatedBytes\":0,\"deallocations\":0,\"deallocatedBytes\":0,\"reallocations\":0,\"reallocatedOldBytes\":0,\"reallocatedNewBytes\":0}\nMEASURED_ALLOCATIONS:{\"allocations\":200000,\"allocatedBytes\":25600000,\"deallocations\":200000,\"deallocatedBytes\":51200000,\"reallocations\":200000,\"reallocatedOldBytes\":25600000,\"reallocatedNewBytes\":51200000}\n"
+    }
+  ],
+  "scope": "Directed native bound-call allocation probe only. Both prepared libraries previously passed 50 Node closure comparisons. Their shared runtime profile is release CGU1 ThinLTO; this app uses CGU64 without LTO. No full battle qualification or speed claim; allocation probes may run while unrelated compilation is active.",
+  "sourceCommits": {
+    "baseline": "82f0942",
+    "candidate": "05da1ca"
+  },
+  "runtimeArchives": [
+    {
+      "variant": "baseline",
+      "file": "benchmarks/results/2026-10-29-inline-bound-baseline-runtime.tar.gz",
+      "sha256": "96449bb6a0aef0a2cfefffceb2e9838c2807d1a8355b14772e9154dddc8f91b2"
+    },
+    {
+      "variant": "candidate",
+      "file": "benchmarks/results/2026-10-29-inline-bound-candidate-runtime.tar.gz",
+      "sha256": "39473f8ddbf0632ffae9c6483a7343da2f04cb9c9cc65597f9f082fad68ad692"
+    }
+  ],
+  "libraryProvenanceLimitation": "Prepared release libraries were copied immediately before and after the isolated code change and passing 50-case closure builds. This directed probe does not use the full-program build-proof verifier."
+}
