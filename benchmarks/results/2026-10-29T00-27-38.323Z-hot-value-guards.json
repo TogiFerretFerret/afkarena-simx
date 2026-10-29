@@ -1,0 +1,154 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "ranTrace0Timing": true,
+  "trace1SelectedObserverMatched": false,
+  "summaries": [
+    {
+      "scenario": "unit",
+      "unitsPerTrial": 10000,
+      "trials": 3,
+      "baselineUnitsPerSecond": 16970.185706931345,
+      "candidateUnitsPerSecond": 17499.353094122773,
+      "ratio": 1.0311821801086887,
+      "kind": "original Unit.update calls"
+    },
+    {
+      "scenario": "drain",
+      "unitsPerTrial": 12800,
+      "trials": 3,
+      "baselineUnitsPerSecond": 110608.55079104038,
+      "candidateUnitsPerSecond": 116407.96381075268,
+      "ratio": 1.052431868768161,
+      "kind": "original __nativeDrain callbacks"
+    }
+  ],
+  "rows": [
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "560482657",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "539139209",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "556807523",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "568407631",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "638915941",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "618402355",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "109115000",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "101748848",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "112278635",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "116830797",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "121224469",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "115846855",
+      "events": 38400,
+      "snapshots": 25600
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-29T00-27-38.323Z-hot-value-guards.outputs.json.gz",
+      "sha256": "9d6738f1e2adcc4c0972bb09a650e85e10badd5da4e8c7cd00c09f5918c10d41",
+      "uncompressedSha256": "be2fa7cc39e3e6efe37eeca0ee5adf6893228e7b98d8f9442b26461bb66eb6e8"
+    },
+    {
+      "file": "benchmarks/results/2026-10-29T00-27-38.323Z-hot-value-guards.expected.json.gz",
+      "sha256": "8e41645978d30e5c296c7ac2e877a447f4a6c05726af8ff1aaeebe9dac616ec9",
+      "uncompressedSha256": "8b9be086eaf4ecab7c6a7a91f40b19e7aa1d5afcec5fec0a5094dde2fbdeeec9"
+    },
+    {
+      "file": "benchmarks/results/2026-10-29T00-27-38.323Z-hot-value-guards.preparation.json.gz",
+      "sha256": "db6227104616120658e257fdc55f055f93136b194b5f6eaf77c72e69d4a29437",
+      "uncompressedSha256": "8972e20de134cbf8747f37d6307575cb7731bfd93f55bea26dbc9f10054253cd"
+    }
+  ],
+  "scope": "Same original source fixtures in frozen baseline and slot/primitive inline-guard runtime libraries. Original Unit update and callback drain retain every source callback/event and snapshots. Component rates only; no battle qualification."
+}

@@ -83,5 +83,30 @@
       "uncompressedSha256": "89cec5b9ca2af88741215ac02c30a7223056edf49723e51c2197a194631b9326"
     }
   ],
-  "scope": "Small dynamic slot and primitive wrappers only; no Runtime fields. Complete source callbacks and conversion order retained. TRACE1 selected observer parity and raw scalar bits pass; TRACE0 timing remains pending."
+  "scope": "Small dynamic-slot and primitive wrappers only; no Runtime fields. Original source callbacks and coercion order retained. Raw scalar bits and exact TRACE1 selected observers pass; observed TRACE0 component gains3.1%Unit and5.2%drain.",
+  "timing": {
+    "file": "benchmarks/results/2026-10-29T00-27-38.323Z-hot-value-guards.json",
+    "sha256": "4a72c26768f3f6beeb7f3e013e5d3f62f7821d4ac7795a8b1afe9fd6d165d284",
+    "summaries": [
+      {
+        "scenario": "unit",
+        "unitsPerTrial": 10000,
+        "trials": 3,
+        "baselineUnitsPerSecond": 16970.185706931345,
+        "candidateUnitsPerSecond": 17499.353094122773,
+        "ratio": 1.0311821801086887,
+        "kind": "original Unit.update calls"
+      },
+      {
+        "scenario": "drain",
+        "unitsPerTrial": 12800,
+        "trials": 3,
+        "baselineUnitsPerSecond": 110608.55079104038,
+        "candidateUnitsPerSecond": 116407.96381075268,
+        "ratio": 1.052431868768161,
+        "kind": "original __nativeDrain callbacks"
+      }
+    ],
+    "scope": "Three alternating original source pairs per scenario in a coordinated short quiet slot; descriptive component throughput only, not full battles or a confidence interval."
+  }
 }
