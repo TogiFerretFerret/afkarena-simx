@@ -1,0 +1,624 @@
+{
+  "version": 1,
+  "passed": true,
+  "cacheLocalBindings": true,
+  "cachedBindingDeclarations": 0,
+  "cases": 78,
+  "results": [
+    {
+      "name": "includes-holes-off",
+      "source": "var result=JSON.stringify([[,].includes(void 0),[,].indexOf(void 0),[NaN].includes(NaN),[-0].includes(0),[1,2,3].includes(1,-3)]);",
+      "expected": "s:005b0074007200750065002c002d0031002c0074007200750065002c0074007200750065002c0074007200750065005d",
+      "actual": "s:005b0074007200750065002c002d0031002c0074007200750065002c0074007200750065002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "includes-holes-on",
+      "source": "var result=JSON.stringify([[,].includes(void 0),[,].indexOf(void 0),[NaN].includes(NaN),[-0].includes(0),[1,2,3].includes(1,-3)]);",
+      "expected": "s:005b0074007200750065002c002d0031002c0074007200750065002c0074007200750065002c0074007200750065005d",
+      "actual": "s:005b0074007200750065002c002d0031002c0074007200750065002c0074007200750065002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "find-holes-off",
+      "source": "var log='';var out=[,2].find(function(v,i,a){log+=i+':'+v+';';return i===1});var result=log+':'+out;",
+      "expected": "s:0030003a0075006e0064006500660069006e00650064003b0031003a0032003b003a0032",
+      "actual": "s:0030003a0075006e0064006500660069006e00650064003b0031003a0032003b003a0032",
+      "passed": true
+    },
+    {
+      "name": "find-holes-on",
+      "source": "var log='';var out=[,2].find(function(v,i,a){log+=i+':'+v+';';return i===1});var result=log+':'+out;",
+      "expected": "s:0030003a0075006e0064006500660069006e00650064003b0031003a0032003b003a0032",
+      "actual": "s:0030003a0075006e0064006500660069006e00650064003b0031003a0032003b003a0032",
+      "passed": true
+    },
+    {
+      "name": "findIndex-receiver-off",
+      "source": "var o={x:9},a=[1,2];var result=a.findIndex(function(v,i,b){return this===o&&b===a&&v===2},o);",
+      "expected": "d:3ff0000000000000",
+      "actual": "d:3ff0000000000000",
+      "passed": true
+    },
+    {
+      "name": "findIndex-receiver-on",
+      "source": "var o={x:9},a=[1,2];var result=a.findIndex(function(v,i,b){return this===o&&b===a&&v===2},o);",
+      "expected": "d:3ff0000000000000",
+      "actual": "d:3ff0000000000000",
+      "passed": true
+    },
+    {
+      "name": "reduce-holes-off",
+      "source": "var a=[,2,,3];var result=JSON.stringify([a.reduce(function(a,b){return a+b}),a.reduce(function(a,b){return a+b},10),a.reduceRight(function(a,b){return a-b})]);",
+      "expected": "s:005b0035002c00310035002c0031005d",
+      "actual": "s:005b0035002c00310035002c0031005d",
+      "passed": true
+    },
+    {
+      "name": "reduce-holes-on",
+      "source": "var a=[,2,,3];var result=JSON.stringify([a.reduce(function(a,b){return a+b}),a.reduce(function(a,b){return a+b},10),a.reduceRight(function(a,b){return a-b})]);",
+      "expected": "s:005b0035002c00310035002c0031005d",
+      "actual": "s:005b0035002c00310035002c0031005d",
+      "passed": true
+    },
+    {
+      "name": "reduce-callback-order-off",
+      "source": "var log='',a=[1,2,3];var out=a.reduce(function(p,v,i,b){log+=i+':'+v+':'+(b===a)+';';if(i===0){delete a[1];a.push(99)}return p+v},0);var result=log+':'+out;",
+      "expected": "s:0030003a0031003a0074007200750065003b0032003a0033003a0074007200750065003b003a0034",
+      "actual": "s:0030003a0031003a0074007200750065003b0032003a0033003a0074007200750065003b003a0034",
+      "passed": true
+    },
+    {
+      "name": "reduce-callback-order-on",
+      "source": "var log='',a=[1,2,3];var out=a.reduce(function(p,v,i,b){log+=i+':'+v+':'+(b===a)+';';if(i===0){delete a[1];a.push(99)}return p+v},0);var result=log+':'+out;",
+      "expected": "s:0030003a0031003a0074007200750065003b0032003a0033003a0074007200750065003b003a0034",
+      "actual": "s:0030003a0031003a0074007200750065003b0032003a0033003a0074007200750065003b003a0034",
+      "passed": true
+    },
+    {
+      "name": "reduce-empty-off",
+      "source": "var result='';try{[,].reduce(function(){})}catch(e){result=e.name}result+=':'+[].reduce(function(){},void 0);",
+      "expected": "s:0054007900700065004500720072006f0072003a0075006e0064006500660069006e00650064",
+      "actual": "s:0054007900700065004500720072006f0072003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "reduce-empty-on",
+      "source": "var result='';try{[,].reduce(function(){})}catch(e){result=e.name}result+=':'+[].reduce(function(){},void 0);",
+      "expected": "s:0054007900700065004500720072006f0072003a0075006e0064006500660069006e00650064",
+      "actual": "s:0054007900700065004500720072006f0072003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "concat-holes-off",
+      "source": "var a=[,2],b=a.concat([3,,4],5);var result=JSON.stringify([b,b.length,0 in b,3 in b,a.length]);",
+      "expected": "s:005b005b006e0075006c006c002c0032002c0033002c006e0075006c006c002c0034002c0035005d002c0036002c00660061006c00730065002c00660061006c00730065002c0032005d",
+      "actual": "s:005b005b006e0075006c006c002c0032002c0033002c006e0075006c006c002c0034002c0035005d002c0036002c00660061006c00730065002c00660061006c00730065002c0032005d",
+      "passed": true
+    },
+    {
+      "name": "concat-holes-on",
+      "source": "var a=[,2],b=a.concat([3,,4],5);var result=JSON.stringify([b,b.length,0 in b,3 in b,a.length]);",
+      "expected": "s:005b005b006e0075006c006c002c0032002c0033002c006e0075006c006c002c0034002c0035005d002c0036002c00660061006c00730065002c00660061006c00730065002c0032005d",
+      "actual": "s:005b005b006e0075006c006c002c0032002c0033002c006e0075006c006c002c0034002c0035005d002c0036002c00660061006c00730065002c00660061006c00730065002c0032005d",
+      "passed": true
+    },
+    {
+      "name": "concat-prototype-index-off",
+      "source": "var a=[,2];Object.defineProperty(Array.prototype,'0',{get:function(){return 9},configurable:true});var b=a.concat([]);delete Array.prototype[0];var result=JSON.stringify(b);",
+      "expected": "s:005b0039002c0032005d",
+      "actual": "s:005b0039002c0032005d",
+      "passed": true
+    },
+    {
+      "name": "concat-prototype-index-on",
+      "source": "var a=[,2];Object.defineProperty(Array.prototype,'0',{get:function(){return 9},configurable:true});var b=a.concat([]);delete Array.prototype[0];var result=JSON.stringify(b);",
+      "expected": "s:005b0039002c0032005d",
+      "actual": "s:005b0039002c0032005d",
+      "passed": true
+    },
+    {
+      "name": "iterate-no-result-off",
+      "source": "var log='',a=[1,2,3];var r=a.forEach(function(v,i){log+=v;if(i===0)delete a[1]});var result=log+':'+r;",
+      "expected": "s:00310033003a0075006e0064006500660069006e00650064",
+      "actual": "s:00310033003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "iterate-no-result-on",
+      "source": "var log='',a=[1,2,3];var r=a.forEach(function(v,i){log+=v;if(i===0)delete a[1]});var result=log+':'+r;",
+      "expected": "s:00310033003a0075006e0064006500660069006e00650064",
+      "actual": "s:00310033003a0075006e0064006500660069006e00650064",
+      "passed": true
+    },
+    {
+      "name": "map-holes-off",
+      "source": "var a=[,2],b=a.map(function(v){return v+1});var result=JSON.stringify([b.length,0 in b,b[1]]);",
+      "expected": "s:005b0032002c00660061006c00730065002c0033005d",
+      "actual": "s:005b0032002c00660061006c00730065002c0033005d",
+      "passed": true
+    },
+    {
+      "name": "map-holes-on",
+      "source": "var a=[,2],b=a.map(function(v){return v+1});var result=JSON.stringify([b.length,0 in b,b[1]]);",
+      "expected": "s:005b0032002c00660061006c00730065002c0033005d",
+      "actual": "s:005b0032002c00660061006c00730065002c0033005d",
+      "passed": true
+    },
+    {
+      "name": "reduceRight-order-off",
+      "source": "var log='';var out=[1,2,3].reduceRight(function(p,v,i){log+=i;return p-v},10);var result=log+':'+out;",
+      "expected": "s:003200310030003a0034",
+      "actual": "s:003200310030003a0034",
+      "passed": true
+    },
+    {
+      "name": "reduceRight-order-on",
+      "source": "var log='';var out=[1,2,3].reduceRight(function(p,v,i){log+=i;return p-v},10);var result=log+':'+out;",
+      "expected": "s:003200310030003a0034",
+      "actual": "s:003200310030003a0034",
+      "passed": true
+    },
+    {
+      "name": "own-keys-hole-order-off",
+      "source": "var a=[1,,3];a.x=8;delete a[0];a[0]=9;var result=JSON.stringify([Object.keys(a),Object.getOwnPropertyNames(a),a]);",
+      "expected": "s:005b005b002200300022002c002200320022002c002200780022005d002c005b002200300022002c002200320022002c0022006c0065006e0067007400680022002c002200780022005d002c005b0039002c006e0075006c006c002c0033005d005d",
+      "actual": "s:005b005b002200300022002c002200320022002c002200780022005d002c005b002200300022002c002200320022002c0022006c0065006e0067007400680022002c002200780022005d002c005b0039002c006e0075006c006c002c0033005d005d",
+      "passed": true
+    },
+    {
+      "name": "own-keys-hole-order-on",
+      "source": "var a=[1,,3];a.x=8;delete a[0];a[0]=9;var result=JSON.stringify([Object.keys(a),Object.getOwnPropertyNames(a),a]);",
+      "expected": "s:005b005b002200300022002c002200320022002c002200780022005d002c005b002200300022002c002200320022002c0022006c0065006e0067007400680022002c002200780022005d002c005b0039002c006e0075006c006c002c0033005d005d",
+      "actual": "s:005b005b002200300022002c002200320022002c002200780022005d002c005b002200300022002c002200320022002c0022006c0065006e0067007400680022002c002200780022005d002c005b0039002c006e0075006c006c002c0033005d005d",
+      "passed": true
+    },
+    {
+      "name": "primary-keys-off",
+      "source": "var a=[1,,3,4];var s='';for(var k in a)s+=k+':'+a[k]+';';var result=JSON.stringify([s,Object.keys(a),Object.getOwnPropertyNames(a),Object.getOwnPropertyDescriptor(a,'2')]);",
+      "expected": "s:005b00220030003a0031003b0032003a0033003b0033003a0034003b0022002c005b002200300022002c002200320022002c002200330022005d002c005b002200300022002c002200320022002c002200330022002c0022006c0065006e0067007400680022005d002c007b002200760061006c007500650022003a0033002c0022007700720069007400610062006c00650022003a0074007200750065002c00220065006e0075006d0065007200610062006c00650022003a0074007200750065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d005d",
+      "actual": "s:005b00220030003a0031003b0032003a0033003b0033003a0034003b0022002c005b002200300022002c002200320022002c002200330022005d002c005b002200300022002c002200320022002c002200330022002c0022006c0065006e0067007400680022005d002c007b002200760061006c007500650022003a0033002c0022007700720069007400610062006c00650022003a0074007200750065002c00220065006e0075006d0065007200610062006c00650022003a0074007200750065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d005d",
+      "passed": true
+    },
+    {
+      "name": "primary-keys-on",
+      "source": "var a=[1,,3,4];var s='';for(var k in a)s+=k+':'+a[k]+';';var result=JSON.stringify([s,Object.keys(a),Object.getOwnPropertyNames(a),Object.getOwnPropertyDescriptor(a,'2')]);",
+      "expected": "s:005b00220030003a0031003b0032003a0033003b0033003a0034003b0022002c005b002200300022002c002200320022002c002200330022005d002c005b002200300022002c002200320022002c002200330022002c0022006c0065006e0067007400680022005d002c007b002200760061006c007500650022003a0033002c0022007700720069007400610062006c00650022003a0074007200750065002c00220065006e0075006d0065007200610062006c00650022003a0074007200750065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d005d",
+      "actual": "s:005b00220030003a0031003b0032003a0033003b0033003a0034003b0022002c005b002200300022002c002200320022002c002200330022005d002c005b002200300022002c002200320022002c002200330022002c0022006c0065006e0067007400680022005d002c007b002200760061006c007500650022003a0033002c0022007700720069007400610062006c00650022003a0074007200750065002c00220065006e0075006d0065007200610062006c00650022003a0074007200750065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d005d",
+      "passed": true
+    },
+    {
+      "name": "length-shrink-grow-off",
+      "source": "var a=[1,2,3,4];a.length=2;a.length=4;var result=JSON.stringify([a,a.length,2 in a,3 in a,Object.keys(a)]);",
+      "expected": "s:005b005b0031002c0032002c006e0075006c006c002c006e0075006c006c005d002c0034002c00660061006c00730065002c00660061006c00730065002c005b002200300022002c002200310022005d005d",
+      "actual": "s:005b005b0031002c0032002c006e0075006c006c002c006e0075006c006c005d002c0034002c00660061006c00730065002c00660061006c00730065002c005b002200300022002c002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "length-shrink-grow-on",
+      "source": "var a=[1,2,3,4];a.length=2;a.length=4;var result=JSON.stringify([a,a.length,2 in a,3 in a,Object.keys(a)]);",
+      "expected": "s:005b005b0031002c0032002c006e0075006c006c002c006e0075006c006c005d002c0034002c00660061006c00730065002c00660061006c00730065002c005b002200300022002c002200310022005d005d",
+      "actual": "s:005b005b0031002c0032002c006e0075006c006c002c006e0075006c006c005d002c0034002c00660061006c00730065002c00660061006c00730065002c005b002200300022002c002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "length-two-coercions-off",
+      "source": "var a=[1,2,3,4],log='';a.length={valueOf:function(){log+='x';a[2]=8;return 2;}};var result=JSON.stringify([log,a,Object.keys(a)]);",
+      "expected": "s:005b0022007800780022002c005b0031002c0032005d002c005b002200300022002c002200310022005d005d",
+      "actual": "s:005b0022007800780022002c005b0031002c0032005d002c005b002200300022002c002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "length-two-coercions-on",
+      "source": "var a=[1,2,3,4],log='';a.length={valueOf:function(){log+='x';a[2]=8;return 2;}};var result=JSON.stringify([log,a,Object.keys(a)]);",
+      "expected": "s:005b0022007800780022002c005b0031002c0032005d002c005b002200300022002c002200310022005d005d",
+      "actual": "s:005b0022007800780022002c005b0031002c0032005d002c005b002200300022002c002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "length-coercion-throw-off",
+      "source": "var a=[1,2,3],log='';try{a.length={valueOf:function(){log+='x';if(log.length===2)throw 7;return 1}}}catch(e){log+=':'+e}var result=JSON.stringify([log,a]);",
+      "expected": "s:005b002200780078003a00370022002c005b0031002c0032002c0033005d005d",
+      "actual": "s:005b002200780078003a00370022002c005b0031002c0032002c0033005d005d",
+      "passed": true
+    },
+    {
+      "name": "length-coercion-throw-on",
+      "source": "var a=[1,2,3],log='';try{a.length={valueOf:function(){log+='x';if(log.length===2)throw 7;return 1}}}catch(e){log+=':'+e}var result=JSON.stringify([log,a]);",
+      "expected": "s:005b002200780078003a00370022002c005b0031002c0032002c0033005d005d",
+      "actual": "s:005b002200780078003a00370022002c005b0031002c0032002c0033005d005d",
+      "passed": true
+    },
+    {
+      "name": "length-invalid-off",
+      "source": "var a=[1,2];var log='';try{a.length=1.5}catch(e){log=e.name}var result=JSON.stringify([log,a]);",
+      "expected": "s:005b002200520061006e00670065004500720072006f00720022002c005b0031002c0032005d005d",
+      "actual": "s:005b002200520061006e00670065004500720072006f00720022002c005b0031002c0032005d005d",
+      "passed": true
+    },
+    {
+      "name": "length-invalid-on",
+      "source": "var a=[1,2];var log='';try{a.length=1.5}catch(e){log=e.name}var result=JSON.stringify([log,a]);",
+      "expected": "s:005b002200520061006e00670065004500720072006f00720022002c005b0031002c0032005d005d",
+      "actual": "s:005b002200520061006e00670065004500720072006f00720022002c005b0031002c0032005d005d",
+      "passed": true
+    },
+    {
+      "name": "read-only-length-off",
+      "source": "var a=[1,2];Object.defineProperty(a,'length',{writable:false});a[1]=7;a[2]=9;var log='';try{Object.defineProperty(a,'2',{value:4})}catch(e){log=e.name}var result=JSON.stringify([a,log,Object.getOwnPropertyDescriptor(a,'length')]);",
+      "expected": "s:005b005b0031002c0037005d002c00220054007900700065004500720072006f00720022002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a00660061006c00730065007d005d",
+      "actual": "s:005b005b0031002c0037005d002c00220054007900700065004500720072006f00720022002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a00660061006c00730065007d005d",
+      "passed": true
+    },
+    {
+      "name": "read-only-length-on",
+      "source": "var a=[1,2];Object.defineProperty(a,'length',{writable:false});a[1]=7;a[2]=9;var log='';try{Object.defineProperty(a,'2',{value:4})}catch(e){log=e.name}var result=JSON.stringify([a,log,Object.getOwnPropertyDescriptor(a,'length')]);",
+      "expected": "s:005b005b0031002c0037005d002c00220054007900700065004500720072006f00720022002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a00660061006c00730065007d005d",
+      "actual": "s:005b005b0031002c0037005d002c00220054007900700065004500720072006f00720022002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a00660061006c00730065007d005d",
+      "passed": true
+    },
+    {
+      "name": "nonconfig-truncate-off",
+      "source": "var a=[1,2,3,4];Object.defineProperty(a,'1',{configurable:false});var log='';try{Object.defineProperty(a,'length',{value:0,writable:false})}catch(e){log=e.name}var result=JSON.stringify([log,a,a.length,Object.keys(a),Object.getOwnPropertyDescriptor(a,'length')]);",
+      "expected": "s:005b00220054007900700065004500720072006f00720022002c005b0031002c0032005d002c0032002c005b002200300022002c002200310022005d002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a00660061006c00730065007d005d",
+      "actual": "s:005b00220054007900700065004500720072006f00720022002c005b0031002c0032005d002c0032002c005b002200300022002c002200310022005d002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a00660061006c00730065007d005d",
+      "passed": true
+    },
+    {
+      "name": "nonconfig-truncate-on",
+      "source": "var a=[1,2,3,4];Object.defineProperty(a,'1',{configurable:false});var log='';try{Object.defineProperty(a,'length',{value:0,writable:false})}catch(e){log=e.name}var result=JSON.stringify([log,a,a.length,Object.keys(a),Object.getOwnPropertyDescriptor(a,'length')]);",
+      "expected": "s:005b00220054007900700065004500720072006f00720022002c005b0031002c0032005d002c0032002c005b002200300022002c002200310022005d002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a00660061006c00730065007d005d",
+      "actual": "s:005b00220054007900700065004500720072006f00720022002c005b0031002c0032005d002c0032002c005b002200300022002c002200310022005d002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a00660061006c00730065007d005d",
+      "passed": true
+    },
+    {
+      "name": "descriptor-deopt-off",
+      "source": "var a=[1,2,3];Object.defineProperty(a,'1',{enumerable:false});Object.defineProperty(a,'0',{writable:false});a[0]=9;var result=JSON.stringify([a,Object.keys(a),Object.getOwnPropertyDescriptor(a,'0'),Object.getOwnPropertyDescriptor(a,'1')]);",
+      "expected": "s:005b005b0031002c0032002c0033005d002c005b002200300022002c002200320022005d002c007b002200760061006c007500650022003a0031002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a0074007200750065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a0074007200750065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d005d",
+      "actual": "s:005b005b0031002c0032002c0033005d002c005b002200300022002c002200320022005d002c007b002200760061006c007500650022003a0031002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a0074007200750065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a0074007200750065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d005d",
+      "passed": true
+    },
+    {
+      "name": "descriptor-deopt-on",
+      "source": "var a=[1,2,3];Object.defineProperty(a,'1',{enumerable:false});Object.defineProperty(a,'0',{writable:false});a[0]=9;var result=JSON.stringify([a,Object.keys(a),Object.getOwnPropertyDescriptor(a,'0'),Object.getOwnPropertyDescriptor(a,'1')]);",
+      "expected": "s:005b005b0031002c0032002c0033005d002c005b002200300022002c002200320022005d002c007b002200760061006c007500650022003a0031002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a0074007200750065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a0074007200750065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d005d",
+      "actual": "s:005b005b0031002c0032002c0033005d002c005b002200300022002c002200320022005d002c007b002200760061006c007500650022003a0031002c0022007700720069007400610062006c00650022003a00660061006c00730065002c00220065006e0075006d0065007200610062006c00650022003a0074007200750065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d002c007b002200760061006c007500650022003a0032002c0022007700720069007400610062006c00650022003a0074007200750065002c00220065006e0075006d0065007200610062006c00650022003a00660061006c00730065002c00220063006f006e0066006900670075007200610062006c00650022003a0074007200750065007d005d",
+      "passed": true
+    },
+    {
+      "name": "accessor-deopt-off",
+      "source": "var a=[1,2,3],log='';Object.defineProperty(a,'1',{get:function(){log+='g';return 8},set:function(v){log+='s'+v}});a[1]=4;var result=JSON.stringify([a,log,Object.keys(a)]);",
+      "expected": "s:005b005b0031002c0038002c0033005d002c0022007300340022002c005b002200300022002c002200310022002c002200320022005d005d",
+      "actual": "s:005b005b0031002c0038002c0033005d002c0022007300340022002c005b002200300022002c002200310022002c002200320022005d005d",
+      "passed": true
+    },
+    {
+      "name": "accessor-deopt-on",
+      "source": "var a=[1,2,3],log='';Object.defineProperty(a,'1',{get:function(){log+='g';return 8},set:function(v){log+='s'+v}});a[1]=4;var result=JSON.stringify([a,log,Object.keys(a)]);",
+      "expected": "s:005b005b0031002c0038002c0033005d002c0022007300340022002c005b002200300022002c002200310022002c002200320022005d005d",
+      "actual": "s:005b005b0031002c0038002c0033005d002c0022007300340022002c005b002200300022002c002200310022002c002200320022005d005d",
+      "passed": true
+    },
+    {
+      "name": "mixed-deopt-off",
+      "source": "var a=[1,2];a[1]={x:8};a[4]=4;var result=JSON.stringify([a,Object.keys(a)]);",
+      "expected": "s:005b005b0031002c007b002200780022003a0038007d002c006e0075006c006c002c006e0075006c006c002c0034005d002c005b002200300022002c002200310022002c002200340022005d005d",
+      "actual": "s:005b005b0031002c007b002200780022003a0038007d002c006e0075006c006c002c006e0075006c006c002c0034005d002c005b002200300022002c002200310022002c002200340022005d005d",
+      "passed": true
+    },
+    {
+      "name": "mixed-deopt-on",
+      "source": "var a=[1,2];a[1]={x:8};a[4]=4;var result=JSON.stringify([a,Object.keys(a)]);",
+      "expected": "s:005b005b0031002c007b002200780022003a0038007d002c006e0075006c006c002c006e0075006c006c002c0034005d002c005b002200300022002c002200310022002c002200340022005d005d",
+      "actual": "s:005b005b0031002c007b002200780022003a0038007d002c006e0075006c006c002c006e0075006c006c002c0034005d002c005b002200300022002c002200310022002c002200340022005d005d",
+      "passed": true
+    },
+    {
+      "name": "noncanonical-key-off",
+      "source": "var a=[1,2];a['01']=7;a['-0']=8;a['4294967295']=9;var result=JSON.stringify([a,Object.keys(a),a['01'],a['-0'],a['4294967295']]);",
+      "expected": "s:005b005b0031002c0032005d002c005b002200300022002c002200310022002c0022003000310022002c0022002d00300022002c002200340032003900340039003600370032003900350022005d002c0037002c0038002c0039005d",
+      "actual": "s:005b005b0031002c0032005d002c005b002200300022002c002200310022002c0022003000310022002c0022002d00300022002c002200340032003900340039003600370032003900350022005d002c0037002c0038002c0039005d",
+      "passed": true
+    },
+    {
+      "name": "noncanonical-key-on",
+      "source": "var a=[1,2];a['01']=7;a['-0']=8;a['4294967295']=9;var result=JSON.stringify([a,Object.keys(a),a['01'],a['-0'],a['4294967295']]);",
+      "expected": "s:005b005b0031002c0032005d002c005b002200300022002c002200310022002c0022003000310022002c0022002d00300022002c002200340032003900340039003600370032003900350022005d002c0037002c0038002c0039005d",
+      "actual": "s:005b005b0031002c0032005d002c005b002200300022002c002200310022002c0022003000310022002c0022002d00300022002c002200340032003900340039003600370032003900350022005d002c0037002c0038002c0039005d",
+      "passed": true
+    },
+    {
+      "name": "prevent-extensions-off",
+      "source": "var a=[1,,3];Object.preventExtensions(a);a[0]=7;a[1]=8;a[3]=9;var result=JSON.stringify([a,Object.keys(a),Object.isExtensible(a)]);",
+      "expected": "s:005b005b0037002c006e0075006c006c002c0033005d002c005b002200300022002c002200320022005d002c00660061006c00730065005d",
+      "actual": "s:005b005b0037002c006e0075006c006c002c0033005d002c005b002200300022002c002200320022005d002c00660061006c00730065005d",
+      "passed": true
+    },
+    {
+      "name": "prevent-extensions-on",
+      "source": "var a=[1,,3];Object.preventExtensions(a);a[0]=7;a[1]=8;a[3]=9;var result=JSON.stringify([a,Object.keys(a),Object.isExtensible(a)]);",
+      "expected": "s:005b005b0037002c006e0075006c006c002c0033005d002c005b002200300022002c002200320022005d002c00660061006c00730065005d",
+      "actual": "s:005b005b0037002c006e0075006c006c002c0033005d002c005b002200300022002c002200320022005d002c00660061006c00730065005d",
+      "passed": true
+    },
+    {
+      "name": "seal-freeze-off",
+      "source": "var a=[1,2],b=[3,4];Object.seal(a);Object.freeze(b);a[0]=8;delete a[1];b[0]=9;var result=JSON.stringify([a,b,Object.isSealed(a),Object.isFrozen(b)]);",
+      "expected": "s:005b005b0038002c0032005d002c005b0033002c0034005d002c0074007200750065002c0074007200750065005d",
+      "actual": "s:005b005b0038002c0032005d002c005b0033002c0034005d002c0074007200750065002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "seal-freeze-on",
+      "source": "var a=[1,2],b=[3,4];Object.seal(a);Object.freeze(b);a[0]=8;delete a[1];b[0]=9;var result=JSON.stringify([a,b,Object.isSealed(a),Object.isFrozen(b)]);",
+      "expected": "s:005b005b0038002c0032005d002c005b0033002c0034005d002c0074007200750065002c0074007200750065005d",
+      "actual": "s:005b005b0038002c0032005d002c005b0033002c0034005d002c0074007200750065002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "prototype-hole-off",
+      "source": "var a=[,2];Object.defineProperty(Array.prototype,'0',{get:function(){return 7},configurable:true});var x=a[0];delete Array.prototype[0];var result=JSON.stringify([x,a,Object.keys(a)]);",
+      "expected": "s:005b0037002c005b006e0075006c006c002c0032005d002c005b002200310022005d005d",
+      "actual": "s:005b0037002c005b006e0075006c006c002c0032005d002c005b002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "prototype-hole-on",
+      "source": "var a=[,2];Object.defineProperty(Array.prototype,'0',{get:function(){return 7},configurable:true});var x=a[0];delete Array.prototype[0];var result=JSON.stringify([x,a,Object.keys(a)]);",
+      "expected": "s:005b0037002c005b006e0075006c006c002c0032005d002c005b002200310022005d005d",
+      "actual": "s:005b0037002c005b006e0075006c006c002c0032005d002c005b002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "prototype-setter-off",
+      "source": "var a=[,2],log='';Object.defineProperty(Array.prototype,'0',{set:function(v){log+='s'+v},get:function(){return 9},configurable:true});a[0]=7;var x=a[0];delete Array.prototype[0];var result=JSON.stringify([log,x,Object.keys(a)]);",
+      "expected": "s:005b0022007300370022002c0039002c005b002200310022005d005d",
+      "actual": "s:005b0022007300370022002c0039002c005b002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "prototype-setter-on",
+      "source": "var a=[,2],log='';Object.defineProperty(Array.prototype,'0',{set:function(v){log+='s'+v},get:function(){return 9},configurable:true});a[0]=7;var x=a[0];delete Array.prototype[0];var result=JSON.stringify([log,x,Object.keys(a)]);",
+      "expected": "s:005b0022007300370022002c0039002c005b002200310022005d005d",
+      "actual": "s:005b0022007300370022002c0039002c005b002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "splice-shift-pop-off",
+      "source": "var a=[1,2,3,4];var x=a.shift(),y=a.pop(),z=a.splice(0,1,8);a.unshift(6);a.push(9);var result=JSON.stringify([x,y,z,a]);",
+      "expected": "s:005b0031002c0034002c005b0032005d002c005b0036002c0038002c0033002c0039005d005d",
+      "actual": "s:005b0031002c0034002c005b0032005d002c005b0036002c0038002c0033002c0039005d005d",
+      "passed": true
+    },
+    {
+      "name": "splice-shift-pop-on",
+      "source": "var a=[1,2,3,4];var x=a.shift(),y=a.pop(),z=a.splice(0,1,8);a.unshift(6);a.push(9);var result=JSON.stringify([x,y,z,a]);",
+      "expected": "s:005b0031002c0034002c005b0032005d002c005b0036002c0038002c0033002c0039005d005d",
+      "actual": "s:005b0031002c0034002c005b0032005d002c005b0036002c0038002c0033002c0039005d005d",
+      "passed": true
+    },
+    {
+      "name": "sort-reverse-off",
+      "source": "var a=[4,,2,1];a.reverse();a.sort(function(x,y){return x-y});var result=JSON.stringify([a,Object.keys(a)]);",
+      "expected": "s:005b005b0031002c0032002c0034002c006e0075006c006c005d002c005b002200300022002c002200310022002c002200320022005d005d",
+      "actual": "s:005b005b0031002c0032002c0034002c006e0075006c006c005d002c005b002200300022002c002200310022002c002200320022005d005d",
+      "passed": true
+    },
+    {
+      "name": "sort-reverse-on",
+      "source": "var a=[4,,2,1];a.reverse();a.sort(function(x,y){return x-y});var result=JSON.stringify([a,Object.keys(a)]);",
+      "expected": "s:005b005b0031002c0032002c0034002c006e0075006c006c005d002c005b002200300022002c002200310022002c002200320022005d005d",
+      "actual": "s:005b005b0031002c0032002c0034002c006e0075006c006c005d002c005b002200300022002c002200310022002c002200320022005d005d",
+      "passed": true
+    },
+    {
+      "name": "slice-concat-filter-off",
+      "source": "var a=[1,,3,4];var result=JSON.stringify([a.slice(1),a.concat([5]),a.filter(function(x){return x>1}),a.map(function(x){return x*2})]);",
+      "expected": "s:005b005b006e0075006c006c002c0033002c0034005d002c005b0031002c006e0075006c006c002c0033002c0034002c0035005d002c005b0033002c0034005d002c005b0032002c006e0075006c006c002c0036002c0038005d005d",
+      "actual": "s:005b005b006e0075006c006c002c0033002c0034005d002c005b0031002c006e0075006c006c002c0033002c0034002c0035005d002c005b0033002c0034005d002c005b0032002c006e0075006c006c002c0036002c0038005d005d",
+      "passed": true
+    },
+    {
+      "name": "slice-concat-filter-on",
+      "source": "var a=[1,,3,4];var result=JSON.stringify([a.slice(1),a.concat([5]),a.filter(function(x){return x>1}),a.map(function(x){return x*2})]);",
+      "expected": "s:005b005b006e0075006c006c002c0033002c0034005d002c005b0031002c006e0075006c006c002c0033002c0034002c0035005d002c005b0033002c0034005d002c005b0032002c006e0075006c006c002c0036002c0038005d005d",
+      "actual": "s:005b005b006e0075006c006c002c0033002c0034005d002c005b0031002c006e0075006c006c002c0033002c0034002c0035005d002c005b0033002c0034005d002c005b0032002c006e0075006c006c002c0036002c0038005d005d",
+      "passed": true
+    },
+    {
+      "name": "numeric-bits-off",
+      "source": "var a=[-0,Infinity,-Infinity,NaN];var result=JSON.stringify([1/a[0],a[1],a[2],a[3]!==a[3],Object.is(a[0],-0)]);",
+      "expected": "s:005b006e0075006c006c002c006e0075006c006c002c006e0075006c006c002c0074007200750065002c0074007200750065005d",
+      "actual": "s:005b006e0075006c006c002c006e0075006c006c002c006e0075006c006c002c0074007200750065002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "numeric-bits-on",
+      "source": "var a=[-0,Infinity,-Infinity,NaN];var result=JSON.stringify([1/a[0],a[1],a[2],a[3]!==a[3],Object.is(a[0],-0)]);",
+      "expected": "s:005b006e0075006c006c002c006e0075006c006c002c006e0075006c006c002c0074007200750065002c0074007200750065005d",
+      "actual": "s:005b006e0075006c006c002c006e0075006c006c002c006e0075006c006c002c0074007200750065002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "for-in-delete-off",
+      "source": "var a=[1,2,3],s='';for(var k in a){s+=k;if(k==='0')delete a[1]}var result=s;",
+      "expected": "s:00300032",
+      "actual": "s:00300032",
+      "passed": true
+    },
+    {
+      "name": "for-in-delete-on",
+      "source": "var a=[1,2,3],s='';for(var k in a){s+=k;if(k==='0')delete a[1]}var result=s;",
+      "expected": "s:00300032",
+      "actual": "s:00300032",
+      "passed": true
+    },
+    {
+      "name": "length-extend-deopt-off",
+      "source": "var a=[1,2];a.length=20;a[15]=8;var result=JSON.stringify([a.length,a[0],a[1],a[15],Object.keys(a)]);",
+      "expected": "s:005b00320030002c0031002c0032002c0038002c005b002200300022002c002200310022002c0022003100350022005d005d",
+      "actual": "s:005b00320030002c0031002c0032002c0038002c005b002200300022002c002200310022002c0022003100350022005d005d",
+      "passed": true
+    },
+    {
+      "name": "length-extend-deopt-on",
+      "source": "var a=[1,2];a.length=20;a[15]=8;var result=JSON.stringify([a.length,a[0],a[1],a[15],Object.keys(a)]);",
+      "expected": "s:005b00320030002c0031002c0032002c0038002c005b002200300022002c002200310022002c0022003100350022005d005d",
+      "actual": "s:005b00320030002c0031002c0032002c0038002c005b002200300022002c002200310022002c0022003100350022005d005d",
+      "passed": true
+    },
+    {
+      "name": "literal-cache-mutation-off",
+      "source": "var a=[1,2];function f(){return a[0]}var x=f();delete a[0];Object.defineProperty(a,'0',{get:function(){return 8}});var result=JSON.stringify([x,f(),Object.keys(a)]);",
+      "expected": "s:005b0031002c0038002c005b002200310022005d005d",
+      "actual": "s:005b0031002c0038002c005b002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "literal-cache-mutation-on",
+      "source": "var a=[1,2];function f(){return a[0]}var x=f();delete a[0];Object.defineProperty(a,'0',{get:function(){return 8}});var result=JSON.stringify([x,f(),Object.keys(a)]);",
+      "expected": "s:005b0031002c0038002c005b002200310022005d005d",
+      "actual": "s:005b0031002c0038002c005b002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "key-coercion-mutation-off",
+      "source": "var a=[1,2],key={toString:function(){a[0]={x:8};return '0'}};var x=a[key];var result=JSON.stringify([x,a]);",
+      "expected": "s:005b007b002200780022003a0038007d002c005b007b002200780022003a0038007d002c0032005d005d",
+      "actual": "s:005b007b002200780022003a0038007d002c005b007b002200780022003a0038007d002c0032005d005d",
+      "passed": true
+    },
+    {
+      "name": "key-coercion-mutation-on",
+      "source": "var a=[1,2],key={toString:function(){a[0]={x:8};return '0'}};var x=a[key];var result=JSON.stringify([x,a]);",
+      "expected": "s:005b007b002200780022003a0038007d002c005b007b002200780022003a0038007d002c0032005d005d",
+      "actual": "s:005b007b002200780022003a0038007d002c005b007b002200780022003a0038007d002c0032005d005d",
+      "passed": true
+    },
+    {
+      "name": "write-key-makes-accessor-off",
+      "source": "var a=[1,2],log='';var key={toString:function(){Object.defineProperty(a,'0',{get:function(){log+='g';return 7},set:function(v){log+='s'+v},configurable:true});return '0'}};a[key]=9;var result=JSON.stringify([log,a[0],Object.getOwnPropertyDescriptor(a,'0').get!==undefined]);",
+      "expected": "s:005b0022007300390022002c0037002c0074007200750065005d",
+      "actual": "s:005b0022007300390022002c0037002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "write-key-makes-accessor-on",
+      "source": "var a=[1,2],log='';var key={toString:function(){Object.defineProperty(a,'0',{get:function(){log+='g';return 7},set:function(v){log+='s'+v},configurable:true});return '0'}};a[key]=9;var result=JSON.stringify([log,a[0],Object.getOwnPropertyDescriptor(a,'0').get!==undefined]);",
+      "expected": "s:005b0022007300390022002c0037002c0074007200750065005d",
+      "actual": "s:005b0022007300390022002c0037002c0074007200750065005d",
+      "passed": true
+    },
+    {
+      "name": "write-key-shrinks-off",
+      "source": "var a=[1,2],key={toString:function(){a.length=0;return '0'}};a[key]=-0;var result=JSON.stringify([a.length,Object.is(a[0],-0),Object.keys(a)]);",
+      "expected": "s:005b0031002c0074007200750065002c005b002200300022005d005d",
+      "actual": "s:005b0031002c0074007200750065002c005b002200300022005d005d",
+      "passed": true
+    },
+    {
+      "name": "write-key-shrinks-on",
+      "source": "var a=[1,2],key={toString:function(){a.length=0;return '0'}};a[key]=-0;var result=JSON.stringify([a.length,Object.is(a[0],-0),Object.keys(a)]);",
+      "expected": "s:005b0031002c0074007200750065002c005b002200300022005d005d",
+      "actual": "s:005b0031002c0074007200750065002c005b002200300022005d005d",
+      "passed": true
+    },
+    {
+      "name": "key-negative-zero-off",
+      "source": "var a=[1,2];a[-0]=-0;var result=JSON.stringify([Object.is(a['0'],-0),a['-0'],a['00'],a[1],Object.keys(a)]);",
+      "expected": "s:005b0074007200750065002c006e0075006c006c002c006e0075006c006c002c0032002c005b002200300022002c002200310022005d005d",
+      "actual": "s:005b0074007200750065002c006e0075006c006c002c006e0075006c006c002c0032002c005b002200300022002c002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "key-negative-zero-on",
+      "source": "var a=[1,2];a[-0]=-0;var result=JSON.stringify([Object.is(a['0'],-0),a['-0'],a['00'],a[1],Object.keys(a)]);",
+      "expected": "s:005b0074007200750065002c006e0075006c006c002c006e0075006c006c002c0032002c005b002200300022002c002200310022005d005d",
+      "actual": "s:005b0074007200750065002c006e0075006c006c002c006e0075006c006c002c0032002c005b002200300022002c002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "typed-array-keys-unchanged-off",
+      "source": "var a=new Float64Array([1,2]);a[-0]=-0;var result=JSON.stringify([Object.is(a[0],-0),a['-0'],a['00'],a[1],a[2],Object.keys(a)]);",
+      "expected": "s:005b0074007200750065002c006e0075006c006c002c006e0075006c006c002c0032002c006e0075006c006c002c005b002200300022002c002200310022005d005d",
+      "actual": "s:005b0074007200750065002c006e0075006c006c002c006e0075006c006c002c0032002c006e0075006c006c002c005b002200300022002c002200310022005d005d",
+      "passed": true
+    },
+    {
+      "name": "typed-array-keys-unchanged-on",
+      "source": "var a=new Float64Array([1,2]);a[-0]=-0;var result=JSON.stringify([Object.is(a[0],-0),a['-0'],a['00'],a[1],a[2],Object.keys(a)]);",
+      "expected": "s:005b0074007200750065002c006e0075006c006c002c006e0075006c006c002c0032002c006e0075006c006c002c005b002200300022002c002200310022005d005d",
+      "actual": "s:005b0074007200750065002c006e0075006c006c002c006e0075006c006c002c0032002c006e0075006c006c002c005b002200300022002c002200310022005d005d",
+      "passed": true
+    }
+  ],
+  "compilerInputs": {
+    "tools/rust-port/expressions.mjs": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
+    "tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
+    "tools/rust-port/compile.mjs": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/rust-port/check-primary-numeric-access.mjs": "11e1db0e785ac97f566404e8ffb9c3a3d02fd6eda7534bf7d471228f132c5059",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "c9280c2873dfd17d41b20db9768b08e22e034a25af0aba0c9c6c20d7a859d2e1",
+    "crates/js-runtime/src/battle_mode_limit.rs": "d82d04762f6a9b3416aaf26526b657880b24140adabf8c8910ce2591672bb21e",
+    "crates/js-runtime/src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
+    "crates/js-runtime/src/buff_attribute_loop.rs": "01bcad5b373556c0c3ec4921e4acb4647b9b9d0aad7ed26861ed999de9107409",
+    "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/closures.rs": "34ed696950d40f7744810590d63c619e8d616ce7cd5851e43abb8e8d61408e56",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "9d9a75bdf0e19e4bf48ca73d46f7716a31b3bdbdc25e14c450fceb1ae7a9e94b",
+    "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+    "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
+    "crates/js-runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "crates/js-runtime/src/dynamic_slots.rs": "d224ec77c46e4bae41f7483aadb241b120c0aa4cb9235eed088ced3f38a79764",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+    "crates/js-runtime/src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "f8e4a5bb731e8eac10527576df4d8f62e19da09b8547ccb329289ed729b0ac5e",
+    "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+    "crates/js-runtime/src/lib.rs": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+    "crates/js-runtime/src/property_slots.rs": "b8868a16ddc9a8862aa5223350c1c9ebb1b98837657f0481e07098f70fc6dd0a",
+    "crates/js-runtime/src/reachability.rs": "e701431b9f8ff624f993ff86e92e546c9b7f6464733b8a09beaac6bc8d8d0519",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+    "crates/js-runtime/src/runtime.rs": "10dadeb7e8eb9f99b6132a3d21fd0206f563c994ec9d1b1e5ed77981c98f204e",
+    "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+    "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/work/rust-port-shared-target/release/arrays-tests",
+    "sha256": "5e77868b729d5ea0bb25ad892e9d1a1f8d67a6da2e4e9c77ef1e6952dc5b2e20"
+  },
+  "buildArgs": [
+    "build",
+    "--release",
+    "-j",
+    "1",
+    "--manifest-path",
+    "/workspace/afkarena-simx/work/candidate-primary-numeric-get/work/rust-port-primary-numeric-access-tests/Cargo.toml"
+  ],
+  "primaryNumericStorage": true,
+  "primaryNumericAccessPaired": true,
+  "scope": "Same generated native array programs keep primary storage ON while toggling only primary numeric READ+WRITE fast access. Actual generated Rust executed against source JS Array programs. Ordered observable effects and primitive results compare exactly; Number results use raw f64 bits and arrays use UTF-16 units. This is a language-Array gate, not battle fidelity or throughput.",
+  "qualifiesFor10000Target": false
+}
