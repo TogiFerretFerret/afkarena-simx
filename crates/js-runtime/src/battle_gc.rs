@@ -147,3 +147,24 @@ impl Runtime{
  #[test]fn indexed_original_ranges_root_many_arguments_and_snapshots_through_23_actual_gc_safepoints(){let mut rt=Runtime::new();rt.diagnostics.enabled=false;let input=rt.object();set(&mut rt,input,"bits",Value::Number(f64::from_bits(0x7ff0000000000042)));let entry=rt.make_closure_with_flags(indexed_arguments_gc_entry,rt.global_env,0,"__nativeRun",false,None);rt.set_function_source(entry,&RUN_SOURCE.encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();let args=[input,Value::Undefined,Value::Null,Value::Bool(false),Value::Number(f64::from_bits(0x7ff8000000000001)),Value::Number(-0.0),Value::Function(match entry{Value::Function(id)=>id,_=>panic!()})];assert_eq!(rt.call(entry,Value::Undefined,&args).unwrap(),Value::Number(23.0));assert_eq!(rt.native_battle_gc_stats().collections,23);assert!(rt.active_argument_frames.is_empty()&&rt.original_argument_values.is_empty());}
 
 }
+
+#[cfg(test)]mod request_stride_tests{
+ use super::*;
+ fn run(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{
+  let env=rt.child_env(parent);for(name,value)in[("battles",20.0),("warmup",3.0),("battleIndex",-3.0)]{rt.declare(env,name,Value::Number(value))?;}
+  let kept=rt.object();let key=rt.string("bits");rt.define_data(kept,key,Value::Number(f64::from_bits(0xfff8000000000042)),true,true,true)?;rt.declare(env,"kept",kept)?;
+  assert!(rt.configure_native_battle_gc_request_stride(1).is_err());
+  for(index,battle)in(-3..20).enumerate(){
+   rt.assign(env,"battleIndex",Value::Number(battle as f64),false)?;
+   let dead=rt.object();let self_key=rt.string("self");rt.define_data(dead,self_key,dead,true,true,true)?;
+   if (index+1)%2==0||battle==19{rt.collect_native_battle_backedge(env,parent)?;}
+   let Value::Number(value)=rt.get(kept,key)?else{panic!("kept numeric payload")};assert_eq!(value.to_bits(),0xfff8000000000042);
+  }
+  assert_eq!(rt.native_battle_gc_request_count(),12);assert!(rt.native_battle_gc_stats().objects_freed>=23);
+  Ok(Value::Number(rt.native_battle_gc_stats().collections as f64))
+ }
+ #[test]fn configured_strides_keep_final_source_boundary_live_roots_and_raw_bits(){
+  for stride in [1,2,3,4,5,7,8]{let mut rt=Runtime::new();rt.diagnostics.enabled=false;rt.configure_native_battle_gc_request_stride(stride).unwrap();rt.enable_native_battle_gc();let f=rt.make_closure(run,rt.global_env,0,"__nativeRun");rt.set_function_source(f,&RUN_SOURCE.encode_utf16().collect::<Vec<_>>()).unwrap();assert_eq!(rt.call(f,Value::Undefined,&[]).unwrap(),Value::Number(12_usize.div_ceil(stride) as f64));assert!(rt.configure_native_battle_gc_request_stride(1).is_err());}
+ }
+ #[test]fn invalid_stride_does_not_change_default_policy(){let mut rt=Runtime::new();for stride in [0,9,usize::MAX]{assert!(rt.configure_native_battle_gc_request_stride(stride).is_err());}assert_eq!(rt.native_battle_gc.request_stride,0);assert_eq!(rt.native_battle_gc_request_count(),0);}
+}
