@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "passed": true,
+  "source": {
+    "source": "tools/rust-port/source-native-drain.mjs",
+    "sha256": "edf1988ae041ddda3f8c1e40496e28beb96b91e861765c5721f6c4d658ec9a29"
+  },
+  "sourceUnitBodyUnchanged": true,
+  "updatesPerTrial": 200,
+  "trialsPerVariant": 3,
+  "warmupRounds": 2,
+  "width": 64,
+  "rows": [
+    {
+      "label": "baseline",
+      "trial": 0,
+      "elapsedNs": "130584486",
+      "updates": 200,
+      "updatesPerSecond": 98020.832275589,
+      "events": 38400
+    },
+    {
+      "label": "cached",
+      "trial": 0,
+      "elapsedNs": "124250483",
+      "updates": 200,
+      "updatesPerSecond": 103017.70818870781,
+      "events": 38400
+    },
+    {
+      "label": "cached",
+      "trial": 1,
+      "elapsedNs": "126471157",
+      "updates": 200,
+      "updatesPerSecond": 101208.84716821244,
+      "events": 38400
+    },
+    {
+      "label": "baseline",
+      "trial": 1,
+      "elapsedNs": "130822891",
+      "updates": 200,
+      "updatesPerSecond": 97842.20408338172,
+      "events": 38400
+    },
+    {
+      "label": "baseline",
+      "trial": 2,
+      "elapsedNs": "124626136",
+      "updates": 200,
+      "updatesPerSecond": 102707.18816155866,
+      "events": 38400
+    },
+    {
+      "label": "cached",
+      "trial": 2,
+      "elapsedNs": "108173799",
+      "updates": 200,
+      "updatesPerSecond": 118328.09902516227,
+      "events": 38400
+    }
+  ],
+  "totals": {
+    "baseline": {
+      "trials": 3,
+      "totalUpdates": 38400,
+      "totalElapsedNs": "386033513",
+      "aggregateUpdatesPerSecond": 99473.2288955441
+    },
+    "cached": {
+      "trials": 3,
+      "totalUpdates": 38400,
+      "totalElapsedNs": "358895439",
+      "aggregateUpdatesPerSecond": 106994.95125096868
+    }
+  },
+  "observedThroughputRatio": 1.0756155443925828,
+  "allOrderedEventsAndSelectedStateBitsMatched": true,
+  "eventCountPerTrial": 38400,
+  "oracle": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ]
+  },
+  "cacheLocalBindings": {
+    "baseline": true,
+    "cached": true
+  },
+  "staticLiteralStrings": {
+    "baseline": true,
+    "cached": true
+  },
+  "literalPropertySlots": {
+    "baseline": true,
+    "cached": true
+  },
+  "functionOwnDataLiteralReads": {
+    "baseline": false,
+    "cached": true
+  },
+  "sameGeneratedSource": true,
+  "sameRuntime": true,
+  "inputs": {
+    "tools/rust-port/benchmark-original-drain-function-own-literals.mjs": "a978f1e8b1fa25b11223b6c7382d40a702f6559b36e8e9cde67bc6052adeb5a7",
+    "tools/rust-port/compile.mjs": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
+    "tools/rust-port/expressions.mjs": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
+    "tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/rust-port/drain-shift-fixture.mjs": "76fbedeef9b8c3b0c91a669a85b9e7ff8e99a258f1c9ed151771d2b710629ab2",
+    "tools/rust-port/source-native-drain.mjs": "fa41190631c62ed2966621ca36525053ea861cc1ccdaf0df5ef0dc3079595080",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "1ce99d2c474900cab619b26420b1b5695a074e8dad5ad58359662fb05bd2299a",
+    "crates/js-runtime/src/battle_mode_limit.rs": "87a6bf086e89c3a863478e4b5c4a0e13948cda0c1220c502709571652d12f571",
+    "crates/js-runtime/src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
+    "crates/js-runtime/src/buff_attribute_loop.rs": "a41d1e91894b451ff92fe0ffb5a4fee0071e1ac69b15710f507c51068f939192",
+    "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
+    "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+    "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
+    "crates/js-runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "crates/js-runtime/src/dynamic_slots.rs": "cbe5ed9f0fb4ec9e9ef727f826a146a13a188537d396dbc83e1e93aba7035bb2",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+    "crates/js-runtime/src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "f8e4a5bb731e8eac10527576df4d8f62e19da09b8547ccb329289ed729b0ac5e",
+    "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "crates/js-runtime/src/id_hash.rs": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
+    "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
+    "crates/js-runtime/src/lib.rs": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+    "crates/js-runtime/src/property_slots.rs": "1762dd182b3e8763d5809b03734ce0a581a452305c95aa2e81579734cb57a54e",
+    "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+    "crates/js-runtime/src/runtime.rs": "9986d0c68a4584ced3c04ebc8afabb60934a5f3766dc1619d7bf4f7ad37e1c22",
+    "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+    "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e"
+  },
+  "binarySha256": "a698f63981692c6ff6294b40867b776b3b26ebbc31c1cb75402371d041e43fb1",
+  "buildArgs": [
+    "build",
+    "--release",
+    "-j",
+    "1",
+    "--manifest-path",
+    "/workspace/afkarena-simx/work/candidate-function-own-data-literals/work/rust-original-drain-function-own-literals/Cargo.toml"
+  ],
+  "executionWallMs": 1063.835367,
+  "artifacts": [
+    {
+      "label": "fixture-generated",
+      "file": "benchmarks/results/2026-10-30T15-04-31.627Z-rust-original-drain-function-own-literals.fixture-generated.gz",
+      "sha256": "1f089f81b91209a5d35c30ea216bec2afe93c9d3d7bff44e06f8099ef2022460",
+      "uncompressedSha256": "f260a61536c5bbbaca655df16759b9f3c48028c32b560988967d481be28ba57c",
+      "uncompressedBytes": 28595
+    },
+    {
+      "label": "fixture-manifest",
+      "file": "benchmarks/results/2026-10-30T15-04-31.627Z-rust-original-drain-function-own-literals.fixture-manifest.gz",
+      "sha256": "31ebdabe0e7372a017e3494045181e14b394ff02a29e270c69ea4835e6fd886f",
+      "uncompressedSha256": "d7708bb4869124ba7be8a1ea24c4b8a720832690513c149a61dcba6dbd700340",
+      "uncompressedBytes": 5311
+    },
+    {
+      "label": "source",
+      "file": "benchmarks/results/2026-10-30T15-04-31.627Z-rust-original-drain-function-own-literals.source.gz",
+      "sha256": "0a2eb285a7194a2682dd66441242c79588dccba23330ee14702a9983a1f31ba8",
+      "uncompressedSha256": "0afa410d48ab85f844ddd7b8bc1a9a7beebf9bc5d8f0d5b2fd831e9dab5a72d9",
+      "uncompressedBytes": 873
+    },
+    {
+      "label": "actual",
+      "file": "benchmarks/results/2026-10-30T15-04-31.627Z-rust-original-drain-function-own-literals.actual.gz",
+      "sha256": "e1ec4e9cb6dd55f8a94a250fd496dd6e96648d2e2bf14a2821a5a184fc81bc7f",
+      "uncompressedSha256": "9ad9e91ed4ee82c6ec22bbce72a50e2e763c69243f4d7ae312cdf048389b0903",
+      "uncompressedBytes": 2631984
+    },
+    {
+      "label": "expected",
+      "file": "benchmarks/results/2026-10-30T15-04-31.627Z-rust-original-drain-function-own-literals.expected.gz",
+      "sha256": "5d74bd018a31b517c2890fd33c7c41480de5a8b707b24159335af482a0aff08f",
+      "uncompressedSha256": "aa343b44878167cc09e73ab3974041c99208b98725e24d9b54dc407d33c02983",
+      "uncompressedBytes": 438643
+    }
+  ],
+  "qualifiesFor10000Target": false,
+  "scope": "Original source __nativeDrain compiled to pure Rust, compared against pinned jitless source with the same explicit component fixture callbacks. Timed windows include every callback and the unchanged raw-bit observer. A single generated entry executes with function own-data literal reads OFF and ON; all literal read caches remain enabled in both variants. This is original-controller callbacks/second, NOT battles/second or a complete mechanics backend. Startup, fixture construction, five warmup updates, reset and final JSON snapshot are excluded. Arena lifetime/GC and complete realistic battles remain unqualified.",
+  "measurementCaveat": {
+    "compilerOverlap": false,
+    "possibleInitialIoOverlap": "Coordinator reports an approved debug-cache deletion lasting0.3sec immediately near the start of the paired experiment. All source compilers were stopped.",
+    "interpretation": "Three alternating component trials; no confidence interval or whole-battle throughput claim."
+  }
+}
