@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "allocationInstrumentation": false,
+  "ranTrace0Timing": false,
+  "trace1SelectedObserverMatched": true,
+  "summaries": [],
+  "rows": [
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "671571524",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "744033373",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "229761484",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "197515052",
+      "events": 38400,
+      "snapshots": 25600
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/2026-10-30T13-48-53.294Z-argument-stack.outputs.json.gz",
+      "sha256": "3363f4c0dabe2f987ca6e9afaad0f0e32fe876c16a519561e9ef43a4d280dc4c",
+      "uncompressedSha256": "99b72efedc7a92160524edc4e006b0fcce32c7575a3fe97a0857091afa03b205"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T13-48-53.294Z-argument-stack.expected.json.gz",
+      "sha256": "8e41645978d30e5c296c7ac2e877a447f4a6c05726af8ff1aaeebe9dac616ec9",
+      "uncompressedSha256": "8b9be086eaf4ecab7c6a7a91f40b19e7aa1d5afcec5fec0a5094dde2fbdeeec9"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T13-48-53.294Z-argument-stack.preparation.json.gz",
+      "sha256": "7cf9f2d47e4af8fa4288af85e326a87de05bfbcc1933e082f6a76d37cc0f9d0c",
+      "uncompressedSha256": "bd26e8526a0a950096bec19463d6a9d7a3539ae8bfaa99c8727b1a270f6b5170"
+    }
+  ],
+  "scope": "Same original source fixtures in frozen baseline and indexed argument-stack runtime libraries. Original Unit update and callback drain retain every source callback/event and snapshots. Component rates only; no battle qualification."
+}

@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "candidate": "candidate/original-argument-stack",
+  "base": "6369efc",
+  "codeCommit": "bb7004a",
+  "testsCommit": "1c1af93",
+  "native": {
+    "library": 94,
+    "integration": 26,
+    "actualGcSafepoints": 23,
+    "frameBytesBefore": 128,
+    "frameBytesAfter": 64
+  },
+  "sourceGates": {
+    "arguments": 40,
+    "reflection": 24,
+    "closures": 50
+  },
+  "controlledTiming": "benchmarks/results/2026-10-30T13-46-54.682Z-argument-stack.json",
+  "excludedExploratoryTiming": "benchmarks/results/2026-10-30T13-46-33.148Z-argument-stack.json",
+  "trace1Gate": "benchmarks/validation/2026-10-30T13-48-53.294Z-argument-stack.json",
+  "allocationGate": "benchmarks/results/2026-10-30T13-49-10.851Z-argument-stack-allocations.json",
+  "unitRatio": 1.092438334023103,
+  "drainRatio": 1.1068629083180301,
+  "allocationReductionInActualFixtures": 0,
+  "scope": "Original Unit.update and original __nativeDrain component measurements only, exact complete source event/state outputs versus Node and byte-exact TRACE1 diagnostics. No battle throughput or 10000 BPS qualification. Allocation runs separately instrumented; their elapsed times are not speed evidence. First exploratory cohort may overlap cleanup and is excluded. Runtime implementation uses only safe indexed Vec storage. Current panic contract unchanged."
+}
