@@ -93,9 +93,14 @@
     "nativeBattleGcCadence": 1,
     "nativeLocalBindings": true,
     "nativeParameters": true,
+    "scalarLocalArrays": true,
+    "scalarLocalArraySourceHashes": [
+      "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e"
+    ],
     "functions": [
       {
         "id": 0,
+        "scalarLocalArrays": [],
         "prototypeLiteralHintSource": null,
         "staticEnvironmentKeys": 26,
         "nativeActivationElided": false,
@@ -131,6 +136,7 @@
       },
       {
         "id": 1,
+        "scalarLocalArrays": [],
         "prototypeLiteralHintSource": null,
         "staticEnvironmentKeys": 2,
         "nativeActivationElided": false,
@@ -159,6 +165,7 @@
       },
       {
         "id": 2,
+        "scalarLocalArrays": [],
         "prototypeLiteralHintSource": null,
         "staticEnvironmentKeys": 1,
         "nativeActivationElided": false,
@@ -183,6 +190,7 @@
       },
       {
         "id": 3,
+        "scalarLocalArrays": [],
         "prototypeLiteralHintSource": null,
         "staticEnvironmentKeys": 6,
         "nativeActivationElided": true,
@@ -205,6 +213,7 @@
       },
       {
         "id": 4,
+        "scalarLocalArrays": [],
         "prototypeLiteralHintSource": null,
         "staticEnvironmentKeys": 6,
         "nativeActivationElided": true,
@@ -227,6 +236,7 @@
       },
       {
         "id": 5,
+        "scalarLocalArrays": [],
         "prototypeLiteralHintSource": null,
         "staticEnvironmentKeys": 1,
         "nativeActivationElided": false,
@@ -422,10 +432,10 @@
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
-    "crates/js-runtime/src/copy_obj.rs": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
+    "crates/js-runtime/src/copy_obj.rs": "db5a3b37a2e8613a2bcfd784741ed8a0d2cd3f174ec4e59c9b891031af90a9bb",
     "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
     "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
-    "crates/js-runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "crates/js-runtime/src/diagnostics.rs": "cb8c6b24ee871682f0bf9357e6746d378a997a02a57c722546b367cff6f592c2",
     "crates/js-runtime/src/dynamic_slots.rs": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
     "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
     "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
@@ -444,11 +454,11 @@
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
     "crates/js-runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
-    "crates/js-runtime/src/property_slots.rs": "39794f933ba13991ee4b2118e068d83bdfe057a68dd633c8c7e8bcf6e249ce79",
+    "crates/js-runtime/src/property_slots.rs": "1762dd182b3e8763d5809b03734ce0a581a452305c95aa2e81579734cb57a54e",
     "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
-    "crates/js-runtime/src/runtime.rs": "e0e863aea059c8997dc84c6a071d1c2b8d313352bdc37d7c8bde895dd1626f49",
+    "crates/js-runtime/src/runtime.rs": "f4929cda3d78808607f048eed2cd8b0c3ae2c1f9dedbf717c3ea92775549753f",
     "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
     "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
@@ -477,10 +487,10 @@
     "crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
     "crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
     "crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
-    "tools/rust-port/compile.mjs": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
+    "tools/rust-port/compile.mjs": "d96e8885f1edceeb6b1c03f404118af3716ff6011c2bcb4421b855b60227388e",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
-    "tools/rust-port/expressions.mjs": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c",
-    "tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
+    "tools/rust-port/expressions.mjs": "4c7cc4f4d2aa6ae46e08ea2f7fb278498fcdf4b70e77017a29bdbc113050fa6c",
+    "tools/rust-port/statements.mjs": "72f11756689a8723263690041bdbbc2808f9c55934c7fdbd172f576d2825e57d",
     "tools/rust-port/check-generated-typed-arrays.mjs": "71559d710c8d81b31bf6d828ea90065778a349871c16be8e4af64b0cda68664d",
     "Cargo.toml": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
     "Cargo.lock": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
@@ -534,7 +544,7 @@
       "--offline"
     ]
   },
-  "binarySha256": "1f536e775bd434e872ab33bcb468cfef8b3d66353186e4654ab9d6b6fdf2bb44",
+  "binarySha256": "b82923bc170a0b9bd3594b9101765c31ff51878f921d11b63d40985aeacebbac",
   "artifacts": [
     {
       "file": "benchmarks/validation/generated-rust-typed-arrays.input.gz",
@@ -573,8 +583,8 @@
     },
     {
       "file": "benchmarks/validation/generated-rust-typed-arrays.manifest.gz",
-      "sha256": "b7c06fa46ee8d0cc4fb0c95728f2c131927634d770ab1be8a4abbeb42a43dda7",
-      "uncompressedSha256": "9059ffb38c3c8b1dda20e8a21c3db7a3a1baaadcd5c7bd8756918e5b02b68f14"
+      "sha256": "d12f231eac53a004ecaf029ccfe5fdcc63a4d1dd7dcdf0f946bb34dca9cfc111",
+      "uncompressedSha256": "8c1a30b5de3cc011872c60827206a1c939c298e3ef774ccf42428d2e5cd7ca72"
     }
   ],
   "scope": "Actual copied oracle __nativeBits helper and source-generated typed-array fixtures compiled through Babel into Rust without a JS execution backend. Compares shared byte snapshots, exact hexadecimal float bits, canonical numeric indexed writes/definitions, coercion and exception prefixes, overlapping set, subarray aliases, slice copies, and typed-array construction. This is a binary-data component gate, not whole-battle or unrestricted JS qualification.",

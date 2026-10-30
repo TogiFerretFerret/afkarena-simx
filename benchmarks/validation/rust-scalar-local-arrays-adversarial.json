@@ -1,5 +1,9 @@
 {
   "passed": true,
+  "optionDisableProofs": {
+    "nativeLocalBindings": true,
+    "sourceSpecializations": true
+  },
   "cases": 21,
   "pairedTraceObservations": 42,
   "nativeExecutions": 84,
@@ -35,7 +39,7 @@
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
-    "crates/js-runtime/src/copy_obj.rs": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
+    "crates/js-runtime/src/copy_obj.rs": "db5a3b37a2e8613a2bcfd784741ed8a0d2cd3f174ec4e59c9b891031af90a9bb",
     "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
     "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
     "crates/js-runtime/src/diagnostics.rs": "cb8c6b24ee871682f0bf9357e6746d378a997a02a57c722546b367cff6f592c2",
@@ -262,11 +266,11 @@
     "third-party/ryu-js/tests/s2f_test.rs": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
     "third-party/ryu-js/tests/to_fixed.rs": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
     "tools/rust-port/compile.mjs": "d96e8885f1edceeb6b1c03f404118af3716ff6011c2bcb4421b855b60227388e",
-    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/tools/rust-port/expressions.mjs": "4c7cc4f4d2aa6ae46e08ea2f7fb278498fcdf4b70e77017a29bdbc113050fa6c",
-    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/tools/rust-port/statements.mjs": "72f11756689a8723263690041bdbbc2808f9c55934c7fdbd172f576d2825e57d",
-    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
-    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/tools/rust-port/scalar-arrays.mjs": "a8d4ca3012f1896776f473adbf4a50f801059203fcf4f366ac726e228440d1f4",
-    "tools/rust-port/check-scalar-local-arrays-adversarial.mjs": "d32763972590c58561968d2c2458a510a2f6a4b15b4a7405b3635c19d043146a",
+    "/workspace/afkarena-simx/tools/rust-port/expressions.mjs": "4c7cc4f4d2aa6ae46e08ea2f7fb278498fcdf4b70e77017a29bdbc113050fa6c",
+    "/workspace/afkarena-simx/tools/rust-port/statements.mjs": "72f11756689a8723263690041bdbbc2808f9c55934c7fdbd172f576d2825e57d",
+    "/workspace/afkarena-simx/tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "/workspace/afkarena-simx/tools/rust-port/scalar-arrays.mjs": "a8d4ca3012f1896776f473adbf4a50f801059203fcf4f366ac726e228440d1f4",
+    "tools/rust-port/check-scalar-local-arrays-adversarial.mjs": "ace8f50b1771315cdeee401937e4638d306a3d80f228e284b9e874fb3bc100d9",
     "tools/rust-port/scalar-local-array-adversarial-fixtures.mjs": "f4fe3024bbc69e3596be5ee89e41459e0b9d30c0b2d97557d88bfb29a5550882",
     "config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
@@ -274,16 +278,16 @@
     "/workspace/afkarena-simx/src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
   },
   "runtime": {
-    "file": "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/libjs_runtime.rlib",
-    "sha256": "43f255b7e2c7d1024412bb052e6368f48cb10e5076d2cb1ec4cd22610aeb43fa",
-    "deps": "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/deps"
+    "file": "/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "sha256": "99911b8376015e9295f671db48cd9f46307f7c788a00928951e1fcb11d75d143",
+    "deps": "/workspace/afkarena-simx/target/release/deps"
   },
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/scalar-local-arrays-adversarial/check",
-    "sha256": "6b4518e318967b89bfc41a2e7e8dcd44d84c21cdba41f25e4d14e8a1c603b159"
+    "file": "/workspace/afkarena-simx/work/scalar-local-arrays-adversarial/check",
+    "sha256": "df0cfb6716ac5096d182376f03d69c24f170169ed1e31e7622935b8e313c396d"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
@@ -294,17 +298,17 @@
     "codegen-units=64",
     "-C",
     "lto=off",
-    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/scalar-local-arrays-adversarial/main.rs",
+    "/workspace/afkarena-simx/work/scalar-local-arrays-adversarial/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/deps",
+    "dependency=/workspace/afkarena-simx/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/scalar-local-arrays-adversarial/check"
+    "/workspace/afkarena-simx/work/scalar-local-arrays-adversarial/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-scalar-local-arrays-adversarial.outputs.json.gz",
-    "sha256": "738c53bd3f2526c946e1157019bc535094ac5933d92b3952de7b77ab7e04e0e8"
+    "sha256": "1bb5ec11cbce918a12807431d866adc950a230f8c2f80cbdde22abb68605d17b"
   },
   "qualifiesFor10000Target": false,
   "scope": "ON/OFF compiler scalar replacement; original source Node values/raw Number bits and exact paired native TRACE0/TRACE1 diagnostics, including receiver IDs/source-frame errors. Synthetic allowlist is test-only; production default remains exact Unit.update pin. Diagnostics mode is fixed by the production host for the call; arbitrary private Rust flag mutations during source execution are not qualified."

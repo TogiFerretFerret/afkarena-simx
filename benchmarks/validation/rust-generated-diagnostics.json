@@ -4,7 +4,7 @@
   "source": "function(){var calls=0,key={toString:function(){calls++;return \"missing\";}},object={};try{object[key]();}catch(error){return calls;}return -1;}",
   "sourceSha256": "c748f2476e45a0ea54412f4dfc394b4ae62790235e39075aa3a9410a1c9de03a",
   "generatedRustSha256": "d81ec84ad62d130593ba345bed13bd2003099906c373256b7eb9abc51f50c59d",
-  "binarySha256": "6f6171323b9cb8354a96bf922ff70a508d27d0b35009680b754eacaf08b9193c",
+  "binarySha256": "3037dea1273c81536e4f00987f29612f2d9615a9a723b69420f0c8b526c6b2b7",
   "sources": {
     "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
     "crates/js-runtime/examples/copy_capacity_alloc.rs": "5371fb0dc75507c4e452b1c8f3a7df9424f2ff4edc66a9bf901b199813bc06e3",
@@ -19,10 +19,10 @@
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
-    "crates/js-runtime/src/copy_obj.rs": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
+    "crates/js-runtime/src/copy_obj.rs": "db5a3b37a2e8613a2bcfd784741ed8a0d2cd3f174ec4e59c9b891031af90a9bb",
     "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
     "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
-    "crates/js-runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "crates/js-runtime/src/diagnostics.rs": "cb8c6b24ee871682f0bf9357e6746d378a997a02a57c722546b367cff6f592c2",
     "crates/js-runtime/src/dynamic_slots.rs": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
     "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
     "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
@@ -41,11 +41,11 @@
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
     "crates/js-runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
-    "crates/js-runtime/src/property_slots.rs": "39794f933ba13991ee4b2118e068d83bdfe057a68dd633c8c7e8bcf6e249ce79",
+    "crates/js-runtime/src/property_slots.rs": "1762dd182b3e8763d5809b03734ce0a581a452305c95aa2e81579734cb57a54e",
     "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
-    "crates/js-runtime/src/runtime.rs": "e0e863aea059c8997dc84c6a071d1c2b8d313352bdc37d7c8bde895dd1626f49",
+    "crates/js-runtime/src/runtime.rs": "f4929cda3d78808607f048eed2cd8b0c3ae2c1f9dedbf717c3ea92775549753f",
     "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
     "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
@@ -244,10 +244,10 @@
     "third-party/ryu-js/tests/s2f_test.rs": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
     "third-party/ryu-js/tests/to_fixed.rs": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
     "tools/rust-port/check-diagnostics.mjs": "39684df06d4cb101fc6d4cd44bee9ebb534c5156f0d0e507139a62ca57411055",
-    "tools/rust-port/compile.mjs": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
+    "tools/rust-port/compile.mjs": "d96e8885f1edceeb6b1c03f404118af3716ff6011c2bcb4421b855b60227388e",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
-    "tools/rust-port/expressions.mjs": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c",
-    "tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
+    "tools/rust-port/expressions.mjs": "4c7cc4f4d2aa6ae46e08ea2f7fb278498fcdf4b70e77017a29bdbc113050fa6c",
+    "tools/rust-port/statements.mjs": "72f11756689a8723263690041bdbbc2808f9c55934c7fdbd172f576d2825e57d",
     "Cargo.toml": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
     "Cargo.lock": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
@@ -277,7 +277,7 @@
   "sourceFrameCapturedBeforeUnwind": true,
   "archive": {
     "file": "benchmarks/validation/rust-generated-diagnostics.outputs.json.gz",
-    "sha256": "823e9b6587e70c65aca94139f1382871fac3d3dbba279970e7be2c22949c0d83"
+    "sha256": "2c71d97a3728cf195155f33516be7f381d8651f0178c2b9ae6fd30fbd9093e40"
   },
   "scope": "An ordinary generated-source missing-method fixture performs exactly one observable key coercion with tracing off and on, returns the same source f64 bits, and records the raw object key plus source frame before TypeError unwinding. This is diagnostic observer coverage, not a battle semantic or throughput gate.",
   "qualifiesFor10000Target": false

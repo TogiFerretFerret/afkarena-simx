@@ -105,9 +105,9 @@
     }
   ],
   "compilerInputs": {
-    "tools/rust-port/expressions.mjs": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c",
-    "tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
-    "tools/rust-port/compile.mjs": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
+    "tools/rust-port/expressions.mjs": "4c7cc4f4d2aa6ae46e08ea2f7fb278498fcdf4b70e77017a29bdbc113050fa6c",
+    "tools/rust-port/statements.mjs": "72f11756689a8723263690041bdbbc2808f9c55934c7fdbd172f576d2825e57d",
+    "tools/rust-port/compile.mjs": "d96e8885f1edceeb6b1c03f404118af3716ff6011c2bcb4421b855b60227388e",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
     "tools/rust-port/check-shared-utf16.mjs": "0285d06e750964ee2a250761fd3623c77cc531e3100b7af34986616fb576c5a8",
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
@@ -119,10 +119,10 @@
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
-    "crates/js-runtime/src/copy_obj.rs": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
+    "crates/js-runtime/src/copy_obj.rs": "db5a3b37a2e8613a2bcfd784741ed8a0d2cd3f174ec4e59c9b891031af90a9bb",
     "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
     "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
-    "crates/js-runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "crates/js-runtime/src/diagnostics.rs": "cb8c6b24ee871682f0bf9357e6746d378a997a02a57c722546b367cff6f592c2",
     "crates/js-runtime/src/dynamic_slots.rs": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
     "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
     "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
@@ -141,11 +141,11 @@
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
     "crates/js-runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
-    "crates/js-runtime/src/property_slots.rs": "39794f933ba13991ee4b2118e068d83bdfe057a68dd633c8c7e8bcf6e249ce79",
+    "crates/js-runtime/src/property_slots.rs": "1762dd182b3e8763d5809b03734ce0a581a452305c95aa2e81579734cb57a54e",
     "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
-    "crates/js-runtime/src/runtime.rs": "e0e863aea059c8997dc84c6a071d1c2b8d313352bdc37d7c8bde895dd1626f49",
+    "crates/js-runtime/src/runtime.rs": "f4929cda3d78808607f048eed2cd8b0c3ae2c1f9dedbf717c3ea92775549753f",
     "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
     "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
@@ -159,7 +159,7 @@
   },
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/shared-utf16-tests",
-    "sha256": "f0936ad613bba3b6d96abfc0c0781ccebffffbe10874d7722f48f0f8ffbd48ef"
+    "sha256": "54373738dd31b1c0fd183679df15df62db75fd1ffdbfe0e2c4dc5858e5f44167"
   },
   "buildArgs": [
     "build",
