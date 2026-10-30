@@ -12,7 +12,7 @@
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
-    "crates/js-runtime/src/copy_obj.rs": "db5a3b37a2e8613a2bcfd784741ed8a0d2cd3f174ec4e59c9b891031af90a9bb",
+    "crates/js-runtime/src/copy_obj.rs": "7a1d4be33030d8ef3f6ae1e94c96a063df914864cb9949190e1381ba2cccd8c1",
     "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
     "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
     "crates/js-runtime/src/diagnostics.rs": "cb8c6b24ee871682f0bf9357e6746d378a997a02a57c722546b367cff6f592c2",
@@ -38,7 +38,7 @@
     "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
-    "crates/js-runtime/src/runtime.rs": "f4929cda3d78808607f048eed2cd8b0c3ae2c1f9dedbf717c3ea92775549753f",
+    "crates/js-runtime/src/runtime.rs": "f6252b7491affda7811d049dd1d152a0f581af9f831e2191051365a1d0055f38",
     "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
     "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
@@ -46,7 +46,7 @@
     "crates/js-runtime/src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
     "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
     "crates/js-runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
-    "tools/rust-port/compile.mjs": "d96e8885f1edceeb6b1c03f404118af3716ff6011c2bcb4421b855b60227388e",
+    "tools/rust-port/compile.mjs": "264913d164bb2dccfd0101a39563206c3021ab147b3359af0e22cc05ea72674f",
     "tools/rust-port/statements.mjs": "72f11756689a8723263690041bdbbc2808f9c55934c7fdbd172f576d2825e57d",
     "tools/rust-port/expressions.mjs": "4c7cc4f4d2aa6ae46e08ea2f7fb278498fcdf4b70e77017a29bdbc113050fa6c",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
@@ -56,7 +56,7 @@
   "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
   "binary": {
     "file": "/workspace/afkarena-simx/target/release/buff-percent-loop-gate",
-    "sha256": "06e4e4b483a033db8966038145afd58a1a658a0fc1e6736e4e7d3ea599d42427"
+    "sha256": "73e285e8e91fdc0e0d411ea0644f4f7029e5c2c516edff78c4c85d59baebc540"
   },
   "artifacts": [
     {
@@ -76,8 +76,8 @@
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.compile.gz",
-      "sha256": "b70b4674368cfe4b628921d5b61a86c6bcd6044a3cb6bc8787159f22b3e76874",
-      "uncompressedSha256": "eb591cdb0e20e785290e03748793b8e1a7082cd7465125563885dcf5799328cf"
+      "sha256": "6e818891560c156290fa29d33406f7094e3b1897ba82f8cadee6a4de27555d81",
+      "uncompressedSha256": "0eda1a6014409aff06120bc67a71decc584183e37314b151b86fb4805f787d27"
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.stdout.gz",

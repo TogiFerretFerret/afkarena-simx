@@ -72,7 +72,7 @@
     },
     {
       "file": "crates/js-runtime/src/copy_obj.rs",
-      "sha256": "db5a3b37a2e8613a2bcfd784741ed8a0d2cd3f174ec4e59c9b891031af90a9bb",
+      "sha256": "7a1d4be33030d8ef3f6ae1e94c96a063df914864cb9949190e1381ba2cccd8c1",
       "matched": true
     },
     {
@@ -202,7 +202,7 @@
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "f4929cda3d78808607f048eed2cd8b0c3ae2c1f9dedbf717c3ea92775549753f",
+      "sha256": "f6252b7491affda7811d049dd1d152a0f581af9f831e2191051365a1d0055f38",
       "matched": true
     },
     {
@@ -1207,7 +1207,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "d96e8885f1edceeb6b1c03f404118af3716ff6011c2bcb4421b855b60227388e",
+      "sha256": "264913d164bb2dccfd0101a39563206c3021ab147b3359af0e22cc05ea72674f",
       "matched": true
     },
     {
@@ -1254,10 +1254,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "34777a029b4be22a43c279673274137491c741cd506295b88a5288ef3fd8a432",
+  "generatedRustSha256": "1d0bf3fedeb85b2187cd39298d9f75c3523514be957b1438e1a81987a6cc3c4c",
   "binary": {
     "file": "/workspace/afkarena-simx/work/rust-port-copy-obj-specialization/check",
-    "sha256": "cd1381b449d553ae7059f135af39276c5e536d3ee2ce869f35049dfdbbe1bb18"
+    "sha256": "04130eb7f8009fa95ec80e90df9228fedf06eeb7c46b422d714c43d742112a65"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
