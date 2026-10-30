@@ -1,0 +1,341 @@
+{
+  "passed": true,
+  "variants": {
+    "limit2": {
+      "passed": true,
+      "libraryTests": 120,
+      "integrationTests": 26,
+      "totalTests": 146,
+      "logs": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-native-limit2-library.log.gz",
+          "sha256": "d2a1db40eedb7db45898bfdc17682aa336f9e25774d9cd967a3d7031aef1d40f",
+          "uncompressedSha256": "2045f0e20e4a376649d4f82b7b7b33e7633769bbcf85a0d4aed2797194d05822",
+          "summaries": [
+            {
+              "passed": 120,
+              "failed": 0
+            }
+          ]
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-native-limit2-integration.log.gz",
+          "sha256": "15195da8df27d404ed2bbbda655b2ea040e08666e3cfc3346d5ba69a4651a3ff",
+          "uncompressedSha256": "e8e531223bd0add15bf230eed997c6b90e14589115088a1605aba47f5302ec3e",
+          "summaries": [
+            {
+              "passed": 3,
+              "failed": 0
+            },
+            {
+              "passed": 2,
+              "failed": 0
+            },
+            {
+              "passed": 8,
+              "failed": 0
+            },
+            {
+              "passed": 4,
+              "failed": 0
+            },
+            {
+              "passed": 4,
+              "failed": 0
+            },
+            {
+              "passed": 5,
+              "failed": 0
+            }
+          ]
+        }
+      ],
+      "executables": {
+        "work/lazy-small-index/native-target/debug/deps/js_runtime-cad0031a05c36a7c": "e6d96fcd976a0812e4c30ae33d3a7615900dcf517be735fb45b5af391981eef9",
+        "work/lazy-small-index/native-target/debug/deps/fast_length-c113a82ce65f91ac": "cb4e73704df02091dc34df8dff1ac68c2b41c7528e341b6d23366b72ce433b03",
+        "work/lazy-small-index/native-target/debug/deps/numeric_property_keys-7b000d0e2a464e49": "46cea20886cc94b3ee4cf2965e107aca157384c7aac540ae2bb40cf2fccfae8d",
+        "work/lazy-small-index/native-target/debug/deps/ordinary_heap-e388d26acfd324d2": "0e832bdc1feccbe51221cb1bf9e73bf772a90442bd7c317686da8f2da0dc8525",
+        "work/lazy-small-index/native-target/debug/deps/ordinary_set-8e38800636ea75ab": "f14c91581642d988bd0173719cb4bdb1249261c7784fb2c73491defb56db1fbd",
+        "work/lazy-small-index/native-target/debug/deps/property_slots-421d0764beaf7553": "8d345b96a5a81e3488f23f7b2cbfeb8ef443208bbbb9806b502b0175fe840df4",
+        "work/lazy-small-index/native-target/debug/deps/regexp_heap-77536bbb58ecc985": "a18e0ed59b1003722716d6e3147f44c8e6a3855651ae0d0d6dd33e8b3e704a52"
+      },
+      "snapshot": {
+        "app": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/app",
+        "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime",
+        "sourceInputs": {
+          "Cargo.toml": "2d1f730908b6731d4a4472dcda97721e3a1dd33913d6140f9c937d3d288526dd",
+          "examples/copy_capacity_alloc.rs": "5371fb0dc75507c4e452b1c8f3a7df9424f2ff4edc66a9bf901b199813bc06e3",
+          "examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+          "examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+          "src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+          "src/battle_gc.rs": "0383853630f0bbcdaef99d8f3eeb68440bd44134756441312b63e49b1d4eaab1",
+          "src/battle_mode_engine_getter_source.js": "93ba986430208c8a8258a1ec7345d52d877345ddada92b898f2b39d7baa6cca9",
+          "src/battle_mode_get_id_source.js": "f2e0d46920cd082b7cc953962ff4af2c57c95c9ff024ec16b657d3a604e70514",
+          "src/battle_mode_get_table_source.js": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5",
+          "src/battle_mode_limit.rs": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
+          "src/battle_mode_parser_source.js": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+          "src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
+          "src/buff_attribute_loop.rs": "40be1c015b67be41244e04a9659268df5d897473a303166727fbfdae6cd189b4",
+          "src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+          "src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+          "src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
+          "src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+          "src/copy_obj.rs": "6a39d3e282f90f84a09f2e611ea9f222bdddc8a2b5df048cd7839eaeb8cf0ec5",
+          "src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+          "src/dense_array_shift.rs": "b6a3d295c05ab6e4c9758a36200d914d29d4203a75e87689a0cf14642e19c7de",
+          "src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+          "src/dynamic_slots.rs": "3c60f6d321ea16064ca0c9f704ec46f9bd9eb3eba7f718ef21df5b81ee15bc4d",
+          "src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+          "src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+          "src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
+          "src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+          "src/heap.rs": "cae9b0f37248c3f62be561c7bbab73dc7cdf9596fbf2f8bfcb5c22f8ad0d2de8",
+          "src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+          "src/id_hash.rs": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
+          "src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+          "src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+          "src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+          "src/lazy_arguments.rs": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
+          "src/lib.rs": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
+          "src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+          "src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+          "src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+          "src/native_expose.js": "9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911",
+          "src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+          "src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+          "src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+          "src/property_slots.rs": "99abd36cbef2805dc80e20d0b1c46f7cd9f4e72676778cf36c29723d2c1c6ca2",
+          "src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
+          "src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+          "src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+          "src/runtime.rs": "5896290712785bc0854ad6b322256c858fdd4a769f5d45c7b8a9e99d43035ae5",
+          "src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+          "src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
+          "src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+          "src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+          "src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
+          "src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+          "src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+          "tests/fast_length.rs": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+          "tests/numeric_property_keys.rs": "7d729c37f9b4c77b67a98ab7e5dc9cc8260c8d9769d5c61880c2618df13adb21",
+          "tests/ordinary_heap.rs": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+          "tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
+          "tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+          "tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2"
+        },
+        "binaries": {
+          "timing": {
+            "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2-timing",
+            "sha256": "74ddd16b0fa0f73f97c119360b5a4cc56b01ebc9c214664c24cb90a631f9de95",
+            "allocationInstrumented": false,
+            "command": [
+              "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+              "build",
+              "--release",
+              "--offline",
+              "-j",
+              "1",
+              "--manifest-path",
+              "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/app/Cargo.toml"
+            ]
+          },
+          "allocation": {
+            "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2-alloc",
+            "sha256": "bf6319d02ade2552b3359613d792cbb15433187fa0a49dda969a8c991ca19410",
+            "allocationInstrumented": true,
+            "command": [
+              "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+              "build",
+              "--release",
+              "--offline",
+              "-j",
+              "1",
+              "--manifest-path",
+              "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/app/Cargo.toml",
+              "--features",
+              "allocation-count"
+            ]
+          }
+        }
+      }
+    },
+    "limit4": {
+      "passed": true,
+      "libraryTests": 120,
+      "integrationTests": 26,
+      "totalTests": 146,
+      "logs": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-native-limit4-all.log.gz",
+          "sha256": "2f3d7a2df924a19fae22e38fb6381dbfa79287ac2ab1006d3212115df1c7421f",
+          "uncompressedSha256": "53cec6035114017d7aa9a07c9fb0f3d5a113a9c4f863d19f57703c229937a65b",
+          "summaries": [
+            {
+              "passed": 120,
+              "failed": 0
+            },
+            {
+              "passed": 3,
+              "failed": 0
+            },
+            {
+              "passed": 2,
+              "failed": 0
+            },
+            {
+              "passed": 8,
+              "failed": 0
+            },
+            {
+              "passed": 4,
+              "failed": 0
+            },
+            {
+              "passed": 4,
+              "failed": 0
+            },
+            {
+              "passed": 5,
+              "failed": 0
+            },
+            {
+              "passed": 0,
+              "failed": 0
+            }
+          ]
+        }
+      ],
+      "executables": {
+        "work/lazy-small-index/native-target/debug/deps/js_runtime-cad0031a05c36a7c": "e6d96fcd976a0812e4c30ae33d3a7615900dcf517be735fb45b5af391981eef9",
+        "work/lazy-small-index/native-target/debug/deps/fast_length-c113a82ce65f91ac": "cb4e73704df02091dc34df8dff1ac68c2b41c7528e341b6d23366b72ce433b03",
+        "work/lazy-small-index/native-target/debug/deps/numeric_property_keys-7b000d0e2a464e49": "46cea20886cc94b3ee4cf2965e107aca157384c7aac540ae2bb40cf2fccfae8d",
+        "work/lazy-small-index/native-target/debug/deps/ordinary_heap-e388d26acfd324d2": "0e832bdc1feccbe51221cb1bf9e73bf772a90442bd7c317686da8f2da0dc8525",
+        "work/lazy-small-index/native-target/debug/deps/ordinary_set-8e38800636ea75ab": "f14c91581642d988bd0173719cb4bdb1249261c7784fb2c73491defb56db1fbd",
+        "work/lazy-small-index/native-target/debug/deps/property_slots-421d0764beaf7553": "8d345b96a5a81e3488f23f7b2cbfeb8ef443208bbbb9806b502b0175fe840df4",
+        "work/lazy-small-index/native-target/debug/deps/regexp_heap-77536bbb58ecc985": "a18e0ed59b1003722716d6e3147f44c8e6a3855651ae0d0d6dd33e8b3e704a52"
+      },
+      "snapshot": {
+        "app": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/app",
+        "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime",
+        "sourceInputs": {
+          "Cargo.toml": "2d1f730908b6731d4a4472dcda97721e3a1dd33913d6140f9c937d3d288526dd",
+          "examples/copy_capacity_alloc.rs": "5371fb0dc75507c4e452b1c8f3a7df9424f2ff4edc66a9bf901b199813bc06e3",
+          "examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+          "examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+          "src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+          "src/battle_gc.rs": "0383853630f0bbcdaef99d8f3eeb68440bd44134756441312b63e49b1d4eaab1",
+          "src/battle_mode_engine_getter_source.js": "93ba986430208c8a8258a1ec7345d52d877345ddada92b898f2b39d7baa6cca9",
+          "src/battle_mode_get_id_source.js": "f2e0d46920cd082b7cc953962ff4af2c57c95c9ff024ec16b657d3a604e70514",
+          "src/battle_mode_get_table_source.js": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5",
+          "src/battle_mode_limit.rs": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
+          "src/battle_mode_parser_source.js": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+          "src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
+          "src/buff_attribute_loop.rs": "40be1c015b67be41244e04a9659268df5d897473a303166727fbfdae6cd189b4",
+          "src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+          "src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+          "src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
+          "src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+          "src/copy_obj.rs": "6a39d3e282f90f84a09f2e611ea9f222bdddc8a2b5df048cd7839eaeb8cf0ec5",
+          "src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+          "src/dense_array_shift.rs": "b6a3d295c05ab6e4c9758a36200d914d29d4203a75e87689a0cf14642e19c7de",
+          "src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+          "src/dynamic_slots.rs": "3c60f6d321ea16064ca0c9f704ec46f9bd9eb3eba7f718ef21df5b81ee15bc4d",
+          "src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+          "src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+          "src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
+          "src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+          "src/heap.rs": "e3e7ab4208d7521cf72e365cdd33c17b74cb89905cad69cb3c1928c2a24b3db2",
+          "src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+          "src/id_hash.rs": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
+          "src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+          "src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+          "src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+          "src/lazy_arguments.rs": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
+          "src/lib.rs": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
+          "src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+          "src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+          "src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+          "src/native_expose.js": "9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911",
+          "src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+          "src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+          "src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+          "src/property_slots.rs": "99abd36cbef2805dc80e20d0b1c46f7cd9f4e72676778cf36c29723d2c1c6ca2",
+          "src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
+          "src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+          "src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+          "src/runtime.rs": "5896290712785bc0854ad6b322256c858fdd4a769f5d45c7b8a9e99d43035ae5",
+          "src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+          "src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
+          "src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+          "src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+          "src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
+          "src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+          "src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+          "tests/fast_length.rs": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+          "tests/numeric_property_keys.rs": "7d729c37f9b4c77b67a98ab7e5dc9cc8260c8d9769d5c61880c2618df13adb21",
+          "tests/ordinary_heap.rs": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+          "tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
+          "tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+          "tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2"
+        },
+        "binaries": {
+          "timing": {
+            "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4-timing",
+            "sha256": "c3c5122b9f56c8f3b5537ed7647409bb0f5e603c028f5d2458004ab925dcbf97",
+            "allocationInstrumented": false,
+            "command": [
+              "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+              "build",
+              "--release",
+              "--offline",
+              "-j",
+              "1",
+              "--manifest-path",
+              "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/app/Cargo.toml"
+            ]
+          },
+          "allocation": {
+            "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4-alloc",
+            "sha256": "9b1d8c2b72c6fd1c16b5ef64e1dc601d2202ee567cece41c159e16fe7c107de0",
+            "allocationInstrumented": true,
+            "command": [
+              "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+              "build",
+              "--release",
+              "--offline",
+              "-j",
+              "1",
+              "--manifest-path",
+              "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/app/Cargo.toml",
+              "--features",
+              "allocation-count"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "runtimeSnapshots": {
+    "file": "benchmarks/validation/lazy-small-index-runtime-snapshots.json.gz",
+    "sha256": "557757937c43a8336fb4243096153e23da761b146d4a749d2e5618a6d6095fe2"
+  },
+  "commands": {
+    "limit2": [
+      "cargo test -j 1 --manifest-path work/lazy-small-index/limit2/runtime/Cargo.toml --lib",
+      "cargo test -j 1 --manifest-path work/lazy-small-index/limit2/runtime/Cargo.toml --test fast_length --test numeric_property_keys --test ordinary_heap --test ordinary_set --test property_slots --test regexp_heap"
+    ],
+    "limit4": [
+      "cargo test -j 1 --manifest-path work/lazy-small-index/limit4/runtime/Cargo.toml"
+    ]
+  },
+  "environment": {
+    "CARGO_PROFILE_TEST_DEBUG": "0",
+    "CARGO_PROFILE_DEV_DEBUG": "0"
+  },
+  "layout": {
+    "objectBytes": 160,
+    "storedPropertyBytes": 24
+  },
+  "rawBitsAndDescriptorsAndMappedBindingsAndGcReuseCovered": true,
+  "qualifiesFor10000Target": false
+}

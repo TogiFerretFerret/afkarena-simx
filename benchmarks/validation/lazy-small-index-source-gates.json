@@ -1,0 +1,474 @@
+{
+  "passed": true,
+  "variants": [
+    "limit2",
+    "limit4"
+  ],
+  "checks": [
+    "property-slots",
+    "dynamic-slots",
+    "copy-obj-specialization",
+    "dense-array-shift",
+    "arguments-elision"
+  ],
+  "rows": [
+    {
+      "variant": "limit2",
+      "check": "property-slots",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit2-property-slots.json",
+        "sha256": "31325fc8dcdab2f5c485d92447e01768e8e33a2939ed14151c089e86845aa1d5"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-property-slots.mjs",
+        "sha256": "6efc9b13811bd959ac5e8ac1bb6e874fd1a4274425987705796d31baa892d2d0"
+      },
+      "derivedCheckerSha256": "f9f4fa174e992bab56dba889498b8d5dd63ce007ed19c132f39018f96a6a7769",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-bd6b38b1e79a7efb.rlib",
+        "sha256": "20f673f091b2f3e1d784a14119f5b3c82100a1f634077ad26d2bc30bd06511a9"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-property-slots.driver.source.gz",
+          "sha256": "e9965e6663b5826aab0efa88249f6ea75a386de82ae5cc62c5641b77e59a4c88",
+          "uncompressedSha256": "f9f4fa174e992bab56dba889498b8d5dd63ce007ed19c132f39018f96a6a7769"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-property-slots.driver.log.gz",
+          "sha256": "4078e799a15743f7042853fc5506addfb3ae950f76628026ea7cab4d007e5655",
+          "uncompressedSha256": "c49740cf65f74e93b1fb84f20f9814777410a74ebe30762a56fab6dc088cd1aa"
+        }
+      ]
+    },
+    {
+      "variant": "limit2",
+      "check": "dynamic-slots",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit2-dynamic-slots.json",
+        "sha256": "4c632ce41769c6c5dc955e7f4d3278a749640cc5a6d696c705f8f710b79b4d79"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-dynamic-slots.mjs",
+        "sha256": "ffa258469370cf9ac948dbd9fe328aa5141e841d051d6752812b10fa26cb111d"
+      },
+      "derivedCheckerSha256": "341bbec4b2187ecc63ce278a776a5f79a8e5a69d39ed41ba161f37ccd10c537f",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-bd6b38b1e79a7efb.rlib",
+        "sha256": "20f673f091b2f3e1d784a14119f5b3c82100a1f634077ad26d2bc30bd06511a9"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-dynamic-slots.driver.source.gz",
+          "sha256": "181a1e562443378659b7f1a2a16127cf75870fd499518be503bd8c0e8eef7330",
+          "uncompressedSha256": "341bbec4b2187ecc63ce278a776a5f79a8e5a69d39ed41ba161f37ccd10c537f"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-dynamic-slots.driver.log.gz",
+          "sha256": "576143789c8ad86e26bf593ed3cf7736431c447d85d5e8f9d4a2b57964b70c01",
+          "uncompressedSha256": "8fff4ff8d10969cebe00f57e46466db858b44f48863ff3094d7e79277534edb8"
+        }
+      ]
+    },
+    {
+      "variant": "limit2",
+      "check": "copy-obj-specialization",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit2-copy-obj-specialization.json",
+        "sha256": "2e5cda6560bb4f66bf6a01a83ef4176d310e36f5de98c056401cd2e736583583"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-copy-obj-specialization.mjs",
+        "sha256": "e813b51fe3b9bf736671facdee72b07d7d9eeaf4713f64d5bc5c27086f1c9c0e"
+      },
+      "derivedCheckerSha256": "e938b45793e93380d8665d2c153522195831a6c5733f06aea53235fa0405492a",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-bd6b38b1e79a7efb.rlib",
+        "sha256": "20f673f091b2f3e1d784a14119f5b3c82100a1f634077ad26d2bc30bd06511a9"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-copy-obj-specialization.driver.source.gz",
+          "sha256": "10067570c48865424cf71b56d79fa3a6c6488fcd00dff1488e29a1294f73dfee",
+          "uncompressedSha256": "e938b45793e93380d8665d2c153522195831a6c5733f06aea53235fa0405492a"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-copy-obj-specialization.driver.log.gz",
+          "sha256": "82d7442d7cb53401fa46d42f8418751784afd38b6c0757f1caf6bc10eb28dad2",
+          "uncompressedSha256": "9f3f061fcfec8f29ac92f47b99926c30e37bc8ffdbea5ee0df910a28cec80a92"
+        }
+      ]
+    },
+    {
+      "variant": "limit2",
+      "check": "dense-array-shift",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit2-dense-array-shift.json",
+        "sha256": "82b96eb4653c27e18f6238028d5e6a1aba27989ce1ecb9b534d026b5bd8a9697"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-dense-array-shift.mjs",
+        "sha256": "a5868c2d083001c9d7d820ea6d6b0b15f40b1c4e48e5b02a10e076e222745d1a"
+      },
+      "derivedCheckerSha256": "f86a523b2339c2f73b8a35080656998c36fb7dd06e4cdb46560115bbf112ac2f",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-bd6b38b1e79a7efb.rlib",
+        "sha256": "20f673f091b2f3e1d784a14119f5b3c82100a1f634077ad26d2bc30bd06511a9"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-dense-array-shift.driver.source.gz",
+          "sha256": "d49f006770ac89359c605438cf615335774000fad2612cb9273cc9a1d63ad2ad",
+          "uncompressedSha256": "f86a523b2339c2f73b8a35080656998c36fb7dd06e4cdb46560115bbf112ac2f"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-dense-array-shift.driver.log.gz",
+          "sha256": "5ef3ac2f24adee4ebacdc1ddb5d80d4f2858bf92282e205676fbe5c70e27122a",
+          "uncompressedSha256": "e3a0350ac83a43dce54a4b310062beca41adce1e04c1a995c0b1e571e6c685f3"
+        }
+      ]
+    },
+    {
+      "variant": "limit2",
+      "check": "arguments-elision",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit2-arguments-elision.json",
+        "sha256": "662ea8fbf082b412723222ef58feaeef225a994ba85a41ecbd8ed5f2ad59711e"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-arguments-elision.mjs",
+        "sha256": "a13c9db4d61a1bf212a11c991224e3adf2df94bfb25ad583171eaa42d05f18ad"
+      },
+      "derivedCheckerSha256": "df7775b4ae3b6a23714919c0c8560d95d946d68f97cad36d2497a4e76f60c759",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-bd6b38b1e79a7efb.rlib",
+        "sha256": "20f673f091b2f3e1d784a14119f5b3c82100a1f634077ad26d2bc30bd06511a9"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-arguments-elision.driver.source.gz",
+          "sha256": "d2bab1d8c97e19c0d6812f1aefa14443d71cabdfc411f47fe05e05cca5f691db",
+          "uncompressedSha256": "df7775b4ae3b6a23714919c0c8560d95d946d68f97cad36d2497a4e76f60c759"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit2-arguments-elision.driver.log.gz",
+          "sha256": "0ba6e43ee81b51d52ed9cbb45658f214f5fe81246a7a43fe3a4d410438b640da",
+          "uncompressedSha256": "9b2aa2a57c33eac955e4d9153196b81c0198760a47a262479f59b2f683228f52"
+        }
+      ]
+    },
+    {
+      "variant": "limit4",
+      "check": "property-slots",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit4-property-slots.json",
+        "sha256": "585e0af1fd8e87ce4784da26b968f330651109649e9896288eee78402f518b54"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-property-slots.mjs",
+        "sha256": "6efc9b13811bd959ac5e8ac1bb6e874fd1a4274425987705796d31baa892d2d0"
+      },
+      "derivedCheckerSha256": "65c1d238eadc03f8a8b8df9779a997dd511fb4084be83f368344d8a55833e5e5",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-ac7833cbf2c4c95c.rlib",
+        "sha256": "d99cf0d4a2727d36e6fe772a02a32008139d48234057108c0ac354b350d79ef4"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-property-slots.driver.source.gz",
+          "sha256": "8774ac9037ea225c39ce14eab03d5c946d26bbe871c9b04cdb6e4c8ba5f3f967",
+          "uncompressedSha256": "65c1d238eadc03f8a8b8df9779a997dd511fb4084be83f368344d8a55833e5e5"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-property-slots.driver.log.gz",
+          "sha256": "4078e799a15743f7042853fc5506addfb3ae950f76628026ea7cab4d007e5655",
+          "uncompressedSha256": "c49740cf65f74e93b1fb84f20f9814777410a74ebe30762a56fab6dc088cd1aa"
+        }
+      ]
+    },
+    {
+      "variant": "limit4",
+      "check": "dynamic-slots",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit4-dynamic-slots.json",
+        "sha256": "e2fcecbcc6139990ec2bbd211c9c443c0661195586ef8379cab8769215723cf1"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-dynamic-slots.mjs",
+        "sha256": "ffa258469370cf9ac948dbd9fe328aa5141e841d051d6752812b10fa26cb111d"
+      },
+      "derivedCheckerSha256": "da5fae11630660431e4f4641bbdd875a99fa561478c631f42133370adde9fb11",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-ac7833cbf2c4c95c.rlib",
+        "sha256": "d99cf0d4a2727d36e6fe772a02a32008139d48234057108c0ac354b350d79ef4"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-dynamic-slots.driver.source.gz",
+          "sha256": "3cba0c07129d7b7f4e2bfed31889d94bbefac7af02c92baa9df84e0b185c99d6",
+          "uncompressedSha256": "da5fae11630660431e4f4641bbdd875a99fa561478c631f42133370adde9fb11"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-dynamic-slots.driver.log.gz",
+          "sha256": "576143789c8ad86e26bf593ed3cf7736431c447d85d5e8f9d4a2b57964b70c01",
+          "uncompressedSha256": "8fff4ff8d10969cebe00f57e46466db858b44f48863ff3094d7e79277534edb8"
+        }
+      ]
+    },
+    {
+      "variant": "limit4",
+      "check": "copy-obj-specialization",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit4-copy-obj-specialization.json",
+        "sha256": "eb589d38abe0bec656a15f12f4e2a2a34cbf92e758800976a8ca2e6174f3655c"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-copy-obj-specialization.mjs",
+        "sha256": "e813b51fe3b9bf736671facdee72b07d7d9eeaf4713f64d5bc5c27086f1c9c0e"
+      },
+      "derivedCheckerSha256": "a4d4200c8cda703f277e0e682f86ff7f2f496d8b86f957a4a6d2f64723cef367",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-ac7833cbf2c4c95c.rlib",
+        "sha256": "d99cf0d4a2727d36e6fe772a02a32008139d48234057108c0ac354b350d79ef4"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-copy-obj-specialization.driver.source.gz",
+          "sha256": "c0f6bc97eca8e7276642aa29d824e9057ff90d1cc5433f6378258b8cb037615e",
+          "uncompressedSha256": "a4d4200c8cda703f277e0e682f86ff7f2f496d8b86f957a4a6d2f64723cef367"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-copy-obj-specialization.driver.log.gz",
+          "sha256": "82d7442d7cb53401fa46d42f8418751784afd38b6c0757f1caf6bc10eb28dad2",
+          "uncompressedSha256": "9f3f061fcfec8f29ac92f47b99926c30e37bc8ffdbea5ee0df910a28cec80a92"
+        }
+      ]
+    },
+    {
+      "variant": "limit4",
+      "check": "dense-array-shift",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit4-dense-array-shift.json",
+        "sha256": "b8c8f53b426d271b5a2bf9d7ff7d2c83bde265bcde0dfa717f2245981a6a16dd"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-dense-array-shift.mjs",
+        "sha256": "a5868c2d083001c9d7d820ea6d6b0b15f40b1c4e48e5b02a10e076e222745d1a"
+      },
+      "derivedCheckerSha256": "eaddd6a51741b8eebe2e2cf4ed6b543dbf4cd2c5f9f68923bd25bddee6184533",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-ac7833cbf2c4c95c.rlib",
+        "sha256": "d99cf0d4a2727d36e6fe772a02a32008139d48234057108c0ac354b350d79ef4"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-dense-array-shift.driver.source.gz",
+          "sha256": "eb022e287ca619fe2830fb9ddbf51a0b6c2dd4377920e4f258f5d71ef55938c1",
+          "uncompressedSha256": "eaddd6a51741b8eebe2e2cf4ed6b543dbf4cd2c5f9f68923bd25bddee6184533"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-dense-array-shift.driver.log.gz",
+          "sha256": "5ef3ac2f24adee4ebacdc1ddb5d80d4f2858bf92282e205676fbe5c70e27122a",
+          "uncompressedSha256": "e3a0350ac83a43dce54a4b310062beca41adce1e04c1a995c0b1e571e6c685f3"
+        }
+      ]
+    },
+    {
+      "variant": "limit4",
+      "check": "arguments-elision",
+      "passed": true,
+      "report": {
+        "file": "benchmarks/validation/lazy-small-index-limit4-arguments-elision.json",
+        "sha256": "56e70b7118071c11e8db21b595386031cee2ad147338bb86cf14ab05f75392dc"
+      },
+      "originalChecker": {
+        "file": "tools/rust-port/check-arguments-elision.mjs",
+        "sha256": "a13c9db4d61a1bf212a11c991224e3adf2df94bfb25ad583171eaa42d05f18ad"
+      },
+      "derivedCheckerSha256": "ce24cfc7f1fca2d1d97351c3c0b9475ff1182df92b52df12d244a0d445f7478b",
+      "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime",
+      "library": {
+        "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-ac7833cbf2c4c95c.rlib",
+        "sha256": "d99cf0d4a2727d36e6fe772a02a32008139d48234057108c0ac354b350d79ef4"
+      },
+      "artifacts": [
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-arguments-elision.driver.source.gz",
+          "sha256": "6715abf11cced3a2ab2ed3a8d3285453988aa8df5b6f6eecf52cf08f2241d43b",
+          "uncompressedSha256": "ce24cfc7f1fca2d1d97351c3c0b9475ff1182df92b52df12d244a0d445f7478b"
+        },
+        {
+          "file": "benchmarks/validation/lazy-small-index-limit4-arguments-elision.driver.log.gz",
+          "sha256": "0ba6e43ee81b51d52ed9cbb45658f214f5fe81246a7a43fe3a4d410438b640da",
+          "uncompressedSha256": "9b2aa2a57c33eac955e4d9153196b81c0198760a47a262479f59b2f683228f52"
+        }
+      ]
+    }
+  ],
+  "boundInputs": {
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/check-lazy-small-index-source-gates.mjs": "22306fbcf234ac1be9de5ea24e7e1f5ee99252b42fe80e68fadce658553f27f7",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/prepared.json": "aed849a8cf489d12898b888266e2a694a689b49a21c0db8ac35a7b264bb9ba11",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/benchmarks/validation/lazy-small-index-runtime-snapshots.json.gz": "557757937c43a8336fb4243096153e23da761b146d4a749d2e5618a6d6095fe2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/Cargo.toml": "2d1f730908b6731d4a4472dcda97721e3a1dd33913d6140f9c937d3d288526dd",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/examples/copy_capacity_alloc.rs": "5371fb0dc75507c4e452b1c8f3a7df9424f2ff4edc66a9bf901b199813bc06e3",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/battle_gc.rs": "0383853630f0bbcdaef99d8f3eeb68440bd44134756441312b63e49b1d4eaab1",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/battle_mode_engine_getter_source.js": "93ba986430208c8a8258a1ec7345d52d877345ddada92b898f2b39d7baa6cca9",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/battle_mode_get_id_source.js": "f2e0d46920cd082b7cc953962ff4af2c57c95c9ff024ec16b657d3a604e70514",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/battle_mode_get_table_source.js": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/battle_mode_limit.rs": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/battle_mode_parser_source.js": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/buff_attribute_loop.rs": "40be1c015b67be41244e04a9659268df5d897473a303166727fbfdae6cd189b4",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/copy_obj.rs": "6a39d3e282f90f84a09f2e611ea9f222bdddc8a2b5df048cd7839eaeb8cf0ec5",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/dense_array_shift.rs": "b6a3d295c05ab6e4c9758a36200d914d29d4203a75e87689a0cf14642e19c7de",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/dynamic_slots.rs": "3c60f6d321ea16064ca0c9f704ec46f9bd9eb3eba7f718ef21df5b81ee15bc4d",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/heap.rs": "cae9b0f37248c3f62be561c7bbab73dc7cdf9596fbf2f8bfcb5c22f8ad0d2de8",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/id_hash.rs": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/lazy_arguments.rs": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/lib.rs": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/native_expose.js": "9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/property_slots.rs": "99abd36cbef2805dc80e20d0b1c46f7cd9f4e72676778cf36c29723d2c1c6ca2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/runtime.rs": "5896290712785bc0854ad6b322256c858fdd4a769f5d45c7b8a9e99d43035ae5",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/tests/fast_length.rs": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/tests/numeric_property_keys.rs": "7d729c37f9b4c77b67a98ab7e5dc9cc8260c8d9769d5c61880c2618df13adb21",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/tests/ordinary_heap.rs": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime/tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-bd6b38b1e79a7efb.rlib": "20f673f091b2f3e1d784a14119f5b3c82100a1f634077ad26d2bc30bd06511a9",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/Cargo.toml": "2d1f730908b6731d4a4472dcda97721e3a1dd33913d6140f9c937d3d288526dd",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/examples/copy_capacity_alloc.rs": "5371fb0dc75507c4e452b1c8f3a7df9424f2ff4edc66a9bf901b199813bc06e3",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/battle_gc.rs": "0383853630f0bbcdaef99d8f3eeb68440bd44134756441312b63e49b1d4eaab1",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/battle_mode_engine_getter_source.js": "93ba986430208c8a8258a1ec7345d52d877345ddada92b898f2b39d7baa6cca9",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/battle_mode_get_id_source.js": "f2e0d46920cd082b7cc953962ff4af2c57c95c9ff024ec16b657d3a604e70514",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/battle_mode_get_table_source.js": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/battle_mode_limit.rs": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/battle_mode_parser_source.js": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/buff_attribute_loop.rs": "40be1c015b67be41244e04a9659268df5d897473a303166727fbfdae6cd189b4",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/copy_obj.rs": "6a39d3e282f90f84a09f2e611ea9f222bdddc8a2b5df048cd7839eaeb8cf0ec5",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/dense_array_shift.rs": "b6a3d295c05ab6e4c9758a36200d914d29d4203a75e87689a0cf14642e19c7de",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/dynamic_slots.rs": "3c60f6d321ea16064ca0c9f704ec46f9bd9eb3eba7f718ef21df5b81ee15bc4d",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/heap.rs": "e3e7ab4208d7521cf72e365cdd33c17b74cb89905cad69cb3c1928c2a24b3db2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/id_hash.rs": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/lazy_arguments.rs": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/lib.rs": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/native_expose.js": "9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/property_slots.rs": "99abd36cbef2805dc80e20d0b1c46f7cd9f4e72676778cf36c29723d2c1c6ca2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/runtime.rs": "5896290712785bc0854ad6b322256c858fdd4a769f5d45c7b8a9e99d43035ae5",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/tests/fast_length.rs": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/tests/numeric_property_keys.rs": "7d729c37f9b4c77b67a98ab7e5dc9cc8260c8d9769d5c61880c2618df13adb21",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/tests/ordinary_heap.rs": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime/tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/libjs_runtime-ac7833cbf2c4c95c.rlib": "d99cf0d4a2727d36e6fe772a02a32008139d48234057108c0ac354b350d79ef4",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/check-property-slots.mjs": "6efc9b13811bd959ac5e8ac1bb6e874fd1a4274425987705796d31baa892d2d0",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit2-property-slots.mjs": "f9f4fa174e992bab56dba889498b8d5dd63ce007ed19c132f39018f96a6a7769",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/check-dynamic-slots.mjs": "ffa258469370cf9ac948dbd9fe328aa5141e841d051d6752812b10fa26cb111d",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit2-dynamic-slots.mjs": "341bbec4b2187ecc63ce278a776a5f79a8e5a69d39ed41ba161f37ccd10c537f",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/check-copy-obj-specialization.mjs": "e813b51fe3b9bf736671facdee72b07d7d9eeaf4713f64d5bc5c27086f1c9c0e",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit2-copy-obj-specialization.mjs": "e938b45793e93380d8665d2c153522195831a6c5733f06aea53235fa0405492a",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/check-dense-array-shift.mjs": "a5868c2d083001c9d7d820ea6d6b0b15f40b1c4e48e5b02a10e076e222745d1a",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit2-dense-array-shift.mjs": "f86a523b2339c2f73b8a35080656998c36fb7dd06e4cdb46560115bbf112ac2f",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/check-arguments-elision.mjs": "a13c9db4d61a1bf212a11c991224e3adf2df94bfb25ad583171eaa42d05f18ad",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit2-arguments-elision.mjs": "df7775b4ae3b6a23714919c0c8560d95d946d68f97cad36d2497a4e76f60c759",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit4-property-slots.mjs": "65c1d238eadc03f8a8b8df9779a997dd511fb4084be83f368344d8a55833e5e5",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit4-dynamic-slots.mjs": "da5fae11630660431e4f4641bbdd875a99fa561478c631f42133370adde9fb11",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit4-copy-obj-specialization.mjs": "a4d4200c8cda703f277e0e682f86ff7f2f496d8b86f957a4a6d2f64723cef367",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit4-dense-array-shift.mjs": "eaddd6a51741b8eebe2e2cf4ed6b543dbf4cd2c5f9f68923bd25bddee6184533",
+    "/workspace/afkarena-simx/work/candidate-lazy-small-index/tools/rust-port/.lazy-small-index-limit4-arguments-elision.mjs": "ce24cfc7f1fca2d1d97351c3c0b9475ff1182df92b52df12d244a0d445f7478b"
+  },
+  "runtimeSnapshots": {
+    "file": "benchmarks/validation/lazy-small-index-runtime-snapshots.json.gz",
+    "sha256": "557757937c43a8336fb4243096153e23da761b146d4a749d2e5618a6d6095fe2"
+  },
+  "noRuntimeRebuild": true,
+  "originalSourceCasesAndNodeObserversUnchanged": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Existing source mutation/getter/prototype/arguments/cache/array/copy fixtures independently compare to pinned jitless Node against each explicitly bound small-index runtime. Derived checkers change only runtime snapshot/library selection and output/provenance locations."
+}
