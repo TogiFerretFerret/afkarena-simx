@@ -34,5 +34,6 @@ export const nestedCopyAdversarialCases=[
  {name:'local-captured-ed-data-alias',admit:true,source:`function(){var ed={};ed.copyObj=${sourceCopyFunction};var o={a:{n:-0}},c=ed.copyObj(o);return JSON.stringify([c.a!==o.a,bits(c.a.n)]);}`},
  {name:'namespace-copy-inherited-accessor',source:'function(){var log="",original=ed.copyObj,p={get copyObj(){log+="copy;";return original}};delete ed.copyObj;Object.setPrototypeOf(ed,p);var c=original({a:{n:2}});return JSON.stringify([log,c.a.n]);}'},
  {name:'child-getter-throws-exact-prefix',source:'function(){var log="",o={a:{get x(){log+="throw;";throw "leaf-error"}},b:3};try{ed.copyObj(o)}catch(e){return log+e}return "BAD";}'},
- {name:'TRACE1-noncallable-after-recursion',source:'function(){var c=ed.copyObj({a:{n:2}}),missing;try{missing(c.a.n)}catch(e){return e.name}return "BAD";}'}
+ {name:'TRACE1-noncallable-after-recursion',source:'function(){var c=ed.copyObj({a:{n:2}}),missing;try{missing(c.a.n)}catch(e){return e.name}return "BAD";}'},
+ {name:'same-function-Object-identity-alias',admit:true,source:'function(){var original=ed.copyObj;ed.copyObj=Object(original);var input={a:{n:-0}},c=ed.copyObj(input);return JSON.stringify([ed.copyObj===original,typeof ed.copyObj,c.a!==input.a,bits(c.a.n)]);}'}
 ];
