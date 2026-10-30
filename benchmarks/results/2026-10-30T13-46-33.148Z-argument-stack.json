@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "ranTrace0Timing": true,
+  "trace1SelectedObserverMatched": false,
+  "summaries": [
+    {
+      "scenario": "unit",
+      "unitsPerTrial": 10000,
+      "trials": 3,
+      "baselineUnitsPerSecond": 16367.233101796672,
+      "candidateUnitsPerSecond": 14390.646632289843,
+      "ratio": 0.8792351488358864,
+      "kind": "original Unit.update calls"
+    },
+    {
+      "scenario": "drain",
+      "unitsPerTrial": 12800,
+      "trials": 3,
+      "baselineUnitsPerSecond": 111180.6936254254,
+      "candidateUnitsPerSecond": 115993.09116150769,
+      "ratio": 1.0432844712436815,
+      "kind": "original __nativeDrain callbacks"
+    }
+  ],
+  "rows": [
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "692235435",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "639240649",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "784533755",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "554798410",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "585896609",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "660913016",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "109468033",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "118441860",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "108343185",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "123217291",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "112698382",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "104269155",
+      "events": 38400,
+      "snapshots": 25600
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-30T13-46-33.148Z-argument-stack.outputs.json.gz",
+      "sha256": "22033d79bdb449fadb466b335af21af3f5a5d5485ed32020275544fa66f2ecad",
+      "uncompressedSha256": "3b2c90594aa3a93c22c868fb6cae735c3509d28456b5052b1215180a8affbaa9"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T13-46-33.148Z-argument-stack.expected.json.gz",
+      "sha256": "8e41645978d30e5c296c7ac2e877a447f4a6c05726af8ff1aaeebe9dac616ec9",
+      "uncompressedSha256": "8b9be086eaf4ecab7c6a7a91f40b19e7aa1d5afcec5fec0a5094dde2fbdeeec9"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T13-46-33.148Z-argument-stack.preparation.json.gz",
+      "sha256": "4ec981e1ca002406943f24b72550b1766142537a5fe914a8e3d1d8ce25f523c9",
+      "uncompressedSha256": "6c5316a483b98418a6646760ccccb9c38ad2bcf0b5a828c7ebb80d430fbbbfb5"
+    }
+  ],
+  "scope": "Same original source fixtures in frozen baseline and indexed argument-stack runtime libraries. Original Unit update and callback drain retain every source callback/event and snapshots. Component rates only; no battle qualification.",
+  "timingQualification": {
+    "eligible": false,
+    "reason": "Historical ELF archive cleanup may have overlapped. Retained exploratory cohort; use controlled repeat."
+  }
+}

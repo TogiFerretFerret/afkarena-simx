@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "ranTrace0Timing": true,
+  "trace1SelectedObserverMatched": false,
+  "summaries": [
+    {
+      "scenario": "unit",
+      "unitsPerTrial": 10000,
+      "trials": 3,
+      "baselineUnitsPerSecond": 14967.513139953591,
+      "candidateUnitsPerSecond": 16351.085119079806,
+      "ratio": 1.092438334023103,
+      "kind": "original Unit.update calls"
+    },
+    {
+      "scenario": "drain",
+      "unitsPerTrial": 12800,
+      "trials": 3,
+      "baselineUnitsPerSecond": 81012.46338774629,
+      "candidateUnitsPerSecond": 89669.69083536879,
+      "ratio": 1.1068629083180301,
+      "kind": "original __nativeDrain callbacks"
+    }
+  ],
+  "rows": [
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "665215816",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "637932260",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "607836310",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "638995969",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "700129198",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "588972047",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "172034455",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "145252051",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "147100693",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "170260630",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "131706055",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "135885601",
+      "events": 38400,
+      "snapshots": 25600
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-30T13-46-54.682Z-argument-stack.outputs.json.gz",
+      "sha256": "af6195277ecd7ebb3b913b6c773b70d6f45ebd756b6f165c999fbec186b80c0c",
+      "uncompressedSha256": "10af762ab3182f63db5694a7043904c5157f6ec9f04323ac7825cfb4bd772326"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T13-46-54.682Z-argument-stack.expected.json.gz",
+      "sha256": "8e41645978d30e5c296c7ac2e877a447f4a6c05726af8ff1aaeebe9dac616ec9",
+      "uncompressedSha256": "8b9be086eaf4ecab7c6a7a91f40b19e7aa1d5afcec5fec0a5094dde2fbdeeec9"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T13-46-54.682Z-argument-stack.preparation.json.gz",
+      "sha256": "4ec981e1ca002406943f24b72550b1766142537a5fe914a8e3d1d8ce25f523c9",
+      "uncompressedSha256": "6c5316a483b98418a6646760ccccb9c38ad2bcf0b5a828c7ebb80d430fbbbfb5"
+    }
+  ],
+  "scope": "Same original source fixtures in frozen baseline and indexed argument-stack runtime libraries. Original Unit update and callback drain retain every source callback/event and snapshots. Component rates only; no battle qualification.",
+  "timingQualification": {
+    "eligible": true,
+    "reason": "Control explicitly confirmed cleanup finished; other agents held CPU; frozen native binaries only."
+  }
+}
