@@ -57,8 +57,11 @@ impl Runtime{
   if !matches!(object.kind,ObjectKind::Ordinary)||object.prototype!=Some(self.object_prototype)||!object.arguments_map.is_empty(){return Ok(None)}
   for (key,desc)in object.iter_properties(){
    if !desc.enumerable||!desc.configurable{return Ok(None)}
-   let PropertyKind::Data{value:Value::Number(number),writable:true}=desc.kind else{return Ok(None)};
-   if !number.is_finite()||self.objects[self.object_prototype.0].own(key).is_some(){return Ok(None)}
+   let PropertyKind::Data{value,writable:true}=desc.kind else{return Ok(None)};
+   // Source recurses only for truthy typeof-object leaves. Copy primitive
+   // StringId/FunctionId values unchanged, without conversion or invocation.
+   // Preserve the existing non-finite Number fallback until raw-bit proof.
+   if matches!(value,Value::Object(_))||matches!(value,Value::Number(number)if !number.is_finite())||self.objects[self.object_prototype.0].own(key).is_some(){return Ok(None)}
   }
   // Standard descriptors and no inherited conflicts make each source write
   // an ordinary fresh own property. Numeric key ordering remains own_keys's
@@ -83,6 +86,15 @@ impl Runtime{
 #[cfg(test)]mod tests{
  use super::*;
  #[test]fn fresh_copy_preserves_order_descriptors_and_negative_zero(){let mut rt=Runtime::new();let source=rt.object();for(name,value)in[("12",3.0),("1",-0.0),("x",4.5)]{let key=rt.string(name);rt.define_data(source,key,Value::Number(value),true,true,true).unwrap();}let output=rt.try_native_copy_obj(source,rt.global_env).unwrap().unwrap();assert_ne!(output,source);assert_eq!(rt.own_keys(source,true).unwrap(),rt.own_keys(output,true).unwrap());let key=rt.string("1");let Value::Number(n)=rt.get(output,key).unwrap()else{panic!()};assert_eq!(n.to_bits(),(-0.0f64).to_bits());}
+ fn retained_leaf(rt:&mut Runtime,_:Value,_:&[Value],env:EnvId)->JsResult<Value>{rt.lookup(env,"leaf")}
+ fn primitive_copy_gc_entry(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{
+  let battle_env=rt.child_env(parent);for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(battle_env,name,Value::Number(value))?;}let mut units=vec![0xd800;524_288];units[1]=0xdfff;let text=Value::String(rt.intern_utf16(&units));let env=rt.child_env(rt.global_env);rt.declare(env,"leaf",text).unwrap();let function=rt.make_closure(retained_leaf,env,0,"retained");let source=rt.object();
+  for(name,value)in[("12",Value::Null),("1",Value::Number(-0.0)),("text",text),("flag",Value::Bool(false)),("absent",Value::Undefined),("fn",function)]{let key=rt.string(name);rt.define_data(source,key,value,true,true,true).unwrap();}
+  let output=rt.try_native_copy_obj(source,rt.global_env).unwrap().expect("mixed ordinary leaves admitted");assert_ne!(source,output);assert_eq!(rt.own_keys(source,true).unwrap(),rt.own_keys(output,true).unwrap());rt.enable_native_battle_gc_with_roots(&[output]);
+  for index in 0..23{let _garbage=rt.object();rt.assign(battle_env,"battleIndex",Value::Number(index as f64),false)?;rt.collect_native_battle_backedge(battle_env,parent)?;let key=rt.string("text");assert_eq!(rt.get(output,key).unwrap(),text);let Value::String(id)=text else{panic!()};assert_eq!(rt.string_units(id),units.as_slice());let key=rt.string("fn");let copied=rt.get(output,key).unwrap();assert_eq!(copied,function);assert_eq!(rt.call(copied,Value::Undefined,&[]).unwrap(),text);let key=rt.string("1");let Value::Number(n)=rt.get(output,key).unwrap()else{panic!()};assert_eq!(n.to_bits(),(-0.0f64).to_bits());}
+  assert_eq!(rt.native_battle_gc_stats().collections,23);Ok(Value::Undefined)
+ }
+ #[test]fn primitive_copy_roots_strings_and_callable_identity_across_23_actual_safepoints(){let mut rt=Runtime::new();rt.diagnostics.enabled=false;let entry=rt.make_closure_with_flags(primitive_copy_gc_entry,rt.global_env,0,"__nativeRun",false,None);rt.set_function_source(entry,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.call(entry,Value::Undefined,&[]).unwrap();assert_eq!(rt.native_battle_gc_stats().collections,23);}
  #[test]fn empty_arrays_and_factory_parent_work_without_callbacks(){let mut rt=Runtime::new();let input=rt.array(&[]);let parent=rt.child_env(rt.global_env);let output=rt.try_native_copy_obj(input,parent).unwrap().unwrap();assert_ne!(input,output);let key=rt.string("length");assert_eq!(rt.get(output,key).unwrap(),Value::Number(0.0));}
  #[test]fn unknown_shapes_and_observable_mutations_fall_back(){let mut rt=Runtime::new();let input=rt.object();let key=rt.string("x");rt.define_data(input,key,Value::Number(f64::NAN),true,true,true).unwrap();assert_eq!(rt.try_native_copy_obj(input,rt.global_env).unwrap(),None);let input=rt.object();let key=rt.string("constructor");rt.define_data(input,key,Value::Undefined,true,true,true).unwrap();assert_eq!(rt.try_native_copy_obj(input,rt.global_env).unwrap(),None);let input=rt.array(&[]);let parent=rt.child_env(rt.global_env);rt.declare(parent,"Object",Value::Undefined).unwrap();assert_eq!(rt.try_native_copy_obj(input,parent).unwrap(),None);}
 }
