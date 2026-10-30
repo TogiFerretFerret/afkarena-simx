@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "sourceFreeze": "7e718b1",
+  "includes": [
+    "function-own-literal cache",
+    "source-pinned scalar B array lowering",
+    "ordinary mixed-primitive copy helper"
+  ],
+  "profileFile": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.json",
+  "profileSha256": "578fecd3a38cfde5661a079b3f5a0402c605a31ae5c91b1a2243c8e7f6ed67ae",
+  "frequencyHz": 299,
+  "samples": 7880,
+  "lostSamples": 0,
+  "fullReportMatched": true,
+  "callbacks": 309060,
+  "gc": {
+    "expectedCollections": 12,
+    "collections": [
+      12
+    ],
+    "traceMarkers": [
+      "0"
+    ],
+    "valid": true
+  },
+  "currentBuildProofBefore": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-source-shortcut-wave-build.json",
+    "sha256": "d04bb1dd101dcf6958a4132fc204f23c8fa9b8d1fc1885478c0671162a642021",
+    "valid": true,
+    "reasons": [],
+    "inputCount": 1438,
+    "changedInputs": [],
+    "buildProfile": "release"
+  },
+  "currentBuildProofAfter": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-source-shortcut-wave-build.json",
+    "sha256": "d04bb1dd101dcf6958a4132fc204f23c8fa9b8d1fc1885478c0671162a642021",
+    "valid": true,
+    "reasons": [],
+    "inputCount": 1438,
+    "changedInputs": [],
+    "buildProfile": "release"
+  },
+  "librariesMatchQualifiedFork": true,
+  "sourceArchive": {
+    "file": "benchmarks/validation/source-shortcut-cpu-profile/profile-input-sources.json.gz",
+    "sha256": "49867fde787c738e09f0788e181ec0c15b03afcc98c32aa00a025ef68e1c8234"
+  },
+  "scope": "Current qualified7e718 measured battle-window CPU profile, original20measured3warmup source unchanged; TRACE0/user-only callchains. Allcomplete report fields/rawbits/host tapes match Node. This capture replaces older8fe attribution forcurrentcode; it is not an unprofiled BPS benchmark or per-feature causal trial."
+}
