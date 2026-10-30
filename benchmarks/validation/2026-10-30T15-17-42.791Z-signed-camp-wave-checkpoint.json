@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "checkpointOnly": true,
+  "qualifiesFor10000Target": false,
+  "at": "2026-10-30T15:17:42.816Z",
+  "label": "signed-camp-wave",
+  "chainStage": "build",
+  "chainPassed": false,
+  "chainPid": 40210,
+  "compilingLines": 350,
+  "observedCargoErrors": [],
+  "releaseFinished": false,
+  "availableBytes": 2366648320,
+  "scope": "Immutable progress checkpoint of an active build. Does not assert successful compilation, battle parity, throughput or final source provenance.",
+  "artifacts": [
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-signed-camp-wave-chain.json",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-30T15-17-42.791Z-signed-camp-wave-checkpoint.chain.json.gz",
+      "observedBytes": 1045,
+      "sourceSha256": "54a878d97fe9897d3168f3cfaae44caf50902bee705952ef3e4ed91767024aca",
+      "archiveSha256": "910285c1d35bced7c5d78a8d7773e4c3e3493d616b2ee7ec8991114fe7c83ed6",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    },
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-signed-camp-wave-build.json",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-30T15-17-42.791Z-signed-camp-wave-checkpoint.build.json.gz",
+      "observedBytes": 223326,
+      "sourceSha256": "80e77c899d5ae1b9207d3fe7b1fec5400c5d05a0439c901e3dd1adfde958d35b",
+      "archiveSha256": "304e19e37aed6794dcf9936352060894c533e0671cf80d73b4b4c4d2dc8dfbba",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    },
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-signed-camp-wave-build.cargo.stdout",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-30T15-17-42.791Z-signed-camp-wave-checkpoint.build.cargo.stdout.gz",
+      "observedBytes": 0,
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archiveSha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    },
+    {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-signed-camp-wave-build.cargo.stderr",
+      "archive": "/workspace/afkarena-simx/benchmarks/validation/2026-10-30T15-17-42.791Z-signed-camp-wave-checkpoint.build.cargo.stderr.gz",
+      "observedBytes": 42416,
+      "sourceSha256": "47836b3c5bebb2af24ec8a435496fd4f1ffd362bd18351aab27ef5fc0fc695ae",
+      "archiveSha256": "ba0252c8c8e87a016d5d6deaab02eaa294a0c3d3c954d5c8189c0322e14f7862",
+      "scope": "Observed file bytes, possibly an active append-only log prefix or draft report; not a final build proof."
+    }
+  ]
+}
