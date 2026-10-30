@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "report": "benchmarks/results/2026-10-30-hot-execution-wave-fork-four.json",
+  "reportSha256": "29e76b8bb09ef8d12f69970602a0115116a1940c3c9b15b8e09f6bed3418d821",
+  "aggregate": {
+    "completed": 80,
+    "startUnixNs": "1793370047061586276",
+    "endUnixNs": "1793370085169244430",
+    "elapsedNs": "38107658154",
+    "elapsedSeconds": 38.107658154,
+    "battlesPerSecond": 2.0993155674039428,
+    "commonOverlapNs": "36722934089",
+    "allFourOverlap": true,
+    "method": "80 measured battles / (latest measured end - earliest measured start), using a common SystemTime UNIX epoch; never sum per-process rates."
+  },
+  "actualCollectionsByChild": [
+    12,
+    12,
+    12,
+    12
+  ],
+  "serialBaselineActualNativeAdmission": {
+    "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-hot-execution-wave-full.native.stderr.gz",
+    "stderrSha256": "e0eb8e5767664dc410cba546669a56d1d16d66d48390d137424667401cbbda19",
+    "battleModeLimitDomainHits": 0,
+    "getterCalls": 0,
+    "primaryNumericAccessEnabled": true,
+    "battleModeLimitEnabled": true
+  },
+  "scope": "Admission counters and enabled flags are observed on the original serial full binary. Fork children preserve same frozen libraries/configuration, but this wrapper does not emit per-child domain/getter counters. Actual GC counts are directly observed per child."
+}
