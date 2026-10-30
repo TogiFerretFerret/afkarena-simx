@@ -1,0 +1,201 @@
+{
+  "passedFidelity": true,
+  "decision": "Do not promote as-is: clean exclusive timing regresses Unit and table parse, despite a real memory reduction.",
+  "coreCommit": "eed403d",
+  "baselineCommit": "b5b572b",
+  "layout": {
+    "beforeObjectBytes": 160,
+    "afterObjectBytes": 136,
+    "argumentsMapBytes": 8,
+    "storedPropertyBytes": 24
+  },
+  "reports": {
+    "drain-timing": {
+      "file": "benchmarks/results/2026-10-30T16-09-21.821Z-lazy-arguments-map-drain-timing.json",
+      "sha256": "e7205d37ac6cc3cd0c8bccb7af37fd4776a8513321375f71c065530299c55df1"
+    },
+    "json-timing": {
+      "file": "benchmarks/results/2026-10-30T16-09-22.028Z-lazy-arguments-map-json-timing.json",
+      "sha256": "60d74b23cd38286ea44b185b43624ac53e157e65cd7915873e393ce028715d76"
+    },
+    "unit-timing": {
+      "file": "benchmarks/results/2026-10-30T16-09-21.233Z-lazy-arguments-map-unit-timing.json",
+      "sha256": "2acd3239e2dd40b180bd93b74f91be9cb039808b71d695af1dbd82a51a07e6c6"
+    },
+    "drain-allocation": {
+      "file": "benchmarks/results/2026-10-30T16-09-26.747Z-lazy-arguments-map-drain-allocation.json",
+      "sha256": "5c9109b879f7e12f6939bd3cef607f0499694dfc1abae3ff04d0287db86be629"
+    },
+    "shape-timing": {
+      "file": "benchmarks/results/2026-10-30T16-09-19.904Z-lazy-arguments-map-shape-timing.json",
+      "sha256": "87bea4d456351f7e1c4fd634abfe99885d2405f864aeb678918a25482ba132eb"
+    },
+    "json-allocation": {
+      "file": "benchmarks/results/2026-10-30T16-09-35.667Z-lazy-arguments-map-json-allocation.json",
+      "sha256": "dc7d980277b99980e374954ea59f309e3ae00f5b792c97e29843a0da9ea0f4c1"
+    },
+    "unit-allocation": {
+      "file": "benchmarks/results/2026-10-30T16-09-25.384Z-lazy-arguments-map-unit-allocation.json",
+      "sha256": "319f6887a0377d206c53f7349456883d76ab5444b8d0d91f809fdee1cbb79849"
+    }
+  },
+  "timing": {
+    "unit": {
+      "candidateOverBaseline": 0.9685584977639922,
+      "pairRatios": [
+        0.9168920228547314,
+        0.819042783181915,
+        1.2086117688146225
+      ],
+      "nativeLease": "exclusive flock, verified WRITE owner/ancestor before and after",
+      "fingerprint": {
+        "hash": "2beb09f1c3c0eb3f",
+        "physicalLiveHistogram": [
+          20030,
+          85252,
+          40374,
+          10029,
+          10098,
+          15183,
+          5,
+          0,
+          7,
+          26
+        ],
+        "tombstones": 0
+      }
+    },
+    "drain": {
+      "candidateOverBaseline": 0.9994143497929743,
+      "pairRatios": [
+        1.072413267083906,
+        1.0022399451436916,
+        0.9283957623824108
+      ],
+      "nativeLease": "exclusive flock, verified WRITE owner/ancestor before and after",
+      "fingerprint": {
+        "hash": "cc09a9f6bc1fbb98",
+        "physicalLiveHistogram": [
+          207,
+          12938,
+          288,
+          23,
+          13,
+          10,
+          12931,
+          0,
+          0,
+          16
+        ],
+        "tombstones": 12928
+      }
+    },
+    "json": {
+      "candidateOverBaseline": 0.9658319366900338,
+      "pairRatios": [
+        0.9524309626202798,
+        0.9454543821425206,
+        1.0012525202699338
+      ],
+      "nativeLease": "exclusive flock, verified WRITE owner/ancestor before and after",
+      "fingerprint": {
+        "hash": "1e642c3fc798fbe5",
+        "physicalLiveHistogram": [
+          446989,
+          36853,
+          131561,
+          57983,
+          8572,
+          100035,
+          35718,
+          1789,
+          63528,
+          149922
+        ],
+        "tombstones": 0
+      }
+    }
+  },
+  "tableMemory": {
+    "baseline": {
+      "rssKiBMean": 977389.3333333334,
+      "peakRssKiBMean": 1175402.6666666667,
+      "objectLen": 1032950,
+      "objectCapacity": 1048576,
+      "objectArenaBytes": 167772160,
+      "argumentMapAllocatedObjects": 0
+    },
+    "candidate": {
+      "rssKiBMean": 953216,
+      "peakRssKiBMean": 1151174.6666666667,
+      "objectLen": 1032950,
+      "objectCapacity": 1048576,
+      "objectArenaBytes": 142606336,
+      "argumentMapAllocatedObjects": 0
+    }
+  },
+  "allocation": {
+    "unit": {
+      "baseline": {
+        "allocations": 1448439,
+        "reallocations": 406473,
+        "deallocations": 917964,
+        "requestedBytes": 229849268,
+        "liveBytes": 123672572,
+        "peakLiveBytes": 123672586
+      },
+      "candidate": {
+        "allocations": 1448439,
+        "reallocations": 406473,
+        "deallocations": 917964,
+        "requestedBytes": 217315508,
+        "liveBytes": 117381117,
+        "peakLiveBytes": 117381131
+      }
+    },
+    "drain": {
+      "baseline": {
+        "allocations": 179987,
+        "reallocations": 39236,
+        "deallocations": 39425,
+        "requestedBytes": 48434204,
+        "liveBytes": 29053400,
+        "peakLiveBytes": 29378824
+      },
+      "candidate": {
+        "allocations": 179987,
+        "reallocations": 39236,
+        "deallocations": 39425,
+        "requestedBytes": 46910492,
+        "liveBytes": 28266969,
+        "peakLiveBytes": 28592393
+      }
+    },
+    "json": {
+      "baseline": {
+        "allocations": 15237533,
+        "reallocations": 9012543,
+        "deallocations": 13620403,
+        "requestedBytes": 1722658241,
+        "liveBytes": 977922955,
+        "peakLiveBytes": 1180746063
+      },
+      "candidate": {
+        "allocations": 15237533,
+        "reallocations": 9012543,
+        "deallocations": 13620403,
+        "requestedBytes": 1672351169,
+        "liveBytes": 952757132,
+        "peakLiveBytes": 1155580240
+      }
+    }
+  },
+  "sourceGates": "benchmarks/validation/lazy-arguments-map/summary.json",
+  "qualifiesFor10000Target": false,
+  "tableBytes": 101695086,
+  "preparedArtifact": {
+    "file": "benchmarks/validation/lazy-arguments-map/components-prepared.json.gz",
+    "sha256": "5bb2471da12ec1c77a4634a7ac4ff8e2441125445ab791cb4952963a11fb2e9a",
+    "uncompressedSha256": "eefbc5e555061e41667b2aab71bd7fffd927c2f750bda7951a9ad137dc471041"
+  }
+}
