@@ -2,15 +2,7 @@
 //! Admit a bounded, callback-free numeric domain; validate every write first.
 use crate::{Runtime,Value,ObjectId,ObjectKind,PropertyKey,PropertyKind,EnvId};
 use battle_core::js_math::{add,mul};
-// Reusable bounded transaction for callback-free numeric regions. Reads observe
-// earlier staged writes, so aliasing basis/target preserves source loop order.
-struct NumericWritePlan<const N:usize>{writes:[Option<(usize,PropertyKey,f64)>;N],len:usize}
-impl<const N:usize> NumericWritePlan<N>{
- fn new()->Self{Self{writes:[None;N],len:0}}
- fn read(&self,key:PropertyKey)->Option<f64>{self.writes[..self.len].iter().rev().flatten().find(|(_,k,_)|*k==key).map(|(_,_,v)|*v)}
- fn push(&mut self,slot:usize,key:PropertyKey,value:f64)->bool{if self.len==N{return false}self.writes[self.len]=Some((slot,key,value));self.len+=1;true}
- fn commit(self,rt:&mut Runtime,target:ObjectId){for(slot,key,value)in self.writes.into_iter().flatten(){assert!(rt.objects[target.0].set_existing_data_slot(slot,key,Value::Number(value)),"validated descriptor")}}
-}
+use crate::numeric_region::NumericWritePlan;
 impl Runtime {
  fn buff_plain(&self,id:ObjectId)->bool{self.objects.get(id.0).is_some_and(|o|matches!(o.kind,ObjectKind::Ordinary)&&!o.is_function&&o.arguments_map.is_empty())}
  fn buff_data(&self,mut id:ObjectId,key:PropertyKey,forbidden:Option<ObjectId>)->Option<Value>{let mut budget=self.objects.len();loop{if budget==0||Some(id)==forbidden||!self.buff_plain(id){return None}budget-=1;let o=&self.objects[id.0];if let Some(d)=o.own(key){return match d.kind{PropertyKind::Data{value,..}=>Some(value),_=>None}}match o.prototype{Some(p)=>id=p,None=>return Some(Value::Undefined)}}}
