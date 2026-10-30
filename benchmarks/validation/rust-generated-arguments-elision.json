@@ -44,7 +44,12 @@
     },
     {
       "file": "crates/js-runtime/src/battle_gc.rs",
-      "sha256": "3bb25fcd5eee018e78b5fc286de4e4e87580ca23c4de93680ec7ace765d6a472",
+      "sha256": "536f5cba8c1f362405288dfed62b51f1f1a237426ebdc70f7c2afee7413d4945",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/battle_mode_limit.rs",
+      "sha256": "d82d04762f6a9b3416aaf26526b657880b24140adabf8c8910ce2591672bb21e",
       "matched": true
     },
     {
@@ -69,7 +74,7 @@
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+      "sha256": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
       "matched": true
     },
     {
@@ -94,7 +99,7 @@
     },
     {
       "file": "crates/js-runtime/src/diagnostics.rs",
-      "sha256": "9018f7593d765ba4debf4f75355f1ddd676aa60c79a93b183db89086590e2434",
+      "sha256": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
       "matched": true
     },
     {
@@ -154,12 +159,12 @@
     },
     {
       "file": "crates/js-runtime/src/lazy_arguments.rs",
-      "sha256": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+      "sha256": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "8ccef3fc42f53005622c813acfe73397481be46dc591fea790bc9adabe388735",
+      "sha256": "50b2aa017ff345a6166ee983c96a5a5c974e44776f352a53b33783d772bbe5d8",
       "matched": true
     },
     {
@@ -189,7 +194,7 @@
     },
     {
       "file": "crates/js-runtime/src/reachability.rs",
-      "sha256": "0948d3df3166dea6450c872065dc3ac07f03148c8b78781dce38af2cef306a7d",
+      "sha256": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
       "matched": true
     },
     {
@@ -199,17 +204,17 @@
     },
     {
       "file": "crates/js-runtime/src/regex.rs",
-      "sha256": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+      "sha256": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "c6ce5a64df6809a4c06ba0028bc34ad4ac308dea21a4e84436f7f9e825ebfbea",
+      "sha256": "25b8d3c8fb3e211df1d97a52f0f9290a7be8459c39e65dfdd4f3562b63b0dca1",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/stage_range_parser.rs",
-      "sha256": "943e3f3480ac888543bb6db0f12df3da559bbcc97bbc8e634839a31529ec22ba",
+      "sha256": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
       "matched": true
     },
     {
@@ -604,7 +609,7 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "a4102abcde5532d5c90cad88192cff3d430487b10fe84bf8ac2a0d624d7bd6df",
+      "sha256": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
       "matched": true
     },
     {
@@ -643,23 +648,23 @@
   },
   "generatedRustSha256": "c7d2bc5a92c81e5c92f505e3d0f2360ffb4e24064b30b5da16e02733e710ba04",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/rust-port-arguments-elision/check",
-    "sha256": "cdc8a40f54b8b43777540fd469781579b89bb21f40a51a804117e1dd9cee0efa"
+    "file": "/workspace/afkarena-simx/work/candidate-argument-stack/work/rust-port-arguments-elision/check",
+    "sha256": "0f4238654631d80e34931191cc76f25aa0f9ea6e217ca2f40783c54b20a4748c"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/candidate-argument-stack/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/candidate-compact-properties/work/rust-port-arguments-elision/main.rs",
+    "/workspace/afkarena-simx/work/candidate-argument-stack/work/rust-port-arguments-elision/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-compact-properties/target/release/deps",
+    "dependency=/workspace/afkarena-simx/work/candidate-argument-stack/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-compact-properties/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-argument-stack/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-compact-properties/work/rust-port-arguments-elision/check"
+    "/workspace/afkarena-simx/work/candidate-argument-stack/work/rust-port-arguments-elision/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-arguments-elision.outputs.json.gz",
