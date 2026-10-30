@@ -5,7 +5,12 @@
     "fixtureSha256": "e97fcc5b466af64916f8c16931f5a5830bb1ea4d0a3743ccd20d80832e13e876",
     "wrapperSha256": "04c07329ea2d53594771bfa86ba5e8bb46658a3c8a71644f44d22dad6659ebfc",
     "helperBefore": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
-    "helperAfter": "f1d06b7cec84a426aa73fde00bacd7fc79914d9e8d2ffe7d4e39fb3b92797e00"
+    "helperAfter": "f1d06b7cec84a426aa73fde00bacd7fc79914d9e8d2ffe7d4e39fb3b92797e00",
+    "sourcePool": {
+      "file": "/workspace/afkarena-simx/work/candidate-function-own-data-literals/work/rust-unit-update-function-own-literals/fixture.utf16le",
+      "sha256": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206",
+      "bytes": 20680
+    }
   },
   "flags": {
     "optLevel": 3,
@@ -4171,6 +4176,11 @@
     {
       "file": "benchmarks/validation/release-incremental-source-snapshot.json.gz",
       "sha256": "daaff47feb9beae6542b48d12922e9efbc2b1d1961ee2201632500ce000cd82e"
+    },
+    {
+      "file": "benchmarks/validation/release-incremental-fixture.utf16le.gz",
+      "sha256": "f1a7488755f576926ed44419e8fd345f9c14be5f6fb9905e30cd094db67336c4",
+      "uncompressedSha256": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206"
     }
   ],
   "timingsContended": true,
