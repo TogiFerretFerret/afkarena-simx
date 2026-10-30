@@ -1,0 +1,106 @@
+{
+  "passed": true,
+  "cases": 12,
+  "nodeExactCases": 11,
+  "baselineGapCases": [
+    {
+      "mode": 9,
+      "kind": "preexisting numeric-array NaN representation",
+      "onOffRawIdentical": true,
+      "nonfiniteAxisAdmitted": false,
+      "nodePositionBits": "7ff8000000000000",
+      "nativePositionBits": "7ff8000000000042",
+      "nodePreviousBits": "7ff8000000000000",
+      "nativePreviousBits": "7ff0000000000042"
+    }
+  ],
+  "nativeExecutions": 4,
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "flags": [
+    "--jitless"
+  ],
+  "source": {
+    "version": 1,
+    "source": "src/srcmodule/game_battle.js",
+    "sourceName": "ed.Unit.update",
+    "start": 97200,
+    "end": 102984,
+    "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+    "status": "experimental_native_control_flow_requires_mechanics_hooks_and_differential_validation",
+    "formalProof": false,
+    "domain": [
+      "Number-valued numeric fields; missing optional numbers explicitly represented",
+      "Dense valid unit/skill/buff IDs with stable object identity and fixed source prototypes",
+      "Unit.isAlive is the original source implementation; overrides require a separate dispatch path",
+      "Effects use stable identities and predicate views that host buff mechanics must keep synchronized",
+      "Every required hook implements the corresponding source method; no silent defaults",
+      "Vector aliases and replacements are preserved through arena handles",
+      "Non-escaping fresh edpMult result uses an inline vector; global edpZero retains arena identity"
+    ],
+    "pending": [
+      "Full unit differential trace over all branches and callback mutations",
+      "Integration of skill/AI/buff/damage implementations into one world",
+      "Complete realistic 5v5 native battles; this module does not establish battles/second"
+    ]
+  },
+  "compilerModules": [
+    {
+      "label": "off",
+      "sourceSha256": "779a436e62aab45fc66c9c9aecb4b0419bfbade5a248d05445b72c218297f95a",
+      "rustSha256": "454d42b2dd213ebf0db5684e2097081ae8987147495a50af2c88673af76a5221",
+      "poolSha256": "a475becd681d02316f62bf821534838dcd932b26b657d5cab8c43d79453af00c"
+    },
+    {
+      "label": "on",
+      "sourceSha256": "779a436e62aab45fc66c9c9aecb4b0419bfbade5a248d05445b72c218297f95a",
+      "rustSha256": "374d1bd8bf13296fb2057ae41c8d7fc1039ea413decdbb5524ead4f647ff4e0f",
+      "poolSha256": "a475becd681d02316f62bf821534838dcd932b26b657d5cab8c43d79453af00c"
+    }
+  ],
+  "admissions": [
+    {
+      "trace": false,
+      "label": "off",
+      "attempts": 0,
+      "hits": 0
+    },
+    {
+      "trace": false,
+      "label": "on",
+      "attempts": 20,
+      "hits": 12
+    },
+    {
+      "trace": true,
+      "label": "off",
+      "attempts": 0,
+      "hits": 0
+    },
+    {
+      "trace": true,
+      "label": "on",
+      "attempts": 0,
+      "hits": 0
+    }
+  ],
+  "buildArgs": [
+    "--edition=2024",
+    "-O",
+    "-C",
+    "codegen-units=64",
+    "-C",
+    "lto=off",
+    "/workspace/afkarena-simx/work/candidate-guarded-unit-motion/work/guarded-motion-gate/main.rs",
+    "-L",
+    "dependency=/workspace/afkarena-simx/work/candidate-guarded-unit-motion/target/release/deps",
+    "--extern",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-guarded-unit-motion/target/release/libjs_runtime.rlib",
+    "-o",
+    "/workspace/afkarena-simx/work/candidate-guarded-unit-motion/work/guarded-motion-gate/check"
+  ],
+  "runtimeSha256": "f15fa3bb9c0210f6d5f82857f3f9b72e282e7440109fd705e7fa1d462054cefd",
+  "binarySha256": "4f9d7551449edaa2a32aaed3e9a7d7f7de924ae9a63491ab9d554c2565e3b1f7",
+  "archiveSha256": "c302eed2a4682a5a4b37f75debb45648cd6ca2ad175b6af19579cb31c41f6a53",
+  "qualifiesFor10000Target": false
+}
