@@ -1,0 +1,1874 @@
+{
+  "version": 2,
+  "passed": true,
+  "complete": true,
+  "label": "signed-camp-wave",
+  "pid": 35715,
+  "startedAt": "2026-10-30T15:03:19.289Z",
+  "stage": "passed",
+  "gates": [
+    {
+      "name": "native-library-and-integration",
+      "command": [
+        "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "js-runtime",
+        "-p",
+        "battle-core",
+        "--lib",
+        "--tests",
+        "-j",
+        "1",
+        "--target-dir",
+        "/workspace/afkarena-simx/work/signed-camp-gates-target"
+      ],
+      "startedAt": "2026-10-30T15:03:20.437Z",
+      "finishedAt": "2026-10-30T15:03:48.669Z",
+      "wallMs": 28229.868566999998,
+      "pid": 35728,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/native-library-and-integration.stdout.gz",
+          "sha256": "17e97cb504b66fcaa2699b81f11e5e2ab7b983919f894501917e58adda31c0c5",
+          "uncompressedSha256": "c2ed3c9269908a2f8f33d6077881976962002b668ea98b43ca6fff06912c162b"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/native-library-and-integration.stderr.gz",
+          "sha256": "ea99af6e8b423ed3f3530592b9b016dc956efc42df63738e1eadadb8b9b2fbe4",
+          "uncompressedSha256": "d77193929d4f0a2eebc28733df218e8ec2271a8be77ecb91a7db6521f7f59400"
+        }
+      ]
+    },
+    {
+      "name": "value-example",
+      "command": [
+        "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--release",
+        "-p",
+        "js-runtime",
+        "--example",
+        "value_check",
+        "-j",
+        "1",
+        "--target-dir",
+        "/workspace/afkarena-simx/work/signed-camp-gates-target"
+      ],
+      "startedAt": "2026-10-30T15:03:49.149Z",
+      "finishedAt": "2026-10-30T15:04:54.723Z",
+      "wallMs": 65573.021282,
+      "pid": 37319,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/value-example.stdout.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/value-example.stderr.gz",
+          "sha256": "5c12bcf2535dcc18efb16b048b7065ae10fc9415a059970f3f90903fcf5fba46",
+          "uncompressedSha256": "95924cdaf1206fa38250273ef6725f7fe7fab7a127d6edbd654e78798529e5c8"
+        }
+      ]
+    },
+    {
+      "name": "source-selective-prototype",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-source-selective-prototype.mjs"
+      ],
+      "startedAt": "2026-10-30T15:04:54.860Z",
+      "finishedAt": "2026-10-30T15:04:55.199Z",
+      "wallMs": 338.31093199999304,
+      "pid": 37823,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/source-selective-prototype.stdout.gz",
+          "sha256": "08e5543e684cbaff32ca3061e78aa797dfe9723e68d2a607e036b9bb947d0845",
+          "uncompressedSha256": "b701643ecb065fcbb4188cab16f8e9b5ae2781ea688bd9c04eee35c19e831427"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/source-selective-prototype.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-source-selective-prototype.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/source-selective-prototype/rust-source-selective-prototype.json.gz",
+          "sha256": "60b8be86c60ca5a697b198c7297726105bcc75313d112e3dd7641837cc88d1d1",
+          "uncompressedSha256": "9aee188481bfdbc6375663dcfc226ab136fc3f9e210e7af6f8022d892de27aa5"
+        }
+      ]
+    },
+    {
+      "name": "stage-range-parser-specialization",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-stage-range-parser-specialization.mjs"
+      ],
+      "startedAt": "2026-10-30T15:04:55.363Z",
+      "finishedAt": "2026-10-30T15:05:25.693Z",
+      "wallMs": 30329.639131999997,
+      "pid": 37834,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/stage-range-parser-specialization.stdout.gz",
+          "sha256": "4d5b6a09024d3c49bece958ebc781d6c032b64e2c5ddfcdc0f4786a797a5f3f3",
+          "uncompressedSha256": "0f53d274c58a508af9bce8e3e4b3faa131f33187f9aebc28b13ee98d4bf68cde"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/stage-range-parser-specialization.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-stage-range-parser-specialization.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/stage-range-parser-specialization/rust-generated-stage-range-parser-specialization.json.gz",
+          "sha256": "effe26475dc858fc59623529f13fceb7921a43c6d7eb7d33227d409f6084a4e2",
+          "uncompressedSha256": "3eddd6280da9c22806b8113dfde488df9ed1ff471e061fbefb75aa77fce3f14f"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-stage-range-parser-specialization.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/stage-range-parser-specialization/rust-generated-stage-range-parser-specialization.outputs.json.gz.gz",
+          "sha256": "2b15cda8fdbc85ea6cb6e8afaef9b8324ab90f0e5aa5ac89c7f60198a3da5def",
+          "uncompressedSha256": "db70d6d622eeb2905d755ab9c0f172a22a24b670de32ba8caa4a27c52c6f98d5"
+        }
+      ]
+    },
+    {
+      "name": "buff-percent-loop",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-buff-percent-loop.mjs"
+      ],
+      "startedAt": "2026-10-30T15:05:25.894Z",
+      "finishedAt": "2026-10-30T15:06:12.468Z",
+      "wallMs": 46573.963884,
+      "pid": 38045,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/buff-percent-loop.stdout.gz",
+          "sha256": "8dd76dc98a187f2ce21ddda8256099b6a33682abe41647fc62190117df112e59",
+          "uncompressedSha256": "dfc470c2bd2286e560e12568c2efd6bfb001e2428f159a69d8e1320b82d1e43f"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/buff-percent-loop.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-buff-percent-loop.compile.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/buff-percent-loop/rust-buff-percent-loop.compile.gz.gz",
+          "sha256": "b62fab8c8adc66f7259ecf25601f3823e48481786214b3352f9fafb3d3ee6b0b",
+          "uncompressedSha256": "292117bac0b890dd820defd989d9c83763c8b87ab9a19f29a26b7a91656ad730"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-buff-percent-loop.generated.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/buff-percent-loop/rust-buff-percent-loop.generated.gz.gz",
+          "sha256": "e5045a24be130a3046707faf637efa657fc85ef7e5f42e7a5abf581ef1cebaad",
+          "uncompressedSha256": "f3a515047864e5d9faac690120eb8787f89aee7b37b2d4099507b047a7fb3314"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-buff-percent-loop.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/buff-percent-loop/rust-buff-percent-loop.json.gz",
+          "sha256": "0f9ef890a75c438e1eb0ca562e2f72e83faa9ad068bedb932552e8f47edee473",
+          "uncompressedSha256": "8eabe6ca8cf55afdd12f51ecd872d3c65716603b32506666fdeb224b67f9da64"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-buff-percent-loop.observations.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/buff-percent-loop/rust-buff-percent-loop.observations.gz.gz",
+          "sha256": "114a1e392047b246034b72bb88d2b5232caa174d8117c4c45fa64a1e76de3632",
+          "uncompressedSha256": "c5c574028e471a28f0289294e70c4b9887a6c9c6bb7cd89711c08263cb81c11e"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-buff-percent-loop.sources.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/buff-percent-loop/rust-buff-percent-loop.sources.gz.gz",
+          "sha256": "597036fd76096ca469c0b72e5226683d34d1f5027e4802f615903291502531ea",
+          "uncompressedSha256": "952448526f95c06b25b444232c63a304f2445ee9d3b950b2684ea0f5fceee971"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-buff-percent-loop.stdout.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/buff-percent-loop/rust-buff-percent-loop.stdout.gz.gz",
+          "sha256": "7797a7a1b770414f4a909764315d7a73df260e3a79745adeea36abb91c0b7ed3",
+          "uncompressedSha256": "bbd77fa254a0cd1d838567d1f01fabe68d33f0d82416805a587cbc14296659f6"
+        }
+      ]
+    },
+    {
+      "name": "data-obj-specialization",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-data-obj-specialization.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:12.710Z",
+      "finishedAt": "2026-10-30T15:06:25.138Z",
+      "wallMs": 12426.847181999998,
+      "pid": 38320,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/data-obj-specialization.stdout.gz",
+          "sha256": "d464be7c1ad4a69b1f347b51fc20ced43398766e19b4e3c066cae350399205b2",
+          "uncompressedSha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/data-obj-specialization.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-data-obj-specialization.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/data-obj-specialization/rust-generated-data-obj-specialization.json.gz",
+          "sha256": "18cf7c540f0b3ed713b3736f52f82be78f5e10d7277cf1043d2abeeba516bdb5",
+          "uncompressedSha256": "7c6efdb998f2f634897a4fa292d5b9ce8f1b969d4ed7237ea921fcf504acbd49"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-data-obj-specialization.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/data-obj-specialization/rust-generated-data-obj-specialization.outputs.json.gz.gz",
+          "sha256": "20411f3bf27307c7c8e841735caa8d42a710732721d484c6f2e7ba932f283418",
+          "uncompressedSha256": "c78aba9aa1178bd7374453c53c9ff5d846a31b6f74ba459961b95ead389b62dc"
+        }
+      ]
+    },
+    {
+      "name": "one-hop-slots",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-one-hop-slots.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:25.322Z",
+      "finishedAt": "2026-10-30T15:06:27.040Z",
+      "wallMs": 1717.694582999975,
+      "pid": 38382,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/one-hop-slots.stdout.gz",
+          "sha256": "62eb8c5a3c7ec2afd0a4dec92ee806f5b5a5fa4bbc6d1914f84d16c9e0eff539",
+          "uncompressedSha256": "86337178e0f91fdceb9d5e9c4c8f61532bbd7fd76e185760b796df2cc20f4acd"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/one-hop-slots.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-one-hop-slots.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/one-hop-slots/rust-generated-one-hop-slots.json.gz",
+          "sha256": "d36167c279acb416a891fc200d2249e1f74df4e42b410f42688009c388421142",
+          "uncompressedSha256": "344e6d0b89de3f07e7a32e958a50d63fe7bc67eaa8b2e178e0e2fe985a13b281"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-one-hop-slots.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/one-hop-slots/rust-generated-one-hop-slots.outputs.json.gz.gz",
+          "sha256": "5336b2c312f9ee73e85810fcb2a1081a20ce3123c6512a31708a102e89dc12ad",
+          "uncompressedSha256": "813ec8928f2017928aab4c609f96e5a2420ef053a6957627d8ff20705a2d494a"
+        }
+      ]
+    },
+    {
+      "name": "primary-numeric-arrays",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-primary-numeric-arrays.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:27.202Z",
+      "finishedAt": "2026-10-30T15:06:47.141Z",
+      "wallMs": 19939.170981000003,
+      "pid": 38444,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/primary-numeric-arrays.stdout.gz",
+          "sha256": "b6b27deda2ea600bc6e4db1c8947341f372a500a7dbd6ee52615eafc61b9eea3",
+          "uncompressedSha256": "899332460425efe6a9a1e123dc4e930278494331c551f6956e7e1a43253ec456"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/primary-numeric-arrays.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-port-primary-numeric-arrays.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/primary-numeric-arrays/rust-port-primary-numeric-arrays.json.gz",
+          "sha256": "ba179a16c669e237df499fb7652e46b0ff45e00a21ffb5d6b2a8f769fa67eb7d",
+          "uncompressedSha256": "c4da9ee8cdc4f05483e4eaf836c7102be3d4f99a4ff7bc8d4c3e25e3fb3f1819"
+        }
+      ]
+    },
+    {
+      "name": "closures",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-closures.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:47.332Z",
+      "finishedAt": "2026-10-30T15:06:49.466Z",
+      "wallMs": 2133.4163969999936,
+      "pid": 38808,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/closures.stdout.gz",
+          "sha256": "0fa8179791deaacbc7fb1aaa4675fe2d1935e5df0e341061058f89892c57b974",
+          "uncompressedSha256": "abe036f5117e7807c97dcb6ab8206e84e2be8b2b614745b3e566c82161f054c5"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/closures.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-closures.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/closures/rust-generated-closures.json.gz",
+          "sha256": "9a40f01e2430e28ce0176c2a8ca9128e06cf13545b09004d745b686035e92c99",
+          "uncompressedSha256": "4b809c85efc1b0bcb91390d42e5f77c8e8708d4e1916be8bd2ad6175538bcfa8"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-closures.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/closures/rust-generated-closures.outputs.json.gz.gz",
+          "sha256": "c69fb287b50e3b6065d4580f225d65e47fe508ac8aa423315803725ede4dbfe2",
+          "uncompressedSha256": "d07ec695084ff8dcbcd074178c9d39c65fb5824cc7228a6ec4eba2c54151950f"
+        }
+      ]
+    },
+    {
+      "name": "reflection-bootstrap",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-reflection-bootstrap.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:49.705Z",
+      "finishedAt": "2026-10-30T15:06:51.610Z",
+      "wallMs": 1904.4993090000062,
+      "pid": 38870,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/reflection-bootstrap.stdout.gz",
+          "sha256": "62eb8c5a3c7ec2afd0a4dec92ee806f5b5a5fa4bbc6d1914f84d16c9e0eff539",
+          "uncompressedSha256": "86337178e0f91fdceb9d5e9c4c8f61532bbd7fd76e185760b796df2cc20f4acd"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/reflection-bootstrap.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-reflection.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/reflection-bootstrap/rust-generated-reflection.json.gz",
+          "sha256": "052027f65c022dc42a44c7afe4f72ce47170c146f2b0961cdca42c95db044e46",
+          "uncompressedSha256": "374bf4c8117663ea7c3d69adcd5fc030bf824f6ea7dfb3d9c401bf95f3b9b46e"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-reflection.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/reflection-bootstrap/rust-generated-reflection.outputs.json.gz.gz",
+          "sha256": "6db0c6b183202290ee2aaa276b0f26b1a2abbd3cf8733a62ded4bd731212a06f",
+          "uncompressedSha256": "498fdc3732a1ceac3f5cff3876602a369381a4da2c4e7c20b796d85e499730f2"
+        }
+      ]
+    },
+    {
+      "name": "arguments-elision",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-arguments-elision.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:51.805Z",
+      "finishedAt": "2026-10-30T15:06:53.779Z",
+      "wallMs": 1973.2642789999954,
+      "pid": 38932,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/arguments-elision.stdout.gz",
+          "sha256": "d464be7c1ad4a69b1f347b51fc20ced43398766e19b4e3c066cae350399205b2",
+          "uncompressedSha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/arguments-elision.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-arguments-elision.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/arguments-elision/rust-generated-arguments-elision.json.gz",
+          "sha256": "f5fc3a43d41ba7d0d1431c5f3bd98ad2dedc29e829b4b64738013c5a1d25062c",
+          "uncompressedSha256": "202a55de901bcf9bb90f4bd4aed63055f361b72a0817abb66d0aa175a0bb385a"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-arguments-elision.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/arguments-elision/rust-generated-arguments-elision.outputs.json.gz.gz",
+          "sha256": "a0a92e84856779a9c462535ad4f5dce24e262f9cee0af8fa3920c4bfdb9cd515",
+          "uncompressedSha256": "24722761b3c044b020833f1177d685d9a3db50ff5ebe4aa855635dcbb5d4cf40"
+        }
+      ]
+    },
+    {
+      "name": "diagnostics",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-diagnostics.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:54.067Z",
+      "finishedAt": "2026-10-30T15:06:54.903Z",
+      "wallMs": 836.3868829999992,
+      "pid": 38994,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/diagnostics.stdout.gz",
+          "sha256": "f7a46363df1bf2af5eeb5125df8944ee5ae9ca3608525158d8414fe60f1d3ad1",
+          "uncompressedSha256": "74b765f9aafd570b4762c07f06fb063752bf3457e4e524a6b237e9ae238aa167"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/diagnostics.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-diagnostics.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/diagnostics/rust-generated-diagnostics.json.gz",
+          "sha256": "14af18beb5c1cbf95063ef0435dd625f1f5b44460b56be0d9780219d786792dc",
+          "uncompressedSha256": "409423eaacbf3a45d1e15a44bb06170cf5708dd3d0eabc6f8cfe72bcf6519ed3"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-diagnostics.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/diagnostics/rust-generated-diagnostics.outputs.json.gz.gz",
+          "sha256": "b53687b4e1e8de25e8b0d28575c18208143940f6126c67c064f3489350e81ee9",
+          "uncompressedSha256": "823e9b6587e70c65aca94139f1382871fac3d3dbba279970e7be2c22949c0d83"
+        }
+      ]
+    },
+    {
+      "name": "errors",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-errors.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:55.133Z",
+      "finishedAt": "2026-10-30T15:06:57.203Z",
+      "wallMs": 2070.1417629999924,
+      "pid": 39029,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/errors.stdout.gz",
+          "sha256": "3bdbe76668b7f776b4f4bd3d59a729de3586615ca46c76cf8a58262eb6df70ce",
+          "uncompressedSha256": "e8865c4814ac15b04321953407a215e9725e8d55dcaaf4149f0e8cafb7d8d520"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/errors.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-errors.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/errors/rust-generated-errors.json.gz",
+          "sha256": "c29865c81ca36c23596ba318597f210c16b4a81716c3cc0c0fbcb0cfb20017ae",
+          "uncompressedSha256": "bc5ae09aa91138986b3ccf7a6b657880a73e3206a4e4c656db6ffb4ce5d2a5e1"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-errors.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/errors/rust-generated-errors.outputs.json.gz.gz",
+          "sha256": "0a7dec4dac38993f0595305089691860df64ee22d7a8481f4528e63f010a1de9",
+          "uncompressedSha256": "c40dc92443f289c665199e230b28aecb6ca431079ae2fca8d517a6358b2a4ed0"
+        }
+      ]
+    },
+    {
+      "name": "date",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-date.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:57.365Z",
+      "finishedAt": "2026-10-30T15:06:58.683Z",
+      "wallMs": 1317.8756620000058,
+      "pid": 39096,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/date.stdout.gz",
+          "sha256": "ead1533fe78e8520df9a03f2e9d7f05b84ad0a91459ae15389138f4f275cf841",
+          "uncompressedSha256": "f6524f32d50af541ec6b80b2e624ab8199df1f84e5e3ec682c9a35149d869936"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/date.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-date.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/date/rust-generated-date.json.gz",
+          "sha256": "ef3ed922ff72c4a603eb757a3d9c3cf5f9a28f8b76350efa95c1ca562cbab8f1",
+          "uncompressedSha256": "0784a9d7b586b59c190c8dbc07fe66b2ccea7c5232e03530d78de20756584009"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-date.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/date/rust-generated-date.outputs.json.gz.gz",
+          "sha256": "62578ae5b3e3d2f1fcd0b36a1fd99336e3b720a4f001f7839514092f994a35cf",
+          "uncompressedSha256": "17b4ea19fb2b9ef22187647991696d9b9008d5f2a99afb17d11dbffaaaacc215"
+        }
+      ]
+    },
+    {
+      "name": "arrays",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-arrays.mjs"
+      ],
+      "startedAt": "2026-10-30T15:06:58.863Z",
+      "finishedAt": "2026-10-30T15:07:00.827Z",
+      "wallMs": 1964.5858470000094,
+      "pid": 39178,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/arrays.stdout.gz",
+          "sha256": "94d595a2f27b89cdf67dd886f1936f4a1ff1b61df76c56376ee1558ba3a95205",
+          "uncompressedSha256": "5660af29743e2593054a2fd6a3fe807ed59697f97e74addcbb179549bab4caa2"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/arrays.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-port-arrays.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/arrays/rust-port-arrays.json.gz",
+          "sha256": "33e7f55d7cce78e37f587c0769158f26dcf420e734be1a681251a485c8d6314b",
+          "uncompressedSha256": "ffd4578d0de07a9f3953e49edac86fae2c1692f4b72615f87fcb1fce75f63362"
+        }
+      ]
+    },
+    {
+      "name": "array-from",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-array-from.mjs"
+      ],
+      "startedAt": "2026-10-30T15:07:01.014Z",
+      "finishedAt": "2026-10-30T15:07:02.411Z",
+      "wallMs": 1396.5706530000025,
+      "pid": 39264,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/array-from.stdout.gz",
+          "sha256": "d48d15ee182b541257daec33d65420a28d487020fb9134eb374731919d658dd9",
+          "uncompressedSha256": "f78f39396cdf1748e9bf0d9e0720f1b026e711d46fb922253af23436be4b410b"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/array-from.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-array-from.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/array-from/rust-generated-array-from.json.gz",
+          "sha256": "99999fc397d65b7882f8e51e992ecfba16c72ba11da5e39de06dbd00ff925237",
+          "uncompressedSha256": "06522ee102c4cecfabfaa3fae7e4646b09f0cc739f5fbe5ee0ef4c82d128bd3d"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-array-from.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/array-from/rust-generated-array-from.outputs.json.gz.gz",
+          "sha256": "19dc6fc2593dc97fdcc1ed38c0995c538427cbc17add8f0ba87dfc8fdf739597",
+          "uncompressedSha256": "fb26cab9375fd886b7527c856938598b13333820ce41cfe6760079564c302fe1"
+        }
+      ]
+    },
+    {
+      "name": "array-constructor",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-array-constructor.mjs"
+      ],
+      "startedAt": "2026-10-30T15:07:02.587Z",
+      "finishedAt": "2026-10-30T15:07:03.685Z",
+      "wallMs": 1098.5796240000054,
+      "pid": 39326,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/array-constructor.stdout.gz",
+          "sha256": "a0d0f9a754b680cb8180fceb37533c7f592ae89889d2d77a798c6f532bc767f3",
+          "uncompressedSha256": "2f762b9aed676b3394ef2a32ddc44632a30ca9c1b898a5cc7b7d86914c28c277"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/array-constructor.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-array-constructor.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/array-constructor/rust-generated-array-constructor.json.gz",
+          "sha256": "41fc21ee8c453b159ac72d182667b1c13e234f4c33bebea83a7e3517b8f2b2ab",
+          "uncompressedSha256": "07225c2887f19abd95e8230ad5fd2b614e5b05678dd363af756a1111cc644fe6"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-array-constructor.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/array-constructor/rust-generated-array-constructor.outputs.json.gz.gz",
+          "sha256": "51e159f0e23fed5eff434989406f4ba05451f61261f103b35ad3672a2622af15",
+          "uncompressedSha256": "a19f4868aecfc6d2a6cafb36b5dcb8a80fc17684961788b04d1a3c8ec536400b"
+        }
+      ]
+    },
+    {
+      "name": "generated-typed-arrays",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-generated-typed-arrays.mjs"
+      ],
+      "startedAt": "2026-10-30T15:07:03.850Z",
+      "finishedAt": "2026-10-30T15:07:16.046Z",
+      "wallMs": 12195.891749000002,
+      "pid": 39376,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/generated-typed-arrays.stdout.gz",
+          "sha256": "40edd3f4e9f4b55c78ac3f2c4df6329cc6c4ab939baf8e39483d2691d6e03215",
+          "uncompressedSha256": "557b557cff75ff834a573a00e7f413a0ada5dff88c39c379d79a88278c21266d"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/generated-typed-arrays.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/generated-rust-typed-arrays.actual.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/generated-typed-arrays/generated-rust-typed-arrays.actual.gz.gz",
+          "sha256": "445e6b5a906b900766b5433a27804a663221ce8f0cf2ef0a4a10b29e7c69d794",
+          "uncompressedSha256": "fd0a537d5d55da9dbe6f392ad002430c09fb603a55574992d5d0243da232d299"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/generated-rust-typed-arrays.expected.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/generated-typed-arrays/generated-rust-typed-arrays.expected.gz.gz",
+          "sha256": "445e6b5a906b900766b5433a27804a663221ce8f0cf2ef0a4a10b29e7c69d794",
+          "uncompressedSha256": "fd0a537d5d55da9dbe6f392ad002430c09fb603a55574992d5d0243da232d299"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/generated-rust-typed-arrays.generated.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/generated-typed-arrays/generated-rust-typed-arrays.generated.gz.gz",
+          "sha256": "96efeb549555fd745200c6754ff1c9ac7bf7e07928a36d70c65e52453167a002",
+          "uncompressedSha256": "d009efaca0cfcd32d5fec3a1d2cd4b8f5e06ac375af4fce6d305848e27d50cc1"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/generated-rust-typed-arrays.harness.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/generated-typed-arrays/generated-rust-typed-arrays.harness.gz.gz",
+          "sha256": "1566de5099d28387153dfeaa77ebb7120f29a0c8c79a27622976f93caaa5ca2a",
+          "uncompressedSha256": "80b46f455ad0912a1ae1cd9209de64c428f62fd6fc79688742272af4ce93ee42"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/generated-rust-typed-arrays.input.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/generated-typed-arrays/generated-rust-typed-arrays.input.gz.gz",
+          "sha256": "e70cceb11fda67c13cfc482d76911789adbbd301b63f4055a1c514cc58b678d8",
+          "uncompressedSha256": "0c39bf81bfefc8e2a7cf682cce49e85163a4b53b63fc0661ae67a65a9e35f5eb"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/generated-rust-typed-arrays.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/generated-typed-arrays/generated-rust-typed-arrays.json.gz",
+          "sha256": "975066cad98a179c74bfc238138b8469ed9e81a5f58e1ee7c63a24b2675a56fa",
+          "uncompressedSha256": "805d8f82119aeb62bb0ca04c96366951eedaed0ae49769294201d43b241c4925"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/generated-rust-typed-arrays.manifest.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/generated-typed-arrays/generated-rust-typed-arrays.manifest.gz.gz",
+          "sha256": "4155681bbde0b37d9c0c93d641423e13aaa21f5da3a59a669436f94a5cbfe3c8",
+          "uncompressedSha256": "b7c06fa46ee8d0cc4fb0c95728f2c131927634d770ab1be8a4abbeb42a43dda7"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/generated-rust-typed-arrays.source-pool.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/generated-typed-arrays/generated-rust-typed-arrays.source-pool.gz.gz",
+          "sha256": "349bd3774510b4b8ab7e88b1acec5d85dbe5265c27a36c62f3aacf6f9e329b2a",
+          "uncompressedSha256": "6ba7bf6c631aac31b8cd339263673911c0519a7c4ba0c7732b46a1b1d80d9e1f"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/generated-rust-typed-arrays.source.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/generated-typed-arrays/generated-rust-typed-arrays.source.gz.gz",
+          "sha256": "0a766d7651cf300df3be0f1ec3ac6f0ab911c7cd99c181264d37935bdf3de9ba",
+          "uncompressedSha256": "a6b022a3b39650f21be166f77a8d024facb08e9f8aa0140aebfecbe3449f4a70"
+        }
+      ]
+    },
+    {
+      "name": "json",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-json.mjs"
+      ],
+      "startedAt": "2026-10-30T15:07:16.293Z",
+      "finishedAt": "2026-10-30T15:07:17.866Z",
+      "wallMs": 1572.8804340000206,
+      "pid": 39416,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/json.stdout.gz",
+          "sha256": "754c03efb7914c1a4157395192651aa501b8a82f44be1c73eab4c07f286e5eeb",
+          "uncompressedSha256": "50ee520048215c07e827f241d40da7e0c1531343fab846eff3c2739d476fefb0"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/json.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-json.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/json/rust-generated-json.json.gz",
+          "sha256": "215734dd2b65bebcdd1c7743554841efa80c55cc7033889b496becd8bfe736f0",
+          "uncompressedSha256": "28a6848b3924ee4e6fc57165baabe10404bc3f109616cd3a40cc0fc7618c97b9"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-json.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/json/rust-generated-json.outputs.json.gz.gz",
+          "sha256": "7ede149da9ad0374e9f57ffdc6a9d80672aba83c15735004c8f892a53d737226",
+          "uncompressedSha256": "f5d1d16c9169002ab37097477e38012fff595c03cf2c9e24309141a446fd6785"
+        }
+      ]
+    },
+    {
+      "name": "coercions",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-coercions.mjs"
+      ],
+      "startedAt": "2026-10-30T15:07:18.059Z",
+      "finishedAt": "2026-10-30T15:07:19.911Z",
+      "wallMs": 1851.7308790000097,
+      "pid": 39478,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/coercions.stdout.gz",
+          "sha256": "d464be7c1ad4a69b1f347b51fc20ced43398766e19b4e3c066cae350399205b2",
+          "uncompressedSha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/coercions.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-coercions.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/coercions/rust-generated-coercions.json.gz",
+          "sha256": "bfebd8b837a5636d951f9570143c64bc5079b9d4a83a21405ae27ae5e595b1af",
+          "uncompressedSha256": "b22dbd6c38d1d5be6a63ed5ca55a81019973d68867825df634b708dec0079be7"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-coercions.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/coercions/rust-generated-coercions.outputs.json.gz.gz",
+          "sha256": "136bce4dfb72982f676f5e8f6e08b3d2cb1e607d59d77c75c682d9681ef45843",
+          "uncompressedSha256": "459dcd93184919848c49ad4908005ba3045c5132bf25525bd0ca0a5dbb0fec01"
+        }
+      ]
+    },
+    {
+      "name": "control-flow",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-control-flow.mjs"
+      ],
+      "startedAt": "2026-10-30T15:07:20.083Z",
+      "finishedAt": "2026-10-30T15:07:21.926Z",
+      "wallMs": 1843.1009229999909,
+      "pid": 39540,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/control-flow.stdout.gz",
+          "sha256": "d464be7c1ad4a69b1f347b51fc20ced43398766e19b4e3c066cae350399205b2",
+          "uncompressedSha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/control-flow.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-control-flow.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/control-flow/rust-generated-control-flow.json.gz",
+          "sha256": "2c8075a894ebfb504c15c99c674bee10b0957b03c26d1b4314e94862adbed92c",
+          "uncompressedSha256": "43e25353bf2de98196e766f38a504610e7d5661203643cfaeb0daa503dc7cc88"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-control-flow.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/control-flow/rust-generated-control-flow.outputs.json.gz.gz",
+          "sha256": "764fbd56a56987f7af0e231b2d83d64bae34129cd960bf3e02d440e7c7347531",
+          "uncompressedSha256": "1772db0aa58583b2e82ed16e542fe3665a7fa008f29d164e7db49b574aacc63e"
+        }
+      ]
+    },
+    {
+      "name": "values",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-values.mjs",
+        "/workspace/afkarena-simx/work/signed-camp-gates-target/release/examples/value_check"
+      ],
+      "startedAt": "2026-10-30T15:07:22.121Z",
+      "finishedAt": "2026-10-30T15:07:23.167Z",
+      "wallMs": 1046.375795,
+      "pid": 39646,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/values.stdout.gz",
+          "sha256": "72f374025e4877945210d2e010067fad75e47891151c87ae67297007261df353",
+          "uncompressedSha256": "32934631983e353b4a7e9cc52a260167ea0874e4c585325a2e740d0accd95fff"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/values.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-value-semantics.actual.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/values/rust-value-semantics.actual.gz.gz",
+          "sha256": "dabc40169ca4bf7fb3acbb9101d44e9eef9dbe88d0acac5a9740bdfa6579ff24",
+          "uncompressedSha256": "ad0659abff54051d3a47b2aeb8744d0a53edf457d74a6274eea9e8382130b930"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-value-semantics.expected.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/values/rust-value-semantics.expected.gz.gz",
+          "sha256": "d547631fe8f2a91603d19a7e46edfd79cc04e877a125ebb6ed56f0a0d09d6270",
+          "uncompressedSha256": "deebbd4ff3fc3b02e22bd3eb8aaa5a0d98206a1031d7ac6d1bb8e4563db24c8b"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-value-semantics.input.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/values/rust-value-semantics.input.gz.gz",
+          "sha256": "aaab8aeb3735bad166db39c1da0db8e171e19d9ece4d949178c48d517629c55d",
+          "uncompressedSha256": "70a547074f950d52e250113c610177836da1e3eb69047f1c47d232a4adc59bc6"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-value-semantics.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/values/rust-value-semantics.json.gz",
+          "sha256": "c0506460d864b44a644b243dba2f1511d03abed6ac84b05904ced345fd9a2dca",
+          "uncompressedSha256": "dd2ade7029f6575194ea890ac8c9febc10dbe40934f0641074a376cc213d6baa"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-value-semantics.stderr.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/values/rust-value-semantics.stderr.gz.gz",
+          "sha256": "18b0b1cba808d51bf6771f0ed7d275ab3560f672c8e018482dc3e94c2c37d48a",
+          "uncompressedSha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ]
+    },
+    {
+      "name": "battle-mode-limit-specialization",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-battle-mode-limit-specialization.mjs"
+      ],
+      "startedAt": "2026-10-30T15:07:23.401Z",
+      "finishedAt": "2026-10-30T15:08:30.483Z",
+      "wallMs": 67082.26641300003,
+      "pid": 39662,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/battle-mode-limit-specialization.stdout.gz",
+          "sha256": "476fba9f1626a416123df2f3576db85dcee4178479f9f7a68adc47cb20c6f0cd",
+          "uncompressedSha256": "056fb089db33be1600c2739c461fca806612b499aa87f877ebe221ac2a652cdb"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/battle-mode-limit-specialization.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-battle-mode-limit-specialization.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/battle-mode-limit-specialization/rust-generated-battle-mode-limit-specialization.json.gz",
+          "sha256": "37915959557dce792752d8ff6dde17200560a4d70737dd6e03ef8e4f21f4d4c2",
+          "uncompressedSha256": "aec63234f132ddfbe55d2ba850d6b3d7f4885030442a066ed7c40c65fda476e5"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-battle-mode-limit-specialization.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/battle-mode-limit-specialization/rust-generated-battle-mode-limit-specialization.outputs.json.gz.gz",
+          "sha256": "b1d85d1ddd8ae76e6f7f34128dabbb81e872eaccbb9b26d6c7db3580eed3c64f",
+          "uncompressedSha256": "886215966a52ed5aa9c17be61a8fe8bbb13a71d8505c7e522e46b471e0029bc7"
+        }
+      ]
+    },
+    {
+      "name": "shared-utf16",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-shared-utf16.mjs"
+      ],
+      "startedAt": "2026-10-30T15:08:30.657Z",
+      "finishedAt": "2026-10-30T15:08:33.115Z",
+      "wallMs": 2457.7545490000048,
+      "pid": 39729,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/shared-utf16.stdout.gz",
+          "sha256": "51fb7d9e56be0811ff13269eb531a28810e7fadba6c6a9f8a1e6b1231c84b151",
+          "uncompressedSha256": "00f567fdfe77f53201db88a8364e29d3f6be53bb5fd72a0a29dd5bf9c2f4fdf7"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/shared-utf16.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-port-shared-utf16.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/shared-utf16/rust-port-shared-utf16.json.gz",
+          "sha256": "512b49cc6a8d35aaa3bd7d32ac2f9d5e983d70b48fde0f7c753b8b2f64191c85",
+          "uncompressedSha256": "53ea713c56d8f45a38cff3297add4dc2fb4f75039ff92d4d27507aa259c59c0d"
+        }
+      ]
+    },
+    {
+      "name": "strings",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-strings.mjs"
+      ],
+      "startedAt": "2026-10-30T15:08:33.318Z",
+      "finishedAt": "2026-10-30T15:08:35.510Z",
+      "wallMs": 2192.198944999953,
+      "pid": 39821,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/strings.stdout.gz",
+          "sha256": "c6e70675365c7433ea0bff02ca1ab8a6c16c3a5467fb3308ae655714c1e7901b",
+          "uncompressedSha256": "f597a10393e3f3bc2d20a223c27a877310f6311080d86d553a3c684154676afb"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/strings.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-port-strings.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/strings/rust-port-strings.json.gz",
+          "sha256": "67252dc41ba1b2da09fff66790101d9b2f80fa04320bbc64afbe395d260a6dbb",
+          "uncompressedSha256": "24614d5a35f6587b761e52ce544260d0010dd8d551e904a73f3b1a01877557e1"
+        }
+      ]
+    },
+    {
+      "name": "primary-numeric-access",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-primary-numeric-access.mjs"
+      ],
+      "startedAt": "2026-10-30T15:08:35.711Z",
+      "finishedAt": "2026-10-30T15:08:44.052Z",
+      "wallMs": 8340.80118000001,
+      "pid": 39915,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/primary-numeric-access.stdout.gz",
+          "sha256": "c21d934ff030fb27e9133f0ee3da811541b1ae2921ae4727077d25bb1f8ff08f",
+          "uncompressedSha256": "2854fad1b2b6d9a5a5c00c99a8fd8435e70c609358949ffb60aa5b3d5d0b242a"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/primary-numeric-access.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-port-primary-numeric-access.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/primary-numeric-access/rust-port-primary-numeric-access.json.gz",
+          "sha256": "206c15d9973e57083bcc7a7a64398f3987e61ecfbb87e63dc528de97da6343e4",
+          "uncompressedSha256": "d7c8ad0dd0eb2accd88d302a02b5b6700b6fce86df641a8816ef20faa0c5d20b"
+        }
+      ]
+    },
+    {
+      "name": "copy-obj-specialization",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-copy-obj-specialization.mjs"
+      ],
+      "startedAt": "2026-10-30T15:08:44.229Z",
+      "finishedAt": "2026-10-30T15:08:52.678Z",
+      "wallMs": 8449.506086999958,
+      "pid": 40073,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/copy-obj-specialization.stdout.gz",
+          "sha256": "5ff4cbfbedce6c340ececc3e6b30e2f89ffc0e4a37a6e2fed048c8eba2c808a2",
+          "uncompressedSha256": "7eac03708bc4dfa2232da61d6202476b183f1e54becd3a3b0c12fb66b13f4993"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/copy-obj-specialization.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": [
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-copy-obj-specialization.json",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/copy-obj-specialization/rust-generated-copy-obj-specialization.json.gz",
+          "sha256": "576bdf8957e51961823dc46b62a1a20d0ee416000c6eafa21728b05e7b7c6537",
+          "uncompressedSha256": "42c482635710b7ccf7113092037d24360c29a08de2064bce5529e79629adb4c2"
+        },
+        {
+          "original": "/workspace/afkarena-simx/benchmarks/validation/rust-generated-copy-obj-specialization.outputs.json.gz",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/gate-artifacts/copy-obj-specialization/rust-generated-copy-obj-specialization.outputs.json.gz.gz",
+          "sha256": "6628b9132fd739ebf4d9062b66ada2b20092f059cba7c598a74d80a698b9328d",
+          "uncompressedSha256": "909449ed47797e0d95785cfccd2f837b6eb9cbd63077cca06d275cfefd9f03c3"
+        }
+      ]
+    },
+    {
+      "name": "canonical-small-index-contract",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--jitless",
+        "/workspace/afkarena-simx/tools/rust-port/check-canonical-small-index-contract.mjs"
+      ],
+      "startedAt": "2026-10-30T15:08:52.861Z",
+      "finishedAt": "2026-10-30T15:08:53.001Z",
+      "wallMs": 140.00697800004855,
+      "pid": 40135,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/canonical-small-index-contract.stdout.gz",
+          "sha256": "ce0651bb7762528bb54fe78945ed549890c0240ecdb20b74d3e7f4289183e82e",
+          "uncompressedSha256": "f6213a9ae7209387c9273dd11f0be79dcc0b5220750a97e846fda5035931be53"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/canonical-small-index-contract.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sourceGateArtifacts": []
+    },
+    {
+      "name": "generate",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/workspace/afkarena-simx/tools/rust-port/generate-program.mjs",
+        "--through",
+        "6",
+        "--out",
+        "work/rust-battle-full",
+        "--chunk-size",
+        "100",
+        "--gc-cadence",
+        "2"
+      ],
+      "startedAt": "2026-10-30T15:08:53.161Z",
+      "finishedAt": "2026-10-30T15:09:25.295Z",
+      "wallMs": 32133.453567999997,
+      "pid": 40142,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/generate.stdout.gz",
+          "sha256": "b766f810c900863bbfa59f28f2d75b051fe1e2932be6cc28f7aa447d6e28f778",
+          "uncompressedSha256": "90bea5aff55831d673e664c35dcefd5585ec48a38e723d81255baf0d9211a302"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/generate.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "name": "generated-lock",
+      "command": [
+        "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+        "generate-lockfile",
+        "--offline",
+        "--manifest-path",
+        "/workspace/afkarena-simx/work/rust-battle-full/Cargo.toml"
+      ],
+      "startedAt": "2026-10-30T15:09:25.431Z",
+      "finishedAt": "2026-10-30T15:09:25.564Z",
+      "wallMs": 133.66167999996105,
+      "pid": 40207,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/generated-lock.stdout.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/generated-lock.stderr.gz",
+          "sha256": "ccb31969d17911b94f3f07c701940cc4a898603a8d13db6a574537dd5f5a8566",
+          "uncompressedSha256": "c1a62fec0acc6a716929e59d565e7f16e415427535000dc80568e31f300f2298"
+        }
+      ]
+    },
+    {
+      "name": "build-and-full",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/workspace/afkarena-simx/tools/rust-port/build-and-validate-program.mjs",
+        "--label",
+        "signed-camp-wave",
+        "--expected-gc-cadence",
+        "2",
+        "--jobs",
+        "4"
+      ],
+      "startedAt": "2026-10-30T15:09:25.703Z",
+      "finishedAt": "2026-10-30T15:23:39.137Z",
+      "wallMs": 853433.5126860001,
+      "pid": 40210,
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "passed": true,
+      "frozenInputManifestSha256": "ff6b868a5174ff94fc40eedd8b6671c3ced11d4d6cc0c9c1b874c72e25d84c2a",
+      "frozenArchiveSha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88",
+      "artifacts": [
+        {
+          "stream": "stdout",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/build-and-full.stdout.gz",
+          "sha256": "41939dd79970a8b8f7a09760223b4740b7c23afca2a32fcc0651bda68f335613",
+          "uncompressedSha256": "38364fcece146885457dbc601637bbf0d43572ed39c6d11cda90e9f3022f7eca"
+        },
+        {
+          "stream": "stderr",
+          "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/build-and-full.stderr.gz",
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+          "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "inputs": {
+    "/workspace/afkarena-simx/crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "/workspace/afkarena-simx/crates/js-runtime/examples/copy_capacity_alloc.rs": "5371fb0dc75507c4e452b1c8f3a7df9424f2ff4edc66a9bf901b199813bc06e3",
+    "/workspace/afkarena-simx/crates/js-runtime/examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
+    "/workspace/afkarena-simx/crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "/workspace/afkarena-simx/crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "/workspace/afkarena-simx/crates/js-runtime/src/battle_gc.rs": "1ce99d2c474900cab619b26420b1b5695a074e8dad5ad58359662fb05bd2299a",
+    "/workspace/afkarena-simx/crates/js-runtime/src/battle_mode_engine_getter_source.js": "93ba986430208c8a8258a1ec7345d52d877345ddada92b898f2b39d7baa6cca9",
+    "/workspace/afkarena-simx/crates/js-runtime/src/battle_mode_get_id_source.js": "f2e0d46920cd082b7cc953962ff4af2c57c95c9ff024ec16b657d3a604e70514",
+    "/workspace/afkarena-simx/crates/js-runtime/src/battle_mode_get_table_source.js": "841aba245e8dd2313c97e23f18e51837340418b5d35542ab4818dc3a15064ab5",
+    "/workspace/afkarena-simx/crates/js-runtime/src/battle_mode_limit.rs": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
+    "/workspace/afkarena-simx/crates/js-runtime/src/battle_mode_parser_source.js": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
+    "/workspace/afkarena-simx/crates/js-runtime/src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
+    "/workspace/afkarena-simx/crates/js-runtime/src/buff_attribute_loop.rs": "a41d1e91894b451ff92fe0ffb5a4fee0071e1ac69b15710f507c51068f939192",
+    "/workspace/afkarena-simx/crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "/workspace/afkarena-simx/crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "/workspace/afkarena-simx/crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
+    "/workspace/afkarena-simx/crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "/workspace/afkarena-simx/crates/js-runtime/src/copy_obj.rs": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
+    "/workspace/afkarena-simx/crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+    "/workspace/afkarena-simx/crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
+    "/workspace/afkarena-simx/crates/js-runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "/workspace/afkarena-simx/crates/js-runtime/src/dynamic_slots.rs": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
+    "/workspace/afkarena-simx/crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "/workspace/afkarena-simx/crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+    "/workspace/afkarena-simx/crates/js-runtime/src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
+    "/workspace/afkarena-simx/crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "/workspace/afkarena-simx/crates/js-runtime/src/heap.rs": "f8e4a5bb731e8eac10527576df4d8f62e19da09b8547ccb329289ed729b0ac5e",
+    "/workspace/afkarena-simx/crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "/workspace/afkarena-simx/crates/js-runtime/src/id_hash.rs": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
+    "/workspace/afkarena-simx/crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "/workspace/afkarena-simx/crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "/workspace/afkarena-simx/crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "/workspace/afkarena-simx/crates/js-runtime/src/lazy_arguments.rs": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
+    "/workspace/afkarena-simx/crates/js-runtime/src/lib.rs": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
+    "/workspace/afkarena-simx/crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "/workspace/afkarena-simx/crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "/workspace/afkarena-simx/crates/js-runtime/src/native_battle_run.js": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+    "/workspace/afkarena-simx/crates/js-runtime/src/native_expose.js": "9a6a28e97c4c79455e92d4ae1412375ca4c95f013494d0534b9cb779e1693911",
+    "/workspace/afkarena-simx/crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "/workspace/afkarena-simx/crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "/workspace/afkarena-simx/crates/js-runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+    "/workspace/afkarena-simx/crates/js-runtime/src/property_slots.rs": "39794f933ba13991ee4b2118e068d83bdfe057a68dd633c8c7e8bcf6e249ce79",
+    "/workspace/afkarena-simx/crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
+    "/workspace/afkarena-simx/crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "/workspace/afkarena-simx/crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+    "/workspace/afkarena-simx/crates/js-runtime/src/runtime.rs": "e0e863aea059c8997dc84c6a071d1c2b8d313352bdc37d7c8bde895dd1626f49",
+    "/workspace/afkarena-simx/crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+    "/workspace/afkarena-simx/crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
+    "/workspace/afkarena-simx/crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "/workspace/afkarena-simx/crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "/workspace/afkarena-simx/crates/js-runtime/src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
+    "/workspace/afkarena-simx/crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "/workspace/afkarena-simx/crates/js-runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+    "/workspace/afkarena-simx/crates/js-runtime/tests/fast_length.rs": "f3a822eee70c5484670f17eaaa21d757c2e0e598adac321cc91258c5cdb392e7",
+    "/workspace/afkarena-simx/crates/js-runtime/tests/numeric_property_keys.rs": "7d729c37f9b4c77b67a98ab7e5dc9cc8260c8d9769d5c61880c2618df13adb21",
+    "/workspace/afkarena-simx/crates/js-runtime/tests/ordinary_heap.rs": "4408ff01772e391bb4fd45203b16259a8fa5a2ddabd24742fa1a84171b1a99f1",
+    "/workspace/afkarena-simx/crates/js-runtime/tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
+    "/workspace/afkarena-simx/crates/js-runtime/tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
+    "/workspace/afkarena-simx/crates/js-runtime/tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2",
+    "/workspace/afkarena-simx/crates/battle-core/Cargo.toml": "2b11be627b089d4bc2eb94961e8b8e2c122fced7aad72eacccba6446066d547a",
+    "/workspace/afkarena-simx/crates/battle-core/examples/clock_check.rs": "3644748cb79d28e90dc2aa34f79f21257d154e379048b132d5b82bd4be8b7ab0",
+    "/workspace/afkarena-simx/crates/battle-core/examples/engine_check.rs": "481e02b682fd14041417d0d20e1dab54d7426d2d5988811e290da03d00358a35",
+    "/workspace/afkarena-simx/crates/battle-core/examples/engine_runtime_check.rs": "d5e4485216e976d9fee2beff4b9dc721458db4ade389d44b66b6ed5d0d4c98c2",
+    "/workspace/afkarena-simx/crates/battle-core/examples/engine_unit_runtime_check.rs": "7361b4ccc985b409da98ed3068c407ab5974506aff09a7992972b757894fe5b1",
+    "/workspace/afkarena-simx/crates/battle-core/examples/entity_check.rs": "5a8c4747cc2b845ecec1e1adc090f9f218d0ce80e7e804dbb040d0580dddb084",
+    "/workspace/afkarena-simx/crates/battle-core/examples/numeric_check.rs": "700f0118d9d18fbef5bc3c319387a2ca72b6dfbf88db394a168a2341b2889dd9",
+    "/workspace/afkarena-simx/crates/battle-core/examples/rng_check.rs": "fc2505690ad75d713f9c7773346025cf22af3c9b4e071e0de73d36b8943b974d",
+    "/workspace/afkarena-simx/crates/battle-core/examples/scheduler_check.rs": "fab294014bc5439b626231034be23a5bf5271e3d2649f0e74df2755279ec25cc",
+    "/workspace/afkarena-simx/crates/battle-core/examples/unit_skill_runtime_check.rs": "1b57dfa10f22fe6f63cb73fb1ded9f220f061bb387d8b03bfd38c7f8f4673303",
+    "/workspace/afkarena-simx/crates/battle-core/src/ai.rs": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
+    "/workspace/afkarena-simx/crates/battle-core/src/buff.rs": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145",
+    "/workspace/afkarena-simx/crates/battle-core/src/clock.rs": "95a00c6a78a6a1c6d82e42f8c81da7e0e4c3d6512468925697045fe975798cba",
+    "/workspace/afkarena-simx/crates/battle-core/src/config.rs": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36",
+    "/workspace/afkarena-simx/crates/battle-core/src/damage.rs": "8375af2f3c4d929bdef52fb86195357511f890a28c47d45ed6ed779e34641601",
+    "/workspace/afkarena-simx/crates/battle-core/src/engine.rs": "1a7cd93944a3cc86b25cc39d19edc7bf9b73f213174487744e606aabcd889110",
+    "/workspace/afkarena-simx/crates/battle-core/src/engine_runtime.rs": "e4d950171ce10100698a75511fc9a2992b4fee38716d96085adc28854598f28e",
+    "/workspace/afkarena-simx/crates/battle-core/src/entity.rs": "6e5b05c246f3f0736e68e5f2b0abd11e831cff8d9d443b87fece5df17c65c8ac",
+    "/workspace/afkarena-simx/crates/battle-core/src/ffi.rs": "62e5d0c44521e8bb824c180ebdab811897397ebe968d27a0df98587ae1e06eb6",
+    "/workspace/afkarena-simx/crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "/workspace/afkarena-simx/crates/battle-core/src/lib.rs": "d90b6af65542229452fd86e19a6d6616c5e4410f3f6714fa86728980d6878723",
+    "/workspace/afkarena-simx/crates/battle-core/src/numeric.rs": "113358834ead99b82800e8fe23a1d9b98f70e547a003c3cc45f860b30b5dc080",
+    "/workspace/afkarena-simx/crates/battle-core/src/rng.rs": "d343b560ebc3808ac57e8df064b63d5e4f75f6e9ed7bbefd0f2a20cae675d035",
+    "/workspace/afkarena-simx/crates/battle-core/src/scheduler.rs": "944041e9fcbb66e2dfb7f67121798e45e8a4db336f724bd7b047fe23829fe152",
+    "/workspace/afkarena-simx/crates/battle-core/src/skill.rs": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742",
+    "/workspace/afkarena-simx/crates/battle-core/src/unit.rs": "c097a9298d8e3cfeb11b9cbb3656e438b0c96d3b13526d4769eba7cd3a53809f",
+    "/workspace/afkarena-simx/crates/battle-core/src/unit_resources.rs": "2f0e194badbaca8499189801115c7e6cf01575fc8157de7ec589100da89908fb",
+    "/workspace/afkarena-simx/crates/battle-core/src/unit_skill_runtime.rs": "8684ac88baa412c51347f9fa9be2f2979c7711faad8c55cd42a3829de517d949",
+    "/workspace/afkarena-simx/crates/battle-core/src/unit_speeder.rs": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
+    "/workspace/afkarena-simx/crates/battle-core/src/v8_small_sort.rs": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
+    "/workspace/afkarena-simx/crates/battle-core/src/v8_tim_sort.rs": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+    "/workspace/afkarena-simx/crates/battle-core/tests/runtime_shared_state.rs": "b4c144507aac7fec4470c6f9cdd2d553b257d1d2a225ed5dae7c1ec84a02a147",
+    "/workspace/afkarena-simx/third-party/memchr/Cargo.toml": "b919c7322ecc6da819546cb677da938730e5df32fdfe9ef5d7c2dc54cc768526",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/libc/Cargo.toml": "ac4fdbe46f57bde8415ca873eb3678e45ada680f8f4c2445ee20432314ebcbd2",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/libc/main.rs": "05030806ee81eb66183dc08f54a3067b6fb8a8d3e208664a39bf65ac802073dd",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-bytecount/Cargo.toml": "11bde46e8fab985a1c19480c07ed2a016d2f18c3ae05c315f1453ec0c928a2e3",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-bytecount/main.rs": "0f268fe499f0f94fdc41dd7520d50c197f171c5c7364b019f17b0e627472a527",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-jetscii/Cargo.toml": "98edfcf204bdb814db58101fd8dcb4fadf5f4e863d18589aedfc98238f5e4990",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-jetscii/main.rs": "86535af85e91e09e043a4a90c7e23715048300de300200eb5a1eef15b17ab201",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-memchr/Cargo.toml": "7f738933d4fdab59deef829083524056ad0bc2f37e1765bd17e9f7dab46acaf4",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-memchr/main.rs": "46a0a5b1012d7b6fff1a706f18116e229c886909f31b1194f6a9314f3aaf3ca0",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-memchrold/Cargo.toml": "09831788eb8326fe7beb14149ba043e2e0a03ccd241b2a68e047f5b382866c76",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-memchrold/main.rs": "1cdd96069a91468ccd3ac14673aa5542a208db42b7f778bd9c3b70b6593359d1",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-sliceslice/Cargo.toml": "273f686603e6d846daf5a001cbe76900fb3fbd05135ff4f378e087e5b06fed78",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-sliceslice/main.rs": "adf92459253fcff2861c416dcdb73cb27ef9e6ff6db1c7ddcf09c0f46d1175fc",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-std/Cargo.toml": "dd8a79cd663ecadd3289f3becd81a2b77a64c02ccf84d22cc00f82ebe6a11539",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-std/build.rs": "eade4efaf902d79c8d960c3cdbaa0d2d288593f24b2dad89cbf06210fa098f77",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/rust-std/main.rs": "e9022d4fe2f6387a10ca04340b84e1cedaef3754876f5210e4ebd2277c3f2a8c",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/stringzilla/Cargo.toml": "038c20353be0d2415c89f8b432823ea677d7265e6dab60adccda4b31252af0e2",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/engines/stringzilla/main.rs": "1793d166241b5a182d00723c1805215e22319cf6f58e2d2ccead1b3cdce90b5d",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/haystacks/code/rust-library.rs": "119a67c6bc375544621e6abb91e61c0d6db8e4d4c885c81d94b511eb0cad4d75",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/shared/Cargo.toml": "c40151776a623ca62d768b4f16761ff4e6609d87831b52eede6c12f717128f91",
+    "/workspace/afkarena-simx/third-party/memchr/benchmarks/shared/lib.rs": "4543c8d56b50922ee912a92e9052d36c5db1f45c82e290266004303c937f8f34",
+    "/workspace/afkarena-simx/third-party/memchr/fuzz/Cargo.toml": "2d16d8f01c6a91ab452b2e0b48f19e3ea44f107ed8234e05a6c2c2415f9c1c31",
+    "/workspace/afkarena-simx/third-party/memchr/fuzz/fuzz_targets/memchr.rs": "2a6fabec4a55a5f54d29fa1981267c06c3b1d9e3a19416a4f31920c831b7dcf2",
+    "/workspace/afkarena-simx/third-party/memchr/fuzz/fuzz_targets/memchr2.rs": "7caa6d326c6abdedccf166fa4586959ac522f8638ce2a85b205637e83e07b546",
+    "/workspace/afkarena-simx/third-party/memchr/fuzz/fuzz_targets/memchr3.rs": "3f2c8fe0c932f3c8781715108396ebd73ba1be60fce576b30857ce5a0d49368f",
+    "/workspace/afkarena-simx/third-party/memchr/fuzz/fuzz_targets/memmem.rs": "03c8a5ee971c4c717215bb05fec728c1536d6e4177cc5ac781208ce2a7404b52",
+    "/workspace/afkarena-simx/third-party/memchr/fuzz/fuzz_targets/memrchr.rs": "80a8290e1618bde99741b1170854325a206ee1d7b6a45499bc405aa3ca476686",
+    "/workspace/afkarena-simx/third-party/memchr/fuzz/fuzz_targets/memrchr2.rs": "7adefd7ae404050eae24e5658628ffc12c689632add230457c1adcd347c1655b",
+    "/workspace/afkarena-simx/third-party/memchr/fuzz/fuzz_targets/memrchr3.rs": "7811dc886f5778a7fc4dd8d3d4e6e7fe51cfe75b7f8ce3dc827872efc77a51cd",
+    "/workspace/afkarena-simx/third-party/memchr/fuzz/fuzz_targets/memrmem.rs": "ef352e9376264e497fdd4331ade37fb8a969d5eafcb545b609f24a811b64af6c",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/aarch64/memchr.rs": "5bb70f915084e629d940dbc322f5b9096b2e658cf63fea8a2f6e7550412e73a0",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/aarch64/mod.rs": "44cd1a614bd66f1e66fc86c541d3c3b8d3a14a644c13e8bf816df3f555eac2d4",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/aarch64/neon/memchr.rs": "e8c00b8fb2c7e2711832ae3cedefe59f32ebedd7dfa4d0ec6de2a566c979daea",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/aarch64/neon/mod.rs": "eab6d56c2b2354db4ee395f40282cd49f97e2ab853547be5de6e65fbe1b2f634",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/aarch64/neon/packedpair.rs": "32d3e4cd0dd9b6c8382e5308cbd896d20242c90b12862c44a5de6a8b4d6126df",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/all/memchr.rs": "b0b1214aa573ed5d02ae62a77c42c773065566b50274d4096e37817d65ab1594",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/all/mod.rs": "05f3fc2b069682eb1545fc6366d167bb620a454365dac8b8dd6cde6cd64de18a",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/all/packedpair/default_rank.rs": "abffd1b5b8b7a3be95c03dd1105b905c246a379854dc56f1e846ea7c4408f2c7",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/all/packedpair/mod.rs": "292b66042c5b5c78bba33db6526aeae6904db803d601fcdd29032b87b3eb3754",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/all/rabinkarp.rs": "236f69c04b90c14c253ae6c8d9b78150b4a56df75bb50af6d63b15145668b7cc",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/all/shiftor.rs": "0d79117f52a1e4795843603a3bb0b45397df4ad5e4184bbc923658dab9dc3b5f",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/all/twoway.rs": "47c97a265bfbafde90a618946643d3e97dfd9a85f01aa4ac758cd4c1573a450d",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/generic/memchr.rs": "cab4636bf8042c81ca1bcc49fe4214b362100992c0a850859ff445fa6a48f327",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/generic/mod.rs": "1dd75f61e0ea2563b8205a08aaa7b55500130aa331d18b9e9f995724b66c7a39",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/generic/packedpair.rs": "a4a6efb29877ced9cf4c4e5ae9f36a79f019a16b831f2b9424899a1513d458ad",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/mod.rs": "ca3960b7e2ed28d1b3c121710a870430531aad792f64d4dcb4ca4709d6cbda30",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/wasm32/memchr.rs": "d88ac79f891d8530f505f5035062d3da274a05d66c611480c75430d52709d052",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/wasm32/mod.rs": "a20377aa8fe07d68594879101dc73061e4f51d9c8d812b593b1f376e3c8add79",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/wasm32/simd128/memchr.rs": "bac2c4c43fe710c83a6f2b1118fede043be89dd821d4b532907f129f09fdb5cf",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/wasm32/simd128/mod.rs": "c157b373faedbfd65323be432e25bc411d97aa1b7bc58e76048614c7b2bf3bf6",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/wasm32/simd128/packedpair.rs": "288ba6e5eee6a7a8e5e45c64cff1aa5d72d996c2a6bc228be372c75789f08e45",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/x86_64/avx2/memchr.rs": "576ec0c30f49874f7fd9f6caeb490d56132c0fbbaa4d877b1aa532cafce19323",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/x86_64/avx2/mod.rs": "0033d1b712d0b10f0f273ef9aa8caa53e05e49f4c56a64f39af0b9df97eec584",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/x86_64/avx2/packedpair.rs": "87b69cb4301815906127db4f6370f572c7c5d5dad35c0946c00ad888dbcaec8c",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/x86_64/memchr.rs": "7426e27c39a334d500a6803acdfd97ffc05fbf2d70ba8e74492a8ad3f22d20da",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/x86_64/mod.rs": "61b2aa876942fd3e78714c2ae21e356c8634545c06995020f443fa50218df027",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/x86_64/sse2/memchr.rs": "0de0444e26d885eaf866220578752aac871e03bebee7b4f5de7fe8a35f5fa97f",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/x86_64/sse2/mod.rs": "38b70ae52a64ec974dbb91d04d6ca8013d9e06d1fe4af852206bbc2faf1c59aa",
+    "/workspace/afkarena-simx/third-party/memchr/src/arch/x86_64/sse2/packedpair.rs": "241ea981d8eea6024769f1c9375f726a9bb9700160c5857781d4befd9f5ef55d",
+    "/workspace/afkarena-simx/third-party/memchr/src/cow.rs": "34eddd02cb82cc2d5a2c640891d64efe332dabcc1eea5115764200d8f46b66f7",
+    "/workspace/afkarena-simx/third-party/memchr/src/ext.rs": "210f89d1e32211bc64414cbd56e97b4f56ce8a8832d321d77a9fe519634e27ea",
+    "/workspace/afkarena-simx/third-party/memchr/src/lib.rs": "614f778a41e88a29ea0ceb8e92c839dbb6b5a61c967f8bfd962975e18f932c71",
+    "/workspace/afkarena-simx/third-party/memchr/src/macros.rs": "3e4b39252bfa471fad384160a43f113ebfec7bec46a85d16f006622881dd2081",
+    "/workspace/afkarena-simx/third-party/memchr/src/memchr.rs": "6ae779ec5d00f443075316e0105edf30b489a38e2e96325bec14ccecd014145b",
+    "/workspace/afkarena-simx/third-party/memchr/src/memmem/mod.rs": "1b0a9d6a681fd0887c677c4fc8d4c8f9719ddde250bdd5ea545365c1a7fb9094",
+    "/workspace/afkarena-simx/third-party/memchr/src/memmem/searcher.rs": "7763472d43c66df596ca0697c07db0b4666d38a6a14f64f9f298aaf756c4a715",
+    "/workspace/afkarena-simx/third-party/memchr/src/tests/memchr/mod.rs": "269f8e4b4f7f5ea458f27a3c174eb1020ffb2484eeba9464170beb51747df69b",
+    "/workspace/afkarena-simx/third-party/memchr/src/tests/memchr/naive.rs": "6a0bee033e5edfb5b1d5769a5fa1c78388f7e9ff7bb91cb67f0ad029289e00e7",
+    "/workspace/afkarena-simx/third-party/memchr/src/tests/memchr/prop.rs": "1854eea2338c405fe4635aac430f51e10d2069cd37a7489ddaff47da95f8720b",
+    "/workspace/afkarena-simx/third-party/memchr/src/tests/mod.rs": "7cec8f809e279310a465c6a7725087970f219a676cc76c83de30c695bb490740",
+    "/workspace/afkarena-simx/third-party/memchr/src/tests/packedpair.rs": "b02ec4fbb61a8653cb5f2268c31bc9168b8043347f2abdcc74081acf83b98e15",
+    "/workspace/afkarena-simx/third-party/memchr/src/tests/substring/mod.rs": "c7660d10749363ac4687e7da2b5fda60768230425df8ba416c0c28b8d56a5c74",
+    "/workspace/afkarena-simx/third-party/memchr/src/tests/substring/naive.rs": "df6f55d165382b8a53762ba4c324926cac13ebc62cde1805f4ce08740b326483",
+    "/workspace/afkarena-simx/third-party/memchr/src/tests/substring/prop.rs": "38c15992609b5681a95d838ae6f2933e00a1219f2c971bfba245f96e0729fcdc",
+    "/workspace/afkarena-simx/third-party/memchr/src/vector.rs": "e787c4ed2f499802e90910f7aedc7ca41acea39c8ef416b19d6d572c1a540422",
+    "/workspace/afkarena-simx/third-party/regress/Cargo.toml": "000a3ee00203b52eafa057e7bbecea8c5414e3782b47145abbf04ce647730e1c",
+    "/workspace/afkarena-simx/third-party/regress/gen-unicode/Cargo.toml": "f7c0e89ee8459cf38651e9463cfdf2d1381332f81fdce3860e9065f2556547db",
+    "/workspace/afkarena-simx/third-party/regress/gen-unicode/src/binary_properties.rs": "e30d56f1f0f9f24c24a0b2302fd16da6faa6dd8f2d5a7d285255ef3c67d8e2ab",
+    "/workspace/afkarena-simx/third-party/regress/gen-unicode/src/case_folding.rs": "a215ba178add4073aa3cbbd34f524f4cd12054240f18353d8f87dd97da35b916",
+    "/workspace/afkarena-simx/third-party/regress/gen-unicode/src/general_category_values.rs": "1d7cb1934264ef21f3a7fe0971942c75126082d0df3698dff4845d1d8e8ad244",
+    "/workspace/afkarena-simx/third-party/regress/gen-unicode/src/main.rs": "0857b4bfed9ba50eae4ec5f9b419c2d03da52fd4a5e160f98c1eafad9fa566a7",
+    "/workspace/afkarena-simx/third-party/regress/gen-unicode/src/scripts.rs": "4116e79943da603cdb090483bf80fa868b32fb388d9f6cc23426f4f968738552",
+    "/workspace/afkarena-simx/third-party/regress/gen-unicode/src/string_properties.rs": "158676297d36b79e4e6458ed16105f1c70d8ae280bbf9f390f1e9e562b202fb1",
+    "/workspace/afkarena-simx/third-party/regress/gen-unicode/src/uppercase.rs": "8bf974d0ed6d9f9c3b15f0e33c39a9a99e64d4c0e872138d37a642d81a5f13ca",
+    "/workspace/afkarena-simx/third-party/regress/regress-tool/Cargo.toml": "4d11ba51a0cde7fa3c20832c36e191ad518835fef702d3f491ba968676a81b56",
+    "/workspace/afkarena-simx/third-party/regress/regress-tool/src/regress-tool.rs": "6b0f4a4ed44eb38a98792ad2fb7a5fb9c40894ae4b2a690be50ba36b8d4b1be2",
+    "/workspace/afkarena-simx/third-party/regress/src/api.rs": "92f739e4dfe08061897e2a78d8a2b949d73f0dbab8dbc60fe90151707789c591",
+    "/workspace/afkarena-simx/third-party/regress/src/bytesearch.rs": "c02f6ed127dc9922caeeb2ed1c2407f3d3b12856943d7867abdbc9202d1caee1",
+    "/workspace/afkarena-simx/third-party/regress/src/charclasses.rs": "d24c34f6e61339110b197701ebc453df86f327628838c5c8a30436da0e7cafa4",
+    "/workspace/afkarena-simx/third-party/regress/src/classicalbacktrack.rs": "9e59b64414f24b59941e4593c0404282bec114d44c843d42cfd2f71d2683cb2c",
+    "/workspace/afkarena-simx/third-party/regress/src/codepointset.rs": "9eb50732e6e28672829649fafa97bde8aa1ceef18b11e7804f2ca8b9f2f8be95",
+    "/workspace/afkarena-simx/third-party/regress/src/cursor.rs": "9d2a62814f2d8c6c5f0b68f5d1175dea2678f8259bf87c185c83b963bac1f0fd",
+    "/workspace/afkarena-simx/third-party/regress/src/emit.rs": "35e54c835a6815a312b97f89f1ba5b21ab0a2835fc70f14658da6b731dbcd6f6",
+    "/workspace/afkarena-simx/third-party/regress/src/exec.rs": "b75773db31eb8cdeda8e1bd030cc58a803ed592253d706e4e999a6cd1e7353d5",
+    "/workspace/afkarena-simx/third-party/regress/src/indexing.rs": "71aced2efce9aa57449e143445846c62fa13dcee9e088eafeb0950255962678c",
+    "/workspace/afkarena-simx/third-party/regress/src/insn.rs": "81a06fba7587db00406273be34c2d17950688ee77a88a82abb204f15443426f6",
+    "/workspace/afkarena-simx/third-party/regress/src/ir.rs": "ea704141a50e589308a0e090a58faa64be3f2d3a01833c196f12059037c06fda",
+    "/workspace/afkarena-simx/third-party/regress/src/lib.rs": "7adef6554dc12c22cf9cabc8691fc76b5db8170e98c2fb6352872566ac11174f",
+    "/workspace/afkarena-simx/third-party/regress/src/literal.rs": "541dbcc545d4cd96acb52bf05649f7c0384bc8c7bbe013a282fb94e6f079ec5b",
+    "/workspace/afkarena-simx/third-party/regress/src/matchers.rs": "f96a4c83a34e81da4c928ec1f7b78d71e1a16fb0bde83e33cdaf677f5f70d278",
+    "/workspace/afkarena-simx/third-party/regress/src/optimizer.rs": "23f18b7ea8af1e5bcd9e03c8ad947e659cb319d8f21595dec880a3c0ed975e0a",
+    "/workspace/afkarena-simx/third-party/regress/src/parse.rs": "eec93b59b7c3946d338b0603ab3b10200cbb86e803de2ffb43eaac995e231136",
+    "/workspace/afkarena-simx/third-party/regress/src/pikevm.rs": "c7d0b5f063805ca26c61bc4a6f208e1b6096a5cc4b5868758f422763eaa6d313",
+    "/workspace/afkarena-simx/third-party/regress/src/position.rs": "725f869a8de2ec1d6162afc720647f779dfcd996da1c85882521269af819fe16",
+    "/workspace/afkarena-simx/third-party/regress/src/scm.rs": "7f214ac019fe71ebd824ec02014da31139f4b64610059cfcce642cfd9db6c507",
+    "/workspace/afkarena-simx/third-party/regress/src/startpredicate.rs": "b0305887ea12442a96b2867a5c0c7d13e56ae42b80bf618ece61e7dd1bcc8e68",
+    "/workspace/afkarena-simx/third-party/regress/src/types.rs": "c8f4b70a2762fcf55843ce441f4c21b3f9691d9a5308a673c1139303966746bb",
+    "/workspace/afkarena-simx/third-party/regress/src/unicode.rs": "61cd57b07ef5823bfaea7b3f52a81d045173007fad71b8336a69ab2adacb215a",
+    "/workspace/afkarena-simx/third-party/regress/src/unicodetables.rs": "e4703653bdf6bbb725e3f2d3c53bae3f22780368c8cbfcad38d384dd0f17bc6e",
+    "/workspace/afkarena-simx/third-party/regress/src/util.rs": "925367315fc52634e3affa815bc561c82fa5c3c83a15aa0e3042ad937a464e74",
+    "/workspace/afkarena-simx/third-party/regress/tests/anchored_optimization.rs": "8d9778dd61e5b3b3d5e1afc12c35d01801c6cd3ffeef5e2e4be8d7332947fd08",
+    "/workspace/afkarena-simx/third-party/regress/tests/backtrack_budget.rs": "7341a404cf435fa989ba47f9194ebb6d8a73eb85b6693a457f6a45216d79429a",
+    "/workspace/afkarena-simx/third-party/regress/tests/common/mod.rs": "60313f000cf883c0121e23ecfe0ec337ac658739133942b3da085e2019f9106f",
+    "/workspace/afkarena-simx/third-party/regress/tests/escape_tests.rs": "f32c1dad22dcf31055e427f873684c910ddab0c063ff9b7334534b00839db3de",
+    "/workspace/afkarena-simx/third-party/regress/tests/pattern_tests.rs": "ec3c8908c45f88e863f3cef48127f3868c27ea9fe8488ae65263d13d32ff0d30",
+    "/workspace/afkarena-simx/third-party/regress/tests/pcre_tests.rs": "39a42cb8318d083b1a2594fcbc52f923be55c918e223eda82bcbd1e402add998",
+    "/workspace/afkarena-simx/third-party/regress/tests/replacement_tests.rs": "e6ca395828542bdb1634e1cb70291572e11a4e42951d2478d797a734cde5488c",
+    "/workspace/afkarena-simx/third-party/regress/tests/syntax_error_tests.rs": "fabc4547f68fcded182870b98fa819291d8b64cc1537f285caedb786a9f959b7",
+    "/workspace/afkarena-simx/third-party/regress/tests/tests.rs": "f7405e3bf234084036a73d0e054d9ab71d5783495d41a17732891f67dd2fd260",
+    "/workspace/afkarena-simx/third-party/regress/tests/unicode_property_escapes.rs": "b07c73fc9209c3c43c2265b55a2a5a865fbd71fed303c78581ae5c849692f2ac",
+    "/workspace/afkarena-simx/third-party/regress/tests/unicodesets.rs": "1b0a949777ded8e434a33c926f196d3edc73b1301aba8ea31dac13b6922e64d4",
+    "/workspace/afkarena-simx/third-party/ryu-js/Cargo.toml": "70fc95979c55b69a6c44987953d5859c2a030ed301b6b5ec269437bbe0c61c6c",
+    "/workspace/afkarena-simx/third-party/ryu-js/benches/bench.rs": "b570c357c457cf43c0d7d683e8c7e97e963844d866bc3df9299cab83c4230fb9",
+    "/workspace/afkarena-simx/third-party/ryu-js/examples/upstream_benchmark.rs": "ae9f51d8ddd41a263f07bc2ed8503f04b6a1c8566f26bec7891f50d0deba0f34",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/buffer/mod.rs": "47b36d55d2e7f977893aefcf47e8eeacee65196e2282a1585067046e86a74cb8",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/common.rs": "cae347e97fc30c50a964f80425e8c3e69ece2b8ab81f9b81b9baa7fcec64a001",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/d2s.rs": "f2612785ebe510c935b979dc5f66f6b8c818ca8a4cf0364ce1fe1d41fea39592",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/d2s_full_table.rs": "9b0186acbc6d65dc55c17e16125be707a2bfb920d22b35d33234b4cc38566a36",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/d2s_intrinsics.rs": "bbf15472f4299942312e80a992cbc2f47f85f17ed193f24084534434dbfb26e7",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/d2s_small_table.rs": "db3bbe4002d816785b0ee233c330f19fa7002f31dab47dc6f67b266996fe3ae4",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/digit_table.rs": "02351ca54cb8cb3679f635115dd094f32fd91750e9f66103c1ee9ec3db507072",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/f2s.rs": "cb96f61d8c6c6c941803a7b629f2bf835e1a20ad9d3e5d3454a30ed3391c3515",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/f2s_intrinsics.rs": "4667c34aab7637f2330df7bbd4c178c0ba1dd5854ff15b9a36a96fd5f527fb66",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/lib.rs": "6f16729a39d8358cf11b8a024046bfd7b2c25ae9240403148a32379028455417",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/parse.rs": "7f8aa7e007caf5dcb03abdc4238157724bb742d0823a3b8a01646fa1f1129154",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/pretty/exponent.rs": "680135df359bf8a9b5236a6bd4fb29e90eec0612e351c15aaf5243cc4974ed32",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/pretty/mantissa.rs": "40cb00efe1c3fab559ab58389bd519d556548aa18fb261a90dd48138911d039b",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/pretty/mod.rs": "3d02810bb9bf62756591a46a1a0aef1729ff8d94443b268a147dcd65a5ca6b2b",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/pretty/to_fixed/d2fixed_full_table.rs": "fc506ea6d26dabdc92c16a14079a6054dd59ea64704c5def292508535ff248ad",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/pretty/to_fixed/mod.rs": "febcdeca16733977cd5aa94111852e7ea2f6dc5893026d0d557dcddc58a0968c",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/s2d.rs": "74864504532593e3bb70db70fd74e724405670f2f4103f679151db00962ec81c",
+    "/workspace/afkarena-simx/third-party/ryu-js/src/s2f.rs": "f3f42063dc69540cbbfd81f9b2b8e25160a0808f66bcd05da5c06f88e02c2a1f",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/common_test.rs": "8a7d1a611944ff4540c1fd8c8f310a989c1e844a1c8f4be502882532e3cb7b89",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/d2s_intrinsics_test.rs": "15d11b70810bf04f33f8b185bf7f010a436a4edb47fa4648b1a036568c2c5d15",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/d2s_table_test.rs": "df5e2f2a0411a5f8506a06b579a2dda3ee85b5867d3a9fa06a6b3dcfa2b825e4",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/d2s_test.rs": "570a6bcfb6fe3a3c3593f6dbf6bd2e6240668141574f8f3d436d6dc595dc41b1",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/exhaustive.rs": "834a38c3a2daa66e3ae8f4196878757e5a3a1fff4cd3293227921e7b19caed11",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/f2s_test.rs": "0f1ab6f5d2cd9955c4765032c8ae6897ada203c9a3da93c74637a99099ced327",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/macros/mod.rs": "8e90a674b3960f9516cb38f4eea0e0981ff902c3b33572ebdb6c5528d3ffa72c",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/s2d_test.rs": "03213cc3f984f84be5e17f6bd86d431afaeb27eb2bfaf88f3bab1111dbbe2bc5",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/s2f_test.rs": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
+    "/workspace/afkarena-simx/third-party/ryu-js/tests/to_fixed.rs": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
+    "/workspace/afkarena-simx/Cargo.toml": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
+    "/workspace/afkarena-simx/Cargo.lock": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
+    "/workspace/afkarena-simx/package.json": "51cd65232b8d3e73fe9543fcc70d3c25dfe6c0f36fc866490e0a892bc796d64c",
+    "/workspace/afkarena-simx/package-lock.json": "596e96eb05c6821bfabcd50713fe168bca0daee2632365c6130a17c3afb3f4a6",
+    "/workspace/afkarena-simx/rust-toolchain.toml": "ca67e66659a82661386e5a08471c913cb8b3f7c7ce37592207d3f513589a41c2",
+    "/workspace/afkarena-simx/tools/rust-port/generate-program.mjs": "270000170154072a3a79b961a2799286cfb6ee34773e0376cfb54b8c449731a0",
+    "/workspace/afkarena-simx/tools/rust-port/battle-gc-proof.mjs": "150f816b6086cdd516d57e469abaf5a35bfcbed5fafc19464afdd9aa9a3672e0",
+    "/workspace/afkarena-simx/tools/rust-port/program-host.rs": "8c7fbb1bb7f2351c5679e342b05ee7e96bdd20fd4eedb8bea7e58e81e453e104",
+    "/workspace/afkarena-simx/tools/rust-port/compile.mjs": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
+    "/workspace/afkarena-simx/tools/rust-port/expressions.mjs": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c",
+    "/workspace/afkarena-simx/tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
+    "/workspace/afkarena-simx/tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "/workspace/afkarena-simx/tools/rust-port/build-program.mjs": "3311486424f847a4d41a51fc03bc21f160c5b1a57481ece78c560b0f04ffb055",
+    "/workspace/afkarena-simx/tools/rust-port/check-program.mjs": "0094390e71d722e86481a0c5f7fd8113008fa5a1850d1b6a2617186725aff391",
+    "/workspace/afkarena-simx/tools/rust-port/build-and-validate-program.mjs": "da3ad158d5d09dfc7fe9322a368b54d818543bd82ff4886fb527df9a92edc505",
+    "/workspace/afkarena-simx/tools/rust-port/check-program-features.mjs": "f07f5e30c520006fadede9b33abe4fb930d85ecb0bbb3689c8e54f524dd1ed55",
+    "/workspace/afkarena-simx/tools/rust-port/check-source-selective-prototype.mjs": "7bc60240e201d47d10709fab01a532a76d6aefaef810094622cb0182182aeb91",
+    "/workspace/afkarena-simx/tools/rust-port/check-stage-range-parser-specialization.mjs": "fed875d1bd3a24ed4742917c7425b380d5db77e7a6bf07164e7838c812c91486",
+    "/workspace/afkarena-simx/tools/rust-port/check-buff-percent-loop.mjs": "a5a1cf5afb265c6f105c22a7b4aa70c206e9c1ca4dc07b2709c2077913f35526",
+    "/workspace/afkarena-simx/tools/rust-port/check-data-obj-specialization.mjs": "6ef2123cd6fdfd04a2993c941300b40a33577d3e2944767fc12ae1b8ec6b0f4d",
+    "/workspace/afkarena-simx/tools/rust-port/check-one-hop-slots.mjs": "eb8879c125bccc6ab451a258ef6328f3aaf78b99797cb7d2f3b852331d1a3d3e",
+    "/workspace/afkarena-simx/tools/rust-port/check-primary-numeric-arrays.mjs": "640594f9e01ccb882154865d3671336ecfbe937f79e529056860cb9079b5f4be",
+    "/workspace/afkarena-simx/tools/rust-port/check-closures.mjs": "8ef8f9bbfbb31e62107eeba21b325e216e4a3804e30f431dca6f3930b29b752b",
+    "/workspace/afkarena-simx/tools/rust-port/check-reflection-bootstrap.mjs": "9f6bed0a7dd1881e559ed19083244b691dcaee33e8136a4e7882701d59aa7339",
+    "/workspace/afkarena-simx/tools/rust-port/check-arguments-elision.mjs": "a13c9db4d61a1bf212a11c991224e3adf2df94bfb25ad583171eaa42d05f18ad",
+    "/workspace/afkarena-simx/tools/rust-port/check-diagnostics.mjs": "39684df06d4cb101fc6d4cd44bee9ebb534c5156f0d0e507139a62ca57411055",
+    "/workspace/afkarena-simx/tools/rust-port/check-errors.mjs": "18eb149ea4ac848b53084461ea22166c78e293e68bac2e2096af45955a01049e",
+    "/workspace/afkarena-simx/tools/rust-port/check-date.mjs": "cf15edc06c34f5212ec6b44863dc016b89a134c343d1e3fc253b6b68c1530fb5",
+    "/workspace/afkarena-simx/tools/rust-port/check-arrays.mjs": "8f09963e1978d9a8f5d8a0b91d944d9893b6ac43a1c02e0fdb55b735dae6ea51",
+    "/workspace/afkarena-simx/tools/rust-port/check-array-from.mjs": "7751d760baf44a9b2e1a990d8a43f985516aa3db762333f8d04e2ad135cf300f",
+    "/workspace/afkarena-simx/tools/rust-port/check-array-constructor.mjs": "f1b904409de548d56ae62ba36a6a308060bad7bd948fe76f1507d54a6aebf3fd",
+    "/workspace/afkarena-simx/tools/rust-port/check-generated-typed-arrays.mjs": "71559d710c8d81b31bf6d828ea90065778a349871c16be8e4af64b0cda68664d",
+    "/workspace/afkarena-simx/tools/rust-port/check-json.mjs": "b92057b578d9da603ea17b9865848a26e90de304ef15b95e4b49ef09d1fc2417",
+    "/workspace/afkarena-simx/tools/rust-port/check-coercions.mjs": "df8d6fa19e4d0eb8ca0b10bc3dff059bbd303ffb0b23616e37c1edbeda8f2877",
+    "/workspace/afkarena-simx/tools/rust-port/check-control-flow.mjs": "579e244b3aecf310b710e72420286ad8d03abc886a0075477ee488329a823345",
+    "/workspace/afkarena-simx/tools/rust-port/check-values.mjs": "f285111eb9be8760815e46a0a9efd52803c3d86264eb2c45e82b712ed4399576",
+    "/workspace/afkarena-simx/tools/rust-port/check-battle-mode-limit-specialization.mjs": "f85734924c18b38bb68c30051365a84523ffb68cb2bedf5b2a8bef2319e5fc7b",
+    "/workspace/afkarena-simx/tools/rust-port/check-shared-utf16.mjs": "0285d06e750964ee2a250761fd3623c77cc531e3100b7af34986616fb576c5a8",
+    "/workspace/afkarena-simx/tools/rust-port/check-strings.mjs": "b41874fb4e344891099806370b92e3e027bbf59bec14e8f6fa3c66a296a583ce",
+    "/workspace/afkarena-simx/tools/rust-port/check-primary-numeric-access.mjs": "11e1db0e785ac97f566404e8ffb9c3a3d02fd6eda7534bf7d471228f132c5059",
+    "/workspace/afkarena-simx/tools/rust-port/check-copy-obj-specialization.mjs": "e813b51fe3b9bf736671facdee72b07d7d9eeaf4713f64d5bc5c27086f1c9c0e",
+    "/workspace/afkarena-simx/tools/rust-port/check-canonical-small-index-contract.mjs": "41a67fe651c8ccc627a32987ff027f65ab6747e7137750f7689bc3739c645f40",
+    "/workspace/afkarena-simx/config/ai-control.json": "21113f89e6d5cae719498f8d5cb59543b49adab39e1d1d7f0c41dd1d033d35b8",
+    "/workspace/afkarena-simx/config/ai-movement.json": "8a010872f4e0ff3f7b9e4a9c709475eb743aa7a67fe6916b16598d9db708cfc4",
+    "/workspace/afkarena-simx/config/ai-targeting.json": "0c23ef2e05ab6b1985a283974bc64f2b5a51d37a9ad818a47f0b4a42b1bfdaa6",
+    "/workspace/afkarena-simx/config/battle-entry-candidates.json": "a5729b3ba1aae06a0a1e2e880513ecfd9f880034052a2a9311d7b3898ea3aa66",
+    "/workspace/afkarena-simx/config/battle-specialization-callbacks.json": "7162d4ad0283ce889f2fb478d939ff1cccc8c3fa74c2091b92f1eb9a1823cfd5",
+    "/workspace/afkarena-simx/config/bootstrap-cocos-geometry.json": "20ed42bfe04d1d3443ee6b3432c8dbc09bb8db4e8702a75177301c30bfb2bbf6",
+    "/workspace/afkarena-simx/config/bootstrap-cocos-runtime.json": "4de7009f04fd1ccea984aefd923d9ad64de5cbb53b7cc277dfbec5058d0ee3d7",
+    "/workspace/afkarena-simx/config/bootstrap-data-classes.json": "5fd551a2513a4521483476d319c44d1bb72a127f3166c9c014e43d97e182bb90",
+    "/workspace/afkarena-simx/config/bootstrap-functions.json": "a87639e0e6e61ce422df2ea3b5653135f97436fb1840f1d9721d0333d7173b36",
+    "/workspace/afkarena-simx/config/bootstrap-packed-config.json": "123ab48a9110021c34fa5f9a5b9f11122da4946be50861a67474029cb5cb46d6",
+    "/workspace/afkarena-simx/config/buff-translation.json": "0d069459b030758490c652b95576fb592e12e9fa77323ffd1c9d26bd128d3799",
+    "/workspace/afkarena-simx/config/clock-translation.json": "5c621c991262df3310e8f9f938635a3a0d93c5c802561b54fe4a2583e4a84b1c",
+    "/workspace/afkarena-simx/config/damage-translation.json": "a10abf029158718498d667f2429d18dee41006d6401fc78777da9946a91ce0ac",
+    "/workspace/afkarena-simx/config/entity-translation.json": "1c70900cc3c7d84b9a798054dfd778f22fa8500ad957facba03d16be9620c9eb",
+    "/workspace/afkarena-simx/config/execution-policy.json": "8dd7459d596c879c83b8ee875c043db187594786bd5d00efda400bc60e86e303",
+    "/workspace/afkarena-simx/config/generated-battle-source.json": "edcb3f4bced5477ad46438bd09358a963607f6d844efadc73c632633cbe6cfd6",
+    "/workspace/afkarena-simx/config/host-clock-contract.json": "6d0c452e79db53fcc7d7b18084075c7b7236f28a3fcac6edbce30787b733b723",
+    "/workspace/afkarena-simx/config/js-arithmetic-runtime.json": "dced940fbbd822a2771af4100b4bdd0fb55b5ed04e77b69df5343bc25dacf0f7",
+    "/workspace/afkarena-simx/config/native-battle-mode-limit.json": "d4841b351b6b7a6bba98beebc93b34447dd7c229c5f456c23a4e0efb7b5e0a20",
+    "/workspace/afkarena-simx/config/native-compiler-binary-pools-patch.json": "32cefa0c19171030faea9c230a796ea18297ceef4563e8b486bea87a38493ead",
+    "/workspace/afkarena-simx/config/native-compiler-entity-update-patch.json": "1da3d507ad6abdbfc3cfad7d92d980ab7da53bc105a680cab86f047bad43fbde",
+    "/workspace/afkarena-simx/config/native-compiler-flat-copy-patch.json": "d218f09a78cd7819a5513fb054416a89013a5a8c6de106c79dfadadea4e3d1f1",
+    "/workspace/afkarena-simx/config/native-compiler-floor-guard-patch.json": "61f2334787772dc870b0b1fff12ce3034ec90c264bc687066bd31bc0f5498ad4",
+    "/workspace/afkarena-simx/config/native-compiler-literal-bits-patch.json": "9b84db75378ee816a7d4362dc6bf819add95263ff66e722aa7c190e59ae13c96",
+    "/workspace/afkarena-simx/config/native-compiler-math-patch.json": "4ba9c7edcd5fcff5e8493ec49814a40c11d804bbcf908715caa1027920f5ac76",
+    "/workspace/afkarena-simx/config/native-compiler-source-patch.json": "cbda853c39f1d7a3e71454c29c2e1ae4ca9c3cdf29bf86edd536c5b94c9e90d0",
+    "/workspace/afkarena-simx/config/native-compiler-static-hermes.json": "33740302be7cc9e6f4822dc9b5703e1308270d1712b56bcf849d0e41cd3f487e",
+    "/workspace/afkarena-simx/config/native-compiler-unit-init-patch.json": "1438e2a424d766ee0d0819f7755d8ad1fb65789d573878baea59a4fd09c52532",
+    "/workspace/afkarena-simx/config/native-compiler-v8-math.json": "d0261ceee0a02cec960c57f36afd1974cd6e3cb43a0d5b340d71c8ef8ad605c7",
+    "/workspace/afkarena-simx/config/native-compiler-vector-guard-patch.json": "bb7bf06c7c4fae44f4cc7587e7c49bbd800c498e8dbddf8525c733564c0b1120",
+    "/workspace/afkarena-simx/config/native-data-obj.json": "7e812381ba950adc18c69ef6142ca1362986f40a2a03894c5f4d545d6b6c465c",
+    "/workspace/afkarena-simx/config/native-oracle-contract.json": "f0a0fddae3f4e6f36c7542c2745882cc9aff6db0e7002665d449d9a853b5f373",
+    "/workspace/afkarena-simx/config/native-profiler-packages.json": "5cdbabf6d4be3288fd793be9f2a2565a6eaf5f53d289205dab37f7555e6ec2f3",
+    "/workspace/afkarena-simx/config/native-skill-cache-ir.json": "4c2eac4982f3059e5c00fb44d4cacd73b93d6214fa3d4fadb3ccf84bc6431177",
+    "/workspace/afkarena-simx/config/native-stage-range-parser.json": "4759f0858d0d72e7fafa3321e2ba3a641eef2deba00d447c74c04becdbd540de",
+    "/workspace/afkarena-simx/config/native-table-contract.json": "be254924430148d27d464eb23a1b7234fa7751ce9d9eae3e3854cf37ed588d4d",
+    "/workspace/afkarena-simx/config/numeric-kernels.ir.json": "0d3db3d529c2ed8519b75ca1ee8c478045d221e8ab13e9b047fbdd86fe37dad7",
+    "/workspace/afkarena-simx/config/numeric-kernels.json": "713c5927065f0ae42906c40662f50c3b3194dc01f5f4773de8c38bf34250df4d",
+    "/workspace/afkarena-simx/config/oracle-class-manager.json": "94f4f9515c167489d014ea02c62a9da5f1c4062c630879cde4856b5a6c68a738",
+    "/workspace/afkarena-simx/config/oracle-init-audit.json": "9563950f7a4c03f3ffdfd8c7c753c0732acd4f039eac89f51d88a92030495e3e",
+    "/workspace/afkarena-simx/config/precompute-attributes.json": "888ce65784bed99eb5847c0f46611c2e19d1a04a2c20e7ec180e17fd7c7fc353",
+    "/workspace/afkarena-simx/config/qualification-mutable-table-capsule.json": "7ede868a426815489070f0525e9d8f028f0f8a43e7123debce8ac4d86d54a39a",
+    "/workspace/afkarena-simx/config/qualification-table-membrane.json": "9d8314074be24347240afafc0ace1d80bb0e984b9fcc1c5594e6aedb75c34653",
+    "/workspace/afkarena-simx/config/rng-translation.json": "08cd7f7e891fc4c3436d319bf0bc6dd7b0e236e0c9bc8be3719b74144ac516d3",
+    "/workspace/afkarena-simx/config/scenario-contract.json": "6675f8df190426b7f6f70629711a1f78320ad5ec81644e2731c02df780827204",
+    "/workspace/afkarena-simx/config/scenario-example-2026.json": "041c0fe5a6da9d469016fba51ea37bd4fad83a26220e4b9dfaa72ddaca845ecc",
+    "/workspace/afkarena-simx/config/scheduler-translation.json": "d697a43ae52094af30610de1928e2e6ac0ec74246b6096edec72b60fdb618cb9",
+    "/workspace/afkarena-simx/config/skill-cache-specialization.json": "ce0bc0a5e221780b01d82919945bb1579be6a3d931f071187f790d50950b0629",
+    "/workspace/afkarena-simx/config/skill-translation.json": "158a8d5e47fea006c2d5852bd5ed1f621f6aa8a03746816161ee0cf801a11c60",
+    "/workspace/afkarena-simx/config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "/workspace/afkarena-simx/config/stage-body-attachment-projection.json": "a9d07d726788ea0ce647af3123097bae6cefe06d33ecf6f35b732103bb55c1b3",
+    "/workspace/afkarena-simx/config/toolchains.json": "89ddb65890ad9a53801483acf7f444e39b347efd44bdb1f5b815a671e0990ad3",
+    "/workspace/afkarena-simx/config/unit-fixtures.json": "3366f73fd36aa90a7517b9892db8ac268c745e907936aedd95b72697bc29ab43",
+    "/workspace/afkarena-simx/config/unit-resources-translation.json": "423f2108926ff78250bb3dabd5de2de04e0ed75e89c50f30e740e7a275624421",
+    "/workspace/afkarena-simx/config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
+    "/workspace/afkarena-simx/benchmarks/validation/rust-battle-compile-coverage.json": "783654b6921c008e4ed461637392459f57c29ae604b22037edadb2de639f0a7d",
+    "/workspace/afkarena-simx/work/native-warm23-no-proxy-partition/combined.js": "b5e25dfb1b26a3061ab101edad6cefa992829cbfbd6fe3f4a77392627d82e7d5",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-2.js": "0e47375dd4def87a0d467d07eb2bdc593e35df8500e76d008833c987cf2619fb",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-3.js": "0198c9c9d3cc4d7d5347563627b3b0f5ac49ed14d60184ca39eb0ffd7fe26f4b",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-4.js": "68d3e52d7c4e9f89c3006df71c6625ae848c4f5013018ce490c43b640963f163",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-5.js": "dc527307b9d28419a764548475b23dd2011415fc5a758d472e9882f3b233cfa9",
+    "/workspace/afkarena-simx/work/native-partition-counter-capsule/unit-6.js": "a45171e5947aba24a55aeb98a0bcd133e730c2bea42cbe535e89aa5ac37241d3",
+    "/workspace/afkarena-simx/work/native-warm23-partition/runner.js": "516e5659d9c6bf486f11525b2847557b91a135486d675edfdb6e91593daab634",
+    "/workspace/afkarena-simx/work/run-signed-camp-wave.mjs": "382b45ae00e80d7876041528ac9a28723a48767c3d352c5928cad2b8eb8b7810"
+  },
+  "oldGateCount": 20,
+  "sourceGateCount": 26,
+  "scope": "Frozen combined native library/integration tests and source differential gates, then source regeneration and complete release build/original20measured3warmup Node comparison. Component unsupported cases remain explicit; not random20k battle qualification.",
+  "frozenArchive": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/signed-camp-wave/frozen-inputs.json.gz",
+    "sha256": "8664ba2842df8df5579976f4480393f2550792300cb2bae285f84f660fb57c88"
+  },
+  "changedInputs": [],
+  "nativeTestSuites": [
+    {
+      "passed": 44,
+      "failed": 0
+    },
+    {
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "passed": 114,
+      "failed": 0
+    },
+    {
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "passed": 8,
+      "failed": 0
+    },
+    {
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "passed": 5,
+      "failed": 0
+    }
+  ],
+  "nativeTestsPassed": 186,
+  "outerQualification": {
+    "coveredCases": 112,
+    "knownUnsupportedCases": 2,
+    "scope": "Baseline sloppy Function.caller remains unsupported in both modes."
+  },
+  "sourceValidationComplete": true,
+  "generated": {
+    "functions": 22986,
+    "unsupportedFunctions": 0,
+    "gcCadence": 2,
+    "manifestSha256": "3c0d596989a3212a5a087713a02479ed719d15246733f4acbda57a154a76ad6b"
+  },
+  "fullChain": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-signed-camp-wave-chain.json",
+    "sha256": "9af5a8c16a1b7ba8671fe8f3e20500d7e202ad41f98fe574dc583608cbfeeb04"
+  },
+  "actualNativeAdmission": {
+    "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-signed-camp-wave-full.native.stderr.gz",
+    "stderrSha256": "a2c4a36f7e9b30c9aa7cecf688aae43ed25febee6023ecc1dd2eb8f9cddec74d",
+    "battleModeLimitDomainHits": 50300,
+    "getterCalls": 150900,
+    "primaryNumericAccessEnabled": true,
+    "battleModeLimitEnabled": true
+  },
+  "optimizationQualification": {
+    "passed": true,
+    "requiredActualDomainHitsPositive": true,
+    "requiredActualGetterCallsPositive": true
+  },
+  "forkNextCommand": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "/workspace/afkarena-simx/tools/rust-port/benchmark-fork-program.mjs",
+    "--run",
+    "--serial-slot-released",
+    "--baseline",
+    "/workspace/afkarena-simx/benchmarks/validation/rust-program-signed-camp-wave-full.json"
+  ],
+  "finishedAt": "2026-10-30T15:23:39.382Z"
+}

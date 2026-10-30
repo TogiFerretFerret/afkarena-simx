@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "sourceGateCount": 26,
+  "nativeTestsPassed": 186,
+  "nativeTestSuites": [
+    {
+      "passed": 44,
+      "failed": 0
+    },
+    {
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "passed": 114,
+      "failed": 0
+    },
+    {
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "passed": 8,
+      "failed": 0
+    },
+    {
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "passed": 5,
+      "failed": 0
+    }
+  ],
+  "functions": 22986,
+  "unsupportedFunctions": 0,
+  "gcCadence": 2,
+  "configuredRequestStride": "default1",
+  "serialActualCollectionsEmitted": false,
+  "battles": 20,
+  "warmups": 3,
+  "nativeBattlesPerSecond": 0.5822246805042066,
+  "nodeBattlesPerSecond": 1.9952114924181963,
+  "actualNativeAdmission": {
+    "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-signed-camp-wave-full.native.stderr.gz",
+    "stderrSha256": "a2c4a36f7e9b30c9aa7cecf688aae43ed25febee6023ecc1dd2eb8f9cddec74d",
+    "battleModeLimitDomainHits": 50300,
+    "getterCalls": 150900,
+    "primaryNumericAccessEnabled": true,
+    "battleModeLimitEnabled": true
+  },
+  "optimizationQualification": {
+    "passed": true,
+    "requiredActualDomainHitsPositive": true,
+    "requiredActualGetterCallsPositive": true
+  },
+  "fork": {
+    "file": "benchmarks/results/2026-10-30-signed-camp-wave-fork-four.json",
+    "sha256": "a0d8fb32d4acfec6d67d37879d63b02433b7bfbfd9c07f1808ccbd29bb9cb3c7",
+    "aggregate": {
+      "completed": 80,
+      "startUnixNs": "1793373845224796594",
+      "endUnixNs": "1793373876747089898",
+      "elapsedNs": "31522293304",
+      "elapsedSeconds": 31.522293304,
+      "battlesPerSecond": 2.5378864167172903,
+      "commonOverlapNs": "30899405582",
+      "allFourOverlap": true,
+      "method": "80 measured battles / (latest measured end - earliest measured start), using a common SystemTime UNIX epoch; never sum per-process rates."
+    },
+    "optimizationQualification": {
+      "passed": true,
+      "requiresActualDomainHitsAndGetterCallsPositive": true
+    },
+    "children": [
+      {
+        "index": 0,
+        "collections": 12,
+        "admission": {
+          "domainHits": 50300,
+          "getterCalls": 150900,
+          "primaryNumericAccessEnabled": true,
+          "battleModeLimitEnabled": true
+        }
+      },
+      {
+        "index": 1,
+        "collections": 12,
+        "admission": {
+          "domainHits": 50300,
+          "getterCalls": 150900,
+          "primaryNumericAccessEnabled": true,
+          "battleModeLimitEnabled": true
+        }
+      },
+      {
+        "index": 2,
+        "collections": 12,
+        "admission": {
+          "domainHits": 50300,
+          "getterCalls": 150900,
+          "primaryNumericAccessEnabled": true,
+          "battleModeLimitEnabled": true
+        }
+      },
+      {
+        "index": 3,
+        "collections": 12,
+        "admission": {
+          "domainHits": 50300,
+          "getterCalls": 150900,
+          "primaryNumericAccessEnabled": true,
+          "battleModeLimitEnabled": true
+        }
+      }
+    ]
+  },
+  "scope": "Fixed original source full20/3 fixture and four COW children each complete20 battles. All full reports/raw bits/host tapes exact. No10000/sec qualification;3/sec not reached. Fresh separate-cohort timings do not establish causal per-feature gains."
+}
