@@ -1,3 +1,4 @@
+import {parseNestedCopyWindow} from './nested-copy-window.mjs';
 import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -63,7 +64,7 @@ while(pending.length){const node=pending.pop();
 assert.equal(externalInputs.size,1,'The fixed harness must have exactly one external table bundle');
 for(const file of externalInputs)await track(file);
 for(const directory of ['crates/js-runtime','crates/battle-core','third-party'])await trackTree(directory);
-for(const file of ['Cargo.toml','Cargo.lock','config/source-oracle-runtime.json','tools/rust-port/check-program.mjs','tools/rust-port/build-proof.mjs','tools/native-report-compare.mjs','tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])await track(file);
+for(const file of ['Cargo.toml','Cargo.lock','config/source-oracle-runtime.json','tools/rust-port/check-program.mjs','tools/rust-port/nested-copy-window.mjs','tools/rust-port/build-proof.mjs','tools/native-report-compare.mjs','tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])await track(file);
 const buildProofRequested=args.includes('--build-proof');
 let buildProof=null;
 if(buildProofRequested){
@@ -94,6 +95,7 @@ function parse(text){
  return null;
 }
 const expected=parse(oracle.stdout),actual=parse(native.stdout);
+const nestedCopyWindow=parseNestedCopyWindow(native.stderr,{required:args.includes('--require-measured-nested-copy')});
 const difference=expected&&actual?compareNativeReports(actual,expected):{reason:'Missing complete battle report'};
 const hostDifference=expected&&actual?firstDifference(actual.hostInputConsumption,expected.hostInputConsumption,'$.hostInputConsumption'):null;
 const binaryUnchanged=sha(await readFile(binary))===binaryBefore;
@@ -110,7 +112,7 @@ const report={version:1,passed,qualifiesFor10000Target:false,
  manifest:{file:manifestFile,sha256:sha(manifestBytes)},
  binary:{file:binary,sha256:binaryBefore,unchanged:binaryUnchanged},
  provenance:{inputs:Object.fromEntries(tracked),externalInputs:[...externalInputs],unchanged:changedInputs.length===0,changedInputs,buildProofRequested,buildProof,binaryBoundToManifest},
- expectedBattles,completedWorkload,validTiming,
+ expectedBattles,completedWorkload,validTiming,nestedCopyWindow,
  producer:{file:'tools/rust-port/check-program.mjs',sha256:sha(await readFile(import.meta.filename))},
  oracle:compact(oracle),native:compact(native),firstDifference:difference,hostDifference,
  completed:actual?.completed??0,battlesPerSecond:passed?actual.battlesPerSecond:null,

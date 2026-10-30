@@ -79,7 +79,7 @@ const app=resolve(output,'app');await mkdir(resolve(app,'src'),{recursive:true})
 await writeFile(resolve(app,'src/program_host.rs'),await readFile(resolve(root,'tools/rust-port/program-host.rs')));
 const dependencies=[`js-runtime = { path = "${relative(app,resolve(root,'crates/js-runtime')).replaceAll('\\','/')}" }`,...reports.map(r=>`battle-unit-${r.index} = { path = "../battle-unit-${r.index}" }`)];
 await writeFile(resolve(app,'Cargo.toml'),'[package]\nname = "rust-battle-program"\nversion = "0.1.0"\nedition = "2024"\npublish = false\n[dependencies]\n'+dependencies.join('\n')+'\n');
-const calls=reports.map(r=>`eprintln!("unit_start:${r.index}");\n let phase_start=std::time::Instant::now();\n battle_unit_${r.index}::run(&mut rt, env, global)?;\n eprintln!("unit_finished:${r.index}");\n eprintln!("unit_elapsed_ms:${r.index}:{}",phase_start.elapsed().as_secs_f64()*1000.0);`).join('\n');
+const calls=reports.map(r=>`${r.index===6?'program_host::install_measured_copy_clock(&mut rt)?;\n':''}eprintln!("unit_start:${r.index}");\n let phase_start=std::time::Instant::now();\n battle_unit_${r.index}::run(&mut rt, env, global)?;\n eprintln!("unit_finished:${r.index}");\n eprintln!("unit_elapsed_ms:${r.index}:{}",phase_start.elapsed().as_secs_f64()*1000.0);`).join('\n');
 await writeFile(resolve(app,'src/main.rs'),`mod program_host;
 use js_runtime::{Runtime,Value,EnvId,JsResult};
 fn print(rt:&mut Runtime,_this:Value,args:&[Value],_env:EnvId)->JsResult<Value>{
