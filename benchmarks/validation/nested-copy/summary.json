@@ -101,5 +101,13 @@
       "uncompressedSha256": "518f6fed9d85701b4a8d80fda54897ba7a4d5f82381a4f9624a64b153524dfaf"
     }
   ],
-  "namespaceIdentity": "Function(active) OR Object(active.function_object) with is_function +exact function_objects registry(active)"
+  "namespaceIdentity": "Function(active) OR Object(active.function_object) with is_function +exact function_objects registry(active)",
+  "finalSourceGateCommit": "fed1537",
+  "finalSourceGate": {
+    "cases": 34,
+    "pairedTraceObservations": 68,
+    "nativeExecutions": 136,
+    "pureAdmissionCases": 10,
+    "passed": true
+  }
 }
