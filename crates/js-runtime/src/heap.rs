@@ -68,11 +68,11 @@ impl Object {
  fn dictionary_insert(&mut self,key:PropertyKey,descriptor:Descriptor){
   if let Some(index)=self.slot_index(key){let stored=self.store_descriptor(key,descriptor,Some(index));self.properties[index]=stored;}
   else{let stored=self.store_descriptor(key,descriptor,None);let index=self.properties.len();self.properties.push(stored);
-   if !self.property_index.is_empty(){self.property_index.insert(key,index);}
-   else if self.properties.len()>SMALL_PROPERTY_INDEX_LIMIT{
+   if index==SMALL_PROPERTY_INDEX_LIMIT&&self.property_index.is_empty(){
     self.property_index.reserve(self.properties.len());
     for(index,stored)in self.properties.iter().enumerate(){if let Some(key)=stored.key(){self.property_index.insert(key,index);}}
-   }
+   }else if self.properties.len()>SMALL_PROPERTY_INDEX_LIMIT||!self.property_index.is_empty(){self.property_index.insert(key,index);}
+
   }
  }
 
