@@ -111,7 +111,7 @@ function array(node,ctx){if(node.elements.length>=256&&node.elements.every(eleme
 
 function template(node,ctx){let value=stringValue(ctx,node.quasis[0].value.cooked);for(let i=0;i<node.expressions.length;i++){const expression=emitExpression(node.expressions[i],ctx),text=ctx.temp(`rt.to_string(${expression})?`),asValue=ctx.temp(`Value::String(${text})`);value=ctx.temp(`rt.binary(BinaryOp::Add, ${value}, ${asValue})?`);const tail=stringValue(ctx,node.quasis[i+1].value.cooked);value=ctx.temp(`rt.binary(BinaryOp::Add, ${value}, ${tail})?`);}return value;}
 export function emitExpression(node,ctx){if(!node)unsupportedExpression(node,'missing AST node');node=unwrap(node);const folded=foldNumeric(node,ctx);if(folded!==null)return folded;switch(node.type){
- case 'Identifier':if(ctx.scalarArrayTruthy?.(node))return ctx.temp('Value::Bool(true)');return readReference(emitReference(node,ctx),ctx);
+ case 'Identifier':{const scalar=ctx.scalarArrayTruthy?.(node);return scalar?ctx.temp(`if ${scalar.enabled} { Value::Bool(true) } else { ${scalar.fallback} }`):readReference(emitReference(node,ctx),ctx);}
  case 'ThisExpression':return ctx.thisValue;
  case 'NumericLiteral':return numberValue(ctx,node.value);
  case 'StringLiteral':return stringValue(ctx,node.value);
@@ -119,7 +119,7 @@ export function emitExpression(node,ctx){if(!node)unsupportedExpression(node,'mi
  case 'BooleanLiteral':return ctx.temp(`Value::Bool(${node.value?'true':'false'})`);
  case 'NullLiteral':return ctx.temp('Value::Null');
  case 'FunctionExpression':case 'ArrowFunctionExpression':return closure(node,ctx);
- case 'MemberExpression':{const scalar=ctx.scalarArrayMember?.(node);return scalar?ctx.temp(scalar.value):readReference(emitReference(node,ctx),ctx);}
+ case 'MemberExpression':{const scalar=ctx.scalarArrayMember?.(node);if(!scalar)return readReference(emitReference(node,ctx),ctx);const value=ctx.fresh('scalar_array_read');ctx.emit(`let ${value} = if ${scalar.enabled} { ${scalar.value} } else {`);const original=emitExpression(node,ctx.child({scalarArrayMember:()=>null,scalarArrayTruthy:()=>null}));ctx.emit(`${original}\n};`);return value;}
  case 'OptionalMemberExpression':case 'OptionalCallExpression':return optionalResult(node,ctx).value;
  case 'MetaProperty':if(node.meta.name==='new'&&node.property.name==='target')return ctx.temp('rt.new_target()');unsupportedExpression(node,'unsupported meta property');
  case 'AssignmentExpression':return assignment(node,ctx);

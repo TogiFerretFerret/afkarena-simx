@@ -13,6 +13,10 @@ impl Diagnostics{
  pub fn from_env()->Self{let enabled=std::env::var_os("RUST_PORT_TRACE").is_some_and(|value|value!="0"&&value!="");Self{enabled,recent:if enabled{VecDeque::with_capacity(8)}else{VecDeque::new()}}}
 }
 impl Runtime{
+ /// Read-only compiler guard: source-level JS cannot alter diagnostics mode.
+ #[inline]
+ pub fn diagnostics_enabled(&self)->bool{self.diagnostics.enabled}
+
  #[inline]
  pub fn record_get(&mut self,receiver:Value,key:KeyInput,result:&JsResult<Value>){
   if self.diagnostics.enabled{self.record_get_enabled(receiver,key,result)}
