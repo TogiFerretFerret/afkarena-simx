@@ -1,0 +1,40 @@
+   Compiling memchr v2.7.6 (/workspace/afkarena-simx/work/candidate-scalar-local-arrays/third-party/memchr)
+warning: use of deprecated constant `core::u8::MAX`: replaced by the `MAX` associated constant on this type
+   --> third-party/memchr/src/arch/all/packedpair/mod.rs:179:41
+    |
+179 |         let max = usize::from(core::u8::MAX);
+    |                                         ^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated constant `core::u32::MAX`: replaced by the `MAX` associated constant on this type
+   --> third-party/memchr/src/memmem/searcher.rs:918:34
+    |
+918 |             Err(_) => core::u32::MAX,
+    |                                  ^^^
+
+warning: `memchr` (lib) generated 2 warnings
+   Compiling regress v0.12.0 (/workspace/afkarena-simx/work/candidate-scalar-local-arrays/third-party/regress)
+   Compiling battle-core v0.1.0 (/workspace/afkarena-simx/work/candidate-scalar-local-arrays/crates/battle-core)
+   Compiling ryu-js v1.0.2 (/workspace/afkarena-simx/work/candidate-scalar-local-arrays/third-party/ryu-js)
+warning: value assigned to `vp` is never read
+   --> third-party/ryu-js/src/f2s.rs:146:17
+    |
+146 |                 vp /= 10;
+    |                 ^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: `ryu-js` (lib) generated 1 warning
+   Compiling js-runtime v0.1.0 (/workspace/afkarena-simx/work/candidate-scalar-local-arrays/crates/js-runtime)
+warning: function `flag_text` is never used
+  --> crates/js-runtime/src/regex.rs:10:4
+   |
+10 | fn flag_text(bits:u16)->String{[(D,'d'),(G,'g'),(I,'i'),(M,'m'),(S,'s'),(U,'u'),(V,'v'),(Y,'y')].into_iter().filter_map(|(flag,c)|(b...
+   |    ^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `js-runtime` (lib) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 20.51s

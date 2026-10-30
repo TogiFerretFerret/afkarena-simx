@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "passed": true,
+  "compilerAdmission": [
+    {
+      "variant": "baseline",
+      "arrays": []
+    },
+    {
+      "variant": "optimized",
+      "arrays": [
+        {
+          "name": "B",
+          "length": 2,
+          "reads": 4,
+          "truthinessReads": 2,
+          "diagnosticsFallbackAtEntry": true,
+          "requiresStableHostDiagnosticsMode": true
+        }
+      ]
+    }
+  ],
+  "bound": {
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/rust-unit-scalar-array-benchmark/main.rs": "a75842c5e44b259d9e7a0cef6a50026af71f1803cf486ae58f83480d309b1395",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/rust-unit-scalar-array-benchmark/baseline.rs": "1b04538a8d636eff27cfdd079d93e5e59da17a8c5f538143c47884e06bb60fc1",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/rust-unit-scalar-array-benchmark/optimized.rs": "e69a333d8f1b74ac0a2387bd4943c782c99398342cbd39ac724ba74f75ab11b3",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/rust-unit-scalar-array-benchmark/baseline.utf16le": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/rust-unit-scalar-array-benchmark/optimized.utf16le": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/rust-unit-scalar-array-benchmark/unit-update-benchmark": "a9a40ebc8afb51ea17d21591b54b395ed1e6155b3668740546b49c76a9962f46",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/libjs_runtime.rlib": "43f255b7e2c7d1024412bb052e6368f48cb10e5076d2cb1ec4cd22610aeb43fa",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/deps/libbattle_core-cbae6d4f8d37de4a.rlib": "4139e78a1c3f7c1274c7078eaf92114793219a8146d7a703b8d5b62453e99d9f",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/deps/libjs_runtime-0251dbe754fe7b05.rlib": "43f255b7e2c7d1024412bb052e6368f48cb10e5076d2cb1ec4cd22610aeb43fa",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/deps/libmemchr-78b772ea9bbe2a30.rlib": "770da170f0bea0e0047022d0e4b976ffa5babc2f97d5027bd13aa9ead73e3777",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/deps/libregress-82dd4bbdf19ad1cc.rlib": "8113ccece985791c5eb3f4634f053a193de0bdb43c08618bde50fc80bc188a8e",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/deps/libryu_js-561ffce7286f1eac.rlib": "d29abb6af91de1f065701f52c3b358219292e129e64562770d9f0713a027b233"
+  },
+  "source": {
+    "version": 1,
+    "source": "src/srcmodule/game_battle.js",
+    "sourceName": "ed.Unit.update",
+    "start": 97200,
+    "end": 102984,
+    "sha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+    "status": "experimental_native_control_flow_requires_mechanics_hooks_and_differential_validation",
+    "formalProof": false,
+    "domain": [
+      "Number-valued numeric fields; missing optional numbers explicitly represented",
+      "Dense valid unit/skill/buff IDs with stable object identity and fixed source prototypes",
+      "Unit.isAlive is the original source implementation; overrides require a separate dispatch path",
+      "Effects use stable identities and predicate views that host buff mechanics must keep synchronized",
+      "Every required hook implements the corresponding source method; no silent defaults",
+      "Vector aliases and replacements are preserved through arena handles",
+      "Non-escaping fresh edpMult result uses an inline vector; global edpZero retains arena identity"
+    ],
+    "pending": [
+      "Full unit differential trace over all branches and callback mutations",
+      "Integration of skill/AI/buff/damage implementations into one world",
+      "Complete realistic 5v5 native battles; this module does not establish battles/second"
+    ]
+  },
+  "sourceUnitBodyUnchanged": true,
+  "updatesPerTrial": 10000,
+  "trialsPerVariant": 3,
+  "warmupUpdates": 5,
+  "rows": [
+    {
+      "label": "baseline",
+      "trial": 0,
+      "objectsAllocated": 180427,
+      "elapsedNs": "609422503",
+      "updates": 10000,
+      "updatesPerSecond": 16408.97727073265,
+      "events": 150220
+    },
+    {
+      "label": "optimized",
+      "trial": 0,
+      "objectsAllocated": 170427,
+      "elapsedNs": "561409595",
+      "updates": 10000,
+      "updatesPerSecond": 17812.306895111047,
+      "events": 150220
+    },
+    {
+      "label": "optimized",
+      "trial": 1,
+      "objectsAllocated": 170427,
+      "elapsedNs": "514170317",
+      "updates": 10000,
+      "updatesPerSecond": 19448.80843831364,
+      "events": 150220
+    },
+    {
+      "label": "baseline",
+      "trial": 1,
+      "objectsAllocated": 180427,
+      "elapsedNs": "560399541",
+      "updates": 10000,
+      "updatesPerSecond": 17844.41147499084,
+      "events": 150220
+    },
+    {
+      "label": "baseline",
+      "trial": 2,
+      "objectsAllocated": 180427,
+      "elapsedNs": "542574534",
+      "updates": 10000,
+      "updatesPerSecond": 18430.647539384885,
+      "events": 150220
+    },
+    {
+      "label": "optimized",
+      "trial": 2,
+      "objectsAllocated": 170427,
+      "elapsedNs": "566064796",
+      "updates": 10000,
+      "updatesPerSecond": 17665.822129663047,
+      "events": 150220
+    }
+  ],
+  "totals": {
+    "baseline": {
+      "trials": 3,
+      "totalUpdates": 30000,
+      "totalElapsedNs": "1712396578",
+      "aggregateUpdatesPerSecond": 17519.30620828419
+    },
+    "optimized": {
+      "trials": 3,
+      "totalUpdates": 30000,
+      "totalElapsedNs": "1641644708",
+      "aggregateUpdatesPerSecond": 18274.356109945806
+    }
+  },
+  "observedThroughputRatio": 1.0430981622608195,
+  "allOrderedEventsAndSelectedStateBitsMatched": true,
+  "eventCountPerTrial": 150220,
+  "oracle": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ]
+  },
+  "scalarLocalArrays": {
+    "baseline": false,
+    "optimized": true
+  },
+  "sameRuntime": true,
+  "inputs": {
+    "tools/rust-port/benchmark-scalar-arrays.mjs": "f2ba06b68cbdabc20495d3a3aafe5384fd8f8e1ba0b18556dfd60e0972c7f193",
+    "tools/rust-port/compile.mjs": "fd3ee4068e5d8525179060f9b78adbd6e12de77c5a86b46bb61be42d7872ced9",
+    "tools/rust-port/expressions.mjs": "4c7cc4f4d2aa6ae46e08ea2f7fb278498fcdf4b70e77017a29bdbc113050fa6c",
+    "tools/rust-port/statements.mjs": "72f11756689a8723263690041bdbbc2808f9c55934c7fdbd172f576d2825e57d",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/rust-port/scalar-arrays.mjs": "a8d4ca3012f1896776f473adbf4a50f801059203fcf4f366ac726e228440d1f4",
+    "tools/native-unit-speeder-cases.mjs": "e15a39d0908c1f673dc172a28855209343ab9d8128cd59703e3655d1a122ea0c",
+    "config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
+    "/workspace/afkarena-simx/src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "crates/js-runtime/Cargo.toml": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+    "crates/js-runtime/src/battle_gc.rs": "1ce99d2c474900cab619b26420b1b5695a074e8dad5ad58359662fb05bd2299a",
+    "crates/js-runtime/src/battle_mode_limit.rs": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
+    "crates/js-runtime/src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
+    "crates/js-runtime/src/buff_attribute_loop.rs": "a41d1e91894b451ff92fe0ffb5a4fee0071e1ac69b15710f507c51068f939192",
+    "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+    "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+    "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
+    "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+    "crates/js-runtime/src/copy_obj.rs": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
+    "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+    "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
+    "crates/js-runtime/src/diagnostics.rs": "cb8c6b24ee871682f0bf9357e6746d378a997a02a57c722546b367cff6f592c2",
+    "crates/js-runtime/src/dynamic_slots.rs": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
+    "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+    "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+    "crates/js-runtime/src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "crates/js-runtime/src/heap.rs": "f8e4a5bb731e8eac10527576df4d8f62e19da09b8547ccb329289ed729b0ac5e",
+    "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+    "crates/js-runtime/src/id_hash.rs": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
+    "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+    "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+    "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+    "crates/js-runtime/src/lazy_arguments.rs": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
+    "crates/js-runtime/src/lib.rs": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
+    "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+    "crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+    "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+    "crates/js-runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+    "crates/js-runtime/src/property_slots.rs": "1762dd182b3e8763d5809b03734ce0a581a452305c95aa2e81579734cb57a54e",
+    "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
+    "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+    "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+    "crates/js-runtime/src/runtime.rs": "f4929cda3d78808607f048eed2cd8b0c3ae2c1f9dedbf717c3ea92775549753f",
+    "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+    "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
+    "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+    "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+    "crates/js-runtime/src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
+    "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+    "crates/js-runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e"
+  },
+  "binarySha256": "a9a40ebc8afb51ea17d21591b54b395ed1e6155b3668740546b49c76a9962f46",
+  "buildArgs": [
+    "--edition=2024",
+    "-O",
+    "-C",
+    "codegen-units=64",
+    "-C",
+    "lto=off",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/rust-unit-scalar-array-benchmark/main.rs",
+    "-L",
+    "dependency=/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/deps",
+    "--extern",
+    "js_runtime=/workspace/afkarena-simx/work/candidate-scalar-local-arrays/target/release/libjs_runtime.rlib",
+    "-o",
+    "/workspace/afkarena-simx/work/candidate-scalar-local-arrays/work/rust-unit-scalar-array-benchmark/unit-update-benchmark"
+  ],
+  "executionWallMs": 5792.961512,
+  "artifacts": [
+    {
+      "label": "baseline-generated",
+      "file": "benchmarks/results/2026-10-30T16-11-34.427Z-rust-unit-update-scalar-arrays.baseline-generated.gz",
+      "sha256": "ace05d19e619868ae9798def31da79d0023aca04652e02ca1e8d334cdfb5e016",
+      "uncompressedSha256": "1b04538a8d636eff27cfdd079d93e5e59da17a8c5f538143c47884e06bb60fc1",
+      "uncompressedBytes": 294058
+    },
+    {
+      "label": "baseline-manifest",
+      "file": "benchmarks/results/2026-10-30T16-11-34.427Z-rust-unit-update-scalar-arrays.baseline-manifest.gz",
+      "sha256": "cef553423bfe36a5df6dfd49e0918f00eac0341c200a1311c693ae7e5213400b",
+      "uncompressedSha256": "b210a3c59a317a4b5c16d3acb1db0d77efcbeee828f90f528b2783c4d116a0be",
+      "uncompressedBytes": 16938
+    },
+    {
+      "label": "optimized-generated",
+      "file": "benchmarks/results/2026-10-30T16-11-34.427Z-rust-unit-update-scalar-arrays.optimized-generated.gz",
+      "sha256": "0a22bbd7657764c784a84404ece9ff479a265cbdc70083df09519d7ccb54f04e",
+      "uncompressedSha256": "e69a333d8f1b74ac0a2387bd4943c782c99398342cbd39ac724ba74f75ab11b3",
+      "uncompressedBytes": 295846
+    },
+    {
+      "label": "optimized-manifest",
+      "file": "benchmarks/results/2026-10-30T16-11-34.427Z-rust-unit-update-scalar-arrays.optimized-manifest.gz",
+      "sha256": "59df624a951cccda59670285dea62955db1315bb0df57ab84e475ed817d0b033",
+      "uncompressedSha256": "32f31ca1294c69bf6b5bda35d4bd4abcd111abfeefe2c97eb98a5b222c827d9c",
+      "uncompressedBytes": 17066
+    },
+    {
+      "label": "source",
+      "file": "benchmarks/results/2026-10-30T16-11-34.427Z-rust-unit-update-scalar-arrays.source.gz",
+      "sha256": "87bf30d0c4991e656be1fe5e9aeb7e7f8a67cb863deff154ef2426df5c7d5996",
+      "uncompressedSha256": "20c5860ce0833f389d40a8a6bc4436fcf2a63c3979ef6728e620773b6f7e237d",
+      "uncompressedBytes": 10340
+    },
+    {
+      "label": "actual",
+      "file": "benchmarks/results/2026-10-30T16-11-34.427Z-rust-unit-update-scalar-arrays.actual.gz",
+      "sha256": "44d8dd300a82ba56392167b0d55ee8ef0e5a02851b1cb96b9bfa56d093c93334",
+      "uncompressedSha256": "e94b50c1d0d03aae32d59381ca290381f65d6abe19133f7a8649611dc08c100c",
+      "uncompressedBytes": 24167175
+    },
+    {
+      "label": "expected",
+      "file": "benchmarks/results/2026-10-30T16-11-34.427Z-rust-unit-update-scalar-arrays.expected.gz",
+      "sha256": "0ebce0e2c9f69b98835f39df8c6cc682163d5dc16c9fc12596281c2f25c42cc0",
+      "uncompressedSha256": "925a54269c4fd534a8946319b43e3aa04fbe59f0d29e21755e5a9e32f51fa812",
+      "uncompressedBytes": 4027833
+    }
+  ],
+  "qualifiesFor10000Target": false,
+  "scope": "Original source Unit.update compiled to pure Rust, compared against pinned jitless source with the same explicit component fixture callbacks. Timed windows include every callback and the unchanged raw-bit observer. This is original-controller updates/second, NOT battles/second or a complete mechanics backend. Startup, fixture construction, five warmup updates, reset and final JSON snapshot are excluded. Arena lifetime/GC and complete realistic battles remain unqualified."
+}
