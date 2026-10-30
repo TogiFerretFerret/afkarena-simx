@@ -168,3 +168,15 @@ impl Runtime{
  }
  #[test]fn invalid_stride_does_not_change_default_policy(){let mut rt=Runtime::new();for stride in [0,9,usize::MAX]{assert!(rt.configure_native_battle_gc_request_stride(stride).is_err());}assert_eq!(rt.native_battle_gc.request_stride,0);assert_eq!(rt.native_battle_gc_request_count(),0);}
 }
+
+#[cfg(test)]mod promoted_parameter_gc_tests{
+ use super::*;
+ fn entry(rt:&mut Runtime,_:Value,args:&[Value],parent:EnvId)->JsResult<Value>{
+  let env=rt.child_env(parent);rt.register_lazy_arguments(env,&["a"],args,&[true])?;rt.register_promoted_parameters(&[0],&[args[0]])?;
+  let current=rt.object();let key=rt.string("bits");rt.define_data(current,key,Value::Number(f64::from_bits(0x7ff0000000000042)),true,true,true)?;rt.write_promoted_parameter(0,current)?;
+  for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}
+  for index in 0..23{rt.object();rt.assign(env,"battleIndex",Value::Number(index as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;let key=rt.string("bits");let Value::Number(bits)=rt.get(current,key)?else{panic!()};assert_eq!(bits.to_bits(),0x7ff0000000000042);}
+  Ok(current)
+ }
+ #[test]fn promoted_mirror_alone_roots_new_parameter_object_across_23_actual_safepoints(){let mut rt=Runtime::new();let original=rt.object();let f=rt.make_closure(entry,rt.global_env,1,"__nativeRun");rt.set_function_source(f,&RUN_SOURCE.encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();let current=rt.call(f,Value::Undefined,&[original]).unwrap();assert_ne!(original,current);assert_eq!(rt.native_battle_gc_stats().collections,23);assert_eq!(rt.native_battle_gc_request_count(),23);assert!(rt.native_parameter_mirrors.values.is_empty());assert!(rt.original_argument_values.is_empty()&&rt.active_argument_frames.is_empty());}
+}

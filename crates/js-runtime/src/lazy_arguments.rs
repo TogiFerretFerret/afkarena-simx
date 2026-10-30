@@ -92,3 +92,26 @@ impl ActiveArgumentsFrame {pub(crate) fn reachability_roots<'a>(&self,storage:&'
  fn untracked(rt:&mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{assert!(rt.active_argument_frames.is_empty()&&rt.original_argument_values.is_empty());Ok(Value::Undefined)}
  #[test]fn strict_and_arrow_calls_do_not_push_shared_original_argument_storage(){let mut rt=Runtime::new();for(strict,arrow)in[(true,None),(false,Some(Value::Null))]{let f=rt.make_closure_with_flags(untracked,rt.global_env,0,"untracked",strict,arrow);rt.call(f,Value::Undefined,&[Value::Number(1.0);7]).unwrap();}assert_eq!(rt.original_argument_values.capacity(),0);assert_eq!(std::mem::size_of::<ActiveArgumentsFrame>(),64);assert_eq!(std::mem::size_of::<OriginalArguments>(),16);}
 }
+
+#[cfg(test)]mod promoted_parameter_tests{
+ use super::*;
+ fn equal(a:Value,b:Value){match(a,b){(Value::Number(a),Value::Number(b))=>assert_eq!(a.to_bits(),b.to_bits()),_=>assert_eq!(a,b)}}
+
+ fn strict_attempt(rt:&mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{assert!(rt.write_promoted_parameter(0,Value::Null).is_err());Ok(Value::Undefined)}
+ fn mirrored(rt:&mut Runtime,_:Value,args:&[Value],parent:EnvId)->JsResult<Value>{
+  let env=rt.child_env(parent);rt.register_lazy_arguments(env,&["depth","a"],args,&[true,true])?;rt.register_promoted_parameters(&[1],&[args[1]])?;let frame_index=rt.active_argument_frames.len()-1;let original=rt.active_argument_frames[frame_index].original.values(&rt.original_argument_values).to_vec();
+  let Value::Number(depth)=args[0]else{panic!()};let current=rt.object();let key=rt.string("bits");rt.define_data(current,key,Value::Number(f64::from_bits(0x7ff0000000000042)),true,true,true)?;rt.write_promoted_parameter(0,current)?;
+  let callee=*rt.call_stack.last().unwrap();if depth>0.0{rt.call(Value::Function(callee),Value::Undefined,&[Value::Number(depth-1.0),args[1]])?;}
+  let strict=rt.make_closure_with_flags(strict_attempt,env,0,"strictAttempt",true,None);rt.call(strict,Value::Undefined,&[])?;
+  if depth==0.0{let marks=rt.native_battle_gc_marks(env,&[])?;for &value in &rt.native_parameter_mirrors.values{if let Value::Object(id)=value{assert!(marks.objects[id.0]);}}}
+  let key=rt.string("bits");let Value::Number(bits)=rt.get(current,key)?else{panic!()};assert_eq!(bits.to_bits(),0x7ff0000000000042);
+  let first=rt.active_function_arguments(callee)?;let key=rt.string("1");equal(rt.get(first,key)?,current);rt.set(first,key,Value::Number(99.0),true)?;let second=rt.active_function_arguments(callee)?;assert_ne!(first,second);let key=rt.string("1");equal(rt.get(second,key)?,current);
+  for(&before,&after)in original.iter().zip(rt.active_argument_frames[frame_index].original.values(&rt.original_argument_values)){equal(before,after)}
+  equal(rt.native_parameter_mirrors.values.last().copied().unwrap(),current);Ok(current)
+ }
+ #[test]fn mirror_recursion_keeps_originals_immutable_roots_current_values_and_reuses_capacity(){
+  let mut rt=Runtime::new();rt.enable_native_battle_gc();let f=rt.make_closure(mirrored,rt.global_env,2,"mirrored");let original=rt.object();let args=[Value::Number(16.0),original];rt.call(f,Value::Undefined,&args).unwrap();assert!(rt.native_parameter_mirrors.values.is_empty()&&rt.native_parameter_mirrors.frames.is_empty());assert!(rt.original_argument_values.is_empty()&&rt.active_argument_frames.is_empty());let capacity=(rt.native_parameter_mirrors.values.capacity(),rt.native_parameter_mirrors.frames.capacity());rt.call(f,Value::Undefined,&args).unwrap();assert_eq!(capacity,(rt.native_parameter_mirrors.values.capacity(),rt.native_parameter_mirrors.frames.capacity()));assert_eq!(std::mem::size_of::<ActiveArgumentsFrame>(),64);
+ }
+ fn missing(rt:&mut Runtime,_:Value,args:&[Value],parent:EnvId)->JsResult<Value>{let env=rt.child_env(parent);rt.register_lazy_arguments(env,&["a"],args,&[true])?;rt.register_promoted_parameters(&[0],&[Value::Undefined])?;rt.write_promoted_parameter(0,Value::Number(-0.0))?;let callee=*rt.call_stack.last().unwrap();let snapshot=rt.active_function_arguments(callee)?;let length=rt.string("length");assert_eq!(rt.get(snapshot,length)?,Value::Number(0.0));let zero=rt.string("0");assert_eq!(rt.get(snapshot,zero)?,Value::Undefined);Err(JsError::Throw(Value::Number(f64::from_bits(0x7ff0000000000069))))}
+ #[test]fn missing_actual_slots_do_not_appear_and_throw_cleans_mirrors(){let mut rt=Runtime::new();let f=rt.make_closure(missing,rt.global_env,1,"missing");let JsError::Throw(value)=rt.call(f,Value::Undefined,&[]).unwrap_err()else{panic!()};equal(value,Value::Number(f64::from_bits(0x7ff0000000000069)));assert!(rt.native_parameter_mirrors.values.is_empty()&&rt.native_parameter_mirrors.frames.is_empty());assert!(rt.original_argument_values.is_empty()&&rt.active_argument_frames.is_empty()&&rt.call_stack.is_empty());assert!(rt.register_promoted_parameters(&[0],&[Value::Null]).is_err());assert!(rt.write_promoted_parameter(0,Value::Null).is_err());}
+}
