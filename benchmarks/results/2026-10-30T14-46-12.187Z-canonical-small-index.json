@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "summaries": [
+    {
+      "name": "unit",
+      "totals": {
+        "baseline": 1784181248,
+        "candidate": 1779215471
+      },
+      "ratio": 1.0027909924800784
+    },
+    {
+      "name": "drain",
+      "totals": {
+        "baseline": 359863881,
+        "candidate": 359732682
+      },
+      "ratio": 1.0003647124839217
+    }
+  ],
+  "rows": [
+    {
+      "name": "unit",
+      "variant": "baseline",
+      "pair": 0,
+      "exitCode": 0,
+      "stdoutSha256": "e6e0da099e44be2297daf585005bee9986cebd5db647a3c782296718ee7c56a6",
+      "elapsedNs": 562166698,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "candidate",
+      "pair": 0,
+      "exitCode": 0,
+      "stdoutSha256": "a97fe0aa9f975d697826c2bb353bd143d2ae0b1a1bd0afa615e48b5a5c1df845",
+      "elapsedNs": 553527408,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "candidate",
+      "pair": 1,
+      "exitCode": 0,
+      "stdoutSha256": "dd6bb0b7485282916d0cfb936bfcf0a760e6e59595a54877be040106ebd7e379",
+      "elapsedNs": 633418332,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "baseline",
+      "pair": 1,
+      "exitCode": 0,
+      "stdoutSha256": "ea5f80776ab32e41bbe0a89a920830301c5062b26afad3cc17da80e90a91acb5",
+      "elapsedNs": 592497094,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "baseline",
+      "pair": 2,
+      "exitCode": 0,
+      "stdoutSha256": "f6845bee09307d1ac4f18acfe7e51df3bebffc9c518f8bf8958376d49e09a946",
+      "elapsedNs": 629517456,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "candidate",
+      "pair": 2,
+      "exitCode": 0,
+      "stdoutSha256": "48ebebd70f27df50043eb0cc3cacb83d9c232fe11b539bec9ecda10e6649fc8a",
+      "elapsedNs": 592269731,
+      "events": 150220
+    },
+    {
+      "name": "drain",
+      "variant": "baseline",
+      "pair": 0,
+      "exitCode": 0,
+      "stdoutSha256": "093f9e43f2c68d098bd1d67a05d95010463ca7919ac1aebe80f73fa9591031af",
+      "elapsedNs": 122314329,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "candidate",
+      "pair": 0,
+      "exitCode": 0,
+      "stdoutSha256": "03ac3c50f928f0bbc672756327b3dab86da220d50b20cf65f7b6b28c16cfbe14",
+      "elapsedNs": 119028339,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "candidate",
+      "pair": 1,
+      "exitCode": 0,
+      "stdoutSha256": "1631ca1c4c8499bdbe91988beb9e9cfa9d8f63f8bed3477885c55b7454cb3b45",
+      "elapsedNs": 116800591,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "baseline",
+      "pair": 1,
+      "exitCode": 0,
+      "stdoutSha256": "ad3d593834e8207e6c238a29d1886d178e5e2feccd237be7b5d1ea6ec180835d",
+      "elapsedNs": 114414463,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "baseline",
+      "pair": 2,
+      "exitCode": 0,
+      "stdoutSha256": "dd0f7198fb71d1b0f1ce9eb4869fcc4350e089e5cf92131b10e6924da327bba4",
+      "elapsedNs": 123135089,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "candidate",
+      "pair": 2,
+      "exitCode": 0,
+      "stdoutSha256": "03dd351c16831cb4ccc6bc83f7bc40f74af5128c3f8ff9c97e05377f72a46906",
+      "elapsedNs": 123903752,
+      "events": 38400
+    }
+  ],
+  "trace1SelectedObserverMatched": true,
+  "sameRuntime": true,
+  "artifact": {
+    "file": "benchmarks/results/2026-10-30T14-46-12.187Z-canonical-small-index.evidence.gz",
+    "sha256": "adf907c0fd08ef166e3c56d1488f15f5609945f5d65bd43c2454c2ebba04be10",
+    "uncompressedSha256": "79390da395cd3dea5d21d2004e1587d0391b23293ea67a0be3c845952f3e82a6"
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "Only compiler static one-character strings 0..3 lower to reserved IDs. Original Unit and callback drain retain complete source callbacks and selected snapshots. Drain emitted Rust is byte-identical negative control. Same runtime for four binaries, opt3 CGU64 noLTO, three alternating process pairs. Component rates are not battles/sec.",
+  "generatedInputsArtifact": {
+    "file": "benchmarks/results/2026-10-30T14-46-12.187Z-canonical-small-index.generated-inputs.gz",
+    "sha256": "79749180d493c316c8097f187f5e65e0cd328c3c4c805901dd96dfb28f5e9bb5",
+    "uncompressedSha256": "3e40b09f344fe958163e34f00c4eba35e58c94afa818c0fbec9ff53155a2bc03"
+  },
+  "sourcePoolLimitation": "External UTF16 source metadata pools are archived after measurement and match deterministic compiler generation; the original native-preparation input map did not hash these pools before timing. Semantic snapshots and selected TRACE1 match. Pools contain function source text, not executable instructions.",
+  "qualifiedRuntimeReference": {
+    "file": "benchmarks/validation/rust-program-hot-execution-wave-full.json",
+    "sha256": "645029d842fc8ec08c827b297baf4325b3d18ee4e71d74e74e34ad0e7580095e"
+  }
+}

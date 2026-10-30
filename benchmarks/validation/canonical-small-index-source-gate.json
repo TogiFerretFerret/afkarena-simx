@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "cases": 378,
+  "firstDifference": null,
+  "runtime": {
+    "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+    "sha256": "a11feebe66044308f45bab888049df5528f368b411a66449260e337eddb06ed0"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/canonical-small-index/source-gate/source-check",
+    "sha256": "116ebe45c61b34243f593602138ee8b265d2942fe78f8a0d457a3365ff32b7c5"
+  },
+  "command": [
+    "--edition=2024",
+    "-C",
+    "opt-level=3",
+    "-C",
+    "codegen-units=64",
+    "-C",
+    "lto=off",
+    "/workspace/afkarena-simx/work/candidate-small-array-copy/work/canonical-small-index/source-gate/main.rs",
+    "-L",
+    "dependency=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps",
+    "--extern",
+    "js_runtime=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+    "-o",
+    "/workspace/afkarena-simx/work/candidate-small-array-copy/work/canonical-small-index/source-gate/source-check"
+  ],
+  "artifact": {
+    "file": "benchmarks/validation/canonical-small-index-source-gate.evidence.gz",
+    "sha256": "0101d78ff6b73f7d848d5403a8919766e9c585dfe611dba0b70d5984a54354a3",
+    "uncompressedSha256": "b846fd59fec242744f1842eafe6759f062f979a60ef1ebc0680cde6e8a6183ab"
+  },
+  "qualifiesFor10000Target": false
+}
