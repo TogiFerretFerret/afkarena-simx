@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "sourceFreeze": "7e718b1",
+  "sourceGateCount": 28,
+  "nativeTestsPassed": 191,
+  "scalarProvenanceTestsPassed": 4,
+  "functions": 22986,
+  "unsupportedFunctions": 0,
+  "gcCadence": 2,
+  "requestStride": "default1",
+  "serial": {
+    "measuredBattles": 20,
+    "warmupBattles": 3,
+    "nativeBattlesPerSecond": 0.7574609907589759,
+    "nodeBattlesPerSecond": 2.2009464069549907,
+    "totalCallbacks": 309060,
+    "fullReportMatched": true,
+    "hostTapesMatched": true,
+    "actualNativeAdmission": {
+      "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-source-shortcut-wave-full.native.stderr.gz",
+      "stderrSha256": "cd27ba8b71f3b10e2bc914d861252c73cc7c6423e822771b8df3d05e2fed37e5",
+      "battleModeLimitDomainHits": 50300,
+      "getterCalls": 150900,
+      "primaryNumericAccessEnabled": true,
+      "battleModeLimitEnabled": true
+    },
+    "optimizationQualification": {
+      "passed": true,
+      "requiredActualDomainHitsPositive": true,
+      "requiredActualGetterCallsPositive": true
+    }
+  },
+  "scalarQualification": {
+    "unit": 0,
+    "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+    "functionId": 1818,
+    "arrays": [
+      {
+        "name": "B",
+        "length": 2,
+        "reads": 4,
+        "truthinessReads": 2,
+        "diagnosticsFallbackAtEntry": true,
+        "requiresStableHostDiagnosticsMode": true
+      }
+    ],
+    "manifestSha256": "075ed6db28a9f70263095381933eaf9862791a1b1f7521bf077b73402f66789d",
+    "actualFullTraceEnabled": false
+  },
+  "fork": {
+    "file": "benchmarks/results/2026-10-30-source-shortcut-wave-fork-four.json",
+    "sha256": "370a3c98bb28dd283180e0d4c901f293d9a444285f5d618ad38e860796ff1c7f",
+    "aggregate": {
+      "completed": 80,
+      "startUnixNs": "1793378806492072466",
+      "endUnixNs": "1793378837671695745",
+      "elapsedNs": "31179623279",
+      "elapsedSeconds": 31.179623279,
+      "battlesPerSecond": 2.5657782739755337,
+      "commonOverlapNs": "30843356586",
+      "allFourOverlap": true,
+      "method": "80 measured battles / (latest measured end - earliest measured start), using a common SystemTime UNIX epoch; never sum per-process rates."
+    },
+    "optimizationQualification": {
+      "passed": true,
+      "requiresActualDomainHitsAndGetterCallsPositive": true
+    },
+    "children": [
+      {
+        "index": 0,
+        "collections": 12,
+        "admission": {
+          "domainHits": 50300,
+          "getterCalls": 150900,
+          "primaryNumericAccessEnabled": true,
+          "battleModeLimitEnabled": true
+        },
+        "totalCallbacks": 309060
+      },
+      {
+        "index": 1,
+        "collections": 12,
+        "admission": {
+          "domainHits": 50300,
+          "getterCalls": 150900,
+          "primaryNumericAccessEnabled": true,
+          "battleModeLimitEnabled": true
+        },
+        "totalCallbacks": 309060
+      },
+      {
+        "index": 2,
+        "collections": 12,
+        "admission": {
+          "domainHits": 50300,
+          "getterCalls": 150900,
+          "primaryNumericAccessEnabled": true,
+          "battleModeLimitEnabled": true
+        },
+        "totalCallbacks": 309060
+      },
+      {
+        "index": 3,
+        "collections": 12,
+        "admission": {
+          "domainHits": 50300,
+          "getterCalls": 150900,
+          "primaryNumericAccessEnabled": true,
+          "battleModeLimitEnabled": true
+        },
+        "totalCallbacks": 309060
+      }
+    ]
+  },
+  "scope": "Fixed original full source fixture, not random20k battle corpus.3and10000BPS targets remain unmet. Separate-cohort fork gain versus2.537886BPS is1.1%, not a robust or per-feature causal improvement."
+}
