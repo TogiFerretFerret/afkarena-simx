@@ -14,14 +14,25 @@ JavaScript frame and environment; dependency groups become small Cargo crates
 to keep Rust compilation within memory limits. AST coverage does not establish
 complete runtime semantics.
 
-The [latest qualified native batch](../../benchmarks/validation/rust-program-signed-camp-wave-full.json)
+The [latest qualified native batch](../../benchmarks/validation/rust-program-source-shortcut-wave-full.json)
 passes every non-timing final-report field and host-input check for **20 measured
-battles after three warmups at 0.582225 battles/second**. The
-[qualified warm four-worker cohort](../../benchmarks/results/2026-10-30-signed-camp-wave-fork-four.json)
-completes **80 battles over 31.522 seconds at 2.537886 aggregate battles/second**.
+battles after three warmups at 0.757461 battles/second**. The
+[qualified warm four-worker cohort](../../benchmarks/results/2026-10-30-source-shortcut-wave-fork-four.json)
+completes **80 battles over 31.180 seconds at 2.565778 aggregate battles/second**.
 Every worker matches Node and consumes the complete host tape; each records
 50,300 signed-camp admissions, 150,900 getter calls and 12 GC collections.
 Both rates remain below 3 battles/second and the 10,000 target.
+
+The [current CPU breakdown](../../benchmarks/CURRENT_BOTTLENECK_BREAKDOWN.md)
+attributes 45.23% of measured CPU to property reads and writes. Babel already
+replaces a nonescaping local array with Rust slots and recognizes exact source
+helpers for guarded native execution. The merged
+[nested-copy shortcut](../../NESTED_COPY_OBJ.md) additionally removes recursive
+dispatch and temporary key arrays only after a callback-free whole-tree guard.
+It measures 1.76× and 1.67× on real Buff and Level copy components; it has not
+yet been qualified or timed in a complete battle. These component gains do not
+change the whole-battle rates above. A new shortcut must preserve source effects,
+raw number bits and RNG consumption, and fall back when its guards decline.
 
 The earlier layout serial cohort measured 0.750892 in a different host window.
 Those isolated cohorts do not establish a controlled speed change. A
