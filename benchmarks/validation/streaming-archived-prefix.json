@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "scope": "Archive-only streaming validation of the complete selected-state boundary contract, or an explicitly limited prefix. No new battle is executed. This does not establish complete game-state coverage, executable provenance, 20k battle qualification or throughput.",
+  "mode": "ordered-prefix",
+  "prefixEvents": 1000,
+  "startedAt": "2026-10-29T00:23:32.220Z",
+  "producerInputs": {
+    "/workspace/afkarena-simx/work/candidate-streaming-boundary-trace/tools/rust-port/check-boundary-stream.mjs": "3580e2d872dcedd45ca3a77297a13bb1cd18601b27ad9fc686cbc2a898a4acf3",
+    "/workspace/afkarena-simx/work/candidate-streaming-boundary-trace/tools/rust-port/boundary-stream-support.mjs": "273534ed20f5ff59875c4eaaf692dead5236b84bc8e7e3d5c9368148460e2883",
+    "/workspace/afkarena-simx/work/candidate-streaming-boundary-trace/tools/validate-battle-boundary-schema.mjs": "0a72e2c3a733a68614a6a41ecb94d09a357f06bf712f464b1c56f8151e4f741a",
+    "/workspace/afkarena-simx/work/candidate-streaming-boundary-trace/tools/native-report-compare.mjs": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341"
+  },
+  "comparison": {
+    "passed": true,
+    "orderedEventsCompared": 1000,
+    "sourceEvents": 64419,
+    "candidateEvents": 1000,
+    "unobservedSourceEvents": 63419,
+    "sourceSnapshots": 55078,
+    "candidateSnapshots": 1437,
+    "requiredSnapshots": 1437,
+    "sameSnapshots": true,
+    "sameHeader": true,
+    "terminalDifference": null,
+    "hostDifference": null,
+    "firstDifference": null,
+    "sourceValidation": {
+      "events": 64419,
+      "frames": 296,
+      "lastKind": "battle:completed",
+      "references": 1476979,
+      "numberBitAtoms": 1074131,
+      "openWrappedFrames": 0,
+      "openFrame": false,
+      "selectedStateOnly": true
+    },
+    "candidateValidation": {
+      "events": 1000,
+      "frames": 6,
+      "lastKind": "mechanic:setMp:after",
+      "references": 17809,
+      "numberBitAtoms": 30452,
+      "openWrappedFrames": 0,
+      "openFrame": true,
+      "selectedStateOnly": true
+    },
+    "entireSelectedBoundaryTraceMatched": false,
+    "selectedStateOnly": true,
+    "qualifiesFor10000Target": false
+  },
+  "memory": {
+    "policy": "Pull-based decompression/framing; disk-backed snapshot values; retain only hash/type/dependency metadata and one event per side. No event history or snapshot value pool retained in memory.",
+    "sourceSnapshotStoreBytes": 91135805,
+    "candidateSnapshotStoreBytes": 2431024,
+    "snapshotReadsForDifference": 0,
+    "maxRssKiB": 129104,
+    "heapUsedAtFinish": 45990960
+  },
+  "changedInputs": [],
+  "source": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.json",
+    "sha256": "35601d20e746b4fc6bc87698da359a59e2b631664b9437fbd7e41c36a884ad4e",
+    "label": "oracle-stdout",
+    "rawBytes": 284078451,
+    "rawSha256": "f8a960721d9305ed4424e033a087e0301397e095ca6258495e87dfaf27b2c2e7",
+    "archiveFiles": [
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-000.gz",
+        "sha256": "781bc6357445adc3ac68dba620353adc81218ec3fc34d1e98411a9219c4e177d"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-001.gz",
+        "sha256": "ee6f021c8805604428919618616df0edffff367c4e92b6afb0131d7c64980662"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-002.gz",
+        "sha256": "a05beccfa9e938e41b12850fb899b6fb86f999587a55b34cbcc74377b946b2cb"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-003.gz",
+        "sha256": "330deaa46adee40a32c858fde40282ef6a803bb52c06f856d78808fada9e90e4"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-004.gz",
+        "sha256": "3524aba8908bbe9cc77298b7843fe9177fc18c19b0cf1c73a5796a4078f15c22"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-005.gz",
+        "sha256": "a9cccdbb61e790148fc51e0973b33aa25dfdfb524c842ea12067fc1c4ce7bcbd"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-006.gz",
+        "sha256": "dd21960c4bf12de45771a179e1eb3a188a8c98ef9b14e38c56b934ba5f33fced"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-007.gz",
+        "sha256": "e3a662d9dedb95cdab036b9170a0d56ae00e9807be544f9c41fb54a47c967f27"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-008.gz",
+        "sha256": "0df6d0c16e5a2793fc1dedab1dfd7f625505a85d58052200c1456bf62726a60f"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-009.gz",
+        "sha256": "39f97b77e012543f0381fc709b408fc102d1c0e4fbfdbe1b5fb06e4a160013d3"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-010.gz",
+        "sha256": "1f0be2bb00257b4c429e52fcda66e28ea1a2caafc9356ad06a5eeee7398c3a27"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-011.gz",
+        "sha256": "98ac29a13e690c6e8fd5ec409a72d8738f3bebee6f47fd1e3e60ffc2900e5947"
+      },
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-trace-preparation.oracle-stdout.part-012.gz",
+        "sha256": "fdd7fdebb55abff5b9b48ca1d6601dc7931d5f7ecfb1aab5cd23839a89d8edfb"
+      }
+    ],
+    "recordedExecutionStatus": 0
+  },
+  "candidate": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-native-prefix-after-full.json.trace.json",
+    "sha256": "627dd9ce7d22f8695ea56e17822bb052cc31cc2a0b1482aa2beff97e2621786f",
+    "label": "native-stdout",
+    "rawBytes": 5062940,
+    "rawSha256": "79a77a0802fc235c38e29593f30d8256a3ca468ec9dfc979ecbf5182ae733677",
+    "archiveFiles": [
+      {
+        "file": "/workspace/afkarena-simx/benchmarks/validation/rust-native-prefix-after-full.json.trace.native-stdout.gz",
+        "sha256": "340e8601841b9dcacab6c8ceed09ddc1697ecbe20e0a6fce106d840667340b6f"
+      }
+    ],
+    "recordedExecutionStatus": 0
+  },
+  "finishedAt": "2026-10-29T00:23:46.024Z"
+}

@@ -1,0 +1,19 @@
+# Streaming selected-boundary validation
+
+`check-boundary-stream.mjs` compares ordered event payloads and selected state snapshots without loading a trace object or event history into memory. It accepts archived gzip chunks, verifies compressed and uncompressed hashes/sizes, and uses pull-based line framing so a slow consumer cannot accumulate the complete decompressed input in a readline queue. Snapshot values go to an append-only temporary disk store. Memory retains hash/type/dependency metadata and one event per side.
+
+Every snapshot SHA256 and state SHA256 is verified. Typed f64 atoms are checked as exactly sixteen hexadecimal digits. The incremental schema gate checks primitive fields, numeric vectors, unit/skill/buff lists, payload aliases/descriptors, ordered frame/wrapped-call boundaries and the completion event. Children must precede parent nodes, matching the original observer's `intern()` order. Missing/forward references and wrong node types fail independently of equality with the source. A mismatch can follow the two snapshot graphs on disk and identify the differing bit/property path.
+
+Complete mode requires the completion event and footer on both streams and compares the entire node pool. Prefix mode requires an explicit event limit, the native trace's matching truncation marker, exactly the transitive snapshot closure of those source events, and the full terminal report/host-tape equality. Later source events are still consumed and validated but are explicitly unobserved in the native comparison. Selected own enumerable primitive/vector state is not complete game state, and neither mode qualifies throughput or 20k battles.
+
+The reader also accepts incremental `boundary-trace-stream-v2`: a static `trace-start` header, topologically ordered snapshot records interleaved before the events referencing them, then the completed terminal report and footer. Unit tests compare this layout with the existing post-battle layout and reject truncation, extra records, sequence/state drift, malformed dependencies/UTF-8 and a self-consistent negative-zero forgery.
+
+Historical Rust-prefix replay (no new simulation): the 284,078,451-byte accepted Node archive contains 64,419 events and 55,078 snapshot nodes. Under `--max-old-space-size=128`, the comparator validated 1,476,979 graph references and 1,074,131 f64 atoms, and matched the existing native first 1,000 events, exactly 1,437 transitive snapshots, terminal state and host replay. Peak RSS was 129,104 KiB, ending heap 45,990,960 bytes. The source snapshot disk store was 91,135,805 bytes. Evidence: `benchmarks/validation/streaming-archived-prefix.json`. This remains a prefix qualification; 63,419 native intermediate events are unobserved.
+
+```sh
+node --max-old-space-size=128 tools/rust-port/check-boundary-stream.mjs \
+  --candidate-report benchmarks/validation/rust-native-prefix-after-full.json.trace.json \
+  --prefix-events 1000
+```
+
+The existing 11.7 GiB native-prefix peak comes chiefly from producing snapshots: the JS observer retains every event, snapshot object and JSON-to-hash cache, while its temporary interpreter objects remain in the runtime arena. A streaming comparator alone cannot remove that cost. Incremental emission removes retained event/snapshot arrays; bounded native production additionally needs a native descriptor-based serializer for the exact pinned observer. It must preserve identity assignment, own-descriptor reads, UTF-16 key ordering, number bits, actual ClassManager snapshot calls, payload aliases and emission order. It must share the observer's weak identity map (including collection semantics) and fall back for unsupported shapes. Arbitrary mid-battle GC or dropping state is not an acceptable shortcut. No such runtime or producer change is included here, and no new native trace may run until its full untraced binary is qualified.
