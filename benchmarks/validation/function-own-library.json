@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "tests": 115,
+  "newFunctionTests": 4,
+  "actualCollections": 23,
+  "functionObjectIDsReused": true,
+  "command": "CARGO_PROFILE_TEST_DEBUG=0 CARGO_PROFILE_DEV_DEBUG=0 cargo test -j 1 -p js-runtime --lib",
+  "inputs": {
+    "crates/js-runtime/src/property_slots.rs": "1762dd182b3e8763d5809b03734ce0a581a452305c95aa2e81579734cb57a54e",
+    "crates/js-runtime/src/runtime.rs": "9986d0c68a4584ced3c04ebc8afabb60934a5f3766dc1619d7bf4f7ad37e1c22"
+  },
+  "binaries": [
+    {
+      "file": "target/debug/deps/js_runtime-aea8d3ea5c30b039",
+      "sha256": "36b8fbd3ed62946596918aad12afe0360a4e28ee366cce535a964dc3abf2500f"
+    }
+  ],
+  "log": {
+    "file": "benchmarks/validation/function-own-library.log.gz",
+    "sha256": "9401eb70d8743ad95ec8a92995038e5acd1616fd882c6207454757b11c977ecd"
+  },
+  "qualifiesFor10000Target": false
+}
