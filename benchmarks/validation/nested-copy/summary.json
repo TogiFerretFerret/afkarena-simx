@@ -1,8 +1,8 @@
 {
   "passed": true,
-  "libraryTests": 126,
+  "libraryTests": 127,
   "measuredAlgorithmCommit": "e569f7f",
-  "promotionCommit": "bee808f",
+  "promotionCommit": "dd250a0",
   "defaultEnabled": true,
   "sourceAdversarialProof": "benchmarks/validation/rust-nested-copy-obj-adversarial.json",
   "libraryArtifacts": [
@@ -88,5 +88,18 @@
     "file": "benchmarks/validation/nested-copy/measured-generated-inputs.gz",
     "sha256": "3e498e9f3a98f858136ec987f066831707d3ed3b15f162484e780c3138f5d9dd",
     "uncompressedSha256": "32a6d69f68d01ea09f991e1a8a8bb652b9b41e386fcf3d893b51f8fea2733904"
-  }
+  },
+  "finalAliasLibraryArtifacts": [
+    {
+      "file": "benchmarks/validation/nested-copy/nested-copy-alias-lib.stdout.gz",
+      "sha256": "6fcded40e622977666dd8a732e5caed30df4dff2306cbc9edf9ca3aa75c42aea",
+      "uncompressedSha256": "a66b94bc6eee859b38efaedb5ad6e9dcfc986cf3b5a6e69a8fa3c5315339d7d4"
+    },
+    {
+      "file": "benchmarks/validation/nested-copy/nested-copy-alias-lib.stderr.gz",
+      "sha256": "544312540593a5e556fb946b453efe85a42a7f2643965215994c613447dc22dc",
+      "uncompressedSha256": "518f6fed9d85701b4a8d80fda54897ba7a4d5f82381a4f9624a64b153524dfaf"
+    }
+  ],
+  "namespaceIdentity": "Function(active) OR Object(active.function_object) with is_function +exact function_objects registry(active)"
 }
