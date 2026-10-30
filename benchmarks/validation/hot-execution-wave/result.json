@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "sourceGateCount": 25,
+  "nativeLibraryTests": 111,
+  "nativeIntegrationTests": 26,
+  "functions": 22986,
+  "gcCadence": 2,
+  "expectedCollections": 12,
+  "serialActualCollectionsEmitted": false,
+  "battles": 20,
+  "warmups": 3,
+  "nativeBattlesPerSecond": 0.6865538429851361,
+  "nodeBattlesPerSecond": 1.88625860605489,
+  "actualNativeAdmission": {
+    "stderrFile": "/workspace/afkarena-simx/benchmarks/validation/rust-program-hot-execution-wave-full.native.stderr.gz",
+    "stderrSha256": "e0eb8e5767664dc410cba546669a56d1d16d66d48390d137424667401cbbda19",
+    "battleModeLimitDomainHits": 0,
+    "getterCalls": 0,
+    "primaryNumericAccessEnabled": true,
+    "battleModeLimitEnabled": true
+  },
+  "scope": "Fresh resumed-environment fixed-source full fixture. Serial full-report and host-tape parity passes. Domain admission is zero despite enabled flags; no source-helper acceleration claim. Fork pending."
+}
