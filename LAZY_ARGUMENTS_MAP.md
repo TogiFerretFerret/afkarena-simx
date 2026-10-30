@@ -1,0 +1,12 @@
+Lazy mapped-arguments storage candidate
+=======================================
+
+Baseline b5b572b. Ordinary objects previously embedded an empty32B HashMap for the rare mapped-arguments mechanism. ArgumentsMap now contains an8B Option<Box<BindingMap>>: default/read/clear/remove onNone allocate nothing. The first insertion allocates the box and ordinary hash table; subsequent remove/clear retain both capacities for GC slot reuse. Existing default ID hasher, keys, BindingRef values and iteration semantics remain unchanged. From<BindingMap> supports Rust callers migrating the public field type with .into(); the JavaScript API does not change.
+
+Measured layout from the initial library gate: Object160→136B(-15% header bytes), ArgumentsMap8B, StoredProperty24B unchanged. No extra per-object heap allocation occurs forNone. Mapped arguments incur one additional32B Box allocation on first use; this must be measured alongside whole-heap savings.
+
+The baseline audit lists28 reference lines. Ordinary/function/small-array/buff/copy guards still call is_empty; none changes its JS eligibility domain. Parameter creation inserts identical BindingRefs. Reads and descriptor changes still use the original Runtime get/remove/write logic. Reachability iterates only live map entries. GC reset clears the retained map, so old BindingRefs must never act as roots.
+
+Initial gate:119 tests passed and one old layout assertion failed because Object is now136B rather than160B; that expected-size assertion has been updated. The new wrapper layout/no-allocation/retained-capacity tests passed. A further23 original-source GC regression has been written but not yet compiled: it retains live mapped object/raw Number parameters, detaches dead mappings via delete/readonly/accessor conversion, checks WeakMap pruning and actual ID reuse, and verifies -0/signaling/quiet NaN/subnormal bits.
+
+Final qualification is pending while the user-prioritized full profiling run holds CPU priority. Planned gates include argument aliasing/duplicates/strict callee, reflection and coercion, closure/GC roots and source raw bits. Planned performance compares original Unit/drain and the actual97MB table JSON physical-slot/value/descriptor/prototype/ID fingerprint, with separate allocator instrumentation and process RSS/header-arena accounting. Snapshot preparation preserves baseline and candidate source separately; no main source edits. All builds/gates require shared flock and actual timings exclusive flock on work/native-timing.lock.

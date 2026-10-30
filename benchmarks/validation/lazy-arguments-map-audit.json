@@ -1,0 +1,237 @@
+{
+  "baseline": "b5b572b",
+  "referenceLines": 28,
+  "methodUses": {
+    "is_empty": 17,
+    "insert": 2,
+    "capacity": 2,
+    "clear": 1,
+    "remove": 3,
+    "get": 2
+  },
+  "references": [
+    {
+      "file": "crates/js-runtime/src/battle_gc.rs",
+      "line": 52,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "  let mut objects_freed=0;for(i,live)in marks.objects.iter().copied().enumerate(){if !live{if !self.objects[i].properties.is_empty()||self.objects[i].primary_numeric_mask()!=0||!self.objects[i].arguments_map.is_empty(){objects_freed+=1}self.objects[i].reset_for_reuse(None);self.native_battle_gc.free_objects.push(i);}}"
+    },
+    {
+      "file": "crates/js-runtime/src/battle_gc.rs",
+      "line": 94,
+      "methods": [
+        "insert"
+      ],
+      "source": "  let old=crate::heap::PropertyKey(rt.intern(\"old0\"));let binding=rt.resolve_binding(env,\"old0\").unwrap();rt.objects[id.0].arguments_map.insert(old,binding);rt.objects[id.0].extensible=false;rt.objects[id.0].is_function=true;rt.objects[id.0].kind=crate::heap::ObjectKind::Arguments;"
+    },
+    {
+      "file": "crates/js-runtime/src/battle_gc.rs",
+      "line": 95,
+      "methods": [
+        "capacity"
+      ],
+      "source": "  let capacities=(rt.objects[id.0].properties.capacity(),rt.objects[id.0].property_index.capacity(),rt.objects[id.0].arguments_map.capacity(),rt.environments[env.0].cells.capacity(),rt.environments[env.0].bindings.capacity());"
+    },
+    {
+      "file": "crates/js-runtime/src/battle_gc.rs",
+      "line": 97,
+      "methods": [
+        "capacity"
+      ],
+      "source": "  assert_eq!(rt.objects[id.0].properties.capacity(),capacities.0);assert_eq!(rt.objects[id.0].property_index.capacity(),capacities.1);assert_eq!(rt.objects[id.0].arguments_map.capacity(),capacities.2);assert_eq!(rt.environments[env.0].cells.capacity(),capacities.3);assert_eq!(rt.environments[env.0].bindings.capacity(),capacities.4);"
+    },
+    {
+      "file": "crates/js-runtime/src/battle_gc.rs",
+      "line": 98,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "  rt.native_battle_gc.free_objects.retain(|slot|*slot!=id.0);rt.native_battle_gc.free_objects.push(id.0);let prototype=rt.object_prototype;assert_eq!(rt.alloc_object(Some(prototype)),id);let object=&rt.objects[id.0];assert_eq!(object.prototype,Some(prototype));assert!(object.extensible&&!object.is_function);assert!(matches!(object.kind,crate::heap::ObjectKind::Ordinary));assert!(object.properties.is_empty()&&object.property_index.is_empty()&&object.arguments_map.is_empty());"
+    },
+    {
+      "file": "crates/js-runtime/src/battle_mode_limit.rs",
+      "line": 18,
+      "methods": [
+        "is_empty"
+      ],
+      "source": " fn mode_raw_property(&self,value:Value,key:PropertyKey)->Raw{let Ok(mut id)=self.object_id(value)else{return Raw::Unsafe};for _ in 0..32{let Some(object)=self.objects.get(id.0)else{return Raw::Unsafe};if !matches!(object.kind,ObjectKind::Ordinary)||!object.arguments_map.is_empty(){return Raw::Unsafe}if let Some(d)=object.own(key){return match d.kind{PropertyKind::Data{value,..}=>Raw::Value(value),_=>Raw::Unsafe}}if let Some(parent)=object.prototype{id=parent}else{return Raw::Missing}}Raw::Unsafe}"
+    },
+    {
+      "file": "crates/js-runtime/src/battle_mode_limit.rs",
+      "line": 25,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "  if !matches!(object.kind,ObjectKind::Ordinary)||!object.arguments_map.is_empty(){return None}"
+    },
+    {
+      "file": "crates/js-runtime/src/buff_attribute_loop.rs",
+      "line": 6,
+      "methods": [
+        "is_empty"
+      ],
+      "source": " fn buff_plain(&self,id:ObjectId)->bool{self.objects.get(id.0).is_some_and(|o|matches!(o.kind,ObjectKind::Ordinary)&&!o.is_function&&o.arguments_map.is_empty())}"
+    },
+    {
+      "file": "crates/js-runtime/src/buff_attribute_loop.rs",
+      "line": 30,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "  let Some(array)=self.objects.get(list.0)else{return false};if array.is_function||!array.arguments_map.is_empty()||!matches!(array.kind,ObjectKind::Array{length:actual,..}if actual>=length as u32){return false}"
+    },
+    {
+      "file": "crates/js-runtime/src/closures.rs",
+      "line": 96,
+      "methods": [
+        "insert"
+      ],
+      "source": "  let callee_key=self.string(\"callee\");if strict{let poison=self.throw_type_error.ok_or_else(||JsError::Unsupported(\"missing intrinsic ThrowTypeError\".into()))?;self.define_accessor(object,callee_key,Some(poison),Some(poison),false,false)?;}else{let callee=self.call_stack.last().copied().map(Value::Function).unwrap_or(Value::Undefined);self.define_data(object,callee_key,callee,true,false,true)?;let mut seen=std::collections::HashSet::new();for index in(0..parameters.len()).rev(){let name=parameters[index];if seen.insert(name)&&index<args.len(){let binding=self.resolve_binding(env,name)?;let key=PropertyKey(self.intern(&index.to_string()));self.objects[id.0].arguments_map.insert(key,binding);}}}Ok(object)"
+    },
+    {
+      "file": "crates/js-runtime/src/copy_obj.rs",
+      "line": 40,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "   if !(1..=4).contains(&length)||object.prototype!=Some(self.array_prototype)||!object.arguments_map.is_empty(){return Ok(None)}"
+    },
+    {
+      "file": "crates/js-runtime/src/copy_obj.rs",
+      "line": 57,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "  if !matches!(object.kind,ObjectKind::Ordinary)||object.prototype!=Some(self.object_prototype)||!object.arguments_map.is_empty(){return Ok(None)}"
+    },
+    {
+      "file": "crates/js-runtime/src/copy_obj.rs",
+      "line": 104,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "  let object=&self.objects[target.0];if !matches!(object.kind,ObjectKind::Ordinary)||object.prototype!=Some(self.object_prototype)||!object.arguments_map.is_empty(){return Ok(false)}"
+    },
+    {
+      "file": "crates/js-runtime/src/dense_array_shift.rs",
+      "line": 10,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "  if object.is_function||!object.arguments_map.is_empty()||object.primary_numeric_mask()!=0||length==0{return Ok(None)}"
+    },
+    {
+      "file": "crates/js-runtime/src/dynamic_slots.rs",
+      "line": 8,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "  if object.is_function||!object.arguments_map.is_empty(){return None}"
+    },
+    {
+      "file": "crates/js-runtime/src/heap.rs",
+      "line": 33,
+      "methods": [],
+      "source": " pub arguments_map:HashMap<PropertyKey,BindingRef,IdBuildHasher>,"
+    },
+    {
+      "file": "crates/js-runtime/src/heap.rs",
+      "line": 37,
+      "methods": [],
+      "source": " pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,numeric_elements:None,properties:vec![],accessor_slots:None,property_index:HashMap::default(),arguments_map:HashMap::default()}}"
+    },
+    {
+      "file": "crates/js-runtime/src/heap.rs",
+      "line": 38,
+      "methods": [
+        "clear"
+      ],
+      "source": " pub(crate) fn reset_for_reuse(&mut self,prototype:Option<ObjectId>){self.prototype=prototype;self.extensible=true;self.kind=ObjectKind::Ordinary;self.is_function=false;self.properties.clear();if let Some(slots)=&mut self.accessor_slots{slots.clear();}self.property_index.clear();self.arguments_map.clear();}"
+    },
+    {
+      "file": "crates/js-runtime/src/heap.rs",
+      "line": 95,
+      "methods": [
+        "remove"
+      ],
+      "source": "  if let Some(i)=self.property_index.remove(&key){if let Some(slot)=self.properties[i].accessor_index(){self.accessor_slots.as_mut().expect(\"accessor storage\")[slot]=None;}self.properties[i].tombstone();}self.arguments_map.remove(&key);"
+    },
+    {
+      "file": "crates/js-runtime/src/property_slots.rs",
+      "line": 71,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "                            if !owner.is_function&&matches!(owner.kind,ObjectKind::Ordinary)&&owner.arguments_map.is_empty(){"
+    },
+    {
+      "file": "crates/js-runtime/src/property_slots.rs",
+      "line": 90,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "        (record.is_function&&matches!(record.kind,ObjectKind::Ordinary)&&record.arguments_map.is_empty()).then_some(object)"
+    },
+    {
+      "file": "crates/js-runtime/src/property_slots.rs",
+      "line": 135,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "                            if !owner.is_function&&matches!(owner.kind,ObjectKind::Ordinary)&&owner.arguments_map.is_empty()&&object.own(key).is_none(){"
+    },
+    {
+      "file": "crates/js-runtime/src/reachability.rs",
+      "line": 26,
+      "methods": [],
+      "source": "  Node::Object(i)=>{let object=&self.rt.objects[i];if let Some(f)=self.object_functions[i]{self.mark(Node::Function(f))}if let Some(p)=object.prototype{self.mark(Node::Object(p.0))}for(key,d)in object.iter_properties(){self.value(Value::String(key.0));self.descriptor(d)}for(key,d)in object.primary_numeric_properties(){self.value(Value::String(key.0));self.descriptor(d)}for(key,binding)in &object.arguments_map{self.value(Value::String(key.0));self.binding(*binding)}match object.kind{ObjectKind::BoxedString(id)=>self.value(Value::String(id)),ObjectKind::ArrayBuffer{buffer}|ObjectKind::DataView{buffer,..}|ObjectKind::TypedArray{buffer,..}=>self.mark(Node::Buffer(buffer.0)),ObjectKind::Collection(i)=>self.mark(Node::Collection(i)),ObjectKind::CollectionIterator(i)=>self.mark(Node::Iterator(i)),ObjectKind::RegExp(i)=>self.mark(Node::Regex(i)),_=>{}}},"
+    },
+    {
+      "file": "crates/js-runtime/src/runtime.rs",
+      "line": 139,
+      "methods": [
+        "get"
+      ],
+      "source": "  if let Some(binding)=object.arguments_map.get(&key).copied(){let mut desc=object.own(key);if let Some(ref mut d)=desc{if let PropertyKind::Data{ref mut value,..}=d.kind{*value=self.read_binding(binding)?;}}return Ok(desc)}"
+    },
+    {
+      "file": "crates/js-runtime/src/runtime.rs",
+      "line": 155,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "   if !object.is_function&&object.arguments_map.is_empty(){if let ObjectKind::Array{primary_numeric:true,numeric_presence,..}=object.kind{if numeric_presence&(1u8<<key.0.0)!=0{if let Some(bits)=&object.numeric_elements{return Ok(Value::Number(f64::from_bits(bits[key.0.0])));}}}}"
+    },
+    {
+      "file": "crates/js-runtime/src/runtime.rs",
+      "line": 171,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "   if !object.is_function&&object.arguments_map.is_empty(){if let ObjectKind::Array{primary_numeric:true,numeric_presence,..}=object.kind{if numeric_presence&(1u8<<key.0.0)!=0{if let Some(bits)=&mut object.numeric_elements{bits[key.0.0]=value_bits.to_bits();return Ok(value);}}}}"
+    },
+    {
+      "file": "crates/js-runtime/src/runtime.rs",
+      "line": 178,
+      "methods": [
+        "is_empty"
+      ],
+      "source": "    if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary)&&object.arguments_map.is_empty(){"
+    },
+    {
+      "file": "crates/js-runtime/src/runtime.rs",
+      "line": 210,
+      "methods": [
+        "get",
+        "remove",
+        "remove"
+      ],
+      "source": "  if let Some(binding)=self.objects[id.0].arguments_map.get(&key).copied(){match descriptor.kind{PropertyKind::Data{value,writable}=>{self.write_binding(binding,value,false)?;if !writable{self.objects[id.0].arguments_map.remove(&key);}},PropertyKind::Accessor{..}=>{self.objects[id.0].arguments_map.remove(&key);}}}"
+    }
+  ],
+  "borrowedIteration": "reachability.rs uses for(key,binding)in &object.arguments_map; wrapper IntoIterator returns the same hash_map::Iter of live entries",
+  "mutationSites": "closures.rs inserts mapped formal bindings; runtime.rs and heap.rs detach aliases; heap.reset_for_reuse clears without discarding box/table capacity; battle_gc test inserts a fixture binding",
+  "sourceStatus": "Runtime operational changes only field type/default constructor and new lazy wrapper; property_slots.rs changed one test layout expectation160\u2192136. No property read/write mechanics altered."
+}
