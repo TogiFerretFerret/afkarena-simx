@@ -21,7 +21,30 @@ pub(crate) struct ActiveArgumentsFrame {
 impl ActiveArgumentsFrame {
     pub(crate) fn new(callee:FunctionId,start:usize,length:usize)->Self{Self{callee,original:OriginalArguments::new(start,length),metadata:None}}
 }
+// Only promoted mutable sloppy formals need a live mirror. The original raw
+// argument stack and the 64-byte general activation frame stay unchanged.
+#[derive(Clone,Copy)]
+struct NativeParameterMirrorFrame {frame_index:usize,start:usize,indices:&'static[usize]}
+#[derive(Default)]
+pub(crate) struct NativeParameterMirrors {frames:Vec<NativeParameterMirrorFrame>,pub(crate) values:Vec<Value>}
 impl Runtime {
+    pub fn register_promoted_parameters(&mut self,indices:&'static[usize],values:&[Value])->JsResult<()>{
+        if indices.len()!=values.len()||indices.windows(2).any(|pair|pair[0]>=pair[1]){return Err(JsError::Unsupported("invalid promoted parameter metadata".into()))}
+        let frame_index=self.active_argument_frames.len().checked_sub(1).ok_or_else(||JsError::Unsupported("promoted parameters without a sloppy activation".into()))?;
+        let frame=&self.active_argument_frames[frame_index];let metadata=frame.metadata.ok_or_else(||JsError::Unsupported("promoted parameters before argument metadata".into()))?;
+        if self.call_stack.last()!=Some(&frame.callee)||indices.iter().any(|&index|index>=metadata.names.len()||!metadata.raw_slots[index])||self.native_parameter_mirrors.frames.last().is_some_and(|last|last.frame_index==frame_index){return Err(JsError::Unsupported("invalid promoted parameter activation".into()))}
+        let start=self.native_parameter_mirrors.values.len();self.native_parameter_mirrors.values.extend_from_slice(values);self.native_parameter_mirrors.frames.push(NativeParameterMirrorFrame{frame_index,start,indices});Ok(())
+    }
+    #[inline]
+    pub fn write_promoted_parameter(&mut self,slot:usize,value:Value)->JsResult<()>{
+        let frame=self.native_parameter_mirrors.frames.last().ok_or_else(||JsError::Unsupported("promoted parameter write without mirror".into()))?;
+        if frame.frame_index+1!=self.active_argument_frames.len()||self.call_stack.last()!=self.active_argument_frames.last().map(|f|&f.callee)||slot>=frame.indices.len(){return Err(JsError::Unsupported("invalid promoted parameter write".into()))}
+        self.native_parameter_mirrors.values[frame.start+slot]=value;Ok(())
+    }
+    #[inline]
+    pub(crate) fn finish_promoted_parameters(&mut self,frame_index:usize){
+        if self.native_parameter_mirrors.frames.last().is_some_and(|frame|frame.frame_index==frame_index){let frame=self.native_parameter_mirrors.frames.pop().unwrap();self.native_parameter_mirrors.values.truncate(frame.start);}
+    }
     /// Despite its historical name, this registers reflection metadata for both
     /// lazy and eager sloppy functions. It never creates a source object.
     pub fn register_lazy_arguments(&mut self,env:EnvId,names:&'static [&'static str],args:&[Value],raw_slots:&'static [bool])->JsResult<()> {
@@ -35,7 +58,7 @@ impl Runtime {
     /// descriptor attributes stay readonly/nonconfigurable while its value is
     /// computed anew for the innermost matching active invocation.
     pub(crate) fn active_function_arguments(&mut self,callee:FunctionId)->JsResult<Value>{
-        let Some(frame)=self.active_argument_frames.iter().rev().find(|frame|frame.callee==callee)else{return Ok(Value::Null)};
+        let Some((frame_index,frame))=self.active_argument_frames.iter().enumerate().rev().find(|(_,frame)|frame.callee==callee)else{return Ok(Value::Null)};
         let mut values=frame.original.values(&self.original_argument_values).to_vec();let metadata=frame.metadata;
         if let Some(metadata)=metadata {
             for index in 0..values.len().min(metadata.names.len()) {
@@ -45,6 +68,7 @@ impl Runtime {
                 if !metadata.raw_slots[index]&&!metadata.names[index+1..].contains(&name){values[index]=self.lookup(metadata.env,name)?;}
             }
         }
+        if let Some(mirror)=self.native_parameter_mirrors.frames.iter().rev().find(|mirror|mirror.frame_index==frame_index){for(slot,&index)in mirror.indices.iter().enumerate(){if let Some(value)=values.get_mut(index){*value=self.native_parameter_mirrors.values[mirror.start+slot];}}}
         let object=self.object();let id=self.object_id(object)?;self.objects[id.0].kind=ObjectKind::Arguments;
         for(index,value)in values.into_iter().enumerate(){let key=self.string(&index.to_string());self.define_data(object,key,value,true,true,true)?;}
         let length_key=self.string("length");let frame=self.active_argument_frames.iter().rev().find(|frame|frame.callee==callee).ok_or_else(||JsError::Unsupported("legacy arguments frame disappeared".into()))?;let length=frame.original.length;
