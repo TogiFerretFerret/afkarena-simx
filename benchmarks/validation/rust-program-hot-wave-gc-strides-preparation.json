@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "prepared": true,
+  "ranWorkload": false,
+  "baseline": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-hot-execution-wave-full.json",
+    "sha256": "645029d842fc8ec08c827b297baf4325b3d18ee4e71d74e74e34ad0e7580095e"
+  },
+  "baselineBuildProof": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-hot-execution-wave-build.json",
+    "sha256": "6de347d97c140b787215011798763685e9d68921743fa914fb5a192fc199b5aa",
+    "valid": true,
+    "reasons": [],
+    "inputCount": 1437,
+    "changedInputs": [],
+    "buildProfile": "release"
+  },
+  "manifest": {
+    "file": "/workspace/afkarena-simx/work/rust-battle-full/program-manifest.json",
+    "sha256": "499bc14644ad67ac44891a5e78267cdb9942761882fbaa1123b3d015e2e3f05e"
+  },
+  "sourceGuard": {
+    "runSourceSha256": "d7f91f446d24282b489ef9943494f0658f778232b5948d66b8d941d3f42e950d",
+    "wallNowCalls": 2,
+    "battles": 20,
+    "warmup": 3,
+    "capture": "final"
+  },
+  "libraries": [
+    {
+      "name": "js_runtime",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+      "mtimeMs": 1793368810755.2344,
+      "sha256": "a11feebe66044308f45bab888049df5528f368b411a66449260e337eddb06ed0",
+      "candidateCount": 2
+    },
+    {
+      "name": "battle_unit_0",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+      "mtimeMs": 1793369764189.262,
+      "sha256": "4260002790ab2e5addd8779988479dddd4e6e387156e19f2bc15a23975475bcd",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_1",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+      "mtimeMs": 1793369764513.359,
+      "sha256": "9f9e2d35ad6f02282f99def983cc22cc17dea45bb7899ef0fe1b2eb77c8aae58",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_2",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+      "mtimeMs": 1793369764232.7976,
+      "sha256": "1f4ac8cec5e8b1ec6829c59731035203d825a6fc653ef3d7afe654159dfbd281",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_3",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+      "mtimeMs": 1793369764298.7705,
+      "sha256": "137c01a5eab49dcd7643f78777e0593e082e30a0adc8ee45ce76e03d656423c1",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_4",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+      "mtimeMs": 1793369764152.0352,
+      "sha256": "0de9f64762d5d1fff0346bd69643d60247af843c62dca179eceac9ffe2b50abe",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_5",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+      "mtimeMs": 1793369764265.3945,
+      "sha256": "7ff07c26a704d37444f906561b4da83144c34b918d90d5e753385e92e8a76b57",
+      "candidateCount": 4
+    },
+    {
+      "name": "battle_unit_6",
+      "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+      "mtimeMs": 1793369764117.261,
+      "sha256": "812c0c693ce9a4be19e417df64369b527f1414fae4864b57e75eda20ece81819",
+      "candidateCount": 4
+    }
+  ],
+  "rlibSelectionPolicy": "Newest mtime per top-level crate in the completed frozen target; selected hashes unchanged while linking. No core rebuild.",
+  "wrapper": {
+    "file": "/workspace/afkarena-simx/work/rust-program-gc-stride-ab/2026-10-30T14-36-48.386Z/main.rs",
+    "sha256": "54dce405103a6b4d471f44d945e7676d49d27cd9e77757f19968a410e2b08e4a",
+    "originalFile": "tools/rust-port/program-parallel-benchmark.rs",
+    "originalSha256": "3d6b2ccdd31023286c444d6a472026287ff00f89f4e5d2fb5cf00e4df0297c4f",
+    "hostFile": "/workspace/afkarena-simx/work/rust-program-gc-stride-ab/2026-10-30T14-36-48.386Z/program_host.rs",
+    "hostSha256": "8c7fbb1bb7f2351c5679e342b05ee7e96bdd20fd4eedb8bea7e58e81e453e104"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/rust-program-gc-stride-ab/2026-10-30T14-36-48.386Z/wall-profile",
+    "sha256": "98005c146fa62c768ce162d45f7b1ea711ae2d506b42303e776fed9eda85c5ea"
+  },
+  "rustc": {
+    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
+  },
+  "command": [
+    "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "--edition=2024",
+    "-O",
+    "-C",
+    "codegen-units=64",
+    "-C",
+    "lto=off",
+    "/workspace/afkarena-simx/work/rust-program-gc-stride-ab/2026-10-30T14-36-48.386Z/main.rs",
+    "-L",
+    "dependency=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps",
+    "--extern",
+    "js_runtime=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+    "--extern",
+    "battle_unit_0=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+    "--extern",
+    "battle_unit_1=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+    "--extern",
+    "battle_unit_2=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+    "--extern",
+    "battle_unit_3=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+    "--extern",
+    "battle_unit_4=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+    "--extern",
+    "battle_unit_5=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+    "--extern",
+    "battle_unit_6=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+    "-o",
+    "/workspace/afkarena-simx/work/rust-program-gc-stride-ab/2026-10-30T14-36-48.386Z/wall-profile"
+  ],
+  "requiredEnvironment": {
+    "RUST_PORT_TRACE": "0"
+  },
+  "markers": {
+    "trace": "PROFILE_TRACE:0",
+    "start": "PARALLEL_WALL_NOW:0:<UnixNs>",
+    "end": "PARALLEL_WALL_NOW:1:<UnixNs>",
+    "gc": {
+      "1": {
+        "cadence": 2,
+        "totalBattles": 23,
+        "expectedCollections": 12,
+        "stride": 1,
+        "expectedRequests": 12,
+        "mandatoryFinalCollection": true
+      },
+      "2": {
+        "cadence": 2,
+        "totalBattles": 23,
+        "expectedCollections": 6,
+        "stride": 2,
+        "expectedRequests": 12,
+        "mandatoryFinalCollection": true
+      }
+    },
+    "requests": "PARALLEL_GC_REQUESTS:<requestCount>"
+  },
+  "scope": "Same binary and eight original release libraries; each variant runs unchanged original20measured/3warmup battles in an independent process. Only the pre-execution GC request stride changes; Runtime constructor flags and all source-requested safepoints remain unchanged. Mandatory final collection is retained. Fewer collections can increase peak heap/RSS; measured speed and memory are policy tradeoffs. Full reports, host tape, raw terminal bits and source/build proofs must match. Single-cohort timing does not establish a confidence interval. Fixed fixture only; not random5v5 or20k-battle qualification.",
+  "ab": {
+    "variants": [
+      1,
+      2
+    ],
+    "trials": 1,
+    "gcExpectations": {
+      "1": {
+        "cadence": 2,
+        "totalBattles": 23,
+        "expectedCollections": 12,
+        "stride": 1,
+        "expectedRequests": 12,
+        "mandatoryFinalCollection": true
+      },
+      "2": {
+        "cadence": 2,
+        "totalBattles": 23,
+        "expectedCollections": 6,
+        "stride": 2,
+        "expectedRequests": 12,
+        "mandatoryFinalCollection": true
+      }
+    },
+    "existingFlags": "unchanged Runtime::new defaults in every stride"
+  },
+  "toolInputs": [
+    {
+      "file": "/workspace/afkarena-simx/work/candidate-two-own-hints/tools/rust-port/benchmark-program-gc-strides.mjs",
+      "sha256": "0b263068b19bf9a69d50285c1efeb658cbf03e1c8608a2feb68d85703af36924"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/candidate-two-own-hints/tools/rust-port/gc-stride-ab-support.mjs",
+      "sha256": "97a8aa5aeedb259af73ce5535136a1cd6a7ddb81a4cf3dbc5f4233ab7b687b1c"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/candidate-two-own-hints/tools/rust-port/component-ab-support.mjs",
+      "sha256": "ef3f24f03c942ce02eff4d51be1d262d5eeceff0fab60034cf1475f4c7111713"
+    },
+    {
+      "file": "/workspace/afkarena-simx/tools/rust-port/program-parallel-benchmark.rs",
+      "sha256": "3d6b2ccdd31023286c444d6a472026287ff00f89f4e5d2fb5cf00e4df0297c4f"
+    },
+    {
+      "file": "/workspace/afkarena-simx/tools/rust-port/program-host.rs",
+      "sha256": "8c7fbb1bb7f2351c5679e342b05ee7e96bdd20fd4eedb8bea7e58e81e453e104"
+    },
+    {
+      "file": "/workspace/afkarena-simx/tools/rust-port/build-proof.mjs",
+      "sha256": "7738d759579532525cd73e5a90e81d7863191fa432f5c9f20bb43a508db0da12"
+    },
+    {
+      "file": "/workspace/afkarena-simx/tools/rust-port/parallel-benchmark-support.mjs",
+      "sha256": "b6c097d7c63ab824eb43a8976e96a0d777017814cec8b39539387b1a06740c7d"
+    },
+    {
+      "file": "/workspace/afkarena-simx/tools/rust-port/one-battle-check-support.mjs",
+      "sha256": "bc034be517216d1803d1b79f1bd17f931bf401e6166ca123e9467e17f83db46a"
+    },
+    {
+      "file": "/workspace/afkarena-simx/tools/native-report-compare.mjs",
+      "sha256": "22af89c7c2114d26f471f7c7becbf3c16874a3914e3aa7638a30563162619341"
+    }
+  ],
+  "baselineBuildProofAfterLink": {
+    "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-hot-execution-wave-build.json",
+    "sha256": "6de347d97c140b787215011798763685e9d68921743fa914fb5a192fc199b5aa",
+    "valid": true,
+    "reasons": [],
+    "inputCount": 1437,
+    "changedInputs": [],
+    "buildProfile": "release"
+  }
+}

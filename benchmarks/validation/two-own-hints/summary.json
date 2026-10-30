@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "base": "b7d60f8 (same Rust source39d2686)",
+  "promotionCommit": "5ea0af80a3fc0dc3e8f14605a90b4fa76e18bc68",
+  "native": {
+    "library": 113,
+    "integration": 26
+  },
+  "sourceCases": 36,
+  "timingReport": "benchmarks/results/2026-10-30T14-36-19.663Z-two-own-hints.json",
+  "trace1Gate": "benchmarks/validation/2026-10-30T14-39-09.005Z-two-own-hints.json",
+  "unitRatio": 1.0139320380053798,
+  "drainRatio": 1.1384503818897522,
+  "layoutRatios": [
+    1.1989373634990692,
+    1.257261062654863,
+    1.1615664046089913
+  ],
+  "qualification": "Original Unit/drain and directed1/2/3-layout components only. Three paired alternating trials, exact Node complete events/state and TRACE1 stderr parity. Unit result is near-neutral; no full-battle speed claim. Runtime source restored after temporary baseline library preparation and all final source hashes rechecked against immutable candidate archive. Promotion commit squashes only two runtime source files and relevant tests onto clean base, avoiding transient snapshot history."
+}

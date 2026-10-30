@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "allocationInstrumentation": false,
+  "ranTrace0Timing": false,
+  "trace1SelectedObserverMatched": true,
+  "summaries": [],
+  "rows": [
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "671260002",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "655165175",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "203033041",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 1,
+      "trial": 0,
+      "elapsedNs": "166782659",
+      "events": 38400,
+      "snapshots": 25600
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/2026-10-30T14-39-09.005Z-two-own-hints.outputs.json.gz",
+      "sha256": "d239b9aa1ed326c37fe42af61bd69835b3293388f696aba757bd2c5fef3ca7e2",
+      "uncompressedSha256": "6eaea0b84f96306b8d56ea2306ecc186dd2e85ed044f7ee81e2a7f8aa4f9c6b8"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T14-39-09.005Z-two-own-hints.expected.json.gz",
+      "sha256": "4c385a7c196fbe7fdfcb8e2e54922c6734af74b00dfc7e5289ddea3808ca3893",
+      "uncompressedSha256": "e418ade61a164a263bdaf5dc04e01a10d7f6cbb10c5863e813ca377ddc82ad19"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T14-39-09.005Z-two-own-hints.preparation.json.gz",
+      "sha256": "1c31f42b03cafdf39318a98f8810bc3258ee5775d87130fe38b3c0619d27dc64",
+      "uncompressedSha256": "33d9e8f58478785ca769ff3e202b8b9991f7d88e28e15074b0de7ce202e1df55"
+    }
+  ],
+  "scope": "Same original source fixtures in frozen baseline and indexed two-own-hints runtime libraries. Original Unit update and callback drain retain every source callback/event and snapshots. Component rates only; no battle qualification."
+}

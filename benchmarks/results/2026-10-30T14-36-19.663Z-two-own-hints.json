@@ -1,0 +1,374 @@
+{
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "allocationInstrumentation": false,
+  "ranTrace0Timing": true,
+  "trace1SelectedObserverMatched": false,
+  "summaries": [
+    {
+      "scenario": "unit",
+      "unitsPerTrial": 10000,
+      "trials": 3,
+      "baselineUnitsPerSecond": 15992.878938222917,
+      "candidateUnitsPerSecond": 16215.692335405674,
+      "ratio": 1.0139320380053798,
+      "kind": "original Unit.update calls"
+    },
+    {
+      "scenario": "drain",
+      "unitsPerTrial": 12800,
+      "trials": 3,
+      "baselineUnitsPerSecond": 95442.79162052853,
+      "candidateUnitsPerSecond": 108656.88256901475,
+      "ratio": 1.1384503818897522,
+      "kind": "original __nativeDrain callbacks"
+    },
+    {
+      "scenario": "layout1",
+      "unitsPerTrial": 100000,
+      "trials": 3,
+      "baselineUnitsPerSecond": 4049616.549908122,
+      "candidateUnitsPerSecond": 4855236.589529041,
+      "ratio": 1.1989373634990692,
+      "kind": "1 alternating physical own-data layouts"
+    },
+    {
+      "scenario": "layout2",
+      "unitsPerTrial": 100000,
+      "trials": 3,
+      "baselineUnitsPerSecond": 3806760.0292328717,
+      "candidateUnitsPerSecond": 4786091.1596253775,
+      "ratio": 1.257261062654863,
+      "kind": "2 alternating physical own-data layouts"
+    },
+    {
+      "scenario": "layout3",
+      "unitsPerTrial": 100000,
+      "trials": 3,
+      "baselineUnitsPerSecond": 3606194.6056954362,
+      "candidateUnitsPerSecond": 4188834.5024579866,
+      "ratio": 1.1615664046089913,
+      "kind": "3 alternating physical own-data layouts"
+    }
+  ],
+  "rows": [
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "668171216",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "669798127",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "618011004",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "614312933",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "593350722",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "unit",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "562250637",
+      "events": 150220,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "126139889",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "114773295",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "129741403",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "123042211",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "153153156",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "drain",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "108891355",
+      "events": 38400,
+      "snapshots": 25600
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout1",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "22880877",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout1",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "20369565",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout1",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "19547961",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout1",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "23426351",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout1",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "27773860",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout1",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "21871430",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout2",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "23917492",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout2",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "20249563",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout2",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "19561901",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout2",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "24973842",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout2",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "29915840",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout2",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "22870167",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout3",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "27445963",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout3",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 0,
+      "elapsedNs": "23482080",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout3",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "24605085",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout3",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 1,
+      "elapsedNs": "27049897",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout3",
+      "variant": "baseline",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "28694326",
+      "events": 0,
+      "snapshots": null
+    },
+    {
+      "allocationCounts": null,
+      "scenario": "layout3",
+      "variant": "candidate",
+      "trace": 0,
+      "trial": 2,
+      "elapsedNs": "23531802",
+      "events": 0,
+      "snapshots": null
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-30T14-36-19.663Z-two-own-hints.outputs.json.gz",
+      "sha256": "8ec35181dea1b621fcd00678868d3f36e3e3ebc03a8f86732173dd3442e744cd",
+      "uncompressedSha256": "2519b19dd5faf261c0206eb06852fbd3e382ee379678175f22ddf6717bf5c941"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T14-36-19.663Z-two-own-hints.expected.json.gz",
+      "sha256": "4c385a7c196fbe7fdfcb8e2e54922c6734af74b00dfc7e5289ddea3808ca3893",
+      "uncompressedSha256": "e418ade61a164a263bdaf5dc04e01a10d7f6cbb10c5863e813ca377ddc82ad19"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T14-36-19.663Z-two-own-hints.preparation.json.gz",
+      "sha256": "1c31f42b03cafdf39318a98f8810bc3258ee5775d87130fe38b3c0619d27dc64",
+      "uncompressedSha256": "33d9e8f58478785ca769ff3e202b8b9991f7d88e28e15074b0de7ce202e1df55"
+    }
+  ],
+  "scope": "Same original source fixtures in frozen baseline and indexed two-own-hints runtime libraries. Original Unit update and callback drain retain every source callback/event and snapshots. Component rates only; no battle qualification."
+}
