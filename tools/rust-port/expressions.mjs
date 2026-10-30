@@ -122,7 +122,7 @@ export function emitExpression(node,ctx){if(!node)unsupportedExpression(node,'mi
  case 'MemberExpression':{const scalar=ctx.scalarArrayMember?.(node);if(!scalar)return readReference(emitReference(node,ctx),ctx);const value=ctx.fresh('scalar_array_read');ctx.emit(`let ${value} = if ${scalar.enabled} { ${scalar.value} } else {`);const original=emitExpression(node,ctx.child({scalarArrayMember:()=>null,scalarArrayTruthy:()=>null}));ctx.emit(`${original}\n};`);return value;}
  case 'OptionalMemberExpression':case 'OptionalCallExpression':return optionalResult(node,ctx).value;
  case 'MetaProperty':if(node.meta.name==='new'&&node.property.name==='target')return ctx.temp('rt.new_target()');unsupportedExpression(node,'unsupported meta property');
- case 'AssignmentExpression':return assignment(node,ctx);
+ case 'AssignmentExpression':{const motion=ctx.unitMotionAxis?.(node);if(!motion)return assignment(node,ctx);const value=ctx.fresh('motion_axis');ctx.emit(`let ${value} = if let Some(value) = rt.try_unit_motion_axis(${ctx.thisValue}, ${motion.m}, ${motion.r}, ${motion.index}) { value } else {`);const original=assignment(node,ctx.child({unitMotionAxis:null}));ctx.emit(`${original}\n};`);return value;}
  case 'UpdateExpression':return update(node,ctx);
  case 'BinaryExpression':{const name=binaryOps[node.operator];if(!name)unsupportedExpression(node,'unknown binary operator '+node.operator);const left=emitExpression(node.left,ctx),right=emitExpression(node.right,ctx);return binaryValue(name,left,right,ctx);}
  case 'LogicalExpression':return logical(node,ctx);
