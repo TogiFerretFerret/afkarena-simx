@@ -1,0 +1,2155 @@
+{
+  "passed": true,
+  "sameRuntime": true,
+  "trialsPerVariant": 3,
+  "rows": [
+    {
+      "mode": "buff",
+      "variant": "off",
+      "trial": 0,
+      "elapsedNs": 602068957,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "on",
+      "trial": 0,
+      "elapsedNs": 605166665,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "on",
+      "trial": 1,
+      "elapsedNs": 650340450,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "off",
+      "trial": 1,
+      "elapsedNs": 704124450,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "off",
+      "trial": 2,
+      "elapsedNs": 577366547,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "on",
+      "trial": 2,
+      "elapsedNs": 762368155,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    }
+  ],
+  "counted": [
+    {
+      "mode": "buff",
+      "variant": "off",
+      "trial": 0,
+      "elapsedNs": 659171988,
+      "environmentRecords": 30001,
+      "functionBindingCells": 50000
+    },
+    {
+      "mode": "buff",
+      "variant": "on",
+      "trial": 0,
+      "elapsedNs": 635029402,
+      "environmentRecords": 20001,
+      "functionBindingCells": 40000
+    }
+  ],
+  "totals": {
+    "buff": {
+      "elapsedNs": {
+        "off": 1883559954,
+        "on": 2017875270
+      },
+      "speedRatio": 0.9334372555148069,
+      "pairSpeedRatios": [
+        0.9948812316025372,
+        1.0827012989888605,
+        0.7573329804154791
+      ]
+    }
+  },
+  "functions": {
+    "unit_off": {
+      "nativeMutableParameters": false,
+      "functions": [
+        {
+          "id": 1,
+          "name": "bits",
+          "nativeBindings": [
+            "v"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "p",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 3,
+          "name": "",
+          "nativeBindings": [
+            "x",
+            "y",
+            "a",
+            "b"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 4,
+          "name": "",
+          "nativeBindings": [
+            "p"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 6,
+          "name": "update",
+          "nativeBindings": [
+            "t",
+            "a",
+            "i",
+            "r",
+            "n",
+            "l",
+            "o",
+            "f",
+            "s",
+            "c",
+            "d",
+            "u",
+            "_",
+            "m",
+            "p",
+            "k",
+            "g",
+            "v",
+            "h",
+            "S",
+            "B",
+            "A",
+            "b",
+            "D",
+            "y",
+            "C",
+            "T",
+            "M",
+            "E",
+            "P",
+            "R",
+            "O",
+            "L",
+            "x",
+            "w",
+            "F",
+            "I",
+            "H",
+            "G",
+            "U",
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 7,
+          "name": "make",
+          "nativeBindings": [
+            "skill",
+            "attrs",
+            "fx",
+            "config"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 8,
+          "name": "log",
+          "nativeBindings": [
+            "name"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 16,
+          "name": "",
+          "nativeBindings": [
+            "dt"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 21,
+          "name": "",
+          "nativeBindings": [
+            "value",
+            "owner"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 22,
+          "name": "",
+          "nativeBindings": [
+            "value"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 23,
+          "name": "",
+          "nativeBindings": [
+            "value"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 24,
+          "name": "",
+          "nativeBindings": [
+            "a",
+            "b",
+            "c"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 27,
+          "name": "",
+          "nativeBindings": [
+            "d",
+            "x",
+            "key"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 28,
+          "name": "",
+          "nativeBindings": [
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 30,
+          "name": "benchmarkUnitUpdates",
+          "nativeBindings": [
+            "i",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        }
+      ]
+    },
+    "unit_on": {
+      "nativeMutableParameters": true,
+      "functions": [
+        {
+          "id": 1,
+          "name": "bits",
+          "nativeBindings": [
+            "v"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "p",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 3,
+          "name": "",
+          "nativeBindings": [
+            "x",
+            "y",
+            "a",
+            "b"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 4,
+          "name": "",
+          "nativeBindings": [
+            "p"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 6,
+          "name": "update",
+          "nativeBindings": [
+            "t",
+            "a",
+            "i",
+            "r",
+            "n",
+            "l",
+            "o",
+            "f",
+            "s",
+            "c",
+            "d",
+            "u",
+            "_",
+            "m",
+            "p",
+            "k",
+            "g",
+            "v",
+            "h",
+            "S",
+            "B",
+            "A",
+            "b",
+            "D",
+            "y",
+            "C",
+            "T",
+            "M",
+            "E",
+            "P",
+            "R",
+            "O",
+            "L",
+            "x",
+            "w",
+            "F",
+            "I",
+            "H",
+            "G",
+            "U",
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 7,
+          "name": "make",
+          "nativeBindings": [
+            "skill",
+            "attrs",
+            "fx",
+            "config"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 8,
+          "name": "log",
+          "nativeBindings": [
+            "name"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 16,
+          "name": "",
+          "nativeBindings": [
+            "dt"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 21,
+          "name": "",
+          "nativeBindings": [
+            "value",
+            "owner"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 22,
+          "name": "",
+          "nativeBindings": [
+            "value"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 23,
+          "name": "",
+          "nativeBindings": [
+            "value"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 24,
+          "name": "",
+          "nativeBindings": [
+            "a",
+            "b",
+            "c"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 27,
+          "name": "",
+          "nativeBindings": [
+            "d",
+            "x",
+            "key"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 28,
+          "name": "",
+          "nativeBindings": [
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 30,
+          "name": "benchmarkUnitUpdates",
+          "nativeBindings": [
+            "i",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        }
+      ]
+    },
+    "drain_off": {
+      "nativeMutableParameters": false,
+      "functions": [
+        {
+          "id": 1,
+          "name": "__nativeDrain",
+          "nativeBindings": [
+            "t",
+            "i"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "callback"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 3,
+          "name": "callback",
+          "nativeBindings": [
+            "fn"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 6,
+          "name": "benchmarkDrain",
+          "nativeBindings": [
+            "frame",
+            "i",
+            "rounds",
+            "width"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        }
+      ]
+    },
+    "drain_on": {
+      "nativeMutableParameters": true,
+      "functions": [
+        {
+          "id": 1,
+          "name": "__nativeDrain",
+          "nativeBindings": [
+            "t",
+            "i"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "callback"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 3,
+          "name": "callback",
+          "nativeBindings": [
+            "fn"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 6,
+          "name": "benchmarkDrain",
+          "nativeBindings": [
+            "frame",
+            "i",
+            "rounds",
+            "width"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        }
+      ]
+    },
+    "buff_off": {
+      "nativeMutableParameters": false,
+      "functions": [
+        {
+          "id": 1,
+          "name": "",
+          "nativeBindings": [
+            "name"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "e",
+            "r",
+            "i",
+            "a",
+            "n",
+            "o",
+            "s"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 3,
+          "name": "",
+          "nativeBindings": [
+            "t",
+            "r",
+            "i",
+            "a",
+            "n",
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 4,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 5,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 6,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 7,
+          "name": "",
+          "nativeBindings": [
+            "r",
+            "i",
+            "a",
+            "n",
+            "e",
+            "t"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 8,
+          "name": "",
+          "nativeBindings": [
+            "t",
+            "r",
+            "i",
+            "a"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 9,
+          "name": "",
+          "nativeBindings": [
+            "i",
+            "r",
+            "n",
+            "l",
+            "o",
+            "f",
+            "s",
+            "c",
+            "t",
+            "a"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 10,
+          "name": "",
+          "nativeBindings": [
+            "i",
+            "e",
+            "t",
+            "a"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 11,
+          "name": "",
+          "nativeBindings": [
+            "b",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 12,
+          "name": "bits",
+          "nativeBindings": [
+            "d",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 14,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 16,
+          "name": "benchmarkBuffConstructors",
+          "nativeBindings": [
+            "i",
+            "b",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 19,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 20,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        }
+      ]
+    },
+    "buff_on": {
+      "nativeMutableParameters": true,
+      "functions": [
+        {
+          "id": 1,
+          "name": "",
+          "nativeBindings": [
+            "name"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "e",
+            "r",
+            "i",
+            "a",
+            "n",
+            "o",
+            "s"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 3,
+          "name": "",
+          "nativeBindings": [
+            "t",
+            "r",
+            "i",
+            "a",
+            "n",
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 4,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 5,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 6,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 7,
+          "name": "",
+          "nativeBindings": [
+            "r",
+            "i",
+            "a",
+            "n",
+            "e",
+            "t"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 8,
+          "name": "",
+          "nativeBindings": [
+            "t",
+            "r",
+            "i",
+            "a",
+            "e"
+          ],
+          "nativeMutableParameters": [
+            "e"
+          ],
+          "mirroredMutableParameters": [
+            "e"
+          ],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 9,
+          "name": "",
+          "nativeBindings": [
+            "i",
+            "r",
+            "n",
+            "l",
+            "o",
+            "f",
+            "s",
+            "c",
+            "e",
+            "t",
+            "a"
+          ],
+          "nativeMutableParameters": [
+            "e"
+          ],
+          "mirroredMutableParameters": [
+            "e"
+          ],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 10,
+          "name": "",
+          "nativeBindings": [
+            "i",
+            "e",
+            "t",
+            "a"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 11,
+          "name": "",
+          "nativeBindings": [
+            "b",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 12,
+          "name": "bits",
+          "nativeBindings": [
+            "d",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 14,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 16,
+          "name": "benchmarkBuffConstructors",
+          "nativeBindings": [
+            "i",
+            "b",
+            "n"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": false
+        },
+        {
+          "id": 19,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        },
+        {
+          "id": 20,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": [],
+          "mirroredMutableParameters": [],
+          "nativeActivationElided": true
+        }
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-30T17-53-07.236Z-mutable-parameter-components.actual.gz",
+      "sha256": "3aea93ee40de00c564ea37d9d2411b6f4fbd5bb6e1cf60c485e1a37974d05afb",
+      "uncompressedSha256": "941c12b98bd7489c593db435b22dc8b9aadb018bda150e5f3ffd41048883861f",
+      "uncompressedBytes": 365342183
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-53-07.236Z-mutable-parameter-components.expected.gz",
+      "sha256": "9db5f30a167c5b1846547859f206f2dfb47692905c80c3ebeb46195e9737ce52",
+      "uncompressedSha256": "2cc56bf760a74ba336af331df602622fda2cd90fd3a41e277131ee99905516e5",
+      "uncompressedBytes": 40187561
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-53-07.236Z-mutable-parameter-components.preparation.gz",
+      "sha256": "790a43864f8ef5f646254263dbb750970bc0b8c05a65361f7d003afca29c1dd6",
+      "uncompressedSha256": "0f738d6b2b37b69bfc79e275311b9b748ae107e62b6b09acdd2623ce122a724c",
+      "uncompressedBytes": 81208
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-53-07.236Z-mutable-parameter-components.buff-source.gz",
+      "sha256": "7c0b64bab43a41ce69d36d8bd72a51edad036e5410ea3b6d81bdcf55fd864259",
+      "uncompressedSha256": "ae2b50b370788479fee5cc6bedba7ece471bd013980424a14927cd67c602b13e",
+      "uncompressedBytes": 13041
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-53-07.236Z-mutable-parameter-components.generated-inputs.gz",
+      "sha256": "a5bb7cb5065adf316ab45dbcc4547950e0cff5ec6b9450fcda86204b6bb2ebca",
+      "uncompressedSha256": "24fe446ac77f7ce0a7d64cad314a0f7ad3523d101f209196ad5130fd1bdbbb5e",
+      "uncompressedBytes": 6124003,
+      "files": 256
+    }
+  ],
+  "oracle": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ]
+  },
+  "library": {
+    "file": "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/libjs_runtime.rlib",
+    "sha256": "c105e34031773dd7eb6e570f56133a92e73ddc4483e211fe7c46cc9957e029f9"
+  },
+  "binaries": {
+    "timing": {
+      "file": "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/timing",
+      "sha256": "deae3b9ccd4c579aae1889acac58021f0f9d141d8f015a4f3ededfb3f24bbc7d",
+      "driverSha256": "e47ca09e9b0158e5865833366c3267614fcb6cd93e77241a274089860b33c556",
+      "command": [
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+        "--edition=2024",
+        "-O",
+        "-C",
+        "codegen-units=64",
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/timing.rs",
+        "-L",
+        "dependency=/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/deps",
+        "--extern",
+        "js_runtime=/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/libjs_runtime.rlib",
+        "-o",
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/timing"
+      ]
+    },
+    "counted": {
+      "file": "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/counted",
+      "sha256": "127fd052b4f6ee26950c241674f76fdd0bfc86467e36d9000c25d0539a0b1226",
+      "driverSha256": "c19eb5079073d6f70a481ad6c91e851a85f3a48008ad0916018c6cc3d4c9bffe",
+      "command": [
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+        "--edition=2024",
+        "-O",
+        "-C",
+        "codegen-units=64",
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/counted.rs",
+        "-L",
+        "dependency=/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/deps",
+        "--extern",
+        "js_runtime=/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/libjs_runtime.rlib",
+        "-o",
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/counted"
+      ]
+    }
+  },
+  "scenarios": {
+    "buff": {
+      "method": "benchmarkBuffConstructors",
+      "parameters": [
+        10000
+      ],
+      "warm": [
+        8
+      ]
+    }
+  },
+  "scope": "Original Unit/drain controls and originalhotBuff.ctor with originaltable/copy/data helpers and explicitgetDuration/owner/caster fixture callbacks. Timed executable has noAPI counters; separate countedexecutable measures actualgenerated environmentrecords/nonGlobal binding-cell inserts. No Runtime rebuild. No Cocosclasswrapper/wholebattle qualification.",
+  "qualifiesFor10000Target": false,
+  "notes": "Separate timing executable has no allocation API counters. Counted executable instruments generated environment creation and binding declarations. All outputs from all executions match the same warmed/reset pinned Node component fixtures. Source calls and callbacks remain active; these are component rates, not battles/second.",
+  "buildInputs": {
+    "generated/unit_off.rs": {
+      "sha256": "775808b101aa1f0f445675b36f517ee3e51a0b3b8e248084fec929140dc3158d",
+      "bytes": 295849
+    },
+    "generated/unit_off.counted.rs": {
+      "sha256": "3d51475db0086f375e4cd9eb48d27b7695bcfc7109e773614d2919f5ac924fc2",
+      "bytes": 296265
+    },
+    "generated/unit_off.utf16le": {
+      "sha256": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206",
+      "bytes": 20680
+    },
+    "generated/unit_on.rs": {
+      "sha256": "44dbec9708e4ee9cdb20bf2c4746197702932cb429e80833dacba5d29bd31dd7",
+      "bytes": 295848
+    },
+    "generated/unit_on.counted.rs": {
+      "sha256": "25ee5c62b36b4eea7a888cf5ba8d82d65f9b912bfa697ae327892e02e7b6c727",
+      "bytes": 296264
+    },
+    "generated/unit_on.utf16le": {
+      "sha256": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206",
+      "bytes": 20680
+    },
+    "generated/drain_off.rs": {
+      "sha256": "25b5e705e8856a33dc96ed256844cf45a30ed2609c542f1f49e2e6c726d01e0a",
+      "bytes": 28585
+    },
+    "generated/drain_off.counted.rs": {
+      "sha256": "5d535d02c6cebf90772547536f5050b9f9d1f260b6b95140c1c71784af45e6da",
+      "bytes": 28825
+    },
+    "generated/drain_off.utf16le": {
+      "sha256": "7d088439fcb79e9af098b02ce7586054463eaa33dc64c4b9dba4443e607fd0c6",
+      "bytes": 1746
+    },
+    "generated/drain_on.rs": {
+      "sha256": "0fc1366ae3aa0d30d6f7bee55cdfd944ba8b00077481442040e67cedc6df295d",
+      "bytes": 28584
+    },
+    "generated/drain_on.counted.rs": {
+      "sha256": "36e02c0810f329c74026772dde6b3117289cdc9df3ff1bd60455faff1da2ae4e",
+      "bytes": 28824
+    },
+    "generated/drain_on.utf16le": {
+      "sha256": "7d088439fcb79e9af098b02ce7586054463eaa33dc64c4b9dba4443e607fd0c6",
+      "bytes": 1746
+    },
+    "generated/buff_off.rs": {
+      "sha256": "048236f4a3f3d651ef4e4adf43d0584ff172ac455f0592907ca9b38e3fc05327",
+      "bytes": 245768
+    },
+    "generated/buff_off.counted.rs": {
+      "sha256": "9f625124195a43028d5114b9bbbc17d77a3e27d8427dd4071232488df78ad452",
+      "bytes": 246312
+    },
+    "generated/buff_off.utf16le": {
+      "sha256": "2cf4945dd6a3df3d307524db45675606eb52321f9546b64f4db335a3b05d5a7b",
+      "bytes": 26082
+    },
+    "generated/buff_on.rs": {
+      "sha256": "12a646b692e6080d14b507af76c47b2cf66a9f8721373163409967325c743a75",
+      "bytes": 245531
+    },
+    "generated/buff_on.counted.rs": {
+      "sha256": "b81925d3262ee24daa79aaaa2f53aee4ac09f03e61ac9dd8f0b4fe8f39dc7d4c",
+      "bytes": 246011
+    },
+    "generated/buff_on.utf16le": {
+      "sha256": "2cf4945dd6a3df3d307524db45675606eb52321f9546b64f4db335a3b05d5a7b",
+      "bytes": 26082
+    },
+    "generated/timing.rs": {
+      "sha256": "e47ca09e9b0158e5865833366c3267614fcb6cd93e77241a274089860b33c556",
+      "bytes": 2814
+    },
+    "generated/counted.rs": {
+      "sha256": "c19eb5079073d6f70a481ad6c91e851a85f3a48008ad0916018c6cc3d4c9bffe",
+      "bytes": 2862
+    },
+    "tools/rust-port/analyze-allocation-samples.mjs": {
+      "sha256": "0269a38e5ae219e0b4b5c7b98cf2c364f27a192e1c08857e43e0d8fd2f00f92a",
+      "bytes": 2567
+    },
+    "tools/rust-port/analyze-bottleneck-stacks.mjs": {
+      "sha256": "652e3aa0a8b97b7ab3a618b91622077845fcdb13bc568648eb761e4f79329b7e",
+      "bytes": 9800
+    },
+    "tools/rust-port/analyze-program-stacks.mjs": {
+      "sha256": "abcbca3a780dd73afb15d58dca08b7dbdd6c92f1f2ab9353968558ea40541517",
+      "bytes": 6122
+    },
+    "tools/rust-port/assess-empty-block-environments.mjs": {
+      "sha256": "49408d5e7febee1595c52e7fdddb09363eb2536bd3f97d583595cdc69e1087f8",
+      "bytes": 2885
+    },
+    "tools/rust-port/assess-one-battle-profile.mjs": {
+      "sha256": "ce8e3c467819fae78540d3858108d9e4ac27602e2c3ceb54c8af7e8078e4d2ff",
+      "bytes": 4028
+    },
+    "tools/rust-port/audit-battle-coverage.mjs": {
+      "sha256": "6d7d72da8bd8a9e02d3b1908e6aac19476ab59564f325f4dc687054cd05b6f30",
+      "bytes": 3018
+    },
+    "tools/rust-port/audit-copy-primitives-shapes.mjs": {
+      "sha256": "d12a734cae3293bf330c78e4b3fe96b70f8c5bc989551436cba253a2b58f410d",
+      "bytes": 3740
+    },
+    "tools/rust-port/audit-gc-cadence.mjs": {
+      "sha256": "9cd850df1a93fb4bb3666dcf310dc271f95d7564aca234714249f32a684dad7f",
+      "bytes": 1653
+    },
+    "tools/rust-port/battle-gc-proof.mjs": {
+      "sha256": "150f816b6086cdd516d57e469abaf5a35bfcbed5fafc19464afdd9aa9a3672e0",
+      "bytes": 2711
+    },
+    "tools/rust-port/bench-function-identity.mjs": {
+      "sha256": "67fb8408477ca851ec76ab481a7b89e56cc63c125f2086b3c0c83bd9b118ef71",
+      "bytes": 2570
+    },
+    "tools/rust-port/benchmark-battle-mode-getter.mjs": {
+      "sha256": "67bda01340cea082fdad63dd88d1885eef675a4c57b181eb49455b533fbe584d",
+      "bytes": 16643
+    },
+    "tools/rust-port/benchmark-battle-mode-limit.mjs": {
+      "sha256": "21af4813379f5caad134b8d2dae7fec8040bdab1fdf5e04a1b7f1bf5b2a2bc8a",
+      "bytes": 14731
+    },
+    "tools/rust-port/benchmark-buff-dynamic-slots.mjs": {
+      "sha256": "a9ffe86d700c029f1852758d29587fde3eb22fbdc69886eee50776b9805b5a3f",
+      "bytes": 10724
+    },
+    "tools/rust-port/benchmark-buff-percent-loop.mjs": {
+      "sha256": "cef9a7510d1143edeb80873d97e9c47035e97ef512467948b1233cb1409453fa",
+      "bytes": 11788
+    },
+    "tools/rust-port/benchmark-class-dispatch.mjs": {
+      "sha256": "efc9bcc8acc9e41fef9ce93f6596ffd9a2794662d92a2b2b74ed6698ea5d3c20",
+      "bytes": 7506
+    },
+    "tools/rust-port/benchmark-compact-inline.mjs": {
+      "sha256": "dd524e99ba21e4497cecb6a7e0b333263c7bceaee8bd35d35d2e997cee3d1091",
+      "bytes": 9345
+    },
+    "tools/rust-port/benchmark-compact-properties.mjs": {
+      "sha256": "6e08c1661e08252b29488e376c56c2ec9feccd7c83b6c40f3185f400f85bfea0",
+      "bytes": 14113
+    },
+    "tools/rust-port/benchmark-copy-capacity-reuse.mjs": {
+      "sha256": "668bfe156433ba8e77cf75728d0dea2d2173736319ad9a9ef7847474a92fea96",
+      "bytes": 9416
+    },
+    "tools/rust-port/benchmark-copy-obj.mjs": {
+      "sha256": "bcf114ff883c5147615ad2578573903bd7ffae4a3da20801551b4133c1c36f36",
+      "bytes": 8029
+    },
+    "tools/rust-port/benchmark-data-obj-scan.mjs": {
+      "sha256": "2d4a90eeb86ee3e93cb01090273e6ce562af2f2fe06602885f6778a849dc1aa4",
+      "bytes": 10846
+    },
+    "tools/rust-port/benchmark-dense-array-shift.mjs": {
+      "sha256": "b5f39f3869bce8a018c4f0b161fabe0198324da6f9be383551b1c16734813c12",
+      "bytes": 6800
+    },
+    "tools/rust-port/benchmark-diagnostic-guard-components.mjs": {
+      "sha256": "bae4b6b0d49b7873182f615d2706667e55c4d5edd13bde7835026eae8e3eec0d",
+      "bytes": 10370
+    },
+    "tools/rust-port/benchmark-env-name-keys.mjs": {
+      "sha256": "737e4b6358dc4c90a6bd33bc132f34abc3db33419eec3dab063fa5f90dff685c",
+      "bytes": 9362
+    },
+    "tools/rust-port/benchmark-expose-scan.mjs": {
+      "sha256": "f5f902e1ec0b2f4876d47aa6b9afebf1ce6592864518ec7fd587ff48b6af2019",
+      "bytes": 4608
+    },
+    "tools/rust-port/benchmark-fast-length.mjs": {
+      "sha256": "35b17ced5e8316b99df03ea5142fe812663475c7b726f1ff198222decd6ead6b",
+      "bytes": 2445
+    },
+    "tools/rust-port/benchmark-fork-gc-cadence.mjs": {
+      "sha256": "b89a3bbdeff0c1fdefb28e431bab43043600fb8b25a60be12424119c782ba0b7",
+      "bytes": 17772
+    },
+    "tools/rust-port/benchmark-fork-program.mjs": {
+      "sha256": "dfd558887a832c61adefe731e39a5e668f62b8bde35733459a76dda0b1a11bf6",
+      "bytes": 19095
+    },
+    "tools/rust-port/benchmark-function-tag.mjs": {
+      "sha256": "82446829e2298eb0677a8b9388433c60867d9bdcb937e4f16c5d8573f84ca2e6",
+      "bytes": 10691
+    },
+    "tools/rust-port/benchmark-gc-cadence.mjs": {
+      "sha256": "e5bae148fae904b87524e4f4a029cb12d2916f8808fb17f1cd53966f84086783",
+      "bytes": 14347
+    },
+    "tools/rust-port/benchmark-generated-opt-levels.mjs": {
+      "sha256": "47ccc94b2beba097176591c2aa839e58c56f552525e8c4b1d8cf5f49421b702c",
+      "bytes": 8858
+    },
+    "tools/rust-port/benchmark-id-hash.mjs": {
+      "sha256": "8c700597fc9b66d2602f3340a585e96f0f54edc4738048a04f052fa2c5d009bf",
+      "bytes": 3430
+    },
+    "tools/rust-port/benchmark-native-locals.mjs": {
+      "sha256": "268a05bbb1003fd652f5b008e15e27c2095900e0132abcbeb2758bbdce367fa3",
+      "bytes": 9278
+    },
+    "tools/rust-port/benchmark-native-parameters.mjs": {
+      "sha256": "e5fcd08b26c602b8a1c42fe9dc3995c31bebf72607404b8ebbbd63859b7c024d",
+      "bytes": 9978
+    },
+    "tools/rust-port/benchmark-one-hop-buffs.mjs": {
+      "sha256": "4edfb13aea6f57b0afb6806748856c45ade0fbdb5f67b52fa9793db40f92f231",
+      "bytes": 7295
+    },
+    "tools/rust-port/benchmark-original-drain-function-own-literals.mjs": {
+      "sha256": "a978f1e8b1fa25b11223b6c7382d40a702f6559b36e8e9cde67bc6052adeb5a7",
+      "bytes": 9176
+    },
+    "tools/rust-port/benchmark-override-dispatch.mjs": {
+      "sha256": "ba8789ce49b6b8e310742578c9798c154daa25bcc8f718479238861d95f8a5be",
+      "bytes": 7533
+    },
+    "tools/rust-port/benchmark-parallel-program.mjs": {
+      "sha256": "7bd1b98fa127087df11b12a51189fe63d0f918107332fa7653ee3f38a351d737",
+      "bytes": 12177
+    },
+    "tools/rust-port/benchmark-program-ab.mjs": {
+      "sha256": "b239368b4b975f42bf8c112de87c0fd1edeb346a95b24c67e6261a480ef80018",
+      "bytes": 10140
+    },
+    "tools/rust-port/benchmark-program-allocator.mjs": {
+      "sha256": "147dc55d1cf601564c19dea3001a5463b0375aaf771809c5bf4b916aca6e0d9a",
+      "bytes": 6168
+    },
+    "tools/rust-port/benchmark-program-components.mjs": {
+      "sha256": "2cf069743f246a94a9d8956035052f1c5238bd731ed7fb7eef51faa22723f4bc",
+      "bytes": 12071
+    },
+    "tools/rust-port/benchmark-program-new-helpers.mjs": {
+      "sha256": "994c38cfef561b0ff2192527422dfc1fc04ae1c5f132162cf82ad99b082e4943",
+      "bytes": 13616
+    },
+    "tools/rust-port/benchmark-scalar-arrays.mjs": {
+      "sha256": "f2ba06b68cbdabc20495d3a3aafe5384fd8f8e1ba0b18556dfd60e0972c7f193",
+      "bytes": 10637
+    },
+    "tools/rust-port/benchmark-shared-utf16.mjs": {
+      "sha256": "d4aae882c2272f55c92353edc4a9102ab262f9a5fa3f909db3b45fc9d6ad7594",
+      "bytes": 12449
+    },
+    "tools/rust-port/benchmark-stage-range-parser.mjs": {
+      "sha256": "60dac68e7e56cb57927dd16ddc9f9da325cc7c7d1c1afea9a355e175276ced73",
+      "bytes": 10976
+    },
+    "tools/rust-port/benchmark-string-hash.mjs": {
+      "sha256": "0ba3970a4cb4319543e40fc7ce847ab0618d6f461ac38114df92da51d879667b",
+      "bytes": 9746
+    },
+    "tools/rust-port/benchmark-unit-update-fast-length.mjs": {
+      "sha256": "707d0a9c882f0b256b64d128188fbef52181ebce853a621369cdf9be315f7472",
+      "bytes": 9117
+    },
+    "tools/rust-port/benchmark-unit-update-fast-own-set.mjs": {
+      "sha256": "e68f2267e582f7295c6201eba142faeb45fc1fb34e94e251bde96f28118e4b8c",
+      "bytes": 9398
+    },
+    "tools/rust-port/benchmark-unit-update-function-own-literals.mjs": {
+      "sha256": "f12bb7393f45ad57793d38f95e76874c6ad5e1e2debdeaa08ee9d744464e26b5",
+      "bytes": 9897
+    },
+    "tools/rust-port/benchmark-unit-update-one-hop-slots.mjs": {
+      "sha256": "ae93b0082e7283bc2456a1b2628f50283e52150436cd0eeade38d93461986ea7",
+      "bytes": 9681
+    },
+    "tools/rust-port/benchmark-unit-update-primary-numeric-access.mjs": {
+      "sha256": "7127df190c5c4ae42ee05c1e2f9ac6f3fe7a7d08d2db6301847832e627fbd7ba",
+      "bytes": 9436
+    },
+    "tools/rust-port/benchmark-unit-update-primary-numeric-arrays.mjs": {
+      "sha256": "21e7bca14c24ec3ec4b075d5f9f0507c34c50d85eca1dc8940a3d84f98c94ce3",
+      "bytes": 9428
+    },
+    "tools/rust-port/benchmark-unit-update-property-slots.mjs": {
+      "sha256": "a746285bbdf4da7b5b17145d3b23ec982048f83888697971f305177fc28e994b",
+      "bytes": 9045
+    },
+    "tools/rust-port/benchmark-unit-update.mjs": {
+      "sha256": "6f27467dcfb93d0cd8bba7f3a09bf025a5bb182b9e3587632f816eb56c8f877d",
+      "bytes": 8867
+    },
+    "tools/rust-port/benchmark-utf8-loader.mjs": {
+      "sha256": "60bd1e20f04258141068d34397af7641b2a88cfddd1b664388b709537572afc1",
+      "bytes": 8336
+    },
+    "tools/rust-port/bindings.mjs": {
+      "sha256": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+      "bytes": 4932
+    },
+    "tools/rust-port/build-and-validate-program.mjs": {
+      "sha256": "da3ad158d5d09dfc7fe9322a368b54d818543bd82ff4886fb527df9a92edc505",
+      "bytes": 3502
+    },
+    "tools/rust-port/build-program.mjs": {
+      "sha256": "4017618867d2704faae6ce90a8a446476297cc077c598cc8f203e6be9a23f7e0",
+      "bytes": 8436
+    },
+    "tools/rust-port/build-proof.mjs": {
+      "sha256": "e90127cd28ad11ef643341d400261b2f8edd9e7ce19e301a29f635ae6721e581",
+      "bytes": 3414
+    },
+    "tools/rust-port/canonical-small-index-fixtures.mjs": {
+      "sha256": "624e6026e3735fa351c6358ae32cfe3d27e47c73444cfeb4cf92f5531aa64533",
+      "bytes": 1349
+    },
+    "tools/rust-port/check-arguments-elision.mjs": {
+      "sha256": "a13c9db4d61a1bf212a11c991224e3adf2df94bfb25ad583171eaa42d05f18ad",
+      "bytes": 12821
+    },
+    "tools/rust-port/check-array-constructor.mjs": {
+      "sha256": "f1b904409de548d56ae62ba36a6a308060bad7bd948fe76f1507d54a6aebf3fd",
+      "bytes": 10129
+    },
+    "tools/rust-port/check-array-from.mjs": {
+      "sha256": "7751d760baf44a9b2e1a990d8a43f985516aa3db762333f8d04e2ad135cf300f",
+      "bytes": 10157
+    },
+    "tools/rust-port/check-arrays.mjs": {
+      "sha256": "8f09963e1978d9a8f5d8a0b91d944d9893b6ac43a1c02e0fdb55b735dae6ea51",
+      "bytes": 6904
+    },
+    "tools/rust-port/check-battle-gc-cadence.mjs": {
+      "sha256": "0cdcc60af52497a1b441177c3b7500d7b286e024862593e2bd712faeb6dbf884",
+      "bytes": 9366
+    },
+    "tools/rust-port/check-battle-gc-giant-strings.mjs": {
+      "sha256": "43eb6dea472c1a67605300e5958663677ee14b43a02821ff5903d07f1b7d9c4d",
+      "bytes": 9192
+    },
+    "tools/rust-port/check-battle-gc.mjs": {
+      "sha256": "4bd11da6ca8ba8198c5e8ef5fa392b66489c040ce3559f441edbac2b1401b6a6",
+      "bytes": 8784
+    },
+    "tools/rust-port/check-battle-mode-limit-specialization.mjs": {
+      "sha256": "f85734924c18b38bb68c30051365a84523ffb68cb2bedf5b2a8bef2319e5fc7b",
+      "bytes": 21704
+    },
+    "tools/rust-port/check-buff-percent-loop.mjs": {
+      "sha256": "a5a1cf5afb265c6f105c22a7b4aa70c206e9c1ca4dc07b2709c2077913f35526",
+      "bytes": 10343
+    },
+    "tools/rust-port/check-canonical-small-index-contract.mjs": {
+      "sha256": "41a67fe651c8ccc627a32987ff027f65ab6747e7137750f7689bc3739c645f40",
+      "bytes": 1112
+    },
+    "tools/rust-port/check-class-dispatch.mjs": {
+      "sha256": "70214a3d5038e6594a0089fba705bac0d10bef1beab1482ac306022d6488d993",
+      "bytes": 13638
+    },
+    "tools/rust-port/check-closures.mjs": {
+      "sha256": "8ef8f9bbfbb31e62107eeba21b325e216e4a3804e30f431dca6f3930b29b752b",
+      "bytes": 13787
+    },
+    "tools/rust-port/check-coercions.mjs": {
+      "sha256": "df8d6fa19e4d0eb8ca0b10bc3dff059bbd303ffb0b23616e37c1edbeda8f2877",
+      "bytes": 13440
+    },
+    "tools/rust-port/check-collections.mjs": {
+      "sha256": "a270fa91086c1375befcb9fdbc0c3f6c9844b268bf9a79cd493455a61dd6b46c",
+      "bytes": 18151
+    },
+    "tools/rust-port/check-control-flow.mjs": {
+      "sha256": "579e244b3aecf310b710e72420286ad8d03abc886a0075477ee488329a823345",
+      "bytes": 11034
+    },
+    "tools/rust-port/check-copy-obj-specialization.mjs": {
+      "sha256": "ae29a03369877849999141fc651fcec98c5c1ce4f1f12221b15787d14ad05055",
+      "bytes": 15645
+    },
+    "tools/rust-port/check-data-obj-specialization.mjs": {
+      "sha256": "6ef2123cd6fdfd04a2993c941300b40a33577d3e2944767fc12ae1b8ec6b0f4d",
+      "bytes": 12155
+    },
+    "tools/rust-port/check-date.mjs": {
+      "sha256": "cf15edc06c34f5212ec6b44863dc016b89a134c343d1e3fc253b6b68c1530fb5",
+      "bytes": 11600
+    },
+    "tools/rust-port/check-dense-array-shift.mjs": {
+      "sha256": "a5868c2d083001c9d7d820ea6d6b0b15f40b1c4e48e5b02a10e076e222745d1a",
+      "bytes": 14170
+    },
+    "tools/rust-port/check-diagnostics.mjs": {
+      "sha256": "39684df06d4cb101fc6d4cd44bee9ebb534c5156f0d0e507139a62ca57411055",
+      "bytes": 5110
+    },
+    "tools/rust-port/check-dynamic-slots.mjs": {
+      "sha256": "ffa258469370cf9ac948dbd9fe328aa5141e841d051d6752812b10fa26cb111d",
+      "bytes": 13761
+    },
+    "tools/rust-port/check-env-name-keys.mjs": {
+      "sha256": "09a66a32899bf696c85516eb02642e17fbfdf50c0fc4e94d5825a9b373d0bc53",
+      "bytes": 10951
+    },
+    "tools/rust-port/check-errors.mjs": {
+      "sha256": "18eb149ea4ac848b53084461ea22166c78e293e68bac2e2096af45955a01049e",
+      "bytes": 13943
+    },
+    "tools/rust-port/check-expose-scan.mjs": {
+      "sha256": "4fca067363c2da2f11304d034a3b86adf79e34717e2c725aa44e5e98cdfe2c50",
+      "bytes": 10682
+    },
+    "tools/rust-port/check-fast-length.mjs": {
+      "sha256": "8d706f84cef81735929978e6f074c616804f20a710db9be10dffca6c8018943a",
+      "bytes": 12475
+    },
+    "tools/rust-port/check-function-own-literals.mjs": {
+      "sha256": "fd534cbbd8262cac181a8143f93b84a29d92124da52cdf240acd189ae7e2a39f",
+      "bytes": 13563
+    },
+    "tools/rust-port/check-gc-cadence-generator.mjs": {
+      "sha256": "f12da8b60bf79358c5f98e691e3556d564fd4ed55d03a726d451a457e9935bec",
+      "bytes": 2469
+    },
+    "tools/rust-port/check-generated-binary.mjs": {
+      "sha256": "e0f747cfd46f7bf8349011c92380c50e48ff9837468d0df0fe4be72084d85790",
+      "bytes": 12436
+    },
+    "tools/rust-port/check-generated-resources.mjs": {
+      "sha256": "c01fca6d57c02a33f81794262ef5579246b5527e3e6d96da696f3a3679b02550",
+      "bytes": 12321
+    },
+    "tools/rust-port/check-generated-typed-arrays.mjs": {
+      "sha256": "71559d710c8d81b31bf6d828ea90065778a349871c16be8e4af64b0cda68664d",
+      "bytes": 12357
+    },
+    "tools/rust-port/check-generated-utf8.mjs": {
+      "sha256": "24f3089eb504d3b9474de210f789526fbe1bf0377e2ae5ede0065caadd937712",
+      "bytes": 10561
+    },
+    "tools/rust-port/check-json.mjs": {
+      "sha256": "b92057b578d9da603ea17b9865848a26e90de304ef15b95e4b49ef09d1fc2417",
+      "bytes": 11639
+    },
+    "tools/rust-port/check-math.mjs": {
+      "sha256": "36850d495439dc0245d8bd73c507552ba00059710a210026d1143f3130fd0c78",
+      "bytes": 6309
+    },
+    "tools/rust-port/check-native-locals.mjs": {
+      "sha256": "ab42bb1693407b8c433ab2a1c43f49fe9c9cd64c4a373921a9c80a7342d266ac",
+      "bytes": 8833
+    },
+    "tools/rust-port/check-native-parameters.mjs": {
+      "sha256": "ecdcc9c8c73bbcf069adefd2a9d028a083e1fb31195054125c16df4fee1526fd",
+      "bytes": 8020
+    },
+    "tools/rust-port/check-next-execution-wave.mjs": {
+      "sha256": "4fa5e32e99ca3ff01f8ca220ec7f320ec58606af15d94f226aa27098d0c69fb5",
+      "bytes": 3787
+    },
+    "tools/rust-port/check-numeric-bootstrap.mjs": {
+      "sha256": "12c074e94dc2fd9f0f1b6223a16fef6b5456112182bb1640c4f74187affd7dee",
+      "bytes": 10680
+    },
+    "tools/rust-port/check-numeric-literal-keys.mjs": {
+      "sha256": "072496dbb677185aa6092cc8bec501c3d03c21733403eadd072710c6cd43dcdd",
+      "bytes": 10781
+    },
+    "tools/rust-port/check-numeric-ops.mjs": {
+      "sha256": "f957d915904509dab4c965a48c97fcf0a33ce4ccea48fd9d0329d798401c7946",
+      "bytes": 9711
+    },
+    "tools/rust-port/check-one-battle.mjs": {
+      "sha256": "8578e607574edf390cc456f461f67ddc3e76e7894571839d1ffca5fd4f246cc7",
+      "bytes": 13697
+    },
+    "tools/rust-port/check-one-hop-slots.mjs": {
+      "sha256": "eb8879c125bccc6ab451a258ef6328f3aaf78b99797cb7d2f3b852331d1a3d3e",
+      "bytes": 12857
+    },
+    "tools/rust-port/check-override-dispatch.mjs": {
+      "sha256": "86ad7e26a4c0c4c8d2524571ce8a7ef0fdcb2c9f52fb1c4e38e1b695ecc1314e",
+      "bytes": 13002
+    },
+    "tools/rust-port/check-parse-int-stack.mjs": {
+      "sha256": "97e613829db72cac03537ce3d09b182b7451c56858ad8d0998dc4ca98cbf4546",
+      "bytes": 9084
+    },
+    "tools/rust-port/check-poison-intrinsic.mjs": {
+      "sha256": "3c1c7be7c0b43df15e4893daaaa9f8fca6fceb13f463fac485622a1823920987",
+      "bytes": 11704
+    },
+    "tools/rust-port/check-primary-numeric-access.mjs": {
+      "sha256": "11e1db0e785ac97f566404e8ffb9c3a3d02fd6eda7534bf7d471228f132c5059",
+      "bytes": 12616
+    },
+    "tools/rust-port/check-primary-numeric-arrays.mjs": {
+      "sha256": "640594f9e01ccb882154865d3671336ecfbe937f79e529056860cb9079b5f4be",
+      "bytes": 11339
+    },
+    "tools/rust-port/check-program-features.mjs": {
+      "sha256": "f07f5e30c520006fadede9b33abe4fb930d85ecb0bbb3689c8e54f524dd1ed55",
+      "bytes": 3944
+    },
+    "tools/rust-port/check-program-host.mjs": {
+      "sha256": "763fa541e178d265763b320a089aad2cfd6fb02ad5030404f23293f2552ee05c",
+      "bytes": 1548
+    },
+    "tools/rust-port/check-program-trace-prefix.mjs": {
+      "sha256": "cd06a4c0f1ae16f30b7c030b48dbbf6edb22a67f43a9a5a04f8ced7ec3b12521",
+      "bytes": 9725
+    },
+    "tools/rust-port/check-program-trace.mjs": {
+      "sha256": "ebdbae5ab5b96f569c7b2a395af8a926b663ab0a9475189cbb0cc1f3721aafc0",
+      "bytes": 8171
+    },
+    "tools/rust-port/check-program.mjs": {
+      "sha256": "0094390e71d722e86481a0c5f7fd8113008fa5a1850d1b6a2617186725aff391",
+      "bytes": 9007
+    },
+    "tools/rust-port/check-property-slots.mjs": {
+      "sha256": "6efc9b13811bd959ac5e8ac1bb6e874fd1a4274425987705796d31baa892d2d0",
+      "bytes": 11136
+    },
+    "tools/rust-port/check-reflection-bootstrap.mjs": {
+      "sha256": "9f6bed0a7dd1881e559ed19083244b691dcaee33e8136a4e7882701d59aa7339",
+      "bytes": 11526
+    },
+    "tools/rust-port/check-regexp.mjs": {
+      "sha256": "004ba71046559e587031a2ca73bd12e75d2f2d292b8a4d3d14d297e20bc4c474",
+      "bytes": 8666
+    },
+    "tools/rust-port/check-scalar-local-arrays-adversarial.mjs": {
+      "sha256": "ace8f50b1771315cdeee401937e4638d306a3d80f228e284b9e874fb3bc100d9",
+      "bytes": 11082
+    },
+    "tools/rust-port/check-shared-utf16.mjs": {
+      "sha256": "0285d06e750964ee2a250761fd3623c77cc531e3100b7af34986616fb576c5a8",
+      "bytes": 9203
+    },
+    "tools/rust-port/check-source-selective-prototype.mjs": {
+      "sha256": "7bc60240e201d47d10709fab01a532a76d6aefaef810094622cb0182182aeb91",
+      "bytes": 2755
+    },
+    "tools/rust-port/check-source-specializations.mjs": {
+      "sha256": "3becbf4179113d45376e17b752219ae77cbaff63359044224a2cd6b6aa56f7f9",
+      "bytes": 3260
+    },
+    "tools/rust-port/check-stage-range-parser-specialization.mjs": {
+      "sha256": "fed875d1bd3a24ed4742917c7425b380d5db77e7a6bf07164e7838c812c91486",
+      "bytes": 14499
+    },
+    "tools/rust-port/check-strings.mjs": {
+      "sha256": "b41874fb4e344891099806370b92e3e027bbf59bec14e8f6fa3c66a296a583ce",
+      "bytes": 7994
+    },
+    "tools/rust-port/check-utf8-specialization.mjs": {
+      "sha256": "821d8306164b369fdc029da85addade6a8309f8b4db027c3df2a6ab493db8cf7",
+      "bytes": 11769
+    },
+    "tools/rust-port/check-values.mjs": {
+      "sha256": "f285111eb9be8760815e46a0a9efd52803c3d86264eb2c45e82b712ed4399576",
+      "bytes": 6179
+    },
+    "tools/rust-port/checkpoint-program-build.mjs": {
+      "sha256": "9ded440f18b8774d68a8018175064ab15f775d0abb620356c29c27e54b4f910a",
+      "bytes": 2298
+    },
+    "tools/rust-port/compare-unit-update-binaries.mjs": {
+      "sha256": "255f4853a3149ecf25e857688871f276622db069a9761b0f4bf3baee0f564dfa",
+      "bytes": 6300
+    },
+    "tools/rust-port/compile.mjs": {
+      "sha256": "fdf8004015f7c2d6c2288a6d82acea67fdb93272de3ed5a2a0cca758aca67e6c",
+      "bytes": 40276
+    },
+    "tools/rust-port/component-ab-support.mjs": {
+      "sha256": "ef3f24f03c942ce02eff4d51be1d262d5eeceff0fab60034cf1475f4c7111713",
+      "bytes": 2590
+    },
+    "tools/rust-port/diagnose-copy-obj-battle.mjs": {
+      "sha256": "f101e249cf0235216e3d1b6bf12873fb88e3e8351bc68b23b9da297acc638f11",
+      "bytes": 11666
+    },
+    "tools/rust-port/drain-shift-fixture.mjs": {
+      "sha256": "76fbedeef9b8c3b0c91a669a85b9e7ff8e99a258f1c9ed151771d2b710629ab2",
+      "bytes": 820
+    },
+    "tools/rust-port/expressions.mjs": {
+      "sha256": "39fb0edcfb0b3ca0868f292c781ef9b50b3cacc1550402ebce643cd7468333fb",
+      "bytes": 23934
+    },
+    "tools/rust-port/fork-observer-support.mjs": {
+      "sha256": "7d970137753cad9d72c6e25a21925d50a4fdb9ecd46e6a3a13279be6639896f1",
+      "bytes": 3251
+    },
+    "tools/rust-port/generate-battle.mjs": {
+      "sha256": "fd517127b738180096cb2db2c272dd7003a4c694007de586de8fb906934e6f0e",
+      "bytes": 5066
+    },
+    "tools/rust-port/generate-program.mjs": {
+      "sha256": "c5c451738a503ded621ecc9bf221ad75cd65b654a1f81259c2364349dd2a1e84",
+      "bytes": 11093
+    },
+    "tools/rust-port/helper-component-ab-support.mjs": {
+      "sha256": "ffccb15ec2f239c60cb988d1bd01078cfec798936b93299a304562793eed236d",
+      "bytes": 4628
+    },
+    "tools/rust-port/inventory-scalar-arrays.mjs": {
+      "sha256": "ba7f999ad5201ef4d027c0378ed760cbc9c3a54e7f65396ad082f34b2aed88b1",
+      "bytes": 7479
+    },
+    "tools/rust-port/native-process-discovery.mjs": {
+      "sha256": "4ea2b444b71015442437b787774c02a4446a0b6ed0ea392c26278bd70696e5bb",
+      "bytes": 1091
+    },
+    "tools/rust-port/one-battle-check-support.mjs": {
+      "sha256": "bc034be517216d1803d1b79f1bd17f931bf401e6166ca123e9467e17f83db46a",
+      "bytes": 1981
+    },
+    "tools/rust-port/parallel-benchmark-support.mjs": {
+      "sha256": "b6c097d7c63ab824eb43a8976e96a0d777017814cec8b39539387b1a06740c7d",
+      "bytes": 1942
+    },
+    "tools/rust-port/prepare-allocation-profile.mjs": {
+      "sha256": "38185eeccce7353db302660968b0afe0fcdd8b995fe9a4aae1a1645430091229",
+      "bytes": 4336
+    },
+    "tools/rust-port/prepare-canonical-small-index.mjs": {
+      "sha256": "84d47b5e576ebc79aee74005cc72fc493775278862f7bffe4ad3b4a7fa9c5967",
+      "bytes": 2466
+    },
+    "tools/rust-port/prepare-copy-primitives-benchmark.mjs": {
+      "sha256": "a6ba4a07900c3c877bc55aa4ead5b5d4a11c6f9285d8a67391f8551c7dc13d0c",
+      "bytes": 10387
+    },
+    "tools/rust-port/prepare-diagnostic-guard-libraries.mjs": {
+      "sha256": "2042d53dc94cb3be67caac6c51e6e7d83809ce02c72145c50d8087b7a4f2d42b",
+      "bytes": 4486
+    },
+    "tools/rust-port/prepare-mutable-parameter-components.mjs": {
+      "sha256": "4467fed35a7edc728be2627a3ca9a72c811bd2f4c6e9625fc8fd4cae3f256130",
+      "bytes": 10339
+    },
+    "tools/rust-port/prepare-program-trace.mjs": {
+      "sha256": "befac24041ab5518eadbf30cf4883b73b0863ae582b874f5a33864a5834e58a2",
+      "bytes": 11684
+    },
+    "tools/rust-port/prepare-program-workload.mjs": {
+      "sha256": "220e8e0da35b8ece9b7a865ea71647196ebd188ea3cb8c0d5a6e1e49943ed5d0",
+      "bytes": 9179
+    },
+    "tools/rust-port/prepare-reused-trace.mjs": {
+      "sha256": "6ee47a5d75017eb1c8ed2406720f9caf05f7fc356e149c55b840ddbc15463393",
+      "bytes": 16601
+    },
+    "tools/rust-port/prepare-wall-profile.mjs": {
+      "sha256": "d6cc7b4610db74a280a7293e03a0c0b64d10287e19f154b0937d31a61615f419",
+      "bytes": 5689
+    },
+    "tools/rust-port/probe-array-number-storage.mjs": {
+      "sha256": "aef3567fc220eace9638a4d9660f93d06ef1d44084f25d2177f65cc7e4e32f29",
+      "bytes": 7233
+    },
+    "tools/rust-port/profile-gc-support.mjs": {
+      "sha256": "0a55798664daabfeb9680884f9dfc773bee7d6dadd77e5ec90e204d1cacc069b",
+      "bytes": 971
+    },
+    "tools/rust-port/profile-program.mjs": {
+      "sha256": "f94e8fb3ab2afecfce657e2118ab8f825f8789d0d2652dd32cbc96ee1de23611",
+      "bytes": 17353
+    },
+    "tools/rust-port/program-one-battle-oracle.mjs": {
+      "sha256": "cd1796fd4515436ccb34170441753afdaa30f948d6bcab5605b60b8970ea0082",
+      "bytes": 1767
+    },
+    "tools/rust-port/prototype-buff-fixture.mjs": {
+      "sha256": "1c982691b598f733006857816d5d49166ce3a0cb8d1f661cd9cccb2163f1df64",
+      "bytes": 3678
+    },
+    "tools/rust-port/rerun-function-tag.mjs": {
+      "sha256": "3f01aa6f32a41097341c55223837bc9b254415615c6131b6c4ddd1e82a469feb",
+      "bytes": 2335
+    },
+    "tools/rust-port/run-allocation-profile.mjs": {
+      "sha256": "28424ffe1c75db5f7882e87a1c3779f61bdea8c25b78e0ca6632faf98e35a897",
+      "bytes": 3749
+    },
+    "tools/rust-port/run-compact-prepared.mjs": {
+      "sha256": "587f6ab9a9fa467d8d86f9d997d7f8b8491a2cedd81d8c543d4659b456331ccd",
+      "bytes": 2533
+    },
+    "tools/rust-port/run-copy-primitives-benchmark.mjs": {
+      "sha256": "bdaef56406819c49796fdc472bc5207f47bdc933f65e8bf33e973610a9bba7b1",
+      "bytes": 6939
+    },
+    "tools/rust-port/run-mutable-parameter-components.mjs": {
+      "sha256": "ca32a0e0d8fe568eff201997d745243800243b3720c6c8748ed32e2f75a5ab10",
+      "bytes": 5067
+    },
+    "tools/rust-port/run-reused-trace.mjs": {
+      "sha256": "5c801f77a266feb92d5b8f028d10115ca8430367eaf9cf26f7df297fb7ac3db1",
+      "bytes": 9357
+    },
+    "tools/rust-port/scalar-array-inventory-planner.mjs": {
+      "sha256": "a8d4ca3012f1896776f473adbf4a50f801059203fcf4f366ac726e228440d1f4",
+      "bytes": 4219
+    },
+    "tools/rust-port/scalar-array-provenance.test.mjs": {
+      "sha256": "149c1f5a3d8ed856f6108d2876bf017a152653bf8d7563b42463f023b28a2fa8",
+      "bytes": 2637
+    },
+    "tools/rust-port/scalar-arrays.mjs": {
+      "sha256": "a8d4ca3012f1896776f473adbf4a50f801059203fcf4f366ac726e228440d1f4",
+      "bytes": 4219
+    },
+    "tools/rust-port/scalar-local-array-adversarial-fixtures.mjs": {
+      "sha256": "f4fe3024bbc69e3596be5ee89e41459e0b9d30c0b2d97557d88bfb29a5550882",
+      "bytes": 7048
+    },
+    "tools/rust-port/seal-mutable-parameter-component-evidence.mjs": {
+      "sha256": "3bbdae81d66bff016a8af7401817bee7d0a07f745fd1d85e2cea31d744c30261",
+      "bytes": 3292
+    },
+    "tools/rust-port/source-class-dispatch.mjs": {
+      "sha256": "fc0a046458ae97227945d814c5e54c48f658e21e61beff7be1ca4e5b449563eb",
+      "bytes": 728
+    },
+    "tools/rust-port/source-expose-scan.mjs": {
+      "sha256": "b646000d30aadac23b9db44774c2a5f1d0e81f73fe6c27a906845ea65f624765",
+      "bytes": 357
+    },
+    "tools/rust-port/source-native-drain.mjs": {
+      "sha256": "fa41190631c62ed2966621ca36525053ea861cc1ccdaf0df5ef0dc3079595080",
+      "bytes": 272
+    },
+    "tools/rust-port/source-override-dispatch.mjs": {
+      "sha256": "7fe52072587597e3e8bd0adb5cd1a7156059ad23b76c0c20c872c79b8c2fc4e6",
+      "bytes": 341
+    },
+    "tools/rust-port/statements.mjs": {
+      "sha256": "831734a730a01e9e1f0050f0ee83952edd88b6708b6d401e15f4fa4c73f29099",
+      "bytes": 17655
+    },
+    "tools/rust-port/trace-after-full-pass.mjs": {
+      "sha256": "df642f5bad1622dfa118768124110d939b99bb4e2807967dd7e2ea247e49d433",
+      "bytes": 5651
+    },
+    "crates/js-runtime/src/array_from.rs": {
+      "sha256": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
+      "bytes": 2787
+    },
+    "crates/js-runtime/src/battle_gc.rs": {
+      "sha256": "901124725607a9e1a3bcbc5a30f39dc23462ca5852765c7f52ddff094e31c155",
+      "bytes": 37679
+    },
+    "crates/js-runtime/src/battle_mode_limit.rs": {
+      "sha256": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
+      "bytes": 22392
+    },
+    "crates/js-runtime/src/binary.rs": {
+      "sha256": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
+      "bytes": 39477
+    },
+    "crates/js-runtime/src/buff_attribute_loop.rs": {
+      "sha256": "a41d1e91894b451ff92fe0ffb5a4fee0071e1ac69b15710f507c51068f939192",
+      "bytes": 8088
+    },
+    "crates/js-runtime/src/builtins.rs": {
+      "sha256": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
+      "bytes": 28045
+    },
+    "crates/js-runtime/src/class_dispatch.rs": {
+      "sha256": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
+      "bytes": 1073
+    },
+    "crates/js-runtime/src/closures.rs": {
+      "sha256": "f225762a98da3614d9d1f2041bd170010e16f0d2406712434ea0083f4e936c3d",
+      "bytes": 28539
+    },
+    "crates/js-runtime/src/collections.rs": {
+      "sha256": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
+      "bytes": 18339
+    },
+    "crates/js-runtime/src/copy_obj.rs": {
+      "sha256": "db5a3b37a2e8613a2bcfd784741ed8a0d2cd3f174ec4e59c9b891031af90a9bb",
+      "bytes": 21666
+    },
+    "crates/js-runtime/src/date.rs": {
+      "sha256": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
+      "bytes": 14485
+    },
+    "crates/js-runtime/src/dense_array_shift.rs": {
+      "sha256": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
+      "bytes": 6293
+    },
+    "crates/js-runtime/src/diagnostics.rs": {
+      "sha256": "cb8c6b24ee871682f0bf9357e6746d378a997a02a57c722546b367cff6f592c2",
+      "bytes": 7287
+    },
+    "crates/js-runtime/src/dynamic_slots.rs": {
+      "sha256": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
+      "bytes": 6740
+    },
+    "crates/js-runtime/src/env.rs": {
+      "sha256": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
+      "bytes": 14809
+    },
+    "crates/js-runtime/src/errors.rs": {
+      "sha256": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
+      "bytes": 7159
+    },
+    "crates/js-runtime/src/expose_scan.rs": {
+      "sha256": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
+      "bytes": 5288
+    },
+    "crates/js-runtime/src/fdlibm.rs": {
+      "sha256": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+      "bytes": 17240
+    },
+    "crates/js-runtime/src/heap.rs": {
+      "sha256": "f8e4a5bb731e8eac10527576df4d8f62e19da09b8547ccb329289ed729b0ac5e",
+      "bytes": 17491
+    },
+    "crates/js-runtime/src/host.rs": {
+      "sha256": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
+      "bytes": 8909
+    },
+    "crates/js-runtime/src/id_hash.rs": {
+      "sha256": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
+      "bytes": 3914
+    },
+    "crates/js-runtime/src/index_keys.rs": {
+      "sha256": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
+      "bytes": 1116
+    },
+    "crates/js-runtime/src/iterators.rs": {
+      "sha256": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
+      "bytes": 7462
+    },
+    "crates/js-runtime/src/json.rs": {
+      "sha256": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
+      "bytes": 12831
+    },
+    "crates/js-runtime/src/lazy_arguments.rs": {
+      "sha256": "450e04fd6d54e96498dab3d58738e82a9224f728857752a76add40efc3fb58c3",
+      "bytes": 15948
+    },
+    "crates/js-runtime/src/lib.rs": {
+      "sha256": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
+      "bytes": 1418
+    },
+    "crates/js-runtime/src/literal_pool.rs": {
+      "sha256": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
+      "bytes": 2514
+    },
+    "crates/js-runtime/src/math.rs": {
+      "sha256": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+      "bytes": 6430
+    },
+    "crates/js-runtime/src/numeric_bootstrap.rs": {
+      "sha256": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
+      "bytes": 2108
+    },
+    "crates/js-runtime/src/override_dispatch.rs": {
+      "sha256": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
+      "bytes": 819
+    },
+    "crates/js-runtime/src/primary_numeric_access_tests.rs": {
+      "sha256": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+      "bytes": 8700
+    },
+    "crates/js-runtime/src/property_slots.rs": {
+      "sha256": "1762dd182b3e8763d5809b03734ce0a581a452305c95aa2e81579734cb57a54e",
+      "bytes": 20032
+    },
+    "crates/js-runtime/src/reachability.rs": {
+      "sha256": "4e59115692923670ed285614394e934a6e96e535b42cfccb41b059c633f6915f",
+      "bytes": 16687
+    },
+    "crates/js-runtime/src/reflection_bootstrap.rs": {
+      "sha256": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
+      "bytes": 6577
+    },
+    "crates/js-runtime/src/regex.rs": {
+      "sha256": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+      "bytes": 21337
+    },
+    "crates/js-runtime/src/runtime.rs": {
+      "sha256": "5954be763f1218df134d2f23320e23e3ac99cca2442298e1c83b7d7db86eebfb",
+      "bytes": 32924
+    },
+    "crates/js-runtime/src/stage_range_parser.rs": {
+      "sha256": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+      "bytes": 9330
+    },
+    "crates/js-runtime/src/stored_property.rs": {
+      "sha256": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
+      "bytes": 4304
+    },
+    "crates/js-runtime/src/string_hash.rs": {
+      "sha256": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
+      "bytes": 4714
+    },
+    "crates/js-runtime/src/strings.rs": {
+      "sha256": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
+      "bytes": 9489
+    },
+    "crates/js-runtime/src/utf8_guard.rs": {
+      "sha256": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
+      "bytes": 8362
+    },
+    "crates/js-runtime/src/utf8_loader.rs": {
+      "sha256": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
+      "bytes": 2338
+    },
+    "crates/js-runtime/src/value.rs": {
+      "sha256": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+      "bytes": 17242
+    },
+    "crates/battle-core/src/ai.rs": {
+      "sha256": "509c50793d50b78285a7d34680500d554585319b429e8004e9662d430b246cde",
+      "bytes": 19381
+    },
+    "crates/battle-core/src/buff.rs": {
+      "sha256": "41ae9cdb83953283cfc900c2e2219a839d3be4619009a47f2a129c5eda625145",
+      "bytes": 7907
+    },
+    "crates/battle-core/src/clock.rs": {
+      "sha256": "95a00c6a78a6a1c6d82e42f8c81da7e0e4c3d6512468925697045fe975798cba",
+      "bytes": 2934
+    },
+    "crates/battle-core/src/config.rs": {
+      "sha256": "5179487073ca8da80be3be6e740cc19f1166c414dcb34ea80a41339e3c709c36",
+      "bytes": 5527
+    },
+    "crates/battle-core/src/damage.rs": {
+      "sha256": "8375af2f3c4d929bdef52fb86195357511f890a28c47d45ed6ed779e34641601",
+      "bytes": 24955
+    },
+    "crates/battle-core/src/engine.rs": {
+      "sha256": "1a7cd93944a3cc86b25cc39d19edc7bf9b73f213174487744e606aabcd889110",
+      "bytes": 6942
+    },
+    "crates/battle-core/src/engine_runtime.rs": {
+      "sha256": "e4d950171ce10100698a75511fc9a2992b4fee38716d96085adc28854598f28e",
+      "bytes": 16951
+    },
+    "crates/battle-core/src/entity.rs": {
+      "sha256": "6e5b05c246f3f0736e68e5f2b0abd11e831cff8d9d443b87fece5df17c65c8ac",
+      "bytes": 3613
+    },
+    "crates/battle-core/src/ffi.rs": {
+      "sha256": "62e5d0c44521e8bb824c180ebdab811897397ebe968d27a0df98587ae1e06eb6",
+      "bytes": 2858
+    },
+    "crates/battle-core/src/js_math.rs": {
+      "sha256": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+      "bytes": 4011
+    },
+    "crates/battle-core/src/lib.rs": {
+      "sha256": "d90b6af65542229452fd86e19a6d6616c5e4410f3f6714fa86728980d6878723",
+      "bytes": 432
+    },
+    "crates/battle-core/src/numeric.rs": {
+      "sha256": "113358834ead99b82800e8fe23a1d9b98f70e547a003c3cc45f860b30b5dc080",
+      "bytes": 3248
+    },
+    "crates/battle-core/src/rng.rs": {
+      "sha256": "d343b560ebc3808ac57e8df064b63d5e4f75f6e9ed7bbefd0f2a20cae675d035",
+      "bytes": 3855
+    },
+    "crates/battle-core/src/scheduler.rs": {
+      "sha256": "944041e9fcbb66e2dfb7f67121798e45e8a4db336f724bd7b047fe23829fe152",
+      "bytes": 3949
+    },
+    "crates/battle-core/src/skill.rs": {
+      "sha256": "29fc9327e6d0ef071ce3b36f5c3a531a1584974f0ae9ebb56467c9869207b742",
+      "bytes": 24346
+    },
+    "crates/battle-core/src/unit.rs": {
+      "sha256": "c097a9298d8e3cfeb11b9cbb3656e438b0c96d3b13526d4769eba7cd3a53809f",
+      "bytes": 14531
+    },
+    "crates/battle-core/src/unit_resources.rs": {
+      "sha256": "2f0e194badbaca8499189801115c7e6cf01575fc8157de7ec589100da89908fb",
+      "bytes": 3806
+    },
+    "crates/battle-core/src/unit_skill_runtime.rs": {
+      "sha256": "8684ac88baa412c51347f9fa9be2f2979c7711faad8c55cd42a3829de517d949",
+      "bytes": 25910
+    },
+    "crates/battle-core/src/unit_speeder.rs": {
+      "sha256": "046060b64ac29644f5da100b744fdc11e9d4e6f87ce356d42b14da2f5d1bac5e",
+      "bytes": 2956
+    },
+    "crates/battle-core/src/v8_small_sort.rs": {
+      "sha256": "5e3564d2fa9a1b04e5e1c68e2ce6746b5091d4ea41219f8ff019bde2531a9ad4",
+      "bytes": 3596
+    },
+    "crates/battle-core/src/v8_tim_sort.rs": {
+      "sha256": "5b08480c862f493c95aa6aa350591ae3e1720494a3adefd75f75d9b31678c885",
+      "bytes": 12570
+    },
+    "config/source-oracle-runtime.json": {
+      "sha256": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+      "bytes": 1200
+    },
+    "crates/js-runtime/Cargo.toml": {
+      "sha256": "046e0a7d925a8132ae63b371320d77f0560415d168dda7e7822e6c5d0add2427",
+      "bytes": 325
+    },
+    "crates/battle-core/Cargo.toml": {
+      "sha256": "2b11be627b089d4bc2eb94961e8b8e2c122fced7aad72eacccba6446066d547a",
+      "bytes": 109
+    },
+    "Cargo.toml": {
+      "sha256": "ef28b2ce6773d53d3615e33a27e0fa3cc80880844e1547bf067fa9eb5fb93cbe",
+      "bytes": 236
+    },
+    "Cargo.lock": {
+      "sha256": "5d45ef09b4fe50e98fb0679f0c5a2c1e93d6ce536aca06cf6e2ec3c6b7538950",
+      "bytes": 528
+    }
+  },
+  "admission": {
+    "off": {
+      "sourceSha256": "3ca99406ed04bd3655bb5bb11c776e1286bd122d21e218003629e6d3d83144b6",
+      "nativeMutableParameters": [],
+      "mirroredMutableParameters": [],
+      "nativeActivationElided": false
+    },
+    "on": {
+      "sourceSha256": "3ca99406ed04bd3655bb5bb11c776e1286bd122d21e218003629e6d3d83144b6",
+      "nativeMutableParameters": [
+        "e"
+      ],
+      "mirroredMutableParameters": [
+        "e"
+      ],
+      "nativeActivationElided": true
+    }
+  }
+}
