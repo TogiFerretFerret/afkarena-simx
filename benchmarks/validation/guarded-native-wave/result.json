@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "passed": true,
+  "qualifiesFor10000Target": false,
+  "sourceCommit": "da74854d5c144838e11f82c271357b65775bd062",
+  "scope": "Guarded nested-copy source shortcut full qualification: fixed original20measured3warmup serial and four fork children, unchanged complete reports/captured raw f64 bits/host-input tapes. Not random20k, real-scene random5v5 or complete per-event-trace qualification. New cohort timings do not establish causal whole-battle speedups.",
+  "sourceOnlyCheckpoint": "625535c",
+  "nativeTestsPassed": 199,
+  "sourceGatesPassed": 29,
+  "scalarProvenanceTestsPassed": 4,
+  "generated": {
+    "functions": 22986,
+    "unsupportedFunctions": 0,
+    "gcCadence": 2,
+    "manifestSha256": "a9356c989fae7433f08c8a6734aac5d2640db9c6afa8c329262a8376fe37d2d9"
+  },
+  "serial": {
+    "completed": 20,
+    "battlesPerSecond": 0.8192692118630182,
+    "elapsedMs": 24412,
+    "totalCallbacks": 309060,
+    "hostInputConsumption": {
+      "random": 2,
+      "clock": {
+        "version": 1,
+        "mode": "replay",
+        "attempts": 5980,
+        "consumed": 5980,
+        "total": 5980,
+        "remaining": 0,
+        "counts": {
+          "Date.now": 0,
+          "Date.construct": 5980,
+          "Date.call": 0
+        },
+        "finished": true,
+        "restored": false,
+        "failure": null
+      }
+    },
+    "nestedCopyWindow": {
+      "startupAttempts": 7200,
+      "startupHits": 7200,
+      "attempts": 48000,
+      "hits": 48000,
+      "enabledAtStart": true,
+      "enabledAtEnd": true,
+      "exercised": true,
+      "eligibleForPerformanceCredit": true,
+      "status": "exercised",
+      "scope": "Host counters between the two original measured wall-clock calls; startup and three warmups excluded. Positive admission proves exercise, not a causal speedup."
+    },
+    "traceEnabled": false,
+    "sourceBoundToBinary": true
+  },
+  "fork": {
+    "completed": 80,
+    "startUnixNs": "1793383985785115378",
+    "endUnixNs": "1793384016167326191",
+    "elapsedNs": "30382210813",
+    "elapsedSeconds": 30.382210813,
+    "battlesPerSecond": 2.633119771710933,
+    "commonOverlapNs": "30071973256",
+    "allFourOverlap": true,
+    "method": "80 measured battles / (latest measured end - earliest measured start), using a common SystemTime UNIX epoch; never sum per-process rates.",
+    "processes": [
+      {
+        "index": 0,
+        "collections": 12,
+        "totalCallbacks": 309060,
+        "hostInputConsumption": {
+          "random": 2,
+          "clock": {
+            "version": 1,
+            "mode": "replay",
+            "attempts": 5980,
+            "consumed": 5980,
+            "total": 5980,
+            "remaining": 0,
+            "counts": {
+              "Date.now": 0,
+              "Date.construct": 5980,
+              "Date.call": 0
+            },
+            "finished": true,
+            "restored": false,
+            "failure": null
+          }
+        },
+        "nestedCopyWindow": {
+          "startupAttempts": 7200,
+          "startupHits": 7200,
+          "attempts": 48000,
+          "hits": 48000,
+          "enabledAtStart": true,
+          "enabledAtEnd": true,
+          "exercised": true,
+          "eligibleForPerformanceCredit": true,
+          "status": "exercised",
+          "scope": "Host counters between the two original measured wall-clock calls; startup and three warmups excluded. Positive admission proves exercise, not a causal speedup."
+        }
+      },
+      {
+        "index": 1,
+        "collections": 12,
+        "totalCallbacks": 309060,
+        "hostInputConsumption": {
+          "random": 2,
+          "clock": {
+            "version": 1,
+            "mode": "replay",
+            "attempts": 5980,
+            "consumed": 5980,
+            "total": 5980,
+            "remaining": 0,
+            "counts": {
+              "Date.now": 0,
+              "Date.construct": 5980,
+              "Date.call": 0
+            },
+            "finished": true,
+            "restored": false,
+            "failure": null
+          }
+        },
+        "nestedCopyWindow": {
+          "startupAttempts": 7200,
+          "startupHits": 7200,
+          "attempts": 48000,
+          "hits": 48000,
+          "enabledAtStart": true,
+          "enabledAtEnd": true,
+          "exercised": true,
+          "eligibleForPerformanceCredit": true,
+          "status": "exercised",
+          "scope": "Host counters between the two original measured wall-clock calls; startup and three warmups excluded. Positive admission proves exercise, not a causal speedup."
+        }
+      },
+      {
+        "index": 2,
+        "collections": 12,
+        "totalCallbacks": 309060,
+        "hostInputConsumption": {
+          "random": 2,
+          "clock": {
+            "version": 1,
+            "mode": "replay",
+            "attempts": 5980,
+            "consumed": 5980,
+            "total": 5980,
+            "remaining": 0,
+            "counts": {
+              "Date.now": 0,
+              "Date.construct": 5980,
+              "Date.call": 0
+            },
+            "finished": true,
+            "restored": false,
+            "failure": null
+          }
+        },
+        "nestedCopyWindow": {
+          "startupAttempts": 7200,
+          "startupHits": 7200,
+          "attempts": 48000,
+          "hits": 48000,
+          "enabledAtStart": true,
+          "enabledAtEnd": true,
+          "exercised": true,
+          "eligibleForPerformanceCredit": true,
+          "status": "exercised",
+          "scope": "Host counters between the two original measured wall-clock calls; startup and three warmups excluded. Positive admission proves exercise, not a causal speedup."
+        }
+      },
+      {
+        "index": 3,
+        "collections": 12,
+        "totalCallbacks": 309060,
+        "hostInputConsumption": {
+          "random": 2,
+          "clock": {
+            "version": 1,
+            "mode": "replay",
+            "attempts": 5980,
+            "consumed": 5980,
+            "total": 5980,
+            "remaining": 0,
+            "counts": {
+              "Date.now": 0,
+              "Date.construct": 5980,
+              "Date.call": 0
+            },
+            "finished": true,
+            "restored": false,
+            "failure": null
+          }
+        },
+        "nestedCopyWindow": {
+          "startupAttempts": 7200,
+          "startupHits": 7200,
+          "attempts": 48000,
+          "hits": 48000,
+          "enabledAtStart": true,
+          "enabledAtEnd": true,
+          "exercised": true,
+          "eligibleForPerformanceCredit": true,
+          "status": "exercised",
+          "scope": "Host counters between the two original measured wall-clock calls; startup and three warmups excluded. Positive admission proves exercise, not a causal speedup."
+        }
+      }
+    ],
+    "peakTotalPssKiB": 5757655,
+    "changedInputs": [],
+    "changedLibraries": []
+  },
+  "proofs": [
+    {
+      "file": "benchmarks/validation/guarded-native-wave/source-validation.json",
+      "sha256": "6428cb614d9ec138c649fbdf720bdd7e72e9cba3dfff06b9019692e51f78c78f"
+    },
+    {
+      "file": "benchmarks/validation/guarded-native-wave/summary.json",
+      "sha256": "eb9a857944854dca8080bc72892576284372d8c93783121ddd233a3155614b42"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-guarded-native-wave-chain.json",
+      "sha256": "06ae9b10e17caf1be5fb1318eea480e9afa3613983137a1865a62a4146b53e59"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-guarded-native-wave-build.json",
+      "sha256": "9c8e629cb9378b9750cad43bdd20618724f07c8d211e15adb8746eb03104137d"
+    },
+    {
+      "file": "benchmarks/validation/rust-program-guarded-native-wave-full.json",
+      "sha256": "39be0411cecf16fee36e3eb46d23d4faa33f768b26aa25e98a70e25facce40fb"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30-guarded-native-wave-fork-four.json",
+      "sha256": "fe640d5614024174c0226e26bb740a7276b47df52127221420eef368199b9fa9"
+    },
+    {
+      "file": "benchmarks/validation/guarded-native-wave/evidence-publication.json",
+      "sha256": "211285eab93cc631abd9e351f51dad48ebaedc768a83e5ebcabb31925c6f1f3a"
+    }
+  ],
+  "finishedAt": "2026-10-30T18:14:39.520Z"
+}
