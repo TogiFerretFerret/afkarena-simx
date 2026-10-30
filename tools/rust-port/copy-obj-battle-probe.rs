@@ -2,7 +2,7 @@
 use js_runtime::{Runtime,Value,EnvId,JsResult,JsError,ObjectKind,PropertyKind,PropertyKey,Descriptor,ObjectId};
 use std::{cell::RefCell,collections::BTreeMap,time::Instant};
 
-#[derive(Clone)]struct Context{constructor:PropertyKey,properties:Vec<(ObjectId,PropertyKey,Descriptor)>,to_string:Value}
+#[derive(Clone)]struct Context{constructor:PropertyKey,indices:[PropertyKey;4],properties:Vec<(ObjectId,PropertyKey,Descriptor)>,to_string:Value}
 #[derive(Clone,Copy,PartialEq,Eq,PartialOrd,Ord)]struct Shape{category:&'static str,properties:usize,enumerable:usize,configurable:usize,writable:usize,accessors:usize,numbers:usize,finite:usize,flags:u16,guard_changes:u16}
 #[derive(Default)]struct Row{calls:u64,inclusive_ns:u128,exclusive_ns:u128}
 #[derive(Default)]struct Stats{context:Option<Context>,active:bool,rows:BTreeMap<(Shape,i128,bool),Row>,stack:Vec<u128>,calls:u64,top_calls:u64,top_ns:u128,max_depth:usize}
@@ -16,7 +16,7 @@ pub fn capture(rt:&mut Runtime)->JsResult<()>{
  let object_id=rt.object_id(object)?;let array_id=rt.object_id(array)?;
  save(rt,object_id,"keys")?;save(rt,object_id,"prototype")?;save(rt,array_id,"prototype")?;save(rt,rt.object_prototype,"constructor")?;save(rt,rt.array_prototype,"constructor")?;
  let key=PropertyKey(rt.intern("toString"));let to_string=data(rt,rt.function_prototype,key)?;
- STATS.with(|state|state.borrow_mut().context=Some(Context{constructor,properties,to_string}));Ok(())
+ STATS.with(|state|state.borrow_mut().context=Some(Context{constructor,indices:[PropertyKey(rt.intern("0")),PropertyKey(rt.intern("1")),PropertyKey(rt.intern("2")),PropertyKey(rt.intern("3"))],properties,to_string}));Ok(())
 }
 pub fn install(rt:&mut Runtime,env:EnvId)->JsResult<()>{
  let ed=rt.lookup(env,"ed")?;let key=rt.string("copyObj");let original=rt.get(ed,key)?;
@@ -35,6 +35,17 @@ fn shape(rt:&Runtime,input:Value)->Shape{
   let Value::Object(id)=input else{return result};let object=&rt.objects[id.0];
   if object.extensible{result.flags|=1;}if object.prototype==Some(rt.object_prototype){result.flags|=2;}if object.prototype==Some(rt.array_prototype){result.flags|=4;}if !object.arguments_map.is_empty(){result.flags|=8;}if object.own(context.constructor).is_some(){result.flags|=16;}if matches!(object.kind,ObjectKind::Array{length_writable:true,..}){result.flags|=32;}
   for(_,desc)in object.iter_properties(){result.properties+=1;if desc.enumerable{result.enumerable+=1;}if desc.configurable{result.configurable+=1;}match desc.kind{PropertyKind::Accessor{..}=>result.accessors+=1,PropertyKind::Data{value,writable}=>{if writable{result.writable+=1;}if let Value::Number(number)=value{result.numbers+=1;if number.is_finite(){result.finite+=1;}}}}}
+  if let ObjectKind::Array{length,length_writable,..}=object.kind {
+   let small=(1..=4).contains(&length);let mut eligible=small&&length_writable&&object.extensible&&object.prototype==Some(rt.array_prototype)&&object.arguments_map.is_empty()&&object.own(context.constructor).is_none()&&guard_changes==0;
+   if small {
+    for (i,&key) in context.indices.iter().enumerate(){
+     if i<(length as usize){eligible &= matches!(object.own(key),Some(Descriptor{enumerable:true,configurable:true,kind:PropertyKind::Data{value:Value::Number(n),writable:true}}) if n.is_finite());eligible &= rt.objects[rt.array_prototype.0].own(key).is_none()&&rt.objects[rt.object_prototype.0].own(key).is_none();}
+     else {eligible &= object.own(key).is_none();}
+    }
+    eligible &= object.iter_properties().all(|(key,_)|context.indices[..length as usize].contains(&key));
+   }
+   result.category=if eligible {match length{1=>"eligibleDenseFinite1",2=>"eligibleDenseFinite2",3=>"eligibleDenseFinite3",_=>"eligibleDenseFinite4"}}else if small {match length{1=>"ineligibleArray1",2=>"ineligibleArray2",3=>"ineligibleArray3",_=>"ineligibleArray4"}}else if length==0{"emptyArray"}else{"arrayLengthOver4"};return result;
+  }
   result.category=if matches!(object.kind,ObjectKind::Array{length:0,..}){"emptyArray"}else if matches!(object.kind,ObjectKind::Ordinary)&&result.properties==47&&result.finite==47{"flatFinite47"}else if matches!(object.kind,ObjectKind::Ordinary)&&result.properties==result.finite{"flatFiniteOther"}else{"other"};result
  })
 }
