@@ -1,6 +1,7 @@
 //! Source-derived JavaScript execution support in Rust, without a JS VM.
 pub mod value;
 pub mod heap;
+pub mod arguments_map;
 pub mod property_slots;
 pub mod id_hash;
 pub mod runtime;
