@@ -1,0 +1,356 @@
+{
+  "passed": true,
+  "hostMetadata": {
+    "lscpu": {
+      "lscpu": [
+        {
+          "field": "Architecture:",
+          "data": "x86_64"
+        },
+        {
+          "field": "CPU op-mode(s):",
+          "data": "32-bit, 64-bit"
+        },
+        {
+          "field": "Address sizes:",
+          "data": "46 bits physical, 48 bits virtual"
+        },
+        {
+          "field": "Byte Order:",
+          "data": "Little Endian"
+        },
+        {
+          "field": "CPU(s):",
+          "data": "5"
+        },
+        {
+          "field": "On-line CPU(s) list:",
+          "data": "0-4"
+        },
+        {
+          "field": "Vendor ID:",
+          "data": "AuthenticAMD"
+        },
+        {
+          "field": "Model name:",
+          "data": "AMD EPYC 9V74 80-Core Processor"
+        },
+        {
+          "field": "CPU family:",
+          "data": "25"
+        },
+        {
+          "field": "Model:",
+          "data": "17"
+        },
+        {
+          "field": "Thread(s) per core:",
+          "data": "1"
+        },
+        {
+          "field": "Core(s) per socket:",
+          "data": "5"
+        },
+        {
+          "field": "Socket(s):",
+          "data": "1"
+        },
+        {
+          "field": "Stepping:",
+          "data": "1"
+        },
+        {
+          "field": "BogoMIPS:",
+          "data": "5192.28"
+        },
+        {
+          "field": "Flags:",
+          "data": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx512_bf16 clzero xsaveerptr arat npt nrip_save tsc_scale vmcb_clean flushbyasid pausefilter pfthreshold v_vmsave_vmload avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm arch_capabilities"
+        },
+        {
+          "field": "Hypervisor vendor:",
+          "data": "KVM"
+        },
+        {
+          "field": "Virtualization type:",
+          "data": "full"
+        },
+        {
+          "field": "L1d cache:",
+          "data": "96 KiB (3 instances)"
+        },
+        {
+          "field": "L1i cache:",
+          "data": "96 KiB (3 instances)"
+        },
+        {
+          "field": "L2 cache:",
+          "data": "3 MiB (3 instances)"
+        },
+        {
+          "field": "L3 cache:",
+          "data": "32 MiB (1 instance)"
+        },
+        {
+          "field": "NUMA node(s):",
+          "data": "1"
+        },
+        {
+          "field": "NUMA node0 CPU(s):",
+          "data": "0-4"
+        },
+        {
+          "field": "Vulnerability Gather data sampling:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Ghostwrite:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Indirect target selection:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Itlb multihit:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability L1tf:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Mds:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Meltdown:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Mmio stale data:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Old microcode:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Reg file data sampling:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Retbleed:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Spec rstack overflow:",
+          "data": "Vulnerable"
+        },
+        {
+          "field": "Vulnerability Spec store bypass:",
+          "data": "Vulnerable"
+        },
+        {
+          "field": "Vulnerability Spectre v1:",
+          "data": "Vulnerable: __user pointer sanitization and usercopy barriers only; no swapgs barriers"
+        },
+        {
+          "field": "Vulnerability Spectre v2:",
+          "data": "Vulnerable; STIBP: disabled; PBRSB-eIBRS: Not affected; BHI: Not affected"
+        },
+        {
+          "field": "Vulnerability Srbds:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Tsa:",
+          "data": "Vulnerable"
+        },
+        {
+          "field": "Vulnerability Tsx async abort:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Vmscape:",
+          "data": "Not affected"
+        }
+      ]
+    },
+    "cpuFlags": "flags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx512_bf16 clzero xsaveerptr arat npt nrip_save tsc_scale vmcb_clean flushbyasid pausefilter pfthreshold v_vmsave_vmload avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm arch_capabilities"
+  },
+  "compiler": {
+    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853",
+    "version": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n"
+  },
+  "backendProfile": {
+    "optLevel": 3,
+    "codegenUnits": 64,
+    "lto": false,
+    "fastMath": false,
+    "jobs": 1
+  },
+  "sourceArchive": {
+    "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/benchmarks/validation/native-cpu/frozen-source.json.gz",
+    "sha256": "863b241ec5545327fb9c87b7306f6ee35a2e8b3aedf7790cb27c90b143d7837e"
+  },
+  "summaries": [
+    {
+      "name": "unit",
+      "totals": {
+        "generic": 2351415511,
+        "native": 2349468396
+      },
+      "ratio": 1.000828747049041
+    },
+    {
+      "name": "drain",
+      "totals": {
+        "generic": 457549971,
+        "native": 449658060
+      },
+      "ratio": 1.0175509163563086
+    }
+  ],
+  "rows": [
+    {
+      "name": "unit",
+      "variant": "generic",
+      "pair": 0,
+      "exitCode": 0,
+      "stdoutSha256": "90b1a2a9e50702ac8dcd7def7a5482132a03dfca166792df5770767eb812cd22",
+      "elapsedNs": 809263852,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "native",
+      "pair": 0,
+      "exitCode": 0,
+      "stdoutSha256": "263a6e5713264e30427a2b394d05d981c77a118a8c8a7e83af328aba91367ae4",
+      "elapsedNs": 783551549,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "native",
+      "pair": 1,
+      "exitCode": 0,
+      "stdoutSha256": "f0484d9d78ec34db1f2f283cc96af32c06b7769c529823433fafbddebce9cb60",
+      "elapsedNs": 840476996,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "generic",
+      "pair": 1,
+      "exitCode": 0,
+      "stdoutSha256": "5e965f61046a4e03a5fa58b0a64eb546598ae85b11dbc103baf6fb96ae503668",
+      "elapsedNs": 820136366,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "generic",
+      "pair": 2,
+      "exitCode": 0,
+      "stdoutSha256": "6da0a8c514cabfe3f0e02072a10fbd72e89c51c5c19fdd5045ba57abd79baecd",
+      "elapsedNs": 722015293,
+      "events": 150220
+    },
+    {
+      "name": "unit",
+      "variant": "native",
+      "pair": 2,
+      "exitCode": 0,
+      "stdoutSha256": "44d85f9a9aba94dd731b5072becf7881b7154199f4c58ea266a37ca4046294bc",
+      "elapsedNs": 725439851,
+      "events": 150220
+    },
+    {
+      "name": "drain",
+      "variant": "generic",
+      "pair": 0,
+      "exitCode": 0,
+      "stdoutSha256": "7b1f42104b484f881dba43dbd63a8adffee01d96e87f81f3722e4b4b2f58b5ea",
+      "elapsedNs": 151192427,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "native",
+      "pair": 0,
+      "exitCode": 0,
+      "stdoutSha256": "c1485388d2192011cd7f71125582cdcb866cf8e0d666640503c043a19a7aac0a",
+      "elapsedNs": 147014595,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "native",
+      "pair": 1,
+      "exitCode": 0,
+      "stdoutSha256": "896bd441afe4c9c0ab0d7aa519743656c22389db81d96652f4aa9d7ce8635367",
+      "elapsedNs": 147808194,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "generic",
+      "pair": 1,
+      "exitCode": 0,
+      "stdoutSha256": "2f30d79eeb5f4a72961139f829659946e43c2461d05cb2c1aeef2b7e11d2935c",
+      "elapsedNs": 148259726,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "generic",
+      "pair": 2,
+      "exitCode": 0,
+      "stdoutSha256": "a4f96692f5de8b5b19ace674613b51c19e7624551fc51f031256666717f59fe9",
+      "elapsedNs": 158097818,
+      "events": 38400
+    },
+    {
+      "name": "drain",
+      "variant": "native",
+      "pair": 2,
+      "exitCode": 0,
+      "stdoutSha256": "eaca967f482e9e6ba8516fbfa70f5e0e462d7ecae5826544e2585649f9ed5db3",
+      "elapsedNs": 154835271,
+      "events": 38400
+    }
+  ],
+  "trace1SelectedObserverMatched": true,
+  "sameRuntimeSource": true,
+  "artifact": {
+    "file": "benchmarks/results/2026-10-30T15-30-55.263Z-native-cpu-backend.evidence.gz",
+    "sha256": "bde91558e07047eaf51ff5b50627eecefc49d828528b3623d94f51e97d6de50f",
+    "uncompressedSha256": "9ba335271c878d9eca283d681d864a6c521979b71f98fcc67858e3818fdfff3e"
+  },
+  "qualifiesFor10000Target": false,
+  "scope": "Identical source runtime/core/deps and generated original Unit/drain. Only target-cpu x86-64 versus native differs. Both CPU builds qualified primitive/math/IEEE cases before timing. Every ordered callback/selected snapshot and selected TRACE1 matches Node. Explicit opt3 CGU64 noLTO,3 alternating process pairs. Host-specific component rates, not battles/sec or cross-host speedup. Fidelity gates remain valid under contention. Timing ratios are exploratory and do not establish speedup.",
+  "measurementContext": {
+    "classification": "exploratory_contended",
+    "nativeAuditStartedAt": "2026-10-30T15:30:01.027Z",
+    "nativeAuditFinishedAt": "2026-10-30T15:30:10.842Z",
+    "overlap": "Root identified simultaneous prototype_slots Unit/drain native timing cohort. Idle checks raced; no exclusive lease held.",
+    "interpretableSpeedup": false,
+    "decision": "Reject CPU-native promotion; no clean speedup established, no discretionary rerun.",
+    "futureLease": "All actual timing uses exclusive flock /workspace/afkarena-simx/work/native-timing.lock; compiles/gates use shared flock on same path."
+  },
+  "libraryTestCountsPerBackend": {
+    "battleCore": 44,
+    "runtime": 114
+  },
+  "primitiveComparedPerBackend": 79026,
+  "mathComparedPerBackend": 255190,
+  "excludedRemainderCasesPerBackend": 90,
+  "generatedAndBuildsArtifact": {
+    "file": "benchmarks/results/2026-10-30T15-30-55.263Z-native-cpu-backend.generated-and-builds.gz",
+    "sha256": "bd92dce35416356f90e17b2a58cf590136bd6bacb7af61877d9516a6a296d29e",
+    "uncompressedSha256": "efa10f2866a117d4a086194c4c4368527e6724d855d499e99a0a0d5cd893c81b"
+  }
+}

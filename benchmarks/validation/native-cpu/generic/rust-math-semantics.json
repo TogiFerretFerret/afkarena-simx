@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "passed": true,
+  "cases": 255190,
+  "compared": 255190,
+  "unsupportedCount": 0,
+  "unsupported": [],
+  "failures": [],
+  "sources": {
+    "tools/rust-port/check-math.mjs": "36850d495439dc0245d8bd73c507552ba00059710a210026d1143f3130fd0c78",
+    "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
+    "crates/js-runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+    "crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
+    "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
+    "tools/native-compiler-vendor/v8-math/src/base/ieee754.cc": "1bf999809d4c4c1d31ad5ff3578d32614796f159e08b9e7782560d017721a0c2",
+    "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
+    "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
+    "config/native-compiler-v8-math.json": "d0261ceee0a02cec960c57f36afd1974cd6e3cb43a0d5b340d71c8ef8ad605c7",
+    "tools/native-compiler-vendor/v8-math/src/numbers/ieee754.cc": "0582ca75d4d3e8c58b784734ef7ddf891e5154bf8e35c4d550ea2263265859fc"
+  },
+  "binary": {
+    "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/native-cpu-backend/generic-target/release/examples/value_check",
+    "sha256": "55dcc6e368e15983fc3b24e2dbf7ce2b0b971767d48c4c7a6114fffb48b607a8"
+  },
+  "oracleProfile": {
+    "version": 1,
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "rawBitReferenceFlags": [
+      "--jitless"
+    ],
+    "rawBitReferenceNodeOptions": "",
+    "wholeBattleContextMode": "vm.constants.DONT_CONTEXTIFY",
+    "wholeBattleContextReason": "Reflect the real VM global object with ordinary Script var/function binding descriptors; contextified sandbox wrappers change configurability and hide uninitialized bindings from parent reflection.",
+    "reason": "Default JIT tiers and --no-opt produced different NaN bits for identical source and inputs. --jitless was stable across all six cold/warmed probe processes.",
+    "evidence": "benchmarks/validation/oracle-tier-probe-summary.json",
+    "existingResultsAutomaticallyRequalified": false,
+    "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
+    "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
+  },
+  "artifacts": [
+    {
+      "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/benchmarks/validation/native-cpu/generic/rust-math-semantics.input.gz",
+      "sha256": "28cf39b51750327dfc0746c47535ad139bd66d2a020490f857a36367ff75b122",
+      "uncompressedSha256": "7b031e4fb8c3439618b695a631bbe1fce5a8f4d8a538a43c3f1fa6d78069742a"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/benchmarks/validation/native-cpu/generic/rust-math-semantics.expected.gz",
+      "sha256": "6dfc15c88751437db8540f00bdfd081b8109f7f3d53ad140c5b6d0141c6de85b",
+      "uncompressedSha256": "57c33631afe71ffd3b0cf8ba3de6a0c2d230beec9d54e7133db6f64c4ff4ae81"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/benchmarks/validation/native-cpu/generic/rust-math-semantics.actual.gz",
+      "sha256": "6dfc15c88751437db8540f00bdfd081b8109f7f3d53ad140c5b6d0141c6de85b",
+      "uncompressedSha256": "57c33631afe71ffd3b0cf8ba3de6a0c2d230beec9d54e7133db6f64c4ff4ae81"
+    },
+    {
+      "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/benchmarks/validation/native-cpu/generic/rust-math-semantics.stderr.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Actual pure Rust Math natives, primitive coercions, raw f64 bits and UTF-16 string arguments compared to pinned jitless V8. Pow follows the pinned V8 use_std_math_pow wrapper and platform Rust powf; all submitted Math cases are compared without normalization. Object coercion side effects and generated-program integration require separate gates; this is not battle qualification.",
+  "qualifiesFor10000Target": false
+}
