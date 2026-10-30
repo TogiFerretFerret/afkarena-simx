@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "sourceFreeze": "7e718b1",
+  "generated": {
+    "functions": 22986,
+    "unsupportedFunctions": 0,
+    "gcCadence": 2,
+    "manifestSha256": "0f5d18860f4a85e081ba3cca3358c7819ccce8c1a16de78e3a2e0c04078eceec"
+  },
+  "scalarQualification": {
+    "unit": 0,
+    "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+    "functionId": 1818,
+    "arrays": [
+      {
+        "name": "B",
+        "length": 2,
+        "reads": 4,
+        "truthinessReads": 2,
+        "diagnosticsFallbackAtEntry": true,
+        "requiresStableHostDiagnosticsMode": true
+      }
+    ],
+    "manifestSha256": "075ed6db28a9f70263095381933eaf9862791a1b1f7521bf077b73402f66789d"
+  },
+  "fullBattleQualification": "pending release build and source oracle comparison"
+}
