@@ -25,6 +25,9 @@ cases.push(
  ['owner-receiver-alias','b.info.AddSource="owner";b.owner.attribs=b;b.ATK=10;b.HPR=1;b.MPR=2;',false],
  ['owner-info-alias','b.info.AddSource="owner";b.owner.attribs=b.info;b.info.ATK=10;b.info.HPR=1;b.info.MPR=2;',false],
  ['owner-duplicate-attributes','b.info.AddSource="owner";b.attrib=["ATK","ATK"];',false],
+ ['owner-late-basis-throw-after-earlier-source-write','b.info.AddSource="owner";b.info.HPRBase="BASIS";Object.defineProperty(b.owner.attribs,"BASIS",{get:function(){events.push("throw-basis:"+b.owner.attribs.ATK);throw "late-basis"}});',false],
+ ['owner-receiver-alias-hidden-target-prototype','var attrs=b.owner.attribs,effects=b.owner.buff_effects;b.owner=b;b.attribs=attrs;b.buff_effects=effects;b.info.AddSource="owner";delete b.info["HPR%"];attrs["HPR%"]=0.25;Object.setPrototypeOf(b.info,attrs);',false],
+ ['owner-info-alias-hidden-target-prototype','var attrs=b.owner.attribs,effects=b.owner.buff_effects;b.owner=b.info;b.info.attribs=attrs;b.info.buff_effects=effects;b.info.AddSource="owner";delete b.info["HPR%"];attrs["HPR%"]=0.25;Object.setPrototypeOf(b.info,attrs);',false],
  ['owner-coercion-callback','b.info.AddSource="owner";b.info["HPR%"]={valueOf:function(){events.push("coerce:"+b.owner.attribs.ATK);return 0.25}};',false]
 );
 const realTableBytes=await readFile(resolve(root,'src/srcmodule/SkillBuff.json')),realTable=JSON.parse(realTableBytes).ed.SkillBuffTable;
