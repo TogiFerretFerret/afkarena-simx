@@ -25,6 +25,11 @@ assert.equal((await execute(rustc,[resolve(work,'measure.rs'),'-o',resolve(work,
 const files=await fs.readdir(deps);
 async function dependency(name){const prefix='lib'+name.replaceAll('-','_')+'-';const choices=await Promise.all(files.filter(n=>n.startsWith(prefix)&&n.endsWith('.rlib')).map(async n=>({file:resolve(deps,n),mtime:(await fs.stat(resolve(deps,n))).mtimeMs})));assert.ok(choices.length,'Missing dependency '+name);choices.sort((a,b)=>b.mtime-a.mtime);await pin(choices[0].file);return choices[0].file;}
 const runtime=await dependency('js-runtime');
+const proof=JSON.parse(await pin(resolve(reference,opt('--full-proof','benchmarks/results/2026-10-30-guarded-native-wave-fork-four.json'))));
+assert.equal(proof.passed,true,'Full-world prerequisite must pass');
+const qualifiedRuntime=proof.linkedDependencies.find(row=>row.name==='js_runtime');assert.ok(qualifiedRuntime);
+assert.equal(runtime,qualifiedRuntime.file,'Selected runtime differs from qualified full-world build');
+assert.equal(sha(await fs.readFile(runtime)),qualifiedRuntime.sha256,'Qualified runtime was replaced');
 const workspace=(await pin(resolve(world,'Cargo.toml'))).toString(),members=JSON.parse(workspace.match(/^members\s*=\s*(\[[^\n]+\])/m)[1]);
 const census=await Promise.all(members.filter(n=>/-part-\d+$/.test(n)).map(async name=>({name,bytes:(await fs.stat(resolve(world,name,'src/lib.rs'))).size})));
 census.sort((a,b)=>a.bytes-b.bytes);
