@@ -33,7 +33,7 @@ async function snapshot(){
  inputs.clear();inputs.set(manifestFile,sha(await readFile(manifestFile)));
  await tree(workspace,true);
  for(const directory of ['crates/js-runtime','crates/battle-core','third-party'])await tree(resolve(root,directory));
- for(const file of ['Cargo.toml','Cargo.lock','rust-toolchain.toml','package.json','package-lock.json','config/source-oracle-runtime.json','tools/rust-port/build-program.mjs','tools/rust-port/program-host.rs','tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs'])await track(file);
+ for(const file of ['Cargo.toml','Cargo.lock','rust-toolchain.toml','package.json','package-lock.json','config/source-oracle-runtime.json','tools/rust-port/build-program.mjs','tools/rust-port/program-host.rs','tools/rust-port/generate-program.mjs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs','tools/rust-port/scalar-arrays.mjs'])await track(file);
  for(const file of [cargo,rustc])await track(file);
  for(const unit of manifest.units)await track(unit.file);
  for(const file of Object.keys(manifest.sources??{}))await track(file);
