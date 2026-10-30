@@ -14,20 +14,21 @@ JavaScript frame and environment; dependency groups become small Cargo crates
 to keep Rust compilation within memory limits. AST coverage does not establish
 complete runtime semantics.
 
-The [latest native batch](../../benchmarks/validation/rust-program-next-execution-wave-full.json)
-passes every non-timing final-report field and host-input check for **20 battles
-after three warmups at 0.711035 battles/second**. The previous qualified batch
-measured 0.700574; this retained pair differs by only 1.49%. Both use GC
-cadence 2. New helper A/B checks pass exactly: all on 0.747668 versus all four off
-0.707572 battles/second (1.057×), with individual-off trials also matching Node. The earlier property/array
-full-battle flag trials all match Node:
-all on 0.686706, primary off 0.690486, own-set off 0.614364, all new off
-0.651304; a separate own-read-off run measures 0.640151 battles/second.
-These are single trials, and primary storage is neutral here. The earlier
-[same-binary A/B](../../benchmarks/results/2026-10-28-allocation-wave-ab.json)
-measures 0.472224 reference versus 0.625076 optimized battles/second (1.324×),
-with every full report and host tape matching Node. Both keep stack number
-conversion; the reference disables the other integrated fast paths.
+The [latest qualified native batch](../../benchmarks/validation/rust-program-signed-camp-wave-full.json)
+passes every non-timing final-report field and host-input check for **20 measured
+battles after three warmups at 0.582225 battles/second**. The
+[qualified warm four-worker cohort](../../benchmarks/results/2026-10-30-signed-camp-wave-fork-four.json)
+completes **80 battles over 31.522 seconds at 2.537886 aggregate battles/second**.
+Every worker matches Node and consumes the complete host tape; each records
+50,300 signed-camp admissions, 150,900 getter calls and 12 GC collections.
+Both rates remain below 3 battles/second and the 10,000 target.
+
+The earlier layout serial cohort measured 0.750892 in a different host window.
+Those isolated cohorts do not establish a controlled speed change. A
+[matched OLD/NEW wrapper trial](../../benchmarks/results/2026-10-30-preserved-layout-ab.json)
+in the preceding window measured 0.684899 → 0.721301 (+5.31%), with exact full
+reports and host tapes. Component rates and single cold runs remain separate
+from complete-battle throughput; none qualify 20,000 distinct battles.
 
 The [latest cold diagnostic](../../benchmarks/results/2026-10-28T20-56-07.133Z-rust-one-battle-check.json)
 matches the Node final report at 0.486381 battles/second and adds 386,457 objects.
@@ -39,12 +40,12 @@ measures 1.982040 aggregate battles/second: 80 battles over the measured 40.362-
 cohort window, with all four complete reports and host tapes matching Node.
 The strict four-worker overlap is 38.788 seconds. Peak parent-plus-workers PSS
 plus orchestrator RSS is 7.67 GiB; summed RSS includes shared pages.
-The [latest cohort](../../benchmarks/results/2026-10-28-next-execution-fork-four-retry.json)
+The [historical next-execution cohort](../../benchmarks/results/2026-10-28-next-execution-fork-four-retry.json)
 passes all four full reports/tapes at 2.051487 aggregate battles/second, with
 9.68 GiB peak process PSS plus orchestrator RSS. This is 10.38% below the
 [prior cadence-2 cohort](../../benchmarks/results/2026-10-28-gc-cadence-two-fork-four-retry.json)
 at 2.288997; it is also 7.17% below the preceding 2.209977 cohort. An
-aggregate improvement is not established. The first latest-wave attempt was
+aggregate improvement is not established. The first next-execution attempt was
 aborted by an overly broad memory guard that included reclaimable file cache;
 both the failure and successful corrected-monitor retry are archived.
 These measurements remain below the historical approximately 3 battles/second
@@ -75,7 +76,7 @@ These are allocation samples, not CPU time percentages. The next integrated
 runtime includes stack formatting, integer-key reuse, string hashing, guarded
 length reads and dense callback shifts; its full-battle build/check now passes.
 
-The [latest trace-disabled profile](../../benchmarks/RUST_ALLOCATION_WAVE_PROFILE.md)
+The [earlier allocation-wave trace-disabled profile](../../benchmarks/RUST_ALLOCATION_WAVE_PROFILE.md)
 retains exact report/tape parity and 3,277 samples. Property access and GC remain
 prominent. A [same-binary GC cadence experiment](../../benchmarks/RUST_GC_CADENCE.md)
 passes full reports/tapes at all four cadences: cadence 2 is 12.7% faster than

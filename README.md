@@ -2,21 +2,23 @@
 
 A source-driven Rust port of the AFK Arena companion battle simulator. The goal is **10,000 faithful battles per second**: preserve the original execution order, callbacks, RNG consumption, timeouts and floating-point behavior while replacing dynamic object-heavy execution with Rust.
 
-**That target is not reached.** The latest qualified pure Rust run completes **20 measured battles after three warmups at 0.750892 battles/second**, matching every non-timing report field and the full host-input tape against pinned Node. Four warm forked workers complete **80 battles at 2.191376 aggregate battles/second** with exact reports from every worker.
+**That target is not reached.** The latest qualified pure Rust run completes **20 measured battles after three warmups at 0.582225 battles/second**, matching every non-timing report field and the full host-input tape against pinned Node. Four warm forked workers complete **80 battles at 2.537886 aggregate battles/second** with exact reports from every worker.
 
-Both rates remain below the historical approximately **3 battles/second Static Hermes** baseline. These are fixed-fixture results, not a 20,000-battle random-team qualification. The next combined optimization batch is undergoing full validation; its component gains are not whole-battle performance results.
+Both rates remain below the historical approximately **3 battles/second Static Hermes** baseline. These are fixed-fixture results, not a 20,000-battle random-team qualification. The latest cohort enables the signed-camp path and records 50,300 admitted calls, 150,900 getter calls and 12 GC collections per worker.
 
 ## Current results
 
 | Evidence | Result | Coverage |
 | --- | --- | --- |
-| [Latest qualified Rust batch](benchmarks/validation/rust-program-layout-execution-wave-full.json) | **0.750892 battles/sec**, original20/3 workload | Exact final reports, raw number bits and host tape; frozen build proof passes |
-| [Latest qualified four-worker run](benchmarks/results/2026-10-29-layout-execution-wave-fork-four.json) | **2.191376 aggregate battles/sec**, 80 battles over36.507s | Four exact reports/tapes, GC12 each; peak process PSS plus orchestrator RSS7.153GiB |
-| [Current candidate validation](benchmarks/validation/hot-execution-wave/summary.json) | 111 library +26 integration tests and25 source gates passed; release build pending | Primary numeric access, getter-aware mode path, argument stack and cold literal reads enabled; no new battle rate claimed |
+| [Latest qualified Rust batch](benchmarks/validation/rust-program-signed-camp-wave-full.json) | **0.582225 battles/sec**, original 20/3 workload | Exact final reports, raw number bits and host tape; frozen build proof passes |
+| [Latest qualified four-worker run](benchmarks/results/2026-10-30-signed-camp-wave-fork-four.json) | **2.537886 aggregate battles/sec**, 80 battles over 31.522 s | Four exact reports/tapes; each records 12 GC collections, 50,300 admitted calls and 150,900 getter calls |
+| [Latest source qualification](benchmarks/validation/signed-camp-wave/summary.json) | 186 native tests and 26 source gates passed | Signed-camp domain and original getter order are checked; full batch and fork now qualify |
+| [Earlier layout batch](benchmarks/validation/rust-program-layout-execution-wave-full.json) | **0.750892 battles/sec** | Earlier host window; direct comparison with the latest serial cohort does not establish a regression |
+| [Matched prior-window OLD/NEW trial](benchmarks/results/2026-10-30-preserved-layout-ab.json) | **0.684899 → 0.721301 battles/sec**, +5.31% | Matched host/wrapper trial of the preceding hot wave; exact full reports and tapes |
 | [Prior pure Rust batch](benchmarks/validation/rust-program-next-execution-wave-full.json) | 20 measured after 3 warmups; **0.711035 battles/sec** | Every non-timing final-report field and full host consumption match pinned Node; build provenance passes |
 | [Earlier pure Rust batch](benchmarks/validation/rust-program-own-primary-wave-full.json) | Same 20/3 workload; **0.700574 battles/sec** | Exact report/host parity; earlier runtime |
 | [Prior four forked warm Rust workers](benchmarks/results/2026-10-28-next-execution-fork-four-retry.json) | **2.051487 aggregate battles/sec**, 80 battles over 38.996 s | Shared original three-warmup state; each full report/tape matches Node, overlapping measured windows; peak process PSS plus orchestrator RSS 9.68 GiB |
-| [Prior cadence-2 fork cohort](benchmarks/results/2026-10-28-gc-cadence-two-fork-four-retry.json) | **2.288997 aggregate battles/sec**, 80 battles over 34.950 s | All four reports/tapes match; latest cohort is 10.38% slower, so aggregate improvement is not established |
+| [Prior cadence-2 fork cohort](benchmarks/results/2026-10-28-gc-cadence-two-fork-four-retry.json) | **2.288997 aggregate battles/sec**, 80 battles over 34.950 s | All four reports/tapes match; historical cohort with a separate measurement window |
 | [Latest helper A/B](benchmarks/results/2026-10-28-next-helper-ab.json) | All on **0.747668**, all four helpers off **0.707572 battles/sec**, 1.057× | Exact reports/tapes; one sequential trial per mode, separate wrapper from canonical full program |
 | [Individual helper flags](benchmarks/results/2026-10-28-next-helper-individual-ab.json) | Parser off **0.697554**, buff off **0.731625**, data factory off **0.724739**, prototype cache off **0.753950 battles/sec** | Exact reports/tapes; the prototype-off difference is below 1% versus the earlier all-on trial |
 | [Current same-binary component flags](benchmarks/results/2026-10-28-own-primary-components.json) | All on **0.686706**, primary off **0.690486**, own-set off **0.614364**, all new off **0.651304 battles/sec** | Each complete report/tape matches Node; one trial per mode; primary storage is neutral in this trial |
@@ -32,7 +34,7 @@ Both rates remain below the historical approximately **3 battles/second Static H
 
 ## Timing profile
 
-The [latest trace-disabled warm profile](benchmarks/RUST_ALLOCATION_WAVE_PROFILE.md) matches the complete report and host tape, with 3,277 CPU samples and zero lost samples. Property reads, descriptors, hash-table insertion and GC remain prominent costs. Profiling timing is separate from throughput. Earlier [trace-enabled](benchmarks/RUST_WARM_BATTLE_PROFILE.md) and [trace-disabled](benchmarks/RUST_WARM_TRACE0_PROFILE.md) profiles remain archived.
+The [latest retained trace-disabled warm profile](benchmarks/CURRENT_LAYOUT_PROFILE.md) matches the complete report and host tape, with 2,663 CPU samples and zero lost samples. Property reads, descriptors, hash-table insertion and GC remain prominent costs. Profiling timing is separate from throughput. Earlier [trace-enabled](benchmarks/RUST_WARM_BATTLE_PROFILE.md) and [trace-disabled](benchmarks/RUST_WARM_TRACE0_PROFILE.md) profiles remain archived.
 
 The [GC cadence experiment](benchmarks/RUST_GC_CADENCE.md) also matches all full reports and host tapes. Against its same-rebinding cadence-1 control, cadence 2 gains 12.7% at 3.01 GiB observed HWM; cadence 8 gains 21.6% at 4.64 GiB. These derivative-runner rates are separate from the qualified program and four-worker benchmark above.
 
