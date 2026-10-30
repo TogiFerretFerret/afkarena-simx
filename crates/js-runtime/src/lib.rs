@@ -61,3 +61,5 @@ pub mod stored_property;
 mod battle_mode_limit;
 
 #[cfg(test)]mod primary_numeric_access_tests;
+
+mod numeric_region;
