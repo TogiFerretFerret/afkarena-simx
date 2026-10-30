@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "tables": {
+    "SkillBuff": {
+      "file": "src/srcmodule/SkillBuff.json",
+      "sha256": "4edaf2f94d76cbcdd8da027ffb4cb68940c8ad892005b4e5e75bfd54be4b090b",
+      "rows": 3672,
+      "eligible": 3672,
+      "reasons": {},
+      "maxNodes": 8,
+      "maxProperties": 82,
+      "maxDepth": 1,
+      "maxArray": 7
+    },
+    "UnitLevel": {
+      "file": "src/srcmodule/UnitLevel.json",
+      "sha256": "2b9668b3c0e934c3680a09397b3218309edb21f49d5ce72bcb92fb097569c11c",
+      "rows": 12741,
+      "eligible": 12741,
+      "reasons": {},
+      "maxNodes": 5,
+      "maxProperties": 52,
+      "maxDepth": 1,
+      "maxArray": 9
+    },
+    "UnitQuality": {
+      "file": "src/srcmodule/UnitQuality.json",
+      "sha256": "9c95d5ab5fb0d0dcdeff823f1794489cb9f0397eeadb0ec1cd22473010f3c6c4",
+      "rows": 13220,
+      "eligible": 13220,
+      "reasons": {},
+      "maxNodes": 2,
+      "maxProperties": 35,
+      "maxDepth": 1,
+      "maxArray": 3
+    },
+    "UnitRank": {
+      "file": "src/srcmodule/UnitRank.json",
+      "sha256": "d874b198d445cbc4e53e7ad1abd0c19275e6d48a26108d145848a739a2bb3067",
+      "rows": 13220,
+      "eligible": 13220,
+      "reasons": {},
+      "maxNodes": 1,
+      "maxProperties": 13,
+      "maxDepth": 0,
+      "maxArray": 0
+    }
+  },
+  "bounds": {
+    "depth": 3,
+    "nodeOccurrences": 32,
+    "physicalProperties": 256,
+    "arrayLength": 64
+  },
+  "scope": "Exact static JSON shape opportunity census, including prototype-key conflicts and default descriptors. Does not prove live source namespace/intrinsic identity or absence of later runtime mutations. Runtime preflight remains mandatory; per-battle dynamic hits unmeasured.",
+  "qualifiesFor10000Target": false
+}
