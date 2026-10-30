@@ -3,6 +3,35 @@
 //! source-requested file bytes and hash diagnostic UTF-8 text.
 use js_runtime::{Runtime,Value,EnvId,JsResult,JsError};
 
+// Host-only measurement state never allocates JS cells or changes source values.
+thread_local! {static COPY_WINDOW:std::cell::Cell<Option<(usize,usize,bool)>>=const{std::cell::Cell::new(None)};}
+pub fn nested_copy_window(rt:&Runtime,ordinal:u32)->JsResult<()> {
+ let now=(rt.nested_copy_obj_attempts,rt.nested_copy_obj_hits,rt.native_nested_copy_obj_enabled);
+ COPY_WINDOW.with(|slot|{match ordinal {
+  0=>{if slot.replace(Some(now)).is_some(){return Err(JsError::Unsupported("duplicate nested copy start marker".into()))}},
+  1=>{let Some(start)=slot.take()else{return Err(JsError::Unsupported("missing nested copy start marker".into()))};
+   let attempts=now.0.checked_sub(start.0).ok_or_else(||JsError::Unsupported("nested attempt counter decreased".into()))?;
+   let hits=now.1.checked_sub(start.1).ok_or_else(||JsError::Unsupported("nested hit counter decreased".into()))?;
+   eprintln!("NESTED_COPY_WINDOW:{}:{}:{}:{}:{}:{}",start.0,start.1,attempts,hits,start.2,now.2);
+  },_=>return Err(JsError::Unsupported("invalid nested copy window marker".into()))
+ }Ok(())})
+}
+// The fixed harness defines this host clock before executing unit 6.
+pub fn install_measured_copy_clock(rt:&mut Runtime)->JsResult<()> {
+ let env=rt.global_env;let original=rt.lookup(env,"__nativeWallNow")?;let capture=rt.child_env(env);
+ rt.declare(capture,"measuredOriginalWallNow",original)?;rt.declare(capture,"measuredWallCalls",Value::Number(0.0))?;
+ let wrapper=rt.make_closure_with_flags(measured_copy_clock,capture,0,"__nativeWallNow",true,None);
+ rt.assign(env,"__nativeWallNow",wrapper,true)?;Ok(())
+}
+fn measured_copy_clock(rt:&mut Runtime,this:Value,args:&[Value],env:EnvId)->JsResult<Value>{
+ let original=rt.lookup(env,"measuredOriginalWallNow")?;
+ let Value::Number(ordinal)=rt.lookup(env,"measuredWallCalls")?else{return Err(JsError::Unsupported("invalid measured wall ordinal".into()))};
+ if ordinal!=0.0&&ordinal!=1.0{return Err(JsError::Unsupported("expected exactly two measured wall calls".into()))}
+ rt.assign(env,"measuredWallCalls",Value::Number(ordinal+1.0),true)?;
+ // Snapshot immediately around the original wall clock, after source warmups.
+ nested_copy_window(rt,ordinal as u32)?;rt.call_value(original,this,args)
+}
+
 pub fn install(rt:&mut Runtime)->JsResult<()> {
  let global=Value::Object(rt.global_object);
  let host=rt.object();let load=rt.native_function("loadFile",1,load_file)?;
@@ -48,6 +77,26 @@ pub fn sha256_hex(input:&[u8])->String{
 }
 #[cfg(test)]mod tests{
  use super::*;
+ fn original_test_clock(rt:&mut Runtime,this:Value,args:&[Value],_:EnvId)->JsResult<Value>{
+  assert_eq!(this,Value::Number(8.0));assert_eq!(args,&[Value::Number(9.0)]);
+  let Value::Number(n)=rt.lookup(rt.global_env,"clockCalls")?else{panic!()};rt.assign(rt.global_env,"clockCalls",Value::Number(n+1.0),true)?;Ok(Value::Number(n+17.0))
+ }
+ #[test]fn measured_clock_preserves_original_calls_and_values(){
+  COPY_WINDOW.with(|slot|slot.set(None));let mut rt=Runtime::new();let env=rt.global_env;
+  rt.declare(env,"clockCalls",Value::Number(0.0)).unwrap();let original=rt.native_function("testClock",0,original_test_clock).unwrap();rt.declare(env,"__nativeWallNow",original).unwrap();
+  rt.nested_copy_obj_attempts=300;rt.nested_copy_obj_hits=200;
+  install_measured_copy_clock(&mut rt).unwrap();let clock=rt.lookup(env,"__nativeWallNow").unwrap();
+  assert_eq!(rt.call(clock,Value::Number(8.0),&[Value::Number(9.0)]).unwrap(),Value::Number(17.0));
+  COPY_WINDOW.with(|slot|assert_eq!(slot.get(),Some((300,200,true))));
+  rt.nested_copy_obj_attempts+=500;rt.nested_copy_obj_hits+=40;
+  assert_eq!(rt.call(clock,Value::Number(8.0),&[Value::Number(9.0)]).unwrap(),Value::Number(18.0));
+  assert_eq!(rt.lookup(env,"clockCalls").unwrap(),Value::Number(2.0));COPY_WINDOW.with(|slot|assert_eq!(slot.get(),None));
+  assert!(rt.call(clock,Value::Number(8.0),&[Value::Number(9.0)]).is_err());
+  assert_eq!(rt.lookup(env,"clockCalls").unwrap(),Value::Number(2.0));
+ }
+ #[test]fn measured_copy_rejects_missing_start_and_decreasing_counters(){
+  COPY_WINDOW.with(|slot|slot.set(None));let mut rt=Runtime::new();assert!(nested_copy_window(&rt,1).is_err());rt.nested_copy_obj_attempts=3;nested_copy_window(&rt,0).unwrap();rt.nested_copy_obj_attempts=2;assert!(nested_copy_window(&rt,1).is_err());
+ }
  #[test]fn sha256_known_vectors(){for(input,expected)in[("","e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),("abc","ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"),("abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq","248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1")]{assert_eq!(sha256_hex(input.as_bytes()),expected)}assert_eq!(sha256_hex(&vec![b'a';1_000_000]),"cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0");}
  #[test]fn loader_returns_real_unsigned_bytes(){let mut rt=Runtime::new();install(&mut rt).unwrap();let path=std::env::temp_dir().join(format!("simx-native-host-{}",std::process::id()));std::fs::write(&path,[0,127,128,255]).unwrap();let arg=rt.string(path.to_str().unwrap());let env=rt.global_env;let data=load_file(&mut rt,Value::Undefined,&[arg],env).unwrap();std::fs::remove_file(path).unwrap();for(i,expected)in[0,127,128,255].into_iter().enumerate(){let key=rt.string(&i.to_string());assert_eq!(rt.get(data,key).unwrap(),Value::Number(expected as f64));}let key=rt.string("length");assert_eq!(rt.get(data,key).unwrap(),Value::Number(4.0));}
  #[test]fn diagnostic_uses_node_utf8_replacement(){let mut rt=Runtime::new();let text=rt.string_utf16(&[0x61,0xd800,0x62,0xdc00]);let env=rt.global_env;let out=diagnostic_digest(&mut rt,Value::Undefined,&[text],env).unwrap();let Value::String(id)=out else{panic!()};assert_eq!(String::from_utf16_lossy(rt.string_units(id)),sha256_hex("a\u{fffd}b\u{fffd}".as_bytes()));}

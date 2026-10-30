@@ -28,7 +28,7 @@ try{
   await run('features','tools/rust-port/check-program-features.mjs',['--expected-gc-cadence',cadence]);
   await run('build','tools/rust-port/build-program.mjs',['--profile','release','--jobs',jobs,'--output',buildFile]);
   const build=JSON.parse(await readFile(buildFile));assert.equal(build.passed,true);assert.equal(build.changedInputs.length,0);report.build={file:buildFile,binary:build.binary,wallMs:build.wallMs};
-  await run('full','tools/rust-port/check-program.mjs',['--profile','release','--binary',build.binary.file,'--build-proof',buildFile,'--output',fullFile]);
+  await run('full','tools/rust-port/check-program.mjs',['--profile','release','--binary',build.binary.file,'--build-proof',buildFile,'--output',fullFile,...(args.includes('--require-measured-nested-copy')?['--require-measured-nested-copy']:[])]);
   const full=JSON.parse(await readFile(fullFile));assert.equal(full.passed,true);assert.equal(full.completed,20);
   report.full={file:fullFile,completed:full.completed,performance:full.performance??null,battlesPerSecond:full.nativeReport?.battlesPerSecond??full.actualReport?.battlesPerSecond??null};
   report.passed=true;report.stage='passed';

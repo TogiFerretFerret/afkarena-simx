@@ -10,6 +10,7 @@ fn wall_now(rt:&mut Runtime,this:Value,args:&[Value],env:EnvId)->JsResult<Value>
  if ordinal!=0.0&&ordinal!=1.0{return Err(JsError::Unsupported("more than two measured wall calls".into()))}
  rt.assign(env,"parallelWallCalls",Value::Number(ordinal+1.0),true)?;
  if ordinal==0.0{let directory=std::env::var_os("RUST_PORT_FORK_DIR").ok_or_else(||JsError::Unsupported("missing fork output directory".into()))?;fork_warm::start(std::path::Path::new(&directory)).map_err(|error|JsError::Unsupported(format!("warm fork: {error}")))?;}
+ program_host::nested_copy_window(rt,ordinal as u32)?;
  let stamp=std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map_err(|e|JsError::Unsupported(format!("wall epoch: {e}")))?.as_nanos();
  let result=rt.call_value(original,this,args)?;
  eprintln!("PARALLEL_WALL_NOW:{}:{}",ordinal as u32,stamp);

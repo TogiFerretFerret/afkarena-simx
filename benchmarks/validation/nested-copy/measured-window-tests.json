@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "nativeHostTests": 6,
+  "nodeParserTests": 4,
+  "inputs": {
+    "tools/rust-port/program-host.rs": "b5451278a8af2dafeb3f12e8b5a8996dceaa9af451039d649e64600c1f43f08a",
+    "tools/rust-port/nested-copy-window.mjs": "140361bdf72fa3089760796ce99734a8732958386601645f0d625b9972482768",
+    "tools/rust-port/tests/nested-copy-window.test.mjs": "167399b0d505282a593da317aa00cfd053dd953a0ac0e40f4964b5d8232feac2",
+    "tools/rust-port/generate-program.mjs": "63ce7883ac94036809530c08ca8347b6e97c6867afbc0edc98e3f2753489eca3",
+    "tools/rust-port/program-fork-benchmark.rs": "f354da6e78449a92e1908014960b2755b03bba9318f55f1e98a61356c9ca130e",
+    "tools/rust-port/check-program.mjs": "a35e3f2326bfb13eee4efc3ad7049f73504d56611b7c75b47b068606bfe1bfa1",
+    "tools/rust-port/benchmark-fork-program.mjs": "5f84885e04fab92ec388b8690edfb103e18edeaa2eccb696a7d379a89ff9eb13",
+    "tools/rust-port/build-and-validate-program.mjs": "dee07a8a5c99a9f79c1b117ddafb76d5ef130e278cfa59b61549f7634de60fa7",
+    "target/release/libjs_runtime.rlib": "d09b421ce76958d2f8a3a0c5a71f8d65bac222c806287d3592eb9f5bdb017dac"
+  },
+  "artifact": {
+    "file": "benchmarks/validation/nested-copy/measured-window-tests.json.gz",
+    "sha256": "2b61099b254422a1f716f56d0bb077527c676c3885a13d3995cf181086bfa621"
+  },
+  "nativeBinary": {
+    "file": "/workspace/afkarena-simx/work/nested-copy-host-tests",
+    "sha256": "d9a1b7fa2b43c999f58f74507126e7b1fa886bc3caa88a1f2fec9f4409b450e0"
+  },
+  "scope": "Host observer and parser regression only; no full build, battle execution or throughput claim.",
+  "fullBattleQualified": false
+}
