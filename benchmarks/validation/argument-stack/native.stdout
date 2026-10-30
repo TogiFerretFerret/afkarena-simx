@@ -1,0 +1,155 @@
+
+running 94 tests
+test battle_gc::tests::collection_ephemeron_chain_and_shared_buffer_views_stay_live ... ok
+test battle_gc::tests::diagnostic_hidden_values_keep_giant_strings_live ... ok
+test battle_gc::tests::discarded_accessor_storage_does_not_root_weak_keys_across_23_actual_gc_safepoints ... ok
+test battle_gc::tests::giant_unreachable_strings_are_tombstoned_without_id_reuse_and_small_strings_stay ... ok
+test battle_gc::tests::exact_safepoint_keeps_all_three_arenas_bounded_and_unknown_source_skips ... ok
+test battle_gc::tests::indexed_original_ranges_root_many_arguments_and_snapshots_through_23_actual_gc_safepoints ... ok
+test battle_gc::tests::giant_static_literal_slot_utf8_and_regex_cache_keys_are_invalidated ... ok
+test battle_gc::tests::mapped_arguments_keep_their_environment_and_live_parameter_cell ... ok
+test battle_gc::tests::original_call_arguments_are_roots_even_without_registered_parameter_metadata ... ok
+test battle_gc::tests::reused_objects_and_environments_retain_capacity_but_clear_every_logical_field ... ok
+test battle_gc::tests::roots_preserve_live_cycles_closure_cells_and_raw_bits_while_slots_reuse ... ok
+test battle_gc::tests::typed_views_keep_the_original_array_buffer_object_identity_and_properties ... ok
+test battle_gc::tests::weak_object_and_function_keys_are_pruned_before_either_id_can_be_reused ... ok
+test battle_gc::tests::weak_set_dead_keys_and_replaced_intrinsic_snapshots_do_not_become_stale_aliases ... ok
+test battle_mode_limit::tests::accepted_path_calls_both_actual_tables_and_conditional_battle_helper ... ok
+test battle_mode_limit::tests::cached_config_and_guard_roots_survive_twenty_three_source_safepoints ... ok
+test battle_mode_limit::tests::plan_rekeys_mutated_config_and_rejects_opaque_helpers_before_calls ... ok
+test battle_mode_limit::tests::rejected_noninteger_numbers_preserve_input_payloads_without_calls ... ok
+test binary::tests::data_view_hash_preserves_f64_payloads_and_both_endian_orders ... ok
+test binary::tests::integer_views_share_bytes_and_bounds_respect_view_window ... ok
+test binary::tests::numeric_typed_reads_preserve_bits_and_do_not_intern_byte_positions ... ok
+test binary::tests::same_element_float_copy_preserves_signaling_nan_and_clamping_uses_even_ties ... ok
+test binary::tests::typed_arrays_share_bytes_and_reject_canonical_invalid_indices ... ok
+test binary::tests::typed_set_overlap_subarray_alias_and_slice_copy_are_distinct ... ok
+test buff_attribute_loop::tests::twenty_three_actual_source_safepoints_reuse_objects_without_stale_loop_slots ... ok
+test closures::function_identity_index_tests::all_creation_paths_keep_the_same_callable_object_identity ... ok
+test closures::function_identity_index_tests::captured_internal_name_ignores_later_own_name_descriptor_changes ... ok
+test closures::function_identity_index_tests::ordinary_objects_remain_noncallable_even_when_inheriting_from_functions ... ok
+test closures::tests::bound_constructor_ignores_bound_this_and_uses_target_prototype ... ok
+test closures::tests::mapped_arguments_follow_live_cells_and_detach_on_descriptor_change ... ok
+test closures::tests::new_target_tracks_constructor_frames_and_escapes_in_arrows ... ok
+test closures::tests::shared_capture_mutation_and_throw_prefix_survive_calls ... ok
+test closures::tests::source_metadata_and_function_prototype_are_actual_callable_objects ... ok
+test closures::tests::static_little_endian_source_range_retains_utf16_units ... ok
+test closures::tests::strict_sloppy_arrow_and_bound_receivers_remain_distinct ... ok
+test copy_obj::capacity_reuse_tests::corrupt_free_source_is_rejected_before_allocation ... ok
+test copy_obj::capacity_reuse_tests::exact_source_23_safepoints_recycle_numeric_copy_capacity ... ok
+test copy_obj::data_obj_scan_tests::empty_scan_leaves_original_r_untouched ... ok
+test battle_gc::tests::internal_function_names_survive_deleted_properties_and_23_actual_gc_safepoints ... ok
+test copy_obj::data_obj_scan_tests::primary_scan_hits_preserves_raw_values_and_final_ordered_binding ... ok
+test copy_obj::tests::empty_arrays_and_factory_parent_work_without_callbacks ... ok
+test copy_obj::tests::fresh_copy_preserves_order_descriptors_and_negative_zero ... ok
+test copy_obj::tests::unknown_shapes_and_observable_mutations_fall_back ... ok
+test dense_array_shift::tests::accepts_dense_callbacks_preserves_destination_flags_and_aliases ... ok
+test copy_obj::data_obj_scan_tests::scans_reject_source_observers_before_any_binding_write ... ok
+test dense_array_shift::tests::rejects_poison_holes_readonly_lengths_and_numeric_history_without_mutation ... ok
+test diagnostics::tests::coercion_enables_recording_but_preserves_original_raw_key_and_roots ... ok
+test diagnostics::tests::getter_can_disable_recording_without_capturing_before_call_flag ... ok
+test diagnostics::tests::getter_can_enable_recording_at_original_after_get_point ... ok
+test dense_array_shift::tests::repeated_dense_queues_survive_twenty_three_actual_collections_and_id_reuse ... ok
+test dynamic_slots::tests::key_hints_read_fresh_values_across_layout_mutation_and_reused_object_ids ... ok
+test env::tests::global_var_properties_remain_live_and_inherited_names_get_own_bindings ... ok
+test env::tests::references_resolve_before_rhs_and_loop_cells_are_fresh ... ok
+test env::tests::var_hoisting_does_not_reset_parameters_and_tdz_hides_parent ... ok
+test expose_scan::tests::raw_guard_hits_and_mutated_methods_fall_back ... ok
+test heap::compact_property_tests::compact_layout_and_accessor_replacement_deletion_reuse ... ok
+test heap::compact_property_tests::physical_data_guards_preserve_attributes_and_all_raw_bits ... ok
+test heap::compact_property_tests::storage_clone_copies_accessor_identities_holes_and_releases_old_arena ... ok
+test heap::primary_numeric_tests::nonnumber_and_nondefault_descriptors_materialize ... ok
+test heap::primary_numeric_tests::out_of_domain_key_deopts_and_reset_retains_storage ... ok
+test heap::primary_numeric_tests::primary_numbers_are_authoritative_and_bit_exact ... ok
+test heap::primary_numeric_tests::runtime_primary_arrays_survive_actual_source_safepoints_and_reuse ... ok
+test id_hash::tests::integer_lookup_matches_standard_table_after_replacements_and_deletes ... ok
+test index_keys::tests::full_usize_decimal_spelling_matches_display_and_canonical_identity ... ok
+test lazy_arguments::indexed_stack_tests::duplicate_formals_raw_promoted_slots_and_extra_arguments_preserve_original_shape ... ok
+test lazy_arguments::indexed_stack_tests::recursive_ranges_survive_reallocation_nested_throws_and_fresh_legacy_snapshots ... ok
+test lazy_arguments::indexed_stack_tests::strict_and_arrow_calls_do_not_push_shared_original_argument_storage ... ok
+test property_slots::length_tests::fast_length_records_exactly_one_get_and_zero_has_positive_zero_bits ... ok
+test property_slots::one_hop_tests::array_length_virtual_descriptor_beats_cached_parent_even_when_length_fast_disabled ... ok
+test property_slots::one_hop_tests::metadata_only_layout_and_live_owner_values ... ok
+test property_slots::one_hop_tests::primary_numeric_own_beats_hinted_parent_data ... ok
+test property_slots::one_hop_tests::weak_owner_ids_survive_twenty_three_collections_and_reuse ... ok
+test reachability::tests::cache_only_strings_are_distinguished_and_active_execution_is_rejected ... ok
+test reachability::tests::closure_cells_and_bound_arguments_survive_only_with_explicit_host_roots ... ok
+test reachability::tests::invalid_host_roots_are_rejected_and_explicit_environments_are_supported ... ok
+test reachability::tests::unreachable_cycles_and_live_accessors_are_traced_without_execution ... ok
+test reachability::tests::views_retain_shared_backing_buffer_and_iterators_retain_collections ... ok
+test reachability::tests::weak_map_ephemeron_fixpoint_does_not_turn_unrooted_cycles_into_roots ... ok
+test runtime::shared_utf16_tests::canonical_utf16_table_and_full_equality_index_share_one_immutable_payload ... ok
+test runtime::shared_utf16_tests::utf8_static_literal_and_utf16_routes_keep_original_canonical_ids_and_surrogates ... ok
+test battle_gc::tests::giant_live_values_property_keys_and_regex_sources_survive ... ok
+test stage_range_parser::tests::plan_hits_allocate_fresh_objects_and_preserve_exact_uint_bits ... ok
+test stage_range_parser::tests::cached_tokens_and_fresh_outputs_survive_twenty_three_actual_safepoints ... ok
+test stored_property::tests::layout_and_all_number_bit_patterns_preserve_flags ... ok
+test stored_property::tests::nonnumeric_values_and_tombstones ... ok
+test stage_range_parser::tests::strict_domain_rejects_minus_zero_warnings_and_changed_destinations ... ok
+test string_hash::tests::deliberate_full_fx_collision_still_keeps_distinct_canonical_strings ... ok
+test utf8_guard::tests::modified_intrinsics_force_original_source_without_observers ... ok
+test utf8_guard::tests::pristine_bytes_pass_but_raw_mutations_and_shadowing_fall_back ... ok
+test utf8_guard::tests::prototype_numeric_poison_is_rejected_without_getter_invocation ... ok
+test utf8_loader::tests::preserves_permissive_source_bit_operations ... ok
+test battle_gc::tests::shared_utf16_snapshots_stay_owned_through_23_gc_tombstones_without_id_reuse ... ok
+test string_hash::tests::canonical_id_sequence_matches_sip_for_unicode_nuls_surrogates_and_static_forms ... ok
+test dynamic_slots::tests::dynamic_hint_table_is_bounded ... ok
+
+test result: ok. 94 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.60s
+
+
+running 3 tests
+test utf16_lengths_include_surrogate_units_and_boxed_values ... ok
+test fresh_array_lengths_follow_growth_shrink_readonly_and_maximum ... ok
+test twenty_three_collections_recycle_object_kinds_without_stale_lengths ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 2 tests
+test cached_decimal_ids_survive_twenty_three_verified_collections ... ok
+test cached_integer_keys_match_uncached_number_conversion_and_collisions ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 8 tests
+test indexed_keys_precede_strings_and_intrinsic_length_retains_creation_order ... ok
+test array_length_shrink_keeps_failure_prefix_in_sloppy_mode ... ok
+test array_length_converts_twice_and_does_not_swallow_conversion_type_errors ... ok
+test cyclic_join_is_bounded_and_global_constructors_are_real_callable_values ... ok
+test inherited_accessors_receive_original_receiver_and_throw_identity_survives ... ok
+test readonly_prototype_rejects_without_shadowing_and_same_value_is_descriptor_specific ... ok
+test utf16_string_indices_and_names_preserve_lone_surrogates ... ok
+test v8_sort_compacts_undefined_and_holes_with_live_property_writeback ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 4 tests
+test own_data_keeps_flags_extensibility_and_every_raw_number_bit ... ok
+test arrays_and_mapped_arguments_keep_virtual_and_binding_writes ... ok
+test key_coercion_can_replace_own_data_with_a_setter_before_the_write ... ok
+test own_data_shadows_setters_but_absent_and_readonly_properties_keep_original_rules ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 4 tests
+test physical_function_alias_never_caches_legacy_null_slot ... ok
+test data_slot_value_is_live_and_delete_reinsert_does_not_reuse_tombstone ... ok
+test sites_and_runtime_interners_remain_independent ... ok
+test twenty_three_collections_recycle_slots_without_caching_values_or_function_aliases ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 5 tests
+test custom_exec_result_validation_and_readonly_lastindex_throw ... ok
+test captures_indices_and_global_last_index_are_live ... ok
+test sticky_failure_resets_lastindex_but_nonglobal_preserves_it ... ok
+test unicode_and_nonunicode_iteration_preserve_utf16_units ... ok
+test empty_global_matches_advance_without_changing_exec_zero_width_rule ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
