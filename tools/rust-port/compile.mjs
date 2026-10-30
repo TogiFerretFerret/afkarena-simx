@@ -146,7 +146,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
  });}
  function chunks(items,weight,maxWeight,maxItems){const result=[];let current=[],size=0;for(const item of items){const next=weight(item);if(current.length&&(size+next>maxWeight||current.length>=maxItems)){result.push(current);current=[];size=0;}current.push(item);size+=next;}if(current.length)result.push(current);return result;}
  function instantiateGroups(node,ctx,declarations,params,body){const groups=[];
-  for(let index=0;index<params.length;index++){const parameter=params[index],name=parameter.name;groups.push(local=>{const native=local.nativeParameterBindings?.get(parameter.name);if(native){local.emit(`${native} = args.get(${index}).copied().unwrap_or(Value::Undefined);`);return;}local.emit(`${local.envCall("declare","env",name,["Value::Undefined"])}?;`);local.emit(`${local.envCall("assign","env",name,[`args.get(${index}).copied().unwrap_or(Value::Undefined)`,"false"])}?;`);});}
+  for(let index=0;index<params.length;index++){const parameter=params[index],name=parameter.name;groups.push(local=>{const native=local.nativeParameterBindings?.get(parameter.name);if(native){if(local.nativeMutableParameterNames?.has(name)){if(local.staticEnvironmentNames)local.envCall("declare","env",name,["Value::Undefined"]);else local.emit(`let _ = rt.static_identifier_id(${rustString(name)});`);}local.emit(`${native} = args.get(${index}).copied().unwrap_or(Value::Undefined);`);return;}local.emit(`${local.envCall("declare","env",name,["Value::Undefined"])}?;`);local.emit(`${local.envCall("assign","env",name,[`args.get(${index}).copied().unwrap_or(Value::Undefined)`,"false"])}?;`);});}
   if(node.type!=='Program'&&node.type!=='ArrowFunctionExpression'){
    const parameterNames=params.map(p=>rustString(p.name)).join(',');
    if(!ctx.strict){
@@ -258,6 +258,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
     const nativeNames=[...new Set([...nativePlan.names,...nativeParameterNames])];
     for(const name of nativeNames){const binding=ctx.fresh('native_local');nativeBindings.set(name,binding);ctx.emit(`let mut ${binding} = Value::Undefined;`);}
     ctx.nativeParameterBindings=new Map(nativeParameterNames.map(name=>[name,nativeBindings.get(name)]));
+    ctx.nativeMutableParameterNames=new Set(mutableParameterNames);
     ctx.nativeMutableParameterBindings=new Map(mirroredParameterNames.map(name=>[name,nativeBindings.get(name)]));
     ctx.emitNativeLocalWrite=function(name,value){this.emit(`${nativeBindings.get(name)} = ${value};`);const slot=mirroredParameterSlots.get(name);if(slot!==undefined)this.emit(`rt.write_promoted_parameter(${slot}, ${nativeBindings.get(name)})?;`);};
     ctx.nativeBindingNames=new Set(nativeNames);record.nativeBindings=nativeNames;
