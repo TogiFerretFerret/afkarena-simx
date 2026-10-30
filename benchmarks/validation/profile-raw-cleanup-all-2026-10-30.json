@@ -380,5 +380,26 @@
       "sha256": "c5cd9072770e23cd73eb81438d53e2212a928faffdcd86bff8fc9b0ddc27e881",
       "chunksVerified": 1
     }
-  ]
+  ],
+  "sparseReduction": {
+    "worktree": "work/candidate-small-array-copy",
+    "ownerConfirmed": true,
+    "initialStatus": "Clean except untracked node_modules symlink",
+    "trackedExclusions": [
+      "src",
+      "benchmarks"
+    ],
+    "sourceReadLink": "work/candidate-small-array-copy/src -> /workspace/afkarena-simx/src",
+    "isolatedBenchmarkDirectories": true,
+    "preserved": [
+      "crates",
+      "tools",
+      "config",
+      "third-party",
+      "work",
+      "untracked files",
+      "all prepared binaries"
+    ],
+    "restore": "git sparse-checkout disable (remove untracked src symlink first)"
+  }
 }
