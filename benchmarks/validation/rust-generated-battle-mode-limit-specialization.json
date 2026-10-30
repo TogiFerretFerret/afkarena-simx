@@ -1,8 +1,94 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 100,
-  "coveredCases": 98,
+  "cases": 114,
+  "coveredCases": 112,
+  "signedCampSourceAdmissions": [
+    {
+      "index": 0,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 1,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 2,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 3,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 4,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 5,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 6,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 7,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 8,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 9,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 10,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 11,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 12,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 13,
+      "attempts": 1,
+      "domainHits": 0,
+      "getterCalls": 0
+    }
+  ],
   "knownUnsupportedCases": 2,
   "knownUnsupported": [
     {
@@ -12,6 +98,12 @@
       "expected": "ok:string:005b0074007200750065002c005b005b0074007200750065002c0074007200750065005d005d002c00350035002c0032002c0031002c002200340030003400620038003000300030003000300030003000300030003000300022002c002200340030003000300030003000300030003000300030003000300030003000300022002c002200330066006600300030003000300030003000300030003000300030003000300022002c002200730074006100670065003b0031003b0039003000300030003b0074006f007700650072003b00320030003000300031003b003200390030003000300022002c002200350035003b00360032003b003600390022005d",
       "actual": "runtime-error:TypeError(\"cannot access null or undefined\")",
       "matched": false,
+      "admission": {
+        "index": 86,
+        "attempts": 0,
+        "domainHits": 0,
+        "getterCalls": 0
+      },
       "knownUnsupported": "Preexisting active sloppy Function.caller is null in the baseline runtime; identical TypeError OFF and ON. No caller semantics are changed by this candidate."
     },
     {
@@ -21,6 +113,12 @@
       "expected": "ok:string:005b0074007200750065002c005b005b0074007200750065002c0074007200750065005d005d002c00350035002c0032002c0031002c002200340030003400620038003000300030003000300030003000300030003000300022002c002200340030003000300030003000300030003000300030003000300030003000300022002c002200330066006600300030003000300030003000300030003000300030003000300022002c002200730074006100670065003b0031003b0039003000300030003b0074006f007700650072003b00320030003000300031003b003200390030003000300022002c002200350035003b00360032003b003600390022005d",
       "actual": "runtime-error:TypeError(\"cannot access null or undefined\")",
       "matched": false,
+      "admission": {
+        "index": 87,
+        "attempts": 1,
+        "domainHits": 0,
+        "getterCalls": 0
+      },
       "knownUnsupported": "Preexisting active sloppy Function.caller is null in the baseline runtime; identical TypeError OFF and ON. No caller semantics are changed by this candidate."
     }
   ],
@@ -60,7 +158,7 @@
     },
     {
       "file": "crates/js-runtime/src/battle_mode_limit.rs",
-      "sha256": "87a6bf086e89c3a863478e4b5c4a0e13948cda0c1220c502709571652d12f571",
+      "sha256": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
       "matched": true
     },
     {
@@ -1245,7 +1343,7 @@
     },
     {
       "file": "tools/rust-port/check-battle-mode-limit-specialization.mjs",
-      "sha256": "b7494c5344ce36ee2d1c96a5e36dc889ac893bebdc45288f1b819c72b0046795",
+      "sha256": "f85734924c18b38bb68c30051365a84523ffb68cb2bedf5b2a8bef2319e5fc7b",
       "matched": true
     },
     {
@@ -1302,10 +1400,10 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "4aa4cf429192de80748aac6c1fececf622e30fdc93370764be6f748a4c821ff1",
+  "generatedRustSha256": "a41d6206ba920e5d82eae56ef153c5d094ef402822934254eb8219ffad34dde1",
   "binary": {
     "file": "/workspace/afkarena-simx/work/candidate-native-battle-mode-accessor/work/rust-port-battle-mode-limit-specialization/check",
-    "sha256": "0633cddf327e7013eefcd5e490c23736d9d792d27a140de151456164efd7a855"
+    "sha256": "ce3f216c2c851f0d056a806a9c1b71434a2cbc5bbab306a6499ad2551940b5ce"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/candidate-native-battle-mode-accessor/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
@@ -1324,7 +1422,7 @@
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-battle-mode-limit-specialization.outputs.json.gz",
-    "sha256": "40c5830c9f6f134b4a43c2c1bad7dd3b773f0d2152e0e955213a9e1eb3dc08b7"
+    "sha256": "886215966a52ed5aa9c17be61a8fe8bbb13a71d8505c7e522e46b471e0029bc7"
   },
   "qualifiesFor10000Target": false,
   "scope": "Guarded exact-source func_battleModeLimit with immutable configuration plans, preserved actual source helper calls, mutable gameplay fields, getters, callbacks, lexical bindings, loading/boundary paths and warnings. This is an outer predicate component gate, not battle qualification. This is not a complete battle or unrestricted ECMAScript qualification."

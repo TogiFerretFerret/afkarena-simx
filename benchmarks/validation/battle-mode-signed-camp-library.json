@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "tests": 94,
+  "newSignedCampDomains": 6,
+  "actualCollectionsPerGcTest": 23,
+  "actualOriginalGetterOrder": "GGTGBT",
+  "rawCampAndEnemyBitsUnchanged": true,
+  "command": "CARGO_PROFILE_TEST_DEBUG=0 CARGO_PROFILE_DEV_DEBUG=0 cargo test -j 1 -p js-runtime --lib",
+  "source": {
+    "file": "crates/js-runtime/src/battle_mode_limit.rs",
+    "sha256": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1"
+  },
+  "binaries": [
+    {
+      "file": "target/debug/deps/js_runtime-aea8d3ea5c30b039",
+      "sha256": "72ccedcfc7488d71ebf724d22c5500a64872db6058ab68ba7bc7b11d245192fc"
+    }
+  ],
+  "log": {
+    "file": "benchmarks/validation/battle-mode-signed-camp-library.log.gz",
+    "sha256": "b66ca9e9c3bbeb76a1300a4ddd1c55d493bcc5b073a4f7304ef6b25afd43c00a"
+  },
+  "qualifiesFor10000Target": false
+}
