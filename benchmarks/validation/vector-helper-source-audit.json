@@ -1,0 +1,233 @@
+{
+  "version": 1,
+  "passed": true,
+  "sourceOnly": true,
+  "inputs": {
+    "src/srcmodule/game_util.js": "0860dbd595da4e763449494c0cf3243cc3aa4a5adfc7827a0a1de74a67bd3866",
+    "benchmarks/results/2026-10-29T00-36-36.007Z-rust-program-perf.source-stacks.json": "b8fc6729b87cce72aee3a65477cce52d2380df5a6be0a92e27c07e6023d17a69"
+  },
+  "rows": [
+    {
+      "name": "ed.edpAdd",
+      "start": 638092,
+      "end": 638134,
+      "source": "function(e,t){return[e[0]+t[0],e[1]+t[1]]}",
+      "sha256": "3e5bf201a2c0328caea2f68bfeb68d032509a2395f30cb1880c467e5f0cfa5bf",
+      "profileFrames": [],
+      "profileInclusivePercent": 0,
+      "compiledCurrentFunctions": [
+        {
+          "id": 155,
+          "specialization": null
+        }
+      ]
+    },
+    {
+      "name": "ed.edpSub",
+      "start": 638145,
+      "end": 638187,
+      "source": "function(e,t){return[e[0]-t[0],e[1]-t[1]]}",
+      "sha256": "81200e82e77ece4a7c919c18427814519ea31d547222e2eff061380302e46f80",
+      "profileFrames": [
+        {
+          "unit": 0,
+          "functionId": 157,
+          "samples": 4,
+          "percent": 0.1502065339842283
+        }
+      ],
+      "profileInclusivePercent": 0.1502065339842283,
+      "compiledCurrentFunctions": [
+        {
+          "id": 157,
+          "specialization": null
+        },
+        {
+          "id": 159,
+          "specialization": null
+        }
+      ]
+    },
+    {
+      "name": "ed.edpMult",
+      "start": 638199,
+      "end": 638235,
+      "source": "function(e,t){return[e[0]*t,e[1]*t]}",
+      "sha256": "db312ebbb374bc1417e3fb1582d25c98b921a94b5b373564159fd76e87d7d740",
+      "profileFrames": [
+        {
+          "unit": 0,
+          "functionId": 161,
+          "samples": 4,
+          "percent": 0.1502065339842283
+        }
+      ],
+      "profileInclusivePercent": 0.1502065339842283,
+      "compiledCurrentFunctions": [
+        {
+          "id": 161,
+          "specialization": null
+        }
+      ]
+    },
+    {
+      "name": "ed.edpLengthSQ",
+      "start": 638251,
+      "end": 638296,
+      "source": "function(e){var t=e[0],r=e[1];return t*t+r*r}",
+      "sha256": "4c8c23921a80224a072e1ef760d3ce432b6884fd68056f781fcf98f0878b3e06",
+      "profileFrames": [],
+      "profileInclusivePercent": 0,
+      "compiledCurrentFunctions": [
+        {
+          "id": 163,
+          "specialization": null
+        }
+      ]
+    },
+    {
+      "name": "ed.edpDistanceSQ",
+      "start": 638314,
+      "end": 638371,
+      "source": "function(e,t){var r=e[0]-t[0],i=e[1]-t[1];return r*r+i*i}",
+      "sha256": "2c6a18411d11be16eae9d8659081594c850c37f3612c4635df5d41f86b82c1f4",
+      "profileFrames": [
+        {
+          "unit": 0,
+          "functionId": 165,
+          "samples": 10,
+          "percent": 0.3755163349605708
+        }
+      ],
+      "profileInclusivePercent": 0.3755163349605708,
+      "compiledCurrentFunctions": [
+        {
+          "id": 165,
+          "specialization": null
+        }
+      ]
+    },
+    {
+      "name": "ed.edpNormalize",
+      "start": 638388,
+      "end": 638479,
+      "source": "function(e){var t=e[0],r=e[1],i=1/Math.pow(t*t+r*r,.5);return 0===t&&0===r?[1,0]:[t*i,r*i]}",
+      "sha256": "20e3f78a5e8e41f5997c994405f91553d3aa80777d4aa5f53ea0968931416b2f",
+      "profileFrames": [
+        {
+          "unit": 0,
+          "functionId": 167,
+          "samples": 2,
+          "percent": 0.07510326699211416
+        }
+      ],
+      "profileInclusivePercent": 0.07510326699211416,
+      "compiledCurrentFunctions": [
+        {
+          "id": 167,
+          "specialization": null
+        }
+      ]
+    },
+    {
+      "name": "ed.edpCompMult",
+      "start": 638495,
+      "end": 638537,
+      "source": "function(e,t){return[e[0]*t[0],e[1]*t[1]]}",
+      "sha256": "7a5d07695b18d357d81e44940fb4b7a343f8461487059b4b578d840f10c0b149",
+      "profileFrames": [],
+      "profileInclusivePercent": 0,
+      "compiledCurrentFunctions": [
+        {
+          "id": 169,
+          "specialization": null
+        }
+      ]
+    },
+    {
+      "name": "ed.edpCross",
+      "start": 638550,
+      "end": 638591,
+      "source": "function(e,t){return e[0]*t[1]-e[1]*t[0]}",
+      "sha256": "9fd095e6d677c6ba84fa31b6f7c8081f12aa428a06a584c3d2c983d4d354805b",
+      "profileFrames": [],
+      "profileInclusivePercent": 0,
+      "compiledCurrentFunctions": []
+    },
+    {
+      "name": "ed.edpMid",
+      "start": 638602,
+      "end": 638654,
+      "source": "function(e,t){return[.5*(e[0]+t[0]),.5*(e[1]+t[1])]}",
+      "sha256": "f4120fd4c439c0817dd42678f40e12a38cdf1f9749221febfb8b294db84cbc4e",
+      "profileFrames": [],
+      "profileInclusivePercent": 0,
+      "compiledCurrentFunctions": []
+    },
+    {
+      "name": "ed.edpSub",
+      "start": 638665,
+      "end": 638707,
+      "source": "function(e,t){return[e[0]-t[0],e[1]-t[1]]}",
+      "sha256": "81200e82e77ece4a7c919c18427814519ea31d547222e2eff061380302e46f80",
+      "profileFrames": [
+        {
+          "unit": 0,
+          "functionId": 157,
+          "samples": 4,
+          "percent": 0.1502065339842283
+        }
+      ],
+      "profileInclusivePercent": 0.1502065339842283,
+      "compiledCurrentFunctions": [
+        {
+          "id": 157,
+          "specialization": null
+        },
+        {
+          "id": 159,
+          "specialization": null
+        }
+      ]
+    },
+    {
+      "name": "ed.edpDot",
+      "start": 638718,
+      "end": 638759,
+      "source": "function(e,t){return e[0]*t[0]+e[1]*t[1]}",
+      "sha256": "82ca74e6d48bc9630e26604bd0494ad7fc6c19cbbf68e39f8c48238162f42c8b",
+      "profileFrames": [],
+      "profileInclusivePercent": 0,
+      "compiledCurrentFunctions": []
+    },
+    {
+      "name": "ed.edpAngle",
+      "start": 638772,
+      "end": 638886,
+      "source": "function(e,t){var r=ed.edpDistanceSQ(e,t);r=Math.pow(r,.5);e=t[1]-e[1];return 0===r?0:Math.asin(e/r)*ed.edpRadian}",
+      "sha256": "c51ea75a703bb9634b114cb1a26bce29a7ceb7a7161d38153228d8b859446670",
+      "profileFrames": [],
+      "profileInclusivePercent": 0,
+      "compiledCurrentFunctions": []
+    }
+  ],
+  "inclusiveSumUpperBound": {
+    "samples": 20,
+    "totalSamples": 2663,
+    "percent": 0.7510326699211416,
+    "note": "Source-function inclusive sample counts overlap; the sum is an observed-source-frame upper bound, not an expected speedup or confidence bound. Call-site method resolution before callee entry is excluded, and retained source call dispatch cannot be eliminated by a body specialization."
+  },
+  "currentCallFrequency": null,
+  "currentCallFrequencyStatus": "Unmeasured. Source-only vector-call-probe.rs prepared; no compilation or native run during frozen full build.",
+  "historicalFrequency": {
+    "file": "benchmarks/results/2026-10-27T18-39-46.555Z-rust-native-oracle-rust-vectors-warm20.json",
+    "engine": "Static Hermes plus Rust trampolines, not current generated runtime",
+    "totalBattlesIncludingWarmup": 23,
+    "distanceSquared": 311466,
+    "lengthSquared": 92,
+    "dot": 0,
+    "cross": 0,
+    "status": "Historical context only: report records stale source dependencies; not a current qualified frequency or performance claim."
+  },
+  "recommendation": "Deprioritize whole-vector runtime implementation unless new current call counts or a different workload establish larger coverage. Highest sampled candidate edpDistanceSQ is only0.3755% inclusive; all sampled vector helpers together0.7510%. Reuse existing battle-core numeric lowerings rather than duplicate arithmetic."
+}
