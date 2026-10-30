@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "generatedOnly": true,
+  "rows": [
+    {
+      "fixture": "unit",
+      "sourceSha256": "20c5860ce0833f389d40a8a6bc4436fcf2a63c3979ef6728e620773b6f7e237d",
+      "baselineSha256": "3fb5663a542ccbe331225228900d569c44e4816993b47a6e7d70e2dfb3992a0d",
+      "candidateSha256": "6928f964141cb5127123509381453e2ee8b3b9c023dfd5ad5f4469b869af7f0a",
+      "baselineStaticSmallKeys": {
+        "0": 76,
+        "1": 51,
+        "2": 3,
+        "3": 2
+      },
+      "candidateStaticSmallKeys": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "directCanonicalIds": 132,
+      "sourceFunctions": 32
+    },
+    {
+      "fixture": "drain",
+      "sourceSha256": "0afa410d48ab85f844ddd7b8bc1a9a7beebf9bc5d8f0d5b2fd831e9dab5a72d9",
+      "baselineSha256": "a3998c5d383be2c858e8ecadd1ae9123d3a93eaf4fa3f36653f485a1a4e68613",
+      "candidateSha256": "a3998c5d383be2c858e8ecadd1ae9123d3a93eaf4fa3f36653f485a1a4e68613",
+      "baselineStaticSmallKeys": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "candidateStaticSmallKeys": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "directCanonicalIds": 0,
+      "sourceFunctions": 8
+    }
+  ],
+  "sourceInputs": {
+    "baselineExpressions": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
+    "candidateExpressions": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c"
+  },
+  "scope": "Original source Unit.update and callback drain compiled by baseline and candidate Babel compiler. Counts are static generated sites, not dynamic frequency. No Rust build or benchmark execution."
+}

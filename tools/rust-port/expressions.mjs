@@ -35,7 +35,10 @@ const unaryOps={'+':'Plus','-':'Minus','!':'Not','~':'BitNot','typeof':'TypeOf',
 export function unsupportedExpression(node,reason){const loc=node?.loc?.start;const error=new Error(`Unsupported ${node?.type??'expression'}${loc?` at ${loc.line}:${loc.column}`:''}: ${reason}`);error.node=node;throw error;}
 export function rustString(text){let out='"';for(const character of String(text)){const cp=character.codePointAt(0);if(character==='"')out+='\\"';else if(character==='\\')out+='\\\\';else if(character==='\n')out+='\\n';else if(character==='\r')out+='\\r';else if(character==='\t')out+='\\t';else if(cp<32||cp===127)out+='\\u{'+cp.toString(16)+'}';else if(cp>=0xd800&&cp<=0xdfff)throw Error('A Rust UTF-8 metadata string cannot contain a lone surrogate');else out+=character;}return out+'"';}
 const quote=(ctx,text)=>ctx.rustString?ctx.rustString(text):rustString(text);
-function stringValue(ctx,text){const s=String(text);for(let i=0;i<s.length;i++){const n=s.charCodeAt(i);if(n>=0xd800&&n<=0xdfff){if(n<=0xdbff&&i+1<s.length&&s.charCodeAt(i+1)>=0xdc00&&s.charCodeAt(i+1)<=0xdfff){i++;continue;}return ctx.temp(`rt.${ctx.staticLiteralStrings===false?'string_utf16':'static_string_utf16'}(&[${Array.from({length:s.length},(_,j)=>s.charCodeAt(j)+'u16').join(',')}])`);}}return ctx.temp(`rt.${ctx.staticLiteralStrings===false?'string':'static_string'}(${rustString(s)})`);}
+function stringValue(ctx,text){const s=String(text);
+ // Runtime::new reserves these canonical IDs before any user strings.
+ if(ctx.staticLiteralStrings!==false&&s.length===1&&s>='0'&&s<='3')return ctx.temp(`Value::String(js_runtime::StringId(${s}))`);
+for(let i=0;i<s.length;i++){const n=s.charCodeAt(i);if(n>=0xd800&&n<=0xdfff){if(n<=0xdbff&&i+1<s.length&&s.charCodeAt(i+1)>=0xdc00&&s.charCodeAt(i+1)<=0xdfff){i++;continue;}return ctx.temp(`rt.${ctx.staticLiteralStrings===false?'string_utf16':'static_string_utf16'}(&[${Array.from({length:s.length},(_,j)=>s.charCodeAt(j)+'u16').join(',')}])`);}}return ctx.temp(`rt.${ctx.staticLiteralStrings===false?'string':'static_string'}(${rustString(s)})`);}
 // Abstract ToPropertyKey on an actual numeric literal is pure; Number.prototype
 // hooks are never consulted. Keep all dynamic expressions on the ordinary path.
 let numericKeyProfileChecked=false;
