@@ -146,5 +146,25 @@
   "qualifiedRuntimeReference": {
     "file": "benchmarks/validation/rust-program-hot-execution-wave-full.json",
     "sha256": "645029d842fc8ec08c827b297baf4325b3d18ee4e71d74e74e34ad0e7580095e"
+  },
+  "sourceMetadataRegeneration": {
+    "passed": true,
+    "rows": [
+      {
+        "name": "unit",
+        "pool": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/canonical-small-index/unit.utf16le",
+        "sha256": "2eff082768eec90b88216cffb881fe474e56c4915165ed23b37ae27c56897206",
+        "matchesRegeneration": true,
+        "sourceSha256": "20c5860ce0833f389d40a8a6bc4436fcf2a63c3979ef6728e620773b6f7e237d"
+      },
+      {
+        "name": "drain",
+        "pool": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/canonical-small-index/drain.utf16le",
+        "sha256": "7d088439fcb79e9af098b02ce7586054463eaa33dc64c4b9dba4443e607fd0c6",
+        "matchesRegeneration": true,
+        "sourceSha256": "0afa410d48ab85f844ddd7b8bc1a9a7beebf9bc5d8f0d5b2fd831e9dab5a72d9"
+      }
+    ],
+    "scope": "After-measurement readonly validation: archived pools match regeneration from the pinned original fixtures. No generated files modified."
   }
 }
