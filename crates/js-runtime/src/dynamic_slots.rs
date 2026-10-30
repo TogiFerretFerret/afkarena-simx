@@ -10,8 +10,9 @@ impl Runtime {
  }
  #[inline]
  pub(crate) fn dynamic_slot_get(&self,receiver:Value,key:PropertyKey)->Option<Value>{
-  if !self.dynamic_own_slots_enabled{return None}let index=self.dynamic_own_slots.get(key.0.0).copied().flatten()?.get()-1;let object=self.dynamic_slot_object(receiver,key)?;
-  object.data_slot(index,key)
+  if !self.dynamic_own_slots_enabled{return None}let slots=self.dynamic_own_slots.get(key.0.0)?;let first=slots[0]?.get()-1;let object=self.dynamic_slot_object(receiver,key)?;
+  if let Some(value)=object.data_slot(first,key){return Some(value)}
+  object.data_slot(slots[1]?.get()-1,key)
  }
  #[inline]
  pub(crate) fn dynamic_slot_learn(&mut self,receiver:Value,key:PropertyKey){
@@ -22,7 +23,7 @@ impl Runtime {
  fn dynamic_slot_learn_enabled(&mut self,receiver:Value,key:PropertyKey){
   let Some(object)=self.dynamic_slot_object(receiver,key)else{return};let Some(index)=object.property_index.get(&key).copied()else{return};
   if object.data_slot(index,key).is_none(){return}
-  if self.dynamic_own_slots.len()<=key.0.0{self.dynamic_own_slots.resize(key.0.0+1,None)}self.dynamic_own_slots[key.0.0]=index.checked_add(1).and_then(std::num::NonZeroUsize::new);
+  if self.dynamic_own_slots.len()<=key.0.0{self.dynamic_own_slots.resize(key.0.0+1,[None;2])}let index=index.checked_add(1).and_then(std::num::NonZeroUsize::new);let slots=&mut self.dynamic_own_slots[key.0.0];if slots[0]!=index&&slots[1]!=index{slots[1]=slots[0];slots[0]=index;}
  }
 }
 #[cfg(test)]mod tests {
