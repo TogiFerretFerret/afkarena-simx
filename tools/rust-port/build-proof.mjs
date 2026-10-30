@@ -24,6 +24,7 @@ export async function verifyBuildProof(file,{root,manifestFile,manifestSha256,bi
  const inputs=proof.inputs&&typeof proof.inputs==='object'&&!Array.isArray(proof.inputs)?proof.inputs:{};
  check(inputs[resolve(manifestFile)]===manifestSha256,'manifest-not-in-build-inputs');
  for(const required of ['tools/rust-port/build-program.mjs','tools/rust-port/program-host.rs','tools/rust-port/compile.mjs','tools/rust-port/expressions.mjs','tools/rust-port/statements.mjs','tools/rust-port/bindings.mjs','crates/js-runtime/src/lib.rs'])check(typeof inputs[resolve(root,required)]==='string','missing-build-input:'+required);
+ let featureManifest={};try{featureManifest=JSON.parse(await readFile(manifestFile,'utf8'));}catch{check(false,'unreadable-feature-manifest');}const scalarHelper='tools/rust-port/scalar-arrays.mjs';if(Object.hasOwn(featureManifest.sources??{},scalarHelper)||featureManifest.units?.some(unit=>unit.scalarLocalArrays>0)){check(typeof featureManifest.sources?.[scalarHelper]==='string','scalar-helper-not-in-manifest');check(typeof inputs[resolve(root,scalarHelper)]==='string','missing-build-input:'+scalarHelper);if(featureManifest.sources?.[scalarHelper])check(inputs[resolve(root,scalarHelper)]===featureManifest.sources[scalarHelper],'scalar-helper-manifest-input-mismatch');}
  for(const [file,before] of Object.entries(inputs)){
   let after=null;try{after=sha(await readFile(file));}catch{}
   if(after!==before)result.changedInputs.push({file,before,after});

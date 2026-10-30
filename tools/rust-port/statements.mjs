@@ -45,7 +45,7 @@ function block(ctx,node){
 }
 function declaration(ctx,node){
  declarationKind(node);
- for(const item of node.declarations){if(node.kind==='var'&&!item.init)continue;const value=item.init?ctx.expression(item.init):'Value::Undefined';bindPattern(ctx,item.id,value,node.kind);}
+ for(const item of node.declarations){if(node.kind==='var'&&ctx.emitScalarArrayDeclaration?.(item))continue;if(node.kind==='var'&&!item.init)continue;const value=item.init?ctx.expression(item.init):'Value::Undefined';bindPattern(ctx,item.id,value,node.kind);}
  normal(ctx);
 }
 function labels(ctx){return ctx.pendingLabels??[];}
