@@ -1,0 +1,239 @@
+{
+  "startedAt": "2026-10-30T17:00:33.882Z",
+  "passed": true,
+  "report": {
+    "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.json",
+    "sha256": "578fecd3a38cfde5661a079b3f5a0402c605a31ae5c91b1a2243c8e7f6ed67ae"
+  },
+  "priorDataCleanup": {
+    "file": "benchmarks/validation/profile-data-cleanup-current-2026-10-30.json",
+    "sha256": "8c28fac4a2844495eaf337b4a44deee17189b9ece2303ca917ae6d070799ae7f"
+  },
+  "scope": "Only this completed current capture raw data and parsed perf reports. All source/control inputs, ELFs, rlibs, parsed JSON, compressed observations and reports remain. Every archive chunk and concatenated gunzip length/hash verified before deletion; raw bytes independently hashed when still present. Earlier data deletion reconciles against the control journal.",
+  "rows": [
+    {
+      "label": "record-stdout",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.record.stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.record-stdout.000.gz",
+          "bytes": 46255,
+          "sha256": "be655aff6c4e25dcbfa6e4a5d6f9c379a1a23ed2c7752ef3d9ff342fd961bafb"
+        }
+      ],
+      "decoded": {
+        "sha256": "da724b3568a790d56fc1dee7d4f18714b5467b986ee6a6f4e03c3f95e165d904",
+        "bytes": 687199
+      },
+      "rawVerified": {
+        "sha256": "da724b3568a790d56fc1dee7d4f18714b5467b986ee6a6f4e03c3f95e165d904",
+        "bytes": 687199
+      },
+      "action": "removed"
+    },
+    {
+      "label": "record-stderr",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.record.stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.record-stderr.000.gz",
+          "bytes": 273,
+          "sha256": "ae18aad35e72abb133f0dc2452fbc44830f1e8a80cb3ab128895afdafdd0416e"
+        }
+      ],
+      "decoded": {
+        "sha256": "272802de18f0de50483050fccf96606a58a9a96c0168e57cc0443a32fd8d8dc6",
+        "bytes": 361
+      },
+      "rawVerified": {
+        "sha256": "272802de18f0de50483050fccf96606a58a9a96c0168e57cc0443a32fd8d8dc6",
+        "bytes": 361
+      },
+      "action": "removed"
+    },
+    {
+      "label": "leaf",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.leaf.stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.leaf.000.gz",
+          "bytes": 13000,
+          "sha256": "12bb01f0817bd001578030ed629e04cf90db3575e7de1b32c3c215d541d3788b"
+        }
+      ],
+      "decoded": {
+        "sha256": "23794d3a95714b8de5c23b8c9c1f7d734ca5c691f22746652dd3d9edb2f304e2",
+        "bytes": 285369
+      },
+      "rawVerified": {
+        "sha256": "23794d3a95714b8de5c23b8c9c1f7d734ca5c691f22746652dd3d9edb2f304e2",
+        "bytes": 285369
+      },
+      "action": "removed"
+    },
+    {
+      "label": "leaf-stderr",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.leaf.stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.leaf-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "decoded": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "rawVerified": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "action": "removed"
+    },
+    {
+      "label": "inclusive",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.inclusive.stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.inclusive.000.gz",
+          "bytes": 205572,
+          "sha256": "5f14e7f91c3fc442e3246646ceb5778985792f959c30aae27b3e08cfc72c5ee2"
+        }
+      ],
+      "decoded": {
+        "sha256": "edfeb8ef54047b311391fa341657cb72a24cc66ef53e7a23f94f65c95d0fa937",
+        "bytes": 5503687
+      },
+      "rawVerified": {
+        "sha256": "edfeb8ef54047b311391fa341657cb72a24cc66ef53e7a23f94f65c95d0fa937",
+        "bytes": 5503687
+      },
+      "action": "removed"
+    },
+    {
+      "label": "inclusive-stderr",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.inclusive.stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.inclusive-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "decoded": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "rawVerified": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "action": "removed"
+    },
+    {
+      "label": "stacks",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.stacks.stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.stacks.000.gz",
+          "bytes": 2208722,
+          "sha256": "74665178c0573858eb828246b5073e0687b1b1b7e184dda830d864028f333e33"
+        }
+      ],
+      "decoded": {
+        "sha256": "7b818ca5ae14dd7fec4f0b9b0b3e07398dee9d9402b0fef607c78d22733e238a",
+        "bytes": 63529823
+      },
+      "rawVerified": {
+        "sha256": "7b818ca5ae14dd7fec4f0b9b0b3e07398dee9d9402b0fef607c78d22733e238a",
+        "bytes": 63529823
+      },
+      "action": "removed"
+    },
+    {
+      "label": "stacks-stderr",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.stacks.stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.stacks-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "decoded": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "rawVerified": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "action": "removed"
+    },
+    {
+      "label": "buildids",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.buildids.stdout",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.buildids.000.gz",
+          "bytes": 207,
+          "sha256": "00e237e3f2f3bbc66853e612e14a6c800e7830d165090346a343b449e895064a"
+        }
+      ],
+      "decoded": {
+        "sha256": "1e166ad41f7a1c39a09a36c0c94d788f9c7ae792f28da402c7bc12a7e227cfa4",
+        "bytes": 252
+      },
+      "rawVerified": {
+        "sha256": "1e166ad41f7a1c39a09a36c0c94d788f9c7ae792f28da402c7bc12a7e227cfa4",
+        "bytes": 252
+      },
+      "action": "removed"
+    },
+    {
+      "label": "buildids-stderr",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.buildids.stderr",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.buildids-stderr.000.gz",
+          "bytes": 20,
+          "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2"
+        }
+      ],
+      "decoded": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "rawVerified": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "action": "removed"
+    },
+    {
+      "label": "data",
+      "raw": "work/rust-program-perf/2026-10-30T16-54-08.837Z.data",
+      "chunks": [
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.data.000.gz",
+          "bytes": 25165824,
+          "sha256": "e8204b388c2cbe7bce039da8ea3e096a428f039cea9a28332f73c42f5dc184d9"
+        },
+        {
+          "file": "benchmarks/results/2026-10-30T16-54-08.837Z-rust-program-perf.data.001.gz",
+          "bytes": 20050521,
+          "sha256": "4a4cbace4a69862c7e857b5d78eb1eecbff7294b138fcb0eb0670ab70e4db0a2"
+        }
+      ],
+      "decoded": {
+        "sha256": "b12b89c93eedae7a819c991ee5bea54b70d448e923f90c28e0072f3434443791",
+        "bytes": 261391788
+      },
+      "action": "already-removed-after-control-verification"
+    }
+  ],
+  "finishedAt": "2026-10-30T17:00:36.103Z",
+  "newBytesReclaimed": 70006691,
+  "totalCaptureRawBytesReclaimed": 331398479
+}
