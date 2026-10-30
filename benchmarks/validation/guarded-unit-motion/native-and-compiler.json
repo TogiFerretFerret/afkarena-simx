@@ -3,18 +3,19 @@
   "libraryTests": 130,
   "compilerTests": 3,
   "scoutTests": 5,
-  "sourceCommit": "3f203a1",
+  "runtimeSourceCommit": "de99eb7",
+  "compilerSourceCommit": "3f203a1",
   "motionPassDefault": false,
   "files": [
     {
       "file": "benchmarks/validation/guarded-unit-motion/library.stdout.gz",
-      "sha256": "0b05cc3329ba81e827fdb9c7149a46e29409939cb9761a9776a92e1b786d2320",
-      "uncompressedSha256": "0c76d3ccf9535ae842dba785a22183e0c290b5ab95288bccb544b0353583dc5b"
+      "sha256": "175926d2717a92cf423bf1abde51f8238d32632ea5b29fb4c77b4b92dfe35d0c",
+      "uncompressedSha256": "87279130f5ab693c5e7b94b544c7bb2daaead6adffba09355b43b1684303e792"
     },
     {
       "file": "benchmarks/validation/guarded-unit-motion/library.stderr.gz",
-      "sha256": "3ad9d4193b79327ce1f0bc47b3462af8814c3f86ff7724ab02e54cc8b737c571",
-      "uncompressedSha256": "018ea8230aa1b9f2e562e5183d9810098a999c7cf29835db76122dfe4fd5032b"
+      "sha256": "f1bcc78a2a0ab429af3b5c8ddd69c096e0f72f021fe25cf21920c5b4ff1e37b2",
+      "uncompressedSha256": "c2bba39b8faa4500e55efdd36a7ec29ca406889b5f993f447628215ac33c1c2e"
     },
     {
       "file": "benchmarks/validation/guarded-unit-motion/compiler.stdout.gz",
@@ -33,8 +34,43 @@
     },
     {
       "file": "benchmarks/validation/guarded-unit-motion/build.stderr.gz",
-      "sha256": "876c1ffd03ba09c47eb2608f2c29dfea3f0e6c4aa7d45eeac906a3dcf8396994",
-      "uncompressedSha256": "9972451545a67de920ca402b7c05c08c9645391b0e3bbfc6730bbcc8a22fbd10"
+      "sha256": "4998069f979a4d23ad31c793b19c1f4b548611b4b401c3d9d85acee04f4c0fbe",
+      "uncompressedSha256": "a98596daf360f3b58af5e8b6a841a04bfd5b0c941426281c7c9aea4ab0a1b92e"
+    },
+    {
+      "file": "benchmarks/validation/guarded-unit-motion/adversarial.stdout.gz",
+      "sha256": "8f84fc3a1edfa905e7f1ea803f3395627e8f1235563723435b6c344c6b2e6b1c",
+      "uncompressedSha256": "9a07f2056730c5a8ef813ec3cde9afc5951398ed5569b274befaf03594073fba"
+    },
+    {
+      "file": "benchmarks/validation/guarded-unit-motion/adversarial.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/guarded-unit-motion/preparation.stdout.gz",
+      "sha256": "5a2ae4d695510c8a38389ca043d8ce4b7c63d4433c03f68ce01ad1caf977f2c2",
+      "uncompressedSha256": "d367e97e577dcf4ad87e90db9e6231ac5ad5f1bcaac58539618af1078d4643dc"
+    },
+    {
+      "file": "benchmarks/validation/guarded-unit-motion/preparation.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/guarded-unit-motion/benchmark.stdout.gz",
+      "sha256": "49b231c1937933558edb2f57e6bd81c6dac52d1ed83ea8e9a92e1c121cba59de",
+      "uncompressedSha256": "9e22105b116948dbd6c82d9749cd6122b26eb0e1ace2c19176bd1875ad0015ce"
+    },
+    {
+      "file": "benchmarks/validation/guarded-unit-motion/benchmark.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/guarded-unit-motion/first-adversarial-failure.json.gz",
+      "sha256": "86c015177f11f1229138be8d801adf5da09562aca43e9ac72dbaaa51ee956d11",
+      "uncompressedSha256": "90895c5276689bbcd919a1009e7928c1f8bf45b94ca0bbbb6754db622ce7613b"
     }
   ]
 }

@@ -1,0 +1,82 @@
+{
+  "decision": "hold: no demonstrated performance gain; do not promote",
+  "sourceCommit": "de99eb7",
+  "defaultEnabled": false,
+  "nativeTests": 130,
+  "compilerTests": 3,
+  "adversarial": {
+    "file": "benchmarks/validation/guarded-unit-motion/adversarial.json",
+    "sha256": "d11a30122a3f91360c7c4a0b2e952fbab6ba4d5f764f15aa429410199cf0ae34",
+    "nodeExactCases": 11,
+    "baselineGapCases": [
+      {
+        "mode": 9,
+        "kind": "preexisting numeric-array NaN representation",
+        "onOffRawIdentical": true,
+        "nonfiniteAxisAdmitted": false,
+        "nodePositionBits": "7ff8000000000000",
+        "nativePositionBits": "7ff8000000000042",
+        "nodePreviousBits": "7ff8000000000000",
+        "nativePreviousBits": "7ff0000000000042"
+      }
+    ],
+    "nativeExecutions": 4,
+    "admissions": [
+      {
+        "trace": false,
+        "label": "off",
+        "attempts": 0,
+        "hits": 0
+      },
+      {
+        "trace": false,
+        "label": "on",
+        "attempts": 20,
+        "hits": 12
+      },
+      {
+        "trace": true,
+        "label": "off",
+        "attempts": 0,
+        "hits": 0
+      },
+      {
+        "trace": true,
+        "label": "on",
+        "attempts": 0,
+        "hits": 0
+      }
+    ]
+  },
+  "benchmark": {
+    "file": "benchmarks/results/2026-10-30T18-15-46.101Z-rust-unit-update-guarded-motions.json",
+    "sha256": "f96e3373d6a5bc11a1b34d8ad81269f9d6f9ce00f071e6fd524e434710517997",
+    "ratio": 0.9615942504182874,
+    "updatesPerTrial": 5000,
+    "trialsPerVariant": 3,
+    "eventsPerTrial": 75112,
+    "allOutcomesMatched": true,
+    "pairs": [
+      {
+        "trial": 0,
+        "ratio": 0.873526037804584,
+        "optimizedAttempts": 10000,
+        "optimizedHits": 10000
+      },
+      {
+        "trial": 1,
+        "ratio": 1.0683815708719204,
+        "optimizedAttempts": 10000,
+        "optimizedHits": 10000
+      },
+      {
+        "trial": 2,
+        "ratio": 0.9620615293038381,
+        "optimizedAttempts": 10000,
+        "optimizedHits": 10000
+      }
+    ]
+  },
+  "qualification": "Finite-input Number motion axis shortcut; unknown shapes and nonfinite inputs retain source. Original fixed Unit component fixture, not whole battles. Short alternating cohort has mixed pair ratios; no statistical regression claim. Existing array-NaN baseline gap is explicit and raw compiler ON/OFF matches.",
+  "qualifiesFor10000Target": false
+}
