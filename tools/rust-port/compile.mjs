@@ -179,6 +179,7 @@ export function compileSource(source,{filename='input.js',mode='script',moduleNa
    if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_COPY_OBJ_SOURCE_SHA256){
     record.sourceSpecialization='native-copy-obj-v1';
     ctx.emit('if let Some(value) = rt.try_native_copy_obj(args.first().copied().unwrap_or(Value::Undefined), parent)? { return Ok(value); }');
+    ctx.emit('if let Some(value) = rt.try_native_nested_copy_obj(args.first().copied().unwrap_or(Value::Undefined), parent)? { return Ok(value); }');
    }
    if(sourceSpecializations&&node.type!=='Program'&&sha(source.slice(node.start,node.end))===NATIVE_OVERRIDE_DISPATCH_SOURCE_SHA256){
     record.sourceSpecialization='native-override-dispatch-v1';

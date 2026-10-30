@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "libraryTests": 127,
+  "measuredAlgorithmCommit": "e569f7f",
+  "promotionCommit": "dd250a0",
+  "defaultEnabled": true,
+  "sourceAdversarialProof": "benchmarks/validation/rust-nested-copy-obj-adversarial.json",
+  "libraryArtifacts": [
+    {
+      "file": "benchmarks/validation/nested-copy/nested-copy-lib.stdout.gz",
+      "sha256": "212d9a11790965c1729ae512b9c0993343372a7cf234c88ccd202d913e7baf9e",
+      "uncompressedSha256": "862b81f524815f22b418505a9d5096af9d8583857eb57213a64b9e66ef0167d8"
+    },
+    {
+      "file": "benchmarks/validation/nested-copy/nested-copy-lib.stderr.gz",
+      "sha256": "ff8d388ca8ebfcfda525a447362ca2f40f12a5d0205ad077a896dd77a91714b5",
+      "uncompressedSha256": "af172cd7b9258f1672e32ada4e78bc787f665478c4307ca9c3f1d9d6594a0d41"
+    },
+    {
+      "file": "benchmarks/validation/nested-copy/nested-copy-final-lib.stdout.gz",
+      "sha256": "7c3c0f44a046acf6b704612ba372913c9728d5e690aa6d2c8849c76a5bde2f7e",
+      "uncompressedSha256": "b90740bccde015cdeee6ae07d94a38ae36d13774b913a86b1252a097ab6df3fc"
+    },
+    {
+      "file": "benchmarks/validation/nested-copy/nested-copy-final-lib.stderr.gz",
+      "sha256": "d281135ee6416ea2b444ea1c34b12d1e4cb2fcbe1e0d02ce89215b6f35351a6d",
+      "uncompressedSha256": "4d525fac7a882179aa2a15a0dae5925c36bcb39c8829f880ba8e3950786e8da4"
+    }
+  ],
+  "shortCohort": "benchmarks/results/2026-10-30T16-59-05.376Z-nested-copy-components.json",
+  "longCohort": "benchmarks/results/2026-10-30T17-10-46.836Z-nested-copy-long-components.json",
+  "peakRssKiB": 1014692,
+  "timing": {
+    "buff": {
+      "ratio": 1.7611429064666273,
+      "pairs": [
+        {
+          "pair": 0,
+          "ratio": 2.0024870097976106,
+          "offNs": "341329692",
+          "onNs": "170452887"
+        },
+        {
+          "pair": 1,
+          "ratio": 1.3477597355963657,
+          "offNs": "272954500",
+          "onNs": "202524599"
+        },
+        {
+          "pair": 2,
+          "ratio": 2.038883139204156,
+          "offNs": "312596639",
+          "onNs": "153317585"
+        }
+      ],
+      "copiesPerTrial": 5000,
+      "admissionsPerOnTrial": 5000
+    },
+    "level": {
+      "ratio": 1.6662953461568386,
+      "pairs": [
+        {
+          "pair": 0,
+          "ratio": 1.5887253672616124,
+          "offNs": "174458916",
+          "onNs": "109810619"
+        },
+        {
+          "pair": 1,
+          "ratio": 1.669502710060227,
+          "offNs": "179122263",
+          "onNs": "107290789"
+        },
+        {
+          "pair": 2,
+          "ratio": 1.744111667644192,
+          "offNs": "183202843",
+          "onNs": "105040776"
+        }
+      ],
+      "copiesPerTrial": 5000,
+      "admissionsPerOnTrial": 5000
+    }
+  },
+  "fullBattleQualified": false,
+  "qualifiesFor10000Target": false,
+  "measuredGeneratedInputs": {
+    "file": "benchmarks/validation/nested-copy/measured-generated-inputs.gz",
+    "sha256": "3e498e9f3a98f858136ec987f066831707d3ed3b15f162484e780c3138f5d9dd",
+    "uncompressedSha256": "32a6d69f68d01ea09f991e1a8a8bb652b9b41e386fcf3d893b51f8fea2733904"
+  },
+  "finalAliasLibraryArtifacts": [
+    {
+      "file": "benchmarks/validation/nested-copy/nested-copy-alias-lib.stdout.gz",
+      "sha256": "6fcded40e622977666dd8a732e5caed30df4dff2306cbc9edf9ca3aa75c42aea",
+      "uncompressedSha256": "a66b94bc6eee859b38efaedb5ad6e9dcfc986cf3b5a6e69a8fa3c5315339d7d4"
+    },
+    {
+      "file": "benchmarks/validation/nested-copy/nested-copy-alias-lib.stderr.gz",
+      "sha256": "544312540593a5e556fb946b453efe85a42a7f2643965215994c613447dc22dc",
+      "uncompressedSha256": "518f6fed9d85701b4a8d80fda54897ba7a4d5f82381a4f9624a64b153524dfaf"
+    }
+  ],
+  "namespaceIdentity": "Function(active) OR Object(active.function_object) with is_function +exact function_objects registry(active)",
+  "finalSourceGateCommit": "fed1537",
+  "finalSourceGate": {
+    "cases": 34,
+    "pairedTraceObservations": 68,
+    "nativeExecutions": 136,
+    "pureAdmissionCases": 10,
+    "passed": true
+  }
+}

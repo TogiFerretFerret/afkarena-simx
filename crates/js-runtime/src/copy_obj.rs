@@ -168,3 +168,104 @@ impl Runtime {
  fn rounds(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{let env=rt.child_env(parent);for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}let source=rt.array(&[Some(Value::Number(-0.0)),Some(Value::Number(f64::from_bits(1)))]);rt.declare(env,"keptSource",source)?;let mut ids=std::collections::HashSet::new();let mut reused=0;for round in 0..23{let output=rt.try_native_copy_obj(source,env)?.unwrap();assert_ne!(source,output);if !ids.insert(rt.object_id(output)?){reused+=1;}for(index,bits)in[(-0.0f64).to_bits(),1].into_iter().enumerate(){let key=rt.string(&index.to_string());let Value::Number(n)=rt.get(output,key)?else{panic!()};assert_eq!(n.to_bits(),bits);}rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;}assert_eq!(reused,22);Ok(Value::Undefined)}
  #[test]fn source_23_gc_safepoints_preserve_fresh_array_bits(){let mut rt=Runtime::new();let f=rt.make_closure(rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(f,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();rt.call(f,Value::Undefined,&[]).unwrap();assert_eq!(rt.native_battle_gc_stats().collections,23);}
 }
+
+
+// The plan records occurrences, never deduplicates source object identities.
+// Thus a shared child is copied independently for every source-recursion path.
+const NESTED_COPY_MAX_DEPTH:usize=3;
+const NESTED_COPY_MAX_NODES:usize=32;
+const NESTED_COPY_MAX_PROPERTIES:usize=256;
+const NESTED_COPY_MAX_ARRAY:usize=64;
+enum NestedCopyValue {Leaf(Value),Child(usize)}
+struct NestedCopyNode {source:ObjectId,array:bool,entries:Vec<(PropertyKey,NestedCopyValue)>}
+fn nested_copy_index(units:&[u16])->Option<u32>{if units.is_empty()||units.len()>10||(units.len()>1&&units[0]==48){return None}let mut n=0u64;for &unit in units{if !(48..=57).contains(&unit){return None}n=n*10+u64::from(unit-48);}if n<u32::MAX as u64{Some(n as u32)}else{None}}
+impl Runtime {
+ /// Optional source-pinned region; the unchanged flat helper runs first.
+ /// Debug traces retain every original recursive call and property Get.
+ #[inline]pub fn try_native_nested_copy_obj(&mut self,input:Value,parent:EnvId)->JsResult<Option<Value>>{
+  if !self.native_nested_copy_obj_enabled||self.diagnostics.enabled{return Ok(None)}
+  self.nested_copy_obj_attempts+=1;let result=self.try_native_nested_copy_obj_enabled(input,parent)?;if result.is_some(){self.nested_copy_obj_hits+=1;}Ok(result)
+ }
+ fn nested_copy_namespace_intact(&self,parent:EnvId,ed_name:crate::StringId,copy_key:PropertyKey)->bool{
+  let Some(&active)=self.call_stack.last()else{return false};let Some(function)=self.functions.get(active.0)else{return false};
+  if !self.objects.get(function.object.0).is_some_and(|o|o.is_function){return false}
+  let mut cursor=parent;let mut value=None;
+  for _ in 0..=self.environments.len(){
+   let Some(env)=self.environments.get(cursor.0)else{return false};
+   if let Some(&index)=env.bindings.get(&ed_name){let Some(cell)=env.cells.get(index)else{return false};if !cell.alive||!cell.initialized{return false}
+    if !cell.object_backed{value=Some(cell.value);break}
+    if cursor!=self.global_env{return false}
+    value=match self.objects[self.global_object.0].own(PropertyKey(ed_name)).map(|d|d.kind){Some(PropertyKind::Data{value,..})=>Some(value),_=>None};break
+   }
+   if cursor==self.global_env{value=match self.objects[self.global_object.0].own(PropertyKey(ed_name)).map(|d|d.kind){Some(PropertyKind::Data{value,..})=>Some(value),_=>None};break}
+   let Some(next)=env.parent else{return false};cursor=next;
+  }
+  let Some(Value::Object(ed))=value else{return false};let Some(object)=self.objects.get(ed.0)else{return false};
+  if object.is_function||!matches!(object.kind,ObjectKind::Ordinary)||!object.arguments_map.is_empty(){return false}
+  match object.own(copy_key).map(|d|d.kind){Some(PropertyKind::Data{value:Value::Function(id),..})=>id==active,Some(PropertyKind::Data{value:Value::Object(id),..})=>id==function.object&&self.objects[id.0].is_function&&self.function_objects.get(&id)==Some(&active),_=>false}
+ }
+ fn preflight_nested_copy(&self,id:ObjectId,depth:usize,path:&mut Vec<ObjectId>,nodes:&mut Vec<NestedCopyNode>,properties:&mut usize)->Option<usize>{
+  if depth>NESTED_COPY_MAX_DEPTH||nodes.len()>=NESTED_COPY_MAX_NODES||path.contains(&id){return None}
+  let object=self.objects.get(id.0)?;let guard=self.copy_obj_guard.as_ref()?;
+  if object.is_function||!object.extensible||!object.arguments_map.is_empty()||object.own(guard.constructor_key).is_some(){return None}
+  let array=match object.kind{ObjectKind::Ordinary if object.prototype==Some(self.object_prototype)=>None,ObjectKind::Array{length,length_writable:true,..}if object.prototype==Some(self.array_prototype)&&(length as usize)<=NESTED_COPY_MAX_ARRAY=>Some(length as usize),_=>return None};
+  // Bound physical tombstones as well as live keys: no unbounded scan on misses.
+  let count=object.properties.len()+object.primary_numeric_mask().count_ones()as usize;
+  *properties=properties.checked_add(count)?;if *properties>NESTED_COPY_MAX_PROPERTIES{return None}
+  let mut raw:Vec<_>=object.iter_properties().chain(object.primary_numeric_properties()).collect();
+  raw.sort_by_key(|(key,_)|nested_copy_index(self.string_units(key.0)).map(|n|(0,n)).unwrap_or((1,0)));
+  if array.is_some_and(|length|length!=raw.len()){return None}
+  for(index,(key,descriptor))in raw.iter().enumerate(){
+   if !descriptor.enumerable||!descriptor.configurable{return None}
+   let PropertyKind::Data{value,writable:true}=descriptor.kind else{return None};if matches!(value,Value::Number(n)if !n.is_finite()){return None}
+   if self.objects[self.object_prototype.0].own(*key).is_some(){return None}
+   if array.is_some()&&(nested_copy_index(self.string_units(key.0))!=Some(index as u32)||self.objects[self.array_prototype.0].own(*key).is_some()){return None}
+  }
+  let node=nodes.len();nodes.push(NestedCopyNode{source:id,array:array.is_some(),entries:Vec::with_capacity(raw.len())});path.push(id);
+  for(key,descriptor)in raw{let PropertyKind::Data{value,..}=descriptor.kind else{unreachable!()};let value=if let Value::Object(child)=value{NestedCopyValue::Child(self.preflight_nested_copy(child,depth+1,path,nodes,properties)?)}else{NestedCopyValue::Leaf(value)};nodes[node].entries.push((key,value));}
+  path.pop();Some(node)
+ }
+ fn emit_nested_copy(&mut self,nodes:&[NestedCopyNode],index:usize)->Value{
+  let node=&nodes[index];let output=if node.array{self.array(&[])}else{self.object()};let Value::Object(id)=output else{unreachable!()};
+  for(position,(key,value))in node.entries.iter().enumerate(){let value=match value{NestedCopyValue::Leaf(value)=>*value,NestedCopyValue::Child(child)=>self.emit_nested_copy(nodes,*child)};self.objects[id.0].insert(*key,Descriptor::data(value,true,true,true));if node.array{if let ObjectKind::Array{length,..}=&mut self.objects[id.0].kind{*length=position as u32+1;}}}
+  output
+ }
+ fn try_native_nested_copy_obj_enabled(&mut self,input:Value,parent:EnvId)->JsResult<Option<Value>>{
+  let Value::Object(root)=input else{return Ok(None)};
+  if !self.copy_obj_intrinsics_intact(parent){return Ok(None)}
+  // These names already belong to the executing source/namespace. Interning is
+  // internal canonical lookup, never a source Get or a callback invocation.
+  let ed_name=self.intern("ed");let copy_key=PropertyKey(self.intern("copyObj"));
+  if !self.nested_copy_namespace_intact(parent,ed_name,copy_key){return Ok(None)}
+  let mut nodes=Vec::new();let mut path=Vec::new();let mut properties=0;
+  if self.preflight_nested_copy(root,0,&mut path,&mut nodes,&mut properties).is_none(){return Ok(None)}
+  // Allocation uses exactly one object per occurrence. Reject corrupt/free
+  // source aliases and duplicate pool slots before allocating ANY JS object.
+  let next:Vec<_>=self.native_battle_gc.free_objects.iter().rev().take(nodes.len()).copied().collect();
+  for(index,&id)in next.iter().enumerate(){if id>=self.objects.len()||next[..index].contains(&id)||nodes.iter().any(|node|node.source.0==id){return Ok(None)}}
+  Ok(Some(self.emit_nested_copy(&nodes,0)))
+ }
+}
+
+#[cfg(test)]mod nested_copy_tests{
+ use super::*;
+ const SOURCE:&str="function(e){for(var t=e.constructor?new e.constructor:{},r=Object.keys(e),i=0;i<r.length;i++){var a=r[i],n=e[a];t[a]=\"object\"==typeof n&&n?ed.copyObj(n):n}return t}";
+ fn entry(rt:&mut Runtime,_:Value,args:&[Value],parent:EnvId)->JsResult<Value>{Ok(rt.try_native_nested_copy_obj(args.first().copied().unwrap_or(Value::Undefined),parent)?.unwrap_or(Value::Undefined))}
+ fn install(rt:&mut Runtime)->Value{rt.native_nested_copy_obj_enabled=true;rt.diagnostics.enabled=false;let ed=rt.object();rt.declare(rt.global_env,"ed",ed).unwrap();let f=rt.make_closure(entry,rt.global_env,1,"copyObj");rt.set_function_source(f,&SOURCE.encode_utf16().collect::<Vec<_>>()).unwrap();let key=rt.string("copyObj");rt.define_data(ed,key,f,true,true,true).unwrap();f}
+ fn put(rt:&mut Runtime,object:Value,name:&str,value:Value){let key=rt.string(name);rt.define_data(object,key,value,true,true,true).unwrap();}
+ fn get(rt:&mut Runtime,object:Value,name:&str)->Value{let key=rt.string(name);rt.get(object,key).unwrap()}
+ fn copy(rt:&mut Runtime,f:Value,input:Value)->Value{rt.call(f,Value::Undefined,&[input]).unwrap()}
+ fn rejected(rt:&mut Runtime,f:Value,input:Value){let before=rt.objects.len();assert_eq!(copy(rt,f,input),Value::Undefined);assert_eq!(rt.objects.len(),before,"preflight must reject before ANY JS allocation");}
+ fn bomb(_: &mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{panic!("preflight executed a getter")}
+ #[test]fn nested_shared_children_duplicate_per_path_and_dense_mixed_arrays_preserve_leaves(){let mut rt=Runtime::new();let f=install(&mut rt);let child=rt.object();put(&mut rt,child,"n",Value::Number(-0.0));let text=rt.string_utf16(&[0xd800,0,0xdfff]);put(&mut rt,child,"s",text);put(&mut rt,child,"fn",f);let array=rt.array(&[Some(Value::Number(1.0)),Some(text),Some(Value::Null),Some(Value::Bool(false)),Some(Value::Undefined),Some(child)]);let input=rt.object();put(&mut rt,input,"a",child);put(&mut rt,input,"b",child);put(&mut rt,input,"1",array);let output=copy(&mut rt,f,input);assert!(matches!(output,Value::Object(_)));assert_ne!(output,input);let a=get(&mut rt,output,"a");let b=get(&mut rt,output,"b");assert_ne!(a,b);assert_ne!(a,child);assert_ne!(b,child);let arr=get(&mut rt,output,"1");assert_ne!(arr,array);let nested=get(&mut rt,arr,"5");assert_ne!(nested,a);assert_ne!(nested,b);assert_ne!(nested,child);assert_eq!(get(&mut rt,arr,"length"),Value::Number(6.0));assert_eq!(get(&mut rt,a,"fn"),f);assert_eq!(get(&mut rt,a,"s"),text);let Value::Number(n)=get(&mut rt,a,"n")else{panic!()};assert_eq!(n.to_bits(),(-0.0f64).to_bits());assert_eq!(rt.own_keys(input,true).unwrap(),rt.own_keys(output,true).unwrap());}
+ fn inherited_number(_: &mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{Ok(Value::Number(17.0))}
+ #[test]fn cloned_arrays_retain_primary_storage_and_future_raw_writes_and_prototype_lookup(){for enabled in[false,true]{let mut rt=Runtime::new();let f=install(&mut rt);rt.primary_numeric_arrays_enabled=enabled;let array=rt.array(&[Some(Value::Number(1.0)),Some(Value::Number(-0.0))]);let root=rt.object();put(&mut rt,root,"array",array);let output=copy(&mut rt,f,root);let array_copy=get(&mut rt,output,"array");let id=rt.object_id(array_copy).unwrap();assert!(matches!(rt.objects[id.0].kind,ObjectKind::Array{length:2,primary_numeric,..}if primary_numeric==enabled));assert_eq!(rt.objects[id.0].primary_numeric_mask(),if enabled{3}else{0});assert_eq!(rt.objects[id.0].properties.len(),if enabled{0}else{2});let zero=rt.string("0");for bits in[0x7ff0000000000042,0xfff8000000000043,0x8000000000000000]{rt.set(array_copy,zero,Value::Number(f64::from_bits(bits)),true).unwrap();let Value::Number(n)=rt.get(array_copy,zero).unwrap()else{panic!()};assert_eq!(n.to_bits(),bits);}let prototype=rt.object();let getter=rt.native_function("inherited",0,inherited_number).unwrap();rt.define_accessor(prototype,zero,Some(getter),None,true,true).unwrap();rt.set_prototype(array_copy,prototype).unwrap();let Value::Number(n)=rt.get(array_copy,zero).unwrap()else{panic!()};assert_eq!(n.to_bits(),(-0.0f64).to_bits());rt.delete(array_copy,zero,true).unwrap();assert_eq!(rt.get(array_copy,zero).unwrap(),Value::Number(17.0));let original=rt.object_id(array).unwrap();assert_eq!(rt.objects[original.0].prototype,Some(rt.array_prototype));}}
+ #[test]fn default_enabled_region_records_actual_host_admission_but_not_disabled_or_debug_calls(){let mut rt=Runtime::new();assert!(rt.native_nested_copy_obj_enabled);let f=install(&mut rt);let child=rt.object();let root=rt.object();put(&mut rt,root,"child",child);assert!(matches!(copy(&mut rt,f,root),Value::Object(_)));assert_eq!((rt.nested_copy_obj_attempts,rt.nested_copy_obj_hits),(1,1));rt.native_nested_copy_obj_enabled=false;rejected(&mut rt,f,root);assert_eq!((rt.nested_copy_obj_attempts,rt.nested_copy_obj_hits),(1,1));rt.native_nested_copy_obj_enabled=true;rt.diagnostics.enabled=true;rejected(&mut rt,f,root);assert_eq!((rt.nested_copy_obj_attempts,rt.nested_copy_obj_hits),(1,1));}
+ #[test]fn exact_function_object_namespace_alias_is_admitted_but_other_function_alias_rejects(){let mut rt=Runtime::new();let f=install(&mut rt);let alias=Value::Object(rt.object_id(f).unwrap());let ed=rt.lookup(rt.global_env,"ed").unwrap();let key=rt.string("copyObj");rt.set(ed,key,alias,true).unwrap();let root=rt.object();let child=rt.object();put(&mut rt,root,"child",child);let output=copy(&mut rt,f,root);assert!(matches!(output,Value::Object(_)));assert_ne!(get(&mut rt,output,"child"),child);let other=rt.native_function("other",0,bomb).unwrap();let wrong=Value::Object(rt.object_id(other).unwrap());rt.set(ed,key,wrong,true).unwrap();rejected(&mut rt,f,root);}
+ #[test]fn cycle_depth_node_property_and_array_bounds_fall_back_before_allocating(){let mut rt=Runtime::new();let f=install(&mut rt);let cycle=rt.object();put(&mut rt,cycle,"self",cycle);rejected(&mut rt,f,cycle);let root=rt.object();let mut tail=root;for _ in 0..4{let child=rt.object();put(&mut rt,tail,"next",child);tail=child;}rejected(&mut rt,f,root);let root=rt.object();for i in 0..32{let child=rt.object();put(&mut rt,root,&format!("k{i}"),child);}rejected(&mut rt,f,root);let root=rt.object();for i in 0..257{put(&mut rt,root,&format!("k{i}"),Value::Number(i as f64));}rejected(&mut rt,f,root);let array=rt.array(&vec![Some(Value::Number(1.0));65]);rejected(&mut rt,f,array);}
+ #[test]fn late_getter_and_mutable_recursive_target_reject_without_prefix_effects(){let mut rt=Runtime::new();let f=install(&mut rt);let root=rt.object();let good=rt.object();put(&mut rt,good,"n",Value::Number(3.0));put(&mut rt,root,"first",good);let bad=rt.object();let getter=rt.native_function("bomb",0,bomb).unwrap();let key=rt.string("trap");rt.define_accessor(bad,key,Some(getter),None,true,true).unwrap();put(&mut rt,root,"last",bad);rejected(&mut rt,f,root);let root=rt.object();put(&mut rt,root,"child",good);let ed=rt.lookup(rt.global_env,"ed").unwrap();let key=rt.string("copyObj");let replacement=rt.native_function("replacement",0,bomb).unwrap();rt.set(ed,key,replacement,true).unwrap();rejected(&mut rt,f,root);rt.define_accessor(ed,key,Some(getter),None,true,true).unwrap();rejected(&mut rt,f,root);}
+ #[test]fn holes_nonfinite_nondefault_descriptors_and_corrupt_free_pool_reject_before_allocating(){let mut rt=Runtime::new();let f=install(&mut rt);let array=rt.array(&[Some(Value::Number(1.0)),None]);rejected(&mut rt,f,array);let root=rt.object();let child=rt.object();put(&mut rt,root,"child",child);put(&mut rt,child,"nan",Value::Number(f64::from_bits(0x7ff0000000000042)));rejected(&mut rt,f,root);let key=rt.string("nan");rt.define_data(child,key,Value::Number(-0.0),false,true,true).unwrap();rejected(&mut rt,f,root);rt.define_data(child,key,Value::Number(-0.0),true,true,true).unwrap();let garbage=rt.object();let Value::Object(garbage)=garbage else{panic!()};let Value::Object(child_id)=child else{panic!()};rt.native_battle_gc.free_objects.push(child_id.0);rt.native_battle_gc.free_objects.push(garbage.0);rejected(&mut rt,f,root);}
+ fn leaf(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{rt.lookup(parent,"leaf")}
+ fn rounds(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{let env=rt.child_env(parent);for(name,n)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(n))?;}let f=install(rt);let units=vec![0xd800;524_288];let text=rt.string_utf16(&units);let captured=rt.child_env(parent);rt.declare(captured,"leaf",text)?;let function=rt.make_closure(leaf,captured,0,"retained");let source=rt.object();let child=rt.object();put(rt,child,"text",text);put(rt,child,"fn",function);put(rt,child,"zero",Value::Number(-0.0));put(rt,child,"tiny",Value::Number(f64::from_bits(1)));put(rt,source,"a",child);put(rt,source,"b",child);let mut input=source;rt.declare(env,"kept",input)?;let mut seen=std::collections::HashSet::new();let mut reused=0;for round in 0..23{let output=copy(rt,f,input);assert_ne!(output,input);let Value::Object(id)=output else{panic!()};if !seen.insert(id){reused+=1;}let a=get(rt,output,"a");let b=get(rt,output,"b");assert_ne!(a,b);assert_eq!(get(rt,a,"text"),text);let value=get(rt,a,"fn");assert_eq!(value,function);assert_eq!(rt.call(value,Value::Undefined,&[])?,text);for(name,bits)in[("zero",(-0.0f64).to_bits()),("tiny",1)]{let Value::Number(n)=get(rt,a,name)else{panic!()};assert_eq!(n.to_bits(),bits);}rt.assign(env,"kept",output,false)?;input=output;rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;let Value::String(id)=text else{panic!()};assert_eq!(rt.string_units(id),units.as_slice());}assert!(reused>0);Ok(Value::Number(23.0))}
+ #[test]fn returned_nested_strings_functions_and_per_path_identities_survive_23_source_collections(){let mut rt=Runtime::new();let f=rt.make_closure(rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(f,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();assert_eq!(rt.call(f,Value::Undefined,&[]).unwrap(),Value::Number(23.0));assert_eq!(rt.native_battle_gc_stats().collections,23);}
+}
