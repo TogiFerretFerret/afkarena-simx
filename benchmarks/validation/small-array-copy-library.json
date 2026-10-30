@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "tests": 105,
+  "sourceCodeCommit": "f6cb385",
+  "profile": {
+    "optLevel": 3,
+    "codegenUnits": 64,
+    "lto": false
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/small-array-copy-library.stdout.gz",
+      "sha256": "1332588a43625197b9daf24264b0bff71c9f5fb9b9ea9f2c5e70330f71a3e882",
+      "uncompressedSha256": "5d2bf635c9d3a80e9ea0294846194eb403e67103bdd17f4d0ed1ebcb3f223878"
+    },
+    {
+      "file": "benchmarks/validation/small-array-copy-library.stderr.gz",
+      "sha256": "0aa384ba3bb22470db3e3c7e18fc3c807c322856fba84a0bc6c873967745276b",
+      "uncompressedSha256": "6a626114ff611106ec1afe8acb67c65a3ae4145c91198bf644db4fb188fa2eed"
+    }
+  ]
+}
