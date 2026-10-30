@@ -176,7 +176,7 @@ impl Runtime {
   if self.ordinary_set_fast_path_enabled{if let Value::Object(id)=receiver{
    if let Some(object)=self.objects.get_mut(id.0){
     if !object.is_function&&matches!(object.kind,ObjectKind::Ordinary)&&object.arguments_map.is_empty(){
-     if let Some(index)=object.property_index.get(&key).copied(){
+     if let Some(index)=object.slot_index(key){
       if object.set_existing_data_slot(index,key,value){return Ok(value)}
      }
     }

@@ -13,7 +13,7 @@ impl Runtime{
   // dense-prefix restriction is conservative: non-prefix layouts fall back.
   for index in 0..length{
    let Some((key,descriptor))=object.slot(index)else{return Ok(None)};
-   if object.property_index.get(&key).copied()!=Some(index)||canonical_index(self.string_units(key.0))!=Some(index as u32)||!descriptor.configurable{return Ok(None)}
+   if object.slot_index(key)!=Some(index)||canonical_index(self.string_units(key.0))!=Some(index as u32)||!descriptor.configurable{return Ok(None)}
    let PropertyKind::Data{value:Value::Object(_)|Value::Function(_),writable:true}=descriptor.kind else{return Ok(None)};
   }
   // Extra ordinary names are untouched. Reject any additional numeric slots;

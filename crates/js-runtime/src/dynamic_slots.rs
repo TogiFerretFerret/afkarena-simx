@@ -21,7 +21,7 @@ impl Runtime {
  #[cold]
  #[inline(never)]
  fn dynamic_slot_learn_enabled(&mut self,receiver:Value,key:PropertyKey){
-  let Some(object)=self.dynamic_slot_object(receiver,key)else{return};let Some(index)=object.property_index.get(&key).copied()else{return};
+  let Some(object)=self.dynamic_slot_object(receiver,key)else{return};let Some(index)=object.slot_index(key)else{return};
   if object.data_slot(index,key).is_none(){return}
   if self.dynamic_own_slots.len()<=key.0.0{self.dynamic_own_slots.resize(key.0.0+1,[None;2])}let index=index.checked_add(1).and_then(std::num::NonZeroUsize::new);let slots=&mut self.dynamic_own_slots[key.0.0];if slots[0]!=index&&slots[1]!=index{slots[1]=slots[0];slots[0]=index;}
  }
