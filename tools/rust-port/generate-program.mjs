@@ -94,6 +94,8 @@ fn execute()->JsResult<Value>{
  rt.declare(env,"print",printer)?;
  ${calls}
  eprintln!("native_fastpath_admission:battle_mode_limit:{}:{}:buff_percent:{}:{}",rt.battle_mode_limit_attempts,rt.battle_mode_limit_hits,rt.buff_percent_loop_attempts,rt.buff_percent_loop_hits);
+ eprintln!("native_domain_admission:battle_mode_limit:{}:getter_calls:{}",rt.battle_mode_limit_domain_hits,rt.battle_mode_limit_getter_calls);
+ eprintln!("native_runtime_config:primary_numeric_access:{}:battle_mode_limit:{}",rt.primary_numeric_access_enabled,rt.native_battle_mode_limit_enabled);
  Ok(Value::Undefined)
 }
 fn main(){if let Err(error)=execute(){eprintln!("pure_rust_execution_error:{error:?}");std::process::exit(1);}}
