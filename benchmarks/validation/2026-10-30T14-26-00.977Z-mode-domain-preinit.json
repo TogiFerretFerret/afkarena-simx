@@ -1,0 +1,205 @@
+{
+  "passed": true,
+  "ranBattles": false,
+  "preparation": {
+    "passed": true,
+    "ranWorkload": false,
+    "baseline": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-hot-execution-wave-full.json",
+      "sha256": "645029d842fc8ec08c827b297baf4325b3d18ee4e71d74e74e34ad0e7580095e"
+    },
+    "libraries": [
+      {
+        "name": "js_runtime",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+        "sha256": "a11feebe66044308f45bab888049df5528f368b411a66449260e337eddb06ed0"
+      },
+      {
+        "name": "battle_unit_0",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+        "sha256": "4260002790ab2e5addd8779988479dddd4e6e387156e19f2bc15a23975475bcd"
+      },
+      {
+        "name": "battle_unit_1",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+        "sha256": "9f9e2d35ad6f02282f99def983cc22cc17dea45bb7899ef0fe1b2eb77c8aae58"
+      },
+      {
+        "name": "battle_unit_2",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+        "sha256": "1f4ac8cec5e8b1ec6829c59731035203d825a6fc653ef3d7afe654159dfbd281"
+      },
+      {
+        "name": "battle_unit_3",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+        "sha256": "137c01a5eab49dcd7643f78777e0593e082e30a0adc8ee45ce76e03d656423c1"
+      },
+      {
+        "name": "battle_unit_4",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+        "sha256": "0de9f64762d5d1fff0346bd69643d60247af843c62dca179eceac9ffe2b50abe"
+      },
+      {
+        "name": "battle_unit_5",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+        "sha256": "7ff07c26a704d37444f906561b4da83144c34b918d90d5e753385e92e8a76b57"
+      },
+      {
+        "name": "battle_unit_6",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+        "sha256": "812c0c693ce9a4be19e417df64369b527f1414fae4864b57e75eda20ece81819"
+      }
+    ],
+    "binary": {
+      "file": "/workspace/afkarena-simx/work/mode-domain-diagnostic/2026-10-30T14-26-00.977Z/diagnostic",
+      "sha256": "897c078f6a90315b6ec90d6ff86551bebd80cd9d49964b15881fa0cdfe46b34c"
+    },
+    "wrapperSha256": "2083b3d1d67e3c4c1eea7d54d5e237d85950809cebfd97d5f353e4cb269e6099",
+    "originalWrapperSha256": "3d6b2ccdd31023286c444d6a472026287ff00f89f4e5d2fb5cf00e4df0297c4f",
+    "tool": {
+      "file": "/workspace/afkarena-simx/work/candidate-streaming-boundary-trace/tools/rust-port/diagnose-battle-mode-domain.mjs",
+      "sha256": "7e266beea568a6ff344f33302b4726f36af54670a27c19e3c6954814a8fdd5d7"
+    },
+    "helper": {
+      "file": "/workspace/afkarena-simx/work/candidate-streaming-boundary-trace/tools/rust-port/program-mode-domain-diagnostic.rs",
+      "sha256": "219fc366c0b5183ef0c9466a6961ea52508f9232acb9ebaa2d1b9e7bc3a66c64"
+    },
+    "command": [
+      "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+      "--edition=2024",
+      "-O",
+      "-C",
+      "codegen-units=64",
+      "-C",
+      "lto=off",
+      "/workspace/afkarena-simx/work/mode-domain-diagnostic/2026-10-30T14-26-00.977Z/main.rs",
+      "-L",
+      "dependency=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps",
+      "--extern",
+      "js_runtime=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+      "--extern",
+      "battle_unit_0=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+      "--extern",
+      "battle_unit_1=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+      "--extern",
+      "battle_unit_2=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+      "--extern",
+      "battle_unit_3=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+      "--extern",
+      "battle_unit_4=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+      "--extern",
+      "battle_unit_5=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+      "--extern",
+      "battle_unit_6=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+      "-o",
+      "/workspace/afkarena-simx/work/mode-domain-diagnostic/2026-10-30T14-26-00.977Z/diagnostic"
+    ],
+    "proofAfterLink": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-hot-execution-wave-build.json",
+      "sha256": "6de347d97c140b787215011798763685e9d68921743fa914fb5a192fc199b5aa",
+      "valid": true,
+      "reasons": [],
+      "inputCount": 1437,
+      "changedInputs": [],
+      "buildProfile": "release"
+    },
+    "scope": "Wrapper-only raw descriptor diagnosis using the qualified frozen runtime and seven game-unit libraries. Default stops before unit6 and runs no battles. Full mode preserves original source workload; source metadata uses raw Function.prototype.toString after original report only."
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/2026-10-30T14-26-00.977Z-mode-domain-preinit.stdout.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T14-26-00.977Z-mode-domain-preinit.stderr.gz",
+      "sha256": "f3e47eab5cdd5a9a3c090c5a42b5060250488b322636581807cb321df5235442",
+      "uncompressedSha256": "d491d60bbc149c81ed3bb89a9be56041fdd20a332b499db7b714ef250743c579"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T14-26-00.977Z-mode-domain-preinit.wrapper.gz",
+      "sha256": "c14959819dbc5e4021d198a24273e777b1b7ba0423563c5d06debae6c4a8cdf3",
+      "uncompressedSha256": "2083b3d1d67e3c4c1eea7d54d5e237d85950809cebfd97d5f353e4cb269e6099"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T14-26-00.977Z-mode-domain-preinit.preparation.gz",
+      "sha256": "a5fe85a4ada24f7ec4c4668a6b568952e2fb1c28ade69a813fe3bb700c7dcd61",
+      "uncompressedSha256": "72c5985e1948dc5bf01350be02563b5f9990d0718897f7e85fafcc93b18d8282"
+    }
+  ],
+  "diagnostics": [
+    "MODE_DIAG:BOUNDARY:pristine",
+    "MODE_DIAG:FLAGS:true:0:0:0",
+    "MODE_DIAG:OBJECT:Object.prototype:ObjectId(0):kind=Ordinary:prototype=None:mapped=0",
+    "MODE_DIAG:OBJECT:Array.prototype:ObjectId(3):kind=Array { length: 0, length_writable: true, primary_numeric: false, numeric_presence: 0 }:prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:OBJECT:Function.prototype:ObjectId(2):kind=Ordinary:prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:OBJECT:String.prototype:ObjectId(4):kind=BoxedString(StringId(4)):prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:PROP:global:Object:Some(Descriptor { kind: Data { value: Function(FunctionId(13)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:Array:Some(Descriptor { kind: Data { value: Function(FunctionId(23)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:parseInt:Some(Descriptor { kind: Data { value: Function(FunctionId(180)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:isNaN:Some(Descriptor { kind: Data { value: Function(FunctionId(178)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:isFinite:Some(Descriptor { kind: Data { value: Function(FunctionId(179)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:ed:None",
+    "MODE_DIAG:PROP:global:__nativeTables:None",
+    "MODE_DIAG:PROP:global:__nativeTableBoundary:None",
+    "MODE_DIAG:PROP:Object.prototype:hasOwnProperty:Some(Descriptor { kind: Data { value: Function(FunctionId(9)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:Object.prototype.hasOwnProperty:ObjectId(16):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:Object.prototype.hasOwnProperty:call:None",
+    "MODE_DIAG:PROP:Function.prototype:call:Some(Descriptor { kind: Data { value: Function(FunctionId(2)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:Function.prototype.call:ObjectId(9):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:Function.prototype.call:call:None",
+    "MODE_DIAG:PROP:String.prototype:split:Some(Descriptor { kind: Data { value: Function(FunctionId(111)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:String.prototype.split:ObjectId(120):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:String.prototype.split:call:None",
+    "MODE_DIAG:PROP:Array.prototype:push:Some(Descriptor { kind: Data { value: Function(FunctionId(25)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:Array.prototype.push:ObjectId(32):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:Array.prototype.push:call:None",
+    "MODE_DIAG:PROP:Object:prototype:Some(Descriptor { kind: Data { value: Object(ObjectId(0)), writable: false }, enumerable: false, configurable: false })",
+    "MODE_DIAG:PROP:Object:isArray:None",
+    "MODE_DIAG:PROP:Array:prototype:Some(Descriptor { kind: Data { value: Object(ObjectId(3)), writable: false }, enumerable: false, configurable: false })",
+    "MODE_DIAG:PROP:Array:isArray:Some(Descriptor { kind: Data { value: Function(FunctionId(24)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:BOUNDARY:pre-unit6-metadata",
+    "MODE_DIAG:FLAGS:true:0:0:0",
+    "MODE_DIAG:OBJECT:Object.prototype:ObjectId(0):kind=Ordinary:prototype=None:mapped=0",
+    "MODE_DIAG:OBJECT:Array.prototype:ObjectId(3):kind=Array { length: 0, length_writable: true, primary_numeric: false, numeric_presence: 0 }:prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:OBJECT:Function.prototype:ObjectId(2):kind=Ordinary:prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:OBJECT:String.prototype:ObjectId(4):kind=BoxedString(StringId(4)):prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:PROTO_KEY:String.prototype:replaceAll:enumerable=true:numeric=false:descriptor=Descriptor { kind: Data { value: Function(FunctionId(514)), writable: true }, enumerable: true, configurable: true }",
+    "MODE_DIAG:PROTO_KEY:String.prototype:format:enumerable=true:numeric=false:descriptor=Descriptor { kind: Data { value: Function(FunctionId(515)), writable: true }, enumerable: true, configurable: true }",
+    "MODE_DIAG:PROTO_KEY:String.prototype:firstUpperCase:enumerable=true:numeric=false:descriptor=Descriptor { kind: Data { value: Function(FunctionId(516)), writable: true }, enumerable: true, configurable: true }",
+    "MODE_DIAG:PROP:global:Object:Some(Descriptor { kind: Data { value: Function(FunctionId(13)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:Array:Some(Descriptor { kind: Data { value: Function(FunctionId(23)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:parseInt:Some(Descriptor { kind: Data { value: Function(FunctionId(180)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:isNaN:Some(Descriptor { kind: Data { value: Function(FunctionId(178)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:isFinite:Some(Descriptor { kind: Data { value: Function(FunctionId(179)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:ed:Some(Descriptor { kind: Data { value: Object(ObjectId(659)), writable: true }, enumerable: true, configurable: false })",
+    "MODE_DIAG:PROP:global:__nativeTables:Some(Descriptor { kind: Data { value: Null, writable: true }, enumerable: true, configurable: false })",
+    "MODE_DIAG:PROP:global:__nativeTableBoundary:Some(Descriptor { kind: Data { value: Undefined, writable: true }, enumerable: true, configurable: false })",
+    "MODE_DIAG:PROP:Object.prototype:hasOwnProperty:Some(Descriptor { kind: Data { value: Function(FunctionId(9)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:Object.prototype.hasOwnProperty:ObjectId(16):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:Object.prototype.hasOwnProperty:call:None",
+    "MODE_DIAG:PROP:Function.prototype:call:Some(Descriptor { kind: Data { value: Function(FunctionId(2)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:Function.prototype.call:ObjectId(9):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:Function.prototype.call:call:None",
+    "MODE_DIAG:PROP:String.prototype:split:Some(Descriptor { kind: Data { value: Function(FunctionId(111)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:String.prototype.split:ObjectId(120):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:String.prototype.split:call:None",
+    "MODE_DIAG:PROP:Array.prototype:push:Some(Descriptor { kind: Data { value: Function(FunctionId(25)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:Array.prototype.push:ObjectId(32):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:Array.prototype.push:call:None",
+    "MODE_DIAG:PROP:Object:prototype:Some(Descriptor { kind: Data { value: Object(ObjectId(0)), writable: false }, enumerable: false, configurable: false })",
+    "MODE_DIAG:PROP:Object:isArray:None",
+    "MODE_DIAG:PROP:Array:prototype:Some(Descriptor { kind: Data { value: Object(ObjectId(3)), writable: false }, enumerable: false, configurable: false })",
+    "MODE_DIAG:PROP:Array:isArray:Some(Descriptor { kind: Data { value: Function(FunctionId(24)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:ed:ObjectId(659):kind=Ordinary:prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:PROP:ed:battleEngine:Some(Descriptor { kind: Accessor { get: Some(Function(FunctionId(20498))), set: Some(Function(FunctionId(20499))) }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:ed:_battleEngineInstance:None",
+    "MODE_DIAG:PROP:ed:getDataTable:Some(Descriptor { kind: Data { value: Function(FunctionId(19686)), writable: true }, enumerable: true, configurable: true })",
+    "MODE_DIAG:PROP:ed:parseUseSkillCacheStageBattle:Some(Descriptor { kind: Accessor { get: Some(Function(FunctionId(5860))), set: Some(Function(FunctionId(5861))) }, enumerable: true, configurable: true })",
+    "MODE_DIAG:PROP:ed:battle_camp:Some(Descriptor { kind: Accessor { get: Some(Function(FunctionId(1152))), set: Some(Function(FunctionId(1153))) }, enumerable: true, configurable: true })",
+    "MODE_DIAG:SOURCE:battleEngineGetter:00660075006e006300740069006f006e00280029007b00720065007400750072006e00200074006800690073002e005f0062006100740074006c00650045006e00670069006e00650049006e007300740061006e00630065007c007c00280074006800690073002e005f0062006100740074006c00650045006e00670069006e00650049006e007300740061006e00630065003d006e00650077002000650064002e0042006100740074006c00650045006e00670069006e00650029002c0074006800690073002e005f0062006100740074006c00650045006e00670069006e00650049006e007300740061006e00630065007d",
+    "MODE_DIAG:SOURCE:getDataTable:00660075006e006300740069006f006e0028006e0061006d00650029007b000a0020002000200020006900660028005f005f006e00610074006900760065005400610062006c00650073003d003d003d006e0075006c006c0029007b000a002000200020002000200020006900660028005f005f006e00610074006900760065005400610062006c00650054006500780074003d003d003d006e0075006c006c0029007b0069006600280074007900700065006f00660020006800650072006d006500730063006c00690021003d003d0027006f0062006a0065006300740027007c007c0074007900700065006f00660020006800650072006d006500730063006c0069002e006c006f0061006400460069006c00650021003d003d002700660075006e006300740069006f006e00270029007400680072006f00770020006e006500770020004500720072006f00720028002700450078007400650072006e0061006c0020007400610062006c006500200049004f0020007200650071007500690072006500730020006800650072006d006500730063006c0069002e006c006f0061006400460069006c006500200068006f00730074002000620069006e00640069006e006700270029003b005f005f006e00610074006900760065005400610062006c00650054006500780074003d005f005f006e00610074006900760065004400650063006f0064006500550054004600380028006800650072006d006500730063006c0069002e006c006f0061006400460069006c00650028005f005f006e00610074006900760065005400610062006c0065005000610074006800290029003b007d000a002000200020002000200020005f005f006e00610074006900760065005400610062006c00650073003d004a0053004f004e002e007000610072007300650028005f005f006e00610074006900760065005400610062006c006500540065007800740029002e007400610062006c00650073003b005f005f006e00610074006900760065005400610062006c00650054006500780074003d006e0075006c006c003b000a0020002000200020007d000a00200020002000200069006600280021004f0062006a006500630074002e00700072006f0074006f0074007900700065002e006800610073004f0077006e00500072006f00700065007200740079002e00630061006c006c0028005f005f006e00610074006900760065005400610062006c00650073002c006e0061006d006500290029007400680072006f00770020006e006500770020004500720072006f007200280027004d0069007300730069006e00670020006e0061007400690076006500200073006f00750072006300650020007400610062006c0065003a00200027002b006e0061006d00650029003b0069006600280074007900700065006f00660020005f005f006e00610074006900760065005400610062006c00650042006f0075006e00640061007200790021003d003d00270075006e0064006500660069006e0065006400270029007b0069006600280021004f0062006a006500630074002e00700072006f0074006f0074007900700065002e006800610073004f0077006e00500072006f00700065007200740079002e00630061006c006c0028005f005f006e006100740069007600650057007200610070007000650064005400610062006c00650073002c006e0061006d006500290029005f005f006e006100740069007600650057007200610070007000650064005400610062006c00650073005b006e0061006d0065005d003d005f005f006e00610074006900760065005400610062006c00650042006f0075006e0064006100720079002e00770072006100700028005f005f006e00610074006900760065005400610062006c00650073005b006e0061006d0065005d002c007b006e0061006d0065003a006e0061006d0065007d0029003b00720065007400750072006e0020005f005f006e006100740069007600650057007200610070007000650064005400610062006c00650073005b006e0061006d0065005d003b007d00720065007400750072006e0020005f005f006e00610074006900760065005400610062006c00650073005b006e0061006d0065005d003b000a00200020007d",
+    "MODE_DIAG:SOURCE:parseUseSkillCacheStageBattle.getter:00660075006e006300740069006f006e00280029007b000a00200020002000200020002000200020006900660028005f005f006e00610074006900760065004100630074006900760065005b006e0061006d0065005d0029007400680072006f00770020006e006500770020004500720072006f0072002800270053006f007500720063006500200064006500700065006e00640065006e006300790020006300790063006c006500200061007400200027002b006e0061006d00650029003b000a0020002000200020002000200020002000760061007200200066006100630074006f0072006900650073003d005f005f006e006100740069007600650044006500660069006e006900740069006f006e0073005b006e0061006d0065005d003b00690066002800210066006100630074006f00720069006500730029007400680072006f00770020006e006500770020004500720072006f0072002800270055006e0073007500700070006f0072007400650064002000730063006f00700065006400200073006f007500720063006500200064006500660069006e006900740069006f006e003a00200027002b006e0061006d00650029003b000a00200020002000200020002000200020005f005f006e00610074006900760065004100630074006900760065005b006e0061006d0065005d003d0074007200750065003b007600610072002000760061006c00750065003b000a00200020002000200020002000200020007400720079007b0066006f007200280076006100720020006a003d0030003b006a003c0066006100630074006f0072006900650073002e006c0065006e006700740068003b006a002b002b0029007b004f0062006a006500630074002e0064006500660069006e006500500072006f007000650072007400790028006f0077006e00650072002c006b00650079002c007b0063006f006e0066006900670075007200610062006c0065003a0074007200750065002c0065006e0075006d0065007200610062006c0065003a0074007200750065002c007700720069007400610062006c0065003a0074007200750065002c00760061006c00750065003a00760061006c00750065007d0029003b00760061006c00750065003d0066006100630074006f0072006900650073005b006a005d002e00630061006c006c0028005f005f006e006100740069007600650047006c006f00620061006c0029003b007d000a0020002000200020002000200020002000200020004f0062006a006500630074002e0064006500660069006e006500500072006f007000650072007400790028006f0077006e00650072002c006b00650079002c007b0063006f006e0066006900670075007200610062006c0065003a0074007200750065002c0065006e0075006d0065007200610062006c0065003a0074007200750065002c007700720069007400610062006c0065003a0074007200750065002c00760061006c00750065003a00760061006c00750065007d0029003b000a002000200020002000200020002000200020002000690066002800760061006c007500650026002600280074007900700065006f0066002000760061006c00750065003d003d003d0027006f0062006a0065006300740027007c007c0074007900700065006f0066002000760061006c00750065003d003d003d002700660075006e006300740069006f006e002700290029005f005f006e00610074006900760065004500780070006f00730065002800760061006c00750065002c006e0061006d00650029003b005f005f006e00610074006900760065004c006f0061006400650064002e00700075007300680028006e0061006d00650029003b00720065007400750072006e002000760061006c00750065003b000a00200020002000200020002000200020007d00660069006e0061006c006c0079007b00640065006c0065007400650020005f005f006e00610074006900760065004100630074006900760065005b006e0061006d0065005d003b007d000a002000200020002000200020007d",
+    "MODE_DIAG:SOURCE:battle_camp.getter:00660075006e006300740069006f006e00280029007b000a00200020002000200020002000200020006900660028005f005f006e00610074006900760065004100630074006900760065005b006e0061006d0065005d0029007400680072006f00770020006e006500770020004500720072006f0072002800270053006f007500720063006500200064006500700065006e00640065006e006300790020006300790063006c006500200061007400200027002b006e0061006d00650029003b000a0020002000200020002000200020002000760061007200200066006100630074006f0072006900650073003d005f005f006e006100740069007600650044006500660069006e006900740069006f006e0073005b006e0061006d0065005d003b00690066002800210066006100630074006f00720069006500730029007400680072006f00770020006e006500770020004500720072006f0072002800270055006e0073007500700070006f0072007400650064002000730063006f00700065006400200073006f007500720063006500200064006500660069006e006900740069006f006e003a00200027002b006e0061006d00650029003b000a00200020002000200020002000200020005f005f006e00610074006900760065004100630074006900760065005b006e0061006d0065005d003d0074007200750065003b007600610072002000760061006c00750065003b000a00200020002000200020002000200020007400720079007b0066006f007200280076006100720020006a003d0030003b006a003c0066006100630074006f0072006900650073002e006c0065006e006700740068003b006a002b002b0029007b004f0062006a006500630074002e0064006500660069006e006500500072006f007000650072007400790028006f0077006e00650072002c006b00650079002c007b0063006f006e0066006900670075007200610062006c0065003a0074007200750065002c0065006e0075006d0065007200610062006c0065003a0074007200750065002c007700720069007400610062006c0065003a0074007200750065002c00760061006c00750065003a00760061006c00750065007d0029003b00760061006c00750065003d0066006100630074006f0072006900650073005b006a005d002e00630061006c006c0028005f005f006e006100740069007600650047006c006f00620061006c0029003b007d000a0020002000200020002000200020002000200020004f0062006a006500630074002e0064006500660069006e006500500072006f007000650072007400790028006f0077006e00650072002c006b00650079002c007b0063006f006e0066006900670075007200610062006c0065003a0074007200750065002c0065006e0075006d0065007200610062006c0065003a0074007200750065002c007700720069007400610062006c0065003a0074007200750065002c00760061006c00750065003a00760061006c00750065007d0029003b000a002000200020002000200020002000200020002000690066002800760061006c007500650026002600280074007900700065006f0066002000760061006c00750065003d003d003d0027006f0062006a0065006300740027007c007c0074007900700065006f0066002000760061006c00750065003d003d003d002700660075006e006300740069006f006e002700290029005f005f006e00610074006900760065004500780070006f00730065002800760061006c00750065002c006e0061006d00650029003b005f005f006e00610074006900760065004c006f0061006400650064002e00700075007300680028006e0061006d00650029003b00720065007400750072006e002000760061006c00750065003b000a00200020002000200020002000200020007d00660069006e0061006c006c0079007b00640065006c0065007400650020005f005f006e00610074006900760065004100630074006900760065005b006e0061006d0065005d003b007d000a002000200020002000200020007d"
+  ]
+}

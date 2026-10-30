@@ -1,7 +1,7 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 47,
+  "cases": 50,
   "firstDifference": null,
   "backend": "Babel-generated Rust executed by native Rust js-runtime. JavaScript executes only the independent source reference.",
   "sourceInputsAtFinish": [
@@ -32,7 +32,12 @@
     },
     {
       "file": "crates/js-runtime/src/battle_gc.rs",
-      "sha256": "3bb25fcd5eee018e78b5fc286de4e4e87580ca23c4de93680ec7ace765d6a472",
+      "sha256": "1ce99d2c474900cab619b26420b1b5695a074e8dad5ad58359662fb05bd2299a",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/battle_mode_limit.rs",
+      "sha256": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
       "matched": true
     },
     {
@@ -42,7 +47,7 @@
     },
     {
       "file": "crates/js-runtime/src/buff_attribute_loop.rs",
-      "sha256": "01bcad5b373556c0c3ec4921e4acb4647b9b9d0aad7ed26861ed999de9107409",
+      "sha256": "a41d1e91894b451ff92fe0ffb5a4fee0071e1ac69b15710f507c51068f939192",
       "matched": true
     },
     {
@@ -57,7 +62,7 @@
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+      "sha256": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
       "matched": true
     },
     {
@@ -67,7 +72,7 @@
     },
     {
       "file": "crates/js-runtime/src/copy_obj.rs",
-      "sha256": "9d9a75bdf0e19e4bf48ca73d46f7716a31b3bdbdc25e14c450fceb1ae7a9e94b",
+      "sha256": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
       "matched": true
     },
     {
@@ -82,12 +87,12 @@
     },
     {
       "file": "crates/js-runtime/src/diagnostics.rs",
-      "sha256": "9018f7593d765ba4debf4f75355f1ddd676aa60c79a93b183db89086590e2434",
+      "sha256": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/dynamic_slots.rs",
-      "sha256": "d224ec77c46e4bae41f7483aadb241b120c0aa4cb9235eed088ced3f38a79764",
+      "sha256": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
       "matched": true
     },
     {
@@ -122,7 +127,7 @@
     },
     {
       "file": "crates/js-runtime/src/id_hash.rs",
-      "sha256": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+      "sha256": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
       "matched": true
     },
     {
@@ -142,12 +147,12 @@
     },
     {
       "file": "crates/js-runtime/src/lazy_arguments.rs",
-      "sha256": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+      "sha256": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "8ccef3fc42f53005622c813acfe73397481be46dc591fea790bc9adabe388735",
+      "sha256": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
       "matched": true
     },
     {
@@ -171,13 +176,18 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/src/primary_numeric_access_tests.rs",
+      "sha256": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/src/property_slots.rs",
-      "sha256": "b8868a16ddc9a8862aa5223350c1c9ebb1b98837657f0481e07098f70fc6dd0a",
+      "sha256": "39794f933ba13991ee4b2118e068d83bdfe057a68dd633c8c7e8bcf6e249ce79",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/reachability.rs",
-      "sha256": "0948d3df3166dea6450c872065dc3ac07f03148c8b78781dce38af2cef306a7d",
+      "sha256": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
       "matched": true
     },
     {
@@ -187,17 +197,17 @@
     },
     {
       "file": "crates/js-runtime/src/regex.rs",
-      "sha256": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+      "sha256": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "c6ce5a64df6809a4c06ba0028bc34ad4ac308dea21a4e84436f7f9e825ebfbea",
+      "sha256": "e0e863aea059c8997dc84c6a071d1c2b8d313352bdc37d7c8bde895dd1626f49",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/stage_range_parser.rs",
-      "sha256": "943e3f3480ac888543bb6db0f12df3da559bbcc97bbc8e634839a31529ec22ba",
+      "sha256": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
       "matched": true
     },
     {
@@ -227,7 +237,7 @@
     },
     {
       "file": "crates/js-runtime/src/value.rs",
-      "sha256": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+      "sha256": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
       "matched": true
     },
     {
@@ -592,12 +602,12 @@
     },
     {
       "file": "tools/rust-port/compile.mjs",
-      "sha256": "a4102abcde5532d5c90cad88192cff3d430487b10fe84bf8ac2a0d624d7bd6df",
+      "sha256": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
       "matched": true
     },
     {
       "file": "tools/rust-port/expressions.mjs",
-      "sha256": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
+      "sha256": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c",
       "matched": true
     },
     {
@@ -607,7 +617,7 @@
     },
     {
       "file": "tools/rust-port/check-closures.mjs",
-      "sha256": "4b42d431a4124c150a68f8a1bdddf99a2dc839d3c4a822f62c48f1572a5dfb2d",
+      "sha256": "8ef8f9bbfbb31e62107eeba21b325e216e4a3804e30f431dca6f3930b29b752b",
       "matched": true
     }
   ],
@@ -629,29 +639,29 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "1ccc3a93ab53e7362902243b80ee73fc3966bb202d4bbd2e6fdbf8caefbfd11a",
+  "generatedRustSha256": "701853ff08ca8129116a254351e2caa569dea84cb89e3fce8fffd620b4ef3fcb",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/rust-port-closures/check",
-    "sha256": "d01be67c0a4c95917cbab8f320d1035c7faf3e5a076045ca3cb85dffc19ce8e3"
+    "file": "/workspace/afkarena-simx/work/rust-port-closures/check",
+    "sha256": "f2a3e24539b610181234053b9b5d7db582ba012907a98791eeb8a5d92287feb3"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/candidate-compact-properties/work/rust-port-closures/main.rs",
+    "/workspace/afkarena-simx/work/rust-port-closures/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-compact-properties/target/release/deps",
+    "dependency=/workspace/afkarena-simx/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-compact-properties/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-compact-properties/work/rust-port-closures/check"
+    "/workspace/afkarena-simx/work/rust-port-closures/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-closures.outputs.json.gz",
-    "sha256": "abd5a9f81482ac341f63e1213e5646755b91929352cc26dd361074cbd4717bd7"
+    "sha256": "d07ec695084ff8dcbcd074178c9d39c65fb5824cc7228a6ec4eba2c54151950f"
   },
   "qualifiesFor10000Target": false,
   "scope": "Directed pure Rust generated closure, receiver, bind/construct, source-metadata, mapped-argument, hoisting and lexical-cell cases. This is not a complete battle or unrestricted ECMAScript qualification."

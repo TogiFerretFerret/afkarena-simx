@@ -460,17 +460,17 @@
   "sources": {
     "tools/rust-port/check-values.mjs": "f285111eb9be8760815e46a0a9efd52803c3d86264eb2c45e82b712ed4399576",
     "crates/js-runtime/examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
-    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
-    "crates/js-runtime/src/runtime.rs": "c6ce5a64df6809a4c06ba0028bc34ad4ac308dea21a4e84436f7f9e825ebfbea",
+    "crates/js-runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+    "crates/js-runtime/src/runtime.rs": "e0e863aea059c8997dc84c6a071d1c2b8d313352bdc37d7c8bde895dd1626f49",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
     "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
-    "crates/js-runtime/src/battle_gc.rs": "3bb25fcd5eee018e78b5fc286de4e4e87580ca23c4de93680ec7ace765d6a472",
+    "crates/js-runtime/src/battle_gc.rs": "1ce99d2c474900cab619b26420b1b5695a074e8dad5ad58359662fb05bd2299a",
     "crates/battle-core/src/js_math.rs": "719b717d36877af37fefb924a2718570886eee6be0d294f32a2182dbe6a51b3d",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
   },
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-compact-properties/target/release/examples/value_check",
-    "sha256": "0ebd1714d6929656962844d3977d6256d2f0fdd8f5d9ee9dad1cd919b31ea860"
+    "file": "/workspace/afkarena-simx/work/signed-camp-gates-target/release/examples/value_check",
+    "sha256": "302a8d4804a01f7e68039a09001603d7b4c995c86000f024b306fccb4da2715c"
   },
   "oracleProfile": {
     "version": 1,

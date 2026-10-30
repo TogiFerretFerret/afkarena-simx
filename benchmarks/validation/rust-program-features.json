@@ -2,12 +2,12 @@
   "version": 1,
   "passed": true,
   "programDirectory": "work/rust-battle-full",
-  "programManifestSha256": "b98ffa670d0eb56186f5884220b03a79d39200c06babc918195a08cf93e7c86a",
+  "programManifestSha256": "3c0d596989a3212a5a087713a02479ed719d15246733f4acbda57a154a76ad6b",
   "units": [
     {
       "index": 0,
       "file": "work/rust-battle-full/battle-unit-0/manifest.json",
-      "sha256": "6204a3fe8aecf547edbac599649d9dd28932bd68a8ba56685959f8ae5855e5fd",
+      "sha256": "7fefcccaf225175554863f80b10f6d8e58dbbc6a9ad550542e7863bb5aadc293",
       "functions": 3260,
       "flags": {
         "cacheLocalBindings": true,
@@ -172,6 +172,7 @@
   "defaultGcCadence": 2,
   "classHooks": 1,
   "exposeHooks": 1,
+  "battleModeHooks": 1,
   "gcRootEnvironmentBacked": true,
   "exposeRootEnvironmentBacked": true,
   "qualifiesFor10000Target": false,

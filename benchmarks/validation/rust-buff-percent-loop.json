@@ -1,86 +1,88 @@
 {
   "passed": true,
-  "cases": 30,
-  "observations": 60,
+  "cases": 40,
+  "observations": 80,
   "inputs": {
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
-    "crates/js-runtime/src/battle_gc.rs": "3bb25fcd5eee018e78b5fc286de4e4e87580ca23c4de93680ec7ace765d6a472",
+    "crates/js-runtime/src/battle_gc.rs": "1ce99d2c474900cab619b26420b1b5695a074e8dad5ad58359662fb05bd2299a",
+    "crates/js-runtime/src/battle_mode_limit.rs": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
     "crates/js-runtime/src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
-    "crates/js-runtime/src/buff_attribute_loop.rs": "01bcad5b373556c0c3ec4921e4acb4647b9b9d0aad7ed26861ed999de9107409",
+    "crates/js-runtime/src/buff_attribute_loop.rs": "a41d1e91894b451ff92fe0ffb5a4fee0071e1ac69b15710f507c51068f939192",
     "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
-    "crates/js-runtime/src/closures.rs": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+    "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
-    "crates/js-runtime/src/copy_obj.rs": "9d9a75bdf0e19e4bf48ca73d46f7716a31b3bdbdc25e14c450fceb1ae7a9e94b",
+    "crates/js-runtime/src/copy_obj.rs": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
     "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
     "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
-    "crates/js-runtime/src/diagnostics.rs": "9018f7593d765ba4debf4f75355f1ddd676aa60c79a93b183db89086590e2434",
-    "crates/js-runtime/src/dynamic_slots.rs": "d224ec77c46e4bae41f7483aadb241b120c0aa4cb9235eed088ced3f38a79764",
+    "crates/js-runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "crates/js-runtime/src/dynamic_slots.rs": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
     "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
     "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
     "crates/js-runtime/src/expose_scan.rs": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
     "crates/js-runtime/src/fdlibm.rs": "ff895701903b016504ba26a0371abc09290f9c88041257129eee990cc1a3da5e",
     "crates/js-runtime/src/heap.rs": "f8e4a5bb731e8eac10527576df4d8f62e19da09b8547ccb329289ed729b0ac5e",
     "crates/js-runtime/src/host.rs": "19bf64cde4687deb452f902fcfede50154f9a4435dd54f82b23d5d8bafb10205",
-    "crates/js-runtime/src/id_hash.rs": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+    "crates/js-runtime/src/id_hash.rs": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
     "crates/js-runtime/src/index_keys.rs": "62cfdbfbc349e35cfd69bb59f3394e6504757fc2440ccbe49341e21d66d330b3",
     "crates/js-runtime/src/iterators.rs": "69459558186c82869078c45858a6796b4614c19f4d0d34b01be7665aa8007dc2",
     "crates/js-runtime/src/json.rs": "d363637a4f1666d6c705ae6d4243b50984ed95413fe98a1dccabd81525dbf11a",
-    "crates/js-runtime/src/lazy_arguments.rs": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
-    "crates/js-runtime/src/lib.rs": "8ccef3fc42f53005622c813acfe73397481be46dc591fea790bc9adabe388735",
+    "crates/js-runtime/src/lazy_arguments.rs": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
+    "crates/js-runtime/src/lib.rs": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
     "crates/js-runtime/src/literal_pool.rs": "f12ec3fbbbf826ec3a6ac696a7bfb65a237e481c286f8cda08ea082033e1405c",
     "crates/js-runtime/src/math.rs": "dcf89c3661287afe3b0d3430d2197127c408f9689ac6cd5095033c6e1630a304",
     "crates/js-runtime/src/numeric_bootstrap.rs": "449d79882032a9e21fa2bf430f19c386e54543d8e4aba5ed7ec4ef2d29fea877",
     "crates/js-runtime/src/override_dispatch.rs": "2747a29046a63ae5c9711408e2a2fe434c96630c09802a2fdcdb7e05be72cea3",
-    "crates/js-runtime/src/property_slots.rs": "b8868a16ddc9a8862aa5223350c1c9ebb1b98837657f0481e07098f70fc6dd0a",
-    "crates/js-runtime/src/reachability.rs": "0948d3df3166dea6450c872065dc3ac07f03148c8b78781dce38af2cef306a7d",
+    "crates/js-runtime/src/primary_numeric_access_tests.rs": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+    "crates/js-runtime/src/property_slots.rs": "39794f933ba13991ee4b2118e068d83bdfe057a68dd633c8c7e8bcf6e249ce79",
+    "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
-    "crates/js-runtime/src/regex.rs": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
-    "crates/js-runtime/src/runtime.rs": "c6ce5a64df6809a4c06ba0028bc34ad4ac308dea21a4e84436f7f9e825ebfbea",
-    "crates/js-runtime/src/stage_range_parser.rs": "943e3f3480ac888543bb6db0f12df3da559bbcc97bbc8e634839a31529ec22ba",
+    "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
+    "crates/js-runtime/src/runtime.rs": "e0e863aea059c8997dc84c6a071d1c2b8d313352bdc37d7c8bde895dd1626f49",
+    "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
     "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
     "crates/js-runtime/src/strings.rs": "01ef1e83e3f65a255f75c2e5f3bdf39db1c7ed0abf0f4a4a40863e5ec634d621",
     "crates/js-runtime/src/utf8_guard.rs": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
     "crates/js-runtime/src/utf8_loader.rs": "9c1b8114e58f960cc526af2344083b9d3c73400d7edbc683a7f94e49c4eb5ce8",
-    "crates/js-runtime/src/value.rs": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
-    "tools/rust-port/compile.mjs": "a4102abcde5532d5c90cad88192cff3d430487b10fe84bf8ac2a0d624d7bd6df",
+    "crates/js-runtime/src/value.rs": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
+    "tools/rust-port/compile.mjs": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
     "tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
-    "tools/rust-port/expressions.mjs": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
+    "tools/rust-port/expressions.mjs": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c",
     "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
-    "tools/rust-port/check-buff-percent-loop.mjs": "d8820cb93fd08c8d4b2bc9e2338afcc2929f70506e60e7aef3a11e6b47555050",
+    "tools/rust-port/check-buff-percent-loop.mjs": "a5a1cf5afb265c6f105c22a7b4aa70c206e9c1ca4dc07b2709c2077913f35526",
     "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
   },
   "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-compact-properties/target/release/buff-percent-loop-gate",
-    "sha256": "546b666c23242aed1686f009786d9fde0bfb5ab00083dd31e8aed89434cc8d45"
+    "file": "/workspace/afkarena-simx/target/release/buff-percent-loop-gate",
+    "sha256": "61d4ef1db139c291a05d16c7e718ca66df2d038bf2d9e35baf72823d88b90333"
   },
   "artifacts": [
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.observations.gz",
-      "sha256": "3180de4cd10c67ce8da7bc089e3ec353b35e8cb573bfb960615cc99821ffe8e3",
-      "uncompressedSha256": "524f6957bdc8c695ab36560ed2e1f8b4040385e73a7021021312e4d8342435ba"
+      "sha256": "c5c574028e471a28f0289294e70c4b9887a6c9c6bb7cd89711c08263cb81c11e",
+      "uncompressedSha256": "34508a5752a6ba02fd1ea2e64ea27ef1e230d708d2d96b24bad6a81abb054795"
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.sources.gz",
-      "sha256": "b1d6b2e9795546467c59301b7f906258feb4d7dbd8a3cd5e9124c4155422b757",
-      "uncompressedSha256": "d688864f43d3ceb9966e22186f476b0a5be5cdd2cdc603054b1bfe9a7ee4a739"
+      "sha256": "952448526f95c06b25b444232c63a304f2445ee9d3b950b2684ea0f5fceee971",
+      "uncompressedSha256": "c3e94dfd08fc487af6a51dcb5822e5fd37aec3b1abdce52f8de71c124503654f"
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.generated.gz",
-      "sha256": "481f9f93baae7a28070e8485ff4d4dcd8ed1ee4ca05724de491337b04762fc9d",
-      "uncompressedSha256": "b8f269f3f61c84393e61cfa984c0bf74c1dbd2afa42c930a8847110c57cc70e8"
+      "sha256": "f3a515047864e5d9faac690120eb8787f89aee7b37b2d4099507b047a7fb3314",
+      "uncompressedSha256": "1449092baaeb7a08a8097d150480d163d29750a665fdb46f8cb0f21b5d98f772"
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.compile.gz",
-      "sha256": "07e9261cb1bc457734d8e42bc8e8315861caf704c069ba45f9d16212d732cea9",
-      "uncompressedSha256": "264e9c2c8fbebe921903b2f3a55af728ffd187850f02cfa0dde8be69af41b1b8"
+      "sha256": "292117bac0b890dd820defd989d9c83763c8b87ab9a19f29a26b7a91656ad730",
+      "uncompressedSha256": "06ec21c97c9768062f3283e9a31f3888de3030474de81d2c1aab08db297c5dec"
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.stdout.gz",
-      "sha256": "7662447d49cacd0a8332b28a9280a6740a7b888f45df02e3338dcc342911d712",
-      "uncompressedSha256": "bfb28d1b4e161273176ffb77823493b2398fbdc1e942da1d36194ea2906bf1cf"
+      "sha256": "bbd77fa254a0cd1d838567d1f01fabe68d33f0d82416805a587cbc14296659f6",
+      "uncompressedSha256": "e132cbe6c0a39f928b54ab67ee2cbcfd7b00be7619562f351a4c5b7f5e899058"
     }
   ],
   "qualifiesFor10000Target": false,

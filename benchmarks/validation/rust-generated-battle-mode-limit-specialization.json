@@ -1,8 +1,94 @@
 {
   "version": 1,
   "passed": true,
-  "cases": 82,
-  "coveredCases": 80,
+  "cases": 114,
+  "coveredCases": 112,
+  "signedCampSourceAdmissions": [
+    {
+      "index": 0,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 1,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 2,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 3,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 4,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 5,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 6,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 7,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 8,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 9,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 10,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 11,
+      "attempts": 1,
+      "domainHits": 1,
+      "getterCalls": 3
+    },
+    {
+      "index": 12,
+      "attempts": 0,
+      "domainHits": 0,
+      "getterCalls": 0
+    },
+    {
+      "index": 13,
+      "attempts": 1,
+      "domainHits": 0,
+      "getterCalls": 0
+    }
+  ],
   "knownUnsupportedCases": 2,
   "knownUnsupported": [
     {
@@ -12,6 +98,12 @@
       "expected": "ok:string:005b0074007200750065002c005b005b0074007200750065002c0074007200750065005d005d002c00350035002c0032002c0031002c002200340030003400620038003000300030003000300030003000300030003000300022002c002200340030003000300030003000300030003000300030003000300030003000300022002c002200330066006600300030003000300030003000300030003000300030003000300022002c002200730074006100670065003b0031003b0039003000300030003b0074006f007700650072003b00320030003000300031003b003200390030003000300022002c002200350035003b00360032003b003600390022005d",
       "actual": "runtime-error:TypeError(\"cannot access null or undefined\")",
       "matched": false,
+      "admission": {
+        "index": 86,
+        "attempts": 0,
+        "domainHits": 0,
+        "getterCalls": 0
+      },
       "knownUnsupported": "Preexisting active sloppy Function.caller is null in the baseline runtime; identical TypeError OFF and ON. No caller semantics are changed by this candidate."
     },
     {
@@ -21,6 +113,12 @@
       "expected": "ok:string:005b0074007200750065002c005b005b0074007200750065002c0074007200750065005d005d002c00350035002c0032002c0031002c002200340030003400620038003000300030003000300030003000300030003000300022002c002200340030003000300030003000300030003000300030003000300030003000300022002c002200330066006600300030003000300030003000300030003000300030003000300022002c002200730074006100670065003b0031003b0039003000300030003b0074006f007700650072003b00320030003000300031003b003200390030003000300022002c002200350035003b00360032003b003600390022005d",
       "actual": "runtime-error:TypeError(\"cannot access null or undefined\")",
       "matched": false,
+      "admission": {
+        "index": 87,
+        "attempts": 1,
+        "domainHits": 0,
+        "getterCalls": 0
+      },
       "knownUnsupported": "Preexisting active sloppy Function.caller is null in the baseline runtime; identical TypeError OFF and ON. No caller semantics are changed by this candidate."
     }
   ],
@@ -55,22 +153,22 @@
     },
     {
       "file": "crates/js-runtime/src/battle_gc.rs",
-      "sha256": "96256aa10f57ee8d833f1bef99d7c1185d7205d2ae7519a7bfa573cdb8ae527f",
+      "sha256": "1ce99d2c474900cab619b26420b1b5695a074e8dad5ad58359662fb05bd2299a",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/battle_mode_limit.rs",
-      "sha256": "1b7d91f921295f416d7da052c1fc32e78dfac6ff5ab345bee63bb43d9d51e209",
+      "sha256": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/binary.rs",
-      "sha256": "72d57b68e92122444efadce7e8a57fa664daef6936820d2eca56cfb70e98eed1",
+      "sha256": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/buff_attribute_loop.rs",
-      "sha256": "ad8fe069ffbc64eb69a7f9444fa31d3b13b65e9cb1ef9030f6b75eb78c848a44",
+      "sha256": "a41d1e91894b451ff92fe0ffb5a4fee0071e1ac69b15710f507c51068f939192",
       "matched": true
     },
     {
@@ -85,7 +183,7 @@
     },
     {
       "file": "crates/js-runtime/src/closures.rs",
-      "sha256": "5810134403ac56955a90694bcb2fd0d3c0003fefb8b77e9168170d1d2f87bc17",
+      "sha256": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
       "matched": true
     },
     {
@@ -95,7 +193,7 @@
     },
     {
       "file": "crates/js-runtime/src/copy_obj.rs",
-      "sha256": "f5377814218c6b657983dc2738d772fd3485b0a1aac89a6198638a491080a14d",
+      "sha256": "11a32f52af19fd346bc3c0f3e69d33c45e2acb44ef42a08a8c6003748c762783",
       "matched": true
     },
     {
@@ -105,17 +203,17 @@
     },
     {
       "file": "crates/js-runtime/src/dense_array_shift.rs",
-      "sha256": "f4a866084d5f2a700afaae853815afd2e2d2c3e854397139ade8789a2c5f94a3",
+      "sha256": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/diagnostics.rs",
-      "sha256": "9018f7593d765ba4debf4f75355f1ddd676aa60c79a93b183db89086590e2434",
+      "sha256": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/dynamic_slots.rs",
-      "sha256": "f7731263433ec74752da8423fd84c0f2a68cb7c060b02f18c08d974453d035bf",
+      "sha256": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
       "matched": true
     },
     {
@@ -130,7 +228,7 @@
     },
     {
       "file": "crates/js-runtime/src/expose_scan.rs",
-      "sha256": "06733c148aab5757260fb180e8361ea38f6dc16ea39ed8091ef2215e81c37110",
+      "sha256": "a5428ae1b52678a76d4cb224dc6a1798706cb126d8990a51fe751db8f106659a",
       "matched": true
     },
     {
@@ -140,7 +238,7 @@
     },
     {
       "file": "crates/js-runtime/src/heap.rs",
-      "sha256": "0d8b7a1094792303a3dba0c2f3d8b102a2d9682b300d45b175dabdaa9d678104",
+      "sha256": "f8e4a5bb731e8eac10527576df4d8f62e19da09b8547ccb329289ed729b0ac5e",
       "matched": true
     },
     {
@@ -150,7 +248,7 @@
     },
     {
       "file": "crates/js-runtime/src/id_hash.rs",
-      "sha256": "39506b0915591b4fc5fc20e8e2cc2d248d6181dc60f02bae529a9c3ce00b6a10",
+      "sha256": "400ca703e704a963d7bc5da2f615d9521a0a873a456d89783f8422686761f6b2",
       "matched": true
     },
     {
@@ -170,12 +268,12 @@
     },
     {
       "file": "crates/js-runtime/src/lazy_arguments.rs",
-      "sha256": "f681c440fc14ea7ed6c0a7163bc19e36ca0f6ebb86c35a0cffe1cecf8f2d4caf",
+      "sha256": "79b43d98d2382b31fc60ab16318f4ade279b576f58dcecfcaa352bc87f34b409",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/lib.rs",
-      "sha256": "250900db096a5f1e720cf9fe98798243ff0354e06f9f41b16808a2f5d011431d",
+      "sha256": "f85871a8e0efad10a355fd6d1f4c2c6055295bf727268eafcbdfdf5859250c59",
       "matched": true
     },
     {
@@ -199,13 +297,18 @@
       "matched": true
     },
     {
+      "file": "crates/js-runtime/src/primary_numeric_access_tests.rs",
+      "sha256": "3b1ccbfed75db915a7d6b6605d57971e048891d9a38ca3d1b84cc74749c06e73",
+      "matched": true
+    },
+    {
       "file": "crates/js-runtime/src/property_slots.rs",
-      "sha256": "c8796b4307180fda010476025fccc28462a39e2b108eb84651213cff96510d81",
+      "sha256": "39794f933ba13991ee4b2118e068d83bdfe057a68dd633c8c7e8bcf6e249ce79",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/reachability.rs",
-      "sha256": "0bc258f898581366f5a1bb7252b5513544291fdfa6ab2b713813df9edc60c21b",
+      "sha256": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
       "matched": true
     },
     {
@@ -215,17 +318,22 @@
     },
     {
       "file": "crates/js-runtime/src/regex.rs",
-      "sha256": "844434d3835c68676935a8eb31dcdbd03cad483e70bfcd494296a52494f995d6",
+      "sha256": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/runtime.rs",
-      "sha256": "a1a9dec3c92acdc616bb9343fa7b8901e3aa00c5ada9f7d8e77f62437bd2476b",
+      "sha256": "e0e863aea059c8997dc84c6a071d1c2b8d313352bdc37d7c8bde895dd1626f49",
       "matched": true
     },
     {
       "file": "crates/js-runtime/src/stage_range_parser.rs",
-      "sha256": "f2cb274d836b2feb0d79b8fa3fd8b7c6a70b295a4f22f84500be437fa33e5d30",
+      "sha256": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
+      "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/stored_property.rs",
+      "sha256": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
       "matched": true
     },
     {
@@ -240,7 +348,7 @@
     },
     {
       "file": "crates/js-runtime/src/utf8_guard.rs",
-      "sha256": "f107d1d45c0541475f5df4bbc9092dbd351f36882090ef335c529060cd0612b3",
+      "sha256": "b9438ff90c7f00f8b0768bf9e41e2bca05db2950723c967aecb44491adf1b374",
       "matched": true
     },
     {
@@ -250,7 +358,7 @@
     },
     {
       "file": "crates/js-runtime/src/value.rs",
-      "sha256": "478e4a30c34ff4b2be0ea2cd74644509649e3bef1205ee6df36ade620262162c",
+      "sha256": "2f9ea3240804cb67559c02c371ea6750548b4217a546927f865e6806016cd67e",
       "matched": true
     },
     {
@@ -1225,7 +1333,7 @@
     },
     {
       "file": "tools/rust-port/expressions.mjs",
-      "sha256": "0e66c18901fba76c29739d0dec5bfe94ac960f34d26d573e18177e48a5949059",
+      "sha256": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c",
       "matched": true
     },
     {
@@ -1240,12 +1348,12 @@
     },
     {
       "file": "tools/rust-port/check-battle-mode-limit-specialization.mjs",
-      "sha256": "1c615c445b540689b10786125a4ae2b667c66f45ed88b1f87f6fefba53ca28fa",
+      "sha256": "f85734924c18b38bb68c30051365a84523ffb68cb2bedf5b2a8bef2319e5fc7b",
       "matched": true
     },
     {
       "file": "config/native-battle-mode-limit.json",
-      "sha256": "778bc23b6b9b95d13b3275ed67c5ee4111dfee893f11af210cce2b2ffe6dff7c",
+      "sha256": "d4841b351b6b7a6bba98beebc93b34447dd7c229c5f456c23a4e0efb7b5e0a20",
       "matched": true
     },
     {
@@ -1267,6 +1375,16 @@
       "file": "crates/js-runtime/src/battle_mode_parser_source.js",
       "sha256": "6a14fb43237647bf8b3db96b225632b7f7afc633321661843f5815f6e049bb1c",
       "matched": true
+    },
+    {
+      "file": "crates/js-runtime/src/battle_mode_engine_getter_source.js",
+      "sha256": "93ba986430208c8a8258a1ec7345d52d877345ddada92b898f2b39d7baa6cca9",
+      "matched": true
+    },
+    {
+      "file": "src/srcmodule/game_battle.js",
+      "sha256": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+      "matched": true
     }
   ],
   "oracleProfile": {
@@ -1287,29 +1405,29 @@
     "throughputPolicy": "Performance measurements may use compiled native candidates or separately identified runtime flags. Qualification compares candidate traces against this pinned source profile; measurements alone do not establish equivalence.",
     "scope": "Reproducible reference implementation profile, not a claim that ECMAScript specifies NaN sign/payload or that all engine versions produce identical bits."
   },
-  "generatedRustSha256": "9498c5f5683d3267816078aee755ebf16d8842c71db4e487e47c3133a76c2a15",
+  "generatedRustSha256": "997aff42aa2e24a8428040413cfacfb817ee53ebe4ce5831d4803b5eebd4a945",
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-native-battle-mode-limit/work/rust-port-battle-mode-limit-specialization/check",
-    "sha256": "7bafd207a6fc617a00f57434a3899e2623feefe2f6ea2f37c7575f9c0064f3dd"
+    "file": "/workspace/afkarena-simx/work/rust-port-battle-mode-limit-specialization/check",
+    "sha256": "5f1b4b5ddfa46cc3bed7acdf88853a2be51f5ece7e0e4c008adc5828c1899c4e"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-native-battle-mode-limit/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
     "--edition=2024",
     "-O",
-    "/workspace/afkarena-simx/work/candidate-native-battle-mode-limit/work/rust-port-battle-mode-limit-specialization/main.rs",
+    "/workspace/afkarena-simx/work/rust-port-battle-mode-limit-specialization/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-native-battle-mode-limit/target/release/deps",
+    "dependency=/workspace/afkarena-simx/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-native-battle-mode-limit/target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-native-battle-mode-limit/work/rust-port-battle-mode-limit-specialization/check"
+    "/workspace/afkarena-simx/work/rust-port-battle-mode-limit-specialization/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-generated-battle-mode-limit-specialization.outputs.json.gz",
-    "sha256": "1d251516ecbba394c72bbf425efa3525165b322e28182f2508527af1c249de6c"
+    "sha256": "886215966a52ed5aa9c17be61a8fe8bbb13a71d8505c7e522e46b471e0029bc7"
   },
   "qualifiesFor10000Target": false,
   "scope": "Guarded exact-source func_battleModeLimit with immutable configuration plans, preserved actual source helper calls, mutable gameplay fields, getters, callbacks, lexical bindings, loading/boundary paths and warnings. This is an outer predicate component gate, not battle qualification. This is not a complete battle or unrestricted ECMAScript qualification."

@@ -1,0 +1,918 @@
+{
+  "at": "2026-10-30T15:39:55.437Z",
+  "scope": "Stable main benchmark evidence after signed-camp full and fork qualification; canonical source gate reports retained. Raw logs removed only after exact lossless gzip round-trip verification.",
+  "rawLogsArchived": [
+    {
+      "path": "benchmarks/results/2026-10-30-hot-wave-gc-strides.trial0.1.stderr",
+      "bytes": 167,
+      "sha256": "c06c321dbd68bb9be3b177faac5a5dbf60a129f25490bbd95b043e41d0a8c9f6",
+      "archive": "benchmarks/results/2026-10-30-hot-wave-gc-strides.trial0.1.stderr.gz"
+    },
+    {
+      "path": "benchmarks/results/2026-10-30-hot-wave-gc-strides.trial0.1.stdout",
+      "bytes": 687199,
+      "sha256": "0750980f3d065192917bd1d263b78ce5705d09889919733cae87b7e619a6ee08",
+      "archive": "benchmarks/results/2026-10-30-hot-wave-gc-strides.trial0.1.stdout.gz"
+    },
+    {
+      "path": "benchmarks/results/2026-10-30-hot-wave-gc-strides.trial0.2.stderr",
+      "bytes": 166,
+      "sha256": "ae423186406da8beb0461c1877cc7e5f203794a7f80f883a5330f12f60b53476",
+      "archive": "benchmarks/results/2026-10-30-hot-wave-gc-strides.trial0.2.stderr.gz"
+    },
+    {
+      "path": "benchmarks/results/2026-10-30-hot-wave-gc-strides.trial0.2.stdout",
+      "bytes": 687199,
+      "sha256": "3cd120004a37f0742792ed797cd7a113a1c1ba688da3a0168f4ce531ae991122",
+      "archive": "benchmarks/results/2026-10-30-hot-wave-gc-strides.trial0.2.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/arguments-elision.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/arguments-elision.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/arguments-elision.stdout",
+      "bytes": 50,
+      "sha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf",
+      "archive": "benchmarks/validation/hot-execution-wave/arguments-elision.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/array-constructor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/array-constructor.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/array-constructor.stdout",
+      "bytes": 50,
+      "sha256": "2f762b9aed676b3394ef2a32ddc44632a30ca9c1b898a5cc7b7d86914c28c277",
+      "archive": "benchmarks/validation/hot-execution-wave/array-constructor.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/array-from.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/array-from.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/array-from.stdout",
+      "bytes": 50,
+      "sha256": "f78f39396cdf1748e9bf0d9e0720f1b026e711d46fb922253af23436be4b410b",
+      "archive": "benchmarks/validation/hot-execution-wave/array-from.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/arrays.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/arrays.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/arrays.stdout",
+      "bytes": 27,
+      "sha256": "5660af29743e2593054a2fd6a3fe807ed59697f97e74addcbb179549bab4caa2",
+      "archive": "benchmarks/validation/hot-execution-wave/arrays.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/attempt1-value-example.stderr",
+      "bytes": 788,
+      "sha256": "f056a2c757e8834f3c2f877a47e0afbb0443e0c42b426cadee85eef009e12701",
+      "archive": "benchmarks/validation/hot-execution-wave/attempt1-value-example.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/attempt1-value-example.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/attempt1-value-example.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/battle-mode-limit-specialization.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/battle-mode-limit-specialization.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/battle-mode-limit-specialization.stdout",
+      "bytes": 95,
+      "sha256": "3a9154dc40c1689bcd6f2f14e2029c0a369199eea2cdb7996ad1e44f32292fe2",
+      "archive": "benchmarks/validation/hot-execution-wave/battle-mode-limit-specialization.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/buff-percent-loop.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/buff-percent-loop.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/buff-percent-loop.stdout",
+      "bytes": 55,
+      "sha256": "dfc470c2bd2286e560e12568c2efd6bfb001e2428f159a69d8e1320b82d1e43f",
+      "archive": "benchmarks/validation/hot-execution-wave/buff-percent-loop.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/build-and-full.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/build-and-full.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/build-and-full.stdout",
+      "bytes": 317,
+      "sha256": "a15f1536ca64d6f7ac71ca41174b7567e6273553bfeec1ce711884c453dc247b",
+      "archive": "benchmarks/validation/hot-execution-wave/build-and-full.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/closures.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/closures.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/closures.stdout",
+      "bytes": 50,
+      "sha256": "abe036f5117e7807c97dcb6ab8206e84e2be8b2b614745b3e566c82161f054c5",
+      "archive": "benchmarks/validation/hot-execution-wave/closures.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/coercions.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/coercions.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/coercions.stdout",
+      "bytes": 50,
+      "sha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf",
+      "archive": "benchmarks/validation/hot-execution-wave/coercions.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/control-flow.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/control-flow.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/control-flow.stdout",
+      "bytes": 50,
+      "sha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf",
+      "archive": "benchmarks/validation/hot-execution-wave/control-flow.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/copy-obj-specialization.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/copy-obj-specialization.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/copy-obj-specialization.stdout",
+      "bytes": 50,
+      "sha256": "7eac03708bc4dfa2232da61d6202476b183f1e54becd3a3b0c12fb66b13f4993",
+      "archive": "benchmarks/validation/hot-execution-wave/copy-obj-specialization.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/data-obj-specialization.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/data-obj-specialization.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/data-obj-specialization.stdout",
+      "bytes": 50,
+      "sha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf",
+      "archive": "benchmarks/validation/hot-execution-wave/data-obj-specialization.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/date.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/date.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/date.stdout",
+      "bytes": 50,
+      "sha256": "f6524f32d50af541ec6b80b2e624ab8199df1f84e5e3ec682c9a35149d869936",
+      "archive": "benchmarks/validation/hot-execution-wave/date.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/diagnostics.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/diagnostics.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/diagnostics.stdout",
+      "bytes": 66,
+      "sha256": "74b765f9aafd570b4762c07f06fb063752bf3457e4e524a6b237e9ae238aa167",
+      "archive": "benchmarks/validation/hot-execution-wave/diagnostics.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/errors.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/errors.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/errors.stdout",
+      "bytes": 1017,
+      "sha256": "e8865c4814ac15b04321953407a215e9725e8d55dcaaf4149f0e8cafb7d8d520",
+      "archive": "benchmarks/validation/hot-execution-wave/errors.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/generate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/generate.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/generate.stdout",
+      "bytes": 2712,
+      "sha256": "b8c0b9cdd20d92568abf05c6b6bd99767979b02291b17856eae13960dce1efe3",
+      "archive": "benchmarks/validation/hot-execution-wave/generate.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/generated-lock.stderr",
+      "bytes": 55,
+      "sha256": "c1a62fec0acc6a716929e59d565e7f16e415427535000dc80568e31f300f2298",
+      "archive": "benchmarks/validation/hot-execution-wave/generated-lock.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/generated-lock.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/generated-lock.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/generated-typed-arrays.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/generated-typed-arrays.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/generated-typed-arrays.stdout",
+      "bytes": 52,
+      "sha256": "557b557cff75ff834a573a00e7f413a0ada5dff88c39c379d79a88278c21266d",
+      "archive": "benchmarks/validation/hot-execution-wave/generated-typed-arrays.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/json.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/json.stdout",
+      "bytes": 50,
+      "sha256": "50ee520048215c07e827f241d40da7e0c1531343fab846eff3c2739d476fefb0",
+      "archive": "benchmarks/validation/hot-execution-wave/json.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/native-library-and-integration.stderr",
+      "bytes": 3085,
+      "sha256": "d8c6538d96ea8c97bb0a419348f346bf8f1da77f0ace97b113a89fc00830a9ac",
+      "archive": "benchmarks/validation/hot-execution-wave/native-library-and-integration.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/native-library-and-integration.stdout",
+      "bytes": 13883,
+      "sha256": "755cd4b876f6696b307813a86497bc488a61bed16deed60cf2494da6e23e7e4b",
+      "archive": "benchmarks/validation/hot-execution-wave/native-library-and-integration.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/one-hop-slots.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/one-hop-slots.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/one-hop-slots.stdout",
+      "bytes": 50,
+      "sha256": "86337178e0f91fdceb9d5e9c4c8f61532bbd7fd76e185760b796df2cc20f4acd",
+      "archive": "benchmarks/validation/hot-execution-wave/one-hop-slots.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/primary-numeric-access.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/primary-numeric-access.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/primary-numeric-access.stdout",
+      "bytes": 27,
+      "sha256": "2854fad1b2b6d9a5a5c00c99a8fd8435e70c609358949ffb60aa5b3d5d0b242a",
+      "archive": "benchmarks/validation/hot-execution-wave/primary-numeric-access.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/primary-numeric-arrays.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/primary-numeric-arrays.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/primary-numeric-arrays.stdout",
+      "bytes": 27,
+      "sha256": "899332460425efe6a9a1e123dc4e930278494331c551f6956e7e1a43253ec456",
+      "archive": "benchmarks/validation/hot-execution-wave/primary-numeric-arrays.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/reflection-bootstrap.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/reflection-bootstrap.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/reflection-bootstrap.stdout",
+      "bytes": 50,
+      "sha256": "86337178e0f91fdceb9d5e9c4c8f61532bbd7fd76e185760b796df2cc20f4acd",
+      "archive": "benchmarks/validation/hot-execution-wave/reflection-bootstrap.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/shared-utf16.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/shared-utf16.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/shared-utf16.stdout",
+      "bytes": 27,
+      "sha256": "00f567fdfe77f53201db88a8364e29d3f6be53bb5fd72a0a29dd5bf9c2f4fdf7",
+      "archive": "benchmarks/validation/hot-execution-wave/shared-utf16.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/source-selective-prototype.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/source-selective-prototype.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/source-selective-prototype.stdout",
+      "bytes": 484,
+      "sha256": "b701643ecb065fcbb4188cab16f8e9b5ae2781ea688bd9c04eee35c19e831427",
+      "archive": "benchmarks/validation/hot-execution-wave/source-selective-prototype.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/stage-range-parser-specialization.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/stage-range-parser-specialization.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/stage-range-parser-specialization.stdout",
+      "bytes": 50,
+      "sha256": "0f53d274c58a508af9bce8e3e4b3faa131f33187f9aebc28b13ee98d4bf68cde",
+      "archive": "benchmarks/validation/hot-execution-wave/stage-range-parser-specialization.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/strings.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/strings.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/strings.stdout",
+      "bytes": 27,
+      "sha256": "f597a10393e3f3bc2d20a223c27a877310f6311080d86d553a3c684154676afb",
+      "archive": "benchmarks/validation/hot-execution-wave/strings.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/value-example.stderr",
+      "bytes": 1732,
+      "sha256": "fac7ddb0531f0cbece644775217c7e6321db332280bce9f510fe92c0791a4502",
+      "archive": "benchmarks/validation/hot-execution-wave/value-example.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/value-example.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/value-example.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/values.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/hot-execution-wave/values.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/hot-execution-wave/values.stdout",
+      "bytes": 83,
+      "sha256": "32934631983e353b4a7e9cc52a260167ea0874e4c585325a2e740d0accd95fff",
+      "archive": "benchmarks/validation/hot-execution-wave/values.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-hot-execution-wave-build.cargo.stderr",
+      "bytes": 67003,
+      "sha256": "c90408e1f647f2ef1653dbbeaff9be58cce7fc10424f7d76e7f46dbc3bf4fa3d",
+      "archive": "benchmarks/validation/rust-program-hot-execution-wave-build.cargo.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-hot-execution-wave-build.cargo.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/rust-program-hot-execution-wave-build.cargo.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-hot-execution-wave-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/rust-program-hot-execution-wave-build.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-hot-execution-wave-build.stdout",
+      "bytes": 391,
+      "sha256": "ed0b4cea8789fcd3c9f8a4a581ed4e0c7fb3692a2333a93f45b84a87deccb9d3",
+      "archive": "benchmarks/validation/rust-program-hot-execution-wave-build.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-hot-execution-wave-features.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/rust-program-hot-execution-wave-features.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-hot-execution-wave-features.stdout",
+      "bytes": 103,
+      "sha256": "9fe5812cd8fee542f472344ce28d98f7e9cd0d547c6c4e8232841adde62848bb",
+      "archive": "benchmarks/validation/rust-program-hot-execution-wave-features.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-hot-execution-wave-full.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/rust-program-hot-execution-wave-full.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-hot-execution-wave-full.stdout",
+      "bytes": 285,
+      "sha256": "41a6d4df0284df3dc39dd228d67898d8f867f014822193a3a60dc8171494589f",
+      "archive": "benchmarks/validation/rust-program-hot-execution-wave-full.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-signed-camp-wave-build.cargo.stderr",
+      "bytes": 67120,
+      "sha256": "86337038c31d2a96dfb1001051aaf564cf0d8834af2ccf1228380b205795afc7",
+      "archive": "benchmarks/validation/rust-program-signed-camp-wave-build.cargo.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-signed-camp-wave-build.cargo.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/rust-program-signed-camp-wave-build.cargo.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-signed-camp-wave-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/rust-program-signed-camp-wave-build.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-signed-camp-wave-build.stdout",
+      "bytes": 389,
+      "sha256": "1dc7f092835d1509f36231f7c1d8d2867495809a4b35824104abf437228b9c6f",
+      "archive": "benchmarks/validation/rust-program-signed-camp-wave-build.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-signed-camp-wave-features.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/rust-program-signed-camp-wave-features.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-signed-camp-wave-features.stdout",
+      "bytes": 103,
+      "sha256": "9fe5812cd8fee542f472344ce28d98f7e9cd0d547c6c4e8232841adde62848bb",
+      "archive": "benchmarks/validation/rust-program-signed-camp-wave-features.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-signed-camp-wave-full.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/rust-program-signed-camp-wave-full.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/rust-program-signed-camp-wave-full.stdout",
+      "bytes": 289,
+      "sha256": "a23352d6470628909a83adcda424b3e0b9fbe3fd0fc4afde99133cb3b9733f2a",
+      "archive": "benchmarks/validation/rust-program-signed-camp-wave-full.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/arguments-elision.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/arguments-elision.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/arguments-elision.stdout",
+      "bytes": 50,
+      "sha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf",
+      "archive": "benchmarks/validation/signed-camp-wave/arguments-elision.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/array-constructor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/array-constructor.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/array-constructor.stdout",
+      "bytes": 50,
+      "sha256": "2f762b9aed676b3394ef2a32ddc44632a30ca9c1b898a5cc7b7d86914c28c277",
+      "archive": "benchmarks/validation/signed-camp-wave/array-constructor.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/array-from.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/array-from.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/array-from.stdout",
+      "bytes": 50,
+      "sha256": "f78f39396cdf1748e9bf0d9e0720f1b026e711d46fb922253af23436be4b410b",
+      "archive": "benchmarks/validation/signed-camp-wave/array-from.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/arrays.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/arrays.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/arrays.stdout",
+      "bytes": 27,
+      "sha256": "5660af29743e2593054a2fd6a3fe807ed59697f97e74addcbb179549bab4caa2",
+      "archive": "benchmarks/validation/signed-camp-wave/arrays.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/battle-mode-limit-specialization.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/battle-mode-limit-specialization.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/battle-mode-limit-specialization.stdout",
+      "bytes": 96,
+      "sha256": "056fb089db33be1600c2739c461fca806612b499aa87f877ebe221ac2a652cdb",
+      "archive": "benchmarks/validation/signed-camp-wave/battle-mode-limit-specialization.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/buff-percent-loop.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/buff-percent-loop.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/buff-percent-loop.stdout",
+      "bytes": 55,
+      "sha256": "dfc470c2bd2286e560e12568c2efd6bfb001e2428f159a69d8e1320b82d1e43f",
+      "archive": "benchmarks/validation/signed-camp-wave/buff-percent-loop.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/build-and-full.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/build-and-full.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/build-and-full.stdout",
+      "bytes": 313,
+      "sha256": "38364fcece146885457dbc601637bbf0d43572ed39c6d11cda90e9f3022f7eca",
+      "archive": "benchmarks/validation/signed-camp-wave/build-and-full.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/canonical-small-index-contract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/canonical-small-index-contract.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/canonical-small-index-contract.stdout",
+      "bytes": 145,
+      "sha256": "f6213a9ae7209387c9273dd11f0be79dcc0b5220750a97e846fda5035931be53",
+      "archive": "benchmarks/validation/signed-camp-wave/canonical-small-index-contract.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/closures.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/closures.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/closures.stdout",
+      "bytes": 50,
+      "sha256": "abe036f5117e7807c97dcb6ab8206e84e2be8b2b614745b3e566c82161f054c5",
+      "archive": "benchmarks/validation/signed-camp-wave/closures.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/coercions.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/coercions.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/coercions.stdout",
+      "bytes": 50,
+      "sha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf",
+      "archive": "benchmarks/validation/signed-camp-wave/coercions.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/control-flow.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/control-flow.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/control-flow.stdout",
+      "bytes": 50,
+      "sha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf",
+      "archive": "benchmarks/validation/signed-camp-wave/control-flow.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/copy-obj-specialization.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/copy-obj-specialization.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/copy-obj-specialization.stdout",
+      "bytes": 50,
+      "sha256": "7eac03708bc4dfa2232da61d6202476b183f1e54becd3a3b0c12fb66b13f4993",
+      "archive": "benchmarks/validation/signed-camp-wave/copy-obj-specialization.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/data-obj-specialization.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/data-obj-specialization.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/data-obj-specialization.stdout",
+      "bytes": 50,
+      "sha256": "cc260b9124cc8b2a6d11b26db2630bcb1d0b466ca0ac2e48cb2bc81d472893cf",
+      "archive": "benchmarks/validation/signed-camp-wave/data-obj-specialization.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/date.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/date.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/date.stdout",
+      "bytes": 50,
+      "sha256": "f6524f32d50af541ec6b80b2e624ab8199df1f84e5e3ec682c9a35149d869936",
+      "archive": "benchmarks/validation/signed-camp-wave/date.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/diagnostics.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/diagnostics.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/diagnostics.stdout",
+      "bytes": 66,
+      "sha256": "74b765f9aafd570b4762c07f06fb063752bf3457e4e524a6b237e9ae238aa167",
+      "archive": "benchmarks/validation/signed-camp-wave/diagnostics.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/errors.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/errors.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/errors.stdout",
+      "bytes": 1017,
+      "sha256": "e8865c4814ac15b04321953407a215e9725e8d55dcaaf4149f0e8cafb7d8d520",
+      "archive": "benchmarks/validation/signed-camp-wave/errors.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/generate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/generate.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/generate.stdout",
+      "bytes": 2712,
+      "sha256": "90bea5aff55831d673e664c35dcefd5585ec48a38e723d81255baf0d9211a302",
+      "archive": "benchmarks/validation/signed-camp-wave/generate.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/generated-lock.stderr",
+      "bytes": 55,
+      "sha256": "c1a62fec0acc6a716929e59d565e7f16e415427535000dc80568e31f300f2298",
+      "archive": "benchmarks/validation/signed-camp-wave/generated-lock.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/generated-lock.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/generated-lock.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/generated-typed-arrays.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/generated-typed-arrays.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/generated-typed-arrays.stdout",
+      "bytes": 52,
+      "sha256": "557b557cff75ff834a573a00e7f413a0ada5dff88c39c379d79a88278c21266d",
+      "archive": "benchmarks/validation/signed-camp-wave/generated-typed-arrays.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/json.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/json.stdout",
+      "bytes": 50,
+      "sha256": "50ee520048215c07e827f241d40da7e0c1531343fab846eff3c2739d476fefb0",
+      "archive": "benchmarks/validation/signed-camp-wave/json.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/native-library-and-integration.stderr",
+      "bytes": 3301,
+      "sha256": "d77193929d4f0a2eebc28733df218e8ec2271a8be77ecb91a7db6521f7f59400",
+      "archive": "benchmarks/validation/signed-camp-wave/native-library-and-integration.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/native-library-and-integration.stdout",
+      "bytes": 18034,
+      "sha256": "c2ed3c9269908a2f8f33d6077881976962002b668ea98b43ca6fff06912c162b",
+      "archive": "benchmarks/validation/signed-camp-wave/native-library-and-integration.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/one-hop-slots.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/one-hop-slots.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/one-hop-slots.stdout",
+      "bytes": 50,
+      "sha256": "86337178e0f91fdceb9d5e9c4c8f61532bbd7fd76e185760b796df2cc20f4acd",
+      "archive": "benchmarks/validation/signed-camp-wave/one-hop-slots.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/primary-numeric-access.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/primary-numeric-access.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/primary-numeric-access.stdout",
+      "bytes": 27,
+      "sha256": "2854fad1b2b6d9a5a5c00c99a8fd8435e70c609358949ffb60aa5b3d5d0b242a",
+      "archive": "benchmarks/validation/signed-camp-wave/primary-numeric-access.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/primary-numeric-arrays.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/primary-numeric-arrays.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/primary-numeric-arrays.stdout",
+      "bytes": 27,
+      "sha256": "899332460425efe6a9a1e123dc4e930278494331c551f6956e7e1a43253ec456",
+      "archive": "benchmarks/validation/signed-camp-wave/primary-numeric-arrays.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/reflection-bootstrap.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/reflection-bootstrap.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/reflection-bootstrap.stdout",
+      "bytes": 50,
+      "sha256": "86337178e0f91fdceb9d5e9c4c8f61532bbd7fd76e185760b796df2cc20f4acd",
+      "archive": "benchmarks/validation/signed-camp-wave/reflection-bootstrap.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/shared-utf16.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/shared-utf16.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/shared-utf16.stdout",
+      "bytes": 27,
+      "sha256": "00f567fdfe77f53201db88a8364e29d3f6be53bb5fd72a0a29dd5bf9c2f4fdf7",
+      "archive": "benchmarks/validation/signed-camp-wave/shared-utf16.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/source-selective-prototype.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/source-selective-prototype.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/source-selective-prototype.stdout",
+      "bytes": 484,
+      "sha256": "b701643ecb065fcbb4188cab16f8e9b5ae2781ea688bd9c04eee35c19e831427",
+      "archive": "benchmarks/validation/signed-camp-wave/source-selective-prototype.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/stage-range-parser-specialization.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/stage-range-parser-specialization.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/stage-range-parser-specialization.stdout",
+      "bytes": 50,
+      "sha256": "0f53d274c58a508af9bce8e3e4b3faa131f33187f9aebc28b13ee98d4bf68cde",
+      "archive": "benchmarks/validation/signed-camp-wave/stage-range-parser-specialization.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/strings.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/strings.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/strings.stdout",
+      "bytes": 27,
+      "sha256": "f597a10393e3f3bc2d20a223c27a877310f6311080d86d553a3c684154676afb",
+      "archive": "benchmarks/validation/signed-camp-wave/strings.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/value-example.stderr",
+      "bytes": 1805,
+      "sha256": "95924cdaf1206fa38250273ef6725f7fe7fab7a127d6edbd654e78798529e5c8",
+      "archive": "benchmarks/validation/signed-camp-wave/value-example.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/value-example.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/value-example.stdout.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/values.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "benchmarks/validation/signed-camp-wave/values.stderr.gz"
+    },
+    {
+      "path": "benchmarks/validation/signed-camp-wave/values.stdout",
+      "bytes": 83,
+      "sha256": "32934631983e353b4a7e9cc52a260167ea0874e4c585325a2e740d0accd95fff",
+      "archive": "benchmarks/validation/signed-camp-wave/values.stdout.gz"
+    }
+  ],
+  "newGzipArchives": [
+    "benchmarks/validation/hot-execution-wave/attempt1-value-example.stderr.gz",
+    "benchmarks/validation/hot-execution-wave/attempt1-value-example.stdout.gz",
+    "benchmarks/validation/rust-program-hot-execution-wave-build.stderr.gz",
+    "benchmarks/validation/rust-program-hot-execution-wave-build.stdout.gz",
+    "benchmarks/validation/rust-program-hot-execution-wave-features.stderr.gz",
+    "benchmarks/validation/rust-program-hot-execution-wave-features.stdout.gz",
+    "benchmarks/validation/rust-program-hot-execution-wave-full.stderr.gz",
+    "benchmarks/validation/rust-program-hot-execution-wave-full.stdout.gz",
+    "benchmarks/validation/rust-program-signed-camp-wave-build.stderr.gz",
+    "benchmarks/validation/rust-program-signed-camp-wave-build.stdout.gz",
+    "benchmarks/validation/rust-program-signed-camp-wave-features.stderr.gz",
+    "benchmarks/validation/rust-program-signed-camp-wave-features.stdout.gz",
+    "benchmarks/validation/rust-program-signed-camp-wave-full.stderr.gz",
+    "benchmarks/validation/rust-program-signed-camp-wave-full.stdout.gz"
+  ],
+  "branchAudit": [
+    {
+      "sha": "3d4ad739e7bb7fbbe2b4f678d4202d54fb274f37",
+      "branch": "candidate-bound-call",
+      "remote": null
+    },
+    {
+      "sha": "5f70aa4bcb45beace705186e7f62132e231558f9",
+      "branch": "candidate-dynamic-own-slot",
+      "remote": null
+    },
+    {
+      "sha": "2e65618932d43f9637616ada10bf5cf73882cc34",
+      "branch": "candidate-integration-string-wave",
+      "remote": null
+    },
+    {
+      "sha": "fafc178e85020bc4ac66e2aa52d549db88dea1f7",
+      "branch": "candidate-numeric-literal-keys",
+      "remote": null
+    },
+    {
+      "sha": "d31a23618c4740f707e0479e1b0d7e895724ca7f",
+      "branch": "candidate-numeric-ops",
+      "remote": null
+    },
+    {
+      "sha": "6efa336187e899e413629c30c84487eabffd1987",
+      "branch": "candidate/function-own-literal",
+      "remote": null
+    }
+  ]
+}
