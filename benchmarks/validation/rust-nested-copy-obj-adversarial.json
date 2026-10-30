@@ -23,7 +23,7 @@
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
     "crates/js-runtime/src/collections.rs": "4aa6bb6bd15f257c5812573214e54d2febd064eec09db640bbf525a8d9d5d889",
-    "crates/js-runtime/src/copy_obj.rs": "9ac3c7bc19a37f0ed649c6971d5605d768d84e04c09e9b7e8338605ba07023f5",
+    "crates/js-runtime/src/copy_obj.rs": "4efade3bdf709b784a799f3a1f27f8144912e175c77b9ef182f49d5afc5acc3f",
     "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
     "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
     "crates/js-runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
@@ -51,7 +51,7 @@
     "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
-    "crates/js-runtime/src/runtime.rs": "83a0f31c9651a676ca4d45bd86784cfc3119cf3fde49041f097add5979cdeb4b",
+    "crates/js-runtime/src/runtime.rs": "f6252b7491affda7811d049dd1d152a0f581af9f831e2191051365a1d0055f38",
     "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
     "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
@@ -260,12 +260,12 @@
   },
   "runtime": {
     "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-target/release/libjs_runtime.rlib",
-    "sha256": "f79936ac8a5b7c14acd85ae814c0f8ec17102e321bfe89cf3312e1158bb1582c",
+    "sha256": "692ee6c7f875c272810c5936b4522bf61b5b04eb44e0de3bf0b285c0b5d9a146",
     "deps": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-target/release/deps"
   },
   "binary": {
     "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-obj-adversarial/check",
-    "sha256": "9ded683605e11e457745ecaa59895274bd2275d32e682d933ca66dc0bd160e9b"
+    "sha256": "cbfcbf4b34f6d1528b9c4c08d01a2162e368f6c9aa696c7a707fa683a6aa341d"
   },
   "rustc": {
     "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
