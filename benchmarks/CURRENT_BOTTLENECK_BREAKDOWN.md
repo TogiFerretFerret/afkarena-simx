@@ -21,6 +21,11 @@ The previous four-worker cohort measured 2.565778 battles/second. The new result
 
 Evidence: [full qualification](validation/rust-program-guarded-native-wave-full.json), [four-worker qualification](results/2026-10-30-guarded-native-wave-fork-four.json) and [combined source/generation contracts](validation/guarded-native-wave/result.json).
 
+The subsequently merged [owner-percent extension](../tools/rust-port/OWNER_PERCENT_LOOP.md)
+has 57 differential cases and strict component gains of 1.08–1.56×. It is not
+included in this frozen whole-battle build. Actual measured battle admissions,
+full-battle qualification and its effect on throughput remain pending.
+
 ## Latest retained CPU profile: previous source 7e718b1
 
 This capture contains **7,880 samples at 299 Hz, zero lost samples**. Startup and three warmups are excluded through the original measured-window markers. TRACE0, the full report, raw bits, host tapes, 309,060 callbacks, 12 collections, its frozen build inputs and eight linked libraries all verify. Its percentages describe the previous build, not a new profile of da74854.

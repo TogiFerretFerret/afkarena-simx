@@ -24,6 +24,12 @@ Every worker matches Node and consumes the complete host tape; each records
 12 actual GC collections. Startup/warmup admissions are excluded.
 Both rates remain below 3 battles/second and the 10,000 target.
 
+The newer [owner-based percent-buff extension](OWNER_PERCENT_LOOP.md) is merged
+after this frozen full-battle build. Its strict component benchmarks measure
+1.08–1.56× against the previous helper, with 57 differential cases passing.
+Whole-battle admission and timing are pending; the rates above describe da74854
+and do not include a measured benefit from that extension.
+
 The [current CPU breakdown](../../benchmarks/CURRENT_BOTTLENECK_BREAKDOWN.md)
 retains the previous build's CPU profile: 45.23% in property reads and writes.
 Babel already
