@@ -36,6 +36,24 @@ impl Runtime{
    if object.prototype!=Some(self.array_prototype)||object.primary_numeric_mask()!=0||object.iter_properties().next().is_some(){return Ok(None)}
    return Ok(Some(self.array(&[])))
   }
+  if let ObjectKind::Array{length,length_writable:true,..}=object.kind{
+   if !(1..=4).contains(&length)||object.prototype!=Some(self.array_prototype)||!object.arguments_map.is_empty(){return Ok(None)}
+   // Runtime reserves canonical IDs 0..3 for the four numeric keys. Reading
+   // own() includes virtual primary numeric slots as well as dictionary data.
+   let mut values=[None;4];
+   for(index,value)in values.iter_mut().enumerate().take(length as usize){
+    let key=PropertyKey(crate::StringId(index));
+    let Some(Descriptor{enumerable:true,configurable:true,kind:PropertyKind::Data{value:Value::Number(number),writable:true}})=object.own(key)else{return Ok(None)};
+    if !number.is_finite()||self.objects[self.array_prototype.0].own(key).is_some()||self.objects[self.object_prototype.0].own(key).is_some(){return Ok(None)}
+    *value=Some(Value::Number(number));
+   }
+   if object.iter_properties().any(|(key,_)|key.0.0>=length as usize)||object.primary_numeric_mask()&!((1u8<<length)-1)!=0{return Ok(None)}
+   // All guards finish before allocation. Dense Number leaves trigger no
+   // recursive source calls, and the guarded Array constructor creates the
+   // same default own index descriptors and length in numeric key order.
+   if self.native_battle_gc.free_objects.last().copied()==Some(id.0){return Ok(None)}
+   return Ok(Some(self.array(&values[..length as usize])))
+  }
   if !matches!(object.kind,ObjectKind::Ordinary)||object.prototype!=Some(self.object_prototype)||!object.arguments_map.is_empty(){return Ok(None)}
   for (key,desc)in object.iter_properties(){
    if !desc.enumerable||!desc.configurable{return Ok(None)}
@@ -116,4 +134,25 @@ impl Runtime {
  }
  #[test]fn exact_source_23_safepoints_recycle_numeric_copy_capacity(){let mut rt=Runtime::new();let function=rt.make_closure(rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(function,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();assert_eq!(rt.call(function,Value::Undefined,&[]).unwrap(),Value::Number(22.0));assert_eq!(rt.native_battle_gc_stats().collections,23);}
  #[test]fn corrupt_free_source_is_rejected_before_allocation(){let mut rt=Runtime::new();let source=rt.object();let key=rt.string("x");rt.define_data(source,key,Value::Number(-0.0),true,true,true).unwrap();let id=rt.object_id(source).unwrap();rt.native_battle_gc.free_objects.push(id.0);let length=rt.objects.len();assert!(rt.try_native_copy_obj(source,rt.global_env).unwrap().is_none());assert_eq!(rt.objects.len(),length);let key=crate::PropertyKey(rt.intern("x"));assert!(rt.objects[id.0].own(key).is_some());}
+}
+
+#[cfg(test)]mod small_array_tests{
+ use super::*;
+ #[test]fn dense_lengths_and_finite_raw_bits_are_fresh(){for primary in[false,true]{for length in 1..=4{let mut rt=Runtime::new();rt.primary_numeric_arrays_enabled=primary;let numbers=[-0.0,f64::from_bits(1),f64::MAX,-17.25];let values:Vec<_>=numbers[..length].iter().map(|&n|Some(Value::Number(n))).collect();let source=rt.array(&values);let output=rt.try_native_copy_obj(source,rt.global_env).unwrap().unwrap();assert_ne!(source,output);assert_eq!(rt.own_keys(source,true).unwrap(),rt.own_keys(output,true).unwrap());for i in 0..length{let key=rt.string(&i.to_string());let Value::Number(n)=rt.get(output,key).unwrap()else{panic!()};assert_eq!(n.to_bits(),numbers[i].to_bits());}}}}
+ #[test]fn observable_shapes_fallback_without_allocating(){for mode in 0..12{let mut rt=Runtime::new();let source=rt.array(&[Some(Value::Number(-0.0)),Some(Value::Number(2.0))]);let id=rt.object_id(source).unwrap();let zero=rt.string("0");let key=rt.string("extra");match mode{
+ 0=>{rt.define_data(source,zero,Value::Number(f64::NAN),true,true,true).unwrap();},
+ 1=>{rt.objects[id.0].remove(PropertyKey(crate::StringId(0)));},
+ 2=>{rt.define_data(source,key,Value::Number(3.0),true,false,true).unwrap();},
+ 3=>{rt.define_data(source,zero,Value::Number(3.0),false,true,true).unwrap();},
+ 4=>{rt.define_accessor(source,zero,None,None,true,true).unwrap();},
+ 5=>{let key=rt.string("constructor");rt.define_data(source,key,Value::Undefined,true,true,true).unwrap();},
+ 6=>{rt.define_data(Value::Object(rt.array_prototype),zero,Value::Number(3.0),false,true,true).unwrap();},
+ 7=>{rt.define_accessor(Value::Object(rt.object_prototype),zero,None,None,true,true).unwrap();},
+ 8=>{if let ObjectKind::Array{length_writable,..}=&mut rt.objects[id.0].kind{*length_writable=false;}},
+ 9=>{rt.objects[id.0].extensible=false;},
+ 10=>{rt.objects[id.0].prototype=Some(rt.object_prototype);},
+ _=>{rt.native_battle_gc.free_objects.push(id.0);}}
+ let count=rt.objects.len();assert!(rt.try_native_copy_obj(source,rt.global_env).unwrap().is_none(),"mode {mode}");assert_eq!(count,rt.objects.len());}}
+ fn rounds(rt:&mut Runtime,_:Value,_:&[Value],parent:EnvId)->JsResult<Value>{let env=rt.child_env(parent);for(name,value)in[("battles",23.0),("warmup",0.0),("battleIndex",0.0)]{rt.declare(env,name,Value::Number(value))?;}let source=rt.array(&[Some(Value::Number(-0.0)),Some(Value::Number(f64::from_bits(1)))]);rt.declare(env,"keptSource",source)?;let mut ids=std::collections::HashSet::new();let mut reused=0;for round in 0..23{let output=rt.try_native_copy_obj(source,env)?.unwrap();assert_ne!(source,output);if !ids.insert(rt.object_id(output)?){reused+=1;}for(index,bits)in[(-0.0f64).to_bits(),1].into_iter().enumerate(){let key=rt.string(&index.to_string());let Value::Number(n)=rt.get(output,key)?else{panic!()};assert_eq!(n.to_bits(),bits);}rt.assign(env,"battleIndex",Value::Number(round as f64),false)?;rt.collect_native_battle_backedge(env,parent)?;}assert_eq!(reused,22);Ok(Value::Undefined)}
+ #[test]fn source_23_gc_safepoints_preserve_fresh_array_bits(){let mut rt=Runtime::new();let f=rt.make_closure(rounds,rt.global_env,0,"__nativeRun");rt.set_function_source(f,&include_str!("native_battle_run.js").encode_utf16().collect::<Vec<_>>()).unwrap();rt.enable_native_battle_gc();rt.call(f,Value::Undefined,&[]).unwrap();assert_eq!(rt.native_battle_gc_stats().collections,23);}
 }
