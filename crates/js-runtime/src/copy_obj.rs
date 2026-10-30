@@ -202,7 +202,7 @@ impl Runtime {
   }
   let Some(Value::Object(ed))=value else{return false};let Some(object)=self.objects.get(ed.0)else{return false};
   if object.is_function||!matches!(object.kind,ObjectKind::Ordinary)||!object.arguments_map.is_empty(){return false}
-  match object.own(copy_key).map(|d|d.kind){Some(PropertyKind::Data{value:Value::Function(id),..})=>id==active,Some(PropertyKind::Data{value:Value::Object(id),..})=>id==function.object&&self.objects[id.0].is_function&&self.function_objects.get(&id)==Some(&Value::Function(active)),_=>false}
+  match object.own(copy_key).map(|d|d.kind){Some(PropertyKind::Data{value:Value::Function(id),..})=>id==active,Some(PropertyKind::Data{value:Value::Object(id),..})=>id==function.object&&self.objects[id.0].is_function&&self.function_objects.get(&id)==Some(&active),_=>false}
  }
  fn preflight_nested_copy(&self,id:ObjectId,depth:usize,path:&mut Vec<ObjectId>,nodes:&mut Vec<NestedCopyNode>,properties:&mut usize)->Option<usize>{
   if depth>NESTED_COPY_MAX_DEPTH||nodes.len()>=NESTED_COPY_MAX_NODES||path.contains(&id){return None}
