@@ -233,3 +233,22 @@ Evidence: [allocation counters](results/2026-10-28T21-22-31.989Z-rust-measured-a
 
 Compiler work following this profile is described in the
 [implementation roadmap](../tools/rust-port/COMPILER_ROADMAP.md).
+
+## Implemented after the capture
+
+The Babel compiler now scalar-replaces the proven nonescaping two-element
+position snapshot in `Unit.update`. Its original-source component benchmark
+improves **4.3%**, removing exactly 10,000 arrays per 10,000 updates. All 84
+adversarial ON/OFF executions match JS, including raw bits and original TRACE1
+diagnostics. See [the pass and evidence](../tools/rust-port/SCALAR_LOCAL_ARRAYS.md).
+
+The guarded `copyObj` lowering now also accepts flat primitive-valued records.
+The original `createDataObj` path on a real `UnitRank` row improves **2.05x**.
+Nested buff parents remain outside that domain; their negative control does not
+show a comparable gain. See [actual admission and timings](../tools/rust-port/COPY_PRIMITIVES_BENCHMARK.md).
+
+These are component measurements. The combined full-battle qualification is
+running; the throughput figures above still refer to the last qualified build.
+The broader [scalar-array inventory](../tools/rust-port/SCALAR_ARRAY_INVENTORY.md)
+finds little additional sampled coverage for this particular pattern, so it
+does not justify predicting thousands of battles/second from array elision alone.
