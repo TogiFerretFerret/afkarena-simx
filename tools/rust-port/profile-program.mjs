@@ -34,7 +34,9 @@ if(preparationOption){
  preparationGuard={file,sha256:sha(bytes),gcExpectation:gc,buildProofBefore:await reverifyPreparation(),changedInputs:[]};
 }
 const data=prefix+'.data',control=[],acknowledgments=[],markers=[];
-const recordArgs=['record','--clockid','mono','-e','cpu-clock:u','-F',String(frequency),'--call-graph','dwarf,'+stackBytes,'-o',data,...(controlled?['--delay=-1','--control','fd:3,4']:[]),'--',binary];
+// The event and callchains both target user space; default kernel callchains
+// can require privileges even when cpu-clock:u is permitted.
+const recordArgs=['record','--user-callchains','--clockid','mono','-e','cpu-clock:u','-F',String(frequency),'--call-graph','dwarf,'+stackBytes,'-o',data,...(controlled?['--delay=-1','--control','fd:3,4']:[]),'--',binary];
 async function command(commandArgs,label){const out=openSync(prefix+'.'+label+'.stdout','w'),err=openSync(prefix+'.'+label+'.stderr','w');try{return await new Promise((accept,reject)=>{const child=spawn(perf,commandArgs,{cwd:root,env:environment,stdio:['ignore',out,err]});child.once('error',reject);child.once('close',(code,signal)=>accept({code,signal}));});}finally{closeSync(out);closeSync(err);}}
 const recordOut=openSync(prefix+'.record.stdout','w'),recordErr=createWriteStream(prefix+'.record.stderr');
 const start=performance.now();let execution;const observedMemory={intervalMs:100,samples:0,peakChildRssKiB:0,peakChildHwmKiB:0};
