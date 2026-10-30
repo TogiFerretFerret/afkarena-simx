@@ -1,29 +1,29 @@
 # Current native simulator bottlenecks
 
-Dynamic property and descriptor work remains the largest measured cost: **45.23% of sampled user CPU**. The qualified simulator is faithful on the fixed fixture, but **3 and 10,000 battles/second remain unmet**.
+The latest retained CPU profile attributes **45.23% of sampled user CPU** to dynamic property and descriptor work. The latest qualified simulator adds the nested-copy shortcut; its new throughput is below. **3 and 10,000 battles/second remain unmet**.
 
 ## Current build and throughput
 
-Every current table below binds frozen source **7e718b1**, including the function-own-property cache, scalar local-array pass and mixed-primitive copy helper. The original 20 measured battles and three warmups preserve complete reports, captured floating-point bits, RNG/clock host consumption and **309,060 callbacks**.
+The throughput table binds frozen source **da74854**, including guarded nested copying. The original 20 measured battles and three warmups preserve complete reports, captured floating-point bits, RNG/clock host consumption and **309,060 callbacks**. The CPU tables later in this document retain the previous **7e718b1** profile; they have not been remeasured for the new shortcut.
 
 | Unprofiled measurement | Result |
 | --- | ---: |
-| One worker, measured battle loop | 0.757461 battles/second |
-| Four workers, aggregate | 2.565778 battles/second |
-| One-worker measured loop, 20 battles | 26.404 seconds |
-| Complete one-worker process | 33.338 seconds |
-| Combined initialization, warmups and final-report remainder | 6.934 seconds |
-| Four-worker measured window, 80 battles | 31.180 seconds |
+| One worker, measured battle loop | 0.819269 battles/second |
+| Four workers, aggregate | 2.633120 battles/second |
+| One-worker measured loop, 20 battles | 24.412 seconds |
+| Complete one-worker process | 31.200 seconds |
+| Combined initialization, warmups and final-report remainder | 6.788 seconds |
+| Four-worker measured window, 80 battles | 30.382 seconds |
 
-The remainder cannot be charged to every battle in a persistent worker. Current retained module timers put units 0–5 initialization at approximately **0.226 seconds**; runtime/host setup, module-6 setup, warmups and reporting are not all separated by those timers. Four-worker throughput is aggregate throughput.
+The remainder cannot be charged to every battle in a persistent worker. It combines runtime/host setup, module initialization, warmups and reporting. Four-worker throughput is aggregate throughput.
 
-The earlier four-worker cohort measured 2.537886 battles/second. The current result is only **1.1% higher in a separate cohort**, which does not establish a significant or per-feature causal improvement. Source-helper admission is observed directly: **50,300 domain hits and 150,900 getter calls** in the serial run and each child. Every child reports **12 actual collections**, with source GC cadence 2 and default request stride 1.
+The previous four-worker cohort measured 2.565778 battles/second. The new result is **2.6% higher in a separate cohort**, which does not establish a causal improvement. Each worker records **48,000 nested-copy attempts and hits inside the measured window**, excluding **7,200 startup/warmup hits**. Every fork child reports **12 actual collections**, with source GC cadence 2 and default request stride 1. Qualification passes 199 native tests, 29 source gates and four provenance tests.
 
-Evidence: [full qualification](validation/rust-program-source-shortcut-wave-full.json), [four-worker qualification](results/2026-10-30-source-shortcut-wave-fork-four.json) and [combined source/generation contracts](validation/source-shortcut-wave/result.json).
+Evidence: [full qualification](validation/rust-program-guarded-native-wave-full.json), [four-worker qualification](results/2026-10-30-guarded-native-wave-fork-four.json) and [combined source/generation contracts](validation/guarded-native-wave/result.json).
 
-## Current measured battle-window CPU
+## Latest retained CPU profile: previous source 7e718b1
 
-The current capture contains **7,880 samples at 299 Hz, zero lost samples**. Startup and three warmups are excluded through the original measured-window markers. TRACE0, the full report, raw bits, host tapes, 309,060 callbacks, 12 collections, current build inputs and eight linked libraries all verify.
+This capture contains **7,880 samples at 299 Hz, zero lost samples**. Startup and three warmups are excluded through the original measured-window markers. TRACE0, the full report, raw bits, host tapes, 309,060 callbacks, 12 collections, its frozen build inputs and eight linked libraries all verify. Its percentages describe the previous build, not a new profile of da74854.
 
 | Disjoint native self-cost group | CPU share |
 | --- | ---: |
