@@ -1,0 +1,21 @@
+# Bounded nested copy: independent effect review and test contract
+
+Candidate source is isolated on `candidate/nested-copy-obj`; the current main full-build freeze is unchanged. The new runtime flag defaults off. The added Babel hook runs only after the existing flat helper declines the exact original `ed.copyObj` body. This review is source evidence, not native qualification or a speed claim.
+
+The original body reads the constructor (twice when truthy), constructs the result, snapshots Object.keys, then visits keys in that order. Each truthy object value invokes the current `ed.copyObj` property dynamically. Other primitive values and Functions retain value/identity. Shared object children are copied separately at each occurrence. A cycle does not authorize memoization or silently terminating recursion.
+
+The proposed fast region is valid only after callback-free preflight:
+
+- Original Object/Array constructor, Object.keys and prototype guards remain intact. Namespace resolution inspects initialized binding cells or own data descriptors without invoking global/accessor Gets. The resolved ordinary `ed` object must have an own data `copyObj` Function identical to the currently executing function. Getters, inherited dispatch, wrappers, foreign object-backed environments and unknown scopes decline.
+- Every visited container is an extensible plain object or a dense, default-descriptor Array with the original prototype. Own constructor overrides, accessors, nondefault descriptors, inherited write conflicts and nonfinite Numbers decline. String and Function leaves retain identity.
+- All graph inspection completes before allocating any JS result object. Bounds are depth 3, 32 container occurrences, 256 physical properties and 64 Array elements. Active-path cycle detection rejects cycles; repeated children on separate paths become separate plan nodes. Numeric keys sort in original Object.keys order and nonnumeric keys retain stable insertion order.
+- Emission allocates fresh result containers per occurrence. No eligible source callback or coercion remains to observe the skipped internal recursive dispatch, temporary keys arrays or interpreter loop. TRACE1 declines before guard interning and retains original recursive Get/error records. The flat helper remains unchanged in both test arms.
+- Corrupt or aliased GC free slots must decline before any JS allocation. String/Function leaves must remain live through output descriptors after the input dies; packed owns the separate 23-collection native regression.
+
+The independent checker contains 33 source cases. Nine require fewer JS heap objects with the new flag on, ensuring that a suite of unconditional fallbacks cannot pass as an accelerator. Other cases exercise callback replacement/getters, local captured namespace data, global inherited/accessor namespaces, constructor effects, child getters mutating the parent's already-snapshotted keys, prototype setters, shared aliases, bounds, holes, descriptors and raw Number bits. Each compares source values/logs to pinned jitless Node and compares paired native TRACE1 stderr, receiver IDs and source frames exactly. Only the new nested flag changes between native arms.
+
+The cyclic source case installs a bounded wrapper and verifies its callbacks/throw prefix. It does not prove the pure cycle preflight: that requires packed's direct native helper test, because allowing the original unbounded recursion can abort the native process. Likewise source String/Function identity tests do not replace the native 23-GC root test.
+
+After the main CPU lease releases, run `flock -s /workspace/afkarena-simx/work/native-timing.lock node --jitless tools/rust-port/check-nested-copy-obj-adversarial.mjs`. The default builds the current worktree runtime; optional `--runtime-rlib PATH --runtime-deps PATH` reuses an explicitly bound candidate library. No timing comes from this checker. Future actual benchmarks require an exclusive lock and an uninstrumented allocator.
+
+At source-preparation time no new checker or native test was executed during the main pipeline's exclusive lease. Qualification remains pending. Report path: `benchmarks/validation/rust-nested-copy-obj-adversarial.json`; full observations/manifests are archived in its `.outputs.json.gz` companion.
