@@ -1,0 +1,167 @@
+{
+  "passed": true,
+  "ranBattles": false,
+  "preparation": {
+    "passed": true,
+    "ranWorkload": false,
+    "baseline": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-hot-execution-wave-full.json",
+      "sha256": "645029d842fc8ec08c827b297baf4325b3d18ee4e71d74e74e34ad0e7580095e"
+    },
+    "libraries": [
+      {
+        "name": "js_runtime",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+        "sha256": "a11feebe66044308f45bab888049df5528f368b411a66449260e337eddb06ed0"
+      },
+      {
+        "name": "battle_unit_0",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+        "sha256": "4260002790ab2e5addd8779988479dddd4e6e387156e19f2bc15a23975475bcd"
+      },
+      {
+        "name": "battle_unit_1",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+        "sha256": "9f9e2d35ad6f02282f99def983cc22cc17dea45bb7899ef0fe1b2eb77c8aae58"
+      },
+      {
+        "name": "battle_unit_2",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+        "sha256": "1f4ac8cec5e8b1ec6829c59731035203d825a6fc653ef3d7afe654159dfbd281"
+      },
+      {
+        "name": "battle_unit_3",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+        "sha256": "137c01a5eab49dcd7643f78777e0593e082e30a0adc8ee45ce76e03d656423c1"
+      },
+      {
+        "name": "battle_unit_4",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+        "sha256": "0de9f64762d5d1fff0346bd69643d60247af843c62dca179eceac9ffe2b50abe"
+      },
+      {
+        "name": "battle_unit_5",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+        "sha256": "7ff07c26a704d37444f906561b4da83144c34b918d90d5e753385e92e8a76b57"
+      },
+      {
+        "name": "battle_unit_6",
+        "file": "/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+        "sha256": "812c0c693ce9a4be19e417df64369b527f1414fae4864b57e75eda20ece81819"
+      }
+    ],
+    "binary": {
+      "file": "/workspace/afkarena-simx/work/mode-domain-diagnostic/2026-10-30T14-22-41.893Z/diagnostic",
+      "sha256": "b3be9befb634e15873a41811daacdf77b23411c60316b5e3c4e268d3fe1a3a31"
+    },
+    "wrapperSha256": "60df07943a8007c83ddfdee924944c20a0d22f3265c1c41c4a478dc9cd1b11f7",
+    "originalWrapperSha256": "3d6b2ccdd31023286c444d6a472026287ff00f89f4e5d2fb5cf00e4df0297c4f",
+    "tool": {
+      "file": "/workspace/afkarena-simx/work/candidate-streaming-boundary-trace/tools/rust-port/diagnose-battle-mode-domain.mjs",
+      "sha256": "694c4e0939530040520751d92e161b02f2fc75758ef2a138fd039113febdbb5c"
+    },
+    "helper": {
+      "file": "/workspace/afkarena-simx/work/candidate-streaming-boundary-trace/tools/rust-port/program-mode-domain-diagnostic.rs",
+      "sha256": "994f731f1c85397d1c892559e8ba03a3adbc28238798c1c63b40a462d9c187ea"
+    },
+    "command": [
+      "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+      "--edition=2024",
+      "-O",
+      "-C",
+      "codegen-units=64",
+      "-C",
+      "lto=off",
+      "/workspace/afkarena-simx/work/mode-domain-diagnostic/2026-10-30T14-22-41.893Z/main.rs",
+      "-L",
+      "dependency=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps",
+      "--extern",
+      "js_runtime=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libjs_runtime-b2a0661a701943af.rlib",
+      "--extern",
+      "battle_unit_0=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_0-076e163edf50568c.rlib",
+      "--extern",
+      "battle_unit_1=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_1-adbb8e26292e983b.rlib",
+      "--extern",
+      "battle_unit_2=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_2-e42ca4b47b621791.rlib",
+      "--extern",
+      "battle_unit_3=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_3-90dff6b1ebb4a125.rlib",
+      "--extern",
+      "battle_unit_4=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_4-77f30b21d17a86f3.rlib",
+      "--extern",
+      "battle_unit_5=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_5-7b799d27f2b7bfb5.rlib",
+      "--extern",
+      "battle_unit_6=/workspace/afkarena-simx/work/rust-port-shared-target/release/deps/libbattle_unit_6-93a5bc1a8d453d11.rlib",
+      "-o",
+      "/workspace/afkarena-simx/work/mode-domain-diagnostic/2026-10-30T14-22-41.893Z/diagnostic"
+    ],
+    "proofAfterLink": {
+      "file": "/workspace/afkarena-simx/benchmarks/validation/rust-program-hot-execution-wave-build.json",
+      "sha256": "6de347d97c140b787215011798763685e9d68921743fa914fb5a192fc199b5aa",
+      "valid": true,
+      "reasons": [],
+      "inputCount": 1437,
+      "changedInputs": [],
+      "buildProfile": "release"
+    },
+    "scope": "Wrapper-only raw descriptor diagnosis using the qualified frozen runtime and seven game-unit libraries. Default stops before unit6 and runs no battles. Full mode preserves original source workload; source metadata uses raw Function.prototype.toString after original report only."
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/validation/2026-10-30T14-22-41.893Z-mode-domain-preinit.stdout.gz",
+      "sha256": "59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2",
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T14-22-41.893Z-mode-domain-preinit.stderr.gz",
+      "sha256": "57a74ce0f4e3fc345896221d6d629e4128b63c414c52b161572ce383a7f515c8",
+      "uncompressedSha256": "66ee83a8c0d910f1263ec8d0fec4cb791a6f6a571364b1501bb6a289a862d5ba"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T14-22-41.893Z-mode-domain-preinit.wrapper.gz",
+      "sha256": "7431af4046451de4a1691ff3114cae085790914974662ff8954bb0e08f6770e5",
+      "uncompressedSha256": "60df07943a8007c83ddfdee924944c20a0d22f3265c1c41c4a478dc9cd1b11f7"
+    },
+    {
+      "file": "benchmarks/validation/2026-10-30T14-22-41.893Z-mode-domain-preinit.preparation.gz",
+      "sha256": "a2563e0e53b439a1cb02563f596fc5a9fde7ec86ca4ce621d35f1be67d27cf3e",
+      "uncompressedSha256": "7725cbcd9f28ceb4dd18053de56137c89a69249afe8b0f00d9bba668bbb10ddc"
+    }
+  ],
+  "diagnostics": [
+    "MODE_DIAG:BOUNDARY:pre-unit6",
+    "MODE_DIAG:FLAGS:true:0:0:0",
+    "MODE_DIAG:OBJECT:Object.prototype:ObjectId(0):kind=Ordinary:prototype=None:mapped=0",
+    "MODE_DIAG:OBJECT:Array.prototype:ObjectId(3):kind=Array { length: 0, length_writable: true, primary_numeric: false, numeric_presence: 0 }:prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:OBJECT:Function.prototype:ObjectId(2):kind=Ordinary:prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:OBJECT:String.prototype:ObjectId(4):kind=BoxedString(StringId(4)):prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:PROTO_KEY:String.prototype:replaceAll:enumerable=true:numeric=false:descriptor=Descriptor { kind: Data { value: Function(FunctionId(514)), writable: true }, enumerable: true, configurable: true }",
+    "MODE_DIAG:PROTO_KEY:String.prototype:format:enumerable=true:numeric=false:descriptor=Descriptor { kind: Data { value: Function(FunctionId(515)), writable: true }, enumerable: true, configurable: true }",
+    "MODE_DIAG:PROTO_KEY:String.prototype:firstUpperCase:enumerable=true:numeric=false:descriptor=Descriptor { kind: Data { value: Function(FunctionId(516)), writable: true }, enumerable: true, configurable: true }",
+    "MODE_DIAG:PROP:global:Object:Some(Descriptor { kind: Data { value: Function(FunctionId(13)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:Array:Some(Descriptor { kind: Data { value: Function(FunctionId(23)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:parseInt:Some(Descriptor { kind: Data { value: Function(FunctionId(180)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:isNaN:Some(Descriptor { kind: Data { value: Function(FunctionId(178)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:isFinite:Some(Descriptor { kind: Data { value: Function(FunctionId(179)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:global:ed:Some(Descriptor { kind: Data { value: Object(ObjectId(659)), writable: true }, enumerable: true, configurable: false })",
+    "MODE_DIAG:PROP:global:__nativeTables:Some(Descriptor { kind: Data { value: Null, writable: true }, enumerable: true, configurable: false })",
+    "MODE_DIAG:PROP:global:__nativeTableBoundary:Some(Descriptor { kind: Data { value: Undefined, writable: true }, enumerable: true, configurable: false })",
+    "MODE_DIAG:PROP:Object.prototype:hasOwnProperty:Some(Descriptor { kind: Data { value: Function(FunctionId(9)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:Object.prototype.hasOwnProperty:ObjectId(16):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:Object.prototype.hasOwnProperty:call:None",
+    "MODE_DIAG:PROP:Function.prototype:call:Some(Descriptor { kind: Data { value: Function(FunctionId(2)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:Function.prototype.call:ObjectId(9):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:Function.prototype.call:call:None",
+    "MODE_DIAG:PROP:String.prototype:split:Some(Descriptor { kind: Data { value: Function(FunctionId(111)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:String.prototype.split:ObjectId(120):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:String.prototype.split:call:None",
+    "MODE_DIAG:PROP:Array.prototype:push:Some(Descriptor { kind: Data { value: Function(FunctionId(25)), writable: true }, enumerable: false, configurable: true })",
+    "MODE_DIAG:OBJECT:Array.prototype.push:ObjectId(32):kind=Ordinary:prototype=Some(ObjectId(2)):mapped=0",
+    "MODE_DIAG:PROP:Array.prototype.push:call:None",
+    "MODE_DIAG:OBJECT:ed:ObjectId(659):kind=Ordinary:prototype=Some(ObjectId(0)):mapped=0",
+    "MODE_DIAG:PROP:ed:battleEngine:Some(Descriptor { kind: Accessor { get: Some(Function(FunctionId(20498))), set: Some(Function(FunctionId(20499))) }, enumerable: false, configurable: true })",
+    "MODE_DIAG:PROP:ed:_battleEngineInstance:None",
+    "MODE_DIAG:PROP:ed:getDataTable:Some(Descriptor { kind: Data { value: Function(FunctionId(19686)), writable: true }, enumerable: true, configurable: true })",
+    "MODE_DIAG:PROP:ed:parseUseSkillCacheStageBattle:Some(Descriptor { kind: Accessor { get: Some(Function(FunctionId(5860))), set: Some(Function(FunctionId(5861))) }, enumerable: true, configurable: true })",
+    "MODE_DIAG:PROP:ed:battle_camp:Some(Descriptor { kind: Accessor { get: Some(Function(FunctionId(1152))), set: Some(Function(FunctionId(1153))) }, enumerable: true, configurable: true })"
+  ]
+}
