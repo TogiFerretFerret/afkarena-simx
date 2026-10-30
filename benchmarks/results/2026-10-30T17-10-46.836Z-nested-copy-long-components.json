@@ -1,0 +1,456 @@
+{
+  "passed": true,
+  "summaries": {
+    "buff": {
+      "off": {
+        "elapsedNs": "926880831",
+        "operations": 15000,
+        "flatAttempts": [
+          40000,
+          40000,
+          40000
+        ],
+        "flatHits": [
+          30000,
+          30000,
+          30000
+        ],
+        "nestedAttempts": [
+          10000,
+          10000,
+          10000
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "elapsedNs": "526295071",
+        "operations": 15000,
+        "flatAttempts": [
+          5000,
+          5000,
+          5000
+        ],
+        "flatHits": [
+          0,
+          0,
+          0
+        ],
+        "nestedAttempts": [
+          5000,
+          5000,
+          5000
+        ],
+        "nestedHits": [
+          5000,
+          5000,
+          5000
+        ]
+      },
+      "ratio": 1.7611429064666273,
+      "scope": "Actual source createDataObj ->swallowCopyObject ->copyObj on eight actual source table rows"
+    },
+    "level": {
+      "off": {
+        "elapsedNs": "536784022",
+        "operations": 15000,
+        "flatAttempts": [
+          25000,
+          25000,
+          25000
+        ],
+        "flatHits": [
+          10625,
+          10625,
+          10625
+        ],
+        "nestedAttempts": [
+          14375,
+          14375,
+          14375
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "elapsedNs": "322142184",
+        "operations": 15000,
+        "flatAttempts": [
+          5000,
+          5000,
+          5000
+        ],
+        "flatHits": [
+          0,
+          0,
+          0
+        ],
+        "nestedAttempts": [
+          5000,
+          5000,
+          5000
+        ],
+        "nestedHits": [
+          5000,
+          5000,
+          5000
+        ]
+      },
+      "ratio": 1.6662953461568386,
+      "scope": "Actual source createDataObj ->swallowCopyObject ->copyObj on eight actual source table rows"
+    }
+  },
+  "rows": [
+    {
+      "mode": "buff",
+      "pair": 0,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-buff-0-off.stdout",
+      "stderr": "long-buff-0-off.stderr",
+      "stdoutSha256": "dd00622a3f1bc878129ba6b84a202655e13f87cd3ed00436a2be1ea9c25a5e6d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96985,
+        "wallMs": 3811.098241,
+        "peakRssKiB": 1010368,
+        "peakHwmKiB": 1014580,
+        "termination": null
+      },
+      "elapsedNs": "341329692",
+      "attempts": 40000,
+      "hits": 30000,
+      "nestedAttempts": 10000,
+      "nestedHits": 0
+    },
+    {
+      "mode": "buff",
+      "pair": 0,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-buff-0-on.stdout",
+      "stderr": "long-buff-0-on.stderr",
+      "stdoutSha256": "ef7bd2d93718fb9789214b1cc71a675b447b5274689be383b0c5ae5b44141b0b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96986,
+        "wallMs": 3306.4644060000005,
+        "peakRssKiB": 980136,
+        "peakHwmKiB": 985108,
+        "termination": null
+      },
+      "elapsedNs": "170452887",
+      "attempts": 5000,
+      "hits": 0,
+      "nestedAttempts": 5000,
+      "nestedHits": 5000
+    },
+    {
+      "mode": "buff",
+      "pair": 1,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-buff-1-on.stdout",
+      "stderr": "long-buff-1-on.stderr",
+      "stdoutSha256": "4bd59a18d2d6f7d26a9bb95f7140e61cce3d7c1b60dd7537e3bbf5f4cef67b81",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96987,
+        "wallMs": 3311.8933970000007,
+        "peakRssKiB": 943664,
+        "peakHwmKiB": 984940,
+        "termination": null
+      },
+      "elapsedNs": "202524599",
+      "attempts": 5000,
+      "hits": 0,
+      "nestedAttempts": 5000,
+      "nestedHits": 5000
+    },
+    {
+      "mode": "buff",
+      "pair": 1,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-buff-1-off.stdout",
+      "stderr": "long-buff-1-off.stderr",
+      "stdoutSha256": "9025f6365ded88c24e4f8096ff0678b9998e184c537222fcc00810b588d51b25",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96988,
+        "wallMs": 3078.644071999999,
+        "peakRssKiB": 979988,
+        "peakHwmKiB": 1014500,
+        "termination": null
+      },
+      "elapsedNs": "272954500",
+      "attempts": 40000,
+      "hits": 30000,
+      "nestedAttempts": 10000,
+      "nestedHits": 0
+    },
+    {
+      "mode": "buff",
+      "pair": 2,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-buff-2-off.stdout",
+      "stderr": "long-buff-2-off.stderr",
+      "stdoutSha256": "21f190a6cbc52ea6a736b0dd12829c5f05dbc8e12fb234e68f83b80f4ee643bc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96989,
+        "wallMs": 3316.205699000002,
+        "peakRssKiB": 977132,
+        "peakHwmKiB": 1014692,
+        "termination": null
+      },
+      "elapsedNs": "312596639",
+      "attempts": 40000,
+      "hits": 30000,
+      "nestedAttempts": 10000,
+      "nestedHits": 0
+    },
+    {
+      "mode": "buff",
+      "pair": 2,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-buff-2-on.stdout",
+      "stderr": "long-buff-2-on.stderr",
+      "stdoutSha256": "59bca3ada71e095f9d7dcae7ac01b9468a52a8bd14269f6e03eb7c071c492275",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96990,
+        "wallMs": 3007.3258620000015,
+        "peakRssKiB": 984864,
+        "peakHwmKiB": 984864,
+        "termination": null
+      },
+      "elapsedNs": "153317585",
+      "attempts": 5000,
+      "hits": 0,
+      "nestedAttempts": 5000,
+      "nestedHits": 5000
+    },
+    {
+      "mode": "level",
+      "pair": 0,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-level-0-off.stdout",
+      "stderr": "long-level-0-off.stderr",
+      "stdoutSha256": "b44ec7a266db9d7b4019b0efaa7aea13bee98a0dc613d8825c175d26c9f5d6dd",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96991,
+        "wallMs": 1883.0787170000003,
+        "peakRssKiB": 579740,
+        "peakHwmKiB": 592332,
+        "termination": null
+      },
+      "elapsedNs": "174458916",
+      "attempts": 25000,
+      "hits": 10625,
+      "nestedAttempts": 14375,
+      "nestedHits": 0
+    },
+    {
+      "mode": "level",
+      "pair": 0,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-level-0-on.stdout",
+      "stderr": "long-level-0-on.stderr",
+      "stdoutSha256": "1be287f2f30640b19f6aa2fa3928fd7d80d46d6b7a72018da47d58556bf9f138",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96992,
+        "wallMs": 1929.0931439999986,
+        "peakRssKiB": 557348,
+        "peakHwmKiB": 571024,
+        "termination": null
+      },
+      "elapsedNs": "109810619",
+      "attempts": 5000,
+      "hits": 0,
+      "nestedAttempts": 5000,
+      "nestedHits": 5000
+    },
+    {
+      "mode": "level",
+      "pair": 1,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-level-1-on.stdout",
+      "stderr": "long-level-1-on.stderr",
+      "stdoutSha256": "9ffc145860491f3a7818c219f439acdbc26f7cf72c07484842ab400e195ff467",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96993,
+        "wallMs": 1801.92108,
+        "peakRssKiB": 557192,
+        "peakHwmKiB": 570868,
+        "termination": null
+      },
+      "elapsedNs": "107290789",
+      "attempts": 5000,
+      "hits": 0,
+      "nestedAttempts": 5000,
+      "nestedHits": 5000
+    },
+    {
+      "mode": "level",
+      "pair": 1,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-level-1-off.stdout",
+      "stderr": "long-level-1-off.stderr",
+      "stdoutSha256": "601d09fd91fa84d01f7c7735b4aa3795543f83af271707fa06576df41d8a4806",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96994,
+        "wallMs": 1839.227730999999,
+        "peakRssKiB": 578688,
+        "peakHwmKiB": 592380,
+        "termination": null
+      },
+      "elapsedNs": "179122263",
+      "attempts": 25000,
+      "hits": 10625,
+      "nestedAttempts": 14375,
+      "nestedHits": 0
+    },
+    {
+      "mode": "level",
+      "pair": 2,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-level-2-off.stdout",
+      "stderr": "long-level-2-off.stderr",
+      "stdoutSha256": "e43d3dfe96c3232bc9306a3bc0dbdc1a1da28762c8625edae8e32e5ac9add5d2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96995,
+        "wallMs": 1826.623378999997,
+        "peakRssKiB": 578552,
+        "peakHwmKiB": 592244,
+        "termination": null
+      },
+      "elapsedNs": "183202843",
+      "attempts": 25000,
+      "hits": 10625,
+      "nestedAttempts": 14375,
+      "nestedHits": 0
+    },
+    {
+      "mode": "level",
+      "pair": 2,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "long-level-2-on.stdout",
+      "stderr": "long-level-2-on.stderr",
+      "stdoutSha256": "60cdd4b4b963652deede1d6bb52120466052a9543140de8424e44d42e41b2818",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "execution": {
+        "status": 0,
+        "signal": null,
+        "error": null,
+        "pid": 96996,
+        "wallMs": 1836.9056299999975,
+        "peakRssKiB": 557276,
+        "peakHwmKiB": 570952,
+        "termination": null
+      },
+      "elapsedNs": "105040776",
+      "attempts": 5000,
+      "hits": 0,
+      "nestedAttempts": 5000,
+      "nestedHits": 5000
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-30T17-10-46.836Z-nested-copy-long-components.actual.gz",
+      "sha256": "1f2a72ba2357425cecb1ef3e60ec7c8cef3f99fe35eaf74210492a69887717bb",
+      "uncompressedSha256": "5307b175464a8a99d7c5b10af1e0fa425d6cd99b1e3e1d1bfbd43bb59c41d569"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-10-46.836Z-nested-copy-long-components.expected.gz",
+      "sha256": "e06145c303d2d7ceb99b5c236e86d6bddf25b2020c8f2a08fc82aaba643ecd62",
+      "uncompressedSha256": "33d3afa1383f077ddc9c9065c7eaa9475fc8928394c57c1c0b17fde11fdc36c8"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-10-46.836Z-nested-copy-long-components.sources.gz",
+      "sha256": "db811dccd090843a64e33937289593218e7ba45c0f2d56cff50d2779b746276d",
+      "uncompressedSha256": "8a5bd4f8b1788cee2cf23197ed2c83519713e5c0a89ac357650e7f2716680472"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-10-46.836Z-nested-copy-long-components.preparation.gz",
+      "sha256": "a3b064e48539709ae1f26287790f081181771b3097af454e664c123704ba465e",
+      "uncompressedSha256": "89afa1dd670b19da7b3368977d263c7e1a1583f7984fbd83b7614b3bc258a23b"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-10-46.836Z-nested-copy-long-components.audit.gz",
+      "sha256": "fd74905030b7bb9e0285b73bc370066f70d22dab1a797c3e86d36784ed769ea8",
+      "uncompressedSha256": "073ef5d70671c89068e20173ac7765113ecc53ae8a50e137458c2c94341160ba"
+    }
+  ],
+  "copiesPerTrial": 5000,
+  "processRssLimitKiB": 1945600,
+  "sameBinary": true,
+  "baselineCommit": "d13fb6a",
+  "qualifiesFor10000Target": false,
+  "scope": "Same candidate binary with nested region OFF/ON; OFF includes a new disabled second hook and is not a byte-identical d13 binary. Existing flat helper source is unchanged. Rust endpoint atomic counters are inside both timed paths; fewer admitted recursive calls also reduce observer overhead. Original outer createDataObj/swallow/copy source and full ordered snapshots/descriptors/number bits match pinned Node. Source guards permit bypass only for callback-free bounded trees under original recursive method identity. Component calls/sec are not battles/sec; live-world admission/frequency unmeasured."
+}

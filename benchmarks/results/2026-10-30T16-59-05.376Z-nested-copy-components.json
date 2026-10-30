@@ -1,0 +1,931 @@
+{
+  "passed": true,
+  "summaries": {
+    "unit": {
+      "off": {
+        "elapsedNs": "1852162224",
+        "operations": 30000,
+        "flatAttempts": [
+          0,
+          0,
+          0
+        ],
+        "flatHits": [
+          0,
+          0,
+          0
+        ],
+        "nestedAttempts": [
+          0,
+          0,
+          0
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "elapsedNs": "1897902327",
+        "operations": 30000,
+        "flatAttempts": [
+          0,
+          0,
+          0
+        ],
+        "flatHits": [
+          0,
+          0,
+          0
+        ],
+        "nestedAttempts": [
+          0,
+          0,
+          0
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "ratio": 0.9758996538708601,
+      "scope": "Zero-copy controller negative control"
+    },
+    "drain": {
+      "off": {
+        "elapsedNs": "414564247",
+        "operations": 600,
+        "flatAttempts": [
+          0,
+          0,
+          0
+        ],
+        "flatHits": [
+          0,
+          0,
+          0
+        ],
+        "nestedAttempts": [
+          0,
+          0,
+          0
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "elapsedNs": "414760741",
+        "operations": 600,
+        "flatAttempts": [
+          0,
+          0,
+          0
+        ],
+        "flatHits": [
+          0,
+          0,
+          0
+        ],
+        "nestedAttempts": [
+          0,
+          0,
+          0
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "ratio": 0.9995262473503971,
+      "scope": "Zero-copy controller negative control"
+    },
+    "rank": {
+      "off": {
+        "elapsedNs": "38684798",
+        "operations": 6000,
+        "flatAttempts": [
+          2000,
+          2000,
+          2000
+        ],
+        "flatHits": [
+          2000,
+          2000,
+          2000
+        ],
+        "nestedAttempts": [
+          0,
+          0,
+          0
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "elapsedNs": "66823005",
+        "operations": 6000,
+        "flatAttempts": [
+          2000,
+          2000,
+          2000
+        ],
+        "flatHits": [
+          2000,
+          2000,
+          2000
+        ],
+        "nestedAttempts": [
+          0,
+          0,
+          0
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "ratio": 0.5789143723781952,
+      "scope": "Existing flat fast path control"
+    },
+    "numeric": {
+      "off": {
+        "elapsedNs": "51252720",
+        "operations": 6000,
+        "flatAttempts": [
+          2000,
+          2000,
+          2000
+        ],
+        "flatHits": [
+          2000,
+          2000,
+          2000
+        ],
+        "nestedAttempts": [
+          0,
+          0,
+          0
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "elapsedNs": "47061913",
+        "operations": 6000,
+        "flatAttempts": [
+          2000,
+          2000,
+          2000
+        ],
+        "flatHits": [
+          2000,
+          2000,
+          2000
+        ],
+        "nestedAttempts": [
+          0,
+          0,
+          0
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "ratio": 1.0890488025847993,
+      "scope": "Existing flat fast path control"
+    },
+    "buff": {
+      "off": {
+        "elapsedNs": "56165220",
+        "operations": 900,
+        "flatAttempts": [
+          2400,
+          2400,
+          2400
+        ],
+        "flatHits": [
+          1800,
+          1800,
+          1800
+        ],
+        "nestedAttempts": [
+          600,
+          600,
+          600
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "elapsedNs": "32487910",
+        "operations": 900,
+        "flatAttempts": [
+          300,
+          300,
+          300
+        ],
+        "flatHits": [
+          0,
+          0,
+          0
+        ],
+        "nestedAttempts": [
+          300,
+          300,
+          300
+        ],
+        "nestedHits": [
+          300,
+          300,
+          300
+        ]
+      },
+      "ratio": 1.7288037303723138,
+      "scope": "Actual source createDataObj ->swallowCopyObject ->copyObj on eight actual source table rows"
+    },
+    "level": {
+      "off": {
+        "elapsedNs": "32555674",
+        "operations": 900,
+        "flatAttempts": [
+          1500,
+          1500,
+          1500
+        ],
+        "flatHits": [
+          638,
+          638,
+          638
+        ],
+        "nestedAttempts": [
+          862,
+          862,
+          862
+        ],
+        "nestedHits": [
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "elapsedNs": "19212390",
+        "operations": 900,
+        "flatAttempts": [
+          300,
+          300,
+          300
+        ],
+        "flatHits": [
+          0,
+          0,
+          0
+        ],
+        "nestedAttempts": [
+          300,
+          300,
+          300
+        ],
+        "nestedHits": [
+          300,
+          300,
+          300
+        ]
+      },
+      "ratio": 1.694514529426063,
+      "scope": "Actual source createDataObj ->swallowCopyObject ->copyObj on eight actual source table rows"
+    }
+  },
+  "rows": [
+    {
+      "mode": "unit",
+      "pair": 0,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "unit-0-off.stdout",
+      "stderr": "unit-0-off.stderr",
+      "stdoutSha256": "e2676713243e85778d13713a41a16713663aef6c2225fd34ad48383ea858933e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "610570871",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "unit",
+      "pair": 0,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "unit-0-on.stdout",
+      "stderr": "unit-0-on.stderr",
+      "stdoutSha256": "a22de721653edd6f5ffe473aa8f0145bc1f493628d23b2a3d7f3db843ca47084",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "608241656",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "unit",
+      "pair": 1,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "unit-1-on.stdout",
+      "stderr": "unit-1-on.stderr",
+      "stdoutSha256": "6eaa33c7e61472157be1d4c1bb84f2716c841e0709beebd289dc191e0d6d7a0f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "685651135",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "unit",
+      "pair": 1,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "unit-1-off.stdout",
+      "stderr": "unit-1-off.stderr",
+      "stdoutSha256": "275cc1b418b4a8a03c3472a5d89187f045e2d86a28ad7a245f39f0515855ec3b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "620913508",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "unit",
+      "pair": 2,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "unit-2-off.stdout",
+      "stderr": "unit-2-off.stderr",
+      "stdoutSha256": "f64434cca5c72108283c3cfe14eeaed43b5109b8194839b18a40f36407e990ba",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "620677845",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "unit",
+      "pair": 2,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "unit-2-on.stdout",
+      "stderr": "unit-2-on.stderr",
+      "stdoutSha256": "99f8de2ddb3855c43ea4582ffc640ca3bf56c576046020f19c9d1d24db3c92eb",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "604009536",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "drain",
+      "pair": 0,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "drain-0-off.stdout",
+      "stderr": "drain-0-off.stderr",
+      "stdoutSha256": "e3ad228850e7df3aaf2e351020c7e40d70854dbbff0c0af659d8484731fb3f0c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "130429461",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "drain",
+      "pair": 0,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "drain-0-on.stdout",
+      "stderr": "drain-0-on.stderr",
+      "stdoutSha256": "e62862bda2b9012e63a91ff159b7cef4aa910bce1edb61fea42fb93ae527f5c3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "141334315",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "drain",
+      "pair": 1,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "drain-1-on.stdout",
+      "stderr": "drain-1-on.stderr",
+      "stdoutSha256": "7ffee7e6c389ab2b8dd3f9c93ad3dfae8fe4a60b0aac1c64fabee02db5ad4f1a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "143333412",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "drain",
+      "pair": 1,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "drain-1-off.stdout",
+      "stderr": "drain-1-off.stderr",
+      "stdoutSha256": "243fea25da4700366dfa4c4b7eba24492374325fe86afe27a93567115f6bb629",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "145641983",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "drain",
+      "pair": 2,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "drain-2-off.stdout",
+      "stderr": "drain-2-off.stderr",
+      "stdoutSha256": "570c0f82191c2127048e308cb440e79dd75f04131d7c9026b3d6e19b6e921094",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "138492803",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "drain",
+      "pair": 2,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "drain-2-on.stdout",
+      "stderr": "drain-2-on.stderr",
+      "stdoutSha256": "dde228c9af9f29b5b1ca2478c947551a60888ac1541248931f38283f94c1de23",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "130093014",
+      "attempts": 0,
+      "hits": 0,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "rank",
+      "pair": 0,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "rank-0-off.stdout",
+      "stderr": "rank-0-off.stderr",
+      "stdoutSha256": "1b64fb9210d847258f1b9225eaa8a46ab478be8a0835fffee0f100ae46a4d490",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "14297590",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "rank",
+      "pair": 0,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "rank-0-on.stdout",
+      "stderr": "rank-0-on.stderr",
+      "stdoutSha256": "62eab83d49364c4c803f08e7a5ef303190a99f712ecde99dc62ef58939b2d156",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "27352083",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "rank",
+      "pair": 1,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "rank-1-on.stdout",
+      "stderr": "rank-1-on.stderr",
+      "stdoutSha256": "a6b28a002e1354f5e4ead0418284517457c18bcde9b284f2a166468a83580aa4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "26015423",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "rank",
+      "pair": 1,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "rank-1-off.stdout",
+      "stderr": "rank-1-off.stderr",
+      "stdoutSha256": "a97874d36c468ac2ee604e034afeb209e5b3837cdf86efa6d8ef69e3d2c21396",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "11718289",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "rank",
+      "pair": 2,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "rank-2-off.stdout",
+      "stderr": "rank-2-off.stderr",
+      "stdoutSha256": "d4277e1fa117861c9f2076bbaadc018b8c8c7773c2736e975ad5a6212d6d6715",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "12668919",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "rank",
+      "pair": 2,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "rank-2-on.stdout",
+      "stderr": "rank-2-on.stderr",
+      "stdoutSha256": "ec8d25211dbfe0a20bd62ea2d6a1d6e4f4a112f5ace76de4438461b2bb5f0184",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "13455499",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "numeric",
+      "pair": 0,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "numeric-0-off.stdout",
+      "stderr": "numeric-0-off.stderr",
+      "stdoutSha256": "9293ef0208c7c2b902783db54fc31ed467b500b43c8084031526627ad6f4752d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "19120607",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "numeric",
+      "pair": 0,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "numeric-0-on.stdout",
+      "stderr": "numeric-0-on.stderr",
+      "stdoutSha256": "f20c991d3f99ceee38be07b63431738aef61b2e7f1ed6fc43884e6af75ed3573",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "13549466",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "numeric",
+      "pair": 1,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "numeric-1-on.stdout",
+      "stderr": "numeric-1-on.stderr",
+      "stdoutSha256": "4254577cca7935cb30a9aa912d505a18ab37de6458dec43f123e9d5a2d0dbd84",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "14206095",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "numeric",
+      "pair": 1,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "numeric-1-off.stdout",
+      "stderr": "numeric-1-off.stderr",
+      "stdoutSha256": "7b1159e0e35ea31375958e9a4e2a9c43e1ddd9ef3e98b2b7f8f2b3ce9f9d7022",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "15423226",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "numeric",
+      "pair": 2,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "numeric-2-off.stdout",
+      "stderr": "numeric-2-off.stderr",
+      "stdoutSha256": "65d06926f7c85a789f59d66cea5639f8b54d67734405da1c7f2a188e0bb36122",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "16708887",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "numeric",
+      "pair": 2,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "numeric-2-on.stdout",
+      "stderr": "numeric-2-on.stderr",
+      "stdoutSha256": "20f67fe8f1fe5463faa2efe75013c50ed55321ffbc1a0c248a4dfa58ad544310",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "19306352",
+      "attempts": 2000,
+      "hits": 2000,
+      "nestedAttempts": 0,
+      "nestedHits": 0
+    },
+    {
+      "mode": "buff",
+      "pair": 0,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "buff-0-off.stdout",
+      "stderr": "buff-0-off.stderr",
+      "stdoutSha256": "f76e78b90d48bc8edf7ae5e558e3c1ccd355be7c1b61d1135e41cdd50f4a1cd0",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "16202981",
+      "attempts": 2400,
+      "hits": 1800,
+      "nestedAttempts": 600,
+      "nestedHits": 0
+    },
+    {
+      "mode": "buff",
+      "pair": 0,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "buff-0-on.stdout",
+      "stderr": "buff-0-on.stderr",
+      "stdoutSha256": "56a2cdad021847eddb14ca0a28f23000bb5a5c54a8d63d85e39d921a8f5b038e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "13248881",
+      "attempts": 300,
+      "hits": 0,
+      "nestedAttempts": 300,
+      "nestedHits": 300
+    },
+    {
+      "mode": "buff",
+      "pair": 1,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "buff-1-on.stdout",
+      "stderr": "buff-1-on.stderr",
+      "stdoutSha256": "5eee967ff4e6e8402cd84bf0b62a628c7e458d4e046d4a07bf828eee8a4b7dac",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "9328926",
+      "attempts": 300,
+      "hits": 0,
+      "nestedAttempts": 300,
+      "nestedHits": 300
+    },
+    {
+      "mode": "buff",
+      "pair": 1,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "buff-1-off.stdout",
+      "stderr": "buff-1-off.stderr",
+      "stdoutSha256": "9629f1bdf3ade3e096364075d38ab2e3c5da4f2a7d0ebb70430d73aa4de5552f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "22400184",
+      "attempts": 2400,
+      "hits": 1800,
+      "nestedAttempts": 600,
+      "nestedHits": 0
+    },
+    {
+      "mode": "buff",
+      "pair": 2,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "buff-2-off.stdout",
+      "stderr": "buff-2-off.stderr",
+      "stdoutSha256": "b544c2a789af57fad7733278bda550d8dac92d2d832a4ac3b19b3d3e370abee5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "17562055",
+      "attempts": 2400,
+      "hits": 1800,
+      "nestedAttempts": 600,
+      "nestedHits": 0
+    },
+    {
+      "mode": "buff",
+      "pair": 2,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "buff-2-on.stdout",
+      "stderr": "buff-2-on.stderr",
+      "stdoutSha256": "40ad17b7ae411cdbc71f5023e96ede1a4cabd4bffa3f58ed412c3e0cbbbec06b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "9910103",
+      "attempts": 300,
+      "hits": 0,
+      "nestedAttempts": 300,
+      "nestedHits": 300
+    },
+    {
+      "mode": "level",
+      "pair": 0,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "level-0-off.stdout",
+      "stderr": "level-0-off.stderr",
+      "stdoutSha256": "ed4b505810fee5e0ee3fec2cfc836d831c63b432725ac0c90bf9fe1be9034b34",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "11136491",
+      "attempts": 1500,
+      "hits": 638,
+      "nestedAttempts": 862,
+      "nestedHits": 0
+    },
+    {
+      "mode": "level",
+      "pair": 0,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "level-0-on.stdout",
+      "stderr": "level-0-on.stderr",
+      "stdoutSha256": "3c5040ada77f9ca9bc497a9a17e219caf568ce2cf0bbb7f102e69c85d2a3fc68",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "6777253",
+      "attempts": 300,
+      "hits": 0,
+      "nestedAttempts": 300,
+      "nestedHits": 300
+    },
+    {
+      "mode": "level",
+      "pair": 1,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "level-1-on.stdout",
+      "stderr": "level-1-on.stderr",
+      "stdoutSha256": "21a5158e683e209eef4594ca17f313f76a13d366e18351c7a9bfc583c8842801",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "6259100",
+      "attempts": 300,
+      "hits": 0,
+      "nestedAttempts": 300,
+      "nestedHits": 300
+    },
+    {
+      "mode": "level",
+      "pair": 1,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "level-1-off.stdout",
+      "stderr": "level-1-off.stderr",
+      "stdoutSha256": "69ef9da7f455d2251d993d8f2351d897bb7969c7dfd3131d5c484c9af6a254d7",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "10516357",
+      "attempts": 1500,
+      "hits": 638,
+      "nestedAttempts": 862,
+      "nestedHits": 0
+    },
+    {
+      "mode": "level",
+      "pair": 2,
+      "flag": "off",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "level-2-off.stdout",
+      "stderr": "level-2-off.stderr",
+      "stdoutSha256": "9176aef016f9460bb9d0f7ab989095fa07843fc13f1c32e417d789fb5c823d14",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "10902826",
+      "attempts": 1500,
+      "hits": 638,
+      "nestedAttempts": 862,
+      "nestedHits": 0
+    },
+    {
+      "mode": "level",
+      "pair": 2,
+      "flag": "on",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "level-2-on.stdout",
+      "stderr": "level-2-on.stderr",
+      "stdoutSha256": "f6dca07802a3ad1a9b7c482b3c4077d1c7143a848898893ff9ddae619b075f9b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsedNs": "6176037",
+      "attempts": 300,
+      "hits": 0,
+      "nestedAttempts": 300,
+      "nestedHits": 300
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-30T16-59-05.376Z-nested-copy-components.actual.gz",
+      "sha256": "6ecc96173f21c455cebf94f3a4fd652fd8c8737f957c53288e419e8e52d29747",
+      "uncompressedSha256": "abf922a5d708827cb516985b33f61e912746de29a8cc4a06dbcda10ac0088a50"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T16-59-05.376Z-nested-copy-components.expected.gz",
+      "sha256": "ca227f591f6c73197f921ebc80bfa3cfcc0f75adef712481c5af66c0e384745a",
+      "uncompressedSha256": "b8700f1b54ec2543ad9f326a3029477e2d1f22b37d1cd579cd30ac5e844ae414"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T16-59-05.376Z-nested-copy-components.sources.gz",
+      "sha256": "355e99af26710da9416dd6b3cdb7e640c2f6fae753846c19beeb2a3864738871",
+      "uncompressedSha256": "465899fe649eca4a96063112e11ef3ccdaf82da8458f65379d0b85a0ea11488e"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T16-59-05.376Z-nested-copy-components.preparation.gz",
+      "sha256": "e4a29588e1ddb403c43f83d14ca514087fa95ffafa77760d251741465fe1d139",
+      "uncompressedSha256": "93122f082a716fecc138a3bdfa3413b44f8d8324ef1c2dbb9e1b9525ac7f136d"
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T16-59-05.376Z-nested-copy-components.audit.gz",
+      "sha256": "a1697600a9a1ea6abcf90362fd738c87b3fd7bf17c45be162d0d0d6025a1fea7",
+      "uncompressedSha256": "feb5cead789a1babfe11f89902ff3a609662c9f2d9c140eb3916a5bae8fc757a"
+    }
+  ],
+  "sameBinary": true,
+  "baselineCommit": "d13fb6a",
+  "qualifiesFor10000Target": false,
+  "scope": "Same candidate binary with nested region OFF/ON; OFF includes a new disabled second hook and is not a byte-identical d13 binary. Existing flat helper source is unchanged. Rust endpoint atomic counters are inside both timed paths; fewer admitted recursive calls also reduce observer overhead. Original outer createDataObj/swallow/copy source and full ordered snapshots/descriptors/number bits match pinned Node. Source guards permit bypass only for callback-free bounded trees under original recursive method identity. Component calls/sec are not battles/sec; live-world admission/frequency unmeasured.",
+  "measurementClass": "short exploratory cohort; noisy zero-nested controls, not sufficient for promotion",
+  "preservedBinary": {
+    "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-benchmark/nested-copy-short-probe",
+    "sha256": "6dfe4db0c1d01f2bea0af272c4269355d3d0dfa1e4038c34643d17951815e885"
+  }
+}
