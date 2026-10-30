@@ -1,0 +1,27 @@
+{
+  "sourceCommit": "06d2d1b768f1e15d8ac1ae77ff36eb617bb23fdc",
+  "libraryTests": 127,
+  "sourceCases": 34,
+  "nativeExecutions": 136,
+  "pairedTraceObservations": 68,
+  "positiveAdmissions": 10,
+  "outputs": {
+    "benchmarks/validation/nested-copy/merged-lib.stdout.gz": {
+      "rawSha256": "9436f580ffa9746f0ded2d1beecf244230dfee19b98dd56b132fa9b08b6970bd",
+      "bytes": 13067
+    },
+    "benchmarks/validation/nested-copy/merged-lib.stderr.gz": {
+      "rawSha256": "477fc671a1f85b9ae64e43ae5bdd6afb53d6caa8c9ed1f577c5a79ef51c58272",
+      "bytes": 2009
+    },
+    "benchmarks/validation/nested-copy/merged-gate.stdout.gz": {
+      "rawSha256": "917b070fbb81a935970f708948eb8c81568020d43e26ddfb3d2820e98cb7c754",
+      "bytes": 126
+    },
+    "benchmarks/validation/nested-copy/merged-gate.stderr.gz": {
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "scope": "Merged-source component qualification; no complete-battle performance claim."
+}

@@ -26,7 +26,7 @@
     "crates/js-runtime/src/copy_obj.rs": "7a1d4be33030d8ef3f6ae1e94c96a063df914864cb9949190e1381ba2cccd8c1",
     "crates/js-runtime/src/date.rs": "880ce2c5464b53d23ce0ab11b24af64192cc0a07c71f3e78cf6e1532fafa7c31",
     "crates/js-runtime/src/dense_array_shift.rs": "f05a84e076525485f5cc6c2c6784ce6340bd109a8a89c973d8514722f3426635",
-    "crates/js-runtime/src/diagnostics.rs": "a01371731d43d8e395875bb570d735d12c782bc905156b7127a7d64c97a52709",
+    "crates/js-runtime/src/diagnostics.rs": "cb8c6b24ee871682f0bf9357e6746d378a997a02a57c722546b367cff6f592c2",
     "crates/js-runtime/src/dynamic_slots.rs": "a45821355ad697f5af368ebfccdb1e74544e0d7b3c70089cd0704eb038df6ef3",
     "crates/js-runtime/src/env.rs": "e3a783cd50d76b3be5ef8d83b18661144943f422a860cdf888f66d255c910502",
     "crates/js-runtime/src/errors.rs": "632d7df19d5dbcdc17c856b3c143a759e963742d443cab2506be7c108fa46054",
@@ -249,26 +249,27 @@
     "third-party/ryu-js/tests/s2d_test.rs": "03213cc3f984f84be5e17f6bd86d431afaeb27eb2bfaf88f3bab1111dbbe2bc5",
     "third-party/ryu-js/tests/s2f_test.rs": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
     "third-party/ryu-js/tests/to_fixed.rs": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
-    "tools/rust-port/compile.mjs": "0dc37c1d59f096877dd9deb6530c1594ca01398614d30d1b763a2f58f3456422",
-    "/workspace/afkarena-simx/work/candidate-small-array-copy/tools/rust-port/expressions.mjs": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c",
-    "/workspace/afkarena-simx/work/candidate-small-array-copy/tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
-    "/workspace/afkarena-simx/work/candidate-small-array-copy/tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/rust-port/compile.mjs": "264913d164bb2dccfd0101a39563206c3021ab147b3359af0e22cc05ea72674f",
+    "/workspace/afkarena-simx/tools/rust-port/expressions.mjs": "4c7cc4f4d2aa6ae46e08ea2f7fb278498fcdf4b70e77017a29bdbc113050fa6c",
+    "/workspace/afkarena-simx/tools/rust-port/statements.mjs": "72f11756689a8723263690041bdbbc2808f9c55934c7fdbd172f576d2825e57d",
+    "/workspace/afkarena-simx/tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "/workspace/afkarena-simx/tools/rust-port/scalar-arrays.mjs": "a8d4ca3012f1896776f473adbf4a50f801059203fcf4f366ac726e228440d1f4",
     "tools/rust-port/nested-copy-obj-adversarial-fixtures.mjs": "8599e0eabf595ba9d2f561ccbc45892d371be35af812869404cd862911fbe869",
-    "/workspace/afkarena-simx/work/candidate-small-array-copy/tools/flat-numeric-copy.mjs": "46274164dcb8434c5275ff738826524bb358751c6f0eb89636356d299fb98d1a",
+    "/workspace/afkarena-simx/tools/flat-numeric-copy.mjs": "46274164dcb8434c5275ff738826524bb358751c6f0eb89636356d299fb98d1a",
     "tools/rust-port/check-nested-copy-obj-adversarial.mjs": "4977607acb042715b9a2aae44d3d47ebde965a7f00ebc9db33ae4e2a682ed727",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a"
   },
   "runtime": {
-    "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-target/release/libjs_runtime.rlib",
-    "sha256": "d09b421ce76958d2f8a3a0c5a71f8d65bac222c806287d3592eb9f5bdb017dac",
-    "deps": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-target/release/deps"
+    "file": "/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
+    "sha256": "48d5aa09f93c0e3f4de758331a73e4527ce69649859a3ccece388c9bde35174e",
+    "deps": "/workspace/afkarena-simx/target/release/deps"
   },
   "binary": {
-    "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-obj-adversarial/check",
-    "sha256": "47fe4c5e31b4b4fc2350308e49344ff8008f8bf3da7b75861a1b951ca173dd1d"
+    "file": "/workspace/afkarena-simx/work/nested-copy-obj-adversarial/check",
+    "sha256": "9f1cb257efe030e4556eb9a8105c667f445aec7202815fe4d9acaf60ed866806"
   },
   "rustc": {
-    "file": "/workspace/afkarena-simx/work/candidate-small-array-copy/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+    "file": "/workspace/afkarena-simx/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
     "sha256": "b53b780f77f952062f8ca8a3b70aef2390b1e45ad91939be94afdc9543026853"
   },
   "compileArgs": [
@@ -279,17 +280,17 @@
     "codegen-units=64",
     "-C",
     "lto=off",
-    "/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-obj-adversarial/main.rs",
+    "/workspace/afkarena-simx/work/nested-copy-obj-adversarial/main.rs",
     "-L",
-    "dependency=/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-target/release/deps",
+    "dependency=/workspace/afkarena-simx/target/release/deps",
     "--extern",
-    "js_runtime=/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-target/release/libjs_runtime.rlib",
+    "js_runtime=/workspace/afkarena-simx/target/release/libjs_runtime.rlib",
     "-o",
-    "/workspace/afkarena-simx/work/candidate-small-array-copy/work/nested-copy-obj-adversarial/check"
+    "/workspace/afkarena-simx/work/nested-copy-obj-adversarial/check"
   ],
   "archive": {
     "file": "benchmarks/validation/rust-nested-copy-obj-adversarial.outputs.json.gz",
-    "sha256": "419d95b1cc4f0903a85cd32406985e31ce2c1b8d06f1c26b334c7dd978c3c546"
+    "sha256": "45b96a213bf2c8c0967df31ceca27b55f5bc04d73164ac3ebc1299246c25ed0e"
   },
   "qualifiesFor10000Target": false,
   "scope": "Exact source ed.copyObj with only native_nested_copy_obj_enabled toggled. Independent Node values/event logs, shared-child duplication and output descriptors/raw Number bits; paired TRACE1 stderr/receiver IDs/source frames match baseline. Pure eligible cases additionally require fewer native JS heap objects, proving helper admission. Cycles use a bounded source wrapper; direct pure-cycle no-effect/bounds/23-GC String/Function roots require separate native unit evidence. No timing or broad battle coverage claim."
