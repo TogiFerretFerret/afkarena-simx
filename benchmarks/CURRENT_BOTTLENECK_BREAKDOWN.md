@@ -1,254 +1,151 @@
-# Native simulator bottleneck breakdown
+# Current native simulator bottlenecks
 
-The largest measured cost is implementing dynamic JavaScript operations inside
-Rust: property access, descriptors, object storage, calls and lexical bindings.
-The native executable still performs those operations dynamically. Compiling the
-source into Rust has not yet produced a compact, statically typed battle core.
+Dynamic property and descriptor work remains the largest measured cost: **45.23% of sampled user CPU**. The qualified simulator is faithful on the fixed fixture, but **3 and 10,000 battles/second remain unmet**.
 
-## Throughput and wall time
+## Current build and throughput
 
-The latest qualified signed-camp fixture completes 20 measured battles after
-three warmups with 309,060 callbacks. Reports, RNG/clock host consumption and
-captured terminal floating-point bits match the JS reference.
+Every current table below binds frozen source **7e718b1**, including the function-own-property cache, scalar local-array pass and mixed-primitive copy helper. The original 20 measured battles and three warmups preserve complete reports, captured floating-point bits, RNG/clock host consumption and **309,060 callbacks**.
 
-| Measurement | Result |
+| Unprofiled measurement | Result |
 | --- | ---: |
-| One worker, measured battle loop | 0.582225 battles/second |
-| Four workers, aggregate | 2.537886 battles/second |
-| One-worker measured loop, 20 battles | 34.351 seconds |
-| Complete one-worker process | 42.455 seconds |
-| Startup + three warmups + final reporting, combined remainder | 8.104 seconds |
+| One worker, measured battle loop | 0.757461 battles/second |
+| Four workers, aggregate | 2.565778 battles/second |
+| One-worker measured loop, 20 battles | 26.404 seconds |
+| Complete one-worker process | 33.338 seconds |
+| Combined initialization, warmups and final-report remainder | 6.934 seconds |
+| Four-worker measured window, 80 battles | 31.180 seconds |
 
-The original unprofiled remainder cannot be subdivided from its retained timers.
-The new diagnostic driver adds source-neutral per-module elapsed markers. In
-that profiled run, modules 0–5 initialize in approximately **0.214 seconds**;
-module 6 spends approximately **7.375 seconds before the measured window**
-(module setup plus three warmups), **31.462 seconds in the measured window**,
-and **0.130 seconds afterward**. These diagnostic timings are from a different
-run and must not be substituted into the unprofiled 42.455-second result. Setup
-and warmups inside module 6 still cannot be separated from these markers alone.
-Startup work must not be charged to every battle in a long-running worker.
-Parallel throughput must not be reported as single-worker throughput.
+The remainder cannot be charged to every battle in a persistent worker. Current retained module timers put units 0–5 initialization at approximately **0.226 seconds**; runtime/host setup, module-6 setup, warmups and reporting are not all separated by those timers. Four-worker throughput is aggregate throughput.
 
-Evidence: [full qualification](validation/rust-program-signed-camp-wave-full.json)
-and [four-worker run](results/2026-10-30-signed-camp-wave-fork-four.json).
-These bind the frozen signed-camp build, not subsequent main-branch changes.
+The earlier four-worker cohort measured 2.537886 battles/second. The current result is only **1.1% higher in a separate cohort**, which does not establish a significant or per-feature causal improvement. Source-helper admission is observed directly: **50,300 domain hits and 150,900 getter calls** in the serial run and each child. Every child reports **12 actual collections**, with source GC cadence 2 and default request stride 1.
 
-## Fresh measured CPU breakdown
+Evidence: [full qualification](validation/rust-program-source-shortcut-wave-full.json), [four-worker qualification](results/2026-10-30-source-shortcut-wave-fork-four.json) and [combined source/generation contracts](validation/source-shortcut-wave/result.json).
 
-The signed-camp profile covers only the measured battle window, with startup
-and warmups excluded: **15,388 samples at 499 Hz, zero lost samples**. The full
-report and host-input consumption match JS again, all frozen build inputs and
-eight linked libraries verify, and 12 GC collections occur. Percentages describe sampled
-user CPU, not exact wall-clock durations or independently measured speedups.
+## Current measured battle-window CPU
 
-| Disjoint native self-cost category | CPU share |
+The current capture contains **7,880 samples at 299 Hz, zero lost samples**. Startup and three warmups are excluded through the original measured-window markers. TRACE0, the full report, raw bits, host tapes, 309,060 callbacks, 12 collections, current build inputs and eight linked libraries all verify.
+
+| Disjoint native self-cost group | CPU share |
 | --- | ---: |
-| JavaScript semantics runtime implemented in Rust | 83.18% |
-| Generated game-source functions | 11.23% |
-| Unresolved symbols | 4.09% |
-| Other classified allocator, collection and memory symbols | 0.92% |
-| Other Rust/system code | 0.58% |
+| Rust JavaScript semantics runtime | 83.60% |
+| Generated source execution | 10.84% |
+| Unresolved | 4.28% |
+| Allocation, collections and memory | 0.93% |
+| Other Rust and system code | 0.36% |
 
-Allocator symbols alone do not measure the entire cost of allocation. Object
-initialization, property insertion, retained memory, cache misses and subsequent
-GC appear in other functions. Likewise, source function self time excludes the
-runtime functions that source code calls.
-GC traversal is already included in the runtime category; the 0.92% row is not
-the total cost of memory management. Software CPU-clock sampling also includes
-on-CPU memory stalls without distinguishing them from computation. Cache misses,
-instruction counts, branch misses and memory bandwidth were not measured, so
-allocation or RSS reductions alone do not establish improved cache behavior.
-
-The complete symbol-based operation partition is below. Every sample belongs
-to exactly one row; naming rules are explicit in the analyzer, so these remain
-operation-classification estimates rather than hardware event measurements.
+The complete operation partition assigns every sample to exactly one row. Percentages are rounded; categories use explicit symbol-name rules rather than hardware counters.
 
 | Exclusive operation category | CPU share |
 | --- | ---: |
-| Property reads and descriptor routing | 37.32% |
-| Other JavaScript semantics runtime | 12.83% |
-| Generated source body | 11.23% |
-| Property writes and key-index tables | 8.14% |
-| GC and reachability | 7.70% |
-| Strings and canonical keys | 6.03% |
-| Bindings and environments | 5.91% |
-| Unresolved leaf | 4.09% |
-| Object allocation, container growth and memory | 3.29% |
-| Calls, closures and arguments | 2.53% |
-| Other native/library/system code | 0.86% |
-| Regular expressions | 0.05% |
+| Property reads and descriptor routing | 36.83% |
+| Other JavaScript semantics runtime | 13.15% |
+| Generated source body | 10.84% |
+| Property writes and key-index tables | 8.40% |
+| GC and reachability | 8.13% |
+| String and canonical-key work | 5.76% |
+| Bindings and environments | 5.74% |
+| Unresolved leaf | 4.28% |
+| Calls, closures and arguments | 3.05% |
+| Object allocation, container growth and memory | 2.92% |
+| Other native/library/system code | 0.82% |
+| Regular expressions | 0.09% |
 
-Property reads and writes together account for **45.46%**. This is the broadest
-measured target for compiler specialization. Allocation-related work is spread
-across several categories; the 3.29% row is not a complete allocation budget.
-All **608 merged self symbols**, nearest-source owners and owner-by-operation
-cross tables are in the [complete matrix](validation/signed-camp-bottleneck-matrix.json).
+Property reads and writes sum to **45.23%**. GC traversal is already included in the runtime group. Allocator symbols alone, or the object-allocation category alone, do not measure total allocation cost: construction, map updates, retained objects and subsequent scanning appear elsewhere. CPU-clock sampling includes on-CPU memory stalls; cache misses, bandwidth and branch misses were not measured.
 
-### Largest exclusive operations
+### Largest merged self costs
 
-Duplicate code-generation-unit instances are merged by demangled symbol.
-Rows below are self costs and do not include callees; they are selected entries,
-not an exhaustive partition of the entire run.
+Code-generation-unit instances are merged by demangled symbol. These selected rows exclude callees and are not another complete partition.
 
-| Operation | Self CPU | What it does |
-| --- | ---: | --- |
-| Literal property reads | 11.18% | Validates cached slots and routes misses |
-| Generic `Runtime::get(Value)` | 9.57% | Routes dynamic property reads |
-| `Object::own` | 7.07% | Finds an object's own property |
-| GC `Trace::drain` | 6.28% | Traverses reachable runtime records |
-| `resolve_binding_id` | 3.13% | Resolves lexical/global bindings |
-| Static string lookup | 2.86% | Resolves compiled string constants |
-| Property-index hash insertion | 2.57% | Maintains per-object key-to-slot maps |
-| Own-descriptor lookup | 2.50% | Resolves property descriptors |
-| `call_value` | 2.40% | Dispatches dynamic function calls |
-| Typed own-descriptor routing | 2.39% | Checks specialized receiver descriptors |
-| Object allocation | 1.74% | Allocates/reuses object records |
-| Inner property-read routing | 1.51% | Handles prepared property keys |
-| Binding reads | 1.33% | Reads resolved binding values |
-| String interning | 1.20% | Resolves dynamic string identities |
-| Dictionary insertion | 1.16% | Adds property storage |
+| Operation | Self CPU |
+| --- | ---: |
+| Literal property reads (`get_literal_cached_impl`) | 11.27% |
+| Generic `Runtime::get(Value)` | 8.60% |
+| `Object::own` | 6.93% |
+| GC `Trace::drain` | 6.64% |
+| Unresolved leaf | 4.28% |
+| `resolve_binding_id` | 2.99% |
+| Static string lookup | 2.99% |
+| `call_value` | 2.89% |
+| Own-descriptor lookup | 2.66% |
+| Property-index hash insertion | 2.54% |
+| Typed own-descriptor routing | 2.36% |
+| Object allocation | 1.51% |
+| Inner property-read routing | 1.47% |
+| Property-index hash lookup | 1.27% |
+| Binding reads | 1.15% |
 
-The first three operations alone account for **27.82% exclusive CPU**. Adding
-GC arena collection (0.83%) and trace initialization (0.58%) to trace draining
-gives **7.70% in identified GC functions**, excluding their generic callees.
+The first three operations total **26.80% exclusive CPU**. The [complete matrix](validation/source-shortcut-bottleneck-matrix.json) retains all 455 merged self symbols and source-by-operation cross tables.
 
-### Which game operations call into these costs?
+### Inclusive source costs
 
-These are **inclusive** stack shares. They overlap and must not be added.
-For example, buff creation can execute inside `Unit.update` and contributes to
-both rows. An inclusive constructor share is not time spent solely dispatching
-that constructor.
+These shares include runtime callees and nested source functions. They overlap and **must not be added**; buff creation and callback work can already be inside an update subtree.
 
 | Source operation | Inclusive CPU |
 | --- | ---: |
-| `Unit.update` | 51.28% |
-| `Unit.addBuff` | 30.26% |
-| `Puppeteer.Puppet_update` | 22.32% |
-| Cocos constructor, unit 0/function 1107 | 20.55% |
-| `TwinsB.update` | 18.53% |
-| `Unit.resetBuffApply` | 18.39% |
-| `Buff.create` | 14.71% |
-| Buff constructor | 12.43% |
-| `Skill.update` | 12.22% |
-| `createDataObj` | 11.40% |
-| Callback drain, `__nativeDrain` | 7.01% |
-| `copyObj` | 6.52% |
+| `Unit.update` | 50.71% |
+| `Unit.addBuff` | 29.33% |
+| `Puppeteer.Puppet_update` | 21.83% |
+| Cocos `Class` constructor (0:1107) | 20.25% |
+| `TwinsB.update` | 19.37% |
+| `Unit.resetBuffApply` | 19.28% |
+| `SBD.atk4_resetBuffApply` | 15.32% |
+| `Skill.update` | 11.98% |
+| `createDataObj` | 10.55% |
+| Callback drain, `__nativeDrain` | 7.55% |
+| `copyObj` | 6.26% |
+| `applyBuffEffects` | 6.18% |
 
-The constructor and override dispatch already have native specializations.
-Callback draining executes game callbacks and snapshots used by the oracle;
-its time cannot simply be removed as logging.
+### Nearest source ownership
 
-### Nearest source owner: separating nested game functions
-
-Assigning each sample to its nearest generated source frame gives disjoint
-ownership, including runtime callees but excluding samples owned by nested
-generated functions. This is useful for choosing compiler regions; it is not
-the same thing as the generated function's native self cost.
+Each sample is assigned to its nearest generated source frame. This ownership is disjoint and includes runtime work, while excluding work owned by nested generated functions. It differs from native function self time.
 
 | Nearest source owner | CPU share |
 | --- | ---: |
-| `__nativeRun`, largely GC | 8.38% |
-| `Unit.resetBuffApply` | 6.61% |
-| `copyObj` | 6.52% |
-| `Unit.update` | 6.26% |
-| `createDataObj` | 5.21% |
-| `Skill.update` | 3.05% |
-| `applyBuffEffects` | 2.61% |
-| `applyEffect` | 2.33% |
-| Buff percent application | 2.29% |
-| `Unit.addBuff` | 2.05% |
-| `__nativeDrain` | 2.02% |
+| `__nativeRun`, largely GC | 8.97% |
+| `Unit.resetBuffApply` | 6.97% |
+| `copyObj` | 6.26% |
+| `Unit.update` | 5.58% |
+| `createDataObj` | 4.68% |
+| Source snapshot wrapper (6:3689) | 3.10% |
+| `applyBuffEffects` | 2.89% |
+| `Skill.update` | 2.87% |
+| `Buff.applyPercentValue` | 2.37% |
+| `Buff.applyEffect` | 2.23% |
+| `__nativeDrain` | 2.09% |
+| `Unit.addBuff` | 2.06% |
 
-Within inclusive `Unit.update`, literal reads alone consume **7.79% of all CPU**,
-generic reads **5.94%**, and own-property lookup **4.43%**. Those are subsets of
-the 51.28% inclusive row, not additional costs. In `Unit.addBuff`, the respective
-whole-profile shares are 2.33%, 2.72% and 2.22%; these overlap the Unit subtree.
+Inside inclusive 'Unit.update', literal reads account for 7.69% of all sampled CPU, generic reads 5.18% and own-property lookup 4.16%. These are subsets of its 50.71% inclusive share, not additional costs. Callback drain and source snapshots participate in the faithful fixture; removing them would change the measured workload.
 
-The profiled interval contains approximately 30.84 seconds of sampled user CPU
-over 31.46 seconds of wall time (98.0%). This supports CPU work as the immediate
-bottleneck for this single-worker capture; it does not distinguish instructions
-from on-CPU memory stalls.
+The measured profile window contains approximately **26.355 seconds of estimated sampled user CPU over 26.810 seconds of wall time (98.3%)**. This supports CPU work as the immediate bottleneck in this capture. It does not distinguish instructions from on-CPU memory stalls, and profiled timings are not an unprofiled throughput benchmark.
 
-## Optimization order supported by this evidence
+## What to target next
 
-1. **Reduce repeated property and descriptor work.** Measure actual eligible
-   shapes, keys, cache hits and fallback reasons; specialize source-proven
-   records while preserving getters, prototype changes and property order.
-   Several separate property-read operations dominate the self-cost list.
-2. **Reduce object/property construction and improve locality.** Target buff
-   construction, data-object creation and copying; keep immutable configuration
-   reusable and reduce allocation/header/map overhead. Validate actual update
-   workloads: the lazy small-property index saved allocations but regressed
-   isolated Unit timing by roughly 10%, so it remains unmerged.
-3. **Reduce dynamic calls and binding resolution where source proves it safe.**
-   Resolve stable lexical locations and preserve original argument/reflection
-   behavior. Inclusive call-stack presence is not dispatch self cost.
-4. **Reduce graph-scanning cost by reducing transient records and redundant
-   roots.** Merely collecting less often is not a demonstrated win: the full
-   stride-two experiment was slower and used more memory than the default.
-5. **Consider arithmetic batching only after measuring eligible coverage.** The
-   existing source audit attributes less than 1% inclusive CPU to selected pure
-   vector helpers in this fixture. A fast vector kernel alone cannot remove the
-   dominant dynamic object/runtime work.
+1. Reduce repeated property reads, descriptor routing and key-index work in the measured update and buff paths. Guard source-proven shapes while preserving getters, prototype mutation, property order and fallback behavior.
+2. Reduce object/property construction and copying where actual inputs qualify. Reuse immutable battle configuration where semantics permit; validate full workloads before claiming an allocation reduction improves speed.
+3. Reduce dynamic calls and binding work only where source and reflection rules permit. Inclusive call-stack presence is not dispatch self cost.
+4. Reduce transient graph size and redundant GC roots. The stride-two experiment was slower and used more memory, so the default policy remains.
+5. Rank further arithmetic/compiler work by measured source coverage. The small vector/scalar pattern inventory does not support predicting thousands of battles/second from isolated array elision.
 
-Use whole-battle A/B timings to accept changes. Improving a 5% self-cost region
-by 2x yields at most about 2.6% overall speedup if everything else stays equal.
-That is a budgeting calculation, not a performance prediction. Reaching 10,000
-battles/second will require much broader changes than isolated small helpers.
+The allocation-saving object-header/lazy-index candidate regressed isolated Unit timing by roughly 10%; it remains **isolated and rejected**, outside this build. The broader nested-copy candidate has source/native qualification on its branch but is **not enabled in this qualified main build and has no qualified whole-battle gain**.
 
-## Allocation volume: historical evidence, not current-build counters
+## Compiler changes already included
 
-An older, separately instrumented warm 20-battle run measured **4,288,855
-allocations and 185,910 reallocations per battle**. Fresh allocation requests
-were 110.284 MB/battle; requested replacement capacities for reallocations were
-168.543 MB/battle. Their combined 278.828 MB/battle is allocation traffic, **not
-live memory**, and does not imply that reallocations copied that many bytes.
-Later storage and lowering changes mean these counts must not be presented as
-current signed-camp allocation rates.
+The source-pinned Babel pass scalar-replaces one nonescaping two-element 'B' array in 'Unit.update': four reads, two truthiness reads, diagnostics fallback at entry and a stable host-diagnostics contract. Its original-source component improves **4.3%**, eliminating 10,000 arrays per 10,000 fixture updates. The TRACE1 fallback preserves original arrays and receiver diagnostics. See [pass qualification](../tools/rust-port/SCALAR_LOCAL_ARRAYS.md) and [coverage inventory](../tools/rust-port/SCALAR_ARRAY_INVENTORY.md).
 
-Its 654 periodically sampled allocation stacks attributed 52.9% to builtin key
-conversion, 22.2% to `Runtime::to_string`, 8.56% to array operations and 5.35% to
-`parse_int`. These percentages describe allocation-count samples, not CPU time
-or allocated-byte shares. The current CPU capture, rather than these historical
-allocation samples, determines present optimization priority.
+The primitive-copy expansion improves the original 'createDataObj' controller on a real flat 13-field 'UnitRank' record by **2.05×**. This is a cold configuration-copy scope. Real nested buff parents remain outside that flat domain, and Unit/drain controls contain zero copy calls. It is not a hot-buff or whole-battle gain. See [actual eligibility and component timings](../tools/rust-port/COPY_PRIMITIVES_BENCHMARK.md).
 
-Evidence: [allocation counters](results/2026-10-28T21-22-31.989Z-rust-measured-allocations.json).
+The function-own-property cache is also included. Component wins do not multiply into a predicted battle rate; the full and four-worker measurements above remain the acceptance evidence.
 
-## Scope and reproducibility
+## Historical allocation evidence
 
-- [Fresh CPU capture](results/2026-10-30T15-53-20.929Z-rust-program-perf.json)
-  and [source-stack attribution](results/2026-10-30T15-53-20.929Z-rust-program-perf.source-stacks.json).
-- Full raw perf data, stacks and reports are retained as hashed gzip chunks.
-- 2,504/15,388 samples lack a main/wrapper ancestor. This diagnoses missing ancestry,
-  not a precise count of truncated stacks; inclusive attribution can be incomplete.
-- Inlining attributes work to the containing linked symbol. Unresolved samples
-  are retained instead of assigned invented owners.
-- Profiles change timing and do not establish battles/second. Current main's
-  newer function-own-property cache is not part of this signed-camp capture.
-- The first fresh profiling attempt was rejected by kernel permissions because
-  perf requested kernel call chains. Explicit `--user-callchains` resolved the
-  failure; the successful capture measures user-space CPU only.
-- Fixed-fixture parity does not establish 20,000 random full-scene battle parity.
+An **older, separately instrumented build** measured **4,288,855 allocations and 185,910 reallocations per battle**. These are not current-build counters, CPU percentages or live-memory measurements. Current allocation volume has not been remeasured. See [historical allocation evidence](results/2026-10-28T21-22-31.989Z-rust-measured-allocations.json). Earlier profile/throughput evidence is kept separately in [the historical layout report](CURRENT_LAYOUT_PROFILE.md).
 
-Compiler work following this profile is described in the
-[implementation roadmap](../tools/rust-port/COMPILER_ROADMAP.md).
+## Scope and reproduction
 
-## Implemented after the capture
+- [Current CPU capture](results/2026-10-30T16-54-08.837Z-rust-program-perf.json), [source-stack attribution](results/2026-10-30T16-54-08.837Z-rust-program-perf.source-stacks.json) and [complete matrix](validation/source-shortcut-bottleneck-matrix.json) all bind current 7e718 source/manifests. The older 8fe capture predates these compiler/cache changes.
+- All raw observations are retained as hashed gzip chunks. Verified raw-only cleanup journals record exact reconstruction hashes; binaries, libraries, source inputs and compressed evidence remain.
+- 1,299/7,880 samples lack a main frame; 163 lack a known run-wrapper frame. These diagnose missing ancestry, not an exact count of truncated stacks. All samples retain a generated-source ancestor, but inclusive attribution can still be incomplete.
+- Inlined work belongs to its containing linked symbol. 337 unresolved leaves remain unassigned rather than receiving invented owners. User-only call chains avoid kernel-callchain permission requirements.
+- Fixed-fixture parity is not qualification across 20,000 random full-scene battles. Profiling does not establish a new battles/second claim.
 
-The Babel compiler now scalar-replaces the proven nonescaping two-element
-position snapshot in `Unit.update`. Its original-source component benchmark
-improves **4.3%**, removing exactly 10,000 arrays per 10,000 updates. All 84
-adversarial ON/OFF executions match JS, including raw bits and original TRACE1
-diagnostics. See [the pass and evidence](../tools/rust-port/SCALAR_LOCAL_ARRAYS.md).
-
-The guarded `copyObj` lowering now also accepts flat primitive-valued records.
-The original `createDataObj` path on a real `UnitRank` row improves **2.05x**.
-Nested buff parents remain outside that domain; their negative control does not
-show a comparable gain. See [actual admission and timings](../tools/rust-port/COPY_PRIMITIVES_BENCHMARK.md).
-
-These are component measurements. The combined full-battle qualification is
-running; the throughput figures above still refer to the last qualified build.
-The broader [scalar-array inventory](../tools/rust-port/SCALAR_ARRAY_INVENTORY.md)
-finds little additional sampled coverage for this particular pattern, so it
-does not justify predicting thousands of battles/second from array elision alone.
+Further compiler work is tracked in the [implementation roadmap](../tools/rust-port/COMPILER_ROADMAP.md).
