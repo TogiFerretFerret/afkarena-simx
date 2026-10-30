@@ -9,7 +9,7 @@ use crate::closures::FunctionRecord;
 pub enum Completion {Normal,Return(Value),Break(Option<&'static str>),Continue(Option<&'static str>)}
 pub struct Runtime {
  pub primary_numeric_access_enabled:bool,
- pub buff_percent_loop_attempts:u64,pub buff_percent_loop_hits:u64,pub buff_attribute_loop_enabled:bool,pub dynamic_own_slots_enabled:bool,pub(crate) dynamic_own_slots:Vec<Option<std::num::NonZeroUsize>>,
+ pub buff_percent_loop_attempts:u64,pub buff_percent_loop_hits:u64,pub buff_attribute_loop_enabled:bool,pub dynamic_own_slots_enabled:bool,pub(crate) dynamic_own_slots:Vec<[Option<std::num::NonZeroUsize>;2]>,
  pub(crate) native_battle_gc:crate::battle_gc::NativeBattleGc,
  pub(crate) expose_scan_guard:Option<crate::expose_scan::ExposeScanGuard>,
  pub native_stage_range_parser_enabled:bool,

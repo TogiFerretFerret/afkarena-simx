@@ -10,8 +10,9 @@ impl Runtime {
  }
  #[inline]
  pub(crate) fn dynamic_slot_get(&self,receiver:Value,key:PropertyKey)->Option<Value>{
-  if !self.dynamic_own_slots_enabled{return None}let index=self.dynamic_own_slots.get(key.0.0).copied().flatten()?.get()-1;let object=self.dynamic_slot_object(receiver,key)?;
-  object.data_slot(index,key)
+  if !self.dynamic_own_slots_enabled{return None}let slots=self.dynamic_own_slots.get(key.0.0)?;let first=slots[0]?.get()-1;let object=self.dynamic_slot_object(receiver,key)?;
+  if let Some(value)=object.data_slot(first,key){return Some(value)}
+  object.data_slot(slots[1]?.get()-1,key)
  }
  #[inline]
  pub(crate) fn dynamic_slot_learn(&mut self,receiver:Value,key:PropertyKey){
@@ -22,7 +23,7 @@ impl Runtime {
  fn dynamic_slot_learn_enabled(&mut self,receiver:Value,key:PropertyKey){
   let Some(object)=self.dynamic_slot_object(receiver,key)else{return};let Some(index)=object.property_index.get(&key).copied()else{return};
   if object.data_slot(index,key).is_none(){return}
-  if self.dynamic_own_slots.len()<=key.0.0{self.dynamic_own_slots.resize(key.0.0+1,None)}self.dynamic_own_slots[key.0.0]=index.checked_add(1).and_then(std::num::NonZeroUsize::new);
+  if self.dynamic_own_slots.len()<=key.0.0{self.dynamic_own_slots.resize(key.0.0+1,[None;2])}let index=index.checked_add(1).and_then(std::num::NonZeroUsize::new);let slots=&mut self.dynamic_own_slots[key.0.0];if slots[0]!=index&&slots[1]!=index{slots[1]=slots[0];slots[0]=index;}
  }
 }
 #[cfg(test)]mod tests {
@@ -37,4 +38,21 @@ impl Runtime {
  #[test]fn dynamic_hint_table_is_bounded(){
   let mut rt=Runtime::new();rt.diagnostics.enabled=false;for i in 0..MAX_KEYS{rt.intern(&format!("unique-key-{i}"));}let key=rt.string("beyond-hint-bound");let object=rt.object();rt.set(object,key,Value::Number(4.0),true).unwrap();assert_eq!(rt.get(object,key).unwrap(),Value::Number(4.0));assert!(rt.dynamic_own_slots.len()<=MAX_KEYS);
  }
+ #[test]fn two_layouts_stay_cached_and_third_layout_evicts_only_one_location(){
+  let mut rt=Runtime::new();rt.diagnostics.enabled=false;let key=rt.intern("shared");let mut objects=Vec::new();
+  for layout in 0..3 {let o=rt.object();for pad in 0..layout{let p=rt.intern(&format!("pad{pad}"));rt.define_data(o,p,Value::Number(99.0),true,true,true).unwrap();}rt.define_data(o,key,Value::Number(layout as f64),true,true,true).unwrap();objects.push(o);}
+  rt.dynamic_slot_learn(objects[0],PropertyKey(key));rt.dynamic_slot_learn(objects[1],PropertyKey(key));let learned=rt.dynamic_own_slots[key.0];
+  for _ in 0..20{for layout in 0..2{assert_eq!(rt.dynamic_slot_get(objects[layout],PropertyKey(key)),Some(Value::Number(layout as f64)));}assert_eq!(rt.dynamic_own_slots[key.0],learned);}
+  rt.dynamic_slot_learn(objects[2],PropertyKey(key));assert_eq!(rt.dynamic_slot_get(objects[0],PropertyKey(key)),None);for layout in 1..3{assert_eq!(rt.dynamic_slot_get(objects[layout],PropertyKey(key)),Some(Value::Number(layout as f64)));}
+  rt.dynamic_slot_learn(objects[1],PropertyKey(key));assert_eq!(rt.dynamic_own_slots[key.0][0].unwrap().get(),3,"second hit never promotes");
+  rt.delete(objects[1],key,true).unwrap();assert_eq!(rt.dynamic_slot_get(objects[1],PropertyKey(key)),None);assert_eq!(rt.get(objects[1],key).unwrap(),Value::Undefined);
+  rt.define_data(objects[1],key,Value::Number(f64::from_bits(0x7ff0000000000042)),true,true,true).unwrap();let Value::Number(v)=rt.get(objects[1],key).unwrap()else{panic!()};assert_eq!(v.to_bits(),0x7ff0000000000042);
+ }
+ #[test]fn second_slot_validates_live_accessor_kind_and_prototype_fallback(){
+  fn getter(rt:&mut Runtime,_:Value,_:&[Value],_:crate::EnvId)->crate::JsResult<Value>{let n=rt.lookup(rt.global_env,"getterCalls")?;let Value::Number(n)=n else{panic!()};rt.assign(rt.global_env,"getterCalls",Value::Number(n+1.0),false)?;Ok(Value::Number(n+10.0))}
+  let mut rt=Runtime::new();rt.diagnostics.enabled=false;let key=rt.intern("x");let pad=rt.intern("pad");let a=rt.object();let b=rt.object();rt.define_data(a,key,Value::Number(1.0),true,true,true).unwrap();rt.define_data(b,pad,Value::Null,true,true,true).unwrap();rt.define_data(b,key,Value::Number(2.0),true,true,true).unwrap();rt.dynamic_slot_learn(a,PropertyKey(key));rt.dynamic_slot_learn(b,PropertyKey(key));
+  rt.declare(rt.global_env,"getterCalls",Value::Number(0.0)).unwrap();let get=rt.make_closure(getter,rt.global_env,0,"getX");rt.define_accessor(a,key,Some(get),None,true,true).unwrap();assert_eq!(rt.dynamic_slot_get(a,PropertyKey(key)),None);assert_eq!(rt.get(a,key).unwrap(),Value::Number(10.0));assert_eq!(rt.get(a,key).unwrap(),Value::Number(11.0));
+  rt.delete(a,key,true).unwrap();rt.define_data(Value::Object(rt.object_prototype),key,Value::Number(55.0),true,true,true).unwrap();assert_eq!(rt.dynamic_slot_get(a,PropertyKey(key)),None);assert_eq!(rt.get(a,key).unwrap(),Value::Number(55.0));
+ }
+
 }
