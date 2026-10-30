@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "coreCommit": "eed403d",
+  "libraryTests": 121,
+  "layout": {
+    "objectBefore": 160,
+    "objectAfter": 136,
+    "argumentsMap": 8,
+    "storedProperty": 24
+  },
+  "newRegression": "23 original-source GC safepoints retaining live mapped parameters/rawbits and pruning detached mapped binding environments/WeakMap keys/values, with recycled identities",
+  "reports": [
+    {
+      "file": "benchmarks/validation/lazy-arguments-map/rust-generated-arguments-elision.json",
+      "sha256": "964bc38c6d24689a9700a65a3556ebf9b9a86c2a58bcad3a1352c1217da0f037",
+      "cases": 40,
+      "compared": null,
+      "knownUnsupported": [
+        {
+          "name": "sloppy-lazy-legacy-iterator",
+          "source": "function(){function f(a){return f.arguments[Symbol.iterator]===Array.prototype.values;}return f(1);}",
+          "reason": "Native Symbol identities/keys and the arguments Symbol.iterator property remain unsupported, as for existing eager arguments objects. This gate does not qualify those semantics."
+        },
+        {
+          "name": "sloppy-lazy-legacy-ownkeys",
+          "source": "function(){function f(a){return Reflect.ownKeys(f.arguments).map(String).join(\"|\");}return f(1);}",
+          "reason": "Native Symbol identities/keys and the arguments Symbol.iterator property remain unsupported, as for existing eager arguments objects. This gate does not qualify those semantics."
+        }
+      ],
+      "unsupportedCount": 0
+    },
+    {
+      "file": "benchmarks/validation/lazy-arguments-map/rust-generated-reflection.json",
+      "sha256": "67a83afd31c537a1f1935fbfe4215bf51ddab0e4aac2aaccf0cb994a39e4b4b9",
+      "cases": 24,
+      "compared": null,
+      "knownUnsupported": [],
+      "unsupportedCount": 0
+    },
+    {
+      "file": "benchmarks/validation/lazy-arguments-map/rust-generated-closures.json",
+      "sha256": "54bcdab83020b59edbf2bc14a73721a564b65fcc15fb7fe217707e166149be34",
+      "cases": 50,
+      "compared": null,
+      "knownUnsupported": [],
+      "unsupportedCount": 0
+    },
+    {
+      "file": "benchmarks/validation/lazy-arguments-map/rust-value-semantics.json",
+      "sha256": "c30ad05eb4e4710e3f2d76292a9f579e740fdaccc85b73ce6524498916731ea0",
+      "cases": 79116,
+      "compared": 79026,
+      "knownUnsupported": [],
+      "unsupportedCount": 90
+    }
+  ],
+  "libraryArtifacts": [
+    {
+      "file": "benchmarks/validation/lazy-arguments-map/lazy-arguments-library-final.stdout.gz",
+      "sha256": "e9c5ebc2f07d17c45054aba9f2531b31136e82f0f178bbf8912688bb04ac60f1",
+      "uncompressedSha256": "e1bcaed52a2ad98e33d6bd014fa9a500d5e19d4820f0c73cf7c8c05fa518d557"
+    },
+    {
+      "file": "benchmarks/validation/lazy-arguments-map/lazy-arguments-library-final.stderr.gz",
+      "sha256": "82143c84f74cd71556563581e7c07202d437f59fac0f5150d427662f4f430a81",
+      "uncompressedSha256": "355730707a5e151bfcdfe6a9bd67f5316665b93c7cc40f7b5c879352907c739e"
+    }
+  ],
+  "scope": "Storage/header candidate only. Existing2 Symbol/arguments.iterator cases and90 remainder cases remain explicitly unsupported and are not counted as passes. Performance/full battle admission pending."
+}
