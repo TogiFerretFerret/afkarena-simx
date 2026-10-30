@@ -60,6 +60,31 @@ on-CPU memory stalls without distinguishing them from computation. Cache misses,
 instruction counts, branch misses and memory bandwidth were not measured, so
 allocation or RSS reductions alone do not establish improved cache behavior.
 
+The complete symbol-based operation partition is below. Every sample belongs
+to exactly one row; naming rules are explicit in the analyzer, so these remain
+operation-classification estimates rather than hardware event measurements.
+
+| Exclusive operation category | CPU share |
+| --- | ---: |
+| Property reads and descriptor routing | 37.32% |
+| Other JavaScript semantics runtime | 12.83% |
+| Generated source body | 11.23% |
+| Property writes and key-index tables | 8.14% |
+| GC and reachability | 7.70% |
+| Strings and canonical keys | 6.03% |
+| Bindings and environments | 5.91% |
+| Unresolved leaf | 4.09% |
+| Object allocation, container growth and memory | 3.29% |
+| Calls, closures and arguments | 2.53% |
+| Other native/library/system code | 0.86% |
+| Regular expressions | 0.05% |
+
+Property reads and writes together account for **45.46%**. This is the broadest
+measured target for compiler specialization. Allocation-related work is spread
+across several categories; the 3.29% row is not a complete allocation budget.
+All **608 merged self symbols**, nearest-source owners and owner-by-operation
+cross tables are in the [complete matrix](validation/signed-camp-bottleneck-matrix.json).
+
 ### Largest exclusive operations
 
 Duplicate code-generation-unit instances are merged by demangled symbol.
@@ -205,3 +230,6 @@ Evidence: [allocation counters](results/2026-10-28T21-22-31.989Z-rust-measured-a
   perf requested kernel call chains. Explicit `--user-callchains` resolved the
   failure; the successful capture measures user-space CPU only.
 - Fixed-fixture parity does not establish 20,000 random full-scene battle parity.
+
+Compiler work following this profile is described in the
+[implementation roadmap](../tools/rust-port/COMPILER_ROADMAP.md).
