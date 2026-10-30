@@ -33,6 +33,9 @@ pub struct Object {
  pub arguments_map:HashMap<PropertyKey,BindingRef,IdBuildHasher>,
 }
 pub type HeapObject=Object;
+// Physical slots include tombstones: crossing the bound permanently materializes
+// the index until storage is reset. No extra per-object state or duplicate keys.
+pub(crate) const SMALL_PROPERTY_INDEX_LIMIT:usize=2;
 impl Object {
  pub fn new(prototype:Option<ObjectId>)->Self{Self{prototype,extensible:true,kind:ObjectKind::Ordinary,is_function:false,numeric_elements:None,properties:vec![],accessor_slots:None,property_index:HashMap::default(),arguments_map:HashMap::default()}}
  pub(crate) fn reset_for_reuse(&mut self,prototype:Option<ObjectId>){self.prototype=prototype;self.extensible=true;self.kind=ObjectKind::Ordinary;self.is_function=false;self.properties.clear();if let Some(slots)=&mut self.accessor_slots{slots.clear();}self.property_index.clear();self.arguments_map.clear();}
@@ -44,7 +47,7 @@ impl Object {
  }
  pub fn own(&self,key:PropertyKey)->Option<Descriptor>{
   let index=key.0.0;if index<4&&self.primary_numeric_mask()&(1<<index)!=0{if let Some(bits)=&self.numeric_elements{return Some(Descriptor::data(Value::Number(f64::from_bits(bits[index])),true,true,true))}}
-  self.property_index.get(&key).and_then(|i|self.own_slot(*i,key))
+  self.slot_index(key).and_then(|i|self.own_slot(i,key))
  }
  fn store_descriptor(&mut self,key:PropertyKey,descriptor:Descriptor,index:Option<usize>)->StoredProperty{
   let previous=index.and_then(|i|self.properties[i].accessor_index());
@@ -53,7 +56,26 @@ impl Object {
    PropertyKind::Accessor{get,set}=>{let slots=self.accessor_slots.get_or_insert_with(||Box::new(Vec::new()));let slot=previous.or_else(||slots.iter().position(Option::is_none)).unwrap_or_else(||{slots.push(None);slots.len()-1});slots[slot]=Some((get,set));StoredProperty::accessor(key,slot,descriptor.enumerable,descriptor.configurable)}
   }
  }
- fn dictionary_insert(&mut self,key:PropertyKey,descriptor:Descriptor){if let Some(index)=self.property_index.get(&key).copied(){let stored=self.store_descriptor(key,descriptor,Some(index));self.properties[index]=stored;}else{let stored=self.store_descriptor(key,descriptor,None);let index=self.properties.len();self.properties.push(stored);self.property_index.insert(key,index);}}
+ /// Find the authoritative physical slot without allocating an index for a
+ /// tiny property vector. StoredProperty::key filters tombstones identically
+ /// to the materialized map; descriptor/value/accessor reads stay unchanged.
+ #[inline]
+ pub fn slot_index(&self,key:PropertyKey)->Option<usize>{
+  if self.properties.len()<=SMALL_PROPERTY_INDEX_LIMIT&&self.property_index.is_empty(){
+   self.properties.iter().position(|stored|stored.key()==Some(key))
+  }else{self.property_index.get(&key).copied()}
+ }
+ fn dictionary_insert(&mut self,key:PropertyKey,descriptor:Descriptor){
+  if let Some(index)=self.slot_index(key){let stored=self.store_descriptor(key,descriptor,Some(index));self.properties[index]=stored;}
+  else{let stored=self.store_descriptor(key,descriptor,None);let index=self.properties.len();self.properties.push(stored);
+   if !self.property_index.is_empty(){self.property_index.insert(key,index);}
+   else if self.properties.len()>SMALL_PROPERTY_INDEX_LIMIT{
+    self.property_index.reserve(self.properties.len());
+    for(index,stored)in self.properties.iter().enumerate(){if let Some(key)=stored.key(){self.property_index.insert(key,index);}}
+   }
+  }
+ }
+
  #[inline]
  pub fn property_at(&self,index:usize)->Option<(PropertyKey,Descriptor)>{let stored=self.properties.get(index)?;Some((stored.key()?,stored.descriptor(&self.accessor_slots)?))}
  #[inline]
@@ -92,7 +114,7 @@ impl Object {
  }
  pub fn remove(&mut self,key:PropertyKey){
   if key.0.0<4{if let ObjectKind::Array{primary_numeric:true,numeric_presence,..}=&mut self.kind{*numeric_presence&=!(1<<key.0.0);}}
-  if let Some(i)=self.property_index.remove(&key){if let Some(slot)=self.properties[i].accessor_index(){self.accessor_slots.as_mut().expect("accessor storage")[slot]=None;}self.properties[i].tombstone();}self.arguments_map.remove(&key);
+  let index=self.slot_index(key);self.property_index.remove(&key);if let Some(i)=index{if let Some(slot)=self.properties[i].accessor_index(){self.accessor_slots.as_mut().expect("accessor storage")[slot]=None;}self.properties[i].tombstone();}self.arguments_map.remove(&key);
  }
 
 }
@@ -109,7 +131,7 @@ mod primary_numeric_tests {
  fn number(bits:u64)->Descriptor{Descriptor::data(Value::Number(f64::from_bits(bits)),true,true,true)}
  fn bits(o:&Object,index:usize)->u64{let PropertyKind::Data{value:Value::Number(value),..}=o.own(key(index)).unwrap().kind else{panic!()};value.to_bits()}
  #[test]fn primary_numbers_are_authoritative_and_bit_exact(){let mut o=array();for(index,value)in[0x8000000000000000,0x7ff0000000000001,0xfff0000000001234,0x7ff8000000001234].into_iter().enumerate(){o.insert(key(index),number(value));assert_eq!(bits(&o,index),value)}assert_eq!(o.primary_numeric_mask(),15);assert!(o.properties.is_empty());assert!(o.property_index.is_empty());assert_eq!(o.primary_numeric_properties().count(),4);o.remove(key(1));assert!(o.own(key(1)).is_none());assert_eq!(o.primary_numeric_mask(),13);o.insert(key(1),number(7));assert_eq!(bits(&o,1),7);}
- #[test]fn nonnumber_and_nondefault_descriptors_materialize(){for mode in 0..5{let mut o=array();o.insert(key(0),number(0xfff0000000001234));o.insert(key(1),number(0x8000000000000000));let d=match mode{0=>Descriptor::data(Value::Null,true,true,true),1=>Descriptor::data(Value::Number(8.0),false,true,true),2=>Descriptor::data(Value::Number(8.0),true,false,true),3=>Descriptor::data(Value::Number(8.0),true,true,false),_=>Descriptor{kind:PropertyKind::Accessor{get:None,set:None},enumerable:true,configurable:true}};o.insert(key(2),d);assert_eq!(o.primary_numeric_mask(),0);assert!(matches!(o.kind,ObjectKind::Array{primary_numeric:false,..}));assert_eq!(bits(&o,0),0xfff0000000001234);assert_eq!(bits(&o,1),0x8000000000000000);assert!(o.own(key(2)).is_some());assert_eq!(o.property_index.len(),3);assert!(o.numeric_elements.is_some());}}
+ #[test]fn nonnumber_and_nondefault_descriptors_materialize(){for mode in 0..5{let mut o=array();o.insert(key(0),number(0xfff0000000001234));o.insert(key(1),number(0x8000000000000000));let d=match mode{0=>Descriptor::data(Value::Null,true,true,true),1=>Descriptor::data(Value::Number(8.0),false,true,true),2=>Descriptor::data(Value::Number(8.0),true,false,true),3=>Descriptor::data(Value::Number(8.0),true,true,false),_=>Descriptor{kind:PropertyKind::Accessor{get:None,set:None},enumerable:true,configurable:true}};o.insert(key(2),d);assert_eq!(o.primary_numeric_mask(),0);assert!(matches!(o.kind,ObjectKind::Array{primary_numeric:false,..}));assert_eq!(bits(&o,0),0xfff0000000001234);assert_eq!(bits(&o,1),0x8000000000000000);assert!(o.own(key(2)).is_some());assert_eq!(o.iter_properties().count(),3);assert_eq!(o.property_index.is_empty(),o.properties.len()<=SMALL_PROPERTY_INDEX_LIMIT);assert!(o.numeric_elements.is_some());}}
  #[test]fn out_of_domain_key_deopts_and_reset_retains_storage(){let mut o=array();o.insert(key(0),number(0x8000000000000000));let pointer=o.numeric_elements.as_ref().unwrap().as_ptr();o.insert(key(4),number(3));assert_eq!(o.primary_numeric_mask(),0);assert_eq!(bits(&o,0),0x8000000000000000);assert_eq!(bits(&o,4),3);o.reset_for_reuse(None);assert!(o.own(key(0)).is_none());assert_eq!(o.primary_numeric_mask(),0);assert_eq!(o.numeric_elements.as_ref().unwrap().as_ptr(),pointer);o.kind=ObjectKind::Array{length:2,length_writable:true,primary_numeric:true,numeric_presence:0};o.insert(key(1),number(9));assert_eq!(o.numeric_elements.as_ref().unwrap().as_ptr(),pointer);assert!(o.own(key(0)).is_none());assert_eq!(bits(&o,1),9);}
 
  fn primary_gc_rounds(rt:&mut crate::Runtime,_:Value,_:&[Value],parent:crate::EnvId)->crate::JsResult<Value>{
@@ -134,15 +156,37 @@ mod primary_numeric_tests {
   eprintln!("compact stored={} former={} Object={}",std::mem::size_of::<StoredProperty>(),std::mem::size_of::<Option<(PropertyKey,Descriptor)>>(),std::mem::size_of::<Object>());
   assert_eq!(std::mem::size_of::<StoredProperty>(),24);assert!(std::mem::size_of::<StoredProperty>()<std::mem::size_of::<Option<(PropertyKey,Descriptor)>>());
   let mut object=Object::new(None);object.insert(key(1),accessor(Some(Value::Function(crate::value::FunctionId(7))),None));
-  assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);let first=object.property_index[&key(1)];
-  object.insert(key(1),accessor(None,Some(Value::Undefined)));assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);assert_eq!(object.property_index[&key(1)],first);
+  assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);let first=object.slot_index(key(1)).unwrap();
+  object.insert(key(1),accessor(None,Some(Value::Undefined)));assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);assert_eq!(object.slot_index(key(1)).unwrap(),first);
   let PropertyKind::Accessor{get,set}=object.own(key(1)).unwrap().kind else{panic!()};assert_eq!((get,set),(None,Some(Value::Undefined)));
   object.insert(key(1),Descriptor::data(Value::Number(f64::from_bits(0xfff0000000000042)),true,true,true));assert!(object.accessor_slots.as_ref().unwrap()[0].is_none());
   object.insert(key(2),accessor(Some(Value::Null),Some(Value::Bool(false))));assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);assert!(object.own_slot(first,key(2)).is_none());
   object.remove(key(2));assert!(object.accessor_slots.as_ref().unwrap()[0].is_none());assert!(object.iter_properties().all(|(k,_)|k!=key(2)));
-  object.insert(key(2),accessor(None,None));assert!(object.property_index[&key(2)]>first);assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);
+  object.insert(key(2),accessor(None,None));assert!(object.slot_index(key(2)).unwrap()>first);assert_eq!(object.accessor_slots.as_ref().unwrap().len(),1);
   object.reset_for_reuse(None);assert!(object.properties.is_empty());assert!(object.accessor_slots.as_ref().unwrap().is_empty());assert_eq!(object.iter_properties().count(),0);
  }
  #[test]fn physical_data_guards_preserve_attributes_and_all_raw_bits(){let mut object=Object::new(None);object.insert(key(3),Descriptor::data(Value::Number(-0.0),true,false,false));assert!(object.set_existing_data_slot(0,key(3),Value::Number(f64::from_bits(0x7ff0000000000042))));let descriptor=object.own(key(3)).unwrap();assert!(!descriptor.enumerable&&!descriptor.configurable);let Value::Number(value)=object.data_slot(0,key(3)).unwrap()else{panic!()};assert_eq!(value.to_bits(),0x7ff0000000000042);assert!(!object.set_existing_data_slot(0,key(4),Value::Null));object.insert(key(3),accessor(None,None));assert!(object.data_slot(0,key(3)).is_none());assert!(!object.set_existing_data_slot(0,key(3),Value::Null));object.insert(key(3),Descriptor::data(Value::Bool(true),false,true,true));assert!(!object.set_existing_data_slot(0,key(3),Value::Null));}
  #[test]fn storage_clone_copies_accessor_identities_holes_and_releases_old_arena(){let mut source=Object::new(None);source.insert(key(4),accessor(Some(Value::Object(ObjectId(81))),Some(Value::Function(crate::value::FunctionId(91)))));source.insert(key(5),Descriptor::data(Value::String(StringId(17)),false,false,true));source.remove(key(5));let mut target=Object::new(None);target.insert(key(8),accessor(Some(Value::Object(ObjectId(999))),None));target.clone_property_storage_from(&source);target.property_index.clone_from(&source.property_index);let PropertyKind::Accessor{get,set}=target.own(key(4)).unwrap().kind else{panic!()};assert_eq!((get,set),(Some(Value::Object(ObjectId(81))),Some(Value::Function(crate::value::FunctionId(91)))));assert!(target.property_at(1).is_none());assert_eq!(target.iter_properties().count(),1);let data=Object::new(None);target.clone_property_storage_from(&data);target.property_index.clear();assert_eq!(target.iter_properties().count(),0);assert!(target.accessor_slots.as_ref().unwrap().is_empty());}
+}
+
+#[cfg(test)]mod small_physical_index_tests{
+ use super::*;
+ fn key(n:usize)->PropertyKey{PropertyKey(StringId(n))}
+ fn data(n:usize)->Descriptor{Descriptor::data(Value::Number(f64::from_bits(0x7ff0000000000042+n as u64)),true,n%2==0,true)}
+ #[test]fn tiny_objects_keep_no_hash_allocation_and_layout_sizes_do_not_grow(){
+  assert_eq!(std::mem::size_of::<Object>(),160);assert_eq!(std::mem::size_of::<StoredProperty>(),24);let mut o=Object::new(None);
+  for i in 0..SMALL_PROPERTY_INDEX_LIMIT{o.insert(key(i),data(i));assert_eq!(o.slot_index(key(i)),Some(i));assert_eq!(o.property_index.capacity(),0);}
+  o.insert(key(0),Descriptor{kind:PropertyKind::Accessor{get:Some(Value::Function(crate::value::FunctionId(81))),set:None},enumerable:false,configurable:true});assert_eq!(o.slot_index(key(0)),Some(0));assert!(o.data_slot(0,key(0)).is_none());assert!(matches!(o.own(key(0)).unwrap().kind,PropertyKind::Accessor{..}));assert_eq!(o.property_index.capacity(),0);
+ }
+ #[test]fn threshold_counts_physical_tombstones_and_preserves_slots_and_raw_values(){
+  let mut o=Object::new(None);for i in 0..SMALL_PROPERTY_INDEX_LIMIT{o.insert(key(i),data(i));}o.remove(key(0));assert!(o.slot_index(key(0)).is_none());assert_eq!(o.property_index.capacity(),0);o.insert(key(0),data(10));assert_eq!(o.properties.len(),SMALL_PROPERTY_INDEX_LIMIT+1);assert_eq!(o.slot_index(key(0)),Some(SMALL_PROPERTY_INDEX_LIMIT));assert!(o.property_index.capacity()>0);assert!(o.property_at(0).is_none());
+  for i in 1..SMALL_PROPERTY_INDEX_LIMIT{assert_eq!(o.slot_index(key(i)),Some(i));let PropertyKind::Data{value:Value::Number(n),..}=o.own(key(i)).unwrap().kind else{panic!()};assert_eq!(n.to_bits(),0x7ff0000000000042+i as u64);}
+  let order=o.iter_properties().map(|(k,_)|k).collect::<Vec<_>>();assert_eq!(order,(1..SMALL_PROPERTY_INDEX_LIMIT).map(key).chain([key(0)]).collect::<Vec<_>>());
+ }
+ #[test]fn materialized_index_keeps_capacity_and_never_reuses_deleted_slots(){
+  let mut o=Object::new(None);for i in 0..=SMALL_PROPERTY_INDEX_LIMIT{o.insert(key(i),data(i));}let cap=o.property_index.capacity();for i in 0..=SMALL_PROPERTY_INDEX_LIMIT{o.remove(key(i));}assert!(o.property_index.is_empty());assert_eq!(o.property_index.capacity(),cap);let next=o.properties.len();o.insert(key(99),data(99));assert_eq!(o.slot_index(key(99)),Some(next));assert!(o.property_index.contains_key(&key(99)));o.reset_for_reuse(None);assert_eq!(o.property_index.capacity(),cap);assert_eq!(o.properties.len(),0);o.insert(key(1),data(1));assert!(o.property_index.is_empty());assert_eq!(o.slot_index(key(1)),Some(0));
+ }
+ #[test]fn paired_storage_and_map_clone_preserves_small_large_and_holes(){
+  for count in [1,SMALL_PROPERTY_INDEX_LIMIT+2]{let mut source=Object::new(None);for i in 0..count{source.insert(key(i),data(i));}if count>1{source.remove(key(1));}let mut target=Object::new(None);for i in 10..20{target.insert(key(i),data(i));}target.clone_property_storage_from(&source);target.property_index.clone_from(&source.property_index);for i in 0..count{assert_eq!(target.slot_index(key(i)),source.slot_index(key(i)));}assert_eq!(target.properties.len(),source.properties.len());assert_eq!(target.iter_properties().count(),source.iter_properties().count());assert!(target.slot_index(key(10)).is_none());}
+ }
 }
