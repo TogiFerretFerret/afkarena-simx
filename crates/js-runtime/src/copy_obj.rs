@@ -57,8 +57,11 @@ impl Runtime{
   if !matches!(object.kind,ObjectKind::Ordinary)||object.prototype!=Some(self.object_prototype)||!object.arguments_map.is_empty(){return Ok(None)}
   for (key,desc)in object.iter_properties(){
    if !desc.enumerable||!desc.configurable{return Ok(None)}
-   let PropertyKind::Data{value:Value::Number(number),writable:true}=desc.kind else{return Ok(None)};
-   if !number.is_finite()||self.objects[self.object_prototype.0].own(key).is_some(){return Ok(None)}
+   let PropertyKind::Data{value,writable:true}=desc.kind else{return Ok(None)};
+   // Source recurses only for truthy typeof-object leaves. Copy primitive
+   // StringId/FunctionId values unchanged, without conversion or invocation.
+   // Preserve the existing non-finite Number fallback until raw-bit proof.
+   if matches!(value,Value::Object(_))||matches!(value,Value::Number(number)if !number.is_finite())||self.objects[self.object_prototype.0].own(key).is_some(){return Ok(None)}
   }
   // Standard descriptors and no inherited conflicts make each source write
   // an ordinary fresh own property. Numeric key ordering remains own_keys's
