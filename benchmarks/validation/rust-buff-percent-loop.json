@@ -7,7 +7,7 @@
     "crates/js-runtime/src/battle_gc.rs": "1ce99d2c474900cab619b26420b1b5695a074e8dad5ad58359662fb05bd2299a",
     "crates/js-runtime/src/battle_mode_limit.rs": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
     "crates/js-runtime/src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
-    "crates/js-runtime/src/buff_attribute_loop.rs": "8b3265fafd9a2cd0c92dec5051cdf1be14bbf6ed63c7315827e688acbd994e47",
+    "crates/js-runtime/src/buff_attribute_loop.rs": "63808a618f61dc66f2c5860ff27bc7f0c45719683870c0a06a2f1a913874baad",
     "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
@@ -39,7 +39,7 @@
     "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
-    "crates/js-runtime/src/runtime.rs": "776c27244418cbbae68d48c0dd959a51dd5b533a40a78d1cee2fef964777bc96",
+    "crates/js-runtime/src/runtime.rs": "db853556f764e1ddd99eba7ab67bc36ba49384cf633911a1f2396c6adb6c3baf",
     "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
     "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
@@ -58,7 +58,7 @@
   "sourceSha256": "800a1965d6182ca14aa66aaa2b186396dcc1f4c6db509d56f0daa622ca81c146",
   "binary": {
     "file": "/workspace/afkarena-simx/work/candidate-owner-percent/target/release/buff-percent-loop-gate",
-    "sha256": "13b5faa7fd1282d20d7102e5a773263a03f4edfaeb09eab8a8c7d45d69e17743"
+    "sha256": "269e1ae5773fa3b0b2ecbc99224ea85989b00c60b0fed738bedab1df8e9a460e"
   },
   "artifacts": [
     {
@@ -78,8 +78,8 @@
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.compile.gz",
-      "sha256": "82de1a9d63826df7f9d6cd400faab392bf38de762edca2bc5d5158abc92fda31",
-      "uncompressedSha256": "87347e848681822e81dbc6a5b285a6b68e0a47f9b6d56cb888596babadaa7516"
+      "sha256": "c22074d359086a291f4f2ef02627053e6008a7722aec5a964bb1fd76ccde7323",
+      "uncompressedSha256": "c76c17fdd7885c6d32c3c5cac43b95b5c71ceb51bbc481d72a34def5ff7e1a68"
     },
     {
       "file": "benchmarks/validation/rust-buff-percent-loop.stdout.gz",

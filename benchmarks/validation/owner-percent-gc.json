@@ -1,15 +1,15 @@
 {
   "passed": true,
-  "command": "cargo test --release -p js-runtime owner_percent_twenty_three -- --nocapture",
-  "tests": 1,
-  "collections": 23,
-  "ownerHits": 23,
+  "command": "cargo test --release -p js-runtime buff_attribute_loop::tests -- --nocapture",
+  "tests": 2,
+  "collectionsPerTest": 23,
+  "ownerHitsInOwnerTest": 23,
   "sourceInputs": {
     "crates/js-runtime/src/array_from.rs": "71dde3482004c93385c09af60149ca29a0596e0a53cda1831e688e32f86e5f33",
     "crates/js-runtime/src/battle_gc.rs": "1ce99d2c474900cab619b26420b1b5695a074e8dad5ad58359662fb05bd2299a",
     "crates/js-runtime/src/battle_mode_limit.rs": "0e5841a5d3735bb17d2c5547e6106d9f6b747f937b29c78aefa47da2c5208ca1",
     "crates/js-runtime/src/binary.rs": "a88e6b84caa90e8fdbdee601f2e3ae5d5aa673fe712bb4159d69c035b17844f1",
-    "crates/js-runtime/src/buff_attribute_loop.rs": "8b3265fafd9a2cd0c92dec5051cdf1be14bbf6ed63c7315827e688acbd994e47",
+    "crates/js-runtime/src/buff_attribute_loop.rs": "63808a618f61dc66f2c5860ff27bc7f0c45719683870c0a06a2f1a913874baad",
     "crates/js-runtime/src/builtins.rs": "12164f7001d22b1d7e0db48d58c21983c4d3213f576f1874d9c8ca4a79d9578d",
     "crates/js-runtime/src/class_dispatch.rs": "373346596adcc6c5789aaba19325470ef44ede6c7ca6f9b6c7f0b10753e43fc4",
     "crates/js-runtime/src/closures.rs": "4962fca1183fe9c528253709ce636c03353dd698884c385150da6d19816bc0d8",
@@ -41,7 +41,7 @@
     "crates/js-runtime/src/reachability.rs": "2936e36bb2f7c37fc1a7c0f3a0b3bf2814e17b1530881c1f0138e2cf911c7ffe",
     "crates/js-runtime/src/reflection_bootstrap.rs": "93e3308b20da675134098e78a7d29f12020521a62d444466cad95684d5cfa1c3",
     "crates/js-runtime/src/regex.rs": "1cb99c06b3612d8c242d79ff2f4e68c5a4aab0606e583afcdac30a80b4762010",
-    "crates/js-runtime/src/runtime.rs": "776c27244418cbbae68d48c0dd959a51dd5b533a40a78d1cee2fef964777bc96",
+    "crates/js-runtime/src/runtime.rs": "db853556f764e1ddd99eba7ab67bc36ba49384cf633911a1f2396c6adb6c3baf",
     "crates/js-runtime/src/stage_range_parser.rs": "648cb7df14454e161c2158c16e15ebb29c4f322f90f675f1b22c4f9289da9240",
     "crates/js-runtime/src/stored_property.rs": "e901a48675356a8509c1c539d45396017a8c125bef90f321256451387fc101d5",
     "crates/js-runtime/src/string_hash.rs": "0efe8f1ca02a72cce863989af69f29c7cd6bd634397b2c74bf3ef89536f195da",
@@ -74,13 +74,13 @@
   "binaries": [
     {
       "file": "target/release/deps/js_runtime-1367b4d9990bb72f",
-      "sha256": "27808ffa6e92e3794c04a22dc616538716b17f6b6af72619bb99fd9f7cc7a13b"
+      "sha256": "b99371c44586e999b8179ae088574f12034d6560ff280d207d6bd6b0e0a71b21"
     }
   ],
   "archive": {
     "file": "benchmarks/validation/owner-percent-gc.outputs.json.gz",
-    "sha256": "247f15d39c10a2d508ad5cdf52efc10f7fb79679706d71c2425a75144b91eae8"
+    "sha256": "7c00700103f5581fb9fc38a1990912e512eb52817b619aceac3f6f68a741fe69"
   },
-  "scope": "One test exercises source-qualified native battle safe points, 23 collections and actual object-ID reuse. Owner numeric outputs and admission counts are asserted each round. This is not full battle qualification.",
+  "scope": "Separate owner and caster tests each exercise 23 source-qualified native battle safe-point collections and actual object-ID reuse. Numeric outputs and admission counts are asserted each round. This is not full battle qualification.",
   "qualifiesFor10000Target": false
 }
