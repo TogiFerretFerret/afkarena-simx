@@ -1,0 +1,833 @@
+{
+  "at": "2026-10-30T17:23:47.387Z",
+  "scope": "Owner-authorized completed rebuildable Cargo targets only. Source/proof snapshots, active candidate targets, standalone copied fixtures and current main target preserved. No live compiler/native exe consumers.",
+  "sparseReduced": [
+    "candidate-function-own-data-literals",
+    "candidate-argument-stack",
+    "candidate-shared-utf16",
+    "candidate-fast-own-set"
+  ],
+  "removed": [
+    {
+      "target": "work/candidate-numeric-read-slots/work/rust-numeric-literal-read-slots-benchmark/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-numeric-read-slots/work/rust-numeric-literal-read-slots-benchmark/target/release/deps/native_locals_benchmark-c739b4020cfbe1df",
+          "bytes": 3072320,
+          "sha256": "90e7b33c9990c4968dcafd502478b96b3cef80ad9fe007dbace2d2d686f09b33"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-numeric-read-slots/work/rust-numeric-literal-read-slots-benchmark/target/release/native-locals-benchmark",
+          "bytes": 3072320,
+          "sha256": "90e7b33c9990c4968dcafd502478b96b3cef80ad9fe007dbace2d2d686f09b33"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-lazy-small-index/work/lazy-small-index/target",
+      "reportedMiB": 51,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/lazy_small_index_probe-194b0e5bbd9adc80",
+          "bytes": 2874592,
+          "sha256": "d864befcbc53e47970f61bdf1759856abeff6bb269729e32923457a52756edbe"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/lazy_small_index_probe-527391a4a6eb8a4f",
+          "bytes": 2875640,
+          "sha256": "c3c5122b9f56c8f3b5537ed7647409bb0f5e603c028f5d2458004ab925dcbf97"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/lazy_small_index_probe-527e0fbc2d36eede",
+          "bytes": 2879720,
+          "sha256": "9b1d8c2b72c6fd1c16b5ef64e1dc601d2202ee567cece41c159e16fe7c107de0"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/lazy_small_index_probe-a59547389d71e240",
+          "bytes": 2879288,
+          "sha256": "bf6319d02ade2552b3359613d792cbb15433187fa0a49dda969a8c991ca19410"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/lazy_small_index_probe-f72e4699fac45543",
+          "bytes": 2875216,
+          "sha256": "74ddd16b0fa0f73f97c119360b5a4cc56b01ebc9c214664c24cb90a631f9de95"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/deps/lazy_small_index_probe-f9dda8a4155fcd53",
+          "bytes": 2878104,
+          "sha256": "5db6055d1f8e2f27cbd19d44747b1aefcbaf39dec3618bd7a8e604d12bcffe96"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/target/release/lazy-small-index-probe",
+          "bytes": 2879720,
+          "sha256": "9b1d8c2b72c6fd1c16b5ef64e1dc601d2202ee567cece41c159e16fe7c107de0"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-primary-numeric-arrays/target",
+      "reportedMiB": 49,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-arrays/target/release/deps/js_runtime-ed014d1222e0ea5c",
+          "bytes": 2830584,
+          "sha256": "53a53ad507f9714a3ae8689245603cd9592d944d711f31e317ec97e883d8e937"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-arrays/target/release/deps/unit_update_benchmark-5e99c11f5b4a2a41",
+          "bytes": 2790128,
+          "sha256": "8fae88e7167ff9e124e7c42a20e41733fe82195499dfdbd19b9cf75f985c6ce6"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-arrays/target/release/unit-update-benchmark",
+          "bytes": 2790128,
+          "sha256": "8fae88e7167ff9e124e7c42a20e41733fe82195499dfdbd19b9cf75f985c6ce6"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-numeric-key-cache/work/rust-unit-update-numeric-key-cache/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-numeric-key-cache/work/rust-unit-update-numeric-key-cache/target/release/deps/unit_update_benchmark-60be0b513aea5aa2",
+          "bytes": 2768848,
+          "sha256": "b5107815b456bb929c4b612e0dc205618d548936868db6492414c80dfc0600e5"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-numeric-key-cache/work/rust-unit-update-numeric-key-cache/target/release/unit-update-benchmark",
+          "bytes": 2768848,
+          "sha256": "b5107815b456bb929c4b612e0dc205618d548936868db6492414c80dfc0600e5"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-fast-own-set/target",
+      "reportedMiB": 51,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-fast-own-set/target/release/deps/unit_update_benchmark-0297faaa4ee41e71",
+          "bytes": 2783600,
+          "sha256": "0c49e882c0bb65763171ce2138e91c464d2a60c175f3bf81a0ad5a3ca84f54b2"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-fast-own-set/target/release/unit-update-benchmark",
+          "bytes": 2783600,
+          "sha256": "0c49e882c0bb65763171ce2138e91c464d2a60c175f3bf81a0ad5a3ca84f54b2"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-array-reserve/target",
+      "reportedMiB": 67,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/deps/array_reserve-8ed346fae20f559c",
+          "bytes": 2595896,
+          "sha256": "842472b6c5b3c7a9f1edb5bd6e918f9cde19620d7f73a84eec06fa6eaf28abd4"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/deps/js_runtime-ed014d1222e0ea5c",
+          "bytes": 2827424,
+          "sha256": "58eb07a8a900fb92ef9912e542f7d0a6e77849a421f525dc5176868e643ec7fd"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/deps/rust_function_identity_bench-5dcc3ba61daf4540",
+          "bytes": 2428544,
+          "sha256": "8c267dc2987092cc7379e9af6fbddd10a26c8d9d6b1b840257bb21284a175df7"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/deps/rust_json_table_bench-4899f0c9a006d1bb",
+          "bytes": 2410784,
+          "sha256": "96a13044eeab50ee71e29b37832fdf8a93699b1b477dd577fdcd11df7e9d30ba"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/examples/engine_unit_runtime_check",
+          "bytes": 617216,
+          "sha256": "fd8309774e825a5c6e4a489ac2773f34e50e55a6388c391a62ac352ba6d78f61"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/examples/engine_unit_runtime_check-3b0b92926f006d28",
+          "bytes": 617216,
+          "sha256": "fd8309774e825a5c6e4a489ac2773f34e50e55a6388c391a62ac352ba6d78f61"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/examples/numeric_check",
+          "bytes": 435768,
+          "sha256": "331f4758d3c4947f33833e3c70cda2f1a88d809e140a42385b1cbcbadff415e0"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/examples/numeric_check-8ad1d5b4832ac8e4",
+          "bytes": 435768,
+          "sha256": "331f4758d3c4947f33833e3c70cda2f1a88d809e140a42385b1cbcbadff415e0"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/examples/unit_skill_runtime_check",
+          "bytes": 581320,
+          "sha256": "b050eaf5795570568af3ab0c4355ab2feceec595e6628c9236d445ff4bece55a"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/examples/unit_skill_runtime_check-37a81c9fb44b1113",
+          "bytes": 581320,
+          "sha256": "b050eaf5795570568af3ab0c4355ab2feceec595e6628c9236d445ff4bece55a"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/examples/value_check",
+          "bytes": 1962128,
+          "sha256": "2a0af47888080508185ce14c773971d679bfc4701bc9be58102619bcf0b8d050"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/examples/value_check-bf90f0308d4e4e31",
+          "bytes": 1962128,
+          "sha256": "2a0af47888080508185ce14c773971d679bfc4701bc9be58102619bcf0b8d050"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/rust-function-identity-bench",
+          "bytes": 2428544,
+          "sha256": "8c267dc2987092cc7379e9af6fbddd10a26c8d9d6b1b840257bb21284a175df7"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-array-reserve/target/release/rust-json-table-bench",
+          "bytes": 2410784,
+          "sha256": "96a13044eeab50ee71e29b37832fdf8a93699b1b477dd577fdcd11df7e9d30ba"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-runtime-gc-stride/target",
+      "reportedMiB": 1,
+      "executableDigests": []
+    },
+    {
+      "target": "work/candidate-shared-utf16/target",
+      "reportedMiB": 25,
+      "executableDigests": []
+    },
+    {
+      "target": "work/candidate-runtime-cgu/work/runtime-cgu/cgu64/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-runtime-cgu/work/runtime-cgu/cgu64/target/release/deps/runtime_cgu_benchmark-31c07cb75c6eff9f",
+          "bytes": 2767376,
+          "sha256": "cd5f97d2c669f1ad41b6c6328d9b3d4c372cf88cd3f95e31199880e1e6676ec7"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-runtime-cgu/work/runtime-cgu/cgu64/target/release/runtime-cgu-benchmark",
+          "bytes": 2767376,
+          "sha256": "cd5f97d2c669f1ad41b6c6328d9b3d4c372cf88cd3f95e31199880e1e6676ec7"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-runtime-cgu/work/runtime-cgu/cgu1/target",
+      "reportedMiB": 26,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-runtime-cgu/work/runtime-cgu/cgu1/target/release/deps/runtime_cgu_benchmark-fc68f079719fc05e",
+          "bytes": 2674016,
+          "sha256": "bcebd5a340b1289d1c984e90e929a0e72e57e085c8fe573c9ee16327e1c71635"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-runtime-cgu/work/runtime-cgu/cgu1/target/release/runtime-cgu-benchmark",
+          "bytes": 2674016,
+          "sha256": "bcebd5a340b1289d1c984e90e929a0e72e57e085c8fe573c9ee16327e1c71635"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-function-own-data-literals/target",
+      "reportedMiB": 56,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-function-own-data-literals/target/release/deps/drain_function_own_benchmark-5e36850b5560a69a",
+          "bytes": 2563544,
+          "sha256": "a698f63981692c6ff6294b40867b776b3b26ebbc31c1cb75402371d041e43fb1"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-function-own-data-literals/target/release/deps/unit_update_benchmark-ab154f6359f97d6e",
+          "bytes": 2831200,
+          "sha256": "8884abfc59e14afcfff0e12d0ad8edc23e6491c20e7de71ff43bf9d31606dc86"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-function-own-data-literals/target/release/drain-function-own-benchmark",
+          "bytes": 2563544,
+          "sha256": "a698f63981692c6ff6294b40867b776b3b26ebbc31c1cb75402371d041e43fb1"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-function-own-data-literals/target/release/unit-update-benchmark",
+          "bytes": 2831200,
+          "sha256": "8884abfc59e14afcfff0e12d0ad8edc23e6491c20e7de71ff43bf9d31606dc86"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-fibonacci-id-hash/target",
+      "reportedMiB": 28,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-fibonacci-id-hash/target/release/deps/js_runtime-1367b4d9990bb72f",
+          "bytes": 3649096,
+          "sha256": "0b4dabb9c3b1be86a682d50f9d707c5bffe5751d0813fec25f5c70fb69a502b4"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-fibonacci-id-hash/work/fibonacci-id-components/fibonacci/app/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-fibonacci-id-hash/work/fibonacci-id-components/fibonacci/app/target/release/deps/fibonacci_id_component-ea428d8afa90dbd8",
+          "bytes": 2873536,
+          "sha256": "e4c5750ee27ff0006ee912a6cadae7e18797b23bc6422aa11ab048265636773f"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-fibonacci-id-hash/work/fibonacci-id-components/fibonacci/app/target/release/fibonacci-id-component",
+          "bytes": 2873536,
+          "sha256": "e4c5750ee27ff0006ee912a6cadae7e18797b23bc6422aa11ab048265636773f"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-fibonacci-id-hash/work/fibonacci-id-components/baseline/app/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-fibonacci-id-hash/work/fibonacci-id-components/baseline/app/target/release/deps/fibonacci_id_component-891018a67e798a14",
+          "bytes": 2876456,
+          "sha256": "150abc023a07daa693bf8f78815fff88d036b3ca5393216d7b85298cde8465bd"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-fibonacci-id-hash/work/fibonacci-id-components/baseline/app/target/release/fibonacci-id-component",
+          "bytes": 2876456,
+          "sha256": "150abc023a07daa693bf8f78815fff88d036b3ca5393216d7b85298cde8465bd"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-packed-literal-slots/work/packed-literal-slots/ltopacked/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-packed-literal-slots/work/packed-literal-slots/ltopacked/target/release/deps/packed_literal_slots_benchmark-892326b1ad9c4e57",
+          "bytes": 2790560,
+          "sha256": "1d890a3b567f6f262a5098d8b81d4a3de14fafb34c0499a8057dc1f20ed01836"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-packed-literal-slots/work/packed-literal-slots/ltopacked/target/release/packed-literal-slots-benchmark",
+          "bytes": 2790560,
+          "sha256": "1d890a3b567f6f262a5098d8b81d4a3de14fafb34c0499a8057dc1f20ed01836"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-packed-literal-slots/work/packed-literal-slots/ltobaseline/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-packed-literal-slots/work/packed-literal-slots/ltobaseline/target/release/deps/packed_literal_slots_benchmark-892326b1ad9c4e57",
+          "bytes": 2790952,
+          "sha256": "055422e32c16985824b14425e0345be1e4384407207efde32823de3bb1bb2366"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-packed-literal-slots/work/packed-literal-slots/ltobaseline/target/release/packed-literal-slots-benchmark",
+          "bytes": 2790952,
+          "sha256": "055422e32c16985824b14425e0345be1e4384407207efde32823de3bb1bb2366"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-property-entry/target",
+      "reportedMiB": 24,
+      "executableDigests": []
+    },
+    {
+      "target": "work/candidate-property-entry/work/property-entry-component/baseline/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-property-entry/work/property-entry-component/baseline/target/release/deps/property_entry_component-2dc133b1e127a723",
+          "bytes": 2527440,
+          "sha256": "d2aec90e8751a5887608043d2a137b8bade4d80a96d6dc78c44ce52ba5981930"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-property-entry/work/property-entry-component/baseline/target/release/property-entry-component",
+          "bytes": 2527440,
+          "sha256": "d2aec90e8751a5887608043d2a137b8bade4d80a96d6dc78c44ce52ba5981930"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-property-entry/work/property-entry-component/entry/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-property-entry/work/property-entry-component/entry/target/release/deps/property_entry_component-2dc133b1e127a723",
+          "bytes": 2527112,
+          "sha256": "c7fe906fe583d59b817d71b9cd4327db30f77c246da1102969359d5e826e6da6"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-property-entry/work/property-entry-component/entry/target/release/property-entry-component",
+          "bytes": 2527112,
+          "sha256": "c7fe906fe583d59b817d71b9cd4327db30f77c246da1102969359d5e826e6da6"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-one-hop-slots/target",
+      "reportedMiB": 126,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/buff-percent-loop-gate",
+          "bytes": 4045264,
+          "sha256": "8a06e99ef09cd052c2143274ea3e66605e1d81e1eee88398be8f220b3d0068fc"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps/buff_percent_loop_gate-dc40809519da5341",
+          "bytes": 4045264,
+          "sha256": "8a06e99ef09cd052c2143274ea3e66605e1d81e1eee88398be8f220b3d0068fc"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps/fast_length-212d07a4688768db",
+          "bytes": 3125888,
+          "sha256": "97e4303ea0c0416254eeebbcf7383bafb3fc76d02c0df561e89051e1a2666d01"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps/js_runtime-1367b4d9990bb72f",
+          "bytes": 3635624,
+          "sha256": "77c8ec879b5cd2e1b5a6a8c3cad0fe278cbdff22e43bb3758b13b5d132389d5a"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps/numeric_property_keys-64e4136a1782b346",
+          "bytes": 3099864,
+          "sha256": "bdf6706ee6bbcbfe9972f5bed2ae45ead69ff17d67a9ab9fdd77c27ae2deadb7"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps/ordinary_heap-347015fd84942d78",
+          "bytes": 3081120,
+          "sha256": "f858db692bb1a7a91cc068aa5a1cb549cb22491c7083701f862acd7a87bb24a1"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps/ordinary_set-23f635b21c6f549a",
+          "bytes": 3083664,
+          "sha256": "f22fe22ea6e4132bb77307e8d4743a2ce942591f5c81df9379654e3b05b87c24"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps/property_slots-0a8aad0c69beaf98",
+          "bytes": 3132464,
+          "sha256": "a8ece7320f639891004fd8961d1b97f0a65c64ad8e669809774f75de4a28f536"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps/regexp_heap-ca8e99cc7b2f8418",
+          "bytes": 3066096,
+          "sha256": "33f04df22f1e409cc9c4c5fc8493b9561b8c4cd81079905df2486bc7a85c0b44"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/deps/unit_update_benchmark-fe1200e5eb8de4c0",
+          "bytes": 2787400,
+          "sha256": "3715eddfcdf85275588f0b73f6dec765c4790fcc64664ef26ac578210f265c19"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/examples/value_check",
+          "bytes": 2496376,
+          "sha256": "0c584bf2548b97580d941ecb679286b82b7d5cb0e1c681ca3c3d9616390f1aba"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/examples/value_check-6d76920d055e04b7",
+          "bytes": 2496376,
+          "sha256": "0c584bf2548b97580d941ecb679286b82b7d5cb0e1c681ca3c3d9616390f1aba"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-one-hop-slots/target/release/unit-update-benchmark",
+          "bytes": 2787400,
+          "sha256": "3715eddfcdf85275588f0b73f6dec765c4790fcc64664ef26ac578210f265c19"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-stack-apply/target",
+      "reportedMiB": 25,
+      "executableDigests": []
+    },
+    {
+      "target": "work/candidate-native-data-obj/target",
+      "reportedMiB": 74,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-native-data-obj/target/release/data-obj-scan-benchmark",
+          "bytes": 2573400,
+          "sha256": "50a99c4bc584ec44869bf364f525b0018dd84486057a714eded1de11a6eba552"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-native-data-obj/target/release/deps/data_obj_scan_benchmark-4dc849c320c4c14b",
+          "bytes": 2573400,
+          "sha256": "50a99c4bc584ec44869bf364f525b0018dd84486057a714eded1de11a6eba552"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-diagnostic-fast-guard/target",
+      "reportedMiB": 33,
+      "executableDigests": []
+    },
+    {
+      "target": "work/candidate-native-battle-mode-accessor/target",
+      "reportedMiB": 51,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-native-battle-mode-accessor/target/release/battle-mode-getter-benchmark",
+          "bytes": 2666960,
+          "sha256": "c6e8e4323b311e81e14d072a83a13043f4b01c80ae9a7d3ab6cd2be6648ef828"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-native-battle-mode-accessor/target/release/deps/battle_mode_getter_benchmark-fc7377d25aafe087",
+          "bytes": 2666960,
+          "sha256": "c6e8e4323b311e81e14d072a83a13043f4b01c80ae9a7d3ab6cd2be6648ef828"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-buff-attribute-loop/target",
+      "reportedMiB": 55,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-buff-attribute-loop/target/release/buff-percent-loop-gate",
+          "bytes": 4041224,
+          "sha256": "fae5466d8f4bff564fed608b83d9beeda85d36e1c73adfdd2bc33dcafe5eb1e8"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-buff-attribute-loop/target/release/deps/buff_percent_loop_gate-c4740ab4e077cfb8",
+          "bytes": 4041224,
+          "sha256": "fae5466d8f4bff564fed608b83d9beeda85d36e1c73adfdd2bc33dcafe5eb1e8"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-buff-attribute-loop/target/release/deps/unit_update_benchmark-ee2eead7d44488a1",
+          "bytes": 2584344,
+          "sha256": "dad840b45923db1591c44a21678ce8b436f7e7364d43e715ffaa96f1e7af4917"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-buff-attribute-loop/target/release/unit-update-benchmark",
+          "bytes": 2584344,
+          "sha256": "dad840b45923db1591c44a21678ce8b436f7e7364d43e715ffaa96f1e7af4917"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-hot-value-guards/target",
+      "reportedMiB": 33,
+      "executableDigests": []
+    },
+    {
+      "target": "work/candidate-native-battle-mode-limit/target",
+      "reportedMiB": 51,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-native-battle-mode-limit/target/release/battle-mode-limit-benchmark",
+          "bytes": 2631808,
+          "sha256": "2be2f590a7b502254a680bd97e16371937dba52f5cf6c59725cd29a169ce4505"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-native-battle-mode-limit/target/release/deps/battle_mode_limit_benchmark-9392adcf7e46029a",
+          "bytes": 2631808,
+          "sha256": "2be2f590a7b502254a680bd97e16371937dba52f5cf6c59725cd29a169ce4505"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-own-absence-bloom/target",
+      "reportedMiB": 53,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-own-absence-bloom/target/release/buff-absence-benchmark",
+          "bytes": 2567256,
+          "sha256": "77e71cd000298de396e4fdea5bd7a1912c5089e93c574675663b45b96ab1a59c"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-own-absence-bloom/target/release/deps/buff_absence_benchmark-a7273043d4b2e81a",
+          "bytes": 2567256,
+          "sha256": "77e71cd000298de396e4fdea5bd7a1912c5089e93c574675663b45b96ab1a59c"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-own-absence-bloom/target/release/deps/unit_absence_benchmark-f9ba9e55a0adbd0c",
+          "bytes": 2789216,
+          "sha256": "745ab54cd4b57222e423180d8984d37bbd48f727ce06cb2bbc35cd9fefc8c479"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-own-absence-bloom/target/release/unit-absence-benchmark",
+          "bytes": 2789216,
+          "sha256": "745ab54cd4b57222e423180d8984d37bbd48f727ce06cb2bbc35cd9fefc8c479"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-env-name-keys/target",
+      "reportedMiB": 24,
+      "executableDigests": []
+    },
+    {
+      "target": "work/candidate-env-name-keys/work/rust-captured-binding-refs-benchmark/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-env-name-keys/work/rust-captured-binding-refs-benchmark/target/release/deps/native_locals_benchmark-f15eab144e1320cd",
+          "bytes": 3082608,
+          "sha256": "f14df67b82b49fe70e3c753a288a92205e987a9f9d0db1a4424b49f5c0e449a1"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-env-name-keys/work/rust-captured-binding-refs-benchmark/target/release/native-locals-benchmark",
+          "bytes": 3082608,
+          "sha256": "f14df67b82b49fe70e3c753a288a92205e987a9f9d0db1a4424b49f5c0e449a1"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-literal-cache-cold-split/work/literal-cold-components/compact/app/target",
+      "reportedMiB": 28,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-literal-cache-cold-split/work/literal-cold-components/compact/app/target/release/compact-property-component",
+          "bytes": 2903720,
+          "sha256": "2db79488eb3753fb8d429b39f2cfff0fd1ff48e5da9e47dccc76eae767887747"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-literal-cache-cold-split/work/literal-cold-components/compact/app/target/release/deps/compact_property_component-b9dbdf2a5f4afab5",
+          "bytes": 2903720,
+          "sha256": "2db79488eb3753fb8d429b39f2cfff0fd1ff48e5da9e47dccc76eae767887747"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-literal-cache-cold-split/work/literal-cold-components/baseline/app/target",
+      "reportedMiB": 28,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-literal-cache-cold-split/work/literal-cold-components/baseline/app/target/release/compact-property-component",
+          "bytes": 2903752,
+          "sha256": "b66c1b5e0ba8ccad6d78d120cf73145e79cb11b9fc0322ea2d6a1356a8f88e2e"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-literal-cache-cold-split/work/literal-cold-components/baseline/app/target/release/deps/compact_property_component-d8315049bca1d35d",
+          "bytes": 2903752,
+          "sha256": "b66c1b5e0ba8ccad6d78d120cf73145e79cb11b9fc0322ea2d6a1356a8f88e2e"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-copy-capacity-reuse/target",
+      "reportedMiB": 53,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-copy-capacity-reuse/target/release/copy-capacity-component",
+          "bytes": 2585760,
+          "sha256": "df5f916a74fdad4e3afda26ebae75b666cb9eaf0f623f103c7f2c54589cd82d1"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-copy-capacity-reuse/target/release/deps/copy_capacity_component-de39f6b33f8e434b",
+          "bytes": 2585760,
+          "sha256": "df5f916a74fdad4e3afda26ebae75b666cb9eaf0f623f103c7f2c54589cd82d1"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-copy-capacity-reuse/target/release/examples/copy_capacity_alloc",
+          "bytes": 2537312,
+          "sha256": "2d1d47b790f8d233f588c77844b335682c84eca4cb91bf775a66571e9b8e9d4c"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-copy-capacity-reuse/target/release/examples/copy_capacity_alloc-30c8072a3c46c3b3",
+          "bytes": 2537312,
+          "sha256": "2d1d47b790f8d233f588c77844b335682c84eca4cb91bf775a66571e9b8e9d4c"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-primary-numeric-get/target",
+      "reportedMiB": 73,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/target/release/deps/fast_length-212d07a4688768db",
+          "bytes": 3148688,
+          "sha256": "44b7721281384d7e73dbd295a6b9fe27a6f2b70fbb1ab4f92799755c5a2a1782"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/target/release/deps/js_runtime-1367b4d9990bb72f",
+          "bytes": 3849512,
+          "sha256": "ce51f5dcc84bdbe03189effcaccbcd1aa51adc36121ebe2220d179adfa6f2d3f"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/target/release/deps/numeric_property_keys-64e4136a1782b346",
+          "bytes": 3122576,
+          "sha256": "6a6ecb75b3939b466902bd0d0a6e512986aa4ee05fc21f86a2306d4066f49295"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/target/release/deps/ordinary_heap-347015fd84942d78",
+          "bytes": 3101896,
+          "sha256": "14f3fd9b554723ef143e5d8cb60d0f40d862a7b8674409eb75d239ba95e45c76"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/target/release/deps/ordinary_set-23f635b21c6f549a",
+          "bytes": 3104424,
+          "sha256": "382af3d31a2999f8823bd0bb53872fd3340a2d13c79e92cbf93fb82d6df47ce1"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/target/release/deps/property_slots-0a8aad0c69beaf98",
+          "bytes": 3155240,
+          "sha256": "a1b1531ec828d3217e54b74cf361f7733578f9a1e6d089515f8a4a3aa7863375"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/target/release/deps/regexp_heap-ca8e99cc7b2f8418",
+          "bytes": 3086856,
+          "sha256": "c08f6465616a057cbe201fbd43ea8f5f21e2fca79a9eafc63a630750512f9895"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/target/release/deps/unit_update_benchmark-91214b2b7430d284",
+          "bytes": 2816864,
+          "sha256": "9c06765c753c2c6c2e546523bd6d93a22b63d97eb6929d7290e7364b671d7459"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-primary-numeric-get/target/release/unit-update-benchmark",
+          "bytes": 2816864,
+          "sha256": "9c06765c753c2c6c2e546523bd6d93a22b63d97eb6929d7290e7364b671d7459"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-string-hash/work/rust-unit-update-string-hash/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-string-hash/work/rust-unit-update-string-hash/target/release/deps/unit_update_benchmark-5e1a124b909f12ca",
+          "bytes": 2763056,
+          "sha256": "5a01e0cc4bfc295b984b7a3f15c826a694d30699a0b7a27b6cc843624bb8a2b9"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-string-hash/work/rust-unit-update-string-hash/target/release/unit-update-benchmark",
+          "bytes": 2763056,
+          "sha256": "5a01e0cc4bfc295b984b7a3f15c826a694d30699a0b7a27b6cc843624bb8a2b9"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-buff-empty-loop/target",
+      "reportedMiB": 29,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-buff-empty-loop/target/release/buff-percent-loop-gate",
+          "bytes": 4578816,
+          "sha256": "da2385bf9dca731dd05dfb8ff55639ab920ca498b47b5b30a0fbe377e6aeea73"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-buff-empty-loop/target/release/deps/buff_percent_loop_gate-024398ff823b90ed",
+          "bytes": 4578816,
+          "sha256": "da2385bf9dca731dd05dfb8ff55639ab920ca498b47b5b30a0fbe377e6aeea73"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-integration-own-wave/target",
+      "reportedMiB": 24,
+      "executableDigests": []
+    },
+    {
+      "target": "work/candidate-dynamic-own-slot/target",
+      "reportedMiB": 100,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-dynamic-own-slot/target/release/deps/js_runtime-ed014d1222e0ea5c",
+          "bytes": 2836024,
+          "sha256": "3120f9980b03a396fe0b680994b0f88ed1ca7accf32643066f8303c193b940b8"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-dynamic-own-slot/target/release/deps/unit_update_benchmark-9371296159cac66e",
+          "bytes": 2553008,
+          "sha256": "62a851c9b59d1c2c71dafdf8b2c78675e3cb7126d8a89c03e3773207d85abe02"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-dynamic-own-slot/target/release/unit-update-benchmark",
+          "bytes": 2553008,
+          "sha256": "62a851c9b59d1c2c71dafdf8b2c78675e3cb7126d8a89c03e3773207d85abe02"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-native-stage-range-parser/target",
+      "reportedMiB": 51,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-native-stage-range-parser/target/release/deps/stage_range_parser_benchmark-073849f6258b57cd",
+          "bytes": 2558848,
+          "sha256": "9cb4dc1c2788b855c55ae5e41000da82f4327607670301ad286143ff7e9f06aa"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-native-stage-range-parser/target/release/stage-range-parser-benchmark",
+          "bytes": 2558848,
+          "sha256": "9cb4dc1c2788b855c55ae5e41000da82f4327607670301ad286143ff7e9f06aa"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-compact-properties/work/compact-property-components/compact/app/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/compact-property-components/compact/app/target/release/compact-property-component",
+          "bytes": 2889792,
+          "sha256": "cad4c228d33edbe8764be60c9f821f93005a676efc65c89793603c3a8be01b13"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/compact-property-components/compact/app/target/release/deps/compact_property_component-367b4cca412344c9",
+          "bytes": 2889792,
+          "sha256": "cad4c228d33edbe8764be60c9f821f93005a676efc65c89793603c3a8be01b13"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-compact-properties/work/compact-property-components/baseline/app/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/compact-property-components/baseline/app/target/release/compact-property-component",
+          "bytes": 2882808,
+          "sha256": "1914ea42c34c8f20273dc51dcc5c1730cc32f1dd6cf8edee34e3054003ad8378"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/compact-property-components/baseline/app/target/release/deps/compact_property_component-b5dd18c9103da5fe",
+          "bytes": 2882808,
+          "sha256": "1914ea42c34c8f20273dc51dcc5c1730cc32f1dd6cf8edee34e3054003ad8378"
+        }
+      ]
+    },
+    {
+      "target": "work/candidate-compact-properties/work/compact-property-components/inline/app/target",
+      "reportedMiB": 27,
+      "executableDigests": [
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/compact-property-components/inline/app/target/release/compact-property-component",
+          "bytes": 2890136,
+          "sha256": "3105e34ab0d477b6fb56248723da60520792b942724c7fba462ef3c44c9b68c5"
+        },
+        {
+          "file": "/workspace/afkarena-simx/work/candidate-compact-properties/work/compact-property-components/inline/app/target/release/deps/compact_property_component-a0215d170fe451c1",
+          "bytes": 2890136,
+          "sha256": "3105e34ab0d477b6fb56248723da60520792b942724c7fba462ef3c44c9b68c5"
+        }
+      ]
+    }
+  ],
+  "additionalCompletedCaches": [
+    "work/candidate-shared-utf16/work/rust-port-shared-target",
+    "work/candidate-property-entry/work/rust-port-shared-target",
+    "work/candidate-next-execution-wave/work/rust-port-shared-target",
+    "work/candidate-compact-properties/work/rust-port-shared-target",
+    "work/candidate-integration-string-wave/work/rust-port-shared-target",
+    "work/candidate-fast-length/work/rust-port-shared-target",
+    "work/candidate-primary-numeric-get/work/rust-port-shared-target",
+    "work/candidate-primary-numeric-arrays/work/rust-port-shared-target",
+    "work/candidate-integration-own-wave/work/rust-port-shared-target",
+    "work/candidate-string-hash/work/rust-port-shared-target",
+    "work/candidate-dense-arrays/work/rust-port-shared-target",
+    "work/candidate-array-constructor/work/rust-port-shared-target",
+    "work/candidate-lazy-small-index/work/lazy-small-index/native-target",
+    "work/candidate-compact-properties/work/compact-tests-target",
+    "work/candidate-shared-utf16/work/shared-utf16-release-target"
+  ]
+}
