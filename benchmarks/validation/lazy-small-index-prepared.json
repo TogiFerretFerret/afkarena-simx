@@ -1,8 +1,8 @@
 {
   "passed": true,
-  "compiled": false,
+  "compiled": true,
   "baselineCommit": "089ed84",
-  "candidateCommit": "d71b4b5ef8b2e64c87cf0c83b49778d2ded8f054",
+  "candidateCommit": "b14cf1f9f36809eccc59c408548e488805da38c6",
   "generated": {
     "unit": {
       "rust": "28ba6d7d7575f29c78a26b141f2c67e2ccae9f2b0261acf9cbc3288d99897e60",
@@ -259,8 +259,8 @@
     "third-party/ryu-js/tests/s2d_test.rs": "03213cc3f984f84be5e17f6bd86d431afaeb27eb2bfaf88f3bab1111dbbe2bc5",
     "third-party/ryu-js/tests/s2f_test.rs": "1ec06646cb65229bfe866ec913901a0d8d736668f30b812fc4b00136a43f5142",
     "third-party/ryu-js/tests/to_fixed.rs": "2584e0b94dca7fd47a04c165456fc37118f2aa5c45212dd2307cfdc16eb1d26b",
-    "tools/rust-port/prepare-lazy-small-index.mjs": "6aa213117688d5a80fd73169dc90ce20e792045ef98f4819cdb6ad68755ce7d7",
-    "tools/rust-port/lazy-small-index-probe.rs": "fd98283f6bbaa5366a2e0e5841f342df65bc27fde315788111bddabe96e8685b",
+    "tools/rust-port/prepare-lazy-small-index.mjs": "3cb03dc604a044bffa69ec87131150fe859db614f1848ca34d1bf253f10d3e01",
+    "tools/rust-port/lazy-small-index-probe.rs": "fec4b9bc15e4ecd9771eda04d922253eacf87b6c14e0eff529418de865ca644c",
     "tools/rust-port/compile.mjs": "ec7f315561f2951461075269a9185c267baef7289482a6b57d7df7db82f038b0",
     "tools/rust-port/expressions.mjs": "61923cce97ed80aba30a7342e229c6264b099a2f886fe050761c04d9490bc20c",
     "tools/rust-port/statements.mjs": "ffc280526acc242e195b7fe70cb53d66e403b3fda85ed6b677cf8bceeaee0d0e",
@@ -270,14 +270,15 @@
     "tools/native-unit-speeder-cases.mjs": "e15a39d0908c1f673dc172a28855209343ab9d8128cd59703e3655d1a122ea0c",
     "config/unit-translation.json": "34766b54c83f423174d61f75bed778d594fef443014470939d70fc72d85d9425",
     "config/source-oracle-runtime.json": "0e6fadfa0e08023f4fdf1d0a4ec76c5505fcab76e80cdf9753321290463aa70a",
-    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4"
+    "src/srcmodule/game_battle.js": "53f34a32e38427a6f040436e16cf473957a3eff137dc296ff2c77c0bf42f16a4",
+    "tools/rust-port/run-lazy-small-index.mjs": "d8026a47f8a39fe9bff00bf2ce789deeece89d8d52f80fe05c5a8fcba472c5d1"
   },
   "variants": {
     "baseline": {
       "app": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/baseline/app",
       "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/baseline/runtime",
       "sourceInputs": {
-        "Cargo.toml": "f3fe271417eed1faf6300658a25d11f3ad8c0197d99ea9c61a67898699e18a6d",
+        "Cargo.toml": "2d1f730908b6731d4a4472dcda97721e3a1dd33913d6140f9c937d3d288526dd",
         "examples/copy_capacity_alloc.rs": "5371fb0dc75507c4e452b1c8f3a7df9424f2ff4edc66a9bf901b199813bc06e3",
         "examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
         "examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
@@ -336,13 +337,47 @@
         "tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
         "tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
         "tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2"
+      },
+      "binaries": {
+        "timing": {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/baseline-timing",
+          "sha256": "d864befcbc53e47970f61bdf1759856abeff6bb269729e32923457a52756edbe",
+          "allocationInstrumented": false,
+          "command": [
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "build",
+            "--release",
+            "--offline",
+            "-j",
+            "1",
+            "--manifest-path",
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/baseline/app/Cargo.toml"
+          ]
+        },
+        "allocation": {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/baseline-alloc",
+          "sha256": "5db6055d1f8e2f27cbd19d44747b1aefcbaf39dec3618bd7a8e604d12bcffe96",
+          "allocationInstrumented": true,
+          "command": [
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "build",
+            "--release",
+            "--offline",
+            "-j",
+            "1",
+            "--manifest-path",
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/baseline/app/Cargo.toml",
+            "--features",
+            "allocation-count"
+          ]
+        }
       }
     },
     "limit2": {
       "app": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/app",
       "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/runtime",
       "sourceInputs": {
-        "Cargo.toml": "f3fe271417eed1faf6300658a25d11f3ad8c0197d99ea9c61a67898699e18a6d",
+        "Cargo.toml": "2d1f730908b6731d4a4472dcda97721e3a1dd33913d6140f9c937d3d288526dd",
         "examples/copy_capacity_alloc.rs": "5371fb0dc75507c4e452b1c8f3a7df9424f2ff4edc66a9bf901b199813bc06e3",
         "examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
         "examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
@@ -401,13 +436,47 @@
         "tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
         "tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
         "tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2"
+      },
+      "binaries": {
+        "timing": {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2-timing",
+          "sha256": "74ddd16b0fa0f73f97c119360b5a4cc56b01ebc9c214664c24cb90a631f9de95",
+          "allocationInstrumented": false,
+          "command": [
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "build",
+            "--release",
+            "--offline",
+            "-j",
+            "1",
+            "--manifest-path",
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/app/Cargo.toml"
+          ]
+        },
+        "allocation": {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2-alloc",
+          "sha256": "bf6319d02ade2552b3359613d792cbb15433187fa0a49dda969a8c991ca19410",
+          "allocationInstrumented": true,
+          "command": [
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "build",
+            "--release",
+            "--offline",
+            "-j",
+            "1",
+            "--manifest-path",
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit2/app/Cargo.toml",
+            "--features",
+            "allocation-count"
+          ]
+        }
       }
     },
     "limit4": {
       "app": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/app",
       "runtime": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/runtime",
       "sourceInputs": {
-        "Cargo.toml": "f3fe271417eed1faf6300658a25d11f3ad8c0197d99ea9c61a67898699e18a6d",
+        "Cargo.toml": "2d1f730908b6731d4a4472dcda97721e3a1dd33913d6140f9c937d3d288526dd",
         "examples/copy_capacity_alloc.rs": "5371fb0dc75507c4e452b1c8f3a7df9424f2ff4edc66a9bf901b199813bc06e3",
         "examples/number_string_alloc.rs": "1db7f3c20fe1af9dee41821ce7c564c3c44a1bb4d34bf630b8c03e82d2447014",
         "examples/value_check.rs": "46c2e73118e3eee648edf96704d781f5489411aeb11c846ce4b9ce6f26e6299e",
@@ -466,12 +535,46 @@
         "tests/ordinary_set.rs": "585443a9b6982038bb087ad61d93a94482f2c33bbebd0f95781dee4719178c59",
         "tests/property_slots.rs": "194f265a87eb8efabfcf1ea391703ee605bda118afe738e83bb74608ea718afa",
         "tests/regexp_heap.rs": "6c4e98e5fc247c27f13f1927a288198aad919dae8e80e0818157612c250257f2"
+      },
+      "binaries": {
+        "timing": {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4-timing",
+          "sha256": "c3c5122b9f56c8f3b5537ed7647409bb0f5e603c028f5d2458004ab925dcbf97",
+          "allocationInstrumented": false,
+          "command": [
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "build",
+            "--release",
+            "--offline",
+            "-j",
+            "1",
+            "--manifest-path",
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/app/Cargo.toml"
+          ]
+        },
+        "allocation": {
+          "file": "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4-alloc",
+          "sha256": "9b1d8c2b72c6fd1c16b5ef64e1dc601d2202ee567cece41c159e16fe7c107de0",
+          "allocationInstrumented": true,
+          "command": [
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "build",
+            "--release",
+            "--offline",
+            "-j",
+            "1",
+            "--manifest-path",
+            "/workspace/afkarena-simx/work/candidate-lazy-small-index/work/lazy-small-index/limit4/app/Cargo.toml",
+            "--features",
+            "allocation-count"
+          ]
+        }
       }
     }
   },
   "archive": {
     "file": "benchmarks/validation/lazy-small-index-runtime-snapshots.json.gz",
-    "sha256": "111692054be9f8d69cbff08cf4ee94af379480f31d3258011d6ef4778f0870ea"
+    "sha256": "557757937c43a8336fb4243096153e23da761b146d4a749d2e5618a6d6095fe2"
   },
   "note": "Immutable snapshots; no live runtime source swaps. Only limit4 heap constant differs from limit2. System allocator timings and allocation-count executables are separate."
 }
