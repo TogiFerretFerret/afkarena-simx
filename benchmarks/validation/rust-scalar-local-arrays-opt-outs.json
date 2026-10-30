@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "nativeExecution": false,
+  "sourceSha256": "a0997743bf70f854c4d9ff8d45107cc2fa3a10395a1b68dbab33818c53bd488e",
+  "checks": [
+    {
+      "option": "nativeLocalBindings",
+      "value": false,
+      "scalarArrays": 0
+    },
+    {
+      "option": "sourceSpecializations",
+      "value": false,
+      "scalarArrays": 0
+    }
+  ],
+  "inputs": {
+    "tools/rust-port/compile.mjs": "d96e8885f1edceeb6b1c03f404118af3716ff6011c2bcb4421b855b60227388e",
+    "tools/rust-port/expressions.mjs": "4c7cc4f4d2aa6ae46e08ea2f7fb278498fcdf4b70e77017a29bdbc113050fa6c",
+    "tools/rust-port/statements.mjs": "72f11756689a8723263690041bdbbc2808f9c55934c7fdbd172f576d2825e57d",
+    "tools/rust-port/bindings.mjs": "016c894be6c251b422cdfafd49d4455bbdff6bbbd627856dff6f1087ec6e1e7c",
+    "tools/rust-port/scalar-arrays.mjs": "a8d4ca3012f1896776f473adbf4a50f801059203fcf4f366ac726e228440d1f4",
+    "tools/rust-port/check-scalar-local-arrays-adversarial.mjs": "ace8f50b1771315cdeee401937e4638d306a3d80f228e284b9e874fb3bc100d9"
+  }
+}
