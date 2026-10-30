@@ -1,0 +1,42 @@
+{
+  "stages": [
+    {
+      "unit": 0,
+      "profiledWallMs": 156.18756100000002
+    },
+    {
+      "unit": 1,
+      "profiledWallMs": 9.0624
+    },
+    {
+      "unit": 2,
+      "profiledWallMs": 14.16986
+    },
+    {
+      "unit": 3,
+      "profiledWallMs": 10.435705
+    },
+    {
+      "unit": 4,
+      "profiledWallMs": 8.111118000000001
+    },
+    {
+      "unit": 5,
+      "profiledWallMs": 16.057873
+    },
+    {
+      "unit": 6,
+      "profiledWallMs": 38967.559373000004
+    }
+  ],
+  "measuredWallMs": 31461.653539,
+  "estimatedSampledUserCpuMs": 30837.675104,
+  "estimatedUserCpuToMeasuredWall": 0.9801670171522767,
+  "unit0through5ProfiledWallMs": 214.02451700000003,
+  "unit6SetupWarmupsAndAfterMeasuredMs": 7505.905834000005,
+  "limitations": [
+    "Stage wall durations are observed in this profiled execution, not unprofiled timing benchmarks.",
+    "Unit6 outside measured window combines setup, three warmups and terminal report work; individual warmup times are not emitted.",
+    "CPU is the sum of sampled cpu-clock period weights, an estimate, not exact getrusage."
+  ]
+}
