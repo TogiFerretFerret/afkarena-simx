@@ -16,6 +16,7 @@ impl Runtime {
   let mut descriptor=self.objects[position.0].own(key)?;
   let PropertyKind::Data{value:Value::Number(old),writable:true}=descriptor.kind else{return None};
   let PropertyKind::Data{value:Value::Number(delta),..}=self.objects[motion.0].own(key)?.kind else{return None};
+  if !old.is_finite()||!delta.is_finite()||!scale.is_finite(){return None}
   // Existing own writable Number data shadows all prototype hooks. No calls,
   // allocations or coercions occur between these reads and the single commit.
   let value=Value::Number(crate::numeric_arithmetic::add(old,crate::numeric_arithmetic::mul(delta,scale)));
@@ -34,7 +35,7 @@ impl Runtime {
   for primary in[false,true]{for old in[0,0x8000000000000000,0x3ff0000000000000,0x7ff0000000000000,0x7ff0000000000042,0xfff8000000000123]{for delta in[0,0x8000000000000000,0x3ff0000000000000,0x7ff0000000000043]{
    let mut rt=Runtime::new();rt.diagnostics.enabled=false;rt.primary_numeric_arrays_enabled=primary;let(receiver,p,m)=setup(&mut rt,old,delta);
    let expected=crate::numeric_arithmetic::add(f64::from_bits(old),crate::numeric_arithmetic::mul(f64::from_bits(delta),-0.0));
-   let result=rt.try_unit_motion_axis(receiver,m,Value::Number(-0.0),0).unwrap();assert_eq!(number_bits(result),expected.to_bits());let key=rt.string("0");assert_eq!(number_bits(rt.get(p,key).unwrap()),expected.to_bits());
+   let result=rt.try_unit_motion_axis(receiver,m,Value::Number(-0.0),0);if !f64::from_bits(old).is_finite()||!f64::from_bits(delta).is_finite(){assert_eq!(result,None);let key=rt.string("0");assert_eq!(number_bits(rt.get(p,key).unwrap()),old);continue;}let result=result.unwrap();assert_eq!(number_bits(result),expected.to_bits());let key=rt.string("0");assert_eq!(number_bits(rt.get(p,key).unwrap()),expected.to_bits());
   }}}
  }
  fn bomb(_: &mut Runtime,_:Value,_:&[Value],_:EnvId)->JsResult<Value>{panic!("guard invoked getter")}
