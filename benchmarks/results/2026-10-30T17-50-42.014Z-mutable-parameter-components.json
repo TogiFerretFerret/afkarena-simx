@@ -1,0 +1,1113 @@
+{
+  "passed": true,
+  "sameRuntime": true,
+  "trialsPerVariant": 3,
+  "rows": [
+    {
+      "mode": "unit",
+      "variant": "off",
+      "trial": 0,
+      "elapsedNs": 617661854,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "unit",
+      "variant": "on",
+      "trial": 0,
+      "elapsedNs": 672106764,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "unit",
+      "variant": "on",
+      "trial": 1,
+      "elapsedNs": 577421519,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "unit",
+      "variant": "off",
+      "trial": 1,
+      "elapsedNs": 605660905,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "unit",
+      "variant": "off",
+      "trial": 2,
+      "elapsedNs": 532033061,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "unit",
+      "variant": "on",
+      "trial": 2,
+      "elapsedNs": 540023984,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "drain",
+      "variant": "off",
+      "trial": 0,
+      "elapsedNs": 104833491,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "drain",
+      "variant": "on",
+      "trial": 0,
+      "elapsedNs": 115523874,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "drain",
+      "variant": "on",
+      "trial": 1,
+      "elapsedNs": 117446040,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "drain",
+      "variant": "off",
+      "trial": 1,
+      "elapsedNs": 114438740,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "drain",
+      "variant": "off",
+      "trial": 2,
+      "elapsedNs": 104050553,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "drain",
+      "variant": "on",
+      "trial": 2,
+      "elapsedNs": 115413856,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "off",
+      "trial": 0,
+      "elapsedNs": 116503141,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "on",
+      "trial": 0,
+      "elapsedNs": 109337099,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "on",
+      "trial": 1,
+      "elapsedNs": 148604466,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "off",
+      "trial": 1,
+      "elapsedNs": 118159419,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "off",
+      "trial": 2,
+      "elapsedNs": 122927472,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "buff",
+      "variant": "on",
+      "trial": 2,
+      "elapsedNs": 132428326,
+      "environmentRecords": 0,
+      "functionBindingCells": 0
+    }
+  ],
+  "counted": [
+    {
+      "mode": "unit",
+      "variant": "off",
+      "trial": 0,
+      "elapsedNs": 595915920,
+      "environmentRecords": 145551,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "unit",
+      "variant": "on",
+      "trial": 0,
+      "elapsedNs": 580944054,
+      "environmentRecords": 145551,
+      "functionBindingCells": 0
+    },
+    {
+      "mode": "drain",
+      "variant": "off",
+      "trial": 0,
+      "elapsedNs": 108754267,
+      "environmentRecords": 13001,
+      "functionBindingCells": 12800
+    },
+    {
+      "mode": "drain",
+      "variant": "on",
+      "trial": 0,
+      "elapsedNs": 109806528,
+      "environmentRecords": 13001,
+      "functionBindingCells": 12800
+    },
+    {
+      "mode": "buff",
+      "variant": "off",
+      "trial": 0,
+      "elapsedNs": 151390023,
+      "environmentRecords": 6001,
+      "functionBindingCells": 10000
+    },
+    {
+      "mode": "buff",
+      "variant": "on",
+      "trial": 0,
+      "elapsedNs": 143716918,
+      "environmentRecords": 4001,
+      "functionBindingCells": 8000
+    }
+  ],
+  "totals": {
+    "unit": {
+      "elapsedNs": {
+        "off": 1755355820,
+        "on": 1789552267
+      },
+      "speedRatio": 0.9808910599424252,
+      "pairSpeedRatios": [
+        0.9189936585729704,
+        1.0489060159186758,
+        0.9852026516659305
+      ]
+    },
+    "drain": {
+      "elapsedNs": {
+        "off": 323322784,
+        "on": 348383770
+      },
+      "speedRatio": 0.9280650014207034,
+      "pairSpeedRatios": [
+        0.9074616992155232,
+        0.9743941983910228,
+        0.9015429915104821
+      ]
+    },
+    "buff": {
+      "elapsedNs": {
+        "off": 357590032,
+        "on": 390369891
+      },
+      "speedRatio": 0.9160287210777739,
+      "pairSpeedRatios": [
+        1.0655408097118069,
+        0.7951269714868462,
+        0.9282566329502647
+      ]
+    }
+  },
+  "functions": {
+    "unit_off": {
+      "nativeMutableParameters": false,
+      "functions": [
+        {
+          "id": 1,
+          "name": "bits",
+          "nativeBindings": [
+            "v"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "p",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 3,
+          "name": "",
+          "nativeBindings": [
+            "x",
+            "y",
+            "a",
+            "b"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 4,
+          "name": "",
+          "nativeBindings": [
+            "p"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 6,
+          "name": "update",
+          "nativeBindings": [
+            "t",
+            "a",
+            "i",
+            "r",
+            "n",
+            "l",
+            "o",
+            "f",
+            "s",
+            "c",
+            "d",
+            "u",
+            "_",
+            "m",
+            "p",
+            "k",
+            "g",
+            "v",
+            "h",
+            "S",
+            "B",
+            "A",
+            "b",
+            "D",
+            "y",
+            "C",
+            "T",
+            "M",
+            "E",
+            "P",
+            "R",
+            "O",
+            "L",
+            "x",
+            "w",
+            "F",
+            "I",
+            "H",
+            "G",
+            "U",
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 7,
+          "name": "make",
+          "nativeBindings": [
+            "skill",
+            "attrs",
+            "fx",
+            "config"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 8,
+          "name": "log",
+          "nativeBindings": [
+            "name"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 16,
+          "name": "",
+          "nativeBindings": [
+            "dt"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 21,
+          "name": "",
+          "nativeBindings": [
+            "value",
+            "owner"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 22,
+          "name": "",
+          "nativeBindings": [
+            "value"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 23,
+          "name": "",
+          "nativeBindings": [
+            "value"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 24,
+          "name": "",
+          "nativeBindings": [
+            "a",
+            "b",
+            "c"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 27,
+          "name": "",
+          "nativeBindings": [
+            "d",
+            "x",
+            "key"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 28,
+          "name": "",
+          "nativeBindings": [
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 30,
+          "name": "benchmarkUnitUpdates",
+          "nativeBindings": [
+            "i",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        }
+      ]
+    },
+    "unit_on": {
+      "nativeMutableParameters": true,
+      "functions": [
+        {
+          "id": 1,
+          "name": "bits",
+          "nativeBindings": [
+            "v"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "p",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 3,
+          "name": "",
+          "nativeBindings": [
+            "x",
+            "y",
+            "a",
+            "b"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 4,
+          "name": "",
+          "nativeBindings": [
+            "p"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 6,
+          "name": "update",
+          "nativeBindings": [
+            "t",
+            "a",
+            "i",
+            "r",
+            "n",
+            "l",
+            "o",
+            "f",
+            "s",
+            "c",
+            "d",
+            "u",
+            "_",
+            "m",
+            "p",
+            "k",
+            "g",
+            "v",
+            "h",
+            "S",
+            "B",
+            "A",
+            "b",
+            "D",
+            "y",
+            "C",
+            "T",
+            "M",
+            "E",
+            "P",
+            "R",
+            "O",
+            "L",
+            "x",
+            "w",
+            "F",
+            "I",
+            "H",
+            "G",
+            "U",
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 7,
+          "name": "make",
+          "nativeBindings": [
+            "skill",
+            "attrs",
+            "fx",
+            "config"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 8,
+          "name": "log",
+          "nativeBindings": [
+            "name"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 16,
+          "name": "",
+          "nativeBindings": [
+            "dt"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 21,
+          "name": "",
+          "nativeBindings": [
+            "value",
+            "owner"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 22,
+          "name": "",
+          "nativeBindings": [
+            "value"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 23,
+          "name": "",
+          "nativeBindings": [
+            "value"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 24,
+          "name": "",
+          "nativeBindings": [
+            "a",
+            "b",
+            "c"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 27,
+          "name": "",
+          "nativeBindings": [
+            "d",
+            "x",
+            "key"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 28,
+          "name": "",
+          "nativeBindings": [
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 30,
+          "name": "benchmarkUnitUpdates",
+          "nativeBindings": [
+            "i",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        }
+      ]
+    },
+    "drain_off": {
+      "nativeMutableParameters": false,
+      "functions": [
+        {
+          "id": 1,
+          "name": "__nativeDrain",
+          "nativeBindings": [
+            "t",
+            "i"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "callback"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 3,
+          "name": "callback",
+          "nativeBindings": [
+            "fn"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 6,
+          "name": "benchmarkDrain",
+          "nativeBindings": [
+            "frame",
+            "i",
+            "rounds",
+            "width"
+          ],
+          "nativeMutableParameters": []
+        }
+      ]
+    },
+    "drain_on": {
+      "nativeMutableParameters": true,
+      "functions": [
+        {
+          "id": 1,
+          "name": "__nativeDrain",
+          "nativeBindings": [
+            "t",
+            "i"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "callback"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 3,
+          "name": "callback",
+          "nativeBindings": [
+            "fn"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 6,
+          "name": "benchmarkDrain",
+          "nativeBindings": [
+            "frame",
+            "i",
+            "rounds",
+            "width"
+          ],
+          "nativeMutableParameters": []
+        }
+      ]
+    },
+    "buff_off": {
+      "nativeMutableParameters": false,
+      "functions": [
+        {
+          "id": 1,
+          "name": "",
+          "nativeBindings": [
+            "name"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "e",
+            "r",
+            "i",
+            "a",
+            "n",
+            "o",
+            "s"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 3,
+          "name": "",
+          "nativeBindings": [
+            "t",
+            "r",
+            "i",
+            "a",
+            "n",
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 4,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 5,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 6,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 7,
+          "name": "",
+          "nativeBindings": [
+            "r",
+            "i",
+            "a",
+            "n",
+            "e",
+            "t"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 8,
+          "name": "",
+          "nativeBindings": [
+            "t",
+            "r",
+            "i",
+            "a"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 9,
+          "name": "",
+          "nativeBindings": [
+            "i",
+            "r",
+            "n",
+            "l",
+            "o",
+            "f",
+            "s",
+            "c",
+            "t",
+            "a"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 10,
+          "name": "",
+          "nativeBindings": [
+            "i",
+            "e",
+            "t",
+            "a"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 11,
+          "name": "",
+          "nativeBindings": [
+            "b",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 12,
+          "name": "bits",
+          "nativeBindings": [
+            "d",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 14,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 16,
+          "name": "benchmarkBuffConstructors",
+          "nativeBindings": [
+            "i",
+            "b",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 19,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 20,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": []
+        }
+      ]
+    },
+    "buff_on": {
+      "nativeMutableParameters": true,
+      "functions": [
+        {
+          "id": 1,
+          "name": "",
+          "nativeBindings": [
+            "name"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 2,
+          "name": "",
+          "nativeBindings": [
+            "e",
+            "r",
+            "i",
+            "a",
+            "n",
+            "o",
+            "s"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 3,
+          "name": "",
+          "nativeBindings": [
+            "t",
+            "r",
+            "i",
+            "a",
+            "n",
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 4,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 5,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 6,
+          "name": "",
+          "nativeBindings": [
+            "e"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 7,
+          "name": "",
+          "nativeBindings": [
+            "r",
+            "i",
+            "a",
+            "n",
+            "e",
+            "t"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 8,
+          "name": "",
+          "nativeBindings": [
+            "t",
+            "r",
+            "i",
+            "a",
+            "e"
+          ],
+          "nativeMutableParameters": [
+            "e"
+          ]
+        },
+        {
+          "id": 9,
+          "name": "",
+          "nativeBindings": [
+            "i",
+            "r",
+            "n",
+            "l",
+            "o",
+            "f",
+            "s",
+            "c",
+            "e",
+            "t",
+            "a"
+          ],
+          "nativeMutableParameters": [
+            "e"
+          ]
+        },
+        {
+          "id": 10,
+          "name": "",
+          "nativeBindings": [
+            "i",
+            "e",
+            "t",
+            "a"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 11,
+          "name": "",
+          "nativeBindings": [
+            "b",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 12,
+          "name": "bits",
+          "nativeBindings": [
+            "d",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 14,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 16,
+          "name": "benchmarkBuffConstructors",
+          "nativeBindings": [
+            "i",
+            "b",
+            "n"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 19,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": []
+        },
+        {
+          "id": 20,
+          "name": "",
+          "nativeBindings": [
+            "k"
+          ],
+          "nativeMutableParameters": []
+        }
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "file": "benchmarks/results/2026-10-30T17-50-42.014Z-mutable-parameter-components.actual.gz",
+      "sha256": "efb461466266622034f1cde479203581b2e7ef3c68a812d59c50fe0c0ce35296",
+      "uncompressedSha256": "1a96adf4c779f1d00486f78a38893469ea5ca76103fed446e16b208cb7ed4800",
+      "uncompressedBytes": 113912450
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-50-42.014Z-mutable-parameter-components.expected.gz",
+      "sha256": "fba114dfd87d5c7a3b204d979ca9f4e98d941b1f917ebb1680e9c074dcbf4458",
+      "uncompressedSha256": "04c1e350dfb5aab37490c3b04aab01599c8bcfc339911afc00e60b68ca2f41e9",
+      "uncompressedBytes": 12504054
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-50-42.014Z-mutable-parameter-components.preparation.gz",
+      "sha256": "14605dcdd9cb299f98ed1e6a7a335706594a3655ac8318eabeeaccf470c85628",
+      "uncompressedSha256": "fa5add2e52ca849e0d87bbbf3492c97541fc519cebcb50f38ae7ce9b46b59b22",
+      "uncompressedBytes": 81207
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-50-42.014Z-mutable-parameter-components.unit-source.gz",
+      "sha256": "87bf30d0c4991e656be1fe5e9aeb7e7f8a67cb863deff154ef2426df5c7d5996",
+      "uncompressedSha256": "20c5860ce0833f389d40a8a6bc4436fcf2a63c3979ef6728e620773b6f7e237d",
+      "uncompressedBytes": 10340
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-50-42.014Z-mutable-parameter-components.drain-source.gz",
+      "sha256": "0a2eb285a7194a2682dd66441242c79588dccba23330ee14702a9983a1f31ba8",
+      "uncompressedSha256": "0afa410d48ab85f844ddd7b8bc1a9a7beebf9bc5d8f0d5b2fd831e9dab5a72d9",
+      "uncompressedBytes": 873
+    },
+    {
+      "file": "benchmarks/results/2026-10-30T17-50-42.014Z-mutable-parameter-components.buff-source.gz",
+      "sha256": "7c0b64bab43a41ce69d36d8bd72a51edad036e5410ea3b6d81bdcf55fd864259",
+      "uncompressedSha256": "ae2b50b370788479fee5cc6bedba7ece471bd013980424a14927cd67c602b13e",
+      "uncompressedBytes": 13041
+    }
+  ],
+  "oracle": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "flags": [
+      "--jitless"
+    ]
+  },
+  "library": {
+    "file": "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/libjs_runtime.rlib",
+    "sha256": "c105e34031773dd7eb6e570f56133a92e73ddc4483e211fe7c46cc9957e029f9"
+  },
+  "binaries": {
+    "timing": {
+      "file": "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/timing",
+      "sha256": "b2c17495fb422a9c27ace33733329955706ebf2d7a70a1b144edd5bd010f52b7",
+      "driverSha256": "9abd53d3fcff5ed3e30b89e65765fa76332756c4ea88e6a404c1d258b2ec89df",
+      "command": [
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+        "--edition=2024",
+        "-O",
+        "-C",
+        "codegen-units=64",
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/timing.rs",
+        "-L",
+        "dependency=/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/deps",
+        "--extern",
+        "js_runtime=/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/libjs_runtime.rlib",
+        "-o",
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/timing"
+      ]
+    },
+    "counted": {
+      "file": "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/counted",
+      "sha256": "97260da65f7aebd720896ae238c15ea2cf4e311ec5679db84470e1e108871011",
+      "driverSha256": "0f28d22a97ec5d6cdf18373802fc14cd21afe312226fc821f8239c7376dc9bee",
+      "command": [
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc",
+        "--edition=2024",
+        "-O",
+        "-C",
+        "codegen-units=64",
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/counted.rs",
+        "-L",
+        "dependency=/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/deps",
+        "--extern",
+        "js_runtime=/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/target/release/libjs_runtime.rlib",
+        "-o",
+        "/workspace/afkarena-simx/work/candidate-mutable-parameter-benchmark/work/mutable-parameter-components/counted"
+      ]
+    }
+  },
+  "scope": "Original Unit/drain controls and originalhotBuff.ctor with originaltable/copy/data helpers and explicitgetDuration/owner/caster fixture callbacks. Timed executable has noAPI counters; separate countedexecutable measures actualgenerated environmentrecords/nonGlobal binding-cell inserts. No Runtime rebuild. No Cocosclasswrapper/wholebattle qualification.",
+  "qualifiesFor10000Target": false,
+  "notes": "Separate timing executable has no allocation API counters. Counted executable instruments generated environment creation and binding declarations. All outputs from all executions match the same warmed/reset pinned Node component fixtures. Source calls and callbacks remain active; these are component rates, not battles/second. Initial exploratory cohort; the longer Buff-only repeat is archived separately."
+}
