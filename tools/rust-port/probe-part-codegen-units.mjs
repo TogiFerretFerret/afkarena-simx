@@ -10,7 +10,7 @@ import {unitSpeederProbeSource} from '../native-unit-speeder-cases.mjs';
 // Run only while holding the repository's exclusive native-timing lease.
 const arg=process.argv.slice(2),opt=(key,fallback)=>arg.includes(key)?arg[arg.indexOf(key)+1]:fallback;
 const root=resolve(import.meta.dirname,'../..'),reference=resolve(opt('--reference-root','/workspace/afkarena-simx'));
-const work=resolve(root,'work/part-codegen-units-probe'),world=resolve(reference,'work/rust-battle-full');
+const work=resolve(root,opt('--work','work/part-codegen-units-probe')),world=resolve(reference,'work/rust-battle-full');
 const deps=resolve(reference,'work/rust-port-shared-target/release/deps');
 const rustc=resolve(reference,'work/toolchain/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc');
 const sha=b=>createHash('sha256').update(b).digest('hex'),inputs=new Map();
@@ -25,7 +25,8 @@ assert.equal((await execute(rustc,[resolve(work,'measure.rs'),'-o',resolve(work,
 const files=await fs.readdir(deps);
 async function dependency(name){const prefix='lib'+name.replaceAll('-','_')+'-';const choices=await Promise.all(files.filter(n=>n.startsWith(prefix)&&n.endsWith('.rlib')).map(async n=>({file:resolve(deps,n),mtime:(await fs.stat(resolve(deps,n))).mtimeMs})));assert.ok(choices.length,'Missing dependency '+name);choices.sort((a,b)=>b.mtime-a.mtime);await pin(choices[0].file);return choices[0].file;}
 const runtime=await dependency('js-runtime');
-const census=await Promise.all((await fs.readdir(world)).filter(n=>/-part-\d+$/.test(n)).map(async name=>({name,bytes:(await fs.stat(resolve(world,name,'src/lib.rs'))).size})));
+const workspace=(await pin(resolve(world,'Cargo.toml'))).toString(),members=JSON.parse(workspace.match(/^members\s*=\s*(\[[^\n]+\])/m)[1]);
+const census=await Promise.all(members.filter(n=>/-part-\d+$/.test(n)).map(async name=>({name,bytes:(await fs.stat(resolve(world,name,'src/lib.rs'))).size})));
 census.sort((a,b)=>a.bytes-b.bytes);
 const selected=[{label:'small',...census[0]},{label:'large',...census.at(-1)}],rows=[];
 for(const part of selected){
@@ -39,7 +40,7 @@ for(const part of selected){
     const argv=['--crate-name',part.name.replaceAll('-','_'),snapshot,'--crate-type','rlib','--edition=2024','--emit=link','-C','opt-level=3','-C','codegen-units='+cgu,'-C','lto=off','-C','embed-bitcode=no','--out-dir',output,'-L','dependency='+deps,...external];
     const row=await measured(part.label+'-'+round+'-cgu'+cgu,argv);const artifact=resolve(output,'lib'+part.name.replaceAll('-','_')+'.rlib');
     const bytes=await fs.readFile(artifact);rows.push({...row,kind:'actual-generated-part',part:part.name,label:part.label,round,codegenUnits:cgu,artifactBytes:bytes.length,artifactSha256:sha(bytes)});
-    await checkpoint();
+    await checkpoint();console.log(JSON.stringify(rows.at(-1)));
   }
 }
 
@@ -64,7 +65,7 @@ for(const cgu of [64,4,1]){
   behavior.push({codegenUnits:cgu,...compilation,observationsMatchedNode:true,eventCount:expected.events.length,binarySha256:sha(await fs.readFile(binary))});
 }
 for(const[file,hash]of inputs)assert.equal(sha(await fs.readFile(file)),hash,'Shared input changed '+file);
-await checkpoint(true);
+await checkpoint(true);console.log(JSON.stringify({passed:true,report:resolve(work,'report.json')}));
 async function checkpoint(passed=false){await fs.writeFile(resolve(work,'report.json'),JSON.stringify({version:1,passed,complete:passed,compiler:{file:rustc,sha256:sha(await fs.readFile(rustc)),version:version.stdout},flags:{optLevel:3,lto:false,incremental:false,embedBitcode:false,debugInfo:0,fastMath:false},selection:{candidates:census.length,rule:'Minimum and maximum generated part source bytes; all intervening sizes retained in census',selected,census},inputs:[...inputs].map(([file,sha256])=>({file,sha256})),rows,behavior:passed?behavior:[],oracle:passed?{node:process.version,v8:process.versions.v8,flags:process.execArgv}:null,scope:'Cold direct rustc leaf-crate builds with read-only reused exact compiled dependencies. Front-end, LLVM and object emission included; Cargo scheduling, dependency rebuilding and final full-program linking excluded. No production defaults changed. Fixture parity is not complete battle qualification.',qualifiesFor10000Target:false},null,2)+'\n');}
 async function measured(label,argv){const metrics=resolve(work,label+'.metrics.json'),run=await execute(resolve(work,'measure'),[metrics,rustc,...argv]);await fs.writeFile(resolve(work,label+'.stderr.gz'),gzipSync(Buffer.from(run.stderr)));assert.equal(run.status,0,run.stderr.slice(-4000));return{argv,metrics:JSON.parse(await fs.readFile(metrics,'utf8'))};}
 async function execute(command,argv){return await new Promise((yes,no)=>{const child=spawn(command,argv,{cwd:reference,env:{...process.env,CARGO_INCREMENTAL:'0'},stdio:['ignore','pipe','pipe']});let stdout='',stderr='';child.stdout.on('data',b=>stdout+=b);child.stderr.on('data',b=>stderr+=b);child.on('error',no);child.on('close',(status,signal)=>yes({status,signal,stdout,stderr}));});}
