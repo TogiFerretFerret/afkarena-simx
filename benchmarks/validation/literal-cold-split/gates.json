@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "sourceCommit": "6821665",
+  "baselineCommit": "6369efc",
+  "native": {
+    "library": 90,
+    "integration": 26
+  },
+  "source": {
+    "oneHopTrace1": 24,
+    "reflection": 24,
+    "literalSlots": 19,
+    "diagnostics": {
+      "passed": true,
+      "keyCoercions": 1,
+      "sourceFrame": true,
+      "rawKey": true
+    }
+  },
+  "scope": "Literal cache hot/cold split only; no Runtime/Object fields, new tickets, or guard-domain changes. No whole-battle claim.",
+  "inputs": {
+    "crates/js-runtime/src/property_slots.rs": "39794f933ba13991ee4b2118e068d83bdfe057a68dd633c8c7e8bcf6e249ce79"
+  }
+}
